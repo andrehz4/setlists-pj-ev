@@ -62,6 +62,7 @@ setlists-pj-ev/
 |---|---|---|
 | Runtime | Browser moderno | qualquer Chromium/FF |
 | CDN externo | Google Fonts | opcional, com fallbacks |
+| **Object storage (áudio)** | Cloudflare R2 — bucket `setlists-pj-ev-audio` | ✅ ver §14 |
 | Backend | Nenhum | — |
 | Build/bundler | Nenhum | — |
 | Banco de dados | Nenhum | — |
@@ -87,7 +88,7 @@ python -m http.server 8000
 
 | Artista | Shows com setlist completo | Status mídia |
 |---|---|---|
-| Pearl Jam | 17 (2005, 2011×4, 2013×3, 2015×5, 2018×2, 2024×2) | fotos oficiais OK; **MP3s 2005 importados em 2026-05-07** (commit `73a8407`); fotos pessoais ainda faltando |
+| Pearl Jam | 17 (2005, 2011×4, 2013×3, 2015×5, 2018×2, 2024×2) | fotos oficiais OK; **MP3s 2005 no R2** (2026-05-07); MP3s 2011×4 + 2013-03-31 declarados no manifest aguardando upload; fotos pessoais ainda faltando |
 | Eddie Vedder | 8 (2014×5, 2018×3) | só posters; fotos oficiais e pessoais faltando |
 
 ### Mídia presente no repo (✅)
@@ -96,8 +97,10 @@ python -m http.server 8000
 - Posters de todos os 25 shows
 - Fotos oficiais dos 17 shows PJ + ev-2014-05-06 (385 jpgs)
 - **19 vídeos MP4** dos shows pj-2024-08-29 (6) e pj-2024-08-31 (13)
-- **26 MP3s** do show pj-2005-12-02 (importados em 2026-05-07, ~165 MB)
 - `lyrics.json`
+
+**Mídia em Cloudflare R2** (não no repo, ver §14):
+- 26 MP3s do show pj-2005-12-02 (~165 MB, importados em 2026-05-07)
 
 ### Mídia faltante (⏸️ ver `MEDIA_AUDIT_2026-04-29.md`)
 
@@ -168,8 +171,9 @@ git push origin main
 | 1. Cópia local | `C:\Gitlab_hz\pearljam\setlists-pj-ev` | ✅ |
 | 2. **Git remoto** | github.com/andrehz4/setlists-pj-ev | ✅ |
 | 3. **Site live** | setlists-pj-ev.pages.dev | ✅ |
-| 4. ZIP local em HD/pendrive | — | ⏸️ recomendado antes de formatar |
-| 5. Cópia em outra nuvem | — | opcional |
+| 4. **Object storage (áudio)** | Cloudflare R2 bucket `setlists-pj-ev-audio` | ✅ |
+| 5. ZIP local em HD/pendrive | — | ⏸️ recomendado antes de formatar |
+| 6. Cópia em outra nuvem | — | opcional |
 
 **Pode formatar com tranquilidade depois de adicionar a camada 4.** A
 restauração após format é trivial:
@@ -197,7 +201,39 @@ d054113  redesign Ticket Archive + 7 shows EV novos + 4 capas + lyrics.json
 - **Animações:** todas respeitam `prefers-reduced-motion`
 - **Tema padrão:** claro (light), com toggle pra escuro
 
-## 13. Migração de conta GitHub (2026-05-07)
+## 14. Cloudflare R2 — áudio (2026-05-07)
+
+Áudios MP3 não vivem mais no repo (GitHub aperta acima de 1 GB). Foram
+movidos pra Cloudflare R2 — mesma conta `eng.andrehz@gmail.com`,
+egress grátis, free tier 10 GB.
+
+**Coordenadas do bucket:**
+- Nome: `setlists-pj-ev-audio`
+- Region: ENAM (Eastern North America)
+- URL pública (R2.dev): `https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev`
+- Endpoint S3: `https://c071f317813dd06ec00befa13d5c5684.r2.cloudflarestorage.com`
+- Account ID: `c071f317813dd06ec00befa13d5c5684`
+
+**Estrutura no bucket:** `<show-id>/<filename>.mp3`
+Exemplo: `setlists-pj-ev-audio/pj-2005-12-02/01 Go.mp3`
+
+**Player (`index.html`):** lê constante `R2_AUDIO_BASE` definida no topo
+do bloco DATA. Manifest continua declarando `audio: [...]` no
+`MEDIA_MANIFEST` — só o caminho de runtime mudou.
+
+**Como subir mais áudios (rclone instalado via winget):**
+```powershell
+# config em %APPDATA%\rclone\rclone.conf, perfil "r2-setlists"
+rclone copy "<pasta-local>" "r2-setlists:setlists-pj-ev-audio/<show-id>/" --s3-no-check-bucket --progress
+```
+> ⚠️ Sempre use `--s3-no-check-bucket` — o token tem escopo limitado a
+> esse bucket e não pode rodar `CreateBucket`/`ListBuckets`.
+
+**API Token:** salvo só no rclone.conf local. Tipo `Object Read & Write`,
+escopo `Apply to specific buckets only` → `setlists-pj-ev-audio`.
+Pra recriar: dashboard → R2 → API → Account API Tokens.
+
+## 15. Migração de conta GitHub (2026-05-07)
 
 O repo foi migrado de `azimermann4/setlists-pj-ev` para
 `andrehz4/setlists-pj-ev`. O Cloudflare Pages foi reconectado no mesmo dia.
