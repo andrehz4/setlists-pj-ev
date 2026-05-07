@@ -3268,7 +3268,7 @@ html[data-theme="dark"] .album-block { box-shadow: 3px 3px 0 var(--ink-noir), in
 
 <!-- AUDIO PLAYER -->
 <div id="audio-player">
-  <audio id="ap-audio"></audio>
+  <audio id="ap-audio" preload="auto"></audio>
   <div class="ap-progress-row">
     <span class="ap-time" id="ap-current">0:00</span>
     <input type="range" class="ap-progress" id="ap-progress" min="0" max="100" value="0" step="0.1">
@@ -4016,6 +4016,18 @@ function apPlay(showId, songName, audioFiles, songIndex) {
   audio.src = src;
   document.getElementById('audio-player').classList.add('loading');
   audio.play();
+
+  // prefetch da proxima faixa: esquenta o edge cache do CF antes do usuario clicar
+  const nextFile = audioFiles[audioFiles.indexOf(file) + 1];
+  if (nextFile) {
+    const nextUrl = `${R2_AUDIO_BASE}/${showId}/${encodeURIComponent(nextFile)}`;
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.as = 'audio';
+    link.href = nextUrl;
+    document.head.appendChild(link);
+    setTimeout(() => link.remove(), 30000);
+  }
 
   document.getElementById('ap-song-name').textContent = songName;
   // Abrir painel de letras
