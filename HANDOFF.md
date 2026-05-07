@@ -12,10 +12,10 @@ com o código.
 
 | Recurso | URL / Local | Status |
 |---|---|---|
-| **Site no ar** | https://setlists-pj-ev.pages.dev/ | ⚠️ pendente reapontar Cloudflare pro novo repo (ver §13) |
+| **Site no ar** | https://setlists-pj-ev.pages.dev/ | ✅ |
 | **Repo Git** | https://github.com/andrehz4/setlists-pj-ev | ✅ público |
 | **Pasta local** | `C:\Gitlab_hz\pearljam\setlists-pj-ev` | ✅ |
-| **Deploy automático** | Cloudflare Pages → push em `main` reimplanta em ~1 min | ⚠️ desconectado após migração de conta GitHub |
+| **Deploy automático** | Cloudflare Pages → push em `main` reimplanta em ~1 min | ✅ reconectado em 2026-05-07 (Pages clássico, repo andrehz4) |
 | **HTTPS** | Cloudflare auto-provisionado | ✅ |
 | **Identidade do git** | `André <eng.andrehz@gmail.com>` (config global) | ✅ |
 
@@ -152,14 +152,14 @@ git push origin main
 
 ## 9. Próximos passos pendentes (em ordem de prioridade)
 
-1. **Reapontar Cloudflare Pages** pro novo repo `andrehz4/setlists-pj-ev` (ver §13) — sem isso o site para de receber updates automáticos
-2. **Quando chegar em casa:** verificar outro PC. Procurar:
+1. **Quando chegar em casa:** verificar outro PC. Procurar:
    - Fotos pessoais antigas (2011-2015)
    - Fotos dos shows EV novos
-3. Importar os 12 arquivos do Drive (§7) — ~10 min de trabalho automatizado
-4. **ZIP backup local** + hash SHA-256 antes de formatar (camada extra de segurança)
-5. **Domínio custom** no Cloudflare Pages (usa subdomínio do Hostinger ou novo)
-6. Procurar `pj-2024-08-31/poster-1.jpg` (apenas 1 arquivo)
+2. Importar os 12 arquivos do Drive (§7) — ~10 min de trabalho automatizado
+3. **ZIP backup local** + hash SHA-256 antes de formatar (camada extra de segurança)
+4. **Domínio custom** no Cloudflare Pages (usa subdomínio do Hostinger ou novo)
+5. Procurar `pj-2024-08-31/poster-1.jpg` (apenas 1 arquivo)
+6. **Deletar repo antigo** `azimermann4/setlists-pj-ev` (manual via web — `gh` aqui só está logado como `andrehz4`)
 
 ## 10. Camadas de backup hoje
 
@@ -167,7 +167,7 @@ git push origin main
 |---|---|---|
 | 1. Cópia local | `C:\Gitlab_hz\pearljam\setlists-pj-ev` | ✅ |
 | 2. **Git remoto** | github.com/andrehz4/setlists-pj-ev | ✅ |
-| 3. **Site live** | setlists-pj-ev.pages.dev | ⚠️ pendente reapontar pro novo repo |
+| 3. **Site live** | setlists-pj-ev.pages.dev | ✅ |
 | 4. ZIP local em HD/pendrive | — | ⏸️ recomendado antes de formatar |
 | 5. Cópia em outra nuvem | — | opcional |
 
@@ -200,20 +200,18 @@ d054113  redesign Ticket Archive + 7 shows EV novos + 4 capas + lyrics.json
 ## 13. Migração de conta GitHub (2026-05-07)
 
 O repo foi migrado de `azimermann4/setlists-pj-ev` para
-`andrehz4/setlists-pj-ev`. O repo antigo foi/será deletado.
+`andrehz4/setlists-pj-ev`. O Cloudflare Pages foi reconectado no mesmo dia.
 
-**Pendência crítica:** o Cloudflare Pages ainda aponta pro repo antigo
-e portanto **não recebe mais updates** dos pushes em `main`. Pra
-restaurar o deploy automático:
-
-1. Cloudflare dashboard → Pages → projeto `setlists-pj-ev`
-2. Settings → Builds & deployments → Source
-3. Reconectar GitHub na conta `andrehz4` e selecionar
-   `andrehz4/setlists-pj-ev`, branch `main`
-4. Opcional: trigger um deploy manual pra forçar o primeiro build
-
-Sem essa reconfiguração os commits novos (incluindo os 26 MP3s
-importados em `73a8407`) não aparecem no site live.
+**Notas da migração (2026-05-07):**
+- Repo antigo `azimermann4/setlists-pj-ev` ainda existe — deletar manual
+  via web (a CLI `gh` local só está logada na conta `andrehz4`).
+- O Cloudflare unificou Workers + Pages no novo wizard. Pra criar Pages
+  novo é preciso clicar no link `Looking to deploy Pages? Get started`
+  no wizard de Worker — sem isso, Cloudflare cria como Worker e tenta
+  rodar `npx wrangler deploy`, que falha em sites estáticos sem
+  `wrangler.jsonc` (ou tropeça no `.git` por exceder 25 MiB por asset).
+- Build settings do Pages atual: Framework preset `None`, build command
+  vazio, output directory `/`.
 
 ---
 
