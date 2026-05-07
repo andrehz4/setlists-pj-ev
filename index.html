@@ -1727,6 +1727,27 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 #audio-player.active { display: flex; }
 
+/* loading: spinner sobre o play/pause + barra pulsando */
+#audio-player.loading .ap-play-pause { color: transparent; position: relative; }
+#audio-player.loading .ap-play-pause::after {
+  content: '';
+  position: absolute; inset: 0; margin: auto;
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,.85);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ap-spin .8s linear infinite;
+}
+#audio-player.loading .ap-progress { opacity: .55; }
+@keyframes ap-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  #audio-player.loading .ap-play-pause::after {
+    animation: none;
+    border-top-color: rgba(255,255,255,.85);
+    opacity: .5;
+  }
+}
+
 /* Linha 1: barra de progresso */
 .ap-progress-row {
   display: flex;
@@ -3993,6 +4014,7 @@ function apPlay(showId, songName, audioFiles, songIndex) {
   const audio = document.getElementById('ap-audio');
   const src = `${R2_AUDIO_BASE}/${showId}/${encodeURIComponent(file)}`;
   audio.src = src;
+  document.getElementById('audio-player').classList.add('loading');
   audio.play();
 
   document.getElementById('ap-song-name').textContent = songName;
@@ -4016,6 +4038,7 @@ function apPlay(showId, songName, audioFiles, songIndex) {
 
 function _apInitControls() {
   const audio   = document.getElementById('ap-audio');
+  const player  = document.getElementById('audio-player');
   const pp      = document.getElementById('ap-play-pause');
   const prog    = document.getElementById('ap-progress');
   const cur     = document.getElementById('ap-current');
@@ -4023,6 +4046,11 @@ function _apInitControls() {
   const prevBtn = document.getElementById('ap-prev');
   const nextBtn = document.getElementById('ap-next');
   const closeBtn= document.getElementById('ap-close');
+
+  ['loadstart','waiting','seeking'].forEach(ev =>
+    audio.addEventListener(ev, () => player.classList.add('loading')));
+  ['playing','canplay','seeked'].forEach(ev =>
+    audio.addEventListener(ev, () => player.classList.remove('loading')));
 
   pp.addEventListener('click', () => {
     if (audio.paused) { audio.play(); pp.textContent = '⏸'; }
