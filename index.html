@@ -1212,6 +1212,29 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .chart-svg .area-dot { fill: var(--pj); }
 
 /* ===========================================================
+   EXTRAS / ACERVO
+   =========================================================== */
+.extras-block {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 2px dashed var(--ink-dim);
+}
+.extras-label { color: var(--ink-dim) !important; opacity: 0.85; }
+.extras-note {
+  font: italic 14px/1.5 var(--font-editorial, Georgia, serif);
+  color: var(--ink-mute);
+  margin: -6px 0 16px;
+  max-width: 540px;
+}
+.show-card.is-extra { opacity: 0.78; border-left: 3px dashed var(--ink-dim); }
+.show-card.is-extra:hover { opacity: 1; }
+.show-card-special-badge.extra-badge {
+  background: rgba(107, 94, 68, 0.2);
+  color: var(--ink-mute);
+  border-color: var(--ink-dim);
+}
+
+/* ===========================================================
    RANKING
    =========================================================== */
 .ranking-list {
@@ -3848,10 +3871,15 @@ const state = {
 // ========================================================================
 function filteredShows() {
   return SHOWS.filter(s => {
+    if (s.extra) return false;
     if (state.filterArtist !== "all" && s.artist !== state.filterArtist) return false;
     if (state.filterYear !== "all" && s.date.slice(0,4) !== state.filterYear) return false;
     return true;
   }).sort((a,b) => a.date.localeCompare(b.date));
+}
+function extraShows() {
+  return SHOWS.filter(s => s.extra)
+    .sort((a,b) => a.date.localeCompare(b.date));
 }
 function songFrequency() {
   const freq = {};
@@ -3977,27 +4005,33 @@ function renderTimeline() {
     container.innerHTML = `<p style="color:var(--ink-mute);font-family:var(--font-editorial);font-style:italic;font-size:18px;">Nenhum show pra esse filtro.</p>`;
     return;
   }
+  const cardHtml = (s, isExtra) => `
+    <article class="show-card ${s.artist === 'Eddie Vedder' ? 'ev' : ''} ${s.special ? 'special' : ''} ${isExtra ? 'is-extra' : ''}" data-show-id="${s.id}">
+      ${MEDIA_MANIFEST[s.id]?.poster ? `<div class="card-bg" style="background-image:url('media/${s.id}/poster.jpg')"></div>` : ''}
+      <div class="show-card-artist">${s.artist}</div>
+      <div class="show-card-date">${fmtDate(s.date)}</div>
+      <div class="show-card-venue">${s.venue}</div>
+      <div class="show-card-city">${s.city}</div>
+      ${isExtra ? `<div class="show-card-special-badge extra-badge">📼 Acervo · não presenciado</div>` : ''}
+      ${s.soundcheck ? `<div class="show-card-special-badge">★ Soundcheck presenciado</div>` : ''}
+      <div class="show-card-meta">
+        <span>${s.songs.length} músicas${mediaIndicator(s.id)}${s.soundcheck ? ' +' + s.soundcheck.length + ' SC' : ''}</span>
+        <span class="confidence-badge ${s.confidence}">${s.confidence === "full" ? "completo" : s.confidence === "partial" ? "parcial" : "reconstr."}</span>
+      </div>
+    </article>`;
+  const extras = extraShows();
+  const extrasHtml = extras.length ? `
+    <div class="timeline-year extras-block">
+      <div class="timeline-year-label extras-label">Acervo · extras</div>
+      <div class="extras-note">Shows não presenciados ao vivo. <strong>Não entram nas estatísticas.</strong></div>
+      <div class="shows-grid">${extras.map(s => cardHtml(s, true)).join('')}</div>
+    </div>` : '';
   container.innerHTML = Object.keys(byYear).sort().map(year => `
     <div class="timeline-year">
       <div class="timeline-year-label">${year}</div>
-      <div class="shows-grid">
-        ${byYear[year].map(s => `
-          <article class="show-card ${s.artist === 'Eddie Vedder' ? 'ev' : ''} ${s.special ? 'special' : ''}" data-show-id="${s.id}">
-         ${MEDIA_MANIFEST[s.id]?.poster ? `<div class="card-bg" style="background-image:url('media/${s.id}/poster.jpg')"></div>` : ''}
-            <div class="show-card-artist">${s.artist}</div>
-            <div class="show-card-date">${fmtDate(s.date)}</div>
-            <div class="show-card-venue">${s.venue}</div>
-            <div class="show-card-city">${s.city}</div>
-            ${s.soundcheck ? `<div class="show-card-special-badge">★ Soundcheck presenciado</div>` : ''}
-            <div class="show-card-meta">
-              <span>${s.songs.length} músicas${mediaIndicator(s.id)}${s.soundcheck ? ' +' + s.soundcheck.length + ' SC' : ''}</span>
-              <span class="confidence-badge ${s.confidence}">${s.confidence === "full" ? "completo" : s.confidence === "partial" ? "parcial" : "reconstr."}</span>
-            </div>
-          </article>
-        `).join("")}
-      </div>
+      <div class="shows-grid">${byYear[year].map(s => cardHtml(s, false)).join('')}</div>
     </div>
-  `).join("");
+  `).join("") + extrasHtml;
   container.querySelectorAll(".show-card").forEach(c => c.addEventListener("click", () => openDrawer(c.dataset.showId)));
 }
 
