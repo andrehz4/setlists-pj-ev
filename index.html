@@ -5108,7 +5108,12 @@ function _getInterpretation(songName) {
     const shorter = a.length > b.length ? b : a;
     return shorter.every(w => longer.includes(w)) && shorter.length > 1;
   });
-  return found ? INTERPRETATIONS[found] : null;
+  if (found) return INTERPRETATIONS[found];
+  if (songName.includes('→')) {
+    const parts = songName.split('→').map(s => INTERPRETATIONS[_lyricsNorm(s.trim())]).filter(Boolean);
+    if (parts.length) return parts.join('\n\n');
+  }
+  return null;
 }
 
 async function init() {
