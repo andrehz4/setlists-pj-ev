@@ -4690,14 +4690,16 @@ function _lbLoad(idx) {
   const next = document.getElementById("lb-next");
   img.classList.remove('loaded');
   spinner.style.display = 'block';
+  const targetSrc = _lbImages[idx];
   const tmp = new Image();
   tmp.onload = () => {
-    img.src = _lbImages[idx];
+    if (_lbImages[_lbIndex] !== targetSrc) return;
+    img.src = targetSrc;
     img.classList.add('loaded');
     spinner.style.display = 'none';
   };
   tmp.onerror = () => { spinner.style.display = 'none'; };
-  tmp.src = _lbImages[idx];
+  tmp.src = targetSrc;
   counter.textContent = _lbImages.length > 1 ? `${idx + 1} / ${_lbImages.length}` : '';
   prev.classList.toggle('hidden', idx === 0);
   next.classList.toggle('hidden', idx === _lbImages.length - 1);
@@ -4713,7 +4715,18 @@ function _lbLoad(idx) {
   }
 }
 
-function closeLightbox() { document.getElementById("lightbox").classList.remove("active"); }
+function closeLightbox() {
+  const lb = document.getElementById("lightbox");
+  lb.classList.remove("active");
+  lb.classList.remove("with-drawer");
+  const img = document.getElementById("lightbox-img");
+  if (img) {
+    img.classList.remove("loaded");
+    img.removeAttribute("src");
+  }
+  _lbImages = [];
+  _lbIndex = 0;
+}
 
 // ========================================================================
 // THEME
