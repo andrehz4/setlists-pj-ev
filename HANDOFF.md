@@ -125,9 +125,9 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 | Gigaton | 2020 | `gigaton` | publicado (parcial, paste degradou) | ~36 KB |
 | Dark Matter | 2024 | `darkmatter` | publicado (parcial, paste degradou) | ~38 KB |
 | Lost Dogs | — | `lostdogs` | provavelmente skip | — |
-| Into the Wild | 2007 | `intowild` | EV solo, futuro | — |
-| Ukulele Songs | 2011 | `ukulele` | EV solo, futuro | — |
-| Earthling | 2022 | `earthling` | EV solo, futuro | — |
+| Into the Wild | 2007 | `intowild` | publicado (parcial, Conclusões degradadas) | ~50 KB |
+| Ukulele Songs | 2011 | `ukulele` | publicado (íntegro) | ~33 KB |
+| Earthling | 2022 | `earthling` | publicado (íntegro) | ~35 KB |
 
 Padrão de salvar: cola o texto, eu remove em-dashes (regra do projeto), salvo em `media/albums/<id>.md`, adiciono `<id>` ao set `ALBUM_DOCS` no `index.html`. Botão "📖 Ler análise" aparece automaticamente.
 
