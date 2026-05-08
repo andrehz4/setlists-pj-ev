@@ -2139,6 +2139,61 @@ html[data-theme="light"] .drawer-section-label.my-media {
   color: var(--ink-dim, #6b5e44);
 }
 .setlist li.lyric-open + li.lyric-row .lyric-block { display: block; }
+
+/* Interpretation inline (English critical commentary) — distinct visual from LETRA */
+.interp-toggle {
+  display: inline-block;
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ev, #8c5a1c);
+  border: 1px solid var(--ev, #8c5a1c);
+  padding: 3px 7px;
+  margin-left: 6px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: 1px;
+  transition: background 120ms ease, color 120ms ease;
+}
+.interp-toggle:hover { background: var(--ev, #8c5a1c); color: #fff; }
+.setlist li.interp-open .interp-toggle { background: var(--ev, #8c5a1c); color: #fff; }
+.setlist li.interp-row {
+  display: block !important;
+  grid-template-columns: none !important;
+  counter-increment: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  cursor: default !important;
+  font-style: normal !important;
+  font-family: var(--font-mono);
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  min-height: 0 !important;
+}
+.setlist li.interp-row::before { content: none !important; display: none !important; }
+.setlist li.interp-row:hover { background: transparent !important; }
+.interp-block {
+  display: none;
+  margin: 4px 0 14px;
+  padding: 14px 16px 12px 18px;
+  border-left: 3px solid var(--ev, #8c5a1c);
+  background: rgba(140, 90, 28, 0.05);
+  font: 400 13px/1.6 var(--font-mono, 'IBM Plex Mono', monospace);
+  font-style: normal;
+  color: var(--ink, #1a1611);
+}
+.interp-block .body p { margin: 0 0 10px; }
+.interp-block .body p:last-child { margin-bottom: 0; }
+.interp-block .meta {
+  margin-top: 12px;
+  font: 600 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim, #6b5e44);
+}
+.setlist li.interp-row.open .interp-block { display: block; }
 .lyrics-song-title {
   font-family: var(--font-editorial);
   font-style: italic;
@@ -4084,38 +4139,67 @@ function openDrawer(showId) {
     });
   }
 
-  // Lyrics inline: para cada faixa com letra, injeta botão "letra" + bloco collapse abaixo
+  // Lyrics + Interpretation inline: pra cada faixa, injeta botão LETRA e/ou INTERPRETATION
   Array.from(content.querySelectorAll('#drawer-setlist li[data-song]')).forEach(li => {
     const songName = li.dataset.song;
     const lyricText = _getLyricsStatic(songName);
-    if (!lyricText) return;
-    li.classList.add('has-lyrics');
+    const interpText = _getInterpretation(songName);
+    if (!lyricText && !interpText) return;
     const nameSpan = li.querySelector('span:first-child');
-    if (nameSpan && !nameSpan.querySelector('.lyric-toggle')) {
+
+    // LETRA button + row
+    if (lyricText && nameSpan && !nameSpan.querySelector('.lyric-toggle')) {
+      li.classList.add('has-lyrics');
       const btn = document.createElement('span');
       btn.className = 'lyric-toggle';
       btn.textContent = 'letra';
+      const lyricRow = document.createElement('li');
+      lyricRow.className = 'lyric-row';
+      lyricRow.innerHTML = `<div class="lyric-block"><div class="ly"></div><div class="meta">letra · trecho · clique em LETRA pra fechar</div></div>`;
+      li.parentNode.insertBefore(lyricRow, li.nextSibling);
       btn.addEventListener('click', e => {
         e.stopPropagation();
-        const lyricRow = li.nextElementSibling;
         const isOpen = li.classList.toggle('lyric-open');
-        if (lyricRow && lyricRow.classList.contains('lyric-row')) {
-          if (isOpen) {
-            const body = lyricRow.querySelector('.lyric-block .ly');
-            if (body && !body.dataset.filled) {
-              body.innerHTML = lyricText.split('\n').map(l =>
-                `<div>${l ? l.replace(/&/g,'&amp;').replace(/</g,'&lt;') : '&nbsp;'}</div>`).join('');
-              body.dataset.filled = '1';
-            }
+        if (isOpen) {
+          const body = lyricRow.querySelector('.lyric-block .ly');
+          if (body && !body.dataset.filled) {
+            body.innerHTML = lyricText.split('\n').map(l =>
+              `<div>${l ? l.replace(/&/g,'&amp;').replace(/</g,'&lt;') : '&nbsp;'}</div>`).join('');
+            body.dataset.filled = '1';
           }
         }
       });
       nameSpan.appendChild(btn);
     }
-    const lyricRow = document.createElement('li');
-    lyricRow.className = 'lyric-row';
-    lyricRow.innerHTML = `<div class="lyric-block"><div class="ly"></div><div class="meta">letra · trecho · clique em LETRA pra fechar</div></div>`;
-    li.parentNode.insertBefore(lyricRow, li.nextSibling);
+
+    // INTERPRETATION button + row (added after lyric-row when both exist)
+    if (interpText && nameSpan && !nameSpan.querySelector('.interp-toggle')) {
+      const btn = document.createElement('span');
+      btn.className = 'interp-toggle';
+      btn.textContent = 'interpretation';
+      btn.title = 'critical interpretation (English)';
+      const interpRow = document.createElement('li');
+      interpRow.className = 'interp-row';
+      interpRow.innerHTML = `<div class="interp-block"><div class="body"></div><div class="meta">English · critical commentary · click INTERPRETATION to close</div></div>`;
+      // Insert after the existing nextSibling (lyric-row if present, else right after the song <li>)
+      const insertAfter = li.nextElementSibling && li.nextElementSibling.classList.contains('lyric-row')
+        ? li.nextElementSibling : li;
+      insertAfter.parentNode.insertBefore(interpRow, insertAfter.nextSibling);
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const isOpen = interpRow.classList.toggle('open');
+        if (isOpen) {
+          const body = interpRow.querySelector('.interp-block .body');
+          if (body && !body.dataset.filled) {
+            body.innerHTML = interpText.split(/\n+/).map(p =>
+              p.trim() ? `<p>${p.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</p>` : ''
+            ).join('');
+            body.dataset.filled = '1';
+          }
+        }
+      });
+      nameSpan.appendChild(btn);
+    }
   });
 
   // Carrega todos os posters direto (sem esperar scroll)
@@ -5001,9 +5085,36 @@ function updateBootText(text) {
   if (el) el.textContent = text;
 }
 
+let INTERPRETATIONS = {};
+async function _loadInterpretations() {
+  try {
+    const r = await fetch("media/interpretations.json", { cache: "default" });
+    if (r.ok) {
+      const j = await r.json();
+      delete j._meta;
+      INTERPRETATIONS = j;
+    }
+  } catch(e) { /* offline / 404 — no interpretations available */ }
+}
+function _getInterpretation(songName) {
+  if (!INTERPRETATIONS || !Object.keys(INTERPRETATIONS).length) return null;
+  const key = _lyricsNorm(songName);
+  if (INTERPRETATIONS[key]) return INTERPRETATIONS[key];
+  const found = Object.keys(INTERPRETATIONS).find(k => {
+    if (k === key) return true;
+    const a = key.split(' '), b = k.split(' ');
+    if (a.length === b.length) return false;
+    const longer = a.length > b.length ? a : b;
+    const shorter = a.length > b.length ? b : a;
+    return shorter.every(w => longer.includes(w)) && shorter.length > 1;
+  });
+  return found ? INTERPRETATIONS[found] : null;
+}
+
 async function init() {
   updateBootText("Aplicando preferências");
   applyTheme(getInitialTheme());
+  _loadInterpretations(); // non-blocking
   await new Promise(r => setTimeout(r, 80));
 
   updateBootText("Carregando arquivo");
