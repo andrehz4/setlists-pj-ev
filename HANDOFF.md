@@ -100,7 +100,12 @@ python -m http.server 8000
 - `lyrics.json`
 
 **Mídia em Cloudflare R2** (não no repo, ver §14):
-- 26 MP3s do show pj-2005-12-02 (~165 MB, importados em 2026-05-07)
+- ~500 MP3s em 16 shows (~3.5 GB, importados em 2026-05-07):
+  - pj-2005-12-02, pj-2011-11-03/04/06/09, pj-2011-11-11 (extra),
+    pj-2013-03-31, pj-2018-03-21/24, pj-2015-11-11/14/17/20/22,
+    pj-2024-08-29/31
+  - Origem mista: já-mp3 (2005, 2011, 2013, 2024 Chicago) ou FLAC do
+    Drive convertido pra MP3 320k via ffmpeg local (2018 e 2015)
 
 ### Mídia faltante (⏸️ ver `MEDIA_AUDIT_2026-04-29.md`)
 
