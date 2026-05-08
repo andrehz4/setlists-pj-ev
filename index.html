@@ -1375,6 +1375,38 @@ html[data-theme="light"] .drawer-section-label.my-media {
   background: var(--pj);
   color: var(--ink);
 }
+.search-extras { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.search-extras details {
+  border-left: 3px dashed var(--pj);
+  background: rgba(168, 50, 43, 0.04);
+  padding: 0;
+}
+.search-extras details.interp {
+  border-left: 3px solid var(--ev, #8c5a1c);
+  background: rgba(140, 90, 28, 0.05);
+}
+.search-extras summary {
+  cursor: pointer;
+  padding: 8px 14px;
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pj);
+  list-style: none;
+  user-select: none;
+}
+.search-extras details.interp summary { color: var(--ev, #8c5a1c); }
+.search-extras summary::-webkit-details-marker { display: none; }
+.search-extras summary::after { content: " ▾"; }
+.search-extras details[open] summary::after { content: " ▴"; }
+.search-extras .body {
+  padding: 4px 16px 14px 18px;
+  font: 400 13px/1.55 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink);
+}
+.search-extras details.lyric .body > div { white-space: pre-wrap; }
+.search-extras details.interp .body p { margin: 0 0 10px; }
+.search-extras details.interp .body p:last-child { margin-bottom: 0; }
 
 /* ===========================================================
    HIGHLIGHTS
@@ -3941,6 +3973,7 @@ function renderSearch(query) {
     }
     return;
   }
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
   results.innerHTML = matches.sort((a,b) => b.count - a.count).map(m => {
     const showEntries = m.shows.map(sid => {
       const show = SHOWS.find(s => s.id === sid);
@@ -3949,12 +3982,28 @@ function renderSearch(query) {
       const marker = (wasSoundcheck && !wasMainset) ? ' ★SC' : '';
       return `<span class="search-result-show" data-show-id="${sid}">${show.date.slice(0,4)} · ${show.city.split(',')[0]} · ${show.artist === "Pearl Jam" ? "PJ" : "EV"}${marker}</span>`;
     }).join("");
+    const lyricText = _getLyricsStatic(m.song);
+    const interpText = _getInterpretation(m.song);
+    let extras = '';
+    if (lyricText || interpText) {
+      const parts = [];
+      if (lyricText) {
+        const lyrHtml = lyricText.split('\n').map(l => `<div>${l ? esc(l) : '&nbsp;'}</div>`).join('');
+        parts.push(`<details class="lyric"><summary>Letra · trecho</summary><div class="body">${lyrHtml}</div></details>`);
+      }
+      if (interpText) {
+        const intHtml = interpText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join('');
+        parts.push(`<details class="interp"><summary>Interpretation · English critical commentary</summary><div class="body">${intHtml}</div></details>`);
+      }
+      extras = `<div class="search-extras">${parts.join('')}</div>`;
+    }
     return `
       <div class="search-result">
         <div class="search-result-title">${m.song}</div>
         <div class="search-result-album">${getAlbumTitle(m.song)}</div>
         <div class="search-result-count">Ouvida <strong style="color:var(--ink)">${m.count}×</strong></div>
         <div class="search-result-shows">${showEntries}</div>
+        ${extras}
       </div>`;
   }).join("");
   results.querySelectorAll(".search-result-show").forEach(el => el.addEventListener("click", () => openDrawer(el.dataset.showId)));
@@ -4143,7 +4192,7 @@ function openDrawer(showId) {
   Array.from(content.querySelectorAll('#drawer-setlist li[data-song]')).forEach(li => {
     const songName = li.dataset.song;
     const lyricText = _getLyricsStatic(songName);
-    const interpText = _getInterpretation(songName);
+    const interpText = _getInterpretation(songName, showId);
     if (!lyricText && !interpText) return;
     const nameSpan = li.querySelector('span:first-child');
 
@@ -5096,10 +5145,19 @@ async function _loadInterpretations() {
     }
   } catch(e) { /* offline / 404, no interpretations available */ }
 }
-function _getInterpretation(songName) {
+function _resolveInterpEntry(entry, showId) {
+  if (!entry) return null;
+  if (typeof entry === 'string') return entry;
+  let text = entry.text || '';
+  if (showId && entry.byShow && entry.byShow[showId]) {
+    text += (text ? '\n\n' : '') + entry.byShow[showId];
+  }
+  return text || null;
+}
+function _getInterpretation(songName, showId) {
   if (!INTERPRETATIONS || !Object.keys(INTERPRETATIONS).length) return null;
   const key = _lyricsNorm(songName);
-  if (INTERPRETATIONS[key]) return INTERPRETATIONS[key];
+  if (INTERPRETATIONS[key]) return _resolveInterpEntry(INTERPRETATIONS[key], showId);
   const found = Object.keys(INTERPRETATIONS).find(k => {
     if (k === key) return true;
     const a = key.split(' '), b = k.split(' ');
@@ -5108,9 +5166,11 @@ function _getInterpretation(songName) {
     const shorter = a.length > b.length ? b : a;
     return shorter.every(w => longer.includes(w)) && shorter.length > 1;
   });
-  if (found) return INTERPRETATIONS[found];
+  if (found) return _resolveInterpEntry(INTERPRETATIONS[found], showId);
   if (songName.includes('→')) {
-    const parts = songName.split('→').map(s => INTERPRETATIONS[_lyricsNorm(s.trim())]).filter(Boolean);
+    const parts = songName.split('→')
+      .map(s => _resolveInterpEntry(INTERPRETATIONS[_lyricsNorm(s.trim())], showId))
+      .filter(Boolean);
     if (parts.length) return parts.join('\n\n');
   }
   return null;
