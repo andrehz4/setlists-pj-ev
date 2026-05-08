@@ -68,9 +68,10 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 - Grid de capas + Comunidade (fotos coletivas)
 
 ### Deep (revistas Ten Club)
-- Tab nova com flipbook horizontal scroll-snap
-- `DEEP_ISSUES` config vazio, empty state com instruções pdftoppm
-- Aguardando upload das 5 edições
+- Tab com flipbook horizontal scroll-snap
+- 5 edições publicadas (Issues 8-12, 2011-2015), 164 páginas total, 59 MB
+- Navegação: scroll horizontal, setas/PageUp/PageDown/Home/End por teclado
+- Para adicionar nova edição: `python -c "import fitz; ..."` ou `pip install --user pymupdf` + script (ver HANDOFF item 4 do histórico)
 
 ### Extras / acervo (rule 0)
 - Infra completa: shows com `extra: true` ficam fora de `filteredShows()` (todas as stats automaticamente excluem)
@@ -89,6 +90,24 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 - `sitemap.xml` mínimo
 - Open Graph + Twitter card + canonical + theme-color (placeholder `og.jpg` ainda não criado)
 
+### Acessibilidade (a11y) — fases 1 e 2 aplicadas
+- Skip-link, landmark `<main>`, `<header role=banner>`
+- Tabs com pattern WAI-ARIA completo (roving tabindex, aria-selected, setas/Home/End)
+- 5 dialogs com role/aria-modal/aria-labelledby + foco-trap + save/restore de foco
+- aria-pressed em todos os toggles (theme, filter chips, gallery filters, play/pause)
+- aria-live polite em search-results, song-name, counters, **filter-bar** (anuncia "Filtro atualizado: X, ano Y. N shows"), **boot-overlay** (status durante carregamento)
+- Alt dinâmico no lightbox/media-panel; alt rico nas fotos da galeria (data + venue + cidade); alt das capas de álbum usa o título do álbum
+- Cards da timeline + photo wrappers + video cards + deep cards + **gallery thumbs + gallery headers** = role=button keyboard-acessíveis (Enter/Space)
+- Setlist `<li>` com áudio = role=button + aria-label "Tocar X" + Enter/Space
+- Toggles letra / interpretation = role=button + aria-expanded sincronizado
+- Deep flipbook: container com role=region + tabindex=0 + setas/PageUp/PageDown/Home/End para navegar páginas
+- Stats-strip: cada stat tem aria-label completo ("25 Shows") com filhos aria-hidden pra evitar leitura dupla
+- Boot overlay: aria-busy="true" durante carga, vira "false" no final; foco vai para `<main>` quando o boot termina
+- Focus ring `*:focus-visible` com cor por tema; **0 `outline:none` legados** (removidos de search-input, .media-panel video, .ap-progress)
+- Helpers utilitários: `.visually-hidden`, `_a11yOpenDialog`, `_a11yCloseDialog`, `_apSetPlayState`
+- Bug bônus consertado: `_mpLoad` não usa mais `{ once: true }` (handler é trocado a cada load via `wrap._mpZoomHandler`)
+- **Métricas atuais**: 59 aria-labels, 9 role=button, 15 aria-pressed, 7 aria-live, 6 aria-modal, 4 aria-expanded, 0 em-dashes, 0 `outline:none` legados
+
 ## 4. Análises de álbum (status)
 
 | Álbum | Ano | ID | Status | Tamanho |
@@ -101,10 +120,10 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 | Binaural | 2000 | `binaural` | publicado | 53 KB |
 | Riot Act | 2002 | `riotact` | publicado | 34 KB |
 | Pearl Jam (Avocado) | 2006 | `pj2006` | publicado | 34 KB |
-| Backspacer | 2009 | `backspacer` | **falta paste** | — |
-| Lightning Bolt | 2013 | `lightningbolt` | **falta paste** | — |
-| Gigaton | 2020 | `gigaton` | **falta paste** | — |
-| Dark Matter | 2024 | `darkmatter` | **falta paste** | — |
+| Backspacer | 2009 | `backspacer` | publicado | ~32 KB |
+| Lightning Bolt | 2013 | `lightningbolt` | publicado | ~28 KB |
+| Gigaton | 2020 | `gigaton` | publicado (parcial, paste degradou) | ~36 KB |
+| Dark Matter | 2024 | `darkmatter` | publicado (parcial, paste degradou) | ~38 KB |
 | Lost Dogs | — | `lostdogs` | provavelmente skip | — |
 | Into the Wild | 2007 | `intowild` | EV solo, futuro | — |
 | Ukulele Songs | 2011 | `ukulele` | EV solo, futuro | — |
@@ -142,12 +161,15 @@ setlists-pj-ev/
 ## 6. Pendências (em ordem de prioridade)
 
 ### Próxima sessão (Claude Code)
-1. **Continuar pastes de álbuns**: Backspacer, Lightning Bolt, Gigaton, Dark Matter (paste do user, eu salvo). EV solo opcional depois.
-2. **og.jpg**: criar imagem 1200×630 e colocar na raiz pra Open Graph funcionar
-3. **3 extras data**: Dana Point 2021 EV (Ohana Sep 2021), Amsterdã 2022 PJ (Ziggo Dome Jul 2022), POA 2011 PJ (provavelmente 11/11/2011) — adicionar entries em `SHOWS` com `extra: true`
-4. **5 PDFs Deep**: rodar `pdftoppm -r 150 -jpeg -jpegopt quality=82 issue.pdf media/deep/<id>/page` em cada PDF, depois preencher `DEEP_ISSUES` no `index.html`
+0. **🦾 Sprint de acessibilidade (WCAG 2.2 AA) — fase 1 aplicada em 2026-05-08**
+   - **Feito**: skip-link "Pular para o conteúdo", landmark `<main id="main">`, `<header role="banner">`, role="tablist" + role="tab" + aria-selected/aria-controls + setas/Home/End nas tabs, role="tabpanel" + aria-labelledby + atributo `hidden` nos painéis inativos, role="dialog" aria-modal nos 5 dialogs (drawer, lightbox, media-panel, album-modal, lyrics-panel), foco-trap global em dialogs modais, save/restore de foco em open/close (helper `_a11yOpenDialog`/`_a11yCloseDialog`), aria-pressed nos chips (artista/ano/galeria) e no theme toggle, aria-pressed/aria-label dinâmicos no play/pause + aria-valuetext no progress, aria-label em todos os botões de ícone (close, prev/next, download), aria-live polite em search-results / song-name / counter, alt dinâmico no lightbox/media panel, role="button" + tabindex + Enter/Space nos cards da timeline, `*:focus-visible` ring (PJ no claro, EV no escuro) com override pra inputs/imagens, `.visually-hidden` utility, label sr-only no input de busca.
+   - **Pendente** (próxima fase, segue como subtarefas): teste real com NVDA/VoiceOver, audit axe-core + Lighthouse, tornar fotos da galeria/comunidade keyboard-acessíveis (wrappers), `aria-current="page"` em filtros, alt mais descritivo nas fotos (incluir show/data), revisar contraste AA com ferramenta automatizada, validar foco-trap no flipbook Deep, anunciar mudança de filtro via aria-live polite na barra de filtros, testar o setlist clicável (cada `<li>` que tem áudio precisa ser button/keyboard), corrigir `outline:none` legado em videos do drawer.
+1. **Continuar pastes de álbuns**: todos os 4 do batch PJ ✓ em 2026-05-08 (Backspacer, Lightning Bolt, Gigaton, Dark Matter). Gigaton e Dark Matter tiveram paste degradado na Conclusão (loop de adjetivos + texto não relacionado em espanhol/italiano); salvei só a parte coerente. Dá pra repastear as conclusões depois. EV solo (Into the Wild, Ukulele Songs, Earthling) opcional.
+2. ~~**og.jpg**~~ (✓ 2026-05-08): 1200×630 gerado com PIL na identidade Ticket Archive (kraft + Pearl Jam vermelho + Eddie Vedder dourado + perfurações de stub). 61 KB na raiz, referenciado em `<meta property="og:image">`
+3. ~~**3 extras data**~~ (✓ 2026-05-08): adicionados em `SHOWS` com `extra: true` + áudio mapeado em `MEDIA_MANIFEST`. POA 2011 era na verdade Pearl Jam no Estádio Beira-Rio em 11/11/2011 (não EV); Dana Point 2021 era Pearl Jam no Ohana Encore Festival 02/10/2021 (não EV solo). Áudio dos três já estava no R2 quando subi: `pj-2011-11-11/` (34 arquivos, 32 faixas + 2 encore breaks), `pj-2021-10-02/` (25 arquivos, 24 faixas), `pj-2022-07-25/` (22 arquivos, 21 faixas, com covers raros 'Black Diamond' do KISS e 'Purple Rain' de Prince).
+4. ~~**5 PDFs Deep**~~ (✓ 2026-05-08): 5 edições rasterizadas (Issues 8-12, anos 2011-2015), 164 páginas total, 59 MB de JPEGs em `media/deep/deep-08/` a `media/deep/deep-12/` a 150 DPI, JPEG quality 82. `DEEP_ISSUES` populado. Sem `pdftoppm` na máquina, usei PyMuPDF + Pillow via script descartável; ferramenta ficou registrada no `requirements` mental: `pip install --user pymupdf` resolve novas edições. Deep 8 tem 51 páginas (anomalia, é número duplo); Deep 9-12 são ~28-29 páginas cada.
 5. **byShow expansion**: o pilot está em pj-2005-12-02 (5 músicas). Expandir progressivamente pros outros 24 shows quando der vontade
-6. **#20 do tracker**: Bug do lightbox foi parcialmente fixado em `978278b`. Validar em rede lenta. Era: "depois de abrir poster no lightbox, fotos do show não abrem mais"
+6. ~~**#20 do tracker**: Bug do lightbox~~ (✓ validado 2026-05-08): code review confirma que o fix `978278b` higieniza estado por completo (close zera `_lbImages`, remove `src` da img, race guard em `_lbLoad` protege contra `tmp.onload` em rede lenta). Achado lateral: `_mpLoad:5168` usa `{ once: true }` no click do wrapper do media-panel; se user fecha lightbox e fica na mesma foto do MP, perde re-abertura. Bug separado, cosmético.
 7. **Tarefa #28** (Interpretações EV solo): pode ser marcada como completed — 14 lotes feitos, 100% cobertura
 
 ### Pendentes legados (mídia, infra)
@@ -174,6 +196,15 @@ Auditoria completa rodada e fixes aplicados. Resultado: 1 P1 + 5 P2 + 2 P3 fecha
 | P3-06 | Throttle scroll do deep-pages com rAF | aplicado |
 
 Ainda pendentes (P3 cosmético, sem ação ou contexto): aviso GA4 "coleta não ativa" (cache externo, some em 24-48h), `_meta.updated` estagnado em interpretations.json (sem impacto).
+
+## 7.1. A11y — convenções e helpers
+
+- **Helper de dialog**: ao criar novo modal/painel, use `_a11yOpenDialog(el, focusTarget)` e `_a11yCloseDialog(el)`. Cuidam de remover/adicionar `hidden`, salvar foco anterior e devolver após fechamento. Foco-trap global pega qualquer `[role="dialog"][aria-modal="true"]:not([hidden])`.
+- **Tabs**: ao adicionar nova view, replicar o pattern: `role="tab" aria-selected="false" aria-controls="view-X" tabindex="-1"` no botão, `role="tabpanel" aria-labelledby="tab-X" tabindex="0" hidden` na section. `activateTab()` cuida do resto.
+- **Botões com ícone único**: sempre `aria-label` no `<button>` e `<span aria-hidden="true">EMOJI</span>` por dentro pra esconder o ícone do SR.
+- **Toggles**: `aria-pressed="true|false"` sincronizado com classe `.active` no handler de click.
+- **Imagens**: alt sempre descritivo. Para mudança dinâmica (lightbox/media), atualizar `img.alt` no load.
+- **Foco**: `*:focus-visible` define o ring; nunca usar `outline: none` sem providenciar substituto.
 
 ## 8. Convenções importantes
 
