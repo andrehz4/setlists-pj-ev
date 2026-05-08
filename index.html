@@ -2027,22 +2027,35 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .lyric-toggle:hover { background: var(--pj); color: #fff; }
 .setlist li.lyric-open .lyric-toggle { background: var(--pj); color: #fff; }
 .setlist li.lyric-row {
-  list-style: none;
-  display: block;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: default;
+  display: block !important;
+  grid-template-columns: none !important;
+  counter-increment: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  cursor: default !important;
+  font-style: normal !important;
+  font-family: var(--font-mono);
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  min-height: 0 !important;
 }
-.setlist li.lyric-row:hover { background: transparent; }
+.setlist li.lyric-row::before { content: none !important; display: none !important; }
+.setlist li.lyric-row:hover { background: transparent !important; }
 .lyric-block {
   display: none;
-  margin: 0 0 12px;
+  margin: 4px 0 14px;
   padding: 14px 16px 12px 18px;
   border-left: 3px dashed var(--pj);
   background: rgba(168, 50, 43, 0.04);
   font: 400 13px/1.55 var(--font-mono, 'IBM Plex Mono', monospace);
+  font-style: normal;
   color: var(--ink, #1a1611);
+}
+.lyric-block .ly > div {
+  margin: 0;
+  padding: 0;
   white-space: pre-wrap;
 }
 .lyric-block .meta {
