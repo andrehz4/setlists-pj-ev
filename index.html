@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Setlists · Ticket Archive</title>
 
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', { send_page_view: true });
+  window.track = (name, params) => { try { gtag('event', name, params || {}); } catch(e) {} };
+</script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap');
 
@@ -4134,6 +4144,7 @@ function openDrawer(showId) {
   closeLyricsPanel();
   const show = SHOWS.find(s => s.id === showId);
   if (!show) return;
+  if (window.track) track('drawer_open', { show_id: showId, artist: show.artist, year: (show.date||'').slice(0,4) });
   const drawer = document.getElementById("drawer");
   const backdrop = document.getElementById("drawer-backdrop");
   const content = document.getElementById("drawer-content");
@@ -4473,6 +4484,7 @@ function _apMatchFile(songName, audioFiles) {
 function apPlay(showId, songName, audioFiles, songIndex) {
   const file = _apMatchFile(songName, audioFiles);
   if (!file) return;
+  if (window.track) track('audio_play', { show_id: showId, song: songName });
 
   _apShowId = showId;
   _apIndex  = songIndex;
@@ -4869,6 +4881,7 @@ function getInitialTheme() {
 // ========================================================================
 function activateTab(viewName) {
   if (state.currentView === viewName) return;
+  if (window.track) track('tab_change', { view: viewName });
   const stamp = document.getElementById("loading-stamp");
   const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (stamp && !reduced) {
@@ -5359,6 +5372,7 @@ function _mdToHtml(md) {
 
 async function openAlbumDoc(albumId) {
   if (!ALBUM_DOCS.has(albumId)) return;
+  if (window.track) track('album_doc_open', { album: albumId });
   const modal = document.getElementById('album-modal');
   const body = document.getElementById('album-modal-body');
   const content = document.getElementById('album-modal-content');
@@ -5467,7 +5481,15 @@ async function init() {
     if (e.key === "Escape") closeLightbox();
   });
   document.addEventListener("keydown", e => { if (e.key === "Escape") { closeLightbox(); closeAlbumDoc(); closeDrawer(); } });
-  document.getElementById("search-song").addEventListener("input", (e) => renderSearch(e.target.value));
+  let _searchTrackTimer;
+  document.getElementById("search-song").addEventListener("input", (e) => {
+    renderSearch(e.target.value);
+    clearTimeout(_searchTrackTimer);
+    _searchTrackTimer = setTimeout(() => {
+      const q = e.target.value.trim();
+      if (q.length >= 2 && window.track) track('search', { query: q });
+    }, 800);
+  });
 
   document.getElementById("album-modal-close").addEventListener("click", closeAlbumDoc);
   document.getElementById("album-modal").addEventListener("click", (e) => {
