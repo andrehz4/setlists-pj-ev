@@ -1961,6 +1961,74 @@ html[data-theme="light"] .drawer-section-label.my-media {
 /* lyrics-panel desativado em 2026-05-07: lyrics agora são inline dentro do drawer */
 #lyrics-panel { display: none !important; }
 
+/* LuckGauge — meio-donut SVG no Raridades (mudança 3/4 do redesign) */
+.luck-gauge {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 22px;
+  align-items: center;
+  background: var(--bg-card, #e4d3aa);
+  padding: 22px;
+  margin: 0 0 24px;
+  box-shadow: 3px 3px 0 var(--ink, #1a1611), inset 0 0 0 1px rgba(26,22,17,.08);
+}
+.luck-gauge svg { overflow: visible; }
+.luck-gauge .lg-tick {
+  font: 600 9px var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.16em;
+  fill: var(--ink-dim, #6b5e44);
+}
+.luck-gauge .lg-value {
+  font: 900 48px/1 var(--font-display, 'Big Shoulders Display', serif);
+  fill: var(--ev, #8c5a1c);
+  letter-spacing: -0.02em;
+}
+.luck-gauge .lg-of {
+  font: 600 10px var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  fill: var(--ink-dim, #6b5e44);
+}
+.luck-gauge .lg-eyebrow {
+  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-dim, #6b5e44);
+  margin-bottom: 8px;
+}
+.luck-gauge .lg-headline {
+  font: 900 28px/1 var(--font-display, 'Big Shoulders Display', serif);
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  color: var(--ink, #1a1611);
+  margin-bottom: 8px;
+}
+.luck-gauge .lg-body {
+  font: 400 13px/1.55 var(--font-body, 'IBM Plex Mono', monospace);
+  color: var(--ink-stamp, #4a3f2c);
+}
+.luck-gauge .lg-foot {
+  display: flex;
+  gap: 24px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--rule-ticket, #9a8b68);
+}
+.luck-gauge .lg-foot-eb {
+  font: 600 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim, #6b5e44);
+}
+.luck-gauge .lg-foot-tx {
+  font: 500 11px/1.3 var(--font-body, 'IBM Plex Mono', monospace);
+  color: var(--ink-stamp, #4a3f2c);
+  margin-top: 4px;
+}
+@media (max-width: 720px) {
+  .luck-gauge { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .luck-gauge .lg-foot { justify-content: center; }
+}
+
 /* LoadingStamp — carimbo arquival ao trocar de tab (mudança 2/4 do redesign) */
 #loading-stamp {
   position: fixed;
@@ -4549,6 +4617,54 @@ function activateTab(viewName) {
   renderCurrent();
 }
 
+function renderLuckGauge(value, luck) {
+  const max = 100, r = 110, cx = 130, cy = 130;
+  const arcPath = (start, end) => {
+    const s = Math.PI * (1 - start / max), e = Math.PI * (1 - end / max);
+    const x1 = cx + r * Math.cos(s), y1 = cy - r * Math.sin(s);
+    const x2 = cx + r * Math.cos(e), y2 = cy - r * Math.sin(e);
+    const large = (end - start) > max / 2 ? 1 : 0;
+    return `M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+  };
+  const angle = Math.PI * (1 - value / max);
+  const nx = cx + (r - 10) * Math.cos(angle), ny = cy - (r - 10) * Math.sin(angle);
+  const ticks = [0, 25, 50, 75, 100].map(t => {
+    const a = Math.PI * (1 - t / max);
+    const x1 = cx + (r + 4) * Math.cos(a), y1 = cy - (r + 4) * Math.sin(a);
+    const x2 = cx + (r + 12) * Math.cos(a), y2 = cy - (r + 12) * Math.sin(a);
+    const lx = cx + (r + 22) * Math.cos(a), ly = cy - (r + 22) * Math.sin(a);
+    return `<line x1="${x1.toFixed(2)}" y1="${y1.toFixed(2)}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}" stroke="var(--ink-dim)" stroke-width="1.5"/>
+            <text x="${lx.toFixed(2)}" y="${(ly+3).toFixed(2)}" text-anchor="middle" class="lg-tick">${t}</text>`;
+  }).join('');
+  let label;
+  if (value >= 86)      label = 'Pegou raridades';
+  else if (value >= 71) label = 'Sortudão';
+  else if (value >= 51) label = 'Sortudo na média';
+  else if (value >= 31) label = 'Set razoável';
+  else                  label = 'Set previsível';
+  return `
+  <div class="luck-gauge">
+    <svg viewBox="0 0 260 160" width="260" height="160" aria-label="Luck score: ${value} de ${max}">
+      <path d="${arcPath(0, max)}" stroke="var(--divider)" stroke-width="14" fill="none"/>
+      <path d="${arcPath(0, value)}" stroke="var(--ev)" stroke-width="14" fill="none"/>
+      ${ticks}
+      <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(2)}" y2="${ny.toFixed(2)}" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="${cx}" cy="${cy}" r="6" fill="var(--ink)"/>
+      <text x="${cx}" y="${cy - 30}" text-anchor="middle" class="lg-value">${value}</text>
+      <text x="${cx}" y="${cy - 12}" text-anchor="middle" class="lg-of">/${max}</text>
+    </svg>
+    <div class="luck-gauge-text">
+      <div class="lg-eyebrow">Luck score</div>
+      <div class="lg-headline">${label}</div>
+      <div class="lg-body">Média de <strong>${luck.avgCareerPlays} plays</strong> por música na carreira do PJ. Calculado sobre ${luck.sampleSize} faixas dos seus shows.</div>
+      <div class="lg-foot">
+        <div><div class="lg-foot-eb">Quanto menor</div><div class="lg-foot-tx">média histórica</div></div>
+        <div><div class="lg-foot-eb">Quanto maior</div><div class="lg-foot-tx">raridades vistas</div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function renderRarity() {
   const shows = filteredShows();
   const container = document.getElementById("rarity-content");
@@ -4609,17 +4725,7 @@ function renderRarity() {
   container.innerHTML = `
     <div class="data-source-badge">Dados: pearljam.com/vitalogy/songs · atualizado em ${updatedAt}</div>
 
-    ${luck ? `
-    <div class="luck-hero">
-      <div class="luck-score-circle" style="--pct:${pct}">
-        <div class="luck-score-num">${pct}</div>
-      </div>
-      <div class="luck-meta">
-        <h3>Seu Luck Score geral: ${pct}/100</h3>
-        <p>Média de frequência histórica das músicas que você ouviu: <strong>${luck.avgCareerPlays} plays</strong> por música na carreira do PJ.</p>
-        <p>Quanto mais raro o set, maior o score. Calculado sobre ${luck.sampleSize} músicas.</p>
-      </div>
-    </div>` : ''}
+    ${luck ? renderLuckGauge(pct, luck) : ''}
 
     ${onceEver.length ? `
     <div class="rarity-section-title">🔴 Once-ever — tocadas 1× na história</div>
