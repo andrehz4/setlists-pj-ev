@@ -1,259 +1,296 @@
-# HANDOFF — Setlists PJ + EV
+# HANDOFF · Setlists PJ + EV
 
-Atualizado em **2026-05-07**.
+Atualizado em **2026-05-08**.
 
-Snapshot completo do projeto: o que é, onde mora, o que está feito, o
-que ainda falta e como retomar do zero. Tudo aqui é versionado junto
-com o código.
+Snapshot completo do projeto. Tudo aqui é versionado com o código. Ao abrir num novo chat, leia este arquivo primeiro.
 
 ---
 
-## 1. Status atual: ONLINE 🟢
+## 1. Status atual: ONLINE
 
 | Recurso | URL / Local | Status |
 |---|---|---|
-| **Site no ar** | https://setlists-pj-ev.pages.dev/ | ✅ |
-| **Repo Git** | https://github.com/andrehz4/setlists-pj-ev | ✅ público |
-| **Pasta local** | `C:\Gitlab_hz\pearljam\setlists-pj-ev` | ✅ |
-| **Deploy automático** | Cloudflare Pages → push em `main` reimplanta em ~1 min | ✅ reconectado em 2026-05-07 (Pages clássico, repo andrehz4) |
-| **HTTPS** | Cloudflare auto-provisionado | ✅ |
-| **Identidade do git** | `André <eng.andrehz@gmail.com>` (config global) | ✅ |
-
-Cada `git push` no `main` atualiza o site sozinho. Não precisa fazer
-mais nada manual pra publicar mudanças.
+| Site live | https://setlists-pj-ev.pages.dev/ | OK |
+| Repo Git | https://github.com/andrehz4/setlists-pj-ev | público |
+| Pasta local | `C:\Gitlab_hz\pearljam\setlists-pj-ev` | OK |
+| Deploy | Cloudflare Pages, push em `main` reimplanta em ~1 min | OK |
+| HTTPS | Cloudflare auto | OK |
+| Identidade git | `André <eng.andrehz@gmail.com>` (config global) | OK |
+| GA4 | property `Site Pearl Jam`, ID `G-234ZL5MF0T` | OK |
+| R2 áudio | bucket `setlists-pj-ev-audio`, ~3.6 GB de 10 GB | OK |
+| Branch atual | `main`, último commit `7309ac6` | sincronizado |
 
 ## 2. O que é
 
-Site estático single-file que cataloga shows do Pearl Jam + Eddie
-Vedder assistidos pelo dono. Mostra setlists, capas de álbuns, posters
-oficiais, fotos pessoais e vídeos por show. Filtros por artista e ano,
-lightbox de imagens, drawer com setlist completo, tema claro/escuro
-(default claro).
+Site estático single-file que cataloga shows do Pearl Jam + Eddie Vedder presenciados pelo dono (André). 25 shows catalogados, ~208 músicas únicas, ~190 interpretações críticas em inglês, 8 análises de álbum em português, áudio dos shows quando disponível, fotos oficiais e pessoais, posters, vídeos.
 
-**Visual atual:** **Ticket Archive** (versão B do redesign do Claude
-Designs — papel kraft, perfurações, stubs de ingresso, fontes Big
-Shoulders + Oswald + Caveat, animações em cascata, selo "ARCHIVED"
-carimbando ao abrir o drawer, `prefers-reduced-motion` respeitado).
+Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Navegação por 8 tabs: Timeline, Ranking, Cobertura por álbum, Destaques, Buscar música, Raridades, Galeria, Deep.
 
-## 3. Estrutura de arquivos
+## 3. Features ativas (status 2026-05-08)
+
+### Core
+- 25 shows catalogados em `SHOWS` no `index.html`
+- Setlists completos (full confidence em todos)
+- Drawer com poster, fotos oficiais, fotos pessoais, vídeos, setlist clicável
+- Filtros por artista (PJ / EV / Ambos) e ano
+- Lightbox com carrossel
+- Tema claro/escuro (default claro), `prefers-reduced-motion` respeitado
+- Stats agregadas (total shows, músicas únicas, total cantado, anos, cidades)
+
+### Conteúdo enriquecido
+- **Letras** (`media/lyrics.json`): trechos curtos por música. Inline no drawer.
+- **Interpretações** (`media/interpretations.json`): comentário crítico em inglês, ~190 entradas. Inline no drawer + cards no Buscar (default abertos).
+  - Suporta formato dual: string (universal) ou objeto `{text, byShow:{showId: paragraph}}`
+  - Pilot byShow em pj-2005-12-02 (5 músicas: Black, Yellow Ledbetter, Better Man, Even Flow, Alive)
+- **Análises de álbum** (`media/albums/*.md`): docs longos em português. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise").
+
+### Áudio
+- Player no rodapé do drawer
+- Áudio servido do R2 público (constante `R2_AUDIO_BASE`)
+- Prefetch da próxima faixa (`<link rel=prefetch as=audio>`)
+- Áudio importado em 16 shows (~500 MP3s, ~3.6 GB)
+
+### Buscar música
+- Busca por substring no nome
+- Resulta cards com: contagem, lista de shows onde tocou, **letra** (default open) e **interpretation** (default open)
+
+### Raridades
+- LuckGauge SVG donut com luck score baseado em frequência histórica
+- Once-ever (1× na carreira), Ultra-raras (2-5×), Histograma de distribuição
+- Listagem ordenada de raridades pegas
+
+### Destaques
+- 9 cards de stats (música mais ouvida, in 80%+, show mais longo etc)
+- Top 10 mais ouvidas (horizontal bar chart)
+- Timeline de músicas-por-show (SVG area chart)
+
+### Galeria
+- Grid de capas + Comunidade (fotos coletivas)
+
+### Deep (revistas Ten Club)
+- Tab nova com flipbook horizontal scroll-snap
+- `DEEP_ISSUES` config vazio, empty state com instruções pdftoppm
+- Aguardando upload das 5 edições
+
+### Extras / acervo (rule 0)
+- Infra completa: shows com `extra: true` ficam fora de `filteredShows()` (todas as stats automaticamente excluem)
+- Bloco "Acervo · extras" no fim da Timeline com nota explicativa
+- Aguardando 3 entries: Dana Point 2021 EV (Ohana), Amsterdã 2022 PJ, POA 2011 PJ
+
+### Analytics (GA4)
+- gtag.js no `<head>` com ID `G-234ZL5MF0T` (stream `Site Pearl Jam`, URL `setlists-pj-ev.pages.dev`)
+- `window.track()` wrapper
+- 5 custom events: `tab_change`, `drawer_open`, `audio_play`, `search` (debounced 800ms, min 2 chars), `album_doc_open`
+- Doc completa em `ANALYTICS.md`
+
+### Segurança e SEO
+- `_headers` com CSP (allowlist Google Tag, R2, Google Fonts), X-Frame-Options DENY, Permissions-Policy, X-Content-Type-Options, Referrer-Policy + cache rules por path
+- `robots.txt` (Disallow `/media/`)
+- `sitemap.xml` mínimo
+- Open Graph + Twitter card + canonical + theme-color (placeholder `og.jpg` ainda não criado)
+
+## 4. Análises de álbum (status)
+
+| Álbum | Ano | ID | Status | Tamanho |
+|---|---|---|---|---|
+| Ten | 1991 | `ten` | publicado | 35 KB |
+| Vs. | 1993 | `vs` | publicado | 33 KB |
+| Vitalogy | 1994 | `vitalogy` | publicado | 54 KB |
+| No Code | 1996 | `nocode` | publicado | 59 KB |
+| Yield | 1998 | `yield` | publicado | 62 KB |
+| Binaural | 2000 | `binaural` | publicado | 53 KB |
+| Riot Act | 2002 | `riotact` | publicado | 34 KB |
+| Pearl Jam (Avocado) | 2006 | `pj2006` | publicado | 34 KB |
+| Backspacer | 2009 | `backspacer` | **falta paste** | — |
+| Lightning Bolt | 2013 | `lightningbolt` | **falta paste** | — |
+| Gigaton | 2020 | `gigaton` | **falta paste** | — |
+| Dark Matter | 2024 | `darkmatter` | **falta paste** | — |
+| Lost Dogs | — | `lostdogs` | provavelmente skip | — |
+| Into the Wild | 2007 | `intowild` | EV solo, futuro | — |
+| Ukulele Songs | 2011 | `ukulele` | EV solo, futuro | — |
+| Earthling | 2022 | `earthling` | EV solo, futuro | — |
+
+Padrão de salvar: cola o texto, eu remove em-dashes (regra do projeto), salvo em `media/albums/<id>.md`, adiciono `<id>` ao set `ALBUM_DOCS` no `index.html`. Botão "📖 Ler análise" aparece automaticamente.
+
+## 5. Estrutura de arquivos
 
 ```
 setlists-pj-ev/
-├── index.html              # 342 KB, 4878 linhas — app completo (HTML+CSS+JS+DADOS+lyrics)
-├── media-manifest.json     # 4 KB — referência humana do manifest (cópia)
-├── README.txt              # instruções de uso original
+├── index.html              # 460 KB, ~6000 linhas — app completo (HTML+CSS+JS+DADOS+lyrics)
+├── _headers                # Cloudflare Pages headers (CSP, cache, security)
+├── robots.txt
+├── sitemap.xml
+├── ANALYTICS.md            # eventos GA4 + customizações
 ├── HANDOFF.md              # este arquivo
-├── MEDIA_AUDIT_2026-04-29.md  # auditoria de gaps de mídia (gerada por subagente)
-├── .gitignore              # ignora .claude/, *.zip, Thumbs.db, etc
-└── media/                  # 222 MB total
-    ├── albums/             # 16 capas (12 antigas + 4 novas: earthling, gigaton, intowild, ukulele)
-    ├── lyrics.json         # arquivo de letras (novo, do redesign)
-    ├── pj-YYYY-MM-DD/      # 17 shows Pearl Jam
-    │   ├── poster.jpg + (poster-1.jpg, poster-2.jpg, ...)
-    │   ├── photo-N.jpg + photo-N-thumb.jpg
-    │   ├── mine/photo-N.jpg + thumb (vazio na maioria — ver §6)
-    │   └── videos/video-N.mp4 (só 2024-08-29 e 2024-08-31)
-    └── ev-YYYY-MM-DD/      # 8 shows Eddie Vedder
+├── MEDIA_AUDIT_2026-04-29.md  # auditoria de gaps (gerada em sessão antiga)
+├── media-manifest.json     # cópia humana do manifest interno
+├── README.txt              # uso original
+├── .gitignore
+└── media/
+    ├── albums/             # 16 capas .jpg + 8 análises .md (ten, vs, vitalogy, nocode, yield, binaural, riotact, pj2006)
+    ├── lyrics.json         # 7.5 KB
+    ├── interpretations.json  # 396 KB, ~190 entradas
+    ├── deep/               # vazio (placeholder pra revistas Deep)
+    ├── pj-YYYY-MM-DD/      # 17 shows PJ
+    │   ├── poster.jpg
+    │   ├── photo-N.jpg + thumb
+    │   ├── mine/photo-N.jpg + thumb
+    │   └── videos/video-N.mp4
+    └── ev-YYYY-MM-DD/      # 8 shows EV
 ```
 
-## 4. Dependências externas
+## 6. Pendências (em ordem de prioridade)
 
-| Tipo | Item | Status |
+### Próxima sessão (Claude Code)
+1. **Continuar pastes de álbuns**: Backspacer, Lightning Bolt, Gigaton, Dark Matter (paste do user, eu salvo). EV solo opcional depois.
+2. **og.jpg**: criar imagem 1200×630 e colocar na raiz pra Open Graph funcionar
+3. **3 extras data**: Dana Point 2021 EV (Ohana Sep 2021), Amsterdã 2022 PJ (Ziggo Dome Jul 2022), POA 2011 PJ (provavelmente 11/11/2011) — adicionar entries em `SHOWS` com `extra: true`
+4. **5 PDFs Deep**: rodar `pdftoppm -r 150 -jpeg -jpegopt quality=82 issue.pdf media/deep/<id>/page` em cada PDF, depois preencher `DEEP_ISSUES` no `index.html`
+5. **byShow expansion**: o pilot está em pj-2005-12-02 (5 músicas). Expandir progressivamente pros outros 24 shows quando der vontade
+6. **#20 do tracker**: Bug do lightbox foi parcialmente fixado em `978278b`. Validar em rede lenta. Era: "depois de abrir poster no lightbox, fotos do show não abrem mais"
+7. **Tarefa #28** (Interpretações EV solo): pode ser marcada como completed — 14 lotes feitos, 100% cobertura
+
+### Pendentes legados (mídia, infra)
+8. Procurar fotos pessoais antigas (2011-2015) em outro PC
+9. Importar 12 arquivos do Drive (`MEDIA_AUDIT_2026-04-29.md`)
+10. ZIP backup local + SHA-256 antes de qualquer formatação
+11. Domínio custom no Cloudflare Pages
+12. `pj-2024-08-31/poster-1.jpg` falta (manifest declara 2 posters)
+13. Deletar repo antigo `azimermann4/setlists-pj-ev` (manual via web — gh local logada como andrehz4)
+
+## 7. Sprint vistoria (commit `5c82032`, 2026-05-08)
+
+Auditoria completa rodada e fixes aplicados. Resultado: 1 P1 + 5 P2 + 2 P3 fechados.
+
+| Fix | O que | Status |
 |---|---|---|
-| Runtime | Browser moderno | qualquer Chromium/FF |
-| CDN externo | Google Fonts | opcional, com fallbacks |
-| **Object storage (áudio)** | Cloudflare R2 — bucket `setlists-pj-ev-audio` | ✅ ver §14 |
-| Backend | Nenhum | — |
-| Build/bundler | Nenhum | — |
-| Banco de dados | Nenhum | — |
-| Persistência local | localStorage (apenas tema UI) | não guarda conteúdo |
+| P1-01 | MutationObserver global em document.body trocado por `window.refreshAfterRender()` explícito | aplicado |
+| P2-01 | Self-XSS na busca: `escHtml()` aplicado em `q` antes de `innerHTML` | aplicado |
+| P2-02 | Gallery observers reusam `_observer` estático com disconnect | aplicado |
+| P2-03 | `audio.play().catch()` limpa loading state em erro | aplicado |
+| P2-04 | `<meta description>`, Open Graph, Twitter card, canonical | aplicado |
+| P2-05 | `_headers` com CSP customizado | aplicado |
+| P3-03 | `robots.txt` + `sitemap.xml` | aplicado |
+| P3-06 | Throttle scroll do deep-pages com rAF | aplicado |
 
-Caminhos todos relativos (`media/<show-id>/...`). Mover a pasta para
-qualquer lugar funciona sem ajuste.
+Ainda pendentes (P3 cosmético, sem ação ou contexto): aviso GA4 "coleta não ativa" (cache externo, some em 24-48h), `_meta.updated` estagnado em interpretations.json (sem impacto).
 
-## 5. Como rodar localmente
+## 8. Convenções importantes
 
-**Modo simples:** duplo clique em `index.html`.
+- **NÃO USAR EM-DASH (—) em conteúdo visível do site**. Regra obrigatória do dono. Está no auto-memory. Aplicada em todos os 8 docs de álbum, lyrics.json, interpretations.json, notes de SHOWS, ANALYTICS.md já tem 0. **HANDOFF.md pode ter** (não é renderizado no site).
+- **Extras nunca entram nas stats**: rule 0. `filteredShows()` exclui `extra:true` automaticamente.
+- **Visibilidade do repo**: público (consciente)
+- **Identidade git**: `eng.andrehz@gmail.com`
+- **`.claude/`**: ignorado pelo git
+- **Animações**: respeitam `prefers-reduced-motion`
+- **Tema padrão**: light com toggle pra dark
 
-**Se o browser bloquear por CORS:**
+## 9. Cloudflare R2 (áudio)
+
+Áudios MP3 não vivem no repo. Cloudflare R2, mesma conta `eng.andrehz@gmail.com`, egress grátis, free tier 10 GB.
+
+| | |
+|---|---|
+| Bucket | `setlists-pj-ev-audio` |
+| Region | ENAM |
+| URL pública | `https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev` |
+| S3 endpoint | `https://c071f317813dd06ec00befa13d5c5684.r2.cloudflarestorage.com` |
+| Account ID | `c071f317813dd06ec00befa13d5c5684` |
+
+Estrutura no bucket: `<show-id>/<filename>.mp3`. Player lê constante `R2_AUDIO_BASE` definida no topo do bloco DATA.
+
+Subir mais áudios:
+```powershell
+rclone copy "<pasta-local>" "r2-setlists:setlists-pj-ev-audio/<show-id>/" --s3-no-check-bucket --progress
+```
+
+⚠️ Sempre `--s3-no-check-bucket` — token tem escopo limitado a esse bucket.
+
+API Token salvo só no `%APPDATA%\rclone\rclone.conf`, perfil `r2-setlists`. Pra recriar: dashboard → R2 → API → Account API Tokens.
+
+## 10. GitHub e GA4 (notas de migração)
+
+- Repo migrado de `azimermann4/setlists-pj-ev` pra `andrehz4/setlists-pj-ev` em 2026-05-07. Cloudflare Pages reconectado mesmo dia.
+- Repo antigo `azimermann4` ainda existe — deletar manual via web. CLI `gh` local só está logada como `andrehz4`.
+- Build settings do Pages: Framework preset `None`, build command vazio, output `/`.
+- GA4 property criada em 2026-05-08, stream "Site Pearl Jam" com URL `https://setlists-pj-ev.pages.dev/`, ID `G-234ZL5MF0T`.
+
+## 11. Como rodar localmente
+
 ```bash
 cd setlists-pj-ev
 python -m http.server 8000
 # abrir http://localhost:8000
 ```
 
-## 6. Conteúdo atual vs o que falta
+Duplo clique em `index.html` também funciona, mas algumas features (fetch de interpretations.json) podem falhar por CORS.
 
-### Shows catalogados: **25**
+## 12. Como editar conteúdo
 
-| Artista | Shows com setlist completo | Status mídia |
-|---|---|---|
-| Pearl Jam | 17 (2005, 2011×4, 2013×3, 2015×5, 2018×2, 2024×2) | fotos oficiais OK; **MP3s 2005 no R2** (2026-05-07); MP3s 2011×4 + 2013-03-31 declarados no manifest aguardando upload; fotos pessoais ainda faltando |
-| Eddie Vedder | 8 (2014×5, 2018×3) | só posters; fotos oficiais e pessoais faltando |
+**Adicionar/editar shows ou setlists:**
+- Editar objeto `SHOWS` em `index.html` (procura por `const SHOWS = [`).
+- Cada show tem: `id`, `artist`, `date`, `venue`, `city`, `tour`, `confidence`, `source`, `songs`, opcionais `note`, `soundcheck`, `not_played`, `special`, `extra`.
 
-### Mídia presente no repo (✅)
+**Adicionar/editar manifest de mídia:**
+- Editar objeto `MEDIA_MANIFEST` em `index.html` (procura por `const MEDIA_MANIFEST = {`).
+- Por show: `poster`, `posters`, `photos`, `my_photos`, `videos`, `audio: ["arquivo.mp3"]`, `highlight_photos: [N]`.
 
-- 16 capas de álbuns
-- Posters de todos os 25 shows
-- Fotos oficiais dos 17 shows PJ + ev-2014-05-06 (385 jpgs)
-- **19 vídeos MP4** dos shows pj-2024-08-29 (6) e pj-2024-08-31 (13)
-- `lyrics.json`
+**Adicionar interpretação:**
+- Edite `media/interpretations.json` direto, ou rode script Python pattern (ver `add_*.py` em `%TEMP%`).
+- Formato: string ou objeto `{text, byShow:{showId: paragraph}}`.
 
-**Mídia em Cloudflare R2** (não no repo, ver §14):
-- ~500 MP3s em 16 shows (~3.5 GB, importados em 2026-05-07):
-  - pj-2005-12-02, pj-2011-11-03/04/06/09, pj-2011-11-11 (extra),
-    pj-2013-03-31, pj-2018-03-21/24, pj-2015-11-11/14/17/20/22,
-    pj-2024-08-29/31
-  - Origem mista: já-mp3 (2005, 2011, 2013, 2024 Chicago) ou FLAC do
-    Drive convertido pra MP3 320k via ffmpeg local (2018 e 2015)
-
-### Mídia faltante (⏸️ ver `MEDIA_AUDIT_2026-04-29.md`)
-
-| Categoria | Quantidade | Onde provavelmente está |
-|---|---|---|
-| Fotos pessoais (`mine/`) shows 2011-2015 | ~80 arquivos | possivelmente outro PC do dono |
-| Fotos oficiais 7 shows EV novos | ~33 arquivos | possivelmente outro PC |
-| ~~26 MP3s do show pj-2005-12-02~~ | ~~26~~ | ✅ **importados 2026-05-07** (commit `73a8407`) |
-| `pj-2024-08-31/poster-1.jpg` | 1 | precisa criar (manifest declara 2 posters) |
-| 12 arquivos parcialmente identificados no Drive | 12 | ver §7 |
-
-## 7. Arquivos no Drive prontos pra importar (12 arquivos)
-
-Auditoria completa em `MEDIA_AUDIT_2026-04-29.md`. Resumo dos IDs:
-
-**Pasta raiz no Drive:** `Pearl Jam` id `1SinuUytmkfTGjPe3LeoChT4BRlP7PGyX`
-
-**Subpastas:**
-- `rio 18` (`1gKGY89gjwRcuBHtRrxHDReQbpqzQmNiM`) → 4 fotos pessoais para `pj-2018-03-21`
-- `sp 18` (`1noYaWzjiQ7QOAOEIhAO6sGtncxpeNByB`) → 4 arquivos misturados (pj-2018-03-24, ev-2018-03-28/-29/-30) — 1 ambiguidade
-- `Teste` (`14jIhGD-PiLcEajn_kxHup3vQpdZi6dQs`) → 3 fotos WhatsApp prováveis para `ev-2014-05-12`
-- `29/08/2024` (`1ip1Re6QwQ_D4atWPDFOidnVGX20rZEgE`) → 1 foto pessoal (já mapeada): id `1Q9oMvVGlJsJUVN_8WIOqG8npu9TlbegH`
-- `31/08/2024` (`1_JuyO_3xIpwqhRsGLygDuBBj0XbbdAr5`) → 1 foto pessoal (já mapeada): id `1C42L5YohQMVrFIHgglt2JWSNRGCN1vH8`
-
-Os 19 vídeos das pastas `29/08/2024` e `31/08/2024` JÁ FORAM IMPORTADOS
-(commit `0efa7b3`).
-
-## 8. Como editar conteúdo
-
-**Adicionar/editar shows, setlists, manifest:**
-- Edite o objeto `MEDIA_MANIFEST` em `index.html:1595` (não o
-  `media-manifest.json` externo — ele é só leitura humana e está
-  dessincronizado por design).
-- Os shows e setlists estão num objeto JS na linha 1547 do `index.html`
-  (~21 KB inline).
-
-**Adicionar mídia:**
-- Coloque o arquivo no caminho esperado pelo manifest:
-  - Foto oficial: `media/<show>/photo-N.jpg` + `photo-N-thumb.jpg`
-  - Foto pessoal: `media/<show>/mine/photo-N.jpg` + thumb
-  - Vídeo: `media/<show>/videos/video-N.mp4`
-  - Áudio: `media/<show>/audio/<filename>.mp3`
-- Aumente o contador correspondente no `MEDIA_MANIFEST` no `index.html`.
+**Adicionar análise de álbum:**
+1. Salvar em `media/albums/<album.id>.md` (sem em-dashes, sem `—`)
+2. Adicionar `'<album.id>'` ao `Set` `ALBUM_DOCS` no `index.html`
+3. Commitar
 
 **Publicar:**
 ```bash
 git add .
-git commit -m "<mensagem>"
+git commit -m "<msg>"
 git push origin main
-# Cloudflare Pages re-implanta em ~1 minuto
+# Cloudflare Pages re-implanta em ~1 min
 ```
 
-## 9. Próximos passos pendentes (em ordem de prioridade)
-
-1. **Quando chegar em casa:** verificar outro PC. Procurar:
-   - Fotos pessoais antigas (2011-2015)
-   - Fotos dos shows EV novos
-2. Importar os 12 arquivos do Drive (§7) — ~10 min de trabalho automatizado
-3. **ZIP backup local** + hash SHA-256 antes de formatar (camada extra de segurança)
-4. **Domínio custom** no Cloudflare Pages (usa subdomínio do Hostinger ou novo)
-5. Procurar `pj-2024-08-31/poster-1.jpg` (apenas 1 arquivo)
-6. **Deletar repo antigo** `azimermann4/setlists-pj-ev` (manual via web — `gh` aqui só está logado como `andrehz4`)
-
-## 10. Camadas de backup hoje
+## 13. Camadas de backup
 
 | Camada | Onde | Status |
 |---|---|---|
-| 1. Cópia local | `C:\Gitlab_hz\pearljam\setlists-pj-ev` | ✅ |
-| 2. **Git remoto** | github.com/andrehz4/setlists-pj-ev | ✅ |
-| 3. **Site live** | setlists-pj-ev.pages.dev | ✅ |
-| 4. **Object storage (áudio)** | Cloudflare R2 bucket `setlists-pj-ev-audio` | ✅ |
-| 5. ZIP local em HD/pendrive | — | ⏸️ recomendado antes de formatar |
+| 1. Cópia local | `C:\Gitlab_hz\pearljam\setlists-pj-ev` | OK |
+| 2. Git remoto | github.com/andrehz4/setlists-pj-ev | OK |
+| 3. Site live | setlists-pj-ev.pages.dev | OK |
+| 4. R2 áudio | bucket `setlists-pj-ev-audio` | OK |
+| 5. ZIP local em HD/pendrive | — | recomendado antes de formatar |
 | 6. Cópia em outra nuvem | — | opcional |
 
-**Pode formatar com tranquilidade depois de adicionar a camada 4.** A
-restauração após format é trivial:
+Restauração após format:
 ```bash
 git clone https://github.com/andrehz4/setlists-pj-ev.git
 ```
 
-## 11. Histórico de commits (referência)
+## 14. Histórico de commits relevantes
 
 ```
-73a8407  audio: 26 mp3s do show pj-2005-12-02 Pacaembu [165 MB]
-e469a89  handoff atualizado + auditoria de gaps de midia
-0efa7b3  videos shows 2024-08-29 (6) e 2024-08-31 (13) [197 MB]
-d054113  redesign Ticket Archive + 7 shows EV novos + 4 capas + lyrics.json
-7f1062e  snapshot inicial pre-format
+7309ac6  Riot Act (research) + Avocado 2006 docs
+e33bb27  search cards default-open + clean em-dash dos H1 dos albums
+4247c27  bumpa tipografia do modal de albums
+5c82032  sprint vistoria: P1 + 5 P2 + 2 P3 aplicados
+a5a959f  GA4 ID real
+ec55895  tab Deep + flipbook viewer
+0df3d9c  extras infra (rule 0)
+9c3d2a5  charts mudanca 4/4 redesign
+3366113  Binaural doc
+ba2fc68  GA4 instrumentation + 5 custom events + ANALYTICS.md
+02cd6be  album modal + Yield doc
+978278b  fix lightbox state on close
+7ed2a1b  No Code doc
+d6ece3c  search lyric/interp cards + byShow infra (pilot pj-2005-12-02)
+cd918be  fix medley split fallback (Daughter -> W.M.A.)
+a21ccfe  Vitalogy doc
+271ba05..f5c36f7  14 lotes EV solo interpretations
+73a8407  audio: 26 mp3s do show pj-2005-12-02 Pacaembu
 ```
-
-## 12. Convenções importantes
-
-- **Visibilidade do repo:** público (decisão consciente — capas/posters
-  oficiais ficam indexáveis, fotos pessoais idem)
-- **Identidade git:** `eng.andrehz@gmail.com` na config global
-- **`.claude/`:** ignorado pelo git — é config local do Claude Code, não
-  pertence ao repo
-- **Animações:** todas respeitam `prefers-reduced-motion`
-- **Tema padrão:** claro (light), com toggle pra escuro
-
-## 14. Cloudflare R2 — áudio (2026-05-07)
-
-Áudios MP3 não vivem mais no repo (GitHub aperta acima de 1 GB). Foram
-movidos pra Cloudflare R2 — mesma conta `eng.andrehz@gmail.com`,
-egress grátis, free tier 10 GB.
-
-**Coordenadas do bucket:**
-- Nome: `setlists-pj-ev-audio`
-- Region: ENAM (Eastern North America)
-- URL pública (R2.dev): `https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev`
-- Endpoint S3: `https://c071f317813dd06ec00befa13d5c5684.r2.cloudflarestorage.com`
-- Account ID: `c071f317813dd06ec00befa13d5c5684`
-
-**Estrutura no bucket:** `<show-id>/<filename>.mp3`
-Exemplo: `setlists-pj-ev-audio/pj-2005-12-02/01 Go.mp3`
-
-**Player (`index.html`):** lê constante `R2_AUDIO_BASE` definida no topo
-do bloco DATA. Manifest continua declarando `audio: [...]` no
-`MEDIA_MANIFEST` — só o caminho de runtime mudou.
-
-**Como subir mais áudios (rclone instalado via winget):**
-```powershell
-# config em %APPDATA%\rclone\rclone.conf, perfil "r2-setlists"
-rclone copy "<pasta-local>" "r2-setlists:setlists-pj-ev-audio/<show-id>/" --s3-no-check-bucket --progress
-```
-> ⚠️ Sempre use `--s3-no-check-bucket` — o token tem escopo limitado a
-> esse bucket e não pode rodar `CreateBucket`/`ListBuckets`.
-
-**API Token:** salvo só no rclone.conf local. Tipo `Object Read & Write`,
-escopo `Apply to specific buckets only` → `setlists-pj-ev-audio`.
-Pra recriar: dashboard → R2 → API → Account API Tokens.
-
-## 15. Migração de conta GitHub (2026-05-07)
-
-O repo foi migrado de `azimermann4/setlists-pj-ev` para
-`andrehz4/setlists-pj-ev`. O Cloudflare Pages foi reconectado no mesmo dia.
-
-**Notas da migração (2026-05-07):**
-- Repo antigo `azimermann4/setlists-pj-ev` ainda existe — deletar manual
-  via web (a CLI `gh` local só está logada na conta `andrehz4`).
-- O Cloudflare unificou Workers + Pages no novo wizard. Pra criar Pages
-  novo é preciso clicar no link `Looking to deploy Pages? Get started`
-  no wizard de Worker — sem isso, Cloudflare cria como Worker e tenta
-  rodar `npx wrangler deploy`, que falha em sites estáticos sem
-  `wrangler.jsonc` (ou tropeça no `.git` por exceder 25 MiB por asset).
-- Build settings do Pages atual: Framework preset `None`, build command
-  vazio, output directory `/`.
 
 ---
 
-*Atualizado por sessão Claude Code em 2026-05-07.*
+*Atualizado por sessão Claude Code em 2026-05-08. Próxima sessão: pastes de Backspacer/Lightning Bolt/Gigaton/Dark Matter, ou retomar de onde der vontade.*
