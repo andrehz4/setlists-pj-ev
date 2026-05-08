@@ -1956,6 +1956,59 @@ html[data-theme="light"] .drawer-section-label.my-media {
 /* lyrics-panel desativado em 2026-05-07: lyrics agora são inline dentro do drawer */
 #lyrics-panel { display: none !important; }
 
+/* LoadingStamp — carimbo arquival ao trocar de tab (mudança 2/4 do redesign) */
+#loading-stamp {
+  position: fixed;
+  inset: 0;
+  background: rgba(206, 184, 136, 0.85);
+  backdrop-filter: blur(2px);
+  z-index: 60;
+  display: none;
+  place-items: center;
+  pointer-events: none;
+}
+#loading-stamp.active { display: grid; animation: lsFade 320ms ease; }
+#loading-stamp .ls-card { text-align: center; }
+#loading-stamp .ls-stamp {
+  font: 900 56px/1 var(--font-stencil, 'Stardos Stencil', 'Big Shoulders Display', serif);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pj, #a8322b);
+  border: 5px double var(--pj, #a8322b);
+  padding: 8px 22px;
+  display: inline-block;
+  transform: rotate(-6deg);
+  animation: lsSettle 380ms cubic-bezier(0.2, 0.8, 0.3, 1.05);
+}
+#loading-stamp .ls-dots {
+  margin-top: 22px;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+#loading-stamp .ls-dots i {
+  width: 6px; height: 6px;
+  background: var(--ink, #1a1611);
+  opacity: 0.3;
+  border-radius: 50%;
+  animation: lsDot 0.9s infinite ease-in-out;
+}
+@keyframes lsFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lsSettle {
+  0%   { transform: rotate(-14deg) scale(1.4); opacity: 0; }
+  70%  { transform: rotate(-4deg)  scale(0.96); opacity: 1; }
+  100% { transform: rotate(-6deg)  scale(1);   opacity: 1; }
+}
+@keyframes lsDot {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(1); }
+  40%           { opacity: 1;   transform: scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #loading-stamp.active { animation: none; }
+  #loading-stamp .ls-stamp { animation: none; transform: rotate(-6deg); }
+  #loading-stamp .ls-dots i { animation: none; opacity: 0.5; }
+}
+
 /* Lyrics inline (Ticket Archive — design ed. 2026-05-07) */
 .lyric-toggle {
   display: inline-block;
@@ -3225,6 +3278,14 @@ html[data-theme="dark"] .album-block { box-shadow: 3px 3px 0 var(--ink-noir), in
   <div class="stats-strip" id="stats-strip"></div>
 </header>
 
+<!-- LOADING STAMP (overlay durante troca de tab) -->
+<div id="loading-stamp" aria-hidden="true">
+  <div class="ls-card">
+    <div class="ls-stamp">CARREGANDO ARQUIVO</div>
+    <div class="ls-dots"><i></i><i style="animation-delay:.06s"></i><i style="animation-delay:.12s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.24s"></i><i style="animation-delay:.30s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.42s"></i><i style="animation-delay:.48s"></i><i style="animation-delay:.54s"></i><i style="animation-delay:.60s"></i><i style="animation-delay:.66s"></i></div>
+  </div>
+</div>
+
 <!-- TABS -->
 <nav class="tabs">
   <button class="tab active" data-view="timeline">Timeline</button>
@@ -4454,6 +4515,13 @@ function getInitialTheme() {
 // TABS
 // ========================================================================
 function activateTab(viewName) {
+  if (state.currentView === viewName) return;
+  const stamp = document.getElementById("loading-stamp");
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (stamp && !reduced) {
+    stamp.classList.add("active");
+    setTimeout(() => stamp.classList.remove("active"), 380);
+  }
   state.currentView = viewName;
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.view === viewName));
   document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + viewName));
