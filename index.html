@@ -1235,6 +1235,96 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 
 /* ===========================================================
+   DEEP MAGAZINES
+   =========================================================== */
+.deep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+.deep-card {
+  cursor: pointer;
+  background: var(--bg-card);
+  border: 1px solid var(--divider);
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.deep-card:hover { transform: translateY(-2px); border-color: var(--pj); }
+.deep-card-cover {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--skeleton-base);
+}
+.deep-card-meta { padding: 10px 12px; }
+.deep-card-title {
+  font: 700 13px/1.2 var(--font-display, Georgia, serif);
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.deep-card-sub {
+  font: 400 10px/1 var(--font-mono, monospace);
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+.deep-empty { padding: 30px 0; }
+.deep-empty code {
+  background: var(--bg-card);
+  padding: 1px 6px;
+  border-radius: 2px;
+  color: var(--pj);
+  font-size: 11px;
+}
+.deep-reader-bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 0 14px;
+  border-bottom: 1px solid var(--divider);
+  margin-bottom: 16px;
+}
+.deep-back {
+  background: transparent;
+  border: 1px solid var(--divider);
+  color: var(--ink-mute);
+  padding: 6px 12px;
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.deep-back:hover { color: var(--pj); border-color: var(--pj); }
+.deep-reader-title {
+  flex: 1;
+  font: 600 16px/1 var(--font-display, Georgia, serif);
+  color: var(--ink);
+}
+.deep-reader-counter {
+  font: 400 11px var(--font-mono, monospace);
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+}
+.deep-pages {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 0;
+  background: #050505;
+  height: calc(100vh - 220px);
+  min-height: 400px;
+}
+.deep-page {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.deep-page img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===========================================================
    RANKING
    =========================================================== */
 .ranking-list {
@@ -3637,6 +3727,7 @@ html[data-theme="dark"] .album-block { box-shadow: 3px 3px 0 var(--ink-noir), in
   <button class="tab" data-view="search">Buscar música</button>
   <button class="tab" data-view="rarity">🎲 Raridades</button>
   <button class="tab" data-view="gallery">📷 Galeria</button>
+  <button class="tab" data-view="deep">📖 Deep</button>
 </nav>
 
 <!-- FILTER BAR -->
@@ -3688,6 +3779,12 @@ html[data-theme="dark"] .album-block { box-shadow: 3px 3px 0 var(--ink-noir), in
   <div class="view-desc">todas as fotos oficiais. Clique para ampliar</div>
   <div id="gallery-filters" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;"></div>
   <div id="gallery-content"></div>
+</section>
+
+<section class="view" id="view-deep">
+  <h2 class="view-title">Deep · revistas oficiais do Ten Club</h2>
+  <div class="view-desc">cada edição é navegável página por página. Use as setas ou scroll horizontal</div>
+  <div id="deep-content"></div>
 </section>
 
 <!-- DRAWER -->
@@ -5407,6 +5504,7 @@ function renderCurrent() {
     case "highlights": renderHighlights(); break;
     case "search": renderSearch(); break;
     case "rarity": renderRarity(); break;
+    case "deep": renderDeep(); break;
     case "gallery": renderGallery(); break;
   }
   renderStats();
@@ -5466,6 +5564,90 @@ function _getInterpretation(songName, showId) {
     if (parts.length) return parts.join('\n\n');
   }
   return null;
+}
+
+// ========================================================================
+// DEEP MAGAZINES (Ten Club official magazine archive)
+// ========================================================================
+// Adicione edições aqui depois de converter o PDF com:
+//   pdftoppm -r 150 -jpeg -jpegopt quality=82 input.pdf media/deep/<id>/page
+// Resultado: page-1.jpg, page-2.jpg, ...
+const DEEP_ISSUES = [
+  // {
+  //   id: "deep-2007-01",
+  //   title: "Deep · Issue 1",
+  //   year: 2007,
+  //   pages: 32,
+  //   cover: "media/deep/deep-2007-01/page-1.jpg"
+  // },
+];
+
+let _deepCurrentIssue = null;
+
+function renderDeep() {
+  const container = document.getElementById("deep-content");
+  if (!DEEP_ISSUES.length) {
+    container.innerHTML = `
+      <div class="deep-empty">
+        <p style="font: italic 16px/1.6 var(--font-editorial, Georgia, serif); color: var(--ink-mute); max-width: 580px;">
+          Nenhuma edição cadastrada ainda. Para adicionar uma:
+        </p>
+        <ol style="font-family: var(--font-mono, monospace); font-size: 12px; line-height: 1.8; color: var(--ink-dim); max-width: 580px;">
+          <li>Instale o poppler-utils (Windows: <code>scoop install poppler</code>)</li>
+          <li>Converta o PDF: <code>pdftoppm -r 150 -jpeg -jpegopt quality=82 issue.pdf media/deep/&lt;id&gt;/page</code></li>
+          <li>Adicione a entrada em <code>DEEP_ISSUES</code> no <code>index.html</code> (id, title, year, pages, cover)</li>
+        </ol>
+      </div>`;
+    return;
+  }
+  if (_deepCurrentIssue) {
+    renderDeepReader(_deepCurrentIssue);
+    return;
+  }
+  container.innerHTML = `
+    <div class="deep-grid">
+      ${DEEP_ISSUES.map(issue => `
+        <article class="deep-card" data-deep-id="${issue.id}">
+          <div class="deep-card-cover" style="background-image:url('${issue.cover}')"></div>
+          <div class="deep-card-meta">
+            <div class="deep-card-title">${issue.title}</div>
+            <div class="deep-card-sub">${issue.year} · ${issue.pages} páginas</div>
+          </div>
+        </article>`).join('')}
+    </div>`;
+  container.querySelectorAll('[data-deep-id]').forEach(c => {
+    c.addEventListener('click', () => {
+      _deepCurrentIssue = DEEP_ISSUES.find(i => i.id === c.dataset.deepId);
+      renderDeep();
+    });
+  });
+}
+
+function renderDeepReader(issue) {
+  const container = document.getElementById("deep-content");
+  const pages = Array.from({length: issue.pages}, (_, i) => i + 1);
+  container.innerHTML = `
+    <div class="deep-reader-bar">
+      <button class="deep-back" id="deep-back">← Voltar para edições</button>
+      <div class="deep-reader-title">${issue.title}</div>
+      <div class="deep-reader-counter" id="deep-counter">1 / ${issue.pages}</div>
+    </div>
+    <div class="deep-pages" id="deep-pages">
+      ${pages.map(p => `
+        <div class="deep-page" data-page="${p}">
+          <img loading="lazy" src="media/deep/${issue.id}/page-${p}.jpg" alt="Página ${p}">
+        </div>`).join('')}
+    </div>`;
+  document.getElementById('deep-back').addEventListener('click', () => {
+    _deepCurrentIssue = null;
+    renderDeep();
+  });
+  const pagesEl = document.getElementById('deep-pages');
+  const counter = document.getElementById('deep-counter');
+  pagesEl.addEventListener('scroll', () => {
+    const idx = Math.round(pagesEl.scrollLeft / pagesEl.clientWidth);
+    counter.textContent = `${Math.min(idx + 1, issue.pages)} / ${issue.pages}`;
+  });
 }
 
 // ========================================================================
