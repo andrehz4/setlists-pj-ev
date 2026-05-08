@@ -973,7 +973,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .lightbox {
   display: none;
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   background: rgba(0,0,0,0.95);
   z-index: 100;
   align-items: center;
@@ -982,6 +982,11 @@ html[data-theme="light"] .drawer-section-label.my-media {
   cursor: zoom-out;
 }
 .lightbox.active { display: flex; }
+/* Quando o drawer (640px à esquerda) está aberto, o lightbox respeita esse espaço */
+.lightbox.with-drawer { left: min(640px, 100vw); }
+@media (max-width: 760px) {
+  .lightbox.with-drawer { left: 0; }
+}
 .lightbox img {
   max-width: 100%;
   max-height: 100%;
@@ -4469,7 +4474,10 @@ function openLightbox(src, images) {
   _lbImages = images || [src];
   _lbIndex = _lbImages.indexOf(src);
   if (_lbIndex < 0) _lbIndex = 0;
-  document.getElementById("lightbox").classList.add("active");
+  const lb = document.getElementById("lightbox");
+  const drawerOpen = document.getElementById("drawer")?.classList.contains("active");
+  lb.classList.toggle("with-drawer", !!drawerOpen);
+  lb.classList.add("active");
   _lbLoad(_lbIndex);
 }
 
