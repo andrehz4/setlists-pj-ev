@@ -1,4 +1,4 @@
-# Vs. — Pearl Jam (1993)
+# Vs. · Pearl Jam (1993)
 
 *Análise da gênese, composição e impacto sociocultural do segundo álbum*
 

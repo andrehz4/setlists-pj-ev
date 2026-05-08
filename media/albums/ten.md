@@ -1,4 +1,4 @@
-# Ten — Pearl Jam (1991)
+# Ten · Pearl Jam (1991)
 
 *Análise exaustiva da composição, significado e impacto cultural*
 

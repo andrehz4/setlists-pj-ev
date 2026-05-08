@@ -1,4 +1,4 @@
-# No Code (1996) — Pearl Jam
+# No Code (1996) · Pearl Jam
 
 ## Introdução: O Contexto de 1996 e o Boicote ao Estrelato
 

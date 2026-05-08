@@ -1,4 +1,4 @@
-# Vitalogy (1994) — Pearl Jam
+# Vitalogy (1994) · Pearl Jam
 
 ## Introdução: O Colapso do Paradigma Alternativo e o Contexto Sociocultural de 1994
 

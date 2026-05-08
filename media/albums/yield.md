@@ -1,4 +1,4 @@
-# Yield (1998) — Pearl Jam
+# Yield (1998) · Pearl Jam
 
 ## Introdução: O Contexto de Transição e a Sobrevivência do Rock Alternativo
 

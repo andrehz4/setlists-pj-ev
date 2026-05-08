@@ -1,4 +1,4 @@
-# Riot Act (2002) — Pearl Jam
+# Riot Act (2002) · Pearl Jam
 
 ## Introdução: O Álbum do Luto e da Resposta Política
 

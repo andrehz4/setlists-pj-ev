@@ -1,4 +1,4 @@
-# Binaural (2000) — Pearl Jam
+# Binaural (2000) · Pearl Jam
 
 ## Introdução: O Crepúsculo de uma Era e a Reconfiguração de Seattle
 
