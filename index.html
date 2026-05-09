@@ -1319,11 +1319,20 @@ html[data-theme="light"] .drawer-section-label.my-media {
   color: var(--pj); font-size: 11px;
 }
 
-/* reader stage — fixed overlay */
+/* reader stage — fixed overlay
+   Cores hardcoded em dark mode: o backdrop é sempre escuro (spotlight),
+   então não pode depender de --ink/--ink-mute do tema (no tema claro
+   elas viram pretas e somem no fundo). */
 .deep-reader-stage {
   position: fixed; inset: 0; z-index: 50;
   display: flex; align-items: center; justify-content: center;
   pointer-events: none;
+  --reader-ink: #f5f1e8;
+  --reader-ink-mute: #c8c0b0;
+  --reader-ink-dim: #8a8275;
+  --reader-divider: #403930;
+  --reader-divider-strong: #5a5042;
+  --reader-pj: #e84a50;
 }
 .deep-reader-stage[hidden] { display: none; }
 .deep-reader-backdrop {
@@ -1346,33 +1355,33 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .deep-reader-stage.open .deep-reader-bar { opacity: 1; transform: none; }
 .deep-back {
-  background: transparent; border: 1px solid var(--divider-strong);
-  color: var(--ink-mute); padding: 9px 14px;
+  background: transparent; border: 1px solid var(--reader-divider-strong);
+  color: var(--reader-ink-mute); padding: 9px 14px;
   font: 700 10px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase;
   cursor: pointer; border-radius: 2px;
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
-.deep-back:hover, .deep-back:focus-visible { color: var(--pj); border-color: var(--pj); }
+.deep-back:hover, .deep-back:focus-visible { color: var(--reader-pj); border-color: var(--reader-pj); }
 .deep-reader-title {
   flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
   font-family: var(--font-editorial); font-style: italic; font-size: 18px;
-  color: var(--ink);
+  color: var(--reader-ink);
 }
 .deep-reader-title-issue {
   font-family: var(--font-mono); font-style: normal;
-  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pj);
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--reader-pj);
 }
 .deep-reader-counter {
-  font: 500 11px/1 var(--font-mono); letter-spacing: 0.12em; color: var(--ink-mute);
+  font: 500 11px/1 var(--font-mono); letter-spacing: 0.12em; color: var(--reader-ink-mute);
   min-width: 96px; text-align: right;
   display: flex; align-items: center; justify-content: flex-end; gap: 8px;
 }
 .deep-reader-counter-bar {
-  width: 80px; height: 2px; background: var(--divider); position: relative; border-radius: 2px;
+  width: 80px; height: 2px; background: var(--reader-divider); position: relative; border-radius: 2px;
 }
 .deep-reader-counter-bar::before {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0;
-  width: var(--p, 0%); background: var(--pj); transition: width 0.4s ease;
+  width: var(--p, 0%); background: var(--reader-pj); transition: width 0.4s ease;
 }
 
 /* the magazine itself */
@@ -1515,10 +1524,10 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .deep-nav-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
   background: rgba(20,18,16,0.8);
-  border: 1px solid var(--divider-strong); color: var(--ink);
+  border: 1px solid var(--reader-divider-strong); color: var(--reader-ink);
   width: 48px; height: 48px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 18px;
+  cursor: pointer; font-size: 22px; line-height: 1;
   transition: background 0.15s, border-color 0.15s, transform 0.15s;
   backdrop-filter: blur(8px);
   opacity: 0; pointer-events: none;
@@ -1527,11 +1536,11 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .deep-nav-arrow.left  { left: 24px; }
 .deep-nav-arrow.right { right: 24px; }
 .deep-nav-arrow:hover, .deep-nav-arrow:focus-visible {
-  background: var(--pj); border-color: var(--pj); transform: translateY(-50%) scale(1.06);
+  background: var(--reader-pj); border-color: var(--reader-pj); color: #fff; transform: translateY(-50%) scale(1.06);
 }
 .deep-nav-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
 .deep-nav-arrow:disabled:hover {
-  background: rgba(20,18,16,0.8); border-color: var(--divider-strong); transform: translateY(-50%) scale(1);
+  background: rgba(20,18,16,0.8); border-color: var(--reader-divider-strong); color: var(--reader-ink); transform: translateY(-50%) scale(1);
 }
 
 /* thumbnail strip */
@@ -1539,7 +1548,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
   position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
   display: flex; gap: 6px; padding: 8px 14px;
   background: rgba(20,18,16,0.85);
-  border: 1px solid var(--divider); border-radius: 36px;
+  border: 1px solid var(--reader-divider); border-radius: 36px;
   backdrop-filter: blur(10px);
   max-width: min(70vw, 720px); overflow-x: auto;
   scrollbar-width: none;
@@ -1554,20 +1563,20 @@ html[data-theme="light"] .drawer-section-label.my-media {
   opacity: 0.5; transition: opacity 0.2s, transform 0.2s;
 }
 .deep-thumb:hover, .deep-thumb:focus-visible { opacity: 0.85; transform: translateY(-1px); }
-.deep-thumb.active { opacity: 1; outline: 1.5px solid var(--pj); outline-offset: 1px; }
+.deep-thumb.active { opacity: 1; outline: 1.5px solid var(--reader-pj); outline-offset: 1px; }
 
 /* keyboard hint */
 .deep-keyhint {
   position: absolute; left: 50%; top: 18px; transform: translateX(-50%);
   font: 500 10px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--ink-dim);
+  color: var(--reader-ink-dim);
   opacity: 0; transition: opacity 0.4s ease 1s;
   pointer-events: none;
 }
 .deep-reader-stage.open .deep-keyhint { opacity: 1; }
 .deep-keyhint kbd {
-  border: 1px solid var(--divider-strong); padding: 2px 6px; border-radius: 3px;
-  color: var(--ink-mute); background: rgba(255,255,255,0.02);
+  border: 1px solid var(--reader-divider-strong); padding: 2px 6px; border-radius: 3px;
+  color: var(--reader-ink-mute); background: rgba(255,255,255,0.04);
 }
 
 @media (max-width: 720px) {
