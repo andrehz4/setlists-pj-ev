@@ -90,7 +90,7 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 - `sitemap.xml` mínimo
 - Open Graph + Twitter card + canonical + theme-color (placeholder `og.jpg` ainda não criado)
 
-### Acessibilidade (a11y) — fases 1 e 2 aplicadas
+### Acessibilidade (a11y) — fases 1, 2 e 3 aplicadas
 - Skip-link, landmark `<main>`, `<header role=banner>`
 - Tabs com pattern WAI-ARIA completo (roving tabindex, aria-selected, setas/Home/End)
 - 5 dialogs com role/aria-modal/aria-labelledby + foco-trap + save/restore de foco
@@ -107,6 +107,13 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 - Helpers utilitários: `.visually-hidden`, `_a11yOpenDialog`, `_a11yCloseDialog`, `_apSetPlayState`
 - Bug bônus consertado: `_mpLoad` não usa mais `{ once: true }` (handler é trocado a cada load via `wrap._mpZoomHandler`)
 - **Métricas atuais**: 59 aria-labels, 9 role=button, 15 aria-pressed, 7 aria-live, 6 aria-modal, 4 aria-expanded, 0 em-dashes, 0 `outline:none` legados
+
+### Acessibilidade (a11y) — fase 3 (sem mexer em layout/cores)
+- **`lang="en"` automático**: parser MD detecta itálicos com palavras funcionais em inglês (the, you, I, are, etc.) e envolve em `<em lang="en">`. Letras (`lyrics-body` + inline drawer), interpretações (drawer + meta) e `lyric-row` ganharam `lang="en"`. SR em PT-BR pronuncia inglês corretamente.
+- **Transcrição de áudio (WCAG 1.2.1)**: novo campo opcional `notes_audio` no schema de shows, renderizado no drawer como `<section role="region">` com `<details>` colapsável "🎧 Transcrição do áudio (N faixas)". Aparece automaticamente em shows com áudio. Preenchido pros 3 extras com notas detalhadas (set atípico, covers raros, encore breaks).
+- **Player de áudio**: aria-label expandido informando sobre disponibilidade de letra; `lyric-row` aria-label refinado pra "Transcrição cantada (letra) de X em inglês".
+- **`prefers-reduced-motion` global**: `@media` nuclear neutraliza todas as 40 transitions + 28 animations + scroll smooth. Só ativa pra usuários com pref no OS.
+- **SVGs acessíveis**: LuckGauge ganhou `role="img"` + `<title>` + `<desc>` (com classificação e contexto), textos visuais internos viraram `aria-hidden` pra não duplicar leitura. Chart-svg de "músicas por show" tem `aria-label` resumindo o gráfico.
 
 ## 4. Análises de álbum (status)
 
