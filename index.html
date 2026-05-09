@@ -4222,8 +4222,10 @@ const photoObserver = new IntersectionObserver((entries) => {
 // ========================================================================
 function renderStats() {
   const s = allStats();
+  // No aria-label on .stat: Lighthouse flags aria-prohibited-attr on generic
+  // div sem role. Deixamos o texto natural ("25 Shows") ser o nome acessível.
   const stat = (val, label) =>
-    `<div class="stat" aria-label="${val} ${label}"><div class="stat-value" aria-hidden="true">${val}</div><div class="stat-label" aria-hidden="true">${label}</div></div>`;
+    `<div class="stat"><div class="stat-value">${val}</div><div class="stat-label">${label}</div></div>`;
   document.getElementById("stats-strip").innerHTML =
     stat(s.totalShows,  'Shows') +
     stat(s.uniqueSongs, 'Músicas únicas') +
@@ -4263,7 +4265,8 @@ function renderTimeline() {
     return;
   }
   const cardHtml = (s, isExtra) => {
-    const cardLabel = `Abrir setlist: ${s.artist}, ${fmtDate(s.date)}, ${s.venue}, ${s.city}`;
+    // Label começa com o texto visível (WCAG 2.5.3 Label in Name) e termina com a ação
+    const cardLabel = `${s.artist} ${fmtDate(s.date)} ${s.venue} ${s.city}. Abrir setlist.`;
     return `
     <article class="show-card ${s.artist === 'Eddie Vedder' ? 'ev' : ''} ${s.special ? 'special' : ''} ${isExtra ? 'is-extra' : ''}" data-show-id="${s.id}" role="button" tabindex="0" aria-label="${cardLabel.replace(/"/g, '&quot;')}">
       ${MEDIA_MANIFEST[s.id]?.poster ? `<div class="card-bg" style="background-image:url('media/${s.id}/poster.jpg')" aria-hidden="true"></div>` : ''}
@@ -5764,7 +5767,7 @@ function renderComunidadeSection() {
     const thumb = `media/comunidade/photo-${i}-thumb.jpg`;
     const full  = `media/comunidade/photo-${i}.jpg`;
     const altTxt = `Foto da comunidade Pearl Jam ${i}`;
-    thumbsHtml += `<div class="gallery-thumb" role="button" tabindex="0" aria-label="Abrir ${altTxt}">
+    thumbsHtml += `<div class="gallery-thumb" role="button" tabindex="0" aria-label="${altTxt}. Abrir.">
       <img data-src="${thumb}" data-full="${full}" alt="${altTxt}">
     </div>`;
   }
@@ -5823,7 +5826,7 @@ function renderGalleryShows(shows, tourFilter) {
       const full  = `media/${show.id}/photo-${i}.jpg`;
       const isMyMoment = m.highlight_photos && m.highlight_photos.includes(i);
       const altTxt = `Foto oficial ${i} de ${showLabel}`;
-      thumbsHtml += `<div class="gallery-thumb${isMyMoment ? ' my-moment' : ''}" role="button" tabindex="0" aria-label="Abrir ${altTxt}">
+      thumbsHtml += `<div class="gallery-thumb${isMyMoment ? ' my-moment' : ''}" role="button" tabindex="0" aria-label="${altTxt}. Abrir.">
         <img data-src="${thumb}" data-full="${full}" alt="${altTxt.replace(/"/g, '&quot;')}">
       </div>`;
     }
@@ -5831,14 +5834,14 @@ function renderGalleryShows(shows, tourFilter) {
       const thumb = `media/${show.id}/mine/photo-${i}-thumb.jpg`;
       const full  = `media/${show.id}/mine/photo-${i}.jpg`;
       const altTxt = `Minha foto ${i} de ${showLabel}`;
-      thumbsHtml += `<div class="gallery-thumb mine-thumb" role="button" tabindex="0" aria-label="Abrir ${altTxt}">
+      thumbsHtml += `<div class="gallery-thumb mine-thumb" role="button" tabindex="0" aria-label="${altTxt}. Abrir.">
         <img data-src="${thumb}" data-full="${full}" alt="${altTxt.replace(/"/g, '&quot;')}">
       </div>`;
     }
 
     return `
       <div class="gallery-show-block" data-show-id="${show.id}">
-        <div class="gallery-show-header" role="button" tabindex="0" data-open-drawer="${show.id}" aria-label="Abrir setlist do show de ${showLabel}">
+        <div class="gallery-show-header" role="button" tabindex="0" data-open-drawer="${show.id}" aria-label="${showLabel}. Abrir setlist.">
           <span class="gallery-show-name" style="color:${accentVar}">${fmtDate(show.date)}</span>
           <span class="gallery-show-meta">${show.venue} · ${show.city.split(',')[0]}</span>
           <span class="gallery-show-count"><span aria-hidden="true">📷 </span>${totalPhotos}<span class="visually-hidden"> fotos</span></span>
