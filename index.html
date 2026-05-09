@@ -1251,93 +1251,332 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 
 /* ===========================================================
-   DEEP MAGAZINES
+   DEEP MAGAZINES (3D book reader)
    =========================================================== */
-.deep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+.deep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px; }
 .deep-card {
-  cursor: pointer;
-  background: var(--bg-card);
-  border: 1px solid var(--divider);
-  transition: transform 0.18s ease, border-color 0.18s ease;
+  cursor: pointer; border: 0; padding: 0; background: transparent;
+  text-align: left; color: inherit;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform 0.22s ease;
 }
-.deep-card:hover { transform: translateY(-2px); border-color: var(--pj); }
-.deep-card-cover {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background-size: cover;
-  background-position: center;
+.deep-card:focus-visible { outline: 2px solid var(--pj); outline-offset: 6px; }
+.deep-cover-wrap {
+  position: relative; aspect-ratio: 3/4;
+  perspective: 1200px; perspective-origin: 50% 30%;
+}
+.deep-cover {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
   background-color: var(--skeleton-base);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.04) inset,
+    0 24px 50px -20px rgba(0,0,0,0.7),
+    0 6px 16px -8px rgba(0,0,0,0.5);
+  transform-style: preserve-3d;
+  transform: rotateY(-8deg) rotateX(2deg);
+  transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s ease;
 }
-.deep-card-meta { padding: 10px 12px; }
+/* fake page stack on right edge of cover */
+.deep-cover::before {
+  content: ""; position: absolute;
+  top: 1.5%; right: -3px; bottom: 1.5%; width: 6px;
+  background: linear-gradient(90deg, #1a1714 0%, #0d0b09 60%, #1a1714 100%);
+  box-shadow: 1px 0 0 #0a0908, 2px 0 0 #1a1714, 3px 0 0 #0a0908, 4px 0 0 #1a1714;
+  transform: translateZ(-2px);
+  border-radius: 0 1px 1px 0;
+}
+.deep-cover::after {
+  content: ""; position: absolute;
+  top: 0; bottom: 0; left: 0; width: 8px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0));
+  pointer-events: none;
+}
+.deep-card:hover .deep-cover {
+  transform: rotateY(-14deg) rotateX(4deg) translateY(-6px);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.06) inset,
+    0 38px 60px -18px rgba(0,0,0,0.85),
+    0 10px 22px -10px rgba(0,0,0,0.6);
+}
+.deep-card[data-locked="true"] .deep-cover { visibility: hidden; }
+.deep-card-meta { display: flex; flex-direction: column; gap: 3px; padding: 0; }
+.deep-card-issue {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--pj);
+}
 .deep-card-title {
-  font: 700 13px/1.2 var(--font-display, Georgia, serif);
-  color: var(--ink);
-  margin-bottom: 3px;
+  font-family: var(--font-editorial); font-style: italic; font-size: 19px;
+  color: var(--ink); line-height: 1.15; margin: 0;
 }
 .deep-card-sub {
-  font: 400 10px/1 var(--font-mono, monospace);
-  color: var(--ink-dim);
-  letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em;
+  color: var(--ink-dim); text-transform: uppercase;
 }
 .deep-empty { padding: 30px 0; }
 .deep-empty code {
-  background: var(--bg-card);
-  padding: 1px 6px;
-  border-radius: 2px;
-  color: var(--pj);
-  font-size: 11px;
+  background: var(--bg-card); padding: 1px 6px; border-radius: 2px;
+  color: var(--pj); font-size: 11px;
 }
+
+/* reader stage — fixed overlay */
+.deep-reader-stage {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.deep-reader-stage[hidden] { display: none; }
+.deep-reader-backdrop {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 50%, rgba(40,28,18,0.55), transparent 75%),
+    rgba(5,4,3,0.92);
+  backdrop-filter: blur(6px);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.deep-reader-stage.open { pointer-events: auto; }
+.deep-reader-stage.open .deep-reader-backdrop { opacity: 1; }
+
 .deep-reader-bar {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 10px 0 14px;
-  border-bottom: 1px solid var(--divider);
-  margin-bottom: 16px;
+  position: absolute; left: 0; right: 0; top: 0;
+  display: flex; align-items: center; gap: 18px;
+  padding: 18px 28px;
+  opacity: 0; transform: translateY(-8px);
+  transition: opacity 0.35s ease 0.2s, transform 0.35s ease 0.2s;
 }
+.deep-reader-stage.open .deep-reader-bar { opacity: 1; transform: none; }
 .deep-back {
-  background: transparent;
-  border: 1px solid var(--divider);
-  color: var(--ink-mute);
-  padding: 6px 12px;
-  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  cursor: pointer;
+  background: transparent; border: 1px solid var(--divider-strong);
+  color: var(--ink-mute); padding: 9px 14px;
+  font: 700 10px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase;
+  cursor: pointer; border-radius: 2px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
-.deep-back:hover { color: var(--pj); border-color: var(--pj); }
+.deep-back:hover, .deep-back:focus-visible { color: var(--pj); border-color: var(--pj); }
 .deep-reader-title {
-  flex: 1;
-  font: 600 16px/1 var(--font-display, Georgia, serif);
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-family: var(--font-editorial); font-style: italic; font-size: 18px;
   color: var(--ink);
 }
+.deep-reader-title-issue {
+  font-family: var(--font-mono); font-style: normal;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pj);
+}
 .deep-reader-counter {
-  font: 400 11px var(--font-mono, monospace);
+  font: 500 11px/1 var(--font-mono); letter-spacing: 0.12em; color: var(--ink-mute);
+  min-width: 96px; text-align: right;
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+}
+.deep-reader-counter-bar {
+  width: 80px; height: 2px; background: var(--divider); position: relative; border-radius: 2px;
+}
+.deep-reader-counter-bar::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: var(--p, 0%); background: var(--pj); transition: width 0.4s ease;
+}
+
+/* the magazine itself */
+.deep-book-frame {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: var(--target-w); height: var(--target-h);
+  transform: translate(-50%, -50%);
+  perspective: 2600px;
+  pointer-events: auto;
+}
+.deep-reader-stage.entering .deep-book-frame {
+  animation: deepBookEnter 0.68s cubic-bezier(.22,.7,.2,1) forwards;
+}
+@keyframes deepBookEnter {
+  0% {
+    left: var(--start-x); top: var(--start-y);
+    width: var(--start-w); height: var(--start-h);
+    transform: translate(0, 0);
+  }
+  100% {
+    left: 50%; top: 50%;
+    width: var(--target-w); height: var(--target-h);
+    transform: translate(-50%, -50%);
+  }
+}
+.deep-reader-stage.exiting .deep-book-frame {
+  animation: deepBookExit 0.55s cubic-bezier(.5,.05,.7,.5) forwards;
+}
+@keyframes deepBookExit {
+  0% {
+    left: 50%; top: 50%;
+    width: var(--target-w); height: var(--target-h);
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    left: var(--start-x); top: var(--start-y);
+    width: var(--start-w); height: var(--start-h);
+    transform: translate(0, 0);
+  }
+}
+
+.deep-book {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  animation: deepBookSway 8s ease-in-out infinite;
+  filter: drop-shadow(0 40px 50px rgba(0,0,0,0.55)) drop-shadow(0 12px 22px rgba(0,0,0,0.4));
+}
+@keyframes deepBookSway {
+  0%, 100% { transform: rotateX(3deg) rotateY(-3deg); }
+  50%      { transform: rotateX(1deg) rotateY(2deg); }
+}
+
+.deep-page-stack {
+  position: absolute; top: 0; bottom: 0;
+  pointer-events: none;
+}
+.deep-page-stack.left  { left: -2px; }
+.deep-page-stack.right { right: -2px; }
+.deep-page-stack span {
+  position: absolute; top: 1%; bottom: 1%; width: 1px;
+  background: linear-gradient(90deg, #fdf6e6, #d8cda8);
+  box-shadow: 0 0 0 .5px rgba(0,0,0,0.15);
+}
+.deep-page-stack.left span  { transform: translateX(calc(var(--i) * -1px)); }
+.deep-page-stack.right span { transform: translateX(calc(var(--i) *  1px)); }
+
+.deep-page-surface {
+  position: absolute; inset: 0;
+  background: #1a1714; overflow: hidden;
+  transform-style: preserve-3d;
+}
+.deep-page-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  background-color: #1a1714;
+}
+.deep-page-img::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.018) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 30% 20%, rgba(255,240,200,0.04), transparent 60%);
+  mix-blend-mode: overlay; pointer-events: none;
+}
+.deep-page-surface::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 32px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0) 70%);
+  pointer-events: none; z-index: 2;
+}
+.deep-book-frame::after {
+  content: ""; position: absolute;
+  left: -6%; right: -6%; bottom: -8%; height: 14%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.55), transparent 70%);
+  filter: blur(6px); z-index: -1; pointer-events: none;
+  opacity: 0.9;
+}
+
+/* flipping page */
+.deep-flipper {
+  position: absolute; inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform var(--flip-dur, 750ms) cubic-bezier(.32,.06,.32,1);
+  z-index: 5; will-change: transform;
+}
+.deep-flipper.next-start { transform: rotateY(0deg); }
+.deep-flipper.next-end   { transform: rotateY(-180deg); }
+.deep-flipper.prev-start { transform: rotateY(-180deg); }
+.deep-flipper.prev-end   { transform: rotateY(0deg); }
+.deep-flipper-face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  background-size: cover; background-position: center; background-color: #1a1714;
+  overflow: hidden;
+}
+.deep-flipper-face.back { transform: rotateY(180deg); }
+.deep-flipper-face::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(270deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 60%);
+  opacity: 0; transition: opacity 0.35s ease;
+}
+.deep-flipper.curling .deep-flipper-face::after { opacity: 1; }
+.deep-flipper-face.back::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 48px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0));
+  pointer-events: none;
+}
+
+/* hot-zones */
+.deep-flip-zone {
+  position: absolute; top: 0; bottom: 0; width: 38%;
+  cursor: pointer; z-index: 6;
+  background: transparent; border: 0; padding: 0;
+}
+.deep-flip-zone.left  { left: 0;  cursor: w-resize; }
+.deep-flip-zone.right { right: 0; cursor: e-resize; }
+.deep-flip-zone[disabled] { cursor: not-allowed; }
+
+/* nav arrows */
+.deep-nav-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(20,18,16,0.8);
+  border: 1px solid var(--divider-strong); color: var(--ink);
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none;
+}
+.deep-reader-stage.open .deep-nav-arrow { opacity: 1; pointer-events: auto; transition-delay: 0.4s; }
+.deep-nav-arrow.left  { left: 24px; }
+.deep-nav-arrow.right { right: 24px; }
+.deep-nav-arrow:hover, .deep-nav-arrow:focus-visible {
+  background: var(--pj); border-color: var(--pj); transform: translateY(-50%) scale(1.06);
+}
+.deep-nav-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+.deep-nav-arrow:disabled:hover {
+  background: rgba(20,18,16,0.8); border-color: var(--divider-strong); transform: translateY(-50%) scale(1);
+}
+
+/* thumbnail strip */
+.deep-thumb-strip {
+  position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+  display: flex; gap: 6px; padding: 8px 14px;
+  background: rgba(20,18,16,0.85);
+  border: 1px solid var(--divider); border-radius: 36px;
+  backdrop-filter: blur(10px);
+  max-width: min(70vw, 720px); overflow-x: auto;
+  scrollbar-width: none;
+  opacity: 0; transform: translate(-50%, 12px);
+  transition: opacity 0.35s ease 0.35s, transform 0.35s ease 0.35s;
+}
+.deep-thumb-strip::-webkit-scrollbar { display: none; }
+.deep-reader-stage.open .deep-thumb-strip { opacity: 1; transform: translateX(-50%); }
+.deep-thumb {
+  flex: 0 0 auto; width: 24px; height: 32px; border: 0; padding: 0;
+  background: #222 center/cover; border-radius: 1px; cursor: pointer;
+  opacity: 0.5; transition: opacity 0.2s, transform 0.2s;
+}
+.deep-thumb:hover, .deep-thumb:focus-visible { opacity: 0.85; transform: translateY(-1px); }
+.deep-thumb.active { opacity: 1; outline: 1.5px solid var(--pj); outline-offset: 1px; }
+
+/* keyboard hint */
+.deep-keyhint {
+  position: absolute; left: 50%; top: 18px; transform: translateX(-50%);
+  font: 500 10px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--ink-dim);
-  letter-spacing: 0.08em;
+  opacity: 0; transition: opacity 0.4s ease 1s;
+  pointer-events: none;
 }
-.deep-pages {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  gap: 0;
-  background: #050505;
-  height: calc(100vh - 220px);
-  min-height: 400px;
+.deep-reader-stage.open .deep-keyhint { opacity: 1; }
+.deep-keyhint kbd {
+  border: 1px solid var(--divider-strong); padding: 2px 6px; border-radius: 3px;
+  color: var(--ink-mute); background: rgba(255,255,255,0.02);
 }
-.deep-page {
-  flex: 0 0 100%;
-  scroll-snap-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.deep-page img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
+
+@media (max-width: 720px) {
+  .deep-grid { gap: 18px; }
+  .deep-reader-bar { padding: 12px 16px; gap: 10px; }
+  .deep-reader-title { font-size: 14px; }
+  .deep-nav-arrow { width: 40px; height: 40px; }
+  .deep-nav-arrow.left  { left: 8px; }
+  .deep-nav-arrow.right { right: 8px; }
 }
 
 /* ===========================================================
@@ -3935,9 +4174,12 @@ html[data-theme="dark"] video:focus-visible {
 
 <section class="view" id="view-deep" role="tabpanel" aria-labelledby="tab-deep" tabindex="0" hidden>
   <h2 class="view-title">Deep · revistas oficiais do Ten Club</h2>
-  <div class="view-desc">cada edição é navegável página por página. Use as setas ou scroll horizontal</div>
+  <div class="view-desc">selecione uma edição. A revista abre em tela cheia, com flip 3D página por página</div>
   <div id="deep-content"></div>
 </section>
+
+<!-- DEEP READER (modal overlay) -->
+<aside class="deep-reader-stage" id="deep-reader-stage" role="dialog" aria-modal="true" aria-labelledby="deep-reader-title-text" tabindex="-1" hidden></aside>
 
 </main>
 <!-- /MAIN CONTENT -->
@@ -5975,14 +6217,23 @@ function _getInterpretation(songName, showId) {
 //   pdftoppm -r 150 -jpeg -jpegopt quality=82 input.pdf media/deep/<id>/page
 // Resultado: page-1.jpg, page-2.jpg, ...
 const DEEP_ISSUES = [
-  { id: "deep-08", title: "Deep · Issue 8",  year: 2011, pages: 51, cover: "media/deep/deep-08/page-1.jpg" },
-  { id: "deep-09", title: "Deep · Issue 9",  year: 2012, pages: 28, cover: "media/deep/deep-09/page-1.jpg" },
-  { id: "deep-10", title: "Deep · Issue 10", year: 2013, pages: 28, cover: "media/deep/deep-10/page-1.jpg" },
-  { id: "deep-11", title: "Deep · Issue 11", year: 2014, pages: 28, cover: "media/deep/deep-11/page-1.jpg" },
-  { id: "deep-12", title: "Deep · Issue 12", year: 2015, pages: 29, cover: "media/deep/deep-12/page-1.jpg" },
+  { id: "deep-08", num: "08", title: "Deep · Issue 8",  year: 2011, pages: 51, cover: "media/deep/deep-08/page-1.jpg", tag: "Backspacer Era" },
+  { id: "deep-09", num: "09", title: "Deep · Issue 9",  year: 2012, pages: 28, cover: "media/deep/deep-09/page-1.jpg", tag: "PJ20 Tour" },
+  { id: "deep-10", num: "10", title: "Deep · Issue 10", year: 2013, pages: 28, cover: "media/deep/deep-10/page-1.jpg", tag: "Lightning Bolt" },
+  { id: "deep-11", num: "11", title: "Deep · Issue 11", year: 2014, pages: 28, cover: "media/deep/deep-11/page-1.jpg", tag: "Latin America" },
+  { id: "deep-12", num: "12", title: "Deep · Issue 12", year: 2015, pages: 29, cover: "media/deep/deep-12/page-1.jpg", tag: "South America 15" },
 ];
 
-let _deepCurrentIssue = null;
+const _DEEP_FLIP_DUR = 750;
+let _deepActiveIssue = null;
+let _deepActiveCard = null;
+let _deepPage = 0;
+let _deepFlipping = false;
+
+function _deepPageUrl(issue, n) {
+  return `media/deep/${issue.id}/page-${n}.jpg`;
+}
+function _deepClampStack(n) { return Math.min(Math.max(n, 0), 14); }
 
 function renderDeep() {
   const container = document.getElementById("deep-content");
@@ -6000,81 +6251,328 @@ function renderDeep() {
       </div>`;
     return;
   }
-  if (_deepCurrentIssue) {
-    renderDeepReader(_deepCurrentIssue);
-    return;
-  }
   container.innerHTML = `
     <div class="deep-grid">
       ${DEEP_ISSUES.map(issue => `
-        <article class="deep-card" data-deep-id="${issue.id}" role="button" tabindex="0" aria-label="Abrir ${issue.title}, ${issue.year}, ${issue.pages} páginas">
-          <div class="deep-card-cover" style="background-image:url('${issue.cover}')" aria-hidden="true"></div>
+        <button class="deep-card" data-deep-id="${issue.id}" type="button" aria-label="${issue.title}, ${issue.year}, ${issue.pages} páginas. Abrir leitor.">
+          <div class="deep-cover-wrap">
+            <div class="deep-cover" style="background-image:url('${issue.cover}')" aria-hidden="true"></div>
+          </div>
           <div class="deep-card-meta">
+            <div class="deep-card-issue">Issue ${issue.num} · ${issue.tag}</div>
             <div class="deep-card-title">${issue.title}</div>
             <div class="deep-card-sub">${issue.year} · ${issue.pages} páginas</div>
           </div>
-        </article>`).join('')}
+        </button>`).join('')}
     </div>`;
   container.querySelectorAll('[data-deep-id]').forEach(c => {
-    const open = () => {
-      _deepCurrentIssue = DEEP_ISSUES.find(i => i.id === c.dataset.deepId);
-      renderDeep();
-    };
-    c.addEventListener('click', open);
-    c.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    c.addEventListener('click', () => {
+      const issue = DEEP_ISSUES.find(i => i.id === c.dataset.deepId);
+      if (issue) _deepOpenReader(issue, c);
     });
   });
 }
 
-function renderDeepReader(issue) {
-  const container = document.getElementById("deep-content");
-  const pages = Array.from({length: issue.pages}, (_, i) => i + 1);
-  container.innerHTML = `
-    <div class="deep-reader-bar">
-      <button class="deep-back" id="deep-back" aria-label="Voltar para a lista de edições"><span aria-hidden="true">← </span>Voltar para edições</button>
-      <div class="deep-reader-title" role="heading" aria-level="2">${issue.title}</div>
-      <div class="deep-reader-counter" id="deep-counter" aria-live="polite" aria-atomic="true">1 / ${issue.pages}</div>
+function _deepTargetSize() {
+  const vh = window.innerHeight;
+  const vw = window.innerWidth;
+  const s = vw < 720 ? 0.92 : 0.78;
+  const maxH = Math.min(vh * s, vh - 160);
+  const maxW = Math.min(vw * s, vw - 200);
+  let h = maxH, w = h * 0.75;
+  if (w > maxW) { w = maxW; h = w / 0.75; }
+  return { w, h };
+}
+
+function _deepOpenReader(issue, sourceCard) {
+  if (_deepActiveIssue) return;
+  _deepActiveIssue = issue;
+  _deepActiveCard = sourceCard;
+  _deepPage = 0;
+  _deepFlipping = false;
+
+  const stage = document.getElementById('deep-reader-stage');
+  const cover = sourceCard.querySelector('.deep-cover');
+  const rect = cover.getBoundingClientRect();
+  const target = _deepTargetSize();
+
+  // mark source card so its cover hides during animation (avoid duplicate visual)
+  sourceCard.dataset.locked = 'true';
+
+  // build overlay content
+  stage.innerHTML = '';
+  const backdrop = document.createElement('div');
+  backdrop.className = 'deep-reader-backdrop';
+  backdrop.addEventListener('click', _deepCloseReader);
+
+  const bar = document.createElement('div');
+  bar.className = 'deep-reader-bar';
+  bar.innerHTML = `
+    <button class="deep-back" type="button" aria-label="Voltar para a lista de edições"><span aria-hidden="true">← </span>Voltar</button>
+    <div class="deep-reader-title">
+      <span class="deep-reader-title-issue">Deep · Issue ${issue.num}</span>
+      <span id="deep-reader-title-text">${issue.title} · ${issue.year}</span>
     </div>
-    <div class="deep-pages" id="deep-pages" role="region" aria-label="Páginas da edição (use as setas para navegar)" tabindex="0">
-      ${pages.map(p => `
-        <div class="deep-page" data-page="${p}">
-          <img loading="lazy" src="media/deep/${issue.id}/page-${p}.jpg" alt="Página ${p} de ${issue.title}">
-        </div>`).join('')}
+    <div class="deep-reader-counter" aria-live="polite" aria-atomic="true">
+      <div class="deep-reader-counter-bar"></div>
+      <span class="deep-reader-counter-text">01 / ${String(issue.pages).padStart(2,'0')}</span>
     </div>`;
-  document.getElementById('deep-back').addEventListener('click', () => {
-    _deepCurrentIssue = null;
-    renderDeep();
-  });
-  const pagesEl = document.getElementById('deep-pages');
-  const counter = document.getElementById('deep-counter');
-  let _rafPending = false;
-  pagesEl.addEventListener('scroll', () => {
-    if (_rafPending) return;
-    _rafPending = true;
-    requestAnimationFrame(() => {
-      _rafPending = false;
-      const idx = Math.round(pagesEl.scrollLeft / pagesEl.clientWidth);
-      counter.textContent = `${Math.min(idx + 1, issue.pages)} / ${issue.pages}`;
-    });
-  }, { passive: true });
-  // Keyboard navigation between pages
-  pagesEl.addEventListener('keydown', (e) => {
-    const w = pagesEl.clientWidth;
-    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-      e.preventDefault();
-      pagesEl.scrollBy({ left: w, behavior: 'smooth' });
-    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      e.preventDefault();
-      pagesEl.scrollBy({ left: -w, behavior: 'smooth' });
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      pagesEl.scrollTo({ left: 0, behavior: 'smooth' });
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      pagesEl.scrollTo({ left: pagesEl.scrollWidth, behavior: 'smooth' });
+  bar.querySelector('.deep-back').addEventListener('click', _deepCloseReader);
+
+  const keyhint = document.createElement('div');
+  keyhint.className = 'deep-keyhint';
+  keyhint.innerHTML = `<kbd>←</kbd> <kbd>→</kbd> virar página · <kbd>esc</kbd> fechar`;
+
+  const frame = document.createElement('div');
+  frame.className = 'deep-book-frame';
+  frame.style.setProperty('--start-x', `${rect.left + rect.width/2}px`);
+  frame.style.setProperty('--start-y', `${rect.top + rect.height/2}px`);
+  frame.style.setProperty('--start-w', `${rect.width}px`);
+  frame.style.setProperty('--start-h', `${rect.height}px`);
+  frame.style.setProperty('--target-w', `${target.w}px`);
+  frame.style.setProperty('--target-h', `${target.h}px`);
+  frame.style.setProperty('--flip-dur', `${_DEEP_FLIP_DUR}ms`);
+
+  frame.innerHTML = `
+    <div class="deep-book">
+      <div class="deep-page-stack left" aria-hidden="true"></div>
+      <div class="deep-page-stack right" aria-hidden="true"></div>
+      <div class="deep-page-surface">
+        <div class="deep-page-img" id="deep-page-img" style="background-image:url('${_deepPageUrl(issue, 1)}')"></div>
+      </div>
+      <button class="deep-flip-zone left" id="deep-zone-left" aria-label="Página anterior" type="button"></button>
+      <button class="deep-flip-zone right" id="deep-zone-right" aria-label="Próxima página" type="button"></button>
+    </div>`;
+
+  const navLeft = document.createElement('button');
+  navLeft.className = 'deep-nav-arrow left';
+  navLeft.id = 'deep-nav-left';
+  navLeft.type = 'button';
+  navLeft.setAttribute('aria-label', 'Página anterior');
+  navLeft.innerHTML = '<span aria-hidden="true">‹</span>';
+
+  const navRight = document.createElement('button');
+  navRight.className = 'deep-nav-arrow right';
+  navRight.id = 'deep-nav-right';
+  navRight.type = 'button';
+  navRight.setAttribute('aria-label', 'Próxima página');
+  navRight.innerHTML = '<span aria-hidden="true">›</span>';
+
+  const thumbs = document.createElement('div');
+  thumbs.className = 'deep-thumb-strip';
+  thumbs.setAttribute('aria-label', 'Miniaturas das páginas');
+  for (let i = 1; i <= issue.pages; i++) {
+    const t = document.createElement('button');
+    t.className = 'deep-thumb' + (i === 1 ? ' active' : '');
+    t.type = 'button';
+    t.dataset.page = i;
+    t.style.backgroundImage = `url('${_deepPageUrl(issue, i)}')`;
+    t.setAttribute('aria-label', `Página ${i}`);
+    t.addEventListener('click', () => _deepGoTo(i - 1));
+    thumbs.appendChild(t);
+  }
+
+  stage.appendChild(backdrop);
+  stage.appendChild(bar);
+  stage.appendChild(keyhint);
+  stage.appendChild(frame);
+  stage.appendChild(navLeft);
+  stage.appendChild(navRight);
+  stage.appendChild(thumbs);
+
+  navLeft.addEventListener('click', _deepGoPrev);
+  navRight.addEventListener('click', _deepGoNext);
+  frame.querySelector('#deep-zone-left').addEventListener('click', _deepGoPrev);
+  frame.querySelector('#deep-zone-right').addEventListener('click', _deepGoNext);
+
+  _a11yOpenDialog(stage, bar.querySelector('.deep-back'));
+  stage.classList.add('entering');
+
+  // After entry animation, mark as open
+  setTimeout(() => {
+    stage.classList.remove('entering');
+    stage.classList.add('open');
+  }, 700);
+
+  _deepUpdatePageStacks();
+  _deepUpdateNavState();
+
+  document.addEventListener('keydown', _deepOnKey);
+}
+
+function _deepCloseReader() {
+  const stage = document.getElementById('deep-reader-stage');
+  if (!_deepActiveIssue) return;
+  document.removeEventListener('keydown', _deepOnKey);
+
+  // re-measure card rect (in case page scrolled)
+  if (_deepActiveCard) {
+    const cover = _deepActiveCard.querySelector('.deep-cover');
+    const rect = cover.getBoundingClientRect();
+    const frame = stage.querySelector('.deep-book-frame');
+    if (frame && rect.width) {
+      frame.style.setProperty('--start-x', `${rect.left + rect.width/2}px`);
+      frame.style.setProperty('--start-y', `${rect.top + rect.height/2}px`);
+      frame.style.setProperty('--start-w', `${rect.width}px`);
+      frame.style.setProperty('--start-h', `${rect.height}px`);
     }
+  }
+
+  stage.classList.remove('open');
+  stage.classList.add('exiting');
+  setTimeout(() => {
+    stage.classList.remove('exiting');
+    if (_deepActiveCard) delete _deepActiveCard.dataset.locked;
+    _a11yCloseDialog(stage);
+    stage.innerHTML = '';
+    _deepActiveIssue = null;
+    _deepActiveCard = null;
+    _deepPage = 0;
+    _deepFlipping = false;
+  }, 540);
+}
+
+function _deepOnKey(e) {
+  if (!_deepActiveIssue) return;
+  if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); _deepGoNext(); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); _deepGoPrev(); }
+  else if (e.key === 'Home') { e.preventDefault(); _deepGoTo(0); }
+  else if (e.key === 'End') { e.preventDefault(); _deepGoTo(_deepActiveIssue.pages - 1); }
+  // ESC handled by global topmost-dialog handler
+}
+
+function _deepUpdatePageStacks() {
+  const stage = document.getElementById('deep-reader-stage');
+  if (!_deepActiveIssue) return;
+  const left = stage.querySelector('.deep-page-stack.left');
+  const right = stage.querySelector('.deep-page-stack.right');
+  const total = _deepActiveIssue.pages;
+  const stackLeft = _deepClampStack(_deepPage);
+  const stackRight = _deepClampStack(total - 1 - _deepPage);
+  left.innerHTML = '';
+  right.innerHTML = '';
+  for (let i = 0; i < stackLeft; i++) {
+    const s = document.createElement('span');
+    s.style.setProperty('--i', i + 1);
+    left.appendChild(s);
+  }
+  for (let i = 0; i < stackRight; i++) {
+    const s = document.createElement('span');
+    s.style.setProperty('--i', i + 1);
+    right.appendChild(s);
+  }
+}
+
+function _deepUpdateCounter() {
+  const stage = document.getElementById('deep-reader-stage');
+  if (!_deepActiveIssue) return;
+  const total = _deepActiveIssue.pages;
+  const cur = _deepPage + 1;
+  const text = stage.querySelector('.deep-reader-counter-text');
+  const bar = stage.querySelector('.deep-reader-counter-bar');
+  if (text) text.textContent = `${String(cur).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
+  if (bar) bar.style.setProperty('--p', `${(cur / total * 100).toFixed(0)}%`);
+}
+
+function _deepUpdateThumbs() {
+  const stage = document.getElementById('deep-reader-stage');
+  stage.querySelectorAll('.deep-thumb').forEach(t => {
+    t.classList.toggle('active', Number(t.dataset.page) === _deepPage + 1);
   });
+}
+
+function _deepUpdateNavState() {
+  const stage = document.getElementById('deep-reader-stage');
+  if (!_deepActiveIssue) return;
+  const total = _deepActiveIssue.pages;
+  const navL = stage.querySelector('#deep-nav-left');
+  const navR = stage.querySelector('#deep-nav-right');
+  const zoneL = stage.querySelector('#deep-zone-left');
+  const zoneR = stage.querySelector('#deep-zone-right');
+  if (navL) navL.disabled = _deepPage <= 0 || _deepFlipping;
+  if (navR) navR.disabled = _deepPage >= total - 1 || _deepFlipping;
+  if (zoneL) zoneL.disabled = _deepPage <= 0 || _deepFlipping;
+  if (zoneR) zoneR.disabled = _deepPage >= total - 1 || _deepFlipping;
+  _deepUpdateCounter();
+  _deepUpdateThumbs();
+}
+
+function _deepFlipTo(targetPage, dir) {
+  if (_deepFlipping || !_deepActiveIssue) return;
+  const total = _deepActiveIssue.pages;
+  if (targetPage < 0 || targetPage >= total || targetPage === _deepPage) return;
+  _deepFlipping = true;
+  _deepUpdateNavState();
+
+  const stage = document.getElementById('deep-reader-stage');
+  const book = stage.querySelector('.deep-book');
+  const surface = stage.querySelector('.deep-page-surface');
+  const surfaceImg = stage.querySelector('#deep-page-img');
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const fromUrl = _deepPageUrl(_deepActiveIssue, _deepPage + 1);
+  const toUrl   = _deepPageUrl(_deepActiveIssue, targetPage + 1);
+
+  const finalize = () => {
+    surfaceImg.style.backgroundImage = `url('${toUrl}')`;
+    _deepPage = targetPage;
+    _deepFlipping = false;
+    const flipper = book.querySelector('.deep-flipper');
+    if (flipper) flipper.remove();
+    _deepUpdatePageStacks();
+    _deepUpdateNavState();
+  };
+
+  if (prefersReduced) {
+    finalize();
+    return;
+  }
+
+  // build flipper
+  const flipper = document.createElement('div');
+  flipper.className = 'deep-flipper curling';
+  if (dir === 'next') flipper.classList.add('next-start');
+  else flipper.classList.add('prev-start');
+
+  const front = document.createElement('div');
+  front.className = 'deep-flipper-face front';
+  front.style.backgroundImage = `url('${dir === 'next' ? fromUrl : toUrl}')`;
+  const back = document.createElement('div');
+  back.className = 'deep-flipper-face back';
+  back.style.backgroundImage = `url('${dir === 'next' ? toUrl : fromUrl}')`;
+  flipper.appendChild(front);
+  flipper.appendChild(back);
+
+  // For next: underneath shows target so the back face seamlessly aligns at end.
+  // For prev: leave underneath as current; finalize swaps it to target.
+  if (dir === 'next') {
+    surfaceImg.style.backgroundImage = `url('${toUrl}')`;
+  }
+
+  // insert flipper just below the flip zones
+  const zoneLeft = book.querySelector('.deep-flip-zone.left');
+  book.insertBefore(flipper, zoneLeft);
+
+  // trigger animation on next frame
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    flipper.classList.remove(dir === 'next' ? 'next-start' : 'prev-start');
+    flipper.classList.add(dir === 'next' ? 'next-end' : 'prev-end');
+  }));
+
+  setTimeout(finalize, _DEEP_FLIP_DUR + 40);
+}
+
+function _deepGoNext() { if (_deepActiveIssue) _deepFlipTo(_deepPage + 1, 'next'); }
+function _deepGoPrev() { if (_deepActiveIssue) _deepFlipTo(_deepPage - 1, 'prev'); }
+function _deepGoTo(target) {
+  if (!_deepActiveIssue || _deepFlipping || target === _deepPage) return;
+  // snap directly without flip animation when jumping via thumbnail
+  const surfaceImg = document.querySelector('#deep-page-img');
+  surfaceImg.style.backgroundImage = `url('${_deepPageUrl(_deepActiveIssue, target + 1)}')`;
+  _deepPage = target;
+  _deepUpdatePageStacks();
+  _deepUpdateNavState();
 }
 
 // ========================================================================
@@ -6275,10 +6773,12 @@ async function init() {
     const am = document.getElementById("album-modal");
     const mp = document.getElementById("media-panel");
     const dr = document.getElementById("drawer");
+    const dp = document.getElementById("deep-reader-stage");
     if (lb && lb.classList.contains("active")) { closeLightbox(); return; }
     if (mp && mp.classList.contains("active")) { closeMediaPanel(); return; }
     if (am && am.classList.contains("active")) { closeAlbumDoc(); return; }
     if (dr && dr.classList.contains("active")) { closeDrawer(); return; }
+    if (dp && dp.classList.contains("open")) { _deepCloseReader(); return; }
   });
   let _searchTrackTimer;
   document.getElementById("search-song").addEventListener("input", (e) => {
