@@ -107,6 +107,7 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 - Helpers utilitários: `.visually-hidden`, `_a11yOpenDialog`, `_a11yCloseDialog`, `_apSetPlayState`
 - Bug bônus consertado: `_mpLoad` não usa mais `{ once: true }` (handler é trocado a cada load via `wrap._mpZoomHandler`)
 - **Métricas atuais**: 59 aria-labels, 9 role=button, 15 aria-pressed, 7 aria-live, 6 aria-modal, 4 aria-expanded, 0 em-dashes, 0 `outline:none` legados
+- **Lighthouse Accessibility: 100/100** (validado 2026-05-08 via headless Chrome no live)
 
 ### Acessibilidade (a11y) — fase 3 (sem mexer em layout/cores)
 - **`lang="en"` automático**: parser MD detecta itálicos com palavras funcionais em inglês (the, you, I, are, etc.) e envolve em `<em lang="en">`. Letras (`lyrics-body` + inline drawer), interpretações (drawer + meta) e `lyric-row` ganharam `lang="en"`. SR em PT-BR pronuncia inglês corretamente.
