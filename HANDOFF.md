@@ -38,9 +38,10 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 
 ### Conteúdo enriquecido
 - **Letras** (`media/lyrics.json`): trechos curtos por música, inline no drawer
-- **Interpretações** (`media/interpretations.json`): 416 KB, ~190 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
+- **Interpretações** (`media/interpretations.json`): 510 KB, ~190 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
   - Suporta formato dual: string (universal) ou objeto `{text, byShow:{showId: paragraph}}`
-  - byShow completo em **pj-2005-12-02 (27/27 músicas)**. Próximos shows pendentes
+  - byShow completo em **2005 + toda a turnê PJ20 BR de 2011**: pj-2005-12-02 (27/27), pj-2011-11-03 (26/27), pj-2011-11-04 (31/32), pj-2011-11-06 (30/31), pj-2011-11-09 (33/34), pj-2011-11-11 extra (29/32). Total: ~176 byShow paragraphs em 6 shows
+  - **Bug pré-existente:** keys com apóstrofo no JSON (`baba o'riley`, `rockin' in the free world`, `i won't back down`, `i won't hold on`) não casam com `_lyricsNorm` que strippa apóstrofo. byShow pra esses songs ficaria órfão; foram skipped até fix do key. Fix proposto: rename keys pra versão sem apóstrofo
 - **Análises de álbum** (`media/albums/*.md`): 15 docs longos em português. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise")
 
 ### Áudio
@@ -166,7 +167,7 @@ Tamanho total `media/`: ~270 MB (a maior parte: posters/photos dos shows + Deep 
 ## 6. Pendências (em ordem de prioridade)
 
 ### Próxima sessão (precisa input do user)
-1. **byShow expansion**: pj-2005-12-02 100% coberto (27/27). Próximos shows: PJ20 2011 (4 shows BR), 2013 Lolla, 2015, 2018, 2024, EV solo 2014/2018
+1. **byShow expansion**: 2005 + 2011 completos (6 shows, ~176 paragraphs). Próximos shows: 2013 Lolla (3 shows: SP/AR/CL), 2015 (5 shows BR), 2018 (3 shows BR + Lolla), 2024 (2 shows Wrigley), EV solo 2014 (5 noites Citibank Hall) e 2018 (3 noites)
 2. **Repaste das conclusões truncadas**: Gigaton, Dark Matter, Into the Wild tiveram paste degradado. Se quiser repastear só a Conclusão, eu acrescento na seção "Conclusão" dos respectivos `.md`
 3. **EV solo extras**: faltam pastes de EV solo de outros shows ou releases (se houver)
 
