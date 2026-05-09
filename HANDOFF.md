@@ -38,10 +38,11 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 
 ### Conteúdo enriquecido
 - **Letras** (`media/lyrics.json`): trechos curtos por música, inline no drawer
-- **Interpretações** (`media/interpretations.json`): ~620 KB, ~190 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
+- **Interpretações** (`media/interpretations.json`): ~840 KB, ~210 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
   - Suporta formato dual: string (universal) ou objeto `{text, byShow:{showId: paragraph}}`
-  - byShow completo em **2005 + 2011 PJ20 BR + 2013 Lolla SAm + 2015 Latin AM**: pj-2005-12-02 (27/27), pj-2011-11-03/04/06/09 (presenciados) + 2011-11-11 extra, pj-2013-03-31/04-03/04-06 (Lolla), pj-2015-11-11/14/17/20/22 (BR). Total: ~420 byShow paragraphs em 14 shows
-  - **Bug de apóstrofo/ponto resolvido (commit 1b5d76a)**: 10 keys foram renomeadas removendo apóstrofo/ponto pra casar com `_lyricsNorm` (baba oriley, rockin in the free world, fuckin up, im open, satans bed, my fathers son, its ok, i wont back down, i wont hold on, brain of j). Shows posteriores podem usar todas essas músicas sem skip
+  - byShow completo em **25/28 shows**: 2005 (1), 2011 PJ20 BR (4 presenciados + 1 extra POA), 2013 Lolla SAm (3), 2015 Latin AM (5), 2018 PJ (2), 2024 Wrigley (2), EV solo 2014 (5 noites Citibank Hall SP+RJ), EV solo 2018 (3 noites Citibank Hall SP). Total: ~750 byShow paragraphs em 25 shows
+  - **Pendentes (extras)**: pj-2021-10-02 (Dana Point Ohana) e pj-2022-07-25 (Amsterdam Ziggo Dome) ainda sem byShow
+  - **Bug de apóstrofo/ponto/vírgula resolvido**: várias rodadas de keyfixes (commits 1b5d76a, da2ef45, f7d97ca) renomearam keys problemáticos (apóstrofos, pontos, vírgulas) pra casar com `_lyricsNorm`. Total: ~22 keys renomeados (baba oriley, rockin in the free world, fuckin up, im open, satans bed, my fathers son, its ok, i wont back down, i wont hold on, brain of j, cant deny me, react respond, another brick in the wall part 2, wont tell, cant keep, driftin, im one, youve got to hide your love away, youre true, im so tired, isnt it a pity, dont be shy)
 - **Análises de álbum** (`media/albums/*.md`): 15 docs longos em português. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise")
 
 ### Áudio
@@ -167,7 +168,7 @@ Tamanho total `media/`: ~270 MB (a maior parte: posters/photos dos shows + Deep 
 ## 6. Pendências (em ordem de prioridade)
 
 ### Próxima sessão (precisa input do user)
-1. **byShow expansion**: 2005 + 2011 + 2013 + 2015 completos (14 shows, ~420 paragraphs). Próximos shows: 2018 (3 shows BR + Lolla), 2024 (2 shows Wrigley), EV solo 2014 (5 noites Citibank Hall) e 2018 (3 noites). Falta universal text pra "I Want You So Hard" (cover Eagles of Death Metal, deployment de Paris-tribute em 2015) que apareceu em 11-20 BH e 11-22 RJ — skipado até paste universal
+1. **byShow expansion**: 25/28 shows completos (~750 paragraphs). Pendentes os 2 extras de acervo: pj-2021-10-02 (Dana Point Ohana, 24 faixas) e pj-2022-07-25 (Amsterdam Ziggo Dome, 21 faixas com covers raros KISS + Prince). Falta universal text pra "I Want You So Hard" (cover Eagles of Death Metal, Paris-tribute 2015) que apareceu em pj-2015-11-20 e pj-2015-11-22 — skipado até paste universal
 2. **Repaste das conclusões truncadas**: Gigaton, Dark Matter, Into the Wild tiveram paste degradado. Se quiser repastear só a Conclusão, eu acrescento na seção "Conclusão" dos respectivos `.md`
 3. **EV solo extras**: faltam pastes de EV solo de outros shows ou releases (se houver)
 
