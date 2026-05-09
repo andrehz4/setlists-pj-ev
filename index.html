@@ -5062,7 +5062,7 @@ function openDrawer(showId) {
       lyricRow.setAttribute('aria-label', _hasPT
         ? `Letra de ${songName}, em inglês com tradução em português`
         : `Transcrição cantada (letra) de ${songName}, em inglês`);
-      const _metaTxt = _hasPT ? 'letra · EN com tradução PT · clique em LETRA pra fechar' : 'letra · trecho · clique em LETRA pra fechar';
+      const _metaTxt = _hasPT ? 'letra · EN com tradução PT · clique no painel pra fechar' : 'letra · trecho · clique no painel pra fechar';
       lyricRow.innerHTML = `<div class="lyric-block"><div class="ly"></div><div class="meta">${_metaTxt}</div></div>`;
       li.parentNode.insertBefore(lyricRow, li.nextSibling);
       const toggleLyric = (e) => {
@@ -5077,6 +5077,13 @@ function openDrawer(showId) {
           }
         }
       };
+      lyricRow.addEventListener('click', (e) => {
+        if (window.getSelection && window.getSelection().toString().length) return;
+        if (e.target.closest('button, a, input, textarea, select')) return;
+        if (!li.classList.contains('lyric-open')) return;
+        li.classList.remove('lyric-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
       btn.addEventListener('click', toggleLyric);
       btn.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleLyric(e); }
@@ -5102,13 +5109,20 @@ function openDrawer(showId) {
       interpRow.className = 'interp-row';
       interpRow.setAttribute('role', 'region');
       interpRow.setAttribute('aria-label', `Interpretação crítica de ${songName}`);
-      const metaTxt = hasBoth ? 'interpretação · PT/EN · clique em INTERPRETAÇÃO pra fechar'
-        : (interpPT ? 'interpretação · em português · clique em INTERPRETAÇÃO pra fechar'
-                    : 'interpretação · em inglês · clique em INTERPRETAÇÃO pra fechar');
+      const metaTxt = hasBoth ? 'interpretação · PT/EN · clique no painel pra fechar'
+        : (interpPT ? 'interpretação · em português · clique no painel pra fechar'
+                    : 'interpretação · em inglês · clique no painel pra fechar');
       interpRow.innerHTML = `<div class="interp-block"><div class="body"></div><div class="meta">${metaTxt}</div></div>`;
       const insertAfter = li.nextElementSibling && li.nextElementSibling.classList.contains('lyric-row')
         ? li.nextElementSibling : li;
       insertAfter.parentNode.insertBefore(interpRow, insertAfter.nextSibling);
+      interpRow.addEventListener('click', (e) => {
+        if (window.getSelection && window.getSelection().toString().length) return;
+        if (e.target.closest('button, a, input, textarea, select')) return;
+        if (!interpRow.classList.contains('open')) return;
+        interpRow.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
       const fillInterpBody = (body) => {
         const renderText = (txt, lang) => txt.split(/\n+/).map(p =>
           p.trim() ? `<p lang="${lang}">${p.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</p>` : ''
