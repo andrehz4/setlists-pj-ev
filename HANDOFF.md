@@ -116,7 +116,7 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 | Into the Wild (EV) | 2007 | `intowild` | publicado (parcial, conclusão degradou) | 51 KB |
 | Ukulele Songs (EV) | 2011 | `ukulele` | publicado (íntegro) | 33 KB |
 | Earthling (EV) | 2022 | `earthling` | publicado (íntegro) | 35 KB |
-| Lost Dogs | — | `lostdogs` | skip provável (compilação) | — |
+| Lost Dogs | 2003 | `lostdogs` | rascunho salvo, aguardando revisão (não no `ALBUM_DOCS`) | 45 KB |
 
 **Conclusões truncadas** (Gigaton, Dark Matter, Into the Wild): paste original entrou em loop de adjetivos repetidos + texto não relacionado. Salvei só a parte coerente. Pode-se repastear as conclusões em sessão futura.
 
