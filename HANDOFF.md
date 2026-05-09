@@ -38,9 +38,9 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 
 ### Conteúdo enriquecido
 - **Letras** (`media/lyrics.json`): trechos curtos por música, inline no drawer
-- **Interpretações** (`media/interpretations.json`): 396 KB, ~190 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
+- **Interpretações** (`media/interpretations.json`): 416 KB, ~190 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
   - Suporta formato dual: string (universal) ou objeto `{text, byShow:{showId: paragraph}}`
-  - Pilot byShow em pj-2005-12-02 (5 músicas: Black, Yellow Ledbetter, Better Man, Even Flow, Alive)
+  - byShow completo em **pj-2005-12-02 (27/27 músicas)**. Próximos shows pendentes
 - **Análises de álbum** (`media/albums/*.md`): 15 docs longos em português. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise")
 
 ### Áudio
@@ -160,7 +160,7 @@ Tamanho total `media/`: ~270 MB (a maior parte: posters/photos dos shows + Deep 
 ## 6. Pendências (em ordem de prioridade)
 
 ### Próxima sessão (precisa input do user)
-1. **byShow expansion**: pilot está em pj-2005-12-02 (5 músicas). Expandir progressivamente pros outros shows quando vier vontade
+1. **byShow expansion**: pj-2005-12-02 100% coberto (27/27). Próximos shows: PJ20 2011 (4 shows BR), 2013 Lolla, 2015, 2018, 2024, EV solo 2014/2018
 2. **Repaste das conclusões truncadas**: Gigaton, Dark Matter, Into the Wild tiveram paste degradado. Se quiser repastear só a Conclusão, eu acrescento na seção "Conclusão" dos respectivos `.md`
 3. **EV solo extras**: faltam pastes de EV solo de outros shows ou releases (se houver)
 
