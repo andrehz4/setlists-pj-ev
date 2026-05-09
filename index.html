@@ -3953,8 +3953,8 @@ html[data-theme="dark"] video:focus-visible {
 
 
 <!-- AUDIO PLAYER -->
-<section id="audio-player" role="region" aria-label="Reprodutor de áudio do show. Letras das músicas em inglês podem ser abertas pelo botão Letra ao lado de cada faixa no setlist.">
-  <audio id="ap-audio" preload="auto"></audio>
+<section id="audio-player" role="region" aria-label="Reprodutor de áudio do show. Letras das músicas em inglês podem ser abertas pelo botão Letra ao lado de cada faixa no setlist." aria-describedby="audio-transcript-current">
+  <audio id="ap-audio" preload="none"></audio>
   <div class="ap-progress-row">
     <span class="ap-time" id="ap-current" aria-hidden="true">0:00</span>
     <input type="range" class="ap-progress" id="ap-progress" min="0" max="100" value="0" step="0.1" aria-label="Progresso da faixa" aria-valuetext="0 segundos">
@@ -4198,7 +4198,7 @@ function loadImage(imgEl, src, onLoad) {
   };
   imgEl.onerror = () => {
     if (imgEl.parentElement) imgEl.parentElement.classList.remove('loading');
-    console.warn('Failed to load image:', src);
+    if (window.track) try { track('image_error', { src }); } catch(e) {}
   };
 }
 
@@ -4583,7 +4583,7 @@ function openDrawer(showId) {
       ? `<p>${show.notes_audio}</p>`
       : '';
     audioNotesHtml = `
-      <section class="audio-notes-section" role="region" aria-label="Transcrição e descrição do áudio do show">
+      <section class="audio-notes-section" id="audio-transcript-current" role="region" aria-label="Transcrição e descrição do áudio do show">
         <details>
           <summary class="audio-notes-summary"><span aria-hidden="true">🎧 </span>Transcrição do áudio (${MEDIA_MANIFEST[showId].audio.length} faixas)</summary>
           <div class="audio-notes-body">
@@ -4955,7 +4955,7 @@ function apPlay(showId, songName, audioFiles, songIndex) {
   audio.src = src;
   document.getElementById('audio-player').classList.add('loading');
   audio.play().catch(err => {
-    console.warn('apPlay falhou:', err);
+    if (window.track) try { track('audio_error', { show_id: showId, song: songName, message: String(err && err.message || err) }); } catch(e) {}
     document.getElementById('audio-player').classList.remove('loading');
   });
 
@@ -5923,16 +5923,20 @@ function updateBootText(text) {
 }
 
 let INTERPRETATIONS = {};
+let _interpretationsAbort = null;
 async function _loadInterpretations() {
+  if (_interpretationsAbort) _interpretationsAbort.abort();
+  _interpretationsAbort = new AbortController();
   try {
-    const r = await fetch("media/interpretations.json", { cache: "default" });
+    const r = await fetch("media/interpretations.json", { cache: "default", signal: _interpretationsAbort.signal });
     if (r.ok) {
       const j = await r.json();
       delete j._meta;
       INTERPRETATIONS = j;
     }
-  } catch(e) { /* offline / 404, no interpretations available */ }
+  } catch(e) { /* offline / 404 / aborted: ignorado */ }
 }
+window.addEventListener('beforeunload', () => { if (_interpretationsAbort) _interpretationsAbort.abort(); });
 function _resolveInterpEntry(entry, showId) {
   if (!entry) return null;
   if (typeof entry === 'string') return entry;
@@ -6239,13 +6243,12 @@ async function init() {
   });
   // Click na foto → lightbox: adicionado dinamicamente em _mpLoad (só para fotos, não vídeos)
 
-  // Teclado: setas também navegam no media panel
+  // Teclado: setas navegam no media panel (ESC tratado pelo handler global topmost)
   document.addEventListener('keydown', (e) => {
     const mp = document.getElementById('media-panel');
     if (!mp.classList.contains('active')) return;
     if (e.key === 'ArrowLeft'  && _mpIndex > 0)                    { _mpIndex--; _mpLoad(_mpIndex); }
     if (e.key === 'ArrowRight' && _mpIndex < _mpImages.length - 1) { _mpIndex++; _mpLoad(_mpIndex); }
-    if (e.key === 'Escape') closeMediaPanel();
   });
 
   document.getElementById("lightbox").addEventListener("click", (e) => {
@@ -6259,13 +6262,24 @@ async function init() {
     e.stopPropagation();
     if (_lbIndex < _lbImages.length - 1) _lbLoad(++_lbIndex);
   });
+  // Setas no lightbox (ESC tratado pelo handler global topmost)
   document.addEventListener("keydown", (e) => {
     if (!document.getElementById("lightbox").classList.contains("active")) return;
     if (e.key === "ArrowLeft" && _lbIndex > 0) _lbLoad(--_lbIndex);
     if (e.key === "ArrowRight" && _lbIndex < _lbImages.length - 1) _lbLoad(++_lbIndex);
-    if (e.key === "Escape") closeLightbox();
   });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") { closeLightbox(); closeAlbumDoc(); closeDrawer(); } });
+  // ESC fecha apenas o dialog topmost (padrão APG)
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    const lb = document.getElementById("lightbox");
+    const am = document.getElementById("album-modal");
+    const mp = document.getElementById("media-panel");
+    const dr = document.getElementById("drawer");
+    if (lb && lb.classList.contains("active")) { closeLightbox(); return; }
+    if (mp && mp.classList.contains("active")) { closeMediaPanel(); return; }
+    if (am && am.classList.contains("active")) { closeAlbumDoc(); return; }
+    if (dr && dr.classList.contains("active")) { closeDrawer(); return; }
+  });
   let _searchTrackTimer;
   document.getElementById("search-song").addEventListener("input", (e) => {
     renderSearch(e.target.value);

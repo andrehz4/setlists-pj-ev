@@ -180,6 +180,14 @@ setlists-pj-ev/
 6. ~~**#20 do tracker**: Bug do lightbox~~ (✓ validado 2026-05-08): code review confirma que o fix `978278b` higieniza estado por completo (close zera `_lbImages`, remove `src` da img, race guard em `_lbLoad` protege contra `tmp.onload` em rede lenta). Achado lateral: `_mpLoad:5168` usa `{ once: true }` no click do wrapper do media-panel; se user fecha lightbox e fica na mesma foto do MP, perde re-abertura. Bug separado, cosmético.
 7. **Tarefa #28** (Interpretações EV solo): pode ser marcada como completed — 14 lotes feitos, 100% cobertura
 
+### Sprint vistoria 2 (2026-05-08, pós-sprint conteúdo + a11y)
+- **P1 fechados**: `<audio preload="auto"→"none"`; ESC do dialog topmost (não fecha mais 3 simultaneamente); 164 JPGs Deep re-comprimidos quality=70 (59→48 MB, -20%)
+- **P2 técnicos fechados**: AbortController em `_loadInterpretations` + abort em `beforeunload`; audio-player com `aria-describedby="audio-transcript-current"` apontando pra transcrição quando drawer aberto com áudio; consolidação dos handlers de ESC (removidos os locais redundantes em media-panel e lightbox keydown)
+- **P3 fechados**: 2 `console.warn` substituídos por `track('audio_error'/'image_error')` GA4
+- **P2 deferidos (precisam decisão)**:
+  - **P2-02 Deep → R2**: mover os 48 MB de JPGs do Deep pra R2 (já tem bucket configurado pra áudio). Reduz repo de ~280 MB pra ~220 MB e acelera deploys. Requer rclone copy + ajustar `cover` e `src` em `renderDeep`/`renderDeepReader` pra usar `R2_AUDIO_BASE`-like constante. Não fiz por mexer em infra (caminhos em produção).
+  - **P2-03 GA4 + LGPD**: GA4 carrega sem banner de consent. Opções: (a) banner mínimo com `gtag('consent', 'default', {analytics_storage: 'denied'})` que vira `granted` ao aceitar, (b) trocar pra Cloudflare Web Analytics (sem cookies, GDPR/LGPD-safe por design, ativar no dashboard). Não fiz por adicionar UI visível ou requerer ação fora do código.
+
 ### Pendentes legados (mídia, infra)
 8. Procurar fotos pessoais antigas (2011-2015) em outro PC
 9. Importar 12 arquivos do Drive (`MEDIA_AUDIT_2026-04-29.md`)
