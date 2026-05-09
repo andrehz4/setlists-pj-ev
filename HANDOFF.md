@@ -1,6 +1,6 @@
 # HANDOFF · Setlists PJ + EV
 
-Atualizado em **2026-05-08**. Snapshot completo do projeto. Tudo aqui é versionado com o código. Ao abrir num novo chat, leia este arquivo primeiro.
+Atualizado em **2026-05-09**. Snapshot completo do projeto. Tudo aqui é versionado com o código. Ao abrir num novo chat, leia este arquivo primeiro.
 
 ---
 
@@ -16,12 +16,12 @@ Atualizado em **2026-05-08**. Snapshot completo do projeto. Tudo aqui é version
 | Identidade git | `André <eng.andrehz@gmail.com>` (config global) | OK |
 | GA4 | property `Site Pearl Jam`, ID `G-234ZL5MF0T` | OK |
 | R2 áudio | bucket `setlists-pj-ev-audio`, ~5.8 GB de 10 GB | OK |
-| Branch atual | `main`, último commit `fdeb721` | sincronizado |
-| Lighthouse | A11y 100, SEO 100, Best Practices 96, Perf 52 | validado live 2026-05-08 |
+| Branch atual | `main`, último commit `d636c26` | sincronizado |
+| Lighthouse | A11y 100, SEO 100, Best Practices 96, Perf 52 | validado live 2026-05-08 (não revalidado pós-redesign Deep) |
 
 ## 2. O que é
 
-Site estático single-file que cataloga shows do Pearl Jam + Eddie Vedder presenciados pelo dono (André). **28 shows** catalogados (25 presenciados + 3 extras de acervo), **~208 músicas únicas**, **~190 interpretações críticas em inglês**, **15 análises de álbum** em português, áudio dos shows quando disponível, fotos oficiais e pessoais, posters, vídeos, **5 revistas Deep** do Ten Club.
+Site estático single-file que cataloga shows do Pearl Jam + Eddie Vedder presenciados pelo dono (André). **28 shows** catalogados (25 presenciados + 3 extras de acervo), **~225 músicas únicas com interpretação crítica em inglês**, **~795 parágrafos de análise show-específica (byShow)**, **15 análises de álbum** publicadas em português + 1 rascunho (Lost Dogs), 1 ensaio temático em rascunho (Covers), áudio dos shows quando disponível, fotos oficiais e pessoais, posters, vídeos, **5 revistas Deep** do Ten Club com **leitor 3D flip-page**.
 
 Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Navegação por 8 tabs: Timeline, Ranking, Cobertura por álbum, Destaques, Buscar música, Raridades, Galeria, Deep.
 
@@ -38,28 +38,38 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 
 ### Conteúdo enriquecido
 - **Letras** (`media/lyrics.json`): trechos curtos por música, inline no drawer
-- **Interpretações** (`media/interpretations.json`): ~860 KB, ~225 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
+- **Interpretações** (`media/interpretations.json`): ~700 KB, ~225 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
   - Suporta formato dual: string (universal) ou objeto `{text, byShow:{showId: paragraph}}`
-  - **byShow 100% (28/28 shows)**: 2005 (1), 2011 PJ20 BR (4 presenciados + 1 extra POA), 2013 Lolla SAm (3), 2015 Latin AM (5), 2018 PJ (2), 2024 Wrigley (2), EV solo 2014 (5 noites Citibank), EV solo 2018 (3 noites Citibank), 2 extras de acervo (Dana Point Ohana 2021, Amsterdam Ziggo Dome 2022). Total: ~795 byShow paragraphs em 28 shows
-  - **12 universal text entries adicionados** durante cobertura dos extras: 8 do Gigaton/Brad/Avocado pra Dana Point + 4 cobers raros (Black Diamond KISS, Purple Rain Prince) e Binaural deep cuts (Nothing as It Seems, Alright) pra Amsterdam
-  - **Bug de apóstrofo/ponto/vírgula resolvido**: várias rodadas de keyfixes (commits 1b5d76a, da2ef45, f7d97ca) renomearam keys problemáticos (apóstrofos, pontos, vírgulas) pra casar com `_lyricsNorm`. Total: ~22 keys renomeados (baba oriley, rockin in the free world, fuckin up, im open, satans bed, my fathers son, its ok, i wont back down, i wont hold on, brain of j, cant deny me, react respond, another brick in the wall part 2, wont tell, cant keep, driftin, im one, youve got to hide your love away, youre true, im so tired, isnt it a pity, dont be shy)
-- **Análises de álbum** (`media/albums/*.md`): 15 docs longos em português. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise")
+  - **byShow 100% (28/28 shows, ~795 paragraphs)**: cobertura completa de todos os shows do projeto
+    - 2005 (1): pj-2005-12-02 Pacaembu (27/27)
+    - 2011 PJ20 BR (4 presenciados + 1 extra): pj-2011-11-03/04/06/09 + extra POA pj-2011-11-11
+    - 2013 Lolla SAm (3): pj-2013-03-31 SP / 04-03 AR / 04-06 CL
+    - 2015 Latin AM BR (5): pj-2015-11-11 POA / 11-14 SP / 11-17 Brasília / 11-20 BH / 11-22 RJ
+    - 2018 PJ (2): pj-2018-03-21 Maracanã + 03-24 Lolla SP
+    - 2024 Wrigley (2): pj-2024-08-29 + 08-31
+    - EV solo 2014 (5): ev-2014-05-06/07/08 SP + 05-11/12 RJ
+    - EV solo 2018 (3): ev-2018-03-28/29/30 SP
+    - 2 extras de acervo: pj-2021-10-02 Dana Point Ohana + pj-2022-07-25 Amsterdam Ziggo Dome
+  - **12 universal text entries adicionados** durante cobertura dos extras: 8 do Gigaton/Brad/Avocado pra Dana Point + 4 covers raros (Black Diamond KISS, Purple Rain Prince) e Binaural deep cuts (Nothing as It Seems, Alright) pra Amsterdam
+  - **Único skip**: "I Want You So Hard" (cover Eagles of Death Metal, Paris-tribute 2015) em pj-2015-11-20 e pj-2015-11-22 — sem universal text, pode adicionar depois
+  - **Bug de apóstrofo/ponto/vírgula resolvido** (vários commits desta sessão): ~22 keys foram renomeados pra casar com `_lyricsNorm` que strippa esses caracteres. Lista: baba oriley, rockin in the free world, fuckin up, im open, satans bed, my fathers son, its ok, i wont back down, i wont hold on, brain of j, cant deny me, react respond, another brick in the wall part 2, wont tell, cant keep, driftin, im one, youve got to hide your love away, youre true, im so tired, isnt it a pity, dont be shy
+- **Análises de álbum** (`media/albums/*.md`): 15 docs longos em português + 1 rascunho. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise")
+- **Ensaios temáticos** (`media/essays/*.md`): nova pasta criada pra documentos cross-cutting que não são de um álbum específico. Atualmente: 1 rascunho (Covers / reinterpretações)
 
 ### Áudio
 - Player no rodapé do drawer; `preload="none"` (só puxa do R2 quando user clica)
 - Áudio servido do R2 público (constante `R2_AUDIO_BASE`)
 - Prefetch da próxima faixa via `<link rel=prefetch as=audio>`
 - 19 shows com áudio (incluindo os 3 extras), ~600 MP3s, ~5.8 GB no R2
-- **Transcrição de áudio**: bloco `<details>` colapsável "🎧 Transcrição do áudio (N faixas)" no drawer. Aparece automaticamente em shows com áudio. Notas detalhadas pros 3 extras
+- **Transcrição de áudio**: bloco `<details>` colapsável "🎧 Transcrição do áudio (N faixas)" no drawer
 
 ### Buscar música
 - Busca por substring no nome
 - Cards com contagem, lista de shows onde tocou, **letra** (default open) e **interpretation** (default open)
 
 ### Raridades
-- LuckGauge SVG donut com luck score baseado em frequência histórica (com `<title>`/`<desc>` acessíveis)
+- LuckGauge SVG donut com luck score baseado em frequência histórica
 - Once-ever (1× na carreira), Ultra-raras (2-5×), Histograma de distribuição
-- Listagem ordenada de raridades pegas
 
 ### Destaques
 - 9 cards de stats (música mais ouvida, in 80%+, show mais longo etc)
@@ -70,34 +80,47 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 - Grid de capas + Comunidade (fotos coletivas)
 - Thumbs e headers keyboard-acessíveis
 
-### Deep (revistas Ten Club)
-- Tab com flipbook horizontal scroll-snap
-- 5 edições publicadas (Issues 8-12, 2011-2015), **164 páginas total, 48 MB**
-- Navegação: scroll horizontal, setas/PageUp/PageDown/Home/End por teclado
-- JPGs a 150 DPI quality 70 (re-comprimidos em sprint vistoria 2)
+### Deep (revistas Ten Club) — **REDESIGN 2026-05-09**
+- **Leitor 3D flip-page** substituindo o scroll-snap horizontal antigo
+- Cards 3D na grid: cover inclinada (rotateY -8°), miolo de páginas visível na lateral, hover com transform mais agressivo
+- Reader como overlay full-screen (`role="dialog" aria-modal="true"`)
+- **FLIP animation**: cover sai do lugar exato na grid, escala e flutua pro centro (~700ms cubic-bezier)
+- **Page flip 3D em torno da lombada**: rotateY 0 → -180° (~750ms cubic-bezier)
+- Sombra de curl que acompanha a página virando
+- Page stacks visuais (1px lines): páginas lidas à esquerda, faltando à direita
+- Idle sway animation (suave 8s cubic), respeita `prefers-reduced-motion`
+- Backdrop com blur(6px) + spotlight gradient
+- Top bar com back button + título + contador com progress bar (counter `01/12` + barra animada)
+- Setas de navegação laterais (48×48px círculo, hover preenche com PJ vermelho)
+- Tira de thumbnails embaixo (clique pula direto sem flip)
+- Click zones laterais (38% width cada lado) sobre a revista
+- Keyboard: ←/→/PageUp/PageDown/Space/Home/End/Esc
+- Hint "← → virar página · esc fechar" no topo
+- **Cores hardcoded em escopo local** (`--reader-ink`, `--reader-pj`, etc): backdrop é sempre escuro, então não pode depender de vars do tema (no claro elas viam pretas e sumiam no fundo). Setas têm `font-size: 22px` + `color: #fff` no hover pra contraste máximo
+- 5 edições publicadas (Issues 8-12, 2011-2015), 164 páginas total, 48 MB JPGs no repo
 - Para adicionar nova edição: `pip install --user pymupdf` + script PIL com quality=70
 
 ### Extras / acervo (rule 0)
 - Infra completa: shows com `extra: true` ficam fora de `filteredShows()` (todas as stats automaticamente excluem)
 - Bloco "Acervo · extras" no fim da Timeline com nota explicativa
-- 3 extras publicados: pj-2011-11-11 (POA Beira-Rio, 32 faixas), pj-2021-10-02 (Dana Point Ohana, 24 faixas), pj-2022-07-25 (Amsterdam Ziggo Dome, 21 faixas com covers raros KISS + Prince)
+- 3 extras publicados: pj-2011-11-11 (POA Beira-Rio), pj-2021-10-02 (Dana Point Ohana), pj-2022-07-25 (Amsterdam Ziggo Dome)
 
 ### Analytics (GA4)
 - gtag.js no `<head>` com ID `G-234ZL5MF0T`
-- `window.track()` wrapper
-- 7 custom events: `tab_change`, `drawer_open`, `audio_play`, `audio_error`, `image_error`, `search` (debounced 800ms, min 2 chars), `album_doc_open`
+- 7 custom events: `tab_change`, `drawer_open`, `audio_play`, `audio_error`, `image_error`, `search` (debounced 800ms), `album_doc_open`
 - Doc completa em `ANALYTICS.md`
 
 ### Segurança e SEO
-- `_headers` com CSP completa (allowlist Google Tag, R2, Google Fonts), X-Frame-Options DENY, Permissions-Policy, X-Content-Type-Options, Referrer-Policy + cache rules por path
+- `_headers` com CSP completa, X-Frame-Options DENY, Permissions-Policy, etc
 - `robots.txt` (Disallow `/media/`)
 - `sitemap.xml` minimal
-- Open Graph + Twitter card + canonical + theme-color + **og.jpg 1200×630** (identidade Ticket Archive)
+- Open Graph + Twitter card + canonical + theme-color + **og.jpg 1200×630**
 - **Lighthouse SEO 100/100**
 
 ### Acessibilidade (WCAG 2.2 AA)
-- **Lighthouse Accessibility 100/100** validado no live
+- **Lighthouse Accessibility 100/100** (validado em 2026-05-08, não revalidado pós-redesign Deep mas o novo reader integra com `_a11yOpenDialog`/`_a11yCloseDialog` + ESC topmost handler atualizado)
 - 3 fases aplicadas em 2026-05-08 (detalhes em §7)
+- **Reader Deep** integrado com helpers de a11y: focus-trap global pega `[role="dialog"][aria-modal="true"]`, ESC fecha (handler topmost atualizado), reduced-motion neutraliza flip animation pra snap instantâneo
 
 ## 4. Análises de álbum (status)
 
@@ -118,27 +141,29 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 | Into the Wild (EV) | 2007 | `intowild` | publicado (parcial, conclusão degradou) | 51 KB |
 | Ukulele Songs (EV) | 2011 | `ukulele` | publicado (íntegro) | 33 KB |
 | Earthling (EV) | 2022 | `earthling` | publicado (íntegro) | 35 KB |
-| Lost Dogs | 2003 | `lostdogs` | rascunho salvo, aguardando revisão (não no `ALBUM_DOCS`) | 45 KB |
+| Lost Dogs | 2003 | `lostdogs` | rascunho salvo, aguardando revisão (não no `ALBUM_DOCS`) | 46 KB |
 
 ### Ensaios temáticos (não-álbum)
 
 | Tópico | Local | Status | Tamanho |
 |---|---|---|---|
-| Covers / reinterpretações | `media/essays/covers.md` | rascunho salvo, paste com seções degradadas marcadas, sem rota no site ainda | 52 KB |
+| Covers / reinterpretações | `media/essays/covers.md` | rascunho salvo, paste com seções degradadas marcadas, sem rota no site ainda | 54 KB |
 
-**Conclusões truncadas** (Gigaton, Dark Matter, Into the Wild): paste original entrou em loop de adjetivos repetidos + texto não relacionado. Salvei só a parte coerente. Pode-se repastear as conclusões em sessão futura.
+**Conclusões truncadas** (Gigaton, Dark Matter, Into the Wild): paste original entrou em loop de adjetivos repetidos. Pode-se repastear as conclusões em sessão futura.
 
-Padrão pra novo álbum: paste do user, eu removo em-dashes (regra do projeto), salvo em `media/albums/<id>.md`, adiciono `<id>` ao Set `ALBUM_DOCS` no `index.html`. Botão "📖 Ler análise" aparece automaticamente.
+**Como publicar Lost Dogs** (quando revisar): adicionar `'lostdogs'` ao Set `ALBUM_DOCS` em `index.html`. O botão "📖 Ler análise" aparece automaticamente.
+
+**Como publicar ensaio Covers**: ainda não tem rota. Sugestão pra sessão futura: criar Set `ESSAYS_DOCS` similar a `ALBUM_DOCS`, com link de "📖 Ler ensaio" em alguma tab apropriada.
 
 ## 5. Estrutura de arquivos
 
 ```
 setlists-pj-ev/
-├── index.html              # 482 KB, ~6400 linhas (HTML+CSS+JS+DADOS+lyrics)
+├── index.html              # ~504 KB, ~6900 linhas (HTML+CSS+JS+DADOS+lyrics)
 ├── _headers                # Cloudflare Pages headers (CSP, cache, security)
 ├── robots.txt
 ├── sitemap.xml
-├── og.jpg                  # 61 KB, 1200×630 OG image (Ticket Archive identity)
+├── og.jpg                  # 61 KB, 1200×630 OG image
 ├── ANALYTICS.md
 ├── HANDOFF.md              # este arquivo
 ├── MEDIA_AUDIT_2026-04-29.md
@@ -146,41 +171,35 @@ setlists-pj-ev/
 ├── README.txt
 ├── .gitignore              # exclui .claude/, node_modules/, lighthouse-*
 └── media/
-    ├── albums/             # 16 capas .jpg + 15 análises .md
+    ├── albums/             # 16 capas .jpg + 15 análises .md publicadas + 1 rascunho (lostdogs)
+    ├── essays/             # NEW: ensaios temáticos cross-cutting (1 rascunho: covers.md)
     ├── lyrics.json         # 7.5 KB
-    ├── interpretations.json  # 396 KB, ~190 entradas
+    ├── interpretations.json  # ~700 KB, ~225 entradas, byShow 100% nos 28 shows
     ├── deep/               # 5 edições, 164 JPGs, 48 MB
-    │   ├── deep-08/        # 51 páginas (Issue 8, 2011 - número duplo)
-    │   ├── deep-09/        # 28 páginas (2012)
-    │   ├── deep-10/        # 28 páginas (2013)
-    │   ├── deep-11/        # 28 páginas (2014)
-    │   └── deep-12/        # 29 páginas (2015)
-    ├── pj-YYYY-MM-DD/      # 19 shows PJ (16 presenciados + 3 extras só áudio)
-    │   ├── poster.jpg
-    │   ├── photo-N.jpg + thumb
-    │   ├── mine/photo-N.jpg + thumb
-    │   └── videos/video-N.mp4
+    ├── pj-YYYY-MM-DD/      # 19 shows PJ
     └── ev-YYYY-MM-DD/      # 8 shows EV
 ```
 
-Tamanho total `media/`: ~270 MB (a maior parte: posters/photos dos shows + Deep magazines).
+Tamanho total `media/`: ~270 MB.
 
 ## 6. Pendências (em ordem de prioridade)
 
 ### Próxima sessão (precisa input do user)
-1. **byShow expansion**: 28/28 shows completos (~795 paragraphs). Único skip: "I Want You So Hard" (cover Eagles of Death Metal, Paris-tribute 2015) em pj-2015-11-20 e pj-2015-11-22 — pode adicionar universal text + byShow se vier vontade
+1. **"I Want You So Hard"** (cover Eagles of Death Metal, deployment Paris-tribute 2015): falta universal text. Apareceu em pj-2015-11-20 BH e pj-2015-11-22 RJ. Skipado pra não criar entrada incompleta. Se quiser, eu redijo universal + byShow nos 2 shows
 2. **Repaste das conclusões truncadas**: Gigaton, Dark Matter, Into the Wild tiveram paste degradado. Se quiser repastear só a Conclusão, eu acrescento na seção "Conclusão" dos respectivos `.md`
-3. **EV solo extras**: faltam pastes de EV solo de outros shows ou releases (se houver)
+3. **Lost Dogs review + publish**: rascunho em `media/albums/lostdogs.md`. Revisar e adicionar `'lostdogs'` ao `ALBUM_DOCS` pra ativar
+4. **Covers essay review + roteiro de publicação**: rascunho em `media/essays/covers.md` com seções degradadas marcadas. Decidir como expor no site (criar Set `ESSAYS_DOCS`? linkar de Cobertura por álbum?)
 
 ### Decisões pendentes (precisam autorização do dono)
-- **P2-02 Mover Deep pra R2**: 48 MB de JPGs no repo poderiam estar no R2 (já tem bucket configurado pra áudio). Reduz repo de ~270 MB pra ~220 MB e acelera deploys. Requer: (a) `rclone copy media/deep r2-setlists:setlists-pj-ev-audio/deep/`, (b) ajustar `cover` e `<img src=>` em `renderDeep`/`renderDeepReader` pra usar `R2_AUDIO_BASE + "/deep/" + ...`. Não fiz por mexer em paths em produção sem aviso
-- **P2-03 GA4 + LGPD**: GA4 carrega sem banner de consent. Opções: (a) banner mínimo com `gtag('consent', 'default', {analytics_storage: 'denied'})` que vira `granted` ao aceitar (UI visível, +20 linhas de CSS+JS), (b) trocar pra **Cloudflare Web Analytics** (sem cookies, GDPR/LGPD-safe por design, ativar no dashboard do CF). Recomendo (b) pra simplicidade
+- **P2-02 Mover Deep pra R2**: 48 MB de JPGs no repo poderiam estar no R2. Reduz repo de ~270 MB pra ~220 MB e acelera deploys. Requer: (a) `rclone copy media/deep r2-setlists:setlists-pj-ev-audio/deep/`, (b) ajustar paths em `renderDeep`/`_deepOpenReader` pra usar `R2_AUDIO_BASE + "/deep/" + ...`. Nota: agora que o reader foi redesenhado, os paths estão concentrados em `_deepPageUrl()` (uma função só), então a mudança fica fácil
+- **P2-03 GA4 + LGPD**: GA4 carrega sem banner de consent. Opções: (a) banner mínimo com `gtag('consent', 'default', {analytics_storage: 'denied'})`, (b) trocar pra **Cloudflare Web Analytics** (sem cookies, GDPR/LGPD-safe). Recomendo (b)
 - **Performance**: Lighthouse Performance 52/100. Maior peso restante: 650ms de "unused JavaScript" do Google Tag Manager. Resolve com (b) acima
 
 ### Validação manual (precisa ferramenta + você)
-- **NVDA (Windows) ou VoiceOver (Mac/iOS)**: testar fluxo real de SR. Lighthouse pega 95% dos casos mas não substitui teste com humano usando SR
+- **Revalidar Lighthouse pós-redesign Deep**: o redesign não foi auditado ainda. Sobe servidor local, roda Lighthouse na live, valida que A11y continua 100 e que o redesign não regrediu Best Practices/SEO
+- **NVDA (Windows) ou VoiceOver (Mac/iOS)**: testar fluxo real do Deep reader em SR. Tab navigation, ESC, click zones, ler counter aria-live
 - **Lighthouse mobile** (não rodei, só desktop)
-- **Browser stack**: testar em Safari iOS, Chrome Android, Firefox
+- **Browser stack**: testar redesign Deep em Safari iOS, Chrome Android, Firefox
 
 ### Pendentes legados (mídia, infra)
 - Procurar fotos pessoais antigas (2011-2015) em outro PC
@@ -188,94 +207,61 @@ Tamanho total `media/`: ~270 MB (a maior parte: posters/photos dos shows + Deep 
 - ZIP backup local + SHA-256 antes de qualquer formatação
 - Domínio custom no Cloudflare Pages
 - `pj-2024-08-31/poster-1.jpg` falta (manifest declara 2 posters)
-- Deletar repo antigo `azimermann4/setlists-pj-ev` (manual via web — `gh` local logada como andrehz4)
+- Deletar repo antigo `azimermann4/setlists-pj-ev` (manual via web)
 
 ## 7. Sprint de acessibilidade (3 fases + vistoria, 2026-05-08)
 
 ### Fase 1: Fundação ARIA (commit `63bb2c4`)
-- Skip-link "Pular para o conteúdo", landmark `<main id="main">`, `<header role="banner">`
-- Tabs com pattern WAI-ARIA completo: `role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls`, roving tabindex, navegação setas/Home/End
-- Sections de view com `role="tabpanel"`, `aria-labelledby`, atributo `hidden` nos inativos
-- 5 dialogs (drawer, lightbox, media-panel, album-modal, lyrics-panel) com `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, foco-trap global, save/restore de foco via helpers `_a11yOpenDialog`/`_a11yCloseDialog`
-- `aria-pressed` nos toggles (theme, filter chips, gallery filters, play/pause)
-- `aria-label` em todos os botões de ícone único; `<span aria-hidden="true">` envolvendo emojis decorativos
-- `aria-live="polite"` em search-results, song-name do player, counters dos viewers
-- Alt dinâmico no lightbox/media-panel; alt rico nas fotos da galeria (data + venue + cidade)
-- Cards da timeline + photo wrappers + video cards + deep cards + gallery thumbs/headers = `role="button"` keyboard-acessíveis (Enter/Space)
-- Setlist `<li>` com áudio = `role="button"` + `aria-label="Tocar X"` + Enter/Space
-- Toggles letra/interpretation = `role="button"` + `aria-expanded` sincronizado
-- Deep flipbook: container com `role="region"` + `tabindex="0"` + setas/PageUp/PageDown/Home/End
-- Stats-strip: cada stat com texto natural ("25 Shows") como nome acessível
-- Boot overlay: `aria-busy="true"` durante carga, vira `false` no final, foco vai pro `<main>` ao terminar
-- Focus ring `*:focus-visible` por tema (PJ no claro, EV no escuro)
-- Helpers: `.visually-hidden`, `_a11yOpenDialog`, `_a11yCloseDialog`, `_apSetPlayState`
-- Removidos 3 `outline:none` legados (search-input, .media-panel video, .ap-progress)
+- Skip-link, landmarks, tabs WAI-ARIA, dialogs com `role="dialog"`/`aria-modal="true"`/foco-trap, helpers `_a11yOpenDialog`/`_a11yCloseDialog`, `aria-pressed` nos toggles, `aria-label` em botões de ícone, `aria-live="polite"` em search/player/counters, alt dinâmico no lightbox/media-panel, cards/photos/videos/deep como `role="button"` keyboard-acessíveis, focus-ring `*:focus-visible` por tema
 
-### Fase 2: Polimento (commit `63bb2c4` continuação)
-- aria-live na filter-bar anuncia "Filtro atualizado: X, ano Y. N shows"
-- aria-live no boot-overlay anuncia status durante carregamento
-- Bug bônus: `_mpLoad` removido `{ once: true }` (handler é trocado a cada load via `wrap._mpZoomHandler`)
-- Code review do fix `978278b` do lightbox confirmou higienização completa do estado
+### Fase 2: Polimento (commit `63bb2c4`)
+- aria-live na filter-bar e boot-overlay, fix `_mpLoad`, code review do fix `978278b`
 
 ### Fase 3: Polish profissional sem mexer em layout/cores (commit `27debb9`)
-- **`lang="en"` automático**: parser MD detecta itálicos com palavras funcionais em inglês (the, you, I, are, etc.) e envolve em `<em lang="en">`. Letras (`lyrics-body` + inline drawer), interpretações (drawer + meta) e `lyric-row` ganharam `lang="en"`. SR em PT-BR pronuncia inglês corretamente
-- **Transcrição de áudio (WCAG 1.2.1)**: novo campo opcional `notes_audio` no schema de shows, renderizado no drawer como `<section role="region">` com `<details>` colapsável "🎧 Transcrição do áudio (N faixas)". Aparece automaticamente em shows com áudio. Preenchido pros 3 extras com notas detalhadas
-- **`prefers-reduced-motion` global**: `@media` nuclear neutraliza todas as 40 transitions + 28 animations + scroll smooth. Só ativa pra usuários com pref no OS
-- **SVGs acessíveis**: LuckGauge ganhou `role="img"` + `<title>` + `<desc>` (com classificação e contexto). Chart-svg de "músicas por show" tem `aria-label` resumindo o gráfico
+- `lang="en"` automático em itálicos com palavras funcionais inglesas
+- Transcrição de áudio (WCAG 1.2.1) com `<details>` colapsável
+- `prefers-reduced-motion` global @media nuclear neutralizando 40+ transitions e 28+ animations
+- SVGs acessíveis (LuckGauge com role/title/desc, chart-svg com aria-label)
 
 ### Sprint vistoria 2 + Lighthouse fixes (commits `d50aec1`, `81f718b`, `fdeb721`)
-- **`aria-prohibited-attr` resolvido**: removido aria-label/aria-hidden de div.stat (Lighthouse 96 → 100)
-- **`label-content-name-mismatch` resolvido**: aria-labels reformatados pra começar com texto visível ("Pearl Jam 02 dez 2005..." ao invés de "Abrir setlist:..."). WCAG 2.5.3 Label in Name
-- **P1-01 `<audio preload="auto"→"none">`**: elimina prefetch fantasma de metadata no boot
-- **P1-03 ESC topmost**: dialog topmost fecha primeiro (lightbox > media-panel > album-modal > drawer). ESC handlers locais redundantes removidos
-- **P1-02 JPGs Deep re-comprimidos**: 164 imagens a quality=70. **59 → 48 MB (-20%)**
-- **P2-04 AbortController** em `_loadInterpretations` + abort em `beforeunload`
-- **P2-05 audio-player aria-describedby**: aponta pra `audio-transcript-current` quando drawer está aberto com áudio
-- **P3-01 console.warn** substituídos por `track('audio_error'/'image_error')` no GA4
+- aria-prohibited-attr fix, label-content-name-mismatch fix, audio preload="none", ESC topmost handler, JPGs Deep -20%, AbortController em fetch interpretations, audio-player aria-describedby, console.warn → GA4 events
 
-### Métricas finais
+### Métricas finais (2026-05-08, pré-redesign Deep)
 | Métrica | Valor |
 |---|---|
 | Lighthouse Accessibility | **100/100** |
 | Lighthouse SEO | **100/100** |
 | Lighthouse Best Practices | 96/100 |
 | Lighthouse Performance | 52/100 |
-| `aria-label` instances | 61 |
-| `role="button"` | 9 |
-| `aria-pressed` | 15 |
-| `aria-live` regions | 7 |
-| `aria-modal` dialogs | 6 |
-| `aria-expanded` | 4 |
-| `lang="en"` containers | 5 |
 | Em-dashes em conteúdo | 0 |
 | `outline:none` legados | 0 |
 
 ## 7.1. A11y — convenções e helpers
 
-- **Helper de dialog**: ao criar novo modal/painel, use `_a11yOpenDialog(el, focusTarget)` e `_a11yCloseDialog(el)`. Cuidam de remover/adicionar `hidden`, salvar foco anterior e devolver após fechamento. Foco-trap global pega qualquer `[role="dialog"][aria-modal="true"]:not([hidden])`
-- **Tabs**: ao adicionar nova view, replicar o pattern: `role="tab" aria-selected="false" aria-controls="view-X" tabindex="-1"` no botão, `role="tabpanel" aria-labelledby="tab-X" tabindex="0" hidden` na section. `activateTab()` cuida do resto
+- **Helper de dialog**: `_a11yOpenDialog(el, focusTarget)` e `_a11yCloseDialog(el)`. Foco-trap global pega `[role="dialog"][aria-modal="true"]:not([hidden])`. Padrão usado pelo drawer, lightbox, media-panel, album-modal, lyrics-panel, **e o novo Deep reader**
+- **ESC topmost** (commit `81f718b` + atualização `6ca0f0e` pra incluir Deep reader): ordem de fechamento por z-index/precedência: lightbox > media-panel > album-modal > drawer > deep-reader-stage. Cada handler local foi removido; o handler global topmost é a única source of truth
+- **Tabs**: `role="tab"/aria-selected/aria-controls/tabindex` no botão, `role="tabpanel"/aria-labelledby/tabindex/hidden` na section. `activateTab()` cuida do resto
 - **Botões com ícone único**: sempre `aria-label` no `<button>` e `<span aria-hidden="true">EMOJI</span>` por dentro
-- **Toggles**: `aria-pressed="true|false"` sincronizado com classe `.active` no handler de click
-- **aria-label em elementos clicáveis**: começar com o texto visível (WCAG 2.5.3 Label in Name), terminar com a ação. Ex: `"Pearl Jam, 02 dez 2005, Pacaembu. Abrir setlist."`
-- **Não usar aria-label em `<div>` sem role**: Lighthouse rejeita. Ou adiciona `role="group"`/`role="text"`, ou deixa o texto natural ser o nome acessível
-- **Imagens**: alt sempre descritivo. Para mudança dinâmica (lightbox/media), atualizar `img.alt` no load
-- **Foco**: `*:focus-visible` define o ring; nunca usar `outline: none` sem providenciar substituto
-- **`lang="en"`**: aplicar em qualquer container que tenha texto em inglês (letras, interpretações, citações); o parser MD faz isso automaticamente nos itálicos `*"..."*` que contêm palavras funcionais em inglês
+- **Toggles**: `aria-pressed="true|false"` sincronizado com classe `.active`
+- **aria-label em elementos clicáveis**: começar com texto visível (WCAG 2.5.3 Label in Name)
+- **Não usar aria-label em `<div>` sem role**: Lighthouse rejeita
+- **Imagens**: alt sempre descritivo. Para mudança dinâmica, atualizar `img.alt` no load
+- **Foco**: `*:focus-visible` define o ring; nunca `outline: none` sem providenciar substituto
+- **`lang="en"`**: aplicar em qualquer container com texto em inglês; o parser MD faz isso automaticamente nos itálicos `*"..."*`
 
 ## 8. Convenções importantes
 
-- **NÃO USAR EM-DASH (—) em conteúdo visível do site**. Regra obrigatória do dono. Está no auto-memory. Aplicada em todos os 15 docs de álbum, lyrics.json, interpretations.json, notes de SHOWS, ANALYTICS.md, HANDOFF.md
+- **NÃO USAR EM-DASH (—) em conteúdo visível do site**. Regra obrigatória do dono. Aplicada em todos os 15 docs de álbum publicados, no rascunho do Lost Dogs, no ensaio de Covers, em interpretations.json, lyrics.json, notes de SHOWS, ANALYTICS.md, HANDOFF.md
 - **Extras nunca entram nas stats**: rule 0. `filteredShows()` exclui `extra:true` automaticamente
 - **Visibilidade do repo**: público (consciente)
 - **Identidade git**: `eng.andrehz@gmail.com`
 - **`.claude/`, `node_modules/`, `lighthouse-*`**: ignorados pelo git
 - **Animações**: respeitam `prefers-reduced-motion` globalmente
 - **Tema padrão**: light com toggle pra dark
-- **`gh` CLI tem 2 contas**: `andrehz4` (este projeto) e `terra-gentil` (outro projeto). Antes de push, `gh auth status` e `gh auth switch -h github.com -u andrehz4` se a ativa for a errada. 403 no push = conta errada
+- **`gh` CLI tem 2 contas**: `andrehz4` (este projeto) e `terra-gentil`. Antes de push, `gh auth status` e `gh auth switch -h github.com -u andrehz4` se a ativa for a errada. 403 no push = conta errada
+- **Recaps fim de turno**: usuário pediu pra cortar (auto-memory `feedback_no_recaps.md`). Comunicação enxuta, sem balanços de "o que foi feito" salvo se ele pedir explicitamente
 
 ## 9. Cloudflare R2 (áudio)
-
-Áudios MP3 não vivem no repo. Cloudflare R2, mesma conta `eng.andrehz@gmail.com`, egress grátis, free tier 10 GB.
 
 | | |
 |---|---|
@@ -286,23 +272,20 @@ Tamanho total `media/`: ~270 MB (a maior parte: posters/photos dos shows + Deep 
 | Account ID | `c071f317813dd06ec00befa13d5c5684` |
 | Tamanho atual | ~5.8 GB (603 objetos) |
 
-Estrutura no bucket: `<show-id>/<filename>.mp3`. Player lê constante `R2_AUDIO_BASE` definida no topo do bloco DATA do `index.html`.
+Estrutura: `<show-id>/<filename>.mp3`. Player lê constante `R2_AUDIO_BASE` no topo do bloco DATA do `index.html`.
 
 Subir mais áudios:
 ```powershell
 rclone copy "<pasta-local>" "r2-setlists:setlists-pj-ev-audio/<show-id>/" --s3-no-check-bucket --progress
 ```
 
-⚠️ Sempre `--s3-no-check-bucket` (token tem escopo limitado a esse bucket).
-
-API Token salvo só no `%APPDATA%\rclone\rclone.conf`, perfil `r2-setlists`. Pra recriar: dashboard → R2 → API → Account API Tokens.
+API Token salvo no `%APPDATA%\rclone\rclone.conf`, perfil `r2-setlists`.
 
 ## 10. GitHub e GA4 (notas de migração)
 
-- Repo migrado de `azimermann4/setlists-pj-ev` pra `andrehz4/setlists-pj-ev` em 2026-05-07. Cloudflare Pages reconectado mesmo dia
-- Repo antigo `azimermann4` ainda existe (deletar manual via web)
+- Repo migrado de `azimermann4/setlists-pj-ev` pra `andrehz4/setlists-pj-ev` em 2026-05-07
 - Build settings do Pages: Framework preset `None`, build command vazio, output `/`
-- GA4 property criada em 2026-05-08, stream "Site Pearl Jam" com URL `https://setlists-pj-ev.pages.dev/`, ID `G-234ZL5MF0T`
+- GA4 property criada em 2026-05-08, ID `G-234ZL5MF0T`
 
 ## 11. Como rodar localmente
 
@@ -312,32 +295,29 @@ python -m http.server 8000
 # abrir http://localhost:8000
 ```
 
-Duplo clique em `index.html` também funciona, mas algumas features (fetch de interpretations.json, fetch de albums/*.md) podem falhar por CORS.
-
 ## 12. Como editar conteúdo
 
 **Adicionar/editar shows ou setlists**: editar objeto `SHOWS` em `index.html` (procura por `const SHOWS = [`). Cada show tem: `id`, `artist`, `date`, `venue`, `city`, `tour`, `confidence`, `source`, `songs`, opcionais `note`, `notes_audio`, `soundcheck`, `not_played`, `special`, `extra`.
 
-**Adicionar/editar manifest de mídia**: editar objeto `MEDIA_MANIFEST` em `index.html`. Por show: `poster`, `posters`, `photos`, `my_photos`, `videos`, `audio: ["arquivo.mp3"]`, `highlight_photos: [N]`.
-
-**Adicionar interpretação**: editar `media/interpretations.json` direto, ou rodar script Python pattern. Formato: string ou objeto `{text, byShow:{showId: paragraph}}`.
+**Adicionar interpretação**: editar `media/interpretations.json` direto. Formato: string (universal) ou objeto `{text, byShow:{showId: paragraph}}`. Para byShow novo, padrão do projeto é: `text` universal + `byShow.{show-id}` específico do show. Lookup faz lyrnorm: lowercase + strip `[^a-z0-9 ]`. **Keys no JSON têm que ser lyrnorm-friendly** (sem apóstrofo, ponto, vírgula).
 
 **Adicionar análise de álbum**:
-1. Salvar em `media/albums/<album.id>.md` (sem em-dashes, sem `—`)
+1. Salvar em `media/albums/<album.id>.md` (sem em-dashes)
 2. Adicionar `'<album.id>'` ao Set `ALBUM_DOCS` no `index.html`
 3. Commitar
 
 **Adicionar revista Deep**:
-1. `pip install --user pymupdf` (se ainda não tiver)
-2. Rodar script: rasterizar PDF a 150 DPI, JPEG quality 70, salvar em `media/deep/deep-XX/page-N.jpg`
-3. Adicionar entry em `DEEP_ISSUES`: `{ id: "deep-XX", title: "Deep · Issue XX", year: YYYY, pages: N, cover: "media/deep/deep-XX/page-1.jpg" }`
+1. `pip install --user pymupdf`
+2. Rasterizar PDF a 150 DPI, JPEG quality 70
+3. Adicionar entry em `DEEP_ISSUES`: `{ id, num, title, year, pages, cover, tag }` (campos `num` e `tag` foram adicionados no redesign de 2026-05-09 pra exibição na grid 3D)
+
+**Adicionar byShow pra um show**: padrão é Python script que carrega `media/interpretations.json` com `OrderedDict`, modifica os keys necessários, dump com `json.dumps(d, indent=2, ensure_ascii=False)`, replace `\n` → `\r\n`. Vários scripts dessa sessão na referência git history.
 
 **Publicar**:
 ```bash
 git add .
 git commit -m "<msg>"
 git push origin main
-# Cloudflare Pages re-implanta em ~1 min
 ```
 
 ## 13. Camadas de backup
@@ -351,41 +331,78 @@ git push origin main
 | 5. ZIP local em HD/pendrive | — | recomendado antes de formatar |
 | 6. Cópia em outra nuvem | — | opcional |
 
-Restauração após format:
-```bash
-git clone https://github.com/andrehz4/setlists-pj-ev.git
+## 14. Histórico de commits relevantes (sessão 2026-05-09)
+
+```
+d636c26  docs(handoff): byShow 100% completo (28/28 shows, ~795 paragraphs)
+24d3a0e  feat(content): byShow do pj-2022-07-25 (Amsterdam Ziggo Dome extra) + 4 universal text
+09f88f0  feat(content): byShow do pj-2021-10-02 (Dana Point Ohana extra) + 8 universal text
+1dc23a8  docs(handoff): 25/28 shows com byShow
+fabb9dc  feat(content): byShow do ev-2018-03-30 (Citibank SP n3 final, Black com Sergio Vedder)
+c181cc1  feat(content): byShow do ev-2018-03-29 (Citibank SP n2)
+fe83502  feat(content): byShow do ev-2018-03-28 (Citibank SP n1, Wildflowers world debut)
+3964126  feat(content): byShow do ev-2014-05-12 (Citibank RJ n2, Slater no encore)
+2b0a065  feat(content): byShow do ev-2014-05-11 (Citibank RJ n1)
+3a8bdd7  feat(content): byShow do ev-2014-05-08 (Citibank SP n3)
+8d7f13d  feat(content): byShow do ev-2014-05-07 (noite das raridades)
+f7d97ca  feat(content): byShow do ev-2014-05-06 + 8 keyfixes apostrofo EV
+c876a76  feat(content): byShow do pj-2024-08-31 (Wrigley 2)
+da2ef45  feat(content): byShow do pj-2024-08-29 + 3 keyfixes
+e6495f8  feat(content): byShow do pj-2018-03-24 (Lolla Brasil SP)
+41b660f  feat(content): byShow do pj-2018-03-21 (Maracana RJ) + key fix cant deny me
+d6240cf  docs(handoff): 2015 completo
+3134145  feat(content): byShow do pj-2015-11-22 + 2015 completo
+32c8e73  feat(content): byShow do pj-2015-11-20
+9135db2  feat(content): byShow do pj-2015-11-17 (35/35)
+1b5d76a  fix(interpretations): rename 10 keys com apostrofo/ponto pra forma normalizada
+18c0c9f  feat(content): byShow do pj-2015-11-14 (32/33, pos-Paris)
+f35a054  feat(content): byShow do pj-2015-11-11 (33/34)
+ea7e417  fix(deep): cores claras hardcoded no reader (visivel em ambos temas)
+6ca0f0e  feat(deep): redesign do leitor com flip 3D e FLIP animation
+1e07249  docs(handoff): registra 2013 completo
+6c9e12f  feat(content): byShow do pj-2013-04-06 (Lolla CL Santiago)
+583505b  feat(content): byShow do pj-2013-04-03 (Lolla AR Buenos Aires)
+ab6e773  feat(content): byShow do pj-2013-03-31 (Lolla Brasil SP)
+288ab7d  docs(handoff): atualiza status de byShow e bug de apostrofo
+e84f8f2  feat(content): byShow do pj-2011-11-11 (Beira-Rio extra)
+c6ca87e  docs(essay): salva rascunho do ensaio sobre covers do Pearl Jam
+86e8fbb  feat(content): byShow do pj-2011-11-09 (Curitiba Vila Capanema)
+05e0afe  feat(content): byShow do pj-2011-11-06 (Rio Apoteose)
+2d34fa0  docs(album): salva rascunho do Lost Dogs (2003)
+2b98c8c  feat(content): byShow do pj-2011-11-04 (Morumbi noite 2)
+aeeaddc  feat(content): byShow do pj-2011-11-03 (Morumbi 1)
+6d0542c  feat(content): expande byShow do pj-2005-12-02 para cobertura 27/27
 ```
 
-## 14. Histórico de commits relevantes (sessão de 2026-05-08)
-
+### Commits anteriores (referência histórica, sessão 2026-05-08)
 ```
 fdeb721  perf(deep): re-comprime 164 JPGs do flipbook a quality=70 (-20%)
-81f718b  fix: aplica P1 e P2 da sprint vistoria 2 (preload, ESC topmost, abort, transcript link, console)
+81f718b  fix: aplica P1 e P2 da sprint vistoria 2
 355cffa  chore(gitignore): exclui node_modules e relatorios lighthouse
 092475f  chore(gitignore) + HANDOFF registra 100/100 a11y
 d50aec1  fix(a11y): resolve 2 falhas do Lighthouse audit (96→100)
-269394b  docs(handoff): registra a11y fase 3
 27debb9  feat(a11y): sprint fase 3 - lang=en, transcricao audio, reduced-motion, SVG
 b736a54  feat(content): publica 3 analises de albuns solo do Eddie Vedder
-2b10b79  docs(handoff): registra sessao de 2026-05-08
 63bb2c4  feat(a11y+content): sprint WCAG 2.2 AA fase 1+2 + 3 extras (POA/Dana Point/Amsterdam)
 df62ff4  feat(content): publica 4 analises de album, 5 revistas Deep e og.jpg
 ```
 
-### Commits anteriores (referência histórica)
-```
-fa0cfa6  docs(handoff): atualiza pra 2026-05-08 (anterior a esta sessão)
-7309ac6  Riot Act (research) + Avocado 2006 docs
-5c82032  sprint vistoria 1: P1 + 5 P2 + 2 P3 aplicados
-a5a959f  GA4 ID real
-ec55895  tab Deep + flipbook viewer
-0df3d9c  extras infra (rule 0)
-ba2fc68  GA4 instrumentation + 5 custom events + ANALYTICS.md
-978278b  fix lightbox state on close
-d6ece3c  search lyric/interp cards + byShow infra (pilot pj-2005-12-02)
-73a8407  audio: 26 mp3s do show pj-2005-12-02 Pacaembu
-```
+---
+
+## 15. Resumo da sessão 2026-05-09
+
+Esta sessão entregou três blocos grandes:
+
+1. **byShow 0% → 100%**: 28/28 shows agora têm parágrafos críticos específicos por show (~795 paragraphs no total). Antes da sessão, só 5 músicas do pj-2005-12-02 tinham. A expansão cobriu 2005, 2011 (4+1 extra), 2013 (3), 2015 (5), 2018 (2 PJ + 3 EV), 2024 (2), EV solo 2014 (5), e os 2 extras de acervo (Dana Point + Amsterdam). Estilo segue o pilot original do Pacaembu: data + venue + slot + função estrutural na noite, sempre em inglês.
+
+2. **Deep reader redesign**: leitor antigo (scroll-snap horizontal inline na aba) substituído por overlay full-screen 3D com FLIP animation pra entrada e page flip 3D em torno da lombada. CSS+JS portado de protótipo React (vindo do Claude Design / claude.ai/design) pra vanilla JS dentro do `index.html` existente. Integrado com `_a11yOpenDialog`/`ESC topmost`/`prefers-reduced-motion`. Bug de cores escuras no claro corrigido (escopo local `--reader-*`).
+
+3. **Bug de keys resolvido + 12 universals novos**: apóstrofos, pontos e vírgulas em keys do interpretations.json estavam silenciosamente quebrando o lookup do `_lyricsNorm` (que strippa esses caracteres). 22 keys renomeados em ondas conforme a expansão progrediu. 12 entradas universais novas adicionadas pra Gigaton (8 tracks), Brad cover, Avocado track, Binaural deep cuts, e covers raros de KISS/Prince.
+
+Plus: 2 documentos em rascunho salvos (Lost Dogs em `media/albums/lostdogs.md`, Covers em `media/essays/covers.md`), nova pasta `media/essays/` criada, HANDOFF reescrito.
+
+**Próxima sessão sugerida**: revisar Deep redesign no live (Lighthouse + browsers), revisar/publicar Lost Dogs, decidir como linkar o ensaio Covers, ou repastear conclusões dos álbuns truncados.
 
 ---
 
-*Atualizado por sessão Claude Code em 2026-05-08 (HEAD `fdeb721`). Próxima sessão: byShow expansion, ou repaste das conclusões de Gigaton/Dark Matter/Into the Wild, ou decisão sobre Deep→R2 e GA4→Cloudflare Web Analytics, ou retomar de onde der vontade.*
+*Atualizado por sessão Claude Code em 2026-05-09 (HEAD `d636c26`).*
