@@ -17,3 +17,9 @@ desktop.ini
 
 # Configuração local de ferramentas
 .claude/
+
+# Artefatos de auditoria a11y / lighthouse (regeneráveis)
+node_modules/
+package.json
+package-lock.json
+lighthouse-*
