@@ -51,7 +51,7 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
     - EV solo 2018 (3): ev-2018-03-28/29/30 SP
     - 2 extras de acervo: pj-2021-10-02 Dana Point Ohana + pj-2022-07-25 Amsterdam Ziggo Dome
   - **12 universal text entries adicionados** durante cobertura dos extras: 8 do Gigaton/Brad/Avocado pra Dana Point + 4 covers raros (Black Diamond KISS, Purple Rain Prince) e Binaural deep cuts (Nothing as It Seems, Alright) pra Amsterdam
-  - **Único skip**: "I Want You So Hard" (cover Eagles of Death Metal, Paris-tribute 2015) em pj-2015-11-20 e pj-2015-11-22 — sem universal text, pode adicionar depois
+  - **Único skip**: "I Want You So Hard" (cover Eagles of Death Metal, Paris-tribute 2015) em pj-2015-11-20 e pj-2015-11-22; sem universal text, pode adicionar depois
   - **Bug de apóstrofo/ponto/vírgula resolvido** (vários commits desta sessão): ~22 keys foram renomeados pra casar com `_lyricsNorm` que strippa esses caracteres. Lista: baba oriley, rockin in the free world, fuckin up, im open, satans bed, my fathers son, its ok, i wont back down, i wont hold on, brain of j, cant deny me, react respond, another brick in the wall part 2, wont tell, cant keep, driftin, im one, youve got to hide your love away, youre true, im so tired, isnt it a pity, dont be shy
 - **Análises de álbum** (`media/albums/*.md`): 15 docs longos em português + 1 rascunho. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise")
 - **Ensaios temáticos** (`media/essays/*.md`): nova pasta criada pra documentos cross-cutting que não são de um álbum específico. Atualmente: 1 rascunho (Covers / reinterpretações)
@@ -80,7 +80,7 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 - Grid de capas + Comunidade (fotos coletivas)
 - Thumbs e headers keyboard-acessíveis
 
-### Deep (revistas Ten Club) — **REDESIGN 2026-05-09**
+### Deep (revistas Ten Club): **REDESIGN 2026-05-09**
 - **Leitor 3D flip-page** substituindo o scroll-snap horizontal antigo
 - Cards 3D na grid: cover inclinada (rotateY -8°), miolo de páginas visível na lateral, hover com transform mais agressivo
 - Reader como overlay full-screen (`role="dialog" aria-modal="true"`)
@@ -185,7 +185,7 @@ Tamanho total `media/`: ~270 MB.
 ## 6. Pendências (em ordem de prioridade)
 
 ### Próxima sessão (precisa input do user)
-1. **"I Want You So Hard"** (cover Eagles of Death Metal, deployment Paris-tribute 2015): falta universal text. Apareceu em pj-2015-11-20 BH e pj-2015-11-22 RJ. Skipado pra não criar entrada incompleta. Se quiser, eu redijo universal + byShow nos 2 shows
+1. **"I Want You So Hard"** (cover Eagles of Death Metal, deployment Paris-tribute 2015): falta universal text. Apareceu em pj-2015-11-20 BH e pj-2015-11-22 RJ. Skipado pra não criar entrada incompleta; se quiser, eu redijo universal + byShow nos 2 shows
 2. **Repaste das conclusões truncadas**: Gigaton, Dark Matter, Into the Wild tiveram paste degradado. Se quiser repastear só a Conclusão, eu acrescento na seção "Conclusão" dos respectivos `.md`
 3. **Lost Dogs review + publish**: rascunho em `media/albums/lostdogs.md`. Revisar e adicionar `'lostdogs'` ao `ALBUM_DOCS` pra ativar
 4. **Covers essay review + roteiro de publicação**: rascunho em `media/essays/covers.md` com seções degradadas marcadas. Decidir como expor no site (criar Set `ESSAYS_DOCS`? linkar de Cobertura por álbum?)
@@ -236,7 +236,7 @@ Tamanho total `media/`: ~270 MB.
 | Em-dashes em conteúdo | 0 |
 | `outline:none` legados | 0 |
 
-## 7.1. A11y — convenções e helpers
+## 7.1. A11y, convenções e helpers
 
 - **Helper de dialog**: `_a11yOpenDialog(el, focusTarget)` e `_a11yCloseDialog(el)`. Foco-trap global pega `[role="dialog"][aria-modal="true"]:not([hidden])`. Padrão usado pelo drawer, lightbox, media-panel, album-modal, lyrics-panel, **e o novo Deep reader**
 - **ESC topmost** (commit `81f718b` + atualização `6ca0f0e` pra incluir Deep reader): ordem de fechamento por z-index/precedência: lightbox > media-panel > album-modal > drawer > deep-reader-stage. Cada handler local foi removido; o handler global topmost é a única source of truth
@@ -251,7 +251,7 @@ Tamanho total `media/`: ~270 MB.
 
 ## 8. Convenções importantes
 
-- **NÃO USAR EM-DASH (—) em conteúdo visível do site**. Regra obrigatória do dono. Aplicada em todos os 15 docs de álbum publicados, no rascunho do Lost Dogs, no ensaio de Covers, em interpretations.json, lyrics.json, notes de SHOWS, ANALYTICS.md, HANDOFF.md
+- **NÃO USAR EM-DASH (travessão longo) em conteúdo visível do site**. Regra obrigatória do dono. Aplicada em todos os 15 docs de álbum publicados, no rascunho do Lost Dogs, no ensaio de Covers, em interpretations.json, lyrics.json, notes de SHOWS, ANALYTICS.md, HANDOFF.md
 - **Extras nunca entram nas stats**: rule 0. `filteredShows()` exclui `extra:true` automaticamente
 - **Visibilidade do repo**: público (consciente)
 - **Identidade git**: `eng.andrehz@gmail.com`
@@ -328,8 +328,8 @@ git push origin main
 | 2. Git remoto | github.com/andrehz4/setlists-pj-ev | OK |
 | 3. Site live | setlists-pj-ev.pages.dev | OK |
 | 4. R2 áudio | bucket `setlists-pj-ev-audio` | OK |
-| 5. ZIP local em HD/pendrive | — | recomendado antes de formatar |
-| 6. Cópia em outra nuvem | — | opcional |
+| 5. ZIP local em HD/pendrive | (não feito) | recomendado antes de formatar |
+| 6. Cópia em outra nuvem | (não feito) | opcional |
 
 ## 14. Histórico de commits relevantes (sessão 2026-05-09)
 
