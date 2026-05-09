@@ -118,6 +118,12 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 | Earthling (EV) | 2022 | `earthling` | publicado (íntegro) | 35 KB |
 | Lost Dogs | 2003 | `lostdogs` | rascunho salvo, aguardando revisão (não no `ALBUM_DOCS`) | 45 KB |
 
+### Ensaios temáticos (não-álbum)
+
+| Tópico | Local | Status | Tamanho |
+|---|---|---|---|
+| Covers / reinterpretações | `media/essays/covers.md` | rascunho salvo, paste com seções degradadas marcadas, sem rota no site ainda | 52 KB |
+
 **Conclusões truncadas** (Gigaton, Dark Matter, Into the Wild): paste original entrou em loop de adjetivos repetidos + texto não relacionado. Salvei só a parte coerente. Pode-se repastear as conclusões em sessão futura.
 
 Padrão pra novo álbum: paste do user, eu removo em-dashes (regra do projeto), salvo em `media/albums/<id>.md`, adiciono `<id>` ao Set `ALBUM_DOCS` no `index.html`. Botão "📖 Ler análise" aparece automaticamente.
