@@ -38,10 +38,10 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 
 ### Conteúdo enriquecido
 - **Letras** (`media/lyrics.json`): trechos curtos por música, inline no drawer
-- **Interpretações** (`media/interpretations.json`): 542 KB, ~190 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
+- **Interpretações** (`media/interpretations.json`): ~620 KB, ~190 entradas em inglês. Inline no drawer + cards no Buscar (default abertos)
   - Suporta formato dual: string (universal) ou objeto `{text, byShow:{showId: paragraph}}`
-  - byShow completo em **2005 + 2011 PJ20 BR + 2013 Lolla SAm**: pj-2005-12-02 (27/27), pj-2011-11-03 (26/27), pj-2011-11-04 (31/32), pj-2011-11-06 (30/31), pj-2011-11-09 (33/34), pj-2011-11-11 extra (29/32), pj-2013-03-31 (26/27), pj-2013-04-03 (24/25), pj-2013-04-06 (24/25). Total: ~250 byShow paragraphs em 9 shows
-  - **Bug pré-existente:** keys com apóstrofo no JSON (`baba o'riley`, `rockin' in the free world`, `i won't back down`, `i won't hold on`) não casam com `_lyricsNorm` que strippa apóstrofo. byShow pra esses songs ficaria órfão; foram skipped até fix do key. Fix proposto: rename keys pra versão sem apóstrofo
+  - byShow completo em **2005 + 2011 PJ20 BR + 2013 Lolla SAm + 2015 Latin AM**: pj-2005-12-02 (27/27), pj-2011-11-03/04/06/09 (presenciados) + 2011-11-11 extra, pj-2013-03-31/04-03/04-06 (Lolla), pj-2015-11-11/14/17/20/22 (BR). Total: ~420 byShow paragraphs em 14 shows
+  - **Bug de apóstrofo/ponto resolvido (commit 1b5d76a)**: 10 keys foram renomeadas removendo apóstrofo/ponto pra casar com `_lyricsNorm` (baba oriley, rockin in the free world, fuckin up, im open, satans bed, my fathers son, its ok, i wont back down, i wont hold on, brain of j). Shows posteriores podem usar todas essas músicas sem skip
 - **Análises de álbum** (`media/albums/*.md`): 15 docs longos em português. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise")
 
 ### Áudio
@@ -167,7 +167,7 @@ Tamanho total `media/`: ~270 MB (a maior parte: posters/photos dos shows + Deep 
 ## 6. Pendências (em ordem de prioridade)
 
 ### Próxima sessão (precisa input do user)
-1. **byShow expansion**: 2005 + 2011 + 2013 completos (9 shows, ~250 paragraphs). Próximos shows: 2015 (5 shows BR: POA, Brasília, SP, BH, RJ), 2018 (3 shows BR + Lolla), 2024 (2 shows Wrigley), EV solo 2014 (5 noites Citibank Hall) e 2018 (3 noites)
+1. **byShow expansion**: 2005 + 2011 + 2013 + 2015 completos (14 shows, ~420 paragraphs). Próximos shows: 2018 (3 shows BR + Lolla), 2024 (2 shows Wrigley), EV solo 2014 (5 noites Citibank Hall) e 2018 (3 noites). Falta universal text pra "I Want You So Hard" (cover Eagles of Death Metal, deployment de Paris-tribute em 2015) que apareceu em 11-20 BH e 11-22 RJ — skipado até paste universal
 2. **Repaste das conclusões truncadas**: Gigaton, Dark Matter, Into the Wild tiveram paste degradado. Se quiser repastear só a Conclusão, eu acrescento na seção "Conclusão" dos respectivos `.md`
 3. **EV solo extras**: faltam pastes de EV solo de outros shows ou releases (se houver)
 
