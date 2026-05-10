@@ -16,12 +16,12 @@ Atualizado em **2026-05-09**. Snapshot completo do projeto. Tudo aqui é version
 | Identidade git | `André <eng.andrehz@gmail.com>` (config global) | OK |
 | GA4 | property `Site Pearl Jam`, ID `G-234ZL5MF0T` | OK |
 | R2 áudio | bucket `setlists-pj-ev-audio`, ~5.8 GB de 10 GB | OK |
-| Branch atual | `main`, último commit `47863a9` | sincronizado |
+| Branch atual | `main`, último commit `0979454` | sincronizado |
 | Lighthouse | A11y 100, SEO 100, Best Practices 96, Perf 52 | validado live 2026-05-08 (não revalidado pós-redesign Deep) |
 
 ## 2. O que é
 
-Site estático single-file que cataloga shows do Pearl Jam + Eddie Vedder presenciados pelo dono (André). **28 shows** catalogados (25 presenciados + 3 extras de acervo), **~225 músicas únicas com interpretação crítica em inglês** (sprint i18n em curso, **53/221 = 24% também em PT**), **~795 parágrafos de análise show-específica (byShow)**, **15 análises de álbum** publicadas em português + 1 rascunho (Lost Dogs), 1 ensaio temático em rascunho (Covers), áudio dos shows quando disponível, fotos oficiais e pessoais, posters, vídeos, **5 revistas Deep** do Ten Club com **leitor 3D flip-page**.
+Site estático single-file que cataloga shows do Pearl Jam + Eddie Vedder presenciados pelo dono (André). **28 shows** catalogados (25 presenciados + 3 extras de acervo), **~225 músicas únicas com interpretação crítica em inglês** (sprint i18n em curso, **73/221 = 33% também em PT**), **~795 parágrafos de análise show-específica (byShow)**, **15 análises de álbum** publicadas em português + 1 rascunho (Lost Dogs), 1 ensaio temático em rascunho (Covers), áudio dos shows quando disponível, fotos oficiais e pessoais, posters, vídeos, **5 revistas Deep** do Ten Club com **leitor 3D flip-page**.
 
 Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Navegação por 8 tabs: Timeline, Ranking, Cobertura por álbum, Destaques, Buscar música, Raridades, Galeria, Deep.
 
@@ -38,7 +38,7 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
 
 ### Conteúdo enriquecido
 - **Letras** (`media/lyrics.json`): trechos curtos por música, inline no drawer. **Piloto bilíngue PT/EN** (commit `df532bb`): 3 músicas de Pacaembu (black, even flow, alive) com `LYRICS_PT` inline + variantes de exibição
-- **Interpretações** (`media/interpretations.json`): ~990 KB, 221 entradas em inglês, **53 (24%) também em PT** após sprint i18n em curso. Inline no drawer + cards no Buscar (default abertos)
+- **Interpretações** (`media/interpretations.json`): ~1.05 MB, 221 entradas em inglês, **73 (33%) também em PT** após sprint i18n em curso. Inline no drawer + cards no Buscar (default abertos)
   - **Botão alterna PT/EN** quando ambos cadastrados; default em PT, fallback EN com nota "em inglês"
   - **UX drawer** (commit `3f483d6`): clicar no painel de letra/interpretação fecha o card
   - Suporta formato dual: string (universal) ou objeto `{text, byShow:{showId: paragraph}}`
@@ -55,12 +55,14 @@ Visual: **Ticket Archive** (papel kraft, perfurações, stubs de ingresso). Nave
   - **12 universal text entries adicionados** durante cobertura dos extras: 8 do Gigaton/Brad/Avocado pra Dana Point + 4 covers raros (Black Diamond KISS, Purple Rain Prince) e Binaural deep cuts (Nothing as It Seems, Alright) pra Amsterdam
   - **Único skip**: "I Want You So Hard" (cover Eagles of Death Metal, Paris-tribute 2015) em pj-2015-11-20 e pj-2015-11-22; sem universal text, pode adicionar depois
   - **Bug de apóstrofo/ponto/vírgula resolvido** (vários commits desta sessão): ~22 keys foram renomeados pra casar com `_lyricsNorm` que strippa esses caracteres. Lista: baba oriley, rockin in the free world, fuckin up, im open, satans bed, my fathers son, its ok, i wont back down, i wont hold on, brain of j, cant deny me, react respond, another brick in the wall part 2, wont tell, cant keep, driftin, im one, youve got to hide your love away, youre true, im so tired, isnt it a pity, dont be shy
-  - **Sprint i18n PT em curso** (5 batches commitados):
+  - **Sprint i18n PT em curso** (7 batches commitados):
     - batch 1 (`b6d48ed`): Pacaembu pt.1 (10 m): go, hail hail, animal, green disease, corduroy, given to fly, faithfull, untitled, mfc, porch
     - batch 2 (`4b646e0`): Pacaembu pt.2 (10 m): glorified g, do the evolution, modern girl, better man, man of the hour, i believe in miracles, last kiss, don't gimme no lip, rearviewmirror, save you
     - batch 3 (`385b8f6`): Pacaembu remainder + high-frequency (10 m): i got id, once, jeremy, yellow ledbetter, elderly woman, why go, unthought known, wishlist, just breathe, daughter
     - batch 4 (`36ede1d`): high-frequency cont (10 m): rockin in the free world, got some, sleeping by myself, not for you, save it for later, lukin, falling slowly, far behind, hard sun, release
     - batch 5 (`47863a9`): high-frequency cont (10 m): immortality, setting forth, mind your manners, society, guaranteed, sleepless nights, the fixer, state of love and trust, sirens, tuolumne
+    - batch 6 (`82547b1`): high-frequency cont (10 m): cant keep, indifference, comatose, present tense, lightning bolt, smile, i am mine, crazy mary, sometimes, long nights
+    - batch 7 (`0979454`): high-frequency cont (10 m): rise, without you, better days, youve got to hide your love away, ole, off he goes, in hiding, come back, comfortably numb, imagine
   - Padrão da tradução: `text_pt` espelha `text` universal; `byShow_pt` traduz cada show com mesmas keys do `byShow`. Citações de letra ficam em EN com gloss PT entre parênteses quando útil. Sem em-dashes
 - **Análises de álbum** (`media/albums/*.md`): 15 docs longos em português + 1 rascunho. Modal fullscreen acessível pela tab Cobertura por álbum (botão "📖 Ler análise")
 - **Ensaios temáticos** (`media/essays/*.md`): nova pasta criada pra documentos cross-cutting que não são de um álbum específico. Atualmente: 1 rascunho (Covers / reinterpretações)
@@ -194,7 +196,7 @@ Tamanho total `media/`: ~270 MB.
 ## 6. Pendências (em ordem de prioridade)
 
 ### Próxima sessão (precisa input do user)
-1. **Sprint i18n PT, continuar**: 53/221 (24%) feitos em 5 batches. Restam 168 entradas sem `text_pt`. Próximas candidatas naturais (high-frequency, ainda não feitas): topo agora são keys com 4-5 byShow entries: `comatose`, `present tense`, `lightning bolt`, `smile`, `i am mine`, `crazy mary`, `sometimes`, `long nights`, `rise`, `without you`, `better days`, `youve got to hide your love away`, etc. Padrão é batch de 10
+1. **Sprint i18n PT, continuar**: 73/221 (33%) feitos em 7 batches. Restam 148 entradas sem `text_pt`. Próximas candidatas naturais (3 byShow entries cada, em ordem alfabética da fila atual): `should i stay or should i go`, `world wide suicide`, `wma`, `down`, `severed hand`, mais o resto da cauda. Padrão é batch de 10
 2. **"I Want You So Hard"** (cover Eagles of Death Metal, deployment Paris-tribute 2015): falta universal text. Apareceu em pj-2015-11-20 BH e pj-2015-11-22 RJ. Skipado pra não criar entrada incompleta; se quiser, eu redijo universal + byShow nos 2 shows
 3. **Repaste das conclusões truncadas**: Gigaton, Dark Matter, Into the Wild tiveram paste degradado. Se quiser repastear só a Conclusão, eu acrescento na seção "Conclusão" dos respectivos `.md`
 4. **Lost Dogs review + publish**: rascunho em `media/albums/lostdogs.md`. Revisar e adicionar `'lostdogs'` ao `ALBUM_DOCS` pra ativar
@@ -344,6 +346,9 @@ git push origin main
 ## 14. Histórico de commits relevantes (sessão 2026-05-09)
 
 ```
+0979454  i18n(interp): traducao PT batch 7 - 10 musicas (high-frequency cont)
+82547b1  i18n(interp): traducao PT batch 6 - 10 musicas (high-frequency cont)
+72be0a9  docs(handoff): registra sprint i18n PT (5 batches, 24%) e fix do count-up
 47863a9  i18n(interp): traducao PT batch 5 - 10 musicas (high-frequency cont)
 3f49076  fix(stats): count-up tween virava negativo gigante (perf.now() em vez do timestamp do rAF)
 36ede1d  i18n(interp): traducao PT batch 4 - 10 musicas (high-frequency cont)
@@ -419,14 +424,14 @@ Esta sessão entregou cinco blocos grandes:
 
 3. **Bug de keys resolvido + 12 universals novos**: apóstrofos, pontos e vírgulas em keys do interpretations.json estavam silenciosamente quebrando o lookup do `_lyricsNorm` (que strippa esses caracteres). 22 keys renomeados em ondas conforme a expansão progrediu. 12 entradas universais novas adicionadas pra Gigaton (8 tracks), Brad cover, Avocado track, Binaural deep cuts, e covers raros de KISS/Prince.
 
-4. **Sprint i18n PT (5 batches)**: piloto bilíngue (`df532bb`) introduz `LYRICS_PT` inline, formato dual `{text, text_pt, byShow, byShow_pt}` em interpretations.json, botão alternando PT/EN e UX onde clicar no painel fecha o card (`3f483d6`). Cinco batches commitados (b6d48ed, 4b646e0, 385b8f6, 36ede1d, 47863a9) trouxeram **53/221 músicas (24%)** com `text_pt` completo + `byShow_pt` espelhando os shows do byShow EN.
+4. **Sprint i18n PT (7 batches)**: piloto bilíngue (`df532bb`) introduz `LYRICS_PT` inline, formato dual `{text, text_pt, byShow, byShow_pt}` em interpretations.json, botão alternando PT/EN e UX onde clicar no painel fecha o card (`3f483d6`). Sete batches commitados (b6d48ed, 4b646e0, 385b8f6, 36ede1d, 47863a9, 82547b1, 0979454) trouxeram **73/221 músicas (33%)** com `text_pt` completo + `byShow_pt` espelhando os shows do byShow EN.
 
 5. **Bug fix do count-up tween (`3f49076`)**: stats no header (Shows, Músicas únicas, etc.) viravam números negativos enormes (`-2.370 SHOWS`) após visitar a aba Raridades. Causa: o tick do tween usava o timestamp do callback de rAF e comparava com `performance.now()` capturado fora; em ambientes onde os clocks ficam dessincronizados, `p` virava negativo, `Math.pow(1-p, 3)` explodia, e o multiplicador final era enorme negativo. Fix: ler `performance.now()` dentro do tick e clampar `p` em [0, 1].
 
 Plus: 2 documentos em rascunho salvos (Lost Dogs em `media/albums/lostdogs.md`, Covers em `media/essays/covers.md`), nova pasta `media/essays/` criada, HANDOFF reescrito.
 
-**Próxima sessão sugerida**: continuar sprint i18n (próximo batch 6, restam 168 músicas sem `text_pt`, predominantemente Vitalogy/No Code/Yield deep cuts e covers); revisar Deep redesign no live (Lighthouse + browsers); revisar/publicar Lost Dogs; decidir como linkar o ensaio Covers; ou repastear conclusões dos álbuns truncados.
+**Próxima sessão sugerida**: continuar sprint i18n (próximo batch 8, restam 148 músicas sem `text_pt`, agora caindo pra deep cuts com 3 ou menos byShow entries cada); revisar Deep redesign no live (Lighthouse + browsers); revisar/publicar Lost Dogs; decidir como linkar o ensaio Covers; ou repastear conclusões dos álbuns truncados.
 
 ---
 
-*Atualizado por sessão Claude Code em 2026-05-09 (HEAD `47863a9`).*
+*Atualizado por sessão Claude Code em 2026-05-09 (HEAD `0979454`).*
