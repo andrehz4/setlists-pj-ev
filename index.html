@@ -7031,9 +7031,11 @@ document.addEventListener("DOMContentLoaded", init);
     const duration = 900;
     const start = performance.now();
     const from = 0;
-    function tick(t) {
-      const p = Math.min(1, (t - start) / duration);
-      // easeOutCubic
+    function tick() {
+      // Use performance.now() instead of the rAF timestamp arg: in some
+      // environments the two clocks are out of sync, which made p negative
+      // and produced huge negative values in the count-up.
+      const p = Math.max(0, Math.min(1, (performance.now() - start) / duration));
       const e = 1 - Math.pow(1 - p, 3);
       const v = Math.round(from + (target - from) * e);
       el.textContent = v.toLocaleString('pt-BR') + suffix;
