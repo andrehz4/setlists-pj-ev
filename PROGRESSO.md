@@ -81,6 +81,24 @@ Reduzidos os 3 tiques de traducao identificados:
 ## Rename de secao: INTERPRETAÇÃO -> ANÁLISE (sessao 2026-05-11 noite)
 Botao da faixa, tooltips, aria-labels e meta-textos visiveis ao usuario trocados de "interpretação" pra "análise" no index.html. Motivacao: "interpretação" em musica tem duplo sentido (hermeneutica + performance), criando ambiguidade num site de shows. "análise" é preciso e curto (botao com 7 chars vs 13). Conteudo dos ensaios em interpretations.json nao foi tocado (texto interno autoral), assim como nomes de variaveis JS (_getInterpretation, .interp-toggle, .interp-row), classes CSS e o filename interpretations.json — refator interno sem ganho ao usuario. Letras (LYRICS_PT) com a palavra "interpretação" como verso cantado permaneceram intactas.
 
+## Fase 1 TAB: infraestrutura (sessao 2026-05-11 noite)
+Estrutura base pra cifras e tablaturas hospedadas localmente em `media/tabs/`. Botao TAB ao lado de LETRA e ANÁLISE na linha da faixa, com painel inline em 2 abas (Cifra | Tab) e info-bar com pills mostrando key/capo/tuning.
+
+**Criado:**
+- `media/tabs/index.json` manifest com 20 entradas Top 20 PJ ao vivo (black, alive, even flow, yellow ledbetter, better man, jeremy, daughter, elderly woman..., just breathe, given to fly, corduroy, state of love and trust, animal, rearviewmirror, do the evolution, last kiss, crazy mary, sirens, hail hail, footsteps). Cada uma marcada como `{cifra: false, tab: false, key, tuning}` — placeholder.
+- JS: `_loadTabsManifest()`, `_getTabEntry()` + chamada non-blocking em init().
+- HTML: bloco TAB button + row injetado depois do bloco ANALISE no loop de faixas.
+- CSS: `.tab-toggle`, `.tab-row`, `.tab-block`, `.tab-info`, `.tab-pill`, `.tab-pane`, `.tab-pane-soon` em paleta azul-petroleo (#2e6b8a) pra distinguir visualmente de LETRA (vermelho PJ) e ANALISE (laranja EV).
+
+**Comportamento Fase 1:** botao TAB aparece nas 20 musicas do manifest. Painel mostra info-bar (key + tuning + capo quando aplicavel) e duas abas "Cifra"/"Tab", ambas exibindo placeholder "em breve - esta musica esta no plano das proximas curadorias". Texto explicativo do drawer audio-notes atualizado pra incluir o botao TAB.
+
+**Proximas fases:**
+- Fase 2: parser ChordPro + chord-chips coloridos + VexChords pra diagramas de acorde no hover. Cadastro de 3-5 cifras iniciais (Black, Alive, Even Flow).
+- Fase 3: AlphaTab integration via CDN lazy-load. Cadastro de 3-5 .gp iniciais.
+- Fase 4: curadoria completa das 20 ao longo de varias sessoes.
+
+Plano completo em `C:\Users\engan\.claude\plans\shimmering-crunching-matsumoto.md`.
+
 ## Aba Tradutor no painel ANÁLISE (sessao 2026-05-11 noite)
 `media/lyrics-notes.json` (227 ensaios do tradutor, ~250-300 palavras cada, foco em simbolismo e decisoes de traducao) agora renderizado como terceira aba "Tradutor" no painel ANÁLISE da faixa, ao lado de PT/EN da analise critica.
 

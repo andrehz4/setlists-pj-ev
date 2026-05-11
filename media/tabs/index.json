@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "purpose": "Manifest de cifras e tablaturas hospedadas localmente. Cada chave eh um song_key normalizado (mesmo _lyricsNorm usado em LYRICS/interpretations/lyrics-notes). Campos cifra/tab indicam se ha arquivo correspondente em cifras/ e gp/ — quando false, o painel mostra placeholder 'em breve' pra aquele formato.",
+    "format": "{ song_key: { cifra: bool, tab: bool, key?: string, tuning?: string, capo?: int, notes?: string } }",
+    "tuning_default": "EADGBE",
+    "started": "2026-05-11",
+    "phase": "1 (infraestrutura, sem conteudo ainda)"
+  },
+  "black": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
+  "alive": { "cifra": false, "tab": false, "key": "A", "tuning": "EADGBE" },
+  "even flow": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
+  "yellow ledbetter": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
+  "better man": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
+  "jeremy": { "cifra": false, "tab": false, "key": "F", "tuning": "EADGBE" },
+  "daughter": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
+  "elderly woman behind the counter in a small town": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
+  "just breathe": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE", "capo": 2 },
+  "given to fly": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
+  "corduroy": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
+  "state of love and trust": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
+  "animal": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
+  "rearviewmirror": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
+  "do the evolution": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
+  "last kiss": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
+  "crazy mary": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
+  "sirens": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
+  "hail hail": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
+  "footsteps": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" }
+}
