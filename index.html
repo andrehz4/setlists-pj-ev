@@ -3566,6 +3566,97 @@ html[data-theme="light"] .drawer-section-label.my-media {
   overflow: hidden;
 }
 .cifra-detail-body { position: relative; }
+
+/* Header do cifra-detail: cover do album + titulo + pills (key/tuning/capo/bpm).
+   Cover-ten e' arte SVG-like em CSS (5 silhuetas + glow) pro album Ten;
+   fallback generico (gradient + sigla) pros demais. */
+.cifra-header {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 22px;
+  align-items: start;
+  margin-bottom: 22px;
+}
+.cifra-cover {
+  width: 110px;
+  height: 110px;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  border-radius: 2px;
+}
+.cover-ten {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #0d1620 0%, #1a3245 35%, #6b3520 75%, #c1782d 100%);
+  overflow: hidden;
+}
+.cover-figures { position: absolute; bottom: 8%; left: 0; right: 0; height: 60%; }
+.cover-figures .figure {
+  position: absolute; bottom: 0; width: 14%; height: 100%;
+  background: #0a0807;
+  clip-path: polygon(35% 0, 65% 0, 75% 12%, 65% 18%, 90% 50%, 100% 100%, 0 100%, 10% 50%, 35% 18%, 25% 12%);
+}
+.cover-figures .figure::before,
+.cover-figures .figure::after {
+  content: ''; position: absolute; top: 8%; width: 28%; height: 30%; background: #0a0807;
+}
+.cover-figures .figure::before { left: -10%; transform: rotate(-35deg); clip-path: polygon(50% 0, 100% 30%, 60% 100%, 0 70%); }
+.cover-figures .figure::after { right: -10%; transform: rotate(35deg); clip-path: polygon(0 30%, 50% 0, 100% 70%, 40% 100%); }
+.cover-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center 65%, rgba(232,161,58,0.45) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cover-generic {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--pj-soft, #6b1518), var(--pj, #a8322b));
+  color: #f5f1e8;
+  font: 800 28px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.08em;
+}
+.cover-from-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+
+.cifra-titlebox { min-width: 0; }
+.cifra-album-line {
+  font: 600 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--pj);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.cifra-songtitle {
+  font: 700 clamp(34px, 5vw, 52px)/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+.cifra-songsub {
+  font: italic 14px/1.4 var(--font-editorial, Georgia, serif);
+  color: var(--ink-mute);
+  margin-bottom: 10px;
+}
+.cifra-pills {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.cifra-pills .tab-pill, .cifra-pills .tab-pill-alt {
+  /* reusa .tab-pill ja existente do _renderTabPanel */
+}
+/* InfoBar do _renderTabPanel ja aparece no cifra-header (pills); esconde
+   a versao do body pra nao duplicar. Painel inline da faixa do show
+   continua mostrando a infoBar normalmente (nao tem o header proprio). */
+.cifra-detail-body > .tab-info { display: none; }
+
+@media (max-width: 600px) {
+  .cifra-header { grid-template-columns: 80px 1fr; gap: 14px; }
+  .cifra-cover { width: 80px; height: 80px; }
+}
+
 .cifra-empty {
   padding: 80px 30px;
   text-align: center;
@@ -8273,10 +8364,60 @@ function renderTabsView() {
 }
 
 // Renderiza o painel de detalhe de uma musica dentro da view "Cifras & Tabs".
-// Por enquanto so envolve _renderTabPanel num container; nos commits seguintes
-// vai ganhar header com cover + voice picker.
+// Header tipografico (cover + titulo + pills) + body que delega pro
+// _renderTabPanel (preservando 100% logica de cifra + tab + AlphaTab + FAB +
+// fretboard overlay + smplr).
 function _renderCifraDetail(container, songKey, tabMeta) {
-  container.innerHTML = '<div class="cifra-detail-body"></div>';
+  const displayName = (key) => {
+    const found = Object.keys(SONG_TO_ALBUM).find(s => _lyricsNorm(s) === key);
+    return found || key.replace(/\b\w/g, c => c.toUpperCase());
+  };
+  const title = displayName(songKey);
+  const album = getAlbum(title);
+  const albumTitle = album ? album.title : '';
+  const albumYear = album ? album.year : '';
+  const albumArtist = album ? (album.artist || 'Pearl Jam') : 'Pearl Jam';
+
+  // Cover: arte CSS pra Ten, foto pra demais albuns conhecidos, fallback generico.
+  let coverInner;
+  if (album && album.id === 'ten') {
+    coverInner = `
+      <div class="cover-ten">
+        <div class="cover-figures">
+          ${[0,1,2,3,4].map(i => `<div class="figure" style="left:${10 + i*17}%"></div>`).join('')}
+        </div>
+        <div class="cover-glow"></div>
+      </div>`;
+  } else if (album) {
+    coverInner = `<div class="cover-from-img" style="background-image:url('${albumCoverPath(album.id)}')"></div>`;
+  } else {
+    const sigla = (title.match(/\b\w/g) || []).slice(0, 2).join('').toUpperCase() || 'PJ';
+    coverInner = `<div class="cover-generic">${sigla}</div>`;
+  }
+
+  // Pills do header (key, tuning quando diferente do padrao EADGBE, capo, bpm).
+  const pills = [];
+  if (tabMeta.key) pills.push(`<span class="tab-pill">${tabMeta.key}</span>`);
+  if (tabMeta.tuning && tabMeta.tuning.replace(/\s+/g, '') !== 'EADGBE') {
+    pills.push(`<span class="tab-pill tab-pill-alt">${tabMeta.tuning}</span>`);
+  }
+  if (tabMeta.capo) pills.push(`<span class="tab-pill tab-pill-alt">capo ${tabMeta.capo}</span>`);
+  if (tabMeta.bpm) pills.push(`<span class="tab-pill tab-pill-alt">${tabMeta.bpm} BPM</span>`);
+
+  const albumLineParts = [albumArtist, albumTitle, albumYear].filter(Boolean);
+  const escTitle = title.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+  container.innerHTML = `
+    <header class="cifra-header">
+      <div class="cifra-cover" aria-hidden="true">${coverInner}</div>
+      <div class="cifra-titlebox">
+        <div class="cifra-album-line">${albumLineParts.join(' &middot; ')}</div>
+        <h3 class="cifra-songtitle">${escTitle}</h3>
+        <div class="cifra-pills">${pills.join('')}</div>
+      </div>
+    </header>
+    <div class="cifra-detail-body"></div>
+  `;
   const body = container.querySelector('.cifra-detail-body');
   _renderTabPanel(body, songKey, tabMeta);
 }
