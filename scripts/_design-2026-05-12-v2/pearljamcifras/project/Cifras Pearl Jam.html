@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cifras & Tabs · Black · Pearl Jam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Oswald:wght@500;700&display=swap">
+
+<style>
+/* ==== Site tokens (Ticket Archive — extraídos do index.html original) ==== */
+:root {
+  --bg: #f3ede0;
+  --bg-card: #ebe4d3;
+  --bg-card-hover: #e0d8c3;
+  --paper: #f7f1e3;
+  --ink: #1a1612;
+  --ink-mute: #5a5245;
+  --ink-dim: #8a7f6d;
+  --divider: #d4cbb5;
+  --divider-strong: #b3a78a;
+  --pj: #9c1f22;
+  --pj-soft: #6b1518;
+  --ev: #a0671e;
+  --ev-soft: #6e4716;
+  --heard: #4a7342;
+  --teal: #2e6b8a;
+  --teal-soft: #1f4e6a;
+  --font-display: "Archivo Black", sans-serif;
+  --font-editorial: "Instrument Serif", serif;
+  --font-body: "Newsreader", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-ticket: "Oswald", sans-serif;
+}
+html[data-theme="dark"] {
+  --bg: #0a0908; --bg-card: #141210; --paper: #1b1915;
+  --ink: #f5f1e8; --ink-mute: #a8a092; --ink-dim: #6b6459;
+  --divider: #2a2520; --divider-strong: #403930;
+  --pj: #c1272d; --ev: #e8a13a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+body {
+  background-image:
+    radial-gradient(ellipse at top, rgba(156,31,34,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(160,103,30,0.025) 0%, transparent 50%);
+}
+
+/* ==== Site chrome (reduzido) — só pra ancorar que esta seção vive dentro do site ==== */
+.masthead { padding: 28px 32px 16px; border-bottom: 1px solid var(--divider); max-width: 1400px; margin: 0 auto; }
+.masthead-top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+.masthead h1 { font-family: var(--font-display); font-size: clamp(24px, 3.6vw, 38px); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.02em; }
+.masthead h1 .accent-pj { color: var(--pj); }
+.masthead h1 .accent-ev { color: var(--ev); }
+.masthead-sub { font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); }
+.masthead-meta { font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); letter-spacing: 0.15em; text-transform: uppercase; }
+
+.tabs-nav { max-width: 1400px; margin: 0 auto; padding: 0 32px; display: flex; gap: 0; border-bottom: 1px solid var(--divider); overflow-x: auto; scrollbar-width: none; }
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tabs-nav .navtab { padding: 14px 18px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mute); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
+.tabs-nav .navtab:hover { color: var(--ink); }
+.tabs-nav .navtab.active { color: var(--ink); border-bottom-color: var(--pj); }
+
+.view { max-width: 1400px; margin: 0 auto; padding: 24px 32px 80px; }
+.view-title { font-family: var(--font-editorial); font-size: 26px; font-style: italic; margin-bottom: 4px; }
+.view-desc { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 22px; }
+
+/* ==== Layout do view-tabs: grid + detail ==== */
+.tabs-layout { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+@media (max-width: 880px) { .tabs-layout { grid-template-columns: 1fr; } }
+
+.catalog-aside { position: sticky; top: 16px; max-height: calc(100vh - 40px); overflow: hidden; display: flex; flex-direction: column; gap: 10px; }
+.catalog-search { width: 100%; padding: 8px 12px; background: var(--bg-card); color: var(--ink); border: 1px solid var(--divider-strong); border-radius: 3px; font-family: var(--font-mono); font-size: 12px; }
+.catalog-search:focus { outline: none; border-color: var(--teal); }
+.catalog-list { display: flex; flex-direction: column; gap: 2px; overflow-y: auto; padding-right: 4px; }
+.catalog-list::-webkit-scrollbar { width: 6px; }
+.catalog-list::-webkit-scrollbar-thumb { background: var(--divider-strong); border-radius: 3px; }
+.cat-item { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 8px 10px; background: transparent; border: 0; border-left: 2px solid transparent; cursor: pointer; text-align: left; transition: all 0.15s; font-family: var(--font-editorial); }
+.cat-item:hover { background: var(--bg-card); border-left-color: var(--divider-strong); }
+.cat-item.active { background: var(--bg-card-hover); border-left-color: var(--pj); }
+.cat-item.disabled { cursor: not-allowed; opacity: 0.55; }
+.cat-item-title { font-style: italic; font-size: 16px; color: var(--ink); }
+.cat-item-album { font-family: var(--font-mono); font-size: 9px; color: var(--ink-dim); letter-spacing: 0.12em; text-transform: uppercase; }
+.cat-item-status { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
+.cat-item-status.ready { background: rgba(46,107,138,0.12); color: var(--teal); border: 1px solid rgba(46,107,138,0.4); }
+.cat-item-status.cifra-only { background: transparent; color: var(--ink-mute); border: 1px dashed var(--divider-strong); }
+.cat-item-status.soon { color: var(--ink-dim); }
+
+/* ==== CIFRA DETAIL ==== */
+.cifra-detail {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--divider);
+  border-top: 3px solid var(--teal);
+  padding: 28px 32px 24px;
+  overflow: hidden;
+  min-height: 600px;
+}
+.cifra-detail[data-paper="kraft"] {
+  background:
+    radial-gradient(circle at 15% 18%, rgba(26,22,18,0.04), transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(156,31,34,0.05), transparent 40%),
+    var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(26,22,18,0.012) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(26,22,18,0.012) 0 1px, transparent 1px 5px);
+  background-color: var(--paper);
+}
+.cifra-detail[data-paper="vinyl"] {
+  background: radial-gradient(circle at 60% 40%, #1a1612 0%, #0a0908 70%);
+  color: #f5f1e8;
+  --ink: #f5f1e8; --ink-mute: #a8a092; --ink-dim: #6b6459;
+  --divider: #2a2520; --paper: #1a1612;
+}
+
+/* Stamps decorativos no canto */
+.stamp { position: absolute; pointer-events: none; user-select: none; }
+.stamp-sun { top: 18px; right: 24px; width: 78px; height: 78px; opacity: 0.14; transform: rotate(-8deg); mix-blend-mode: multiply; }
+.stamp-stickman { bottom: 80px; right: 32px; width: 96px; height: 110px; opacity: 0.08; transform: rotate(6deg); mix-blend-mode: multiply; }
+.cifra-detail[data-paper="vinyl"] .stamp-sun,
+.cifra-detail[data-paper="vinyl"] .stamp-stickman { filter: invert(1); mix-blend-mode: screen; opacity: 0.18; }
+
+/* Header */
+.cifra-header { display: grid; grid-template-columns: auto 110px 1fr; gap: 22px; align-items: start; margin-bottom: 24px; position: relative; }
+.cifra-back { background: transparent; border: 1px solid var(--divider-strong); color: var(--ink-mute); padding: 6px 12px; font: 600 9px/1 var(--font-ticket); letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border-radius: 2px; align-self: start; transition: all 0.15s; }
+.cifra-back:hover { color: var(--pj); border-color: var(--pj); }
+.cifra-cover { width: 110px; height: 110px; position: relative; }
+/* Capa stilizada do Ten — 5 figuras de braço dado em silhueta */
+.cover-ten { position: absolute; inset: 0; background: linear-gradient(180deg, #0d1620 0%, #1a3245 35%, #6b3520 75%, #c1782d 100%); overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
+.cover-figures { position: absolute; bottom: 8%; left: 0; right: 0; height: 60%; }
+.cover-figures .figure { position: absolute; bottom: 0; width: 14%; height: 100%; background: #0a0807; clip-path: polygon(35% 0, 65% 0, 75% 12%, 65% 18%, 90% 50%, 100% 100%, 0 100%, 10% 50%, 35% 18%, 25% 12%); }
+.cover-figures .figure::before, .cover-figures .figure::after { content: ''; position: absolute; top: 8%; width: 28%; height: 30%; background: #0a0807; }
+.cover-figures .figure::before { left: -10%; transform: rotate(-35deg); clip-path: polygon(50% 0, 100% 30%, 60% 100%, 0 70%); }
+.cover-figures .figure::after { right: -10%; transform: rotate(35deg); clip-path: polygon(0 30%, 50% 0, 100% 70%, 40% 100%); }
+.cover-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at center 65%, rgba(232,161,58,0.45) 0%, transparent 50%); pointer-events: none; }
+
+.cifra-titlebox { min-width: 0; }
+.cifra-album-line { font-family: var(--font-mono); font-size: 10px; color: var(--pj); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 6px; }
+.cifra-songtitle { font-family: var(--font-display); font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 4px; }
+.cifra-songsub { font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); margin-bottom: 10px; }
+.cifra-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab-pill { display: inline-block; font: 700 10px/1 var(--font-ticket); letter-spacing: 0.14em; text-transform: uppercase; color: #fff; background: var(--teal); padding: 4px 8px; border-radius: 3px; }
+.tab-pill-alt { background: transparent; color: var(--teal); border: 1px solid var(--teal); padding: 3px 7px; }
+
+/* Format bar (Tab/Cifra toggle) */
+.cifra-format-bar { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1px solid var(--divider); }
+.cifra-format-btn { font: 600 11px/1 var(--font-ticket); letter-spacing: 0.18em; text-transform: uppercase; background: transparent; border: 0; border-bottom: 2px solid transparent; color: var(--ink-mute); padding: 10px 16px; cursor: pointer; transition: all 0.15s; }
+.cifra-format-btn:hover { color: var(--ink); }
+.cifra-format-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+/* Voice picker (Stone / Mike / Jeff) */
+.voice-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 22px; }
+@media (max-width: 600px) { .voice-picker { grid-template-columns: 1fr; } }
+.voice-tab { text-align: left; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--divider); border-left: 3px solid var(--divider-strong); cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; gap: 2px; font-family: var(--font-body); }
+.voice-tab:hover { background: var(--bg-card-hover); }
+.voice-tab.active { background: var(--paper); border-left-color: var(--vc); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.voice-tab-label { font-family: var(--font-display); font-size: 14px; letter-spacing: 0.02em; color: var(--ink); }
+.voice-tab.active .voice-tab-label { color: var(--vc); }
+.voice-tab-role { font-family: var(--font-mono); font-size: 9px; color: var(--ink-dim); letter-spacing: 0.15em; text-transform: uppercase; }
+.voice-tab-tag { font-family: var(--font-editorial); font-style: italic; font-size: 12px; color: var(--ink-mute); margin-top: 4px; }
+
+/* TAB paper */
+.tab-paper { background: var(--paper); padding: 18px 14px 8px; margin-bottom: 18px; box-shadow: inset 0 0 0 1px var(--divider); position: relative; }
+.tab-line-wrap { padding: 4px 0 12px; }
+.tab-line-wrap + .tab-line-wrap { border-top: 1px dashed var(--divider); margin-top: 4px; }
+
+/* CIFRA paper */
+.cifra-paper { padding: 14px 8px 18px; margin-bottom: 18px; display: flex; flex-direction: column; gap: 14px; }
+.cifra-line-row { display: flex; flex-direction: column; gap: 4px; }
+.cifra-line-row .chord-chip { font: 700 10px/1 var(--font-display); letter-spacing: 0.04em; background: var(--teal); color: #fff; padding: 3px 7px; border-radius: 3px; align-self: flex-start; cursor: pointer; transition: background 0.1s; }
+.cifra-line-row .chord-chip:hover { background: var(--teal-soft); }
+.cifra-line-row .cifra-syl { font: 400 16px/1.4 var(--font-mono); color: var(--ink); }
+
+/* Fretboard */
+.fretboard-wrap { background: linear-gradient(180deg, #c8b896 0%, #a89878 100%); border: 1px solid #5a4a32; padding: 8px 10px 14px; margin-bottom: 16px; position: relative; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.fretboard-wrap::before {
+  content: ''; position: absolute; inset: 4px; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 4px);
+}
+.cifra-fretboard { display: block; }
+
+/* Bottom controls — paleta teal igual o player de cifra do site */
+.cifra-controls {
+  display: flex; align-items: center; gap: 14px; padding: 12px 16px;
+  background: var(--bg-card); border: 1px solid var(--divider);
+  border-radius: 4px;
+}
+.ctrl-group { display: flex; align-items: center; gap: 8px; }
+.ctrl-ico { font-size: 16px; color: var(--ink-mute); }
+.ctrl-slider { -webkit-appearance: none; appearance: none; width: 90px; height: 2px; background: var(--divider-strong); border-radius: 2px; cursor: pointer; }
+.ctrl-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--teal); border-radius: 50%; cursor: pointer; border: 2px solid var(--paper); }
+.ctrl-slider::-moz-range-thumb { width: 12px; height: 12px; background: var(--teal); border-radius: 50%; cursor: pointer; border: 2px solid var(--paper); }
+.ctrl-btn { background: transparent; border: 0; color: var(--ink); font-size: 18px; cursor: pointer; padding: 4px 8px; line-height: 1; }
+.ctrl-btn:hover { color: var(--pj); }
+.ctrl-play { background: var(--teal); color: #fff; border: 0; width: 40px; height: 40px; border-radius: 50%; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+.ctrl-play:hover { background: var(--teal-soft); }
+.ctrl-play.playing { background: var(--pj); }
+.ctrl-speed { gap: 6px; }
+.ctrl-label { font: 600 10px/1 var(--font-ticket); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); }
+.ctrl-val { font-family: var(--font-mono); font-size: 11px; color: var(--teal); min-width: 32px; }
+.ctrl-spacer { flex: 1; }
+.ctrl-toggle { background: transparent; border: 1px solid var(--divider-strong); color: var(--ink-mute); padding: 6px 10px; font: 600 10px/1 var(--font-ticket); letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.15s; }
+.ctrl-toggle:hover { color: var(--ink); border-color: var(--ink-dim); }
+.ctrl-toggle.on { color: #fff; background: var(--pj); border-color: var(--pj); }
+
+@media (max-width: 700px) {
+  .cifra-controls { flex-wrap: wrap; }
+  .ctrl-spacer { display: none; }
+}
+
+/* Empty state quando música ainda não tem tab */
+.empty-state { padding: 60px 30px; text-align: center; background: var(--paper); border: 1px dashed var(--divider-strong); border-radius: 4px; }
+.empty-state-title { font-family: var(--font-editorial); font-style: italic; font-size: 22px; color: var(--ink); margin-bottom: 6px; }
+.empty-state-desc { font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim); letter-spacing: 0.12em; text-transform: uppercase; }
+
+.theme-toggle { background: transparent; border: 1px solid var(--divider-strong); color: var(--ink); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.theme-toggle:hover { border-color: var(--pj); color: var(--pj); }
+
+/* Visually hidden anchor for keyboard search focus */
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <div>
+      <h1><span class="accent-pj">Setlists</span> · <span class="accent-ev">Ticket Archive</span></h1>
+      <div class="masthead-sub">Arquivo pessoal — Pearl Jam & Eddie Vedder ao vivo</div>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <span class="masthead-meta">cifras & tabs · em curação</span>
+      <button class="theme-toggle" id="themeBtn" aria-label="Trocar tema">◐</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-nav" role="tablist">
+  <button class="navtab">Timeline</button>
+  <button class="navtab">Ranking</button>
+  <button class="navtab">Cobertura</button>
+  <button class="navtab">Destaques</button>
+  <button class="navtab">Buscar música</button>
+  <button class="navtab">Raridades</button>
+  <button class="navtab">Galeria</button>
+  <button class="navtab">Deep</button>
+  <button class="navtab active">🎸 Cifras & Tabs</button>
+</nav>
+
+<main class="view" id="view-tabs" data-screen-label="Cifras">
+  <h2 class="view-title">Cifras & Tablaturas</h2>
+  <div class="view-desc">cifras com chord-chips e tablaturas com fretboard animado · escolha o músico que quer acompanhar · Top 20 hits PJ ao vivo em curação contínua</div>
+
+  <div id="root"></div>
+</main>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="tab-data.jsx"></script>
+<script type="text/babel" src="fretboard.jsx"></script>
+<script type="text/babel" src="cifra-detail.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "paper": "kraft",
+  "stamps": "subtle",
+  "fretboardWood": "rosewood",
+  "showFretboardAlways": true,
+  "theme": "light"
+}/*EDITMODE-END*/;
+
+function App() {
+  const tw = (window.useTweaks ? window.useTweaks(TWEAK_DEFAULTS) : [TWEAK_DEFAULTS, () => {}]);
+  const tweaks = Array.isArray(tw) ? tw[0] : (tw.tweaks || TWEAK_DEFAULTS);
+  const setTweak = Array.isArray(tw) ? tw[1] : (tw.setTweak || (() => {}));
+
+  const [selectedKey, setSelectedKey] = useState('black');
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', tweaks.theme || 'light');
+  }, [tweaks.theme]);
+
+  useEffect(() => {
+    const btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    const onClick = () => setTweak('theme', (tweaks.theme === 'dark' ? 'light' : 'dark'));
+    btn.addEventListener('click', onClick);
+    return () => btn.removeEventListener('click', onClick);
+  }, [tweaks.theme]);
+
+  const catalog = window.BLACK_TAB.catalog;
+  const filtered = catalog.filter(c =>
+    c.title.toLowerCase().includes(search.toLowerCase()) ||
+    c.album.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const selected = catalog.find(c => c.key === selectedKey);
+  const isReady = selected && selected.status === 'ready';
+
+  return (
+    <>
+      <div className="tabs-layout">
+        <aside className="catalog-aside">
+          <input
+            className="catalog-search"
+            type="text"
+            placeholder='buscar: "Black", "Ten", "Vitalogy"...'
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            aria-label="Buscar música ou álbum"
+          />
+          <div className="catalog-list">
+            {filtered.map(c => (
+              <button
+                key={c.key}
+                className={'cat-item' + (selectedKey === c.key ? ' active' : '') + (c.status !== 'ready' ? ' disabled' : '')}
+                onClick={() => c.status === 'ready' && setSelectedKey(c.key)}
+                disabled={c.status !== 'ready'}
+              >
+                <span>
+                  <span className="cat-item-title">{c.title}</span><br/>
+                  <span className="cat-item-album">{c.album} · {c.year}</span>
+                </span>
+                <span className={'cat-item-status ' + c.status}>
+                  {c.status === 'ready' ? 'tab+cifra' : c.status === 'cifra-only' ? 'cifra' : 'em breve'}
+                </span>
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        <section>
+          {isReady ? (
+            <CifraDetail
+              song={window.BLACK_TAB}
+              tweaks={tweaks}
+              onClose={() => setSelectedKey('')}
+            />
+          ) : (
+            <div className="empty-state">
+              <div className="empty-state-title">{selected ? `"${selected.title}" — em breve` : 'Selecione uma música'}</div>
+              <div className="empty-state-desc">Black é a primeira da curadoria · as próximas vêm logo</div>
+            </div>
+          )}
+        </section>
+      </div>
+
+      {window.TweaksPanel && (
+        <window.TweaksPanel title="Tweaks">
+          <window.TweakSection title="Papel da seção">
+            <window.TweakRadio label="Estilo" value={tweaks.paper} options={[
+              { value: 'kraft', label: 'Kraft' },
+              { value: 'plain', label: 'Limpo' },
+              { value: 'vinyl', label: 'Vinil' },
+            ]} onChange={v => setTweak('paper', v)} />
+          </window.TweakSection>
+          <window.TweakSection title="Adesivos PJ">
+            <window.TweakRadio label="Stickman + sun" value={tweaks.stamps} options={[
+              { value: 'subtle', label: 'Sutil' },
+              { value: 'bold', label: 'Forte' },
+              { value: 'none', label: 'Sem' },
+            ]} onChange={v => setTweak('stamps', v)} />
+          </window.TweakSection>
+          <window.TweakSection title="Tema (site inteiro)">
+            <window.TweakRadio label="Modo" value={tweaks.theme} options={[
+              { value: 'light', label: 'Claro' },
+              { value: 'dark', label: 'Escuro' },
+            ]} onChange={v => setTweak('theme', v)} />
+          </window.TweakSection>
+        </window.TweaksPanel>
+      )}
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+
+</body>
+</html>

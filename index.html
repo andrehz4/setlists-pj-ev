@@ -3194,55 +3194,148 @@ html[data-theme="light"] .drawer-section-label.my-media {
   fill: var(--pj, #c1272d) !important;
   stroke: var(--pj, #c1272d) !important;
 }
+/* Transport bar redesenhado: barra unica horizontal com vol slider | prev |
+   PLAY grande redondo | speed slider + valor | loop | metro | braco | settings.
+   Layout do design Claude Design (screenshot enviado pelo Andre). */
 .alphatab-transport {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  margin-top: 14px;
   margin-bottom: 12px;
-  padding: 8px 12px;
-  background: rgba(46, 107, 138, 0.06);
-  border: 1px solid rgba(46, 107, 138, 0.18);
-  border-radius: 4px;
+  padding: 10px 16px;
+  background: var(--bg-card, #ebe4d3);
+  border: 1px solid var(--divider, #d4cbb5);
+  border-radius: 8px;
   flex-wrap: wrap;
 }
-.alphatab-btn {
-  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.16em;
+.atc-group { display: inline-flex; align-items: center; gap: 8px; }
+.atc-ico {
+  font-size: 14px;
+  color: var(--ink-mute, #5a5245);
+}
+.atc-label {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: var(--ink-dim, #8a7f6d);
+}
+.atc-vol-slider, .atc-speed-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: var(--divider-strong, #b3a78a);
+  border-radius: 2px;
+  cursor: pointer;
+  margin: 0;
+}
+.atc-vol-slider { width: 80px; }
+.atc-speed-slider { width: 140px; }
+.atc-vol-slider::-webkit-slider-thumb,
+.atc-speed-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #2e6b8a;
+  border: 2px solid var(--paper, #f7f1e3);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+}
+.atc-vol-slider::-moz-range-thumb,
+.atc-speed-slider::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #2e6b8a;
+  border: 2px solid var(--paper, #f7f1e3);
+  cursor: pointer;
+}
+.atc-speed-val {
+  font: 600 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--teal, #2e6b8a);
+  min-width: 36px;
+  text-align: right;
+}
+.atc-btn-ico {
+  background: transparent;
+  border: 0;
+  color: var(--ink, #1a1612);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 6px;
+  line-height: 1;
+  transition: color 120ms ease, background 120ms ease;
+  border-radius: 4px;
+}
+.atc-btn-ico:hover { color: var(--pj, #c1272d); background: rgba(0,0,0,0.04); }
+.atc-play-round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   background: #2e6b8a;
   color: #fff;
   border: 0;
-  padding: 8px 14px;
-  border-radius: 3px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background 120ms ease;
-  min-width: 86px;
+  flex-shrink: 0;
+  transition: background 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 2px 8px rgba(46, 107, 138, 0.4);
 }
-.alphatab-btn:hover { background: #1f4e6a; }
-.alphatab-play[data-state="playing"] { background: var(--pj, #c1272d); }
-.alphatab-play[data-state="playing"]:hover { background: #8a1c20; }
+.atc-play-round:hover { background: #1f4e6a; transform: scale(1.05); }
+.atc-play-round[data-state="playing"] {
+  background: var(--pj, #c1272d);
+  box-shadow: 0 2px 12px rgba(193, 39, 45, 0.5);
+}
+.atc-play-round[data-state="playing"]:hover { background: #8a1c20; }
+.atc-spacer { flex: 1; }
+.atc-btn {
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink-mute, #5a5245);
+  border: 1px solid var(--divider-strong, #b3a78a);
+  padding: 7px 11px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 120ms ease;
+  min-width: 0;
+}
+.atc-btn:hover { color: var(--ink, #1a1612); border-color: var(--ink-dim, #8a7f6d); }
+/* Compat: outras classes antigas (.alphatab-btn fora do transport) ainda
+   herdam estilo padrao do atc-btn quando dentro do .alphatab-transport. */
+.alphatab-transport .alphatab-btn {
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  min-width: 0;
+}
 .alphatab-status {
   font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
   color: var(--ink-mute, #6b5e44);
+  margin-left: auto;
+  flex-basis: 100%;
+  text-align: right;
 }
-.alphatab-speed-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-dim, #6b5e44);
+/* Braco button: estado ativo (default) vermelho PJ; off teal outlined. */
+.alphatab-braco {
+  background: transparent !important;
+  color: #2e6b8a !important;
+  border: 1px solid #2e6b8a !important;
 }
-.alphatab-speed {
-  font: 700 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  background: #fff;
-  color: var(--ink, #1a1611);
-  border: 1px solid rgba(46, 107, 138, 0.4);
-  border-radius: 3px;
-  padding: 6px 8px;
-  cursor: pointer;
+.alphatab-braco:hover { background: rgba(46,107,138,0.08) !important; }
+.alphatab-braco[data-state="on"] {
+  background: var(--pj, #c1272d) !important;
+  color: #fff !important;
+  border-color: var(--pj, #c1272d) !important;
 }
+.alphatab-braco[data-state="on"]:hover { background: #8a1c20 !important; }
+.alphatab-settings { opacity: 0.6; }
+.alphatab-settings:hover { opacity: 1; }
 .alphatab-loop {
   background: transparent !important;
   color: #2e6b8a !important;
@@ -3374,6 +3467,63 @@ html[data-theme="light"] .drawer-section-label.my-media {
   display: none;
 }
 .fretboard-overlay.show { display: block; }
+/* Modo inline: fretboard fica dentro do cifra-detail-body (acima do transport
+   bar), full-width, sem backdrop blur. Aparece como secao normal do painel. */
+.fretboard-overlay.inline {
+  position: static;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  width: 100%;
+  margin-top: 18px;
+  margin-bottom: 4px;
+  background: var(--bg-card);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  z-index: auto;
+  border-color: var(--divider);
+  border-radius: 8px;
+}
+.fretboard-overlay.inline.show { display: block; }
+.fretboard-overlay.inline .fretboard-close {
+  background: transparent;
+  color: var(--ink-mute);
+}
+.fretboard-overlay.inline .fretboard-close:hover {
+  background: var(--pj, #c1272d);
+  color: #fff;
+}
+.fretboard-overlay.inline:not(.minimized) .fretboard-svg {
+  cursor: zoom-out;
+  transition: filter 180ms ease;
+}
+.fretboard-overlay.inline:not(.minimized) .fretboard-svg:hover {
+  filter: brightness(1.04) drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+}
+/* Minimizado: esconde SVG, players e legend; barra continua clicavel pra
+   reabrir. Cursor pointer no card inteiro pra deixar claro que e expansivel. */
+.fretboard-overlay.inline.minimized {
+  padding: 8px 14px;
+  cursor: pointer;
+  background: var(--bg-card);
+}
+.fretboard-overlay.inline.minimized:hover { background: var(--bg-card-hover); }
+.fretboard-overlay.inline.minimized .fretboard-svg,
+.fretboard-overlay.inline.minimized .fretboard-players,
+.fretboard-overlay.inline.minimized .fretboard-legend { display: none; }
+.fretboard-overlay.inline.minimized .fretboard-bar { margin-bottom: 0; }
+.fretboard-overlay.inline.minimized .fretboard-tabs { opacity: 0.55; pointer-events: none; }
+.fretboard-overlay.inline.minimized .fretboard-header::after {
+  content: ' \00b7 clique pra expandir';
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  font-style: italic;
+  color: var(--ink-dim);
+  margin-left: 6px;
+  opacity: 0.7;
+}
 .fretboard-bar {
   display: flex;
   align-items: center;
@@ -8247,33 +8397,38 @@ function _renderTabPanel(body, songKey, tabMeta) {
     const tabPane = body.querySelector('.tab-pane-tab');
     if (tabPane) {
       tabPane.innerHTML = `
-        <div class="alphatab-transport" role="toolbar" aria-label="Controles de reprodução da tablatura">
-          <button type="button" class="alphatab-btn alphatab-play" data-state="idle" aria-label="Tocar tablatura">▶ Play</button>
-          <button type="button" class="alphatab-btn alphatab-stop" aria-label="Parar reprodução">◼ Stop</button>
-          <label class="alphatab-speed-label">Velocidade
-            <select class="alphatab-speed" aria-label="Velocidade de reprodução">
-              <option value="0.25">0.25×</option>
-              <option value="0.5">0.5×</option>
-              <option value="0.75">0.75×</option>
-              <option value="1" selected>1×</option>
-              <option value="1.25">1.25×</option>
-              <option value="1.5">1.5×</option>
-            </select>
-          </label>
-          <button type="button" class="alphatab-btn alphatab-loop" data-state="off" aria-label="Loop de trecho">🔁 Loop</button>
-          <button type="button" class="alphatab-btn alphatab-metronome" data-state="off" aria-label="Metr&ocirc;nomo (tick por beat)" title="Metr&ocirc;nomo">𝅘𝅥 Metr&ocirc;nomo</button>
-          <span class="alphatab-status">aguardando soundfont…</span>
-        </div>
         <div class="alphatab-surface"></div>
         <div class="tab-pane-loading">carregando tablatura…</div>
+        <div class="alphatab-transport" role="toolbar" aria-label="Controles de reprodu&ccedil;&atilde;o">
+          <div class="atc-group atc-vol">
+            <span class="atc-ico" aria-hidden="true">🔊</span>
+            <input type="range" class="atc-vol-slider" min="0" max="1" step="0.05" value="1" aria-label="Volume master">
+          </div>
+          <button type="button" class="atc-btn-ico alphatab-prev" aria-label="Voltar ao in&iacute;cio" title="In&iacute;cio">⏮</button>
+          <button type="button" class="atc-play-round alphatab-play" data-state="idle" aria-label="Tocar / pausar">▶</button>
+          <div class="atc-group atc-speed">
+            <span class="atc-label">SPEED</span>
+            <input type="range" class="atc-speed-slider alphatab-speed" min="0.25" max="1.5" step="0.05" value="1" aria-label="Velocidade de reprodu&ccedil;&atilde;o">
+            <span class="atc-speed-val">1.00</span>
+          </div>
+          <div class="atc-spacer"></div>
+          <button type="button" class="atc-btn alphatab-btn alphatab-loop" data-state="off" aria-label="Loop de trecho">🔁 Loop</button>
+          <button type="button" class="atc-btn alphatab-btn alphatab-metronome" data-state="off" aria-label="Metr&ocirc;nomo (tick por beat)" title="Metr&ocirc;nomo">𝅘𝅥 Metr&ocirc;nomo</button>
+          <button type="button" class="atc-btn alphatab-btn alphatab-braco" data-state="on" aria-pressed="true" aria-label="Mostrar/esconder bra&ccedil;o" title="Bra&ccedil;o">⌗ Bra&ccedil;o</button>
+          <button type="button" class="atc-btn-ico alphatab-settings" aria-label="Ajustes" title="Ajustes (em breve)">⚙</button>
+          <span class="alphatab-status" aria-live="polite">aguardando soundfont…</span>
+        </div>
       `;
       const surface = tabPane.querySelector('.alphatab-surface');
       const loading = tabPane.querySelector('.tab-pane-loading');
       const playBtn = tabPane.querySelector('.alphatab-play');
-      const stopBtn = tabPane.querySelector('.alphatab-stop');
-      const speedSel = tabPane.querySelector('.alphatab-speed');
+      const prevBtn = tabPane.querySelector('.alphatab-prev');
+      const volSlider = tabPane.querySelector('.atc-vol-slider');
+      const speedSlider = tabPane.querySelector('.alphatab-speed');
+      const speedVal = tabPane.querySelector('.atc-speed-val');
       const loopBtn = tabPane.querySelector('.alphatab-loop');
       const metronomeBtn = tabPane.querySelector('.alphatab-metronome');
+      const bracoBtn = tabPane.querySelector('.alphatab-braco');
       const status = tabPane.querySelector('.alphatab-status');
       _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
         // Registra como api ativa pra _stopAllTabAudio achar quando trocar musica
@@ -8365,8 +8520,42 @@ function _renderTabPanel(body, songKey, tabMeta) {
           fretboard.querySelector('.fretboard-close').addEventListener('click', (e) => {
             e.stopPropagation();
             fretboard.classList.remove('show');
+            fretboard.classList.remove('minimized');
           });
           document.body.appendChild(fretboard);
+
+          // Toggle minimize: click no SVG do braco (modo inline) minimiza;
+          // click na barra superior (quando minimizado) expande de volta.
+          // Modo floating ignora esses cliques.
+          fretboard.addEventListener('click', (e) => {
+            if (!fretboard.classList.contains('inline')) return;
+            if (e.target.closest('.fretboard-close')) return;
+            if (e.target.closest('.fretboard-tab')) return;
+            if (e.target.closest('.fretboard-player')) return;
+            if (e.target.closest('input')) return;
+            const isMin = fretboard.classList.contains('minimized');
+            if (isMin) {
+              fretboard.classList.remove('minimized');
+            } else if (e.target.closest('.fretboard-svg')) {
+              fretboard.classList.add('minimized');
+            }
+          });
+        }
+
+        // Docking: se _renderTabPanel rodou dentro da view Cifras (.cifra-detail-wrap),
+        // move o overlay singleton pra dentro da tab-pane-tab, ENTRE o alphatab-surface
+        // e o alphatab-transport (controles ficam embaixo do braco). Senao restaura
+        // modo floating no document.body (panel inline da faixa do show).
+        const inCifraView = body && body.closest && body.closest('.cifra-detail-wrap');
+        const transportEl = tabPane.querySelector('.alphatab-transport');
+        if (inCifraView && transportEl) {
+          tabPane.insertBefore(fretboard, transportEl);
+          fretboard.classList.add('inline');
+          fretboard.classList.remove('minimized');
+        } else {
+          if (fretboard.parentElement !== document.body) document.body.appendChild(fretboard);
+          fretboard.classList.remove('inline');
+          fretboard.classList.remove('minimized');
         }
         const fretSvg = fretboard.querySelector('.fretboard-svg');
         const fretLegend = fretboard.querySelector('.fretboard-legend');
@@ -8677,23 +8866,22 @@ function _renderTabPanel(body, songKey, tabMeta) {
         api.playerStateChanged.on(e => {
           _fabState = e.state;
           const fmtTag = (tabMeta.tabFormat || 'gp').toUpperCase();
+          const bracoOn = !bracoBtn || bracoBtn.dataset.state === 'on';
           if (e.state === 1) {
             playBtn.dataset.state = 'playing';
-            playBtn.textContent = '❚❚ Pause';
+            playBtn.textContent = '❚❚';
             status.textContent = `tocando ${fmtTag}…`;
             fab.classList.add('show');
-            fretboard.classList.add('show');
+            if (bracoOn) fretboard.classList.add('show');
           } else if (e.state === 2) {
             playBtn.dataset.state = 'idle';
-            playBtn.textContent = '▶ Play';
+            playBtn.textContent = '▶';
             status.textContent = `pausado (${fmtTag})`;
-            // Pausado: FAB e fretboard continuam visiveis pra retomar
             fab.classList.add('show');
-            fretboard.classList.add('show');
+            if (bracoOn) fretboard.classList.add('show');
           } else {
-            // state === 0: parado. Esconde FAB e fretboard (Andre pediu).
             playBtn.dataset.state = 'idle';
-            playBtn.textContent = '▶ Play';
+            playBtn.textContent = '▶';
             status.textContent = `${fmtTag} · click Play`;
             fab.classList.remove('show');
             fretboard.classList.remove('show');
@@ -8785,16 +8973,51 @@ function _renderTabPanel(body, songKey, tabMeta) {
           e.stopPropagation();
           api.playPause();
         });
-        stopBtn.addEventListener('click', (e) => {
+        // Prev: para a reproducao e volta cursor ao inicio.
+        if (prevBtn) {
+          prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            try { api.stop(); } catch (err) {}
+          });
+        }
+        // Volume master: ajusta api.masterVolume (0-1). Mudo nao silencia
+        // o metronome (que tem volume separado via api.metronomeVolume).
+        if (volSlider) {
+          volSlider.addEventListener('input', (e) => {
+            e.stopPropagation();
+            const v = parseFloat(volSlider.value);
+            if (!isNaN(v)) api.masterVolume = v;
+          });
+        }
+        // Velocidade: slider continuo 0.25-1.5, atualiza api.playbackSpeed e label.
+        speedSlider.addEventListener('input', (e) => {
           e.stopPropagation();
-          api.stop();
+          const v = parseFloat(speedSlider.value);
+          if (!isNaN(v)) {
+            api.playbackSpeed = v;
+            if (speedVal) speedVal.textContent = v.toFixed(2);
+          }
         });
-        // Velocidade: ajusta api.playbackSpeed (range 0.25-2.0).
-        speedSel.addEventListener('change', (e) => {
-          e.stopPropagation();
-          const v = parseFloat(speedSel.value);
-          if (!isNaN(v)) api.playbackSpeed = v;
-        });
+        // Toggle braco: liga/desliga visibilidade do fretboard inline.
+        // Quando o player ja esta tocando, o fretboard volta no proximo beat.
+        if (bracoBtn) {
+          bracoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const fb = document.querySelector('.fretboard-overlay');
+            if (!fb) return;
+            const isOn = bracoBtn.dataset.state === 'on';
+            if (isOn) {
+              fb.classList.remove('show');
+              bracoBtn.dataset.state = 'off';
+              bracoBtn.setAttribute('aria-pressed', 'false');
+            } else {
+              fb.classList.add('show');
+              fb.classList.remove('minimized');
+              bracoBtn.dataset.state = 'on';
+              bracoBtn.setAttribute('aria-pressed', 'true');
+            }
+          });
+        }
         // Loop: 3 estados — off / marcando-start / marcando-end-com-loop-ativo.
         // Cliques na propria tab marcam pontos via api.beatMouseDown.
         // Overlay grande aparece quando entra em modo de marcacao, explicando.
