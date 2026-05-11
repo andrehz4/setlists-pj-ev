@@ -3182,12 +3182,15 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 /* Na view Cifras (.cifra-detail-wrap), a partitura tem altura limitada com
    scroll interno. O cursor de playback rola DENTRO da surface (nao a window
-   inteira), entao o braco inline logo abaixo fica sempre visivel. No panel
-   inline da faixa do show (fora do .cifra-detail-wrap), surface mantem o
-   comportamento legado (window scroll). */
+   inteira), entao o braco inline logo abaixo fica sempre visivel.
+   overflow-x hidden pra nao consumir altura com scrollbar lateral. AlphaTab
+   re-renderiza o layout pra caber na largura disponivel (modo page default).
+   No panel inline da faixa do show (fora do .cifra-detail-wrap), surface
+   mantem comportamento legado (window scroll + scroll horizontal). */
 .cifra-detail-wrap .alphatab-surface {
-  max-height: 62vh;
+  max-height: 56vh;
   overflow-y: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 .cifra-detail-wrap .alphatab-surface::-webkit-scrollbar { width: 8px; }
@@ -3557,8 +3560,9 @@ html[data-theme="light"] .drawer-section-label.my-media {
   bottom: auto;
   left: auto;
   width: 100%;
-  margin-top: 18px;
+  margin-top: 12px;
   margin-bottom: 4px;
+  padding: 6px 10px 4px;
   background: var(--bg-card);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -3568,9 +3572,29 @@ html[data-theme="light"] .drawer-section-label.my-media {
   border-radius: 8px;
 }
 .fretboard-overlay.inline.show { display: block; }
+/* Versao limpa do braco inline: esconde header (BRAÇO), pills Violão/Baixo,
+   checkboxes Lead/Rhythm, legend embaixo, labels de cordas (e B G D...) e
+   numeros dos trastes (3 5 7 9...). Quem filtra tracks visualmente eh o
+   voice-picker do topo (Stone/Mike/Jeff). Foco no braco visual puro. */
+.fretboard-overlay.inline .fretboard-bar,
+.fretboard-overlay.inline .fretboard-players,
+.fretboard-overlay.inline .fretboard-legend,
+.fretboard-overlay.inline .fb-text-string,
+.fretboard-overlay.inline .fb-text-fret {
+  display: none;
+}
+.fretboard-overlay.inline .fretboard-svg {
+  height: 160px;
+  max-height: 22vh;
+}
 .fretboard-overlay.inline .fretboard-close {
   background: transparent;
   color: var(--ink-mute);
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
 }
 .fretboard-overlay.inline .fretboard-close:hover {
   background: var(--pj, #c1272d);
@@ -8787,7 +8811,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
             const w = 0.9 + thicknessRatio * 1.6;
             svg += `<line x1="22" y1="${y}" x2="${FB_W - 8}" y2="${y}" stroke="#dcdcdc" stroke-width="${w}" opacity="0.92"/>`;
             // Nome da nota afinada (entre headstock e nut)
-            svg += `<text x="${FB_NECK_LEFT - 10}" y="${y + 4}" font-family="sans-serif" font-size="10" font-weight="700" fill="#f0e8d0" text-anchor="end">${inst.tuning[s]}</text>`;
+            svg += `<text class="fb-text-string" x="${FB_NECK_LEFT - 10}" y="${y + 4}" font-family="sans-serif" font-size="10" font-weight="700" fill="#f0e8d0" text-anchor="end">${inst.tuning[s]}</text>`;
           }
 
           // ====== NUMEROS DOS TRASTES (embaixo) ======
@@ -8795,7 +8819,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           // ficavam ilegiveis em fonte 10.
           [3, 5, 7, 9, 12, 15, 17, 19, 21].forEach(f => {
             if (f > FB_FRETS) return;
-            svg += `<text x="${fretCenter(f)}" y="${FB_H - 8}" font-family="sans-serif" font-size="10" font-weight="600" fill="#888" text-anchor="middle">${f}</text>`;
+            svg += `<text class="fb-text-fret" x="${fretCenter(f)}" y="${FB_H - 8}" font-family="sans-serif" font-size="10" font-weight="600" fill="#888" text-anchor="middle">${f}</text>`;
           });
           fretSvg.innerHTML = svg;
         };
@@ -9002,6 +9026,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           statusEls.forEach(s => { s.textContent = txt; });
         };
         // Estado do player: 0=parado, 1=tocando, 2=pausado.
+        let _firstPlayScrolled = false;
         api.playerStateChanged.on(e => {
           _fabState = e.state;
           const fmtTag = (tabMeta.tabFormat || 'gp').toUpperCase();
@@ -9011,6 +9036,18 @@ function _renderTabPanel(body, songKey, tabMeta) {
             _setAllStatus(`tocando ${fmtTag}…`);
             fab.classList.add('show');
             if (bracoOn) fretboard.classList.add('show');
+            // Primeira vez que toca: rola window pra trazer o transport-top
+            // pro topo da viewport. Assim partitura (56vh) + braco (160px)
+            // + bottom transport cabem juntos na tela sem usuario rolar.
+            if (!_firstPlayScrolled && body && body.closest('.cifra-detail-wrap')) {
+              _firstPlayScrolled = true;
+              const topBar = tabPane.querySelector('.alphatab-transport-top');
+              const anchor = topBar || surface;
+              if (anchor) {
+                const y = anchor.getBoundingClientRect().top + window.scrollY - 16;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
+            }
           } else if (e.state === 2) {
             _setAllPlayState(false);
             _setAllStatus(`pausado (${fmtTag})`);
