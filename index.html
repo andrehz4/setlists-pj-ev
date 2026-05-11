@@ -3092,6 +3092,33 @@ html[data-theme="light"] .drawer-section-label.my-media {
   font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
   color: var(--ink-mute, #6b5e44);
 }
+.alphatab-tracks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  flex: 1 0 100%;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(46, 107, 138, 0.18);
+}
+.alphatab-tracks-label {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim, #6b5e44);
+}
+.alphatab-track-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font: 600 11px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink, #1a1611);
+  cursor: pointer;
+  user-select: none;
+}
+.alphatab-track-toggle input { accent-color: #2e6b8a; cursor: pointer; }
+.alphatab-track-toggle:has(input:not(:checked)) span { opacity: 0.4; text-decoration: line-through; }
 
 /* View "Cifras & Tabs": grid de cards (visual similar a Deep), expansivel
    pra mostrar o painel completo de cifra/tab inline. */
@@ -7269,6 +7296,37 @@ function _renderTabPanel(body, songKey, tabMeta) {
           }
         });
         api.playerReady.on(() => { status.textContent = 'pronto · click Play'; });
+        // Seletor de tracks: quando o arquivo .gp carregar, monta checkboxes
+        // pra cada track. Toggle atualiza visual (renderTracks) + audio (isMute).
+        const escTrack = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+        api.scoreLoaded.on(score => {
+          const tracks = (score && score.tracks) ? score.tracks : [];
+          if (tracks.length <= 1) return;
+          const transport = tabPane.querySelector('.alphatab-transport');
+          if (!transport || transport.querySelector('.alphatab-tracks')) return;
+          const trackBar = document.createElement('div');
+          trackBar.className = 'alphatab-tracks';
+          trackBar.innerHTML = '<span class="alphatab-tracks-label">Tracks:</span>';
+          tracks.forEach((track, idx) => {
+            const lbl = document.createElement('label');
+            lbl.className = 'alphatab-track-toggle';
+            const name = track.name || `Track ${idx + 1}`;
+            lbl.innerHTML = `<input type="checkbox" checked data-track-idx="${idx}"> <span>${escTrack(name)}</span>`;
+            trackBar.appendChild(lbl);
+          });
+          transport.appendChild(trackBar);
+          trackBar.addEventListener('change', () => {
+            const checks = Array.from(trackBar.querySelectorAll('input[type=checkbox]'));
+            const selectedIdx = checks.filter(c => c.checked).map(c => parseInt(c.dataset.trackIdx, 10));
+            // Mute audio das nao selecionadas
+            tracks.forEach((t, i) => {
+              if (t.playbackInfo) t.playbackInfo.isMute = !selectedIdx.includes(i);
+            });
+            // Re-renderiza visualmente so as selecionadas (se ao menos 1).
+            const visible = selectedIdx.length ? selectedIdx.map(i => tracks[i]) : tracks;
+            api.renderTracks(visible);
+          });
+        });
         playBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           api.playPause();
