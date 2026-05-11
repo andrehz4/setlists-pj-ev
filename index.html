@@ -3750,6 +3750,57 @@ html[data-theme="light"] .drawer-section-label.my-media {
   letter-spacing: 0.05em;
 }
 
+/* ============================================================
+   DARK THEME OVERRIDES — CIFRAS & TABS
+   Componentes com cores hardcoded (#fff, rgba branca) que ficam
+   ilegiveis em fundo escuro. Componentes que ja usam tokens
+   (var(--bg), var(--bg-card), etc.) se adaptam automaticamente
+   e nao precisam de override.
+   ============================================================ */
+html[data-theme="dark"] .alphatab-surface {
+  background: #1a1611;
+  border-color: rgba(46, 107, 138, 0.45);
+}
+/* AlphaTab renderiza glyphs em preto sobre o background do .at-surface-svg
+   (transparent), o que vira invisivel no dark. Inverte o SVG inteiro
+   pro tab continuar legivel. As cores PJ (vermelho/teal) ja sao tokenizadas
+   em CSS na cursor-bar/cursor-beat acima, entao continuam funcionando. */
+html[data-theme="dark"] .alphatab-surface .at-surface-svg { filter: invert(0.92) hue-rotate(180deg); }
+
+html[data-theme="dark"] .chord-diagram {
+  background: var(--bg-card);
+  border-color: rgba(46, 107, 138, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .cifra-player-bar,
+html[data-theme="dark"] .alphatab-transport {
+  background: rgba(46, 107, 138, 0.14);
+  border-color: rgba(46, 107, 138, 0.4);
+}
+html[data-theme="dark"] .tab-pane-soon {
+  background: rgba(46, 107, 138, 0.10);
+  border-color: rgba(46, 107, 138, 0.45);
+}
+
+html[data-theme="dark"] .fretboard-overlay {
+  background: rgba(26, 22, 17, 0.97);
+  border-color: rgba(46, 107, 138, 0.45);
+}
+/* Adesivos PJ ja usam mix-blend-mode: screen, que clareia em qualquer
+   fundo. Em dark precisam de mais opacidade pra continuar visiveis sem
+   serem agressivos. */
+html[data-theme="dark"] .fretboard-decal {
+  opacity: 0.55;
+  filter: brightness(1.6) contrast(1.0);
+}
+
+/* Header line do cifra-detail (artista · album · ano) usa --pj que ja
+   tem variante dark. Mas o songtitle e' --ink, idem. Cover-ten em CSS
+   nao depende de tokens. Voice-picker, catalog-aside, cifra-detail-wrap
+   todos consomem tokens (--bg-card, --divider, --ink) entao adaptam
+   sozinhos. */
+
 .lyrics-song-title {
   font-family: var(--font-editorial);
   font-style: italic;
