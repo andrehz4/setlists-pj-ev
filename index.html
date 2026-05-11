@@ -8288,8 +8288,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
             if (fbSelectedTracks.size && !fbSelectedTracks.has(n.trackIdx || 0)) return false;
             return true;
           });
-          let dots = '';
+          let ringingLines = '';   // linhas coloridas da nota ate o body (atras dos dots)
+          let vibratingStrings = ''; // overlay de vibracao por corda ativa
+          let dots = '';             // halo + circulo + numero do fret (na frente)
           const labels = new Map();
+          const activeStrings = new Set();
           filtered.forEach(n => {
             if (typeof n.fret !== 'number' || typeof n.string !== 'number') return;
             if (n.fret < 0 || n.fret > FB_FRETS) return;
@@ -8300,14 +8303,31 @@ function _renderTabPanel(body, songKey, tabMeta) {
               ? FB_PAD_L - 12
               : FB_PAD_L + (n.fret - 0.5) * fretSpacing;
             const color = TRACK_COLORS[(n.trackIdx || 0) % TRACK_COLORS.length];
-            // Halo (glow externo) + circulo + numero do fret
+
+            // Ringing line: nota ate borda direita do body, mostra que a nota
+            // esta soando. Opacidade media pra nao competir com o dot.
+            ringingLines += `<line x1="${x}" y1="${y}" x2="${FB_W - 8}" y2="${y}" stroke="${color}" stroke-width="3" opacity="0.45" stroke-linecap="round"/>`;
+
+            // Vibracao da corda: overlay colorido em toda a corda ativa com
+            // animate opacity 0.5/0.15/0.5 a 0.18s (parece corda vibrando).
+            // Uma vibracao por corda — multiplas notas na mesma corda nao
+            // duplicam o efeito.
+            if (!activeStrings.has(stringIdx)) {
+              activeStrings.add(stringIdx);
+              const gauge = 0.9 + (stringIdx / (nStrings - 1)) * 1.6;
+              vibratingStrings += `<line x1="22" y1="${y}" x2="${FB_W - 8}" y2="${y}" stroke="${color}" stroke-width="${gauge + 1.4}" opacity="0.35" stroke-linecap="round"><animate attributeName="opacity" values="0.5;0.15;0.5" dur="0.18s" repeatCount="indefinite"/></line>`;
+            }
+
+            // Halo (glow externo) + circulo pulsante + numero do fret
             dots += `<circle cx="${x}" cy="${y}" r="13" fill="${color}" opacity="0.25"/>`;
-            dots += `<circle cx="${x}" cy="${y}" r="10" fill="${color}" opacity="0.98" stroke="#fff" stroke-width="1.5"/>`;
+            dots += `<circle cx="${x}" cy="${y}" r="10" fill="${color}" opacity="0.98" stroke="#fff" stroke-width="1.5"><animate attributeName="r" values="10;12;10" dur="0.3s" repeatCount="indefinite"/></circle>`;
             dots += `<text x="${x}" y="${y + 4}" font-family="sans-serif" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">${n.fret}</text>`;
             const trackName = (n.trackName || `T${(n.trackIdx || 0) + 1}`).split(' ')[0];
             labels.set(trackName, color);
           });
-          fretSvg.insertAdjacentHTML('beforeend', dots);
+          // Ordem de pintura SVG: ringing lines + vibrating strings (atras),
+          // depois dots na frente. Ultimo elemento desenhado fica por cima.
+          fretSvg.insertAdjacentHTML('beforeend', ringingLines + vibratingStrings + dots);
           fretLegend.innerHTML = [...labels.entries()].map(([name, color]) =>
             `<span class="fretboard-legend-item"><span class="fretboard-legend-dot" style="background:${color}"></span>${name}</span>`
           ).join('') || '<span class="fretboard-legend-empty">aguardando notas…</span>';
