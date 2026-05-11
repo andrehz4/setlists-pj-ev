@@ -3175,6 +3175,60 @@ html[data-theme="light"] .drawer-section-label.my-media {
   .alphatab-fab { bottom: 16px; right: 16px; padding: 8px; gap: 6px; }
   .alphatab-fab-btn { width: 44px; height: 44px; font-size: 13px; }
 }
+/* Fretboard visualizer floating: 6 cordas x 12 frets, mostra notas tocadas
+   em tempo real. Esconde em telas pequenas (mobile) pra nao roubar espaco. */
+.fretboard-overlay {
+  position: fixed;
+  right: 24px;
+  bottom: 100px;
+  width: 240px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(46, 107, 138, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 10px 12px;
+  z-index: 9998;
+  display: none;
+}
+.fretboard-overlay.show { display: block; }
+.fretboard-header {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2e6b8a;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.fretboard-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.fretboard-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font: 600 9px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-dim, #6b5e44);
+  min-height: 12px;
+}
+.fretboard-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.fretboard-legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+@media (max-width: 768px) {
+  .fretboard-overlay { display: none !important; }
+}
 
 /* View "Cifras & Tabs": grid de cards (visual similar a Deep), expansivel
    pra mostrar o painel completo de cifra/tab inline. */
@@ -5771,6 +5825,8 @@ function openDrawer(showId) {
       const closeFab = () => {
         const f = document.querySelector('.alphatab-fab');
         if (f) f.classList.remove('show');
+        const fb = document.querySelector('.fretboard-overlay');
+        if (fb) fb.classList.remove('show');
       };
       const toggleTab = (e) => {
         e.stopPropagation();
@@ -7401,6 +7457,128 @@ function _renderTabPanel(body, songKey, tabMeta) {
         };
         renderFab();
 
+        // Fretboard visualizer: SVG do braco de violao no canto direito,
+        // mostrando em tempo real as notas tocadas em cada compasso.
+        // Suporta ate 6 cordas (viola/guitarra). Baixo (4 cordas) aparece
+        // nas 4 cordas mais graves (E A D G).
+        let fretboard = document.querySelector('.fretboard-overlay');
+        if (!fretboard) {
+          fretboard = document.createElement('div');
+          fretboard.className = 'fretboard-overlay';
+          fretboard.innerHTML = `
+            <div class="fretboard-header">Braço · violão</div>
+            <svg class="fretboard-svg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+            <div class="fretboard-legend"></div>
+          `;
+          document.body.appendChild(fretboard);
+        }
+        const fretSvg = fretboard.querySelector('.fretboard-svg');
+        const fretLegend = fretboard.querySelector('.fretboard-legend');
+        const fretHeader = fretboard.querySelector('.fretboard-header');
+
+        // Desenha o braco estatico (6 cordas x 12 trastes + nut)
+        const FB_W = 220, FB_H = 180;
+        const FB_PAD_L = 18, FB_PAD_R = 12, FB_PAD_T = 14, FB_PAD_B = 14;
+        const FB_FRETS = 12;
+        const stringSpacing = (FB_H - FB_PAD_T - FB_PAD_B) / 5;
+        const fretSpacing = (FB_W - FB_PAD_L - FB_PAD_R) / FB_FRETS;
+        const drawBoard = () => {
+          let svg = '';
+          // Nut (linha grossa esquerda)
+          svg += `<line x1="${FB_PAD_L}" y1="${FB_PAD_T}" x2="${FB_PAD_L}" y2="${FB_H - FB_PAD_B}" stroke="#2e6b8a" stroke-width="3"/>`;
+          // Trastes
+          for (let f = 1; f <= FB_FRETS; f++) {
+            const x = FB_PAD_L + f * fretSpacing;
+            svg += `<line x1="${x}" y1="${FB_PAD_T}" x2="${x}" y2="${FB_H - FB_PAD_B}" stroke="#2e6b8a" stroke-width="1" opacity="0.45"/>`;
+          }
+          // Cordas (string 1 = aguda topo, string 6 = grave fundo na convencao guitar)
+          for (let s = 0; s < 6; s++) {
+            const y = FB_PAD_T + s * stringSpacing;
+            const w = s < 3 ? 1.0 : 1.5;
+            svg += `<line x1="${FB_PAD_L}" y1="${y}" x2="${FB_W - FB_PAD_R}" y2="${y}" stroke="#666" stroke-width="${w}" opacity="0.7"/>`;
+          }
+          // Marcadores tradicionais (3, 5, 7, 9, 12 — duplos no 12)
+          const markers = [3, 5, 7, 9];
+          markers.forEach(f => {
+            const x = FB_PAD_L + (f - 0.5) * fretSpacing;
+            const y = FB_H / 2;
+            svg += `<circle cx="${x}" cy="${y}" r="2.5" fill="#2e6b8a" opacity="0.35"/>`;
+          });
+          // Inlay duplo no 12o traste
+          const x12 = FB_PAD_L + (12 - 0.5) * fretSpacing;
+          svg += `<circle cx="${x12}" cy="${FB_PAD_T + stringSpacing * 1.5}" r="2.5" fill="#2e6b8a" opacity="0.35"/>`;
+          svg += `<circle cx="${x12}" cy="${FB_PAD_T + stringSpacing * 3.5}" r="2.5" fill="#2e6b8a" opacity="0.35"/>`;
+          // Numeros dos trastes
+          for (let f = 1; f <= FB_FRETS; f++) {
+            const x = FB_PAD_L + (f - 0.5) * fretSpacing;
+            svg += `<text x="${x}" y="${FB_H - 2}" font-family="sans-serif" font-size="7" fill="#999" text-anchor="middle">${f}</text>`;
+          }
+          fretSvg.innerHTML = svg;
+        };
+        drawBoard();
+
+        // Cores por track (cicladas) pra distinguir Stone, Mike, Jeff, etc.
+        const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
+        // AlphaTab string convention: 1 = aguda (alta), N = grave (baixa).
+        // Pra um violao standard de 6 cordas: string 1 = e (high), 6 = E (low).
+        // SVG: posicionamos string 1 no TOPO (s=0), string 6 no FUNDO (s=5).
+        // Em baixos de 4 cordas, AlphaTab tambem usa string 1 = aguda; mapeamos
+        // pras 4 cordas centrais visualmente.
+        const drawActiveNotes = (notes) => {
+          drawBoard();
+          if (!notes || !notes.length) {
+            fretLegend.textContent = '';
+            return;
+          }
+          let dots = '';
+          const labels = new Map();
+          notes.forEach(n => {
+            if (typeof n.fret !== 'number' || typeof n.string !== 'number') return;
+            if (n.fret < 0 || n.fret > FB_FRETS) return;
+            const stringIdx = n.string - 1; // 0-indexed
+            if (stringIdx < 0 || stringIdx > 5) return;
+            const y = FB_PAD_T + stringIdx * stringSpacing;
+            // Fret 0 = corda solta, plotamos no nut (esquerda).
+            const x = n.fret === 0
+              ? FB_PAD_L - 6
+              : FB_PAD_L + (n.fret - 0.5) * fretSpacing;
+            const color = TRACK_COLORS[(n.trackIdx || 0) % TRACK_COLORS.length];
+            dots += `<circle cx="${x}" cy="${y}" r="7" fill="${color}" opacity="0.95"/>`;
+            dots += `<text x="${x}" y="${y + 2.5}" font-family="sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">${n.fret}</text>`;
+            const trackName = (n.trackName || `T${(n.trackIdx || 0) + 1}`).split(' ')[0];
+            labels.set(trackName, color);
+          });
+          fretSvg.insertAdjacentHTML('beforeend', dots);
+          fretLegend.innerHTML = [...labels.entries()].map(([name, color]) =>
+            `<span class="fretboard-legend-item"><span class="fretboard-legend-dot" style="background:${color}"></span>${name}</span>`
+          ).join('');
+        };
+
+        // Extrai notas ativas a partir do evento. AlphaTab 1.8+ tem
+        // activeBeatsChanged.beats: BeatBounds[] com beat.notes/note.
+        const onBeats = (e) => {
+          if (!fab.classList.contains('show')) return;
+          const beats = (e && (e.beats || e.activeBeats)) || [];
+          const notes = [];
+          beats.forEach(b => {
+            const beat = b.beat || b;
+            if (!beat || !beat.notes) return;
+            const trackIdx = beat.voice && beat.voice.bar && beat.voice.bar.staff && beat.voice.bar.staff.track ? beat.voice.bar.staff.track.index : 0;
+            const trackName = beat.voice && beat.voice.bar && beat.voice.bar.staff && beat.voice.bar.staff.track ? beat.voice.bar.staff.track.name : '';
+            beat.notes.forEach(note => {
+              if (note.fret == null || note.string == null) return;
+              notes.push({ fret: note.fret, string: note.string, trackIdx, trackName });
+            });
+          });
+          drawActiveNotes(notes);
+        };
+        if (api.activeBeatsChanged) api.activeBeatsChanged.on(onBeats);
+        else if (api.playedBeatChanged) api.playedBeatChanged.on(e => onBeats({ beats: [e] }));
+
+        // Mostra/esconde junto com o FAB
+        const showFretboard = () => fretboard.classList.add('show');
+        const hideFretboard = () => fretboard.classList.remove('show');
+
         // Autoscroll custom: garante que o cursor (.at-cursor-bar) fique
         // sempre centralizado na viewport quando o player avanca.
         // Throttled a 400ms pra evitar smooth-scroll jitter.
@@ -7449,6 +7627,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
         api.playerReady.on(() => {
           status.textContent = 'pronto · click Play';
           fab.classList.add('show');
+          showFretboard();
           renderFab();
         });
         // Seletor de tracks: quando o arquivo .gp carregar, monta checkboxes
@@ -7612,9 +7791,11 @@ function renderTabsView() {
         body.hidden = true;
         lastCloseAttempt.delete(head);
         delete head.dataset.hint;
-        // Esconde FAB tambem caso este card estivesse tocando
+        // Esconde FAB e fretboard tambem caso este card estivesse tocando
         const f = document.querySelector('.alphatab-fab');
         if (f) f.classList.remove('show');
+        const fb = document.querySelector('.fretboard-overlay');
+        if (fb) fb.classList.remove('show');
       } else {
         lastCloseAttempt.set(head, now);
         head.dataset.hint = 'clique de novo pra fechar';
