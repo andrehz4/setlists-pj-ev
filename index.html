@@ -3194,7 +3194,74 @@ html[data-theme="light"] .drawer-section-label.my-media {
   fill: var(--pj, #c1272d) !important;
   stroke: var(--pj, #c1272d) !important;
 }
-/* Transport bar redesenhado: barra unica horizontal com vol slider | prev |
+/* Transport TOP (compacta): fica acima da partitura. Play+Stop+Speed select+Loop
+   pra controle rapido sem rolar ate o fim. Espelha estado do bottom via JS. */
+.alphatab-transport-top {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 7px 12px;
+  background: rgba(46, 107, 138, 0.06);
+  border: 1px solid rgba(46, 107, 138, 0.18);
+  border-radius: 4px;
+  gap: 10px;
+}
+.atc-btn-mini {
+  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: #2e6b8a;
+  color: #fff;
+  border: 0;
+  padding: 7px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+.atc-btn-mini:hover { background: #1f4e6a; }
+.atc-btn-mini[data-state="playing"] { background: var(--pj, #c1272d); }
+.atc-btn-mini[data-state="playing"]:hover { background: #8a1c20; }
+.atc-speed-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim, #6b5e44);
+}
+.alphatab-speed-select {
+  font: 700 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  background: #fff;
+  color: var(--ink, #1a1611);
+  border: 1px solid rgba(46, 107, 138, 0.4);
+  border-radius: 3px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+.alphatab-status-top {
+  margin-left: auto;
+  flex-basis: auto;
+  text-align: right;
+}
+.alphatab-transport-top .atc-btn-mini.alphatab-loop {
+  background: transparent;
+  color: #2e6b8a;
+  border: 1px solid #2e6b8a;
+}
+.alphatab-transport-top .atc-btn-mini.alphatab-loop:hover { background: rgba(46,107,138,0.08); }
+.alphatab-transport-top .atc-btn-mini.alphatab-loop[data-state="arm"],
+.alphatab-transport-top .atc-btn-mini.alphatab-loop[data-state="arm2"] {
+  background: #f4a93a;
+  color: #fff;
+  border-color: #f4a93a;
+}
+.alphatab-transport-top .atc-btn-mini.alphatab-loop[data-state="on"] {
+  background: var(--pj, #c1272d);
+  color: #fff;
+  border-color: var(--pj, #c1272d);
+}
+
+/* Transport BOTTOM (completa): barra horizontal full com vol slider | prev |
    PLAY grande redondo | speed slider + valor | loop | metro | braco | settings.
    Layout do design Claude Design (screenshot enviado pelo Andre). */
 .alphatab-transport {
@@ -8397,15 +8464,31 @@ function _renderTabPanel(body, songKey, tabMeta) {
     const tabPane = body.querySelector('.tab-pane-tab');
     if (tabPane) {
       tabPane.innerHTML = `
+        <div class="alphatab-transport alphatab-transport-top" role="toolbar" aria-label="Controles de reprodu&ccedil;&atilde;o (topo)">
+          <button type="button" class="atc-btn-mini alphatab-play" data-state="idle" data-icon-only="false" aria-label="Tocar / pausar">▶ Play</button>
+          <button type="button" class="atc-btn-mini alphatab-prev" aria-label="Voltar ao in&iacute;cio" title="In&iacute;cio">⏮</button>
+          <label class="atc-speed-compact">SPEED
+            <select class="alphatab-speed-select" aria-label="Velocidade de reprodu&ccedil;&atilde;o">
+              <option value="0.25">0.25&times;</option>
+              <option value="0.5">0.5&times;</option>
+              <option value="0.75">0.75&times;</option>
+              <option value="1" selected>1&times;</option>
+              <option value="1.25">1.25&times;</option>
+              <option value="1.5">1.5&times;</option>
+            </select>
+          </label>
+          <button type="button" class="atc-btn-mini alphatab-btn alphatab-loop" data-state="off" aria-label="Loop de trecho">🔁 Loop</button>
+          <span class="alphatab-status alphatab-status-top" aria-live="polite">aguardando soundfont…</span>
+        </div>
         <div class="alphatab-surface"></div>
         <div class="tab-pane-loading">carregando tablatura…</div>
-        <div class="alphatab-transport" role="toolbar" aria-label="Controles de reprodu&ccedil;&atilde;o">
+        <div class="alphatab-transport alphatab-transport-bottom" role="toolbar" aria-label="Controles de reprodu&ccedil;&atilde;o (rodap&eacute;)">
           <div class="atc-group atc-vol">
             <span class="atc-ico" aria-hidden="true">🔊</span>
             <input type="range" class="atc-vol-slider" min="0" max="1" step="0.05" value="1" aria-label="Volume master">
           </div>
           <button type="button" class="atc-btn-ico alphatab-prev" aria-label="Voltar ao in&iacute;cio" title="In&iacute;cio">⏮</button>
-          <button type="button" class="atc-play-round alphatab-play" data-state="idle" aria-label="Tocar / pausar">▶</button>
+          <button type="button" class="atc-play-round alphatab-play" data-state="idle" data-icon-only="true" aria-label="Tocar / pausar">▶</button>
           <div class="atc-group atc-speed">
             <span class="atc-label">SPEED</span>
             <input type="range" class="atc-speed-slider alphatab-speed" min="0.25" max="1.5" step="0.05" value="1" aria-label="Velocidade de reprodu&ccedil;&atilde;o">
@@ -8421,15 +8504,21 @@ function _renderTabPanel(body, songKey, tabMeta) {
       `;
       const surface = tabPane.querySelector('.alphatab-surface');
       const loading = tabPane.querySelector('.tab-pane-loading');
-      const playBtn = tabPane.querySelector('.alphatab-play');
-      const prevBtn = tabPane.querySelector('.alphatab-prev');
+      const playBtns = tabPane.querySelectorAll('.alphatab-play');
+      const prevBtns = tabPane.querySelectorAll('.alphatab-prev');
       const volSlider = tabPane.querySelector('.atc-vol-slider');
       const speedSlider = tabPane.querySelector('.alphatab-speed');
+      const speedSelect = tabPane.querySelector('.alphatab-speed-select');
       const speedVal = tabPane.querySelector('.atc-speed-val');
-      const loopBtn = tabPane.querySelector('.alphatab-loop');
+      const loopBtns = tabPane.querySelectorAll('.alphatab-loop');
       const metronomeBtn = tabPane.querySelector('.alphatab-metronome');
       const bracoBtn = tabPane.querySelector('.alphatab-braco');
-      const status = tabPane.querySelector('.alphatab-status');
+      const statusEls = tabPane.querySelectorAll('.alphatab-status');
+      // Compat com codigo abaixo (loop logic, fab) que assume escalares:
+      const playBtn = playBtns[playBtns.length - 1]; // bottom (grande) e o autoritativo
+      const prevBtn = prevBtns[0];
+      const loopBtn = loopBtns[loopBtns.length - 1]; // bottom autoritativo pro loop overlay
+      const status = statusEls[statusEls.length - 1]; // bottom autoritativo
       _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
         // Registra como api ativa pra _stopAllTabAudio achar quando trocar musica
         // ou view. Substitui qualquer api anterior (so um AlphaTab tocando por vez).
@@ -8543,13 +8632,13 @@ function _renderTabPanel(body, songKey, tabMeta) {
         }
 
         // Docking: se _renderTabPanel rodou dentro da view Cifras (.cifra-detail-wrap),
-        // move o overlay singleton pra dentro da tab-pane-tab, ENTRE o alphatab-surface
-        // e o alphatab-transport (controles ficam embaixo do braco). Senao restaura
-        // modo floating no document.body (panel inline da faixa do show).
+        // move o overlay singleton pra dentro da tab-pane-tab, ENTRE a alphatab-surface
+        // (partitura) e a alphatab-transport-bottom (controles completos). Ordem final:
+        // top bar > partitura > guitarra > bottom bar. Senao restaura modo floating.
         const inCifraView = body && body.closest && body.closest('.cifra-detail-wrap');
-        const transportEl = tabPane.querySelector('.alphatab-transport');
-        if (inCifraView && transportEl) {
-          tabPane.insertBefore(fretboard, transportEl);
+        const transportBottom = tabPane.querySelector('.alphatab-transport-bottom');
+        if (inCifraView && transportBottom) {
+          tabPane.insertBefore(fretboard, transportBottom);
           fretboard.classList.add('inline');
           fretboard.classList.remove('minimized');
         } else {
@@ -8862,27 +8951,37 @@ function _renderTabPanel(body, songKey, tabMeta) {
             requestAnimationFrame(scrollCursorToCenter);
           });
         }
+        // Helpers pra sincronizar as 2 barras (top compacta + bottom completa)
+        const _setAllPlayState = (playing) => {
+          playBtns.forEach(b => {
+            b.dataset.state = playing ? 'playing' : 'idle';
+            const iconOnly = b.dataset.iconOnly === 'true';
+            b.textContent = iconOnly
+              ? (playing ? '❚❚' : '▶')
+              : (playing ? '❚❚ Pause' : '▶ Play');
+          });
+        };
+        const _setAllStatus = (txt) => {
+          statusEls.forEach(s => { s.textContent = txt; });
+        };
         // Estado do player: 0=parado, 1=tocando, 2=pausado.
         api.playerStateChanged.on(e => {
           _fabState = e.state;
           const fmtTag = (tabMeta.tabFormat || 'gp').toUpperCase();
           const bracoOn = !bracoBtn || bracoBtn.dataset.state === 'on';
           if (e.state === 1) {
-            playBtn.dataset.state = 'playing';
-            playBtn.textContent = '❚❚';
-            status.textContent = `tocando ${fmtTag}…`;
+            _setAllPlayState(true);
+            _setAllStatus(`tocando ${fmtTag}…`);
             fab.classList.add('show');
             if (bracoOn) fretboard.classList.add('show');
           } else if (e.state === 2) {
-            playBtn.dataset.state = 'idle';
-            playBtn.textContent = '▶';
-            status.textContent = `pausado (${fmtTag})`;
+            _setAllPlayState(false);
+            _setAllStatus(`pausado (${fmtTag})`);
             fab.classList.add('show');
             if (bracoOn) fretboard.classList.add('show');
           } else {
-            playBtn.dataset.state = 'idle';
-            playBtn.textContent = '▶';
-            status.textContent = `${fmtTag} · click Play`;
+            _setAllPlayState(false);
+            _setAllStatus(`${fmtTag} · click Play`);
             fab.classList.remove('show');
             fretboard.classList.remove('show');
           }
@@ -8890,9 +8989,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
         });
         api.playerReady.on(() => {
           const fmtTag = (tabMeta.tabFormat || 'gp').toUpperCase();
-          status.textContent = `${fmtTag} · click Play`;
-          // FAB e fretboard aparecem quando o player de fato comecar
-          // (via playerStateChanged state=1). Aqui so atualiza status.
+          _setAllStatus(`${fmtTag} · click Play`);
         });
         // Seletor de tracks: quando o arquivo .gp carregar, monta checkboxes
         // pra cada track. Toggle atualiza visual (renderTracks) + audio (isMute).
@@ -8969,17 +9066,20 @@ function _renderTabPanel(body, songKey, tabMeta) {
             }
           });
         });
-        playBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          api.playPause();
+        // Play/Pause em ambas as barras (top + bottom)
+        playBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            api.playPause();
+          });
         });
-        // Prev: para a reproducao e volta cursor ao inicio.
-        if (prevBtn) {
-          prevBtn.addEventListener('click', (e) => {
+        // Prev: para a reproducao e volta cursor ao inicio (ambas barras)
+        prevBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
             e.stopPropagation();
             try { api.stop(); } catch (err) {}
           });
-        }
+        });
         // Volume master: ajusta api.masterVolume (0-1). Mudo nao silencia
         // o metronome (que tem volume separado via api.metronomeVolume).
         if (volSlider) {
@@ -8989,15 +9089,33 @@ function _renderTabPanel(body, songKey, tabMeta) {
             if (!isNaN(v)) api.masterVolume = v;
           });
         }
-        // Velocidade: slider continuo 0.25-1.5, atualiza api.playbackSpeed e label.
-        speedSlider.addEventListener('input', (e) => {
-          e.stopPropagation();
-          const v = parseFloat(speedSlider.value);
-          if (!isNaN(v)) {
-            api.playbackSpeed = v;
-            if (speedVal) speedVal.textContent = v.toFixed(2);
+        // Helper: aplica speed em api + sincroniza UI de ambas barras
+        const _applySpeed = (v) => {
+          if (isNaN(v)) return;
+          api.playbackSpeed = v;
+          if (speedSlider && parseFloat(speedSlider.value) !== v) speedSlider.value = v;
+          if (speedSelect) {
+            // O select tem opcoes discretas; achar a mais proxima
+            const opts = ['0.25','0.5','0.75','1','1.25','1.5'];
+            const closest = opts.reduce((a,b) => Math.abs(parseFloat(b)-v) < Math.abs(parseFloat(a)-v) ? b : a);
+            if (speedSelect.value !== closest) speedSelect.value = closest;
           }
-        });
+          if (speedVal) speedVal.textContent = v.toFixed(2);
+        };
+        // Slider de speed (bottom, continuo 0.25-1.5)
+        if (speedSlider) {
+          speedSlider.addEventListener('input', (e) => {
+            e.stopPropagation();
+            _applySpeed(parseFloat(speedSlider.value));
+          });
+        }
+        // Select de speed (top, opcoes discretas)
+        if (speedSelect) {
+          speedSelect.addEventListener('change', (e) => {
+            e.stopPropagation();
+            _applySpeed(parseFloat(speedSelect.value));
+          });
+        }
         // Toggle braco: liga/desliga visibilidade do fretboard inline.
         // Quando o player ja esta tocando, o fretboard volta no proximo beat.
         if (bracoBtn) {
@@ -9046,28 +9164,33 @@ function _renderTabPanel(body, songKey, tabMeta) {
           loopOverlay.classList.add('show');
         };
         const hideLoopOverlay = () => loopOverlay.classList.remove('show');
+        // Helper: aplica state+textContent do loop em AMBAS as barras (top+bottom)
+        const _setLoopState = (state, text) => {
+          loopBtns.forEach(b => { b.dataset.state = state; b.textContent = text; });
+        };
         const loopReset = () => {
           loopStart = null;
-          loopBtn.dataset.state = 'off';
-          loopBtn.textContent = '🔁 Loop';
+          _setLoopState('off', '🔁 Loop');
           api.isLooping = false;
           api.playbackRange = null;
-          status.textContent = 'pronto · click Play';
+          _setAllStatus('pronto · click Play');
           hideLoopOverlay();
           // Esconde botao "play loop" do FAB
           const fabLoop = document.querySelector('.alphatab-fab-loop');
           if (fabLoop) fabLoop.style.display = 'none';
         };
-        loopBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          if (loopBtn.dataset.state === 'off') {
-            loopBtn.dataset.state = 'arm';
-            loopBtn.textContent = '◉ marcando…';
-            status.textContent = 'clique num beat na tab pra marcar o início';
-            showLoopOverlay('Clique no <strong>primeiro beat</strong> do trecho que vai repetir<br><small>diretamente na tablatura abaixo</small>');
-          } else {
-            loopReset();
-          }
+        loopBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const cur = loopBtns[0].dataset.state || 'off';
+            if (cur === 'off') {
+              _setLoopState('arm', '◉ marcando…');
+              _setAllStatus('clique num beat na tab pra marcar o início');
+              showLoopOverlay('Clique no <strong>primeiro beat</strong> do trecho que vai repetir<br><small>diretamente na tablatura abaixo</small>');
+            } else {
+              loopReset();
+            }
+          });
         });
 
         // Metronomo nativo do AlphaTab via api.metronomeVolume. Toggle simples:
@@ -9091,30 +9214,27 @@ function _renderTabPanel(body, songKey, tabMeta) {
 
         if (api.beatMouseDown) {
           api.beatMouseDown.on(beat => {
-            if (loopBtn.dataset.state === 'off') return;
-            if (loopBtn.dataset.state === 'arm') {
+            const cur = loopBtns[0].dataset.state || 'off';
+            if (cur === 'off') return;
+            if (cur === 'arm') {
               loopStart = beat;
-              loopBtn.dataset.state = 'arm2';
-              loopBtn.textContent = '◉ marcando fim';
-              status.textContent = 'clique num beat de FIM do loop';
+              _setLoopState('arm2', '◉ marcando fim');
+              _setAllStatus('clique num beat de FIM do loop');
               showLoopOverlay('Início marcado ✓<br>Agora clique no <strong>último beat</strong> do trecho<br><small>o loop vai repetir entre esses dois pontos</small>');
-            } else if (loopBtn.dataset.state === 'arm2') {
+            } else if (cur === 'arm2') {
               const startTick = loopStart.absolutePlaybackStart;
               const endTick = beat.absolutePlaybackEnd || (beat.absolutePlaybackStart + (beat.playbackDuration || 480));
               if (endTick <= startTick) {
-                status.textContent = 'fim precisa ser depois do inicio';
-                loopBtn.dataset.state = 'arm';
-                loopBtn.textContent = '◉ marcando…';
+                _setAllStatus('fim precisa ser depois do inicio');
+                _setLoopState('arm', '◉ marcando…');
                 showLoopOverlay('Fim precisa ser <strong>depois</strong> do início. Clique no primeiro beat de novo.');
                 return;
               }
               api.playbackRange = { startTick, endTick };
               api.isLooping = true;
-              loopBtn.dataset.state = 'on';
-              loopBtn.textContent = '🔁 Loop ATIVO';
-              status.textContent = `loop ativo · ${Math.round((endTick - startTick) / 480)} beats · click play do FAB pra tocar`;
+              _setLoopState('on', '🔁 Loop ATIVO');
+              _setAllStatus(`loop ativo · ${Math.round((endTick - startTick) / 480)} beats · click play do FAB pra tocar`);
               hideLoopOverlay();
-              // Mostra botao "play loop" no FAB pra usuario tocar o range
               const fabLoop = document.querySelector('.alphatab-fab-loop');
               if (fabLoop) fabLoop.style.display = 'flex';
             }
@@ -9140,6 +9260,16 @@ function _renderTabPanel(body, songKey, tabMeta) {
         const pane = body.querySelector('.tab-pane-' + t.key);
         if (pane) pane.hidden = (t.key !== which);
       });
+      // Quando troca pra aba Tab, força re-render do AlphaTab: o SVG da
+      // partitura pode ter renderizado com largura 0 se o container
+      // estava hidden no init. Re-render corrige isso.
+      if (which === 'tab' && _activeAlphaTabApi) {
+        try {
+          if (typeof _activeAlphaTabApi.render === 'function') {
+            _activeAlphaTabApi.render();
+          }
+        } catch (err) { /* silencioso, fallback continua funcional */ }
+      }
     });
   });
 }
