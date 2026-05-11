@@ -120,7 +120,7 @@
   "pj-2018-03-21": {
     "photos": 12,
     "poster": true,
-    "my_photos": 5,
+    "my_photos": 4,
     "highlight_photos": [
       1,
       2
@@ -128,7 +128,8 @@
   },
   "pj-2018-03-24": {
     "photos": 10,
-    "poster": true
+    "poster": true,
+    "my_photos": 1
   },
   "pj-2024-08-29": {
     "poster": true,
@@ -211,7 +212,7 @@
   "ev-2014-05-12": {
     "poster": true,
     "photos": 2,
-    "my_photos": 2,
+    "my_photos": 3,
     "highlight_photos": [
       1,
       2
@@ -227,7 +228,8 @@
   },
   "ev-2018-03-29": {
     "poster": true,
-    "photos": 8
+    "photos": 8,
+    "my_photos": 1
   },
   "ev-2018-03-30": {
     "poster": true,
