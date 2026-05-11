@@ -8986,12 +8986,23 @@ function _renderCifraDetail(container, songKey, tabMeta) {
   // Listener pros chips de contexto. Toggle: 1 click expande, 2 fecha.
   // Click em outro chip troca o conteudo.
   const chipsContainer = container.querySelector('.cifra-context-chips');
-  if (chipsContainer) {
+  const contextPane = container.querySelector('.cifra-context-pane');
+  const closeContext = () => {
+    if (!contextPane || contextPane.hidden) return;
+    contextPane.hidden = true;
+    contextPane.innerHTML = '';
+    if (chipsContainer) {
+      chipsContainer.querySelectorAll('.cifra-context-chip').forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-expanded', 'false');
+      });
+    }
+  };
+  if (chipsContainer && contextPane) {
     chipsContainer.addEventListener('click', (e) => {
       const chip = e.target.closest('.cifra-context-chip');
       if (!chip) return;
       e.stopPropagation();
-      const pane = container.querySelector('.cifra-context-pane');
       const which = chip.dataset.context;
       const wasOpen = chip.classList.contains('active');
       chipsContainer.querySelectorAll('.cifra-context-chip').forEach(c => {
@@ -8999,25 +9010,32 @@ function _renderCifraDetail(container, songKey, tabMeta) {
         c.setAttribute('aria-expanded', 'false');
       });
       if (wasOpen) {
-        pane.hidden = true;
-        pane.innerHTML = '';
+        contextPane.hidden = true;
+        contextPane.innerHTML = '';
         return;
       }
       chip.classList.add('active');
       chip.setAttribute('aria-expanded', 'true');
-      pane.hidden = false;
-      pane.innerHTML = '';
+      contextPane.hidden = false;
+      contextPane.innerHTML = '';
       if (which === 'lyric') {
-        _fillLyricBody(pane, title, lyricEN);
+        _fillLyricBody(contextPane, title, lyricEN);
       } else if (which === 'translation') {
-        _fillLyricBody(pane, title, lyricEN);
-        // Default pra modo PT (Traducao linha-a-linha tem o seu botao "Tradução"
-        // mas PT puro e mais direto pro chip "Traducao").
-        const ptBtn = pane.querySelector('.lyric-lang-btn[data-mode="pt"]');
+        _fillLyricBody(contextPane, title, lyricEN);
+        const ptBtn = contextPane.querySelector('.lyric-lang-btn[data-mode="pt"]');
         if (ptBtn) ptBtn.click();
       } else if (which === 'analise') {
-        _fillAnaliseBody(pane, title, interpEN, interpPT, lyricNote);
+        _fillAnaliseBody(contextPane, title, interpEN, interpPT, lyricNote);
       }
+    });
+    // Click no painel aberto fecha (mesmo padrao da lyric-row e interp-row
+    // na faixa do show drawer). Ignora click em botoes internos (modo EN/PT,
+    // abas PT/EN/Opiniao) e ignora se o usuario esta selecionando texto.
+    contextPane.addEventListener('click', (e) => {
+      if (contextPane.hidden) return;
+      if (window.getSelection && window.getSelection().toString().length) return;
+      if (e.target.closest('button, a, input, textarea, select, label')) return;
+      closeContext();
     });
   }
 
