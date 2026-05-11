@@ -3180,6 +3180,21 @@ html[data-theme="light"] .drawer-section-label.my-media {
   overflow-x: auto;
   padding: 6px 4px;
 }
+/* Na view Cifras (.cifra-detail-wrap), a partitura tem altura limitada com
+   scroll interno. O cursor de playback rola DENTRO da surface (nao a window
+   inteira), entao o braco inline logo abaixo fica sempre visivel. No panel
+   inline da faixa do show (fora do .cifra-detail-wrap), surface mantem o
+   comportamento legado (window scroll). */
+.cifra-detail-wrap .alphatab-surface {
+  max-height: 62vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+.cifra-detail-wrap .alphatab-surface::-webkit-scrollbar { width: 8px; }
+.cifra-detail-wrap .alphatab-surface::-webkit-scrollbar-thumb {
+  background: var(--divider-strong, #b3a78a);
+  border-radius: 4px;
+}
 .alphatab-surface .at-surface,
 .alphatab-surface .at-surface-svg { background: transparent !important; }
 /* Cursor de playback do AlphaTab: realce vermelho PJ sobre o compasso ativo */
@@ -8920,16 +8935,38 @@ function _renderTabPanel(body, songKey, tabMeta) {
         const showFretboard = () => fretboard.classList.add('show');
         const hideFretboard = () => fretboard.classList.remove('show');
 
-        // Autoscroll custom: garante que o cursor (.at-cursor-bar) fique
-        // sempre centralizado na viewport quando o player avanca.
-        // Throttled a 400ms pra evitar smooth-scroll jitter.
+        // Autoscroll custom: mantem o cursor centralizado.
+        // Modo INLINE (.cifra-detail-wrap): surface tem max-height + overflow-y
+        // auto, entao a partitura rola DENTRO da surface (a window fica parada,
+        // braco inline logo abaixo continua visivel).
+        // Modo FLOATING (panel inline da faixa do show): cursor rola a window
+        // inteira como antes. Throttled a 400ms.
         let lastScrollAt = 0;
         const scrollCursorToCenter = () => {
           const cursor = surface.querySelector('.at-cursor-bar');
           if (!cursor) return;
+          const overflowY = getComputedStyle(surface).overflowY;
+          const surfaceScrolls = (overflowY === 'auto' || overflowY === 'scroll')
+            && surface.scrollHeight > surface.clientHeight;
+          if (surfaceScrolls) {
+            // Rola dentro da surface, mantem cursor no meio dela
+            const cursorRect = cursor.getBoundingClientRect();
+            const surfaceRect = surface.getBoundingClientRect();
+            // Cursor pode estar fora visual da surface (rolagem interna). Calcula
+            // offset absoluto somando o scrollTop atual.
+            const cursorTop = cursor.offsetTop;
+            const target = cursorTop - surface.clientHeight / 2 + cursor.clientHeight / 2;
+            // So rola se cursor saiu da faixa central da surface
+            const visibleTop = cursorRect.top - surfaceRect.top;
+            const visibleBot = visibleTop + cursor.clientHeight;
+            const margin = surface.clientHeight * 0.2;
+            if (visibleTop > margin && visibleBot < surface.clientHeight - margin) return;
+            surface.scrollTo({ top: target, behavior: 'smooth' });
+            return;
+          }
+          // Modo legacy: rola a window
           const rect = cursor.getBoundingClientRect();
           const viewH = window.innerHeight;
-          // So rola se o cursor saiu da faixa centro-do-viewport (margem 25%)
           const margin = viewH * 0.25;
           if (rect.top > margin && rect.bottom < viewH - margin) return;
           cursor.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
