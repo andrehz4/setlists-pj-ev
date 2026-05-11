@@ -3486,8 +3486,42 @@ html[data-theme="light"] .drawer-section-label.my-media {
 @media (max-width: 900px) {
   .fretboard-overlay { width: 92vw; right: 4vw; bottom: 100px; }
 }
-@media (max-width: 480px) {
-  .fretboard-overlay { display: none !important; }
+@media (max-width: 600px) {
+  /* Em telas estreitas (celular), fretboard vira bottom-sheet full-width.
+     Conteudo mantem 22 trastes legiveis com scroll horizontal interno
+     quando precisar. .fretboard-players (checkboxes track) viram chips
+     horizontais com scroll. */
+  .fretboard-overlay {
+    width: 100vw;
+    right: 0;
+    left: 0;
+    bottom: 78px;  /* acima do .alphatab-fab (que vai ate ~76px do bottom) */
+    padding: 8px 10px 6px;
+    border-radius: 10px 10px 0 0;
+    max-height: 52vh;
+    overflow-y: auto;
+  }
+  .fretboard-bar {
+    margin-bottom: 6px;
+    gap: 6px;
+  }
+  .fretboard-header { font-size: 9px; letter-spacing: 0.12em; }
+  .fretboard-tabs { gap: 2px; padding: 2px; }
+  .fretboard-tab { padding: 4px 8px; font-size: 9px; }
+  .fretboard-close { top: 4px; right: 4px; width: 24px; height: 24px; font-size: 14px; }
+  .fretboard-players {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    gap: 4px 10px;
+    margin-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .fretboard-players::-webkit-scrollbar { height: 3px; }
+  .fretboard-players::-webkit-scrollbar-thumb { background: var(--divider-strong); border-radius: 2px; }
+  .fretboard-player { flex-shrink: 0; font-size: 10px; }
+  .fretboard-legend { font-size: 9px; margin-top: 4px; min-height: 12px; }
+  .fretboard-svg { max-height: 130px; }
 }
 
 /* Loop overlay: card grande no centro da tela explicando o passo */
