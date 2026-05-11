@@ -3053,14 +3053,28 @@ html[data-theme="light"] .drawer-section-label.my-media {
    o overflow horizontal pra mobile e limitamos altura inicial. */
 .alphatab-surface {
   min-height: 80px;
+  max-height: 60vh;
   background: #fff;
   border: 1px solid rgba(46, 107, 138, 0.2);
   border-radius: 4px;
-  overflow-x: auto;
+  overflow: auto;
   padding: 6px 4px;
+  scroll-behavior: smooth;
 }
 .alphatab-surface .at-surface,
 .alphatab-surface .at-surface-svg { background: transparent !important; }
+/* Cursor de playback do AlphaTab: realce vermelho PJ sobre o compasso ativo */
+.alphatab-surface .at-cursor-bar {
+  background: rgba(193, 39, 45, 0.15) !important;
+}
+.alphatab-surface .at-cursor-beat {
+  background: rgba(193, 39, 45, 0.45) !important;
+  width: 3px !important;
+}
+.alphatab-surface .at-highlight * {
+  fill: var(--pj, #c1272d) !important;
+  stroke: var(--pj, #c1272d) !important;
+}
 .alphatab-transport {
   display: flex;
   align-items: center;
@@ -7191,6 +7205,9 @@ async function _initAlphaTabPanel(container, songKey, tabFormat) {
       enableCursor: true,
       soundFont: `${libBase}/soundfont/sonivox.sf3`,
       scrollMode: 'continuous',
+      scrollElement: container,
+      scrollOffsetY: -60,
+      scrollSpeed: 300,
     },
     display: { staveProfile: 'tab' },
     core: { fontDirectory: `${libBase}/font/` },
