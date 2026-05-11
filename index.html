@@ -3607,7 +3607,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .fretboard-overlay.inline .fretboard-svg {
   width: 100%;
   height: auto;
-  max-height: 48vh;
+  max-height: 36vh;
   display: block;
 }
 .fretboard-overlay.inline .fretboard-close {
@@ -8940,7 +8940,18 @@ function _renderTabPanel(body, songKey, tabMeta) {
         // Cores por track (cicladas) pra distinguir Stone, Mike, Jeff, etc.
         const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
         // AlphaTab string convention: 1 = aguda (topo), N = grave (fundo).
-        const isBassTrack = (name) => /bass|baix/i.test(String(name || ''));
+        // Detecta baixo por: (a) nome contendo bass/baix/ament (Jeff Ament eh
+        // o baixista do PJ, tabs do UG geralmente nomeiam tracks como 'Jeff'
+        // ou 'Bass' sem padrao), OU (b) staff com <=4 cordas (baixo tipico
+        // tem 4 ou 5 cordas; guitarra/violao tem 6+).
+        const isBassTrack = (nameOrNote) => {
+          if (nameOrNote && typeof nameOrNote === 'object') {
+            const sc = nameOrNote.stringCount;
+            if (typeof sc === 'number' && sc > 0 && sc <= 5) return true;
+            return /bass|baix|ament/i.test(String(nameOrNote.trackName || ''));
+          }
+          return /bass|baix|ament/i.test(String(nameOrNote || ''));
+        };
         // MIDI base de cada corda solta na ordem 1..N (1=aguda). Pra calcular
         // o nome da nota tocada: base[stringIdx] + fret, depois % 12.
         const STRING_MIDI = {
@@ -8966,9 +8977,12 @@ function _renderTabPanel(body, songKey, tabMeta) {
           const inst = INSTRUMENTS[fbInstrument];
           const nStrings = inst.strings;
           const stringSpacing = (FB_H - FB_PAD_T - FB_PAD_B) / (nStrings - 1);
-          // Filtra notas: se viewing guitar, mostra tracks NÃO-baixo; se bass, só baixo.
+          // Filtra notas: se viewing guitar/acoustic/uke, mostra tracks
+          // NÃO-baixo; se bass, só baixo. Detecta baixo por nome ou por
+          // staff.stringCount<=5 (.gp do Pearl Jam frequentemente nomeia
+          // tracks como 'Jeff' ou 'Track 4' sem indicar bass explicitamente).
           const filtered = _lastNotes.filter(n => {
-            const bass = isBassTrack(n.trackName);
+            const bass = isBassTrack(n);
             const instrumentMatch = fbInstrument === 'bass' ? bass : !bass;
             if (!instrumentMatch) return false;
             // Filtro por track selecionada no fretboard
@@ -9051,11 +9065,19 @@ function _renderTabPanel(body, songKey, tabMeta) {
           beats.forEach(b => {
             const beat = b.beat || b;
             if (!beat || !beat.notes) return;
-            const trackIdx = beat.voice && beat.voice.bar && beat.voice.bar.staff && beat.voice.bar.staff.track ? beat.voice.bar.staff.track.index : 0;
-            const trackName = beat.voice && beat.voice.bar && beat.voice.bar.staff && beat.voice.bar.staff.track ? beat.voice.bar.staff.track.name : '';
+            const staff = beat.voice && beat.voice.bar && beat.voice.bar.staff;
+            const track = staff && staff.track;
+            const trackIdx = track ? track.index : 0;
+            const trackName = track ? track.name : '';
+            // Numero de cordas da staff (4 = baixo, 6 = guitarra). Algumas
+            // bibliotecas expoem como staff.tuning (array MIDI) ou
+            // staff.standardNotationLineCount; fallback prudente.
+            const stringCount = (staff && staff.tuning && staff.tuning.length)
+              || (staff && staff.standardNotationLineCount)
+              || 6;
             beat.notes.forEach(note => {
               if (note.fret == null || note.string == null) return;
-              notes.push({ fret: note.fret, string: note.string, trackIdx, trackName });
+              notes.push({ fret: note.fret, string: note.string, trackIdx, trackName, stringCount });
             });
           });
           drawActiveNotes(notes);
