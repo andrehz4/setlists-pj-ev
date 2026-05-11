@@ -93,9 +93,30 @@ Estrutura base pra cifras e tablaturas hospedadas localmente em `media/tabs/`. B
 **Comportamento Fase 1:** botao TAB aparece nas 20 musicas do manifest. Painel mostra info-bar (key + tuning + capo quando aplicavel) e duas abas "Cifra"/"Tab", ambas exibindo placeholder "em breve - esta musica esta no plano das proximas curadorias". Texto explicativo do drawer audio-notes atualizado pra incluir o botao TAB.
 
 **Proximas fases:**
-- Fase 2: parser ChordPro + chord-chips coloridos + VexChords pra diagramas de acorde no hover. Cadastro de 3-5 cifras iniciais (Black, Alive, Even Flow).
+- Fase 2: parser ChordPro + chord-chips coloridos + diagrama SVG no clique. Cadastro de 3-5 cifras iniciais (Black, Alive, Even Flow).
 - Fase 3: AlphaTab integration via CDN lazy-load. Cadastro de 3-5 .gp iniciais.
 - Fase 4: curadoria completa das 20 ao longo de varias sessoes.
+
+## Fase 2 TAB: parser ChordPro + chord-chips + diagrama SVG (sessao 2026-05-11 noite)
+Cifra moderna renderizada como pílulas tipograficas azul-petroleo ($2e6b8a) sobre a letra, com diagrama de acorde aparecendo num popover ao clicar/Enter no chord-chip.
+
+**Criado:**
+- Parser ChordPro inline em index.html: `_parseChordProLine`, `_renderChordPro`. Aceita `{section: nome}` pra label de estrofe (Intro, Verso, Refrao, Ponte, Solo, Outro), `[Chord]lyric...` pra chord-chip em cima da silaba/palavra, linha em branco como separador. Outras metadatas `{key:.}` etc ignoradas (vem do manifest).
+- `_CHORD_DB`: dicionario com 28 acordes mais usados no Top 20 PJ (A, Am, Am7, B, B7, Bm, C, Cadd9, C#m, D, Dsus2/4, Dadd9, Dm, E, Em, Em7, E7, F, F#, F#m, F#sus4, G, G/B, A/E, Asus2/4). Cada entry: `{frets: [E_grave -> e_aguda], fingers, barre?}`.
+- `_renderChordDiagram(chord)`: gera SVG 84x100 com nut, 4 trastes, 6 cordas, marcadores x/o, dedos numerados e barre quando aplicavel.
+- `_attachChordChipHandlers(root)`: click/Enter no chord-chip abre popover com diagrama; click fora fecha; Esc fecha; toggle se ja aberto no mesmo chip.
+- Slug auxiliar `_tabSlug(songKey)` substitui espacos por hifens pra evitar gotchas de filename.
+- CSS novo: `.cifra-stanza`, `.cifra-section`, `.cifra-line`, `.cifra-token` (flex-column), `.chord-chip`, `.chord-chip-spacer`, `.cifra-syl`, `.chord-diagram` (popover absoluto), `.chord-diagram-svg`, `.chord-diagram-empty`.
+- Cifras cadastradas: `media/tabs/cifras/black.cpro`, `alive.cpro`, `even-flow.cpro`. Cada uma ~5-7 estrofes (intro, verso, refrao, ponte, solo, outro), ChordPro padrao.
+- Manifest atualizado: `cifra: true` pras 3 musicas.
+
+**Comportamento:** ao clicar TAB numa das 3 musicas, a aba Cifra carrega lazy o arquivo `.cpro`, renderiza chord-chips coloridos com letra abaixo, e cada chip e clicavel pra mostrar o diagrama do acorde. Acordes nao cadastrados no `_CHORD_DB` mostram "digitacao nao cadastrada" no popover (fallback gracioso). As outras 17 musicas do manifest seguem com placeholder "em breve".
+
+**Validacao pendente:** abrir show no navegador, testar Black/Alive/Even Flow, conferir:
+1. chord-chips aparecem alinhados acima do texto;
+2. click no chord-chip abre diagrama SVG com posicoes corretas;
+3. click fora ou Esc fecha o popover;
+4. mobile (320-768px) nao quebra layout (cifra-token flex-direction column ja prevê quebra de linha).
 
 Plano completo em `C:\Users\engan\.claude\plans\shimmering-crunching-matsumoto.md`.
 

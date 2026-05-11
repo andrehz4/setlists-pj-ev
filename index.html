@@ -2910,6 +2910,103 @@ html[data-theme="light"] .drawer-section-label.my-media {
   border-radius: 4px;
   font-style: italic;
 }
+.tab-pane-loading {
+  padding: 24px 14px;
+  text-align: center;
+  font: 400 11px/1.5 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim, #6b5e44);
+}
+
+/* Cifra: render moderno com chord-chips pílula azul-petroleo + diagrama popover */
+.cifra-stanza {
+  margin: 0 0 22px;
+  padding: 0;
+}
+.cifra-stanza:last-child { margin-bottom: 4px; }
+.cifra-section {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #2e6b8a;
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+.cifra-line {
+  display: block;
+  margin: 0 0 4px;
+  line-height: 1;
+}
+.cifra-token {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  vertical-align: top;
+  margin-right: 0;
+  margin-bottom: 6px;
+  position: relative;
+}
+.chord-chip {
+  display: inline-block;
+  font: 700 10px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.04em;
+  background: #2e6b8a;
+  color: #fff;
+  padding: 3px 7px;
+  border-radius: 3px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background 100ms ease;
+  outline: none;
+}
+.chord-chip:hover,
+.chord-chip:focus-visible { background: #1f4e6a; }
+.chord-chip-spacer {
+  display: inline-block;
+  height: 16px;
+  margin-bottom: 2px;
+  width: 1px;
+  pointer-events: none;
+}
+.cifra-syl {
+  font: 400 14px/1.4 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink, #1a1611);
+  white-space: pre;
+}
+.chord-diagram {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  background: var(--paper, #fff);
+  border: 1px solid #2e6b8a;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 6px 20px rgba(46, 107, 138, 0.25);
+  width: 100px;
+}
+.chord-diagram-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.chord-diagram-empty {
+  font: 700 11px/1.4 var(--font-display, 'Big Shoulders Display', sans-serif);
+  color: #2e6b8a;
+  padding: 14px 8px;
+  text-align: center;
+}
+.chord-diagram-empty small {
+  display: block;
+  font: 400 9px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.05em;
+  color: var(--ink-dim, #6b5e44);
+  text-transform: lowercase;
+  margin-top: 4px;
+}
 
 .lyrics-song-title {
   font-family: var(--font-editorial);
@@ -5380,13 +5477,6 @@ function openDrawer(showId) {
         btn.setAttribute('aria-expanded', 'false');
       });
       const fillTabBody = (body) => {
-        const placeholder = (which) => {
-          const has = which === 'cifra' ? hasCifra : hasTab;
-          if (has) {
-            return `<div class="tab-pane-soon" data-which="${which}">conteudo a renderizar nas pr&oacute;ximas fases</div>`;
-          }
-          return `<div class="tab-pane-soon" data-which="${which}">${which === 'cifra' ? 'cifra' : 'tablatura'} em breve · esta m&uacute;sica est&aacute; no plano das pr&oacute;ximas curadorias</div>`;
-        };
         const keyInfo = tabMeta.key ? `<span class="tab-pill">${tabMeta.key}</span>` : '';
         const capoInfo = tabMeta.capo ? `<span class="tab-pill tab-pill-alt">capo ${tabMeta.capo}</span>` : '';
         const tuningInfo = (tabMeta.tuning && tabMeta.tuning !== 'EADGBE') ? `<span class="tab-pill tab-pill-alt">${tabMeta.tuning}</span>` : '';
@@ -5397,10 +5487,34 @@ function openDrawer(showId) {
             `<button type="button" class="lyric-lang-btn${t.key===defaultTabType?' active':''}" data-tabtype="${t.key}" aria-pressed="${t.key===defaultTabType}">${t.label}</button>`
           ).join('') +
           '</div>';
-        const panes = tabTabs.map(t =>
-          `<div class="tab-pane tab-pane-${t.key}"${t.key===defaultTabType?'':' hidden'}>${placeholder(t.key)}</div>`
-        ).join('');
+        const soonPane = (which) => {
+          const label = which === 'cifra' ? 'cifra' : 'tablatura';
+          return `<div class="tab-pane-soon" data-which="${which}">${label} em breve · esta m&uacute;sica est&aacute; no plano das pr&oacute;ximas curadorias</div>`;
+        };
+        const panes = tabTabs.map(t => {
+          const initialContent = t.has
+            ? `<div class="tab-pane-loading">carregando…</div>`
+            : soonPane(t.key);
+          return `<div class="tab-pane tab-pane-${t.key}"${t.key===defaultTabType?'':' hidden'}>${initialContent}</div>`;
+        }).join('');
         body.innerHTML = infoBar + bar + panes;
+
+        // Carrega o conteudo de cada aba que tenha conteudo cadastrado.
+        if (hasCifra) {
+          const cifraPane = body.querySelector('.tab-pane-cifra');
+          _loadCifra(tabKey).then(txt => {
+            if (!cifraPane) return;
+            cifraPane.innerHTML = txt ? _renderChordPro(txt) : soonPane('cifra');
+            _attachChordChipHandlers(cifraPane);
+          });
+        }
+        // Tab (AlphaTab) entra na Fase 3 — por enquanto fallback pra placeholder
+        // mesmo quando hasTab=true.
+        if (hasTab) {
+          const tabPane = body.querySelector('.tab-pane-tab');
+          if (tabPane) tabPane.innerHTML = soonPane('tab');
+        }
+
         body.querySelectorAll('.lyric-lang-btn[data-tabtype]').forEach(b => {
           b.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -6717,6 +6831,202 @@ function _getTabEntry(songName) {
   const key = _lyricsNorm(songName);
   if (TABS_MANIFEST[key]) return { key, entry: TABS_MANIFEST[key] };
   return null;
+}
+
+// ChordPro: parser minimalista. Aceita:
+//   {meta: valor}        ignorado (metadata vem do manifest)
+//   # comentario         ignorado
+//   {section: nome}      renderiza como label da estrofe (intro, verso, refrao, ponte, solo)
+//   [Chord]lyric...      renderizado com chord-chip acima da silaba/palavra
+//   linha vazia          separa estrofes
+const _CIFRA_CACHE = {};
+function _tabSlug(songKey) {
+  return songKey.replace(/\s+/g, '-');
+}
+async function _loadCifra(songKey) {
+  if (_CIFRA_CACHE[songKey] !== undefined) return _CIFRA_CACHE[songKey];
+  try {
+    const r = await fetch(`media/tabs/cifras/${_tabSlug(songKey)}.cpro`, { cache: 'default' });
+    if (r.ok) {
+      const txt = await r.text();
+      _CIFRA_CACHE[songKey] = txt;
+      return txt;
+    }
+  } catch(e) {}
+  _CIFRA_CACHE[songKey] = null;
+  return null;
+}
+function _parseChordProLine(line) {
+  const tokens = [];
+  const re = /\[([^\]]+)\]([^\[]*)|([^\[]+)/g;
+  let m;
+  while ((m = re.exec(line)) !== null) {
+    if (m[1] !== undefined) tokens.push({ chord: m[1], text: m[2] || '' });
+    else if (m[3]) tokens.push({ chord: null, text: m[3] });
+  }
+  return tokens;
+}
+// Dicionario de digitacoes dos acordes mais usados no Top 20 PJ.
+// Strings: ordem E A D G B e (6 grave -> 1 agudo). 'x' = silenciada.
+// finger: 0 = corda solta, 1-4 = dedos, x = silenciada.
+const _CHORD_DB = {
+  'A':       { frets: ['x', 0, 2, 2, 2, 0], fingers: ['x', 0, 1, 2, 3, 0] },
+  'Am':      { frets: ['x', 0, 2, 2, 1, 0], fingers: ['x', 0, 2, 3, 1, 0] },
+  'Am7':     { frets: ['x', 0, 2, 0, 1, 0], fingers: ['x', 0, 2, 0, 1, 0] },
+  'B':       { frets: ['x', 2, 4, 4, 4, 2], fingers: ['x', 1, 2, 3, 4, 1], barre: { fret: 2, from: 5, to: 1 } },
+  'B7':      { frets: ['x', 2, 1, 2, 0, 2], fingers: ['x', 2, 1, 3, 0, 4] },
+  'Bm':      { frets: ['x', 2, 4, 4, 3, 2], fingers: ['x', 1, 3, 4, 2, 1], barre: { fret: 2, from: 5, to: 1 } },
+  'C':       { frets: ['x', 3, 2, 0, 1, 0], fingers: ['x', 3, 2, 0, 1, 0] },
+  'Cadd9':   { frets: ['x', 3, 2, 0, 3, 3], fingers: ['x', 2, 1, 0, 3, 4] },
+  'C#m':     { frets: ['x', 4, 6, 6, 5, 4], fingers: ['x', 1, 3, 4, 2, 1], barre: { fret: 4, from: 5, to: 1 } },
+  'D':       { frets: ['x', 'x', 0, 2, 3, 2], fingers: ['x', 'x', 0, 1, 3, 2] },
+  'Dsus2':   { frets: ['x', 'x', 0, 2, 3, 0], fingers: ['x', 'x', 0, 1, 2, 0] },
+  'Dsus4':   { frets: ['x', 'x', 0, 2, 3, 3], fingers: ['x', 'x', 0, 1, 2, 3] },
+  'Dadd9':   { frets: ['x', 'x', 0, 2, 3, 0], fingers: ['x', 'x', 0, 1, 2, 0] },
+  'Dm':      { frets: ['x', 'x', 0, 2, 3, 1], fingers: ['x', 'x', 0, 2, 3, 1] },
+  'E':       { frets: [0, 2, 2, 1, 0, 0], fingers: [0, 2, 3, 1, 0, 0] },
+  'Em':      { frets: [0, 2, 2, 0, 0, 0], fingers: [0, 2, 3, 0, 0, 0] },
+  'Em7':     { frets: [0, 2, 0, 0, 0, 0], fingers: [0, 2, 0, 0, 0, 0] },
+  'E7':      { frets: [0, 2, 0, 1, 0, 0], fingers: [0, 2, 0, 1, 0, 0] },
+  'F':       { frets: [1, 3, 3, 2, 1, 1], fingers: [1, 3, 4, 2, 1, 1], barre: { fret: 1, from: 6, to: 1 } },
+  'F#':      { frets: [2, 4, 4, 3, 2, 2], fingers: [1, 3, 4, 2, 1, 1], barre: { fret: 2, from: 6, to: 1 } },
+  'F#m':     { frets: [2, 4, 4, 2, 2, 2], fingers: [1, 3, 4, 1, 1, 1], barre: { fret: 2, from: 6, to: 1 } },
+  'F#sus4':  { frets: [2, 4, 4, 4, 2, 2], fingers: [1, 2, 3, 4, 1, 1], barre: { fret: 2, from: 6, to: 1 } },
+  'G':       { frets: [3, 2, 0, 0, 0, 3], fingers: [3, 2, 0, 0, 0, 4] },
+  'G/B':     { frets: ['x', 2, 0, 0, 0, 3], fingers: ['x', 2, 0, 0, 0, 4] },
+  'A/E':     { frets: [0, 0, 2, 2, 2, 0], fingers: [0, 0, 1, 2, 3, 0] },
+  'Asus2':   { frets: ['x', 0, 2, 2, 0, 0], fingers: ['x', 0, 1, 2, 0, 0] },
+  'Asus4':   { frets: ['x', 0, 2, 2, 3, 0], fingers: ['x', 0, 1, 2, 3, 0] },
+};
+function _renderChordDiagram(chordName) {
+  const data = _CHORD_DB[chordName];
+  if (!data) return null;
+  const frets = data.frets;
+  const fingers = data.fingers || [];
+  const W = 84, H = 100;
+  const padTop = 18, padBot = 14, padX = 12;
+  const stringSpacing = (W - padX * 2) / 5;
+  const fretSpacing = (H - padTop - padBot) / 4;
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" class="chord-diagram-svg" aria-hidden="true">`;
+  // Nut (linha superior grossa)
+  svg += `<line x1="${padX}" y1="${padTop}" x2="${W - padX}" y2="${padTop}" stroke="#2e6b8a" stroke-width="3" stroke-linecap="square"/>`;
+  // Trastes
+  for (let i = 1; i <= 4; i++) {
+    const y = padTop + i * fretSpacing;
+    svg += `<line x1="${padX}" y1="${y}" x2="${W - padX}" y2="${y}" stroke="#2e6b8a" stroke-width="1" opacity="0.5"/>`;
+  }
+  // Cordas (esquerda E grave -> direita e aguda)
+  for (let i = 0; i < 6; i++) {
+    const x = padX + i * stringSpacing;
+    svg += `<line x1="${x}" y1="${padTop}" x2="${x}" y2="${H - padBot}" stroke="#2e6b8a" stroke-width="1" opacity="0.7"/>`;
+  }
+  // Marcadores acima do nut (x ou o pra corda muted/aberta)
+  for (let i = 0; i < 6; i++) {
+    const x = padX + i * stringSpacing;
+    const f = frets[i];
+    if (f === 'x') {
+      svg += `<text x="${x}" y="${padTop - 5}" font-family="sans-serif" font-size="9" font-weight="700" fill="#2e6b8a" text-anchor="middle">x</text>`;
+    } else if (f === 0) {
+      svg += `<circle cx="${x}" cy="${padTop - 8}" r="3" fill="none" stroke="#2e6b8a" stroke-width="1.5"/>`;
+    }
+  }
+  // Pontos dos dedos
+  for (let i = 0; i < 6; i++) {
+    const f = frets[i];
+    if (typeof f === 'number' && f >= 1 && f <= 4) {
+      const x = padX + i * stringSpacing;
+      const y = padTop + (f - 0.5) * fretSpacing;
+      svg += `<circle cx="${x}" cy="${y}" r="6" fill="#2e6b8a"/>`;
+      if (fingers[i] && fingers[i] !== 0 && fingers[i] !== 'x') {
+        svg += `<text x="${x}" y="${y + 3.5}" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">${fingers[i]}</text>`;
+      }
+    }
+  }
+  // Barre
+  if (data.barre) {
+    const xFrom = padX + (6 - data.barre.from) * stringSpacing;
+    const xTo = padX + (6 - data.barre.to) * stringSpacing;
+    const y = padTop + (data.barre.fret - 0.5) * fretSpacing;
+    svg += `<rect x="${Math.min(xFrom,xTo) - 6}" y="${y - 5}" width="${Math.abs(xTo - xFrom) + 12}" height="10" rx="5" fill="#2e6b8a"/>`;
+  }
+  // Etiqueta inferior com nome do acorde
+  svg += `<text x="${W / 2}" y="${H - 2}" font-family="sans-serif" font-size="11" font-weight="700" fill="#2e6b8a" text-anchor="middle">${chordName.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text>`;
+  svg += `</svg>`;
+  return svg;
+}
+function _attachChordChipHandlers(root) {
+  let openPopover = null;
+  const closeOpen = () => {
+    if (openPopover) { openPopover.remove(); openPopover = null; }
+  };
+  const showFor = (chip) => {
+    closeOpen();
+    const chord = chip.dataset.chord;
+    const svg = _renderChordDiagram(chord);
+    const pop = document.createElement('div');
+    pop.className = 'chord-diagram';
+    pop.innerHTML = svg || `<div class="chord-diagram-empty">${chord}<small>digita&ccedil;&atilde;o n&atilde;o cadastrada</small></div>`;
+    chip.appendChild(pop);
+    openPopover = pop;
+  };
+  root.addEventListener('click', (e) => {
+    const chip = e.target.closest && e.target.closest('.chord-chip');
+    if (!chip) { closeOpen(); return; }
+    e.stopPropagation();
+    if (openPopover && openPopover.parentElement === chip) { closeOpen(); return; }
+    showFor(chip);
+  });
+  root.addEventListener('keydown', (e) => {
+    const chip = e.target.closest && e.target.closest('.chord-chip');
+    if (!chip) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      if (openPopover && openPopover.parentElement === chip) { closeOpen(); return; }
+      showFor(chip);
+    } else if (e.key === 'Escape') {
+      closeOpen();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (!openPopover) return;
+    if (!root.contains(e.target)) closeOpen();
+  });
+}
+function _renderChordPro(text) {
+  const escapeHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const lines = text.split(/\r?\n/);
+  const out = [];
+  let stanzaLines = [];
+  let pendingSectionLabel = null;
+  const flushStanza = () => {
+    if (!stanzaLines.length) return;
+    const lblHtml = pendingSectionLabel
+      ? `<div class="cifra-section">${escapeHtml(pendingSectionLabel)}</div>` : '';
+    out.push(`<div class="cifra-stanza">${lblHtml}${stanzaLines.join('')}</div>`);
+    stanzaLines = [];
+    pendingSectionLabel = null;
+  };
+  for (const raw of lines) {
+    const line = raw.replace(/^﻿/, '');
+    const directive = line.match(/^\s*\{(?:section|sec|part):\s*([^}]+)\}\s*$/i);
+    if (directive) { pendingSectionLabel = directive[1].trim(); continue; }
+    if (/^\s*\{.+\}\s*$/.test(line)) continue;       // outras metadatas
+    if (/^\s*#/.test(line)) continue;                 // comentario
+    if (!line.trim()) { flushStanza(); continue; }
+    const tokens = _parseChordProLine(line);
+    const tokHtml = tokens.map(t => {
+      const txt = escapeHtml(t.text === '' ? ' ' : t.text);
+      if (t.chord) {
+        const c = escapeHtml(t.chord);
+        return `<span class="cifra-token"><span class="chord-chip" data-chord="${c}" tabindex="0" role="button" aria-label="Acorde ${c}">${c}</span><span class="cifra-syl">${txt}</span></span>`;
+      }
+      return `<span class="cifra-token"><span class="chord-chip-spacer">&nbsp;</span><span class="cifra-syl">${txt}</span></span>`;
+    }).join('');
+    stanzaLines.push(`<div class="cifra-line">${tokHtml}</div>`);
+  }
+  flushStanza();
+  return out.join('') || '<div class="tab-pane-soon">cifra vazia</div>';
 }
 
 // ========================================================================
