@@ -3588,6 +3588,11 @@ html[data-theme="light"] .drawer-section-label.my-media {
   border-radius: 8px;
 }
 .fretboard-overlay.inline.show { display: block; }
+/* No modo inline, o braco fica SEMPRE visivel na view Cifras & Tabs,
+   independente do estado do player. Antes ele dependia de .show (so
+   aparecia ao Play). Agora aparece sempre que estiver inline. A
+   animacao de notas continua acontecendo so durante o playback. */
+.fretboard-overlay.inline { display: block; }
 /* Versao limpa do braco inline: esconde header (BRAÇO), pills Violão/Baixo,
    checkboxes Lead/Rhythm, legend embaixo, labels de cordas (e B G D...) e
    numeros dos trastes (3 5 7 9...). Quem filtra tracks visualmente eh o
@@ -3686,6 +3691,22 @@ html[data-theme="light"] .drawer-section-label.my-media {
   background: #2e6b8a;
   color: #fff;
 }
+/* Barra de instrumentos ABAIXO do braco. Aparece SO no modo inline
+   (view Cifras & Tabs), centralizada. No modo floating, fica oculta (os
+   botoes do topo ja cumprem essa funcao no overlay flutuante). */
+.fretboard-bar-bottom { display: none; }
+.fretboard-overlay.inline .fretboard-bar-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 10px auto 0;
+  background: rgba(46, 107, 138, 0.08);
+  padding: 4px;
+  border-radius: 999px;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+.fretboard-overlay.inline.minimized .fretboard-bar-bottom { display: none; }
 .fretboard-svg {
   width: 100%;
   height: auto;
@@ -8655,12 +8676,20 @@ function _renderTabPanel(body, songKey, tabMeta) {
             <div class="fretboard-bar">
               <div class="fretboard-header">Braço</div>
               <div class="fretboard-tabs" role="tablist">
-                <button type="button" class="fretboard-tab active" data-inst="guitar">Violão / Guitarra</button>
+                <button type="button" class="fretboard-tab" data-inst="acoustic">Violão</button>
+                <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
                 <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
+                <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
               </div>
             </div>
             <div class="fretboard-players"></div>
             <svg class="fretboard-svg" viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="fretboard-bar-bottom" role="tablist" aria-label="Escolher instrumento">
+              <button type="button" class="fretboard-tab" data-inst="acoustic">Violão</button>
+              <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
+              <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
+              <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
+            </div>
             <div class="fretboard-legend"></div>
           `;
           fretboard.querySelector('.fretboard-close').addEventListener('click', (e) => {
@@ -8719,6 +8748,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           acoustic: { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Violão' },
           guitar:   { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Guitarra' },
           bass:     { strings: 4, tuning: ['G', 'D', 'A', 'E'], label: 'Baixo' },
+          ukulele:  { strings: 4, tuning: ['A', 'E', 'C', 'G'], label: 'Ukulele' },
         };
         // Estilos visuais por instrumento (palette + body). Violao tem madeira
         // caramelo + cordas claras (nylon) + soundhole. Guitarra tem rosewood
@@ -8751,6 +8781,15 @@ function _renderTabPanel(body, songKey, tabMeta) {
             inlay:  '#e8dfc0',
             tarraxa: '#b8b0a0',
             bodyType: 'jbass',    // pickup J-style largo
+          },
+          ukulele: {
+            wood:   ['#c08858', '#d49a68', '#8c5a2e'],  // koa wood amarelado
+            body:   ['#c08858', '#7a4e2a'],
+            strHigh: '#f5ecd2',   // nylon claro
+            strLow:  '#ead7b0',   // nylon mais fosco
+            inlay:  '#f9f0d8',
+            tarraxa: '#e8d8a8',
+            bodyType: 'acoustic', // soundhole
           },
         };
 
@@ -8877,14 +8916,23 @@ function _renderTabPanel(body, songKey, tabMeta) {
         };
         drawBoard();
 
-        // Listener pros tabs do instrumento
-        fretTabsContainer.querySelectorAll('.fretboard-tab').forEach(t => {
+        // Listener pros tabs do instrumento. Existem 2 conjuntos de botoes:
+        // .fretboard-tabs (topo, modo floating) e .fretboard-bar-bottom (modo
+        // inline). Ambos compartilham mesmo state via data-inst. Click em
+        // qualquer um sincroniza active class nos 2 conjuntos.
+        const _syncInstrumentTabs = () => {
+          fretboard.querySelectorAll('.fretboard-tab').forEach(x => {
+            x.classList.toggle('active', x.dataset.inst === fbInstrument);
+          });
+        };
+        _syncInstrumentTabs();
+        fretboard.querySelectorAll('.fretboard-tab').forEach(t => {
           t.addEventListener('click', (e) => {
             e.stopPropagation();
             const inst = t.dataset.inst;
-            if (inst === fbInstrument) return;
+            if (!inst || inst === fbInstrument) return;
             fbInstrument = inst;
-            fretTabsContainer.querySelectorAll('.fretboard-tab').forEach(x => x.classList.toggle('active', x === t));
+            _syncInstrumentTabs();
             drawActiveNotes(_lastNotes);
           });
         });
@@ -8896,8 +8944,10 @@ function _renderTabPanel(body, songKey, tabMeta) {
         // MIDI base de cada corda solta na ordem 1..N (1=aguda). Pra calcular
         // o nome da nota tocada: base[stringIdx] + fret, depois % 12.
         const STRING_MIDI = {
-          guitar: [64, 59, 55, 50, 45, 40], // e B G D A E (do high E ao low E)
-          bass:   [43, 38, 33, 28],         // G D A E
+          guitar:   [64, 59, 55, 50, 45, 40], // e B G D A E (do high E ao low E)
+          acoustic: [64, 59, 55, 50, 45, 40], // mesma afinacao que a guitarra (standard EADGBE)
+          bass:     [43, 38, 33, 28],         // G D A E
+          ukulele:  [69, 64, 60, 67],         // A E C G (G4 reentrante: 1=A4, 4=G4 oitava alta)
         };
         const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
         const noteNameAt = (stringIdxZeroBased, fret) => {
@@ -8989,7 +9039,13 @@ function _renderTabPanel(body, songKey, tabMeta) {
         // Extrai notas ativas a partir do evento. AlphaTab 1.8+ tem
         // activeBeatsChanged.beats: BeatBounds[] com beat.notes/note.
         const onBeats = (e) => {
-          if (!fab.classList.contains('show')) return;
+          // Anima se o FAB esta visivel (player ativo no modo floating) OU
+          // se o fretboard esta inline (view Cifras & Tabs, sempre visivel).
+          // Sem o segundo branch, trocar de instrumento mid-play no inline
+          // funciona, mas notas iniciais (antes do FAB show) podiam ser
+          // perdidas em condicoes de corrida.
+          const inlineMode = fretboard.classList.contains('inline');
+          if (!inlineMode && !fab.classList.contains('show')) return;
           const beats = (e && (e.beats || e.activeBeats)) || [];
           const notes = [];
           beats.forEach(b => {
