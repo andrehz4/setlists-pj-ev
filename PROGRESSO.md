@@ -78,6 +78,9 @@ Reduzidos os 3 tiques de traducao identificados:
 
 254 campos alterados em text_pt + byShow_pt. Estrutura JSON preservada (221 chaves, 220 text_pt, 779 byShow_pt entries). Scripts auxiliares versionados em `scripts/` (apply-pt-pass-2b.mjs, scan-pt-tics.mjs, sample-diff.mjs, compare-counts.mjs) — reutilizaveis pra futuras passadas (2C, 2D).
 
+## Rename de secao: INTERPRETAÇÃO -> ANÁLISE (sessao 2026-05-11 noite)
+Botao da faixa, tooltips, aria-labels e meta-textos visiveis ao usuario trocados de "interpretação" pra "análise" no index.html. Motivacao: "interpretação" em musica tem duplo sentido (hermeneutica + performance), criando ambiguidade num site de shows. "análise" é preciso e curto (botao com 7 chars vs 13). Conteudo dos ensaios em interpretations.json nao foi tocado (texto interno autoral), assim como nomes de variaveis JS (_getInterpretation, .interp-toggle, .interp-row), classes CSS e o filename interpretations.json — refator interno sem ganho ao usuario. Letras (LYRICS_PT) com a palavra "interpretação" como verso cantado permaneceram intactas.
+
 ## Outras frentes pendentes (proximas sessoes)
 - Retomada das my_photos 2015 show por show: usar `MEDIA_AUDIT_2026-05-11.md` como ponto de partida. Para cada show, baixar candidatos pra `media/_staging/`, Andre escolhe visualmente, move pra `mine/` e commita. Nunca importar bulk.
 - Passada 2C (boilerplate sentencial): "carregou os dois versos com X participacao vocal sustentada que a geometria acustica da casa a ceu aberto amplificou" aparece 7-8x quase verbatim. Precisa reescrita estrutural, nao so rotacao de invólucro.

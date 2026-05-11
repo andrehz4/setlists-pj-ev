@@ -4937,7 +4937,7 @@ function openDrawer(showId) {
           <summary class="audio-notes-summary"><span aria-hidden="true">🎧 </span>Transcrição do áudio (${MEDIA_MANIFEST[showId].audio.length} faixas)</summary>
           <div class="audio-notes-body">
             ${customNotes}
-            <p>O áudio deste show é um bootleg fonográfico oficial. As músicas em inglês têm letras disponíveis: clique em <strong>LETRA</strong> ao lado do nome de cada música no setlist acima para ler o texto cantado, com tradução em português quando cadastrada. Quando uma interpretação crítica foi cadastrada, o botão <strong>INTERPRETAÇÃO</strong> abre o comentário analítico abaixo da faixa, em português ou inglês conforme a versão disponível.</p>
+            <p>O áudio deste show é um bootleg fonográfico oficial. As músicas em inglês têm letras disponíveis: clique em <strong>LETRA</strong> ao lado do nome de cada música no setlist acima para ler o texto cantado, com tradução em português quando cadastrada. Quando uma análise crítica foi cadastrada, o botão <strong>ANÁLISE</strong> abre o ensaio abaixo da faixa, em português ou inglês conforme a versão disponível.</p>
             <p style="color:var(--ink-mute);font-size:13px;">Stage banter (falas de Eddie entre músicas), reações da plateia e coros não estão transcritos. Encore breaks são pausas instrumentais entre os blocos do show.</p>
           </div>
         </details>
@@ -5140,7 +5140,7 @@ function openDrawer(showId) {
       nameSpan.appendChild(btn);
     }
 
-    // INTERPRETAÇÃO button + row (added after lyric-row when both exist)
+    // ANÁLISE button + row (added after lyric-row when both exist)
     if (interpText && nameSpan && !nameSpan.querySelector('.interp-toggle')) {
       const interpEN = _getInterpretation(songName, showId, 'en');
       const interpPT = _getInterpretation(songName, showId, 'pt');
@@ -5148,19 +5148,19 @@ function openDrawer(showId) {
       const defaultLang = interpPT ? 'pt' : 'en';
       const btn = document.createElement('span');
       btn.className = 'interp-toggle';
-      btn.textContent = 'interpretação';
-      btn.title = hasBoth ? 'interpretação crítica (PT/EN)' : (interpPT ? 'interpretação crítica (PT)' : 'interpretação crítica (em inglês)');
+      btn.textContent = 'análise';
+      btn.title = hasBoth ? 'análise crítica (PT/EN)' : (interpPT ? 'análise crítica (PT)' : 'análise crítica (em inglês)');
       btn.setAttribute('role', 'button');
       btn.setAttribute('tabindex', '0');
       btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', `Mostrar interpretação crítica de ${songName}${hasBoth ? ', em português ou inglês' : (interpPT ? ', em português' : ', em inglês')}`);
+      btn.setAttribute('aria-label', `Mostrar análise crítica de ${songName}${hasBoth ? ', em português ou inglês' : (interpPT ? ', em português' : ', em inglês')}`);
       const interpRow = document.createElement('li');
       interpRow.className = 'interp-row';
       interpRow.setAttribute('role', 'region');
-      interpRow.setAttribute('aria-label', `Interpretação crítica de ${songName}`);
-      const metaTxt = hasBoth ? 'interpretação · PT/EN · clique no painel pra fechar'
-        : (interpPT ? 'interpretação · em português · clique no painel pra fechar'
-                    : 'interpretação · em inglês · clique no painel pra fechar');
+      interpRow.setAttribute('aria-label', `Análise crítica de ${songName}`);
+      const metaTxt = hasBoth ? 'análise · PT/EN · clique no painel pra fechar'
+        : (interpPT ? 'análise · em português · clique no painel pra fechar'
+                    : 'análise · em inglês · clique no painel pra fechar');
       interpRow.innerHTML = `<div class="interp-block"><div class="body"></div><div class="meta">${metaTxt}</div></div>`;
       const insertAfter = li.nextElementSibling && li.nextElementSibling.classList.contains('lyric-row')
         ? li.nextElementSibling : li;
@@ -5178,7 +5178,7 @@ function openDrawer(showId) {
         ).join('');
         if (hasBoth) {
           body.innerHTML =
-            '<div class="lyric-lang-bar" role="tablist" aria-label="Idioma da interpretação">' +
+            '<div class="lyric-lang-bar" role="tablist" aria-label="Idioma da análise">' +
               `<button type="button" class="lyric-lang-btn${defaultLang==='pt'?' active':''}" data-lang="pt" aria-pressed="${defaultLang==='pt'}">PT</button>` +
               `<button type="button" class="lyric-lang-btn${defaultLang==='en'?' active':''}" data-lang="en" aria-pressed="${defaultLang==='en'}">EN</button>` +
             '</div>' +
