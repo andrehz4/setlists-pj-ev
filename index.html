@@ -3211,63 +3211,173 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .alphatab-fab-stop:hover { background: #8a1c20; }
 .alphatab-fab-stop.alphatab-fab-as-play { background: #2e6b8a; }
 .alphatab-fab-stop.alphatab-fab-as-play:hover { background: #1f4e6a; }
+.alphatab-fab-loop { background: #f4a93a; }
+.alphatab-fab-loop:hover { background: #d68d20; }
 @media (max-width: 480px) {
   .alphatab-fab { bottom: 16px; right: 16px; padding: 8px; gap: 6px; }
   .alphatab-fab-btn { width: 44px; height: 44px; font-size: 13px; }
 }
-/* Fretboard visualizer floating: 6 cordas x 12 frets, mostra notas tocadas
-   em tempo real. Esconde em telas pequenas (mobile) pra nao roubar espaco. */
+/* Fretboard visualizer floating: braco grande com textura de madeira,
+   trastes prateados, marcadores inlay e seletor de instrumento. */
 .fretboard-overlay {
   position: fixed;
   right: 24px;
-  bottom: 100px;
-  width: 240px;
-  background: rgba(255, 255, 255, 0.96);
+  bottom: 110px;
+  width: 460px;
+  background: rgba(255, 255, 255, 0.97);
   border: 1px solid rgba(46, 107, 138, 0.3);
-  border-radius: 10px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 10px 12px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 16px 12px;
   z-index: 9998;
   display: none;
 }
 .fretboard-overlay.show { display: block; }
+.fretboard-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
 .fretboard-header {
-  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.18em;
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #2e6b8a;
-  margin-bottom: 8px;
-  text-align: center;
+}
+.fretboard-tabs {
+  display: inline-flex;
+  gap: 4px;
+  background: rgba(46, 107, 138, 0.08);
+  padding: 3px;
+  border-radius: 999px;
+}
+.fretboard-tab {
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2e6b8a;
+  background: transparent;
+  border: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+.fretboard-tab:hover { background: rgba(46, 107, 138, 0.12); }
+.fretboard-tab.active {
+  background: #2e6b8a;
+  color: #fff;
 }
 .fretboard-svg {
   width: 100%;
   height: auto;
   display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
 .fretboard-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 10px;
-  margin-top: 6px;
-  font: 600 9px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  gap: 4px 12px;
+  margin-top: 10px;
+  font: 600 10px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
   color: var(--ink-dim, #6b5e44);
-  min-height: 12px;
+  min-height: 14px;
 }
 .fretboard-legend-item {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 .fretboard-legend-dot {
   display: inline-block;
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
 }
-@media (max-width: 768px) {
+.fretboard-legend-empty {
+  font-style: italic;
+  opacity: 0.5;
+}
+@media (max-width: 900px) {
+  .fretboard-overlay { width: 92vw; right: 4vw; bottom: 100px; }
+}
+@media (max-width: 480px) {
   .fretboard-overlay { display: none !important; }
+}
+
+/* Loop overlay: card grande no centro da tela explicando o passo */
+.alphatab-loop-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(26, 22, 17, 0.55);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+.alphatab-loop-overlay.show { display: flex; }
+.alphatab-loop-overlay-card {
+  background: var(--paper, #fff);
+  border: 2px solid #f4a93a;
+  border-radius: 14px;
+  padding: 24px 32px;
+  text-align: center;
+  max-width: 480px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+  pointer-events: auto;
+  animation: loop-overlay-pop 200ms ease-out;
+}
+@keyframes loop-overlay-pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.alphatab-loop-overlay-icon {
+  font-size: 36px;
+  color: #f4a93a;
+  margin-bottom: 8px;
+  animation: loop-blink 1s ease-in-out infinite;
+}
+.alphatab-loop-overlay-title {
+  font: 700 13px/1.2 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f4a93a;
+  margin-bottom: 12px;
+}
+.alphatab-loop-overlay-step {
+  font: 400 15px/1.5 var(--font-editorial, Georgia, serif);
+  color: var(--ink, #1a1611);
+  margin-bottom: 16px;
+}
+.alphatab-loop-overlay-step strong { color: var(--pj, #c1272d); }
+.alphatab-loop-overlay-step small {
+  display: block;
+  margin-top: 6px;
+  font: italic 12px/1.4 var(--font-editorial, Georgia, serif);
+  color: var(--ink-mute, #6b5e44);
+}
+.alphatab-loop-overlay-cancel {
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink-dim, #6b5e44);
+  border: 1px solid rgba(107, 94, 68, 0.4);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.alphatab-loop-overlay-cancel:hover {
+  background: rgba(107, 94, 68, 0.08);
 }
 
 /* View "Cifras & Tabs": grid de cards (visual similar a Deep), expansivel
@@ -7437,6 +7547,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           <button type="button" class="alphatab-btn alphatab-stop" aria-label="Parar reprodução">◼ Stop</button>
           <label class="alphatab-speed-label">Velocidade
             <select class="alphatab-speed" aria-label="Velocidade de reprodução">
+              <option value="0.25">0.25×</option>
               <option value="0.5">0.5×</option>
               <option value="0.75">0.75×</option>
               <option value="1" selected>1×</option>
@@ -7471,11 +7582,21 @@ function _renderTabPanel(body, songKey, tabMeta) {
           fab.innerHTML = `
             <button type="button" class="alphatab-fab-btn alphatab-fab-pause" aria-label="Pausar/retomar">❚❚</button>
             <button type="button" class="alphatab-fab-btn alphatab-fab-stop" aria-label="Parar">◼</button>
+            <button type="button" class="alphatab-fab-btn alphatab-fab-loop" aria-label="Tocar loop" style="display:none">🔁</button>
           `;
           document.body.appendChild(fab);
         }
         const fabPause = fab.querySelector('.alphatab-fab-pause');
         const fabStop = fab.querySelector('.alphatab-fab-stop');
+        const fabLoop = fab.querySelector('.alphatab-fab-loop');
+        if (fabLoop) {
+          fabLoop.onclick = (e) => {
+            e.stopPropagation();
+            // toca o loop do inicio
+            api.tickPosition = api.playbackRange ? api.playbackRange.startTick : 0;
+            api.play();
+          };
+        }
         // FAB visivel desde o load do painel. Botoes dinamicos:
         // - Esquerdo: playing -> Pause; paused/stopped -> Play
         // - Direito:  playing/paused -> Stop; stopped -> Play (recomeca)
@@ -7509,17 +7630,23 @@ function _renderTabPanel(body, songKey, tabMeta) {
         };
         renderFab();
 
-        // Fretboard visualizer: SVG do braco de violao no canto direito,
-        // mostrando em tempo real as notas tocadas em cada compasso.
-        // Suporta ate 6 cordas (viola/guitarra). Baixo (4 cordas) aparece
-        // nas 4 cordas mais graves (E A D G).
+        // Fretboard visualizer: braço de instrumento desenhado em SVG, com
+        // textura de madeira via gradient, trastes prateados, marcadores
+        // inlay tradicionais e nomes das cordas afinadas. Seletor permite
+        // alternar entre Violão (6 cordas) e Baixo (4 cordas).
         let fretboard = document.querySelector('.fretboard-overlay');
         if (!fretboard) {
           fretboard = document.createElement('div');
           fretboard.className = 'fretboard-overlay';
           fretboard.innerHTML = `
-            <div class="fretboard-header">Braço · violão</div>
-            <svg class="fretboard-svg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+            <div class="fretboard-bar">
+              <div class="fretboard-header">Braço</div>
+              <div class="fretboard-tabs" role="tablist">
+                <button type="button" class="fretboard-tab active" data-inst="guitar">Violão / Guitarra</button>
+                <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
+              </div>
+            </div>
+            <svg class="fretboard-svg" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
             <div class="fretboard-legend"></div>
           `;
           document.body.appendChild(fretboard);
@@ -7527,83 +7654,142 @@ function _renderTabPanel(body, songKey, tabMeta) {
         const fretSvg = fretboard.querySelector('.fretboard-svg');
         const fretLegend = fretboard.querySelector('.fretboard-legend');
         const fretHeader = fretboard.querySelector('.fretboard-header');
+        const fretTabsContainer = fretboard.querySelector('.fretboard-tabs');
 
-        // Desenha o braco estatico (6 cordas x 12 trastes + nut)
-        const FB_W = 220, FB_H = 180;
-        const FB_PAD_L = 18, FB_PAD_R = 12, FB_PAD_T = 14, FB_PAD_B = 14;
+        // Estado: instrumento exibido + ultimo set de notas tocadas
+        let fbInstrument = 'guitar'; // 'guitar' (6c) ou 'bass' (4c)
+        let _lastNotes = [];
+
+        const INSTRUMENTS = {
+          guitar: { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Violão / Guitarra' }, // 1=aguda topo
+          bass:   { strings: 4, tuning: ['G', 'D', 'A', 'E'], label: 'Baixo' },
+        };
+
+        // Dimensoes do SVG (viewBox fixo, escala via CSS)
+        const FB_W = 460, FB_H = 220;
+        const FB_PAD_L = 42;   // espaco pra nomes das cordas
+        const FB_PAD_R = 18;
+        const FB_PAD_T = 16;
+        const FB_PAD_B = 22;   // espaco pra numeros dos trastes
         const FB_FRETS = 12;
-        const stringSpacing = (FB_H - FB_PAD_T - FB_PAD_B) / 5;
         const fretSpacing = (FB_W - FB_PAD_L - FB_PAD_R) / FB_FRETS;
+
         const drawBoard = () => {
+          const inst = INSTRUMENTS[fbInstrument];
+          const nStrings = inst.strings;
+          const stringSpacing = (FB_H - FB_PAD_T - FB_PAD_B) / (nStrings - 1);
           let svg = '';
-          // Nut (linha grossa esquerda)
-          svg += `<line x1="${FB_PAD_L}" y1="${FB_PAD_T}" x2="${FB_PAD_L}" y2="${FB_H - FB_PAD_B}" stroke="#2e6b8a" stroke-width="3"/>`;
-          // Trastes
+          // Defs: gradient de madeira + gradient de trastes metalicos
+          svg += `<defs>
+            <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#5a3a1f"/>
+              <stop offset="40%" stop-color="#6b4a28"/>
+              <stop offset="100%" stop-color="#3e2914"/>
+            </linearGradient>
+            <linearGradient id="fret" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d8d8d8"/>
+              <stop offset="50%" stop-color="#f5f5f5"/>
+              <stop offset="100%" stop-color="#a0a0a0"/>
+            </linearGradient>
+            <linearGradient id="nut" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#f9f3e3"/>
+              <stop offset="100%" stop-color="#d8c89c"/>
+            </linearGradient>
+          </defs>`;
+          // Fundo: madeira
+          svg += `<rect x="${FB_PAD_L}" y="${FB_PAD_T - 4}" width="${FB_W - FB_PAD_L - FB_PAD_R}" height="${FB_H - FB_PAD_T - FB_PAD_B + 8}" fill="url(#wood)" rx="3"/>`;
+          // Nut (osso de marfim)
+          svg += `<rect x="${FB_PAD_L - 6}" y="${FB_PAD_T - 4}" width="6" height="${FB_H - FB_PAD_T - FB_PAD_B + 8}" fill="url(#nut)" stroke="#8a7a4a" stroke-width="0.5"/>`;
+          // Trastes prateados
           for (let f = 1; f <= FB_FRETS; f++) {
             const x = FB_PAD_L + f * fretSpacing;
-            svg += `<line x1="${x}" y1="${FB_PAD_T}" x2="${x}" y2="${FB_H - FB_PAD_B}" stroke="#2e6b8a" stroke-width="1" opacity="0.45"/>`;
+            svg += `<rect x="${x - 1}" y="${FB_PAD_T - 4}" width="2.5" height="${FB_H - FB_PAD_T - FB_PAD_B + 8}" fill="url(#fret)"/>`;
           }
-          // Cordas (string 1 = aguda topo, string 6 = grave fundo na convencao guitar)
-          for (let s = 0; s < 6; s++) {
-            const y = FB_PAD_T + s * stringSpacing;
-            const w = s < 3 ? 1.0 : 1.5;
-            svg += `<line x1="${FB_PAD_L}" y1="${y}" x2="${FB_W - FB_PAD_R}" y2="${y}" stroke="#666" stroke-width="${w}" opacity="0.7"/>`;
-          }
-          // Marcadores tradicionais (3, 5, 7, 9, 12 — duplos no 12)
-          const markers = [3, 5, 7, 9];
-          markers.forEach(f => {
+          // Inlay markers (pontos de madreperola nos trastes 3,5,7,9)
+          const inlays = [3, 5, 7, 9];
+          inlays.forEach(f => {
             const x = FB_PAD_L + (f - 0.5) * fretSpacing;
-            const y = FB_H / 2;
-            svg += `<circle cx="${x}" cy="${y}" r="2.5" fill="#2e6b8a" opacity="0.35"/>`;
+            const y = FB_PAD_T + (FB_H - FB_PAD_T - FB_PAD_B) / 2;
+            svg += `<circle cx="${x}" cy="${y}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
           });
-          // Inlay duplo no 12o traste
+          // Inlay duplo no 12
           const x12 = FB_PAD_L + (12 - 0.5) * fretSpacing;
-          svg += `<circle cx="${x12}" cy="${FB_PAD_T + stringSpacing * 1.5}" r="2.5" fill="#2e6b8a" opacity="0.35"/>`;
-          svg += `<circle cx="${x12}" cy="${FB_PAD_T + stringSpacing * 3.5}" r="2.5" fill="#2e6b8a" opacity="0.35"/>`;
-          // Numeros dos trastes
+          const mid = FB_PAD_T + (FB_H - FB_PAD_T - FB_PAD_B) / 2;
+          svg += `<circle cx="${x12}" cy="${mid - stringSpacing * 0.8}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
+          svg += `<circle cx="${x12}" cy="${mid + stringSpacing * 0.8}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
+          // Cordas
+          for (let s = 0; s < nStrings; s++) {
+            const y = FB_PAD_T + s * stringSpacing;
+            // Cordas mais agudas finas, mais graves grossas
+            const thicknessRatio = s / (nStrings - 1);
+            const w = 0.9 + thicknessRatio * 1.6;
+            svg += `<line x1="${FB_PAD_L - 6}" y1="${y}" x2="${FB_W - FB_PAD_R}" y2="${y}" stroke="#dcdcdc" stroke-width="${w}" opacity="0.92"/>`;
+            // Nome da nota da corda solta (esquerda)
+            svg += `<text x="${FB_PAD_L - 12}" y="${y + 4}" font-family="sans-serif" font-size="11" font-weight="700" fill="#2e6b8a" text-anchor="end">${inst.tuning[s]}</text>`;
+          }
+          // Numeros dos trastes (embaixo)
           for (let f = 1; f <= FB_FRETS; f++) {
             const x = FB_PAD_L + (f - 0.5) * fretSpacing;
-            svg += `<text x="${x}" y="${FB_H - 2}" font-family="sans-serif" font-size="7" fill="#999" text-anchor="middle">${f}</text>`;
+            svg += `<text x="${x}" y="${FB_H - 6}" font-family="sans-serif" font-size="10" font-weight="600" fill="#888" text-anchor="middle">${f}</text>`;
           }
           fretSvg.innerHTML = svg;
         };
         drawBoard();
 
+        // Listener pros tabs do instrumento
+        fretTabsContainer.querySelectorAll('.fretboard-tab').forEach(t => {
+          t.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const inst = t.dataset.inst;
+            if (inst === fbInstrument) return;
+            fbInstrument = inst;
+            fretTabsContainer.querySelectorAll('.fretboard-tab').forEach(x => x.classList.toggle('active', x === t));
+            drawActiveNotes(_lastNotes);
+          });
+        });
+
         // Cores por track (cicladas) pra distinguir Stone, Mike, Jeff, etc.
         const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
-        // AlphaTab string convention: 1 = aguda (alta), N = grave (baixa).
-        // Pra um violao standard de 6 cordas: string 1 = e (high), 6 = E (low).
-        // SVG: posicionamos string 1 no TOPO (s=0), string 6 no FUNDO (s=5).
-        // Em baixos de 4 cordas, AlphaTab tambem usa string 1 = aguda; mapeamos
-        // pras 4 cordas centrais visualmente.
+        // AlphaTab string convention: 1 = aguda (topo), N = grave (fundo).
+        const isBassTrack = (name) => /bass|baix/i.test(String(name || ''));
         const drawActiveNotes = (notes) => {
+          _lastNotes = notes || [];
           drawBoard();
-          if (!notes || !notes.length) {
+          if (!_lastNotes.length) {
             fretLegend.textContent = '';
             return;
           }
+          const inst = INSTRUMENTS[fbInstrument];
+          const nStrings = inst.strings;
+          const stringSpacing = (FB_H - FB_PAD_T - FB_PAD_B) / (nStrings - 1);
+          // Filtra notas: se viewing guitar, mostra tracks NÃO-baixo; se bass, só baixo.
+          const filtered = _lastNotes.filter(n => {
+            const bass = isBassTrack(n.trackName);
+            return fbInstrument === 'bass' ? bass : !bass;
+          });
           let dots = '';
           const labels = new Map();
-          notes.forEach(n => {
+          filtered.forEach(n => {
             if (typeof n.fret !== 'number' || typeof n.string !== 'number') return;
             if (n.fret < 0 || n.fret > FB_FRETS) return;
-            const stringIdx = n.string - 1; // 0-indexed
-            if (stringIdx < 0 || stringIdx > 5) return;
+            const stringIdx = n.string - 1;
+            if (stringIdx < 0 || stringIdx >= nStrings) return;
             const y = FB_PAD_T + stringIdx * stringSpacing;
-            // Fret 0 = corda solta, plotamos no nut (esquerda).
             const x = n.fret === 0
-              ? FB_PAD_L - 6
+              ? FB_PAD_L - 12
               : FB_PAD_L + (n.fret - 0.5) * fretSpacing;
             const color = TRACK_COLORS[(n.trackIdx || 0) % TRACK_COLORS.length];
-            dots += `<circle cx="${x}" cy="${y}" r="7" fill="${color}" opacity="0.95"/>`;
-            dots += `<text x="${x}" y="${y + 2.5}" font-family="sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">${n.fret}</text>`;
+            // Halo (glow externo) + circulo + numero do fret
+            dots += `<circle cx="${x}" cy="${y}" r="13" fill="${color}" opacity="0.25"/>`;
+            dots += `<circle cx="${x}" cy="${y}" r="10" fill="${color}" opacity="0.98" stroke="#fff" stroke-width="1.5"/>`;
+            dots += `<text x="${x}" y="${y + 4}" font-family="sans-serif" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">${n.fret}</text>`;
             const trackName = (n.trackName || `T${(n.trackIdx || 0) + 1}`).split(' ')[0];
             labels.set(trackName, color);
           });
           fretSvg.insertAdjacentHTML('beforeend', dots);
           fretLegend.innerHTML = [...labels.entries()].map(([name, color]) =>
             `<span class="fretboard-legend-item"><span class="fretboard-legend-dot" style="background:${color}"></span>${name}</span>`
-          ).join('');
+          ).join('') || '<span class="fretboard-legend-empty">aguardando notas…</span>';
         };
 
         // Extrai notas ativas a partir do evento. AlphaTab 1.8+ tem
@@ -7729,21 +7915,51 @@ function _renderTabPanel(body, songKey, tabMeta) {
         });
         // Loop: 3 estados — off / marcando-start / marcando-end-com-loop-ativo.
         // Cliques na propria tab marcam pontos via api.beatMouseDown.
+        // Overlay grande aparece quando entra em modo de marcacao, explicando.
         let loopStart = null;
+        let loopOverlay = document.querySelector('.alphatab-loop-overlay');
+        if (!loopOverlay) {
+          loopOverlay = document.createElement('div');
+          loopOverlay.className = 'alphatab-loop-overlay';
+          loopOverlay.innerHTML = `
+            <div class="alphatab-loop-overlay-card">
+              <div class="alphatab-loop-overlay-icon">◉</div>
+              <div class="alphatab-loop-overlay-title">Marcando trecho do loop</div>
+              <div class="alphatab-loop-overlay-step">Clique no <strong>primeiro beat</strong> do trecho que vai repetir</div>
+              <button type="button" class="alphatab-loop-overlay-cancel">Cancelar</button>
+            </div>
+          `;
+          document.body.appendChild(loopOverlay);
+          loopOverlay.querySelector('.alphatab-loop-overlay-cancel').addEventListener('click', (e) => {
+            e.stopPropagation();
+            loopReset();
+          });
+        }
+        const loopOverlayStep = loopOverlay.querySelector('.alphatab-loop-overlay-step');
+        const showLoopOverlay = (msg) => {
+          loopOverlayStep.innerHTML = msg;
+          loopOverlay.classList.add('show');
+        };
+        const hideLoopOverlay = () => loopOverlay.classList.remove('show');
         const loopReset = () => {
           loopStart = null;
           loopBtn.dataset.state = 'off';
           loopBtn.textContent = '🔁 Loop';
           api.isLooping = false;
           api.playbackRange = null;
-          status.textContent = api.player && api.player.state === 1 ? 'tocando…' : 'pronto · click Play';
+          status.textContent = 'pronto · click Play';
+          hideLoopOverlay();
+          // Esconde botao "play loop" do FAB
+          const fabLoop = document.querySelector('.alphatab-fab-loop');
+          if (fabLoop) fabLoop.style.display = 'none';
         };
         loopBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           if (loopBtn.dataset.state === 'off') {
             loopBtn.dataset.state = 'arm';
             loopBtn.textContent = '◉ marcando…';
-            status.textContent = 'clique no beat de INÍCIO do loop na tablatura';
+            status.textContent = 'clique num beat na tab pra marcar o início';
+            showLoopOverlay('Clique no <strong>primeiro beat</strong> do trecho que vai repetir<br><small>diretamente na tablatura abaixo</small>');
           } else {
             loopReset();
           }
@@ -7755,7 +7971,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
               loopStart = beat;
               loopBtn.dataset.state = 'arm2';
               loopBtn.textContent = '◉ marcando fim';
-              status.textContent = 'clique no beat de FIM do loop';
+              status.textContent = 'clique num beat de FIM do loop';
+              showLoopOverlay('Início marcado ✓<br>Agora clique no <strong>último beat</strong> do trecho<br><small>o loop vai repetir entre esses dois pontos</small>');
             } else if (loopBtn.dataset.state === 'arm2') {
               const startTick = loopStart.absolutePlaybackStart;
               const endTick = beat.absolutePlaybackEnd || (beat.absolutePlaybackStart + (beat.playbackDuration || 480));
@@ -7763,13 +7980,18 @@ function _renderTabPanel(body, songKey, tabMeta) {
                 status.textContent = 'fim precisa ser depois do inicio';
                 loopBtn.dataset.state = 'arm';
                 loopBtn.textContent = '◉ marcando…';
+                showLoopOverlay('Fim precisa ser <strong>depois</strong> do início. Clique no primeiro beat de novo.');
                 return;
               }
               api.playbackRange = { startTick, endTick };
               api.isLooping = true;
               loopBtn.dataset.state = 'on';
               loopBtn.textContent = '🔁 Loop ATIVO';
-              status.textContent = `loop ativo · ${Math.round((endTick - startTick) / 480)} beats`;
+              status.textContent = `loop ativo · ${Math.round((endTick - startTick) / 480)} beats · click play do FAB pra tocar`;
+              hideLoopOverlay();
+              // Mostra botao "play loop" no FAB pra usuario tocar o range
+              const fabLoop = document.querySelector('.alphatab-fab-loop');
+              if (fabLoop) fabLoop.style.display = 'flex';
             }
           });
         }
