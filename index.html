@@ -3652,6 +3652,58 @@ html[data-theme="light"] .drawer-section-label.my-media {
    continua mostrando a infoBar normalmente (nao tem o header proprio). */
 .cifra-detail-body > .tab-info { display: none; }
 
+/* Voice picker: cards 3-col com label + role + tagline por musico.
+   Multi-select (multiple cards podem ficar ligados). Sincroniza com os
+   checkboxes do fretboard-overlay via dispatch programatico. */
+.voice-picker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+@media (max-width: 600px) {
+  .voice-picker { grid-template-columns: 1fr; }
+}
+.voice-tab {
+  text-align: left;
+  padding: 11px 13px;
+  background: var(--bg-card);
+  border: 1px solid var(--divider);
+  border-left: 3px solid var(--divider-strong);
+  cursor: pointer;
+  transition: background 0.15s ease, border-left-color 0.15s ease, opacity 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--ink);
+  font-family: inherit;
+  --vc: #2e6b8a;
+}
+.voice-tab:hover { background: var(--bg-card-hover); }
+.voice-tab.active {
+  border-left-color: var(--vc);
+  background: var(--bg-card-hover);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.voice-tab:not(.active) { opacity: 0.55; }
+.voice-tab-label {
+  font: 700 14px/1.1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.voice-tab.active .voice-tab-label { color: var(--vc); }
+.voice-tab-role {
+  font: 600 9px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.voice-tab-tag {
+  font: italic 12px/1.3 var(--font-editorial, Georgia, serif);
+  color: var(--ink-mute);
+  margin-top: 3px;
+}
+
 @media (max-width: 600px) {
   .cifra-header { grid-template-columns: 80px 1fr; gap: 14px; }
   .cifra-cover { width: 80px; height: 80px; }
@@ -8064,6 +8116,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
         api.scoreLoaded.on(score => {
           const tracks = (score && score.tracks) ? score.tracks : [];
 
+          // Popula o voice-picker (cards Stone/Mike/Jeff) na view Cifras & Tabs.
+          // Quando o painel TAB e usado inline na faixa do show, nao ha voice-picker
+          // ativo (_activeVoicePicker == null) e essa chamada vira no-op.
+          if (typeof _populateVoicePicker === 'function') _populateVoicePicker(_activeVoicePicker, tracks);
+
           // Popula checkboxes de tracks no fretboard (filtro visual)
           fbSelectedTracks = new Set(tracks.map((_, i) => i));
           if (fretPlayersContainer && tracks.length > 0) {
@@ -8416,10 +8473,76 @@ function _renderCifraDetail(container, songKey, tabMeta) {
         <div class="cifra-pills">${pills.join('')}</div>
       </div>
     </header>
+    <div class="voice-picker" role="group" aria-label="Filtrar m&uacute;sicos visiveis no fretboard" hidden></div>
     <div class="cifra-detail-body"></div>
   `;
+  // Marca o voice-picker desta tela como ativo. Quando AlphaTab disparar
+  // scoreLoaded la dentro do _renderTabPanel, popula o picker aqui.
+  _activeVoicePicker = container.querySelector('.voice-picker');
   const body = container.querySelector('.cifra-detail-body');
   _renderTabPanel(body, songKey, tabMeta);
+}
+
+// Referencia pro voice-picker da musica aberta no momento. _renderTabPanel
+// chama _populateVoicePicker quando AlphaTab carrega a partitura; aqui a
+// gente sabe pra onde mandar os cards.
+let _activeVoicePicker = null;
+
+// Inferencia de role/tagline a partir do nome da track. Coberta os casos
+// classicos do PJ; cai pra "Faixa" generica em musicas sem match obvio.
+function _inferTrackMeta(name) {
+  const n = String(name || '').toLowerCase();
+  if (/bass|baix|jeff/.test(n)) return { role: 'Baixo', tagline: 'pulso steady, raizes da harmonia' };
+  if (/lead|solo|mike|mccready/.test(n)) return { role: 'Guitarra solo', tagline: 'bends bluesy, pentatonica' };
+  if (/rhythm|ritm|stone|gossard/.test(n)) return { role: 'Guitarra ritmica', tagline: 'arpejos limpos, base harmonica' };
+  if (/drum|bater|matt|cameron/.test(n)) return { role: 'Bateria', tagline: 'groove e dinamica' };
+  if (/voc|vedder/.test(n)) return { role: 'Vocal', tagline: 'melodia da cancao' };
+  if (/guit/.test(n)) return { role: 'Guitarra', tagline: 'faixa de guitarra' };
+  return { role: 'Faixa', tagline: 'instrumental' };
+}
+
+// Popula o voice-picker com 1 card por track da partitura. Cards ficam
+// todos ativos por default; click no card alterna estado E propaga pros
+// checkboxes do .fretboard-players (filtro visual no fretboard overlay)
+// e .alphatab-tracks (mute de audio + renderTracks). Andre escolheu
+// multi-select pra preservar o comportamento atual.
+function _populateVoicePicker(picker, tracks) {
+  if (!picker || !tracks || !tracks.length) return;
+  const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
+  const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  picker.innerHTML = tracks.map((t, i) => {
+    const rawName = t.name || `Track ${i + 1}`;
+    const { role, tagline } = _inferTrackMeta(rawName);
+    const color = TRACK_COLORS[i % TRACK_COLORS.length];
+    return `
+      <button type="button" class="voice-tab active" data-idx="${i}" style="--vc:${color}" aria-pressed="true">
+        <span class="voice-tab-label">${esc(rawName)}</span>
+        <span class="voice-tab-role">${esc(role)}</span>
+        <span class="voice-tab-tag">${esc(tagline)}</span>
+      </button>`;
+  }).join('');
+  picker.hidden = false;
+  picker.querySelectorAll('.voice-tab').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = card.dataset.idx;
+      const newState = !card.classList.contains('active');
+      card.classList.toggle('active', newState);
+      card.setAttribute('aria-pressed', newState ? 'true' : 'false');
+      // Sincroniza com fretboard-players (filtro visual)
+      const cbFret = document.querySelector(`.fretboard-players input[data-idx="${idx}"]`);
+      if (cbFret && cbFret.checked !== newState) {
+        cbFret.checked = newState;
+        cbFret.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      // Sincroniza com alphatab-tracks (mute de audio + render)
+      const cbTrack = document.querySelector(`.alphatab-tracks input[data-track-idx="${idx}"]`);
+      if (cbTrack && cbTrack.checked !== newState) {
+        cbTrack.checked = newState;
+        cbTrack.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  });
 }
 
 // Som arpejado do acorde via smplr (https://github.com/danigb/smplr, MIT).
