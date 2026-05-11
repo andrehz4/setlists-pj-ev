@@ -3,6 +3,25 @@
 ## Data
 2026-05-12
 
+## BACKLOG
+
+### Secao "Clipes" (videos oficiais Pearl Jam) [aberto 2026-05-12]
+Andre pediu uma view nova com os videoclipes oficiais do PJ, baseada na playlist oficial do canal Pearl Jam Vevo no YouTube.
+
+- **Fonte**: `https://www.youtube.com/playlist?list=PL9C9DD94124C436BB` (primeiro video: `fYSazphh_C8`)
+- **Padrao visual obrigatorio**: tem que casar com o resto do site (Ticket Archive). Paleta cream/pj-red/teal/ev-amber, fonts existentes (Big Shoulders, Instrument Serif, Newsreader, JetBrains Mono, Oswald), tokens `--bg/--bg-card/--paper/--ink/--pj` etc. Identidade visual: cards estilo ticket/poster, nao iframes soltos.
+- **Esboco de implementacao**:
+  - Nova nav tab `🎬 Clipes` (apos `🎸 Cifras & Tabs`).
+  - Manifest `media/clipes/index.json` com `[{ id: 'fYSazphh_C8', title, song, album, year, director, dur, notes }]` curado a mao (ordem cronologica ou por album).
+  - Grid de cards: thumbnail YouTube (`https://i.ytimg.com/vi/{id}/hqdefault.jpg` 480x360, cache local em `media/clipes/thumbs/` opcional), cover do album em pill no canto, titulo da musica, ano, diretor pequenininho.
+  - Click no card abre modal/lightbox com iframe YouTube `<iframe src="https://www.youtube.com/embed/{id}?autoplay=1&modestbranding=1&rel=0">` (lazy, so cria iframe no click pra nao puxar JS do YT no load da view).
+  - Header da view: titulo "Clipes Oficiais", subtitulo italic, contagem total.
+  - Filtros: por album (chips horizontais), por decada, busca por titulo.
+  - Privacy-conscious: usar dominio `youtube-nocookie.com` no embed (sem tracking pre-consent).
+  - CSP: vai precisar abrir `frame-src https://www.youtube-nocookie.com` (ou youtube.com) no `_headers`. `img-src` ja permite `https:` ou pode adicionar `i.ytimg.com` se for explicit.
+- **Trabalho de curadoria**: catalogar os ~30-40 clipes oficiais (Alive, Even Flow, Jeremy, Daughter, Animal, Dissident, Spin the Black Circle, I Got Id, Hail Hail, Given to Fly, Wishlist, Do the Evolution, Last Kiss, Save You, I Am Mine, Love Boat Captain, World Wide Suicide, Life Wasted, Just Breathe, The Fixer, Sirens, Mind Your Manners, Dance of the Clairvoyants, Retrograde, Wreckage, Dark Matter, Running, etc) com diretor, ano, contexto.
+- **Quando atacar**: depois que a curadoria das 20 cifras (Top PJ ao vivo) avancar. Backlog, sem prazo.
+
 ## SESSAO MADRUGADA -> MANHA 2026-05-12: refinamento profundo cifras & tabs (mais 18 commits, total 24 na sessao)
 
 Depois do bootstrap inicial (5 commits abaixo), Andre testou e flagou serie de bugs/melhorias. Bateu de novo numa serie de iteracoes. Tudo deployado e funcionando.
