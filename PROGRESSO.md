@@ -45,15 +45,36 @@ untitled (Yield faixa 8): 2 linhas instrumentais cantadas, traduzido como 'Tamo 
 - `media/lyrics-notes.json`: 227 ensaios do tradutor + _meta.
 - `media/interpretations.json`: 220 entradas bilingues.
 
-## MEDIA recovery 2026-05-11 (passada 2)
-- ROLLBACK: as 56 my_photos importadas em massa foram removidas. Curadoria automatica por tamanho deixou passar conteudo inadequado (chats, prints pessoais). Proxima abordagem: show por show com validacao visual antes do commit.
-- Video Facebook 2014 mantido em ev-2014-05-06/videos/video-1.mp4 (1.47 MB, 11s, validacao visual pendente).
-- Detalhes do que foi encontrado no Drive em MEDIA_AUDIT_2026-05-11.md (lista de file_ids ainda valida pra retomada manual).
+## MEDIA recovery 2026-05-11 (sessao da tarde)
+**Linha do tempo dos commits da sessao:**
+- `e1d5d0a` feat(media): subiu 56 my_photos 2015 + video 2014 (filtro automatico por tamanho >80KB).
+- `b146b4a` revert(media): ROLLBACK das 56 fotos (Andre flagou conteudo inadequado, filtro nao foi suficiente).
+- `0a938a5` fix(cache): _headers separou `/media/*/mine/*` com max-age 300 (antes era immutable 1 ano, que segurava CDN do Cloudflare apos remocao).
+- `da4b667` fix(media): placeholder EM BREVE preenche os 56 slots vazios (visual ticket archive, fundo tan + borda PJ red + texto vermelho).
+
+**Estado atual dos slots my_photos 2015:** todos os 56 (mais 56 thumbs = 112 arquivos) apontam pro placeholder `media/_placeholder-embreve.jpg` / `_placeholder-embreve-thumb.jpg`. Site mostra o "EM BREVE" no lugar das fotos pessoais ate retomada show por show.
+
+**Decisao de protocolo (salva em memory feedback_no_bulk_photo_import.md):** futura importacao de my_photos do Drive vai pra `media/_staging/show-XXXX/`, Andre valida visualmente e move pra `mine/` show por show. Nunca mais bulk com filtro automatico.
+
+**Video 2014 mantido:** `ev-2014-05-06/videos/video-1.mp4` (Facebook clip 1.47 MB 11s, 400x400) ficou no commit `e1d5d0a` apos rollback. Validacao visual ainda pendente.
+
+**Cache do Cloudflare:** se o site ainda mostrar a foto antiga (zumbi), Andre precisa purgar manualmente via dashboard (Workers & Pages > setlists-pj-ev > Purge Cache). O immutable do header antigo retem cache mesmo apos novo deploy.
+
+**Audit detalhado:** `MEDIA_AUDIT_2026-05-11.md` com lista de file_ids do Drive ainda valida pra retomada manual.
+
+## Outras alteracoes da sessao da tarde (commits independentes)
+- `07f9e46` feat(letras): unifica painel de letra em 4 modos EN/PT/EN-PT/Traducao. Cada musica com LYRICS_PT mostra barra de 4 botoes no painel. Botao externo virou "letra/traducao" quando ha PT.
+- `7c5ae27` perf(fontes): troca font-display optional por swap (Archivo Black + Big Shoulders Display + Oswald + IBM Plex Mono + Caveat + Stardos Stencil). Primeiro acesso agora ve a fonte real (com pequeno FOUT) em vez de ficar no fallback.
+- `7308d33` style(letras): margin-bottom da .lyric-lang-bar 10->18px.
+- `61fbe64` feat(busca): adiciona card Traducao no resultado da busca (3 cards: Letra EN, Traducao PT, Interpretation EN). Padding-top de .lyric-pane 6px no painel inline.
+- `2456040` style(letras): padding-top de .lyric-pane 6->14px (alinha com respiro do interpretacao).
+- `27b5e1b` fix(raridades): badge "Dados pearljam.com/vitalogy/songs" com z-index 2 + margin-bottom 32px (estava sendo comido pela meia-lua do gauge).
 
 ## Outras frentes pendentes (proximas sessoes)
+- Retomada das my_photos 2015 show por show: usar `MEDIA_AUDIT_2026-05-11.md` como ponto de partida. Para cada show, baixar candidatos pra `media/_staging/`, Andre escolhe visualmente, move pra `mine/` e commita. Nunca importar bulk.
 - Traducao PT 2B contextual em interpretations.json: "o tipo de" (221), "da cancao (...)" (31), "estruturada em torno de" (24).
 - Performance round 3: 24 KiB unused-JS no index, 21 KiB unused CSS, render-blocking dos 3 links de fontes.
-- MEDIA gap remanescente (apos passada 2): 14 shows ainda sem my_photos no disco (2011, 2013, 2018, EV 2014), pasta media/comunidade/ inteira faltando (22 fotos), 26 MP3s do show 2005-12-02, poster-1.jpg do 2024-08-31, my_photos 4 do ev-2014-05-06. Detalhes no MEDIA_AUDIT_2026-05-11.md.
+- MEDIA gap remanescente: 14 shows ainda sem my_photos no disco (2011, 2013, 2018, EV 2014), pasta media/comunidade/ inteira faltando (22 fotos esperadas pela chip Comunidade, fonte externa), 26 MP3s do show 2005-12-02, poster-1.jpg do 2024-08-31, my_photos 4 do ev-2014-05-06. Detalhes no MEDIA_AUDIT_2026-05-11.md.
 - Validacao visual: revisar musica por musica no site (letra + interpretacao + nota do tradutor) e ajustar manualmente o que precisar.
 - Passada de expansao opcional nos ensaios de covers (atualmente 50-100 palavras, abaixo da regua de 250 dos albuns de estudio). Por protocolo, covers entram com nota mais curta (letras alheias com contexto biografico), entao a expansao so faz sentido caso a caso, ex: covers de peso simbolico recorrente no setlist (rockin in the free world, baba oriley, comfortably numb, love reign oer me) merecem 180-220 palavras.
 
