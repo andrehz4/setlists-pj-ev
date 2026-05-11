@@ -3000,6 +3000,66 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .cifra-play-btn:hover { background: #1f4e6a; }
 .cifra-play-btn[data-state="playing"] { background: var(--pj, #c1272d); }
 .cifra-play-btn[data-state="playing"]:hover { background: #8a1c20; }
+.cifra-play-btn[data-state="paused"] { background: #d68d20; }
+.cifra-play-btn[data-state="paused"]:hover { background: #b87410; }
+.cifra-pause-btn, .cifra-stop-btn {
+  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 120ms ease;
+  min-width: 60px;
+}
+.cifra-pause-btn { background: #d68d20; }
+.cifra-pause-btn:hover { background: #b87410; }
+.cifra-stop-btn { background: var(--pj, #c1272d); }
+.cifra-stop-btn:hover { background: #8a1c20; }
+
+/* FAB flutuante da cifra. Identico estruturalmente ao .alphatab-fab mas
+   com handlers proprios (state machine separada). Mostra quando o cifra
+   player esta ativo, esconde quando para. */
+.cifra-fab {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  display: none;
+  flex-direction: row;
+  gap: 8px;
+  padding: 10px;
+  background: rgba(26, 22, 17, 0.92);
+  border-radius: 999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  z-index: 9997;
+}
+.cifra-fab.show { display: flex; }
+.cifra-fab-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 120ms ease, background 120ms ease;
+}
+.cifra-fab-btn:hover { transform: scale(1.06); }
+.cifra-fab-btn:active { transform: scale(0.96); }
+.cifra-fab-pause { background: #2e6b8a; }
+.cifra-fab-pause:hover { background: #1f4e6a; }
+.cifra-fab-stop { background: var(--pj, #c1272d); }
+.cifra-fab-stop:hover { background: #8a1c20; }
+@media (max-width: 768px) {
+  .cifra-fab { bottom: 16px; right: 16px; padding: 8px; gap: 6px; }
+  .cifra-fab-btn { width: 44px; height: 44px; font-size: 13px; }
+}
+
 .cifra-player-meta {
   font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
   color: var(--ink-mute, #6b5e44);
@@ -7834,16 +7894,33 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const playerBar = `
         <div class="cifra-player-bar">
           <button type="button" class="cifra-play-btn" data-state="idle" aria-label="Tocar cifra arpejada">▶ Play</button>
+          <button type="button" class="cifra-pause-btn" hidden aria-label="Pausar cifra">❚❚</button>
+          <button type="button" class="cifra-stop-btn" hidden aria-label="Parar cifra">◼ Stop</button>
           <span class="cifra-player-meta">${bpm} BPM · ~2 beats por acorde · violão acústico</span>
         </div>`;
       cifraPane.innerHTML = playerBar + _renderChordPro(txt);
       _attachChordChipHandlers(cifraPane);
       const playBtn = cifraPane.querySelector('.cifra-play-btn');
+      const pauseBtn = cifraPane.querySelector('.cifra-pause-btn');
+      const stopBtn = cifraPane.querySelector('.cifra-stop-btn');
       if (playBtn) {
         playBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          if (playBtn.dataset.state === 'playing') _stopCifraPlayer(cifraPane);
+          const existing = _CIFRA_PLAYERS.get(cifraPane);
+          if (existing && existing.paused) _resumeCifraPlayer(cifraPane);
           else _startCifraPlayer(cifraPane, bpm);
+        });
+      }
+      if (pauseBtn) {
+        pauseBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          _pauseCifraPlayer(cifraPane);
+        });
+      }
+      if (stopBtn) {
+        stopBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          _stopCifraPlayer(cifraPane);
         });
       }
     });
@@ -8534,8 +8611,12 @@ function renderTabsView() {
   const closeFloatingUI = () => {
     const f = document.querySelector('.alphatab-fab');
     if (f) f.classList.remove('show');
+    const cf = document.querySelector('.cifra-fab');
+    if (cf) cf.classList.remove('show');
     const fb = document.querySelector('.fretboard-overlay');
     if (fb) fb.classList.remove('show');
+    // Para o cifra player que possa estar tocando da musica anterior
+    if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
   };
 
   // Click no item do catalogo: troca o detail panel
@@ -8752,15 +8833,102 @@ async function _playChordSound(chordName, opts) {
 
 // Player de Cifra: percorre os chord-chips na ordem em que aparecem,
 // tocando cada um por (beatsPerChord * 60/BPM) segundos. Ilumina o chip ativo.
-const _CIFRA_PLAYERS = new WeakMap(); // root -> { state, abortFn }
+// State machine do cifra player: idle / playing / paused. Comportamento espelha
+// o AlphaTab player (Play/Pause/Stop + FAB flutuante + scroll center).
+const _CIFRA_PLAYERS = new WeakMap(); // root -> { paused, currentIdx, abort, resumeSignal }
+let _activeCifraRoot = null; // root da cifra atualmente ativa (pra FAB global saber pra onde despachar)
+
+function _renderCifraPlayerBar(root, state) {
+  const playBtn = root.querySelector('.cifra-play-btn');
+  const pauseBtn = root.querySelector('.cifra-pause-btn');
+  const stopBtn = root.querySelector('.cifra-stop-btn');
+  if (state === 'idle') {
+    if (playBtn) { playBtn.hidden = false; playBtn.textContent = '▶ Play'; playBtn.dataset.state = 'idle'; }
+    if (pauseBtn) pauseBtn.hidden = true;
+    if (stopBtn) stopBtn.hidden = true;
+  } else if (state === 'playing') {
+    if (playBtn) playBtn.hidden = true;
+    if (pauseBtn) { pauseBtn.hidden = false; pauseBtn.textContent = '❚❚'; }
+    if (stopBtn) stopBtn.hidden = false;
+  } else if (state === 'paused') {
+    if (playBtn) { playBtn.hidden = false; playBtn.textContent = '▶ Retomar'; playBtn.dataset.state = 'paused'; }
+    if (pauseBtn) pauseBtn.hidden = true;
+    if (stopBtn) stopBtn.hidden = false;
+  }
+}
+
+function _ensureCifraFab() {
+  let fab = document.querySelector('.cifra-fab');
+  if (fab) return fab;
+  fab = document.createElement('div');
+  fab.className = 'cifra-fab';
+  fab.innerHTML = `
+    <button type="button" class="cifra-fab-btn cifra-fab-pause" aria-label="Pausar / retomar cifra">❚❚</button>
+    <button type="button" class="cifra-fab-btn cifra-fab-stop" aria-label="Parar cifra">◼</button>
+  `;
+  document.body.appendChild(fab);
+  fab.querySelector('.cifra-fab-pause').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!_activeCifraRoot) return;
+    const p = _CIFRA_PLAYERS.get(_activeCifraRoot);
+    if (!p) return;
+    if (p.paused) _resumeCifraPlayer(_activeCifraRoot);
+    else _pauseCifraPlayer(_activeCifraRoot);
+  });
+  fab.querySelector('.cifra-fab-stop').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
+  });
+  return fab;
+}
+
+function _renderCifraFab(state) {
+  const fab = document.querySelector('.cifra-fab');
+  if (!fab) return;
+  const pauseBtn = fab.querySelector('.cifra-fab-pause');
+  if (state === 'idle') {
+    fab.classList.remove('show');
+  } else {
+    fab.classList.add('show');
+    if (pauseBtn) {
+      pauseBtn.textContent = state === 'paused' ? '▶' : '❚❚';
+      pauseBtn.setAttribute('aria-label', state === 'paused' ? 'Retomar' : 'Pausar');
+    }
+  }
+}
+
 function _stopCifraPlayer(root) {
   const player = _CIFRA_PLAYERS.get(root);
-  if (player && player.abort) player.abort();
+  if (player) {
+    if (player.abort) player.abort();
+    if (player.resumeSignal) player.resumeSignal(); // libera loop preso em pausa
+  }
   _CIFRA_PLAYERS.delete(root);
   root.querySelectorAll('.chord-chip.chord-chip-playing').forEach(c => c.classList.remove('chord-chip-playing'));
-  const btn = root.querySelector('.cifra-play-btn');
-  if (btn) { btn.dataset.state = 'idle'; btn.textContent = '▶ Play'; }
+  _renderCifraPlayerBar(root, 'idle');
+  if (_activeCifraRoot === root) {
+    _activeCifraRoot = null;
+    _renderCifraFab('idle');
+  }
 }
+
+function _pauseCifraPlayer(root) {
+  const player = _CIFRA_PLAYERS.get(root);
+  if (!player || player.paused) return;
+  player.paused = true;
+  _renderCifraPlayerBar(root, 'paused');
+  _renderCifraFab('paused');
+}
+
+function _resumeCifraPlayer(root) {
+  const player = _CIFRA_PLAYERS.get(root);
+  if (!player || !player.paused) return;
+  player.paused = false;
+  _renderCifraPlayerBar(root, 'playing');
+  _renderCifraFab('playing');
+  if (player.resumeSignal) { player.resumeSignal(); player.resumeSignal = null; }
+}
+
 async function _startCifraPlayer(root, bpm) {
   _stopCifraPlayer(root);
   const chips = Array.from(root.querySelectorAll('.chord-chip'));
@@ -8768,18 +8936,32 @@ async function _startCifraPlayer(root, bpm) {
   const beatsPerChord = 2;
   const noteDuration = (60 / bpm) * beatsPerChord; // segundos
   let aborted = false;
-  const player = { abort: () => { aborted = true; } };
+  const player = {
+    paused: false,
+    currentIdx: 0,
+    abort: () => { aborted = true; },
+    resumeSignal: null,
+  };
   _CIFRA_PLAYERS.set(root, player);
-  const btn = root.querySelector('.cifra-play-btn');
-  if (btn) { btn.dataset.state = 'playing'; btn.textContent = '◼ Stop'; }
+  _activeCifraRoot = root;
+  _ensureCifraFab();
+  _renderCifraPlayerBar(root, 'playing');
+  _renderCifraFab('playing');
 
-  for (const chip of chips) {
+  for (let i = 0; i < chips.length; i++) {
     if (aborted) break;
+    // Aguarda enquanto pausado. _resumeCifraPlayer chama o resumeSignal pra liberar.
+    while (!aborted && player.paused) {
+      await new Promise(resolve => { player.resumeSignal = resolve; });
+    }
+    if (aborted) break;
+    player.currentIdx = i;
+    const chip = chips[i];
     chips.forEach(c => c.classList.remove('chord-chip-playing'));
     chip.classList.add('chord-chip-playing');
-    chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-    const chord = chip.dataset.chord;
-    _playChordSound(chord, { duration: noteDuration * 1.1, velocity: 78 });
+    // Scroll center igual a tab: chord ativo sempre no meio do viewport.
+    chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+    _playChordSound(chip.dataset.chord, { duration: noteDuration * 1.1, velocity: 78 });
     await new Promise(r => setTimeout(r, noteDuration * 1000));
   }
   _stopCifraPlayer(root);
