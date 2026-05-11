@@ -3,88 +3,83 @@
 ## Data
 2026-05-11
 
-## O que foi feito (esta sessao)
+## Resumo da sessao (15 commits)
 
-### Performance round 2 (commits f634d29 + 7ce63dc + 36e3e47)
-- GA gtag.js deferido pra primeira interacao (scroll/pointerdown/keydown/touchstart). Stub dataLayer/gtag/window.track continua sincrono (fila preservada). Sem trigger de window.load: Lighthouse mede pagina sem interacao, gtag nao aparece no TBT nem no unused-JS.
-- Favicon SVG inline ("PJ" em #c1272d sobre #0a0908) elimina o fallback de HTML 517 KB no /favicon.ico.
-- Google Fonts: @import dentro de <style> trocado por <link rel=stylesheet> com preconnects no <head> (3 links separados, configuracao por familia).
-- CLS do h1 zerado: descoberto que --font-display do tema ticket eh "Big Shoulders Display" (regra :root da linha 2898 sobrescreve a da linha 70). Segundo bloco de fontes (Big Shoulders, Oswald, IBM Plex Mono, Caveat, Stardos Stencil) trocado pra display=optional. Reflow do h1 quando Big Shoulders carregava era a causa real do CLS 0.241.
+### Performance round 2 (3 commits)
+- gtag.js deferido pra primeira interacao (scroll/pointerdown/keydown/touchstart). Stub gtag/dataLayer/window.track continua sincrono (fila preservada).
+- Favicon SVG inline ("PJ" em #c1272d sobre #0a0908).
+- Google Fonts: @import substituido por <link rel=stylesheet> com preconnects no <head>.
+- CLS h1 zerado: --font-display do tema ticket eh "Big Shoulders Display", redefinido na linha 2898 do CSS. Segundo bloco de fontes (Big Shoulders, Oswald, IBM Plex Mono, Caveat, Stardos Stencil) trocado pra display=optional.
 
-### Traducao PT (interpretations.json) passada 2A (commit a374911)
-- 201 substituicoes em ~150 campos text_pt/byShow_pt. Determinísticas:
-  - "peças de escrita" -> "letras" / "composicoes" (101 casos, contexto musical)
-  - "meditacao sobre" -> "reflexao sobre" (25)
-  - figuras musicais -> termos corretos (passagem/frase/linha melodica)
-  - "ancorado em turne" -> "central no roteiro da turne" (5)
-  - "acomodando em setlists" -> "incorporando aos setlists" (3)
-  - mais ajustes pontuais (Lennon mesmo tocou, imagem do partir, single avulso, etc.)
-- 2 fixes manuais onde regex generica cortou no "de escrita" errado (red mosquito, youve got to hide your love away).
+### Traducao PT interpretations.json passada 2A (1 commit)
+- 201 substituicoes idiomaticas determinísticas (peças de escrita -> letras/composicoes, meditacao sobre -> reflexao sobre, figuras musicais -> termos corretos, ancorado em turne, acomodando em setlists, etc.).
+- 2 fixes manuais onde regex generica cortou no "de escrita" errado.
 
-### Letras transcriadas, album Ten (commits 4878d24 + a6ebec4 + 52f27d6)
-- LYRICS_PT inline no index.html agora tem 11 entradas (album Ten 100% coberto, de 11 faixas):
-  - **Refeitas**: black, even flow, alive (subidas de "traducao literal" pra transcriacao com equivalencia emocional)
-  - **Novas**: once, why go, jeremy, porch, release, oceans, garden, deep
-- Estilo: transcriacao no sentido de tradutor literario. Leitor brasileiro deve sentir a mesma carga emocional que um americano sente. Sem rima forcada, mas com cadencia preservada e referencias culturais adaptadas quando literal soaria artificial.
-- Protocolo anti-alucinacao aplicado em todas:
-  - Contagem de linhas EN==PT validada
-  - Falso-cognato check (temple/templo, take/aguentar, middle/centro politico, legal halls/tribunais, etc.)
-  - Nomes proprios, datas e numeros preservados literalmente
-  - Sem em-dash
-
-### Notas do tradutor (arquivo novo media/lyrics-notes.json)
-- 11 ensaios interpretativos PT (~250-300 palavras cada), um por musica de Ten.
-- Foco em simbolismo, decisoes de traducao e camadas de leitura, ancorado seletivamente em fato biografico de interpretations.json (sem reciclar). Tom critico-literario.
-- Futuro: pode ser exibido no site como "nota do tradutor" ao lado da letra, e pode ser enriquecido manualmente musica por musica conforme o Andre revisar no navegador.
+### Letras transcriadas + ensaios do tradutor (10 commits)
+- LYRICS_PT inline no index.html: 49 entradas (de 227 EN). Cobertura 21.6%.
+- media/lyrics-notes.json: 49 ensaios interpretativos PT (240-290 palavras cada, 3-4 paragrafos, zero em-dash).
+- Albuns completos: **Ten (11/11), Vs. (12/12), Vitalogy (13/14, 14a sem letra), No Code (13/13)**.
+- Protocolo aplicado em todas: contagem de linhas EN==PT validada, falso-cognato check, nomes proprios e numeros preservados, sem em-dash.
+- Estilo: transcriacao no nivel "equivalencia emocional/cultural", nao traducao literal. Leitor brasileiro deve sentir a mesma carga que um americano sente.
 
 ## Estado atual
-- HEAD apos atualizar este PROGRESSO. Working tree sera limpo apos commit final.
+- HEAD: `7b254c8` (apos commit deste PROGRESSO ficara mais a frente).
 - Branch main sincronizado com origin.
-- **Lighthouse contra Cloudflare Pages (mobile)**, comparativo cumulativo:
+- Lighthouse contra Cloudflare Pages (mobile): score **52 -> 67**, LCP 9.3s -> 5.5s, CLS 0.24 -> 0, TBT 68 -> 0, bytes 5293 KB -> 666 KB.
+- Tradução PT interpretations.json: 220/220 entradas com PT, passada 2A aplicada.
+- Letras: **49/227** (21.6%), 4 albuns completos.
+- Notas do tradutor: 49 ensaios em media/lyrics-notes.json.
 
-| Metrica | Baseline | Round 1 | Round 2 final |
-|---|---|---|---|
-| Performance score | 52 | 63 | **67** |
-| LCP | 9.3s | 7.5s | 5.5s |
-| CLS | 0.24 | 0.24 instavel | **0** |
-| TBT | 68ms | ? | 0ms |
-| TI | 9.5s | 7.5s | 5.5s |
-| Total bytes | 5293 KB | 942 KB | 666 KB |
+## Estrutura LYRICS_PT por album (cobertura atual)
+- Ten (1991): 11/11
+- Vs. (1993): 12/12
+- Vitalogy (1994): 13/14 (faixa 14 'hey foxymophandlemama thats me' eh experimental sem letra)
+- No Code (1996): 13/13
 
-- **Tradução PT, interpretations.json**: 220/220 entradas com PT, passada 2A determinística aplicada (201 substituicoes idiomaticas).
-- **Letras (LYRICS_PT inline)**: 11/227 entradas (4.8%). Album Ten 100% coberto.
-- **Notas do tradutor**: 11/11 de Ten escritas.
+## Proximo passo
+Continuar letras por album. Proximo album natural: **Yield (1998)**, 13 faixas:
+1. Brain of J
+2. Faithfull
+3. No Way
+4. Given to Fly
+5. Wishlist
+6. Pilate
+7. Do the Evolution
+8. Untitled (instrumental, sem letra)
+9. MFC
+10. Low Light
+11. In Hiding
+12. Push Me, Pull Me
+13. All Those Yesterdays
 
-## Proximo passo (opcoes)
+Apos Yield, sequencia cronologica: Binaural (2000), Riot Act (2002), Pearl Jam/Avocado (2006), Backspacer (2009), Lightning Bolt (2013), Gigaton (2020), Dark Matter (2024) + albuns solo Vedder + covers + raridades.
 
-### A) Continuar letras por album
-Sequencia cronologica natural: **Vs. (1993)** seria o proximo album (12 faixas). Depois Vitalogy, No Code, Yield, Binaural, Riot Act, Avocado, Backspacer, Lightning Bolt, Gigaton, Dark Matter + albuns solo Vedder + covers + raridades.
-
-Volume estimado: ~6-8 sessoes pra cobrir todo o catalogo (transcricao + ensaio por musica).
-
-### B) Validacao visual das mudancas
-Andre revisa musica por musica no site (drawer do show -> letra -> alterna PT/EN, interpretacao, e ensaio do tradutor) e ajusta o que quiser na qualidade. Pode rodar em paralelo com novos batches.
-
-### C) Traducao PT passada 2B contextual (interpretations.json)
-Padroes que sobraram da varredura inicial e exigem revisao por contexto: "o tipo de" (221 ocorrencias, contextual, the kind of), "da cancao (...)" (31, possivel pleonasmo), "estruturada em torno de" (24, variar com "construida sobre"/"que gira em torno de").
-
-### D) Performance round 3
-Sobram 24 KiB unused-JS no index, 21 KiB unused CSS, render-blocking dos 3 links de fontes, Speed Index 5.2s ainda alto.
-
-### E) MEDIA gap residual
-22 shows declaram my_photos sem nada em disco/Drive (importar de outra fonte ou limpar manifest).
+## Outras frentes pendentes
+- Traducao PT 2B contextual: "o tipo de" (221), "da cancao (...)" (31), "estruturada em torno de" (24).
+- Performance round 3: 24 KiB unused-JS no index, 21 KiB unused CSS, render-blocking dos 3 links de fontes.
+- MEDIA gap: 22 shows declaram my_photos sem nada em disco/Drive.
+- Validacao visual: revisar musica por musica no site (letra + interpretacao + nota do tradutor) e ajustar manualmente o que precisar.
 
 ## Arquivos chave
-- `index.html` linhas 4402-4403 (LYRICS e LYRICS_PT inline). LYRICS tem 227 entradas EN; LYRICS_PT tem 11 entradas transcriadas.
-- `media/lyrics-notes.json` (novo): 11 ensaios do tradutor.
-- `media/interpretations.json` (220 entradas dict bilingues, passada 2A aplicada).
+- `index.html` linha 4402 (LYRICS EN, 227 entradas), linha 4403 (LYRICS_PT, 49 entradas).
+- `media/lyrics-notes.json`: 49 ensaios do tradutor (~250-290 palavras cada).
+- `media/interpretations.json`: 220 entradas bilingues (text + text_pt + byShow + byShow_pt onde aplicavel).
 - `index.html` linhas 13-14 (Archivo Black optional + texto swap no head), linha 4135 (ticket fontes optional), linhas 21-42 (gtag deferido com loadGA so em interacao), linha 10 (favicon SVG inline).
-- `lighthouse-perf2/perf3/perf4.report.{html,json}` (gitignored, regeneraveis).
 
 ## Blockers
 Nenhum.
 
+## Protocolo da transcriacao das letras (manter em proximas sessoes)
+1. **Fonte canonica unica**: usar apenas o LYRICS inline do index.html. Nao buscar letras externas.
+2. **Contagem de linhas casada**: cada linha EN tem 1 linha PT correspondente (validado por script Node antes de aplicar).
+3. **Falso-cognato check**: lista mental dos classicos (temple/templo, take/aguentar, middle/centro, legal halls/tribunais, library, pretend, actually, sympathetic, etc.).
+4. **Glossario consistente**: termos-imagem traduzidos igual em todas as ocorrencias da mesma letra.
+5. **Nomes proprios, datas, numeros, marcas**: preservados literalmente. Sem licenca em fato.
+6. **Sem em-dash** (—). Regra global do projeto.
+7. **Estilo de transcriacao**: equivalencia emocional/cultural ("Carlos Renno traduzindo Cole Porter"). Nao literal, nao adaptada-leve, nao poetica-rimada.
+8. **Ensaio por musica**: ~250-290 palavras, 3-4 paragrafos, foco em simbolismo/decisoes de traducao/camadas de leitura. Nao reciclar interpretations.json (que eh biografico/discografico). Ancorar em 1-2 fatos biograficos seletivos quando mudam a leitura.
+9. **Backup antes de aplicar batch grande** (index.html.bak quando necessario).
+10. **1 commit por album**, mensagem citando trecho por trecho as decisoes principais.
+
 ## Comando exato pra continuar
 cd C:\Gitlab_hz\pearljam\setlists-pj-ev && claude
-
-Sugestao pra iniciar a proxima sessao: "vamos seguir letras, atacar Vs (1993)".
