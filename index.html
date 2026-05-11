@@ -3022,6 +3022,132 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .alphatab-surface .at-surface,
 .alphatab-surface .at-surface-svg { background: transparent !important; }
 
+/* View "Cifras & Tabs": grid de cards (visual similar a Deep), expansivel
+   pra mostrar o painel completo de cifra/tab inline. */
+.tabs-empty {
+  padding: 40px;
+  text-align: center;
+  font: 400 12px/1.5 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim, #6b5e44);
+}
+.tabs-intro {
+  font: italic 14px/1.6 var(--font-editorial, Georgia, serif);
+  color: var(--ink-mute, #6b5e44);
+  max-width: 680px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+.tabs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.tabs-card {
+  background: var(--paper, #fff);
+  border: 1px solid rgba(46, 107, 138, 0.15);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.tabs-card:hover {
+  border-color: rgba(46, 107, 138, 0.4);
+  box-shadow: 0 4px 14px rgba(46, 107, 138, 0.1);
+}
+.tabs-card.open {
+  border-color: #2e6b8a;
+  box-shadow: 0 6px 18px rgba(46, 107, 138, 0.18);
+}
+.tabs-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  user-select: none;
+}
+.tabs-card-head:focus-visible {
+  outline: 2px solid #2e6b8a;
+  outline-offset: -2px;
+}
+.tabs-card-cover {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(46, 107, 138, 0.08);
+  border: 1px solid rgba(46, 107, 138, 0.2);
+}
+.tabs-card-meta {
+  flex: 1;
+  min-width: 0;
+}
+.tabs-card-title {
+  font: 700 15px/1.2 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.02em;
+  color: var(--ink, #1a1611);
+  margin-bottom: 3px;
+}
+.tabs-card-sub {
+  font: italic 12px/1.3 var(--font-editorial, Georgia, serif);
+  color: var(--ink-mute, #6b5e44);
+  margin-bottom: 6px;
+}
+.tabs-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tabs-keypill {
+  display: inline-block;
+  font: 700 10px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.04em;
+  background: #2e6b8a;
+  color: #fff;
+  padding: 3px 7px;
+  border-radius: 3px;
+}
+.tabs-badge {
+  display: inline-block;
+  font: 600 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 3px;
+}
+.tabs-badge-on {
+  background: rgba(46, 107, 138, 0.12);
+  color: #2e6b8a;
+  border: 1px solid rgba(46, 107, 138, 0.4);
+}
+.tabs-badge-off {
+  background: transparent;
+  color: var(--ink-dim, #6b5e44);
+  border: 1px dashed rgba(107, 94, 68, 0.4);
+}
+.tabs-card-chevron {
+  flex-shrink: 0;
+  font-size: 16px;
+  color: #2e6b8a;
+  transition: transform 200ms ease;
+}
+.tabs-card.open .tabs-card-chevron { transform: rotate(180deg); }
+.tabs-card-body {
+  padding: 0 14px 14px;
+  font: 400 13px/1.6 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink, #1a1611);
+}
+.tabs-card-body[hidden] { display: none; }
+
 .lyrics-song-title {
   font-family: var(--font-editorial);
   font-style: italic;
@@ -4398,6 +4524,7 @@ html[data-theme="dark"] video:focus-visible {
   <button class="tab" role="tab" id="tab-rarity" aria-selected="false" aria-controls="view-rarity" tabindex="-1" data-view="rarity"><span aria-hidden="true">🎲 </span>Raridades</button>
   <button class="tab" role="tab" id="tab-gallery" aria-selected="false" aria-controls="view-gallery" tabindex="-1" data-view="gallery"><span aria-hidden="true">📷 </span>Galeria</button>
   <button class="tab" role="tab" id="tab-deep" aria-selected="false" aria-controls="view-deep" tabindex="-1" data-view="deep"><span aria-hidden="true">📖 </span>Deep</button>
+  <button class="tab" role="tab" id="tab-tabs" aria-selected="false" aria-controls="view-tabs" tabindex="-1" data-view="tabs"><span aria-hidden="true">🎸 </span>Cifras &amp; Tabs</button>
 </div>
 
 <!-- FILTER BAR -->
@@ -4459,6 +4586,12 @@ html[data-theme="dark"] video:focus-visible {
   <h2 class="view-title">Deep · revistas oficiais do Ten Club</h2>
   <div class="view-desc">selecione uma edição. A revista abre em tela cheia, com flip 3D página por página</div>
   <div id="deep-content"></div>
+</section>
+
+<section class="view" id="view-tabs" role="tabpanel" aria-labelledby="tab-tabs" tabindex="0" hidden>
+  <h2 class="view-title">Cifras &amp; Tablaturas</h2>
+  <div class="view-desc">cifras com chord-chips e diagrama de acorde interativo, tablaturas via AlphaTab. Top 20 hits do PJ ao vivo, em curação contínua. Clique no card pra expandir.</div>
+  <div id="tabs-content"></div>
 </section>
 
 <!-- DEEP READER (modal overlay) -->
@@ -5452,13 +5585,7 @@ function openDrawer(showId) {
     // 'em breve' enquanto o arquivo nao foi cadastrado (Fase 1).
     if (tabEntry && nameSpan && !nameSpan.querySelector('.tab-toggle')) {
       const { key: tabKey, entry: tabMeta } = tabEntry;
-      const hasCifra = !!tabMeta.cifra;
-      const hasTab = !!tabMeta.tab;
-      const tabTabs = [];
-      tabTabs.push({ key: 'cifra', label: 'Cifra', has: hasCifra });
-      tabTabs.push({ key: 'tab', label: 'Tab', has: hasTab });
-      const defaultTabType = (hasCifra ? 'cifra' : hasTab ? 'tab' : 'cifra');
-      const tabLabels = tabTabs.map(t => t.label).join('/');
+      const tabLabels = `${tabMeta.cifra ? 'Cifra' : 'Cifra em breve'}/${tabMeta.tab ? 'Tab' : 'Tab em breve'}`;
 
       const btn = document.createElement('span');
       btn.className = 'tab-toggle';
@@ -5490,75 +5617,7 @@ function openDrawer(showId) {
         tabRow.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
       });
-      const fillTabBody = (body) => {
-        const keyInfo = tabMeta.key ? `<span class="tab-pill">${tabMeta.key}</span>` : '';
-        const capoInfo = tabMeta.capo ? `<span class="tab-pill tab-pill-alt">capo ${tabMeta.capo}</span>` : '';
-        const tuningInfo = (tabMeta.tuning && tabMeta.tuning !== 'EADGBE') ? `<span class="tab-pill tab-pill-alt">${tabMeta.tuning}</span>` : '';
-        const infoBar = (keyInfo || capoInfo || tuningInfo)
-          ? `<div class="tab-info">${keyInfo}${capoInfo}${tuningInfo}</div>` : '';
-        const bar = '<div class="lyric-lang-bar tab-lang-bar" role="tablist" aria-label="Formato (cifra ou tablatura)">' +
-          tabTabs.map(t =>
-            `<button type="button" class="lyric-lang-btn${t.key===defaultTabType?' active':''}" data-tabtype="${t.key}" aria-pressed="${t.key===defaultTabType}">${t.label}</button>`
-          ).join('') +
-          '</div>';
-        const soonPane = (which) => {
-          const label = which === 'cifra' ? 'cifra' : 'tablatura';
-          return `<div class="tab-pane-soon" data-which="${which}">${label} em breve · esta m&uacute;sica est&aacute; no plano das pr&oacute;ximas curadorias</div>`;
-        };
-        const panes = tabTabs.map(t => {
-          const initialContent = t.has
-            ? `<div class="tab-pane-loading">carregando…</div>`
-            : soonPane(t.key);
-          return `<div class="tab-pane tab-pane-${t.key}"${t.key===defaultTabType?'':' hidden'}>${initialContent}</div>`;
-        }).join('');
-        body.innerHTML = infoBar + bar + panes;
-
-        // Carrega o conteudo de cada aba que tenha conteudo cadastrado.
-        if (hasCifra) {
-          const cifraPane = body.querySelector('.tab-pane-cifra');
-          _loadCifra(tabKey).then(txt => {
-            if (!cifraPane) return;
-            cifraPane.innerHTML = txt ? _renderChordPro(txt) : soonPane('cifra');
-            _attachChordChipHandlers(cifraPane);
-          });
-        }
-        // Tab via AlphaTab (lazy load): renderiza notacao/tab vetorial no painel.
-        if (hasTab) {
-          const tabPane = body.querySelector('.tab-pane-tab');
-          if (tabPane) {
-            const surface = document.createElement('div');
-            surface.className = 'alphatab-surface';
-            tabPane.innerHTML = '';
-            tabPane.appendChild(surface);
-            const loadingFlag = document.createElement('div');
-            loadingFlag.className = 'tab-pane-loading';
-            loadingFlag.textContent = 'carregando tablatura…';
-            tabPane.appendChild(loadingFlag);
-            _initAlphaTabPanel(surface, tabKey, tabMeta.tabFormat).then(() => {
-              loadingFlag.remove();
-            }).catch((err) => {
-              loadingFlag.remove();
-              tabPane.innerHTML = `<div class="tab-pane-soon">tablatura nao p&ocirc;de ser carregada (${(err && err.message) || 'erro desconhecido'})</div>`;
-            });
-          }
-        }
-
-        body.querySelectorAll('.lyric-lang-btn[data-tabtype]').forEach(b => {
-          b.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const which = b.dataset.tabtype;
-            body.querySelectorAll('.lyric-lang-btn[data-tabtype]').forEach(x => {
-              const isActive = x.dataset.tabtype === which;
-              x.classList.toggle('active', isActive);
-              x.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-            });
-            tabTabs.forEach(t => {
-              const pane = body.querySelector('.tab-pane-' + t.key);
-              if (pane) pane.hidden = (t.key !== which);
-            });
-          });
-        });
-      };
+      const fillTabBody = (body) => _renderTabPanel(body, tabKey, tabMeta);
       const toggleTab = (e) => {
         e.stopPropagation();
         const isOpen = tabRow.classList.toggle('open');
@@ -6726,6 +6785,7 @@ function renderCurrent() {
     case "search": renderSearch(); break;
     case "rarity": renderRarity(); break;
     case "deep": renderDeep(); break;
+    case "tabs": renderTabsView(); break;
     case "gallery": renderGallery(); break;
   }
   renderStats();
@@ -7040,6 +7100,169 @@ async function _initAlphaTabPanel(container, songKey, tabFormat) {
   const api = new at.AlphaTabApi(container, settings);
   return api;
 }
+// Render unificado do painel TAB (cifra + tab). Reusado tanto pelo painel
+// inline na linha da faixa quanto pela view "Cifras & Tabs" no nav superior.
+function _renderTabPanel(body, songKey, tabMeta) {
+  const hasCifra = !!tabMeta.cifra;
+  const hasTab = !!tabMeta.tab;
+  const tabTabs = [
+    { key: 'cifra', label: 'Cifra', has: hasCifra },
+    { key: 'tab', label: 'Tab', has: hasTab },
+  ];
+  const defaultTabType = (hasCifra ? 'cifra' : hasTab ? 'tab' : 'cifra');
+
+  const keyInfo = tabMeta.key ? `<span class="tab-pill">${tabMeta.key}</span>` : '';
+  const capoInfo = tabMeta.capo ? `<span class="tab-pill tab-pill-alt">capo ${tabMeta.capo}</span>` : '';
+  const tuningInfo = (tabMeta.tuning && tabMeta.tuning !== 'EADGBE')
+    ? `<span class="tab-pill tab-pill-alt">${tabMeta.tuning}</span>` : '';
+  const infoBar = (keyInfo || capoInfo || tuningInfo)
+    ? `<div class="tab-info">${keyInfo}${capoInfo}${tuningInfo}</div>` : '';
+
+  const bar = '<div class="lyric-lang-bar tab-lang-bar" role="tablist" aria-label="Formato (cifra ou tablatura)">' +
+    tabTabs.map(t =>
+      `<button type="button" class="lyric-lang-btn${t.key===defaultTabType?' active':''}" data-tabtype="${t.key}" aria-pressed="${t.key===defaultTabType}">${t.label}</button>`
+    ).join('') +
+    '</div>';
+
+  const soonPane = (which) => {
+    const label = which === 'cifra' ? 'cifra' : 'tablatura';
+    return `<div class="tab-pane-soon" data-which="${which}">${label} em breve · esta m&uacute;sica est&aacute; no plano das pr&oacute;ximas curadorias</div>`;
+  };
+  const panes = tabTabs.map(t => {
+    const initial = t.has ? `<div class="tab-pane-loading">carregando…</div>` : soonPane(t.key);
+    return `<div class="tab-pane tab-pane-${t.key}"${t.key===defaultTabType?'':' hidden'}>${initial}</div>`;
+  }).join('');
+
+  body.innerHTML = infoBar + bar + panes;
+
+  if (hasCifra) {
+    const cifraPane = body.querySelector('.tab-pane-cifra');
+    _loadCifra(songKey).then(txt => {
+      if (!cifraPane) return;
+      cifraPane.innerHTML = txt ? _renderChordPro(txt) : soonPane('cifra');
+      _attachChordChipHandlers(cifraPane);
+    });
+  }
+  if (hasTab) {
+    const tabPane = body.querySelector('.tab-pane-tab');
+    if (tabPane) {
+      const surface = document.createElement('div');
+      surface.className = 'alphatab-surface';
+      tabPane.innerHTML = '';
+      tabPane.appendChild(surface);
+      const loadingFlag = document.createElement('div');
+      loadingFlag.className = 'tab-pane-loading';
+      loadingFlag.textContent = 'carregando tablatura…';
+      tabPane.appendChild(loadingFlag);
+      _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(() => {
+        loadingFlag.remove();
+      }).catch((err) => {
+        loadingFlag.remove();
+        tabPane.innerHTML = `<div class="tab-pane-soon">tablatura nao p&ocirc;de ser carregada (${(err && err.message) || 'erro desconhecido'})</div>`;
+      });
+    }
+  }
+
+  body.querySelectorAll('.lyric-lang-btn[data-tabtype]').forEach(b => {
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const which = b.dataset.tabtype;
+      body.querySelectorAll('.lyric-lang-btn[data-tabtype]').forEach(x => {
+        const isActive = x.dataset.tabtype === which;
+        x.classList.toggle('active', isActive);
+        x.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      tabTabs.forEach(t => {
+        const pane = body.querySelector('.tab-pane-' + t.key);
+        if (pane) pane.hidden = (t.key !== which);
+      });
+    });
+  });
+}
+
+// Render da view "Cifras & Tabs": grid de cards com cover do álbum,
+// expandivel pra mostrar o painel completo de cifra/tab.
+function renderTabsView() {
+  const container = document.getElementById('tabs-content');
+  if (!container) return;
+  if (!TABS_MANIFEST || !Object.keys(TABS_MANIFEST).length) {
+    container.innerHTML = `<div class="tabs-empty">carregando manifesto…</div>`;
+    setTimeout(() => { if (TABS_MANIFEST && Object.keys(TABS_MANIFEST).length) renderTabsView(); }, 400);
+    return;
+  }
+  // Resolver "song display name" original a partir das chaves normalizadas.
+  // Como o manifest usa chaves _lyricsNorm, vou tentar bater com SONG_TO_ALBUM keys
+  // (que tem títulos originais).
+  const displayName = (key) => {
+    const found = Object.keys(SONG_TO_ALBUM).find(s => _lyricsNorm(s) === key);
+    return found || key.replace(/\b\w/g, c => c.toUpperCase());
+  };
+  const entries = Object.entries(TABS_MANIFEST).map(([key, meta]) => ({
+    key, meta,
+    title: displayName(key),
+    albumTitle: getAlbumTitle(displayName(key)),
+  }));
+  // Ordenar: cifra+tab primeiro, depois só cifra, depois só tab, depois placeholders.
+  entries.sort((a, b) => {
+    const sa = (a.meta.cifra ? 2 : 0) + (a.meta.tab ? 1 : 0);
+    const sb = (b.meta.cifra ? 2 : 0) + (b.meta.tab ? 1 : 0);
+    if (sa !== sb) return sb - sa;
+    return a.title.localeCompare(b.title);
+  });
+
+  const cardHtml = ({ key, meta, title, albumTitle }) => {
+    const album = getAlbum(title);
+    const coverUrl = album ? albumCoverPath(album.id) : '';
+    const coverBg = coverUrl ? `background-image:url('${coverUrl}')` : '';
+    const badges = [];
+    if (meta.cifra) badges.push('<span class="tabs-badge tabs-badge-on">Cifra</span>');
+    else badges.push('<span class="tabs-badge tabs-badge-off">Cifra · em breve</span>');
+    if (meta.tab) badges.push('<span class="tabs-badge tabs-badge-on">Tab</span>');
+    else badges.push('<span class="tabs-badge tabs-badge-off">Tab · em breve</span>');
+    const keyPill = meta.key ? `<span class="tabs-keypill">${meta.key}</span>` : '';
+    const capoNote = meta.capo ? ` · capo ${meta.capo}` : '';
+    return `
+      <article class="tabs-card" data-song-key="${key}">
+        <button class="tabs-card-head" type="button" aria-expanded="false" aria-controls="tabs-panel-${key.replace(/\s/g, '-')}">
+          <div class="tabs-card-cover" style="${coverBg}" aria-hidden="true"></div>
+          <div class="tabs-card-meta">
+            <div class="tabs-card-title">${title.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
+            <div class="tabs-card-sub">${albumTitle.replace(/&/g,'&amp;').replace(/</g,'&lt;')}${capoNote}</div>
+            <div class="tabs-card-badges">${keyPill}${badges.join('')}</div>
+          </div>
+          <div class="tabs-card-chevron" aria-hidden="true">▾</div>
+        </button>
+        <div class="tabs-card-body" id="tabs-panel-${key.replace(/\s/g, '-')}" hidden></div>
+      </article>`;
+  };
+
+  container.innerHTML = `
+    <div class="tabs-intro">
+      Cifras com chord-chips e diagrama interativo, tablaturas vetoriais via AlphaTab.
+      Top 20 hits do PJ ao vivo, em cura&ccedil;&atilde;o cont&iacute;nua.
+    </div>
+    <div class="tabs-grid">${entries.map(cardHtml).join('')}</div>
+  `;
+
+  container.querySelectorAll('.tabs-card-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const card = head.closest('.tabs-card');
+      const body = card.querySelector('.tabs-card-body');
+      const isOpen = card.classList.toggle('open');
+      head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      body.hidden = !isOpen;
+      if (isOpen && !body.dataset.filled) {
+        const songKey = card.dataset.songKey;
+        const meta = TABS_MANIFEST[songKey];
+        if (meta) {
+          _renderTabPanel(body, songKey, meta);
+          body.dataset.filled = '1';
+        }
+      }
+    });
+  });
+}
+
 function _attachChordChipHandlers(root) {
   let openPopover = null;
   const closeOpen = () => {

@@ -135,6 +135,34 @@ Aba Tab agora renderiza tablatura vetorial via biblioteca AlphaTab (https://alph
 
 **Validacao pendente:** abrir Black no navegador, clicar TAB, ir pra aba Tab, conferir que carrega a tablatura. Possiveis ajustes: sintaxe do AlphaTex pode ter erros (nao testei contra a AlphaTab real); refinamento da progressao virá nos commits de curadoria.
 
+## Secao "Cifras & Tabs" no nav (sessao 2026-05-11 noite)
+Nova view dedicada ao lado do Deep, listando o conteudo musical do site num grid de cards (visual similar a Deep mas com card horizontal compacto: cover do album + meta + badges).
+
+**Adicionado:**
+- Tab no nav: `🎸 Cifras & Tabs` apos `📖 Deep`.
+- Section `<section id="view-tabs">` com `<div id="tabs-content">`.
+- Case `tabs` no switch de `renderCurrent()`.
+- Funcao `renderTabsView()`: lista todas as entries do TABS_MANIFEST como cards expansiveis. Ordenacao: cifra+tab primeiro, depois so cifra, depois so tab, depois placeholders, com tie-break alfabetico.
+- Funcao `_renderTabPanel(body, songKey, tabMeta)`: extracted de fillTabBody, agora reusada tanto pelo painel inline da faixa quanto pelo body expandido da card. fillTabBody virou one-liner.
+- Cada card: cover do album (via `albumCoverPath`), titulo, album subtitle, key pill, badges (Cifra/Tab on ou em breve), chevron. Click expande o body inline com o painel completo de cifra/tab.
+
+**CSS novo (paleta azul-petroleo):**
+- `.tabs-empty`, `.tabs-intro`, `.tabs-grid` (auto-fill 280px min).
+- `.tabs-card` (border azul-petroleo, hover/open com shadow).
+- `.tabs-card-head` (botao com cover 60x60 + meta + chevron).
+- `.tabs-card-cover`, `.tabs-card-meta`, `.tabs-card-title`, `.tabs-card-sub`.
+- `.tabs-card-badges`, `.tabs-keypill`, `.tabs-badge-on`, `.tabs-badge-off`.
+- `.tabs-card-chevron` (rotate 180 quando open).
+- `.tabs-card-body` (revela painel _renderTabPanel inline).
+
+**UX:** o usuario pode usar o site de duas formas pra cifra/tab:
+1. Pela faixa do show (botao TAB inline ao lado de LETRA/ANALISE).
+2. Pela view dedicada (encontra rapido sem precisar abrir um show).
+
+Ambas usam o mesmo `_renderTabPanel`, garantindo consistencia visual e zero divergencia de logica.
+
+**Validacao pendente:** abrir `Cifras & Tabs` no nav, conferir grid renderizado, expandir black/alive/even-flow, validar que painel mostra mesmas abas/chord-chips da versao inline da faixa.
+
 Plano completo em `C:\Users\engan\.claude\plans\shimmering-crunching-matsumoto.md`.
 
 ## Aba Tradutor no painel ANÁLISE (sessao 2026-05-11 noite)
