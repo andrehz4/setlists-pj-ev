@@ -50,7 +50,7 @@ untitled (Yield faixa 8): 2 linhas instrumentais cantadas, traduzido como 'Tamo 
 - Performance round 3: 24 KiB unused-JS no index, 21 KiB unused CSS, render-blocking dos 3 links de fontes.
 - MEDIA gap: 22 shows declaram my_photos sem nada em disco/Drive.
 - Validacao visual: revisar musica por musica no site (letra + interpretacao + nota do tradutor) e ajustar manualmente o que precisar.
-- Revisar e calibrar os ensaios de covers (atualmente 40-100 palavras, abaixo da regua de 250 dos albuns de estudio).
+- Passada de expansao opcional nos ensaios de covers (atualmente 50-100 palavras, abaixo da regua de 250 dos albuns de estudio). Por protocolo, covers entram com nota mais curta (letras alheias com contexto biografico), entao a expansao so faz sentido caso a caso, ex: covers de peso simbolico recorrente no setlist (rockin in the free world, baba oriley, comfortably numb, love reign oer me) merecem 180-220 palavras.
 
 ## Blockers
 Nenhum.
