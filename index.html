@@ -3456,114 +3456,130 @@ html[data-theme="light"] .drawer-section-label.my-media {
   margin: 0 auto 28px;
   text-align: center;
 }
-.tabs-grid {
+/* Layout 2-col: catalog lateral + detail panel.
+   Catalog-aside fica sticky e rola interno; detail rola com a pagina. */
+.tabs-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 18px;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
 }
-.tabs-card {
-  background: var(--paper, #fff);
-  border: 1px solid rgba(46, 107, 138, 0.15);
-  border-radius: 6px;
+@media (max-width: 880px) {
+  .tabs-layout { grid-template-columns: 1fr; }
+}
+
+.catalog-aside {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   overflow: hidden;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
-.tabs-card:hover {
-  border-color: rgba(46, 107, 138, 0.4);
-  box-shadow: 0 4px 14px rgba(46, 107, 138, 0.1);
+@media (max-width: 880px) {
+  .catalog-aside { position: static; max-height: none; }
 }
-.tabs-card.open {
-  border-color: #2e6b8a;
-  box-shadow: 0 6px 18px rgba(46, 107, 138, 0.18);
+.catalog-search {
+  width: 100%;
+  padding: 9px 12px;
+  background: var(--bg-card);
+  color: var(--ink);
+  border: 1px solid var(--divider-strong);
+  border-radius: 3px;
+  font: 400 12px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
 }
-.tabs-card-head {
+.catalog-search:focus { outline: none; border-color: #2e6b8a; }
+.catalog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.catalog-list::-webkit-scrollbar { width: 6px; }
+.catalog-list::-webkit-scrollbar-thumb { background: var(--divider-strong); border-radius: 3px; }
+.cat-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 12px;
-  border: 0;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 10px;
   background: transparent;
+  border: 0;
+  border-left: 2px solid transparent;
   cursor: pointer;
   text-align: left;
-  font: inherit;
-  color: inherit;
-  user-select: none;
+  transition: background 120ms ease, border-left-color 120ms ease;
+  color: var(--ink);
 }
-.tabs-card-head:focus-visible {
-  outline: 2px solid #2e6b8a;
-  outline-offset: -2px;
+.cat-item:hover:not(.disabled) {
+  background: var(--bg-card);
+  border-left-color: var(--divider-strong);
 }
-.tabs-card-cover {
-  width: 60px;
-  height: 60px;
-  flex-shrink: 0;
-  border-radius: 3px;
-  background-size: cover;
-  background-position: center;
-  background-color: rgba(46, 107, 138, 0.08);
-  border: 1px solid rgba(46, 107, 138, 0.2);
+.cat-item.active {
+  background: var(--bg-card-hover);
+  border-left-color: var(--pj);
 }
-.tabs-card-meta {
-  flex: 1;
-  min-width: 0;
+.cat-item.disabled { cursor: not-allowed; opacity: 0.55; }
+.cat-item-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.cat-item-title {
+  font: italic 15px/1.2 var(--font-editorial, Georgia, serif);
+  color: var(--ink);
 }
-.tabs-card-title {
-  font: 700 15px/1.2 var(--font-display, 'Big Shoulders Display', sans-serif);
-  letter-spacing: 0.02em;
-  color: var(--ink, #1a1611);
-  margin-bottom: 3px;
-}
-.tabs-card-sub {
-  font: italic 12px/1.3 var(--font-editorial, Georgia, serif);
-  color: var(--ink-mute, #6b5e44);
-  margin-bottom: 6px;
-}
-.tabs-card-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-.tabs-keypill {
-  display: inline-block;
-  font: 700 10px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
-  letter-spacing: 0.04em;
-  background: #2e6b8a;
-  color: #fff;
-  padding: 3px 7px;
-  border-radius: 3px;
-}
-.tabs-badge {
-  display: inline-block;
-  font: 600 9px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.16em;
+.cat-item-album {
+  font: 600 9px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-dim);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 3px 7px;
-  border-radius: 3px;
 }
-.tabs-badge-on {
+.cat-item-status {
+  font: 600 8px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.cat-item-status.status-ready {
   background: rgba(46, 107, 138, 0.12);
   color: #2e6b8a;
   border: 1px solid rgba(46, 107, 138, 0.4);
 }
-.tabs-badge-off {
+.cat-item-status.status-cifra-only,
+.cat-item-status.status-tab-only {
   background: transparent;
-  color: var(--ink-dim, #6b5e44);
-  border: 1px dashed rgba(107, 94, 68, 0.4);
+  color: var(--ink-mute);
+  border: 1px dashed var(--divider-strong);
 }
-.tabs-card-chevron {
-  flex-shrink: 0;
-  font-size: 16px;
-  color: #2e6b8a;
-  transition: transform 200ms ease;
+.cat-item-status.status-soon { color: var(--ink-dim); }
+
+/* Painel de detalhe: container que envolve o _renderTabPanel + header novo */
+.cifra-detail-wrap {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--divider);
+  border-top: 3px solid #2e6b8a;
+  border-radius: 4px;
+  padding: 22px 26px;
+  min-height: 480px;
+  overflow: hidden;
 }
-.tabs-card.open .tabs-card-chevron { transform: rotate(180deg); }
-.tabs-card-body {
-  padding: 0 14px 14px;
-  font: 400 13px/1.6 var(--font-mono, 'IBM Plex Mono', monospace);
-  color: var(--ink, #1a1611);
+.cifra-detail-body { position: relative; }
+.cifra-empty {
+  padding: 80px 30px;
+  text-align: center;
 }
-.tabs-card-body[hidden] { display: none; }
+.cifra-empty-title {
+  font: italic 22px/1.3 var(--font-editorial, Georgia, serif);
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.cifra-empty-sub {
+  font: 400 11px/1.4 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-dim);
+  letter-spacing: 0.05em;
+}
 
 .lyrics-song-title {
   font-family: var(--font-editorial);
@@ -8127,8 +8143,10 @@ function _renderTabPanel(body, songKey, tabMeta) {
   });
 }
 
-// Render da view "Cifras & Tabs": grid de cards com cover do álbum,
-// expandivel pra mostrar o painel completo de cifra/tab.
+// Render da view "Cifras & Tabs": layout 2-col com catalogo lateral (sticky)
+// + painel de detalhe a direita. Click numa musica do catalogo carrega o
+// detail via _renderCifraDetail, que internamente delega pro _renderTabPanel
+// (mesma logica reusada pelo botao TAB inline na faixa do show).
 function renderTabsView() {
   const container = document.getElementById('tabs-content');
   if (!container) return;
@@ -8138,8 +8156,6 @@ function renderTabsView() {
     return;
   }
   // Resolver "song display name" original a partir das chaves normalizadas.
-  // Como o manifest usa chaves _lyricsNorm, vou tentar bater com SONG_TO_ALBUM keys
-  // (que tem títulos originais).
   const displayName = (key) => {
     const found = Object.keys(SONG_TO_ALBUM).find(s => _lyricsNorm(s) === key);
     return found || key.replace(/\b\w/g, c => c.toUpperCase());
@@ -8149,7 +8165,7 @@ function renderTabsView() {
     title: displayName(key),
     albumTitle: getAlbumTitle(displayName(key)),
   }));
-  // Ordenar: cifra+tab primeiro, depois só cifra, depois só tab, depois placeholders.
+  // Ordenar: cifra+tab primeiro, depois so cifra, depois so tab, depois placeholders.
   entries.sort((a, b) => {
     const sa = (a.meta.cifra ? 2 : 0) + (a.meta.tab ? 1 : 0);
     const sb = (b.meta.cifra ? 2 : 0) + (b.meta.tab ? 1 : 0);
@@ -8157,30 +8173,30 @@ function renderTabsView() {
     return a.title.localeCompare(b.title);
   });
 
-  const cardHtml = ({ key, meta, title, albumTitle }) => {
-    const album = getAlbum(title);
-    const coverUrl = album ? albumCoverPath(album.id) : '';
-    const coverBg = coverUrl ? `background-image:url('${coverUrl}')` : '';
-    const badges = [];
-    if (meta.cifra) badges.push('<span class="tabs-badge tabs-badge-on">Cifra</span>');
-    else badges.push('<span class="tabs-badge tabs-badge-off">Cifra · em breve</span>');
-    if (meta.tab) badges.push('<span class="tabs-badge tabs-badge-on">Tab</span>');
-    else badges.push('<span class="tabs-badge tabs-badge-off">Tab · em breve</span>');
-    const keyPill = meta.key ? `<span class="tabs-keypill">${meta.key}</span>` : '';
-    const capoNote = meta.capo ? ` · capo ${meta.capo}` : '';
+  const statusOf = (meta) => {
+    if (meta.cifra && meta.tab) return 'ready';
+    if (meta.cifra) return 'cifra-only';
+    if (meta.tab) return 'tab-only';
+    return 'soon';
+  };
+  const statusLabel = {
+    ready: 'tab+cifra',
+    'cifra-only': 'cifra',
+    'tab-only': 'tab',
+    soon: 'em breve',
+  };
+
+  const catItemHtml = ({ key, meta, title, albumTitle }) => {
+    const s = statusOf(meta);
+    const disabledCls = s === 'soon' ? ' disabled' : '';
     return `
-      <article class="tabs-card" data-song-key="${key}">
-        <button class="tabs-card-head" type="button" aria-expanded="false" aria-controls="tabs-panel-${key.replace(/\s/g, '-')}">
-          <div class="tabs-card-cover" style="${coverBg}" aria-hidden="true"></div>
-          <div class="tabs-card-meta">
-            <div class="tabs-card-title">${title.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
-            <div class="tabs-card-sub">${albumTitle.replace(/&/g,'&amp;').replace(/</g,'&lt;')}${capoNote}</div>
-            <div class="tabs-card-badges">${keyPill}${badges.join('')}</div>
-          </div>
-          <div class="tabs-card-chevron" aria-hidden="true">▾</div>
-        </button>
-        <div class="tabs-card-body" id="tabs-panel-${key.replace(/\s/g, '-')}" hidden></div>
-      </article>`;
+      <button type="button" class="cat-item${disabledCls}" data-song-key="${key}" data-status="${s}" ${s === 'soon' ? 'aria-disabled="true"' : ''}>
+        <span class="cat-item-meta">
+          <span class="cat-item-title">${title.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
+          <span class="cat-item-album">${albumTitle.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
+        </span>
+        <span class="cat-item-status status-${s}">${statusLabel[s]}</span>
+      </button>`;
   };
 
   container.innerHTML = `
@@ -8188,54 +8204,81 @@ function renderTabsView() {
       Cifras com chord-chips e diagrama interativo, tablaturas vetoriais via AlphaTab.
       Top 20 hits do PJ ao vivo, em cura&ccedil;&atilde;o cont&iacute;nua.
     </div>
-    <div class="tabs-grid">${entries.map(cardHtml).join('')}</div>
+    <div class="tabs-layout">
+      <aside class="catalog-aside" aria-label="Cat&aacute;logo de cifras">
+        <input type="search" class="catalog-search" placeholder='buscar: "Black", "Ten", "Vitalogy"...' aria-label="Buscar m&uacute;sica ou &aacute;lbum">
+        <div class="catalog-list" role="list">
+          ${entries.map(catItemHtml).join('')}
+        </div>
+      </aside>
+      <section class="cifra-detail-wrap" aria-live="polite">
+        <div class="cifra-empty">
+          <div class="cifra-empty-title">Selecione uma m&uacute;sica</div>
+          <div class="cifra-empty-sub">Black, Alive e Even Flow t&ecirc;m cifra. Tab vetorial: Black.</div>
+        </div>
+      </section>
+    </div>
   `;
 
-  // Toggle do card: 1 click abre; pra fechar exige duplo clique rapido
-  // (janela de 600ms) pra evitar fechamento acidental ao tentar interagir
-  // com algo proximo ao head.
-  const DOUBLE_CLICK_MS = 600;
-  const lastCloseAttempt = new WeakMap();
-  container.querySelectorAll('.tabs-card-head').forEach(head => {
-    head.addEventListener('click', () => {
-      const card = head.closest('.tabs-card');
-      const body = card.querySelector('.tabs-card-body');
-      const isOpen = card.classList.contains('open');
-      if (!isOpen) {
-        card.classList.add('open');
-        head.setAttribute('aria-expanded', 'true');
-        body.hidden = false;
-        if (!body.dataset.filled) {
-          const songKey = card.dataset.songKey;
-          const meta = TABS_MANIFEST[songKey];
-          if (meta) {
-            _renderTabPanel(body, songKey, meta);
-            body.dataset.filled = '1';
-          }
-        }
-        head.dataset.hint = 'clique duas vezes pra fechar';
-        return;
-      }
-      // Ja aberto: exige duplo clique pra fechar.
-      const now = Date.now();
-      const last = lastCloseAttempt.get(head) || 0;
-      if (now - last <= DOUBLE_CLICK_MS) {
-        card.classList.remove('open');
-        head.setAttribute('aria-expanded', 'false');
-        body.hidden = true;
-        lastCloseAttempt.delete(head);
-        delete head.dataset.hint;
-        // Esconde FAB e fretboard tambem caso este card estivesse tocando
-        const f = document.querySelector('.alphatab-fab');
-        if (f) f.classList.remove('show');
-        const fb = document.querySelector('.fretboard-overlay');
-        if (fb) fb.classList.remove('show');
-      } else {
-        lastCloseAttempt.set(head, now);
-        head.dataset.hint = 'clique de novo pra fechar';
-      }
+  const search = container.querySelector('.catalog-search');
+  const list = container.querySelector('.catalog-list');
+  const detail = container.querySelector('.cifra-detail-wrap');
+
+  // Filtro de busca em tempo real (match em titulo ou album)
+  if (search) {
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase().trim();
+      list.querySelectorAll('.cat-item').forEach(item => {
+        const title = (item.querySelector('.cat-item-title')?.textContent || '').toLowerCase();
+        const album = (item.querySelector('.cat-item-album')?.textContent || '').toLowerCase();
+        item.hidden = !!(q && !title.includes(q) && !album.includes(q));
+      });
     });
+  }
+
+  const closeFloatingUI = () => {
+    const f = document.querySelector('.alphatab-fab');
+    if (f) f.classList.remove('show');
+    const fb = document.querySelector('.fretboard-overlay');
+    if (fb) fb.classList.remove('show');
+  };
+
+  // Click no item do catalogo: troca o detail panel
+  list.addEventListener('click', (e) => {
+    const item = e.target.closest('.cat-item');
+    if (!item) return;
+    list.querySelectorAll('.cat-item.active').forEach(a => a.classList.remove('active'));
+    item.classList.add('active');
+    closeFloatingUI();
+    if (item.classList.contains('disabled')) {
+      const title = item.querySelector('.cat-item-title').textContent;
+      detail.innerHTML = `
+        <div class="cifra-empty">
+          <div class="cifra-empty-title">"${title}" &middot; em breve</div>
+          <div class="cifra-empty-sub">Esta m&uacute;sica est&aacute; no plano das pr&oacute;ximas curadorias.</div>
+        </div>
+      `;
+      return;
+    }
+    const songKey = item.dataset.songKey;
+    const meta = TABS_MANIFEST[songKey];
+    if (!meta) return;
+    _renderCifraDetail(detail, songKey, meta);
   });
+
+  // Auto-select primeira musica ready/cifra-only se houver, pra view abrir
+  // ja com conteudo em vez de empty state.
+  const firstUsable = list.querySelector('.cat-item:not(.disabled)');
+  if (firstUsable) firstUsable.click();
+}
+
+// Renderiza o painel de detalhe de uma musica dentro da view "Cifras & Tabs".
+// Por enquanto so envolve _renderTabPanel num container; nos commits seguintes
+// vai ganhar header com cover + voice picker.
+function _renderCifraDetail(container, songKey, tabMeta) {
+  container.innerHTML = '<div class="cifra-detail-body"></div>';
+  const body = container.querySelector('.cifra-detail-body');
+  _renderTabPanel(body, songKey, tabMeta);
 }
 
 // Som arpejado do acorde via smplr (https://github.com/danigb/smplr, MIT).
