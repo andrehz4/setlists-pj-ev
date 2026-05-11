@@ -3556,7 +3556,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
   position: fixed;
   right: 24px;
   bottom: 110px;
-  width: clamp(540px, 56vw, 720px);
+  width: clamp(420px, 42vw, 560px);
   background: rgba(255, 255, 255, 0.97);
   border: 1px solid rgba(46, 107, 138, 0.3);
   border-radius: 12px;
@@ -3602,7 +3602,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .fretboard-overlay.inline .fretboard-svg {
   width: 100%;
   height: auto;
-  max-height: 32vh;
+  max-height: 48vh;
   display: block;
 }
 .fretboard-overlay.inline .fretboard-close {
@@ -8716,8 +8716,42 @@ function _renderTabPanel(body, songKey, tabMeta) {
         let fbSelectedTracks = new Set();
 
         const INSTRUMENTS = {
-          guitar: { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Violão / Guitarra' }, // 1=aguda topo
-          bass:   { strings: 4, tuning: ['G', 'D', 'A', 'E'], label: 'Baixo' },
+          acoustic: { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Violão' },
+          guitar:   { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Guitarra' },
+          bass:     { strings: 4, tuning: ['G', 'D', 'A', 'E'], label: 'Baixo' },
+        };
+        // Estilos visuais por instrumento (palette + body). Violao tem madeira
+        // caramelo + cordas claras (nylon) + soundhole. Guitarra tem rosewood
+        // escuro + cordas prateadas + pickup magnetico. Baixo tem madeira ebano
+        // + cordas grossas + pickup J-style largo.
+        const INSTRUMENT_STYLES = {
+          acoustic: {
+            wood:   ['#a06a3a', '#b07c4a', '#6e4520'],
+            body:   ['#a06a3a', '#5a3322'],
+            strHigh: '#f5ecd2',   // nylon claro
+            strLow:  '#c89865',   // bronze enrolado
+            inlay:  '#f9f0d8',
+            tarraxa: '#e8d8a8',
+            bodyType: 'acoustic', // soundhole
+          },
+          guitar: {
+            wood:   ['#5a3a1f', '#6b4a28', '#3e2914'],
+            body:   ['#5a3322', '#1f1410'],
+            strHigh: '#e8e0d0',   // aço plain
+            strLow:  '#c8b890',   // bronze wound
+            inlay:  '#f0e8d0',
+            tarraxa: '#c8c0b0',
+            bodyType: 'pickup',   // pickup retangular
+          },
+          bass: {
+            wood:   ['#3a2014', '#4a2c1a', '#1f1208'],
+            body:   ['#2a1810', '#0d0807'],
+            strHigh: '#dfd5b8',
+            strLow:  '#9a8868',
+            inlay:  '#e8dfc0',
+            tarraxa: '#b8b0a0',
+            bodyType: 'jbass',    // pickup J-style largo
+          },
         };
 
         // Dimensoes do SVG (viewBox 720x220, escala via CSS). Layout do design
