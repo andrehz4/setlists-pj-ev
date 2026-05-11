@@ -7202,12 +7202,9 @@ async function _initAlphaTabPanel(container, songKey, tabFormat) {
       enablePlayer: true,
       enableCursor: true,
       soundFont: `${libBase}/soundfont/sonivox.sf3`,
-      // 'continuous' rola suavemente acompanhando o cursor. scrollElement
-      // omitido = AlphaTab rola a propria pagina (mais previsivel que
-      // container interno com max-height).
-      scrollMode: 'continuous',
-      scrollOffsetY: -120,
-      scrollSpeed: 500,
+      // Autoscroll interno desligado: implementamos manualmente abaixo
+      // via playedBeatChanged + scrollIntoView pra cursor sempre no meio.
+      scrollMode: 'off',
     },
     display: { staveProfile: 'tab' },
     core: { fontDirectory: `${libBase}/font/` },
@@ -7300,6 +7297,38 @@ function _renderTabPanel(body, songKey, tabMeta) {
       _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
         loading.remove();
         status.textContent = 'soundfont sonivox · click Play';
+
+        // Autoscroll custom: garante que o cursor (.at-cursor-bar) fique
+        // sempre centralizado na viewport quando o player avanca.
+        // Throttled a 400ms pra evitar smooth-scroll jitter.
+        let lastScrollAt = 0;
+        const scrollCursorToCenter = () => {
+          const cursor = surface.querySelector('.at-cursor-bar');
+          if (!cursor) return;
+          const rect = cursor.getBoundingClientRect();
+          const viewH = window.innerHeight;
+          // So rola se o cursor saiu da faixa centro-do-viewport (margem 25%)
+          const margin = viewH * 0.25;
+          if (rect.top > margin && rect.bottom < viewH - margin) return;
+          cursor.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+        };
+        if (api.playedBeatChanged) {
+          api.playedBeatChanged.on(() => {
+            const now = Date.now();
+            if (now - lastScrollAt < 400) return;
+            lastScrollAt = now;
+            requestAnimationFrame(scrollCursorToCenter);
+          });
+        }
+        // Fallback: tambem reagir a activeBeatsChanged (alphaTab 1.8+).
+        if (api.activeBeatsChanged) {
+          api.activeBeatsChanged.on(() => {
+            const now = Date.now();
+            if (now - lastScrollAt < 400) return;
+            lastScrollAt = now;
+            requestAnimationFrame(scrollCursorToCenter);
+          });
+        }
         // Estado do player: 0=parado, 1=tocando, 2=pausado.
         api.playerStateChanged.on(e => {
           if (e.state === 1) {
