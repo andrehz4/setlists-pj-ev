@@ -3188,6 +3188,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
    No panel inline da faixa do show (fora do .cifra-detail-wrap), surface
    mantem comportamento legado (window scroll + scroll horizontal). */
 .cifra-detail-wrap .alphatab-surface {
+  position: relative;
   max-height: 56vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -8973,19 +8974,20 @@ function _renderTabPanel(body, songKey, tabMeta) {
           const surfaceScrolls = (overflowY === 'auto' || overflowY === 'scroll')
             && surface.scrollHeight > surface.clientHeight;
           if (surfaceScrolls) {
-            // Rola dentro da surface, mantem cursor no meio dela
+            // Rola DENTRO da surface usando coords visuais (getBoundingClientRect).
+            // Independente de offsetParent, calcula posicao do cursor relativa
+            // ao conteudo somando o scrollTop atual.
             const cursorRect = cursor.getBoundingClientRect();
             const surfaceRect = surface.getBoundingClientRect();
-            // Cursor pode estar fora visual da surface (rolagem interna). Calcula
-            // offset absoluto somando o scrollTop atual.
-            const cursorTop = cursor.offsetTop;
-            const target = cursorTop - surface.clientHeight / 2 + cursor.clientHeight / 2;
-            // So rola se cursor saiu da faixa central da surface
+            const cursorH = cursorRect.height || 24;
             const visibleTop = cursorRect.top - surfaceRect.top;
-            const visibleBot = visibleTop + cursor.clientHeight;
-            const margin = surface.clientHeight * 0.2;
+            const visibleBot = visibleTop + cursorH;
+            // So rola se o cursor saiu da faixa central (margem 25%)
+            const margin = surface.clientHeight * 0.25;
             if (visibleTop > margin && visibleBot < surface.clientHeight - margin) return;
-            surface.scrollTo({ top: target, behavior: 'smooth' });
+            const cursorTopInContent = visibleTop + surface.scrollTop;
+            const target = cursorTopInContent - surface.clientHeight / 2 + cursorH / 2;
+            surface.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
             return;
           }
           // Modo legacy: rola a window
