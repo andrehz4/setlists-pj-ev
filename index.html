@@ -3104,6 +3104,46 @@ html[data-theme="light"] .drawer-section-label.my-media {
   font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
   color: var(--ink-mute, #6b5e44);
 }
+.alphatab-speed-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim, #6b5e44);
+}
+.alphatab-speed {
+  font: 700 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  background: #fff;
+  color: var(--ink, #1a1611);
+  border: 1px solid rgba(46, 107, 138, 0.4);
+  border-radius: 3px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+.alphatab-loop {
+  background: transparent !important;
+  color: #2e6b8a !important;
+  border: 1px solid #2e6b8a !important;
+}
+.alphatab-loop:hover { background: rgba(46,107,138,0.08) !important; }
+.alphatab-loop[data-state="arm"],
+.alphatab-loop[data-state="arm2"] {
+  background: #f4a93a !important;
+  color: #fff !important;
+  border-color: #f4a93a !important;
+  animation: loop-blink 1s ease-in-out infinite;
+}
+.alphatab-loop[data-state="on"] {
+  background: var(--pj, #c1272d) !important;
+  color: #fff !important;
+  border-color: var(--pj, #c1272d) !important;
+}
+@keyframes loop-blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
 .alphatab-tracks {
   display: flex;
   flex-wrap: wrap;
@@ -7395,6 +7435,16 @@ function _renderTabPanel(body, songKey, tabMeta) {
         <div class="alphatab-transport" role="toolbar" aria-label="Controles de reprodução da tablatura">
           <button type="button" class="alphatab-btn alphatab-play" data-state="idle" aria-label="Tocar tablatura">▶ Play</button>
           <button type="button" class="alphatab-btn alphatab-stop" aria-label="Parar reprodução">◼ Stop</button>
+          <label class="alphatab-speed-label">Velocidade
+            <select class="alphatab-speed" aria-label="Velocidade de reprodução">
+              <option value="0.5">0.5×</option>
+              <option value="0.75">0.75×</option>
+              <option value="1" selected>1×</option>
+              <option value="1.25">1.25×</option>
+              <option value="1.5">1.5×</option>
+            </select>
+          </label>
+          <button type="button" class="alphatab-btn alphatab-loop" data-state="off" aria-label="Loop de trecho">🔁 Loop</button>
           <span class="alphatab-status">aguardando soundfont…</span>
         </div>
         <div class="alphatab-surface"></div>
@@ -7404,6 +7454,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const loading = tabPane.querySelector('.tab-pane-loading');
       const playBtn = tabPane.querySelector('.alphatab-play');
       const stopBtn = tabPane.querySelector('.alphatab-stop');
+      const speedSel = tabPane.querySelector('.alphatab-speed');
+      const loopBtn = tabPane.querySelector('.alphatab-loop');
       const status = tabPane.querySelector('.alphatab-status');
       _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
         loading.remove();
@@ -7669,6 +7721,58 @@ function _renderTabPanel(body, songKey, tabMeta) {
           e.stopPropagation();
           api.stop();
         });
+        // Velocidade: ajusta api.playbackSpeed (range 0.25-2.0).
+        speedSel.addEventListener('change', (e) => {
+          e.stopPropagation();
+          const v = parseFloat(speedSel.value);
+          if (!isNaN(v)) api.playbackSpeed = v;
+        });
+        // Loop: 3 estados — off / marcando-start / marcando-end-com-loop-ativo.
+        // Cliques na propria tab marcam pontos via api.beatMouseDown.
+        let loopStart = null;
+        const loopReset = () => {
+          loopStart = null;
+          loopBtn.dataset.state = 'off';
+          loopBtn.textContent = '🔁 Loop';
+          api.isLooping = false;
+          api.playbackRange = null;
+          status.textContent = api.player && api.player.state === 1 ? 'tocando…' : 'pronto · click Play';
+        };
+        loopBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (loopBtn.dataset.state === 'off') {
+            loopBtn.dataset.state = 'arm';
+            loopBtn.textContent = '◉ marcando…';
+            status.textContent = 'clique no beat de INÍCIO do loop na tablatura';
+          } else {
+            loopReset();
+          }
+        });
+        if (api.beatMouseDown) {
+          api.beatMouseDown.on(beat => {
+            if (loopBtn.dataset.state === 'off') return;
+            if (loopBtn.dataset.state === 'arm') {
+              loopStart = beat;
+              loopBtn.dataset.state = 'arm2';
+              loopBtn.textContent = '◉ marcando fim';
+              status.textContent = 'clique no beat de FIM do loop';
+            } else if (loopBtn.dataset.state === 'arm2') {
+              const startTick = loopStart.absolutePlaybackStart;
+              const endTick = beat.absolutePlaybackEnd || (beat.absolutePlaybackStart + (beat.playbackDuration || 480));
+              if (endTick <= startTick) {
+                status.textContent = 'fim precisa ser depois do inicio';
+                loopBtn.dataset.state = 'arm';
+                loopBtn.textContent = '◉ marcando…';
+                return;
+              }
+              api.playbackRange = { startTick, endTick };
+              api.isLooping = true;
+              loopBtn.dataset.state = 'on';
+              loopBtn.textContent = '🔁 Loop ATIVO';
+              status.textContent = `loop ativo · ${Math.round((endTick - startTick) / 480)} beats`;
+            }
+          });
+        }
       }).catch((err) => {
         loading.remove();
         tabPane.innerHTML = `<div class="tab-pane-soon">tablatura nao p&ocirc;de ser carregada (${(err && err.message) || 'erro desconhecido'})</div>`;
