@@ -3,6 +3,134 @@
 ## Data
 2026-05-11
 
+## HANDOFF SESSAO NOITE 2026-05-11 (cifras + tablaturas + design pendente)
+
+Sessao monstra: 23+ commits sequenciais entregando o ecossistema **Cifras & Tabs** completo + design refinado entregue pelo Claude Design que precisa ser implementado em outra sessao. Resumo dos commits da sessao (em ordem inversa):
+
+- `be59cd1` feat(fretboard): filtro por guitarrista + botao fechar + stop esconde
+- `81c0627` feat(tab-player): 0.25x + loop com overlay + fretboard maior com bass
+- `5d0ffd6` feat(tab-player): controle de velocidade + loop de trecho
+- `044032a` feat(tab-player): fretboard visualizer floating no canto direito
+- `178cebd` fix: FAB sempre visivel + duplo clique fechar tab inline
+- `efbd1e1` feat(tab-player): botoes flutuantes Pause/Stop sempre visiveis
+- `06282ea` fix(tab-player): autoscroll custom mantem cursor sempre no centro
+- `71ac5b6` fix(tab-player): autoscroll rola pagina inteira em vez do container
+- `3ef5470` fix(tab-player): scrollMode offScreen evita jitter e perda de ritmo
+- `e34b20d` fix(tab-player): autoroll + cursor visual no AlphaTab
+- `9eef19e` fix(csp): permite Web Worker via blob: pra AlphaTab funcionar
+- `9bfc3f1` fix(tabs-view): exige duplo clique pra fechar card aberto
+- `57f99cc` feat: samples violao local + rename "Tradutor" pra "Opiniao"
+- `091924f` fix(tab): hospeda AlphaTab 1.8.2 + smplr local (resolve CSP block)
+- `e1af3e1` feat(tab): seletor de tracks por checkbox no Player de Tab
+- `366edc3` feat(tab): substitui placeholder por black.gp3 real do gtptabs.com
+- `511467c` feat(tab): Fase 3 AlphaTab CDN lazy-load + tab inicial de Black
+- `24a778c` feat(tab): Fase 2 cifras com chord-chips + diagrama SVG
+- `e6ec1b9` feat(tab): Fase 1 infraestrutura de cifras e tablaturas
+- `1631c5b` feat(tab): secao dedicada Cifras & Tabs no nav (ao lado de Deep)
+- `dd9db62` feat(analise): aba Tradutor com lyrics-notes.json no painel ANÁLISE
+- `d1d94c5` feat(ui): renomeia secao INTERPRETAÇÃO para ANÁLISE
+- `e9b58a5` feat(traducao): passada 2B contextual em interpretations.json
+
+### O que existe HOJE em produção (testado por Andre, funcionando)
+
+**Cifras & Tabs (view dedicada + bot~ao na faixa do show):**
+- Tab no nav superior **🎸 Cifras & Tabs** ao lado de Deep.
+- Grid de cards expansiveis com 20 musicas Top PJ ao vivo (manifest em `media/tabs/index.json`).
+- Top 20: black, alive, even flow, yellow ledbetter, better man, jeremy, daughter, elderly woman..., just breathe, given to fly, corduroy, state of love and trust, animal, rearviewmirror, do the evolution, last kiss, crazy mary, sirens, hail hail, footsteps.
+- Cada card: cover do album, titulo, key/tuning/capo, badges Cifra/Tab. Duplo clique pra fechar (Andre pediu).
+- Botao **TAB** tambem inline na linha da faixa de cada show.
+
+**Cifra (chord-chips + diagrama):**
+- Parser ChordPro inline (`_renderChordPro`, `_parseChordProLine`).
+- Chord-chips coloridos em paleta azul-petroleo (#2e6b8a).
+- Click no chip mostra diagrama SVG do acorde (popover) + toca o acorde arpejado (via smplr local).
+- Botao Play no topo da cifra: percorre os chord-chips no BPM da musica (2 beats/acorde), iluminando o ativo em vermelho PJ com pulse animation.
+- 3 cifras cadastradas: `media/tabs/cifras/black.cpro`, `alive.cpro`, `even-flow.cpro`. BPM no manifest: 87/78/110.
+
+**Tab (AlphaTab + .gp3):**
+- AlphaTab 1.8.2 hospedado LOCAL em `media/lib/alphatab/` (alphaTab.min.js 1.1MB + Bravura font + sonivox.sf3 977KB).
+- smplr 0.20.0 + soundfont acoustic_guitar_steel hospedado local em `media/lib/smplr-soundfonts/` (1.9MB).
+- 1 tab cadastrada: `media/tabs/gp/black.gp3` (baixada de gtptabs.com pela Andre, 19KB).
+- **Transport bar**: Play/Stop + select velocidade (0.25x/0.5x/0.75x/1x/1.25x/1.5x) + botao Loop.
+- **Loop**: click no botao Loop → overlay grande no centro da tela com instrucao ("Clique no primeiro beat..."). 2 cliques na tab marcam start/end. Botao "play loop" amarelo aparece no FAB quando loop ativo.
+- **FAB flutuante** (canto inferior direito): Pause/Play + Stop + Loop play. Sempre visivel enquanto tocando ou pausado. Stop esconde FAB + fretboard.
+- **Autoscroll custom**: hook em api.playedBeatChanged + scrollIntoView({block:center}), throttled 400ms, margem central 25% pra evitar jitter. Cursor sempre proximo do meio da tela.
+- **Cursor visual**: compasso ativo com fundo vermelho PJ semi-transparente, beat com barra vertical 3px, notas tocadas em vermelho.
+- **Seletor de tracks no transport**: checkboxes por track (Stone/Mike/Jeff Ament) com mute (audio) + visual (renderTracks).
+
+**Fretboard visualizer (floating canto direito durante playback):**
+- 460x220 SVG com fundo de madeira (gradient), trastes prateados metalicos, nut em osso/marfim, inlay markers em madreperola (3/5/7/9 + duplo 12).
+- Nomes das cordas afinadas na esquerda (E A D G B e ou E A D G).
+- Seletor de instrumento (pill tabs): Violão/Guitarra (6c EADGBE) ou Baixo (4c EADG).
+- Checkboxes de track POR DENTRO do fretboard (Stone/Mike/Jeff) — filtra visualmente quem aparece.
+- Notas tocadas em circulos coloridos por track + halo + numero do fret. Cores: vermelho PJ, azul-petroleo, bronze, roxo, verde, magenta.
+- Botao X no canto superior pra fechar manualmente.
+- Stop tambem esconde.
+- Hidden em mobile <=480px.
+
+**CSP & infraestrutura:**
+- `_headers` ajustado: worker-src 'self' blob:, font-src 'self' data:, script-src += blob: (resolve AlphaTab Web Workers).
+- Tudo serve de `'self'`. Zero dependencia externa em runtime.
+
+**Painel ANÁLISE (sessao anterior, sem alteracao recente):**
+- 3 abas: PT, EN, **Opinião** (renomeada de "Tradutor" hoje).
+- 227 ensaios em `media/lyrics-notes.json` (formato `{ song_key: "texto livre PT ~250-300 palavras" }`).
+- Cards de busca tambem renderizam Opinião.
+
+### Pendencia: design refinado pelo Claude Design
+
+Andre pediu uma estilizacao premium da pagina de cifras (especificamente pra musica **Black**). O design vem em `scripts/_design-pearljamcifras/`:
+
+- `README.md` (do bundle): instrucoes de como ler.
+- `chats/chat1.md`: transcricao da conversa (LER PRIMEIRO).
+- `project/Cifras Pearl Jam.html`: HTML principal final.
+- `project/cifra.css`: paleta + tokens + layout (396 linhas).
+- `project/*.jsx`: componentes React-style (cifra-app, cifra-detail, cifra-fretboard, cifra-tab, fretboard, tab-data, tweaks-panel) — TOTAL ~2100 linhas JSX.
+- `project/cifra-data.js`: dados de musicas.
+- `project/assets/`: pj-stickman.png e pj-sun-logo.png (adesivos pra colar no fretboard).
+- `project/uploads/`: 4 screenshots da referencia visual.
+
+**Resumo do design proposto:**
+
+1. **Paleta dark** com album-accent burgundy (#C0392B), album-ink ambar (#F2C572), album-glow laranja (#E89C3D), bg-0 preto profundo (#0e0d0b). Fundo com **grao de papel** SVG noise sobre tudo.
+2. **Banner** com capa do album 200x200 rotacionada -1.5deg + vinyl decoracao + titulo da musica em fonte Cormorant Garamond italic 56-96px gradient ambar-paper.
+3. **Tabs internas**: Cifra / Letra / Interpretações / Setlists (mantém o sistema atual mas re-estilizado).
+4. **Seletor Stone/Mike/Jeff** com foto, instrumento, afinação por musico (já temos o filtro de tracks; ele agora vira card com foto).
+5. **Tab area** em papel envelhecido (#f4ecda) com playhead vermelho, brackets P.M., letra sincronizada opcional.
+6. **Fretboard customizado**: madeira escolhivel (Rosewood/Ebony/Maple), adesivos PJ (stickman ou PJ-sun) colados no headstock/corpo via mix-blend-mode, corda vibrando na nota ativa, dot inlay tradicional.
+7. **Side rail** de tracks com VU meters animados.
+8. **Controles bottom**: volume, prev, play, speed 0.60 default, loop, metronome, fretboard toggle, settings.
+9. **Modal de busca** Cmd+K (atalhos: / pra abrir busca, espaco play/pause).
+10. **Tweaks panel** (canto inferior direito): madeira do braco, estilo dos adesivos, papel da tab, fundo do album, mostrar letra.
+11. **Fontes**: Cormorant Garamond (titulos serif italic), Inter (corpo sans), Bebas Neue (display), JetBrains Mono (mono pra kbd).
+
+**Features novas vs o que ja temos:**
+- Metronome (nao existe hoje).
+- Letra sincronizada com chord-chips.
+- Modal de busca Cmd+K dentro da view Cifras.
+- VU meters por track.
+- Tweaks panel customizacao.
+- Adesivos PJ no fretboard.
+- Banner com capa + vinyl decorativo.
+- Tipografia mais expressiva (Cormorant Garamond italic).
+
+**O que MANTER do atual:**
+- Toda a logica de player AlphaTab (cursor, autoscroll, loop, velocidade, FAB).
+- Manifest `media/tabs/index.json` e arquivos `.cpro`/`.gp`.
+- Parser ChordPro (`_renderChordPro`).
+- Fretboard com filtro por track (já feito).
+- Smplr local + AlphaTab local (zero CDN).
+- CSP atual (worker-src blob:).
+
+### Comando exato pra continuar
+```
+cd C:\Gitlab_hz\pearljam\setlists-pj-ev && claude
+```
+
+E na nova sessao, peca: "leia o handoff no PROGRESSO.md e implemente o design pendente em `scripts/_design-pearljamcifras/`".
+
+---
+
 ## SESSÃO FECHADA: 227/227 letras transcriadas (100%)
 
 Sessao iniciada com 49 letras (4 albuns completos) e fechada com **227 letras transcriadas + 227 ensaios do tradutor** em 14 commits sequenciais:
