@@ -3265,6 +3265,24 @@ html[data-theme="light"] .drawer-section-label.my-media {
   0%,100% { opacity: 1; }
   50% { opacity: 0.7; }
 }
+/* Metronome button: estilo neutro (off) vs ativo verde-bandeira (on).
+   Pulse animation quando ativo durante reproducao pra dar feedback visual. */
+.alphatab-metronome {
+  background: transparent !important;
+  color: #2e6b8a !important;
+  border: 1px solid #2e6b8a !important;
+}
+.alphatab-metronome:hover { background: rgba(46,107,138,0.08) !important; }
+.alphatab-metronome[data-state="on"] {
+  background: var(--heard, #4a7342) !important;
+  color: #fff !important;
+  border-color: var(--heard, #4a7342) !important;
+  animation: metro-pulse 0.6s ease-in-out infinite;
+}
+@keyframes metro-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(74,115,66,0.45); }
+  50% { box-shadow: 0 0 0 4px rgba(74,115,66,0); }
+}
 .alphatab-tracks {
   display: flex;
   flex-wrap: wrap;
@@ -3735,7 +3753,49 @@ html[data-theme="light"] .drawer-section-label.my-media {
   min-height: 480px;
   overflow: hidden;
 }
-.cifra-detail-body { position: relative; }
+/* Stamps decorativos ambient (PJ sun + stickman) no canto do painel.
+   Pseudo-elementos pra persistir mesmo quando detail.innerHTML troca.
+   Opacidade muito baixa pra nao competir com leitura da cifra. */
+.cifra-detail-wrap::before,
+.cifra-detail-wrap::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.cifra-detail-wrap::before {
+  top: 18px;
+  right: 24px;
+  width: 92px;
+  height: 92px;
+  background-image: url('media/decals/pj-sun-logo.png');
+  opacity: 0.10;
+  transform: rotate(-8deg);
+  mix-blend-mode: multiply;
+}
+.cifra-detail-wrap::after {
+  bottom: 32px;
+  right: 30px;
+  width: 110px;
+  height: 124px;
+  background-image: url('media/decals/pj-stickman.png');
+  opacity: 0.06;
+  transform: rotate(6deg);
+  mix-blend-mode: multiply;
+}
+html[data-theme="dark"] .cifra-detail-wrap::before,
+html[data-theme="dark"] .cifra-detail-wrap::after {
+  mix-blend-mode: screen;
+  filter: invert(1);
+  opacity: 0.09;
+}
+html[data-theme="dark"] .cifra-detail-wrap::after { opacity: 0.06; }
+.cifra-detail-body { position: relative; z-index: 1; }
+.cifra-header { position: relative; z-index: 1; }
+.cifra-empty { position: relative; z-index: 1; }
 
 /* Header do cifra-detail: cover do album + titulo + pills (key/tuning/capo/bpm).
    Cover-ten e' arte SVG-like em CSS (5 silhuetas + glow) pro album Ten;
@@ -3884,8 +3944,70 @@ html[data-theme="dark"] .cifra-context-pane {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   --vc: #2e6b8a;
 }
+/* Quando o card tem foto do musico (Stone/Mike/Jeff), a foto vai como
+   background full-bleed + scrim escuro pra texto legivel. Mantem toggle
+   on/off + Solo + slider de volume funcionando por cima. */
+.voice-tab-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: 50% 22%;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.4s ease;
+  z-index: 0;
+  filter: saturate(1.05) contrast(1.05);
+}
+.voice-tab-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,12,8,0.18) 0%, rgba(15,12,8,0.72) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.voice-tab.active .voice-tab-photo { opacity: 0.78; transform: scale(1.02); }
+.voice-tab[data-has-photo] { min-height: 102px; }
+.voice-tab[data-has-photo] .voice-tab-toggle,
+.voice-tab[data-has-photo] .voice-tab-vol,
+.voice-tab[data-has-photo] .voice-tab-solo { position: relative; z-index: 1; }
+.voice-tab[data-has-photo] .voice-tab-toggle:hover { background: rgba(255,255,255,0.06); }
+.voice-tab[data-has-photo] .voice-tab-label {
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+  font-size: 16px;
+}
+.voice-tab[data-has-photo].active .voice-tab-label { color: #fff; }
+.voice-tab[data-has-photo] .voice-tab-role {
+  color: rgba(255,255,255,0.82);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+}
+.voice-tab[data-has-photo] .voice-tab-tag {
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.65);
+}
+.voice-tab[data-has-photo] .voice-tab-solo {
+  background: rgba(0,0,0,0.5);
+  border-color: rgba(255,255,255,0.45);
+  color: #fff;
+}
+.voice-tab[data-has-photo] .voice-tab-solo:hover {
+  background: rgba(0,0,0,0.7);
+  border-color: #fff;
+}
+.voice-tab[data-has-photo].solo .voice-tab-solo {
+  background: var(--vc);
+  border-color: #fff;
+  color: #fff;
+}
+.voice-tab[data-has-photo] .voice-tab-vol input[type=range] {
+  background: rgba(255,255,255,0.25);
+}
+.voice-tab[data-has-photo] .voice-tab-vol .vol-ico { color: rgba(255,255,255,0.92); }
+.voice-tab[data-has-photo] .voice-tab-vol .vol-val { color: rgba(255,255,255,0.85); }
 /* Estado solo: card destacado com ring colorido + outras tracks ficam muted */
 .voice-tab.solo {
   box-shadow: 0 0 0 2px var(--vc), 0 4px 12px rgba(0,0,0,0.18);
@@ -8139,6 +8261,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
             </select>
           </label>
           <button type="button" class="alphatab-btn alphatab-loop" data-state="off" aria-label="Loop de trecho">🔁 Loop</button>
+          <button type="button" class="alphatab-btn alphatab-metronome" data-state="off" aria-label="Metr&ocirc;nomo (tick por beat)" title="Metr&ocirc;nomo">𝅘𝅥 Metr&ocirc;nomo</button>
           <span class="alphatab-status">aguardando soundfont…</span>
         </div>
         <div class="alphatab-surface"></div>
@@ -8150,6 +8273,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const stopBtn = tabPane.querySelector('.alphatab-stop');
       const speedSel = tabPane.querySelector('.alphatab-speed');
       const loopBtn = tabPane.querySelector('.alphatab-loop');
+      const metronomeBtn = tabPane.querySelector('.alphatab-metronome');
       const status = tabPane.querySelector('.alphatab-status');
       _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
         // Registra como api ativa pra _stopAllTabAudio achar quando trocar musica
@@ -8722,6 +8846,26 @@ function _renderTabPanel(body, songKey, tabMeta) {
             loopReset();
           }
         });
+
+        // Metronomo nativo do AlphaTab via api.metronomeVolume. Toggle simples:
+        // volume 1 quando on, 0 quando off. AlphaTab sintetiza tick por beat
+        // usando o mesmo soundfont (sonivox.sf3) durante a reproducao.
+        if (metronomeBtn) {
+          metronomeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const wasOn = metronomeBtn.dataset.state === 'on';
+            if (wasOn) {
+              api.metronomeVolume = 0;
+              metronomeBtn.dataset.state = 'off';
+              metronomeBtn.setAttribute('aria-pressed', 'false');
+            } else {
+              api.metronomeVolume = 1;
+              metronomeBtn.dataset.state = 'on';
+              metronomeBtn.setAttribute('aria-pressed', 'true');
+            }
+          });
+        }
+
         if (api.beatMouseDown) {
           api.beatMouseDown.on(beat => {
             if (loopBtn.dataset.state === 'off') return;
@@ -9156,6 +9300,17 @@ function _inferTrackMeta(name) {
   return { role: 'Faixa', tagline: 'instrumental' };
 }
 
+// Mapeia nome de track pra foto do musico em media/musicians/. Stone Gossard,
+// Mike McCready e Jeff Ament tem foto dedicada; tracks de bateria/vocal/genericas
+// caem pra null (card sem foto, layout antigo continua funcional).
+function _inferMusicianPhoto(name) {
+  const n = String(name || '').toLowerCase();
+  if (/stone|gossard|rhythm|ritm/.test(n)) return 'media/musicians/stone.png';
+  if (/mike|mccready|lead|solo/.test(n)) return 'media/musicians/mike.png';
+  if (/jeff|ament|bass|baix/.test(n)) return 'media/musicians/jeff.png';
+  return null;
+}
+
 // Sync state visual de um voice-tab (cards no topo) com um boolean.
 // Chamado pelos handlers do .fretboard-players e .alphatab-tracks pra
 // fechar o loop quando o usuario toggla os checkboxes de baixo.
@@ -9180,8 +9335,12 @@ function _populateVoicePicker(picker, tracks) {
     const rawName = t.name || `Track ${i + 1}`;
     const { role, tagline } = _inferTrackMeta(rawName);
     const color = TRACK_COLORS[i % TRACK_COLORS.length];
+    const photo = _inferMusicianPhoto(rawName);
+    const photoLayer = photo ? `<div class="voice-tab-photo" style="background-image:url('${photo}')" aria-hidden="true"></div><div class="voice-tab-scrim" aria-hidden="true"></div>` : '';
+    const photoFlag = photo ? ' data-has-photo' : '';
     return `
-      <div class="voice-tab active" data-idx="${i}" style="--vc:${color}">
+      <div class="voice-tab active" data-idx="${i}" style="--vc:${color}"${photoFlag}>
+        ${photoLayer}
         <button type="button" class="voice-tab-solo" aria-pressed="false" aria-label="Solo ${esc(rawName)} (muta os outros)" title="Solo">S</button>
         <button type="button" class="voice-tab-toggle" aria-pressed="true" aria-label="Ligar / mutar ${esc(rawName)}">
           <span class="voice-tab-label">${esc(rawName)}</span>
