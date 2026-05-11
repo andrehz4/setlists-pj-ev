@@ -2731,6 +2731,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .lyric-lang-btn.active,
 .lyric-lang-btn:hover { background: var(--pj); color: #fff; }
+.lyric-pane { padding-top: 6px; }
 .lyric-pane > div { margin: 0; padding: 0; white-space: pre-wrap; }
 .lyric-side {
   display: grid;
@@ -4840,13 +4841,18 @@ function renderSearch(query) {
       return `<span class="search-result-show" data-show-id="${sid}">${show.date.slice(0,4)} · ${show.city.split(',')[0]} · ${show.artist === "Pearl Jam" ? "PJ" : "EV"}${marker}</span>`;
     }).join("");
     const lyricText = _getLyricsStatic(m.song);
+    const lyricPT = (typeof LYRICS_PT !== 'undefined') ? LYRICS_PT[_lyricsNorm(m.song)] : null;
     const interpText = _getInterpretation(m.song);
     let extras = '';
-    if (lyricText || interpText) {
+    if (lyricText || lyricPT || interpText) {
       const parts = [];
       if (lyricText) {
         const lyrHtml = lyricText.split('\n').map(l => `<div>${l ? esc(l) : '&nbsp;'}</div>`).join('');
-        parts.push(`<details class="lyric" open><summary>Letra · trecho</summary><div class="body">${lyrHtml}</div></details>`);
+        parts.push(`<details class="lyric" open><summary>Letra · em inglês</summary><div class="body" lang="en">${lyrHtml}</div></details>`);
+      }
+      if (lyricPT) {
+        const trdHtml = lyricPT.split('\n').map(l => `<div>${l ? esc(l) : '&nbsp;'}</div>`).join('');
+        parts.push(`<details class="lyric trad" open><summary>Tradução · em português</summary><div class="body" lang="pt">${trdHtml}</div></details>`);
       }
       if (interpText) {
         const intHtml = interpText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join('');
