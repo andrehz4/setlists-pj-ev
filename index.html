@@ -3548,6 +3548,21 @@ html[data-theme="light"] .drawer-section-label.my-media {
   border-left-color: var(--pj);
 }
 .cat-item.disabled { cursor: not-allowed; opacity: 0.55; }
+.cat-item[hidden],
+.cat-item.hide { display: none !important; }
+.catalog-empty {
+  padding: 16px 12px;
+  font: italic 12px/1.4 var(--font-editorial, Georgia, serif);
+  color: var(--ink-dim);
+  text-align: center;
+}
+.catalog-count {
+  font: 600 9px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  padding: 0 4px 4px;
+}
 .cat-item-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
 .cat-item-title {
   font: italic 15px/1.2 var(--font-editorial, Georgia, serif);
@@ -8435,7 +8450,8 @@ function renderTabsView() {
     </div>
     <div class="tabs-layout">
       <aside class="catalog-aside" aria-label="Cat&aacute;logo de cifras">
-        <input type="search" class="catalog-search" placeholder='buscar: "Black", "Ten", "Vitalogy"...' aria-label="Buscar m&uacute;sica ou &aacute;lbum">
+        <input type="search" class="catalog-search" placeholder='buscar: "Black", "Ten", "Vitalogy"...' aria-label="Buscar m&uacute;sica ou &aacute;lbum" autocomplete="off" spellcheck="false">
+        <div class="catalog-count" aria-live="polite">${entries.length} m&uacute;sicas</div>
         <div class="catalog-list" role="list">
           ${entries.map(catItemHtml).join('')}
         </div>
@@ -8451,17 +8467,67 @@ function renderTabsView() {
 
   const search = container.querySelector('.catalog-search');
   const list = container.querySelector('.catalog-list');
+  const count = container.querySelector('.catalog-count');
   const detail = container.querySelector('.cifra-detail-wrap');
 
-  // Filtro de busca em tempo real (match em titulo ou album)
+  // Index busca: strip diacritics + lower. "Cancao" casa "canção".
+  const stripDiacritics = (s) => String(s || '')
+    .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  // Constroi haystack por item, juntando titulo + album + status + key:
+  // assim "yellow", "yellow ledbetter", "lost dogs", "Em" todos casam.
+  list.querySelectorAll('.cat-item').forEach(item => {
+    const t = item.querySelector('.cat-item-title')?.textContent || '';
+    const a = item.querySelector('.cat-item-album')?.textContent || '';
+    const k = TABS_MANIFEST[item.dataset.songKey]?.key || '';
+    const st = item.dataset.status === 'ready' ? 'tab cifra' :
+               item.dataset.status === 'cifra-only' ? 'cifra' :
+               item.dataset.status === 'tab-only' ? 'tab' : 'em breve';
+    item.dataset.haystack = stripDiacritics(`${t} ${a} ${k} ${st}`);
+  });
+  const totalItems = list.querySelectorAll('.cat-item').length;
+
+  const applyFilter = () => {
+    const raw = (search?.value || '').trim();
+    const terms = stripDiacritics(raw).split(/\s+/).filter(Boolean);
+    let visible = 0;
+    list.querySelectorAll('.cat-item').forEach(item => {
+      const hay = item.dataset.haystack;
+      const matches = terms.every(t => hay.includes(t));
+      item.classList.toggle('hide', !matches);
+      if (matches) visible++;
+    });
+    if (count) {
+      count.textContent = !terms.length
+        ? `${totalItems} músicas`
+        : `${visible} de ${totalItems} músicas`;
+    }
+    // Empty state: insere mensagem quando filtra pra 0 resultados.
+    let empty = list.querySelector('.catalog-empty');
+    if (visible === 0 && terms.length) {
+      if (!empty) {
+        empty = document.createElement('div');
+        empty.className = 'catalog-empty';
+        empty.textContent = `nada encontrado pra "${raw}"`;
+        list.appendChild(empty);
+      } else {
+        empty.textContent = `nada encontrado pra "${raw}"`;
+      }
+    } else if (empty) {
+      empty.remove();
+    }
+  };
+
   if (search) {
-    search.addEventListener('input', () => {
-      const q = search.value.toLowerCase().trim();
-      list.querySelectorAll('.cat-item').forEach(item => {
-        const title = (item.querySelector('.cat-item-title')?.textContent || '').toLowerCase();
-        const album = (item.querySelector('.cat-item-album')?.textContent || '').toLowerCase();
-        item.hidden = !!(q && !title.includes(q) && !album.includes(q));
-      });
+    search.addEventListener('input', applyFilter);
+    search.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (search.value) { search.value = ''; applyFilter(); e.preventDefault(); }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        // Enter abre o primeiro item visivel utilizavel
+        const firstVisible = list.querySelector('.cat-item:not(.hide):not(.disabled)');
+        if (firstVisible) firstVisible.click();
+      }
     });
   }
 
