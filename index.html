@@ -7716,7 +7716,11 @@ async function _loadTabsManifest() {
   if (_tabsManifestAbort) _tabsManifestAbort.abort();
   _tabsManifestAbort = new AbortController();
   try {
-    const r = await fetch("media/tabs/index.json", { cache: "default", signal: _tabsManifestAbort.signal });
+    // cache: 'no-cache' forca revalidacao com Cloudflare a cada visita
+    // (envia If-None-Match; Cloudflare retorna 304 se nada mudou, ou
+    // payload novo apos um deploy). Garante que ediçoes no manifest (ex:
+    // tabFormat gp3 -> gp5) sao vistas imediatamente, sem esperar 1h de TTL.
+    const r = await fetch("media/tabs/index.json", { cache: "no-cache", signal: _tabsManifestAbort.signal });
     if (r.ok) {
       const j = await r.json();
       delete j._meta;
@@ -8027,7 +8031,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const status = tabPane.querySelector('.alphatab-status');
       _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
         loading.remove();
-        status.textContent = 'soundfont sonivox · click Play';
+        const fmt = (tabMeta.tabFormat || 'gp').toUpperCase();
+        status.textContent = `${fmt} · click Play`;
 
         // FAB (controles flutuantes) no canto inferior direito: aparece
         // enquanto o player esta ativo, pra usuario poder pausar/parar mesmo
@@ -8367,16 +8372,17 @@ function _renderTabPanel(body, songKey, tabMeta) {
         // Estado do player: 0=parado, 1=tocando, 2=pausado.
         api.playerStateChanged.on(e => {
           _fabState = e.state;
+          const fmtTag = (tabMeta.tabFormat || 'gp').toUpperCase();
           if (e.state === 1) {
             playBtn.dataset.state = 'playing';
             playBtn.textContent = '❚❚ Pause';
-            status.textContent = 'tocando…';
+            status.textContent = `tocando ${fmtTag}…`;
             fab.classList.add('show');
             fretboard.classList.add('show');
           } else if (e.state === 2) {
             playBtn.dataset.state = 'idle';
             playBtn.textContent = '▶ Play';
-            status.textContent = 'pausado';
+            status.textContent = `pausado (${fmtTag})`;
             // Pausado: FAB e fretboard continuam visiveis pra retomar
             fab.classList.add('show');
             fretboard.classList.add('show');
@@ -8384,14 +8390,15 @@ function _renderTabPanel(body, songKey, tabMeta) {
             // state === 0: parado. Esconde FAB e fretboard (Andre pediu).
             playBtn.dataset.state = 'idle';
             playBtn.textContent = '▶ Play';
-            status.textContent = 'parado';
+            status.textContent = `${fmtTag} · click Play`;
             fab.classList.remove('show');
             fretboard.classList.remove('show');
           }
           renderFab();
         });
         api.playerReady.on(() => {
-          status.textContent = 'pronto · click Play';
+          const fmtTag = (tabMeta.tabFormat || 'gp').toUpperCase();
+          status.textContent = `${fmtTag} · click Play`;
           // FAB e fretboard aparecem quando o player de fato comecar
           // (via playerStateChanged state=1). Aqui so atualiza status.
         });
