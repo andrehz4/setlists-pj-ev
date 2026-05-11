@@ -3553,10 +3553,11 @@ html[data-theme="light"] .drawer-section-label.my-media {
 /* Fretboard visualizer floating: braco grande com textura de madeira,
    trastes prateados, marcadores inlay e seletor de instrumento. */
 .fretboard-overlay {
+  --fb-scale: 1;
   position: fixed;
   right: 24px;
   bottom: 110px;
-  width: clamp(420px, 42vw, 560px);
+  width: calc(clamp(420px, 42vw, 560px) * var(--fb-scale));
   background: rgba(255, 255, 255, 0.97);
   border: 1px solid rgba(46, 107, 138, 0.3);
   border-radius: 12px;
@@ -3607,7 +3608,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .fretboard-overlay.inline .fretboard-svg {
   width: 100%;
   height: auto;
-  max-height: 36vh;
+  max-height: calc(36vh * var(--fb-scale, 1));
   display: block;
 }
 .fretboard-overlay.inline .fretboard-close {
@@ -3691,22 +3692,81 @@ html[data-theme="light"] .drawer-section-label.my-media {
   background: #2e6b8a;
   color: #fff;
 }
-/* Barra de instrumentos ABAIXO do braco. Aparece SO no modo inline
-   (view Cifras & Tabs), centralizada. No modo floating, fica oculta (os
-   botoes do topo ja cumprem essa funcao no overlay flutuante). */
-.fretboard-bar-bottom { display: none; }
-.fretboard-overlay.inline .fretboard-bar-bottom {
+/* Barra ABAIXO do braco. Aparece em AMBOS os modos. Contem grupo de
+   instrumentos (.fretboard-instr-bottom) e slider de zoom (.fretboard-zoom).
+   No floating, esconde os botoes de instrumento (ja existem no topo);
+   mantem o zoom visivel. No inline, mostra tudo. */
+.fretboard-bar-bottom {
   display: flex;
   justify-content: center;
-  gap: 4px;
+  align-items: center;
+  gap: 14px;
   margin: 10px auto 0;
+  flex-wrap: wrap;
+}
+.fretboard-instr-bottom {
+  display: inline-flex;
+  gap: 4px;
   background: rgba(46, 107, 138, 0.08);
   padding: 4px;
   border-radius: 999px;
   flex-wrap: wrap;
-  width: fit-content;
 }
+.fretboard-overlay:not(.inline) .fretboard-instr-bottom { display: none; }
 .fretboard-overlay.inline.minimized .fretboard-bar-bottom { display: none; }
+.fretboard-overlay.minimized .fretboard-bar-bottom { display: none; }
+
+/* Slider de zoom: −/escala visual/+. Aparece em ambos os modos. */
+.fretboard-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(46, 107, 138, 0.08);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.fretboard-zoom-label {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2e6b8a;
+}
+.fretboard-zoom-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 110px;
+  height: 4px;
+  background: rgba(46, 107, 138, 0.25);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+.fretboard-zoom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2e6b8a;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+.fretboard-zoom-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2e6b8a;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+.fretboard-zoom-val {
+  font: 700 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: #2e6b8a;
+  min-width: 36px;
+  text-align: right;
+}
 .fretboard-svg {
   width: 100%;
   height: auto;
@@ -8684,11 +8744,18 @@ function _renderTabPanel(body, songKey, tabMeta) {
             </div>
             <div class="fretboard-players"></div>
             <svg class="fretboard-svg" viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
-            <div class="fretboard-bar-bottom" role="tablist" aria-label="Escolher instrumento">
-              <button type="button" class="fretboard-tab" data-inst="acoustic">Violão</button>
-              <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
-              <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
-              <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
+            <div class="fretboard-bar-bottom">
+              <div class="fretboard-instr-bottom" role="tablist" aria-label="Escolher instrumento">
+                <button type="button" class="fretboard-tab" data-inst="acoustic">Violão</button>
+                <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
+                <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
+                <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
+              </div>
+              <div class="fretboard-zoom" role="group" aria-label="Tamanho do braço">
+                <span class="fretboard-zoom-label">Tamanho</span>
+                <input type="range" class="fretboard-zoom-slider" min="0.7" max="1.5" step="0.05" value="1" aria-label="Tamanho do braço">
+                <span class="fretboard-zoom-val">100%</span>
+              </div>
             </div>
             <div class="fretboard-legend"></div>
           `;
@@ -8936,6 +9003,32 @@ function _renderTabPanel(body, songKey, tabMeta) {
             drawActiveNotes(_lastNotes);
           });
         });
+
+        // Slider de zoom do braco. Persiste em localStorage ('fb_scale').
+        // Aplica via CSS var --fb-scale no overlay; cada modo (floating ou
+        // inline) escala o seu tamanho-base. Range 70%-150%, default 100%.
+        const _zoomSlider = fretboard.querySelector('.fretboard-zoom-slider');
+        const _zoomVal = fretboard.querySelector('.fretboard-zoom-val');
+        const _applyZoom = (raw) => {
+          const v = Math.max(0.7, Math.min(1.5, Number(raw) || 1));
+          fretboard.style.setProperty('--fb-scale', v.toFixed(2));
+          if (_zoomSlider) _zoomSlider.value = String(v);
+          if (_zoomVal) _zoomVal.textContent = Math.round(v * 100) + '%';
+          try { localStorage.setItem('fb_scale', String(v)); } catch (_) {}
+        };
+        try {
+          const saved = parseFloat(localStorage.getItem('fb_scale'));
+          if (!isNaN(saved)) _applyZoom(saved); else _applyZoom(1);
+        } catch (_) { _applyZoom(1); }
+        if (_zoomSlider) {
+          _zoomSlider.addEventListener('input', (e) => {
+            e.stopPropagation();
+            _applyZoom(_zoomSlider.value);
+          });
+          // Evita que click no slider seja capturado pelo handler de
+          // minimize do overlay inline.
+          _zoomSlider.addEventListener('click', (e) => e.stopPropagation());
+        }
 
         // Cores por track (cicladas) pra distinguir Stone, Mike, Jeff, etc.
         const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
