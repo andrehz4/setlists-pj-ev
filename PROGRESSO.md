@@ -1,7 +1,59 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-11
+2026-05-12
+
+## SESSAO MADRUGADA -> MANHA 2026-05-12: refinamento profundo cifras & tabs (mais 18 commits, total 24 na sessao)
+
+Depois do bootstrap inicial (5 commits abaixo), Andre testou e flagou serie de bugs/melhorias. Bateu de novo numa serie de iteracoes. Tudo deployado e funcionando.
+
+### Conteudo .gp atualizado
+- `4891849` Black gp3 -> gp5 v5.10 (51KB), Alive ganha gp4 v4.06 (52KB), Yellow Ledbetter ganha gp5 v5.10 (46KB). 3 tabs do Ultimate Guitar.
+
+### Bugs corrigidos
+- `bf64f23` Busca do catalogo nao filtrava (display:flex sobrescrevia [hidden]). Fix com .hide class !important + diacritic strip + multi-word AND + contador + Enter abre primeiro + Esc limpa.
+- `df21fab` Sync bidirecional voice-picker <-> fretboard-players <-> alphatab-tracks. Bug: dispatchEvent('change') manual nao acionava listener delegado; troca pra .click() nativo. Reverso tambem (toggles de baixo atualizam cards de cima).
+- `2c8bc9e` Audio fantasma ao trocar musica/view. _stopAllTabAudio() centraliza cleanup, hookado em closeFloatingUI e activateTab. api.destroy() libera audio context.
+- `35c843f` Manifest cache no-cache (cloudflare cacheava 1h) + status do transport mostra formato carregado (GP5/GP4/GP3).
+- `0aee1e9` Click dentro do painel aberto (Letra/Traducao/Analise) fecha, igual lyric-row no show drawer.
+
+### Features novas (pos-bootstrap)
+- `10b74b4` Cifra player com Pause/Stop + FAB flutuante + scroll center (igual AlphaTab).
+- `9932bb1` Chips Letra/Traducao/Analise no header com pane expansivel (reusa _fillLyricBody + novo _fillAnaliseBody).
+- `763bdc2` Capas reais dos albuns no header (cifra-detail) e nos itens do catalogo (cat-item-cover 36x36). Usa loadAlbumCovers existente + fallback automatico .album-cover-fallback.
+- `29c8c44` Botoes Cifra/Tab protagonistas (Big Shoulders 14px, dot pulsante, sombra colorida no ativo).
+- `5753da0` Fretboard redesenhado com headstock angular + body com pickup + adesivos PJ stickman/sun integrados no SVG.
+- `f516aa8` Slider de volume por instrumento (0-150%) em cada voice card. api.changeTrackVolume nativo.
+
+### Pacotes do design Claude Design (todos completos)
+- **A** `e3a122d` Efeitos visuais no fretboard durante reproducao: ringing line da nota ate o body, string vibration (animate opacity), pulse no circulo da nota.
+- **B** `51d5fb9` 22 trastes com espacamento logaritmico real (equal-temperament): fret 1 com 45px, fret 22 com 13px. Mesma proporcao do violao de verdade. Inlays 3/5/7/9/12/15/17/19/21. ViewBox 540 -> 720.
+- **C** `1c74f4d` Label do nome da nota (E, A#, G...) acima do circulo, calculado de string + fret. Suporte guitarra e baixo.
+- **D** `155d608` Animacoes speed-aware: vib/pulse durations escalam inversamente com api.playbackSpeed. 0.25x = animacao 4x mais lenta.
+- **E** `e38ede3` Botao Solo (S) no canto top-right de cada card. Click muta outras tracks, click de novo restaura.
+
+### Refinamentos
+- `f161284` Fretboard tambem em mobile (<=600px) como bottom-sheet full-width acima do FAB. Antes era display:none em <=480px. 22 trastes preservados; lower frets usaveis, higher comprimidos (proximo passo: pinch-zoom ou modo 12-frets mobile).
+
+## Estado atual
+- Branch main sincronizado com origin/main. HEAD = `f161284`.
+- 24 commits feitos desde `f285ca8` (baseline da sessao).
+- AlphaTab + smplr + soundfonts 100% local. CSP intacto.
+- Manifest com cache no-cache pra propagacao instantanea de mudancas em deploy.
+
+## Proximo passo sugerido
+Andre testa visualmente. Possiveis frentes pendentes:
+1. Persistencia volumes por track via localStorage (mantem entre sessoes)
+2. Auto-scroll voice picker se muitas tracks (gp5 com 10+)
+3. Tab loop visual no fretboard (highlight notas do range do loop)
+4. Detectar acorde sendo tocado (notas simultaneas) e mostrar diagrama no canto
+5. Pinch-zoom no fretboard mobile ou modo 12-frets compacto
+6. Cifras dos top 17 restantes do manifest (yellow ledbetter, jeremy, given to fly, etc.)
+7. Mais .gp do Ultimate Guitar pras musicas top
+8. Auditoria visual completa por musica (Andre confere cada cifra/tab no navegador)
+
+## Blockers
+Nenhum.
 
 ## SESSAO MADRUGADA 2026-05-12: design Claude Design implementado (5 commits)
 
