@@ -7423,20 +7423,43 @@ function renderTabsView() {
     <div class="tabs-grid">${entries.map(cardHtml).join('')}</div>
   `;
 
+  // Toggle do card: 1 click abre; pra fechar exige duplo clique rapido
+  // (janela de 600ms) pra evitar fechamento acidental ao tentar interagir
+  // com algo proximo ao head.
+  const DOUBLE_CLICK_MS = 600;
+  const lastCloseAttempt = new WeakMap();
   container.querySelectorAll('.tabs-card-head').forEach(head => {
     head.addEventListener('click', () => {
       const card = head.closest('.tabs-card');
       const body = card.querySelector('.tabs-card-body');
-      const isOpen = card.classList.toggle('open');
-      head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      body.hidden = !isOpen;
-      if (isOpen && !body.dataset.filled) {
-        const songKey = card.dataset.songKey;
-        const meta = TABS_MANIFEST[songKey];
-        if (meta) {
-          _renderTabPanel(body, songKey, meta);
-          body.dataset.filled = '1';
+      const isOpen = card.classList.contains('open');
+      if (!isOpen) {
+        card.classList.add('open');
+        head.setAttribute('aria-expanded', 'true');
+        body.hidden = false;
+        if (!body.dataset.filled) {
+          const songKey = card.dataset.songKey;
+          const meta = TABS_MANIFEST[songKey];
+          if (meta) {
+            _renderTabPanel(body, songKey, meta);
+            body.dataset.filled = '1';
+          }
         }
+        head.dataset.hint = 'clique duas vezes pra fechar';
+        return;
+      }
+      // Ja aberto: exige duplo clique pra fechar.
+      const now = Date.now();
+      const last = lastCloseAttempt.get(head) || 0;
+      if (now - last <= DOUBLE_CLICK_MS) {
+        card.classList.remove('open');
+        head.setAttribute('aria-expanded', 'false');
+        body.hidden = true;
+        lastCloseAttempt.delete(head);
+        delete head.dataset.hint;
+      } else {
+        lastCloseAttempt.set(head, now);
+        head.dataset.hint = 'clique de novo pra fechar';
       }
     });
   });
