@@ -3371,27 +3371,70 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .atc-btn-ico:hover { color: var(--pj, #c1272d); background: rgba(0,0,0,0.04); }
 .atc-play-round {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: #2e6b8a;
+  background: radial-gradient(circle at 30% 25%, #4988a8 0%, #2e6b8a 55%, #1f4e6a 100%);
   color: #fff;
   border: 0;
-  font-size: 16px;
+  font-size: 19px;
+  line-height: 1;
   cursor: pointer;
   flex-shrink: 0;
-  transition: background 120ms ease, transform 120ms ease, box-shadow 120ms ease;
-  box-shadow: 0 2px 8px rgba(46, 107, 138, 0.4);
+  transition: transform 140ms ease, box-shadow 200ms ease, background 200ms ease;
+  box-shadow:
+    0 4px 14px rgba(46, 107, 138, 0.42),
+    0 1px 2px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -2px 4px rgba(0,0,0,0.18);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.25);
 }
-.atc-play-round:hover { background: #1f4e6a; transform: scale(1.05); }
+.atc-play-round::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(46,107,138,0.4);
+  opacity: 0;
+  animation: atc-play-pulse 2s ease-out infinite;
+  pointer-events: none;
+}
+.atc-play-round:hover {
+  transform: scale(1.07);
+  box-shadow:
+    0 6px 22px rgba(46, 107, 138, 0.55),
+    0 1px 2px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.28),
+    inset 0 -2px 4px rgba(0,0,0,0.18);
+}
+.atc-play-round:active { transform: scale(0.96); }
 .atc-play-round[data-state="playing"] {
-  background: var(--pj, #c1272d);
-  box-shadow: 0 2px 12px rgba(193, 39, 45, 0.5);
+  background: radial-gradient(circle at 30% 25%, #e34247 0%, #c1272d 55%, #8a1c20 100%);
+  box-shadow:
+    0 4px 18px rgba(193, 39, 45, 0.55),
+    0 1px 2px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    inset 0 -2px 4px rgba(0,0,0,0.2);
 }
-.atc-play-round[data-state="playing"]:hover { background: #8a1c20; }
+.atc-play-round[data-state="playing"]::after {
+  border-color: rgba(193, 39, 45, 0.55);
+}
+.atc-play-round[data-state="playing"]:hover {
+  box-shadow:
+    0 6px 24px rgba(193, 39, 45, 0.7),
+    0 1px 2px rgba(0,0,0,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -2px 4px rgba(0,0,0,0.22);
+}
+@keyframes atc-play-pulse {
+  0%   { transform: scale(0.85); opacity: 0.65; }
+  70%  { transform: scale(1.18); opacity: 0; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
 .atc-spacer { flex: 1; }
 .atc-btn {
   font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
@@ -3501,9 +3544,40 @@ html[data-theme="light"] .drawer-section-label.my-media {
   color: var(--ink, #1a1611);
   cursor: pointer;
   user-select: none;
+  padding: 4px 10px 4px 6px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.03);
+  border: 1px solid transparent;
+  transition: background 120ms ease, border-color 120ms ease;
 }
-.alphatab-track-toggle input { accent-color: #2e6b8a; cursor: pointer; }
-.alphatab-track-toggle:has(input:not(:checked)) span { opacity: 0.4; text-decoration: line-through; }
+.alphatab-track-toggle:hover {
+  background: rgba(0,0,0,0.06);
+  border-color: var(--track-color, #2e6b8a);
+}
+.alphatab-track-toggle input {
+  accent-color: var(--track-color, #2e6b8a);
+  cursor: pointer;
+}
+.alphatab-track-toggle:has(input:not(:checked)) {
+  background: transparent;
+}
+.alphatab-track-toggle:has(input:not(:checked)) .alphatab-track-dot {
+  opacity: 0.25;
+}
+.alphatab-track-toggle:has(input:not(:checked)) > span:last-child {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+/* Dot da cor da track: casa com a cor das notas animadas no fretboard /
+   piano / drumkit. Ver olho na cor = identificar instrumento ativo. */
+.alphatab-track-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1.5px rgba(255,255,255,0.85), 0 1px 3px rgba(0,0,0,0.25);
+}
 /* FAB (controles flutuantes do AlphaTab): aparecem quando esta tocando,
    visiveis mesmo apos pagina rolar pra acompanhar o cursor */
 .alphatab-fab {
@@ -8740,6 +8814,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
                 <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
                 <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
                 <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
+                <button type="button" class="fretboard-tab" data-inst="piano">Piano</button>
+                <button type="button" class="fretboard-tab" data-inst="drums">Bateria</button>
               </div>
             </div>
             <div class="fretboard-players"></div>
@@ -8750,6 +8826,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
                 <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
                 <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
                 <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
+                <button type="button" class="fretboard-tab" data-inst="piano">Piano</button>
+                <button type="button" class="fretboard-tab" data-inst="drums">Bateria</button>
               </div>
               <div class="fretboard-zoom" role="group" aria-label="Tamanho do braço">
                 <span class="fretboard-zoom-label">Tamanho</span>
@@ -8812,10 +8890,12 @@ function _renderTabPanel(body, songKey, tabMeta) {
         let fbSelectedTracks = new Set();
 
         const INSTRUMENTS = {
-          acoustic: { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Violão' },
-          guitar:   { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Guitarra' },
-          bass:     { strings: 4, tuning: ['G', 'D', 'A', 'E'], label: 'Baixo' },
-          ukulele:  { strings: 4, tuning: ['A', 'E', 'C', 'G'], label: 'Ukulele' },
+          acoustic: { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Violão',   type: 'fret' },
+          guitar:   { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Guitarra', type: 'fret' },
+          bass:     { strings: 4, tuning: ['G', 'D', 'A', 'E'],            label: 'Baixo',    type: 'fret' },
+          ukulele:  { strings: 4, tuning: ['A', 'E', 'C', 'G'],            label: 'Ukulele',  type: 'fret' },
+          piano:    { label: 'Piano',   type: 'keyboard' },
+          drums:    { label: 'Bateria', type: 'drumkit' },
         };
         // Estilos visuais por instrumento (palette + body). Violao tem madeira
         // caramelo + cordas claras (nylon) + soundhole. Guitarra tem rosewood
@@ -8882,8 +8962,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
         // Alias retrocompativel pro drawActiveNotes (refs antigas a FB_PAD_L)
         const FB_PAD_L = FB_NECK_LEFT;
 
-        const drawBoard = () => {
+        const drawFretboard = () => {
+          // Pra modos nao-fret (piano, drumkit), nao tem strings; vai
+          // ser tratado por drawPianoBoard / drawDrumKit.
           const inst = INSTRUMENTS[fbInstrument];
+          if (inst.type !== 'fret') return;
           const nStrings = inst.strings;
           const neckTop = FB_PAD_T;
           const neckBot = FB_H - FB_PAD_B;
@@ -8981,6 +9064,134 @@ function _renderTabPanel(body, songKey, tabMeta) {
           });
           fretSvg.innerHTML = svg;
         };
+
+        // ============== PIANO BOARD ==============
+        // Teclado 2 oitavas C3-B4 (24 teclas: 14 brancas + 10 pretas).
+        const PIANO_RANGE_START = 48;    // C3 (MIDI)
+        const PIANO_OCTAVES = 2;
+        const PIANO_WHITE_COUNT = 7 * PIANO_OCTAVES; // 14
+        const PIANO_TOP = 20;
+        const PIANO_W_KEY_H = FB_H - 40;
+        const PIANO_B_KEY_H = PIANO_W_KEY_H * 0.62;
+        // Padrao de semitones C..B: 0=C 1=C# 2=D 3=D# 4=E 5=F 6=F# 7=G 8=G# 9=A 10=A# 11=B
+        const PIANO_IS_BLACK = [false, true, false, true, false, false, true, false, true, false, true, false];
+        const PIANO_WHITE_IDX = [0, null, 1, null, 2, 3, null, 4, null, 5, null, 6];
+        // Para cada preta: indice da branca a esquerda (na oitava 0)
+        const PIANO_BLACK_LEFT_WHITE = { 1: 0, 3: 1, 6: 3, 8: 4, 10: 5 };
+        const pianoKeyPos = (midi) => {
+          if (midi < PIANO_RANGE_START || midi >= PIANO_RANGE_START + 12 * PIANO_OCTAVES) return null;
+          const semi = (midi - PIANO_RANGE_START) % 12;
+          const octIdx = Math.floor((midi - PIANO_RANGE_START) / 12);
+          const wKeyW = FB_W / PIANO_WHITE_COUNT;
+          if (PIANO_IS_BLACK[semi]) {
+            const leftW = PIANO_BLACK_LEFT_WHITE[semi];
+            const cx = (octIdx * 7 + leftW + 1) * wKeyW;
+            const w = wKeyW * 0.62;
+            return { x: cx - w / 2, y: PIANO_TOP, w, h: PIANO_B_KEY_H, isBlack: true };
+          }
+          const wIdx = PIANO_WHITE_IDX[semi];
+          const x = (octIdx * 7 + wIdx) * wKeyW;
+          return { x, y: PIANO_TOP, w: wKeyW, h: PIANO_W_KEY_H, isBlack: false };
+        };
+        const drawPianoBoard = () => {
+          const wKeyW = FB_W / PIANO_WHITE_COUNT;
+          let svg = '';
+          // Fundo escuro do piano
+          svg += `<rect x="0" y="0" width="${FB_W}" height="${FB_H}" fill="#1a1611"/>`;
+          svg += `<rect x="0" y="${PIANO_TOP - 6}" width="${FB_W}" height="6" fill="#3a2a1a"/>`;
+          // Brancas
+          for (let i = 0; i < PIANO_WHITE_COUNT; i++) {
+            const x = i * wKeyW;
+            svg += `<rect x="${x + 0.5}" y="${PIANO_TOP}" width="${wKeyW - 1}" height="${PIANO_W_KEY_H}" fill="#f5efe3" stroke="#3a3328" stroke-width="0.6" rx="2"/>`;
+          }
+          // Pretas (em cima)
+          for (let oct = 0; oct < PIANO_OCTAVES; oct++) {
+            for (const semiStr of Object.keys(PIANO_BLACK_LEFT_WHITE)) {
+              const semi = Number(semiStr);
+              const leftW = PIANO_BLACK_LEFT_WHITE[semi];
+              const cx = (oct * 7 + leftW + 1) * wKeyW;
+              const w = wKeyW * 0.62;
+              svg += `<rect x="${cx - w / 2}" y="${PIANO_TOP}" width="${w}" height="${PIANO_B_KEY_H}" fill="#1a1611" stroke="#000" stroke-width="0.6" rx="1.5"/>`;
+              // Brilho topo
+              svg += `<rect x="${cx - w / 2 + 1}" y="${PIANO_TOP + 1}" width="${w - 2}" height="3" fill="#3a3328" rx="1"/>`;
+            }
+          }
+          // Labels C3, C4
+          for (let oct = 0; oct < PIANO_OCTAVES; oct++) {
+            const cx = (oct * 7 + 0.5) * wKeyW;
+            svg += `<text x="${cx}" y="${PIANO_TOP + PIANO_W_KEY_H - 8}" font-family="sans-serif" font-size="10" font-weight="700" fill="#888" text-anchor="middle">C${oct + 3}</text>`;
+          }
+          fretSvg.innerHTML = svg;
+        };
+
+        // ============== DRUM KIT ==============
+        // GM Percussion mapping (subset). Cada peça ilumina quando uma nota MIDI
+        // da lista correspondente toca. Layout vista de frente do baterista.
+        const DRUM_PIECE_FOR_MIDI = {
+          35: 'kick', 36: 'kick',
+          37: 'snare', 38: 'snare', 39: 'snare', 40: 'snare',
+          42: 'hihat', 44: 'hihat', 46: 'hihat',
+          41: 'floortom', 43: 'floortom',
+          45: 'midtom', 47: 'midtom',
+          48: 'hightom', 50: 'hightom',
+          49: 'crash', 52: 'crash', 55: 'crash', 57: 'crash',
+          51: 'ride', 53: 'ride', 59: 'ride',
+        };
+        const DRUM_PIECES = {
+          crash:    { cx: 105,  cy: 60,  rx: 42, ry: 7,  fill: '#d4a045', stroke: '#a07020', label: 'CRASH',  kind: 'cymbal' },
+          hihat:    { cx: 195,  cy: 95,  rx: 38, ry: 6,  fill: '#c8a050', stroke: '#8a6a30', label: 'HI-HAT', kind: 'cymbal' },
+          hightom:  { cx: 295,  cy: 80,  rx: 30, ry: 13, fill: '#5a3a1f', stroke: '#3a2a1a', label: 'TOM 1',  kind: 'drum' },
+          midtom:   { cx: 395,  cy: 80,  rx: 32, ry: 14, fill: '#5a3a1f', stroke: '#3a2a1a', label: 'TOM 2',  kind: 'drum' },
+          ride:     { cx: 590,  cy: 60,  rx: 50, ry: 8,  fill: '#d4a045', stroke: '#a07020', label: 'RIDE',   kind: 'cymbal' },
+          floortom: { cx: 560,  cy: 140, rx: 42, ry: 19, fill: '#5a3a1f', stroke: '#3a2a1a', label: 'FLOOR',  kind: 'drum' },
+          snare:    { cx: 270,  cy: 150, rx: 38, ry: 15, fill: '#dcdcdc', stroke: '#8a8a8a', label: 'SNARE',  kind: 'drum' },
+          kick:     { cx: 400,  cy: 175, rx: 58, ry: 24, fill: '#2a2018', stroke: '#7a6a4a', label: 'KICK',   kind: 'drum' },
+        };
+        const drawDrumKit = () => {
+          let svg = '';
+          // Fundo do palco
+          svg += `<rect x="0" y="0" width="${FB_W}" height="${FB_H}" fill="#1a1611"/>`;
+          // Floor shadow
+          svg += `<ellipse cx="${FB_W / 2}" cy="${FB_H - 6}" rx="320" ry="14" fill="#0d0807" opacity="0.65"/>`;
+          // Hastes / pratos suportes (linhas finas atras dos drums)
+          ['crash', 'hihat', 'ride'].forEach(k => {
+            const p = DRUM_PIECES[k];
+            svg += `<line x1="${p.cx}" y1="${p.cy + 4}" x2="${p.cx}" y2="${FB_H - 10}" stroke="#444" stroke-width="1.5" opacity="0.7"/>`;
+          });
+          // Tom suportes
+          ['hightom', 'midtom'].forEach(k => {
+            const p = DRUM_PIECES[k];
+            svg += `<line x1="${p.cx}" y1="${p.cy + p.ry}" x2="${p.cx}" y2="${DRUM_PIECES.kick.cy - 8}" stroke="#444" stroke-width="1.5" opacity="0.7"/>`;
+          });
+          // Pecas (ordem: traseiras/cymbals primeiro, frontais por ultimo)
+          ['crash', 'ride', 'hihat', 'hightom', 'midtom', 'floortom', 'snare', 'kick'].forEach(key => {
+            const p = DRUM_PIECES[key];
+            svg += `<g data-piece="${key}">`;
+            // Corpo da peca (elipse)
+            svg += `<ellipse cx="${p.cx}" cy="${p.cy}" rx="${p.rx}" ry="${p.ry}" fill="${p.fill}" stroke="${p.stroke}" stroke-width="2"/>`;
+            // Brilho/highlight top
+            if (p.kind === 'cymbal') {
+              svg += `<ellipse cx="${p.cx}" cy="${p.cy - 1}" rx="${p.rx * 0.85}" ry="${p.ry * 0.5}" fill="#fff" opacity="0.18"/>`;
+              // Centro do prato
+              svg += `<circle cx="${p.cx}" cy="${p.cy}" r="3" fill="${p.stroke}"/>`;
+            } else {
+              // Aro metalico do tambor
+              svg += `<ellipse cx="${p.cx}" cy="${p.cy - p.ry * 0.6}" rx="${p.rx}" ry="${p.ry * 0.4}" fill="none" stroke="#c0b890" stroke-width="1.2" opacity="0.9"/>`;
+            }
+            // Label
+            svg += `<text x="${p.cx}" y="${p.cy + p.ry + 11}" font-family="sans-serif" font-size="8" font-weight="800" fill="#aaa" text-anchor="middle" letter-spacing="0.1em">${p.label}</text>`;
+            svg += `</g>`;
+          });
+          fretSvg.innerHTML = svg;
+        };
+
+        // Despachador: escolhe o renderer pelo tipo do instrumento.
+        const drawBoard = () => {
+          const t = INSTRUMENTS[fbInstrument] && INSTRUMENTS[fbInstrument].type;
+          if (t === 'keyboard') return drawPianoBoard();
+          if (t === 'drumkit') return drawDrumKit();
+          return drawFretboard();
+        };
         drawBoard();
 
         // Listener pros tabs do instrumento. Existem 2 conjuntos de botoes:
@@ -9060,6 +9271,77 @@ function _renderTabPanel(body, songKey, tabMeta) {
           if (base == null) return '';
           return NOTE_NAMES[(base + fret + 1200) % 12];
         };
+        // Classifica uma nota em familia: drums (percussion), piano (track
+        // por nome/program), bass (4 cordas ou nome), ou guitar (fallback).
+        const noteFamily = (n) => {
+          if (n.isPercussion) return 'drums';
+          if (/piano|key|tecla|organ|keys|rhodes/i.test(String(n.trackName || ''))) return 'piano';
+          if (isBassTrack(n)) return 'bass';
+          return 'guitar';
+        };
+        const drawActivePiano = (notes) => {
+          notes.forEach(() => {}); // placeholder, evita warning
+          const targets = notes.filter(n => {
+            const fam = noteFamily(n);
+            if (fam !== 'piano') return false;
+            if (fbSelectedTracks.size && !fbSelectedTracks.has(n.trackIdx || 0)) return false;
+            return typeof n.realValue === 'number';
+          });
+          const playSpeed = Math.max(0.1, (api && api.playbackSpeed) || 1);
+          const pulseDur = (0.3 / playSpeed).toFixed(2);
+          let highlights = '';
+          const labels = new Map();
+          targets.forEach(n => {
+            const pos = pianoKeyPos(n.realValue);
+            if (!pos) return;
+            const color = TRACK_COLORS[(n.trackIdx || 0) % TRACK_COLORS.length];
+            // Pinta a tecla na parte de baixo (cor mais quente) com pulse
+            const yFill = pos.y + pos.h * 0.4;
+            const hFill = pos.h * 0.6;
+            highlights += `<rect x="${pos.x + 1}" y="${yFill}" width="${pos.w - 2}" height="${hFill}" fill="${color}" opacity="${pos.isBlack ? 0.95 : 0.78}" rx="2"><animate attributeName="opacity" values="${pos.isBlack ? 0.6 : 0.5};1;${pos.isBlack ? 0.6 : 0.5}" dur="${pulseDur}s" repeatCount="indefinite"/></rect>`;
+            // Halo top
+            highlights += `<rect x="${pos.x - 1}" y="${pos.y - 1}" width="${pos.w + 2}" height="${pos.h + 2}" fill="none" stroke="${color}" stroke-width="2.4" opacity="0.85" rx="3"/>`;
+            // Nome da nota
+            const noteName = NOTE_NAMES[n.realValue % 12];
+            highlights += `<text x="${pos.x + pos.w / 2}" y="${pos.y - 4}" font-family="sans-serif" font-size="11" font-weight="800" fill="#f5efe3" stroke="#1a1611" stroke-width="2.5" paint-order="stroke" text-anchor="middle">${noteName}</text>`;
+            const tn = (n.trackName || `T${(n.trackIdx || 0) + 1}`).split(' ')[0];
+            labels.set(tn, color);
+          });
+          fretSvg.insertAdjacentHTML('beforeend', highlights);
+          fretLegend.innerHTML = [...labels.entries()].map(([name, color]) =>
+            `<span class="fretboard-legend-item"><span class="fretboard-legend-dot" style="background:${color}"></span>${name}</span>`
+          ).join('') || '<span class="fretboard-legend-empty">aguardando notas…</span>';
+        };
+        const drawActiveDrum = (notes) => {
+          const targets = notes.filter(n => {
+            const fam = noteFamily(n);
+            if (fam !== 'drums') return false;
+            if (fbSelectedTracks.size && !fbSelectedTracks.has(n.trackIdx || 0)) return false;
+            return typeof n.realValue === 'number';
+          });
+          const playSpeed = Math.max(0.1, (api && api.playbackSpeed) || 1);
+          const pulseDur = (0.22 / playSpeed).toFixed(2);
+          let highlights = '';
+          const hit = new Set();
+          const labels = new Map();
+          targets.forEach(n => {
+            const piece = DRUM_PIECE_FOR_MIDI[n.realValue];
+            if (!piece || !DRUM_PIECES[piece] || hit.has(piece)) return;
+            hit.add(piece);
+            const p = DRUM_PIECES[piece];
+            const color = TRACK_COLORS[(n.trackIdx || 0) % TRACK_COLORS.length];
+            // Glow externo + corpo pulsante
+            highlights += `<ellipse cx="${p.cx}" cy="${p.cy}" rx="${p.rx + 10}" ry="${p.ry + 6}" fill="${color}" opacity="0.32"><animate attributeName="opacity" values="0.5;0.15;0.5" dur="${pulseDur}s" repeatCount="indefinite"/></ellipse>`;
+            highlights += `<ellipse cx="${p.cx}" cy="${p.cy}" rx="${p.rx}" ry="${p.ry}" fill="${color}" opacity="0.82" stroke="#fff" stroke-width="2"><animate attributeName="rx" values="${p.rx};${(p.rx * 1.07).toFixed(1)};${p.rx}" dur="${pulseDur}s" repeatCount="indefinite"/></ellipse>`;
+            highlights += `<text x="${p.cx}" y="${p.cy + p.ry + 11}" font-family="sans-serif" font-size="8" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="0.1em">${p.label}</text>`;
+            const tn = (n.trackName || `T${(n.trackIdx || 0) + 1}`).split(' ')[0];
+            labels.set(tn, color);
+          });
+          fretSvg.insertAdjacentHTML('beforeend', highlights);
+          fretLegend.innerHTML = [...labels.entries()].map(([name, color]) =>
+            `<span class="fretboard-legend-item"><span class="fretboard-legend-dot" style="background:${color}"></span>${name}</span>`
+          ).join('') || '<span class="fretboard-legend-empty">aguardando notas…</span>';
+        };
         const drawActiveNotes = (notes) => {
           _lastNotes = notes || [];
           drawBoard();
@@ -9067,17 +9349,18 @@ function _renderTabPanel(body, songKey, tabMeta) {
             fretLegend.textContent = '';
             return;
           }
+          const t = INSTRUMENTS[fbInstrument] && INSTRUMENTS[fbInstrument].type;
+          if (t === 'keyboard') return drawActivePiano(_lastNotes);
+          if (t === 'drumkit') return drawActiveDrum(_lastNotes);
+          // fret-based (acoustic, guitar, bass, ukulele)
           const inst = INSTRUMENTS[fbInstrument];
           const nStrings = inst.strings;
           const stringSpacing = (FB_H - FB_PAD_T - FB_PAD_B) / (nStrings - 1);
-          // Filtra notas: se viewing guitar/acoustic/uke, mostra tracks
-          // NÃO-baixo; se bass, só baixo. Detecta baixo por nome ou por
-          // staff.stringCount<=5 (.gp do Pearl Jam frequentemente nomeia
-          // tracks como 'Jeff' ou 'Track 4' sem indicar bass explicitamente).
+          // Filtra notas pela familia compativel com o instrumento atual.
           const filtered = _lastNotes.filter(n => {
-            const bass = isBassTrack(n);
-            const instrumentMatch = fbInstrument === 'bass' ? bass : !bass;
-            if (!instrumentMatch) return false;
+            const fam = noteFamily(n);
+            const targetFam = fbInstrument === 'bass' ? 'bass' : 'guitar';
+            if (fam !== targetFam) return false;
             // Filtro por track selecionada no fretboard
             if (fbSelectedTracks.size && !fbSelectedTracks.has(n.trackIdx || 0)) return false;
             return true;
@@ -9168,9 +9451,22 @@ function _renderTabPanel(body, songKey, tabMeta) {
             const stringCount = (staff && staff.tuning && staff.tuning.length)
               || (staff && staff.standardNotationLineCount)
               || 6;
+            // Track de percussao (bateria): staff.isPercussion === true ou
+            // track.playbackInfo.program === 128 (canal 10 GM).
+            const isPercussion = !!(staff && (staff.isPercussion ||
+              (track && track.playbackInfo && track.playbackInfo.primaryChannel === 9)));
             beat.notes.forEach(note => {
-              if (note.fret == null || note.string == null) return;
-              notes.push({ fret: note.fret, string: note.string, trackIdx, trackName, stringCount });
+              // realValue: MIDI absoluto (pra piano e bateria). Pra fret-based
+              // tambem existe mas la usamos string/fret diretamente.
+              const realValue = (typeof note.realValue === 'number') ? note.realValue
+                : (note.octave != null && note.tone != null) ? note.octave * 12 + note.tone
+                : null;
+              if (note.fret != null && note.string != null) {
+                notes.push({ fret: note.fret, string: note.string, trackIdx, trackName, stringCount, realValue, isPercussion });
+              } else if (realValue != null) {
+                // Notas sem fret/string (piano, drums em notacao standard)
+                notes.push({ fret: null, string: null, trackIdx, trackName, stringCount, realValue, isPercussion });
+              }
             });
           });
           drawActiveNotes(notes);
@@ -9341,11 +9637,16 @@ function _renderTabPanel(body, songKey, tabMeta) {
           const trackBar = document.createElement('div');
           trackBar.className = 'alphatab-tracks';
           trackBar.innerHTML = '<span class="alphatab-tracks-label">Tracks:</span>';
+          const TRACK_COLORS_FALLBACK = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
           tracks.forEach((track, idx) => {
             const lbl = document.createElement('label');
             lbl.className = 'alphatab-track-toggle';
             const name = track.name || `Track ${idx + 1}`;
-            lbl.innerHTML = `<input type="checkbox" checked data-track-idx="${idx}"> <span>${escTrack(name)}</span>`;
+            const color = TRACK_COLORS_FALLBACK[idx % TRACK_COLORS_FALLBACK.length];
+            lbl.style.setProperty('--track-color', color);
+            // Bolinha colorida casa com a cor da nota animada no braco/piano/drum,
+            // permitindo identificar a fonte da animacao batendo o olho.
+            lbl.innerHTML = `<input type="checkbox" checked data-track-idx="${idx}"> <span class="alphatab-track-dot" style="background:${color}"></span> <span>${escTrack(name)}</span>`;
             trackBar.appendChild(lbl);
           });
           transport.appendChild(trackBar);
