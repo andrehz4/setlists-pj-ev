@@ -81,6 +81,23 @@ Reduzidos os 3 tiques de traducao identificados:
 ## Rename de secao: INTERPRETAÇÃO -> ANÁLISE (sessao 2026-05-11 noite)
 Botao da faixa, tooltips, aria-labels e meta-textos visiveis ao usuario trocados de "interpretação" pra "análise" no index.html. Motivacao: "interpretação" em musica tem duplo sentido (hermeneutica + performance), criando ambiguidade num site de shows. "análise" é preciso e curto (botao com 7 chars vs 13). Conteudo dos ensaios em interpretations.json nao foi tocado (texto interno autoral), assim como nomes de variaveis JS (_getInterpretation, .interp-toggle, .interp-row), classes CSS e o filename interpretations.json — refator interno sem ganho ao usuario. Letras (LYRICS_PT) com a palavra "interpretação" como verso cantado permaneceram intactas.
 
+## Aba Tradutor no painel ANÁLISE (sessao 2026-05-11 noite)
+`media/lyrics-notes.json` (227 ensaios do tradutor, ~250-300 palavras cada, foco em simbolismo e decisoes de traducao) agora renderizado como terceira aba "Tradutor" no painel ANÁLISE da faixa, ao lado de PT/EN da analise critica.
+
+**Logica de exibicao:** botao ANÁLISE aparece se houver analise critica OU nota do tradutor. Abas sao dinamicas conforme conteudo disponivel:
+- 170 musicas tem ambos -> 3 abas (PT, EN, Tradutor)
+- 50 musicas so tem analise -> 1 ou 2 abas (PT e/ou EN)
+- 57 musicas so tem nota do tradutor -> 1 aba (Tradutor)
+- Quando uma aba so, sem lang-bar, prosa direto.
+
+Aproveitou-se o sistema de tabs existente (.lyric-lang-bar, .interp-pane) com nomenclatura nova: `data-tab` no lugar de `data-lang`, classes `.interp-pane-pt/.interp-pane-en/.interp-pane-tr`. ARIA-label do tablist mudou de "Idioma da analise" pra "Modo da analise".
+
+**Card de busca:** novo card 4 "Nota do tradutor · em português" aparece quando ha nota cadastrada. Card 3 (analise EN) teve titulo trocado de "Interpretation · English critical commentary" pra "Análise crítica · em inglês" pra coerencia.
+
+**Texto explicativo do drawer:** o paragrafo da audio-notes-section agora menciona que o painel tem abas (PT, EN e nota do tradutor, conforme a disponibilidade).
+
+Sintaxe JS validada via node --check sobre o inline extraido. Validacao visual no navegador ainda pendente: golden path = abrir show 2005-12-02 -> Black -> clicar ANÁLISE -> conferir que ha 3 abas (PT/EN/Tradutor) e que a aba Tradutor renderiza prosa em portugues.
+
 ## Outras frentes pendentes (proximas sessoes)
 - Retomada das my_photos 2015 show por show: usar `MEDIA_AUDIT_2026-05-11.md` como ponto de partida. Para cada show, baixar candidatos pra `media/_staging/`, Andre escolhe visualmente, move pra `mine/` e commita. Nunca importar bulk.
 - Passada 2C (boilerplate sentencial): "carregou os dois versos com X participacao vocal sustentada que a geometria acustica da casa a ceu aberto amplificou" aparece 7-8x quase verbatim. Precisa reescrita estrutural, nao so rotacao de invólucro.

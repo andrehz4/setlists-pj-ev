@@ -4844,8 +4844,9 @@ function renderSearch(query) {
     const lyricText = _getLyricsStatic(m.song);
     const lyricPT = (typeof LYRICS_PT !== 'undefined') ? LYRICS_PT[_lyricsNorm(m.song)] : null;
     const interpText = _getInterpretation(m.song);
+    const noteText = _getLyricsNote(m.song);
     let extras = '';
-    if (lyricText || lyricPT || interpText) {
+    if (lyricText || lyricPT || interpText || noteText) {
       const parts = [];
       if (lyricText) {
         const lyrHtml = lyricText.split('\n').map(l => `<div>${l ? esc(l) : '&nbsp;'}</div>`).join('');
@@ -4857,7 +4858,11 @@ function renderSearch(query) {
       }
       if (interpText) {
         const intHtml = interpText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join('');
-        parts.push(`<details class="interp" open><summary>Interpretation · English critical commentary</summary><div class="body">${intHtml}</div></details>`);
+        parts.push(`<details class="interp" open><summary>Análise crítica · em inglês</summary><div class="body" lang="en">${intHtml}</div></details>`);
+      }
+      if (noteText) {
+        const noteHtml = noteText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join('');
+        parts.push(`<details class="interp" open><summary>Nota do tradutor · em português</summary><div class="body" lang="pt">${noteHtml}</div></details>`);
       }
       extras = `<div class="search-extras">${parts.join('')}</div>`;
     }
@@ -4937,7 +4942,7 @@ function openDrawer(showId) {
           <summary class="audio-notes-summary"><span aria-hidden="true">🎧 </span>Transcrição do áudio (${MEDIA_MANIFEST[showId].audio.length} faixas)</summary>
           <div class="audio-notes-body">
             ${customNotes}
-            <p>O áudio deste show é um bootleg fonográfico oficial. As músicas em inglês têm letras disponíveis: clique em <strong>LETRA</strong> ao lado do nome de cada música no setlist acima para ler o texto cantado, com tradução em português quando cadastrada. Quando uma análise crítica foi cadastrada, o botão <strong>ANÁLISE</strong> abre o ensaio abaixo da faixa, em português ou inglês conforme a versão disponível.</p>
+            <p>O áudio deste show é um bootleg fonográfico oficial. As músicas em inglês têm letras disponíveis: clique em <strong>LETRA</strong> ao lado do nome de cada música no setlist acima para ler o texto cantado, com tradução em português quando cadastrada. O botão <strong>ANÁLISE</strong> abre o ensaio abaixo da faixa em abas (PT, EN e nota do tradutor, conforme a disponibilidade).</p>
             <p style="color:var(--ink-mute);font-size:13px;">Stage banter (falas de Eddie entre músicas), reações da plateia e coros não estão transcritos. Encore breaks são pausas instrumentais entre os blocos do show.</p>
           </div>
         </details>
@@ -5089,7 +5094,8 @@ function openDrawer(showId) {
     const songName = li.dataset.song;
     const lyricText = _getLyricsStatic(songName);
     const interpText = _getInterpretation(songName, showId, 'en') || _getInterpretation(songName, showId, 'pt');
-    if (!lyricText && !interpText) return;
+    const lyricNote = _getLyricsNote(songName);
+    if (!lyricText && !interpText && !lyricNote) return;
     const nameSpan = li.querySelector('span:first-child');
 
     // LETRA button + row
@@ -5140,27 +5146,36 @@ function openDrawer(showId) {
       nameSpan.appendChild(btn);
     }
 
-    // ANÁLISE button + row (added after lyric-row when both exist)
-    if (interpText && nameSpan && !nameSpan.querySelector('.interp-toggle')) {
+    // ANÁLISE button + row: aparece quando há análise crítica OU nota do tradutor.
+    // Painel mostra abas dinâmicas (PT/EN/Tradutor) conforme o conteúdo disponível.
+    if ((interpText || lyricNote) && nameSpan && !nameSpan.querySelector('.interp-toggle')) {
       const interpEN = _getInterpretation(songName, showId, 'en');
       const interpPT = _getInterpretation(songName, showId, 'pt');
-      const hasBoth = !!(interpEN && interpPT);
-      const defaultLang = interpPT ? 'pt' : 'en';
+      const tabs = [];
+      if (interpPT) tabs.push({ key: 'pt', label: 'PT', lang: 'pt' });
+      if (interpEN) tabs.push({ key: 'en', label: 'EN', lang: 'en' });
+      if (lyricNote) tabs.push({ key: 'tr', label: 'Tradutor', lang: 'pt' });
+      const defaultTab = tabs[0].key;
+      const tabLabels = tabs.map(t => t.label).join('/');
+      const ariaSingleSuffix = tabs.length === 1
+        ? (defaultTab === 'pt' ? ', em português'
+          : defaultTab === 'en' ? ', em inglês'
+          : ', nota do tradutor em português')
+        : `, ${tabLabels}`;
+
       const btn = document.createElement('span');
       btn.className = 'interp-toggle';
       btn.textContent = 'análise';
-      btn.title = hasBoth ? 'análise crítica (PT/EN)' : (interpPT ? 'análise crítica (PT)' : 'análise crítica (em inglês)');
+      btn.title = `análise crítica (${tabLabels})`;
       btn.setAttribute('role', 'button');
       btn.setAttribute('tabindex', '0');
       btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', `Mostrar análise crítica de ${songName}${hasBoth ? ', em português ou inglês' : (interpPT ? ', em português' : ', em inglês')}`);
+      btn.setAttribute('aria-label', `Mostrar análise crítica de ${songName}${ariaSingleSuffix}`);
       const interpRow = document.createElement('li');
       interpRow.className = 'interp-row';
       interpRow.setAttribute('role', 'region');
       interpRow.setAttribute('aria-label', `Análise crítica de ${songName}`);
-      const metaTxt = hasBoth ? 'análise · PT/EN · clique no painel pra fechar'
-        : (interpPT ? 'análise · em português · clique no painel pra fechar'
-                    : 'análise · em inglês · clique no painel pra fechar');
+      const metaTxt = `análise · ${tabLabels} · clique no painel pra fechar`;
       interpRow.innerHTML = `<div class="interp-block"><div class="body"></div><div class="meta">${metaTxt}</div></div>`;
       const insertAfter = li.nextElementSibling && li.nextElementSibling.classList.contains('lyric-row')
         ? li.nextElementSibling : li;
@@ -5172,35 +5187,39 @@ function openDrawer(showId) {
         interpRow.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
       });
+      const tabText = (key) => key === 'pt' ? interpPT : key === 'en' ? interpEN : lyricNote;
       const fillInterpBody = (body) => {
         const renderText = (txt, lang) => txt.split(/\n+/).map(p =>
           p.trim() ? `<p lang="${lang}">${p.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</p>` : ''
         ).join('');
-        if (hasBoth) {
-          body.innerHTML =
-            '<div class="lyric-lang-bar" role="tablist" aria-label="Idioma da análise">' +
-              `<button type="button" class="lyric-lang-btn${defaultLang==='pt'?' active':''}" data-lang="pt" aria-pressed="${defaultLang==='pt'}">PT</button>` +
-              `<button type="button" class="lyric-lang-btn${defaultLang==='en'?' active':''}" data-lang="en" aria-pressed="${defaultLang==='en'}">EN</button>` +
-            '</div>' +
-            `<div class="interp-pane interp-pane-pt" lang="pt"${defaultLang==='pt'?'':' hidden'}>${renderText(interpPT, 'pt')}</div>` +
-            `<div class="interp-pane interp-pane-en" lang="en"${defaultLang==='en'?'':' hidden'}>${renderText(interpEN, 'en')}</div>`;
+        if (tabs.length > 1) {
+          const bar = '<div class="lyric-lang-bar" role="tablist" aria-label="Modo da análise">' +
+            tabs.map(t =>
+              `<button type="button" class="lyric-lang-btn${t.key===defaultTab?' active':''}" data-tab="${t.key}" aria-pressed="${t.key===defaultTab}">${t.label}</button>`
+            ).join('') +
+            '</div>';
+          const panes = tabs.map(t =>
+            `<div class="interp-pane interp-pane-${t.key}" lang="${t.lang}"${t.key===defaultTab?'':' hidden'}>${renderText(tabText(t.key), t.lang)}</div>`
+          ).join('');
+          body.innerHTML = bar + panes;
           body.querySelectorAll('.lyric-lang-btn').forEach(b => {
             b.addEventListener('click', (e) => {
               e.stopPropagation();
-              const lang = b.dataset.lang;
+              const tab = b.dataset.tab;
               body.querySelectorAll('.lyric-lang-btn').forEach(x => {
-                const isActive = x.dataset.lang === lang;
+                const isActive = x.dataset.tab === tab;
                 x.classList.toggle('active', isActive);
                 x.setAttribute('aria-pressed', isActive ? 'true' : 'false');
               });
-              body.querySelector('.interp-pane-pt').hidden = (lang !== 'pt');
-              body.querySelector('.interp-pane-en').hidden = (lang !== 'en');
+              tabs.forEach(t => {
+                const pane = body.querySelector('.interp-pane-' + t.key);
+                if (pane) pane.hidden = (t.key !== tab);
+              });
             });
           });
         } else {
-          const txt = interpPT || interpEN;
-          const lang = interpPT ? 'pt' : 'en';
-          body.innerHTML = renderText(txt, lang);
+          const t = tabs[0];
+          body.innerHTML = renderText(tabText(t.key), t.lang);
         }
       };
       const toggleInterp = (e) => {
@@ -6446,6 +6465,43 @@ function _getInterpretation(songName, showId, lang) {
   return null;
 }
 
+let LYRICS_NOTES = {};
+let _lyricsNotesAbort = null;
+async function _loadLyricsNotes() {
+  if (_lyricsNotesAbort) _lyricsNotesAbort.abort();
+  _lyricsNotesAbort = new AbortController();
+  try {
+    const r = await fetch("media/lyrics-notes.json", { cache: "default", signal: _lyricsNotesAbort.signal });
+    if (r.ok) {
+      const j = await r.json();
+      delete j._meta;
+      LYRICS_NOTES = j;
+    }
+  } catch(e) { /* offline / 404 / aborted: ignorado */ }
+}
+window.addEventListener('beforeunload', () => { if (_lyricsNotesAbort) _lyricsNotesAbort.abort(); });
+function _getLyricsNote(songName) {
+  if (!LYRICS_NOTES || !Object.keys(LYRICS_NOTES).length) return null;
+  const key = _lyricsNorm(songName);
+  if (LYRICS_NOTES[key]) return LYRICS_NOTES[key];
+  const found = Object.keys(LYRICS_NOTES).find(k => {
+    if (k === key) return true;
+    const a = key.split(' '), b = k.split(' ');
+    if (a.length === b.length) return false;
+    const longer = a.length > b.length ? a : b;
+    const shorter = a.length > b.length ? b : a;
+    return shorter.every(w => longer.includes(w)) && shorter.length > 1;
+  });
+  if (found) return LYRICS_NOTES[found];
+  if (songName.includes('→')) {
+    const parts = songName.split('→')
+      .map(s => LYRICS_NOTES[_lyricsNorm(s.trim())])
+      .filter(Boolean);
+    if (parts.length) return parts.join('\n\n');
+  }
+  return null;
+}
+
 // ========================================================================
 // DEEP MAGAZINES (Ten Club official magazine archive)
 // ========================================================================
@@ -6907,6 +6963,7 @@ async function init() {
   updateBootText("Aplicando preferências");
   applyTheme(getInitialTheme());
   _loadInterpretations(); // non-blocking
+  _loadLyricsNotes(); // non-blocking
   await new Promise(r => setTimeout(r, 80));
 
   updateBootText("Carregando arquivo");
