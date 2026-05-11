@@ -3,6 +3,71 @@
 ## Data
 2026-05-11
 
+## SESSAO MADRUGADA 2026-05-12: design Claude Design implementado (5 commits)
+
+Plano executado em 5 commits sequenciais autonomos, com Andre fora pra testar tudo no fim. Bundle de design em `scripts/_design-pearljamcifras/` traduzido pro index.html preservando 100% da logica de player atual (AlphaTab + FAB + fretboard overlay + smplr + ChordPro).
+
+### Commits
+
+- `975d16c` **feat(cifras): layout 2-col com catalog-aside + cifra-detail**
+  Substitui `.tabs-grid` (cards expansiveis) por `.tabs-layout > .catalog-aside (280px sticky) + .cifra-detail-wrap (1fr)`. Catalog tem search em tempo real (por titulo ou album) + lista por status (tab+cifra/cifra/em breve). Click no item troca o detail panel via nova funcao `_renderCifraDetail`, que delega pro `_renderTabPanel` (mesmo handler do botao TAB inline na faixa do show, zero divergencia).
+
+- `8b51738` **feat(cifras): header do detail com cover-ten + titulo + pills**
+  Cabecalho com cover do album (arte CSS pra Ten com 5 silhuetas + glow ambar; foto da capa pros demais via `albumCoverPath`; fallback generico com sigla pra musicas sem album), titulo em Big Shoulders Display uppercase, breadcrumb (artista · album · ano), pills key/tuning/capo/bpm reusando `.tab-pill` ja existente. InfoBar interna do `_renderTabPanel` escondida via CSS dentro do detail pra nao duplicar pills.
+
+- `1b1954c` **feat(cifras): voice picker Stone/Mike/Jeff multi-select**
+  Voice-picker de 3 cards entre header e body do detail, populado dinamicamente quando AlphaTab dispara `scoreLoaded`. Cada card mostra label da track + role inferido (Guitarra ritmica/solo/Baixo/etc) + tagline italica. Multi-select preservando comportamento atual: click no card propaga via `dispatchEvent('change')` pros checkboxes ja existentes em `.fretboard-players` (filtro visual) e `.alphatab-tracks` (mute audio + renderTracks).
+
+- `2c96267` **feat(cifras): adesivos PJ no fretboard visualizer**
+  Move `pj-stickman.png` (105KB) e `pj-sun-logo.png` (47KB) do bundle pra `media/decals/`. Adiciona dois `<img>` overlay no fretboard-overlay (fora do markup SVG pra nao serem apagados quando `drawBoard()` re-renderiza). Stickman top-left rotacionado -6deg, sun top-right rotacionado +12deg. `mix-blend-mode: screen` + opacidade 0.42 integram na textura de madeira sem disputar atencao com notas tocadas.
+
+- `e5b3067` **style(cifras): dark theme overrides nos componentes**
+  Site ja tinha dark mode completo (toggle ☀/☾ em `#theme-toggle`, localStorage, overrides extensivos), mas componentes cifras/tabs eram light-only com cores hardcoded. Adiciona overrides pra: `.alphatab-surface` (fundo escuro + filter invert nos glyphs), `.chord-diagram`, `.cifra-player-bar`, `.alphatab-transport`, `.tab-pane-soon`, `.fretboard-overlay`, `.fretboard-decal` (mais opacidade no dark).
+
+### Decisoes Andre (antes de implementar)
+1. Voice picker: **multi** (checkbox-like), nao single radio.
+2. Dark theme: **implementar nesta tanda** (achei depois que ja existia, entao foi so' garantir que os novos componentes respeitam tokens + adicionar overrides nos antigos hardcoded).
+3. Tweaks panel: **defaults fixos** (sem painel real). Adesivos sempre sutis, papel sempre kraft.
+
+### O que MUDOU vs. design original
+- Paleta: design propos dark amber/burgundy (Cifras Pearl Jam.html primeira passada que Andre rejeitou). Implementacao usa a paleta do site (Ticket Archive: cream/pj-red/teal/ev-amber) que era o que a segunda passada do design ja propos.
+- Tweaks panel: nao implementado (defaults fixos como Andre pediu).
+- Stickers PJ: 2 (stickman + sun). Sem variacao "Letras" do design (so usa as 2 PNGs fornecidas).
+- Cover de Ten: arte CSS (silhuetas + glow) como o design propos. Demais albuns usam foto real `albumCoverPath`. Fallback sigla pra desconhecidos.
+- Header dentro do detail (nao banner topo do site como design tinha na primeira passada). Mais coerente com a estrutura existente.
+
+### Comportamentos PRESERVADOS (intactos)
+- Botao TAB inline na faixa do show (`_renderTabPanel` direto, sem cifra-detail wrapper).
+- AlphaTab player: Play/Stop/Speed/Loop/FAB/cursor/autoscroll custom/loop overlay.
+- Fretboard overlay flutuante com filtro por track Stone/Mike/Jeff (checkboxes).
+- Cifra player de chord-chips (`_startCifraPlayer`), parser ChordPro, diagrama de acorde SVG, som arpejado via smplr local.
+- CSP atual (`worker-src 'self' blob:`).
+- AlphaTab + smplr + soundfonts 100% local em `media/lib/`.
+- Cifras cadastradas (`black.cpro / alive.cpro / even-flow.cpro / black.gp3`) + manifest com 20 musicas.
+
+### Validacao pendente (Andre faz no navegador)
+Golden path:
+1. Nav superior → `🎸 Cifras & Tabs` → ve catalogo lateral com 20 musicas + Black auto-selecionada com header + body
+2. Click no item Alive ou Even Flow → header muda, cifra carrega
+3. Click numa musica disabled (qualquer outra) → empty state "em breve"
+4. Busca: digitar "Ten" filtra; digitar "Black" filtra; clear restaura
+5. Em Black: Tab → ▶ Play → fretboard overlay aparece com adesivos PJ visiveis
+6. Voice picker no header: click em card desliga, fretboard esconde aquela track
+7. Toggle dark mode (botao no masthead): tudo respeita
+8. Painel inline (numa faixa Black em qualquer show) → ainda funciona igual antes (sem header novo, sem voice-picker)
+
+### Riscos identificados (a confirmar)
+- A) Em dark mode, o filter `invert(0.92) hue-rotate(180deg)` no SVG do AlphaTab pode deixar as cores PJ (cursor vermelho) estranhas. Se ficar feio, remover esse filter e aceitar tab cinza-claro sobre escuro.
+- B) Decals em mix-blend-mode podem nao aparecer em browsers antigos. Browsers modernos OK.
+- C) Voice picker so popula quando scoreLoaded dispara. Em musicas sem tab (so cifra), o picker fica `hidden` permanentemente. Esperado.
+
+### Como reverter caso queira voltar atras
+```
+git reset --hard f285ca8   # antes desta sessao
+```
+
+---
+
 ## HANDOFF SESSAO NOITE 2026-05-11 (cifras + tablaturas + design pendente)
 
 Sessao monstra: 23+ commits sequenciais entregando o ecossistema **Cifras & Tabs** completo + design refinado entregue pelo Claude Design que precisa ser implementado em outra sessao. Resumo dos commits da sessao (em ordem inversa):
