@@ -7264,6 +7264,59 @@ function renderTabsView() {
   });
 }
 
+// Som arpejado do acorde via smplr (https://github.com/danigb/smplr, MIT).
+// Carregamento lazy: a primeira reproducao baixa smplr ESM (~50KB) + soundfont
+// acoustic_guitar_steel (~150KB MP3). Notas em sequencia 25ms (dedilhado).
+const _SMPLR_VERSION = '0.20.0';
+const _TUNING_MIDI = [40, 45, 50, 55, 59, 64]; // E2 A2 D3 G3 B3 E4 (6 grave -> 1 aguda)
+let _audioCtx = null;
+let _guitarSamplerPromise = null;
+function _getAudioCtx() {
+  if (_audioCtx) return _audioCtx;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return null;
+  _audioCtx = new AC();
+  return _audioCtx;
+}
+async function _ensureGuitarSampler() {
+  if (_guitarSamplerPromise) return _guitarSamplerPromise;
+  _guitarSamplerPromise = (async () => {
+    const ctx = _getAudioCtx();
+    if (!ctx) throw new Error('Web Audio indisponivel');
+    const smplr = await import(`https://cdn.jsdelivr.net/npm/smplr@${_SMPLR_VERSION}/dist/index.mjs`);
+    const sampler = new smplr.Soundfont(ctx, { instrument: 'acoustic_guitar_steel' });
+    await sampler.load;
+    return sampler;
+  })();
+  return _guitarSamplerPromise;
+}
+function _chordToMidiNotes(chordName) {
+  const data = _CHORD_DB[chordName];
+  if (!data) return [];
+  const notes = [];
+  for (let i = 0; i < 6; i++) {
+    const f = data.frets[i];
+    if (f === 'x' || f === undefined) continue;
+    const fr = typeof f === 'number' ? f : 0;
+    notes.push(_TUNING_MIDI[i] + fr);
+  }
+  return notes;
+}
+async function _playChordSound(chordName) {
+  try {
+    const notes = _chordToMidiNotes(chordName);
+    if (!notes.length) return;
+    const sampler = await _ensureGuitarSampler();
+    const ctx = _getAudioCtx();
+    if (ctx.state === 'suspended') { try { await ctx.resume(); } catch(e) {} }
+    const now = ctx.currentTime;
+    // Arpejo de baixo pra cima: notes vem ordenado da 6a corda (grave) pra 1a (aguda)
+    notes.forEach((note, i) => {
+      sampler.start({ note, velocity: 75, time: now + i * 0.025, duration: 1.6 });
+    });
+  } catch (e) { /* silencioso: feature opcional */ }
+}
+
 function _attachChordChipHandlers(root) {
   let openPopover = null;
   const closeOpen = () => {
@@ -7278,6 +7331,9 @@ function _attachChordChipHandlers(root) {
     pop.innerHTML = svg || `<div class="chord-diagram-empty">${chord}<small>digita&ccedil;&atilde;o n&atilde;o cadastrada</small></div>`;
     chip.appendChild(pop);
     openPopover = pop;
+    // Toca o acorde arpejado (lazy load no primeiro click; gesto do usuario
+    // ja autoriza Web Audio em todos os navegadores modernos).
+    _playChordSound(chord);
   };
   root.addEventListener('click', (e) => {
     const chip = e.target.closest && e.target.closest('.chord-chip');

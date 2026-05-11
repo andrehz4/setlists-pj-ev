@@ -163,6 +163,30 @@ Ambas usam o mesmo `_renderTabPanel`, garantindo consistencia visual e zero dive
 
 **Validacao pendente:** abrir `Cifras & Tabs` no nav, conferir grid renderizado, expandir black/alive/even-flow, validar que painel mostra mesmas abas/chord-chips da versao inline da faixa.
 
+## Som arpejado no chord-chip via smplr (sessao 2026-05-11 noite)
+Click no chord-chip agora toca o acorde como arpejo de violao acustico, alem de abrir o diagrama.
+
+**Adicionado em index.html:**
+- `_TUNING_MIDI = [40, 45, 50, 55, 59, 64]` (E2 A2 D3 G3 B3 E4, ordem 6 grave -> 1 aguda).
+- `_chordToMidiNotes(chordName)`: converte `_CHORD_DB[chord].frets` em array de notas MIDI, pulando muted (x). Usa o offset de cada corda + fret.
+- `_getAudioCtx()`: singleton AudioContext lazy.
+- `_ensureGuitarSampler()`: Promise singleton que importa smplr ESM do CDN jsdelivr e instancia Soundfont com instrumento `acoustic_guitar_steel`. Samples carregam de `gleitz.github.io/midi-js-soundfonts` (default do smplr).
+- `_playChordSound(chordName)`: toca arpejado, 25ms entre cordas, velocity 75, duracao 1.6s. Silencioso em caso de erro (feature opcional).
+- Hook em `_attachChordChipHandlers.showFor`: alem de mostrar o diagrama, chama `_playChordSound(chord)`. Gesto do usuario (click) ja autoriza Web Audio.
+
+**Performance:**
+- Primeiro click: ~500-1000ms (smplr ~50KB + soundfont base ~150KB).
+- Cliques seguintes na mesma musica: instantaneo (samples cacheados pelo browser).
+- Zero overhead se o usuario nunca clicar (lazy load total).
+
+**Dependencias externas (hoje):**
+- `cdn.jsdelivr.net/npm/smplr@0.20.0/dist/index.mjs` (~50KB).
+- `gleitz.github.io/midi-js-soundfonts/.../acoustic_guitar_steel-mp3/{nota}.mp3` (5-10KB por nota).
+
+**Plano futuro (se Andre aprovar o som):**
+- Baixar os 88 samples acoustic_guitar_steel pra `media/sound/acoustic-guitar/`.
+- Configurar smplr com `instrumentUrl` apontando local. Zero dep externa, +5MB no repo, mais rapido (mesmo origin).
+
 Plano completo em `C:\Users\engan\.claude\plans\shimmering-crunching-matsumoto.md`.
 
 ## Aba Tradutor no painel ANÁLISE (sessao 2026-05-11 noite)
