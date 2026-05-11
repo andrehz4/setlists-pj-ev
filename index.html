@@ -3053,13 +3053,11 @@ html[data-theme="light"] .drawer-section-label.my-media {
    o overflow horizontal pra mobile e limitamos altura inicial. */
 .alphatab-surface {
   min-height: 80px;
-  max-height: 60vh;
   background: #fff;
   border: 1px solid rgba(46, 107, 138, 0.2);
   border-radius: 4px;
-  overflow: auto;
+  overflow-x: auto;
   padding: 6px 4px;
-  scroll-behavior: smooth;
 }
 .alphatab-surface .at-surface,
 .alphatab-surface .at-surface-svg { background: transparent !important; }
@@ -7204,12 +7202,12 @@ async function _initAlphaTabPanel(container, songKey, tabFormat) {
       enablePlayer: true,
       enableCursor: true,
       soundFont: `${libBase}/soundfont/sonivox.sf3`,
-      // 'offScreen' so rola quando o cursor sai da viewport visivel;
-      // 'continuous' tenta rolar a cada beat e fica jittery em musicas longas.
-      scrollMode: 'offScreen',
-      scrollElement: container,
-      scrollOffsetY: 80,
-      scrollSpeed: 400,
+      // 'continuous' rola suavemente acompanhando o cursor. scrollElement
+      // omitido = AlphaTab rola a propria pagina (mais previsivel que
+      // container interno com max-height).
+      scrollMode: 'continuous',
+      scrollOffsetY: -120,
+      scrollSpeed: 500,
     },
     display: { staveProfile: 'tab' },
     core: { fontDirectory: `${libBase}/font/` },
