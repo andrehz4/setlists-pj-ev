@@ -7072,10 +7072,11 @@ function _loadStyleOnce(href) {
 async function _ensureAlphaTab() {
   if (window.alphaTab) return window.alphaTab;
   if (!_alphaTabPromise) {
-    _alphaTabPromise = Promise.all([
-      _loadScriptOnce(`https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist/alphaTab.min.js`),
-      _loadStyleOnce(`https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist/alphaTab.min.css`),
-    ]).then(() => window.alphaTab);
+    // AlphaTab 1.5+ usa SVG inline, nao precisa de CSS standalone.
+    // fontDirectory aponta pra Bravura (musical font) servida do CDN.
+    _alphaTabPromise = _loadScriptOnce(
+      `https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist/alphaTab.min.js`
+    ).then(() => window.alphaTab);
   }
   return _alphaTabPromise;
 }
