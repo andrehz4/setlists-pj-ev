@@ -70,9 +70,17 @@ untitled (Yield faixa 8): 2 linhas instrumentais cantadas, traduzido como 'Tamo 
 - `2456040` style(letras): padding-top de .lyric-pane 6->14px (alinha com respiro do interpretacao).
 - `27b5e1b` fix(raridades): badge "Dados pearljam.com/vitalogy/songs" com z-index 2 + margin-bottom 32px (estava sendo comido pela meia-lua do gauge).
 
+## Passada 2B contextual em interpretations.json (sessao 2026-05-11 noite)
+Reduzidos os 3 tiques de traducao identificados:
+- `o tipo de`: 271 -> 3 (3 remanescentes legitimos: "o unico tipo", "outro tipo", "pelo tipo de luz").
+- `estruturada em torno de`: 23 -> 0 (rotacao: construida sobre, armada em torno de, ancorada em, erguida sobre, etc).
+- `a estrutura da cancao convida` + `que o verso da cancao exige`: 17 + 12 -> 0 (rotacao: a arquitetura da faixa pede, o arranjo da cancao convida, o verso pede, etc).
+
+254 campos alterados em text_pt + byShow_pt. Estrutura JSON preservada (221 chaves, 220 text_pt, 779 byShow_pt entries). Scripts auxiliares versionados em `scripts/` (apply-pt-pass-2b.mjs, scan-pt-tics.mjs, sample-diff.mjs, compare-counts.mjs) — reutilizaveis pra futuras passadas (2C, 2D).
+
 ## Outras frentes pendentes (proximas sessoes)
 - Retomada das my_photos 2015 show por show: usar `MEDIA_AUDIT_2026-05-11.md` como ponto de partida. Para cada show, baixar candidatos pra `media/_staging/`, Andre escolhe visualmente, move pra `mine/` e commita. Nunca importar bulk.
-- Traducao PT 2B contextual em interpretations.json: "o tipo de" (221), "da cancao (...)" (31), "estruturada em torno de" (24).
+- Passada 2C (boilerplate sentencial): "carregou os dois versos com X participacao vocal sustentada que a geometria acustica da casa a ceu aberto amplificou" aparece 7-8x quase verbatim. Precisa reescrita estrutural, nao so rotacao de invólucro.
 - Performance round 3: 24 KiB unused-JS no index, 21 KiB unused CSS, render-blocking dos 3 links de fontes.
 - MEDIA gap remanescente: 14 shows ainda sem my_photos no disco (2011, 2013, 2018, EV 2014), pasta media/comunidade/ inteira faltando (22 fotos esperadas pela chip Comunidade, fonte externa), 26 MP3s do show 2005-12-02, poster-1.jpg do 2024-08-31, my_photos 4 do ev-2014-05-06. Detalhes no MEDIA_AUDIT_2026-05-11.md.
 - Validacao visual: revisar musica por musica no site (letra + interpretacao + nota do tradutor) e ajustar manualmente o que precisar.
