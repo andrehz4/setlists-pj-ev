@@ -3846,10 +3846,41 @@ html[data-theme="dark"] .cifra-context-pane {
   background: var(--bg-card);
   border: 1px solid var(--divider);
   border-left: 3px solid var(--divider-strong);
-  transition: background 0.15s ease, border-left-color 0.15s ease, opacity 0.15s ease;
+  transition: background 0.15s ease, border-left-color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
   --vc: #2e6b8a;
+}
+/* Estado solo: card destacado com ring colorido + outras tracks ficam muted */
+.voice-tab.solo {
+  box-shadow: 0 0 0 2px var(--vc), 0 4px 12px rgba(0,0,0,0.18);
+}
+.voice-tab-solo {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid var(--divider-strong);
+  background: transparent;
+  color: var(--ink-mute);
+  font: 800 10px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: all 120ms ease;
+  z-index: 2;
+}
+.voice-tab-solo:hover {
+  background: var(--bg-card-hover);
+  color: var(--ink);
+  border-color: var(--ink-mute);
+}
+.voice-tab.solo .voice-tab-solo {
+  background: var(--vc);
+  color: #fff;
+  border-color: var(--vc);
 }
 .voice-tab.active {
   border-left-color: var(--vc);
@@ -9084,6 +9115,7 @@ function _populateVoicePicker(picker, tracks) {
     const color = TRACK_COLORS[i % TRACK_COLORS.length];
     return `
       <div class="voice-tab active" data-idx="${i}" style="--vc:${color}">
+        <button type="button" class="voice-tab-solo" aria-pressed="false" aria-label="Solo ${esc(rawName)} (muta os outros)" title="Solo">S</button>
         <button type="button" class="voice-tab-toggle" aria-pressed="true" aria-label="Ligar / mutar ${esc(rawName)}">
           <span class="voice-tab-label">${esc(rawName)}</span>
           <span class="voice-tab-role">${esc(role)}</span>
@@ -9113,6 +9145,29 @@ function _populateVoicePicker(picker, tracks) {
         card.classList.toggle('active', newState);
         toggle.setAttribute('aria-pressed', newState ? 'true' : 'false');
       }
+    });
+  });
+
+  // Solo: muta todas as outras tracks. Click de novo = restaura.
+  picker.querySelectorAll('.voice-tab-solo').forEach(soloBtn => {
+    soloBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const card = soloBtn.closest('.voice-tab');
+      const targetIdx = card.dataset.idx;
+      const allCards = picker.querySelectorAll('.voice-tab');
+      const isCurrentlySolo = card.classList.contains('solo');
+      allCards.forEach(c => {
+        const idx = c.dataset.idx;
+        const shouldBeOn = isCurrentlySolo ? true : (idx === targetIdx);
+        c.classList.toggle('solo', !isCurrentlySolo && idx === targetIdx);
+        const t = c.querySelector('.voice-tab-toggle');
+        const s = c.querySelector('.voice-tab-solo');
+        if (s) s.setAttribute('aria-pressed', (!isCurrentlySolo && idx === targetIdx) ? 'true' : 'false');
+        // Aciona o toggle so se o estado precisa mudar; toggle propaga
+        // pros checkboxes do fretboard + alphatab-tracks via .click() nativo
+        // (mesma logica que ja existe no voice-tab-toggle handler).
+        if (t && c.classList.contains('active') !== shouldBeOn) t.click();
+      });
     });
   });
 
