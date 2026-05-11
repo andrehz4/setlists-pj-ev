@@ -3661,39 +3661,32 @@ html[data-theme="light"] .drawer-section-label.my-media {
   box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   border-radius: 2px;
 }
-.cover-ten {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, #0d1620 0%, #1a3245 35%, #6b3520 75%, #c1782d 100%);
+/* Placeholder do cover (hidratado por loadAlbumCovers com img real). */
+.cifra-cover .album-cover-img-wrap,
+.cifra-cover .album-cover-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 22px;
+}
+
+/* Cover pequeno no catalog item (lateral esquerda). */
+.cat-item-cover {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 2px;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
-.cover-figures { position: absolute; bottom: 8%; left: 0; right: 0; height: 60%; }
-.cover-figures .figure {
-  position: absolute; bottom: 0; width: 14%; height: 100%;
-  background: #0a0807;
-  clip-path: polygon(35% 0, 65% 0, 75% 12%, 65% 18%, 90% 50%, 100% 100%, 0 100%, 10% 50%, 35% 18%, 25% 12%);
-}
-.cover-figures .figure::before,
-.cover-figures .figure::after {
-  content: ''; position: absolute; top: 8%; width: 28%; height: 30%; background: #0a0807;
-}
-.cover-figures .figure::before { left: -10%; transform: rotate(-35deg); clip-path: polygon(50% 0, 100% 30%, 60% 100%, 0 70%); }
-.cover-figures .figure::after { right: -10%; transform: rotate(35deg); clip-path: polygon(0 30%, 50% 0, 100% 70%, 40% 100%); }
-.cover-glow {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center 65%, rgba(232,161,58,0.45) 0%, transparent 50%);
-  pointer-events: none;
-}
-.cover-generic {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, var(--pj-soft, #6b1518), var(--pj, #a8322b));
-  color: #f5f1e8;
-  font: 800 28px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
-  letter-spacing: 0.08em;
-}
-.cover-from-img {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
+.cat-item-cover.album-cover-fallback {
+  font-size: 9px !important;
+  letter-spacing: 0.02em;
+  padding: 2px;
 }
 
 .cifra-titlebox { min-width: 0; }
@@ -8582,8 +8575,13 @@ function renderTabsView() {
   const catItemHtml = ({ key, meta, title, albumTitle }) => {
     const s = statusOf(meta);
     const disabledCls = s === 'soon' ? ' disabled' : '';
+    const album = getAlbum(title);
+    const coverHtml = (album && ALBUM_COVERS.has(album.id))
+      ? `<span class="cat-item-cover album-cover-img-wrap" data-album-id="${album.id}" aria-hidden="true"></span>`
+      : `<span class="cat-item-cover album-cover-fallback ${album ? (album.artist === 'Pearl Jam' ? 'pj' : album.artist === 'Eddie Vedder' ? 'ev' : 'misc') : 'misc'}" aria-hidden="true">${album ? (album.abbrev || album.title.slice(0,3)).replace(/\n.*$/,'') : '?'}</span>`;
     return `
       <button type="button" class="cat-item${disabledCls}" data-song-key="${key}" data-status="${s}" ${s === 'soon' ? 'aria-disabled="true"' : ''}>
+        ${coverHtml}
         <span class="cat-item-meta">
           <span class="cat-item-title">${title.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
           <span class="cat-item-album">${albumTitle.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
@@ -8714,6 +8712,10 @@ function renderTabsView() {
     _renderCifraDetail(detail, songKey, meta);
   });
 
+  // Hidrata covers dos cat-items com fotos reais do album (loadAlbumCovers
+  // tambem vai hidratar o cover do cifra-detail apos o auto-click abaixo).
+  if (typeof loadAlbumCovers === 'function') loadAlbumCovers();
+
   // Auto-select primeira musica ready/cifra-only se houver, pra view abrir
   // ja com conteudo em vez de empty state.
   const firstUsable = list.querySelector('.cat-item:not(.disabled)');
@@ -8735,22 +8737,12 @@ function _renderCifraDetail(container, songKey, tabMeta) {
   const albumYear = album ? album.year : '';
   const albumArtist = album ? (album.artist || 'Pearl Jam') : 'Pearl Jam';
 
-  // Cover: arte CSS pra Ten, foto pra demais albuns conhecidos, fallback generico.
-  let coverInner;
-  if (album && album.id === 'ten') {
-    coverInner = `
-      <div class="cover-ten">
-        <div class="cover-figures">
-          ${[0,1,2,3,4].map(i => `<div class="figure" style="left:${10 + i*17}%"></div>`).join('')}
-        </div>
-        <div class="cover-glow"></div>
-      </div>`;
-  } else if (album) {
-    coverInner = `<div class="cover-from-img" style="background-image:url('${albumCoverPath(album.id)}')"></div>`;
-  } else {
-    const sigla = (title.match(/\b\w/g) || []).slice(0, 2).join('').toUpperCase() || 'PJ';
-    coverInner = `<div class="cover-generic">${sigla}</div>`;
-  }
+  // Cover: usa a foto real do album via loadAlbumCovers() (mesmo loader do site
+   // inteiro, com fallback automatico pra .album-cover-fallback se imagem 404).
+  // Andre pediu: 'artes das musicas tem que ser do album igual na busca'.
+  const coverInner = (album && ALBUM_COVERS.has(album.id))
+    ? `<div class="album-cover-img-wrap" data-album-id="${album.id}"></div>`
+    : `<div class="album-cover-fallback ${album ? (album.artist === 'Pearl Jam' ? 'pj' : album.artist === 'Eddie Vedder' ? 'ev' : 'misc') : 'misc'}">${album ? ((album.abbrev || album.title).replace(/\n/g,'<br>')) : 'PJ'}</div>`;
 
   // Pills do header (key, tuning quando diferente do padrao EADGBE, capo, bpm).
   const pills = [];
@@ -8841,6 +8833,10 @@ function _renderCifraDetail(container, songKey, tabMeta) {
   _activeVoicePicker = container.querySelector('.voice-picker');
   const body = container.querySelector('.cifra-detail-body');
   _renderTabPanel(body, songKey, tabMeta);
+
+  // Hidrata o placeholder do cover com a foto real do album (fallback p/
+  // sigla se imagem 404). Mesmo loader usado pelos outros painéis do site.
+  if (typeof loadAlbumCovers === 'function') loadAlbumCovers();
 }
 
 // Render do pane de analise critica. Reusa o sistema de tabs (.lyric-lang-bar)
