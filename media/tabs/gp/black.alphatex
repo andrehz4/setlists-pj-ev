@@ -1,0 +1,21 @@
+\title "Black"
+\subtitle "Pearl Jam — Ten (1991)"
+\artist "Pearl Jam"
+\tempo 87
+\tuning E4 B3 G3 D3 A2 E2
+\instrument acousticGuitarSteel
+.
+// Intro / progressão básica do tema (Em - G - D - A)
+// Reduzida pra arpejo de violão; o arranjo original tem duas guitarras.
+
+\track "Acoustic Guitar"
+\trackvolume 100
+.
+// Compasso 1: Em (arpejo)
+:8 ( 0.6 0.5 0.4 ) (2.5 2.4) (0.3 0.2 0.1) ( 0.6 0.5 ) |
+// Compasso 2: G
+:8 ( 3.6 2.5 0.4 ) (0.3 0.2) (3.1 0.2) ( 3.6 2.5 ) |
+// Compasso 3: D
+:8 ( x.6 x.5 0.4 ) (2.3 3.2) (2.1 3.2) ( x.6 x.5 ) |
+// Compasso 4: A
+:8 ( x.6 0.5 2.4 ) (2.3 2.2) (0.1 2.2) ( 0.5 2.4 ) |

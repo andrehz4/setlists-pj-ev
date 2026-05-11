@@ -4,9 +4,9 @@
     "format": "{ song_key: { cifra: bool, tab: bool, key?: string, tuning?: string, capo?: int, notes?: string } }",
     "tuning_default": "EADGBE",
     "started": "2026-05-11",
-    "phase": "2 (cifras + chord-chips + diagrama SVG): black, alive, even flow cadastradas"
+    "phase": "3 (AlphaTab + .alphatex): black com tab inicial; cifras de black/alive/even flow"
   },
-  "black": { "cifra": true, "tab": false, "key": "Em", "tuning": "EADGBE" },
+  "black": { "cifra": true, "tab": true, "tabFormat": "alphatex", "key": "Em", "tuning": "EADGBE" },
   "alive": { "cifra": true, "tab": false, "key": "A", "tuning": "EADGBE" },
   "even flow": { "cifra": true, "tab": false, "key": "Em", "tuning": "EADGBE" },
   "yellow ledbetter": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },

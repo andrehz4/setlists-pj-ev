@@ -118,6 +118,23 @@ Cifra moderna renderizada como pílulas tipograficas azul-petroleo ($2e6b8a) sob
 3. click fora ou Esc fecha o popover;
 4. mobile (320-768px) nao quebra layout (cifra-token flex-direction column ja prevê quebra de linha).
 
+## Fase 3 TAB: AlphaTab via CDN lazy-load (sessao 2026-05-11 noite)
+Aba Tab agora renderiza tablatura vetorial via biblioteca AlphaTab (https://alphatab.net, MIT license), carregada via jsdelivr quando o usuario abre a aba Tab pela primeira vez (zero overhead se nunca usado).
+
+**Adicionado em index.html:**
+- `_loadScriptOnce` / `_loadStyleOnce`: helpers idempotentes pra inject de tag.
+- `_ensureAlphaTab()`: Promise singleton que carrega AlphaTab 1.5.0 (script + CSS) de cdn.jsdelivr.net. Retorna `window.alphaTab`.
+- `_initAlphaTabPanel(container, songKey, tabFormat)`: instancia AlphaTabApi com `staveProfile: 'tab'` (so tablatura, sem partitura) e `enablePlayer: false` (sem soundfont, leve). Aceita `.gp` (Guitar Pro binario via `file:`) ou `.alphatex` (texto plano via `tex:`, lido por fetch).
+- Atualizacao do fillTabBody: quando `hasTab=true`, cria `<div class="alphatab-surface">` e chama `_initAlphaTabPanel`. Mostra "carregando tablatura…" enquanto inicializa; fallback gracioso em caso de erro.
+
+**CSS novo:** `.alphatab-surface` com border azul-petroleo, overflow-x auto pra mobile, padding leve.
+
+**Conteudo cadastrado:** `media/tabs/gp/black.alphatex` com a progressao basica da intro de Black (Em - G - D - A) em formato AlphaTex (texto humano-editavel). Manifest marca `black: { tab: true, tabFormat: "alphatex" }`.
+
+**Por que .alphatex no exemplo:** AlphaTex e o formato texto nativo da AlphaTab, mais facil de versionar em git e editar sem app dedicado. Pra musicas com arranjos complexos (solos, multi-instrumento, ritmo detalhado), o melhor e usar `.gp` (Guitar Pro 7) exportado de Songsterr/UG.
+
+**Validacao pendente:** abrir Black no navegador, clicar TAB, ir pra aba Tab, conferir que carrega a tablatura. Possiveis ajustes: sintaxe do AlphaTex pode ter erros (nao testei contra a AlphaTab real); refinamento da progressao virá nos commits de curadoria.
+
 Plano completo em `C:\Users\engan\.claude\plans\shimmering-crunching-matsumoto.md`.
 
 ## Aba Tradutor no painel ANÁLISE (sessao 2026-05-11 noite)

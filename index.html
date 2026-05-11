@@ -3008,6 +3008,20 @@ html[data-theme="light"] .drawer-section-label.my-media {
   margin-top: 4px;
 }
 
+/* AlphaTab surface: container onde o AlphaTab renderiza a tablatura vetorial.
+   AlphaTab adiciona seus proprios estilos via .at-* classes — aqui so contemos
+   o overflow horizontal pra mobile e limitamos altura inicial. */
+.alphatab-surface {
+  min-height: 80px;
+  background: #fff;
+  border: 1px solid rgba(46, 107, 138, 0.2);
+  border-radius: 4px;
+  overflow-x: auto;
+  padding: 6px 4px;
+}
+.alphatab-surface .at-surface,
+.alphatab-surface .at-surface-svg { background: transparent !important; }
+
 .lyrics-song-title {
   font-family: var(--font-editorial);
   font-style: italic;
@@ -5508,11 +5522,25 @@ function openDrawer(showId) {
             _attachChordChipHandlers(cifraPane);
           });
         }
-        // Tab (AlphaTab) entra na Fase 3 — por enquanto fallback pra placeholder
-        // mesmo quando hasTab=true.
+        // Tab via AlphaTab (lazy load): renderiza notacao/tab vetorial no painel.
         if (hasTab) {
           const tabPane = body.querySelector('.tab-pane-tab');
-          if (tabPane) tabPane.innerHTML = soonPane('tab');
+          if (tabPane) {
+            const surface = document.createElement('div');
+            surface.className = 'alphatab-surface';
+            tabPane.innerHTML = '';
+            tabPane.appendChild(surface);
+            const loadingFlag = document.createElement('div');
+            loadingFlag.className = 'tab-pane-loading';
+            loadingFlag.textContent = 'carregando tablatura…';
+            tabPane.appendChild(loadingFlag);
+            _initAlphaTabPanel(surface, tabKey, tabMeta.tabFormat).then(() => {
+              loadingFlag.remove();
+            }).catch((err) => {
+              loadingFlag.remove();
+              tabPane.innerHTML = `<div class="tab-pane-soon">tablatura nao p&ocirc;de ser carregada (${(err && err.message) || 'erro desconhecido'})</div>`;
+            });
+          }
         }
 
         body.querySelectorAll('.lyric-lang-btn[data-tabtype]').forEach(b => {
@@ -6953,6 +6981,64 @@ function _renderChordDiagram(chordName) {
   svg += `<text x="${W / 2}" y="${H - 2}" font-family="sans-serif" font-size="11" font-weight="700" fill="#2e6b8a" text-anchor="middle">${chordName.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text>`;
   svg += `</svg>`;
   return svg;
+}
+// AlphaTab lazy loader + init. Carrega o script + estilo do AlphaTab via CDN
+// apenas quando o primeiro painel TAB ativo o exigir (zero overhead se nunca usado).
+let _alphaTabPromise = null;
+const _ALPHATAB_VERSION = '1.5.0';
+function _loadScriptOnce(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[data-src="${src}"]`)) return resolve();
+    const s = document.createElement('script');
+    s.src = src;
+    s.dataset.src = src;
+    s.onload = () => resolve();
+    s.onerror = (e) => reject(new Error('falha ao carregar ' + src));
+    document.head.appendChild(s);
+  });
+}
+function _loadStyleOnce(href) {
+  return new Promise((resolve) => {
+    if (document.querySelector(`link[data-href="${href}"]`)) return resolve();
+    const l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = href;
+    l.dataset.href = href;
+    l.onload = () => resolve();
+    l.onerror = () => resolve();
+    document.head.appendChild(l);
+  });
+}
+async function _ensureAlphaTab() {
+  if (window.alphaTab) return window.alphaTab;
+  if (!_alphaTabPromise) {
+    _alphaTabPromise = Promise.all([
+      _loadScriptOnce(`https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist/alphaTab.min.js`),
+      _loadStyleOnce(`https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist/alphaTab.min.css`),
+    ]).then(() => window.alphaTab);
+  }
+  return _alphaTabPromise;
+}
+async function _initAlphaTabPanel(container, songKey, tabFormat) {
+  const at = await _ensureAlphaTab();
+  if (!at) throw new Error('alphaTab indisponivel');
+  const slug = _tabSlug(songKey);
+  const ext = tabFormat === 'alphatex' ? 'alphatex' : (tabFormat || 'gp');
+  const fileUrl = `media/tabs/gp/${slug}.${ext}`;
+  const settings = {
+    player: { enablePlayer: false },
+    display: { staveProfile: 'tab' },
+    core: { fontDirectory: `https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist/font/` },
+  };
+  if (ext === 'alphatex') {
+    const r = await fetch(fileUrl, { cache: 'default' });
+    if (!r.ok) throw new Error('arquivo alphatex nao encontrado');
+    settings.tex = await r.text();
+  } else {
+    settings.file = fileUrl;
+  }
+  const api = new at.AlphaTabApi(container, settings);
+  return api;
 }
 function _attachChordChipHandlers(root) {
   let openPopover = null;
