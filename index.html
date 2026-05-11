@@ -7122,6 +7122,11 @@ function getInitialTheme() {
 // ========================================================================
 function activateTab(viewName, opts) {
   if (state.currentView === viewName) return;
+  // Saindo da view Cifras pra outra: para tudo que estava tocando (audio
+  // continuaria rodando em DOM hidden, era a confusao que Andre flagou).
+  if (state.currentView === 'tabs' && viewName !== 'tabs' && typeof _stopAllTabAudio === 'function') {
+    _stopAllTabAudio();
+  }
   if (window.track) track('tab_change', { view: viewName });
   const stamp = document.getElementById("loading-stamp");
   const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -8030,6 +8035,9 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const loopBtn = tabPane.querySelector('.alphatab-loop');
       const status = tabPane.querySelector('.alphatab-status');
       _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
+        // Registra como api ativa pra _stopAllTabAudio achar quando trocar musica
+        // ou view. Substitui qualquer api anterior (so um AlphaTab tocando por vez).
+        _activeAlphaTabApi = api;
         loading.remove();
         const fmt = (tabMeta.tabFormat || 'gp').toUpperCase();
         status.textContent = `${fmt} · click Play`;
@@ -8766,16 +8774,10 @@ function renderTabsView() {
     });
   }
 
-  const closeFloatingUI = () => {
-    const f = document.querySelector('.alphatab-fab');
-    if (f) f.classList.remove('show');
-    const cf = document.querySelector('.cifra-fab');
-    if (cf) cf.classList.remove('show');
-    const fb = document.querySelector('.fretboard-overlay');
-    if (fb) fb.classList.remove('show');
-    // Para o cifra player que possa estar tocando da musica anterior
-    if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
-  };
+  // closeFloatingUI: trocou de musica no catalogo -> para tudo (cifra player,
+  // AlphaTab, FAB, fretboard). Helper _stopAllTabAudio centraliza a logica
+  // de cleanup pra ser reusada quando o usuario sai da view Cifras tambem.
+  const closeFloatingUI = () => _stopAllTabAudio();
 
   // Click no item do catalogo: troca o detail panel
   list.addEventListener('click', (e) => {
@@ -9101,6 +9103,24 @@ async function _playChordSound(chordName, opts) {
 // o AlphaTab player (Play/Pause/Stop + FAB flutuante + scroll center).
 const _CIFRA_PLAYERS = new WeakMap(); // root -> { paused, currentIdx, abort, resumeSignal }
 let _activeCifraRoot = null; // root da cifra atualmente ativa (pra FAB global saber pra onde despachar)
+let _activeAlphaTabApi = null; // api do AlphaTab da musica atualmente carregada (pra cleanup ao trocar)
+
+// Para tudo que esta tocando: cifra player + AlphaTab + esconde FAB/fretboard.
+// Chamado ao trocar de musica no catalogo OU sair da view Cifras pra outra.
+function _stopAllTabAudio() {
+  if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
+  if (_activeAlphaTabApi) {
+    try { _activeAlphaTabApi.stop(); } catch(e) {}
+    try { _activeAlphaTabApi.destroy(); } catch(e) {}
+    _activeAlphaTabApi = null;
+  }
+  const f = document.querySelector('.alphatab-fab');
+  if (f) f.classList.remove('show');
+  const cf = document.querySelector('.cifra-fab');
+  if (cf) cf.classList.remove('show');
+  const fb = document.querySelector('.fretboard-overlay');
+  if (fb) fb.classList.remove('show');
+}
 
 function _renderCifraPlayerBar(root, state) {
   const playBtn = root.querySelector('.cifra-play-btn');
