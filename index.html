@@ -4174,14 +4174,274 @@ html[data-theme="light"] .drawer-section-label.my-media {
 /* Layout 2-col: catalog lateral + detail panel.
    Catalog-aside fica sticky e rola interno; detail rola com a pagina. */
 .tabs-layout {
+  --mixer-w: 280px;
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 280px 1fr var(--mixer-w);
   gap: 24px;
   align-items: start;
 }
-@media (max-width: 880px) {
-  .tabs-layout { grid-template-columns: 1fr; }
+.tabs-layout.mixer-collapsed { --mixer-w: 44px; }
+@media (max-width: 1100px) {
+  /* Em telas medias, sem espaco pra mixer expandido por default. Aparece
+     colapsado e usuario expande manualmente. */
+  .tabs-layout { --mixer-w: 44px; }
 }
+@media (max-width: 880px) {
+  /* No mobile, mixer fica embaixo (full-width) abaixo do detail. */
+  .tabs-layout {
+    grid-template-columns: 1fr;
+    --mixer-w: 100%;
+  }
+}
+
+/* ======= MIXER ASIDE (sidebar lateral de tracks estilo Songsterr) ======= */
+.mixer-aside {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--divider-strong);
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: padding 180ms ease;
+}
+.mixer-aside[data-state="collapsed"] {
+  padding: 10px 6px;
+  align-items: center;
+  gap: 6px;
+}
+.mixer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.mixer-title {
+  font: 800 14px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+  flex: 1;
+}
+.mixer-toggle {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--ink-mute);
+  font-size: 14px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  transition: background 120ms ease, color 120ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.mixer-toggle:hover { background: rgba(0,0,0,0.06); color: var(--ink); }
+.mixer-aside[data-state="collapsed"] .mixer-title { display: none; }
+.mixer-aside[data-state="collapsed"] .mixer-header { width: 100%; justify-content: center; }
+
+/* Master volume row */
+.mixer-master {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--divider);
+  margin-bottom: 4px;
+}
+.mixer-master-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.06);
+  border: 0;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: background 120ms ease;
+}
+.mixer-master-icon:hover { background: rgba(0,0,0,0.1); }
+.mixer-master-icon.muted { background: rgba(193,39,45,0.15); color: var(--pj); }
+.mixer-master-slider, .mixer-track-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: var(--divider-strong);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  min-width: 0;
+}
+.mixer-master-slider::-webkit-slider-thumb, .mixer-track-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+.mixer-master-slider::-moz-range-thumb, .mixer-track-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+.mixer-track-slider::-webkit-slider-thumb { background: var(--track-color, var(--ink)); }
+.mixer-track-slider::-moz-range-thumb { background: var(--track-color, var(--ink)); }
+.mixer-master-val, .mixer-track-val {
+  font: 600 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-mute);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* Lista de tracks */
+.mixer-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 4px;
+}
+.mixer-tracks::-webkit-scrollbar { width: 6px; }
+.mixer-tracks::-webkit-scrollbar-thumb { background: var(--divider-strong); border-radius: 3px; }
+.mixer-track {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  padding: 8px 6px;
+  border-radius: 4px;
+  border-left: 3px solid var(--track-color, transparent);
+  background: transparent;
+  transition: background 120ms ease;
+}
+.mixer-track:hover { background: rgba(0,0,0,0.03); }
+.mixer-track.active { background: rgba(0,0,0,0.05); }
+.mixer-track.muted { opacity: 0.5; }
+.mixer-track-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 12px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink);
+}
+.mixer-track-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mixer-track-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mixer-track-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.mixer-track-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--divider-strong);
+  background: var(--bg-card);
+  color: var(--ink);
+  font: 700 9px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 120ms ease;
+  padding: 0;
+}
+.mixer-track-btn:hover { background: rgba(0,0,0,0.06); }
+.mixer-track-btn.active {
+  background: var(--track-color, var(--ink));
+  color: #fff;
+  border-color: transparent;
+}
+.mixer-track-btn.s.active { background: #d68d20; }   /* Solo amarelo */
+.mixer-track-btn.m.active { background: var(--pj, #c1272d); } /* Mute vermelho */
+.mixer-track-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.mixer-track-icon svg { width: 16px; height: 16px; display: block; }
+
+/* Modo COLAPSADO: só ícones verticais centralizados */
+.mixer-aside[data-state="collapsed"] .mixer-master { display: none; }
+.mixer-aside[data-state="collapsed"] .mixer-track {
+  grid-template-columns: 1fr;
+  padding: 6px 0;
+  border-left: 0;
+  position: relative;
+}
+.mixer-aside[data-state="collapsed"] .mixer-track::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 18px;
+  background: var(--track-color, transparent);
+  border-radius: 2px;
+}
+.mixer-aside[data-state="collapsed"] .mixer-track-info,
+.mixer-aside[data-state="collapsed"] .mixer-track-slider,
+.mixer-aside[data-state="collapsed"] .mixer-track-val,
+.mixer-aside[data-state="collapsed"] .mixer-track-btn.c {
+  display: none;
+}
+.mixer-aside[data-state="collapsed"] .mixer-track-row {
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.mixer-aside[data-state="collapsed"] .mixer-track-controls {
+  flex-direction: column;
+  gap: 3px;
+}
+.mixer-aside[data-state="collapsed"] .mixer-track-icon {
+  font-size: 14px;
+}
+
+/* Dark theme overrides */
+html[data-theme="dark"] .mixer-aside {
+  background: var(--bg-card);
+  border-color: var(--divider-strong);
+}
+html[data-theme="dark"] .mixer-master-icon { background: rgba(255,255,255,0.06); }
+html[data-theme="dark"] .mixer-master-icon:hover { background: rgba(255,255,255,0.1); }
+html[data-theme="dark"] .mixer-track-btn { background: var(--bg-card); }
+html[data-theme="dark"] .mixer-track-btn:hover { background: rgba(255,255,255,0.06); }
+html[data-theme="dark"] .mixer-track:hover { background: rgba(255,255,255,0.03); }
+html[data-theme="dark"] .mixer-track.active { background: rgba(255,255,255,0.05); }
 
 .catalog-aside {
   position: sticky;
@@ -9728,6 +9988,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
           // ativo (_activeVoicePicker == null) e essa chamada vira no-op.
           if (typeof _populateVoicePicker === 'function') _populateVoicePicker(_activeVoicePicker, tracks);
 
+          // Popula o mixer-aside (sidebar lateral direita estilo Songsterr).
+          // Como o voice-picker, so existe no contexto Cifras & Tabs.
+          const mixerAside = document.querySelector('.tabs-layout .mixer-aside');
+          if (mixerAside && typeof _populateMixer === 'function') _populateMixer(mixerAside, tracks);
+
           // Popula checkboxes de tracks no fretboard (filtro visual)
           fbSelectedTracks = new Set(tracks.map((_, i) => i));
           if (fretPlayersContainer && tracks.length > 0) {
@@ -10090,6 +10355,22 @@ function renderTabsView() {
           <div class="cifra-empty-sub">Black, Alive e Even Flow t&ecirc;m cifra. Tab vetorial: Black.</div>
         </div>
       </section>
+      <aside class="mixer-aside" data-state="expanded" aria-label="Mixer de tracks">
+        <div class="mixer-header">
+          <h3 class="mixer-title">Instrumentos</h3>
+          <button type="button" class="mixer-toggle" aria-label="Minimizar painel" title="Minimizar/expandir">📌</button>
+        </div>
+        <div class="mixer-master">
+          <button type="button" class="mixer-master-icon" aria-label="Mute master" title="Mute master">🔊</button>
+          <input type="range" class="mixer-master-slider" min="0" max="1" step="0.05" value="0.8" aria-label="Volume master">
+          <span class="mixer-master-val">80%</span>
+        </div>
+        <div class="mixer-tracks" role="list">
+          <div class="mixer-empty" style="font:italic 11px/1.4 var(--font-editorial, Georgia, serif);color:var(--ink-dim);text-align:center;padding:16px 4px;">
+            Selecione uma m&uacute;sica com tab pra controlar tracks.
+          </div>
+        </div>
+      </aside>
     </div>
   `;
 
@@ -10510,8 +10791,209 @@ function _populateVoicePicker(picker, tracks) {
           try { _activeAlphaTabApi.changeTrackVolume([track], v); } catch (err) {}
         }
       }
+      // Sync slider do mixer-aside
+      const mixSlider = document.querySelector(`.mixer-track[data-idx="${idx}"] .mixer-track-slider`);
+      if (mixSlider && parseFloat(mixSlider.value) !== v) {
+        mixSlider.value = v;
+        const mv = mixSlider.parentElement.querySelector('.mixer-track-val');
+        if (mv) mv.textContent = Math.round(v * 100) + '%';
+      }
     });
   });
+}
+
+// ===== MIXER ASIDE (sidebar lateral de tracks, estilo Songsterr) =====
+// Popula .mixer-tracks com 1 row por track. Cada row: cor+nome+slider+
+// botoes C/S/M + icone do instrumento. Sincroniza bidirecionalmente
+// com voice-picker (cards Stone/Mike/Jeff) e fretboard-players (mute
+// visual). Volume hooked direto em api.changeTrackVolume.
+const _MIXER_ICONS = {
+  voice:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 19v3"/></svg>',
+  guitar:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4l6 6-2 2-2-2-7 7c-1 1-3 1-4 0s-1-3 0-4l7-7-2-2zM6 18l-2 2"/></svg>',
+  bass:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l5 5-3 3-2-2-8 8c-1 1-3 1-4 0s-1-3 0-4l8-8-2-2zM4 21l3-3"/><circle cx="6" cy="18" r="1.2" fill="currentColor"/></svg>',
+  ukulele: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="9" cy="16" rx="5" ry="6"/><path d="M13 12l6-7M17 7l2 2"/></svg>',
+  drums:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="8" rx="9" ry="3"/><path d="M3 8v6c0 1.7 4 3 9 3s9-1.3 9-3V8"/><path d="M8 14v4M16 14v4"/></svg>',
+  piano:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="1"/><path d="M7 5v9M12 5v9M17 5v9" /><rect x="5" y="5" width="3" height="6" fill="currentColor" stroke="none"/><rect x="10" y="5" width="3" height="6" fill="currentColor" stroke="none"/><rect x="15" y="5" width="3" height="6" fill="currentColor" stroke="none"/></svg>',
+};
+function _inferTrackKind(rawName, track) {
+  const name = String(rawName || '');
+  if (/voice|vox|vocal|sing|sing|axl|eddie|cant/i.test(name)) return 'voice';
+  if (/uke|ukulele/i.test(name)) return 'ukulele';
+  if (/piano|key|organ|rhodes/i.test(name)) return 'piano';
+  if (/drum|bater|percuss/i.test(name)) return 'drums';
+  if (track && track.staves && track.staves[0] && track.staves[0].isPercussion) return 'drums';
+  if (track && track.playbackInfo && track.playbackInfo.primaryChannel === 9) return 'drums';
+  if (/bass|baix|ament|jeff/i.test(name)) return 'bass';
+  const sc = track && track.staves && track.staves[0] && (track.staves[0].tuning || []).length;
+  if (sc && sc <= 5 && sc > 0) return 'bass';
+  return 'guitar';
+}
+function _populateMixer(mixerAside, tracks) {
+  if (!mixerAside || !tracks) return;
+  const trackList = mixerAside.querySelector('.mixer-tracks');
+  if (!trackList) return;
+  if (!tracks.length) {
+    trackList.innerHTML = '<div class="mixer-empty" style="font:italic 11px/1.4 var(--font-editorial, Georgia, serif);color:var(--ink-dim);text-align:center;padding:16px 4px;">Sem tracks nesta peça.</div>';
+    return;
+  }
+  const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
+  const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  trackList.innerHTML = tracks.map((t, i) => {
+    const rawName = t.name || `Track ${i + 1}`;
+    const color = TRACK_COLORS[i % TRACK_COLORS.length];
+    const kind = _inferTrackKind(rawName, t);
+    const icon = _MIXER_ICONS[kind] || _MIXER_ICONS.guitar;
+    return `
+      <div class="mixer-track active" data-idx="${i}" data-kind="${kind}" style="--track-color:${color}" role="listitem">
+        <div class="mixer-track-info">
+          <span class="mixer-track-name" title="${esc(rawName)}">${esc(rawName)}</span>
+        </div>
+        <div class="mixer-track-row">
+          <input type="range" class="mixer-track-slider" min="0" max="1.5" step="0.05" value="1" aria-label="Volume ${esc(rawName)}">
+          <span class="mixer-track-val">100%</span>
+          <div class="mixer-track-controls">
+            <button type="button" class="mixer-track-btn s" aria-pressed="false" aria-label="Solo">S</button>
+            <button type="button" class="mixer-track-btn m" aria-pressed="false" aria-label="Mute">M</button>
+            <span class="mixer-track-icon" aria-hidden="true">${icon}</span>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Volume slider por track: aplica api.changeTrackVolume + sincroniza voice-picker
+  trackList.querySelectorAll('.mixer-track-slider').forEach(input => {
+    input.addEventListener('input', (e) => {
+      e.stopPropagation();
+      const row = input.closest('.mixer-track');
+      const idx = parseInt(row.dataset.idx, 10);
+      const v = parseFloat(input.value);
+      const valSpan = row.querySelector('.mixer-track-val');
+      if (valSpan) valSpan.textContent = Math.round(v * 100) + '%';
+      if (_activeAlphaTabApi && _activeAlphaTabApi.score && _activeAlphaTabApi.score.tracks) {
+        const track = _activeAlphaTabApi.score.tracks[idx];
+        if (track) {
+          try { _activeAlphaTabApi.changeTrackVolume([track], v); } catch (err) {}
+        }
+      }
+      // Sync com voice-picker
+      const vpSlider = document.querySelector(`.voice-tab[data-idx="${idx}"] .voice-tab-vol input[type=range]`);
+      if (vpSlider && parseFloat(vpSlider.value) !== v) {
+        vpSlider.value = v;
+        const vv = vpSlider.parentElement.querySelector('.vol-val');
+        if (vv) vv.textContent = Math.round(v * 100);
+      }
+    });
+  });
+
+  // Mute toggle: dispara click no checkbox fretboard-players / alphatab-tracks
+  trackList.querySelectorAll('.mixer-track-btn.m').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const row = btn.closest('.mixer-track');
+      const idx = row.dataset.idx;
+      const wasMuted = row.classList.contains('muted');
+      const newActive = wasMuted;  // toggling: se ja muted, volta a active
+      row.classList.toggle('muted', !wasMuted);
+      row.classList.toggle('active', newActive);
+      btn.classList.toggle('active', !wasMuted);
+      btn.setAttribute('aria-pressed', !wasMuted ? 'true' : 'false');
+      // Sync com voice-picker (toggle ja propaga pros checkboxes)
+      const vpToggle = document.querySelector(`.voice-tab[data-idx="${idx}"] .voice-tab-toggle`);
+      if (vpToggle) {
+        const vpCard = vpToggle.closest('.voice-tab');
+        if (vpCard && vpCard.classList.contains('active') === !newActive) {
+          vpToggle.click();
+        }
+      } else {
+        // Fallback: aciona direto os checkboxes
+        const cbFret = document.querySelector(`.fretboard-players input[data-idx="${idx}"]`);
+        const cbTrack = document.querySelector(`.alphatab-tracks input[data-track-idx="${idx}"]`);
+        if (cbFret && cbFret.checked === !newActive) cbFret.click();
+        if (cbTrack && cbTrack.checked === !newActive) cbTrack.click();
+      }
+    });
+  });
+
+  // Solo: muta as outras tracks (delega pra logica do voice-picker se existir,
+  // senao implementa local).
+  trackList.querySelectorAll('.mixer-track-btn.s').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const row = btn.closest('.mixer-track');
+      const targetIdx = row.dataset.idx;
+      const wasSolo = row.classList.contains('solo');
+      const vpSolo = document.querySelector(`.voice-tab[data-idx="${targetIdx}"] .voice-tab-solo`);
+      if (vpSolo) {
+        vpSolo.click();
+        // Sync visual: voice-picker ja propaga, agora atualiza mixer rows
+        trackList.querySelectorAll('.mixer-track').forEach(r => {
+          const isTarget = r.dataset.idx === targetIdx;
+          r.classList.toggle('solo', !wasSolo && isTarget);
+          const sBtn = r.querySelector('.mixer-track-btn.s');
+          if (sBtn) {
+            sBtn.classList.toggle('active', !wasSolo && isTarget);
+            sBtn.setAttribute('aria-pressed', (!wasSolo && isTarget) ? 'true' : 'false');
+          }
+        });
+      }
+    });
+  });
+
+  // Persist + aplicar estado expandido/colapsado salvo
+  try {
+    const collapsed = localStorage.getItem('mixer_collapsed') === '1';
+    mixerAside.dataset.state = collapsed ? 'collapsed' : 'expanded';
+    const tabsLayout = mixerAside.closest('.tabs-layout');
+    if (tabsLayout) tabsLayout.classList.toggle('mixer-collapsed', collapsed);
+  } catch (_) {}
+
+  // Toggle expand/collapse
+  const toggleBtn = mixerAside.querySelector('.mixer-toggle');
+  if (toggleBtn && !toggleBtn.dataset.bound) {
+    toggleBtn.dataset.bound = '1';
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isCollapsed = mixerAside.dataset.state === 'collapsed';
+      const newState = isCollapsed ? 'expanded' : 'collapsed';
+      mixerAside.dataset.state = newState;
+      const tabsLayout = mixerAside.closest('.tabs-layout');
+      if (tabsLayout) tabsLayout.classList.toggle('mixer-collapsed', newState === 'collapsed');
+      try { localStorage.setItem('mixer_collapsed', newState === 'collapsed' ? '1' : '0'); } catch (_) {}
+      toggleBtn.textContent = newState === 'collapsed' ? '◀' : '📌';
+      toggleBtn.setAttribute('aria-label', newState === 'collapsed' ? 'Expandir painel' : 'Minimizar painel');
+    });
+  }
+
+  // Master volume + mute master
+  const masterSlider = mixerAside.querySelector('.mixer-master-slider');
+  const masterVal = mixerAside.querySelector('.mixer-master-val');
+  const masterIcon = mixerAside.querySelector('.mixer-master-icon');
+  if (masterSlider && !masterSlider.dataset.bound) {
+    masterSlider.dataset.bound = '1';
+    let preMute = 0.8;
+    masterSlider.addEventListener('input', (e) => {
+      e.stopPropagation();
+      const v = parseFloat(masterSlider.value);
+      if (masterVal) masterVal.textContent = Math.round(v * 100) + '%';
+      if (_activeAlphaTabApi) {
+        try { _activeAlphaTabApi.masterVolume = v; } catch (err) {}
+      }
+      if (masterIcon) {
+        masterIcon.classList.toggle('muted', v === 0);
+        masterIcon.textContent = v === 0 ? '🔇' : '🔊';
+      }
+      if (v > 0) preMute = v;
+    });
+    if (masterIcon) {
+      masterIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const cur = parseFloat(masterSlider.value);
+        const next = cur === 0 ? preMute : 0;
+        masterSlider.value = next;
+        masterSlider.dispatchEvent(new Event('input'));
+      });
+    }
+  }
 }
 
 // Som arpejado do acorde via smplr (https://github.com/danigb/smplr, MIT).
