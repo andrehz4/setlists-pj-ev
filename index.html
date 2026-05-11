@@ -5298,7 +5298,7 @@ function renderSearch(query) {
       }
       if (noteText) {
         const noteHtml = noteText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join('');
-        parts.push(`<details class="interp" open><summary>Nota do tradutor · em português</summary><div class="body" lang="pt">${noteHtml}</div></details>`);
+        parts.push(`<details class="interp" open><summary>Opinião · em português</summary><div class="body" lang="pt">${noteHtml}</div></details>`);
       }
       extras = `<div class="search-extras">${parts.join('')}</div>`;
     }
@@ -5378,7 +5378,7 @@ function openDrawer(showId) {
           <summary class="audio-notes-summary"><span aria-hidden="true">🎧 </span>Transcrição do áudio (${MEDIA_MANIFEST[showId].audio.length} faixas)</summary>
           <div class="audio-notes-body">
             ${customNotes}
-            <p>O áudio deste show é um bootleg fonográfico oficial. As músicas em inglês têm letras disponíveis: clique em <strong>LETRA</strong> ao lado do nome de cada música no setlist acima para ler o texto cantado, com tradução em português quando cadastrada. O botão <strong>ANÁLISE</strong> abre o ensaio abaixo da faixa em abas (PT, EN e nota do tradutor, conforme a disponibilidade). O botão <strong>TAB</strong> abre cifra e tablatura, quando cadastradas, nas duas abas correspondentes.</p>
+            <p>O áudio deste show é um bootleg fonográfico oficial. As músicas em inglês têm letras disponíveis: clique em <strong>LETRA</strong> ao lado do nome de cada música no setlist acima para ler o texto cantado, com tradução em português quando cadastrada. O botão <strong>ANÁLISE</strong> abre o ensaio abaixo da faixa em abas (PT, EN e opinião, conforme a disponibilidade). O botão <strong>TAB</strong> abre cifra e tablatura, quando cadastradas, nas duas abas correspondentes.</p>
             <p style="color:var(--ink-mute);font-size:13px;">Stage banter (falas de Eddie entre músicas), reações da plateia e coros não estão transcritos. Encore breaks são pausas instrumentais entre os blocos do show.</p>
           </div>
         </details>
@@ -5591,13 +5591,13 @@ function openDrawer(showId) {
       const tabs = [];
       if (interpPT) tabs.push({ key: 'pt', label: 'PT', lang: 'pt' });
       if (interpEN) tabs.push({ key: 'en', label: 'EN', lang: 'en' });
-      if (lyricNote) tabs.push({ key: 'tr', label: 'Tradutor', lang: 'pt' });
+      if (lyricNote) tabs.push({ key: 'tr', label: 'Opinião', lang: 'pt' });
       const defaultTab = tabs[0].key;
       const tabLabels = tabs.map(t => t.label).join('/');
       const ariaSingleSuffix = tabs.length === 1
         ? (defaultTab === 'pt' ? ', em português'
           : defaultTab === 'en' ? ', em inglês'
-          : ', nota do tradutor em português')
+          : ', opinião em português')
         : `, ${tabLabels}`;
 
       const btn = document.createElement('span');
@@ -7464,8 +7464,9 @@ async function _ensureGuitarSampler() {
     // smplr hospedado localmente; samples MP3 do violao ainda vem do
     // gleitz.github.io (default do smplr). Pode ser tambem local depois.
     const smplrUrl = new URL('media/lib/smplr/index.mjs', document.baseURI).href;
+    const sfUrl = new URL('media/lib/smplr-soundfonts/acoustic_guitar_steel-mp3.js', document.baseURI).href;
     const smplr = await import(smplrUrl);
-    const sampler = new smplr.Soundfont(ctx, { instrument: 'acoustic_guitar_steel' });
+    const sampler = new smplr.Soundfont(ctx, { instrumentUrl: sfUrl });
     await sampler.load;
     return sampler;
   })();
