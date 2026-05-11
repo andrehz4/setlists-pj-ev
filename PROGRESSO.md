@@ -187,6 +187,42 @@ Click no chord-chip agora toca o acorde como arpejo de violao acustico, alem de 
 - Baixar os 88 samples acoustic_guitar_steel pra `media/sound/acoustic-guitar/`.
 - Configurar smplr com `instrumentUrl` apontando local. Zero dep externa, +5MB no repo, mais rapido (mesmo origin).
 
+## Players (Cifra + AlphaTab) (sessao 2026-05-11 noite)
+Dois players adicionados ao painel TAB: um simples na aba Cifra (percorre acordes no BPM) e um rico na aba Tab (AlphaTab nativo, cursor sincronizado).
+
+**Player de Cifra (aba Cifra):**
+- Barra com botao `▶ Play` + meta `87 BPM · ~2 beats por acorde · violão acústico`.
+- `_startCifraPlayer(root, bpm)`: percorre todos os chord-chips em ordem de aparicao, toca cada um arpejado (chamada a `_playChordSound`) e ilumina via classe `.chord-chip-playing` (animacao `chord-pulse` 600ms + box-shadow vermelho PJ).
+- Duracao por acorde: `2 * 60/BPM` segundos. Scroll automatico pra manter o chip ativo visivel.
+- `_stopCifraPlayer(root)`: aborta loop, limpa highlight, restaura botao.
+- Estado armazenado em `WeakMap` por root pane (suporta multiplos painés abertos simultaneos).
+- BPM cadastrado no manifest: black=87, alive=78, even flow=110. Default 90 se ausente.
+
+**Player de Tab (aba Tab):**
+- `_initAlphaTabPanel` agora passa `enablePlayer: true`, `enableCursor: true`, `soundFont: sonivox.sf3` do CDN jsdelivr (~2MB lazy).
+- Transport bar com `▶ Play` (toggla pra `❚❚ Pause`), `◼ Stop` e status text.
+- Hooks em `api.playerStateChanged` e `api.playerReady` pra sincronizar UI.
+- Player toca a tablatura completa com cursor visual andando, no tempo do .gp/.alphatex.
+
+**CSS novo:**
+- `.chord-chip.chord-chip-playing` (vermelho PJ + dual box-shadow + pulse animation).
+- `@keyframes chord-pulse` (scale 1 -> 1.18 -> 1).
+- `.cifra-player-bar`, `.cifra-play-btn` (azul-petroleo idle, vermelho PJ playing), `.cifra-player-meta`.
+- `.alphatab-transport`, `.alphatab-btn`, `.alphatab-play[data-state=playing]`, `.alphatab-status`.
+
+**Performance:**
+- Cifra player: zero overhead extra (reusa smplr ja carregado pelo click).
+- AlphaTab player: primeiro Play baixa sonivox.sf3 ~2MB do CDN (lazy). Cache subsequente.
+- Smplr samples + AlphaTab SoundFont sao bancos diferentes: ambos cobrem TODAS as musicas (~5MB + ~2MB = 7MB total externo, mas pode hospedar local depois).
+
+**Smoke test passa:** todos os markers HTML/JS/CSS no lugar, BPM cadastrado no manifest pra black/alive/even flow.
+
+**Validacao pendente no browser:**
+1. Cifra: click Play em Black → chord-chips iluminam um por um no ritmo, audio arpejado em loop.
+2. Tab: click Play em Black aba Tab → cursor AlphaTab anda pela tab e som toca via sonivox.
+3. Stop interrompe ambos.
+4. Multiplos paineis abertos simultaneos nao conflitam.
+
 Plano completo em `C:\Users\engan\.claude\plans\shimmering-crunching-matsumoto.md`.
 
 ## Aba Tradutor no painel ANÁLISE (sessao 2026-05-11 noite)

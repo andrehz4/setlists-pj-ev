@@ -2964,6 +2964,46 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .chord-chip:hover,
 .chord-chip:focus-visible { background: #1f4e6a; }
+.chord-chip.chord-chip-playing {
+  background: var(--pj, #c1272d);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--pj, #c1272d);
+  animation: chord-pulse 600ms ease-out;
+}
+@keyframes chord-pulse {
+  0%   { transform: scale(1); }
+  18%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.cifra-player-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background: rgba(46, 107, 138, 0.06);
+  border: 1px solid rgba(46, 107, 138, 0.18);
+  border-radius: 4px;
+}
+.cifra-play-btn {
+  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: #2e6b8a;
+  color: #fff;
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 120ms ease;
+  min-width: 86px;
+}
+.cifra-play-btn:hover { background: #1f4e6a; }
+.cifra-play-btn[data-state="playing"] { background: var(--pj, #c1272d); }
+.cifra-play-btn[data-state="playing"]:hover { background: #8a1c20; }
+.cifra-player-meta {
+  font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
+  color: var(--ink-mute, #6b5e44);
+}
 .chord-chip-spacer {
   display: inline-block;
   height: 16px;
@@ -3021,6 +3061,37 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .alphatab-surface .at-surface,
 .alphatab-surface .at-surface-svg { background: transparent !important; }
+.alphatab-transport {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: rgba(46, 107, 138, 0.06);
+  border: 1px solid rgba(46, 107, 138, 0.18);
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+.alphatab-btn {
+  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: #2e6b8a;
+  color: #fff;
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 120ms ease;
+  min-width: 86px;
+}
+.alphatab-btn:hover { background: #1f4e6a; }
+.alphatab-play[data-state="playing"] { background: var(--pj, #c1272d); }
+.alphatab-play[data-state="playing"]:hover { background: #8a1c20; }
+.alphatab-status {
+  font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
+  color: var(--ink-mute, #6b5e44);
+}
 
 /* View "Cifras & Tabs": grid de cards (visual similar a Deep), expansivel
    pra mostrar o painel completo de cifra/tab inline. */
@@ -7086,10 +7157,16 @@ async function _initAlphaTabPanel(container, songKey, tabFormat) {
   const slug = _tabSlug(songKey);
   const ext = tabFormat === 'alphatex' ? 'alphatex' : (tabFormat || 'gp');
   const fileUrl = `media/tabs/gp/${slug}.${ext}`;
+  const cdnBase = `https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist`;
   const settings = {
-    player: { enablePlayer: false },
+    player: {
+      enablePlayer: true,
+      enableCursor: true,
+      soundFont: `${cdnBase}/soundfont/sonivox.sf3`,
+      scrollMode: 'continuous',
+    },
     display: { staveProfile: 'tab' },
-    core: { fontDirectory: `https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist/font/` },
+    core: { fontDirectory: `${cdnBase}/font/` },
   };
   if (ext === 'alphatex') {
     const r = await fetch(fileUrl, { cache: 'default' });
@@ -7140,25 +7217,68 @@ function _renderTabPanel(body, songKey, tabMeta) {
     const cifraPane = body.querySelector('.tab-pane-cifra');
     _loadCifra(songKey).then(txt => {
       if (!cifraPane) return;
-      cifraPane.innerHTML = txt ? _renderChordPro(txt) : soonPane('cifra');
+      if (!txt) { cifraPane.innerHTML = soonPane('cifra'); return; }
+      const bpm = tabMeta.bpm || 90;
+      const playerBar = `
+        <div class="cifra-player-bar">
+          <button type="button" class="cifra-play-btn" data-state="idle" aria-label="Tocar cifra arpejada">▶ Play</button>
+          <span class="cifra-player-meta">${bpm} BPM · ~2 beats por acorde · violão acústico</span>
+        </div>`;
+      cifraPane.innerHTML = playerBar + _renderChordPro(txt);
       _attachChordChipHandlers(cifraPane);
+      const playBtn = cifraPane.querySelector('.cifra-play-btn');
+      if (playBtn) {
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (playBtn.dataset.state === 'playing') _stopCifraPlayer(cifraPane);
+          else _startCifraPlayer(cifraPane, bpm);
+        });
+      }
     });
   }
   if (hasTab) {
     const tabPane = body.querySelector('.tab-pane-tab');
     if (tabPane) {
-      const surface = document.createElement('div');
-      surface.className = 'alphatab-surface';
-      tabPane.innerHTML = '';
-      tabPane.appendChild(surface);
-      const loadingFlag = document.createElement('div');
-      loadingFlag.className = 'tab-pane-loading';
-      loadingFlag.textContent = 'carregando tablatura…';
-      tabPane.appendChild(loadingFlag);
-      _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(() => {
-        loadingFlag.remove();
+      tabPane.innerHTML = `
+        <div class="alphatab-transport" role="toolbar" aria-label="Controles de reprodução da tablatura">
+          <button type="button" class="alphatab-btn alphatab-play" data-state="idle" aria-label="Tocar tablatura">▶ Play</button>
+          <button type="button" class="alphatab-btn alphatab-stop" aria-label="Parar reprodução">◼ Stop</button>
+          <span class="alphatab-status">aguardando soundfont…</span>
+        </div>
+        <div class="alphatab-surface"></div>
+        <div class="tab-pane-loading">carregando tablatura…</div>
+      `;
+      const surface = tabPane.querySelector('.alphatab-surface');
+      const loading = tabPane.querySelector('.tab-pane-loading');
+      const playBtn = tabPane.querySelector('.alphatab-play');
+      const stopBtn = tabPane.querySelector('.alphatab-stop');
+      const status = tabPane.querySelector('.alphatab-status');
+      _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
+        loading.remove();
+        status.textContent = 'soundfont sonivox · click Play';
+        // Estado do player: 0=parado, 1=tocando, 2=pausado.
+        api.playerStateChanged.on(e => {
+          if (e.state === 1) {
+            playBtn.dataset.state = 'playing';
+            playBtn.textContent = '❚❚ Pause';
+            status.textContent = 'tocando…';
+          } else {
+            playBtn.dataset.state = 'idle';
+            playBtn.textContent = '▶ Play';
+            status.textContent = e.state === 2 ? 'pausado' : 'parado';
+          }
+        });
+        api.playerReady.on(() => { status.textContent = 'pronto · click Play'; });
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          api.playPause();
+        });
+        stopBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          api.stop();
+        });
       }).catch((err) => {
-        loadingFlag.remove();
+        loading.remove();
         tabPane.innerHTML = `<div class="tab-pane-soon">tablatura nao p&ocirc;de ser carregada (${(err && err.message) || 'erro desconhecido'})</div>`;
       });
     }
@@ -7302,7 +7422,7 @@ function _chordToMidiNotes(chordName) {
   }
   return notes;
 }
-async function _playChordSound(chordName) {
+async function _playChordSound(chordName, opts) {
   try {
     const notes = _chordToMidiNotes(chordName);
     if (!notes.length) return;
@@ -7310,11 +7430,47 @@ async function _playChordSound(chordName) {
     const ctx = _getAudioCtx();
     if (ctx.state === 'suspended') { try { await ctx.resume(); } catch(e) {} }
     const now = ctx.currentTime;
-    // Arpejo de baixo pra cima: notes vem ordenado da 6a corda (grave) pra 1a (aguda)
+    const duration = (opts && opts.duration) || 1.6;
+    const velocity = (opts && opts.velocity) || 75;
     notes.forEach((note, i) => {
-      sampler.start({ note, velocity: 75, time: now + i * 0.025, duration: 1.6 });
+      sampler.start({ note, velocity, time: now + i * 0.025, duration });
     });
   } catch (e) { /* silencioso: feature opcional */ }
+}
+
+// Player de Cifra: percorre os chord-chips na ordem em que aparecem,
+// tocando cada um por (beatsPerChord * 60/BPM) segundos. Ilumina o chip ativo.
+const _CIFRA_PLAYERS = new WeakMap(); // root -> { state, abortFn }
+function _stopCifraPlayer(root) {
+  const player = _CIFRA_PLAYERS.get(root);
+  if (player && player.abort) player.abort();
+  _CIFRA_PLAYERS.delete(root);
+  root.querySelectorAll('.chord-chip.chord-chip-playing').forEach(c => c.classList.remove('chord-chip-playing'));
+  const btn = root.querySelector('.cifra-play-btn');
+  if (btn) { btn.dataset.state = 'idle'; btn.textContent = '▶ Play'; }
+}
+async function _startCifraPlayer(root, bpm) {
+  _stopCifraPlayer(root);
+  const chips = Array.from(root.querySelectorAll('.chord-chip'));
+  if (!chips.length) return;
+  const beatsPerChord = 2;
+  const noteDuration = (60 / bpm) * beatsPerChord; // segundos
+  let aborted = false;
+  const player = { abort: () => { aborted = true; } };
+  _CIFRA_PLAYERS.set(root, player);
+  const btn = root.querySelector('.cifra-play-btn');
+  if (btn) { btn.dataset.state = 'playing'; btn.textContent = '◼ Stop'; }
+
+  for (const chip of chips) {
+    if (aborted) break;
+    chips.forEach(c => c.classList.remove('chord-chip-playing'));
+    chip.classList.add('chord-chip-playing');
+    chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    const chord = chip.dataset.chord;
+    _playChordSound(chord, { duration: noteDuration * 1.1, velocity: 78 });
+    await new Promise(r => setTimeout(r, noteDuration * 1000));
+  }
+  _stopCifraPlayer(root);
 }
 
 function _attachChordChipHandlers(root) {

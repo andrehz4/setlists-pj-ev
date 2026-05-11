@@ -6,9 +6,9 @@
     "started": "2026-05-11",
     "phase": "3 (AlphaTab + .alphatex): black com tab inicial; cifras de black/alive/even flow"
   },
-  "black": { "cifra": true, "tab": true, "tabFormat": "alphatex", "key": "Em", "tuning": "EADGBE" },
-  "alive": { "cifra": true, "tab": false, "key": "A", "tuning": "EADGBE" },
-  "even flow": { "cifra": true, "tab": false, "key": "Em", "tuning": "EADGBE" },
+  "black": { "cifra": true, "tab": true, "tabFormat": "alphatex", "key": "Em", "tuning": "EADGBE", "bpm": 87 },
+  "alive": { "cifra": true, "tab": false, "key": "A", "tuning": "EADGBE", "bpm": 78 },
+  "even flow": { "cifra": true, "tab": false, "key": "Em", "tuning": "EADGBE", "bpm": 110 },
   "yellow ledbetter": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
   "better man": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
   "jeremy": { "cifra": false, "tab": false, "key": "F", "tuning": "EADGBE" },
