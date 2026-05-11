@@ -3080,39 +3080,61 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .cifra-stop-btn { background: var(--pj, #c1272d); }
 .cifra-stop-btn:hover { background: #8a1c20; }
 
-/* Card 'Tocando agora' da cifra: diagrama grande do acorde atual +
-   nome + preview do proximo. Aparece embaixo do .cifra-player-bar
-   quando o player esta tocando/pausado. Visual: card azul-petroleo
-   com paleta consistente. */
+/* Card 'Tocando agora' da cifra: FIXED pra nao sumir ao rolar.
+   - View Cifras & Tabs (.in-cifra-view): centralizado embaixo, card largo.
+   - Set list inline (.in-setlist): canto inferior direito como bottom-sheet,
+     posicao igual ao .fretboard-overlay flutuante. */
 .cifra-now-playing {
+  position: fixed;
+  bottom: 110px;            /* default setlist: alinhado com fretboard floating */
+  right: 24px;
+  z-index: 8500;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  margin: -10px 0 18px;
-  padding: 14px 18px;
-  background: linear-gradient(135deg, rgba(46,107,138,0.10), rgba(46,107,138,0.04));
-  border: 1px solid rgba(46, 107, 138, 0.28);
+  gap: 14px;
+  width: clamp(420px, 42vw, 560px);  /* default setlist: largura do fretboard */
+  padding: 10px 14px;
+  background: linear-gradient(135deg, rgba(46,107,138,0.14), rgba(46,107,138,0.06));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 107, 138, 0.35);
   border-left: 4px solid #2e6b8a;
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.cifra-now-playing.in-cifra-view {
+  bottom: 18px;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, calc(100vw - 32px));
+  padding: 12px 18px;
+  gap: 18px;
 }
 .cifra-now-playing[hidden] { display: none; }
 .cifra-now-current {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
 }
+/* Mini-braco horizontal: SVG 360x140 com 6 cordas e 5 trastes, notas
+   acesas em circulos coloridos. Bem mais expressivo que diagrama 84x100. */
 .cifra-now-diagram {
   flex-shrink: 0;
-  width: 116px;
-  height: 138px;
+  width: 360px;
+  height: 116px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card);
-  border-radius: 4px;
-  padding: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: linear-gradient(180deg, #6b4a28 0%, #4a3018 100%);
+  border: 1px solid #3a2914;
+  border-radius: 6px;
+  padding: 0;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.2);
+  overflow: hidden;
 }
 .cifra-now-diagram svg {
   width: 100%;
@@ -3121,7 +3143,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .cifra-now-diagram-empty {
   font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
-  color: var(--ink-dim);
+  color: #d0c0a0;
   text-align: center;
   padding: 4px;
 }
@@ -3167,24 +3189,28 @@ html[data-theme="light"] .drawer-section-label.my-media {
   opacity: 0.75;
 }
 @media (max-width: 600px) {
-  .cifra-now-playing {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    padding: 10px 12px;
-  }
-  .cifra-now-diagram { width: 84px; height: 100px; }
-  .cifra-now-chord { font-size: 28px; }
-  .cifra-now-next {
+  /* No mobile, card vira full-width na base. Mini-braco compacta. */
+  .cifra-now-playing,
+  .cifra-now-playing.in-cifra-view {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    width: 100vw;
+    max-width: none;
+    border-radius: 8px 8px 0 0;
+    padding: 8px 10px;
+    gap: 8px;
     flex-direction: row;
-    justify-content: flex-end;
     align-items: center;
-    padding-left: 0;
-    padding-top: 8px;
-    border-left: 0;
-    border-top: 1px dashed rgba(46,107,138,0.3);
   }
-  .cifra-now-next-chord { font-size: 18px; }
+  .cifra-now-diagram { width: 200px; height: 80px; flex-shrink: 0; }
+  .cifra-now-chord { font-size: 26px; }
+  .cifra-now-next {
+    padding-left: 8px;
+    border-left: 1px dashed rgba(46,107,138,0.3);
+  }
+  .cifra-now-next-chord { font-size: 16px; }
 }
 
 /* FAB flutuante da cifra. Identico estruturalmente ao .alphatab-fab mas
@@ -4174,46 +4200,67 @@ html[data-theme="light"] .drawer-section-label.my-media {
 /* Layout 2-col: catalog lateral + detail panel.
    Catalog-aside fica sticky e rola interno; detail rola com a pagina. */
 .tabs-layout {
-  --mixer-w: 280px;
+  position: relative;
   display: grid;
-  grid-template-columns: 280px 1fr var(--mixer-w);
+  grid-template-columns: 280px 1fr;
   gap: 24px;
   align-items: start;
+  /* Reserva 50px pra barra minimalista absolute na direita nao sobrepor
+     o conteudo do detail. Quando pinned, padding cai a zero e o grid
+     ganha a 3a coluna (logica em .mixer-pinned). */
+  padding-right: 50px;
+  transition: padding-right 220ms ease;
 }
-.tabs-layout.mixer-collapsed { --mixer-w: 44px; }
-@media (max-width: 1100px) {
-  /* Em telas medias, sem espaco pra mixer expandido por default. Aparece
-     colapsado e usuario expande manualmente. */
-  .tabs-layout { --mixer-w: 44px; }
+.tabs-layout.mixer-pinned {
+  grid-template-columns: 280px 1fr 280px;
+  padding-right: 0;
 }
 @media (max-width: 880px) {
-  /* No mobile, mixer fica embaixo (full-width) abaixo do detail. */
-  .tabs-layout {
+  /* No mobile, mixer some/fica no fim. Padding e pin sao desativados. */
+  .tabs-layout, .tabs-layout.mixer-pinned {
     grid-template-columns: 1fr;
-    --mixer-w: 100%;
+    padding-right: 0;
   }
 }
 
-/* ======= MIXER ASIDE (sidebar lateral de tracks estilo Songsterr) ======= */
+/* ======= MIXER ASIDE (sidebar minimalista, overlay com hover-expand) =======
+   Default: 44px na borda direita, position absolute (NAO ocupa espaco no
+   grid). Hover: expande pra 280px ainda overlay (NAO empurra conteudo).
+   .pinned: vira a 3a coluna real do grid (sticky), aceitando ocupar espaco. */
 .mixer-aside {
-  position: sticky;
-  top: 16px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
   max-height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 12px 14px;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
   background: var(--bg-card);
   border: 1px solid var(--divider-strong);
   border-radius: 6px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   overflow: hidden;
-  transition: padding 180ms ease;
+  z-index: 40;
+  transition: width 220ms ease, padding 220ms ease, gap 220ms ease, box-shadow 220ms ease, align-items 220ms ease;
 }
-.mixer-aside[data-state="collapsed"] {
-  padding: 10px 6px;
-  align-items: center;
-  gap: 6px;
+.mixer-aside:hover,
+.mixer-aside.pinned {
+  width: 280px;
+  padding: 12px 14px;
+  align-items: stretch;
+  gap: 10px;
+  box-shadow: -10px 0 28px rgba(0,0,0,0.16);
+}
+/* Quando pinned, sai do overlay e vira parte do fluxo (3a coluna do grid). */
+.tabs-layout.mixer-pinned .mixer-aside {
+  position: sticky;
+  top: 16px;
+  right: auto;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  align-self: start;
 }
 .mixer-header {
   display: flex;
@@ -4243,8 +4290,13 @@ html[data-theme="light"] .drawer-section-label.my-media {
   justify-content: center;
 }
 .mixer-toggle:hover { background: rgba(0,0,0,0.06); color: var(--ink); }
-.mixer-aside[data-state="collapsed"] .mixer-title { display: none; }
-.mixer-aside[data-state="collapsed"] .mixer-header { width: 100%; justify-content: center; }
+/* Title e header behavior: hidden no minimalista, visivel ao hover/pin */
+.mixer-aside .mixer-title { display: none; }
+.mixer-aside:hover .mixer-title,
+.mixer-aside.pinned .mixer-title { display: block; }
+.mixer-aside .mixer-header { width: 100%; justify-content: center; }
+.mixer-aside:hover .mixer-header,
+.mixer-aside.pinned .mixer-header { justify-content: space-between; }
 
 /* Master volume row */
 .mixer-master {
@@ -4393,15 +4445,17 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .mixer-track-icon svg { width: 16px; height: 16px; display: block; }
 
-/* Modo COLAPSADO: só ícones verticais centralizados */
-.mixer-aside[data-state="collapsed"] .mixer-master { display: none; }
-.mixer-aside[data-state="collapsed"] .mixer-track {
+/* Modo MINIMALISTA (default): só ícones verticais centralizados.
+   .mixer-aside (default, sem hover, sem pinned) usa essas regras. Quando
+   :hover ou .pinned ativa, as regras de baixo (overrides) trazem de volta. */
+.mixer-aside .mixer-master { display: none; }
+.mixer-aside .mixer-track {
   grid-template-columns: 1fr;
   padding: 6px 0;
   border-left: 0;
   position: relative;
 }
-.mixer-aside[data-state="collapsed"] .mixer-track::before {
+.mixer-aside .mixer-track::before {
   content: '';
   position: absolute;
   left: -6px;
@@ -4412,23 +4466,49 @@ html[data-theme="light"] .drawer-section-label.my-media {
   background: var(--track-color, transparent);
   border-radius: 2px;
 }
-.mixer-aside[data-state="collapsed"] .mixer-track-info,
-.mixer-aside[data-state="collapsed"] .mixer-track-slider,
-.mixer-aside[data-state="collapsed"] .mixer-track-val,
-.mixer-aside[data-state="collapsed"] .mixer-track-btn.c {
+.mixer-aside .mixer-track-info,
+.mixer-aside .mixer-track-slider,
+.mixer-aside .mixer-track-val {
   display: none;
 }
-.mixer-aside[data-state="collapsed"] .mixer-track-row {
+.mixer-aside .mixer-track-row {
   flex-direction: column;
   align-items: center;
   gap: 4px;
 }
-.mixer-aside[data-state="collapsed"] .mixer-track-controls {
+.mixer-aside .mixer-track-controls {
   flex-direction: column;
   gap: 3px;
 }
-.mixer-aside[data-state="collapsed"] .mixer-track-icon {
-  font-size: 14px;
+.mixer-aside .mixer-track-icon { font-size: 14px; }
+
+/* Overrides quando :hover ou .pinned: restaura layout expandido completo. */
+.mixer-aside:hover .mixer-master,
+.mixer-aside.pinned .mixer-master { display: flex; }
+.mixer-aside:hover .mixer-track,
+.mixer-aside.pinned .mixer-track {
+  grid-template-columns: 1fr;
+  padding: 8px 6px;
+  border-left: 3px solid var(--track-color, transparent);
+}
+.mixer-aside:hover .mixer-track::before,
+.mixer-aside.pinned .mixer-track::before { display: none; }
+.mixer-aside:hover .mixer-track-info,
+.mixer-aside.pinned .mixer-track-info { display: flex; }
+.mixer-aside:hover .mixer-track-slider,
+.mixer-aside.pinned .mixer-track-slider { display: block; }
+.mixer-aside:hover .mixer-track-val,
+.mixer-aside.pinned .mixer-track-val { display: inline-block; }
+.mixer-aside:hover .mixer-track-row,
+.mixer-aside.pinned .mixer-track-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.mixer-aside:hover .mixer-track-controls,
+.mixer-aside.pinned .mixer-track-controls {
+  flex-direction: row;
+  gap: 4px;
 }
 
 /* Dark theme overrides */
@@ -8853,6 +8933,83 @@ const _CHORD_DB = {
   'Asus2':   { frets: ['x', 0, 2, 2, 0, 0], fingers: ['x', 0, 1, 2, 0, 0] },
   'Asus4':   { frets: ['x', 0, 2, 2, 3, 0], fingers: ['x', 0, 1, 2, 3, 0] },
 };
+// Mini-braco horizontal da guitarra: SVG 360x116 mostrando 6 cordas, 5
+// trastes (logaritmico real) e as notas do acorde acesas em vermelho PJ
+// com pulse. Usado no card 'Tocando agora' do cifra player pra mostrar
+// VISUALMENTE o acorde sendo tocado, no estilo do braco real do site.
+function _renderChordMiniFretboard(chordName) {
+  const data = _CHORD_DB[chordName];
+  if (!data) return null;
+  const frets = data.frets;
+  const fingers = data.fingers || [];
+  const W = 360, H = 116;
+  const padL = 26, padR = 10;
+  const padT = 12, padB = 10;
+  const N_FRETS = 5;
+  const nStrings = 6;
+  const stringSpacing = (H - padT - padB) / (nStrings - 1);
+  // Espacamento logaritmico (igual fretboard principal)
+  const fretRatio = (n) => 1 - Math.pow(2, -n / 12);
+  const scaleLen = (W - padL - padR) / fretRatio(N_FRETS);
+  const fretX = (n) => padL + scaleLen * fretRatio(n);
+  const fretCenter = (n) => (fretX(n - 1) + fretX(n)) / 2;
+  // Y por corda: e aguda (i=5) no topo, E grave (i=0) embaixo.
+  const yFor = (i) => padT + (5 - i) * stringSpacing;
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">`;
+  // Fundo madeira (rosewood) + nut osso
+  svg += `<rect x="${padL}" y="${padT - 4}" width="${W - padL - padR}" height="${H - padT - padB + 8}" fill="#5a3a1f"/>`;
+  svg += `<rect x="${padL - 5}" y="${padT - 4}" width="5" height="${H - padT - padB + 8}" fill="#f9f3e3" stroke="#8a7a4a" stroke-width="0.5"/>`;
+  // Trastes prateados
+  for (let f = 1; f <= N_FRETS; f++) {
+    const x = fretX(f);
+    svg += `<rect x="${x - 1}" y="${padT - 4}" width="2" height="${H - padT - padB + 8}" fill="#d8d8d8"/>`;
+  }
+  // Inlay no 5o traste
+  if (N_FRETS >= 5) {
+    svg += `<circle cx="${fretCenter(5)}" cy="${(padT + H - padB) / 2}" r="3" fill="#f0e8d0" opacity="0.7"/>`;
+  }
+  // Cordas (com calibre variavel: agudas finas, graves grossas)
+  for (let s = 0; s < nStrings; s++) {
+    const y = padT + s * stringSpacing;
+    const ratio = s / (nStrings - 1);
+    const w = 0.85 + ratio * 1.5;
+    svg += `<line x1="${padL - 5}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#dcdcdc" stroke-width="${w}" opacity="0.88"/>`;
+  }
+  // Marcadores x e o acima do nut (corda muted ou solta)
+  for (let i = 0; i < 6; i++) {
+    const f = frets[i];
+    const y = yFor(i);
+    if (f === 'x') {
+      svg += `<text x="${padL - 16}" y="${y + 4}" font-family="sans-serif" font-size="12" font-weight="800" fill="#e0b070" text-anchor="middle">×</text>`;
+    } else if (f === 0) {
+      svg += `<circle cx="${padL - 16}" cy="${y}" r="4.5" fill="none" stroke="#e0b070" stroke-width="1.8"/>`;
+    }
+  }
+  // Barre (cobre intervalo de cordas no mesmo fret)
+  if (data.barre) {
+    const xCenter = fretCenter(data.barre.fret);
+    const yFrom = yFor(data.barre.from - 1);
+    const yTo = yFor(data.barre.to - 1);
+    const yMin = Math.min(yFrom, yTo);
+    const yMax = Math.max(yFrom, yTo);
+    svg += `<rect x="${xCenter - 6}" y="${yMin - 5}" width="12" height="${yMax - yMin + 10}" rx="6" fill="#c1272d" opacity="0.92"/>`;
+  }
+  // Notas tocadas (fret >= 1): halo + circulo pulsante + numero do dedo
+  for (let i = 0; i < 6; i++) {
+    const f = frets[i];
+    if (typeof f !== 'number' || f < 1 || f > N_FRETS) continue;
+    const x = fretCenter(f);
+    const y = yFor(i);
+    svg += `<circle cx="${x}" cy="${y}" r="13" fill="#c1272d" opacity="0.28"/>`;
+    svg += `<circle cx="${x}" cy="${y}" r="9.5" fill="#c1272d" stroke="#fff" stroke-width="1.5"><animate attributeName="r" values="9.5;11.5;9.5" dur="0.55s" repeatCount="indefinite"/></circle>`;
+    if (fingers[i] && fingers[i] !== 0 && fingers[i] !== 'x') {
+      svg += `<text x="${x}" y="${y + 4}" font-family="sans-serif" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">${fingers[i]}</text>`;
+    }
+  }
+  svg += `</svg>`;
+  return svg;
+}
+
 function _renderChordDiagram(chordName) {
   const data = _CHORD_DB[chordName];
   if (!data) return null;
@@ -10355,10 +10512,10 @@ function renderTabsView() {
           <div class="cifra-empty-sub">Black, Alive e Even Flow t&ecirc;m cifra. Tab vetorial: Black.</div>
         </div>
       </section>
-      <aside class="mixer-aside" data-state="expanded" aria-label="Mixer de tracks">
+      <aside class="mixer-aside" aria-label="Mixer de tracks">
         <div class="mixer-header">
           <h3 class="mixer-title">Instrumentos</h3>
-          <button type="button" class="mixer-toggle" aria-label="Minimizar painel" title="Minimizar/expandir">📌</button>
+          <button type="button" class="mixer-toggle" aria-label="Fixar painel" title="Fixar">📌</button>
         </div>
         <div class="mixer-master">
           <button type="button" class="mixer-master-icon" aria-label="Mute master" title="Mute master">🔊</button>
@@ -10939,28 +11096,34 @@ function _populateMixer(mixerAside, tracks) {
     });
   });
 
-  // Persist + aplicar estado expandido/colapsado salvo
+  // Persist + aplicar estado pinned salvo. Default: NAO pinned (minimalista).
+  // Pin trava expandido + reserva espaco no grid. Sem pin: overlay com hover.
   try {
-    const collapsed = localStorage.getItem('mixer_collapsed') === '1';
-    mixerAside.dataset.state = collapsed ? 'collapsed' : 'expanded';
+    const pinned = localStorage.getItem('mixer_pinned') === '1';
+    mixerAside.classList.toggle('pinned', pinned);
     const tabsLayout = mixerAside.closest('.tabs-layout');
-    if (tabsLayout) tabsLayout.classList.toggle('mixer-collapsed', collapsed);
+    if (tabsLayout) tabsLayout.classList.toggle('mixer-pinned', pinned);
   } catch (_) {}
 
-  // Toggle expand/collapse
+  // Toggle pin (📌 quando solto, 📍 quando pinned)
   const toggleBtn = mixerAside.querySelector('.mixer-toggle');
   if (toggleBtn && !toggleBtn.dataset.bound) {
     toggleBtn.dataset.bound = '1';
+    const renderPin = () => {
+      const pinned = mixerAside.classList.contains('pinned');
+      toggleBtn.textContent = pinned ? '📍' : '📌';
+      toggleBtn.setAttribute('aria-label', pinned ? 'Soltar painel (overlay)' : 'Fixar painel (ocupa espaço)');
+      toggleBtn.setAttribute('title', pinned ? 'Soltar' : 'Fixar');
+    };
+    renderPin();
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isCollapsed = mixerAside.dataset.state === 'collapsed';
-      const newState = isCollapsed ? 'expanded' : 'collapsed';
-      mixerAside.dataset.state = newState;
+      const newPinned = !mixerAside.classList.contains('pinned');
+      mixerAside.classList.toggle('pinned', newPinned);
       const tabsLayout = mixerAside.closest('.tabs-layout');
-      if (tabsLayout) tabsLayout.classList.toggle('mixer-collapsed', newState === 'collapsed');
-      try { localStorage.setItem('mixer_collapsed', newState === 'collapsed' ? '1' : '0'); } catch (_) {}
-      toggleBtn.textContent = newState === 'collapsed' ? '◀' : '📌';
-      toggleBtn.setAttribute('aria-label', newState === 'collapsed' ? 'Expandir painel' : 'Minimizar painel');
+      if (tabsLayout) tabsLayout.classList.toggle('mixer-pinned', newPinned);
+      try { localStorage.setItem('mixer_pinned', newPinned ? '1' : '0'); } catch (_) {}
+      renderPin();
     });
   }
 
@@ -11195,13 +11358,21 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
-  // Mostra card "Tocando agora" com diagrama do acorde + nome + proximo.
+  // Mostra card "Tocando agora" com mini-braco horizontal + nome + proximo.
   // Pulsa a cada novo acorde sincronizado com o playback.
+  // Classe de contexto define posicionamento: in-cifra-view (centralizado
+  // embaixo na view dedicada) vs default (canto direito como bottom-sheet,
+  // igual o fretboard floating na faixa do show).
   const nowCard = root.querySelector('.cifra-now-playing');
   const nowDiagram = nowCard && nowCard.querySelector('.cifra-now-diagram');
   const nowChord = nowCard && nowCard.querySelector('.cifra-now-chord');
   const nowNext = nowCard && nowCard.querySelector('.cifra-now-next-chord');
-  if (nowCard) nowCard.hidden = false;
+  if (nowCard) {
+    const isInCifraView = !!root.closest('.cifra-detail-wrap');
+    nowCard.classList.toggle('in-cifra-view', isInCifraView);
+    nowCard.classList.toggle('in-setlist', !isInCifraView);
+    nowCard.hidden = false;
+  }
 
   for (let i = 0; i < chips.length; i++) {
     if (aborted) break;
@@ -11222,7 +11393,8 @@ async function _startCifraPlayer(root, bpm) {
       if (nowChord) nowChord.textContent = chord;
       if (nowNext) nowNext.textContent = nextChord;
       if (nowDiagram) {
-        const svg = _renderChordDiagram(chord);
+        // Mini-braco horizontal (estilo fretboard) com as notas acesas.
+        const svg = _renderChordMiniFretboard(chord);
         nowDiagram.innerHTML = svg || `<div class="cifra-now-diagram-empty">${chord}<br><small>digitação<br>não cadastrada</small></div>`;
       }
       // Pulse animation re-trigger via classe (force reflow pra reiniciar)
