@@ -3273,11 +3273,37 @@ html[data-theme="light"] .drawer-section-label.my-media {
   background: #2e6b8a;
   color: #fff;
 }
+.fretboard-svg-wrap {
+  position: relative;
+}
 .fretboard-svg {
   width: 100%;
   height: auto;
   display: block;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+/* Adesivos PJ colados na madeira do fretboard. Posicionados absolutos
+   sobre o SVG (fora do markup SVG pra nao serem apagados quando
+   drawBoard() re-renderiza). Mix-blend-mode integra na textura de madeira. */
+.fretboard-decal {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: screen;
+  opacity: 0.42;
+  filter: brightness(1.4) contrast(1.1);
+}
+.fretboard-decal-stickman {
+  top: 8%;
+  left: 11%;
+  width: 9%;
+  transform: rotate(-6deg);
+}
+.fretboard-decal-sun {
+  top: 4%;
+  right: 14%;
+  width: 11%;
+  transform: rotate(12deg);
 }
 .fretboard-legend {
   display: flex;
@@ -7866,7 +7892,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
               </div>
             </div>
             <div class="fretboard-players"></div>
-            <svg class="fretboard-svg" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="fretboard-svg-wrap">
+              <svg class="fretboard-svg" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
+              <img class="fretboard-decal fretboard-decal-stickman" src="media/decals/pj-stickman.png" alt="" aria-hidden="true">
+              <img class="fretboard-decal fretboard-decal-sun" src="media/decals/pj-sun-logo.png" alt="" aria-hidden="true">
+            </div>
             <div class="fretboard-legend"></div>
           `;
           fretboard.querySelector('.fretboard-close').addEventListener('click', (e) => {
