@@ -4571,7 +4571,7 @@ function renderTimeline() {
     const cardLabel = `${s.artist} ${fmtDate(s.date)} ${s.venue} ${s.city}. Abrir setlist.`;
     return `
     <article class="show-card ${s.artist === 'Eddie Vedder' ? 'ev' : ''} ${s.special ? 'special' : ''} ${isExtra ? 'is-extra' : ''}" data-show-id="${s.id}" role="button" tabindex="0" aria-label="${cardLabel.replace(/"/g, '&quot;')}">
-      ${MEDIA_MANIFEST[s.id]?.poster ? `<div class="card-bg" style="background-image:url('media/${s.id}/poster.jpg')" aria-hidden="true"></div>` : ''}
+      ${MEDIA_MANIFEST[s.id]?.poster ? `<div class="card-bg" data-bg="media/${s.id}/poster.jpg" aria-hidden="true"></div>` : ''}
       <div class="show-card-artist">${s.artist}</div>
       <div class="show-card-date">${fmtDate(s.date)}</div>
       <div class="show-card-venue">${s.venue}</div>
@@ -4604,6 +4604,29 @@ function renderTimeline() {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
     });
   });
+  // Lazy-load poster backgrounds quando card entra na viewport (cards fora da tela nao baixam o JPG)
+  if (renderTimeline._bgObserver) renderTimeline._bgObserver.disconnect();
+  if ('IntersectionObserver' in window) {
+    renderTimeline._bgObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const url = el.dataset.bg;
+          if (url) {
+            el.style.backgroundImage = `url('${url}')`;
+            el.removeAttribute('data-bg');
+          }
+          renderTimeline._bgObserver.unobserve(el);
+        }
+      });
+    }, { rootMargin: '300px' });
+    container.querySelectorAll('.card-bg[data-bg]').forEach(el => renderTimeline._bgObserver.observe(el));
+  } else {
+    container.querySelectorAll('.card-bg[data-bg]').forEach(el => {
+      el.style.backgroundImage = `url('${el.dataset.bg}')`;
+      el.removeAttribute('data-bg');
+    });
+  }
   if (window.refreshAfterRender) window.refreshAfterRender();
 }
 
