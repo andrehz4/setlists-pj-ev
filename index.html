@@ -3169,6 +3169,8 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .alphatab-fab-pause:hover { background: #1f4e6a; }
 .alphatab-fab-stop { background: var(--pj, #c1272d); }
 .alphatab-fab-stop:hover { background: #8a1c20; }
+.alphatab-fab-stop.alphatab-fab-as-play { background: #2e6b8a; }
+.alphatab-fab-stop.alphatab-fab-as-play:hover { background: #1f4e6a; }
 @media (max-width: 480px) {
   .alphatab-fab { bottom: 16px; right: 16px; padding: 8px; gap: 6px; }
   .alphatab-fab-btn { width: 44px; height: 44px; font-size: 13px; }
@@ -5762,24 +5764,35 @@ function openDrawer(showId) {
                 : li.nextElementSibling)
             : li);
       interpRowSibling.parentNode.insertBefore(tabRow, interpRowSibling.nextSibling);
-      tabRow.addEventListener('click', (e) => {
-        if (window.getSelection && window.getSelection().toString().length) return;
-        if (e.target.closest('button, a, input, textarea, select')) return;
-        if (!tabRow.classList.contains('open')) return;
-        tabRow.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      });
+      // Duplo clique pra fechar (mesma logica da view dedicada): single click
+      // abre; pra fechar precisa de 2 cliques rapidos (janela 600ms).
+      let _lastCloseAttempt = 0;
       const fillTabBody = (body) => _renderTabPanel(body, tabKey, tabMeta);
+      const closeFab = () => {
+        const f = document.querySelector('.alphatab-fab');
+        if (f) f.classList.remove('show');
+      };
       const toggleTab = (e) => {
         e.stopPropagation();
-        const isOpen = tabRow.classList.toggle('open');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        if (isOpen) {
+        const isOpen = tabRow.classList.contains('open');
+        if (!isOpen) {
+          tabRow.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
           const body = tabRow.querySelector('.tab-block .body');
           if (body && !body.dataset.filled) {
             fillTabBody(body);
             body.dataset.filled = '1';
           }
+          return;
+        }
+        const now = Date.now();
+        if (now - _lastCloseAttempt <= 600) {
+          tabRow.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          _lastCloseAttempt = 0;
+          closeFab();
+        } else {
+          _lastCloseAttempt = now;
         }
       };
       btn.addEventListener('click', toggleTab);
@@ -7355,9 +7368,38 @@ function _renderTabPanel(body, songKey, tabMeta) {
         }
         const fabPause = fab.querySelector('.alphatab-fab-pause');
         const fabStop = fab.querySelector('.alphatab-fab-stop');
-        // Reattach handlers pra apontar pro api desta sessao.
+        // FAB visivel desde o load do painel. Botoes dinamicos:
+        // - Esquerdo: playing -> Pause; paused/stopped -> Play
+        // - Direito:  playing/paused -> Stop; stopped -> Play (recomeca)
+        let _fabState = 0;
+        const renderFab = () => {
+          if (_fabState === 1) {
+            fabPause.textContent = '❚❚';
+            fabPause.setAttribute('aria-label', 'Pausar');
+            fabStop.textContent = '◼';
+            fabStop.setAttribute('aria-label', 'Parar');
+            fabStop.classList.remove('alphatab-fab-as-play');
+          } else if (_fabState === 2) {
+            fabPause.textContent = '▶';
+            fabPause.setAttribute('aria-label', 'Retomar');
+            fabStop.textContent = '◼';
+            fabStop.setAttribute('aria-label', 'Parar');
+            fabStop.classList.remove('alphatab-fab-as-play');
+          } else {
+            fabPause.textContent = '▶';
+            fabPause.setAttribute('aria-label', 'Tocar');
+            fabStop.textContent = '▶';
+            fabStop.setAttribute('aria-label', 'Recomeçar');
+            fabStop.classList.add('alphatab-fab-as-play');
+          }
+        };
         fabPause.onclick = (e) => { e.stopPropagation(); api.playPause(); };
-        fabStop.onclick = (e) => { e.stopPropagation(); api.stop(); };
+        fabStop.onclick = (e) => {
+          e.stopPropagation();
+          if (_fabState === 0) api.play();
+          else api.stop();
+        };
+        renderFab();
 
         // Autoscroll custom: garante que o cursor (.at-cursor-bar) fique
         // sempre centralizado na viewport quando o player avanca.
@@ -7392,26 +7434,23 @@ function _renderTabPanel(body, songKey, tabMeta) {
         }
         // Estado do player: 0=parado, 1=tocando, 2=pausado.
         api.playerStateChanged.on(e => {
+          _fabState = e.state;
           if (e.state === 1) {
             playBtn.dataset.state = 'playing';
             playBtn.textContent = '❚❚ Pause';
             status.textContent = 'tocando…';
-            fab.classList.add('show');
-            fabPause.textContent = '❚❚';
           } else {
             playBtn.dataset.state = 'idle';
             playBtn.textContent = '▶ Play';
             status.textContent = e.state === 2 ? 'pausado' : 'parado';
-            // Pausado: FAB continua visivel pra retomar; parado: esconde.
-            if (e.state === 2) {
-              fab.classList.add('show');
-              fabPause.textContent = '▶';
-            } else {
-              fab.classList.remove('show');
-            }
           }
+          renderFab();
         });
-        api.playerReady.on(() => { status.textContent = 'pronto · click Play'; });
+        api.playerReady.on(() => {
+          status.textContent = 'pronto · click Play';
+          fab.classList.add('show');
+          renderFab();
+        });
         // Seletor de tracks: quando o arquivo .gp carregar, monta checkboxes
         // pra cada track. Toggle atualiza visual (renderTracks) + audio (isMute).
         const escTrack = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -7573,6 +7612,9 @@ function renderTabsView() {
         body.hidden = true;
         lastCloseAttempt.delete(head);
         delete head.dataset.hint;
+        // Esconde FAB tambem caso este card estivesse tocando
+        const f = document.querySelector('.alphatab-fab');
+        if (f) f.classList.remove('show');
       } else {
         lastCloseAttempt.set(head, now);
         head.dataset.hint = 'clique de novo pra fechar';
