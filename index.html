@@ -3303,6 +3303,65 @@ html[data-theme="light"] .drawer-section-label.my-media {
   font-style: italic;
   opacity: 0.5;
 }
+.fretboard-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(46, 107, 138, 0.12);
+  color: #2e6b8a;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 120ms ease, color 120ms ease;
+}
+.fretboard-close:hover {
+  background: var(--pj, #c1272d);
+  color: #fff;
+}
+.fretboard-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(46, 107, 138, 0.18);
+}
+.fretboard-player {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font: 600 11px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink, #1a1611);
+  cursor: pointer;
+  user-select: none;
+}
+.fretboard-player input {
+  margin: 0;
+  accent-color: var(--track-color, #2e6b8a);
+  cursor: pointer;
+}
+.fretboard-player-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--track-color, #2e6b8a);
+}
+.fretboard-player:has(input:not(:checked)) .fretboard-player-name {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+.fretboard-player:has(input:not(:checked)) .fretboard-player-dot {
+  opacity: 0.25;
+}
 @media (max-width: 900px) {
   .fretboard-overlay { width: 92vw; right: 4vw; bottom: 100px; }
 }
@@ -7639,6 +7698,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           fretboard = document.createElement('div');
           fretboard.className = 'fretboard-overlay';
           fretboard.innerHTML = `
+            <button type="button" class="fretboard-close" aria-label="Fechar fretboard">×</button>
             <div class="fretboard-bar">
               <div class="fretboard-header">Braço</div>
               <div class="fretboard-tabs" role="tablist">
@@ -7646,19 +7706,27 @@ function _renderTabPanel(body, songKey, tabMeta) {
                 <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
               </div>
             </div>
+            <div class="fretboard-players"></div>
             <svg class="fretboard-svg" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
             <div class="fretboard-legend"></div>
           `;
+          fretboard.querySelector('.fretboard-close').addEventListener('click', (e) => {
+            e.stopPropagation();
+            fretboard.classList.remove('show');
+          });
           document.body.appendChild(fretboard);
         }
         const fretSvg = fretboard.querySelector('.fretboard-svg');
         const fretLegend = fretboard.querySelector('.fretboard-legend');
         const fretHeader = fretboard.querySelector('.fretboard-header');
         const fretTabsContainer = fretboard.querySelector('.fretboard-tabs');
+        const fretPlayersContainer = fretboard.querySelector('.fretboard-players');
 
         // Estado: instrumento exibido + ultimo set de notas tocadas
         let fbInstrument = 'guitar'; // 'guitar' (6c) ou 'bass' (4c)
         let _lastNotes = [];
+        // Set de trackIdx que devem aparecer no fretboard (filtro do usuario)
+        let fbSelectedTracks = new Set();
 
         const INSTRUMENTS = {
           guitar: { strings: 6, tuning: ['e', 'B', 'G', 'D', 'A', 'E'], label: 'Violão / Guitarra' }, // 1=aguda topo
@@ -7765,7 +7833,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
           // Filtra notas: se viewing guitar, mostra tracks NÃO-baixo; se bass, só baixo.
           const filtered = _lastNotes.filter(n => {
             const bass = isBassTrack(n.trackName);
-            return fbInstrument === 'bass' ? bass : !bass;
+            const instrumentMatch = fbInstrument === 'bass' ? bass : !bass;
+            if (!instrumentMatch) return false;
+            // Filtro por track selecionada no fretboard
+            if (fbSelectedTracks.size && !fbSelectedTracks.has(n.trackIdx || 0)) return false;
+            return true;
           });
           let dots = '';
           const labels = new Map();
@@ -7855,24 +7927,60 @@ function _renderTabPanel(body, songKey, tabMeta) {
             playBtn.dataset.state = 'playing';
             playBtn.textContent = '❚❚ Pause';
             status.textContent = 'tocando…';
-          } else {
+            fab.classList.add('show');
+            fretboard.classList.add('show');
+          } else if (e.state === 2) {
             playBtn.dataset.state = 'idle';
             playBtn.textContent = '▶ Play';
-            status.textContent = e.state === 2 ? 'pausado' : 'parado';
+            status.textContent = 'pausado';
+            // Pausado: FAB e fretboard continuam visiveis pra retomar
+            fab.classList.add('show');
+            fretboard.classList.add('show');
+          } else {
+            // state === 0: parado. Esconde FAB e fretboard (Andre pediu).
+            playBtn.dataset.state = 'idle';
+            playBtn.textContent = '▶ Play';
+            status.textContent = 'parado';
+            fab.classList.remove('show');
+            fretboard.classList.remove('show');
           }
           renderFab();
         });
         api.playerReady.on(() => {
           status.textContent = 'pronto · click Play';
-          fab.classList.add('show');
-          showFretboard();
-          renderFab();
+          // FAB e fretboard aparecem quando o player de fato comecar
+          // (via playerStateChanged state=1). Aqui so atualiza status.
         });
         // Seletor de tracks: quando o arquivo .gp carregar, monta checkboxes
         // pra cada track. Toggle atualiza visual (renderTracks) + audio (isMute).
         const escTrack = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
         api.scoreLoaded.on(score => {
           const tracks = (score && score.tracks) ? score.tracks : [];
+
+          // Popula checkboxes de tracks no fretboard (filtro visual)
+          fbSelectedTracks = new Set(tracks.map((_, i) => i));
+          if (fretPlayersContainer && tracks.length > 0) {
+            const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
+            fretPlayersContainer.innerHTML = tracks.map((t, i) => {
+              const name = (t.name || `Track ${i + 1}`).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+              const color = TRACK_COLORS[i % TRACK_COLORS.length];
+              return `<label class="fretboard-player" data-idx="${i}" style="--track-color:${color}">
+                <input type="checkbox" checked data-idx="${i}">
+                <span class="fretboard-player-dot"></span>
+                <span class="fretboard-player-name">${name}</span>
+              </label>`;
+            }).join('');
+            fretPlayersContainer.querySelectorAll('input[type=checkbox]').forEach(cb => {
+              cb.addEventListener('change', (e) => {
+                e.stopPropagation();
+                const idx = parseInt(cb.dataset.idx, 10);
+                if (cb.checked) fbSelectedTracks.add(idx);
+                else fbSelectedTracks.delete(idx);
+                drawActiveNotes(_lastNotes);
+              });
+            });
+          }
+
           if (tracks.length <= 1) return;
           const transport = tabPane.querySelector('.alphatab-transport');
           if (!transport || transport.querySelector('.alphatab-tracks')) return;
