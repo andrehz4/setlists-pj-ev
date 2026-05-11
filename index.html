@@ -2732,6 +2732,67 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .lyric-lang-btn.active,
 .lyric-lang-btn:hover { background: var(--pj); color: #fff; }
+
+/* Botoes Cifra / Tab no topo do cifra-detail-body: PROTAGONISTAS.
+   Sao a primeira escolha do usuario (cifra ou partitura?). Maiores,
+   tipografia Big Shoulders, cor distinta no ativo e dot pulsante. */
+.tab-lang-bar .lyric-lang-btn[data-tabtype] {
+  font: 800 14px/1 var(--font-display, 'Big Shoulders Display', sans-serif) !important;
+  letter-spacing: 0.1em;
+  padding: 12px 24px;
+  background: var(--bg-card);
+  color: var(--ink-mute);
+  border: 2px solid var(--divider-strong);
+  border-radius: 6px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+.tab-lang-bar .lyric-lang-btn[data-tabtype]::before {
+  content: '';
+  display: inline-block;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.tab-lang-bar .lyric-lang-btn[data-tabtype]:hover {
+  transform: translateY(-2px);
+  color: var(--ink);
+  border-color: #2e6b8a;
+  box-shadow: 0 6px 16px rgba(46, 107, 138, 0.25);
+}
+.tab-lang-bar .lyric-lang-btn[data-tabtype].active {
+  background: var(--pj);
+  color: #fff;
+  border-color: var(--pj);
+  box-shadow: 0 4px 18px rgba(168, 50, 43, 0.45);
+  transform: translateY(-1px);
+}
+.tab-lang-bar .lyric-lang-btn[data-tabtype].active::before {
+  opacity: 1;
+  background: #fff;
+  animation: tab-protagonist-pulse 1.4s ease-in-out infinite;
+}
+@keyframes tab-protagonist-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+  50%      { transform: scale(1.25); box-shadow: 0 0 0 5px rgba(255,255,255,0); }
+}
+/* Bar com mais respiro */
+.tab-block .tab-lang-bar,
+.cifra-detail-body > .tab-lang-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 4px 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--divider);
+}
 .lyric-pane { padding-top: 14px; }
 .lyric-pane > div { margin: 0; padding: 0; white-space: pre-wrap; }
 .lyric-side {
