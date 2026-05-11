@@ -7,6 +7,10 @@
 <meta name="description" content="Arquivo pessoal de shows do Pearl Jam e Eddie Vedder presenciados ao vivo: setlists completos, interpretações críticas, áudio, fotos e galeria.">
 <meta name="theme-color" content="#a8322b">
 <link rel="canonical" href="https://setlists-pj-ev.pages.dev/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Setlists · Ticket Archive">
 <meta property="og:description" content="Pearl Jam & Eddie Vedder live shows attended. Setlists, interpretações e áudio.">
@@ -18,19 +22,37 @@
 <meta name="twitter:description" content="Pearl Jam & Eddie Vedder live shows attended.">
 <meta name="twitter:image" content="https://setlists-pj-ev.pages.dev/og.jpg">
 
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-234ZL5MF0T"></script>
+<!-- Google Analytics 4 (deferred para fora do critical path) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-234ZL5MF0T', { send_page_view: true });
   window.track = (name, params) => { try { gtag('event', name, params || {}); } catch(e) {} };
+  (function () {
+    var loaded = false;
+    function loadGA() {
+      if (loaded) return; loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-234ZL5MF0T';
+      document.head.appendChild(s);
+    }
+    var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    function trigger() {
+      events.forEach(function (e) { window.removeEventListener(e, trigger, { passive: true }); });
+      loadGA();
+    }
+    if (document.readyState === 'complete') {
+      setTimeout(loadGA, 0);
+    } else {
+      window.addEventListener('load', function () { setTimeout(loadGA, 0); }, { once: true });
+    }
+    events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
+  })();
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap');
-
 :root {
   --bg: #0a0908;
   --bg-card: #141210;
