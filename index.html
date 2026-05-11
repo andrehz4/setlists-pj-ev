@@ -7170,10 +7170,10 @@ function _loadStyleOnce(href) {
 async function _ensureAlphaTab() {
   if (window.alphaTab) return window.alphaTab;
   if (!_alphaTabPromise) {
-    // AlphaTab 1.5+ usa SVG inline, nao precisa de CSS standalone.
-    // fontDirectory aponta pra Bravura (musical font) servida do CDN.
+    // AlphaTab 1.8.2 hospedado localmente em media/lib/alphatab/.
+    // Zero dependencia externa, funciona em rede corporativa e offline.
     _alphaTabPromise = _loadScriptOnce(
-      `https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist/alphaTab.min.js`
+      `media/lib/alphatab/alphaTab.min.js`
     ).then(() => window.alphaTab);
   }
   return _alphaTabPromise;
@@ -7184,16 +7184,16 @@ async function _initAlphaTabPanel(container, songKey, tabFormat) {
   const slug = _tabSlug(songKey);
   const ext = tabFormat === 'alphatex' ? 'alphatex' : (tabFormat || 'gp');
   const fileUrl = `media/tabs/gp/${slug}.${ext}`;
-  const cdnBase = `https://cdn.jsdelivr.net/npm/@coderline/alphatab@${_ALPHATAB_VERSION}/dist`;
+  const libBase = `media/lib/alphatab`;
   const settings = {
     player: {
       enablePlayer: true,
       enableCursor: true,
-      soundFont: `${cdnBase}/soundfont/sonivox.sf3`,
+      soundFont: `${libBase}/soundfont/sonivox.sf3`,
       scrollMode: 'continuous',
     },
     display: { staveProfile: 'tab' },
-    core: { fontDirectory: `${cdnBase}/font/` },
+    core: { fontDirectory: `${libBase}/font/` },
   };
   if (ext === 'alphatex') {
     const r = await fetch(fileUrl, { cache: 'default' });
@@ -7461,7 +7461,10 @@ async function _ensureGuitarSampler() {
   _guitarSamplerPromise = (async () => {
     const ctx = _getAudioCtx();
     if (!ctx) throw new Error('Web Audio indisponivel');
-    const smplr = await import(`https://cdn.jsdelivr.net/npm/smplr@${_SMPLR_VERSION}/dist/index.mjs`);
+    // smplr hospedado localmente; samples MP3 do violao ainda vem do
+    // gleitz.github.io (default do smplr). Pode ser tambem local depois.
+    const smplrUrl = new URL('media/lib/smplr/index.mjs', document.baseURI).href;
+    const smplr = await import(smplrUrl);
     const sampler = new smplr.Soundfont(ctx, { instrument: 'acoustic_guitar_steel' });
     await sampler.load;
     return sampler;
