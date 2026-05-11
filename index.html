@@ -3226,11 +3226,19 @@ html[data-theme="light"] .drawer-section-label.my-media {
   flex-wrap: nowrap;
   overflow: hidden;
 }
-/* Na view Cifras a top bar e ainda mais limpa: sem status text, sem card visual.
-   O .alphatab-tracks (TRACKS: ... checkboxes) e redundante com o voice-picker
-   do topo (Stone/Mike/Jeff com fotos). Esconde os dois. */
+/* Na view Cifras a top bar e mais limpa: sem status text, sem card visual.
+   O texto "tocando GP4..." (status do bottom) tambem some - vira espaco pro
+   trackbar (Lead/Rhythm/Outro/Verse) que migra pra ca substituindo o status. */
 .cifra-detail-wrap .alphatab-status-top { display: none; }
-.cifra-detail-wrap .alphatab-tracks { display: none; }
+.cifra-detail-wrap .alphatab-transport-bottom .alphatab-status { display: none; }
+/* Trackbar no bottom: quebra pra outra linha (flex-basis 100%) pra ficar
+   abaixo dos controles principais; estilizado igual o setlist pra coerencia. */
+.cifra-detail-wrap .alphatab-transport-bottom .alphatab-tracks {
+  flex-basis: 100%;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--divider, #d4cbb5);
+}
 .atc-btn-mini {
   font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
   letter-spacing: 0.14em;
@@ -9118,7 +9126,12 @@ function _renderTabPanel(body, songKey, tabMeta) {
           }
 
           if (tracks.length <= 1) return;
-          const transport = tabPane.querySelector('.alphatab-transport');
+          // Na view Cifras, o trackbar vai pro transport-bottom (substitui o
+          // status text "tocando GP4..."). No setlist, fica no top como antes.
+          const inCifraView = body && body.closest && body.closest('.cifra-detail-wrap');
+          const transport = inCifraView
+            ? (tabPane.querySelector('.alphatab-transport-bottom') || tabPane.querySelector('.alphatab-transport'))
+            : tabPane.querySelector('.alphatab-transport');
           if (!transport || transport.querySelector('.alphatab-tracks')) return;
           const trackBar = document.createElement('div');
           trackBar.className = 'alphatab-tracks';
