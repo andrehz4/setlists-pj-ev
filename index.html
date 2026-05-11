@@ -10,7 +10,8 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=optional">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Setlists · Ticket Archive">
 <meta property="og:description" content="Pearl Jam & Eddie Vedder live shows attended. Setlists, interpretações e áudio.">
@@ -42,11 +43,6 @@
     function trigger() {
       events.forEach(function (e) { window.removeEventListener(e, trigger, { passive: true }); });
       loadGA();
-    }
-    if (document.readyState === 'complete') {
-      setTimeout(loadGA, 0);
-    } else {
-      window.addEventListener('load', function () { setTimeout(loadGA, 0); }, { once: true });
     }
     events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
   })();
