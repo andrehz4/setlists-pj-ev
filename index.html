@@ -3344,7 +3344,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
   position: fixed;
   right: 24px;
   bottom: 110px;
-  width: 540px;
+  width: clamp(540px, 56vw, 720px);
   background: rgba(255, 255, 255, 0.97);
   border: 1px solid rgba(46, 107, 138, 0.3);
   border-radius: 12px;
@@ -8201,7 +8201,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
               </div>
             </div>
             <div class="fretboard-players"></div>
-            <svg class="fretboard-svg" viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
+            <svg class="fretboard-svg" viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
             <div class="fretboard-legend"></div>
           `;
           fretboard.querySelector('.fretboard-close').addEventListener('click', (e) => {
@@ -8227,20 +8227,25 @@ function _renderTabPanel(body, songKey, tabMeta) {
           bass:   { strings: 4, tuning: ['G', 'D', 'A', 'E'], label: 'Baixo' },
         };
 
-        // Dimensoes do SVG (viewBox 540x220, escala via CSS). Layout do design
-        // Claude Design: headstock angular preto a esquerda + neck (12 trastes)
-        // + body com pickup a direita. Adesivos PJ stickman no headstock e
-        // sun-logo no corpo, integrados no SVG (filter invert pra ficar visivel
-        // sobre a madeira escura).
-        const FB_W = 540, FB_H = 220;
+        // Dimensoes do SVG (viewBox 720x220, escala via CSS). Layout do design
+        // Claude Design: headstock angular preto a esquerda + neck (22 trastes
+        // com espacamento logaritmico, igual violao real) + body com pickup a
+        // direita. Adesivos PJ stickman no headstock e sun-logo no corpo.
+        const FB_W = 720, FB_H = 220;
         const FB_HEAD_W = 70;
         const FB_BODY_W = 70;
         const FB_NECK_LEFT = FB_HEAD_W;
         const FB_NECK_RIGHT = FB_W - FB_BODY_W;
         const FB_PAD_T = 22;
         const FB_PAD_B = 26;
-        const FB_FRETS = 12;
-        const fretSpacing = (FB_NECK_RIGHT - FB_NECK_LEFT) / FB_FRETS;
+        const FB_FRETS = 22;
+        // Espacamento logaritmico (equal-temperament): cada fret esta a uma
+        // fracao 1 - 2^(-n/12) do scale length total. Calibra scale length
+        // pra que o fret FB_FRETS caia exatamente em FB_NECK_RIGHT.
+        const _fretRatio = (n) => 1 - Math.pow(2, -n / 12);
+        const FB_SCALE_LENGTH = (FB_NECK_RIGHT - FB_NECK_LEFT) / _fretRatio(FB_FRETS);
+        const fretX = (n) => FB_NECK_LEFT + FB_SCALE_LENGTH * _fretRatio(n);
+        const fretCenter = (n) => (fretX(n - 1) + fretX(n)) / 2;
         // Alias retrocompativel pro drawActiveNotes (refs antigas a FB_PAD_L)
         const FB_PAD_L = FB_NECK_LEFT;
 
@@ -8296,21 +8301,20 @@ function _renderTabPanel(body, songKey, tabMeta) {
           svg += `<rect x="${FB_NECK_LEFT}" y="${neckTop - 4}" width="${FB_NECK_RIGHT - FB_NECK_LEFT}" height="${neckBot - neckTop + 8}" fill="url(#wood)"/>`;
           // Nut (osso de marfim)
           svg += `<rect x="${FB_NECK_LEFT - 5}" y="${neckTop - 4}" width="5" height="${neckBot - neckTop + 8}" fill="url(#nut)" stroke="#8a7a4a" stroke-width="0.5"/>`;
-          // Trastes prateados
+          // Trastes prateados, posicionados por fretX (espacamento log).
           for (let f = 1; f <= FB_FRETS; f++) {
-            const x = FB_NECK_LEFT + f * fretSpacing;
+            const x = fretX(f);
             svg += `<rect x="${x - 1}" y="${neckTop - 4}" width="2.5" height="${neckBot - neckTop + 8}" fill="url(#fret)"/>`;
           }
-          // Inlay markers Fender-style: dots simples em 3/5/7/9 e duplo no 12
-          const inlays = [3, 5, 7, 9];
-          inlays.forEach(f => {
-            const x = FB_NECK_LEFT + (f - 0.5) * fretSpacing;
-            svg += `<circle cx="${x}" cy="${neckMid}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
+          // Inlay markers Fender-style: 3/5/7/9 + duplo no 12 + 15/17/19/21
+          [3, 5, 7, 9, 15, 17, 19, 21].forEach(f => {
+            if (f > FB_FRETS) return;
+            svg += `<circle cx="${fretCenter(f)}" cy="${neckMid}" r="4.2" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
           });
           if (FB_FRETS >= 12) {
-            const x12 = FB_NECK_LEFT + (12 - 0.5) * fretSpacing;
-            svg += `<circle cx="${x12}" cy="${neckMid - stringSpacing * 0.8}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
-            svg += `<circle cx="${x12}" cy="${neckMid + stringSpacing * 0.8}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
+            const x12 = fretCenter(12);
+            svg += `<circle cx="${x12}" cy="${neckMid - stringSpacing * 0.8}" r="4.2" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
+            svg += `<circle cx="${x12}" cy="${neckMid + stringSpacing * 0.8}" r="4.2" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
           }
 
           // ====== BODY (lado direito, com pickup) ======
@@ -8336,10 +8340,12 @@ function _renderTabPanel(body, songKey, tabMeta) {
           }
 
           // ====== NUMEROS DOS TRASTES (embaixo) ======
-          for (let f = 1; f <= FB_FRETS; f++) {
-            const x = FB_NECK_LEFT + (f - 0.5) * fretSpacing;
-            svg += `<text x="${x}" y="${FB_H - 8}" font-family="sans-serif" font-size="10" font-weight="600" fill="#888" text-anchor="middle">${f}</text>`;
-          }
+          // So nos marcadores tradicionais pra nao poluir. 22 numeros seguidos
+          // ficavam ilegiveis em fonte 10.
+          [3, 5, 7, 9, 12, 15, 17, 19, 21].forEach(f => {
+            if (f > FB_FRETS) return;
+            svg += `<text x="${fretCenter(f)}" y="${FB_H - 8}" font-family="sans-serif" font-size="10" font-weight="600" fill="#888" text-anchor="middle">${f}</text>`;
+          });
           fretSvg.innerHTML = svg;
         };
         drawBoard();
@@ -8403,9 +8409,12 @@ function _renderTabPanel(body, songKey, tabMeta) {
             const stringIdx = n.string - 1;
             if (stringIdx < 0 || stringIdx >= nStrings) return;
             const y = FB_PAD_T + stringIdx * stringSpacing;
+            // Posicao do dot: fret 0 (corda solta) fica antes do nut; demais
+            // usam fretCenter (centro entre os 2 trastes vizinhos, com
+            // espacamento logaritmico real).
             const x = n.fret === 0
               ? FB_PAD_L - 12
-              : FB_PAD_L + (n.fret - 0.5) * fretSpacing;
+              : fretCenter(n.fret);
             const color = TRACK_COLORS[(n.trackIdx || 0) % TRACK_COLORS.length];
 
             // Ringing line: nota ate borda direita do body, mostra que a nota
