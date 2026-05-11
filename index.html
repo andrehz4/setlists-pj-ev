@@ -3131,6 +3131,48 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .alphatab-track-toggle input { accent-color: #2e6b8a; cursor: pointer; }
 .alphatab-track-toggle:has(input:not(:checked)) span { opacity: 0.4; text-decoration: line-through; }
+/* FAB (controles flutuantes do AlphaTab): aparecem quando esta tocando,
+   visiveis mesmo apos pagina rolar pra acompanhar o cursor */
+.alphatab-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: none;
+  gap: 8px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(46, 107, 138, 0.3);
+  border-radius: 999px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.alphatab-fab.show { display: flex; }
+.alphatab-fab-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 0;
+  color: #fff;
+  font: 700 14px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: transform 100ms ease, background 120ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alphatab-fab-btn:hover { transform: scale(1.06); }
+.alphatab-fab-btn:active { transform: scale(0.96); }
+.alphatab-fab-pause { background: #2e6b8a; }
+.alphatab-fab-pause:hover { background: #1f4e6a; }
+.alphatab-fab-stop { background: var(--pj, #c1272d); }
+.alphatab-fab-stop:hover { background: #8a1c20; }
+@media (max-width: 480px) {
+  .alphatab-fab { bottom: 16px; right: 16px; padding: 8px; gap: 6px; }
+  .alphatab-fab-btn { width: 44px; height: 44px; font-size: 13px; }
+}
 
 /* View "Cifras & Tabs": grid de cards (visual similar a Deep), expansivel
    pra mostrar o painel completo de cifra/tab inline. */
@@ -7298,6 +7340,25 @@ function _renderTabPanel(body, songKey, tabMeta) {
         loading.remove();
         status.textContent = 'soundfont sonivox · click Play';
 
+        // FAB (controles flutuantes) no canto inferior direito: aparece
+        // enquanto o player esta ativo, pra usuario poder pausar/parar mesmo
+        // depois da pagina rolar fazendo o transport sair da viewport.
+        let fab = document.querySelector('.alphatab-fab');
+        if (!fab) {
+          fab = document.createElement('div');
+          fab.className = 'alphatab-fab';
+          fab.innerHTML = `
+            <button type="button" class="alphatab-fab-btn alphatab-fab-pause" aria-label="Pausar/retomar">❚❚</button>
+            <button type="button" class="alphatab-fab-btn alphatab-fab-stop" aria-label="Parar">◼</button>
+          `;
+          document.body.appendChild(fab);
+        }
+        const fabPause = fab.querySelector('.alphatab-fab-pause');
+        const fabStop = fab.querySelector('.alphatab-fab-stop');
+        // Reattach handlers pra apontar pro api desta sessao.
+        fabPause.onclick = (e) => { e.stopPropagation(); api.playPause(); };
+        fabStop.onclick = (e) => { e.stopPropagation(); api.stop(); };
+
         // Autoscroll custom: garante que o cursor (.at-cursor-bar) fique
         // sempre centralizado na viewport quando o player avanca.
         // Throttled a 400ms pra evitar smooth-scroll jitter.
@@ -7335,10 +7396,19 @@ function _renderTabPanel(body, songKey, tabMeta) {
             playBtn.dataset.state = 'playing';
             playBtn.textContent = '❚❚ Pause';
             status.textContent = 'tocando…';
+            fab.classList.add('show');
+            fabPause.textContent = '❚❚';
           } else {
             playBtn.dataset.state = 'idle';
             playBtn.textContent = '▶ Play';
             status.textContent = e.state === 2 ? 'pausado' : 'parado';
+            // Pausado: FAB continua visivel pra retomar; parado: esconde.
+            if (e.state === 2) {
+              fab.classList.add('show');
+              fabPause.textContent = '▶';
+            } else {
+              fab.classList.remove('show');
+            }
           }
         });
         api.playerReady.on(() => { status.textContent = 'pronto · click Play'; });
