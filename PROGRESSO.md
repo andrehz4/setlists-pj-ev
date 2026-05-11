@@ -45,10 +45,15 @@ untitled (Yield faixa 8): 2 linhas instrumentais cantadas, traduzido como 'Tamo 
 - `media/lyrics-notes.json`: 227 ensaios do tradutor + _meta.
 - `media/interpretations.json`: 220 entradas bilingues.
 
+## MEDIA recovery 2026-05-11 (passada 2)
+- 56 my_photos importadas dos 5 shows Brasil 2015 (11, 14, 17, 20, 22/11), 100% dos slots my_photos preenchidos pra esses shows.
+- Video Facebook 2014 importado em ev-2014-05-06/videos/video-1.mp4 (1.47 MB, 11s, validacao visual pendente).
+- Detalhes em MEDIA_AUDIT_2026-05-11.md.
+
 ## Outras frentes pendentes (proximas sessoes)
 - Traducao PT 2B contextual em interpretations.json: "o tipo de" (221), "da cancao (...)" (31), "estruturada em torno de" (24).
 - Performance round 3: 24 KiB unused-JS no index, 21 KiB unused CSS, render-blocking dos 3 links de fontes.
-- MEDIA gap: 22 shows declaram my_photos sem nada em disco/Drive.
+- MEDIA gap remanescente (apos passada 2): 14 shows ainda sem my_photos no disco (2011, 2013, 2018, EV 2014), pasta media/comunidade/ inteira faltando (22 fotos), 26 MP3s do show 2005-12-02, poster-1.jpg do 2024-08-31, my_photos 4 do ev-2014-05-06. Detalhes no MEDIA_AUDIT_2026-05-11.md.
 - Validacao visual: revisar musica por musica no site (letra + interpretacao + nota do tradutor) e ajustar manualmente o que precisar.
 - Passada de expansao opcional nos ensaios de covers (atualmente 50-100 palavras, abaixo da regua de 250 dos albuns de estudio). Por protocolo, covers entram com nota mais curta (letras alheias com contexto biografico), entao a expansao so faz sentido caso a caso, ex: covers de peso simbolico recorrente no setlist (rockin in the free world, baba oriley, comfortably numb, love reign oer me) merecem 180-220 palavras.
 
