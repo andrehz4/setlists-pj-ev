@@ -3830,12 +3830,12 @@ html[data-theme="dark"] .cifra-context-pane {
    continua mostrando a infoBar normalmente (nao tem o header proprio). */
 .cifra-detail-body > .tab-info { display: none; }
 
-/* Voice picker: cards 3-col com label + role + tagline por musico.
-   Multi-select (multiple cards podem ficar ligados). Sincroniza com os
-   checkboxes do fretboard-overlay via dispatch programatico. */
+/* Voice picker: cards com label + role + tagline + slider de volume por
+   musico. Multi-select (toggle on/off via botao interno). Volume vai pra
+   api.changeTrackVolume do AlphaTab. */
 .voice-picker {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 8px;
   margin-bottom: 18px;
 }
@@ -3843,27 +3843,35 @@ html[data-theme="dark"] .cifra-context-pane {
   .voice-picker { grid-template-columns: 1fr; }
 }
 .voice-tab {
-  text-align: left;
-  padding: 11px 13px;
   background: var(--bg-card);
   border: 1px solid var(--divider);
   border-left: 3px solid var(--divider-strong);
-  cursor: pointer;
   transition: background 0.15s ease, border-left-color 0.15s ease, opacity 0.15s ease;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  color: var(--ink);
-  font-family: inherit;
   --vc: #2e6b8a;
 }
-.voice-tab:hover { background: var(--bg-card-hover); }
 .voice-tab.active {
   border-left-color: var(--vc);
   background: var(--bg-card-hover);
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
-.voice-tab:not(.active) { opacity: 0.55; }
+.voice-tab-toggle {
+  text-align: left;
+  padding: 11px 13px 6px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  transition: opacity 0.15s ease;
+}
+.voice-tab-toggle:hover { background: var(--bg-card-hover); }
+.voice-tab:not(.active) .voice-tab-toggle { opacity: 0.45; }
 .voice-tab-label {
   font: 700 14px/1.1 var(--font-display, 'Big Shoulders Display', sans-serif);
   letter-spacing: 0.02em;
@@ -3880,6 +3888,50 @@ html[data-theme="dark"] .cifra-context-pane {
   font: italic 12px/1.3 var(--font-editorial, Georgia, serif);
   color: var(--ink-mute);
   margin-top: 3px;
+}
+
+/* Slider de volume por track (parte inferior do card). */
+.voice-tab-vol {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 13px 11px;
+  transition: opacity 0.15s ease;
+}
+.voice-tab:not(.active) .voice-tab-vol { opacity: 0.4; }
+.voice-tab-vol .vol-ico { font-size: 12px; opacity: 0.7; }
+.voice-tab-vol input[type=range] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: var(--divider-strong);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.voice-tab-vol input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--vc, #2e6b8a);
+  border: 2px solid var(--bg-card);
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.voice-tab-vol input[type=range]::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--vc, #2e6b8a);
+  border: 2px solid var(--bg-card);
+  cursor: pointer;
+}
+.voice-tab-vol .vol-val {
+  font: 600 9px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-dim);
+  min-width: 28px;
+  text-align: right;
 }
 
 @media (max-width: 600px) {
@@ -8992,15 +9044,16 @@ function _inferTrackMeta(name) {
 function _syncVoiceTab(idx, isOn) {
   document.querySelectorAll(`.voice-tab[data-idx="${idx}"]`).forEach(card => {
     card.classList.toggle('active', isOn);
-    card.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+    const toggle = card.querySelector('.voice-tab-toggle');
+    if (toggle) toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false');
   });
 }
 
-// Popula o voice-picker com 1 card por track da partitura. Cards ficam
-// todos ativos por default. Click no card chama .click() nativo nos
-// checkboxes correspondentes — isso dispara os listeners reais (que
-// fazem o trabalho de filter visual + mute audio + renderTracks). O
-// loop de sync se fecha via _syncVoiceTab que aqueles listeners invocam.
+// Popula o voice-picker com 1 card por track da partitura. Cada card tem:
+// - botao de toggle (mute/unmute) que sincroniza com os checkboxes de
+//   .fretboard-players e .alphatab-tracks via .click() nativo
+// - slider de volume (0-150%) que chama api.changeTrackVolume nativo.
+//   AlphaTab persiste durante a sessao; ao trocar de musica, reseta pra 100.
 function _populateVoicePicker(picker, tracks) {
   if (!picker || !tracks || !tracks.length) return;
   const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
@@ -9010,30 +9063,53 @@ function _populateVoicePicker(picker, tracks) {
     const { role, tagline } = _inferTrackMeta(rawName);
     const color = TRACK_COLORS[i % TRACK_COLORS.length];
     return `
-      <button type="button" class="voice-tab active" data-idx="${i}" style="--vc:${color}" aria-pressed="true">
-        <span class="voice-tab-label">${esc(rawName)}</span>
-        <span class="voice-tab-role">${esc(role)}</span>
-        <span class="voice-tab-tag">${esc(tagline)}</span>
-      </button>`;
+      <div class="voice-tab active" data-idx="${i}" style="--vc:${color}">
+        <button type="button" class="voice-tab-toggle" aria-pressed="true" aria-label="Ligar / mutar ${esc(rawName)}">
+          <span class="voice-tab-label">${esc(rawName)}</span>
+          <span class="voice-tab-role">${esc(role)}</span>
+          <span class="voice-tab-tag">${esc(tagline)}</span>
+        </button>
+        <label class="voice-tab-vol" aria-label="Volume de ${esc(rawName)}">
+          <span class="vol-ico" aria-hidden="true">🔊</span>
+          <input type="range" min="0" max="1.5" step="0.05" value="1">
+          <span class="vol-val">100</span>
+        </label>
+      </div>`;
   }).join('');
   picker.hidden = false;
-  picker.querySelectorAll('.voice-tab').forEach(card => {
-    card.addEventListener('click', (e) => {
+
+  // Toggle on/off via click no botao interno
+  picker.querySelectorAll('.voice-tab-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
       e.stopPropagation();
+      const card = toggle.closest('.voice-tab');
       const idx = card.dataset.idx;
       const newState = !card.classList.contains('active');
-      // .click() nativo nos checkboxes alvo: toggle automatico + dispara
-      // o event listener original. Mais robusto que checked + dispatch
-      // manual (que nao alcancava o listener delegado do .alphatab-tracks).
       const cbFret = document.querySelector(`.fretboard-players input[data-idx="${idx}"]`);
       const cbTrack = document.querySelector(`.alphatab-tracks input[data-track-idx="${idx}"]`);
       if (cbFret && cbFret.checked !== newState) cbFret.click();
       if (cbTrack && cbTrack.checked !== newState) cbTrack.click();
-      // Fallback: musica so com cifra (sem tab), nenhum dos 2 existe.
-      // Toggle visual aqui mesmo pra manter o card respondendo.
       if (!cbFret && !cbTrack) {
         card.classList.toggle('active', newState);
-        card.setAttribute('aria-pressed', newState ? 'true' : 'false');
+        toggle.setAttribute('aria-pressed', newState ? 'true' : 'false');
+      }
+    });
+  });
+
+  // Volume por track: 0=mudo, 1=100%, 1.5=boost 150%
+  picker.querySelectorAll('.voice-tab-vol input[type=range]').forEach(input => {
+    input.addEventListener('input', (e) => {
+      e.stopPropagation();
+      const card = input.closest('.voice-tab');
+      const idx = parseInt(card.dataset.idx, 10);
+      const v = parseFloat(input.value);
+      const valSpan = card.querySelector('.vol-val');
+      if (valSpan) valSpan.textContent = Math.round(v * 100);
+      if (_activeAlphaTabApi && _activeAlphaTabApi.score && _activeAlphaTabApi.score.tracks) {
+        const track = _activeAlphaTabApi.score.tracks[idx];
+        if (track) {
+          try { _activeAlphaTabApi.changeTrackVolume([track], v); } catch (err) {}
+        }
       }
     });
   });
