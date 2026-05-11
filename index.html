@@ -3283,7 +3283,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
   position: fixed;
   right: 24px;
   bottom: 110px;
-  width: 460px;
+  width: 540px;
   background: rgba(255, 255, 255, 0.97);
   border: 1px solid rgba(46, 107, 138, 0.3);
   border-radius: 12px;
@@ -3333,37 +3333,11 @@ html[data-theme="light"] .drawer-section-label.my-media {
   background: #2e6b8a;
   color: #fff;
 }
-.fretboard-svg-wrap {
-  position: relative;
-}
 .fretboard-svg {
   width: 100%;
   height: auto;
   display: block;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-}
-/* Adesivos PJ colados na madeira do fretboard. Posicionados absolutos
-   sobre o SVG (fora do markup SVG pra nao serem apagados quando
-   drawBoard() re-renderiza). Mix-blend-mode integra na textura de madeira. */
-.fretboard-decal {
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-  mix-blend-mode: screen;
-  opacity: 0.42;
-  filter: brightness(1.4) contrast(1.1);
-}
-.fretboard-decal-stickman {
-  top: 8%;
-  left: 11%;
-  width: 9%;
-  transform: rotate(-6deg);
-}
-.fretboard-decal-sun {
-  top: 4%;
-  right: 14%;
-  width: 11%;
-  transform: rotate(12deg);
 }
 .fretboard-legend {
   display: flex;
@@ -3910,13 +3884,6 @@ html[data-theme="dark"] .tab-pane-soon {
 html[data-theme="dark"] .fretboard-overlay {
   background: rgba(26, 22, 17, 0.97);
   border-color: rgba(46, 107, 138, 0.45);
-}
-/* Adesivos PJ ja usam mix-blend-mode: screen, que clareia em qualquer
-   fundo. Em dark precisam de mais opacidade pra continuar visiveis sem
-   serem agressivos. */
-html[data-theme="dark"] .fretboard-decal {
-  opacity: 0.55;
-  filter: brightness(1.6) contrast(1.0);
 }
 
 /* Header line do cifra-detail (artista · album · ano) usa --pj que ja
@@ -8084,11 +8051,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
               </div>
             </div>
             <div class="fretboard-players"></div>
-            <div class="fretboard-svg-wrap">
-              <svg class="fretboard-svg" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
-              <img class="fretboard-decal fretboard-decal-stickman" src="media/decals/pj-stickman.png" alt="" aria-hidden="true">
-              <img class="fretboard-decal fretboard-decal-sun" src="media/decals/pj-sun-logo.png" alt="" aria-hidden="true">
-            </div>
+            <svg class="fretboard-svg" viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
             <div class="fretboard-legend"></div>
           `;
           fretboard.querySelector('.fretboard-close').addEventListener('click', (e) => {
@@ -8114,21 +8077,32 @@ function _renderTabPanel(body, songKey, tabMeta) {
           bass:   { strings: 4, tuning: ['G', 'D', 'A', 'E'], label: 'Baixo' },
         };
 
-        // Dimensoes do SVG (viewBox fixo, escala via CSS)
-        const FB_W = 460, FB_H = 220;
-        const FB_PAD_L = 42;   // espaco pra nomes das cordas
-        const FB_PAD_R = 18;
-        const FB_PAD_T = 16;
-        const FB_PAD_B = 22;   // espaco pra numeros dos trastes
+        // Dimensoes do SVG (viewBox 540x220, escala via CSS). Layout do design
+        // Claude Design: headstock angular preto a esquerda + neck (12 trastes)
+        // + body com pickup a direita. Adesivos PJ stickman no headstock e
+        // sun-logo no corpo, integrados no SVG (filter invert pra ficar visivel
+        // sobre a madeira escura).
+        const FB_W = 540, FB_H = 220;
+        const FB_HEAD_W = 70;
+        const FB_BODY_W = 70;
+        const FB_NECK_LEFT = FB_HEAD_W;
+        const FB_NECK_RIGHT = FB_W - FB_BODY_W;
+        const FB_PAD_T = 22;
+        const FB_PAD_B = 26;
         const FB_FRETS = 12;
-        const fretSpacing = (FB_W - FB_PAD_L - FB_PAD_R) / FB_FRETS;
+        const fretSpacing = (FB_NECK_RIGHT - FB_NECK_LEFT) / FB_FRETS;
+        // Alias retrocompativel pro drawActiveNotes (refs antigas a FB_PAD_L)
+        const FB_PAD_L = FB_NECK_LEFT;
 
         const drawBoard = () => {
           const inst = INSTRUMENTS[fbInstrument];
           const nStrings = inst.strings;
-          const stringSpacing = (FB_H - FB_PAD_T - FB_PAD_B) / (nStrings - 1);
+          const neckTop = FB_PAD_T;
+          const neckBot = FB_H - FB_PAD_B;
+          const stringSpacing = (neckBot - neckTop) / (nStrings - 1);
+          const neckMid = (neckTop + neckBot) / 2;
           let svg = '';
-          // Defs: gradient de madeira + gradient de trastes metalicos
+          // Defs: gradients de madeira (neck + body) + trastes + nut + headstock
           svg += `<defs>
             <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#5a3a1f"/>
@@ -8144,42 +8118,77 @@ function _renderTabPanel(body, songKey, tabMeta) {
               <stop offset="0%" stop-color="#f9f3e3"/>
               <stop offset="100%" stop-color="#d8c89c"/>
             </linearGradient>
+            <linearGradient id="headstock" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1f1815"/>
+              <stop offset="100%" stop-color="#0d0807"/>
+            </linearGradient>
+            <linearGradient id="bodyEdge" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#5a3322"/>
+              <stop offset="100%" stop-color="#1f1410"/>
+            </linearGradient>
           </defs>`;
-          // Fundo: madeira
-          svg += `<rect x="${FB_PAD_L}" y="${FB_PAD_T - 4}" width="${FB_W - FB_PAD_L - FB_PAD_R}" height="${FB_H - FB_PAD_T - FB_PAD_B + 8}" fill="url(#wood)" rx="3"/>`;
+
+          // ====== HEADSTOCK (esquerda, formato angular preto) ======
+          const headT = neckTop - 6;
+          const headB = neckBot + 6;
+          svg += `<path d="M ${FB_NECK_LEFT} ${headT} L 14 ${headT + 4} L 4 ${headT + (headB - headT) * 0.32} L 4 ${headT + (headB - headT) * 0.68} L 14 ${headB - 4} L ${FB_NECK_LEFT} ${headB} Z" fill="url(#headstock)" stroke="#000" stroke-width="0.8"/>`;
+          // Tarraxas (1 por corda, em coluna a esquerda)
+          for (let i = 0; i < nStrings; i++) {
+            const cy = headT + 12 + i * ((headB - headT - 24) / (nStrings - 1));
+            const cx = 22;
+            svg += `<circle cx="${cx}" cy="${cy}" r="3.6" fill="#c8c0b0" stroke="#3a3328" stroke-width="0.6"/>`;
+            svg += `<circle cx="${cx}" cy="${cy}" r="1.4" fill="#3a3328"/>`;
+          }
+          // Adesivo PJ stickman no headstock (filter invert clareia sobre o preto)
+          svg += `<image href="media/decals/pj-stickman.png" x="32" y="${neckMid - 28}" width="32" height="56" opacity="0.9" style="filter: invert(1) brightness(1.4) contrast(1.1);" preserveAspectRatio="xMidYMid meet"/>`;
+
+          // ====== NECK (fingerboard rosewood com inlays e trastes) ======
+          svg += `<rect x="${FB_NECK_LEFT}" y="${neckTop - 4}" width="${FB_NECK_RIGHT - FB_NECK_LEFT}" height="${neckBot - neckTop + 8}" fill="url(#wood)"/>`;
           // Nut (osso de marfim)
-          svg += `<rect x="${FB_PAD_L - 6}" y="${FB_PAD_T - 4}" width="6" height="${FB_H - FB_PAD_T - FB_PAD_B + 8}" fill="url(#nut)" stroke="#8a7a4a" stroke-width="0.5"/>`;
+          svg += `<rect x="${FB_NECK_LEFT - 5}" y="${neckTop - 4}" width="5" height="${neckBot - neckTop + 8}" fill="url(#nut)" stroke="#8a7a4a" stroke-width="0.5"/>`;
           // Trastes prateados
           for (let f = 1; f <= FB_FRETS; f++) {
-            const x = FB_PAD_L + f * fretSpacing;
-            svg += `<rect x="${x - 1}" y="${FB_PAD_T - 4}" width="2.5" height="${FB_H - FB_PAD_T - FB_PAD_B + 8}" fill="url(#fret)"/>`;
+            const x = FB_NECK_LEFT + f * fretSpacing;
+            svg += `<rect x="${x - 1}" y="${neckTop - 4}" width="2.5" height="${neckBot - neckTop + 8}" fill="url(#fret)"/>`;
           }
-          // Inlay markers (pontos de madreperola nos trastes 3,5,7,9)
+          // Inlay markers Fender-style: dots simples em 3/5/7/9 e duplo no 12
           const inlays = [3, 5, 7, 9];
           inlays.forEach(f => {
-            const x = FB_PAD_L + (f - 0.5) * fretSpacing;
-            const y = FB_PAD_T + (FB_H - FB_PAD_T - FB_PAD_B) / 2;
-            svg += `<circle cx="${x}" cy="${y}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
+            const x = FB_NECK_LEFT + (f - 0.5) * fretSpacing;
+            svg += `<circle cx="${x}" cy="${neckMid}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
           });
-          // Inlay duplo no 12
-          const x12 = FB_PAD_L + (12 - 0.5) * fretSpacing;
-          const mid = FB_PAD_T + (FB_H - FB_PAD_T - FB_PAD_B) / 2;
-          svg += `<circle cx="${x12}" cy="${mid - stringSpacing * 0.8}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
-          svg += `<circle cx="${x12}" cy="${mid + stringSpacing * 0.8}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
-          // Cordas
+          if (FB_FRETS >= 12) {
+            const x12 = FB_NECK_LEFT + (12 - 0.5) * fretSpacing;
+            svg += `<circle cx="${x12}" cy="${neckMid - stringSpacing * 0.8}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
+            svg += `<circle cx="${x12}" cy="${neckMid + stringSpacing * 0.8}" r="5" fill="#f0e8d0" opacity="0.85" stroke="#8a7a4a" stroke-width="0.4"/>`;
+          }
+
+          // ====== BODY (lado direito, com pickup) ======
+          svg += `<rect x="${FB_NECK_RIGHT}" y="${neckTop - 4}" width="${FB_BODY_W}" height="${neckBot - neckTop + 8}" fill="url(#bodyEdge)"/>`;
+          const pickH = (neckBot - neckTop) * 0.6;
+          const pickY = neckTop + ((neckBot - neckTop) - pickH) / 2;
+          svg += `<rect x="${FB_NECK_RIGHT + 6}" y="${pickY}" width="${FB_BODY_W - 14}" height="${pickH}" fill="#0a0807" rx="2"/>`;
+          svg += `<rect x="${FB_NECK_RIGHT + 10}" y="${pickY + pickH * 0.15}" width="${FB_BODY_W - 22}" height="${pickH * 0.7}" fill="#3a3328" rx="1"/>`;
+          // Adesivo PJ sun-logo no canto superior do body
+          const sunX = FB_NECK_RIGHT + FB_BODY_W - 36;
+          const sunY = neckTop - 8;
+          svg += `<image href="media/decals/pj-sun-logo.png" x="${sunX}" y="${sunY}" width="32" height="32" opacity="0.88" style="filter: invert(1) brightness(1.3);" transform="rotate(14 ${sunX + 16} ${sunY + 16})" preserveAspectRatio="xMidYMid meet"/>`;
+
+          // ====== CORDAS (do headstock ate o body, atravessam tudo) ======
           for (let s = 0; s < nStrings; s++) {
-            const y = FB_PAD_T + s * stringSpacing;
-            // Cordas mais agudas finas, mais graves grossas
+            const y = neckTop + s * stringSpacing;
+            // Calibre variavel: mais grossa nas graves (s alto = grave; s 0 = aguda)
             const thicknessRatio = s / (nStrings - 1);
             const w = 0.9 + thicknessRatio * 1.6;
-            svg += `<line x1="${FB_PAD_L - 6}" y1="${y}" x2="${FB_W - FB_PAD_R}" y2="${y}" stroke="#dcdcdc" stroke-width="${w}" opacity="0.92"/>`;
-            // Nome da nota da corda solta (esquerda)
-            svg += `<text x="${FB_PAD_L - 12}" y="${y + 4}" font-family="sans-serif" font-size="11" font-weight="700" fill="#2e6b8a" text-anchor="end">${inst.tuning[s]}</text>`;
+            svg += `<line x1="22" y1="${y}" x2="${FB_W - 8}" y2="${y}" stroke="#dcdcdc" stroke-width="${w}" opacity="0.92"/>`;
+            // Nome da nota afinada (entre headstock e nut)
+            svg += `<text x="${FB_NECK_LEFT - 10}" y="${y + 4}" font-family="sans-serif" font-size="10" font-weight="700" fill="#f0e8d0" text-anchor="end">${inst.tuning[s]}</text>`;
           }
-          // Numeros dos trastes (embaixo)
+
+          // ====== NUMEROS DOS TRASTES (embaixo) ======
           for (let f = 1; f <= FB_FRETS; f++) {
-            const x = FB_PAD_L + (f - 0.5) * fretSpacing;
-            svg += `<text x="${x}" y="${FB_H - 6}" font-family="sans-serif" font-size="10" font-weight="600" fill="#888" text-anchor="middle">${f}</text>`;
+            const x = FB_NECK_LEFT + (f - 0.5) * fretSpacing;
+            svg += `<text x="${x}" y="${FB_H - 8}" font-family="sans-serif" font-size="10" font-weight="600" fill="#888" text-anchor="middle">${f}</text>`;
           }
           fretSvg.innerHTML = svg;
         };
