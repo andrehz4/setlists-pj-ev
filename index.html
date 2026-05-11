@@ -3080,6 +3080,113 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .cifra-stop-btn { background: var(--pj, #c1272d); }
 .cifra-stop-btn:hover { background: #8a1c20; }
 
+/* Card 'Tocando agora' da cifra: diagrama grande do acorde atual +
+   nome + preview do proximo. Aparece embaixo do .cifra-player-bar
+   quando o player esta tocando/pausado. Visual: card azul-petroleo
+   com paleta consistente. */
+.cifra-now-playing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: -10px 0 18px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(46,107,138,0.10), rgba(46,107,138,0.04));
+  border: 1px solid rgba(46, 107, 138, 0.28);
+  border-left: 4px solid #2e6b8a;
+  border-radius: 6px;
+}
+.cifra-now-playing[hidden] { display: none; }
+.cifra-now-current {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cifra-now-diagram {
+  flex-shrink: 0;
+  width: 116px;
+  height: 138px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border-radius: 4px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.cifra-now-diagram svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.cifra-now-diagram-empty {
+  font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
+  color: var(--ink-dim);
+  text-align: center;
+  padding: 4px;
+}
+.cifra-now-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cifra-now-label {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.cifra-now-chord {
+  font: 800 40px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.04em;
+  color: var(--pj, #c1272d);
+  text-transform: uppercase;
+  transition: transform 220ms cubic-bezier(0.2,0.7,0.2,1);
+}
+.cifra-now-playing.cifra-now-pulse .cifra-now-chord {
+  animation: cifra-now-pulse 0.45s ease-out;
+}
+@keyframes cifra-now-pulse {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.14); }
+  100% { transform: scale(1); }
+}
+.cifra-now-next {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  padding-left: 16px;
+  border-left: 1px dashed rgba(46,107,138,0.3);
+}
+.cifra-now-next-chord {
+  font: 700 22px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.04em;
+  color: #2e6b8a;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+@media (max-width: 600px) {
+  .cifra-now-playing {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+  .cifra-now-diagram { width: 84px; height: 100px; }
+  .cifra-now-chord { font-size: 28px; }
+  .cifra-now-next {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 0;
+    padding-top: 8px;
+    border-left: 0;
+    border-top: 1px dashed rgba(46,107,138,0.3);
+  }
+  .cifra-now-next-chord { font-size: 18px; }
+}
+
 /* FAB flutuante da cifra. Identico estruturalmente ao .alphatab-fab mas
    com handlers proprios (state machine separada). Mostra quando o cifra
    player esta ativo, esconde quando para. */
@@ -3935,17 +4042,17 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 @media (max-width: 600px) {
   /* Em telas estreitas (celular), fretboard vira bottom-sheet full-width.
-     Conteudo mantem 22 trastes legiveis com scroll horizontal interno
-     quando precisar. .fretboard-players (checkboxes track) viram chips
-     horizontais com scroll. */
+     Altura compacta pra nao cobrir a tablatura. Andre flagou que 52vh
+     impedia ver a partitura por baixo. 32vh deixa ~2/3 da viewport pra
+     conteudo principal e ainda renderiza o braco com legibilidade. */
   .fretboard-overlay {
     width: 100vw;
     right: 0;
     left: 0;
     bottom: 78px;  /* acima do .alphatab-fab (que vai ate ~76px do bottom) */
-    padding: 8px 10px 6px;
+    padding: 6px 8px 4px;
     border-radius: 10px 10px 0 0;
-    max-height: 52vh;
+    max-height: 32vh;
     overflow-y: auto;
   }
   .fretboard-bar {
@@ -3968,7 +4075,13 @@ html[data-theme="light"] .drawer-section-label.my-media {
   .fretboard-players::-webkit-scrollbar-thumb { background: var(--divider-strong); border-radius: 2px; }
   .fretboard-player { flex-shrink: 0; font-size: 10px; }
   .fretboard-legend { font-size: 9px; margin-top: 4px; min-height: 12px; }
-  .fretboard-svg { max-height: 130px; }
+  .fretboard-svg { max-height: 95px; }
+  /* Bar bottom (zoom + instrumentos extras) tambem compacta */
+  .fretboard-bar-bottom { gap: 6px; margin-top: 4px; }
+  .fretboard-zoom { padding: 2px 8px; gap: 5px; }
+  .fretboard-zoom-slider { width: 80px; }
+  .fretboard-zoom-label { font-size: 8px; }
+  .fretboard-zoom-val { font-size: 9px; min-width: 28px; }
 }
 
 /* Loop overlay: card grande no centro da tela explicando o passo */
@@ -4080,7 +4193,13 @@ html[data-theme="light"] .drawer-section-label.my-media {
   overflow: hidden;
 }
 @media (max-width: 880px) {
-  .catalog-aside { position: static; max-height: none; }
+  /* No mobile, o catalogo nao pode ocupar a tela inteira antes do detail.
+     Limita a lista a 240px de altura (5-6 itens visiveis) com scroll
+     interno; usuario continua tendo busca + visao do que esta selecionado
+     sem precisar rolar a pagina toda pra alcancar a cifra. */
+  .catalog-aside { position: static; max-height: none; gap: 6px; }
+  .catalog-list { max-height: 240px; }
+  .catalog-count { font-size: 8px; padding: 0 2px; }
 }
 .catalog-search {
   width: 100%;
@@ -8644,6 +8763,19 @@ function _renderTabPanel(body, songKey, tabMeta) {
           <button type="button" class="cifra-pause-btn" hidden aria-label="Pausar cifra">❚❚</button>
           <button type="button" class="cifra-stop-btn" hidden aria-label="Parar cifra">◼ Stop</button>
           <span class="cifra-player-meta">${bpm} BPM · ~2 beats por acorde · violão acústico</span>
+        </div>
+        <div class="cifra-now-playing" hidden aria-live="polite">
+          <div class="cifra-now-current">
+            <div class="cifra-now-diagram"></div>
+            <div class="cifra-now-info">
+              <span class="cifra-now-label">Tocando</span>
+              <span class="cifra-now-chord">—</span>
+            </div>
+          </div>
+          <div class="cifra-now-next">
+            <span class="cifra-now-label">Próximo</span>
+            <span class="cifra-now-next-chord">—</span>
+          </div>
         </div>`;
       cifraPane.innerHTML = playerBar + _renderChordPro(txt);
       _attachChordChipHandlers(cifraPane);
@@ -10053,6 +10185,15 @@ function renderTabsView() {
     const meta = TABS_MANIFEST[songKey];
     if (!meta) return;
     _renderCifraDetail(detail, songKey, meta);
+    // Mobile: scroll pro detail quando troca de musica, evita ter que rolar
+    // a pagina inteira ate achar a cifra abaixo do catalogo. So pra click
+    // real do usuario (e.isTrusted), nao no auto-select inicial.
+    if (e.isTrusted && window.matchMedia('(max-width: 880px)').matches) {
+      requestAnimationFrame(() => {
+        const y = detail.getBoundingClientRect().top + window.scrollY - 12;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+    }
   });
 
   // Hidrata covers dos cat-items com fotos reais do album (loadAlbumCovers
@@ -10523,6 +10664,12 @@ function _stopCifraPlayer(root) {
   }
   _CIFRA_PLAYERS.delete(root);
   root.querySelectorAll('.chord-chip.chord-chip-playing').forEach(c => c.classList.remove('chord-chip-playing'));
+  // Esconde card 'Tocando agora'
+  const nowCard = root.querySelector('.cifra-now-playing');
+  if (nowCard) {
+    nowCard.hidden = true;
+    nowCard.classList.remove('cifra-now-pulse');
+  }
   _renderCifraPlayerBar(root, 'idle');
   if (_activeCifraRoot === root) {
     _activeCifraRoot = null;
@@ -10566,6 +10713,14 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
+  // Mostra card "Tocando agora" com diagrama do acorde + nome + proximo.
+  // Pulsa a cada novo acorde sincronizado com o playback.
+  const nowCard = root.querySelector('.cifra-now-playing');
+  const nowDiagram = nowCard && nowCard.querySelector('.cifra-now-diagram');
+  const nowChord = nowCard && nowCard.querySelector('.cifra-now-chord');
+  const nowNext = nowCard && nowCard.querySelector('.cifra-now-next-chord');
+  if (nowCard) nowCard.hidden = false;
+
   for (let i = 0; i < chips.length; i++) {
     if (aborted) break;
     // Aguarda enquanto pausado. _resumeCifraPlayer chama o resumeSignal pra liberar.
@@ -10577,6 +10732,22 @@ async function _startCifraPlayer(root, bpm) {
     const chip = chips[i];
     chips.forEach(c => c.classList.remove('chord-chip-playing'));
     chip.classList.add('chord-chip-playing');
+    // Atualiza card 'Tocando agora' com diagrama + nome + proximo acorde.
+    if (nowCard) {
+      const chord = chip.dataset.chord;
+      const nextChip = chips[i + 1];
+      const nextChord = nextChip ? nextChip.dataset.chord : '—';
+      if (nowChord) nowChord.textContent = chord;
+      if (nowNext) nowNext.textContent = nextChord;
+      if (nowDiagram) {
+        const svg = _renderChordDiagram(chord);
+        nowDiagram.innerHTML = svg || `<div class="cifra-now-diagram-empty">${chord}<br><small>digitação<br>não cadastrada</small></div>`;
+      }
+      // Pulse animation re-trigger via classe (force reflow pra reiniciar)
+      nowCard.classList.remove('cifra-now-pulse');
+      void nowCard.offsetWidth;
+      nowCard.classList.add('cifra-now-pulse');
+    }
     // Scroll center igual a tab: chord ativo sempre no meio do viewport.
     chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
     _playChordSound(chip.dataset.chord, { duration: noteDuration * 1.1, velocity: 78 });
