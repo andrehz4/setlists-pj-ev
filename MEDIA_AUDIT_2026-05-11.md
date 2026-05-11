@@ -2,6 +2,9 @@
 **Data:** 2026-05-11
 **Escopo:** Continuação do MEDIA_AUDIT_2026-04-29. Re-busca no Google Drive (`eng.andrehz@gmail.com`) com queries mais agressivas, foco nos shows Brasil 2015 e Chicago 2024.
 
+> ⚠️ **STATUS APÓS REVISÃO:** O lote de 56 my_photos importadas em massa foi REVERTIDO (commit subsequente ao `e1d5d0a` removeu os arquivos das 5 pastas `mine/`). Motivo: o filtro automático por tamanho (>80KB) deixou passar conteúdo inadequado (chat screenshots privados, prints pessoais reenviados via WhatsApp). Próxima abordagem: importar **show por show** com revisão visual prévia antes de qualquer commit. As listas de file_ids do Drive abaixo continuam válidas como candidatos para essa retomada manual.
+> O vídeo `ev-2014-05-06/videos/video-1.mp4` permanece em disco.
+
 ---
 
 ## 1. Resumo do que mudou em disco

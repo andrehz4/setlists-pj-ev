@@ -46,9 +46,9 @@ untitled (Yield faixa 8): 2 linhas instrumentais cantadas, traduzido como 'Tamo 
 - `media/interpretations.json`: 220 entradas bilingues.
 
 ## MEDIA recovery 2026-05-11 (passada 2)
-- 56 my_photos importadas dos 5 shows Brasil 2015 (11, 14, 17, 20, 22/11), 100% dos slots my_photos preenchidos pra esses shows.
-- Video Facebook 2014 importado em ev-2014-05-06/videos/video-1.mp4 (1.47 MB, 11s, validacao visual pendente).
-- Detalhes em MEDIA_AUDIT_2026-05-11.md.
+- ROLLBACK: as 56 my_photos importadas em massa foram removidas. Curadoria automatica por tamanho deixou passar conteudo inadequado (chats, prints pessoais). Proxima abordagem: show por show com validacao visual antes do commit.
+- Video Facebook 2014 mantido em ev-2014-05-06/videos/video-1.mp4 (1.47 MB, 11s, validacao visual pendente).
+- Detalhes do que foi encontrado no Drive em MEDIA_AUDIT_2026-05-11.md (lista de file_ids ainda valida pra retomada manual).
 
 ## Outras frentes pendentes (proximas sessoes)
 - Traducao PT 2B contextual em interpretations.json: "o tipo de" (221), "da cancao (...)" (31), "estruturada em torno de" (24).
