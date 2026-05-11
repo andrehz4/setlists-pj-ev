@@ -7204,10 +7204,12 @@ async function _initAlphaTabPanel(container, songKey, tabFormat) {
       enablePlayer: true,
       enableCursor: true,
       soundFont: `${libBase}/soundfont/sonivox.sf3`,
-      scrollMode: 'continuous',
+      // 'offScreen' so rola quando o cursor sai da viewport visivel;
+      // 'continuous' tenta rolar a cada beat e fica jittery em musicas longas.
+      scrollMode: 'offScreen',
       scrollElement: container,
-      scrollOffsetY: -60,
-      scrollSpeed: 300,
+      scrollOffsetY: 80,
+      scrollSpeed: 400,
     },
     display: { staveProfile: 'tab' },
     core: { fontDirectory: `${libBase}/font/` },
