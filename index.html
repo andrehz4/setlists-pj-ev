@@ -8314,6 +8314,12 @@ function _renderTabPanel(body, songKey, tabMeta) {
                 if (cb.checked) fbSelectedTracks.add(idx);
                 else fbSelectedTracks.delete(idx);
                 drawActiveNotes(_lastNotes);
+                // Sync visual com voice-picker (cards no topo do cifra-detail)
+                if (typeof _syncVoiceTab === 'function') _syncVoiceTab(idx, cb.checked);
+                // Sync com alphatab-tracks (mute audio). Soh dispara click se
+                // estados ja divergirem, evita loop com o handler dali.
+                const cbTrack = document.querySelector(`.alphatab-tracks input[data-track-idx="${idx}"]`);
+                if (cbTrack && cbTrack.checked !== cb.checked) cbTrack.click();
               });
             });
           }
@@ -8332,7 +8338,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
             trackBar.appendChild(lbl);
           });
           transport.appendChild(trackBar);
-          trackBar.addEventListener('change', () => {
+          trackBar.addEventListener('change', (e) => {
             const checks = Array.from(trackBar.querySelectorAll('input[type=checkbox]'));
             const selectedIdx = checks.filter(c => c.checked).map(c => parseInt(c.dataset.trackIdx, 10));
             // Mute audio das nao selecionadas
@@ -8342,6 +8348,14 @@ function _renderTabPanel(body, songKey, tabMeta) {
             // Re-renderiza visualmente so as selecionadas (se ao menos 1).
             const visible = selectedIdx.length ? selectedIdx.map(i => tracks[i]) : tracks;
             api.renderTracks(visible);
+            // Sync com voice-picker e fretboard-players (sintaxe-segura via .click).
+            const target = e && e.target;
+            if (target && target.dataset && target.dataset.trackIdx != null) {
+              const idx = parseInt(target.dataset.trackIdx, 10);
+              if (typeof _syncVoiceTab === 'function') _syncVoiceTab(idx, target.checked);
+              const cbFret = document.querySelector(`.fretboard-players input[data-idx="${idx}"]`);
+              if (cbFret && cbFret.checked !== target.checked) cbFret.click();
+            }
           });
         });
         playBtn.addEventListener('click', (e) => {
@@ -8729,11 +8743,21 @@ function _inferTrackMeta(name) {
   return { role: 'Faixa', tagline: 'instrumental' };
 }
 
+// Sync state visual de um voice-tab (cards no topo) com um boolean.
+// Chamado pelos handlers do .fretboard-players e .alphatab-tracks pra
+// fechar o loop quando o usuario toggla os checkboxes de baixo.
+function _syncVoiceTab(idx, isOn) {
+  document.querySelectorAll(`.voice-tab[data-idx="${idx}"]`).forEach(card => {
+    card.classList.toggle('active', isOn);
+    card.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+  });
+}
+
 // Popula o voice-picker com 1 card por track da partitura. Cards ficam
-// todos ativos por default; click no card alterna estado E propaga pros
-// checkboxes do .fretboard-players (filtro visual no fretboard overlay)
-// e .alphatab-tracks (mute de audio + renderTracks). Andre escolheu
-// multi-select pra preservar o comportamento atual.
+// todos ativos por default. Click no card chama .click() nativo nos
+// checkboxes correspondentes — isso dispara os listeners reais (que
+// fazem o trabalho de filter visual + mute audio + renderTracks). O
+// loop de sync se fecha via _syncVoiceTab que aqueles listeners invocam.
 function _populateVoicePicker(picker, tracks) {
   if (!picker || !tracks || !tracks.length) return;
   const TRACK_COLORS = ['#c1272d', '#2e6b8a', '#8c5a1c', '#5c4b85', '#2e7d5b', '#a04578'];
@@ -8755,19 +8779,18 @@ function _populateVoicePicker(picker, tracks) {
       e.stopPropagation();
       const idx = card.dataset.idx;
       const newState = !card.classList.contains('active');
-      card.classList.toggle('active', newState);
-      card.setAttribute('aria-pressed', newState ? 'true' : 'false');
-      // Sincroniza com fretboard-players (filtro visual)
+      // .click() nativo nos checkboxes alvo: toggle automatico + dispara
+      // o event listener original. Mais robusto que checked + dispatch
+      // manual (que nao alcancava o listener delegado do .alphatab-tracks).
       const cbFret = document.querySelector(`.fretboard-players input[data-idx="${idx}"]`);
-      if (cbFret && cbFret.checked !== newState) {
-        cbFret.checked = newState;
-        cbFret.dispatchEvent(new Event('change', { bubbles: true }));
-      }
-      // Sincroniza com alphatab-tracks (mute de audio + render)
       const cbTrack = document.querySelector(`.alphatab-tracks input[data-track-idx="${idx}"]`);
-      if (cbTrack && cbTrack.checked !== newState) {
-        cbTrack.checked = newState;
-        cbTrack.dispatchEvent(new Event('change', { bubbles: true }));
+      if (cbFret && cbFret.checked !== newState) cbFret.click();
+      if (cbTrack && cbTrack.checked !== newState) cbTrack.click();
+      // Fallback: musica so com cifra (sem tab), nenhum dos 2 existe.
+      // Toggle visual aqui mesmo pra manter o card respondendo.
+      if (!cbFret && !cbTrack) {
+        card.classList.toggle('active', newState);
+        card.setAttribute('aria-pressed', newState ? 'true' : 'false');
       }
     });
   });
