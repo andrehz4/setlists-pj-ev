@@ -3748,6 +3748,55 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .cifra-pills .tab-pill, .cifra-pills .tab-pill-alt {
   /* reusa .tab-pill ja existente do _renderTabPanel */
 }
+
+/* Chips de contexto: Letra / Traducao / Analise. Minimizados (small caps,
+   borda fina). Click expande pane abaixo do header com o conteudo. */
+.cifra-context-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.cifra-context-chip {
+  font: 600 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink-mute);
+  border: 1px solid var(--divider-strong);
+  padding: 6px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+.cifra-context-chip:hover {
+  color: var(--ink);
+  border-color: var(--ink-mute);
+}
+.cifra-context-chip.active {
+  background: var(--pj);
+  color: #fff;
+  border-color: var(--pj);
+}
+.cifra-context-pane {
+  margin: 14px 0 18px;
+  padding: 14px 16px;
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+}
+.cifra-context-pane[hidden] { display: none; }
+.cifra-context-pane .lyric-lang-bar { margin-bottom: 10px; }
+.cifra-analise-body {
+  font: 400 14px/1.7 var(--font-body, Newsreader, Georgia, serif);
+  color: var(--ink);
+}
+.cifra-analise-body p { margin: 0 0 10px; }
+.cifra-analise-body p:last-child { margin-bottom: 0; }
+html[data-theme="dark"] .cifra-context-pane {
+  background: var(--bg-card);
+  border-color: var(--divider-strong);
+}
 /* InfoBar do _renderTabPanel ja aparece no cifra-header (pills); esconde
    a versao do body pra nao duplicar. Painel inline da faixa do show
    continua mostrando a infoBar normalmente (nao tem o header proprio). */
@@ -8706,6 +8755,25 @@ function _renderCifraDetail(container, songKey, tabMeta) {
   const albumLineParts = [albumArtist, albumTitle, albumYear].filter(Boolean);
   const escTitle = title.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 
+  // Contexto opcional: letra (EN/PT), traducao, e analise critica. Cada um
+  // vira um chip pequeno abaixo das pills; click expande pane abaixo do
+  // header com o conteudo. Andre pediu pra dar contexto sem o usuario sair
+  // da view pra "Buscar musica".
+  const lyricEN = _getLyricsStatic(title);
+  const lyricPT = (typeof LYRICS_PT !== 'undefined') ? LYRICS_PT[_lyricsNorm(title)] : null;
+  const interpEN = _getInterpretation(title, null, 'en');
+  const interpPT = _getInterpretation(title, null, 'pt');
+  const lyricNote = _getLyricsNote(title);
+  const hasAnyAnalise = !!(interpEN || interpPT || lyricNote);
+  const chips = [];
+  if (lyricEN) chips.push({ id: 'lyric', label: 'Letra' });
+  if (lyricPT) chips.push({ id: 'translation', label: 'Traducao' });
+  if (hasAnyAnalise) chips.push({ id: 'analise', label: 'Analise' });
+  const chipsHtml = chips.length ? `
+    <div class="cifra-context-chips">
+      ${chips.map(c => `<button type="button" class="cifra-context-chip" data-context="${c.id}" aria-expanded="false">${c.label}</button>`).join('')}
+    </div>` : '';
+
   container.innerHTML = `
     <header class="cifra-header">
       <div class="cifra-cover" aria-hidden="true">${coverInner}</div>
@@ -8713,16 +8781,96 @@ function _renderCifraDetail(container, songKey, tabMeta) {
         <div class="cifra-album-line">${albumLineParts.join(' &middot; ')}</div>
         <h3 class="cifra-songtitle">${escTitle}</h3>
         <div class="cifra-pills">${pills.join('')}</div>
+        ${chipsHtml}
       </div>
     </header>
+    <div class="cifra-context-pane" hidden></div>
     <div class="voice-picker" role="group" aria-label="Filtrar m&uacute;sicos visiveis no fretboard" hidden></div>
     <div class="cifra-detail-body"></div>
   `;
+
+  // Listener pros chips de contexto. Toggle: 1 click expande, 2 fecha.
+  // Click em outro chip troca o conteudo.
+  const chipsContainer = container.querySelector('.cifra-context-chips');
+  if (chipsContainer) {
+    chipsContainer.addEventListener('click', (e) => {
+      const chip = e.target.closest('.cifra-context-chip');
+      if (!chip) return;
+      e.stopPropagation();
+      const pane = container.querySelector('.cifra-context-pane');
+      const which = chip.dataset.context;
+      const wasOpen = chip.classList.contains('active');
+      chipsContainer.querySelectorAll('.cifra-context-chip').forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-expanded', 'false');
+      });
+      if (wasOpen) {
+        pane.hidden = true;
+        pane.innerHTML = '';
+        return;
+      }
+      chip.classList.add('active');
+      chip.setAttribute('aria-expanded', 'true');
+      pane.hidden = false;
+      pane.innerHTML = '';
+      if (which === 'lyric') {
+        _fillLyricBody(pane, title, lyricEN);
+      } else if (which === 'translation') {
+        _fillLyricBody(pane, title, lyricEN);
+        // Default pra modo PT (Traducao linha-a-linha tem o seu botao "Tradução"
+        // mas PT puro e mais direto pro chip "Traducao").
+        const ptBtn = pane.querySelector('.lyric-lang-btn[data-mode="pt"]');
+        if (ptBtn) ptBtn.click();
+      } else if (which === 'analise') {
+        _fillAnaliseBody(pane, title, interpEN, interpPT, lyricNote);
+      }
+    });
+  }
+
   // Marca o voice-picker desta tela como ativo. Quando AlphaTab disparar
   // scoreLoaded la dentro do _renderTabPanel, popula o picker aqui.
   _activeVoicePicker = container.querySelector('.voice-picker');
   const body = container.querySelector('.cifra-detail-body');
   _renderTabPanel(body, songKey, tabMeta);
+}
+
+// Render do pane de analise critica. Reusa o sistema de tabs (.lyric-lang-bar)
+// pra renderizar PT/EN/Opiniao dependendo do que esta cadastrado pra musica.
+function _fillAnaliseBody(body, songName, interpEN, interpPT, lyricNote) {
+  const tabs = [];
+  if (interpPT) tabs.push({ key: 'pt', label: 'PT', text: interpPT });
+  if (interpEN) tabs.push({ key: 'en', label: 'EN', text: interpEN });
+  if (lyricNote) tabs.push({ key: 'tr', label: 'Opiniao', text: lyricNote });
+  if (!tabs.length) {
+    body.innerHTML = '<div class="tab-pane-soon">analise em breve pra esta musica</div>';
+    return;
+  }
+  const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const toHtml = (txt) => esc(txt).split(/\n\n+/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+  if (tabs.length === 1) {
+    body.innerHTML = `<div class="cifra-analise-body">${toHtml(tabs[0].text)}</div>`;
+    return;
+  }
+  const defaultTab = tabs[0].key;
+  body.innerHTML =
+    '<div class="lyric-lang-bar" role="tablist" aria-label="Modo da analise">' +
+    tabs.map(t => `<button type="button" class="lyric-lang-btn${t.key===defaultTab?' active':''}" data-anatab="${t.key}" aria-pressed="${t.key===defaultTab}">${t.label}</button>`).join('') +
+    '</div>' +
+    tabs.map(t => `<div class="cifra-analise-body" data-anapane="${t.key}"${t.key===defaultTab?'':' hidden'}>${toHtml(t.text)}</div>`).join('');
+  body.querySelectorAll('.lyric-lang-btn[data-anatab]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const t = btn.dataset.anatab;
+      body.querySelectorAll('.lyric-lang-btn[data-anatab]').forEach(b => {
+        const isActive = b.dataset.anatab === t;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      body.querySelectorAll('.cifra-analise-body[data-anapane]').forEach(p => {
+        p.hidden = p.dataset.anapane !== t;
+      });
+    });
+  });
 }
 
 // Referencia pro voice-picker da musica aberta no momento. _renderTabPanel
