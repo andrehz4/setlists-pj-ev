@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Garden (Pearl Jam, Ten 1991, faixa 9). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-12",
+    "note_afinacao": "Garden eh tocado em Drop D (D-A-D-G-B-E, corda mi grave abaixada pra D). Fingerings UG usam essa afinacao. Quem tocar em standard EADGBE precisa adaptar a corda mais grave."
+  },
+  "title": "Garden",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 88,
+  "tuning_alt": "DADGBE (Drop D)",
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "DADGBE",
+      "chords": {
+        "Am":  { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "G":   { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "A5":  { "fingering": "x022xx", "fingers": "x012xx", "fundamental": "A" },
+        "G5":  { "fingering": "xx55xx", "fingers": "xx13xx", "fundamental": "G" },
+        "F#5": { "fingering": "xx44xx", "fingers": "xx13xx", "fundamental": "F#" },
+        "D5":  { "fingering": "xx0235", "fingers": "xx0124", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 88,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Am":  { "fingering": "2000", "fingers": "2000", "fundamental": "A" },
+        "G":   { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "A5":  { "fingering": "xx00", "fingers": "xx00", "fundamental": "A" },
+        "G5":  { "fingering": "0xx0", "fingers": "0xx0", "fundamental": "G" },
+        "F#5": { "fingering": "2xx1", "fingers": "2xx1", "fundamental": "F#" },
+        "D5":  { "fingering": "xx22", "fingers": "xx11", "fundamental": "D", "barre": 2 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 88,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Am":  { "notes": ["A", "C", "E"],   "fundamental": "A",  "inversion": null },
+        "G":   { "notes": ["G", "B", "D"],   "fundamental": "G",  "inversion": null },
+        "A5":  { "notes": ["A", "E"],        "fundamental": "A",  "inversion": null },
+        "G5":  { "notes": ["G", "D"],        "fundamental": "G",  "inversion": null },
+        "F#5": { "notes": ["F#", "C#"],      "fundamental": "F#", "inversion": null },
+        "D5":  { "notes": ["D", "A"],        "fundamental": "D",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Am]\n\n{section: Verso 1}\n[Am]She don't wander in there, don't wander in there to be\nShe don't wander in there, don't wander in there\nThe direction of the eye, so misleading\nThe defection of the soul, nauseously quick\nI don't question our existence\nI just question our modern needs\nDon't wander in there\nShe don't wander in there\nShe don't wander\n\n{section: Refrão}\n[Am]I will walk with my [G]hands bound\n[Am]I will walk with my [G]face blood\n[Am]I will walk with my [G]shadow flag\n[Am]Into your garden, [G]garden of stone,\n\n{section: Ponte}\n[Am]yeah\n\n{section: Verso 2}\n[Am]After all is done and we're still alone\nI won't be taken\n\n{section: Refrão}\n[Am]Yet I'll go with my [G]hands bound\n[Am]I will walk with my [G]face blood\n[Am]I will walk with my [G]shadow flag\n[Am]Into your garden, [G]garden of stone\n\n{section: Ponte}\n[A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5]\n[A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5] [A5] [G5] [F#5]\nI don't show, I don't share I don't need, yeah\n[D5]What you have to give [A5] [G5] [F#5] [D5]\n\n{section: Solo}\n[Am]\n\n{section: Refrão}\n[Am]I will walk with my [G]hands bound\n[Am]I will walk with my [G]face blood\n[Am]I will walk with my [G]shadow flag\n[Am]Into your garden, [G]garden\n[Am]I will walk with my [G]hands bound\n[Am]I will walk into your [G]garden, garden of [A5]stone [G5] [F#5] [D5] [A5] [G5] [F#5] [D5]\n\n{section: Outro}\n[A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5] [A5] [G5] [F#5]\nI don't know, I don't care\n[D5] [A5] [G5] [F#5] [D5]\nI don't need, yeah\n[A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5]\nNeed to live, yeah, yeah, yeah, oh\n\n{section: Outro (Fade Out)}\n[A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5]\n[A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5] [A5] [G5] [F#5] [D5]\n"
+}
