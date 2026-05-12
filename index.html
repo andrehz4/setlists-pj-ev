@@ -3382,6 +3382,84 @@ html[data-theme="dark"] .alphatab-surface {
   padding: 5px 8px;
   cursor: pointer;
 }
+/* Seletor de INSTRUMENTO da cifra: 3 botoes (Violao/Ukulele/Piano) no
+   transport-top quando a musica tem multi-instrumento (cifras-multi JSON). */
+.cifra-instr-bar {
+  display: inline-flex;
+  gap: 2px;
+  background: rgba(46, 107, 138, 0.08);
+  padding: 3px;
+  border-radius: 999px;
+}
+.cifra-instr-btn {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 0;
+  color: #2e6b8a;
+  padding: 5px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+.cifra-instr-btn:hover { background: rgba(46, 107, 138, 0.12); }
+.cifra-instr-btn.active { background: #2e6b8a; color: #fff; }
+
+/* Padrao de palhetada: header com setas + contagem em grid. Aparece logo
+   abaixo do transport-top quando a musica tem multi-instrumento. */
+.cifra-strumming-wrap:empty { display: none; }
+.cifra-strumming-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 12px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  background: rgba(46, 107, 138, 0.04);
+  border-left: 3px solid #2e6b8a;
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+.cifra-strumming-label {
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.cifra-strumming-label em {
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.05em;
+  margin-left: 4px;
+}
+.cifra-strumming-row {
+  display: inline-flex;
+  gap: 6px;
+}
+.cifra-strum-cell {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 24px;
+}
+.cifra-strum-arrow {
+  font-size: 18px;
+  line-height: 1;
+  color: #2e6b8a;
+  font-weight: 700;
+}
+.cifra-strum-cell.cifra-strum-muted .cifra-strum-arrow {
+  color: var(--ink-dim);
+  opacity: 0.55;
+}
+.cifra-strum-count {
+  font: 600 9px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-mute);
+}
+
 /* Seletor de versao da tab: mesma estetica do speed-compact mas com
    accent vermelho PJ pra destacar (musica pode ter 'Ao vivo' alem
    da Versao 1, decisao musical mais relevante que velocidade). */
@@ -8893,6 +8971,32 @@ async function _loadCifra(songKey) {
   _CIFRA_CACHE[songKey] = null;
   return null;
 }
+// Cache pra cifras multi-instrumento (JSON com violao/ukulele/piano).
+// Schema em media/tabs/cifras-multi/*.json; ver black.json como referencia.
+const _CIFRA_MULTI_CACHE = {};
+async function _loadCifraMulti(jsonFile) {
+  if (_CIFRA_MULTI_CACHE[jsonFile] !== undefined) return _CIFRA_MULTI_CACHE[jsonFile];
+  try {
+    const r = await fetch(`media/tabs/cifras-multi/${jsonFile}`, { cache: 'default' });
+    if (r.ok) {
+      const obj = await r.json();
+      _CIFRA_MULTI_CACHE[jsonFile] = obj;
+      return obj;
+    }
+  } catch(e) {}
+  _CIFRA_MULTI_CACHE[jsonFile] = null;
+  return null;
+}
+// Instrumento ativo da cifra (visual: muda diagrama do popover). Default
+// violao; persistido em localStorage 'cifra_instrument'.
+let _activeCifraInstrument = (() => {
+  try { return localStorage.getItem('cifra_instrument') || 'violao'; }
+  catch (_) { return 'violao'; }
+})();
+function _setActiveCifraInstrument(inst) {
+  _activeCifraInstrument = inst;
+  try { localStorage.setItem('cifra_instrument', inst); } catch (_) {}
+}
 function _parseChordProLine(line) {
   const tokens = [];
   const re = /\[([^\]]+)\]([^\[]*)|([^\[]+)/g;
@@ -9074,6 +9178,101 @@ function _renderChordDiagram(chordName) {
   svg += `</svg>`;
   return svg;
 }
+
+// Diagrama de acorde de UKULELE (4 cordas, GCEA na ordem visual aguda->grave A E C G).
+// fingering eh string de 4 chars (uma corda por char): "0", "1"..., "x" pra muted.
+// Ex: 'E' em ukulele = '4442' (corda 1 A na fret 4, corda 2 E fret 4, corda 3 C fret 4, corda 4 G fret 2).
+function _renderChordDiagramUkulele(chordName, fingering, fingers) {
+  if (!fingering) return null;
+  const frets = String(fingering).split('').map(c => c === 'x' ? 'x' : parseInt(c, 10));
+  const fingerArr = fingers ? String(fingers).split('') : [];
+  const W = 72, H = 100;
+  const padTop = 18, padBot = 14, padX = 14;
+  const stringSpacing = (W - padX * 2) / 3; // 4 cordas, 3 espacos
+  const fretSpacing = (H - padTop - padBot) / 4;
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" class="chord-diagram-svg" aria-hidden="true">`;
+  svg += `<line x1="${padX}" y1="${padTop}" x2="${W - padX}" y2="${padTop}" stroke="#2e6b8a" stroke-width="3" stroke-linecap="square"/>`;
+  for (let i = 1; i <= 4; i++) {
+    const y = padTop + i * fretSpacing;
+    svg += `<line x1="${padX}" y1="${y}" x2="${W - padX}" y2="${y}" stroke="#2e6b8a" stroke-width="1" opacity="0.5"/>`;
+  }
+  // 4 cordas verticais; ordem visual: indice 0 = G grave (esquerda), 3 = A aguda (direita).
+  // Fingering "4442" lido da esquerda pra direita conforme ordem padrao GCEA.
+  for (let i = 0; i < 4; i++) {
+    const x = padX + i * stringSpacing;
+    svg += `<line x1="${x}" y1="${padTop}" x2="${x}" y2="${H - padBot}" stroke="#2e6b8a" stroke-width="1" opacity="0.7"/>`;
+  }
+  // Marcadores x/o e bolas dos dedos
+  for (let i = 0; i < 4; i++) {
+    const x = padX + i * stringSpacing;
+    const f = frets[i];
+    if (f === 'x') {
+      svg += `<text x="${x}" y="${padTop - 5}" font-family="sans-serif" font-size="9" font-weight="700" fill="#2e6b8a" text-anchor="middle">x</text>`;
+    } else if (f === 0) {
+      svg += `<circle cx="${x}" cy="${padTop - 8}" r="3" fill="none" stroke="#2e6b8a" stroke-width="1.5"/>`;
+    } else if (typeof f === 'number' && f >= 1 && f <= 4) {
+      const y = padTop + (f - 0.5) * fretSpacing;
+      svg += `<circle cx="${x}" cy="${y}" r="6" fill="#2e6b8a"/>`;
+      if (fingerArr[i] && fingerArr[i] !== '0' && fingerArr[i] !== 'x') {
+        svg += `<text x="${x}" y="${y + 3.5}" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">${fingerArr[i]}</text>`;
+      }
+    }
+  }
+  svg += `<text x="${W / 2}" y="${H - 2}" font-family="sans-serif" font-size="11" font-weight="700" fill="#2e6b8a" text-anchor="middle">${chordName.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text>`;
+  svg += `</svg>`;
+  return svg;
+}
+
+// Diagrama de acorde de PIANO: teclado de 1.5 oitavas (C3 a F4) com as
+// teclas do acorde iluminadas em vermelho PJ. notes eh array tipo ['E','G#','B'].
+function _renderChordDiagramPiano(chordName, notes, fundamental, inversion) {
+  if (!notes || !notes.length) return null;
+  const W = 100, H = 84;
+  const N_WHITE = 9;  // C D E F G A B C D
+  const wKeyW = (W - 4) / N_WHITE;
+  const keyTop = 8, keyH = H - 24;
+  const bKeyH = keyH * 0.6;
+  const WHITE_NAMES = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D'];
+  const BLACK_BETWEEN = { 0: 'C#', 1: 'D#', 3: 'F#', 4: 'G#', 5: 'A#', 7: 'C#', 8: 'D#' };
+  const notesSet = new Set(notes.map(n => n.replace(/[0-9]/g, '')));
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" class="chord-diagram-svg" aria-hidden="true">`;
+  // Teclas brancas
+  for (let i = 0; i < N_WHITE; i++) {
+    const x = 2 + i * wKeyW;
+    const isActive = notesSet.has(WHITE_NAMES[i]);
+    svg += `<rect x="${x}" y="${keyTop}" width="${wKeyW - 1}" height="${keyH}" fill="${isActive ? '#c1272d' : '#fff'}" stroke="#2e6b8a" stroke-width="0.8"/>`;
+  }
+  // Teclas pretas (em cima das brancas)
+  for (const idxStr of Object.keys(BLACK_BETWEEN)) {
+    const i = Number(idxStr);
+    const name = BLACK_BETWEEN[i];
+    const isActive = notesSet.has(name);
+    const cx = 2 + (i + 1) * wKeyW;
+    const w = wKeyW * 0.62;
+    svg += `<rect x="${cx - w / 2}" y="${keyTop}" width="${w}" height="${bKeyH}" fill="${isActive ? '#c1272d' : '#1a1611'}" stroke="#000" stroke-width="0.6"/>`;
+  }
+  // Etiqueta inferior
+  svg += `<text x="${W / 2}" y="${H - 2}" font-family="sans-serif" font-size="11" font-weight="700" fill="#2e6b8a" text-anchor="middle">${chordName.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text>`;
+  svg += `</svg>`;
+  return svg;
+}
+
+// Router: escolhe diagrama por instrumento ativo. Recebe nome do acorde +
+// objeto multi (do JSON cifras-multi/<song>.json) ou null se nao houver.
+function _renderChordDiagramFor(chordName, multiData, instrument) {
+  const inst = instrument || _activeCifraInstrument || 'violao';
+  if (multiData && multiData.instruments && multiData.instruments[inst]) {
+    const idata = multiData.instruments[inst];
+    const cdata = idata.chords && idata.chords[chordName];
+    if (cdata) {
+      if (inst === 'ukulele') return _renderChordDiagramUkulele(chordName, cdata.fingering, cdata.fingers);
+      if (inst === 'piano')   return _renderChordDiagramPiano(chordName, cdata.notes, cdata.fundamental, cdata.inversion);
+      // 'violao' usa o diagrama padrao de violao
+    }
+  }
+  return _renderChordDiagram(chordName);
+}
+
 // AlphaTab lazy loader + init. Carrega o script + estilo do AlphaTab via CDN
 // apenas quando o primeiro painel TAB ativo o exigir (zero overhead se nunca usado).
 let _alphaTabPromise = null;
@@ -9186,15 +9385,51 @@ function _renderTabPanel(body, songKey, tabMeta) {
 
   if (hasCifra) {
     const cifraPane = body.querySelector('.tab-pane-cifra');
-    _loadCifra(songKey).then(txt => {
+    // Multi-instrumento: se manifest tem cifraMulti, carrega JSON estruturado
+    // (com violao/ukulele/piano + strumming) em vez do .cpro legado.
+    const cifraMultiFile = tabMeta.cifraMulti;
+    const loadPromise = cifraMultiFile
+      ? _loadCifraMulti(cifraMultiFile).then(multi => ({ multi, txt: multi && multi.content }))
+      : _loadCifra(songKey).then(txt => ({ multi: null, txt }));
+    loadPromise.then(({ multi, txt }) => {
       if (!cifraPane) return;
       if (!txt) { cifraPane.innerHTML = soonPane('cifra'); return; }
-      const bpm = tabMeta.bpm || 90;
+      const bpm = (multi && multi.bpm) || tabMeta.bpm || 90;
       // Layout unificado com a aba TAB: mesma estrutura .alphatab-transport-top
       // + .alphatab-surface + .alphatab-transport-bottom. Diferenca eh que a
       // surface contem chord-chips em vez da partitura AlphaTab; os botoes
       // Play/Prev disparam o cifra-player em vez de api.play(). Reusa CSS,
       // FAB e fretboard do TAB pra zero divergencia visual entre as duas abas.
+      // Seletor de instrumento: aparece SO quando multi-instrumento existe.
+      // 3 botoes (Violao/Ukulele/Piano) que trocam diagramas do popover.
+      const instrSelectHtml = multi && multi.instruments
+        ? `<div class="cifra-instr-bar" role="tablist" aria-label="Instrumento da cifra">
+             ${Object.keys(multi.instruments).map(id => {
+               const lbl = (multi.instruments[id].label || id).replace(/</g, '&lt;');
+               const active = id === _activeCifraInstrument;
+               return `<button type="button" class="cifra-instr-btn${active ? ' active' : ''}" data-cifra-inst="${id}" aria-pressed="${active}">${lbl}</button>`;
+             }).join('')}
+           </div>`
+        : '';
+      // Header de padrao de palhetada: usa o padrao do instrumento ativo.
+      const _renderStrummingHeader = (multiObj) => {
+        if (!multiObj || !multiObj.instruments) return '';
+        const idata = multiObj.instruments[_activeCifraInstrument];
+        if (!idata || !idata.strumming || !idata.strumming.beats) return '';
+        const s = idata.strumming;
+        const cells = s.beats.map(b => {
+          const arrow = b.stroke === 'down' ? '↓' : '↑';
+          const mutedCls = b.muted ? ' cifra-strum-muted' : '';
+          return `<span class="cifra-strum-cell${mutedCls}">
+                    <span class="cifra-strum-arrow">${arrow}</span>
+                    <span class="cifra-strum-count">${b.count}</span>
+                  </span>`;
+        }).join('');
+        return `<div class="cifra-strumming-bar" aria-label="Padrão de palhetada">
+                  <span class="cifra-strumming-label">${s.label || 'PADRÃO'} <em>${s.bpm || ''} bpm</em></span>
+                  <div class="cifra-strumming-row">${cells}</div>
+                </div>`;
+      };
       cifraPane.innerHTML = `
         <div class="alphatab-transport alphatab-transport-top" role="toolbar" aria-label="Controles da cifra (topo)">
           <button type="button" class="atc-btn-mini alphatab-play cifra-mode-play" data-state="idle" data-icon-only="false" aria-label="Tocar / pausar cifra">▶ Play</button>
@@ -9208,9 +9443,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
               <option value="1.5">1.5&times;</option>
             </select>
           </label>
+          ${instrSelectHtml}
           <button type="button" class="atc-btn-mini alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop de trecho" title="Loop">🔁 Loop</button>
           <span class="alphatab-status alphatab-status-top" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico &middot; click Play</span>
         </div>
+        <div class="cifra-strumming-wrap">${_renderStrummingHeader(multi)}</div>
         <div class="alphatab-surface cifra-surface">${_renderChordPro(txt)}</div>
         <div class="alphatab-transport alphatab-transport-bottom" role="toolbar" aria-label="Controles da cifra (rodap&eacute;)">
           <div class="atc-group atc-vol">
@@ -9232,7 +9469,27 @@ function _renderTabPanel(body, songKey, tabMeta) {
           <span class="alphatab-status" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico</span>
         </div>
       `;
-      _attachChordChipHandlers(cifraPane);
+      _attachChordChipHandlers(cifraPane, multi);
+
+      // Seletor de instrumento: trocar atualiza estado global + re-render
+      // do header de palhetada (diagrama do chip atualiza no proximo click).
+      cifraPane.querySelectorAll('.cifra-instr-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const inst = btn.dataset.cifraInst;
+          if (!inst || inst === _activeCifraInstrument) return;
+          _setActiveCifraInstrument(inst);
+          // Atualiza visual do seletor (todos cifraPanes na pagina)
+          document.querySelectorAll('.cifra-instr-btn').forEach(b => {
+            const active = b.dataset.cifraInst === inst;
+            b.classList.toggle('active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+          // Re-render strumming header com padrao do novo instrumento
+          const wrap = cifraPane.querySelector('.cifra-strumming-wrap');
+          if (wrap) wrap.innerHTML = _renderStrummingHeader(multi);
+        });
+      });
 
       // ---- Wiring do cifra player nos botoes do transport (top + bottom) ----
       const playBtns = cifraPane.querySelectorAll('.cifra-mode-play');
@@ -11925,7 +12182,7 @@ async function _startCifraPlayer(root, bpm) {
   _stopCifraPlayer(root);
 }
 
-function _attachChordChipHandlers(root) {
+function _attachChordChipHandlers(root, multiData) {
   let openPopover = null;
   const closeOpen = () => {
     if (openPopover) { openPopover.remove(); openPopover = null; }
@@ -11933,7 +12190,12 @@ function _attachChordChipHandlers(root) {
   const showFor = (chip) => {
     closeOpen();
     const chord = chip.dataset.chord;
-    const svg = _renderChordDiagram(chord);
+    // Multi-instrumento: usa diagrama do instrumento ativo se houver
+    // cifras-multi/<song>.json carregado pro container; senao fallback
+    // pro diagrama padrao de violao (_renderChordDiagram).
+    const svg = multiData
+      ? _renderChordDiagramFor(chord, multiData, _activeCifraInstrument)
+      : _renderChordDiagram(chord);
     const pop = document.createElement('div');
     pop.className = 'chord-diagram';
     pop.innerHTML = svg || `<div class="chord-diagram-empty">${chord}<small>digita&ccedil;&atilde;o n&atilde;o cadastrada</small></div>`;

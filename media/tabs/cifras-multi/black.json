@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Black. Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar Pro - 3 PDFs oficiais (violao + ukulele + piano)",
+    "fetched": "2026-05-12"
+  },
+  "title": "Black",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 75,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "C":  { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Em": { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 75,
+        "beats": [
+          { "count": "1",  "stroke": "down", "muted": true  },
+          { "count": "&",  "stroke": "down", "muted": true  },
+          { "count": "2",  "stroke": "down", "muted": true  },
+          { "count": "&",  "stroke": "down", "muted": true  },
+          { "count": "3",  "stroke": "up",   "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "4",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E":  { "fingering": "4442", "fingers": "3211", "fundamental": "E" },
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "C":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Em": { "fingering": "0432", "fingers": "0321", "fundamental": "E" },
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E":  { "notes": ["E", "G#", "B"], "fundamental": "E", "inversion": null },
+        "A":  { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "C":  { "notes": ["C", "E", "G"],  "fundamental": "C", "inversion": null },
+        "Em": { "notes": ["E", "G", "B"],  "fundamental": "E", "inversion": null },
+        "D":  { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E] [A] [E]\n[A] [E]   [A] [E]\n  Hey, oh\n\n{section: Verso 1.1}\n[E]Sheets of empty [A]canvas\n        [E]Untouched sheets of clay\n[A]  [E]Were laid spread out before me\n   [E]As her body once did\n\n{section: Verso 1.2}\n[E]All five hori[A]zons\n        [E]Revolved around her soul\n[A]As the earth to the sun\n[E]Now the air I [A]tasted and breathed\n   [E]Has taken a turn\n\n{section: Pré-refrão}\n    [C]Ohohoh and all I taught her was [Em]everything\n    [C]Ohohoh I know she gave me all that she [Em]wore\n         [D]And now my bitter hands\n\n{section: Refrão}\n            [C]Chafe beneath the clouds\n                [Em]Of what was everything\n            [D]Oh the pictures have\n            [C]All been washed in black\n                [Em]Tattooed everything\n\n{section: Verso 2}\n[E]I take a walk out[A]side\n        [E]I'm surrounded by\n              [A]Some kids at play\n[E]I can feel their [A]laughter\n   [E]So why do I sear\n\n{section: Pré-refrão}\n    [C]Oh, oh and twisted thoughts that spin\n            [Em]Round my head\nI'm spinning\n    [C]Oh, I'm spinning\n                            [Em]How quick the sun can, drop away\n            [D]And now my bitter hands\n\n{section: Refrão}\n            [C]Cradle broken glass\n                [Em]Of what was everything\n                [D]All the pictures had\n            [C]All been washed in black\n                [Em]Tattooed everything\n            [D]All the love gone bad\n                [C]Turned my world to black\n                    [D]Tattooed all I see\n                [C]All that I am\n                    [Em] [D]All I'll be\nYeah\n\n{section: Solo}\n[C] [Em] [D]\n[C] [Em]\n I know someday you'll have a beautiful life\n    [D]I know you'll be a star\n            [C]In somebody else's sky\n                [Em]But why\nWhy\n        [D]Why can't it be    [C]\nWhy can't it be mine\n[Em] [D] [C] [Em]\n[D] [C] [Em] [D]\n[C] [Em] [D] [C]\n[Em] [D] [C] [Em]\n[D] [C] [D] [C]\n\n{section: Outro}\n[Em] [D] [C] [Em]\n[D] [C]\n\n{section: Outro (Fade Out)}\n[Em] [D] [C]\n"
+}
