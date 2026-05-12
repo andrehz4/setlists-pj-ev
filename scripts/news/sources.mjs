@@ -17,6 +17,9 @@ export const SOURCES = [
   // Midia BR
   { id: "folha-ilustrada", label: "Folha", group: "br", url: "https://feeds.folha.uol.com.br/ilustrada/rss091.xml", alwaysRelevant: false },
 
+  // Fan archives
+  { id: "pjonline-it", label: "PJ Online IT", group: "fan", url: "https://www.pearljamonline.it/news/feed/", alwaysRelevant: true },
+
   // Comunidade
   { id: "reddit-pj", label: "r/pearljam", group: "comunidade", url: "https://www.reddit.com/r/pearljam/hot.json?limit=25", alwaysRelevant: true, kind: "reddit" },
 ];
