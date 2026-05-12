@@ -46,7 +46,12 @@
   "last kiss": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "crazy mary": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
   "sirens": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
-  "hail hail": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
+  "hail hail": { "cifra": true, "cifraMulti": "hail-hail.json", "tab": false, "key": "G", "tuning": "EADGBE", "bpm": 145 },
+  "off he goes": { "cifra": true, "cifraMulti": "off-he-goes.json", "tab": false, "key": "C", "tuning": "EADGBE", "bpm": 103 },
+  "lukin": { "cifra": true, "cifraMulti": "lukin.json", "tab": false, "key": "Em", "tuning": "EADGBE", "bpm": 250, "notes": "Punk de 1m02s. So power chords E5-D5-C5." },
+  "present tense": { "cifra": false, "tab": true, "tabFormat": "gp3", "tabFile": "present-tense-v1.gp3", "key": "D", "tuning": "EADGBE", "notes": "Cifra pendente: Andre vai passar a transcricao PJ correta (a primeira UG enviada era de Radiohead por engano).", "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "present-tense-v1.gp3", "format": "gp3" }
+  ] },
   "footsteps": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
   "why go": { "cifra": true, "cifraMulti": "why-go.json", "tab": true, "tabFormat": "gp5", "tabFile": "why-go-v1.gp5", "key": "Em", "tuning": "EADGBE", "bpm": 100, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "why-go-v1.gp5", "format": "gp5" }

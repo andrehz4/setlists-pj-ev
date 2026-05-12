@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Lukin (Pearl Jam, No Code 1996, faixa 9). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Lukin, 820 views, 190 saves)",
+    "fetched": "2026-05-12",
+    "note_compasso": "Punk furioso em 4/4 (~250 BPM, 1m02s). So power chords E5-D5-C5 alternando. Tom Em, sem capotraste. Strumming nao consta no UG (na pratica eh ataque continuo full-down 16th notes). Padrao proposto aqui eh editorial."
+  },
+  "title": "Lukin",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 250,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E5": { "fingering": "022xxx", "fingers": "023xxx", "fundamental": "E", "notes": "power chord (root + 5)" },
+        "D5": { "fingering": "x577xx", "fingers": "x134xx", "fundamental": "D", "notes": "power chord (root + 5)" },
+        "C5": { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C", "notes": "power chord (root + 5)" }
+      },
+      "strumming": {
+        "label": "PUNK FULL-DOWN (proposto, fonte UG nao traz)",
+        "bpm": 250,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E5": { "fingering": "4402", "fingers": "3401", "fundamental": "E", "notes": "power chord adaptado pra uke (E + B)" },
+        "D5": { "fingering": "0220", "fingers": "0230", "fundamental": "D", "notes": "power chord adaptado (D + A; G open soa como cor)" },
+        "C5": { "fingering": "0003", "fingers": "0003", "fundamental": "C", "notes": "power chord adaptado (C + G via voicing de C maior)" }
+      },
+      "strumming": {
+        "label": "PUNK FULL-DOWN (proposto, fonte UG nao traz)",
+        "bpm": 250,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E5": { "notes": ["E", "B"], "fundamental": "E", "inversion": null },
+        "D5": { "notes": ["D", "A"], "fundamental": "D", "inversion": null },
+        "C5": { "notes": ["C", "G"], "fundamental": "C", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E5] [D5] [E5] [C5] [E5] [D5] [E5] [C5]\n[E5] [D5] [E5] [C5] [E5] [D5]\n[E5] [C5]\n\n{section: Verso 1}\n[E5]Drive down the street can't [D5]find my keys to [E5]my own fucking [C5]home\n[E5]I take a walk so [D5]I can [E5]curse my ass for being [C5]dumb\n[E5]I make a right after [D5]the arches, [E5]stinking grease and [C5]bone\n[E5]Stop at the super[D5]market, [E5]people stare like I'm a [C5]dog\n\n{section: Refrão}\n[E5]I'm goin' to [D5]lukin's.\nI got a spot at [C5]lukin's.\nI knock the door at lukin's\nOpen the fridge, [D5]now I know life is worth\n\n{section: Pre-Verso}\n[E5] [D5] [E5] [C5] [E5] [D5] [E5] [C5]\n\n{section: Verso 2}\n[E5]I find the key, [D5]but I [E5]return to find an open [C5]door\n[E5]Some fucking freak who [D5]claims I fathered, [E5]by rape, her own [C5]son\n[E5]I find my wife, [D5]I call the cops, [E5]this day's work's never [C5]done\n[E5]The last I heard the [D5]freak was [E5]purchasing a fucking [C5]gun [E5]\n"
+}

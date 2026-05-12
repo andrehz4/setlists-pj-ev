@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Off He Goes (Pearl Jam, No Code 1996, faixa 6). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Off He Goes, 6.856 views, 2.320 saves, 10 comments)",
+    "fetched": "2026-05-12",
+    "note_compasso": "4/4 a 103 BPM. Tom C, sem capotraste. Toda a musica gira em torno de C-F-Am-Fsus2 com leve G de cor; balada acustica sentimental, abre com F-Am pendulando. Strumming UG: ↓ - ↓↑ - ↑ ↓↑ (ataque, pausa, swing, pausa, swing final)."
+  },
+  "title": "Off He Goes",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 103,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F":     { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Am":    { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "Fsus2": { "fingering": "xx3011", "fingers": "xx3011", "fundamental": "F" },
+        "C":     { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 103,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F":     { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Am":    { "fingering": "2000", "fingers": "2000", "fundamental": "A" },
+        "Fsus2": { "fingering": "0013", "fingers": "0013", "fundamental": "F" },
+        "C":     { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "G":     { "fingering": "0232", "fingers": "0213", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 103,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F":     { "notes": ["F", "A", "C"],      "fundamental": "F", "inversion": null },
+        "Am":    { "notes": ["A", "C", "E"],      "fundamental": "A", "inversion": null },
+        "Fsus2": { "notes": ["F", "G", "C"],      "fundamental": "F", "inversion": null },
+        "C":     { "notes": ["C", "E", "G"],      "fundamental": "C", "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],      "fundamental": "G", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F] [Am] [F] [Am]\n[Fsus2] [C] [F] [C]\n[F]\n\n{section: Verso 1}\n[C]Know a man, [F]his [C]face seemed pulled and [Am]tense\nLike he's [Fsus2]ri[C]ding on a motor[Fsus2]bike [C]in the strongest [Fsus2]winds [Am]\nSo I ap[Fsus2]proach with [C]tact\nSuggest that [F]he should [C]relax, but [F]he's [C]always [G]moving much too [F]fast\n\n{section: Refrão}\nSaid he'll see me on the [Am]flip side of [F]this trip he's taking for a [Am]ride\nHe's been [F]ta[Fsus2]king [C]too [Fsus2]much [C]on\n[Fsus2]There he [C]goes with his perfectly [Fsus2]un[C]kept [Fsus2]clothes [Am]\n[F]There he [C]goes\n\n{section: Break}\n[C] [Fsus2] [C] [Am] [F] [C] [C] [F] [C]\nHe's yet to come back but I see his picture\n\n{section: Verso 2}\n[F]It [C]doesn't look the [F]same up on the [C]rack [Am]\n[F]We go [C]way back\n[F]I wonder about his in[Am]sides\n\n{section: Refrão}\nIt's [F]like his thoughts are too big for his [Am]size\nHe's been [F]ta[Fsus2]ken, [C]where I [Fsus2]don't [C]know\n[Fsus2]Off [C]he goes with his perfectly [Fsus2]un[C]kept [Fsus2]hope [Am]\n[F]There he [C]goes\n\n{section: Verso 3}\n[C] [Fsus2] [C] [Am]And now I [Fsus2]rub [C]my eyes for [F]he has re[C]turned\n[F] [C]Seems my preconceptions are [F]what should have [C]been [Fsus2]burned [C] [Am]\nFor he [F]still [C]smiles\nAnd he's [F]still [C]strong\n[F] [C]Nothing's changed but the [F]surrounding [C]bullshit\n[Fsus2] [C] [Am]That has grown\n\n{section: Refrão}\nAnd [Fsus2]now [C]he's [Fsus2]home and [C]we're [Fsus2]laughing [C]like we always did\n[Fsus2] [C]My same old, [Fsus2]same [C]old friend [Am]\nUntil a [F]quarter to [C]ten\n\n{section: Verso 4}\n[F]I saw the [C]strain creep in\n[F] [C]He seems dis[F]tracted [C]and I know just what is going to [Fsus2]hap[C]pen next [Am]\nBefore his [F]first [C]step he is [F]off [C]again\n\n{section: Outro}\n[C] [Fsus2] [C] [Am] [F] [C]\n[Fsus2] [C] [Am] [F] [C] [F]\n[C] [F] [C] [F]\n[C]\n"
+}

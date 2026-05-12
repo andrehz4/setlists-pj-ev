@@ -1,0 +1,97 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Hail, Hail (Pearl Jam, No Code 1996, faixa 2). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Hail Hail, 1.693 views, 405 saves) + tabela de subtons resumida",
+    "fetched": "2026-05-12",
+    "note_compasso": "4/4 a 145 BPM. Tom G, sem capotraste. Estrofes em G-Bb (truques rapidos de bVII), refrao explode na escada D-F-A/C#-Bb/D-G-A-C/E-Bb (linha de baixo descendente: D-C-Bb com cromatismo). Ponte em G-Em-Cmaj7/F-C-G/D. Strumming UG: ↓↑ ↓↑ — ↑ ↓↑ (pulso continuo com pausa no 3)."
+  },
+  "title": "Hail, Hail",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 145,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D":         { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "F":         { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "A/C#":      { "fingering": "x42220", "fingers": "x41230", "fundamental": "A", "bass": "C#" },
+        "Bb/D":      { "fingering": "xx0331", "fingers": "xx0231", "fundamental": "Bb", "bass": "D" },
+        "G":         { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "A":         { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "C/E":       { "fingering": "032010", "fingers": "032010", "fundamental": "C", "bass": "E" },
+        "Bb":        { "fingering": "x13331", "fingers": "x12341", "fundamental": "Bb", "barre": 1 },
+        "C":         { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Em":        { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "Cmaj7/F":   { "fingering": "1x2010", "fingers": "1x3020", "fundamental": "C", "bass": "F", "notes": "F no baixo + Cmaj7 (C,E,G,B) por cima" },
+        "G/D":       { "fingering": "xx0003", "fingers": "xx0003", "fundamental": "G", "bass": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 145,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":         { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "F":         { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "A/C#":      { "fingering": "2100", "fingers": "2100", "fundamental": "A", "bass": "C#", "notes": "voicing igual A; uke nao tem baixo grave" },
+        "Bb/D":      { "fingering": "3211", "fingers": "2311", "fundamental": "Bb", "bass": "D", "notes": "voicing igual Bb" },
+        "G":         { "fingering": "0232", "fingers": "0213", "fundamental": "G" },
+        "A":         { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "C/E":       { "fingering": "0003", "fingers": "0003", "fundamental": "C", "bass": "E", "notes": "voicing igual C" },
+        "Bb":        { "fingering": "3211", "fingers": "2311", "fundamental": "Bb" },
+        "C":         { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Em":        { "fingering": "0432", "fingers": "0321", "fundamental": "E" },
+        "Cmaj7/F":   { "fingering": "0002", "fingers": "0002", "fundamental": "C", "bass": "F", "notes": "voicing igual Cmaj7" },
+        "G/D":       { "fingering": "0232", "fingers": "0213", "fundamental": "G", "bass": "D", "notes": "voicing igual G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 145,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":         { "notes": ["D", "F#", "A"],     "fundamental": "D", "inversion": null },
+        "F":         { "notes": ["F", "A", "C"],      "fundamental": "F", "inversion": null },
+        "A/C#":      { "notes": ["A", "C#", "E"],     "fundamental": "A", "inversion": null, "note": "exibido como A no piano" },
+        "Bb/D":      { "notes": ["Bb", "D", "F"],     "fundamental": "Bb", "inversion": null, "note": "exibido como Bb no piano" },
+        "G":         { "notes": ["G", "B", "D"],      "fundamental": "G", "inversion": null },
+        "A":         { "notes": ["A", "C#", "E"],     "fundamental": "A", "inversion": null },
+        "C/E":       { "notes": ["C", "E", "G"],      "fundamental": "C", "inversion": null, "note": "exibido como C no piano" },
+        "Bb":        { "notes": ["Bb", "D", "F"],     "fundamental": "Bb", "inversion": null },
+        "C":         { "notes": ["C", "E", "G"],      "fundamental": "C", "inversion": null },
+        "Em":        { "notes": ["E", "G", "B"],      "fundamental": "E", "inversion": null },
+        "Cmaj7/F":   { "notes": ["F", "C", "E", "G", "B"], "fundamental": "C", "inversion": "F", "bass": "F" },
+        "G/D":       { "notes": ["G", "B", "D"],      "fundamental": "G", "inversion": null, "note": "exibido como G no piano" }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [F] [A/C#] [Bb/D] [G] [A] [C/E]\n[Bb] [D] [F] [A/C#] [Bb/D] [G]\n[A] [C/E] [Bb]\n[G]\n\n{section: Verso 1}\n[G]Ah, is there room for both of [Bb]us? [G]\nBoth of us a[Bb]part? [G]\n[Bb]Are we bound out of obli[G]gation? [Bb]\nIs that all we've [C]got? [G]\nI get the words and then I get to [Bb]thinking [G]\nI don't want to think, I want to [Bb]feel [G]\n[Bb]And how do I [G]feel? [Bb]\nAnd how do [D]I\n\n{section: Refrão}\n[D]If you're the [F]only [A/C#]one [Bb/D]\nWill I [G]never be [A]enough? [C/E]Yeah [Bb] [D]\n[F]Hail, hail the [A/C#]lucky [Bb/D]ones\nI re[G]fer to [A]those in [C/E]love, yeah [Bb] [A] [G]\n\n{section: Verso 2}\n[G]Oh, I swear I'll love you until the day I [Bb]die [G]\nAh, and be[Bb]yond [G]\n[Bb]Are we going to the [G]same place? [Bb]\nIf so can I [C]come? [G]\nIt's egg rolling thick and [Bb]heavy [G]\nAll the past you [Bb]carry [G]\n[Bb]Oh, I could be [G]new [Bb]\nYou underestimate [D]me\n\n{section: Refrão}\n[D]If you're the [F]only [A/C#]one [Bb/D]\nWill I [G]never be [A]enough? [C/E]Yeah [Bb] [D]\n[F]Hail, hail the [A/C#]lucky [Bb/D]ones\nI re[G]fer to [A]those in [C/E]love, yeah [Bb]\n[D]I\n\n{section: Interlúdio}\n[D] [A/C#] [Bb/D] [G] [D] [A/C#] [Bb/D] [G] [D]\n[A/C#] [Bb/D] [G] [D] [A/C#] [Bb/D] [G]\n\n{section: Ponte}\n[G]some[Em]times re[Cmaj7/F]a[C]lize\n[G/D] [Em]I could only [G]be as [Em]good [Cmaj7/F]as you'll [C]let me [G/D]\n[Em] [G]Are you [Em]wo[Cmaj7/F]man [C]enough to be my [G/D]man? [Em]\n[G]Bandaged [Em]hand [Cmaj7/F]in [C]hand [G/D]\n[Em] [F] [G] [F] [G] [Cmaj7/F] [G] [Cmaj7/F]\n[D]\n\n{section: Refrão}\n[D]I find it on the [F]run [A/C#] [Bb/D]\nIn a [G]race that [A]can't be [C/E]won, yeah [Bb] [D]\n[F]All hail the [A/C#]lucky [Bb/D]ones\nI re[G]fer to [A]those in [C/E]love, yeah [Bb] [D]\n\n{section: Outro}\n[D]If you're my [A/C#]only [Bb/D]one [G] [D]\nSo could you [A/C#]only [Bb/D]one? [G] [D]\nI want to [A/C#]be [Bb/D]your [G]one\n[D]Enough\nYour [A/C#]one: your [Bb/D]one your [G]one\n"
+}
