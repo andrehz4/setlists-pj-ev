@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Corduroy (Pearl Jam, Vitalogy 1994, faixa 8). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (Oficiais Corduroy, 16.852 views, 3.983 saves, 12 comments) + tabela de subtons resumida",
+    "fetched": "2026-05-12",
+    "note_compasso": "4/4 a ~88 BPM. Tom Em, sem capotraste. Intro/Interlúdio orbita Em-Asus2 com tensao lancada pelo Cmaj7. Versos andam num ostinato F-E-G (figura de Stone). Refrao volta na sequencia Cadd9-G-Am-G; o G/B (no piano apenas G) eh opcional como passagem entre Cadd9 e Am (linha de baixo C-B-A descendente). Strumming nao consta na pagina original do UG, por isso o padrao proposto aqui eh editorial (4/4 colcheias D-U) e nao parte da fonte."
+  },
+  "title": "Corduroy",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 88,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Em":    { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "Asus2": { "fingering": "x02200", "fingers": "x02300", "fundamental": "A" },
+        "Cmaj7": { "fingering": "x32000", "fingers": "x32000", "fundamental": "C" },
+        "F":     { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "E":     { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Cadd9": { "fingering": "x32033", "fingers": "x32034", "fundamental": "C" },
+        "G/B":   { "fingering": "x20003", "fingers": "x20003", "fundamental": "G", "bass": "B" },
+        "Am":    { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "4/4 COLCHEIAS (proposto, fonte UG nao traz)",
+        "bpm": 88,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Em":    { "fingering": "0432", "fingers": "0321", "fundamental": "E" },
+        "Asus2": { "fingering": "2402", "fingers": "1304", "fundamental": "A" },
+        "Cmaj7": { "fingering": "0002", "fingers": "0002", "fundamental": "C" },
+        "F":     { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "E":     { "fingering": "1402", "fingers": "1402", "fundamental": "E" },
+        "G":     { "fingering": "0232", "fingers": "0213", "fundamental": "G" },
+        "Cadd9": { "fingering": "0203", "fingers": "0103", "fundamental": "C" },
+        "G/B":   { "fingering": "0232", "fingers": "0213", "fundamental": "G", "bass": "B", "notes": "afinacao re-entrante do uke nao deixa montar baixo grave; toca a mesma forma de G" },
+        "Am":    { "fingering": "2000", "fingers": "2000", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "4/4 COLCHEIAS (proposto, fonte UG nao traz)",
+        "bpm": 88,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Em":    { "notes": ["E", "G", "B"],      "fundamental": "E", "inversion": null },
+        "Asus2": { "notes": ["A", "B", "E"],      "fundamental": "A", "inversion": null },
+        "Cmaj7": { "notes": ["C", "E", "G", "B"], "fundamental": "C", "inversion": null },
+        "F":     { "notes": ["F", "A", "C"],      "fundamental": "F", "inversion": null },
+        "E":     { "notes": ["E", "G#", "B"],     "fundamental": "E", "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],      "fundamental": "G", "inversion": null },
+        "Cadd9": { "notes": ["C", "E", "G", "D"], "fundamental": "C", "inversion": null },
+        "G/B":   { "notes": ["B", "D", "G"],      "fundamental": "G", "inversion": "B", "bass": "B" },
+        "Am":    { "notes": ["A", "C", "E"],      "fundamental": "A", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Em] [Asus2] [Em] [Asus2]\n[Em] [Asus2] [Em] [Asus2]\n[Cmaj7]\n\n{section: Verso 1}\n[F] [E] [G]\nThe waiting drove me [F]mad [E] [G]You're finally here and I'm a [F]mess [E] [G]\nI take your entrance [F]back [E] [G]Can't let you roam inside my [F]head [E] [G]\n\n{section: Refrão}\n[Cadd9]I don't wanna [G]take what you can [Am]give [G]\n[Cadd9]I would rather [G]starve than eat your [Am]bread [G]\n[Cadd9]I would rather [G]run but I can't [Am]walk [G]\n[Cadd9]Guess I'll lie a[G]lone just like be[Am]fore [G]\n\n{section: Interlúdio}\n[Em] [Asus2] [Cadd9] [Em]\n[Asus2] [Cadd9]\n\n{section: Verso 2}\n[F] [E] [G]\nI'll take the [F]vermin's path [E] [G]Oh, and I must re[F]fuse your [E]test [G]\nA push me and [F]I will re[E]sist [G]\nThis be[F]havior's not u[E]nique [G]\n\n{section: Refrão}\n[Cadd9]I don't wanna [G]hear from those who [Am]know [G]\n[Cadd9]They can buy, but [G]can't put on my [Am]clothes [G]\n[Cadd9]I don't wanna [G]limp for them to [Am]walk [G]\n[Cadd9]Never would have [G]known of me be[Am]fore [G]\n[Cadd9]I don't wanna [G]be held in your [Am]debt [G]\n[Cadd9]I'll pay it off in [G]blood, let I be [Am]wed [G]\n[Cadd9]I'm already [G]cut up and [Am]half dead [G]\n[Cadd9]I'll end up a[G]lone like I be[Am]gan [G]\n\n{section: Ponte}\n[G] [Cadd9] [G] [Cadd9] Everything [G]has chains\n[Cadd9]Absolutely nothing's changed\nTake my [G]hand, not my picture\n[Cadd9]Spilled my tincture\n\n{section: Refrão}\n[Cadd9]I don't wanna [G]take what you can [Am]give [G]\n[Cadd9]I would rather [G]starve than eat your [Am]bread [G]\n[Cadd9]All the things that [G]others want for [Am]me [G]\n[Cadd9]Can't buy what I [G]want because it's [Am]free [G]\n[Cadd9]Can't buy what I [G]want because it's [Am]free [G]\n[Cadd9]Can't be what you [G]want because I'm [Am]\n\n{section: Verso 3}\n[F] [E] [G]\nWhy ain't it sup[F]posed to be just [E]fun [G] Oh, to [F]live and [E]die, let it be [G]done\nI figure I'll be [F]damned [E] [G]\nAll alone like [F]I be[Em]gan\n\n{section: Interlúdio}\n[Em] [Asus2] [Cmaj7] [Em]\n[Asus2] [Cmaj7]\n\n{section: Outro}\n[Em] [Asus2] [Cadd9] [Em]\n[Asus2] [Cadd9] [Em] [Asus2]\n[Cadd9] [Em] [Asus2] [Cadd9]\n\n{section: Fade out}\n[Em] [Asus2] [Cadd9] [Em]\n[Asus2] [Cadd9] [Em] [Asus2]\n[Cadd9] [Em] [Asus2] [Cadd9]\n"
+}

@@ -29,7 +29,7 @@
   ] },
   "just breathe": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE", "capo": 2 },
   "given to fly": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
-  "corduroy": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
+  "corduroy": { "cifra": true, "cifraMulti": "corduroy.json", "tab": false, "key": "Em", "tuning": "EADGBE", "bpm": 88 },
   "state of love and trust": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
   "animal": { "cifra": true, "cifraMulti": "animal.json", "tab": true, "tabFormat": "gp4", "tabFile": "animal-v1.gp4", "key": "A", "tuning": "EADGBE", "bpm": 106, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "animal-v1.gp4", "format": "gp4" }
