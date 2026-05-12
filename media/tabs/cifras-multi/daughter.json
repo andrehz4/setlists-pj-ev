@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Daughter (Pearl Jam, Vs. 1993, faixa 5). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons, fingerings standard pros slash chords)",
+    "fetched": "2026-05-12",
+    "note_piano": "Tabela do Claude web diz que Piano usa A7sus4 no lugar de Asus4/G e Cmaj7 no lugar de C7M. C7M e Cmaj7 sao nomenclaturas equivalentes (M = maj7). Mantive C7M no content (do UG) e o piano dict tem as notas certas."
+  },
+  "title": "Daughter",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 98,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":       { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Asus4/G": { "fingering": "3x0230", "fingers": "2x0130", "fundamental": "A",  "bass": "G" },
+        "Em7":     { "fingering": "022030", "fingers": "023040", "fundamental": "E" },
+        "C7M":     { "fingering": "x32000", "fingers": "x32000", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 98,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":       { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Asus4/G": { "fingering": "0200", "fingers": "0100", "fundamental": "A", "bass": "G" },
+        "Em7":     { "fingering": "0202", "fingers": "0102", "fundamental": "E" },
+        "C7M":     { "fingering": "0002", "fingers": "0002", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 98,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":       { "notes": ["G", "B", "D"],        "fundamental": "G", "inversion": null },
+        "Asus4/G": { "notes": ["G", "A", "D", "E"],   "fundamental": "A", "inversion": "G", "bass": "G" },
+        "Em7":     { "notes": ["E", "G", "B", "D"],   "fundamental": "E", "inversion": null },
+        "C7M":     { "notes": ["C", "E", "G", "B"],   "fundamental": "C", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [G] [Asus4/G] [G] [G] [Asus4/G] [G] [G] [Asus4/G] [G]\n[Asus4/G]\n\n{section: Verso 1}\n[G] [Asus4/G] [G] [G] [Asus4/G] [G] [G]Alone [Asus4/G]listless [G]breakfast [G]table in an otherwise [Asus4/G]empty [G]room\n[G] [Asus4/G] [G] [G] [Asus4/G] [G] [G]Young [Asus4/G]girl violins [G]center of her own [Asus4/G]attention\n[G] [Asus4/G]Mother [G]reads aloud, [G]child tries [Asus4/G]to [G]understand it\n[G] [Asus4/G]Tries to make her [G]proud [Asus4/G]\n[G] [Asus4/G]The shades go [G]down, [Em7]it's in her head\n\n{section: Pré-refrão}\nPainted room can't deny there's something wrong\n\n{section: Refrão}\n[G]Don't call [Asus4/G]me [G]daughter, [G]not [Asus4/G]fit [G]to\n[G]The picture [Asus4/G]kept [G]will remind me [Asus4/G]Don't call [G]me [Asus4/G]\n[G]daughter, not fit to\n[G]The picture [Asus4/G]kept [G]will remind me [Asus4/G]Don't call me [G]\n\n{section: Ponte}\n[Em7] [G] [C7M] [Em7]She holds the hand that holds her down\nShe will rise above\n\n{section: Solo}\n[G] [Asus4/G] [G] [G] [Asus4/G] [G]\n[G] [Asus4/G] [G]\n[Asus4/G] [G] [Asus4/G] [G] [G] [Asus4/G] [G] [G] [Asus4/G] [G]\n[Asus4/G]\n\n{section: Refrão}\n[G]Don't call [Asus4/G]me [G]daughter, [G]not [Asus4/G]fit [G]to\n[G]The picture [Asus4/G]kept [G]will remind me [Asus4/G]Don't call [G]me [Asus4/G]\n[G]daughter, not fit to be [G]The picture [Asus4/G]\n[G]kept will remind me\n[Asus4/G] [G]Don't call me [G]daughter, [Asus4/G]not fit [G]to\n[G]The picture [Asus4/G]kept [G]will remind me [Asus4/G]Don't call [G]me [Asus4/G]\n[G]daughter, not fit to be\n[G]The picture [Asus4/G]kept [G]will remind me [Asus4/G]Don't call [G]me [Em7]\n\n{section: Outro (Fade Out)}\n[Em7]The shades go down\nShades go down\nThe shades go, go, go\n"
+}

@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Animal (Pearl Jam, Vs. 1993, faixa 4). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons, fingerings standard onde a notacao da tabela era resumida)",
+    "fetched": "2026-05-12",
+    "note_piano": "Tabela do Claude web diz que Piano usa Gmaj7 no lugar de G/F# (mesmas notas: G B D F#). Mantive G/F# no content (do UG) e o piano dict tem F# como bass."
+  },
+  "title": "Animal",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 106,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "G/F#": { "fingering": "200033", "fingers": "100023", "fundamental": "G", "bass": "F#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 106,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "G/F#": { "fingering": "0232", "fingers": "0231", "fundamental": "G", "bass": "F#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 106,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":    { "notes": ["A", "C#", "E"],       "fundamental": "A", "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],       "fundamental": "D", "inversion": null },
+        "C":    { "notes": ["C", "E", "G"],        "fundamental": "C", "inversion": null },
+        "G":    { "notes": ["G", "B", "D"],        "fundamental": "G", "inversion": null },
+        "G/F#": { "notes": ["F#", "G", "B", "D"],  "fundamental": "G", "inversion": "F#", "bass": "F#" }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A]One, two, three, four, five against one\nFive, five, five against one\nI said one, two, three, four, five against one\nFi five, five, five, five against\n\n{section: Verso 1}\n[D]Torture from you to me, [A]yeah\n[D]Abducted from the [A]street\n[C] [D] [G] [G/F#]\n\n{section: Refrão}\n[A]I'd rather be\n[C]I'd rather be with\n[D]I'd rather be with an [G]animal, [G/F#] [A] [C] [D] [G]ahh\n\n{section: Pré-verso}\n[A]Rah\n\n{section: Verso 2}\n[D]Why would you want to hurt me, [A]ahh\n[D]Oh, so frightened of your [A]pain, [C] [D] [G] [G/F#]yeah\n\n{section: Refrão}\n[A]I'd rather be\n[C]I'd rather be with\n[D]I'd rather be with an [G]animal [G/F#]\n[A]I'd rather be\n[C]I'd rather be\n[D]I'd rather be with an [G]animal [G/F#]\n\n{section: Solo}\n[A] [C]\n[D] [G] [G/F#] [A]Woof\nFour, five against one,\n[C]Five, five against one, [D]said\n[G] [G/F#] [A]Rah\nI'd rather be\n[C]I'd rather be with\n[D]I'd rather be with an [G]animal [G/F#]\n[A]I'd rather be\n[C]I'd rather be\n[D]I'd rather be with an [G]animal [G/F#]\n\n{section: Outro}\n[A]Said one, two, three, four, five against one\nFi five, five, five\nFive against one, five against\nOne, two, three, four, five against one\nFi five, five, five\nFive against one, said,\n"
+}

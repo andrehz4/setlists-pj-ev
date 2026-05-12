@@ -21,13 +21,17 @@
   "jeremy": { "cifra": true, "cifraMulti": "jeremy.json", "tab": true, "tabFormat": "gp4", "tabFile": "jeremy-v1.gp4", "key": "Am", "tuning": "EADGBE", "bpm": 100, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "jeremy-v1.gp4", "format": "gp4" }
   ] },
-  "daughter": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
+  "daughter": { "cifra": true, "cifraMulti": "daughter.json", "tab": true, "tabFormat": "gp5", "tabFile": "daughter-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 98, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "daughter-v1.gp5", "format": "gp5" }
+  ] },
   "elderly woman behind the counter in a small town": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "just breathe": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE", "capo": 2 },
   "given to fly": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
   "corduroy": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "state of love and trust": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
-  "animal": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
+  "animal": { "cifra": true, "cifraMulti": "animal.json", "tab": true, "tabFormat": "gp4", "tabFile": "animal-v1.gp4", "key": "A", "tuning": "EADGBE", "bpm": 106, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "animal-v1.gp4", "format": "gp4" }
+  ] },
   "rearviewmirror": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
   "do the evolution": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
   "last kiss": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
