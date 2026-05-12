@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Oceans (Pearl Jam, Ten 1991, faixa 7). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-12",
+    "note_afinacao": "Pearl Jam toca Oceans em open D (D-A-D-F#-A-D) no original. A cifra UG/Claude web usa EADGBE padrao pra acessibilidade, com acordes equivalentes (C#sus4 x46674 e Amaj7sus2/D xx0220 sao adaptacoes do open D)."
+  },
+  "title": "Oceans",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 78,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D":             { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "C#sus4":        { "fingering": "x46674", "fingers": "x13441", "fundamental": "C#", "barre": 4 },
+        "C#":            { "fingering": "x46664", "fingers": "x13331", "fundamental": "C#", "barre": 4 },
+        "C":             { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Amaj7sus2/D":   { "fingering": "xx0220", "fingers": "xx0120", "fundamental": "A", "bass": "D" },
+        "Bm7":           { "fingering": "xx0202", "fingers": "xx0102", "fundamental": "B" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 78,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":             { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C#sus4":        { "fingering": "1114", "fingers": "1114", "fundamental": "C#", "barre": 1 },
+        "C#":            { "fingering": "1114", "fingers": "1114", "fundamental": "C#", "barre": 1 },
+        "C":             { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Amaj7sus2/D":   { "fingering": "2100", "fingers": "2100", "fundamental": "A", "bass": "D" },
+        "Bm7":           { "fingering": "2222", "fingers": "1111", "fundamental": "B", "barre": 2 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 78,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":             { "notes": ["D", "F#", "A"],       "fundamental": "D",  "inversion": null },
+        "C#sus4":        { "notes": ["C#", "F#", "G#"],     "fundamental": "C#", "inversion": null },
+        "C#":            { "notes": ["C#", "F", "G#"],      "fundamental": "C#", "inversion": null },
+        "C":             { "notes": ["C", "E", "G"],        "fundamental": "C",  "inversion": null },
+        "Amaj7sus2/D":   { "notes": ["D", "A", "C#", "E"],  "fundamental": "A",  "inversion": "D", "bass": "D" },
+        "Bm7":           { "notes": ["B", "D", "F#", "A"],  "fundamental": "B",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[D]Hold on to the [C#sus4]thread [C#]\n       [D]The currents will shift\n[C#sus4] [C#]Guide me to[D]wards you\n                  [C#sus4]Know something's left [C#]\n         [D]And we're all [C#sus4]allowed [C#]to [D]dream Of the\n    [C]next\n\n{section: Refrão}\nOf Of the next time we to\n\n{section: Interlúdio}\n[D] [Amaj7sus2/D] [Bm7] [D] [C]\n[D] [Amaj7sus2/D] [Bm7] [D]\n   [C] [C]uch\n\n{section: Verso 2}\n[D]You don't have to [C#sus4]stray [C#]\n     [D]The oceans away\n[C#sus4] [C#]Waves roll in [D]my thoughts\n                [C#sus4]Hold tight the ring [C#]\n   [D]The sea will rise\n[C#sus4] [C#]Please stand [D]by the shore\n\n{section: Refrão}\n[C]I will be\nI will be\n           [D] [Amaj7sus2/D]There once more\n\n{section: Interlúdio}\n[Bm7] [D] [C] [D] [Amaj7sus2/D] [Bm7] [D] [C] [D] [Amaj7sus2/D] [Bm7] [D] [C] [D] [Amaj7sus2/D] [Bm7]\nO_____h\n [D]\n\n{section: Outro}\n[D] [C#sus4] [C#] [D] [C#sus4] [C#]\n[D]\n"
+}

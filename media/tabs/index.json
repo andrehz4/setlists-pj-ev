@@ -18,7 +18,9 @@
   ] },
   "yellow ledbetter": { "cifra": false, "tab": true, "tabFormat": "gp5", "key": "E", "tuning": "EADGBE" },
   "better man": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
-  "jeremy": { "cifra": true, "cifraMulti": "jeremy.json", "tab": false, "key": "Am", "tuning": "EADGBE", "bpm": 100 },
+  "jeremy": { "cifra": true, "cifraMulti": "jeremy.json", "tab": true, "tabFormat": "gp4", "tabFile": "jeremy-v1.gp4", "key": "Am", "tuning": "EADGBE", "bpm": 100, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "jeremy-v1.gp4", "format": "gp4" }
+  ] },
   "daughter": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "elderly woman behind the counter in a small town": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "just breathe": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE", "capo": 2 },
@@ -35,6 +37,9 @@
   "footsteps": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
   "why go": { "cifra": true, "cifraMulti": "why-go.json", "tab": true, "tabFormat": "gp5", "tabFile": "why-go-v1.gp5", "key": "Em", "tuning": "EADGBE", "bpm": 100, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "why-go-v1.gp5", "format": "gp5" }
+  ] },
+  "oceans": { "cifra": true, "cifraMulti": "oceans.json", "tab": true, "tabFormat": "gp3", "tabFile": "oceans-v1.gp3", "key": "D", "tuning": "EADGBE", "bpm": 78, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "oceans-v1.gp3", "format": "gp3" }
   ] },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
