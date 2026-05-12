@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Better Man (Pearl Jam, Vitalogy 1994, faixa 11). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (Oficiais Better Man, 48.214 views, 12.775 saves, 25 comments) + tabela de subtons resumida",
+    "fetched": "2026-05-12",
+    "note_compasso": "4/4 a 122 BPM. Tom D, sem capotraste. O arranjo trabalha duas figuras de baixo descendente: Intro/Versos no par D/F#-E/G# (F# desce de F# pra G#... na verdade sobe, F#-G#) e Pré-refrão na escada F/A-G/B (linha de baixo subindo A-B, abrindo pra Bmadd11). Refrao explode no ciclo D-A-G (cadência completa do tom). Strumming UG: ↓ - ↑ - ↑ ↓ ↑ - (ataque 1, depois quasi sincopado nos &)."
+  },
+  "title": "Better Man",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 122,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D/F#":    { "fingering": "2x0232", "fingers": "2x0134", "fundamental": "D", "bass": "F#" },
+        "E/G#":    { "fingering": "4x2100", "fingers": "4x2100", "fundamental": "E", "bass": "G#" },
+        "F/A":     { "fingering": "x03211", "fingers": "x03211", "fundamental": "F", "bass": "A" },
+        "G/B":     { "fingering": "x20003", "fingers": "x20003", "fundamental": "G", "bass": "B" },
+        "Bmadd11": { "fingering": "x24430", "fingers": "x13420", "fundamental": "B", "notes_extra": "B,D,F#,E (Bm com 11 = E)" },
+        "D":       { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "A":       { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "G":       { "fingering": "320003", "fingers": "210003", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 122,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D/F#":    { "fingering": "2220", "fingers": "1230", "fundamental": "D", "bass": "F#", "notes": "uke nao tem baixo grave; voicing igual D" },
+        "E/G#":    { "fingering": "1402", "fingers": "1402", "fundamental": "E", "bass": "G#", "notes": "voicing igual E na uke" },
+        "F/A":     { "fingering": "2010", "fingers": "2010", "fundamental": "F", "bass": "A", "notes": "voicing igual F na uke" },
+        "G/B":     { "fingering": "0232", "fingers": "0213", "fundamental": "G", "bass": "B", "notes": "voicing igual G na uke" },
+        "Bmadd11": { "fingering": "4202", "fingers": "3102", "fundamental": "B" },
+        "D":       { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "A":       { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "G":       { "fingering": "0232", "fingers": "0213", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 122,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D/F#":    { "notes": ["D", "F#", "A"],      "fundamental": "D", "inversion": null, "note": "exibido como D (sem inversão no painel piano)" },
+        "E/G#":    { "notes": ["E", "G#", "B"],     "fundamental": "E", "inversion": null, "note": "exibido como E" },
+        "F/A":     { "notes": ["F", "A", "C"],      "fundamental": "F", "inversion": null, "note": "exibido como F" },
+        "G/B":     { "notes": ["G", "B", "D"],      "fundamental": "G", "inversion": null, "note": "exibido como G" },
+        "Bmadd11": { "notes": ["B", "D", "F#", "E"], "fundamental": "B", "inversion": null },
+        "D":       { "notes": ["D", "F#", "A"],      "fundamental": "D", "inversion": null },
+        "A":       { "notes": ["A", "C#", "E"],      "fundamental": "A", "inversion": null },
+        "G":       { "notes": ["G", "B", "D"],       "fundamental": "G", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D/F#] [E/G#] [D/F#] [E/G#]\n\n{section: Verso 1}\n[D/F#]Waitin', watchin' the clock, [E/G#]it's four o'clock, it's got to [D/F#]stop\nTell him, take no more, [E/G#]she practices her speech\n\n{section: Pré-refrão}\nAs he [F/A]opens the door, [G/B]she rolls over\nPre[F/A]tends to sleep as he [Bmadd11]looks her over\n\n{section: Refrão}\n[D]She lies and [A]says she's in [G]love with him, [D]can't find a [A]better [G]man\n[D]She dreams in [A]colour, she [G]dreams in red, [D]can't find a [A]better man\nCan't find a [D]better man\nCan't find a [A]better man\n[G] [D/F#] [E/G#]Oh\n\n{section: Verso 2}\n[D/F#]Talkin' to herself, [E/G#]there's no one else who needs to [D/F#]know\nShe tells herself, [E/G#]oh\n\n{section: Pré-refrão}\n[D/F#]Memories back when she was [E/G#]bold and strong\nAnd waiting for the [F/A]world to come [G/B]along\n[F/A]Swears she knew it, now she [G/B]swears he's gone\n\n{section: Refrão}\n[D]She lies and [A]says she's in [G]love with him, [D]can't find a [A]better [G]man\n[D]She dreams in [A]colour, she [G]dreams in [D]red, can't find a [A]better [G]man\n[D]She lies and [A]says she still [G]loves him, [D]can't find a [A]better [G]man\n[D]She dreams in [A]colour, she [G]dreams in [D]red, can't find a [A]better [G]man\nCan't find a [D]better man\nCan't find a [A]better man\n[G]Yeah\n[D]She loved him, [A]yeah, [G]she don't [D]want to leave this [A]way [G]\nShe [D]feeds him, [A]yeah, [G]that's why [D]she'll be back a[A]gain [G]\n[D]Can't find a [A]better [G]man\n[D]Can't find a [A]better [G]man\n[D]Can't find a [A]better [G]man\nCan't find a [D]better [A]man [G]\n\n{section: Outro}\n[D] [A] [G] [D] [A] [G]\n[D] [A] [G] [D] [A] [G]\n[D] [A] [G] [D] [A] [G]\n[D] [A] [G] [D] [A] [G]\n[D] [A] [G] [D] [A] [G]\n[D] [A] [G] [D]\n"
+}

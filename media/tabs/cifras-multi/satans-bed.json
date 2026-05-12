@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Satan's Bed (Pearl Jam, Vitalogy 1994, faixa 10). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (Cifra Satans Bed, portonikos iniciante total, 739 views) + tabela de subtons resumida",
+    "fetched": "2026-05-12",
+    "note_compasso": "4/4 a ~118 BPM. Tom A (com sabor mixolidio, G como bVII). Estrofe e vamp A-G repetido com voz declamada por cima; refrao alterna C-G-D-A num ciclo de 4 acordes, com 'Already... in love' caindo ao longo de dois ciclos. Ponte sobe num A pedal antes de retomar a estrofe. Strumming nao consta na pagina original do UG (padrao proposto aqui eh editorial)."
+  },
+  "title": "Satan's Bed",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 118,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "G": { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C": { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "D": { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "4/4 COLCHEIAS (proposto, fonte UG nao traz)",
+        "bpm": 118,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "G": { "fingering": "0232", "fingers": "0213", "fundamental": "G" },
+        "C": { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D": { "fingering": "2220", "fingers": "1230", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "4/4 COLCHEIAS (proposto, fonte UG nao traz)",
+        "bpm": 118,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "G": { "notes": ["G", "B", "D"],  "fundamental": "G", "inversion": null },
+        "C": { "notes": ["C", "E", "G"],  "fundamental": "C", "inversion": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [G] [A] [G]\n[A] [G] [A] [G]\n\n{section: Verso 1}\n[A]It's not all been said, been said and [G]done\n[A]I've never slept in [G]Satan's bed\n[A]Although, I must admit, still visits my [G]place\n[A]Uninvited, as you know he don't [G]wait\n\n[A]Funny how he always seems to [G]fit in\n[A]Funny how I always want to [G]give in\n[A]Sundays, Fridays, Tuesdays, Thursdays the [G]same\n[A]Sometimes this special guest he don't like to [G]leave\n\n{section: Refrão}\n[C] [G] [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A]\n\n{section: Verso 2}\n[A]Who made, who made up, made up the [G]myth\n[A]That we were born to be covered in [G]bliss?\n[A]Who set the standard? Born to be [G]rich\n[A]Such fine examples, skinny little [G]bitch\n\n[A]Model, role model, roll some models in [G]blood\n[A]Get some flesh to stick so they look like [G]us\n[A]I shit and I stink, I'm real join the [G]club\n[A]I'd stop and talk but I'm already in [G]love\n\n{section: Refrão}\n[C] [G] [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C](in [A]love)\n\n{section: Ponte}\n[A]Torture follows reward\n[A]Follows torture\n[A]Follows reward\n[A]Oh my butt\n\n{section: Verso 3}\n[A]Never shook Satan's hand, look, see for your[G]self\n[A]You'd know it if I had that shit don't come [G]off\n[A]I'll rise and fall, let me take credit for [G]both\n[A]Jump off a cliff don't need your help so back [G]off\n\n[A]I'll never suck Satan's [G]dick\n[A]Again you'd see it, you know right round the [G]lips\n[A]I'll wait for an angel but I won't hold my [G]breath\n[A]Imagine they're busy, think I'm doing o[G]kay\n\n{section: Outro}\n[C] [G] [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C]Already [G] [D] [A] [C]in [G]love [D] [A]\n[C] [G] [D] [A] [C] [G] [D] [A]\n[C] [G] [D] [A] [C] [G] [D] [A]\n"
+}
