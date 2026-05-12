@@ -89,6 +89,7 @@
   "tremor christ": { "cifra": true, "cifraMulti": "tremor-christ.json", "tab": false, "key": "A", "tuning": "EADGBE", "bpm": 100 },
   "nothingman": { "cifra": true, "cifraMulti": "nothingman.json", "tab": false, "key": "F", "tuning": "EADGBE", "bpm": 78 },
   "whipping": { "cifra": true, "cifraMulti": "whipping.json", "tab": false, "key": "E", "tuning": "EADGBE", "bpm": 155 },
+  "bugs": { "cifra": true, "cifraMulti": "bugs.json", "tab": false, "key": "Bb", "tuning": "EADGBE", "bpm": 65, "notes": "Original tocado em acordeao (Eddie Vedder). Cifra eh adaptacao pra violao/uke/piano com strumming proposto em colcheias 4/4." },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
   ] }

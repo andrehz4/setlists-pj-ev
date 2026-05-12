@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Bugs (Pearl Jam, Vitalogy 1994, faixa 9). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (transcricao kuschelschock, 17.557, intermediario) + tabela de subtons por instrumento",
+    "fetched": "2026-05-12",
+    "note_compasso": "Musica em 4/4 a 65 BPM. Eddie toca acordeao em todo o original (Vitalogy 1994), por isso a cifra eh uma adaptacao para instrumentos de corda/teclado. Strumming proposto: colcheias contínuas para baixo com acentos em 2, 3& e 4, sustentando a dimensao quase declamada da musica. Dica do transcritor original: para acordes mais faceis transponha -1 e ponha capotraste no 1o traste (passa a A/E/F#m/D)."
+  },
+  "title": "Bugs",
+  "artist": "Pearl Jam",
+  "key": "Bb",
+  "bpm": 65,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Bb":    { "fingering": "x13331", "fingers": "x12341", "fundamental": "Bb", "barre": 1 },
+        "F":     { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "Gm":    { "fingering": "355333", "fingers": "134111", "fundamental": "G",  "barre": 3 },
+        "Eb":    { "fingering": "x68886", "fingers": "x12341", "fundamental": "Eb", "barre": 6 },
+        "Eb/Bb": { "fingering": "6x8886", "fingers": "1x2341", "fundamental": "Eb", "bass": "Bb", "barre": 6 },
+        "Eb/A":  { "fingering": "5x8886", "fingers": "1x2341", "fundamental": "Eb", "bass": "A" }
+      },
+      "strumming": {
+        "label": "4/4 COLCHEIAS",
+        "bpm": 65,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Bb":    { "fingering": "3211", "fingers": "2311", "fundamental": "Bb", "barre": 1 },
+        "F":     { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Gm":    { "fingering": "0231", "fingers": "0231", "fundamental": "G" },
+        "Eb":    { "fingering": "0331", "fingers": "0231", "fundamental": "Eb" },
+        "Eb/Bb": { "fingering": "3331", "fingers": "2341", "fundamental": "Eb", "bass": "Bb" },
+        "Eb/A":  { "fingering": "3330", "fingers": "1230", "fundamental": "Eb", "bass": "A" }
+      },
+      "strumming": {
+        "label": "4/4 COLCHEIAS",
+        "bpm": 65,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Bb":    { "notes": ["Bb", "D", "F"],        "fundamental": "Bb", "inversion": null },
+        "F":     { "notes": ["F", "A", "C"],         "fundamental": "F",  "inversion": null },
+        "Gm":    { "notes": ["G", "Bb", "D"],        "fundamental": "G",  "inversion": null },
+        "Eb":    { "notes": ["Eb", "G", "Bb"],       "fundamental": "Eb", "inversion": null },
+        "Eb/Bb": { "notes": ["Bb", "Eb", "G"],       "fundamental": "Eb", "inversion": "Bb", "bass": "Bb" },
+        "Eb/A":  { "notes": ["A", "Eb", "G", "Bb"],  "fundamental": "Eb", "inversion": "A",  "bass": "A" }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Bb] [F]\n(All these...)\n\n{section: Verso 1}\n[Bb]I got bugs, [F]I got [Bb]bugs in my [F]room\n[Bb]Bugs in my [F]bed, [Bb]bugs in my [F]ears\n[Bb]Their eggs in my [F]head, bugs in my [Gm]pockets [F]\n[Bb]Bugs in my [F]shoes, bugs in the [Gm]way I [F]feel about [Bb]you [F]\n\n{section: Verso 2}\nBugs on my [Bb]window, [F]trying to [Bb]get in [F]\nThey don't go [Bb]no[F]where, [Bb]waiting wait[F]ing...\nBugs on my [Bb]cei[F]ling, crowded the [Bb]flo[F]or\nStanding sitting [Bb]kneeling, [F]a few [Bb]block the [F]door\n\n{section: Verso 3}\nAnd now the [Bb]question's: [F]Do I [Bb]kill them? [F]\nBecome their [Bb]friend? [F]Do I [Bb]eat them? [F]\nRaw or well [Bb]done? [F]Do I [Bb]trick them? [F]\nI don't think they're [Bb]that [F]dumb\nDo I [Bb]join them? [F] [Bb]Looks like [F]that's the [Bb]one [F]\n\n{section: Verso 4}\nI got bugs on my [Bb]skin, [F]tickle my [Bb]nau[F]sea\nI let it happen a[Bb]gain, [F]they're always [Bb]takin' [F]over\nI see they sur[Bb]round me, [F]I see... see them de[Bb]ciding my [F]fate\nOh, that which was [Bb]once... [F]was once up to [Bb]me, now it's [F]too late\n\n{section: Outro}\n[Eb]I got bugs in my room... one on one\n[Eb]That's when I had a [Eb/Bb]chance\n[Eb]I'll just stop now\n[Eb]I'll become naked\n[Eb]And with the... [Eb/Bb]I'll become [Eb/A]one\n"
+}
