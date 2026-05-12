@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Indifference (Pearl Jam, Vs. 1993, faixa 12). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra oficial) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12",
+    "note_compasso": "Musica tem feel de shuffle/triplets a 103 BPM. Strumming pattern em groups of 3 (terceiras) capturando o swing."
+  },
+  "title": "Indifference",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 103,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Dsus4": { "fingering": "xx0233", "fingers": "xx0124", "fundamental": "D" },
+        "Em":    { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "D":     { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "SHUFFLE",
+        "bpm": 103,
+        "beats": [
+          { "count": "1",  "stroke": "down", "muted": false },
+          { "count": "2",  "stroke": "down", "muted": false },
+          { "count": "3",  "stroke": "up",   "muted": false },
+          { "count": "4",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Dsus4": { "fingering": "2230", "fingers": "1130", "fundamental": "D" },
+        "Em":    { "fingering": "0402", "fingers": "0301", "fundamental": "E" },
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "SHUFFLE",
+        "bpm": 103,
+        "beats": [
+          { "count": "1",  "stroke": "down", "muted": false },
+          { "count": "2",  "stroke": "down", "muted": false },
+          { "count": "3",  "stroke": "up",   "muted": false },
+          { "count": "4",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Dsus4": { "notes": ["D", "G", "A"],  "fundamental": "D", "inversion": null },
+        "Em":    { "notes": ["E", "G", "B"],  "fundamental": "E", "inversion": null },
+        "D":     { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],  "fundamental": "G", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Dsus4] [Em] [D]\n\n{section: Verso 1}\n[Em] [D]I will [Em]light the match this [D]morning so I won't [Em]be a[D]lone\n[Em]Watch as she lies [D]silent for [Em]soon night will [D]be gone\n[Em]Oh, I will stand [D]arms outstretched, [Em]pretend I'm free [D]to roam\n[Em]Oh, I will make my [D]way through [Em]one more day in [D]hell\n\n{section: Interlúdio}\n[Em] [D] [Em] [D]\n[Em]\n\n{section: Refrão}\n[Em]How much [D]difference does it [Em]make?\n[D]How much difference does it [Em]make?\n\n{section: Pós-refrão}\n[G] [D] [Em] [G]\n[D] [Em]\n\n{section: Verso 2}\n[Em]I will hold [D]the candle 'til it [Em]burns up [D]my arm\n[Em]Oh, I'll keep taking [D]punches until their [Em]will grows [D]tired\n[Em]Oh, I will stare the [D]sun down until [Em]my eyes go [D]blind\n[Em]Hey, I won't change [D]direction and [Em]I won't change my [D]mind\n\n{section: Refrão}\n[G]How much [D]difference does it [Em]make?\n[G]Mm how much [D]difference does it [Em]make?\n\n{section: Pós-refrão}\n[Em] [D] [Em] [D]\n[Em]\n\n{section: Verso 3}\n[Em]I'll swallow [D]poison until [Em]I grow im[D]mune\n[Em]I will scream [D]my lungs out 'til it [Em]fills this [D]room\n\n{section: Refrão}\n[G]How much [D]difference\n[Em] [G]How much [D]difference\n[Em] [G]How much [D]difference does it [Em]make?\n[G]How much [D]difference does it [Em]make?\n\n{section: Pós-refrão}\n[Em] [D] [Em] [D]\n[Em] [D] [Em] [D]\n[Em] [D] [Em] [D]\n[Em]\n\n{section: Outro (Fade Out)}\n[D] [Em]\n"
+}

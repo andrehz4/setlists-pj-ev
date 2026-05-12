@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Spin the Black Circle (Pearl Jam, Vitalogy 1994, faixa 2). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12",
+    "note_power_chords": "Musica usa 10 power chords distintos: A5, G5, B5, F5, E5, D#5, D5, C5, C#5, A#5. Standard power chord shapes em violao (root + 5th)."
+  },
+  "title": "Spin the Black Circle",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 165,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A5":  { "fingering": "x022xx", "fingers": "x012xx", "fundamental": "A" },
+        "G5":  { "fingering": "355xxx", "fingers": "134xxx", "fundamental": "G" },
+        "B5":  { "fingering": "x244xx", "fingers": "x134xx", "fundamental": "B" },
+        "F5":  { "fingering": "133xxx", "fingers": "134xxx", "fundamental": "F" },
+        "E5":  { "fingering": "022xxx", "fingers": "x12xxx", "fundamental": "E" },
+        "D#5": { "fingering": "x688xx", "fingers": "x134xx", "fundamental": "D#" },
+        "D5":  { "fingering": "x577xx", "fingers": "x134xx", "fundamental": "D" },
+        "C5":  { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C" },
+        "C#5": { "fingering": "x466xx", "fingers": "x134xx", "fundamental": "C#" },
+        "A#5": { "fingering": "x133xx", "fingers": "x134xx", "fundamental": "A#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 165,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A5":  { "fingering": "xx00", "fingers": "xx00", "fundamental": "A" },
+        "G5":  { "fingering": "0xx0", "fingers": "0xx0", "fundamental": "G" },
+        "B5":  { "fingering": "44xx", "fingers": "11xx", "fundamental": "B",  "barre": 4 },
+        "F5":  { "fingering": "2xx0", "fingers": "1xx0", "fundamental": "F" },
+        "E5":  { "fingering": "4xx2", "fingers": "3xx1", "fundamental": "E" },
+        "D#5": { "fingering": "33xx", "fingers": "11xx", "fundamental": "D#", "barre": 3 },
+        "D5":  { "fingering": "22xx", "fingers": "11xx", "fundamental": "D",  "barre": 2 },
+        "C5":  { "fingering": "00xx", "fingers": "00xx", "fundamental": "C" },
+        "C#5": { "fingering": "11xx", "fingers": "11xx", "fundamental": "C#", "barre": 1 },
+        "A#5": { "fingering": "0011", "fingers": "0011", "fundamental": "A#", "barre": 1 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 165,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A5":  { "notes": ["A", "E"],   "fundamental": "A",  "inversion": null },
+        "G5":  { "notes": ["G", "D"],   "fundamental": "G",  "inversion": null },
+        "B5":  { "notes": ["B", "F#"],  "fundamental": "B",  "inversion": null },
+        "F5":  { "notes": ["F", "C"],   "fundamental": "F",  "inversion": null },
+        "E5":  { "notes": ["E", "B"],   "fundamental": "E",  "inversion": null },
+        "D#5": { "notes": ["D#", "A#"], "fundamental": "D#", "inversion": null },
+        "D5":  { "notes": ["D", "A"],   "fundamental": "D",  "inversion": null },
+        "C5":  { "notes": ["C", "G"],   "fundamental": "C",  "inversion": null },
+        "C#5": { "notes": ["C#", "G#"], "fundamental": "C#", "inversion": null },
+        "A#5": { "notes": ["A#", "F"],  "fundamental": "A#", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A5] [G5] [B5] [A5] [G5] [B5]\n[F5] [E5] [D#5] [D5] [C5] [C5] [C5] [C5] [C5] [C5] [C5] [C5]\n\n{section: Verso}\n[B5]See this needle\n[A5]A-see my hand\n[B5]Drop, drop, dropping it down\n[A5]Oh so gently\n[D5]Well here it comes\n[C5]I touch the plane\n[D5]Turn me up\n[C5]Won't turn you a[F5]way [E5] [D#5] [D5]\n\n{section: Refrão}\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black, spin the [F5]black [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Uhhhh\n\n{section: Verso}\n[B5]Pull it out\n[A5]A-paper sleeve\n[B5]Oh my joy\n[A5]Only you deserve conceit\n[D5]I'm so big\n[C5]A-my whole world\n[D5]I'd rather you\n[C5]Rather you than her\n\n{section: Refrão}\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black, spin the [F5]black [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Uhhhh\n\n{section: Instrumental}\n[C5] [C#5] [C5] [B5] [C5] [B5] [A#5] [B5] [A#5] [A5]\n[C5] [C#5] [C5] [B5] [C5] [B5] [A#5] [B5] [A#5] [A5]\n[B5]\n\n{section: Ponte}\n[D5]You're so warm\n[E5]Oh, the ritual\n\nWhen I lay down\n\nYour crooked arm\n\n{section: Refrão}\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black, spin the [F5]black [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin the black, spin the black, spin the [F5]black, spin the [E5]black, spin the [D#5]black [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin the black [F5]circle [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Spin, [F5]spin [E5] [D#5] [D5]\n[C5]Ohh\n"
+}

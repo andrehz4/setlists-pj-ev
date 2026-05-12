@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Last Exit (Pearl Jam, Vitalogy 1994, faixa 1). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12",
+    "note_palm_mute": "Strumming pattern usa palm mute (muted: true) nos beats 1& e 4& conforme tabela do Claude web."
+  },
+  "title": "Last Exit",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 140,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C": { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "D": { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "G": { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "F": { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "E": { "fingering": "022100", "fingers": "023100", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "PALM MUTE",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C": { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D": { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "G": { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "F": { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "E": { "fingering": "4442", "fingers": "3331", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "PALM MUTE",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C": { "notes": ["C", "E", "G"],   "fundamental": "C", "inversion": null },
+        "D": { "notes": ["D", "F#", "A"],  "fundamental": "D", "inversion": null },
+        "G": { "notes": ["G", "B", "D"],   "fundamental": "G", "inversion": null },
+        "F": { "notes": ["F", "A", "C"],   "fundamental": "F", "inversion": null },
+        "E": { "notes": ["E", "G#", "B"],  "fundamental": "E", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C] [D] [C] [D]\n\n{section: Verso 1}\n[C]Lives opened and [D]trashed\n[C]\"Look ma, watch me [C]crash\"\n[C]No time to question\n[D]Why'd nothing [G]last\n[C]Grasp and hold [D]on\n[C]We're dyin' [C]fast\n[C]Soon be over\n[D]And I will re[D]lent\n\n{section: Refrão}\n[F]Let the [C]ocean swell, [E]dissolve 'way my [C]past\n[F]Three [C]days, and maybe [E]longer\n[F]Won't [C]even know I've [E]left\n\n{section: Verso 2}\n[C]Under your [D]tongue\n[C]I'm like a tab\n[C]I will give you what\n[D]You're not supposed to have\n[C]Under my [D]breath\n[C]I swear by sin\n[D]For better or for worse\n\nA best we began\n\n{section: Refrão 2}\n[F]Let the [C]sun climb, oh, [E]burn 'way my [C]mask\n[F]Three [C]days, and maybe longer\n[E]Shed my skin at last\n[E]Shed\n[E]Shed\n\n{section: Refrão 3}\n[F]Let the [C]sun shine, [E]burn 'way my [C]mask\n[F]Three [C]days, and maybe longer\n[E]Won't ever find me here\n\n{section: Refrão 4}\n[F]Let the [C]ocean dissolve [E]'way my [C]past\n[F]Four [C]days, and not much longer\n\n{section: Outro}\nLet my spirit pass\n\nUh\n[C]This is, [D]this is\n[C]This is, [D]this is\n[C]This is, [D]this is\n[C]My\nLast exit\n"
+}

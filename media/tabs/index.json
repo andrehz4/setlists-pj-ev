@@ -79,6 +79,11 @@
   "leash": { "cifra": true, "cifraMulti": "leash.json", "tab": true, "tabFormat": "gp3", "tabFile": "leash-v1.gp3", "key": "A", "tuning": "EADGBE", "bpm": 110, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "leash-v1.gp3", "format": "gp3" }
   ] },
+  "indifference": { "cifra": true, "cifraMulti": "indifference.json", "tab": true, "tabFormat": "gp5", "tabFile": "indifference-v1.gp5", "key": "Em", "tuning": "EADGBE", "bpm": 103, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "indifference-v1.gp5", "format": "gp5" }
+  ] },
+  "last exit": { "cifra": true, "cifraMulti": "last-exit.json", "tab": false, "key": "C", "tuning": "EADGBE", "bpm": 140 },
+  "spin the black circle": { "cifra": true, "cifraMulti": "spin-the-black-circle.json", "tab": false, "key": "C", "tuning": "EADGBE", "bpm": 165 },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
   ] }
