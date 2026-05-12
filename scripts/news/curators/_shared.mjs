@@ -22,7 +22,7 @@ export function fillTemplate(tpl, vars) {
   return tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => String(vars[k] ?? ""));
 }
 
-const VALID_TAGS = new Set(["turne", "lancamento", "ed-solo", "tenclub", "memoria", "br", "bootleg"]);
+const VALID_TAGS = new Set(["turne", "lancamento", "ed-solo", "tenclub", "memoria", "br", "bootleg", "comunidade"]);
 
 // Sanitiza travessao (em-dash U+2014, en-dash U+2013, figure-dash U+2012,
 // horizontal-bar U+2015, minus sign U+2212) substituindo por pontuacao PT-BR

@@ -1,0 +1,79 @@
+name: Community fetch
+on:
+  schedule:
+    # Digest: 12:00 UTC = 09:00 BRT
+    - cron: '0 12 * * *'
+    # Spotlight: 00:00 UTC = 21:00 BRT
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Modo do pipeline'
+        type: choice
+        options: [digest, spotlight, both]
+        default: both
+      dry-run:
+        description: 'Dry run (nao escreve, nao commita)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: community-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Determine mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            # Cron 12:00 UTC -> digest; cron 00:00 UTC -> spotlight
+            if [ "${{ github.event.schedule }}" = "0 12 * * *" ]; then
+              echo "mode=digest" >> $GITHUB_OUTPUT
+            else
+              echo "mode=spotlight" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "mode=${{ inputs.mode || 'both' }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Fetch community
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
+        run: |
+          ARGS="--mode=${{ steps.mode.outputs.mode }}"
+          if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          node scripts/news/community-fetch.mjs $ARGS
+
+      - name: Commit & push
+        if: ${{ inputs.dry-run != true }}
+        run: |
+          git config user.name "pj-news-bot"
+          git config user.email "bot@setlists-pj.local"
+          git add media/news/
+          if git diff --cached --quiet; then
+            echo "Sem mudancas, nao vou commitar."
+          else
+            MODE="${{ steps.mode.outputs.mode }}"
+            git commit -m "community: $MODE $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
