@@ -24,6 +24,21 @@ export function fillTemplate(tpl, vars) {
 
 const VALID_TAGS = new Set(["turne", "lancamento", "ed-solo", "tenclub", "memoria", "br", "bootleg"]);
 
+// Sanitiza travessao (em-dash U+2014, en-dash U+2013, figure-dash U+2012,
+// horizontal-bar U+2015, minus sign U+2212) substituindo por pontuacao PT-BR
+// adequada. Travessao eh proibido em qualquer conteudo do site (regra global).
+// Estrategia: " — " (com espacos) eh tipicamente separador de clausula → vira ", ".
+// "—" colado a palavra (sem espacos) eh hifen estilizado → vira "-" (mantem ligado).
+// Hifens regulares "-" sao preservados.
+export function stripDashes(s) {
+  if (typeof s !== "string") return s;
+  return s
+    .replace(/\s+[—–‒―−]\s+/g, ", ")   // " — " separador de clausula
+    .replace(/\s+[—–‒―−]/g, ",")        // " —" no fim
+    .replace(/[—–‒―−]\s+/g, ", ")       // "— " no comeco
+    .replace(/[—–‒―−]/g, "-");          // remanescente colado → hifen
+}
+
 // Recebe string crua do LLM, retorna objeto curado ou "SKIP".
 export function validateCurated(rawText) {
   const text = (rawText || "").trim();
@@ -51,6 +66,12 @@ export function validateCurated(rawText) {
   if (typeof parsed.intro_pt !== "string" || !parsed.intro_pt.trim()) return "SKIP";
   if (typeof parsed.corpo_pt !== "string" || parsed.corpo_pt.length < 100) return "SKIP";
   if (!Array.isArray(parsed.tags) || parsed.tags.length === 0) return "SKIP";
+
+  // Sanitiza travessao (regra global do site, nao pode passar nem se o LLM teimar)
+  parsed.titulo_pt = stripDashes(parsed.titulo_pt);
+  parsed.intro_pt = stripDashes(parsed.intro_pt);
+  parsed.corpo_pt = stripDashes(parsed.corpo_pt);
+
   parsed.tags = parsed.tags.filter((t) => VALID_TAGS.has(t)).slice(0, 3);
   if (parsed.tags.length === 0) parsed.tags = ["memoria"];
 
