@@ -11792,25 +11792,35 @@ async function _startCifraPlayer(root, bpm) {
     })();
     if (bracoOn) _updateCifraFretboard(chord, nextChord, root);
     else _hideCifraFretboard();
-    // Scroll INTELIGENTE: so rola se o chip ativo saiu da faixa central
-    // (30%) do container scrollavel. Como a cifra-surface agora tem scroll
-    // interno (max-height 40vh/48vh), o container correto eh a surface
-    // sempre que existir; cai pra window so quando nao houver scroll
-    // interno (fallback raro).
+    // Scroll INTELIGENTE: rola APENAS dentro da surface (que tem scroll
+    // interno desde o ultimo commit), nunca a window. Andre flagou bug
+    // na intro: scrollIntoView default rola TODOS os ancestrais inclusive
+    // a window, jogando o braco floating pra fora da viewport. Solucao:
+    // calcular scrollTop alvo do container e usar surface.scrollTo()
+    // diretamente, deixando a window estatica.
     const r = chip.getBoundingClientRect();
     const sur = chip.closest('.cifra-surface, .alphatab-surface');
-    let needsScroll = false;
     if (sur && sur.clientHeight < sur.scrollHeight) {
       const sr = sur.getBoundingClientRect();
-      const margin = (sr.bottom - sr.top) * 0.3;
-      needsScroll = r.top < sr.top + margin || r.bottom > sr.bottom - margin;
+      const margin = sr.height * 0.3;
+      const visibleTop = r.top - sr.top;
+      const visibleBot = r.bottom - sr.top;
+      if (visibleTop < margin || visibleBot > sr.height - margin) {
+        // chip.offsetTop relativo a offsetParent pode nao ser surface; usar
+        // bounding rects + scrollTop atual pra calcular offset absoluto
+        // dentro do scroll content.
+        const chipOffsetInSurface = (r.top - sr.top) + sur.scrollTop;
+        const target = chipOffsetInSurface - sr.height / 2 + r.height / 2;
+        sur.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+      }
     } else {
+      // Sem scroll interno (fallback raro): so rola window se chip saiu da
+      // viewport. block:nearest pra minimizar movimento.
       const vh = window.innerHeight || document.documentElement.clientHeight;
       const margin = vh * 0.3;
-      needsScroll = r.top < margin || r.bottom > vh - margin;
-    }
-    if (needsScroll) {
-      chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      if (r.top < margin || r.bottom > vh - margin) {
+        chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      }
     }
     // Duracao lida dinamicamente: se user move o speed slider durante o
     // playback, o proximo acorde ja respeita o novo tempo.
