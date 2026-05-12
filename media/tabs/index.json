@@ -106,7 +106,7 @@
   "satans bed": { "cifra": true, "cifraMulti": "satans-bed.json", "tab": true, "tabFormat": "gp3", "tabFile": "satans-bed-v1.gp3", "key": "A", "tuning": "EADGBE", "bpm": 118, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "satans-bed-v1.gp3", "format": "gp3" }
   ] },
-  "immortality": { "cifra": false, "tab": true, "tabFormat": "gp4", "tabFile": "immortality-v1.gp4", "key": "D", "tuning": "EADGBE", "versions": [
+  "immortality": { "cifra": true, "cifraMulti": "immortality.json", "tab": true, "tabFormat": "gp4", "tabFile": "immortality-v1.gp4", "key": "Em", "tuning": "EADGBE", "bpm": 129, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "immortality-v1.gp4", "format": "gp4" }
   ] },
   "pry to": { "cifra": false, "tab": true, "tabFormat": "gp", "tabFile": "pry-to-v1.gp", "tuning": "EADGBE", "notes": "Pry, To eh interludio instrumental (faixa 7 do Vitalogy, ~1min). Sem cifra de acordes nomeados, tab-only no UG.", "versions": [

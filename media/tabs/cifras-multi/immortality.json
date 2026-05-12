@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Immortality (Pearl Jam, Vitalogy 1994, faixa 13). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (Oficiais Immortality, 9.193 views, 2.626 saves, 8 comments) + tabela de subtons resumida",
+    "fetched": "2026-05-12",
+    "note_compasso": "4/4 a 129 BPM. Tom Em, sem capotraste. Estrofes em ostinato Em-D/F# (linha de baixo E-F# subindo um tom): no piano fica mais simples como Em-D. Refrao traz a sequencia D/F#-C-Em e fecha com C-Em-A (o A em pedal antes do solo). Strumming UG: ↓ - ↓ ↑ - ↑ ↓ - (ataque no 1, hit no 2-&, sincopa no 3&, ataque final no 4)."
+  },
+  "title": "Immortality",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 129,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Em":   { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "D/F#": { "fingering": "2x0232", "fingers": "2x0134", "fundamental": "D", "bass": "F#" },
+        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 129,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Em":   { "fingering": "0432", "fingers": "0321", "fundamental": "E" },
+        "D/F#": { "fingering": "2220", "fingers": "1230", "fundamental": "D", "bass": "F#", "notes": "uke nao tem baixo grave; voicing igual D" },
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 129,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C":    { "notes": ["C", "E", "G"],   "fundamental": "C", "inversion": null },
+        "Em":   { "notes": ["E", "G", "B"],   "fundamental": "E", "inversion": null },
+        "D/F#": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null, "note": "exibido como D no piano (sem inversão)" },
+        "A":    { "notes": ["A", "C#", "E"],  "fundamental": "A", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C] [Em] [C] [Em] [C] [Em] [C] [Em]\n[Em] [D/F#] [Em] [D/F#]\n[Em] [D/F#] [Em]\n[D/F#]\n\n{section: Verso 1}\n[Em]Vacate is the [D/F#]word\n[Em]Vengeance has no place [D/F#]so near to her\n[Em]Cannot find the comfort in [D/F#]this [Em]world\n[D/F#] [Em]Artificial [D/F#]tear\n[Em]Vessel stabbed, next [D/F#]up, volunteers?\n[Em]Vulnerable. Wisdom can't [D/F#]ad[Em]here\n\n{section: Refrão}\n[D/F#] [C]A truant finds [Em]home\n[C]And a wish to hold [Em]on\nBut there's a [C]trapdoor in the [Em]sun [A]\nImmortality\n\n{section: Solo de guitarra 1}\n[Em] [D/F#] [Em] [D/F#]\n[Em] [D/F#] [Em]\n\n{section: Verso 2}\n[D/F#] [Em]As privileged as a [D/F#]whore\n[Em]Victims in demand [D/F#]for public show\n[Em]Swept out through the cracks [D/F#]beneath the [Em]door\n[D/F#] [Em]Holier than thou. [D/F#]How?\n[Em]Surrendered, executed, [D/F#]anyhow\n[Em]Scrawl dissolved. Cigar [D/F#]box on the [Em]floor\n\n{section: Refrão}\n[D/F#] [C]A truant finds [Em]home\n[C]And I wish to hold [Em]on too\nBut saw the [C]trapdoor in the [Em]sun [A]\n\n{section: Solo de guitarra 2}\n[Em] [D/F#] [Em] [D/F#]\n[Em] [D/F#] [Em] [D/F#]\n[Em] [D/F#] [Em] [D/F#]\n[Em] [D/F#] [Em] [D/F#]\n[Em] [D/F#] [Em] [C] [Em] [D/F#] [Em] [C]\n[Em] [D/F#] [Em] [C] [Em] [D/F#] [Em] [C]\n[A]\nImmortality\n\n{section: Verso 3}\n[Em] [D/F#] [Em] [D/F#] [Em]I cannot stop the thought [D/F#]of [Em]running in the [D/F#]dark\n[Em]Coming up a which [D/F#]way sign\n[Em]All good truants must [D/F#]decide\n\n{section: Refrão}\nOh, [C]stripped and sold [Em]mom\n[C]An auctioned [Em]forearm\nAnd [C]whiskers in the [Em]sink [A]\n[C]Truants move [Em]on\n[C]Cannot stay [Em]long\n[C]Some die just to [Em]live [A] [A]\n\n{section: Fade out}\n[A]\n"
+}
