@@ -71,5 +71,76 @@
       }
     }
   },
-  "content": "{section: Intro}\n[E] [A] [E]\n[A] [E]   [A] [E]\n  Hey, oh\n\n{section: Verso 1.1}\n[E]Sheets of empty [A]canvas\n        [E]Untouched sheets of clay\n[A]  [E]Were laid spread out before me\n   [E]As her body once did\n\n{section: Verso 1.2}\n[E]All five hori[A]zons\n        [E]Revolved around her soul\n[A]As the earth to the sun\n[E]Now the air I [A]tasted and breathed\n   [E]Has taken a turn\n\n{section: Pré-refrão}\n    [C]Ohohoh and all I taught her was [Em]everything\n    [C]Ohohoh I know she gave me all that she [Em]wore\n         [D]And now my bitter hands\n\n{section: Refrão}\n            [C]Chafe beneath the clouds\n                [Em]Of what was everything\n            [D]Oh the pictures have\n            [C]All been washed in black\n                [Em]Tattooed everything\n\n{section: Verso 2}\n[E]I take a walk out[A]side\n        [E]I'm surrounded by\n              [A]Some kids at play\n[E]I can feel their [A]laughter\n   [E]So why do I sear\n\n{section: Pré-refrão}\n    [C]Oh, oh and twisted thoughts that spin\n            [Em]Round my head\nI'm spinning\n    [C]Oh, I'm spinning\n                            [Em]How quick the sun can, drop away\n            [D]And now my bitter hands\n\n{section: Refrão}\n            [C]Cradle broken glass\n                [Em]Of what was everything\n                [D]All the pictures had\n            [C]All been washed in black\n                [Em]Tattooed everything\n            [D]All the love gone bad\n                [C]Turned my world to black\n                    [D]Tattooed all I see\n                [C]All that I am\n                    [Em] [D]All I'll be\nYeah\n\n{section: Solo}\n[C] [Em] [D]\n[C] [Em]\n I know someday you'll have a beautiful life\n    [D]I know you'll be a star\n            [C]In somebody else's sky\n                [Em]But why\nWhy\n        [D]Why can't it be    [C]\nWhy can't it be mine\n[Em] [D] [C] [Em]\n[D] [C] [Em] [D]\n[C] [Em] [D] [C]\n[Em] [D] [C] [Em]\n[D] [C] [D] [C]\n\n{section: Outro}\n[Em] [D] [C] [Em]\n[D] [C]\n\n{section: Outro (Fade Out)}\n[Em] [D] [C]\n"
+  "content": "{section: Intro}\n[E] [A] [E]\n[A] [E]   [A] [E]\n  Hey, oh\n\n{section: Verso 1.1}\n[E]Sheets of empty [A]canvas\n        [E]Untouched sheets of clay\n[A]  [E]Were laid spread out before me\n   [E]As her body once did\n\n{section: Verso 1.2}\n[E]All five hori[A]zons\n        [E]Revolved around her soul\n[A]As the earth to the sun\n[E]Now the air I [A]tasted and breathed\n   [E]Has taken a turn\n\n{section: Pré-refrão}\n    [C]Ohohoh and all I taught her was [Em]everything\n    [C]Ohohoh I know she gave me all that she [Em]wore\n         [D]And now my bitter hands\n\n{section: Refrão}\n            [C]Chafe beneath the clouds\n                [Em]Of what was everything\n            [D]Oh the pictures have\n            [C]All been washed in black\n                [Em]Tattooed everything\n\n{section: Verso 2}\n[E]I take a walk out[A]side\n        [E]I'm surrounded by\n              [A]Some kids at play\n[E]I can feel their [A]laughter\n   [E]So why do I sear\n\n{section: Pré-refrão}\n    [C]Oh, oh and twisted thoughts that spin\n            [Em]Round my head\nI'm spinning\n    [C]Oh, I'm spinning\n                            [Em]How quick the sun can, drop away\n            [D]And now my bitter hands\n\n{section: Refrão}\n            [C]Cradle broken glass\n                [Em]Of what was everything\n                [D]All the pictures had\n            [C]All been washed in black\n                [Em]Tattooed everything\n            [D]All the love gone bad\n                [C]Turned my world to black\n                    [D]Tattooed all I see\n                [C]All that I am\n                    [Em] [D]All I'll be\nYeah\n\n{section: Solo}\n[C] [Em] [D]\n[C] [Em]\n I know someday you'll have a beautiful life\n    [D]I know you'll be a star\n            [C]In somebody else's sky\n                [Em]But why\nWhy\n        [D]Why can't it be    [C]\nWhy can't it be mine\n[Em] [D] [C] [Em]\n[D] [C] [Em] [D]\n[C] [Em] [D] [C]\n[Em] [D] [C] [Em]\n[D] [C] [D] [C]\n\n{section: Outro}\n[Em] [D] [C] [Em]\n[D] [C]\n\n{section: Outro (Fade Out)}\n[Em] [D] [C]\n",
+  "alt_versions": [
+    {
+      "id": "f",
+      "label": "Tom F (UG)",
+      "key": "F",
+      "bpm": 87,
+      "instruments": {
+        "violao": {
+          "label": "Violão",
+          "tuning": "EADGBE",
+          "chords": {
+            "F":   { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+            "A#":  { "fingering": "688xxx", "fingers": "134xxx", "fundamental": "A#" },
+            "C#":  { "fingering": "x46664", "fingers": "x12341", "fundamental": "C#", "barre": 4 },
+            "Fm":  { "fingering": "133111", "fingers": "134111", "fundamental": "F", "barre": 1 },
+            "D#":  { "fingering": "x688xx", "fingers": "x134xx", "fundamental": "D#" }
+          },
+          "strumming": {
+            "label": "WHOLE SONG",
+            "bpm": 87,
+            "beats": [
+              { "count": "1", "stroke": "down", "muted": true  },
+              { "count": "&", "stroke": "down", "muted": true  },
+              { "count": "2", "stroke": "down", "muted": true  },
+              { "count": "&", "stroke": "down", "muted": true  },
+              { "count": "3", "stroke": "up",   "muted": false },
+              { "count": "&", "stroke": "up",   "muted": false },
+              { "count": "4", "stroke": "down", "muted": false },
+              { "count": "&", "stroke": "up",   "muted": false }
+            ]
+          }
+        },
+        "ukulele": {
+          "label": "Ukulele",
+          "tuning": "GCEA",
+          "chords": {
+            "F":   { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+            "A#":  { "fingering": "3211", "fingers": "3211", "fundamental": "A#" },
+            "C#":  { "fingering": "1114", "fingers": "1114", "fundamental": "C#", "barre": 1 },
+            "Fm":  { "fingering": "1013", "fingers": "1013", "fundamental": "F" },
+            "D#":  { "fingering": "3331", "fingers": "2341", "fundamental": "D#" }
+          },
+          "strumming": {
+            "label": "WHOLE SONG",
+            "bpm": 87,
+            "beats": [
+              { "count": "1", "stroke": "down", "muted": true  },
+              { "count": "&", "stroke": "down", "muted": true  },
+              { "count": "2", "stroke": "down", "muted": true  },
+              { "count": "&", "stroke": "down", "muted": true  },
+              { "count": "3", "stroke": "up",   "muted": false },
+              { "count": "&", "stroke": "up",   "muted": false },
+              { "count": "4", "stroke": "down", "muted": false },
+              { "count": "&", "stroke": "up",   "muted": false }
+            ]
+          }
+        },
+        "piano": {
+          "label": "Piano",
+          "chords": {
+            "F":   { "notes": ["F", "A", "C"],     "fundamental": "F",  "inversion": null },
+            "A#":  { "notes": ["A#", "D", "F"],    "fundamental": "A#", "inversion": null },
+            "C#":  { "notes": ["C#", "F", "G#"],   "fundamental": "C#", "inversion": null },
+            "Fm":  { "notes": ["F", "G#", "C"],    "fundamental": "F",  "inversion": null },
+            "D#":  { "notes": ["D#", "G", "A#"],   "fundamental": "D#", "inversion": null }
+          }
+        }
+      },
+      "content": "{section: Intro}\n[F] [A#] [F]\n[A#] [F]   [A#] [F]\n  Hey, oh\n\n{section: Verso 1.1}\n[F]Sheets of empty [A#]canvas\n        [F]Untouched sheets of clay\n[A#]  [F]Were laid spread out before me\n   [F]As her body once did\n\n{section: Verso 1.2}\n[F]All five hori[A#]zons\n        [F]Revolved around her soul\n[A#]As the earth to the sun\n[F]Now the air I [A#]tasted and breathed\n   [F]Has taken a turn\n\n{section: Pré-refrão}\n    [C#]Ohohoh and all I taught her was [Fm]everything\n    [C#]Ohohoh I know she gave me all that she [Fm]wore\n         [D#]And now my bitter hands\n\n{section: Refrão}\n            [C#]Chafe beneath the clouds\n                [Fm]Of what was everything\n            [D#]Oh the pictures have\n            [C#]All been washed in black\n                [Fm]Tattooed everything\n\n{section: Verso 2}\n[F]I take a walk out[A#]side\n        [F]I'm surrounded by\n              [A#]Some kids at play\n[F]I can feel their [A#]laughter\n   [F]So why do I sear\n\n{section: Pré-refrão}\n    [C#]Oh, oh and twisted thoughts that spin\n            [Fm]Round my head\nI'm spinning\n    [C#]Oh, I'm spinning\n                            [Fm]How quick the sun can, drop away\n            [D#]And now my bitter hands\n\n{section: Refrão}\n            [C#]Cradle broken glass\n                [Fm]Of what was everything\n                [D#]All the pictures had\n            [C#]All been washed in black\n                [Fm]Tattooed everything\n            [D#]All the love gone bad\n                [C#]Turned my world to black\n                    [D#]Tattooed all I see\n                [C#]All that I am\n                    [Fm] [D#]All I'll be\nYeah\n\n{section: Solo}\n[C#] [Fm] [D#]\n[C#] [Fm]\n I know someday you'll have a beautiful life\n    [D#]I know you'll be a star\n            [C#]In somebody else's sky\n                [Fm]But why\nWhy\n        [D#]Why can't it be    [C#]\nWhy can't it be mine\n[Fm] [D#] [C#] [Fm]\n[D#] [C#] [Fm] [D#]\n[C#] [Fm] [D#] [C#]\n[Fm] [D#] [C#] [Fm]\n[D#] [C#] [D#] [C#]\n\n{section: Outro}\n[Fm] [D#] [C#] [Fm]\n[D#] [C#]\n\n{section: Outro (Fade Out)}\n[Fm] [D#] [C#]\n"
+    }
+  ]
 }

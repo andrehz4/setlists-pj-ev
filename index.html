@@ -3364,7 +3364,7 @@ html[data-theme="dark"] .alphatab-surface {
 .atc-btn-mini:hover { background: #1f4e6a; }
 .atc-btn-mini[data-state="playing"] { background: var(--pj, #c1272d); }
 .atc-btn-mini[data-state="playing"]:hover { background: #8a1c20; }
-.atc-speed-compact {
+.atc-speed-compact, .atc-version-compact {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -3373,6 +3373,18 @@ html[data-theme="dark"] .alphatab-surface {
   text-transform: uppercase;
   color: var(--ink-dim, #6b5e44);
 }
+.cifra-version-select {
+  font: 700 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  background: rgba(193, 39, 45, 0.06);
+  color: var(--ink, #1a1611);
+  border: 1px solid rgba(193, 39, 45, 0.35);
+  border-radius: 4px;
+  padding: 3px 6px;
+  cursor: pointer;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.cifra-version-select:hover { background: rgba(193, 39, 45, 0.12); }
 .alphatab-speed-select {
   font: 700 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
   background: #fff;
@@ -9119,6 +9131,50 @@ function _setActiveCifraInstrument(inst) {
   _activeCifraInstrument = inst;
   try { localStorage.setItem('cifra_instrument', inst); } catch (_) {}
 }
+// Versao ativa da cifra (algumas musicas tem alt_versions; ex: Black em E e F).
+// Default 'main' (top-level do JSON). Nao persistido entre sessoes pra evitar
+// confusao (cada musica tem versoes diferentes; melhor default sempre).
+let _activeCifraVersion = 'main';
+// Lista todas as versoes disponiveis de uma musica multi: [{id, label, key, bpm}].
+// 'main' eh sempre primeiro; alt_versions seguem em ordem do JSON.
+function _listVersions(multi) {
+  if (!multi) return [];
+  const main = {
+    id: 'main',
+    label: multi.versionLabel || `Tom ${multi.key || ''}`.trim() || 'Versão principal',
+    key: multi.key || '',
+    bpm: multi.bpm || 0,
+  };
+  const alts = Array.isArray(multi.alt_versions) ? multi.alt_versions.map(v => ({
+    id: v.id,
+    label: v.label || `Tom ${v.key || v.id}`.trim(),
+    key: v.key || '',
+    bpm: v.bpm || multi.bpm || 0,
+  })) : [];
+  return [main, ...alts];
+}
+// Resolve versao ativa: retorna estrutura plana com instruments+content+key+bpm
+// da versao selecionada. 'main' devolve top-level; alt_id devolve a alt_version
+// mergeada (preserva _meta+title+artist do top-level).
+function _getMultiVersion(multi, versionId) {
+  if (!multi) return null;
+  const vid = versionId || 'main';
+  if (vid === 'main') return multi;
+  if (Array.isArray(multi.alt_versions)) {
+    const alt = multi.alt_versions.find(v => v.id === vid);
+    if (alt) {
+      return Object.assign({}, multi, {
+        key:         alt.key || multi.key,
+        bpm:         alt.bpm || multi.bpm,
+        instruments: alt.instruments || multi.instruments,
+        content:     alt.content || multi.content,
+        _versionId:  vid,
+        _versionLabel: alt.label || `Tom ${alt.key || vid}`.trim(),
+      });
+    }
+  }
+  return multi;
+}
 function _parseChordProLine(line) {
   const tokens = [];
   const re = /\[([^\]]+)\]([^\[]*)|([^\[]+)/g;
@@ -9694,7 +9750,13 @@ function _renderTabPanel(body, songKey, tabMeta) {
     loadPromise.then(({ multi, txt }) => {
       if (!cifraPane) return;
       if (!txt) { cifraPane.innerHTML = soonPane('cifra'); return; }
-      const bpm = (multi && multi.bpm) || tabMeta.bpm || 90;
+      // Multi-versao: se a musica tem alt_versions, _activeCifraVersion
+      // determina qual usar. 'main' = top-level; outros ids = alt_versions[i].
+      // Reset versao ativa ao trocar de musica (default sempre main).
+      _activeCifraVersion = 'main';
+      let activeMulti = _getMultiVersion(multi, _activeCifraVersion);
+      let activeTxt = (activeMulti && activeMulti.content) || txt;
+      const bpm = (activeMulti && activeMulti.bpm) || tabMeta.bpm || 90;
       // Layout unificado com a aba TAB: mesma estrutura .alphatab-transport-top
       // + .alphatab-surface + .alphatab-transport-bottom. Diferenca eh que a
       // surface contem chord-chips em vez da partitura AlphaTab; os botoes
@@ -9702,14 +9764,26 @@ function _renderTabPanel(body, songKey, tabMeta) {
       // FAB e fretboard do TAB pra zero divergencia visual entre as duas abas.
       // Seletor de instrumento: aparece SO quando multi-instrumento existe.
       // 3 botoes (Violao/Ukulele/Piano) que trocam diagramas do popover.
-      const instrSelectHtml = multi && multi.instruments
+      const instrSelectHtml = activeMulti && activeMulti.instruments
         ? `<div class="cifra-instr-bar" role="tablist" aria-label="Instrumento da cifra">
-             ${Object.keys(multi.instruments).map(id => {
-               const lbl = (multi.instruments[id].label || id).replace(/</g, '&lt;');
+             ${Object.keys(activeMulti.instruments).map(id => {
+               const lbl = (activeMulti.instruments[id].label || id).replace(/</g, '&lt;');
                const active = id === _activeCifraInstrument;
                return `<button type="button" class="cifra-instr-btn${active ? ' active' : ''}" data-cifra-inst="${id}" aria-pressed="${active}">${lbl}</button>`;
              }).join('')}
            </div>`
+        : '';
+      // Seletor de versao: aparece SO quando ha alt_versions (musicas com
+      // multiplas tonalidades, ex: Black em E e em F). Cada option mostra
+      // label + tom + bpm. Trocar para uma alt_version dispara re-render do
+      // pane com content/instruments/key/bpm da versao escolhida.
+      const versions = _listVersions(multi);
+      const versionSelectHtml = versions.length > 1
+        ? `<label class="atc-version-compact">VERSÃO
+             <select class="cifra-version-select" aria-label="Versão da cifra">
+               ${versions.map(v => `<option value="${v.id}"${v.id === _activeCifraVersion ? ' selected' : ''}>${v.label} · ${v.bpm || '?'}bpm</option>`).join('')}
+             </select>
+           </label>`
         : '';
       // Header de padrao de palhetada: usa o padrao do instrumento ativo.
       const _renderStrummingHeader = (multiObj) => {
@@ -9743,13 +9817,14 @@ function _renderTabPanel(body, songKey, tabMeta) {
               <option value="1.5">1.5&times;</option>
             </select>
           </label>
+          ${versionSelectHtml}
           ${instrSelectHtml}
           <button type="button" class="atc-btn-mini alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop de trecho" title="Loop">🔁 Loop</button>
           <span class="alphatab-status alphatab-status-top" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico &middot; click Play</span>
         </div>
-        <div class="cifra-strumming-wrap">${_renderStrummingHeader(multi)}</div>
-        <div class="cifra-cov-wrap">${_renderCoverageBadge(_computeChordCoverage(multi))}</div>
-        <div class="alphatab-surface cifra-surface">${_renderChordPro(txt)}</div>
+        <div class="cifra-strumming-wrap">${_renderStrummingHeader(activeMulti)}</div>
+        <div class="cifra-cov-wrap">${_renderCoverageBadge(_computeChordCoverage(activeMulti))}</div>
+        <div class="alphatab-surface cifra-surface">${_renderChordPro(activeTxt)}</div>
         <div class="alphatab-transport alphatab-transport-bottom" role="toolbar" aria-label="Controles da cifra (rodap&eacute;)">
           <div class="atc-group atc-vol">
             <span class="atc-ico" aria-hidden="true">🔊</span>
@@ -9771,9 +9846,45 @@ function _renderTabPanel(body, songKey, tabMeta) {
         </div>
       `;
       // Armazena multiData no pane pra _startCifraPlayer + handlers acessarem
-      // ao tocar acordes (escolha de sampler/notas por instrumento ativo).
-      cifraPane._multiData = multi;
-      _attachChordChipHandlers(cifraPane, multi);
+      // ao tocar acordes. _multiData = versao ATIVA (top-level merged com
+      // alt_version selecionada). _fullMulti = JSON original com todas as
+      // versoes, necessario pra trocar versao no dropdown sem refetch.
+      cifraPane._multiData = activeMulti;
+      cifraPane._fullMulti = multi;
+      _attachChordChipHandlers(cifraPane, activeMulti);
+
+      // Seletor de versao: trocar dispara re-render completo do pane com
+      // content/instruments/key/bpm da nova versao. Para o cifra player
+      // primeiro (evita estado inconsistente).
+      const versionSelect = cifraPane.querySelector('.cifra-version-select');
+      if (versionSelect) {
+        versionSelect.addEventListener('change', (e) => {
+          e.stopPropagation();
+          const newVid = versionSelect.value;
+          if (!newVid || newVid === _activeCifraVersion) return;
+          _stopCifraPlayer(cifraPane);
+          _activeCifraVersion = newVid;
+          const newActive = _getMultiVersion(multi, newVid);
+          const newTxt = (newActive && newActive.content) || activeTxt;
+          cifraPane._multiData = newActive;
+          // Re-render surface (chord chips)
+          const surface = cifraPane.querySelector('.alphatab-surface');
+          if (surface) surface.innerHTML = _renderChordPro(newTxt);
+          // Re-render strumming header com a nova versao
+          const strumWrap = cifraPane.querySelector('.cifra-strumming-wrap');
+          if (strumWrap) strumWrap.innerHTML = _renderStrummingHeader(newActive);
+          // Re-render coverage badge (acordes da nova versao)
+          const covWrap2 = cifraPane.querySelector('.cifra-cov-wrap');
+          if (covWrap2) covWrap2.innerHTML = _renderCoverageBadge(_computeChordCoverage(newActive));
+          // Re-attach chord chip handlers (passa newActive como multiData)
+          _attachChordChipHandlers(cifraPane, newActive);
+          // Atualiza display de BPM nos status
+          const newBpm = (newActive && newActive.bpm) || tabMeta.bpm || 90;
+          cifraPane.querySelectorAll('.alphatab-status').forEach(el => {
+            el.textContent = `${newBpm} BPM · violão acústico`;
+          });
+        });
+      }
 
       // Seletor de instrumento: trocar atualiza estado global + re-render
       // do header de palhetada (diagrama do chip atualiza no proximo click).
@@ -9789,9 +9900,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
             b.classList.toggle('active', active);
             b.setAttribute('aria-pressed', active ? 'true' : 'false');
           });
+          // Le multiData ATUAL do pane (pode ter sido trocado por alt_version)
+          const curMulti = cifraPane._multiData;
           // Re-render strumming header com padrao do novo instrumento
           const wrap = cifraPane.querySelector('.cifra-strumming-wrap');
-          if (wrap) wrap.innerHTML = _renderStrummingHeader(multi);
+          if (wrap) wrap.innerHTML = _renderStrummingHeader(curMulti);
           // Re-render overlay do braco/teclado IMEDIATAMENTE com o chord atual
           // (se player estiver tocando ou pausado num chord). Sem isso, user
           // troca pra piano mas continua vendo braco de violao ate o proximo
@@ -9802,7 +9915,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
             const svgWrap = fb.querySelector('.cifra-fretboard-svg-wrap');
             const curChord = nameEl && nameEl.textContent && nameEl.textContent !== '—' ? nameEl.textContent : null;
             if (curChord && svgWrap) {
-              const svg = _renderChordMiniFretboard(curChord, multi, inst);
+              const svg = _renderChordMiniFretboard(curChord, curMulti, inst);
               svgWrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${curChord}<br><small>digitação não cadastrada</small></div>`;
             }
           }
@@ -9813,7 +9926,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
       // faltantes pra aquele instrumento.
       const covWrap = cifraPane.querySelector('.cifra-cov-wrap');
       if (covWrap) {
-        const cov = _computeChordCoverage(multi);
+        const cov = _computeChordCoverage(activeMulti);
         const listWrap = covWrap.querySelector('.cifra-cov-list-wrap');
         const toggleList = (inst) => {
           if (!cov || !listWrap) return;
@@ -12543,11 +12656,13 @@ async function _startCifraPlayer(root, bpm) {
   const chips = Array.from(root.querySelectorAll('.chord-chip'));
   if (!chips.length) return;
   const beatsPerChord = 2;
-  // Funcao que retorna duracao em segundos por acorde, lendo o speed
-  // atual em runtime (slider/select sao bidirecionais). Default 1x.
+  // Funcao que retorna duracao em segundos por acorde, lendo speed e bpm
+  // em runtime. bpm pode ter mudado se user trocou alt_version durante
+  // a vida do pane (le de root._multiData.bpm primeiro, fallback no closure).
   const noteDurationAt = () => {
     const speed = (typeof window._cifraSpeed === 'number' && window._cifraSpeed > 0) ? window._cifraSpeed : 1;
-    return ((60 / bpm) * beatsPerChord) / speed;
+    const curBpm = (root._multiData && root._multiData.bpm) || bpm;
+    return ((60 / curBpm) * beatsPerChord) / speed;
   };
   let aborted = false;
   const player = {
