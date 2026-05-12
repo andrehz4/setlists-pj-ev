@@ -9132,7 +9132,11 @@ async function _initAlphaTabPanel(container, songKey, tabFormat, tabFile) {
       // via playedBeatChanged + scrollIntoView pra cursor sempre no meio.
       scrollMode: 'off',
     },
-    display: { staveProfile: 'tab' },
+    // staveProfile: 'default' renderiza notacao apropriada por track:
+    // tablatura pra guitarra/baixo (afinacao com fret/string), pentagrama
+    // score pra drums (percussion) e piano. Antes era 'tab' fixo, o que
+    // deixava bateria invisivel (percussion nao tem tablatura).
+    display: { staveProfile: 'default' },
     core: { fontDirectory: `${libBase}/font/` },
   };
   if (ext === 'alphatex') {
