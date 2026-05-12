@@ -3097,12 +3097,30 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .cifra-fretboard-svg-wrap {
   width: 100%;
-  height: 116px;
+  height: calc(116px * var(--cifra-fb-scale, 1));
   background: linear-gradient(180deg, #6b4a28 0%, #4a3018 100%);
   border: 1px solid #3a2914;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.2);
+  transition: height 220ms ease;
+}
+/* Barra abaixo do braco com seletor de instrumento + slider de tamanho */
+.cifra-fretboard-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.cifra-fretboard-instr {
+  display: inline-flex;
+  gap: 4px;
+  background: rgba(46, 107, 138, 0.08);
+  padding: 3px;
+  border-radius: 999px;
+  flex-wrap: wrap;
 }
 .cifra-fretboard-svg-wrap svg {
   width: 100%;
@@ -9070,6 +9088,16 @@ function _renderTabPanel(body, songKey, tabMeta) {
         <div class="alphatab-transport alphatab-transport-top" role="toolbar" aria-label="Controles da cifra (topo)">
           <button type="button" class="atc-btn-mini alphatab-play cifra-mode-play" data-state="idle" data-icon-only="false" aria-label="Tocar / pausar cifra">▶ Play</button>
           <button type="button" class="atc-btn-mini alphatab-prev cifra-mode-prev" aria-label="Voltar ao in&iacute;cio" title="In&iacute;cio">⏮</button>
+          <label class="atc-speed-compact">SPEED
+            <select class="alphatab-speed-select cifra-mode-speed-select" aria-label="Velocidade da cifra">
+              <option value="0.5">0.5&times;</option>
+              <option value="0.75">0.75&times;</option>
+              <option value="1" selected>1&times;</option>
+              <option value="1.25">1.25&times;</option>
+              <option value="1.5">1.5&times;</option>
+            </select>
+          </label>
+          <button type="button" class="atc-btn-mini alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop (em breve)" title="Loop (em breve)" disabled>🔁 Loop</button>
           <span class="alphatab-status alphatab-status-top" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico &middot; click Play</span>
         </div>
         <div class="alphatab-surface cifra-surface">${_renderChordPro(txt)}</div>
@@ -9080,7 +9108,16 @@ function _renderTabPanel(body, songKey, tabMeta) {
           </div>
           <button type="button" class="atc-btn-ico alphatab-prev cifra-mode-prev" aria-label="Voltar ao in&iacute;cio" title="In&iacute;cio">⏮</button>
           <button type="button" class="atc-play-round alphatab-play cifra-mode-play" data-state="idle" data-icon-only="true" aria-label="Tocar / pausar cifra">▶</button>
+          <div class="atc-group atc-speed">
+            <span class="atc-label">SPEED</span>
+            <input type="range" class="atc-speed-slider cifra-mode-speed" min="0.5" max="1.5" step="0.05" value="1" aria-label="Velocidade da cifra">
+            <span class="atc-speed-val">1.00</span>
+          </div>
           <div class="atc-spacer"></div>
+          <button type="button" class="atc-btn alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop (em breve)" title="Loop (em breve)" disabled>🔁 Loop</button>
+          <button type="button" class="atc-btn alphatab-btn alphatab-metronome cifra-mode-metronome" data-state="off" aria-label="Metr&ocirc;nomo (em breve)" title="Metr&ocirc;nomo (em breve)" disabled>𝅘𝅥 Metr&ocirc;nomo</button>
+          <button type="button" class="atc-btn alphatab-btn alphatab-braco cifra-mode-braco" data-state="on" aria-pressed="true" aria-label="Mostrar/esconder bra&ccedil;o" title="Bra&ccedil;o">⌗ Bra&ccedil;o</button>
+          <button type="button" class="atc-btn-ico alphatab-settings cifra-mode-settings" aria-label="Ajustes" title="Ajustes (em breve)">⚙</button>
           <span class="alphatab-status" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico</span>
         </div>
       `;
@@ -9091,6 +9128,10 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const prevBtns = cifraPane.querySelectorAll('.cifra-mode-prev');
       const statusEls = cifraPane.querySelectorAll('.alphatab-status');
       const volSlider = cifraPane.querySelector('.cifra-mode-vol');
+      const speedSlider = cifraPane.querySelector('.cifra-mode-speed');
+      const speedSelect = cifraPane.querySelector('.cifra-mode-speed-select');
+      const speedVal = cifraPane.querySelector('.atc-speed-val');
+      const bracoBtn = cifraPane.querySelector('.cifra-mode-braco');
 
       const setAllPlayState = (state) => {
         playBtns.forEach(btn => {
@@ -9139,6 +9180,58 @@ function _renderTabPanel(body, songKey, tabMeta) {
         volSlider.addEventListener('input', (e) => {
           e.stopPropagation();
           window._cifraVolume = parseFloat(volSlider.value);
+        });
+      }
+
+      // Speed slider + select (top + bottom sincronizam). Atualiza
+      // window._cifraSpeed que o player le em cada iteracao pra timing.
+      window._cifraSpeed = window._cifraSpeed || 1;
+      const applySpeed = (v) => {
+        if (isNaN(v) || v <= 0) return;
+        window._cifraSpeed = v;
+        if (speedSlider && parseFloat(speedSlider.value) !== v) speedSlider.value = String(v);
+        if (speedVal) speedVal.textContent = v.toFixed(2);
+        if (speedSelect) {
+          const opts = ['0.5', '0.75', '1', '1.25', '1.5'];
+          const closest = opts.reduce((a, b) => Math.abs(parseFloat(b) - v) < Math.abs(parseFloat(a) - v) ? b : a);
+          if (speedSelect.value !== closest) speedSelect.value = closest;
+        }
+      };
+      applySpeed(window._cifraSpeed);
+      if (speedSlider) {
+        speedSlider.addEventListener('input', (e) => {
+          e.stopPropagation();
+          applySpeed(parseFloat(speedSlider.value));
+        });
+      }
+      if (speedSelect) {
+        speedSelect.addEventListener('change', (e) => {
+          e.stopPropagation();
+          applySpeed(parseFloat(speedSelect.value));
+        });
+      }
+
+      // Botao 'Braco': toggle do overlay .cifra-fretboard. Sincroniza com
+      // o cifra-fretboard quando o playback inicia (so mostra se braco eh on).
+      if (bracoBtn) {
+        // Estado inicial: lido do localStorage 'cifra_braco_on' (default on)
+        try {
+          const saved = localStorage.getItem('cifra_braco_on');
+          if (saved === '0') bracoBtn.dataset.state = 'off';
+        } catch (_) {}
+        bracoBtn.setAttribute('aria-pressed', bracoBtn.dataset.state === 'on' ? 'true' : 'false');
+        bracoBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const newState = bracoBtn.dataset.state === 'on' ? 'off' : 'on';
+          bracoBtn.dataset.state = newState;
+          bracoBtn.setAttribute('aria-pressed', newState === 'on' ? 'true' : 'false');
+          try { localStorage.setItem('cifra_braco_on', newState === 'on' ? '1' : '0'); } catch (_) {}
+          // Atualiza visibilidade do cifra-fretboard se estiver playing
+          const fb = document.querySelector('.cifra-fretboard');
+          if (fb) {
+            if (newState === 'on' && _activeCifraRoot) fb.classList.add('show');
+            else fb.classList.remove('show');
+          }
         });
       }
     });
@@ -11196,6 +11289,8 @@ function _ensureCifraFretboard() {
   if (fb) return fb;
   fb = document.createElement('div');
   fb.className = 'cifra-fretboard';
+  // Inclui seletor de instrumento (6 botoes igual o fretboard do tab) +
+  // slider de tamanho abaixo do mini-braco.
   fb.innerHTML = `
     <div class="cifra-fretboard-header">
       <span class="cifra-fretboard-label">Tocando</span>
@@ -11203,8 +11298,78 @@ function _ensureCifraFretboard() {
       <span class="cifra-fretboard-next-name">próximo: —</span>
     </div>
     <div class="cifra-fretboard-svg-wrap"></div>
+    <div class="cifra-fretboard-bar">
+      <div class="cifra-fretboard-instr" role="tablist" aria-label="Instrumento">
+        <button type="button" class="fretboard-tab" data-inst="acoustic">Violão</button>
+        <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
+        <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
+        <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
+        <button type="button" class="fretboard-tab" data-inst="piano">Piano</button>
+        <button type="button" class="fretboard-tab" data-inst="drums">Bateria</button>
+      </div>
+      <div class="fretboard-zoom" role="group" aria-label="Tamanho do braço">
+        <span class="fretboard-zoom-label">Tamanho</span>
+        <input type="range" class="fretboard-zoom-slider cifra-fretboard-zoom" min="0.7" max="1.5" step="0.05" value="1" aria-label="Tamanho do braço">
+        <span class="fretboard-zoom-val">100%</span>
+      </div>
+    </div>
   `;
   document.body.appendChild(fb);
+
+  // Persiste e aplica zoom do braco da cifra. Key separada do braco do tab.
+  const zSlider = fb.querySelector('.cifra-fretboard-zoom');
+  const zVal = fb.querySelector('.fretboard-zoom-val');
+  const applyZoom = (raw) => {
+    const v = Math.max(0.7, Math.min(1.5, Number(raw) || 1));
+    fb.style.setProperty('--cifra-fb-scale', v.toFixed(2));
+    if (zSlider) zSlider.value = String(v);
+    if (zVal) zVal.textContent = Math.round(v * 100) + '%';
+    try { localStorage.setItem('cifra_fb_scale', String(v)); } catch (_) {}
+  };
+  try {
+    const saved = parseFloat(localStorage.getItem('cifra_fb_scale'));
+    if (!isNaN(saved)) applyZoom(saved); else applyZoom(1);
+  } catch (_) { applyZoom(1); }
+  if (zSlider) {
+    zSlider.addEventListener('input', (e) => { e.stopPropagation(); applyZoom(zSlider.value); });
+    zSlider.addEventListener('click', (e) => e.stopPropagation());
+  }
+
+  // Persiste instrumento. Por ora o som da cifra eh sempre violao acustico;
+  // o seletor afeta so a representacao visual do mini-braco (futuro).
+  try {
+    const savedInst = localStorage.getItem('cifra_fb_inst');
+    if (savedInst) {
+      fb.querySelectorAll('.cifra-fretboard-instr .fretboard-tab').forEach(b => {
+        b.classList.toggle('active', b.dataset.inst === savedInst);
+      });
+      fb.dataset.inst = savedInst;
+    } else {
+      fb.dataset.inst = 'guitar';
+    }
+  } catch (_) { fb.dataset.inst = 'guitar'; }
+  fb.querySelectorAll('.cifra-fretboard-instr .fretboard-tab').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const inst = btn.dataset.inst;
+      if (!inst || fb.dataset.inst === inst) return;
+      fb.dataset.inst = inst;
+      fb.querySelectorAll('.cifra-fretboard-instr .fretboard-tab').forEach(x => {
+        x.classList.toggle('active', x.dataset.inst === inst);
+      });
+      try { localStorage.setItem('cifra_fb_inst', inst); } catch (_) {}
+      // Re-render do acorde atual se houver
+      const currentChord = fb.querySelector('.cifra-fretboard-chord-name');
+      if (currentChord && currentChord.textContent && currentChord.textContent !== '—') {
+        const wrap = fb.querySelector('.cifra-fretboard-svg-wrap');
+        if (wrap) {
+          const svg = _renderChordMiniFretboard(currentChord.textContent);
+          wrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${currentChord.textContent}<br><small>digitação não cadastrada</small></div>`;
+        }
+      }
+    });
+  });
+
   return fb;
 }
 function _updateCifraFretboard(chordName, nextChord) {
@@ -11328,7 +11493,12 @@ async function _startCifraPlayer(root, bpm) {
   const chips = Array.from(root.querySelectorAll('.chord-chip'));
   if (!chips.length) return;
   const beatsPerChord = 2;
-  const noteDuration = (60 / bpm) * beatsPerChord; // segundos
+  // Funcao que retorna duracao em segundos por acorde, lendo o speed
+  // atual em runtime (slider/select sao bidirecionais). Default 1x.
+  const noteDurationAt = () => {
+    const speed = (typeof window._cifraSpeed === 'number' && window._cifraSpeed > 0) ? window._cifraSpeed : 1;
+    return ((60 / bpm) * beatsPerChord) / speed;
+  };
   let aborted = false;
   const player = {
     paused: false,
@@ -11360,18 +11530,27 @@ async function _startCifraPlayer(root, bpm) {
     chip.classList.add('chord-chip-playing');
     // Atualiza o overlay do braco da guitarra com o acorde atual + proximo.
     // Mini-braco horizontal 360x116 com as notas acesas e pulse no nome.
+    // Respeitar toggle 'Braco' (.cifra-mode-braco) se estiver off: nao mostra.
     const chord = chip.dataset.chord;
     const nextChord = chips[i + 1] ? chips[i + 1].dataset.chord : '';
-    _updateCifraFretboard(chord, nextChord);
+    const bracoOn = (() => {
+      const btn = root.querySelector('.cifra-mode-braco');
+      return !btn || btn.dataset.state !== 'off';
+    })();
+    if (bracoOn) _updateCifraFretboard(chord, nextChord);
+    else _hideCifraFretboard();
     // Scroll center: chord ativo sempre no meio do scroll container (surface
     // na view Cifras, window no setlist). scrollIntoView delega corretamente.
     chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+    // Duracao lida dinamicamente: se user move o speed slider durante o
+    // playback, o proximo acorde ja respeita o novo tempo.
+    const dur = noteDurationAt();
     _playChordSound(chord, {
-      duration: noteDuration * 1.1,
+      duration: dur * 1.1,
       velocity: 78,
       gain: (typeof window._cifraVolume === 'number') ? window._cifraVolume : 0.8,
     });
-    await new Promise(r => setTimeout(r, noteDuration * 1000));
+    await new Promise(r => setTimeout(r, dur * 1000));
   }
   _stopCifraPlayer(root);
 }
