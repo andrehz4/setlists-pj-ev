@@ -8,8 +8,8 @@ on:
       curator:
         description: 'Backend de curadoria'
         type: choice
-        options: [anthropic, gemini, routine]
-        default: anthropic
+        options: [gemini, anthropic, routine]
+        default: gemini
       dry-run:
         description: 'Dry run (nao escreve, nao commita)'
         type: boolean
@@ -45,7 +45,7 @@ jobs:
           # Define ambas as keys; o curator nao usado simplesmente nao chama.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          NEWS_CURATOR: ${{ inputs.curator || 'anthropic' }}
+          NEWS_CURATOR: ${{ inputs.curator || 'gemini' }}
         run: |
           ARGS=""
           if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
@@ -60,7 +60,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Sem mudancas, nao vou commitar."
           else
-            CURATOR_LABEL="${{ inputs.curator || 'anthropic' }}"
+            CURATOR_LABEL="${{ inputs.curator || 'gemini' }}"
             git commit -m "news: atualizacao automatica ($CURATOR_LABEL) $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
           fi
