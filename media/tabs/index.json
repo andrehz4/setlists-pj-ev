@@ -24,7 +24,9 @@
   "daughter": { "cifra": true, "cifraMulti": "daughter.json", "tab": true, "tabFormat": "gp5", "tabFile": "daughter-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 98, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "daughter-v1.gp5", "format": "gp5" }
   ] },
-  "elderly woman behind the counter in a small town": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
+  "elderly woman behind the counter in a small town": { "cifra": true, "cifraMulti": "elderly-woman-behind-the-counter-in-a-small-town.json", "tab": true, "tabFormat": "gp4", "tabFile": "elderly-woman-behind-the-counter-in-a-small-town-v1.gp4", "key": "G", "tuning": "EADGBE", "bpm": 94, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "elderly-woman-behind-the-counter-in-a-small-town-v1.gp4", "format": "gp4" }
+  ] },
   "just breathe": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE", "capo": 2 },
   "given to fly": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
   "corduroy": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
@@ -70,6 +72,12 @@
   ] },
   "blood": { "cifra": false, "tab": true, "tabFormat": "gp4", "tabFile": "blood-v1.gp4", "key": "E", "tuning": "EADGBE", "bpm": 120, "notes": "Blood eh tab-only no UG (so riff de tablatura, sem cifra de acordes nomeados)", "versions": [
     { "id": "v1", "label": "Versão 1", "file": "blood-v1.gp4", "format": "gp4" }
+  ] },
+  "rats": { "cifra": true, "cifraMulti": "rats.json", "tab": true, "tabFormat": "gp5", "tabFile": "rats-v1.gp5", "key": "E", "tuning": "EADGBE", "bpm": 95, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "rats-v1.gp5", "format": "gp5" }
+  ] },
+  "leash": { "cifra": true, "cifraMulti": "leash.json", "tab": true, "tabFormat": "gp3", "tabFile": "leash-v1.gp3", "key": "A", "tuning": "EADGBE", "bpm": 110, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "leash-v1.gp3", "format": "gp3" }
   ] },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }

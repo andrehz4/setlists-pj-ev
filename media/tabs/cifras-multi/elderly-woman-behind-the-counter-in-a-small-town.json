@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Elderly Woman Behind the Counter in a Small Town (Pearl Jam, Vs. 1993, faixa 10). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra oficial) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12",
+    "note_compasso": "Musica em 3/4 (ou 6/8) - balada lenta acustica. Strumming pattern reflete o compasso ternario."
+  },
+  "title": "Elderly Woman Behind the Counter in a Small Town",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 94,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D":     { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "Cadd9": { "fingering": "x32033", "fingers": "x21034", "fundamental": "C" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Asus2": { "fingering": "x02200", "fingers": "x01200", "fundamental": "A" },
+        "Em":    { "fingering": "022000", "fingers": "023000", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "3/4 ARPEJADO",
+        "bpm": 94,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Cadd9": { "fingering": "0203", "fingers": "0102", "fundamental": "C" },
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Asus2": { "fingering": "2200", "fingers": "1200", "fundamental": "A" },
+        "Em":    { "fingering": "0402", "fingers": "0301", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "3/4 ARPEJADO",
+        "bpm": 94,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":     { "notes": ["D", "F#", "A"],     "fundamental": "D", "inversion": null },
+        "Cadd9": { "notes": ["C", "E", "G", "D"], "fundamental": "C", "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],      "fundamental": "G", "inversion": null },
+        "Asus2": { "notes": ["A", "B", "E"],      "fundamental": "A", "inversion": null },
+        "Em":    { "notes": ["E", "G", "B"],      "fundamental": "E", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[D] [Cadd9] [G]I seem to recognize your [Cadd9]face\n[G] [D] [Cadd9] [G]Haunting, familiar, yet I can't seem to [Cadd9]place [G]it\n[D] [Cadd9] [G]Cannot find the candle of thought to [Cadd9]light [G]your name\n[D] [Cadd9] [G]Lifetimes are catching up with [Cadd9]me [G]\n\n{section: Pré-refrão}\n[Cadd9]All these changes [Asus2]taking place\n[Cadd9]I wish I'd seen the [Asus2]place\n[Cadd9]But no one's [Asus2]ever taken [Em]me\n\n{section: Refrão}\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade, [G]fade away\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade, [G]fade away\n\n{section: Verso 2}\n[D] [Cadd9] [G]I swear I recognize your [Cadd9]breath\n[G] [D] [Cadd9] [G]Memories like fingerprints are slowly [Cadd9]raising [G]\n[D] [Cadd9] [G]Me you wouldn't recall for I'm [Cadd9]not [G]my former\n[D] [Cadd9] [G]It's hard when you're stuck upon the [Cadd9]shelf [G]\n\n{section: Pré-refrão}\n[Cadd9]I changed by not [Asus2]changing at all\n[Cadd9]Small town predicts my [Asus2]fate\n[Cadd9]Perhaps that's what [Asus2]no one wants to [Em]see\n\n{section: Verso 3}\n[D] [Cadd9] [G]I just wanna scream [Cadd9]\"Hello!\"\n[G] [D] [Cadd9] [G]My God it's been so long\n[Cadd9] [G]Never dreamed you'd return\n[D] [Cadd9] [G]But now here you are, and [Cadd9]here [G]I am\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade [G]away\n\n{section: Refrão}\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade [G]fade away\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade [G]fade away\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade [G]away\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade [G]fade away\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade [G]fade away\n[D] [Cadd9] [G]Hearts and thoughts they [Cadd9]fade [G]fade away\n\n{section: Outro (Fade Out)}\n[D] [Cadd9] [G]Hearts and thoughts they fade\n"
+}

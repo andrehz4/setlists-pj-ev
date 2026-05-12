@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Rats (Pearl Jam, Vs. 1993, faixa 9). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons resumida; fingerings standard usados)",
+    "fetched": "2026-05-12"
+  },
+  "title": "Rats",
+  "artist": "Pearl Jam",
+  "key": "E",
+  "bpm": 95,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "B":  { "fingering": "x24442", "fingers": "x13331", "fundamental": "B",  "barre": 2 },
+        "C":  { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Bb": { "fingering": "x13331", "fingers": "x13331", "fundamental": "Bb", "barre": 1 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 95,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E":  { "fingering": "4442", "fingers": "3331", "fundamental": "E" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "B":  { "fingering": "4322", "fingers": "4321", "fundamental": "B" },
+        "C":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Bb": { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 95,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E":  { "notes": ["E", "G#", "B"],   "fundamental": "E",  "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],    "fundamental": "G",  "inversion": null },
+        "A":  { "notes": ["A", "C#", "E"],   "fundamental": "A",  "inversion": null },
+        "B":  { "notes": ["B", "D#", "F#"],  "fundamental": "B",  "inversion": null },
+        "C":  { "notes": ["C", "E", "G"],    "fundamental": "C",  "inversion": null },
+        "Bb": { "notes": ["Bb", "D", "F"],   "fundamental": "Bb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E] [G] [E] [G] [E] [G] [E] [G] [E] [G] [E] [G] [E] [G] [E] [G]\n\n{section: Verso 1}\n[E]They don't eat, [G]don't sleep\n[E]They don't feed, they [G]don't seethe\n[E]Bare their gums when they [G]moan and squeak\n[E]Lick the dirt off a [G]larger one's feet\n[E]They don't push, [G]don't crowd\n[E]Congregate until they're [G]much too loud\n[E]Fuck to procreate till [G]they are dead\n[E]Drink the blood of their so [G]called best friend\n\n{section: Refrão}\n[A]They don't [B]scurry when [C]something bigger comes their [A]way\n[B]Don't pack themselves [C]together and run as [A]one\n[B]Don't shit where they're [C]not supposed to\n[B]Don't take what's not [C]theirs, they don't compare\n\n{section: Verso 2}\n[E]They don't scam, [G]don't fight\n[E]Don't oppress an [G]equals given rights\n[E]Starve the poor so they [G]can be well fed\n[E]Line their holes with the [G]dead ones bread\n\n{section: Refrão}\n[A]They don't [B]scurry when [C]something bigger comes their [A]way\n[B]Don't pack themselves [C]together and run as [A]one\n[B]Don't shit where they're [C]not supposed to\n[B]Don't take what's not [C]theirs, they don't compare\n\n{section: Solo}\n[E] [G] [E] [G] [E] [G] [E] [G]\n\n{section: Refrão}\n[A]They don't [B]scurry when [C]something bigger comes their [A]way\nThey don't compare... Rats... (x3, last one don't say rats)\n\n{section: Outro}\n[C] [Bb] [C] [G]\n[Bb] [C] [G]\n[Bb]Ben, the [C]two of us need [G]look no more (x6)\n"
+}
