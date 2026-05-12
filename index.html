@@ -3040,6 +3040,98 @@ html[data-theme="light"] .drawer-section-label.my-media {
    .atc-play-round) e o mesmo FAB (.alphatab-fab). Classes .cifra-player-bar,
    .cifra-now-playing e .cifra-fab foram removidas porque o layout unificado
    eliminou a divergencia visual entre as duas abas. */
+
+/* Braco da guitarra na cifra: overlay com mini-fretboard horizontal e
+   nome do acorde atual + proximo. Aparece flutuante no canto direito
+   durante o cifra player (mesmo principio do .fretboard-overlay do tab,
+   mas usando mini-braco 360x116 em vez do braco 720x220 de 22 trastes). */
+.cifra-fretboard {
+  position: fixed;
+  right: 24px;
+  bottom: 110px;
+  width: clamp(420px, 42vw, 560px);
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(46, 107, 138, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 14px 12px;
+  z-index: 9998;
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+}
+.cifra-fretboard.show { display: flex; }
+.cifra-fretboard-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cifra-fretboard-label {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.cifra-fretboard-chord-name {
+  font: 800 30px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.04em;
+  color: var(--pj, #c1272d);
+  text-transform: uppercase;
+  transition: transform 220ms cubic-bezier(0.2,0.7,0.2,1);
+}
+.cifra-fretboard.cifra-fretboard-pulse .cifra-fretboard-chord-name {
+  animation: cifra-fretboard-pulse 0.45s ease-out;
+}
+@keyframes cifra-fretboard-pulse {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.14); }
+  100% { transform: scale(1); }
+}
+.cifra-fretboard-next-name {
+  font: 600 12px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-mute);
+  margin-left: auto;
+}
+.cifra-fretboard-svg-wrap {
+  width: 100%;
+  height: 116px;
+  background: linear-gradient(180deg, #6b4a28 0%, #4a3018 100%);
+  border: 1px solid #3a2914;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.2);
+}
+.cifra-fretboard-svg-wrap svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.cifra-fretboard-empty {
+  font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
+  color: #d0c0a0;
+  text-align: center;
+  padding: 16px 4px;
+}
+@media (max-width: 600px) {
+  /* No mobile, vira bottom-sheet full-width acima do FAB. */
+  .cifra-fretboard {
+    width: 100vw;
+    right: 0;
+    left: 0;
+    bottom: 78px;
+    border-radius: 10px 10px 0 0;
+    padding: 8px 10px;
+  }
+  .cifra-fretboard-svg-wrap { height: 92px; }
+  .cifra-fretboard-chord-name { font-size: 24px; }
+}
+html[data-theme="dark"] .cifra-fretboard {
+  background: rgba(26, 22, 17, 0.96);
+  border-color: rgba(46, 107, 138, 0.4);
+}
 .chord-chip-spacer {
   display: inline-block;
   height: 16px;
@@ -10239,6 +10331,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
     b.addEventListener('click', (e) => {
       e.stopPropagation();
       const which = b.dataset.tabtype;
+      // Para qualquer audio em reproducao (cifra ou tab) ao trocar de aba.
+      // Andre flagou: tocando cifra e clicando no tab, a musica continuava
+      // e ficava confuso. Stop all garante UI consistente: nova aba comeca
+      // limpa.
+      if (typeof _stopAllTabAudio === 'function') _stopAllTabAudio();
       body.querySelectorAll('.lyric-lang-btn[data-tabtype]').forEach(x => {
         const isActive = x.dataset.tabtype === which;
         x.classList.toggle('active', isActive);
@@ -11091,6 +11188,50 @@ function _renderCifraPlayerBar(root, state) {
   }
 }
 
+// Braco da guitarra durante o cifra player: overlay flutuante no canto
+// direito com mini-fretboard 360x116 do acorde atual + nome + proximo.
+// Singleton no body, similar ao .alphatab-fab.
+function _ensureCifraFretboard() {
+  let fb = document.querySelector('.cifra-fretboard');
+  if (fb) return fb;
+  fb = document.createElement('div');
+  fb.className = 'cifra-fretboard';
+  fb.innerHTML = `
+    <div class="cifra-fretboard-header">
+      <span class="cifra-fretboard-label">Tocando</span>
+      <span class="cifra-fretboard-chord-name">—</span>
+      <span class="cifra-fretboard-next-name">próximo: —</span>
+    </div>
+    <div class="cifra-fretboard-svg-wrap"></div>
+  `;
+  document.body.appendChild(fb);
+  return fb;
+}
+function _updateCifraFretboard(chordName, nextChord) {
+  const fb = _ensureCifraFretboard();
+  fb.classList.add('show');
+  const nameEl = fb.querySelector('.cifra-fretboard-chord-name');
+  const nextEl = fb.querySelector('.cifra-fretboard-next-name');
+  const wrap = fb.querySelector('.cifra-fretboard-svg-wrap');
+  if (nameEl) nameEl.textContent = chordName || '—';
+  if (nextEl) nextEl.textContent = 'próximo: ' + (nextChord || '—');
+  if (wrap) {
+    const svg = _renderChordMiniFretboard(chordName);
+    wrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${chordName}<br><small>digitação não cadastrada</small></div>`;
+  }
+  // Re-trigger pulse animation no nome
+  fb.classList.remove('cifra-fretboard-pulse');
+  void fb.offsetWidth;
+  fb.classList.add('cifra-fretboard-pulse');
+}
+function _hideCifraFretboard() {
+  const fb = document.querySelector('.cifra-fretboard');
+  if (fb) {
+    fb.classList.remove('show');
+    fb.classList.remove('cifra-fretboard-pulse');
+  }
+}
+
 // FAB unificado com TAB: reusa o mesmo .alphatab-fab. Clonar os botoes pra
 // limpar listeners do AlphaTab quando cifra toma o FAB. Quando o AlphaTab
 // for inicializado depois, ele tambem clona e re-attacha (no _initAlphaTabPanel).
@@ -11157,6 +11298,7 @@ function _stopCifraPlayer(root) {
   }
   _CIFRA_PLAYERS.delete(root);
   root.querySelectorAll('.chord-chip.chord-chip-playing').forEach(c => c.classList.remove('chord-chip-playing'));
+  _hideCifraFretboard();
   _renderCifraPlayerBar(root, 'idle');
   if (_activeCifraRoot === root) {
     _activeCifraRoot = null;
@@ -11216,10 +11358,15 @@ async function _startCifraPlayer(root, bpm) {
     const chip = chips[i];
     chips.forEach(c => c.classList.remove('chord-chip-playing'));
     chip.classList.add('chord-chip-playing');
+    // Atualiza o overlay do braco da guitarra com o acorde atual + proximo.
+    // Mini-braco horizontal 360x116 com as notas acesas e pulse no nome.
+    const chord = chip.dataset.chord;
+    const nextChord = chips[i + 1] ? chips[i + 1].dataset.chord : '';
+    _updateCifraFretboard(chord, nextChord);
     // Scroll center: chord ativo sempre no meio do scroll container (surface
     // na view Cifras, window no setlist). scrollIntoView delega corretamente.
     chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-    _playChordSound(chip.dataset.chord, {
+    _playChordSound(chord, {
       duration: noteDuration * 1.1,
       velocity: 78,
       gain: (typeof window._cifraVolume === 'number') ? window._cifraVolume : 0.8,
