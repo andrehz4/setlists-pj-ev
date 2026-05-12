@@ -20,6 +20,7 @@ desktop.ini
 
 # Artefatos de auditoria a11y / lighthouse (regeneráveis)
 node_modules/
-package.json
-package-lock.json
 lighthouse-*
+
+# package.json / package-lock.json eram ignorados antes (so havia
+# deps de dev a11y); agora sao versionados pq o News bot depende deles.

@@ -1,0 +1,11 @@
+Fonte: {{sourceLabel}}
+URL: {{url}}
+Título original: {{title}}
+Publicado: {{pubDate}}
+
+Texto extraído:
+---
+{{articleText}}
+---
+
+Cure conforme o sistema. Retorne JSON puro ou a string SKIP.

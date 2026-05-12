@@ -1,0 +1,61 @@
+name: News fetch
+on:
+  schedule:
+    # A cada 6h, offset 23min pra fugir de pico de cron do GitHub
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Dry run (nao escreve, nao commita)'
+        type: boolean
+        default: false
+      no-claude:
+        description: 'Pular chamada ao Claude (usa fallback simples)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Fetch news
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ "${{ inputs.no-claude }}" = "true" ]; then ARGS="$ARGS --no-claude"; fi
+          node scripts/news/fetch-news.mjs $ARGS
+
+      - name: Commit & push
+        if: ${{ inputs.dry-run != true }}
+        run: |
+          git config user.name "pj-news-bot"
+          git config user.email "bot@setlists-pj.local"
+          git add media/news/
+          if git diff --cached --quiet; then
+            echo "Sem mudancas, nao vou commitar."
+          else
+            git commit -m "news: atualizacao automatica $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi

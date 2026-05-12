@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1612"/>
+      <stop offset="100%" stop-color="#0a0908"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="#c1272d" font-family="'Archivo Black', Impact, sans-serif" text-anchor="middle">
+    <text x="640" y="320" font-size="120" letter-spacing="6">NOTÍCIA</text>
+    <text x="640" y="420" font-size="48" letter-spacing="12" fill="#a8a092">EM CURADORIA</text>
+  </g>
+  <g fill="#403930" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-size="20" letter-spacing="4">
+    <text x="640" y="540">SETLISTS · PJ · EV</text>
+  </g>
+</svg>

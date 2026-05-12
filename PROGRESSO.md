@@ -3,6 +3,62 @@
 ## Data
 2026-05-12
 
+## HANDOFF SESSAO 2026-05-12 TARDE: secao 📰 Noticias automatizada (full-auto fa-pra-fa)
+
+### Estado atual
+View nova 📰 Noticias instalada no nav (apos Cifras & Tabs), com pipeline completo de coleta+curadoria+publicacao automatica via GH Actions a cada 6h.
+
+### Arquitetura (toda decidida em plano [lucky-conjuring-rain.md])
+- **Coleta**: 7 fontes RSS (Stereogum, NME, Consequence, Pitchfork, Rolling Stone, Folha, Reddit r/pearljam com filtro score>=100 + flair restrito). Cortadas as 6 fontes quebradas (pj.com/feed XML invalido, BrooklynVegan 403, Whiplash 404, Tenebrarum/TMDP DNS, YT PJ Vevo channel_id errado).
+- **Dedupe**: `media/news/seen.json` por hash sha10 da URL canonica (remove utm_*, ref, fragmentos).
+- **Scrape**: cheerio + got. Extrai OG image (cascata og→twitter→article img→fallback placeholder) e texto do artigo (cap 4kB).
+- **Imagens**: cache local em `media/news/img/<hash>.jpg` (resize 1280x720 cover JPEG q82 via sharp). CSP atual ja cobre (img-src self).
+- **Curador IA**: Claude Haiku 4.5 (`claude-haiku-4-5`) via @anthropic-ai/sdk, system prompt com cache_control ephemeral (~1.2k tokens reusados). Prompt em PT-BR no tom de fa veterano, sem travessao, sem hype. Output JSON {titulo_pt, intro_pt, corpo_pt, tags} ou string `SKIP` se irrelevante.
+- **Frontend**: `renderNewsView()` em index.html (apos `_renderChordPro`, antes de DEEP MAGAZINES). Carrega `media/news/index.json` (cache no-cache), renderiza grid responsivo de cards (thumbnail 16:9 + meta + titulo serif + intro 3 linhas truncadas). Click expande corpo inline. Chips de filtro por fonte. CSS bloc novo entre `.tabs-intro` e `.tabs-layout` (tokens existentes do site).
+- **Workflow**: `.github/workflows/news.yml` cron `23 */6 * * *` UTC + manual dispatch com flags `dry-run` e `no-claude`. Commit auto so se diff real (`git diff --cached --quiet`).
+
+### Arquivos criados
+```
+package.json                                     # deps: rss-parser, cheerio, got, sharp, @anthropic-ai/sdk
+.github/workflows/news.yml                       # cron 6h + manual dispatch
+scripts/news/sources.mjs                         # 7 fontes validadas + REDDIT_FILTER
+scripts/news/relevance.mjs                       # regex PJ + canonicalize + sha10 + passesRedditFilter
+scripts/news/extract.mjs                         # got+cheerio scraping OG+article text
+scripts/news/image-cache.mjs                     # sharp resize + GC orfas
+scripts/news/claude-curator.mjs                  # Claude Haiku com cache_control
+scripts/news/fetch-news.mjs                      # orquestrador (com --dry-run, --no-claude, --fixtures)
+scripts/news/prompts/system-curator-fa.txt       # system prompt versionado
+scripts/news/prompts/user-template.txt           # template do user turn
+media/news/_placeholder.svg                      # fallback quando OG falha
+media/news/index.json                            # ja populado em smoke test (6 items)
+media/news/seen.json                             # dedup state
+media/news/img/*.jpg                             # 6 capas cacheadas no smoke
+```
+
+### Arquivos modificados
+- `index.html`: nav button `tab-news` (L6614), section `view-news` (L6685), switch case (L8899), `renderNewsView` + helpers + CSS bloc.
+- `.gitignore`: removido `package.json`/`package-lock.json` da lista de ignorados (eram artefatos lighthouse antes; agora repo tem deps proprias do bot).
+
+### Smoke test pre-commit
+`node scripts/news/fetch-news.mjs --no-claude` rodou local com sucesso: 7 fontes consultadas (5 saudaveis), 36 candidatos pos-filtro, top 6 processados, 6 imagens cacheadas. `media/news/index.json` populado. Pipeline E2E validado sem queimar API key.
+
+### O que falta pra ligar de verdade (passos manuais Andre)
+1. **Configurar secret no GH**: Settings → Secrets and variables → Actions → New repository secret → nome `ANTHROPIC_API_KEY`, valor a chave da Anthropic.
+2. **Primeira execucao manual**: Actions → "News fetch" → Run workflow → marcar `dry-run: true` na primeira vez pra ver os logs sem alterar o repo. Validar saida JSON em log.
+3. **Flipar pra cron**: depois da validacao, deixar o cron 6h tomar conta. Voltar ao GH Actions tab pra ver logs de runs futuras.
+
+### Custos esperados
+- Claude API: ~$1-2/mes (Haiku, ~10 noticias curadas/dia, prompt caching reduz ~30%).
+- GH Actions: ~180 min/mes (free tier 2000).
+
+### Pendencias residuais (decidir depois)
+- TenClub announcements: nao tem RSS publico. Andre tem login? Skip por ora.
+- Fontes BR quebradas (Whiplash, Tenebrarum, TMDP): achar URLs corretas e re-adicionar.
+- YT PJ Vevo: achar channel_id correto (tentei `UCkV_6Z6OTaGiKa9-ZuKVQjA`, deu 404).
+- View "Arquivo": ler `archive/YYYY-MM.json` antigos. MVP fica so com top 30, v2 adiciona.
+
+---
+
 ## HANDOFF SESSAO 2026-05-12 MADRUGADA: cifras multi-instrumento + versoes de tab
 
 ### Estado atual

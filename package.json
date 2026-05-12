@@ -1,0 +1,23 @@
+{
+  "name": "setlists-pj-ev",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Arquivo fan-to-fan de shows Pearl Jam + Eddie Vedder (BR)",
+  "scripts": {
+    "dev": "node scripts/_devserver.mjs",
+    "news:fetch": "node scripts/news/fetch-news.mjs",
+    "news:dry": "node scripts/news/fetch-news.mjs --dry-run",
+    "news:fixtures": "node scripts/news/fetch-news.mjs --fixtures --dry-run"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.1",
+    "cheerio": "^1.0.0",
+    "got": "^14.4.5",
+    "rss-parser": "^3.13.0",
+    "sharp": "^0.33.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
