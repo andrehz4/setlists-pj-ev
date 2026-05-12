@@ -47,6 +47,9 @@
   "garden": { "cifra": true, "cifraMulti": "garden.json", "tab": true, "tabFormat": "gp5", "tabFile": "garden-v1.gp5", "key": "G", "tuning": "DADGBE", "bpm": 88, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "garden-v1.gp5", "format": "gp5" }
   ] },
+  "go": { "cifra": true, "cifraMulti": "go.json", "tab": true, "tabFormat": "gp5", "tabFile": "go-v1.gp5", "key": "Dm", "tuning": "DADGBE", "bpm": 120, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "go-v1.gp5", "format": "gp5" }
+  ] },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
   ] }

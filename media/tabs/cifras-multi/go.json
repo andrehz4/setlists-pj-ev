@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Go (Pearl Jam, Vs. 1993, faixa 1). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-12",
+    "note_afinacao": "Go eh tocado em Drop D (D-A-D-G-B-E). Tom Dm."
+  },
+  "title": "Go",
+  "artist": "Pearl Jam",
+  "key": "Dm",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "DADGBE",
+      "chords": {
+        "Dm":  { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "F":   { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "Db":  { "fingering": "x46664", "fingers": "x13331", "fundamental": "Db", "barre": 4 },
+        "Bm":  { "fingering": "x24432", "fingers": "x13421", "fundamental": "B",  "barre": 2 },
+        "A":   { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "Bb":  { "fingering": "x13331", "fingers": "x13331", "fundamental": "Bb", "barre": 1 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Dm":  { "fingering": "2210", "fingers": "3210", "fundamental": "D" },
+        "F":   { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Db":  { "fingering": "1114", "fingers": "1114", "fundamental": "Db", "barre": 1 },
+        "Bm":  { "fingering": "4222", "fingers": "4111", "fundamental": "B",  "barre": 2 },
+        "A":   { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Bb":  { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Dm":  { "notes": ["D", "F", "A"],     "fundamental": "D",  "inversion": null },
+        "F":   { "notes": ["F", "A", "C"],     "fundamental": "F",  "inversion": null },
+        "Db":  { "notes": ["Db", "F", "Ab"],   "fundamental": "Db", "inversion": null },
+        "Bm":  { "notes": ["B", "D", "F#"],    "fundamental": "B",  "inversion": null },
+        "A":   { "notes": ["A", "C#", "E"],    "fundamental": "A",  "inversion": null },
+        "Bb":  { "notes": ["Bb", "D", "F"],    "fundamental": "Bb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Dm] [F] [Dm] [F] [Dm] [F]\n[Dm] [F] [Dm] [F] [Dm] [F] [Dm] [F]\n[Dm] [F] [Dm] [F] [Dm] [F] [Dm] [F]\n\n{section: Ponte}\n[Db]\n\n{section: Pré-verso}\n[Dm] [F] [Dm] [F] [Dm] [F]\n[Dm] [F]\n\n{section: Verso 1}\n[Dm]Oh, please don't go [F]out on me\n[Dm]Don't go on me [F]now\n[Dm]Never acted up be[F]fore [Dm]\n[F]Don't go on me now\n[Dm]I swear I never [F]took it for granted [Dm]Just thought of it [F]now\n[Dm]Suppose I a[F]bused you [Dm] [F]\nJust passing it [Dm]on [Db]\n\n{section: Ponte}\nGo\n[Dm] [Db] [Bm] [A] [Dm] [Db] [Dm] [Db] [Bm] [A]\nFuck\n\n{section: Verso 2}\n[Dm]Once fastened, [F]servile\n[Dm]Now you're getting [F]sharp\n[Dm] [F]Moving oh so [Dm]swiftly with [F]such disarm\n[Dm]I pulled the covers [F]over him\n[Dm]Should have pulled the a[F]larm\n[Dm] [F]Turned to my [Dm]nemesis [F]\nA fool not to see it [Dm]coming [Db]\n\n{section: Ponte}\nGo\n[Dm] [Db] [Bm] [A] [Dm] [Db] [Dm] [Db] [Bm] [A]\nFuck\n\n{section: Refrão}\n[Dm]Please, [F]don't go on [Bb]me\n[Bb]Don't go on [Dm]me [F]\n[Bb]Don't go on [Dm]me [F]\n[Bb]Don't go on [Dm]me [F]\n[Bb]Oh!\n\n{section: Solo 1}\n[Dm] [F] [Dm] [F] [Dm] [F] [Dm] [F]\n[Dm] [F] [Dm] [F] [Dm] [F] [Dm] [F]\n\n{section: Ponte}\n[Dm] [Db]Suck blood\n[Dm] [Db] [Bm] [A] [Dm] [Db]Touch, [Dm]please [Db]Tunnel\n[Bm] [A]vision\n[Dm] [Db]Tuck, [Dm] [Db] [Bm] [A] [Dm] [Db]time\nSee\n[Dm]Please, [Db]please, [Bm] [A]please [Bb]\n\n{section: Refrão}\n[Dm]Don't go on [F]me [Bb]\n[Dm]Don't go on [F]me [Bb]\n[Dm]Don't go on [F]me [Bb]\n[Dm]Don't go on [F]me [Bb]\n[Dm]Don't you want [F]me? [Bb]\n[Dm]Don't go on [F]me [Bb]\n[Dm]Don't go on [F]me\n[Bb] [Dm] [F]\n\n{section: Solo 2}\n[Dm] [F] [Dm] [F] [Dm] [F] [Dm] [F]\n[Dm] [F] [Dm] [F] [Dm] [F] [Dm] [F]\n[Dm] [F] [Dm] [F] [Dm] [F] [Dm]\n"
+}
