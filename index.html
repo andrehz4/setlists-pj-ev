@@ -12261,6 +12261,12 @@ function _ensureCifraFretboard() {
   fb.className = 'cifra-fretboard';
   // Inclui seletor de instrumento (6 botoes igual o fretboard do tab) +
   // slider de tamanho abaixo do mini-braco.
+  // Seletor de instrumento aqui na CIFRA: so 3 opcoes (Violao/Ukulele/Piano)
+  // que batem com o seletor de cima do transport. Click sincroniza
+  // _activeCifraInstrument pra som + visual mudarem juntos.
+  // No TAB (.fretboard-overlay separado) continua com os 6 instrumentos pra
+  // filtro de tracks; aquele NAO eh modificado por essa funcao.
+  const initialInst = _activeCifraInstrument || 'violao';
   fb.innerHTML = `
     <button type="button" class="cifra-fretboard-close" aria-label="Fechar braço da cifra">×</button>
     <div class="cifra-fretboard-header">
@@ -12270,13 +12276,10 @@ function _ensureCifraFretboard() {
     </div>
     <div class="cifra-fretboard-svg-wrap"></div>
     <div class="cifra-fretboard-bar">
-      <div class="cifra-fretboard-instr" role="tablist" aria-label="Instrumento">
-        <button type="button" class="fretboard-tab" data-inst="acoustic">Violão</button>
-        <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
-        <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
-        <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
-        <button type="button" class="fretboard-tab" data-inst="piano">Piano</button>
-        <button type="button" class="fretboard-tab" data-inst="drums">Bateria</button>
+      <div class="cifra-fretboard-instr" role="tablist" aria-label="Instrumento da cifra">
+        <button type="button" class="fretboard-tab${initialInst === 'violao' ? ' active' : ''}" data-inst="violao" aria-pressed="${initialInst === 'violao'}">🎸 Violão</button>
+        <button type="button" class="fretboard-tab${initialInst === 'ukulele' ? ' active' : ''}" data-inst="ukulele" aria-pressed="${initialInst === 'ukulele'}">🪗 Ukulele</button>
+        <button type="button" class="fretboard-tab${initialInst === 'piano' ? ' active' : ''}" data-inst="piano" aria-pressed="${initialInst === 'piano'}">🎹 Piano</button>
       </div>
       <div class="fretboard-zoom" role="group" aria-label="Tamanho do braço">
         <span class="fretboard-zoom-label">Tamanho</span>
@@ -12322,39 +12325,64 @@ function _ensureCifraFretboard() {
     zSlider.addEventListener('click', (e) => e.stopPropagation());
   }
 
-  // Persiste instrumento. Por ora o som da cifra eh sempre violao acustico;
-  // o seletor afeta so a representacao visual do mini-braco (futuro).
-  try {
-    const savedInst = localStorage.getItem('cifra_fb_inst');
-    if (savedInst) {
-      fb.querySelectorAll('.cifra-fretboard-instr .fretboard-tab').forEach(b => {
-        b.classList.toggle('active', b.dataset.inst === savedInst);
-      });
-      fb.dataset.inst = savedInst;
-    } else {
-      fb.dataset.inst = 'guitar';
-    }
-  } catch (_) { fb.dataset.inst = 'guitar'; }
+  // Sincroniza estado inicial do overlay com _activeCifraInstrument
+  // (localStorage 'cifra_instrument' persiste entre sessoes).
+  fb.dataset.inst = _activeCifraInstrument || 'violao';
+
+  // Click no botao de instrumento DO OVERLAY:
+  //  1) atualiza _activeCifraInstrument (afeta som + diagrama no popover)
+  //  2) sincroniza visual do seletor de cima (.cifra-instr-btn)
+  //  3) sincroniza visual do proprio overlay (.fretboard-tab)
+  //  4) re-renderiza mini-braco com o acorde atual no novo instrumento
+  //  5) re-renderiza strumming header com padrao do novo instrumento
   fb.querySelectorAll('.cifra-fretboard-instr .fretboard-tab').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const inst = btn.dataset.inst;
-      if (!inst || fb.dataset.inst === inst) return;
+      if (!inst || inst === _activeCifraInstrument) return;
+      _setActiveCifraInstrument(inst);
       fb.dataset.inst = inst;
+      // Sincroniza visual do overlay (todos botoes do .cifra-fretboard-instr)
       fb.querySelectorAll('.cifra-fretboard-instr .fretboard-tab').forEach(x => {
-        x.classList.toggle('active', x.dataset.inst === inst);
+        const a = x.dataset.inst === inst;
+        x.classList.toggle('active', a);
+        x.setAttribute('aria-pressed', a ? 'true' : 'false');
       });
-      try { localStorage.setItem('cifra_fb_inst', inst); } catch (_) {}
-      // Re-render do acorde atual se houver
+      // Sincroniza visual do seletor de cima na cifra pane (pode ter varios
+      // panes abertos no setlist; atualiza todos com data-cifra-inst).
+      document.querySelectorAll('.cifra-instr-btn').forEach(b => {
+        const a = b.dataset.cifraInst === inst;
+        b.classList.toggle('active', a);
+        b.setAttribute('aria-pressed', a ? 'true' : 'false');
+      });
+      // Re-renderiza strumming header dentro do pane ativo com padrao do
+      // novo instrumento (mesma logica do click no seletor de cima).
+      const activeRoot = _activeCifraRoot;
+      const multi = activeRoot && activeRoot._multiData;
+      if (activeRoot && multi) {
+        const wrap = activeRoot.querySelector('.cifra-strumming-wrap');
+        if (wrap) {
+          const idata = multi.instruments && multi.instruments[inst];
+          if (idata && idata.strumming && idata.strumming.beats) {
+            const s = idata.strumming;
+            const cells = s.beats.map(b => {
+              const arrow = b.stroke === 'down' ? '↓' : '↑';
+              const mutedCls = b.muted ? ' cifra-strum-muted' : '';
+              return `<span class="cifra-strum-cell${mutedCls}"><span class="cifra-strum-arrow">${arrow}</span><span class="cifra-strum-count">${b.count}</span></span>`;
+            }).join('');
+            wrap.innerHTML = `<div class="cifra-strumming-bar" aria-label="Padrão de palhetada"><span class="cifra-strumming-label">${s.label || 'PADRÃO'} <em>${s.bpm || ''} bpm</em></span><div class="cifra-strumming-row">${cells}</div></div>`;
+          } else {
+            wrap.innerHTML = '';
+          }
+        }
+      }
+      // Re-render mini-braco com o acorde atual no novo instrumento
       const currentChord = fb.querySelector('.cifra-fretboard-chord-name');
       if (currentChord && currentChord.textContent && currentChord.textContent !== '—') {
-        const wrap = fb.querySelector('.cifra-fretboard-svg-wrap');
-        if (wrap) {
-          // Resgata multiData do root ativo se houver (cifra player rodando)
-          const activeRoot = _activeCifraRoot;
-          const multi = activeRoot && activeRoot._multiData;
-          const svg = _renderChordMiniFretboard(currentChord.textContent, multi, _activeCifraInstrument);
-          wrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${currentChord.textContent}<br><small>digitação não cadastrada</small></div>`;
+        const svgWrap = fb.querySelector('.cifra-fretboard-svg-wrap');
+        if (svgWrap) {
+          const svg = _renderChordMiniFretboard(currentChord.textContent, multi, inst);
+          svgWrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${currentChord.textContent}<br><small>digitação não cadastrada</small></div>`;
         }
       }
     });
