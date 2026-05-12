@@ -3,6 +3,57 @@
 ## Data
 2026-05-12
 
+## HANDOFF SESSAO 2026-05-12 NOITE: estrategia de curadoria de tabs Pro (Ultimate Guitar)
+
+Andre assinou Ultimate Guitar Pro e quer popular o site com:
+- 2 melhores versoes em `.gp` por musica (Versao 1 = top-rated, + Ao vivo quando houver)
+- "Cifras de cada instrumento": resolvido visualmente pelo voice-picker + mixer + fretboard, ja existente. O `.gp` carrega TODAS as tracks da musica; usuario isola Stone/Mike/Jeff/Matt/Boom pelo mixer.
+
+### Estado: 2 tabs do Black ja no ar
+- `media/tabs/gp/black-v1.gp5` (Versao 1, ex-"ver 4 by Master Rayz", 51KB)
+- `media/tabs/gp/black-live.gp5` (Ao vivo, 59KB)
+- Manifest `media/tabs/index.json` `"black"` ganha `versions: [{id, label, file, format}]`
+- Seletor `<select class="alphatab-version-select">` no `.alphatab-transport-top` da pane tab; aparece quando `versions.length >= 2`. Onchange faz `api.load(arrayBuffer)` sem re-init.
+- Nomes sem creditos pessoais por regra (`Versao 1`, `Versao 2`, `Ao vivo`). Salvo em [reference-ultimate-guitar-pro](feedback memory).
+- Commit: `dfb5d07` (versoes Black) + `c243902` (fix bateria staveProfile)
+
+### Decisao: nao tem como pegar via API com token
+- UG nao publica API publica oficial.
+- API mobile interna existe mas e nao-documentada, fragil e viola ToS.
+- Scraping de tabs Pro requer decodificar formato gpif protobuf-binario com DRM, viola ToS.
+- Songsterr tem API semi-publica mas catalogo diferente.
+- **Conclusao**: download manual via botao Pro continua sendo o caminho. Andre opera o navegador, salva em pasta de staging, e em sessao seguinte um script (Node) integra: copia pra `media/tabs/gp/<song>-vN.gp5`, atualiza manifest.
+
+### Plano de curadoria (proxima sessao)
+
+**Restantes top 20 sem `.gp` (16 musicas):**
+better man, jeremy, daughter, elderly woman behind..., just breathe, given to fly, corduroy, state of love and trust, animal, rearviewmirror, do the evolution, last kiss, crazy mary, sirens, hail hail, footsteps.
+
+**Workflow proposto:**
+1. Andre abre tab Pro top-rated da musica no UG (logado).
+2. Clica "Download GP" -> salva em `Downloads/` com nome livre.
+3. Eventualmente baixa tambem "Ao vivo" (se houver versao bem rankeada).
+4. Em sessao Claude Code: passar paths dos 2 arquivos por musica; eu copio pra `media/tabs/gp/<song>-v1.gp5` (e `<song>-live.gp5` se aplicavel), atualizo manifest com `versions`, faco commit.
+
+**Sequencia sugerida (do top 20 mais tocado pra menos):**
+1. better man (`5d2.gp5`/popular ao vivo)
+2. jeremy
+3. given to fly
+4. daughter
+5. elderly woman
+6. corduroy
+7. animal
+8. state of love and trust
+9. rearviewmirror
+10. do the evolution
+11. sirens, hail hail, just breathe, last kiss, crazy mary, footsteps (menos urgentes)
+
+**Automacao Fase 2 (opcional):** userscript Tampermonkey que adicione botao "Baixar pra setlists-pj-ev" no UG, com convencao de nome ja resolvida. Implementa em sessao dedicada se Andre topar.
+
+### Cifras textuais por instrumento (ChordPro)
+- Site ja tem 3 cifras: `media/tabs/cifras/black.cpro`, `alive.cpro`, `even-flow.cpro`.
+- Pra outras 17 do top 20: transcricao manual ChordPro a partir da letra + ouvido. UG Pro NAO exporta ChordPro - so `.gp`. Continua sendo cura mao, sem atalho.
+
 ## BACKLOG
 
 ### Secao "Clipes" (videos oficiais Pearl Jam) [aberto 2026-05-12]
