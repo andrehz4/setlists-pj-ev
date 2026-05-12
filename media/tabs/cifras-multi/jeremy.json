@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Jeremy (Pearl Jam, Ten 1991, faixa 6). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-12"
+  },
+  "title": "Jeremy",
+  "artist": "Pearl Jam",
+  "key": "Am",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":   { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "G":   { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "D":   { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "F":   { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Dm":  { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "Em":  { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "C":   { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Am":  { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "Am7": { "fingering": "x02010", "fingers": "x02010", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":   { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "G":   { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "D":   { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "F":   { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Dm":  { "fingering": "2210", "fingers": "3210", "fundamental": "D" },
+        "Em":  { "fingering": "0402", "fingers": "0301", "fundamental": "E" },
+        "C":   { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Am":  { "fingering": "2000", "fingers": "2000", "fundamental": "A" },
+        "Am7": { "fingering": "0000", "fingers": "0000", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":   { "notes": ["A", "C#", "E"],     "fundamental": "A", "inversion": null },
+        "G":   { "notes": ["G", "B", "D"],      "fundamental": "G", "inversion": null },
+        "D":   { "notes": ["D", "F#", "A"],     "fundamental": "D", "inversion": null },
+        "F":   { "notes": ["F", "A", "C"],      "fundamental": "F", "inversion": null },
+        "Dm":  { "notes": ["D", "F", "A"],      "fundamental": "D", "inversion": null },
+        "Em":  { "notes": ["E", "G", "B"],      "fundamental": "E", "inversion": null },
+        "C":   { "notes": ["C", "E", "G"],      "fundamental": "C", "inversion": null },
+        "Am":  { "notes": ["A", "C", "E"],      "fundamental": "A", "inversion": null },
+        "Am7": { "notes": ["A", "C", "E", "G"], "fundamental": "A", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [G] [A] [G] [A] [G] [A] [G]\n\n{section: Verso 1}\n[A] [G]At home drawin' pictures [A] [G]of mountain tops\n[A] [G]With him on top, [A] [G]lemon yellow sun\n[A] [G]Arms raised in [A]a [G]\"v\"\n[A]And the dead lay in [G]pools of maroon be[A]low [G]\n\n{section: Pré-refrão}\n[A] [G]Daddy didn't give a[D]ttention\n[G] [A]Oh, to the fact that mommy didn't care [A] [G]\n[D]King Jeremy the wicked [G] [A]\nOh, ruled his world\n\n{section: Refrão}\n[F]Jeremy spoke in [Dm] [Em]cla[F]ss to[A]day\n[F]Jeremy spoke in [Dm] [Em]cla[C]ss to[A]day\n\n{section: Verso 2}\n[A] [G]Clearly I remember [A] [G]picking on the boy\n[A] [G]Seemed a harmless [A]little [G]fuck\n[A] [G]Mmm, but we unleashed [A]a [G]lion\n[A]Gnashed his teeth and [G]bit the recess lady's [A]breast\n[G]How could I forget? [A] [G]\nAnd he hit me with [A]a surprise [G]left\n[A] [G]My jaw left hurting, [A] [G]ooh, dropped wide open\n[A] [G]Just like the [A] [G]day, [A]oh, like the [G]day I heard\n\n{section: Pré-refrão}\n[G]Daddy didn't give a[D]ffection, no\n[G] [A]And the boy was something that mommy wouldn't wear [A] [G]\n[D]King Jeremy the wicked [G] [A]\nOh, ruled his world\n\n{section: Refrão}\n[F]Jeremy spoke in [Dm] [Em]cla[F]ss to[A]day\n[G]Jeremy spoke in [Dm] [Em]cla[C]ss to[A]day\n[F]Jeremy spoke in [Dm] [Em]cla[F]ss to[A]day\n\n{section: Pós-refrão}\n[A] [G] [A] [G] [A] [G]\n[A] [G]Try to forget this [A] [G]\n[A] [G]Try to erase this [A] [G]\n[A]From the [F]blackboa[Dm]rd\n\n{section: Ponte}\n[C] [Dm]\n\n{section: Refrão}\n[G]Jeremy spoke in [Dm] [Em]cla[C]ss to[A]day\n[F]Jeremy spoke in [Dm] [Em]cla[F]ss to[A]day\n[G]Jeremy spoke in, [Dm] [Em]spoke [C]in\n[Am]Jeremy spoke in, spoke in\n[F]Jeremy spoke in [G]class to[Am]day.\n\n{section: Pós-refrão}\n[F] [G] [Am] [F]\n[G] [Am] [F] [G]\n[A] [F] [G] [Am]\n[F] [G] [A] [F]\n[G] [Am] [F] [G]\n[Am] [F] [G] [Am]\n\n{section: Outro}\n[Am7] [D] [G] [Am] [G] [Am] [G] [Am]\n[Am7] [D] [G] [Am] [G] [Am] [G] [Am]\n"
+}

@@ -18,7 +18,7 @@
   ] },
   "yellow ledbetter": { "cifra": false, "tab": true, "tabFormat": "gp5", "key": "E", "tuning": "EADGBE" },
   "better man": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
-  "jeremy": { "cifra": false, "tab": false, "key": "F", "tuning": "EADGBE" },
+  "jeremy": { "cifra": true, "cifraMulti": "jeremy.json", "tab": false, "key": "Am", "tuning": "EADGBE", "bpm": 100 },
   "daughter": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "elderly woman behind the counter in a small town": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "just breathe": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE", "capo": 2 },
