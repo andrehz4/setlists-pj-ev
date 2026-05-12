@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de W.M.A. (Pearl Jam, Vs. 1993, faixa 6). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto descritivo, nao cifra com chord chips). Acordes de referencia (A, G, C, E) baseados nas notas do baixo conforme nota do tab author.",
+    "fetched": "2026-05-12",
+    "note_musica": "W.M.A. tem guitarras muito recuadas na mixagem (improvisos sobre A minor). Nao ha progressao de acordes clara como em outras musicas. Os 4 acordes aqui sao bases de orientacao, nao uma cifra precisa. Pra a versao real, ouvir a faixa e tocar por ouvido."
+  },
+  "title": "W.M.A.",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "G": { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C": { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "E": { "fingering": "022100", "fingers": "023100", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "G": { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "C": { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "E": { "fingering": "4442", "fingers": "3331", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": { "notes": ["A", "C#", "E"],  "fundamental": "A", "inversion": null },
+        "G": { "notes": ["G", "B", "D"],   "fundamental": "G", "inversion": null },
+        "C": { "notes": ["C", "E", "G"],   "fundamental": "C", "inversion": null },
+        "E": { "notes": ["E", "G#", "B"],  "fundamental": "E", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [A] [A] [A]\n(Riff de baixo: 5-5-5-5-3-5-/-8-8-8-3-3-0-0-0, repetido)\n\n{section: Verso}\n[A]Stone improvisando notas com palm-mutes sobre Am\n[A]Mike fazendo solo melodico em Am\n(Guitarras bem recuadas na mixagem; improvisar sobre A menor)\n\n{section: Refrão}\n[A] [G] [C] [E]\n(Acordes baseados nas notas do baixo)\n[A] [G] [C] [E]\n\n{section: Verso}\n[A]Mais improvisos sobre Am\n[A]Solo de Mike mais rapido no refrao\n\n{section: Refrão}\n[A] [G] [C] [E]\n[A] [G] [C] [E]\n[A] [G] [C] [E]\n\n{section: Outro}\n[A]\n"
+}

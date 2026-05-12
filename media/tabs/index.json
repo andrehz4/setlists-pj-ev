@@ -84,6 +84,7 @@
   ] },
   "last exit": { "cifra": true, "cifraMulti": "last-exit.json", "tab": false, "key": "C", "tuning": "EADGBE", "bpm": 140 },
   "spin the black circle": { "cifra": true, "cifraMulti": "spin-the-black-circle.json", "tab": false, "key": "C", "tuning": "EADGBE", "bpm": 165 },
+  "wma": { "cifra": true, "cifraMulti": "wma.json", "tab": false, "key": "G", "tuning": "EADGBE", "bpm": 90, "notes": "W.M.A. eh musica improvisada (guitarras bem recuadas na mixagem). Cifra eh referencial, nao precisa." },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
   ] }
