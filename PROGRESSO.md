@@ -3,6 +3,43 @@
 ## Data
 2026-05-12
 
+## HANDOFF SESSAO 2026-05-12 MADRUGADA: cifras multi-instrumento + versoes de tab
+
+### Estado atual
+HEAD `a5b2143`. Branch main sincronizada com origin. Cloudflare Pages re-deployando.
+
+### Entregas desta sessao (em ordem de commit)
+- `7de38ad` setlist: rollback de 3 comportamentos quebrados (max-height surface, auto-scroll, scroll inteligente). View Cifras intocada.
+- `dfb5d07` Black agora tem 2 versoes de tab (`black-v1.gp5` + `black-live.gp5`) com seletor `.alphatab-version-select` no transport-top. Manifest tem `versions: [{id,label,file,format}]`.
+- `47910c1` Labels da bateria em PT (ATAQUE, CHIMBAL, CONDUCAO, SURDAO, CAIXA, BUMBO).
+- `c243902` Fix bateria invisivel no tab: trocou `staveProfile: 'tab'` por `'default'` (percussion precisa de score, nao tab).
+- `54e1352` Plano de curadoria de tabs Pro no PROGRESSO.md.
+- `a5b2143` Cifras multi-instrumento: schema JSON novo `media/tabs/cifras-multi/<song>.json` com Violao+Ukulele+Piano (fingerings, fundamental, inversion, padrao de palhetada). Black completo. Seletor no transport-top + header de palhetada visual.
+
+### Regras gravadas em memoria
+- `feedback_fretboard_posicionamento.md`: bracos floating no setlist, docked inline na view Cifras
+- `feedback_players_isolados.md`: setlist e view Cifras sao DOIS produtos; nunca mexer num sem confirmar contexto
+- `reference_ultimate_guitar_pro.md`: Andre tem conta Pro; UG nao tem API publica (403); PDFs sao caminho viavel; nomes sem creditos pessoais
+
+### Proximo passo concreto
+Andre vai baixar 3 PDFs (violao + ukulele + piano) de cada uma das proximas 16 musicas top 20 sem .gp local, na ordem sugerida: better man, jeremy, given to fly, daughter, elderly woman, corduroy, animal, state of love and trust, rearviewmirror, do the evolution, sirens, hail hail, just breathe, last kiss, crazy mary, footsteps.
+
+Por musica, em sessao Claude Code:
+1. Andre passa os 3 paths em Downloads (ex: `Pearl Jam - Better Man (violao).pdf`)
+2. Claude usa `/c/Users/engan/poppler/poppler-24.08.0/Library/bin/pdftoppm` (instalado nesta sessao) pra converter pra PNG
+3. Le com Read tool pra extrair conteudo
+4. Cria `media/tabs/cifras-multi/<song>.json` no schema (referencia: `black.json`)
+5. Atualiza manifest com `cifraMulti: '<song>.json'`
+6. Andre passa tambem .gp pra v1 e ao vivo da mesma musica; eu adiciono em `versions: [...]`
+
+### Bloqueios em aberto
+Nenhum.
+
+### Refator A (split completo setlist/view)
+Andre aprovou refator completo pra isolar setlist e view Cifras em familias de funcoes dedicadas. Eu ROLLBACKEI no commit `7de38ad` em vez de fazer o split, porque ele queria primeiro restaurar o estado bom. O refator A continua aprovado mas adiado: ver memoria `feedback_players_isolados.md` que regula comunicacao enquanto base for compartilhada. Retomar quando convem.
+
+---
+
 ## HANDOFF SESSAO 2026-05-12 NOITE: estrategia de curadoria de tabs Pro (Ultimate Guitar)
 
 Andre assinou Ultimate Guitar Pro e quer popular o site com:
