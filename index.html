@@ -3063,6 +3063,37 @@ html[data-theme="light"] .drawer-section-label.my-media {
   gap: 6px;
 }
 .cifra-fretboard.show { display: flex; }
+/* Botao X de fechar: canto superior direito, sutil. Vermelho no hover. */
+.cifra-fretboard-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-mute);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms ease, color 120ms ease;
+  z-index: 1;
+}
+.cifra-fretboard-close:hover {
+  background: var(--pj, #c1272d);
+  color: #fff;
+}
+.cifra-fretboard.inline .cifra-fretboard-close {
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+}
 /* Modo inline: na view Cifras & Tabs, fica DOCKED dentro do .tab-pane-cifra,
    entre .alphatab-surface e .alphatab-transport-bottom. Igual o
    .fretboard-overlay.inline do tab. */
@@ -3114,9 +3145,12 @@ html[data-theme="light"] .drawer-section-label.my-media {
   100% { transform: scale(1); }
 }
 .cifra-fretboard-next-name {
-  font: 600 12px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  color: var(--ink-mute);
+  font: 700 22px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  letter-spacing: 0.04em;
+  color: #2e6b8a;
+  text-transform: uppercase;
   margin-left: auto;
+  opacity: 0.75;
 }
 .cifra-fretboard-svg-wrap {
   width: 100%;
@@ -3222,11 +3256,14 @@ html[data-theme="dark"] .cifra-fretboard {
    o overflow horizontal pra mobile e limitamos altura inicial. */
 .alphatab-surface {
   min-height: 80px;
-  background: #fff;
+  background: var(--paper, #f7f1e3);
   border: 1px solid rgba(46, 107, 138, 0.2);
   border-radius: 4px;
   overflow-x: auto;
   padding: 6px 4px;
+}
+html[data-theme="dark"] .alphatab-surface {
+  background: #1f1815;
 }
 /* Na view Cifras (.cifra-detail-wrap), a partitura tem altura limitada com
    scroll interno. O cursor de playback rola DENTRO da surface (nao a window
@@ -8887,6 +8924,10 @@ function _renderChordMiniFretboard(chordName) {
   // Fundo madeira (rosewood) + nut osso
   svg += `<rect x="${padL}" y="${padT - 4}" width="${W - padL - padR}" height="${H - padT - padB + 8}" fill="#5a3a1f"/>`;
   svg += `<rect x="${padL - 5}" y="${padT - 4}" width="5" height="${H - padT - padB + 8}" fill="#f9f3e3" stroke="#8a7a4a" stroke-width="0.5"/>`;
+  // Adesivos PJ: stickman no canto esquerdo (sobre o nut) e sun-logo no
+  // canto direito do braco. mix-blend-mode: screen integra na madeira.
+  svg += `<image href="media/decals/pj-stickman.png" x="${padL - 16}" y="${padT - 2}" width="24" height="42" opacity="0.42" style="mix-blend-mode: screen;" preserveAspectRatio="xMidYMid meet"/>`;
+  svg += `<image href="media/decals/pj-sun-logo.png" x="${W - padR - 28}" y="${padT - 8}" width="26" height="26" opacity="0.4" style="mix-blend-mode: screen;" transform="rotate(12 ${W - padR - 15} ${padT + 5})" preserveAspectRatio="xMidYMid meet"/>`;
   // Trastes prateados
   for (let f = 1; f <= N_FRETS; f++) {
     const x = fretX(f);
@@ -9120,7 +9161,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
               <option value="1.5">1.5&times;</option>
             </select>
           </label>
-          <button type="button" class="atc-btn-mini alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop (em breve)" title="Loop (em breve)" disabled>🔁 Loop</button>
+          <button type="button" class="atc-btn-mini alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop de trecho" title="Loop">🔁 Loop</button>
           <span class="alphatab-status alphatab-status-top" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico &middot; click Play</span>
         </div>
         <div class="alphatab-surface cifra-surface">${_renderChordPro(txt)}</div>
@@ -9137,8 +9178,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
             <span class="atc-speed-val">1.00</span>
           </div>
           <div class="atc-spacer"></div>
-          <button type="button" class="atc-btn alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop (em breve)" title="Loop (em breve)" disabled>🔁 Loop</button>
-          <button type="button" class="atc-btn alphatab-btn alphatab-metronome cifra-mode-metronome" data-state="off" aria-label="Metr&ocirc;nomo (em breve)" title="Metr&ocirc;nomo (em breve)" disabled>𝅘𝅥 Metr&ocirc;nomo</button>
+          <button type="button" class="atc-btn alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop de trecho" title="Loop">🔁 Loop</button>
+          <button type="button" class="atc-btn alphatab-btn alphatab-metronome cifra-mode-metronome" data-state="off" aria-pressed="false" aria-label="Metr&ocirc;nomo (tick por beat)" title="Metr&ocirc;nomo">𝅘𝅥 Metr&ocirc;nomo</button>
           <button type="button" class="atc-btn alphatab-btn alphatab-braco cifra-mode-braco" data-state="on" aria-pressed="true" aria-label="Mostrar/esconder bra&ccedil;o" title="Bra&ccedil;o">⌗ Bra&ccedil;o</button>
           <button type="button" class="atc-btn-ico alphatab-settings cifra-mode-settings" aria-label="Ajustes" title="Ajustes (em breve)">⚙</button>
           <span class="alphatab-status" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico</span>
@@ -9155,6 +9196,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const speedSelect = cifraPane.querySelector('.cifra-mode-speed-select');
       const speedVal = cifraPane.querySelector('.atc-speed-val');
       const bracoBtn = cifraPane.querySelector('.cifra-mode-braco');
+      const metronomeBtns = cifraPane.querySelectorAll('.cifra-mode-metronome');
+      const loopBtns = cifraPane.querySelectorAll('.cifra-mode-loop');
 
       const setAllPlayState = (state) => {
         playBtns.forEach(btn => {
@@ -9233,6 +9276,79 @@ function _renderTabPanel(body, songKey, tabMeta) {
           applySpeed(parseFloat(speedSelect.value));
         });
       }
+
+      // Loop: state machine 'off' -> 'arm' (aguardando start) -> 'arm2'
+      // (aguardando end) -> 'on' (looping). Click no Loop btn em qualquer
+      // estado nao-off limpa pra off. Persistido no cifraPane (escopo da
+      // musica aberta; trocar musica limpa).
+      cifraPane._loopState = 'off';
+      cifraPane._loopRange = null;
+      const setLoopState = (s) => {
+        cifraPane._loopState = s;
+        loopBtns.forEach(b => {
+          b.dataset.state = s;
+          b.setAttribute('aria-pressed', s === 'on' ? 'true' : 'false');
+        });
+        if (s === 'arm') setStatus('Loop: clique no acorde INICIAL');
+        else if (s === 'arm2') setStatus('Loop: clique no acorde FINAL');
+        else if (s === 'on') {
+          const r = cifraPane._loopRange;
+          setStatus(r ? `Loop ${r.startIdx + 1}→${r.endIdx + 1} ativo` : 'Loop ativo');
+        }
+        // 'off' deixa o player atualizar status proprio via _renderCifraPlayerBar
+      };
+      loopBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const cur = cifraPane._loopState || 'off';
+          if (cur === 'off') {
+            setLoopState('arm');
+          } else {
+            cifraPane._loopRange = null;
+            setLoopState('off');
+            setStatus(bpm + ' BPM · violão acústico');
+          }
+        });
+      });
+      // Capture phase pra interceptar clicks em chord-chips ANTES dos
+      // outros handlers (que abrem o popover). So intercepta em modo arm.
+      cifraPane.addEventListener('click', (e) => {
+        const state = cifraPane._loopState;
+        if (state !== 'arm' && state !== 'arm2') return;
+        const chip = e.target.closest && e.target.closest('.chord-chip');
+        if (!chip) return;
+        e.stopPropagation();
+        if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+        const allChips = Array.from(cifraPane.querySelectorAll('.chord-chip'));
+        const idx = allChips.indexOf(chip);
+        if (idx < 0) return;
+        if (state === 'arm') {
+          cifraPane._loopRange = { startIdx: idx, endIdx: idx };
+          setLoopState('arm2');
+        } else {
+          const sIdx = cifraPane._loopRange.startIdx;
+          const eIdx = Math.max(sIdx, idx);
+          cifraPane._loopRange = { startIdx: sIdx, endIdx: eIdx };
+          setLoopState('on');
+        }
+      }, true);
+
+      // Metronomo: toggle global _cifraMetronomeOn. Tick eh agendado pelo
+      // _startCifraPlayer a cada acorde (2 beats por acorde).
+      metronomeBtns.forEach(btn => {
+        btn.dataset.state = _cifraMetronomeOn ? 'on' : 'off';
+        btn.setAttribute('aria-pressed', _cifraMetronomeOn ? 'true' : 'false');
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          _cifraMetronomeOn = !_cifraMetronomeOn;
+          try { localStorage.setItem('cifra_metronome_on', _cifraMetronomeOn ? '1' : '0'); } catch (_) {}
+          // Sync visual em todos os botoes de metronomo da pagina
+          document.querySelectorAll('.cifra-mode-metronome').forEach(b => {
+            b.dataset.state = _cifraMetronomeOn ? 'on' : 'off';
+            b.setAttribute('aria-pressed', _cifraMetronomeOn ? 'true' : 'false');
+          });
+        });
+      });
 
       // Botao 'Braco': toggle do overlay .cifra-fretboard. Sincroniza com
       // o cifra-fretboard quando o playback inicia (so mostra se braco eh on).
@@ -11321,6 +11437,28 @@ function _renderCifraPlayerBar(root, state) {
   }
 }
 
+// Metronome do cifra player: tick curto via WebAudio oscillator. Toggle
+// via _cifraMetronomeOn (persistido em localStorage). Tick eh agendado
+// pelo _startCifraPlayer a cada beat.
+let _cifraMetronomeOn = false;
+try { _cifraMetronomeOn = localStorage.getItem('cifra_metronome_on') === '1'; } catch (_) {}
+function _playCifraMetronomeTick(time, accent) {
+  const ctx = _getAudioCtx();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') { try { ctx.resume(); } catch (_) {} }
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'square';
+  osc.frequency.value = accent ? 1320 : 880;  // E6 no accent, A5 normal
+  gain.gain.setValueAtTime(0.0001, time);
+  gain.gain.exponentialRampToValueAtTime(accent ? 0.35 : 0.22, time + 0.004);
+  gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.06);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(time);
+  osc.stop(time + 0.08);
+}
+
 // Braco da guitarra durante o cifra player: overlay flutuante no canto
 // direito com mini-fretboard 360x116 do acorde atual + nome + proximo.
 // Singleton no body, similar ao .alphatab-fab.
@@ -11332,6 +11470,7 @@ function _ensureCifraFretboard() {
   // Inclui seletor de instrumento (6 botoes igual o fretboard do tab) +
   // slider de tamanho abaixo do mini-braco.
   fb.innerHTML = `
+    <button type="button" class="cifra-fretboard-close" aria-label="Fechar braço da cifra">×</button>
     <div class="cifra-fretboard-header">
       <span class="cifra-fretboard-label">Tocando</span>
       <span class="cifra-fretboard-chord-name">—</span>
@@ -11355,6 +11494,22 @@ function _ensureCifraFretboard() {
     </div>
   `;
   document.body.appendChild(fb);
+
+  // Close: esconde overlay. Se cifra esta tocando, NAO para (so esconde
+  // visualmente); user pode reabrir pelo botao 'Braco' do transport.
+  const closeBtn = fb.querySelector('.cifra-fretboard-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      _hideCifraFretboard();
+      // Sincroniza estado do botao Braco do transport (off)
+      document.querySelectorAll('.cifra-mode-braco').forEach(btn => {
+        btn.dataset.state = 'off';
+        btn.setAttribute('aria-pressed', 'false');
+      });
+      try { localStorage.setItem('cifra_braco_on', '0'); } catch (_) {}
+    });
+  }
 
   // Persiste e aplica zoom do braco da cifra. Key separada do braco do tab.
   const zSlider = fb.querySelector('.cifra-fretboard-zoom');
@@ -11588,7 +11743,11 @@ async function _startCifraPlayer(root, bpm) {
   // a window. scrollCenter funciona em ambos via scrollIntoView.
   const surface = root.querySelector('.alphatab-surface') || root;
 
-  for (let i = 0; i < chips.length; i++) {
+  // Loop: se root tem _loopRange e estado 'on', percorre so esse intervalo
+  // e volta ao inicio quando atinge endIdx. Atualizado em runtime: se user
+  // ativa/desativa loop durante playback, proxima iteracao respeita.
+  let i = (root._loopState === 'on' && root._loopRange) ? root._loopRange.startIdx : 0;
+  while (i < chips.length) {
     if (aborted) break;
     // Aguarda enquanto pausado. _resumeCifraPlayer chama o resumeSignal pra liberar.
     while (!aborted && player.paused) {
@@ -11610,9 +11769,17 @@ async function _startCifraPlayer(root, bpm) {
     })();
     if (bracoOn) _updateCifraFretboard(chord, nextChord, root);
     else _hideCifraFretboard();
-    // Scroll center: chord ativo sempre no meio do scroll container (surface
-    // na view Cifras, window no setlist). scrollIntoView delega corretamente.
-    chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+    // Scroll INTELIGENTE: so rola se o chip ativo saiu da viewport.
+    // scrollIntoView block:center toda iteracao rolava a pagina pra cima
+    // mesmo quando o chip ja estava visivel, perdendo a partitura+braco
+    // de vista. Agora respeita uma margem central de 30% — so age quando
+    // chip sai dessa faixa.
+    const r = chip.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const margin = vh * 0.3;
+    if (r.top < margin || r.bottom > vh - margin) {
+      chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+    }
     // Duracao lida dinamicamente: se user move o speed slider durante o
     // playback, o proximo acorde ja respeita o novo tempo.
     const dur = noteDurationAt();
@@ -11621,7 +11788,25 @@ async function _startCifraPlayer(root, bpm) {
       velocity: 78,
       gain: (typeof window._cifraVolume === 'number') ? window._cifraVolume : 0.8,
     });
+    // Metronomo: agenda 2 ticks por acorde (beatsPerChord=2). Primeiro
+    // tick eh accent (frequencia maior), segundo eh normal.
+    if (_cifraMetronomeOn) {
+      const ctx = _getAudioCtx();
+      if (ctx) {
+        const t0 = ctx.currentTime;
+        const beatDur = dur / beatsPerChord;
+        _playCifraMetronomeTick(t0, true);          // tick 1 (accent)
+        _playCifraMetronomeTick(t0 + beatDur, false); // tick 2 (normal)
+      }
+    }
     await new Promise(r => setTimeout(r, dur * 1000));
+    // Avanca ou volta ao inicio do range se loop ativo.
+    if (root._loopState === 'on' && root._loopRange) {
+      const r = root._loopRange;
+      i = (i >= r.endIdx) ? r.startIdx : i + 1;
+    } else {
+      i++;
+    }
   }
   _stopCifraPlayer(root);
 }
