@@ -10447,11 +10447,12 @@ function _renderTabPanel(body, songKey, tabMeta) {
     b.addEventListener('click', (e) => {
       e.stopPropagation();
       const which = b.dataset.tabtype;
-      // Para qualquer audio em reproducao (cifra ou tab) ao trocar de aba.
-      // Andre flagou: tocando cifra e clicando no tab, a musica continuava
-      // e ficava confuso. Stop all garante UI consistente: nova aba comeca
-      // limpa.
-      if (typeof _stopAllTabAudio === 'function') _stopAllTabAudio();
+      // Para qualquer audio em reproducao ao trocar de aba dentro da
+      // mesma musica (Cifra <-> Tab <-> Analise). NAO usa _stopAllTabAudio
+      // porque ele destroi a api do AlphaTab (causa partitura sumir).
+      // _pauseActivePlayers para som sem destruir, deixando a partitura
+      // intacta quando user volta pra aba Tab.
+      if (typeof _pauseActivePlayers === 'function') _pauseActivePlayers();
       body.querySelectorAll('.lyric-lang-btn[data-tabtype]').forEach(x => {
         const isActive = x.dataset.tabtype === which;
         x.classList.toggle('active', isActive);
@@ -11277,6 +11278,22 @@ function _stopAllTabAudio() {
     try { _activeAlphaTabApi.stop(); } catch(e) {}
     try { _activeAlphaTabApi.destroy(); } catch(e) {}
     _activeAlphaTabApi = null;
+  }
+  const f = document.querySelector('.alphatab-fab');
+  if (f) f.classList.remove('show');
+  const fb = document.querySelector('.fretboard-overlay');
+  if (fb) fb.classList.remove('show');
+}
+
+// Versao 'leve' do stop: pra usar no switch de aba dentro de uma mesma
+// musica (Cifra <-> Tab <-> Analise). Pausa cifra player + para AlphaTab,
+// mas NAO destroi a api (senao a partitura do tab some quando o usuario
+// volta pra ela). Usado pelo handler de .lyric-lang-btn[data-tabtype].
+function _pauseActivePlayers() {
+  if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
+  if (_activeAlphaTabApi) {
+    try { _activeAlphaTabApi.stop(); } catch(e) {}
+    // NAO destroy: mantem a api viva pra quando o user voltar pra aba Tab.
   }
   const f = document.querySelector('.alphatab-fab');
   if (f) f.classList.remove('show');
