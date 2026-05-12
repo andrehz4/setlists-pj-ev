@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Once (Pearl Jam, Ten 1991, faixa 1). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar Pro, 3 PDFs oficiais (violao + ukulele + piano)",
+    "fetched": "2026-05-12",
+    "note_ukulele": "PDF oficial do Ultimate Guitar para ukulele veio com diagramas de violao (UG nao tem versao ukulele dedicada). Fingerings de ukulele aqui sao adaptacoes manuais usando shapes de acorde maior nos lugares onde a guitarra usa power chord, ja que power chord nao e idiomatico em ukulele."
+  },
+  "title": "Once",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 144,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":   { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "A5":  { "fingering": "x022xx", "fingers": "x012xx", "fundamental": "A" },
+        "Bb":  { "fingering": "x13331", "fingers": "x12341", "fundamental": "Bb" },
+        "G5":  { "fingering": "355xxx", "fingers": "134xxx", "fundamental": "G" },
+        "Bb5": { "fingering": "x133xx", "fingers": "x134xx", "fundamental": "Bb" },
+        "C5":  { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C" },
+        "D5":  { "fingering": "x577xx", "fingers": "x134xx", "fundamental": "D" },
+        "Db5": { "fingering": "x466xx", "fingers": "x134xx", "fundamental": "Db" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 144,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":   { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "A5":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Bb":  { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" },
+        "G5":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Bb5": { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" },
+        "C5":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D5":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Db5": { "fingering": "3331", "fingers": "2341", "fundamental": "Db" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 144,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":   { "notes": ["G", "B", "D"],  "fundamental": "G",  "inversion": null },
+        "A5":  { "notes": ["A", "E"],       "fundamental": "A",  "inversion": null },
+        "Bb":  { "notes": ["Bb", "D", "F"], "fundamental": "Bb", "inversion": null },
+        "G5":  { "notes": ["G", "D"],       "fundamental": "G",  "inversion": null },
+        "Bb5": { "notes": ["Bb", "F"],      "fundamental": "Bb", "inversion": null },
+        "C5":  { "notes": ["C", "G"],       "fundamental": "C",  "inversion": null },
+        "D5":  { "notes": ["D", "A"],       "fundamental": "D",  "inversion": null },
+        "Db5": { "notes": ["Db", "Ab"],     "fundamental": "Db", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [A5]\n\n{section: Verso 1}\n[A5]\nI admit it, what's to say?\nI'll relive it, without pain\n\n{section: Pré-refrão}\n     [A5]\nHm, backstreet lover on the side of the road\nI gotta bomb in my temple that is gonna explode\n                                              [Bb]\nI got a sixteen gauge buried under my clothes, I play\n\n{section: Refrão}\n[G5] [A5]          [Bb5] [C5]       [G5]    [D5]\n  Once upon a time     I could control myself\n[Bb5] [C5] [G5] [A5]   [Bb5] [C5]   [G5]    [D5] [Bb5]\n      Once upon a time      I could lose myself,\n\n{section: Verso 2}\n[A5]\nOh, try and mimic, what's insane\nI am in it, where do I stand?\n\n{section: Pré-refrão}\n     [A5]\nHm, Indian summer and I hate the heat\nI got a back street lover on the passenger seat\n                                                [Bb]\nI got my hand in my pocket, so determined, discreet, I pray\n\n{section: Refrão}\n[G5] [A5]          [Bb5] [C5]       [G5]    [D5]\n  Once upon a time     I could control myself\n[Bb5] [C5] [G5] [A5]   [Bb5] [C5]   [G5]    [D5] [Bb5]\n      Once upon a time      I could lose myself,\n\n{section: Solo}\n[A5] [G5] [A5] [G5]\n[A5] [G5] [A5] [Bb] [A5]\n\n{section: Ponte}\n[G5] [Db5] [C5] [G5] [Db5] [C5] [G5] [Db5] [C5] [G5] [Db5] [C5]\n[G5] [Db5] [C5] [G5] [Db5] [C5] [G5] [Db5] [C5] [G5] [Db5] [C5]\n\n{section: Refrão}\n[G5] [A5]          [Bb5] [C5]       [G5]    [D5]\n  Once upon a time     I could control myself\n[Bb5] [C5] [G5] [A5]   [Bb5] [C5]   [G5]    [D5] [Bb5] [C5]\n      Once upon a time      I could lose myself,\n\n{section: Outro}\n[G5] [A5] [Bb5] [C5]          [G5]   [A5]\n  Once upon a time I could love myself,\n[Bb5] [C5] [G5] [A5]   [Bb5] [C5]   [G5]   [A5]\n      Once upon a time      I could love you,\n[Bb5] [C5] [G5]   [A5] [Bb5] [C5] [G5]   [A5] [Bb5] [C5]\n      Once!  Once!   Once!   Once!\n[G5]    [A5] [Bb5] [C5]\nOnce!   Once!\n[G5] [A5] [Bb5] [C5] [G]\n"
+}

@@ -28,5 +28,8 @@
   "crazy mary": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
   "sirens": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
   "hail hail": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
-  "footsteps": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" }
+  "footsteps": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
+  "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
+  ] }
 }
