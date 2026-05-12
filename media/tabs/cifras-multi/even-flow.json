@@ -1,9 +1,11 @@
 {
   "_meta": {
     "purpose": "Cifra multi-instrumento de Even Flow (Pearl Jam, Ten 1991, faixa 2). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
-    "source": "Ultimate Guitar (3 versoes: violao + ukulele + piano), texto colado direto da pagina",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
     "fetched": "2026-05-12",
-    "note_piano": "UG mostra os acordes do piano como D5 (sem inversao /A). Mantive D5/A no content por ser o nome canonico do violao; a chord dict do piano traduz pras notas D + A com A no baixo."
+    "note_piano": "UG mostra os acordes do piano como D5 (sem inversao /A). Mantive D5/A no content por ser o nome canonico do violao; a chord dict do piano traduz pras notas D + A com A no baixo.",
+    "note_voicings": "Tabela do Claude web revela que Even Flow usa POWER CHORDS no violao (C5, D5) onde UG escreve C, D. Voicings atualizados: C como x355xx (C5) e D como x577xx (D5). Os nomes no content seguem o UG (C, D) mas o som e power chord.",
+    "note_ambiguidades": "Ukulele tem 2 pontos a confirmar com Andre: 1) D5/A no uke -> Claude web sugeriu 'xx -- -- pestana 2a casa' (incompleto), interpretei como xx22 (barre fret 2 nas cordas E+A); na pratica uke nao toca D5/A bem porque o A so existe na corda aberta mais aguda. 2) A# uke -> Claude web mandou 3231 mas o padrao mundialmente aceito de Bb no uke e 3211; usei 3231 literalmente conforme a tabela."
   },
   "title": "Even Flow",
   "artist": "Pearl Jam",
@@ -15,10 +17,10 @@
       "label": "Violão",
       "tuning": "EADGBE",
       "chords": {
-        "D5/A": { "fingering": "x00232", "fingers": "x00132", "fundamental": "D", "bass": "A" },
-        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
-        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
-        "A#":   { "fingering": "x13331", "fingers": "x12341", "fundamental": "A#" }
+        "D5/A": { "fingering": "x00235", "fingers": "x00124", "fundamental": "D", "bass": "A" },
+        "C":    { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C", "voicing": "power" },
+        "D":    { "fingering": "x577xx", "fingers": "x134xx", "fundamental": "D", "voicing": "power" },
+        "A#":   { "fingering": "x13331", "fingers": "x13331", "fundamental": "A#", "barre": 1 }
       },
       "strumming": {
         "label": "WHOLE SONG",
@@ -39,10 +41,10 @@
       "label": "Ukulele",
       "tuning": "GCEA",
       "chords": {
-        "D5/A": { "fingering": "2220", "fingers": "1230", "fundamental": "D", "bass": "A" },
+        "D5/A": { "fingering": "xx22", "fingers": "xx11", "fundamental": "D", "bass": "A", "barre": 2 },
         "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
         "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
-        "A#":   { "fingering": "3211", "fingers": "3211", "fundamental": "A#" }
+        "A#":   { "fingering": "3231", "fingers": "3231", "fundamental": "A#" }
       },
       "strumming": {
         "label": "WHOLE SONG",
