@@ -10,7 +10,9 @@
     { "id": "v1", "label": "Versão 1", "file": "black-v1.gp5", "format": "gp5" },
     { "id": "live", "label": "Ao vivo", "file": "black-live.gp5", "format": "gp5" }
   ] },
-  "alive": { "cifra": true, "tab": true, "tabFormat": "gp4", "key": "A", "tuning": "EADGBE", "bpm": 78 },
+  "alive": { "cifra": true, "cifraMulti": "alive.json", "tab": true, "tabFormat": "gp4", "tabFile": "alive-v1.gp4", "key": "A", "tuning": "EADGBE", "bpm": 78, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "alive-v1.gp4", "format": "gp4" }
+  ] },
   "even flow": { "cifra": true, "cifraMulti": "even-flow.json", "tab": true, "tabFormat": "gp5", "tabFile": "even-flow-v1.gp5", "key": "D", "tuning": "EADGBE", "bpm": 110, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "even-flow-v1.gp5", "format": "gp5" }
   ] },

@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Alive (Pearl Jam, Ten 1991, faixa 3). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-12"
+  },
+  "title": "Alive",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 78,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":     { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "Asus4": { "fingering": "x02230", "fingers": "x01234", "fundamental": "A" },
+        "F":     { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "C":     { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "E":     { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "D":     { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "B":     { "fingering": "x24442", "fingers": "x13331", "fundamental": "B", "barre": 2 },
+        "F#":    { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 78,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":     { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Asus4": { "fingering": "2200", "fingers": "1200", "fundamental": "A" },
+        "F":     { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "C":     { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "E":     { "fingering": "4442", "fingers": "3331", "fundamental": "E" },
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "B":     { "fingering": "4322", "fingers": "4321", "fundamental": "B" },
+        "F#":    { "fingering": "3121", "fingers": "3121", "fundamental": "F#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 78,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":     { "notes": ["A", "C#", "E"],  "fundamental": "A",  "inversion": null },
+        "Asus4": { "notes": ["A", "D", "E"],   "fundamental": "A",  "inversion": null },
+        "F":     { "notes": ["F", "A", "C"],   "fundamental": "F",  "inversion": null },
+        "C":     { "notes": ["C", "E", "G"],   "fundamental": "C",  "inversion": null },
+        "E":     { "notes": ["E", "G#", "B"],  "fundamental": "E",  "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],   "fundamental": "G",  "inversion": null },
+        "D":     { "notes": ["D", "F#", "A"],  "fundamental": "D",  "inversion": null },
+        "B":     { "notes": ["B", "D#", "F#"], "fundamental": "B",  "inversion": null },
+        "F#":    { "notes": ["F#", "A#", "C#"],"fundamental": "F#", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [Asus4] [A] [Asus4] [A] [Asus4] [A] [Asus4]\n[A] [Asus4] [A] [Asus4] [A] [Asus4] [A] [Asus4]\n[A] [Asus4] [F] [C]\n\n{section: Verso 1}\n[A]Son, [Asus4]she said, [A]have I got a [Asus4]little story for you\n[A] [Asus4]What you thought was your [A]daddy [Asus4]was nothin' but a...\n[A]While you were [Asus4]sittin' home a[A]lone at age [Asus4]thirteen\n[A]Your real [Asus4]daddy was dyin', [A]sorry you didn't [Asus4]see him, but I'm [F]glad we talk[C]ed... [F] [C]\n\n{section: Refrão}\n[E]Oh [G]I, [D]oh, I'm still a[A]live\n[E]Hey, I, [G]I, [D]oh, I'm still a[A]live\n[E]Hey [G]I, [D]oh, I'm still a[A]live\n[B]Hey... oh...\n\n{section: Verso 2}\n[A]Oh, [Asus4]she walks slowly, [A]across a [Asus4]young man's room\n[A]She said [Asus4]I'm ready... [A]for you, [Asus4]I [A]can't remember anything to [Asus4]this very day\n[A]'Cept the [Asus4]look, the look...\n[F]Oh, you know where, [C]now I [F]can't see, [C]I just [E]stare...\n\n{section: Refrão}\n[G]I, [D]I'm still a[A]live\n[E]Hey [G]I, [D]but, I'm still a[A]live\n[E]Hey [G]I, [D]boy, I'm still a[A]live\n[E]Hey [G]I, I, [D]I, I'm still a[A]live, yeah\n\n{section: Ponte}\n[B]Ooh [F#]yeah.. [B]yeah yeah [F#]yeah.. oh.. [B] [F#]oh... [B] [F#]\n\n{section: Verso 3}\n[A]Is some[D]thing wrong, [A]she said [D]Well [A]of course there [D]is You're [A]still alive, she [D]said\nOh, and do I [B]deserve [E]to be Is that the [B]question [E]\nAnd if [B]so... [E]if so... who [B]answers... who [E]answers...\n\n{section: Refrão}\n[E]I, [G]oh, [D]I'm still a[A]live\n[E]Hey [G]I, [D]oh, I'm still a[A]live\n[E]Hey [G]I, [D]but, I'm still a[A]live\n[E]Yeah [G]I, ooh, [D]I'm still a[A]live\nYeah yeah yeah yeah\n\n{section: Solo}\n[E] [G] [D] [A] [E] [G] [D] [A]\n[E] [G] [D] [A] [E] [G]\n[D] [A] [E] [G] [D] [A] [E] [G]\nyeah ye ah yeah\n[D] [A]\nYeah yeah yeah yeah yeah\n[E] [G] [D] [A] [E] [G] [D] [A]\n[E] [G] [D] [A] [E] [G] [D] [A]\n[E] [G] [D] [A] [E] [G] [D] [A]\n[E] [G] [D] [A] [E] [G] [D] [A]\n[E] [G] [D] [A] [E] [G] [D] [A]\n\n{section: Outro}\n[E] [G] [D] [A] [E] [G] [D] [A] [E] [G] [E]\nOh, oh, oh, oh\n"
+}
