@@ -11751,6 +11751,16 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
+  // Auto-scroll inicial: posiciona a cifra no topo da viewport pra
+  // usuario ver surface + braco da guitarra juntos sem ter que rolar.
+  // Igual o tab faz no playerStateChanged. Ancorado no transport-top
+  // do cifraPane com offset de 16px pra respiro visual.
+  const scrollAnchor = root.querySelector('.alphatab-transport-top') || root;
+  if (scrollAnchor) {
+    const y = scrollAnchor.getBoundingClientRect().top + window.scrollY - 16;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  }
+
   // Surface da cifra (mesma classe do TAB). Na view Cifras tem scroll
   // interno (overflow-y auto + max-height 56vh); no setlist scroll rola
   // a window. scrollCenter funciona em ambos via scrollIntoView.
