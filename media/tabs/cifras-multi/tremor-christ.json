@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Tremor Christ (Pearl Jam, Vitalogy 1994, faixa 4). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12",
+    "note_voicings": "Tabela do UG menciona voicings especificos em casas altas (A=x-12-11-12-xx, Ab=x-11-10-11-xx, Gb=x-9-8-9-xx, E=x-7-6-7-xx). Aqui usei fingerings standard de barre/major chords (mais facil pra iniciantes). Quem quiser tocar com o som original da gravacao, deslocar pras posicoes altas indicadas."
+  },
+  "title": "Tremor Christ",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "Ab": { "fingering": "466544", "fingers": "134211", "fundamental": "Ab", "barre": 4 },
+        "Gb": { "fingering": "244322", "fingers": "134211", "fundamental": "Gb", "barre": 2 },
+        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Ab": { "fingering": "5343", "fingers": "4231", "fundamental": "Ab" },
+        "Gb": { "fingering": "3121", "fingers": "3121", "fundamental": "Gb" },
+        "E":  { "fingering": "4442", "fingers": "3331", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":  { "notes": ["A", "C#", "E"],   "fundamental": "A",  "inversion": null },
+        "Ab": { "notes": ["Ab", "C", "Eb"],  "fundamental": "Ab", "inversion": null },
+        "Gb": { "notes": ["Gb", "Bb", "Db"], "fundamental": "Gb", "inversion": null },
+        "E":  { "notes": ["E", "G#", "B"],   "fundamental": "E",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [Ab] [A] [E]\n[A] [Ab] [A] [Ab]\n\n{section: Verso 1}\n[A]Winded is the [Ab]sailor [A]drifting by the [Ab]storm\n[A]Wounded is the [Ab]organ he [A]left all bloodied on the [Ab]shore\n[A]Gorgeous was his [Ab]savior, [A]sees her, drowning in his [Ab]wake\n[A]A-daily taste the [Ab]salt of her [A]tears but, a chance blamed [Ab]fate\n\n{section: Refrão}\n[Gb]Little [Ab]secrets, tremors, [Gb]turned to [Ab]quake\n[Gb]The smallest oceans still get [Ab]big [Gb]big [Ab]waves\n\n{section: Instrumental}\n[A] [Ab] [A] [Ab] [A] [Ab] [A] [Ab]\n\n{section: Verso 2}\n[A]Ransom paid the [Ab]devil. [A]He whispers pleasing [Ab]words\n[A]Triumphant are the [Ab]angels if they [A]can get there [Ab]first\n\n{section: Refrão}\n[Gb]Little [Ab]secrets, tremors, [Gb]turned to [Ab]quake\n[Gb]The smallest oceans still get [Ab]big [Gb]big [Ab]waves\n\n{section: Instrumental}\n[A] [Ab] [A] [Ab]\n\n{section: Ponte}\n[A]I'll decide\n[Ab]Take the dive\n[A]Take my time\n[Ab]Not my life\n[A]Wait for signs\n[Ab]Believe in lies\n[A]To get by\n[Ab]It's di[A]vine [Ab]\nYou know what it's [A]like [Ab]\n\n{section: Outro}\n[Gb]Turns the [Ab]bow back tows and [Gb]drops the [Ab]line\n[Gb]Puts his faith and love in [Ab]tremor [Gb]Christ [Ab]\n"
+}

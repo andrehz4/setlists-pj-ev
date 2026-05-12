@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Whipping (Pearl Jam, Vitalogy 1994, faixa 6). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12"
+  },
+  "title": "Whipping",
+  "artist": "Pearl Jam",
+  "key": "E",
+  "bpm": 155,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Em": { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 155,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Em": { "fingering": "0402", "fingers": "0301", "fundamental": "E" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "E":  { "fingering": "4442", "fingers": "3331", "fundamental": "E" },
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 155,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Em": { "notes": ["E", "G", "B"],   "fundamental": "E", "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],   "fundamental": "G", "inversion": null },
+        "E":  { "notes": ["E", "G#", "B"],  "fundamental": "E", "inversion": null },
+        "A":  { "notes": ["A", "C#", "E"],  "fundamental": "A", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Em] [G] [Em] [G]\n[Em] [G] [Em] [G]\n[E] [G] [A] [G]\n[E] [G] [A] [G]\n[E] [G] [A] [G]\n[E] [G] [A]\n\n{section: Verso 1}\n[G]Don't need a [E]helmet, [G]got a [A]hard [G]hard [E]head [G] [A]\n[G]Don't need a [E]raincoat, [G]I'm [A]already [G]wet [E] [G] [A]\n[G]Don't need a [E]bandage, [G]there's [A]too much [G]blood [E] [G] [A]\n[G]After a [E]while seems to [G]roll [A]right [G]off [E] [G] [A] [G]\n\n{section: Interlúdio}\n[E] [G] [A] [G]\n[E] [G] [A] [G]\n[E] [G] [A] [G]\n[E] [G] [A] [G]\n\n{section: Refrão}\n[Em]They're whipping\n[Em]They're whipping\n[Em]They're whipping\n[Em]They're whipping\n\n{section: Verso 2}\n[G]Don't need a [E]hand, [G]there's [A]always arms [G]attached [E] [G] [A]\n[G]I don't get [E]behind I [G]can't [A]fall back [G] [E] [G] [A]\n[G]Why must we [E]trust all [G]these [A]rusted [G]rails? [E] [G] [A]\n[G]They don't want [E]no change we [G]already [A]have [G] [E] [G] [A] [G]\n\n{section: Refrão}\n[E] [G] [A] [G]They're whipping\n[E] [G] [A] [G]They're whipping\n[E] [G] [A] [G]They're whipping\n[E] [G] [A] [G]They're whipping\n\n{section: Interlúdio}\n[A]\n\n{section: Verso 3}\n[G]Don't mean to [E]push but [G]I'm [A]being [G]shoved [E] [G] [A]\n[G]I'm just like [E]you [G]think [A]we've had [G]enough [E] [G] [A]\n[G]I can't be[E]lieve a [G]thing [A]they want us [G]to [E] [G] [A]\n[G]We all got [E]scars, they [G]should [A]have them [G]too [E] [G] [A] [G]\n\n{section: Refrão}\n[E] [G] [A] [G]They're whipping\n[E] [G] [A] [G]They're whipping\n[E] [G] [A] [G]They're whipping\n[E] [G] [A] [G]They're whipping\n[E] [G] [A] [G]They're whipping\n[E] [G] [A] [G]They're whipping\n[E] [G] [A]They're whipping\n[G]Ooooh, they're [E]whipping [G] [A] [G]\n"
+}

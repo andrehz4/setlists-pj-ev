@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Nothingman (Pearl Jam, Vitalogy 1994, faixa 5). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra oficial) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12",
+    "note_compasso": "Musica em 3/4 (valsa) a 78 BPM. Acordes 'add' caracteristicos: Fadd9, F6, Dm11/C, Bbadd9, Cadd11. Strumming pattern em 3 tempos."
+  },
+  "title": "Nothingman",
+  "artist": "Pearl Jam",
+  "key": "F",
+  "bpm": 78,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Fadd9":  { "fingering": "xx3213", "fingers": "xx3214", "fundamental": "F" },
+        "F6":     { "fingering": "xx3231", "fingers": "xx2431", "fundamental": "F" },
+        "Dm11/C": { "fingering": "x30231", "fingers": "x30231", "fundamental": "D", "bass": "C" },
+        "Bbadd9": { "fingering": "x13311", "fingers": "x13311", "fundamental": "Bb", "barre": 1 },
+        "Cadd11": { "fingering": "x32013", "fingers": "x32014", "fundamental": "C" },
+        "F":      { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 }
+      },
+      "strumming": {
+        "label": "3/4 VALSA",
+        "bpm": 78,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Fadd9":  { "fingering": "0010", "fingers": "0010", "fundamental": "F" },
+        "F6":     { "fingering": "2213", "fingers": "2213", "fundamental": "F" },
+        "Dm11/C": { "fingering": "2210", "fingers": "3210", "fundamental": "D", "bass": "C" },
+        "Bbadd9": { "fingering": "3210", "fingers": "3210", "fundamental": "Bb" },
+        "Cadd11": { "fingering": "0013", "fingers": "0013", "fundamental": "C" },
+        "F":      { "fingering": "2010", "fingers": "2010", "fundamental": "F" }
+      },
+      "strumming": {
+        "label": "3/4 VALSA",
+        "bpm": 78,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Fadd9":  { "notes": ["F", "A", "C", "G"],    "fundamental": "F",  "inversion": null },
+        "F6":     { "notes": ["F", "A", "C", "D"],    "fundamental": "F",  "inversion": null },
+        "Dm11/C": { "notes": ["C", "D", "F", "A"],    "fundamental": "D",  "inversion": "C", "bass": "C" },
+        "Bbadd9": { "notes": ["Bb", "D", "F", "C"],   "fundamental": "Bb", "inversion": null },
+        "Cadd11": { "notes": ["C", "E", "G", "F"],    "fundamental": "C",  "inversion": null },
+        "F":      { "notes": ["F", "A", "C"],         "fundamental": "F",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Fadd9] [F6] [Dm11/C] [F6] [Bbadd9]\n[Fadd9] [F6] [Dm11/C] [F6]\n[Bbadd9]\n\n{section: Verso 1}\n[Fadd9]once divided... [F6] [Dm11/C]nothing left to [F6]subtract... [Bbadd9]\n[Fadd9]some words when spoken... [F6] [Dm11/C]can't be taken [F6]back... [Bbadd9]\n[Fadd9]walks on his own... [F6] [Dm11/C]with thoughts he can't [F6]help thinking... [Bbadd9]\n[Fadd9]future's above... [F6] [Dm11/C]but in the past [F6]he's slow and [Bbadd9]sinking... [F6]\n\n{section: Pré-refrão}\n[Bbadd9]caught a bolt 'a lightnin'... [Cadd11]cursed the day [Bbadd9]he let it [Fadd9]go...\n[Bbadd9] [Cadd11]\n\n{section: Refrão}\n[Fadd9]nothingman...\n[Bbadd9] [Dm11/C]nothingman...\n[Fadd9]isn't it something?\n[Bbadd9] [Dm11/C]nothingman...\n\n{section: Verso 2}\n[Fadd9]she once believed... [F6] [Dm11/C]in every story he had [F6]to tell... [Bbadd9]\n[Fadd9]one day she stiffened... [F6] [Dm11/C]took the other [F6]side... [Bbadd9]\n[Fadd9]empty stares... [F6] [Dm11/C]from each corner of a [F6]shared prison [Bbadd9]cell...\n[Fadd9]one just escapes... [F6] [Dm11/C]one's left [F6]inside the [Bbadd9]well...\n\n{section: Pré-refrão}\n[F6] [Bbadd9]and he who forgets... [Cadd11]will be destined to [Bbadd9]remember... [Fadd9] [Bbadd9]\n[Cadd11]\n\n{section: Refrão}\n[Fadd9]nothingman...\n[Bbadd9] [Dm11/C]nothingman...\n[Fadd9]isn't it something?\n[Bbadd9] [Dm11/C]nothingman...\n\n{section: Ponte}\n[F6]oh, she don't want [Bbadd9]him...\n[Cadd11]oh, she won't feed him... [F6]after he's flown [Bbadd9]away... [Cadd11]\n\n{section: Interlúdio}\n[Bbadd9]oh, into the [Cadd11]sun... [Bbadd9]ah, into the [F]sun...\n[Bbadd9]burn... [Cadd11]burn...\n\n{section: Refrão}\n[Fadd9]nothingman...\n[Bbadd9] [Dm11/C]nothingman...\n[Fadd9]isn't it something?\n[Bbadd9] [Dm11/C]nothingman...\n[Fadd9]nothingman...\n[Bbadd9] [Dm11/C]nothingman...\n[Fadd9]coulda' been something...\n[Bbadd9] [Dm11/C]nothingman...\n\n{section: Outro}\n[Fadd9]oh... [Bbadd9] [Fadd9]ohh... [Bbadd9]ohh...\n[Fadd9] [Bbadd9] [Fadd9]\n"
+}

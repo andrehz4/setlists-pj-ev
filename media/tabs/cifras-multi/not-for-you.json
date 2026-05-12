@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Not For You (Pearl Jam, Vitalogy 1994, faixa 3). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra oficial) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12",
+    "note_fsharp7": "Andre's tabela menciona 'F#/E' pra violao e ukulele, e 'F#7' pro piano. UG content usa 'F#7'. Mantive F#7 como nome canonico."
+  },
+  "title": "Not For You",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 140,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E":   { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "F#7": { "fingering": "242322", "fingers": "131324", "fundamental": "F#", "barre": 2 },
+        "Em7": { "fingering": "020000", "fingers": "020000", "fundamental": "E" },
+        "F":   { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "Am":  { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E":   { "fingering": "4442", "fingers": "3331", "fundamental": "E" },
+        "F#7": { "fingering": "3424", "fingers": "2314", "fundamental": "F#" },
+        "Em7": { "fingering": "0202", "fingers": "0102", "fundamental": "E" },
+        "F":   { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Am":  { "fingering": "2000", "fingers": "2000", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E":   { "notes": ["E", "G#", "B"],         "fundamental": "E",  "inversion": null },
+        "F#7": { "notes": ["F#", "A#", "C#", "E"],  "fundamental": "F#", "inversion": null },
+        "Em7": { "notes": ["E", "G", "B", "D"],     "fundamental": "E",  "inversion": null },
+        "F":   { "notes": ["F", "A", "C"],          "fundamental": "F",  "inversion": null },
+        "Am":  { "notes": ["A", "C", "E"],          "fundamental": "A",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7]\n[E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7]\n[E] [F#7] [Em7]\nRestless soul,\n\n{section: Verso 1}\n[E] [F#7] [Em7]enjoy your [E] [F#7] [Em7]youth\nLike [E] [F#7] [Em7]Muhammad hits the [E] [F#7] [Em7]truth\nCan't escape [E] [F#7] [Em7]from the common [E] [F#7] [Em7]rule\nIf you hate some[E] [F#7] [Em7]thing, don't you do it [E] [F#7] [Em7]too (Too)\n\n{section: Pré-verso}\n[E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7]\n\n{section: Verso 2}\nSmall, my [E] [F#7] [Em7]table, asits just [E] [F#7] [Em7]two\nI got so [E] [F#7] [Em7]crowded, I can't make [E] [F#7] [Em7]room\nOh, where did they come [E] [F#7] [Em7]from? Stormed my [E] [F#7] [Em7]room!\nAh, and you dare [E] [F#7] [Em7]say it belongs to [E] [F#7] [Em7]you, to you\nThis is not for [E] [F#7] [Em7]you\n\n{section: Refrão}\nThis is not for [E] [F#7] [Em7]you\nThis is not for [E] [F#7] [Em7]you\nOh, not for you, not [E] [F#7] [Em7]you\n\n{section: Ponte}\n[F] [Am] [F]My friends call me, yeah, they [Am]call me\n[F]My friends, they don't [Am]scream\nMy friends don't call, my friends [F]don't\n\n{section: Solo}\n[E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7]\n\n{section: Interlúdio}\n[E] [F#7] [E] [E] [F#7] [E] [E] [F#7] [E] [E] [F#7] [E]\n\n{section: Verso 3}\nAll that's [E] [F#7] [Em7]sacred comes from [E] [F#7] [E]youth\n[E] [F#7] [Em7]Dedications, naive and [E] [F#7] [E]true\nWith no [E] [F#7] [Em7]power, nothing to [E] [F#7] [E]do\nI still [E] [F#7] [Em7]remember, why don't you, [E] [F#7] [E]don't you?\nThis is not for [E] [F#7] [Em7]you\n\n{section: Refrão}\nThis is not for [E] [F#7] [Em7]you\nThis is not for [E] [F#7] [Em7]you\nOh, never was for [E] [F#7] [Em7]you, fuck you\nThis is not for [E] [F#7]you\n[Em7]Oh, this is not for [E] [F#7] [Em7]you, yeah, you\nThis is not for [E] [F#7]you\n[Em7]Oh, not for you, [E] [F#7] [Em7]oh, you!\n\n{section: Pós-refrão}\n[E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7]\n[E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7]\n[E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7]\n\n{section: Outro}\n[E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7] [E] [F#7] [Em7]\n[E]\n"
+}
