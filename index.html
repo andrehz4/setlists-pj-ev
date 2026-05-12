@@ -3300,18 +3300,29 @@ html[data-theme="dark"] .alphatab-surface {
 }
 /* Variante cifra da surface: contem chord-chips (ChordPro renderizado) em
    vez de partitura vetorial. Mesmo container + scroll, padding maior pra
-   respiro do texto da letra. Cor de fundo discreta. */
+   respiro do texto da letra. Altura limitada com scroll interno pra cifra
+   nao empurrar o resto pra fora da viewport (braco da guitarra precisa
+   ficar visivel junto). */
 .cifra-surface {
   padding: 14px 18px;
   min-height: 140px;
+  max-height: 40vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+.cifra-surface::-webkit-scrollbar { width: 8px; }
+.cifra-surface::-webkit-scrollbar-thumb {
+  background: var(--divider-strong, #b3a78a);
+  border-radius: 4px;
 }
 .cifra-surface .cifra-stanza:first-child { margin-top: 0; }
 .cifra-surface .cifra-stanza:last-child { margin-bottom: 0; }
-/* Limite de altura interna no modo view Cifras (ja vem do .cifra-detail-wrap
-   .alphatab-surface acima) — chord-chips rolam DENTRO desse container.
-   No setlist inline (fora de .cifra-detail-wrap) deixamos auto pra cifra
-   inteira aparecer e rolar com a window. */
-.cifra-detail-wrap .cifra-surface { max-height: 56vh; }
+/* Na view Cifras, um pouco mais alto (48vh) ja que tem mais espaco
+   vertical disponivel no detail-wrap. */
+.cifra-detail-wrap .cifra-surface { max-height: 48vh; }
+@media (max-width: 600px) {
+  .cifra-surface { max-height: 50vh; }
+}
 /* Transport TOP (compacta): fica acima da partitura. Play+Stop+Speed select+Loop
    pra controle rapido sem rolar ate o fim. Espelha estado do bottom via JS. */
 .alphatab-transport-top {
@@ -8924,10 +8935,12 @@ function _renderChordMiniFretboard(chordName) {
   // Fundo madeira (rosewood) + nut osso
   svg += `<rect x="${padL}" y="${padT - 4}" width="${W - padL - padR}" height="${H - padT - padB + 8}" fill="#5a3a1f"/>`;
   svg += `<rect x="${padL - 5}" y="${padT - 4}" width="5" height="${H - padT - padB + 8}" fill="#f9f3e3" stroke="#8a7a4a" stroke-width="0.5"/>`;
-  // Adesivos PJ: stickman no canto esquerdo (sobre o nut) e sun-logo no
-  // canto direito do braco. mix-blend-mode: screen integra na madeira.
-  svg += `<image href="media/decals/pj-stickman.png" x="${padL - 16}" y="${padT - 2}" width="24" height="42" opacity="0.42" style="mix-blend-mode: screen;" preserveAspectRatio="xMidYMid meet"/>`;
-  svg += `<image href="media/decals/pj-sun-logo.png" x="${W - padR - 28}" y="${padT - 8}" width="26" height="26" opacity="0.4" style="mix-blend-mode: screen;" transform="rotate(12 ${W - padR - 15} ${padT + 5})" preserveAspectRatio="xMidYMid meet"/>`;
+  // Adesivos PJ: stickman no canto superior ESQUERDO extremo, sun-logo no
+  // canto superior DIREITO extremo. Bem transparentes (0.18) pra nao
+  // disputar atencao com as notas acendendo. mix-blend-mode: screen integra
+  // na madeira escura.
+  svg += `<image href="media/decals/pj-stickman.png" x="2" y="2" width="18" height="32" opacity="0.18" style="mix-blend-mode: screen;" preserveAspectRatio="xMidYMid meet"/>`;
+  svg += `<image href="media/decals/pj-sun-logo.png" x="${W - 22}" y="2" width="20" height="20" opacity="0.18" style="mix-blend-mode: screen;" transform="rotate(12 ${W - 12} 12)" preserveAspectRatio="xMidYMid meet"/>`;
   // Trastes prateados
   for (let f = 1; f <= N_FRETS; f++) {
     const x = fretX(f);
@@ -11769,15 +11782,24 @@ async function _startCifraPlayer(root, bpm) {
     })();
     if (bracoOn) _updateCifraFretboard(chord, nextChord, root);
     else _hideCifraFretboard();
-    // Scroll INTELIGENTE: so rola se o chip ativo saiu da viewport.
-    // scrollIntoView block:center toda iteracao rolava a pagina pra cima
-    // mesmo quando o chip ja estava visivel, perdendo a partitura+braco
-    // de vista. Agora respeita uma margem central de 30% — so age quando
-    // chip sai dessa faixa.
+    // Scroll INTELIGENTE: so rola se o chip ativo saiu da faixa central
+    // (30%) do container scrollavel. Como a cifra-surface agora tem scroll
+    // interno (max-height 40vh/48vh), o container correto eh a surface
+    // sempre que existir; cai pra window so quando nao houver scroll
+    // interno (fallback raro).
     const r = chip.getBoundingClientRect();
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    const margin = vh * 0.3;
-    if (r.top < margin || r.bottom > vh - margin) {
+    const sur = chip.closest('.cifra-surface, .alphatab-surface');
+    let needsScroll = false;
+    if (sur && sur.clientHeight < sur.scrollHeight) {
+      const sr = sur.getBoundingClientRect();
+      const margin = (sr.bottom - sr.top) * 0.3;
+      needsScroll = r.top < sr.top + margin || r.bottom > sr.bottom - margin;
+    } else {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const margin = vh * 0.3;
+      needsScroll = r.top < margin || r.bottom > vh - margin;
+    }
+    if (needsScroll) {
       chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
     }
     // Duracao lida dinamicamente: se user move o speed slider durante o
