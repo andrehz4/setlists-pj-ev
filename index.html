@@ -3063,6 +3063,29 @@ html[data-theme="light"] .drawer-section-label.my-media {
   gap: 6px;
 }
 .cifra-fretboard.show { display: flex; }
+/* Modo inline: na view Cifras & Tabs, fica DOCKED dentro do .tab-pane-cifra,
+   entre .alphatab-surface e .alphatab-transport-bottom. Igual o
+   .fretboard-overlay.inline do tab. */
+.cifra-fretboard.inline {
+  position: static;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 6px;
+  padding: 8px 12px;
+  z-index: auto;
+  border-color: var(--divider);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.cifra-fretboard.inline.show { display: flex; }
+.cifra-fretboard.inline .cifra-fretboard-svg-wrap {
+  height: calc(160px * var(--cifra-fb-scale, 1));
+}
 .cifra-fretboard-header {
   display: flex;
   align-items: baseline;
@@ -11372,8 +11395,33 @@ function _ensureCifraFretboard() {
 
   return fb;
 }
-function _updateCifraFretboard(chordName, nextChord) {
+// Mostra o overlay do braco da cifra. Docking automatico igual ao
+// .fretboard-overlay do tab:
+//   - Se o root do cifra player esta dentro de .cifra-detail-wrap (view
+//     Cifras & Tabs), MOVE o overlay pra dentro da .tab-pane-cifra, entre
+//     a surface e o transport-bottom, e aplica classe .inline (position
+//     static, full-width).
+//   - Senao (setlist faixa do show), mantem no body como floating no
+//     canto direito (remove .inline).
+// Ver memoria feedback_fretboard_posicionamento.md.
+function _updateCifraFretboard(chordName, nextChord, root) {
   const fb = _ensureCifraFretboard();
+  // Docking: detecta contexto pelo root e move o overlay no DOM
+  if (root) {
+    const inCifraView = !!root.closest('.cifra-detail-wrap');
+    const transportBottom = root.querySelector('.alphatab-transport-bottom');
+    if (inCifraView && transportBottom && fb.parentElement !== root) {
+      root.insertBefore(fb, transportBottom);
+      fb.classList.add('inline');
+    } else if (!inCifraView && fb.parentElement !== document.body) {
+      document.body.appendChild(fb);
+      fb.classList.remove('inline');
+    } else if (!inCifraView) {
+      fb.classList.remove('inline');
+    } else {
+      fb.classList.add('inline');
+    }
+  }
   fb.classList.add('show');
   const nameEl = fb.querySelector('.cifra-fretboard-chord-name');
   const nextEl = fb.querySelector('.cifra-fretboard-next-name');
@@ -11394,6 +11442,12 @@ function _hideCifraFretboard() {
   if (fb) {
     fb.classList.remove('show');
     fb.classList.remove('cifra-fretboard-pulse');
+    // Se estava docked numa .tab-pane-cifra, devolve ao body pra evitar
+    // que fique preso num pane antigo quando trocar de musica.
+    if (fb.classList.contains('inline') && fb.parentElement !== document.body) {
+      document.body.appendChild(fb);
+      fb.classList.remove('inline');
+    }
   }
 }
 
@@ -11537,7 +11591,7 @@ async function _startCifraPlayer(root, bpm) {
       const btn = root.querySelector('.cifra-mode-braco');
       return !btn || btn.dataset.state !== 'off';
     })();
-    if (bracoOn) _updateCifraFretboard(chord, nextChord);
+    if (bracoOn) _updateCifraFretboard(chord, nextChord, root);
     else _hideCifraFretboard();
     // Scroll center: chord ativo sempre no meio do scroll container (surface
     // na view Cifras, window no setlist). scrollIntoView delega corretamente.
