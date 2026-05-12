@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Present Tense (Pearl Jam, No Code 1996, faixa 10). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Present Tense por Pearl Jam, 1.057 views, 368 saves)",
+    "fetched": "2026-05-12",
+    "note_compasso": "4/4 a ~76 BPM. Tom D, sem capotraste, AFINACAO DROP D (DADGBE). Estrofes descem D-C-Bm-A (linha de baixo cromatica). Refrao abre D-F-Dm-F (com troca de qualidade maior/menor no segundo grau) e fecha com a cadencia ascendente Bb-A-G como ressonancia. Strumming nao consta no UG (padrao proposto eh editorial, colcheias D-U)."
+  },
+  "title": "Present Tense",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 76,
+  "tuning_note": "Drop D (DADGBE)",
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "DADGBE",
+      "chords": {
+        "D":  { "fingering": "000232", "fingers": "000132", "fundamental": "D", "notes": "drop D: low D corda solta usa o oitavado" },
+        "C":  { "fingering": "x32010", "fingers": "x32010", "fundamental": "C", "notes": "drop D: abafar a low D ou fretar fret 10 (impraticavel)" },
+        "Bm": { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "notes": "drop D: abafar low D" },
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A", "notes": "drop D: abafar low D" },
+        "F":  { "fingering": "x33211", "fingers": "x34211", "fundamental": "F", "notes": "drop D: abafar low D ou usar fret 3 (333211)" },
+        "Dm": { "fingering": "000231", "fingers": "000231", "fundamental": "D", "notes": "drop D: low D solta soma ao baixo de Dm" },
+        "G":  { "fingering": "x20003", "fingers": "x20003", "fundamental": "G", "notes": "drop D: abafar low D ou fretar fret 5 (5x0003)" },
+        "Bb": { "fingering": "x13331", "fingers": "x12341", "fundamental": "Bb", "barre": 1, "notes": "drop D: abafar low D" }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
+        "bpm": 76,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Bm": { "fingering": "4222", "fingers": "4111", "fundamental": "B", "barre": 2 },
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Dm": { "fingering": "2210", "fingers": "2310", "fundamental": "D" },
+        "G":  { "fingering": "0232", "fingers": "0213", "fundamental": "G" },
+        "Bb": { "fingering": "3211", "fingers": "2311", "fundamental": "Bb", "barre": 1 }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
+        "bpm": 76,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":  { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "C":  { "notes": ["C", "E", "G"],  "fundamental": "C", "inversion": null },
+        "Bm": { "notes": ["B", "D", "F#"], "fundamental": "B", "inversion": null },
+        "A":  { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "F":  { "notes": ["F", "A", "C"],  "fundamental": "F", "inversion": null },
+        "Dm": { "notes": ["D", "F", "A"],  "fundamental": "D", "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],  "fundamental": "G", "inversion": null },
+        "Bb": { "notes": ["Bb", "D", "F"], "fundamental": "Bb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [C] [Bm]\n[A]\n\n{section: Verso 1}\n[D]Do you see the way that [C]tree bends? [Bm]Does it inspire? [A]\n[D]Leaning out to catch the [C]sun's rays... [Bm]a lesson to be ap[A]plied...\n[D]Are you gettin' something [C]out of this all [Bm]encompassing [A]trip?\n\n{section: Refrão}\n[D]You can spend your time alone [F]redigesting past regrets [Dm]oh...\n[F]Or you can [D]come to terms and realize\n[F]You're the only one who can for[D]give yourself oh yeah...\n[F]Makes much more [D]sense to [F]live in the present [D]tense...\n\n{section: Interlúdio}\n[C] [Bm] [A]\n\n{section: Verso 2}\n[D]Have you ideas on how [C]this life ends?\n[Bm]Checked your hands and studied the [A]lines?\n[D]Have you the belief that the [C]road ahead ascends [Bm]off into the [A]light?\n\n{section: Verso 3}\n[D]Seems that needlessly it's [C]gettin' harder\nTo [Bm]find an approach and a way to [A]live...\n[D]Are we gettin' something [C]out of this all[Bm]encompassing [A]trip?\n\n{section: Refrão}\n[D]You can spend your time alone [F]redigesting past regrets [Dm]oh...\n[F]Or you can [D]come to terms and realize\nYou're the [F]only one who can forgive yourself [D]oh yeah... [F]\nMakes much more [D]sense to [F]live in the present [G]tense... [Bb] [A] [G]\n\n{section: Outro 1}\n[Bb] [G] [Bb] [G]\n[Bb] [D]\n\n{section: Outro 2}\n[D] [C] [Bm] [A]\n[D] [C] [Bm] [A]\n[D] [C] [Bm] [A]\n"
+}
