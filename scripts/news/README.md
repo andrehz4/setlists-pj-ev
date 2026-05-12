@@ -6,9 +6,28 @@ Pipeline de coleta + curadoria + publicacao de noticias PJ. 3 backends de curado
 
 | Backend     | Como aciona                  | Custo           | API key                |
 |-------------|------------------------------|-----------------|------------------------|
-| `anthropic` | GH Actions cron 6h (default) | ~$1-2/mes       | `ANTHROPIC_API_KEY`    |
-| `gemini`    | GH Actions cron 6h           | gratis (1500/d) | `GEMINI_API_KEY`       |
+| `gemini` ⭐ | GH Actions cron 6h (default) | gratis (free tier cobre) | `GEMINI_API_KEY` |
+| `anthropic` | GH Actions cron 6h           | ~$1-2/mes       | `ANTHROPIC_API_KEY`    |
 | `routine`   | Claude routine via /schedule | quota plano     | nenhuma (usa Claude Code) |
+
+### Gemini: opcoes de modelo
+
+O modelo padrao eh `gemini-2.5-flash` (estavel, free tier 500 RPD >> 10/dia que usamos).
+Pra trocar, defina a **GitHub repo variable** (nao secret) `GEMINI_MODEL`:
+
+Settings → Secrets and variables → Actions → Variables tab → New repository variable
+
+| Modelo                            | Custo/mes (300 nots) | Free tier  | Pra que serve                          |
+|-----------------------------------|----------------------|------------|----------------------------------------|
+| `gemini-2.5-flash-lite`           | ~$0.18               | ✅ 500 RPD | mais economico, qualidade ok           |
+| **`gemini-2.5-flash`** ⭐ default | ~$0.77               | ✅ 500 RPD | melhor balanco custo/voz autoral      |
+| `gemini-2.5-pro`                  | ~$3.11               | ⚠️ limit   | melhor prosa, mais caro               |
+| `gemini-3-flash-preview`          | ~$1.07               | ✅         | flagship Flash 3.x, preview (instavel) |
+| `gemini-3.1-pro-preview`          | ~$4.26               | ❌         | top atual, sem free tier              |
+
+Local: `GEMINI_MODEL=gemini-2.5-pro node scripts/news/fetch-news.mjs --curator=gemini --dry-run`
+
+NOTA: `gemini-2.0-flash` foi DEPRECADO em 2026-06-01. Nao usar.
 
 Selecao:
 - Local: `node scripts/news/fetch-news.mjs --curator <anthropic|gemini|routine>`

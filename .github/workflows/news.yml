@@ -41,11 +41,14 @@ jobs:
 
       - name: Fetch news
         env:
-          # Default cron usa anthropic; manual dispatch pode escolher.
           # Define ambas as keys; o curator nao usado simplesmente nao chama.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           NEWS_CURATOR: ${{ inputs.curator || 'gemini' }}
+          # Modelo Gemini: trocavel via repo variable GEMINI_MODEL.
+          # Opcoes: gemini-2.5-flash (default), gemini-2.5-flash-lite, gemini-2.5-pro,
+          # gemini-3-flash-preview, gemini-3.1-pro-preview. Tabela: ai.google.dev/pricing
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
         run: |
           ARGS=""
           if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
