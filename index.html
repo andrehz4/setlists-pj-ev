@@ -3382,6 +3382,32 @@ html[data-theme="dark"] .alphatab-surface {
   padding: 5px 8px;
   cursor: pointer;
 }
+/* Seletor de versao da tab: mesma estetica do speed-compact mas com
+   accent vermelho PJ pra destacar (musica pode ter 'Ao vivo' alem
+   da Versao 1, decisao musical mais relevante que velocidade). */
+.atc-version-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pj, #c1272d);
+}
+.alphatab-version-select {
+  font: 700 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  background: #fff;
+  color: var(--ink, #1a1611);
+  border: 1px solid rgba(193, 39, 45, 0.5);
+  border-radius: 3px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+html[data-theme="dark"] .alphatab-version-select {
+  background: var(--bg-card);
+  color: var(--ink);
+  border-color: rgba(193, 39, 45, 0.55);
+}
 .alphatab-status-top {
   margin-left: auto;
   flex-basis: auto;
@@ -9086,12 +9112,16 @@ async function _ensureAlphaTab() {
   }
   return _alphaTabPromise;
 }
-async function _initAlphaTabPanel(container, songKey, tabFormat) {
+async function _initAlphaTabPanel(container, songKey, tabFormat, tabFile) {
   const at = await _ensureAlphaTab();
   if (!at) throw new Error('alphaTab indisponivel');
   const slug = _tabSlug(songKey);
   const ext = tabFormat === 'alphatex' ? 'alphatex' : (tabFormat || 'gp');
-  const fileUrl = `media/tabs/gp/${slug}.${ext}`;
+  // Suporte a tabFile explicito (musicas com varias versoes; manifest tem
+  // 'tabFile' apontando pra default da primeira versao). Senao usa o slug.
+  const fileUrl = tabFile
+    ? `media/tabs/gp/${tabFile}`
+    : `media/tabs/gp/${slug}.${ext}`;
   const libBase = `media/lib/alphatab`;
   const settings = {
     player: {
@@ -9391,6 +9421,17 @@ function _renderTabPanel(body, songKey, tabMeta) {
   if (hasTab) {
     const tabPane = body.querySelector('.tab-pane-tab');
     if (tabPane) {
+      // Seletor de versao: so renderiza quando tabMeta.versions tem >=2.
+      // Itens sao curados (sem nomes de pessoas): 'Versao 1', 'Versao 2',
+      // 'Ao vivo', etc. Default: primeira da lista.
+      const versions = (tabMeta && Array.isArray(tabMeta.versions)) ? tabMeta.versions : [];
+      const versionSelectHtml = versions.length >= 2
+        ? `<label class="atc-version-compact">VERS&Atilde;O
+             <select class="alphatab-version-select" aria-label="Vers&atilde;o da tab">
+               ${versions.map((v, i) => `<option value="${v.id}"${i === 0 ? ' selected' : ''}>${(v.label || v.id || '').replace(/&/g,'&amp;').replace(/</g,'&lt;')}</option>`).join('')}
+             </select>
+           </label>`
+        : '';
       tabPane.innerHTML = `
         <div class="alphatab-transport alphatab-transport-top" role="toolbar" aria-label="Controles de reprodu&ccedil;&atilde;o (topo)">
           <button type="button" class="atc-btn-mini alphatab-play" data-state="idle" data-icon-only="false" aria-label="Tocar / pausar">▶ Play</button>
@@ -9405,6 +9446,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
               <option value="1.5">1.5&times;</option>
             </select>
           </label>
+          ${versionSelectHtml}
           <button type="button" class="atc-btn-mini alphatab-btn alphatab-loop" data-state="off" aria-label="Loop de trecho">🔁 Loop</button>
           <span class="alphatab-status alphatab-status-top" aria-live="polite">aguardando soundfont…</span>
         </div>
@@ -9447,7 +9489,10 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const prevBtn = prevBtns[0];
       const loopBtn = loopBtns[loopBtns.length - 1]; // bottom autoritativo pro loop overlay
       const status = statusEls[statusEls.length - 1]; // bottom autoritativo
-      _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat).then(api => {
+      // Resolve arquivo inicial: usa tabFile (preferencial; presente nas
+      // musicas com versions[]) OU cai pro slug.format default antigo.
+      const initialTabFile = tabMeta.tabFile || (versions[0] && versions[0].file) || null;
+      _initAlphaTabPanel(surface, songKey, tabMeta.tabFormat, initialTabFile).then(api => {
         // Registra como api ativa pra _stopAllTabAudio achar quando trocar musica
         // ou view. Substitui qualquer api anterior (so um AlphaTab tocando por vez).
         _activeAlphaTabApi = api;
@@ -10439,6 +10484,31 @@ function _renderTabPanel(body, songKey, tabMeta) {
           speedSelect.addEventListener('change', (e) => {
             e.stopPropagation();
             _applySpeed(parseFloat(speedSelect.value));
+          });
+        }
+        // Seletor de VERSAO: carrega arquivo .gp diferente via api.load.
+        // Aparece so quando tabMeta.versions tem >=2 entradas (ex: Black
+        // tem 'Versao 1' e 'Ao vivo'). Manifesto define id+label+file+format.
+        const versionSelect = tabPane.querySelector('.alphatab-version-select');
+        if (versionSelect) {
+          versionSelect.addEventListener('change', async (e) => {
+            e.stopPropagation();
+            const v = (versions || []).find(x => x.id === versionSelect.value);
+            if (!v || !_activeAlphaTabApi) return;
+            try { _activeAlphaTabApi.stop(); } catch (err) {}
+            status.textContent = `carregando ${v.label}…`;
+            try {
+              const buf = await fetch(`media/tabs/gp/${v.file}`, { cache: 'no-cache' }).then(r => {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.arrayBuffer();
+              });
+              _activeAlphaTabApi.load(new Uint8Array(buf));
+              const fmtTag = (v.format || tabMeta.tabFormat || 'gp').toUpperCase();
+              status.textContent = `${fmtTag} · ${v.label} · click Play`;
+            } catch (err) {
+              console.warn('falha carregando versao', v, err);
+              status.textContent = `erro carregando ${v.label}`;
+            }
           });
         }
         // Toggle braco: liga/desliga visibilidade do fretboard inline.

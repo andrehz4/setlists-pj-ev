@@ -6,7 +6,10 @@
     "started": "2026-05-11",
     "phase": "4 (AlphaTab): black gp5 v5.10 + alive gp4 v4.06 + yellow-ledbetter gp5 v5.10 (Ultimate Guitar); cifras de black/alive/even flow"
   },
-  "black": { "cifra": true, "tab": true, "tabFormat": "gp5", "key": "Em", "tuning": "EADGBE", "bpm": 87 },
+  "black": { "cifra": true, "tab": true, "tabFormat": "gp5", "tabFile": "black-v1.gp5", "key": "Em", "tuning": "EADGBE", "bpm": 87, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "black-v1.gp5", "format": "gp5" },
+    { "id": "live", "label": "Ao vivo", "file": "black-live.gp5", "format": "gp5" }
+  ] },
   "alive": { "cifra": true, "tab": true, "tabFormat": "gp4", "key": "A", "tuning": "EADGBE", "bpm": 78 },
   "even flow": { "cifra": true, "tab": false, "key": "Em", "tuning": "EADGBE", "bpm": 110 },
   "yellow ledbetter": { "cifra": false, "tab": true, "tabFormat": "gp5", "key": "E", "tuning": "EADGBE" },
