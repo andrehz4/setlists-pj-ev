@@ -4412,265 +4412,6 @@ html[data-theme="dark"] .alphatab-version-select {
 #view-news .view-title,
 #view-news .view-desc { display: none; }
 
-/* Toggle de tema (canto sup direito): 2 botoes pequenos pra alternar
-   entre os estilos editorial (A) e fanzine (B). Persist em localStorage. */
-.news-theme-toggle {
-  position: absolute;
-  top: 20px; right: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 10;
-  font: 400 10px/1 var(--np-typewriter);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--np-ink-mute);
-}
-.news-theme-toggle-label { opacity: 0.6; }
-.news-theme-toggle-btn {
-  background: transparent;
-  border: 1.5px solid var(--np-ink);
-  color: var(--np-ink);
-  padding: 6px 12px;
-  border-radius: 0;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 400;
-  transition: background 120ms ease, color 120ms ease;
-}
-.news-theme-toggle-btn[aria-pressed="true"] {
-  background: var(--np-ink);
-  color: var(--np-paper);
-}
-@media (max-width: 700px) {
-  .news-theme-toggle { position: static; margin: 0 0 14px; justify-content: flex-end; }
-}
-
-/* ===========================================================
-   TEMA EDITORIAL 90s (override do tema fanzine padrao)
-   Aplicado quando #view-news tem a classe .theme-editorial.
-   Sobrescreve as variaveis E neutraliza as decoracoes especificas
-   do fanzine (sombras ofset, rotacoes, grain, stencil display).
-   =========================================================== */
-#view-news.theme-editorial {
-  --np-paper:       #f8f3e7;
-  --np-paper-dark:  #ede5cf;
-  --np-ink:         #0d0d0e;
-  --np-ink-mute:    #3a3633;
-  --np-ink-dim:     #767069;
-  --np-stamp:       #c1272d;
-  --np-ocre:        #a47b35;
-  --np-brasil:      #2e7d4a;
-
-  --np-typewriter:  'JetBrains Mono', 'IBM Plex Mono', monospace;
-  --np-stencil:     'Instrument Serif', 'Newsreader', Georgia, serif;
-  --np-editorial:   'Instrument Serif', 'Newsreader', Georgia, serif;
-  --np-body:        'Newsreader', Georgia, serif;
-}
-
-/* Fundo: sem grain, papel limpo */
-#view-news.theme-editorial::before { display: none; }
-
-/* Bandeira topo: hairline simples, sem hatching */
-.theme-editorial .news-flag {
-  background: transparent;
-  border-top: 2px solid var(--np-ink);
-  border-bottom: 1px solid var(--np-ink);
-  font: 500 11px/1.2 var(--np-typewriter);
-  letter-spacing: 0.16em;
-  padding: 10px 4px;
-}
-.theme-editorial .news-flag-edition {
-  border: 1px solid var(--np-ink);
-  font-weight: 500;
-}
-
-/* Wordmark: serif italic puro, sem sombra de stencil */
-.theme-editorial .news-wordmark {
-  font-family: var(--np-editorial);
-  font-style: italic;
-  font-weight: 700;
-  font-size: clamp(54px, 11vw, 110px);
-  letter-spacing: -0.025em;
-  line-height: 1;
-}
-.theme-editorial .news-wordmark::after { display: none; }
-.theme-editorial .news-wordmark-rule {
-  height: 4px;
-  background:
-    linear-gradient(to right, var(--np-ink) 0%, var(--np-ink) 100%) bottom/100% 1px no-repeat,
-    linear-gradient(to right, var(--np-ink) 0%, var(--np-ink) 100%) top/100% 1px no-repeat;
-}
-
-/* Hero: imagem sem moldura nem sombra ofset, sem grain */
-.theme-editorial .news-hero {
-  grid-template-columns: 96px 1.1fr 1fr;
-  gap: 32px;
-}
-.theme-editorial .news-hero-num {
-  font-family: var(--np-typewriter);
-  font-weight: 500;
-  font-size: 13px;
-  color: var(--np-ink-mute);
-  -webkit-text-stroke: 0;
-  letter-spacing: 0.2em;
-  padding-top: 24px;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  align-self: stretch;
-  border-right: 1px solid var(--np-ink);
-  padding-right: 16px;
-}
-.theme-editorial .news-hero-num::before { content: "Edição "; opacity: 0.5; }
-.theme-editorial .news-hero-imgwrap {
-  border: 0;
-  box-shadow: none;
-  aspect-ratio: 4 / 5;
-}
-.theme-editorial .news-hero-imgwrap::before { display: none; }
-.theme-editorial .news-hero-imgwrap:hover {
-  transform: none;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.15);
-}
-.theme-editorial .news-hero-content {
-  border-left: 0;
-  padding-left: 8px;
-}
-.theme-editorial .news-hero-eyebrow {
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  color: var(--np-stamp);
-}
-.theme-editorial .news-hero-eyebrow::before { content: "● "; }
-.theme-editorial .news-hero-title {
-  font-size: clamp(36px, 5vw, 58px);
-  letter-spacing: -0.025em;
-}
-.theme-editorial .news-hero-intro {
-  padding-left: 0;
-}
-.theme-editorial .news-hero-intro::before { display: none; }
-.theme-editorial .news-hero-cta {
-  background: var(--np-stamp);
-  color: var(--np-paper);
-  border: 0;
-  border-radius: 0;
-  padding: 14px 26px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-}
-.theme-editorial .news-hero-cta::before { display: none; }
-.theme-editorial .news-hero-cta::after  { content: " →"; opacity: 1; }
-.theme-editorial .news-hero-cta:hover {
-  background: var(--np-ink);
-  transform: none;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-}
-@media (max-width: 980px) {
-  .theme-editorial .news-hero { grid-template-columns: 1fr; }
-  .theme-editorial .news-hero-num { writing-mode: horizontal-tb; transform: none; border-right: 0; border-bottom: 1px solid var(--np-ink); padding: 0 0 8px; }
-}
-
-/* Tags: pill arredondada, flat, sem rotacao nem sombra */
-.theme-editorial .news-tag {
-  border-radius: 12px;
-  transform: none !important;
-  box-shadow: none;
-  border-width: 1px;
-  padding: 4px 10px;
-  letter-spacing: 0.14em;
-  font-weight: 500;
-}
-
-/* Filtros: chips arredondados sem brackets */
-.theme-editorial .news-header {
-  background-image: none;
-  border-top: 2px solid var(--np-ink);
-  border-bottom: 1px solid var(--np-ink);
-}
-.theme-editorial .news-chip {
-  border-radius: 16px;
-  font-weight: 500;
-  border-width: 1px;
-}
-.theme-editorial .news-chip::before,
-.theme-editorial .news-chip::after { display: none; }
-.theme-editorial .news-chip:hover {
-  background: var(--np-ink);
-  color: var(--np-paper);
-  transform: none;
-  box-shadow: none;
-}
-.theme-editorial .news-updated::before { content: "●"; }
-
-/* Cards: hairline + numero discreto em mono, sem sombra ofset */
-.theme-editorial .news-card {
-  border: 0;
-  border-top: 1px solid var(--np-ink);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  padding-top: 14px;
-  animation-name: news-card-in-soft;
-}
-@keyframes news-card-in-soft {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.theme-editorial .news-card:hover {
-  transform: none;
-  box-shadow: none;
-  border-top-color: var(--np-stamp);
-}
-.theme-editorial .news-card-num {
-  position: static;
-  display: block;
-  font-family: var(--np-typewriter);
-  font-weight: 500;
-  font-size: 11px;
-  font-style: italic;
-  color: var(--np-ink-mute);
-  background: transparent;
-  padding: 0 0 8px;
-  -webkit-text-stroke: 0;
-  letter-spacing: 0.2em;
-}
-.theme-editorial .news-card-num::before { content: "Nº "; opacity: 0.5; font-style: normal; }
-.theme-editorial .news-card-thumb { border-bottom: 0; aspect-ratio: 16/10; }
-.theme-editorial .news-card-thumb::before { display: none; }
-.theme-editorial .news-card-meta { padding-left: 0; padding-right: 0; padding-top: 14px; }
-.theme-editorial .news-card-source { letter-spacing: 0.14em; }
-.theme-editorial .news-card-title {
-  padding-left: 0; padding-right: 0;
-  font-size: 24px;
-  line-height: 1.15;
-}
-.theme-editorial .news-card-intro {
-  padding-left: 0; padding-right: 0;
-}
-
-/* Detalhe: drop cap preto, hero sem moldura ofset, body limpo */
-.theme-editorial .news-detail-hero {
-  border: 0;
-  box-shadow: none;
-}
-.theme-editorial .news-detail-hero::before { display: none; }
-.theme-editorial .news-detail-intro::before {
-  color: var(--np-ink-mute);
-}
-.theme-editorial .news-detail-body p:first-of-type::first-letter {
-  color: var(--np-ink);
-}
-.theme-editorial .news-back,
-.theme-editorial .news-nav-arrow {
-  border-radius: 0;
-  border-width: 1px;
-}
-.theme-editorial .news-back:hover,
-.theme-editorial .news-nav-arrow:hover {
-  transform: none;
-  box-shadow: none;
-}
 
 /* Bandeira tracejada do topo: dia da edicao, hora, edicao #N */
 .news-flag {
@@ -14223,31 +13964,9 @@ window.addEventListener("popstate", () => {
   if (state.currentView === "news") renderNewsView();
 });
 
-// Tema visual da view de Noticias: 'fanzine' (default) ou 'editorial'.
-// Persist em localStorage. Aplicado como classe no #view-news.
-const _NEWS_THEME_KEY = "setlists-news-theme";
-function _newsGetTheme() {
-  try {
-    const v = localStorage.getItem(_NEWS_THEME_KEY);
-    return (v === "editorial" || v === "fanzine") ? v : "fanzine";
-  } catch { return "fanzine"; }
-}
-function _newsSetTheme(t) {
-  try { localStorage.setItem(_NEWS_THEME_KEY, t); } catch {}
-  const view = document.getElementById("view-news");
-  if (!view) return;
-  view.classList.remove("theme-fanzine", "theme-editorial");
-  view.classList.add(`theme-${t}`);
-  document.querySelectorAll(".news-theme-toggle-btn").forEach(b => {
-    b.setAttribute("aria-pressed", b.dataset.theme === t ? "true" : "false");
-  });
-}
-
 async function renderNewsView() {
   const container = document.getElementById("news-content");
   if (!container) return;
-  // Aplica o tema escolhido (precisa antes do innerHTML pra evitar flash)
-  _newsSetTheme(_newsGetTheme());
   // Skeleton xerografico: 6 cards em grid pra dar sensacao de carregando "papel"
   container.innerHTML = `
     <div class="news-skeleton-grid" aria-busy="true" aria-label="Carregando edição">
@@ -14362,16 +14081,7 @@ function _renderNewsGrid(container, items, manifest) {
   const bannerDate = _newsBannerDate(manifest.updated);
   const edition = _newsEditionNumber(items.length);
 
-  const currentTheme = _newsGetTheme();
-  const themeToggle = `
-    <div class="news-theme-toggle" role="group" aria-label="Trocar estilo visual">
-      <span class="news-theme-toggle-label">estilo</span>
-      <button type="button" class="news-theme-toggle-btn" data-theme="editorial" aria-pressed="${currentTheme === 'editorial'}">editorial</button>
-      <button type="button" class="news-theme-toggle-btn" data-theme="fanzine" aria-pressed="${currentTheme === 'fanzine'}">fanzine</button>
-    </div>`;
-
   container.innerHTML = `
-    ${themeToggle}
     <div class="news-flag" aria-hidden="true">
       <span class="news-flag-left">
         <span class="news-flag-stamp">SETLISTS PJ/EV</span>
@@ -14393,10 +14103,25 @@ function _renderNewsGrid(container, items, manifest) {
       ${cards}
     </div>`;
 
-  // Toggle de tema (so re-aplica classe, nao precisa re-render)
-  container.querySelectorAll(".news-theme-toggle-btn").forEach(btn => {
-    btn.addEventListener("click", () => _newsSetTheme(btn.dataset.theme));
-  });
+  // Auto-scroll ate o hero na PRIMEIRA carga da view: usuario que abre o
+  // site cai direto na materia em destaque, sem ter que rolar pelo wordmark
+  // ele mesmo. So roda 1x por sessao da pagina (flag global). Respeita
+  // prefers-reduced-motion: se desativado, behavior 'auto' (jump) em vez
+  // de smooth, e se algum motivo o usuario tiver scrollado antes do
+  // setTimeout, nao interrompe.
+  if (!window._newsInitialScrollDone && heroItem) {
+    window._newsInitialScrollDone = true;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // pequeno delay pras imagens do hero terem chance de carregar e
+    // o layout estabilizar
+    setTimeout(() => {
+      // se usuario ja scrollou manualmente, nao interrompe
+      if (window.scrollY > 80) return;
+      const hero = container.querySelector(".news-hero");
+      if (!hero) return;
+      hero.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    }, 280);
+  }
 
   // hero: click no thumb OU no titulo OU no CTA abre o detail
   const openHero = () => {
