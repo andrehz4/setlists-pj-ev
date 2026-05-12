@@ -5,12 +5,13 @@ on:
     - cron: '23 */6 * * *'
   workflow_dispatch:
     inputs:
+      curator:
+        description: 'Backend de curadoria'
+        type: choice
+        options: [anthropic, gemini, routine]
+        default: anthropic
       dry-run:
         description: 'Dry run (nao escreve, nao commita)'
-        type: boolean
-        default: false
-      no-claude:
-        description: 'Pular chamada ao Claude (usa fallback simples)'
         type: boolean
         default: false
 
@@ -40,11 +41,14 @@ jobs:
 
       - name: Fetch news
         env:
+          # Default cron usa anthropic; manual dispatch pode escolher.
+          # Define ambas as keys; o curator nao usado simplesmente nao chama.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NEWS_CURATOR: ${{ inputs.curator || 'anthropic' }}
         run: |
           ARGS=""
           if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
-          if [ "${{ inputs.no-claude }}" = "true" ]; then ARGS="$ARGS --no-claude"; fi
           node scripts/news/fetch-news.mjs $ARGS
 
       - name: Commit & push
@@ -56,6 +60,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Sem mudancas, nao vou commitar."
           else
-            git commit -m "news: atualizacao automatica $(date -u +%Y-%m-%dT%H:%MZ)"
+            CURATOR_LABEL="${{ inputs.curator || 'anthropic' }}"
+            git commit -m "news: atualizacao automatica ($CURATOR_LABEL) $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
           fi

@@ -1,11 +1,16 @@
 // Orquestrador do fetch-news.
-// Fluxo: ler seen.json/index.json → buscar RSS (12 fontes) → dedupe → scrape +
-// imagem + Claude curator → merge → escrever index.json/seen.json/archive.
+// Fluxo: le seen.json/index.json → busca RSS (N fontes) → dedupe → scrape +
+// imagem + curator selecionado → merge → escreve index.json/seen.json/archive.
 //
 // Flags:
-//   --dry-run     nao escreve nada em disco (so imprime resultado em stdout)
-//   --fixtures    usa scripts/news/__fixtures__/ em vez de rede (so pra teste)
-//   --no-claude   pula chamada Claude (gera item com placeholder, util pra debug)
+//   --curator <anthropic|gemini|routine>  backend de curadoria (default: env NEWS_CURATOR ou anthropic)
+//   --dry-run                              nao escreve nada (so imprime resultado)
+//   --fixtures                             usa scripts/news/__fixtures__/ em vez de rede (todo)
+//   --no-claude                            (compat) alias pra --curator=routine + dry-run
+//
+// Modos especiais:
+//   curator=routine  : itens viram PENDING, sao escritos em media/news/_pending.json
+//                      pra Claude routine pegar e curar com merge-curated.mjs depois.
 
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -15,17 +20,29 @@ import { SOURCES, REDDIT_FILTER } from "./sources.mjs";
 import { isRelevant, canonicalize, sha10, passesRedditFilter } from "./relevance.mjs";
 import { scrapeArticle } from "./extract.mjs";
 import { cacheImage, gcOrphanImages, ensureImgDir } from "./image-cache.mjs";
-import { curate } from "./claude-curator.mjs";
+import { loadCurator } from "./curators/_shared.mjs";
 
-const DRY = process.argv.includes("--dry-run");
-const FIXTURES = process.argv.includes("--fixtures");
-const NO_CLAUDE = process.argv.includes("--no-claude");
+// --- args ---
+const args = process.argv.slice(2);
+function argVal(name) {
+  const eq = args.find((a) => a.startsWith(`--${name}=`));
+  if (eq) return eq.split("=").slice(1).join("=");
+  const idx = args.indexOf(`--${name}`);
+  if (idx >= 0 && args[idx + 1] && !args[idx + 1].startsWith("--")) return args[idx + 1];
+  return null;
+}
+const DRY = args.includes("--dry-run");
+const FIXTURES = args.includes("--fixtures");
+const LEGACY_NO_CLAUDE = args.includes("--no-claude");
+let CURATOR_NAME = argVal("curator") || process.env.NEWS_CURATOR || "anthropic";
+if (LEGACY_NO_CLAUDE) CURATOR_NAME = "routine"; // backward compat
 
 const MAX_NEW_PER_RUN = 6;
 const TOP_KEEP = 30;
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
+const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
 
 const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
@@ -83,7 +100,7 @@ async function fetchRedditItems(src) {
         link: `https://www.reddit.com${p.permalink}`,
         pubDate: new Date((p.created_utc || 0) * 1000).toISOString(),
         snippet: p.selftext?.slice(0, 800) || "",
-        alwaysRelevant: true, // ja passou pelo filtro
+        alwaysRelevant: true,
       }));
   } catch (e) {
     console.warn(`[reddit] ${src.id} falhou: ${e.message}`);
@@ -96,11 +113,16 @@ async function main() {
   await fs.mkdir(ARCHIVE_DIR, { recursive: true });
   await ensureImgDir();
 
+  const curator = await loadCurator(CURATOR_NAME);
+  const isRoutineMode = curator.NAME === "routine";
+
   const seen = await readJson(SEEN_PATH, {});
   const current = await readJson(INDEX_PATH, { updated: null, items: [] });
   const currentItems = Array.isArray(current.items) ? current.items : [];
+  const pendingBefore = await readJson(PENDING_PATH, { items: [] });
+  const pendingBeforeItems = Array.isArray(pendingBefore.items) ? pendingBefore.items : [];
 
-  console.log(`[news] fontes: ${SOURCES.length} | seen: ${Object.keys(seen).length} | current: ${currentItems.length} | dry: ${DRY} | no-claude: ${NO_CLAUDE}`);
+  console.log(`[news] curator: ${curator.LABEL} | fontes: ${SOURCES.length} | seen: ${Object.keys(seen).length} | current: ${currentItems.length} | dry: ${DRY}`);
 
   const all = [];
   for (const src of SOURCES) {
@@ -111,45 +133,54 @@ async function main() {
       if (!it.alwaysRelevant && !isRelevant(`${it.title} ${it.snippet}`)) continue;
       const h = sha10(url);
       if (seen[h]) continue;
+      // se ja esta em _pending, tambem pula
+      if (pendingBeforeItems.some((p) => p.id === h)) continue;
       all.push({ ...it, url, hash: h });
     }
-    // gentil com hosts: pequena pausa
     await sleep(400);
   }
 
   console.log(`[news] candidatos novos pos-filtros: ${all.length}`);
 
-  // ordena por data desc e pega MAX_NEW_PER_RUN
   all.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
   const fresh = all.slice(0, MAX_NEW_PER_RUN);
 
   const curated = [];
+  const pending = [];
   for (const c of fresh) {
     console.log(`[news] processando: ${c.sourceLabel} | ${c.title.slice(0, 70)}`);
     const { imgUrl, articleText } = await scrapeArticle(c.url);
     const localImg = await cacheImage(imgUrl, c.hash);
 
-    let claudeOut;
-    if (NO_CLAUDE) {
-      claudeOut = {
-        titulo_pt: c.title.slice(0, 80),
-        intro_pt: (articleText || c.snippet).slice(0, 140),
-        corpo_pt: `${(articleText || c.snippet).slice(0, 600)}\n\n_via ${c.sourceLabel}_`,
-        tags: ["memoria"],
-      };
-    } else {
-      claudeOut = await curate({
-        title: c.title,
-        sourceLabel: c.sourceLabel,
-        articleText: articleText || c.snippet,
-        url: c.url,
-        pubDate: c.pubDate,
-      });
-    }
+    const out = await curator.curate({
+      title: c.title,
+      sourceLabel: c.sourceLabel,
+      articleText: articleText || c.snippet,
+      url: c.url,
+      pubDate: c.pubDate,
+    });
 
-    if (claudeOut === "SKIP") {
+    if (out === "SKIP") {
       console.log(`[news] SKIP: ${c.title.slice(0, 70)}`);
       seen[c.hash] = { skipped: true, ts: Date.now(), title: c.title };
+      continue;
+    }
+
+    if (out === "PENDING") {
+      // modo routine: empilha em _pending.json com texto bruto pra Claude curar depois
+      pending.push({
+        id: c.hash,
+        url: c.url,
+        source: c.sourceId,
+        sourceLabel: c.sourceLabel,
+        group: c.group,
+        pubDate: c.pubDate,
+        fetchedAt: new Date().toISOString(),
+        img: localImg,
+        title_orig: c.title,
+        article_text: articleText || c.snippet || "",
+      });
+      // NAO marca seen aqui; so marca depois que a routine commitar.
       continue;
     }
 
@@ -162,17 +193,34 @@ async function main() {
       pubDate: c.pubDate,
       fetchedAt: new Date().toISOString(),
       img: localImg,
-      title_pt: claudeOut.titulo_pt,
-      intro_pt: claudeOut.intro_pt,
-      body_pt: claudeOut.corpo_pt,
-      tags: claudeOut.tags,
+      title_pt: out.titulo_pt,
+      intro_pt: out.intro_pt,
+      body_pt: out.corpo_pt,
+      tags: out.tags,
     });
     seen[c.hash] = { firstSeen: Date.now(), title: c.title };
   }
 
-  console.log(`[news] curados (passaram SKIP): ${curated.length}`);
+  console.log(`[news] curados agora: ${curated.length} | pendentes pra routine: ${pending.length}`);
 
-  // merge: novos no topo, dedupe por id, mantem top TOP_KEEP
+  // Em modo routine, escreve _pending.json e termina (NAO altera index.json).
+  if (isRoutineMode) {
+    const newPending = {
+      generatedAt: new Date().toISOString(),
+      items: [...pendingBeforeItems, ...pending],
+    };
+    if (DRY) {
+      console.log("[news] DRY RUN routine — nao escrevendo arquivos.");
+      console.log(JSON.stringify({ pending_total: newPending.items.length, novos: pending.length }, null, 2));
+    } else {
+      await writeJson(PENDING_PATH, newPending);
+      await writeJson(SEEN_PATH, seen); // skipped marcados; pendentes ficam de fora
+      console.log(`[news] escrito: ${PENDING_PATH} (${newPending.items.length} aguardando curadoria)`);
+    }
+    return;
+  }
+
+  // merge normal (anthropic/gemini): novos no topo, dedupe por id, mantem top TOP_KEEP
   const map = new Map();
   for (const it of curated) map.set(it.id, it);
   for (const it of currentItems) if (!map.has(it.id)) map.set(it.id, it);
@@ -180,11 +228,10 @@ async function main() {
   const finalItems = merged.slice(0, TOP_KEEP);
   const overflow = merged.slice(TOP_KEEP);
 
-  // arquiva overflow
   if (overflow.length > 0) {
     const byMonth = new Map();
     for (const it of overflow) {
-      const ym = (it.pubDate || new Date().toISOString()).slice(0, 7); // YYYY-MM
+      const ym = (it.pubDate || new Date().toISOString()).slice(0, 7);
       if (!byMonth.has(ym)) byMonth.set(ym, []);
       byMonth.get(ym).push(it);
     }
@@ -197,14 +244,13 @@ async function main() {
     }
   }
 
-  // GC imagens orfas (mantem so as referenciadas no final)
   const keepHashes = finalItems.filter((i) => i.img).map((i) => i.id);
   if (!DRY) await gcOrphanImages(keepHashes);
 
   const out = { updated: new Date().toISOString(), items: finalItems };
   if (DRY) {
     console.log("[news] DRY RUN — nao escrevendo arquivos.");
-    console.log(JSON.stringify({ added: curated.length, total: finalItems.length, skipped: Object.values(seen).filter(s => s.skipped && Date.now() - s.ts < 1000 * 60 * 60).length }, null, 2));
+    console.log(JSON.stringify({ added: curated.length, total: finalItems.length }, null, 2));
     console.log("--- primeiros 3 itens ---");
     console.log(JSON.stringify(finalItems.slice(0, 3), null, 2));
   } else {
