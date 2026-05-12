@@ -4417,6 +4417,130 @@ html[data-theme="dark"] .alphatab-version-select {
   text-transform: uppercase;
   color: var(--ink-dim);
 }
+/* HERO da noticia mais recente: 2 colunas em desktop, empilha em mobile.
+   Imagem domina a esquerda; texto editorial na direita.
+   Renderizado pelo _renderNewsHero(), nunca duplicado no grid. */
+.news-hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+  margin: 0 0 36px;
+  padding: 4px;
+  position: relative;
+}
+.news-hero-imgwrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-card-hover) center / cover no-repeat;
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.news-hero-imgwrap::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.30), rgba(0,0,0,0) 45%);
+  pointer-events: none;
+}
+.news-hero-imgwrap:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+}
+.news-hero-tagstrip {
+  position: absolute;
+  top: 14px; left: 14px;
+  display: flex; gap: 6px; flex-wrap: wrap;
+  z-index: 1;
+}
+.news-hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 0;
+}
+.news-hero-eyebrow {
+  font: 700 11px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pj);
+  margin: 0 0 14px;
+}
+.news-hero-title {
+  font: 700 42px/1.08 var(--font-editorial, 'Instrument Serif', serif);
+  color: var(--ink);
+  margin: 0 0 16px;
+  letter-spacing: -0.015em;
+  cursor: pointer;
+}
+.news-hero-title:hover { color: var(--pj); }
+.news-hero-intro {
+  font: italic 20px/1.5 var(--font-editorial, 'Instrument Serif', serif);
+  color: var(--ink-mute);
+  margin: 0 0 22px;
+}
+.news-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font: 600 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 18px;
+}
+.news-hero-meta-source { color: var(--pj); }
+.news-hero-meta-sep { opacity: 0.5; }
+.news-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: var(--pj);
+  color: #fff;
+  border: 0;
+  padding: 12px 22px;
+  border-radius: 4px;
+  font: 700 12px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease;
+}
+.news-hero-cta:hover { transform: translateX(2px); background: #a4232a; }
+.news-hero-cta::after { content: "→"; font-size: 14px; }
+@media (max-width: 820px) {
+  .news-hero { grid-template-columns: 1fr; gap: 20px; }
+  .news-hero-title { font-size: 30px; }
+  .news-hero-intro { font-size: 17px; }
+}
+
+/* Tag pill: usado tanto no thumb dos cards quanto no hero.
+   Cores semanticas por tag, definidas no .news-tag-<slug>. */
+.news-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font: 700 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.news-tag-turne       { background: rgba(193,39,45,0.92); }
+.news-tag-comunidade  { background: rgba(38,99,164,0.92); }
+.news-tag-memoria     { background: rgba(166,124,38,0.92); }
+.news-tag-ed-solo     { background: rgba(101,68,148,0.92); }
+.news-tag-lancamento  { background: rgba(54,140,80,0.92); }
+.news-tag-tenclub     { background: rgba(40,40,42,0.92); }
+.news-tag-br          { background: rgba(38,144,82,0.92); }
+.news-tag-bootleg     { background: rgba(196,108,38,0.92); }
+
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -4443,10 +4567,18 @@ html[data-theme="dark"] .alphatab-version-select {
 }
 .news-card[hidden] { display: none !important; }
 .news-card-thumb {
+  position: relative;
   aspect-ratio: 16 / 9;
   width: 100%;
   background: var(--bg-card-hover) center / cover no-repeat;
   border-bottom: 3px solid var(--pj);
+}
+.news-card-tagstrip {
+  position: absolute;
+  top: 10px; left: 10px;
+  display: flex; gap: 6px; flex-wrap: wrap;
+  max-width: calc(100% - 20px);
+  z-index: 1;
 }
 .news-card-meta {
   display: flex;
@@ -13556,22 +13688,60 @@ async function renderNewsView() {
   _renderNewsGrid(container, items, manifest);
 }
 
+// Ordem fixa dos rotulos PT-BR pra cada tag canonica.
+const _NEWS_TAG_LABELS = {
+  turne: "turnê",
+  comunidade: "comunidade",
+  memoria: "memória",
+  "ed-solo": "ed solo",
+  lancamento: "lançamento",
+  tenclub: "ten club",
+  br: "brasil",
+  bootleg: "bootleg",
+};
+// Ordem de exibicao dos chips (do mais "newsy" pro mais nicho)
+const _NEWS_TAG_ORDER = ["turne", "lancamento", "ed-solo", "tenclub", "comunidade", "memoria", "br", "bootleg"];
+
+function _renderNewsTagStrip(tags, max = 2) {
+  if (!Array.isArray(tags) || !tags.length) return "";
+  return tags.slice(0, max).map(t => {
+    const slug = String(t || "").toLowerCase();
+    const label = _NEWS_TAG_LABELS[slug] || slug;
+    return `<span class="news-tag news-tag-${_newsEscape(slug)}">${_newsEscape(label)}</span>`;
+  }).join("");
+}
+
 function _renderNewsGrid(container, items, manifest) {
-  const sources = [...new Set(items.map(i => i.sourceLabel))].sort();
+  // Hero = primeiro item (mais recente). Grid recebe items[1..].
+  const heroItem = items[0];
+  const gridItems = items.slice(1);
+
+  // Filtros por TAG (em vez de por fonte). Conta itens por tag.
+  const tagCounts = new Map();
+  items.forEach(it => (Array.isArray(it.tags) ? it.tags : []).forEach(t => {
+    if (!t) return;
+    tagCounts.set(t, (tagCounts.get(t) || 0) + 1);
+  }));
+  const orderedTags = _NEWS_TAG_ORDER.filter(t => tagCounts.has(t));
   const chips = `
-    <div class="news-filters" role="group" aria-label="Filtros de fonte">
-      <button class="news-chip active" data-source="all" aria-pressed="true">Todas (${items.length})</button>
-      ${sources.map(s => {
-        const count = items.filter(i => i.sourceLabel === s).length;
-        return `<button class="news-chip" data-source="${_newsEscape(s)}" aria-pressed="false">${_newsEscape(s)} (${count})</button>`;
+    <div class="news-filters" role="group" aria-label="Filtros por tag">
+      <button class="news-chip active" data-tag="all" aria-pressed="true">Todas (${items.length})</button>
+      ${orderedTags.map(t => {
+        const label = _NEWS_TAG_LABELS[t] || t;
+        return `<button class="news-chip" data-tag="${_newsEscape(t)}" aria-pressed="false">${_newsEscape(label)} (${tagCounts.get(t)})</button>`;
       }).join("")}
     </div>`;
 
-  const cards = items.map(item => {
+  const heroHtml = heroItem ? _renderNewsHeroHtml(heroItem) : "";
+
+  const cards = gridItems.map(item => {
     const img = item.img || "/media/news/_placeholder.svg";
+    const tagsAttr = (Array.isArray(item.tags) ? item.tags : []).join(",");
     return `
-      <article class="news-card" data-id="${_newsEscape(item.id)}" data-source-label="${_newsEscape(item.sourceLabel)}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
-        <div class="news-card-thumb" style="background-image:url('${_newsEscape(img)}')" aria-hidden="true"></div>
+      <article class="news-card" data-id="${_newsEscape(item.id)}" data-tags="${_newsEscape(tagsAttr)}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
+        <div class="news-card-thumb" style="background-image:url('${_newsEscape(img)}')" aria-hidden="true">
+          <div class="news-card-tagstrip">${_renderNewsTagStrip(item.tags, 2)}</div>
+        </div>
         <div class="news-card-meta">
           <span class="news-card-source">${_newsEscape(item.sourceLabel)}</span>
           <span class="news-card-sep">·</span>
@@ -13585,6 +13755,7 @@ function _renderNewsGrid(container, items, manifest) {
   const updatedLabel = manifest.updated ? `Atualizado ${_newsRelTime(manifest.updated)}` : "";
 
   container.innerHTML = `
+    ${heroHtml}
     <div class="news-header">
       ${chips}
       <span class="news-updated">${updatedLabel}</span>
@@ -13593,13 +13764,27 @@ function _renderNewsGrid(container, items, manifest) {
       ${cards}
     </div>`;
 
-  // click ou Enter no card abre o detail (atualiza hash + re-renderiza)
+  // hero: click no thumb OU no titulo OU no CTA abre o detail
+  const openHero = () => {
+    if (!heroItem) return;
+    _newsSetHash(heroItem.id);
+    renderNewsView();
+    const sec = document.getElementById("view-news");
+    if (sec && sec.scrollIntoView) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  container.querySelectorAll("[data-hero-open]").forEach(el => {
+    el.addEventListener("click", openHero);
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openHero(); }
+    });
+  });
+
+  // click ou Enter no card abre o detail
   container.querySelectorAll(".news-card").forEach(card => {
     const open = () => {
       const id = card.dataset.id;
       _newsSetHash(id);
       renderNewsView();
-      // scroll ao topo da view
       const sec = document.getElementById("view-news");
       if (sec && sec.scrollIntoView) sec.scrollIntoView({ behavior: "smooth", block: "start" });
     };
@@ -13609,7 +13794,8 @@ function _renderNewsGrid(container, items, manifest) {
     });
   });
 
-  // filtros por fonte
+  // filtros por TAG (afeta hero + grid)
+  const hero = container.querySelector(".news-hero");
   container.querySelectorAll(".news-chip").forEach(chip => {
     chip.addEventListener("click", () => {
       container.querySelectorAll(".news-chip").forEach(c => {
@@ -13618,12 +13804,41 @@ function _renderNewsGrid(container, items, manifest) {
       });
       chip.classList.add("active");
       chip.setAttribute("aria-pressed", "true");
-      const src = chip.dataset.source;
+      const tag = chip.dataset.tag;
+      // hero so aparece em "Todas" (senao o filtro perde o ponto)
+      if (hero) hero.style.display = (tag === "all") ? "" : "none";
       container.querySelectorAll(".news-card").forEach(card => {
-        card.hidden = (src !== "all" && card.dataset.sourceLabel !== src);
+        const cardTags = (card.dataset.tags || "").split(",").filter(Boolean);
+        card.hidden = (tag !== "all" && !cardTags.includes(tag));
       });
     });
   });
+}
+
+// HTML do hero. A noticia mais recente vira destaque full-width 2-col.
+function _renderNewsHeroHtml(item) {
+  if (!item) return "";
+  const img = item.img || "/media/news/_placeholder.svg";
+  const eyebrow = (Array.isArray(item.tags) && item.tags[0])
+    ? (_NEWS_TAG_LABELS[item.tags[0]] || item.tags[0])
+    : "destaque";
+  return `
+    <section class="news-hero" aria-label="Notícia em destaque">
+      <div class="news-hero-imgwrap" style="background-image:url('${_newsEscape(img)}')" data-hero-open tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
+        <div class="news-hero-tagstrip">${_renderNewsTagStrip(item.tags, 3)}</div>
+      </div>
+      <div class="news-hero-content">
+        <p class="news-hero-eyebrow">${_newsEscape(eyebrow)} · em destaque</p>
+        <h2 class="news-hero-title" data-hero-open tabindex="0" role="link">${_newsEscape(item.title_pt)}</h2>
+        <p class="news-hero-intro">${_newsEscape(item.intro_pt)}</p>
+        <div class="news-hero-meta">
+          <span class="news-hero-meta-source">${_newsEscape(item.sourceLabel)}</span>
+          <span class="news-hero-meta-sep">·</span>
+          <time datetime="${_newsEscape(item.pubDate)}">${_newsRelTime(item.pubDate)}</time>
+        </div>
+        <button type="button" class="news-hero-cta" data-hero-open aria-label="Ler matéria completa">Ler matéria</button>
+      </div>
+    </section>`;
 }
 
 function _renderNewsDetail(container, item, allItems) {
@@ -13647,7 +13862,7 @@ function _renderNewsDetail(container, item, allItems) {
           <span class="news-detail-source">${_newsEscape(item.sourceLabel)}</span>
           <span class="news-detail-sep">·</span>
           <time datetime="${_newsEscape(item.pubDate)}">${_newsRelTime(item.pubDate)}</time>
-          ${Array.isArray(item.tags) && item.tags.length ? `<span class="news-detail-sep">·</span><span class="news-detail-tags">${item.tags.map(t => `<span class="news-detail-tag">${_newsEscape(t)}</span>`).join("")}</span>` : ""}
+          ${Array.isArray(item.tags) && item.tags.length ? `<span class="news-detail-sep">·</span><span class="news-detail-tags">${item.tags.map(t => { const s = String(t).toLowerCase(); return `<span class="news-tag news-tag-${_newsEscape(s)}">${_newsEscape(_NEWS_TAG_LABELS[s] || s)}</span>`; }).join("")}</span>` : ""}
         </div>
         <h1 class="news-detail-title">${_newsEscape(item.title_pt)}</h1>
         <p class="news-detail-intro">${_newsEscape(item.intro_pt)}</p>
