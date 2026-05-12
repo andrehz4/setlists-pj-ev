@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Special+Elite&display=swap">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Setlists · Ticket Archive">
 <meta property="og:description" content="Pearl Jam & Eddie Vedder live shows attended. Setlists, interpretações e áudio.">
@@ -4360,249 +4360,515 @@ html[data-theme="dark"] .alphatab-version-select {
 }
 
 /* ====================================================================
-   NOTICIAS (curadoria automatica)
+   NOTICIAS (curadoria automatica) - TEMA FANZINE XEROX
+   --------------------------------------------------------------------
+   Toda a view de Noticias roda em um escopo proprio com tema xerografado:
+   papel creme, tinta preto-marrom, vermelho-carimbo, ocre. As fontes
+   troquem pra Special Elite (typewriter) + Instrument Serif italic
+   (display) + Big Shoulders Stencil (wordmark). Texturas SVG (grain
+   noise + hatching) embarcadas como data URL. As variaveis sao locais
+   a #view-news pra nao vazar.
    ==================================================================== */
+
+#view-news {
+  /* Paleta papel/tinta xerox */
+  --np-paper:       #f3ecd6;
+  --np-paper-dark:  #ebe3c4;
+  --np-ink:         #1a1612;
+  --np-ink-mute:    #4f4234;
+  --np-ink-dim:     #7a6b58;
+  --np-stamp:       #b41e26;
+  --np-ocre:        #98762a;
+  --np-brasil:      #2e7d4a;
+
+  /* Fonts */
+  --np-typewriter:  'Special Elite', 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  --np-stencil:     'Big Shoulders Stencil Display', 'Archivo Black', sans-serif;
+  --np-editorial:   'Instrument Serif', 'Newsreader', Georgia, serif;
+  --np-body:        'Newsreader', Georgia, serif;
+
+  /* Texturas SVG embarcadas */
+  --np-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0.55 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.55'/></svg>");
+  --np-hatch: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><path d='M0 6L6 0' stroke='%231a1612' stroke-width='0.4' opacity='0.18'/></svg>");
+
+  background: var(--np-paper);
+  color: var(--np-ink);
+}
+/* o container raiz da view (.tabs-content > .view) ja tem padding global.
+   Aqui aplicamos a textura de papel + ruido sutil. */
+#view-news::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: var(--np-noise);
+  background-size: 200px 200px;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.65;
+  z-index: 0;
+}
+#view-news > * { position: relative; z-index: 1; }
+
+/* Em Noticias, o titulo padrao da view eh substituido pelo wordmark gigante.
+   A descricao continua mas reskinneada como pull-quote do editor. */
+#view-news .view-title { display: none; }
+#view-news .view-desc {
+  font: italic 15px/1.55 var(--np-body);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--np-ink-mute);
+  border-left: 3px solid var(--np-stamp);
+  padding: 2px 0 2px 14px;
+  margin: 4px 0 28px;
+  max-width: 720px;
+  font-family: var(--np-body);
+}
+
+/* Bandeira tracejada do topo: dia da edicao, hora, edicao #N */
+.news-flag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  margin: 0 0 18px;
+  background: var(--np-paper-dark);
+  border-top: 1px dashed var(--np-ink);
+  border-bottom: 1px dashed var(--np-ink);
+  font: 400 12px/1.2 var(--np-typewriter);
+  letter-spacing: 0.08em;
+  color: var(--np-ink-mute);
+  text-transform: uppercase;
+}
+.news-flag-left, .news-flag-right { display: inline-flex; align-items: center; gap: 10px; }
+.news-flag-stamp {
+  color: var(--np-stamp);
+  font-weight: 700;
+}
+.news-flag-edition {
+  border: 1px solid var(--np-ink);
+  padding: 3px 8px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+/* Wordmark "NOTICIAS" em stencil display */
+.news-wordmark {
+  font-family: var(--np-stencil);
+  font-weight: 900;
+  font-size: clamp(56px, 13vw, 132px);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  color: var(--np-ink);
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+/* sombra ofset estilo xerox que escorrega */
+.news-wordmark::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 3px; top: 3px;
+  color: var(--np-stamp);
+  opacity: 0.45;
+  z-index: -1;
+  pointer-events: none;
+}
+.news-wordmark-rule {
+  height: 6px;
+  background:
+    linear-gradient(to right, var(--np-ink) 0%, var(--np-ink) 100%) bottom/100% 1px no-repeat,
+    linear-gradient(to right, var(--np-ink) 0%, var(--np-ink) 100%) top/100% 1px no-repeat;
+  margin: 0 0 28px;
+}
+
 .news-loading,
 .news-empty {
   text-align: center;
-  padding: 56px 16px;
-  color: var(--ink-mute);
-  font: italic 15px/1.5 var(--font-editorial, Georgia, serif);
+  padding: 72px 16px;
+  color: var(--np-ink-mute);
+  font: italic 17px/1.5 var(--np-editorial);
+  background: var(--np-paper);
+  border: 1px dashed var(--np-ink);
 }
-.news-empty p { margin: 0 0 6px; }
+.news-empty p { margin: 0 0 8px; }
 .news-empty-sub {
-  font: 600 11px/1.4 var(--font-mono, monospace);
+  font: 400 12px/1.4 var(--np-typewriter);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-dim);
+  letter-spacing: 0.12em;
+  color: var(--np-ink-dim);
 }
+
+/* Skeleton: 3 cards retangulares com shimmer xerografico */
+.news-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+  padding: 4px;
+}
+.news-skeleton-card {
+  background: var(--np-paper-dark);
+  border: 1px dashed var(--np-ink);
+  aspect-ratio: 4 / 5;
+  position: relative;
+  overflow: hidden;
+}
+.news-skeleton-card::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: news-shimmer 1.6s linear infinite;
+}
+@keyframes news-shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+/* Header: barra de filtros em hatching + label "atualizado" */
 .news-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  margin: 0 0 20px;
-  padding: 0 4px;
+  margin: 0 0 26px;
+  padding: 12px 12px;
+  background-image: var(--np-hatch);
+  border-top: 2px solid var(--np-ink);
+  border-bottom: 2px solid var(--np-ink);
 }
 .news-filters {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   flex-wrap: wrap;
 }
 .news-chip {
-  background: transparent;
-  border: 1px solid var(--divider-strong);
-  color: var(--ink-mute);
-  padding: 5px 12px;
-  border-radius: 14px;
+  background: var(--np-paper);
+  border: 1px solid var(--np-ink);
+  color: var(--np-ink);
+  padding: 6px 12px;
+  border-radius: 0;
   cursor: pointer;
-  font: 600 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  letter-spacing: 0.08em;
+  font: 400 11px/1 var(--np-typewriter);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+  transition: background 100ms ease, color 100ms ease, transform 80ms ease;
+  position: relative;
 }
+.news-chip::before { content: "[ "; opacity: 0.5; }
+.news-chip::after  { content: " ]"; opacity: 0.5; }
 .news-chip:hover {
-  border-color: var(--pj);
-  color: var(--ink);
+  background: var(--np-ink);
+  color: var(--np-paper);
+  transform: translate(-1px, -1px);
+  box-shadow: 1px 1px 0 var(--np-ink);
 }
 .news-chip.active {
-  background: var(--pj);
-  border-color: var(--pj);
-  color: #fff;
+  background: var(--np-stamp);
+  border-color: var(--np-stamp);
+  color: var(--np-paper);
 }
+.news-chip.active::before, .news-chip.active::after { opacity: 0.85; }
 .news-updated {
-  font: 600 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  letter-spacing: 0.12em;
+  font: 400 11px/1.2 var(--np-typewriter);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-dim);
+  color: var(--np-ink-mute);
+  display: inline-flex; align-items: center; gap: 6px;
 }
-/* HERO da noticia mais recente: 2 colunas em desktop, empilha em mobile.
-   Imagem domina a esquerda; texto editorial na direita.
-   Renderizado pelo _renderNewsHero(), nunca duplicado no grid. */
+.news-updated::before { content: "▸"; color: var(--np-stamp); }
+/* HERO: numero de capa + imagem + texto editorial.
+   Layout 3 colunas em desktop: [#numero] [imagem] [texto].
+   Imagem com grain noise overlay + tag stamps inclinados. */
 .news-hero {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 28px;
-  align-items: stretch;
-  margin: 0 0 36px;
-  padding: 4px;
+  grid-template-columns: auto 1.1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin: 0 0 44px;
   position: relative;
+}
+.news-hero-num {
+  font-family: var(--np-stencil);
+  font-weight: 900;
+  font-size: clamp(56px, 9vw, 92px);
+  line-height: 0.85;
+  color: var(--np-paper);
+  -webkit-text-stroke: 1.5px var(--np-ink);
+  letter-spacing: -0.02em;
+  user-select: none;
+  padding-top: 4px;
 }
 .news-hero-imgwrap {
   position: relative;
-  aspect-ratio: 16 / 10;
-  border-radius: 8px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: var(--bg-card-hover) center / cover no-repeat;
+  background: var(--np-paper-dark) center / cover no-repeat;
   cursor: pointer;
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  border: 2px solid var(--np-ink);
+  box-shadow: 6px 6px 0 var(--np-ink);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.news-hero-imgwrap::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: var(--np-noise);
+  background-size: 220px;
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 2;
 }
 .news-hero-imgwrap::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.30), rgba(0,0,0,0) 45%);
+  background: linear-gradient(to top, rgba(26,22,18,0.45), rgba(26,22,18,0) 55%);
   pointer-events: none;
+  z-index: 1;
 }
 .news-hero-imgwrap:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--np-stamp);
 }
 .news-hero-tagstrip {
   position: absolute;
   top: 14px; left: 14px;
   display: flex; gap: 6px; flex-wrap: wrap;
-  z-index: 1;
+  z-index: 3;
 }
 .news-hero-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 8px 0;
+  justify-content: flex-start;
+  padding: 0 0 0 4px;
+  border-left: 2px dashed var(--np-ink);
+  padding-left: 22px;
+  min-height: 100%;
 }
 .news-hero-eyebrow {
-  font: 700 11px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
-  letter-spacing: 0.18em;
+  font: 400 12px/1.2 var(--np-typewriter);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--pj);
-  margin: 0 0 14px;
+  color: var(--np-stamp);
+  margin: 0 0 18px;
 }
+.news-hero-eyebrow::before { content: "// "; opacity: 0.6; }
 .news-hero-title {
-  font: 700 42px/1.08 var(--font-editorial, 'Instrument Serif', serif);
-  color: var(--ink);
-  margin: 0 0 16px;
-  letter-spacing: -0.015em;
+  font-family: var(--np-editorial);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(34px, 4.8vw, 56px);
+  line-height: 1.02;
+  color: var(--np-ink);
+  margin: 0 0 18px;
+  letter-spacing: -0.02em;
   cursor: pointer;
+  transition: color 120ms ease;
 }
-.news-hero-title:hover { color: var(--pj); }
+.news-hero-title:hover { color: var(--np-stamp); }
 .news-hero-intro {
-  font: italic 20px/1.5 var(--font-editorial, 'Instrument Serif', serif);
-  color: var(--ink-mute);
+  font: 400 18px/1.55 var(--np-body);
+  color: var(--np-ink-mute);
   margin: 0 0 22px;
+  position: relative;
+  padding-left: 28px;
+}
+.news-hero-intro::before {
+  content: "»";
+  position: absolute;
+  left: 0; top: -2px;
+  font-family: var(--np-editorial);
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--np-stamp);
+  line-height: 1;
 }
 .news-hero-meta {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  font: 600 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  font: 400 11px/1 var(--np-typewriter);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-dim);
-  margin-bottom: 18px;
+  color: var(--np-ink-mute);
+  margin-bottom: 22px;
 }
-.news-hero-meta-source { color: var(--pj); }
-.news-hero-meta-sep { opacity: 0.5; }
+.news-hero-meta-source { color: var(--np-stamp); font-weight: 700; }
+.news-hero-meta-sep { opacity: 0.6; }
 .news-hero-cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   align-self: flex-start;
-  background: var(--pj);
-  color: #fff;
-  border: 0;
+  background: var(--np-paper);
+  color: var(--np-ink);
+  border: 2px solid var(--np-ink);
   padding: 12px 22px;
-  border-radius: 4px;
-  font: 700 12px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  letter-spacing: 0.14em;
+  border-radius: 0;
+  font: 400 12px/1 var(--np-typewriter);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: transform 120ms ease, background 120ms ease;
+  transition: background 120ms ease, color 120ms ease, transform 100ms ease;
+  position: relative;
 }
-.news-hero-cta:hover { transform: translateX(2px); background: #a4232a; }
-.news-hero-cta::after { content: "→"; font-size: 14px; }
-@media (max-width: 820px) {
-  .news-hero { grid-template-columns: 1fr; gap: 20px; }
-  .news-hero-title { font-size: 30px; }
-  .news-hero-intro { font-size: 17px; }
+.news-hero-cta::before { content: "["; opacity: 0.5; margin-right: 4px; }
+.news-hero-cta::after  { content: "→ ]"; opacity: 0.85; }
+.news-hero-cta:hover {
+  background: var(--np-ink);
+  color: var(--np-paper);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--np-stamp);
 }
 
-/* Tag pill: usado tanto no thumb dos cards quanto no hero.
-   Cores semanticas por tag, definidas no .news-tag-<slug>. */
+@media (max-width: 980px) {
+  .news-hero { grid-template-columns: auto 1fr; }
+  .news-hero-content { grid-column: 1 / -1; border-left: 0; border-top: 2px dashed var(--np-ink); padding-left: 0; padding-top: 22px; }
+}
+@media (max-width: 600px) {
+  .news-hero { grid-template-columns: 1fr; gap: 18px; }
+  .news-hero-num { font-size: 64px; }
+  .news-hero-imgwrap { aspect-ratio: 16 / 11; }
+  .news-hero-title { font-size: 30px; }
+  .news-hero-intro { font-size: 16px; }
+}
+
+/* Tag = carimbo de borracha. Rotacao leve por tag, fonte typewriter, sem
+   blur/backdrop. Mantemos a mesma API (.news-tag-<slug>) pra reutilizar. */
 .news-tag {
   display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font: 700 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  letter-spacing: 0.12em;
+  padding: 5px 11px;
+  border-radius: 0;
+  font: 400 10px/1 var(--np-typewriter);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #fff;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--np-paper);
+  background: var(--np-ink);
+  border: 1.5px solid var(--np-ink);
+  transform: rotate(-2deg);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.35);
 }
-.news-tag-turne       { background: rgba(193,39,45,0.92); }
-.news-tag-comunidade  { background: rgba(38,99,164,0.92); }
-.news-tag-memoria     { background: rgba(166,124,38,0.92); }
-.news-tag-ed-solo     { background: rgba(101,68,148,0.92); }
-.news-tag-lancamento  { background: rgba(54,140,80,0.92); }
-.news-tag-tenclub     { background: rgba(40,40,42,0.92); }
-.news-tag-br          { background: rgba(38,144,82,0.92); }
-.news-tag-bootleg     { background: rgba(196,108,38,0.92); }
+.news-tag-turne       { background: var(--np-stamp);   border-color: var(--np-stamp);   transform: rotate(-3deg); }
+.news-tag-comunidade  { background: #2a4f88;            border-color: #2a4f88;            transform: rotate(-1.5deg); }
+.news-tag-memoria     { background: var(--np-ocre);    border-color: var(--np-ocre);    transform: rotate(2deg); }
+.news-tag-ed-solo     { background: #5a3d80;            border-color: #5a3d80;            transform: rotate(-2deg); }
+.news-tag-lancamento  { background: #3a7a4d;            border-color: #3a7a4d;            transform: rotate(3deg); }
+.news-tag-tenclub     { background: #2a2a2c;            border-color: #2a2a2c;            transform: rotate(-2deg); }
+.news-tag-br          { background: var(--np-brasil);  border-color: var(--np-brasil);  transform: rotate(2.5deg); }
+.news-tag-bootleg     { background: #b56424;            border-color: #b56424;            transform: rotate(-2deg); }
+/* tags em sequencia: alterna inclinacao pra parecer carimbo manual */
+.news-card-tagstrip .news-tag:nth-child(2),
+.news-hero-tagstrip .news-tag:nth-child(2) { transform: rotate(2deg) translateY(2px); }
+.news-card-tagstrip .news-tag:nth-child(3),
+.news-hero-tagstrip .news-tag:nth-child(3) { transform: rotate(-1deg) translateY(-1px); }
 
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px 22px;
   padding: 4px;
 }
 .news-card {
-  background: var(--bg-card);
-  border: 1px solid var(--divider);
-  border-radius: 6px;
-  overflow: hidden;
+  background: var(--np-paper);
+  border: 2px solid var(--np-ink);
+  border-radius: 0;
+  overflow: visible;
   cursor: pointer;
-  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
   display: flex;
   flex-direction: column;
+  position: relative;
+  transition: transform 140ms ease, box-shadow 140ms ease;
+  box-shadow: 4px 4px 0 var(--np-ink);
+  /* anima entrada com stagger via JS (--news-card-i) */
+  animation: news-card-in 360ms ease both;
+  animation-delay: calc(var(--news-card-i, 0) * 70ms);
+}
+@keyframes news-card-in {
+  from { opacity: 0; transform: translateY(8px) rotate(-0.4deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(0); }
 }
 .news-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--pj);
-  box-shadow: 0 6px 18px rgba(193, 39, 45, 0.12);
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--np-stamp);
 }
-.news-card.expanded {
-  border-color: var(--pj);
+.news-card:focus-visible {
+  outline: 2px solid var(--np-stamp);
+  outline-offset: 3px;
 }
+.news-card.expanded { border-color: var(--np-stamp); }
 .news-card[hidden] { display: none !important; }
+.news-card-num {
+  position: absolute;
+  top: -18px; left: -2px;
+  font-family: var(--np-stencil);
+  font-weight: 900;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--np-paper);
+  -webkit-text-stroke: 1px var(--np-ink);
+  background: var(--np-paper);
+  padding: 0 6px;
+  z-index: 2;
+  pointer-events: none;
+}
 .news-card-thumb {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   width: 100%;
-  background: var(--bg-card-hover) center / cover no-repeat;
-  border-bottom: 3px solid var(--pj);
+  background: var(--np-paper-dark) center / cover no-repeat;
+  border: 0;
+  border-bottom: 2px solid var(--np-ink);
+}
+.news-card-thumb::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: var(--np-noise);
+  background-size: 200px;
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 2;
+}
+.news-card-thumb::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(26,22,18,0.35), rgba(26,22,18,0) 50%);
+  pointer-events: none;
+  z-index: 1;
 }
 .news-card-tagstrip {
   position: absolute;
   top: 10px; left: 10px;
-  display: flex; gap: 6px; flex-wrap: wrap;
+  display: flex; gap: 8px; flex-wrap: wrap;
   max-width: calc(100% - 20px);
-  z-index: 1;
+  z-index: 3;
 }
 .news-card-meta {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 12px 14px 0;
-  font: 600 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  gap: 8px;
+  padding: 14px 16px 0;
+  font: 400 11px/1.2 var(--np-typewriter);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-dim);
+  letter-spacing: 0.12em;
+  color: var(--np-ink-mute);
 }
-.news-card-source { color: var(--pj); }
-.news-card-sep { color: var(--ink-dim); opacity: 0.6; }
+.news-card-source { color: var(--np-stamp); font-weight: 700; }
+.news-card-sep { color: var(--np-ink-dim); opacity: 0.7; }
 .news-card-title {
-  font: 600 19px/1.25 var(--font-editorial, 'Instrument Serif', serif);
-  padding: 8px 14px 4px;
+  font-family: var(--np-editorial);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.12;
+  padding: 6px 16px 4px;
   margin: 0;
-  color: var(--ink);
-  letter-spacing: -0.005em;
+  color: var(--np-ink);
+  letter-spacing: -0.01em;
 }
 .news-card-intro {
-  font: 400 14px/1.5 var(--font-body, 'Newsreader', Georgia, serif);
-  color: var(--ink-mute);
-  padding: 0 14px 14px;
+  font: 400 14px/1.55 var(--np-body);
+  color: var(--np-ink-mute);
+  padding: 4px 16px 18px;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -4611,12 +4877,15 @@ html[data-theme="dark"] .alphatab-version-select {
   overflow: hidden;
 }
 @media (max-width: 480px) {
-  .news-grid { grid-template-columns: 1fr; gap: 14px; }
-  .news-card-title { font-size: 17px; }
+  .news-grid { grid-template-columns: 1fr; gap: 22px; }
+  .news-card-title { font-size: 20px; }
 }
 
 /* ====================================================================
    NOTICIA: pagina de detalhe (deep-link via #news/<id>)
+   Layout fanzine: nav superior em mono, titulo serif italic gigante,
+   hero clicavel com grain noise, corpo em Newsreader 18px com hanging
+   marks (« »), drop cap no primeiro paragrafo.
    ==================================================================== */
 .news-detail {
   max-width: 760px;
@@ -4628,95 +4897,138 @@ html[data-theme="dark"] .alphatab-version-select {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--np-ink);
 }
 .news-back {
-  background: transparent;
-  border: 1px solid var(--divider-strong);
-  color: var(--ink);
-  padding: 7px 14px;
-  border-radius: 4px;
+  background: var(--np-paper);
+  border: 2px solid var(--np-ink);
+  color: var(--np-ink);
+  padding: 8px 14px;
+  border-radius: 0;
   cursor: pointer;
-  font: 600 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  letter-spacing: 0.1em;
+  font: 400 11px/1 var(--np-typewriter);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  transition: background 120ms ease, border-color 120ms ease;
+  transition: background 120ms ease, color 120ms ease, transform 100ms ease;
 }
-.news-back:hover { border-color: var(--pj); color: var(--pj); }
+.news-back:hover {
+  background: var(--np-ink);
+  color: var(--np-paper);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 var(--np-stamp);
+}
 .news-detail-nav-arrows { display: flex; gap: 8px; }
 .news-nav-arrow {
-  background: transparent;
-  border: 1px solid var(--divider);
-  color: var(--ink-mute);
-  padding: 7px 12px;
-  border-radius: 4px;
+  background: var(--np-paper);
+  border: 1.5px solid var(--np-ink);
+  color: var(--np-ink-mute);
+  padding: 8px 12px;
+  border-radius: 0;
   cursor: pointer;
-  font: 600 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  letter-spacing: 0.08em;
+  font: 400 10px/1 var(--np-typewriter);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+  transition: background 120ms ease, color 120ms ease, transform 100ms ease;
 }
-.news-nav-arrow:hover { border-color: var(--pj); color: var(--pj); }
-.news-detail-header { margin-bottom: 24px; }
+.news-nav-arrow:hover {
+  background: var(--np-ink);
+  color: var(--np-paper);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 var(--np-stamp);
+}
+.news-detail-header { margin-bottom: 28px; }
 .news-detail-meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
-  font: 600 11px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  font: 400 11px/1.2 var(--np-typewriter);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-dim);
-  margin-bottom: 12px;
+  letter-spacing: 0.12em;
+  color: var(--np-ink-mute);
+  margin-bottom: 16px;
 }
-.news-detail-source { color: var(--pj); }
-.news-detail-sep { color: var(--ink-dim); opacity: 0.6; }
-.news-detail-tags { display: inline-flex; gap: 6px; flex-wrap: wrap; }
-.news-detail-tag {
-  display: inline-block;
-  padding: 2px 8px;
-  border: 1px solid var(--divider-strong);
-  border-radius: 10px;
-  color: var(--ink-mute);
-  text-transform: lowercase;
-  letter-spacing: 0.05em;
-  font-size: 10px;
-}
+.news-detail-source { color: var(--np-stamp); font-weight: 700; }
+.news-detail-sep { color: var(--np-ink-dim); opacity: 0.7; }
+.news-detail-tags { display: inline-flex; gap: 8px; flex-wrap: wrap; }
 .news-detail-title {
-  font: 700 36px/1.15 var(--font-editorial, 'Instrument Serif', serif);
-  color: var(--ink);
-  margin: 0 0 12px;
-  letter-spacing: -0.01em;
+  font-family: var(--np-editorial);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.04;
+  color: var(--np-ink);
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
 }
 .news-detail-intro {
-  font: italic 19px/1.5 var(--font-editorial, 'Instrument Serif', serif);
-  color: var(--ink-mute);
+  font: 400 19px/1.55 var(--np-body);
+  color: var(--np-ink-mute);
   margin: 0 0 8px;
+  position: relative;
+  padding-left: 30px;
+}
+.news-detail-intro::before {
+  content: "»";
+  position: absolute;
+  left: 0; top: -4px;
+  font-family: var(--np-editorial);
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--np-stamp);
+  line-height: 1;
 }
 .news-detail-hero {
   aspect-ratio: 16 / 9;
   width: 100%;
-  background: var(--bg-card-hover) center / cover no-repeat;
-  border-radius: 4px;
-  border-top: 4px solid var(--pj);
-  margin-bottom: 28px;
+  background: var(--np-paper-dark) center / cover no-repeat;
+  border-radius: 0;
+  border: 2px solid var(--np-ink);
+  box-shadow: 6px 6px 0 var(--np-ink);
+  margin: 22px 0 32px;
+  position: relative;
+  overflow: hidden;
+}
+.news-detail-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: var(--np-noise);
+  background-size: 220px;
+  mix-blend-mode: multiply;
+  opacity: 0.40;
+  pointer-events: none;
 }
 .news-detail-body {
-  font: 400 17px/1.75 var(--font-body, 'Newsreader', Georgia, serif);
-  color: var(--ink);
+  font: 400 18px/1.75 var(--np-body);
+  color: var(--np-ink);
 }
 .news-detail-body p {
-  margin: 0 0 18px;
+  margin: 0 0 20px;
+}
+/* drop cap no primeiro paragrafo */
+.news-detail-body p:first-of-type::first-letter {
+  font-family: var(--np-editorial);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 4.5em;
+  float: left;
+  line-height: 0.85;
+  margin: 4px 10px 0 0;
+  color: var(--np-stamp);
+  -webkit-text-stroke: 0;
 }
 .news-detail-body em {
   font-style: italic;
-  color: var(--ink-mute);
+  color: var(--np-ink-mute);
 }
 @media (max-width: 600px) {
-  .news-detail-title { font-size: 26px; }
-  .news-detail-intro { font-size: 16px; }
-  .news-detail-body { font-size: 16px; line-height: 1.7; }
+  .news-detail-title { font-size: 30px; }
+  .news-detail-intro { font-size: 17px; padding-left: 24px; }
+  .news-detail-body { font-size: 16.5px; line-height: 1.7; }
+  .news-detail-body p:first-of-type::first-letter { font-size: 3.6em; }
 }
 
 /* ====================================================================
@@ -13665,15 +13977,20 @@ window.addEventListener("popstate", () => {
 async function renderNewsView() {
   const container = document.getElementById("news-content");
   if (!container) return;
-  container.innerHTML = `<div class="news-loading">Carregando notícias...</div>`;
+  // Skeleton xerografico: 6 cards em grid pra dar sensacao de carregando "papel"
+  container.innerHTML = `
+    <div class="news-skeleton-grid" aria-busy="true" aria-label="Carregando edição">
+      ${Array.from({ length: 6 }, () => '<div class="news-skeleton-card"></div>').join("")}
+    </div>`;
   const manifest = await _loadNewsManifest();
   const items = Array.isArray(manifest.items) ? manifest.items : [];
 
   if (!items.length) {
     container.innerHTML = `
       <div class="news-empty">
-        <p>Nenhuma notícia ainda. O bot roda a cada 6h e popula o arquivo automaticamente.</p>
-        <p class="news-empty-sub">Próxima atualização: em até 6 horas.</p>
+        <p>Sem edição nova ainda.</p>
+        <p>O bot roda a cada 6h, recolhe da mídia e da comunidade mundial, escreve em português.</p>
+        <p class="news-empty-sub">Próxima rodagem: em até 6 horas ░░░</p>
       </div>`;
     return;
   }
@@ -13711,6 +14028,22 @@ function _renderNewsTagStrip(tags, max = 2) {
   }).join("");
 }
 
+// Formata data no estilo "TER, 12 MAI 26" pra bandeira fanzine
+function _newsBannerDate(iso) {
+  const d = iso ? new Date(iso) : new Date();
+  if (isNaN(d)) return "";
+  const dias = ["DOM","SEG","TER","QUA","QUI","SEX","SAB"];
+  const meses = ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+  const dd = String(d.getDate()).padStart(2, "0");
+  const yy = String(d.getFullYear()).slice(2);
+  return `${dias[d.getDay()]}, ${dd} ${meses[d.getMonth()]} ${yy}`;
+}
+// Numero da edicao: usa quantidade total de items publicados (estavel,
+// cresce com o tempo). 3 digitos pra ficar "edicao #047" estilo zine.
+function _newsEditionNumber(count) {
+  return String(count || 0).padStart(3, "0");
+}
+
 function _renderNewsGrid(container, items, manifest) {
   // Hero = primeiro item (mais recente). Grid recebe items[1..].
   const heroItem = items[0];
@@ -13732,19 +14065,21 @@ function _renderNewsGrid(container, items, manifest) {
       }).join("")}
     </div>`;
 
-  const heroHtml = heroItem ? _renderNewsHeroHtml(heroItem) : "";
+  const heroHtml = heroItem ? _renderNewsHeroHtml(heroItem, 1) : "";
 
-  const cards = gridItems.map(item => {
+  const cards = gridItems.map((item, i) => {
     const img = item.img || "/media/news/_placeholder.svg";
     const tagsAttr = (Array.isArray(item.tags) ? item.tags : []).join(",");
+    const num = String(i + 2).padStart(3, "0"); // 002, 003... (hero eh 001)
     return `
-      <article class="news-card" data-id="${_newsEscape(item.id)}" data-tags="${_newsEscape(tagsAttr)}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
+      <article class="news-card" data-id="${_newsEscape(item.id)}" data-tags="${_newsEscape(tagsAttr)}" style="--news-card-i:${i}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
+        <span class="news-card-num" aria-hidden="true">${num}</span>
         <div class="news-card-thumb" style="background-image:url('${_newsEscape(img)}')" aria-hidden="true">
           <div class="news-card-tagstrip">${_renderNewsTagStrip(item.tags, 2)}</div>
         </div>
         <div class="news-card-meta">
           <span class="news-card-source">${_newsEscape(item.sourceLabel)}</span>
-          <span class="news-card-sep">·</span>
+          <span class="news-card-sep">//</span>
           <time datetime="${_newsEscape(item.pubDate)}">${_newsRelTime(item.pubDate)}</time>
         </div>
         <h3 class="news-card-title">${_newsEscape(item.title_pt)}</h3>
@@ -13752,9 +14087,23 @@ function _renderNewsGrid(container, items, manifest) {
       </article>`;
   }).join("");
 
-  const updatedLabel = manifest.updated ? `Atualizado ${_newsRelTime(manifest.updated)}` : "";
+  const updatedLabel = manifest.updated ? `atualizado ${_newsRelTime(manifest.updated)}` : "";
+  const bannerDate = _newsBannerDate(manifest.updated);
+  const edition = _newsEditionNumber(items.length);
 
   container.innerHTML = `
+    <div class="news-flag" aria-hidden="true">
+      <span class="news-flag-left">
+        <span class="news-flag-stamp">SETLISTS PJ/EV</span>
+        <span>░ ARQUIVO BRASILEIRO ░</span>
+      </span>
+      <span class="news-flag-right">
+        <span>${_newsEscape(bannerDate)}</span>
+        <span class="news-flag-edition">EDIÇÃO #${_newsEscape(edition)}</span>
+      </span>
+    </div>
+    <h1 class="news-wordmark" data-text="NOTÍCIAS">NOTÍCIAS</h1>
+    <div class="news-wordmark-rule" aria-hidden="true"></div>
     ${heroHtml}
     <div class="news-header">
       ${chips}
@@ -13815,25 +14164,29 @@ function _renderNewsGrid(container, items, manifest) {
   });
 }
 
-// HTML do hero. A noticia mais recente vira destaque full-width 2-col.
-function _renderNewsHeroHtml(item) {
+// HTML do hero. A noticia mais recente vira capa: numero outline gigante,
+// imagem com borda + sombra ofset, e coluna de texto editorial com aspa
+// pendurada (»). idx = 1 sempre (capa eh #001).
+function _renderNewsHeroHtml(item, idx = 1) {
   if (!item) return "";
   const img = item.img || "/media/news/_placeholder.svg";
   const eyebrow = (Array.isArray(item.tags) && item.tags[0])
     ? (_NEWS_TAG_LABELS[item.tags[0]] || item.tags[0])
     : "destaque";
+  const num = String(idx).padStart(3, "0");
   return `
     <section class="news-hero" aria-label="Notícia em destaque">
+      <div class="news-hero-num" aria-hidden="true">${num}</div>
       <div class="news-hero-imgwrap" style="background-image:url('${_newsEscape(img)}')" data-hero-open tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
         <div class="news-hero-tagstrip">${_renderNewsTagStrip(item.tags, 3)}</div>
       </div>
       <div class="news-hero-content">
-        <p class="news-hero-eyebrow">${_newsEscape(eyebrow)} · em destaque</p>
+        <p class="news-hero-eyebrow">${_newsEscape(eyebrow)} ── em destaque</p>
         <h2 class="news-hero-title" data-hero-open tabindex="0" role="link">${_newsEscape(item.title_pt)}</h2>
         <p class="news-hero-intro">${_newsEscape(item.intro_pt)}</p>
         <div class="news-hero-meta">
           <span class="news-hero-meta-source">${_newsEscape(item.sourceLabel)}</span>
-          <span class="news-hero-meta-sep">·</span>
+          <span class="news-hero-meta-sep">//</span>
           <time datetime="${_newsEscape(item.pubDate)}">${_newsRelTime(item.pubDate)}</time>
         </div>
         <button type="button" class="news-hero-cta" data-hero-open aria-label="Ler matéria completa">Ler matéria</button>
