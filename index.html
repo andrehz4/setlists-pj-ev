@@ -3299,29 +3299,29 @@ html[data-theme="dark"] .alphatab-surface {
   stroke: var(--pj, #c1272d) !important;
 }
 /* Variante cifra da surface: contem chord-chips (ChordPro renderizado) em
-   vez de partitura vetorial. Mesmo container + scroll, padding maior pra
-   respiro do texto da letra. Altura limitada com scroll interno pra cifra
-   nao empurrar o resto pra fora da viewport (braco da guitarra precisa
-   ficar visivel junto). */
+   vez de partitura vetorial. Padding maior pra respiro do texto da letra.
+   SETLIST (default): sem limite de altura - cifra rola com a window inteira.
+   VIEW Cifras & Tabs: max-height 48vh com scroll interno (braco docked
+   abaixo precisa caber junto). Separacao de comportamento por contexto. */
 .cifra-surface {
   padding: 14px 18px;
   min-height: 140px;
-  max-height: 40vh;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-}
-.cifra-surface::-webkit-scrollbar { width: 8px; }
-.cifra-surface::-webkit-scrollbar-thumb {
-  background: var(--divider-strong, #b3a78a);
-  border-radius: 4px;
 }
 .cifra-surface .cifra-stanza:first-child { margin-top: 0; }
 .cifra-surface .cifra-stanza:last-child { margin-bottom: 0; }
-/* Na view Cifras, um pouco mais alto (48vh) ja que tem mais espaco
-   vertical disponivel no detail-wrap. */
-.cifra-detail-wrap .cifra-surface { max-height: 48vh; }
+/* Na view Cifras: scroll interno (braco docked abaixo precisa caber junto) */
+.cifra-detail-wrap .cifra-surface {
+  max-height: 48vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+.cifra-detail-wrap .cifra-surface::-webkit-scrollbar { width: 8px; }
+.cifra-detail-wrap .cifra-surface::-webkit-scrollbar-thumb {
+  background: var(--divider-strong, #b3a78a);
+  border-radius: 4px;
+}
 @media (max-width: 600px) {
-  .cifra-surface { max-height: 50vh; }
+  .cifra-detail-wrap .cifra-surface { max-height: 50vh; }
 }
 /* Transport TOP (compacta): fica acima da partitura. Play+Stop+Speed select+Loop
    pra controle rapido sem rolar ate o fim. Espelha estado do bottom via JS. */
@@ -11751,14 +11751,15 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
-  // Auto-scroll inicial: posiciona a cifra no topo da viewport pra
-  // usuario ver surface + braco da guitarra juntos sem ter que rolar.
-  // Igual o tab faz no playerStateChanged. Ancorado no transport-top
-  // do cifraPane com offset de 16px pra respiro visual.
-  const scrollAnchor = root.querySelector('.alphatab-transport-top') || root;
-  if (scrollAnchor) {
-    const y = scrollAnchor.getBoundingClientRect().top + window.scrollY - 16;
-    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  // Auto-scroll inicial: APENAS na view Cifras & Tabs. No setlist nao rola
+  // a window (Andre flagou que ficava ruim). Detecta contexto via
+  // .cifra-detail-wrap. Igual o tab que tambem so rola na view.
+  if (root.closest('.cifra-detail-wrap')) {
+    const scrollAnchor = root.querySelector('.alphatab-transport-top') || root;
+    if (scrollAnchor) {
+      const y = scrollAnchor.getBoundingClientRect().top + window.scrollY - 16;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    }
   }
 
   // Surface da cifra (mesma classe do TAB). Na view Cifras tem scroll
@@ -11792,35 +11793,32 @@ async function _startCifraPlayer(root, bpm) {
     })();
     if (bracoOn) _updateCifraFretboard(chord, nextChord, root);
     else _hideCifraFretboard();
-    // Scroll INTELIGENTE: rola APENAS dentro da surface (que tem scroll
-    // interno desde o ultimo commit), nunca a window. Andre flagou bug
-    // na intro: scrollIntoView default rola TODOS os ancestrais inclusive
-    // a window, jogando o braco floating pra fora da viewport. Solucao:
-    // calcular scrollTop alvo do container e usar surface.scrollTo()
-    // diretamente, deixando a window estatica.
-    const r = chip.getBoundingClientRect();
-    const sur = chip.closest('.cifra-surface, .alphatab-surface');
-    if (sur && sur.clientHeight < sur.scrollHeight) {
-      const sr = sur.getBoundingClientRect();
-      const margin = sr.height * 0.3;
-      const visibleTop = r.top - sr.top;
-      const visibleBot = r.bottom - sr.top;
-      if (visibleTop < margin || visibleBot > sr.height - margin) {
-        // chip.offsetTop relativo a offsetParent pode nao ser surface; usar
-        // bounding rects + scrollTop atual pra calcular offset absoluto
-        // dentro do scroll content.
-        const chipOffsetInSurface = (r.top - sr.top) + sur.scrollTop;
-        const target = chipOffsetInSurface - sr.height / 2 + r.height / 2;
-        sur.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+    // Scroll do chord ativo: comportamento diferente por contexto pra
+    // preservar o que Andre considerou bom em cada um:
+    //  - VIEW Cifras: scroll dentro da .cifra-surface (que tem max-height
+    //    + overflow-y auto). Window fica estatica. Bug da intro fixado.
+    //  - SETLIST: scroll classico chip.scrollIntoView({block:'center'})
+    //    rolando a window. Comportamento original que Andre disse estar bom.
+    const inCifraView = !!root.closest('.cifra-detail-wrap');
+    if (inCifraView) {
+      const r = chip.getBoundingClientRect();
+      const sur = chip.closest('.cifra-surface, .alphatab-surface');
+      if (sur && sur.clientHeight < sur.scrollHeight) {
+        const sr = sur.getBoundingClientRect();
+        const margin = sr.height * 0.3;
+        const visibleTop = r.top - sr.top;
+        const visibleBot = r.bottom - sr.top;
+        if (visibleTop < margin || visibleBot > sr.height - margin) {
+          const chipOffsetInSurface = (r.top - sr.top) + sur.scrollTop;
+          const target = chipOffsetInSurface - sr.height / 2 + r.height / 2;
+          sur.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+        }
+      } else {
+        chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
       }
     } else {
-      // Sem scroll interno (fallback raro): so rola window se chip saiu da
-      // viewport. block:nearest pra minimizar movimento.
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const margin = vh * 0.3;
-      if (r.top < margin || r.bottom > vh - margin) {
-        chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-      }
+      // SETLIST: comportamento classico, rola window pra centro
+      chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
     }
     // Duracao lida dinamicamente: se user move o speed slider durante o
     // playback, o proximo acorde ja respeita o novo tempo.
