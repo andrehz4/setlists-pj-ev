@@ -1,9 +1,14 @@
 {
   "_meta": {
-    "purpose": "Catalogo de videoclipes oficiais Pearl Jam pra view Clipes. Cada item eh um video do canal oficial Pearl Jam Vevo no YouTube, embedado via youtube-nocookie.com.",
-    "schema": "{ id: string (YouTube video id 11 chars), title: string, song: string?, album: string?, year: int?, director: string?, dur: string?, notes: string? }",
+    "purpose": "Catalogo de playlists e videoclipes oficiais Pearl Jam. Renderizado dentro da view Galeria via _renderGalleryVideosSection.",
+    "schema_playlists": "{ id: string (YouTube playlist id, formato PL...), title: string, subtitle?: string, firstVideo?: string (video id pra preview thumb opcional) }",
+    "schema_items": "{ id: string (YouTube video id 11 chars), title: string, song: string?, album: string?, year: int?, director: string?, dur: string?, notes: string? }",
     "updated": "2026-05-12",
-    "status": "em curadoria — Andre vai popular com ~30-40 videos oficiais. Fonte: playlist oficial PL9C9DD94124C436BB no canal Pearl Jam."
+    "status": "playlists testando 2 oficiais; items vazio (sera curado depois show-por-show)"
   },
+  "playlists": [
+    { "id": "PL9C9DD94124C436BB", "title": "Pearl Jam - Vídeos Oficiais", "subtitle": "Canal oficial Pearl Jam Vevo (clipes 1991-2024)" },
+    { "id": "PLFJn5QfTxjnhxs_9qYgxW_8lXOjstj5Sr", "title": "Pearl Jam - Playlist Oficial", "subtitle": "Coletânea oficial complementar" }
+  ],
   "items": []
 }
