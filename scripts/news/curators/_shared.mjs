@@ -27,9 +27,6 @@ const VALID_TAGS = new Set(["turne", "lancamento", "ed-solo", "tenclub", "memori
 // Sanitiza travessao (em-dash U+2014, en-dash U+2013, figure-dash U+2012,
 // horizontal-bar U+2015, minus sign U+2212) substituindo por pontuacao PT-BR
 // adequada. Travessao eh proibido em qualquer conteudo do site (regra global).
-// Estrategia: " — " (com espacos) eh tipicamente separador de clausula → vira ", ".
-// "—" colado a palavra (sem espacos) eh hifen estilizado → vira "-" (mantem ligado).
-// Hifens regulares "-" sao preservados.
 export function stripDashes(s) {
   if (typeof s !== "string") return s;
   return s
@@ -37,6 +34,17 @@ export function stripDashes(s) {
     .replace(/\s+[—–‒―−]/g, ",")        // " —" no fim
     .replace(/[—–‒―−]\s+/g, ", ")       // "— " no comeco
     .replace(/[—–‒―−]/g, "-");          // remanescente colado → hifen
+}
+
+// Trunca string num boundary de palavra + "..." se exceder maxChars.
+// Usado pra garantir que intro_pt nao explode o layout do card mesmo quando
+// o LLM ignora a regra de comprimento.
+export function truncateAtWord(s, maxChars) {
+  if (typeof s !== "string" || s.length <= maxChars) return s;
+  const cut = s.slice(0, maxChars);
+  const lastSpace = cut.lastIndexOf(" ");
+  const safe = lastSpace > maxChars * 0.6 ? cut.slice(0, lastSpace) : cut;
+  return safe.replace(/[.,;:!?]+$/, "") + "...";
 }
 
 // Recebe string crua do LLM, retorna objeto curado ou "SKIP".
@@ -71,6 +79,10 @@ export function validateCurated(rawText) {
   parsed.titulo_pt = stripDashes(parsed.titulo_pt);
   parsed.intro_pt = stripDashes(parsed.intro_pt);
   parsed.corpo_pt = stripDashes(parsed.corpo_pt);
+
+  // Garante que intro_pt cabe no card sem quebrar layout (~2 linhas no card).
+  // Se o LLM gerou prosa longa, trunca no boundary de palavra + "..." limpo.
+  parsed.intro_pt = truncateAtWord(parsed.intro_pt, 140);
 
   parsed.tags = parsed.tags.filter((t) => VALID_TAGS.has(t)).slice(0, 3);
   if (parsed.tags.length === 0) parsed.tags = ["memoria"];
