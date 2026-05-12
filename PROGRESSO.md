@@ -3,6 +3,75 @@
 ## Data
 2026-05-12
 
+## HANDOFF SESSAO 2026-05-12 NOITE: refino do bot de Noticias, nav reorganizado, playlists no Galeria
+
+### Estado atual
+HEAD `cae7677` (vai virar +1 com este commit). Site no ar em https://setlists-pj-ev.pages.dev/
+Routine Sonnet criada mas **desabilitada** (id `trig_01WTGwu5LzVJrQcxtMpRH3Te`), aguardando validacao do Gemini antes de ligar.
+
+### O que esta funcionando hoje
+- **Noticias 100% operacional** com Gemini 2.5 Flash via GH Actions cron `0 */6 * * *` UTC. Free tier do Gemini cobre folgado (500 RPD vs 10/dia que usamos).
+- **8 fontes ativas**: Stereogum, NME, Consequence, Pitchfork, Rolling Stone, Folha, PJ Online IT (RSS valido em italiano), Reddit r/pearljam (filtro score>=100 + flair restrito).
+- **Frontend**: Notícias é a home (primeira aba). Click em card abre pagina propria (`#news/<id>`), sem redirect externo. Setas anterior/proxima funcionam.
+- **Garantia tripla anti-travessao**: sanitizer no `_shared.mjs` (stripDashes) + prompt reforcado + limpeza retroativa do index. Mesmo se LLM teimar, nada passa.
+- **Truncate de intro**: `truncateAtWord(s, 140)` corta no boundary de palavra com "..." limpo se LLM gerar prosa longa. Card CSS clamp 2 linhas + text-overflow ellipsis.
+- **Tradução completa** (nao mais resumo): prompt manda 400-1200 palavras, max_tokens 4000. extract.mjs cap subiu pra 8kB.
+
+### Curators selecionaveis (em ordem de uso recomendado)
+1. **gemini** (default cron, default workflow_dispatch): Gemini 2.5 Flash via @google/generative-ai. Free tier. Andre tem `GEMINI_API_KEY` em GH Secrets. Pra trocar modelo: GH → Settings → Variables → `GEMINI_MODEL` = `gemini-2.5-pro` (ou outro).
+2. **anthropic**: Claude Haiku 4.5 via @anthropic-ai/sdk. Precisa `ANTHROPIC_API_KEY` (Andre nao configurou ainda).
+3. **routine**: usa quota do plano Max 5x (Sonnet com 8% usado/semana). Zero custo externo. Routine ja criada (`trig_01WTGwu5LzVJrQcxtMpRH3Te`), so falta enable=true. Workflow: bot coleta com --curator=routine (escreve `_pending.json`), routine le, curatela natively, roda `merge-curated.mjs --file` pra publicar.
+
+### Tabs/Nav
+- Ordem atual: **Notícias, Timeline, Cifras & Tabs, Galeria, Buscar, Ranking, Álbuns, Destaques, Raridades, Deep**.
+- Clipes section foi removida. Videos agora aparecem dentro do Galeria via `_renderGalleryVideosSection`, com interleaving: 2 playlists antes de cada show (`renderGalleryShows` virou async). Hoje so 2 playlists no manifest (`PL9C9DD94124C436BB` Vevo + `PLFJn5QfTxjnhxs_9qYgxW_8lXOjstj5Sr` Oficial). Andre vai mandando mais playlists em rodadas.
+
+### Investigacao de fontes (concluida)
+- `community.pearljam.com`: Cloudflare bot challenge (403). Inviavel sem Puppeteer.
+- `pearljam.com/news`: SPA client-side. RSS quebrado, conteudo via XHR. Requer headless browser.
+- `fivehorizons.com`: arquivo antigo, sem feed, pouco update.
+- `pearljamonline.it`: ADICIONADO (RSS valido em italiano; curador adapta pra PT-BR).
+- Canal YT @PearlJam/playlists: scrape achou 30 IDs (`PLFJn5QfTxjn...`) mas titulos vem em estrutura JSON aninhada que regex simples nao resolve. Backlog: parser dedicado se valer a pena.
+
+### Proximo passo concreto (proximo chat de News)
+Andre quer **ir aprimorando o bot** show por show. Possiveis frentes:
+
+1. **Validar a routine Sonnet** (ativar `trig_01WTGwu5LzVJrQcxtMpRH3Te` enable=true via /schedule, deixar correr 1-2 ciclos, comparar voz do Sonnet vs Gemini). Se Sonnet for melhor, **desligar cron do GH** (.github/workflows/news.yml) e migrar 100% pra routine.
+2. **Calibrar o prompt do curador** (`scripts/news/prompts/system-curator-fa.txt`). Toda noticia que ficar artificial ou fora do tom, Andre flagra → ajustamos uma regra especifica.
+3. **Filtros de tag no frontend** (chips tipo `[turne, lancamento, ed-solo, tenclub, memoria, br, bootleg]` na view Noticias pra usuario filtrar).
+4. **Arquivo de noticias antigas** (view "Ver mais antigas" lendo `media/news/archive/YYYY-MM.json`).
+5. **Mais fontes**: pearljam.com via headless browser (Puppeteer no GH Actions), brooklynvegan via outro endpoint, blogs PJ BR (Whiplash/Tenebrarum se voltarem).
+6. **Source-specific tweaks**: o curador trata Stereogum diferente de Folha? PJ Online IT tem nota italiana que precisa adaptar diferente.
+
+### Arquivos chave de News (read first ao retomar)
+```
+scripts/news/fetch-news.mjs                # orquestrador, com --curator + --dry-run
+scripts/news/sources.mjs                   # 8 feeds atuais
+scripts/news/relevance.mjs                 # regex PJ + canonicalize + sha10 + reddit filter
+scripts/news/extract.mjs                   # cheerio scrape (OG + texto, cap 8kB)
+scripts/news/image-cache.mjs               # sharp 1280x720 + GC orfas
+scripts/news/curators/_shared.mjs          # dispatcher + JSON validator + stripDashes + truncateAtWord
+scripts/news/curators/gemini.mjs           # default, JSON mode estruturado
+scripts/news/curators/anthropic.mjs        # Haiku 4.5 com cache_control
+scripts/news/curators/routine.mjs          # stub que retorna PENDING
+scripts/news/merge-curated.mjs             # pra modo routine: aplica curated.json -> index.json
+scripts/news/prompts/system-curator-fa.txt # voz de fa, regras de estilo, REGRA ABSOLUTA #1 anti-travessao
+scripts/news/README.md                     # doc dos 3 backends + onde achar cada API key
+.github/workflows/news.yml                 # cron 6h + manual dispatch com input curator
+media/news/index.json                      # 5 itens atuais (PT-BR)
+media/news/seen.json                       # dedup state
+media/news/archive/YYYY-MM.json            # arquivamento mensal (vazio ainda)
+media/news/img/*.jpg                       # 4-6 imagens cacheadas
+```
+
+### Comando exato pra continuar (proximo chat)
+```
+cd C:\Gitlab_hz\pearljam\setlists-pj-ev && claude
+```
+Daí pede: "leia o ultimo HANDOFF no PROGRESSO.md e foca em refinar o bot de Noticias".
+
+---
+
 ## HANDOFF SESSAO 2026-05-12 TARDE: secao 📰 Noticias automatizada (full-auto fa-pra-fa)
 
 ### Estado atual

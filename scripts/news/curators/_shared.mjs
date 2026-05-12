@@ -80,9 +80,9 @@ export function validateCurated(rawText) {
   parsed.intro_pt = stripDashes(parsed.intro_pt);
   parsed.corpo_pt = stripDashes(parsed.corpo_pt);
 
-  // Garante que intro_pt cabe no card sem quebrar layout (~2 linhas no card).
-  // Se o LLM gerou prosa longa, trunca no boundary de palavra + "..." limpo.
-  parsed.intro_pt = truncateAtWord(parsed.intro_pt, 140);
+  // Safety net: so trunca se LLM gerar intro absurdamente longa (>400 chars).
+  // Em uso normal nao dispara; CSS clamp 3 linhas + ellipsis cuidam do visual.
+  parsed.intro_pt = truncateAtWord(parsed.intro_pt, 400);
 
   parsed.tags = parsed.tags.filter((t) => VALID_TAGS.has(t)).slice(0, 3);
   if (parsed.tags.length === 0) parsed.tags = ["memoria"];
