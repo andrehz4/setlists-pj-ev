@@ -59,6 +59,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
+          REDDIT_PROXY_URL: ${{ secrets.REDDIT_PROXY_URL }}
         run: |
           ARGS="--mode=${{ steps.mode.outputs.mode }}"
           if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi

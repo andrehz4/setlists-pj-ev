@@ -20,7 +20,11 @@
 import got from "got";
 
 const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
-const BASE = "https://www.reddit.com/r/pearljam";
+// Em CI (GH Actions), Reddit bloqueia IP do runner. Usa proxy Cloudflare Worker
+// se REDDIT_PROXY_URL estiver definido (formato: https://reddit-proxy.<acc>.workers.dev).
+// Fallback: chamada direta pro Reddit (funciona em dev local).
+const REDDIT_BASE = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "") || "https://www.reddit.com";
+const BASE = `${REDDIT_BASE}/r/pearljam`;
 
 const IMAGE_HOST_RX = /^https?:\/\/(i\.redd\.it|preview\.redd\.it|i\.imgur\.com|imgur\.com)\//i;
 const IMAGE_EXT_RX = /\.(jpe?g|png|gif|webp)(\?|$)/i;

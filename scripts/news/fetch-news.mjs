@@ -84,7 +84,14 @@ async function fetchFeedItems(src) {
 
 async function fetchRedditItems(src) {
   try {
-    const res = await got(src.url, {
+    // Em CI, Reddit bloqueia IP do runner (403). Reescreve URL pra usar proxy
+    // se REDDIT_PROXY_URL estiver definido.
+    const proxyBase = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "");
+    let finalUrl = src.url;
+    if (proxyBase && src.url.startsWith("https://www.reddit.com")) {
+      finalUrl = src.url.replace("https://www.reddit.com", proxyBase);
+    }
+    const res = await got(finalUrl, {
       headers: { "User-Agent": UA, "Accept": "application/json" },
       timeout: { request: 15000 },
       retry: { limit: 1 },
