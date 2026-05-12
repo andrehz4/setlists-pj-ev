@@ -9172,13 +9172,29 @@ const _CHORD_DB = {
   'Db5':     { frets: ['x', 4, 6, 6, 'x', 'x'], fingers: ['x', 1, 3, 4, 'x', 'x'] },
   'D5/A':    { frets: ['x', 0, 0, 2, 3, 5],     fingers: ['x', 0, 0, 1, 2, 4] },
 };
-// Mini-braco horizontal da guitarra: SVG 360x116 mostrando 6 cordas, 5
-// trastes (logaritmico real) e as notas do acorde acesas em vermelho PJ
-// com pulse. Usado no card 'Tocando agora' do cifra player pra mostrar
-// VISUALMENTE o acorde sendo tocado, no estilo do braco real do site.
-function _renderChordMiniFretboard(chordName) {
+// Mini-braco/teclado horizontal: SVG 360x116 mostrando o acorde sendo tocado.
+// Renderer por instrumento (violao 6 cordas, ukulele 4 cordas, piano teclado).
+// Usado no card 'Tocando agora' do cifra player.
+function _renderChordMiniFretboard(chordName, multiData, instrument) {
+  const inst = instrument || _activeCifraInstrument || 'violao';
+  // Multi-instrumento (cifra-multi loaded): usa dados estruturados
+  if (multiData && multiData.instruments && multiData.instruments[inst]) {
+    const idata = multiData.instruments[inst];
+    const cdata = idata.chords && idata.chords[chordName];
+    if (cdata) {
+      if (inst === 'piano')   return _renderMiniPianoKeyboard(chordName, cdata.notes, cdata.fundamental);
+      if (inst === 'ukulele') return _renderMiniUkuleleFretboard(chordName, cdata.fingering, cdata.fingers);
+      // violao: usa fingering string + fingers string da cifra-multi
+      return _renderMiniGuitarFretboardFromMulti(chordName, cdata.fingering, cdata.fingers);
+    }
+  }
+  // Fallback: _CHORD_DB legacy (so violao). Renderer "v0" abaixo.
   const data = _CHORD_DB[chordName];
   if (!data) return null;
+  return _renderMiniGuitarFretboardLegacy(data);
+}
+// Renderer violao usando dados do _CHORD_DB legacy (frets: array, fingers: array, barre: obj)
+function _renderMiniGuitarFretboardLegacy(data) {
   const frets = data.frets;
   const fingers = data.fingers || [];
   const W = 360, H = 116;
@@ -9187,40 +9203,29 @@ function _renderChordMiniFretboard(chordName) {
   const N_FRETS = 5;
   const nStrings = 6;
   const stringSpacing = (H - padT - padB) / (nStrings - 1);
-  // Espacamento logaritmico (igual fretboard principal)
   const fretRatio = (n) => 1 - Math.pow(2, -n / 12);
   const scaleLen = (W - padL - padR) / fretRatio(N_FRETS);
   const fretX = (n) => padL + scaleLen * fretRatio(n);
   const fretCenter = (n) => (fretX(n - 1) + fretX(n)) / 2;
-  // Y por corda: e aguda (i=5) no topo, E grave (i=0) embaixo.
   const yFor = (i) => padT + (5 - i) * stringSpacing;
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">`;
-  // Fundo madeira (rosewood) + nut osso
   svg += `<rect x="${padL}" y="${padT - 4}" width="${W - padL - padR}" height="${H - padT - padB + 8}" fill="#5a3a1f"/>`;
   svg += `<rect x="${padL - 5}" y="${padT - 4}" width="5" height="${H - padT - padB + 8}" fill="#f9f3e3" stroke="#8a7a4a" stroke-width="0.5"/>`;
-  // Adesivos PJ: stickman no canto superior ESQUERDO extremo, sun-logo no
-  // canto superior DIREITO extremo. Bem transparentes (0.18) pra nao
-  // disputar atencao com as notas acendendo. mix-blend-mode: screen integra
-  // na madeira escura.
   svg += `<image href="media/decals/pj-stickman.png" x="2" y="2" width="18" height="32" opacity="0.18" style="mix-blend-mode: screen;" preserveAspectRatio="xMidYMid meet"/>`;
   svg += `<image href="media/decals/pj-sun-logo.png" x="${W - 22}" y="2" width="20" height="20" opacity="0.18" style="mix-blend-mode: screen;" transform="rotate(12 ${W - 12} 12)" preserveAspectRatio="xMidYMid meet"/>`;
-  // Trastes prateados
   for (let f = 1; f <= N_FRETS; f++) {
     const x = fretX(f);
     svg += `<rect x="${x - 1}" y="${padT - 4}" width="2" height="${H - padT - padB + 8}" fill="#d8d8d8"/>`;
   }
-  // Inlay no 5o traste
   if (N_FRETS >= 5) {
     svg += `<circle cx="${fretCenter(5)}" cy="${(padT + H - padB) / 2}" r="3" fill="#f0e8d0" opacity="0.7"/>`;
   }
-  // Cordas (com calibre variavel: agudas finas, graves grossas)
   for (let s = 0; s < nStrings; s++) {
     const y = padT + s * stringSpacing;
     const ratio = s / (nStrings - 1);
     const w = 0.85 + ratio * 1.5;
     svg += `<line x1="${padL - 5}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#dcdcdc" stroke-width="${w}" opacity="0.88"/>`;
   }
-  // Marcadores x e o acima do nut (corda muted ou solta)
   for (let i = 0; i < 6; i++) {
     const f = frets[i];
     const y = yFor(i);
@@ -9230,7 +9235,6 @@ function _renderChordMiniFretboard(chordName) {
       svg += `<circle cx="${padL - 16}" cy="${y}" r="4.5" fill="none" stroke="#e0b070" stroke-width="1.8"/>`;
     }
   }
-  // Barre (cobre intervalo de cordas no mesmo fret)
   if (data.barre) {
     const xCenter = fretCenter(data.barre.fret);
     const yFrom = yFor(data.barre.from - 1);
@@ -9239,16 +9243,179 @@ function _renderChordMiniFretboard(chordName) {
     const yMax = Math.max(yFrom, yTo);
     svg += `<rect x="${xCenter - 6}" y="${yMin - 5}" width="12" height="${yMax - yMin + 10}" rx="6" fill="#c1272d" opacity="0.92"/>`;
   }
-  // Notas tocadas (fret >= 1): halo + circulo pulsante + numero do dedo
+  // Determina fret minimo pra deslocar visual quando shape e alto (G5 xx55xx, D5 x577xx, etc).
+  // Se menor fret pressionado >= 4, mostra a partir do fret (minFret-1) com indicador.
+  let minFret = Infinity, maxFret = 0;
+  for (const f of frets) {
+    if (typeof f === 'number' && f >= 1) {
+      if (f < minFret) minFret = f;
+      if (f > maxFret) maxFret = f;
+    }
+  }
+  const fretOffset = (minFret >= 4 && maxFret - minFret < N_FRETS) ? (minFret - 1) : 0;
+  if (fretOffset > 0) {
+    svg += `<text x="${padL - 16}" y="${padT - 2}" font-family="sans-serif" font-size="9" font-weight="700" fill="#e0b070" text-anchor="middle">${fretOffset + 1}fr</text>`;
+  }
   for (let i = 0; i < 6; i++) {
     const f = frets[i];
-    if (typeof f !== 'number' || f < 1 || f > N_FRETS) continue;
-    const x = fretCenter(f);
+    if (typeof f !== 'number' || f < 1) continue;
+    const fDisplay = f - fretOffset;
+    if (fDisplay < 1 || fDisplay > N_FRETS) continue;
+    const x = fretCenter(fDisplay);
     const y = yFor(i);
     svg += `<circle cx="${x}" cy="${y}" r="13" fill="#c1272d" opacity="0.28"/>`;
     svg += `<circle cx="${x}" cy="${y}" r="9.5" fill="#c1272d" stroke="#fff" stroke-width="1.5"><animate attributeName="r" values="9.5;11.5;9.5" dur="0.55s" repeatCount="indefinite"/></circle>`;
     if (fingers[i] && fingers[i] !== 0 && fingers[i] !== 'x') {
       svg += `<text x="${x}" y="${y + 4}" font-family="sans-serif" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">${fingers[i]}</text>`;
+    }
+  }
+  svg += `</svg>`;
+  return svg;
+}
+// Renderer violao a partir do fingering string da cifra-multi ("x02220", "x13331").
+// Converte pra formato do legacy e reusa renderer.
+function _renderMiniGuitarFretboardFromMulti(chordName, fingering, fingers) {
+  if (!fingering || fingering.length !== 6) return _renderMiniGuitarFretboardLegacy(_CHORD_DB[chordName]);
+  const fretsArr = String(fingering).split('').map(c => c === 'x' || c === 'X' ? 'x' : parseInt(c, 10));
+  const fingerArr = fingers ? String(fingers).split('').map(c => c === 'x' || c === 'X' ? 'x' : parseInt(c, 10)) : [];
+  return _renderMiniGuitarFretboardLegacy({ frets: fretsArr, fingers: fingerArr });
+}
+// Renderer ukulele: 4 cordas (G C E A, baixo->alto). Mesmo estilo madeira+vermelho.
+function _renderMiniUkuleleFretboard(chordName, fingering, fingers) {
+  if (!fingering) return null;
+  const frets = String(fingering).split('').map(c => c === 'x' || c === 'X' || c === '-' ? 'x' : parseInt(c, 10));
+  const fingerArr = fingers ? String(fingers).split('').map(c => c === 'x' || c === 'X' || c === '-' ? 'x' : parseInt(c, 10)) : [];
+  const W = 360, H = 116;
+  const padL = 26, padR = 10;
+  const padT = 14, padB = 12;
+  const N_FRETS = 5;
+  const nStrings = 4;
+  const stringSpacing = (H - padT - padB) / (nStrings - 1);
+  const fretRatio = (n) => 1 - Math.pow(2, -n / 12);
+  const scaleLen = (W - padL - padR) / fretRatio(N_FRETS);
+  const fretX = (n) => padL + scaleLen * fretRatio(n);
+  const fretCenter = (n) => (fretX(n - 1) + fretX(n)) / 2;
+  // fingering[0]=G corda baixa (esquerda no diagrama vertical); aqui colocamos
+  // G no fundo (i=0 embaixo) e A no topo (i=3 cima). yFor(0) embaixo.
+  const yFor = (i) => padT + (3 - i) * stringSpacing;
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">`;
+  // Fundo Koa (madeira mais clara/dourada que rosewood do violao)
+  svg += `<rect x="${padL}" y="${padT - 4}" width="${W - padL - padR}" height="${H - padT - padB + 8}" fill="#8a5a2a"/>`;
+  svg += `<rect x="${padL - 5}" y="${padT - 4}" width="5" height="${H - padT - padB + 8}" fill="#f9f3e3" stroke="#8a7a4a" stroke-width="0.5"/>`;
+  // Adesivos PJ
+  svg += `<image href="media/decals/pj-stickman.png" x="2" y="2" width="16" height="28" opacity="0.18" style="mix-blend-mode: screen;" preserveAspectRatio="xMidYMid meet"/>`;
+  svg += `<image href="media/decals/pj-sun-logo.png" x="${W - 22}" y="2" width="20" height="20" opacity="0.18" style="mix-blend-mode: screen;" transform="rotate(12 ${W - 12} 12)" preserveAspectRatio="xMidYMid meet"/>`;
+  // Trastes
+  for (let f = 1; f <= N_FRETS; f++) {
+    const x = fretX(f);
+    svg += `<rect x="${x - 1}" y="${padT - 4}" width="2" height="${H - padT - padB + 8}" fill="#d8d8d8"/>`;
+  }
+  if (N_FRETS >= 5) {
+    svg += `<circle cx="${fretCenter(5)}" cy="${(padT + H - padB) / 2}" r="3" fill="#f0e8d0" opacity="0.7"/>`;
+  }
+  // 4 cordas (todas finas, nylon)
+  for (let s = 0; s < nStrings; s++) {
+    const y = padT + s * stringSpacing;
+    svg += `<line x1="${padL - 5}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#f0e0c0" stroke-width="1.1" opacity="0.92"/>`;
+  }
+  // Marcadores x e o
+  for (let i = 0; i < 4; i++) {
+    const f = frets[i];
+    const y = yFor(i);
+    if (f === 'x') {
+      svg += `<text x="${padL - 16}" y="${y + 4}" font-family="sans-serif" font-size="12" font-weight="800" fill="#e0b070" text-anchor="middle">×</text>`;
+    } else if (f === 0) {
+      svg += `<circle cx="${padL - 16}" cy="${y}" r="4.5" fill="none" stroke="#e0b070" stroke-width="1.8"/>`;
+    }
+  }
+  // Determina offset de fret pra notas altas
+  let minFret = Infinity, maxFret = 0;
+  for (const f of frets) {
+    if (typeof f === 'number' && f >= 1) {
+      if (f < minFret) minFret = f;
+      if (f > maxFret) maxFret = f;
+    }
+  }
+  const fretOffset = (minFret >= 4 && maxFret - minFret < N_FRETS) ? (minFret - 1) : 0;
+  if (fretOffset > 0) {
+    svg += `<text x="${padL - 16}" y="${padT - 2}" font-family="sans-serif" font-size="9" font-weight="700" fill="#e0b070" text-anchor="middle">${fretOffset + 1}fr</text>`;
+  }
+  // Notas tocadas
+  for (let i = 0; i < 4; i++) {
+    const f = frets[i];
+    if (typeof f !== 'number' || f < 1) continue;
+    const fDisplay = f - fretOffset;
+    if (fDisplay < 1 || fDisplay > N_FRETS) continue;
+    const x = fretCenter(fDisplay);
+    const y = yFor(i);
+    svg += `<circle cx="${x}" cy="${y}" r="13" fill="#c1272d" opacity="0.28"/>`;
+    svg += `<circle cx="${x}" cy="${y}" r="9.5" fill="#c1272d" stroke="#fff" stroke-width="1.5"><animate attributeName="r" values="9.5;11.5;9.5" dur="0.55s" repeatCount="indefinite"/></circle>`;
+    if (fingerArr[i] && fingerArr[i] !== 0 && fingerArr[i] !== 'x') {
+      svg += `<text x="${x}" y="${y + 4}" font-family="sans-serif" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">${fingerArr[i]}</text>`;
+    }
+  }
+  svg += `</svg>`;
+  return svg;
+}
+// Renderer piano: teclado horizontal SVG 360x116. 2 oitavas (C3 a B4 ~15 brancas),
+// teclas do acorde acesas em vermelho PJ com pulse + halo.
+function _renderMiniPianoKeyboard(chordName, notes, fundamental) {
+  if (!notes || !notes.length) return null;
+  const W = 360, H = 116;
+  const padL = 6, padR = 6;
+  const padT = 8, padB = 14;
+  const N_WHITE = 14; // C D E F G A B C D E F G A B (2 oitavas)
+  const wKeyW = (W - padL - padR) / N_WHITE;
+  const keyTop = padT;
+  const keyH = H - padT - padB;
+  const bKeyH = keyH * 0.62;
+  const bKeyW = wKeyW * 0.58;
+  const WHITE_NAMES = ['C','D','E','F','G','A','B','C','D','E','F','G','A','B'];
+  // Indice na sequencia branca onde existe preta DEPOIS: C(0), D(1), F(3), G(4), A(5), C(7), D(8), F(10), G(11), A(12)
+  const BLACK_AFTER = { 0:'C#', 1:'D#', 3:'F#', 4:'G#', 5:'A#', 7:'C#', 8:'D#', 10:'F#', 11:'G#', 12:'A#' };
+  const notesSet = new Set(notes.map(n => String(n).replace(/[0-9]/g, '').replace('Db','C#').replace('Eb','D#').replace('Gb','F#').replace('Ab','G#').replace('Bb','A#')));
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">`;
+  // Adesivos PJ
+  svg += `<image href="media/decals/pj-stickman.png" x="2" y="2" width="16" height="28" opacity="0.18" style="mix-blend-mode: multiply;" preserveAspectRatio="xMidYMid meet"/>`;
+  svg += `<image href="media/decals/pj-sun-logo.png" x="${W - 22}" y="2" width="20" height="20" opacity="0.22" style="mix-blend-mode: multiply;" transform="rotate(12 ${W - 12} 12)" preserveAspectRatio="xMidYMid meet"/>`;
+  // Teclas brancas
+  for (let i = 0; i < N_WHITE; i++) {
+    const x = padL + i * wKeyW;
+    const isActive = notesSet.has(WHITE_NAMES[i]);
+    const fill = isActive ? '#c1272d' : '#f9f3e3';
+    svg += `<rect x="${x}" y="${keyTop}" width="${wKeyW - 0.5}" height="${keyH}" fill="${fill}" stroke="#1a1611" stroke-width="0.6" rx="2"/>`;
+    if (isActive) {
+      // Pulse halo + nome da nota
+      const cx = x + wKeyW / 2;
+      const cy = keyTop + keyH - 14;
+      svg += `<circle cx="${cx}" cy="${cy}" r="7" fill="#c1272d" opacity="0.35"><animate attributeName="r" values="6;9;6" dur="0.55s" repeatCount="indefinite"/></circle>`;
+      svg += `<text x="${cx}" y="${cy + 3}" font-family="sans-serif" font-size="9" font-weight="800" fill="#fff" text-anchor="middle">${WHITE_NAMES[i]}</text>`;
+    }
+  }
+  // Teclas pretas (sobre as brancas)
+  for (const idxStr of Object.keys(BLACK_AFTER)) {
+    const i = Number(idxStr);
+    const name = BLACK_AFTER[i];
+    const isActive = notesSet.has(name);
+    const cx = padL + (i + 1) * wKeyW;
+    const fill = isActive ? '#c1272d' : '#1a1611';
+    svg += `<rect x="${cx - bKeyW / 2}" y="${keyTop}" width="${bKeyW}" height="${bKeyH}" fill="${fill}" stroke="#000" stroke-width="0.5" rx="1.5"/>`;
+    if (isActive) {
+      const cy = keyTop + bKeyH - 10;
+      svg += `<circle cx="${cx}" cy="${cy}" r="5" fill="#c1272d" opacity="0.45"><animate attributeName="r" values="4.5;6.5;4.5" dur="0.55s" repeatCount="indefinite"/></circle>`;
+      svg += `<text x="${cx}" y="${cy + 3}" font-family="sans-serif" font-size="7" font-weight="800" fill="#fff" text-anchor="middle">${name}</text>`;
+    }
+  }
+  // Marca fundamental com um indicador embaixo
+  if (fundamental) {
+    const fundSemi = String(fundamental).replace('Db','C#').replace('Eb','D#').replace('Gb','F#').replace('Ab','G#').replace('Bb','A#');
+    // Encontra primeira ocorrencia visivel
+    for (let i = 0; i < N_WHITE; i++) {
+      if (WHITE_NAMES[i] === fundSemi) {
+        const x = padL + i * wKeyW + wKeyW / 2;
+        svg += `<text x="${x}" y="${H - 3}" font-family="sans-serif" font-size="9" font-weight="700" fill="#e0b070" text-anchor="middle">★</text>`;
+        break;
+      }
     }
   }
   svg += `</svg>`;
@@ -9603,6 +9770,9 @@ function _renderTabPanel(body, songKey, tabMeta) {
           <span class="alphatab-status" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico</span>
         </div>
       `;
+      // Armazena multiData no pane pra _startCifraPlayer + handlers acessarem
+      // ao tocar acordes (escolha de sampler/notas por instrumento ativo).
+      cifraPane._multiData = multi;
       _attachChordChipHandlers(cifraPane, multi);
 
       // Seletor de instrumento: trocar atualiza estado global + re-render
@@ -9622,6 +9792,20 @@ function _renderTabPanel(body, songKey, tabMeta) {
           // Re-render strumming header com padrao do novo instrumento
           const wrap = cifraPane.querySelector('.cifra-strumming-wrap');
           if (wrap) wrap.innerHTML = _renderStrummingHeader(multi);
+          // Re-render overlay do braco/teclado IMEDIATAMENTE com o chord atual
+          // (se player estiver tocando ou pausado num chord). Sem isso, user
+          // troca pra piano mas continua vendo braco de violao ate o proximo
+          // chord trigger.
+          const fb = document.querySelector('.cifra-fretboard');
+          if (fb && fb.classList.contains('show')) {
+            const nameEl = fb.querySelector('.cifra-fretboard-chord-name');
+            const svgWrap = fb.querySelector('.cifra-fretboard-svg-wrap');
+            const curChord = nameEl && nameEl.textContent && nameEl.textContent !== '—' ? nameEl.textContent : null;
+            if (curChord && svgWrap) {
+              const svg = _renderChordMiniFretboard(curChord, multi, inst);
+              svgWrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${curChord}<br><small>digitação não cadastrada</small></div>`;
+            }
+          }
         });
       });
 
@@ -11839,12 +12023,89 @@ function _populateMixer(mixerAside, tracks) {
 }
 
 // Som arpejado do acorde via smplr (https://github.com/danigb/smplr, MIT).
-// Carregamento lazy: a primeira reproducao baixa smplr ESM (~50KB) + soundfont
-// acoustic_guitar_steel (~150KB MP3). Notas em sequencia 25ms (dedilhado).
+// Carregamento lazy por instrumento: a primeira reproducao baixa o
+// soundfont apropriado (acoustic_guitar_steel pra violao, acoustic_guitar_nylon
+// pra ukulele, acoustic_grand_piano pra piano). Notas em sequencia 25ms
+// (dedilhado pra cordas; piano dispara mais junto, 15ms).
 const _SMPLR_VERSION = '0.20.0';
-const _TUNING_MIDI = [40, 45, 50, 55, 59, 64]; // E2 A2 D3 G3 B3 E4 (6 grave -> 1 aguda)
+const _TUNING_MIDI_GUITAR = [40, 45, 50, 55, 59, 64]; // E2 A2 D3 G3 B3 E4 (6 grave -> 1 aguda)
+const _TUNING_MIDI_UKULELE = [67, 60, 64, 69];        // G4 C4 E4 A4 (high-G tuning padrao soprano/tenor)
+const _NOTE_TO_SEMI = { C:0, 'C#':1, Db:1, D:2, 'D#':3, Eb:3, E:4, F:5, 'F#':6, Gb:6, G:7, 'G#':8, Ab:8, A:9, 'A#':10, Bb:10, B:11 };
+// Converte nome de nota (com ou sem oitava) em MIDI. Default oitava 4.
+function _noteNameToMidi(name, defaultOctave) {
+  if (!name) return null;
+  const s = String(name).trim();
+  const m = s.match(/^([A-Ga-g])([#b]?)(-?\d+)?$/);
+  if (!m) return null;
+  const letter = m[1].toUpperCase();
+  const acc = m[2] === 'b' ? -1 : (m[2] === '#' ? 1 : 0);
+  const oct = m[3] != null ? parseInt(m[3], 10) : (typeof defaultOctave === 'number' ? defaultOctave : 4);
+  const baseMap = { C:0, D:2, E:4, F:5, G:7, A:9, B:11 };
+  return (oct + 1) * 12 + baseMap[letter] + acc;
+}
+// Converte fingering ("x02220" 6 chars violao, "2100" 4 chars uke) + tuning
+// MIDI em array de notas MIDI tocadas. 'x' ou nao-numero sao puladas.
+function _fingeringToMidi(fingering, tuningMidi) {
+  if (!fingering || !tuningMidi) return [];
+  const notes = [];
+  const chars = String(fingering).split('');
+  for (let i = 0; i < chars.length && i < tuningMidi.length; i++) {
+    const ch = chars[i];
+    if (ch === 'x' || ch === 'X' || ch === '-') continue;
+    const fret = parseInt(ch, 10);
+    if (Number.isNaN(fret)) continue;
+    notes.push(tuningMidi[i] + fret);
+  }
+  return notes;
+}
+// Calcula notas MIDI pra um acorde, preferindo cifra-multi quando disponivel.
+// Pra piano, usa array notes (nomes); pra violao/uke, usa fingering + tuning.
+// Fallback no _CHORD_DB legacy (so violao).
+function _chordToMidiFromMulti(chordName, multiData, instrument) {
+  const inst = instrument || _activeCifraInstrument || 'violao';
+  if (multiData && multiData.instruments && multiData.instruments[inst]) {
+    const idata = multiData.instruments[inst];
+    const cdata = idata.chords && idata.chords[chordName];
+    if (cdata) {
+      if (inst === 'piano') {
+        // notes eh ['C', 'E', 'G'] ou similar; piano toca uma oitava acima
+        // pra ficar na regiao audivel/agradavel (octave 4 -> ~C4=60).
+        const baseOct = 4;
+        const midi = [];
+        let lastSemi = -1;
+        (cdata.notes || []).forEach(n => {
+          const m = _noteNameToMidi(n, baseOct);
+          if (m == null) return;
+          // Notas em ordem ascendente: se a proxima for menor que a anterior,
+          // sobe uma oitava (mantem o acorde subindo, voicing natural).
+          let mm = m;
+          while (lastSemi >= 0 && mm <= lastSemi) mm += 12;
+          midi.push(mm);
+          lastSemi = mm;
+        });
+        return midi;
+      }
+      if (inst === 'ukulele') {
+        return _fingeringToMidi(cdata.fingering, _TUNING_MIDI_UKULELE);
+      }
+      // violao com cifra-multi: usa fingering + tuning padrao
+      return _fingeringToMidi(cdata.fingering, _TUNING_MIDI_GUITAR);
+    }
+  }
+  // Fallback: _CHORD_DB legacy (so violao). Retorna notas mesmo se inst!=violao
+  // pra pelo menos tocar algo (timbre vai sair errado mas evita silencio).
+  return _chordToMidiNotes(chordName);
+}
+// Mantido pra compat com chamadas que so passam chordName (popover do click
+// fora do cifra player, fallback geral).
+const _TUNING_MIDI = _TUNING_MIDI_GUITAR;
 let _audioCtx = null;
-let _guitarSamplerPromise = null;
+const _samplersByInstrument = {}; // 'violao'|'ukulele'|'piano' -> Promise<Sampler>
+const _SOUNDFONT_FILES = {
+  violao:  'acoustic_guitar_steel-mp3.js',
+  ukulele: 'acoustic_guitar_nylon-mp3.js',  // proximacao: nylon timbre proximo de uke
+  piano:   'acoustic_grand_piano-mp3.js',
+};
 function _getAudioCtx() {
   if (_audioCtx) return _audioCtx;
   const AC = window.AudioContext || window.webkitAudioContext;
@@ -11852,22 +12113,29 @@ function _getAudioCtx() {
   _audioCtx = new AC();
   return _audioCtx;
 }
-async function _ensureGuitarSampler() {
-  if (_guitarSamplerPromise) return _guitarSamplerPromise;
-  _guitarSamplerPromise = (async () => {
+// Carrega sampler por instrumento (cached). Soundfonts locais em
+// media/lib/smplr-soundfonts/. Cada sampler tem ~1.5-2.3MB; carregamento
+// no primeiro click do chord-chip ou primeira nota do cifra player.
+async function _ensureSampler(instrument) {
+  const inst = instrument || 'violao';
+  const file = _SOUNDFONT_FILES[inst] || _SOUNDFONT_FILES.violao;
+  if (_samplersByInstrument[inst]) return _samplersByInstrument[inst];
+  _samplersByInstrument[inst] = (async () => {
     const ctx = _getAudioCtx();
     if (!ctx) throw new Error('Web Audio indisponivel');
-    // smplr hospedado localmente; samples MP3 do violao ainda vem do
-    // gleitz.github.io (default do smplr). Pode ser tambem local depois.
     const smplrUrl = new URL('media/lib/smplr/index.mjs', document.baseURI).href;
-    const sfUrl = new URL('media/lib/smplr-soundfonts/acoustic_guitar_steel-mp3.js', document.baseURI).href;
+    const sfUrl = new URL(`media/lib/smplr-soundfonts/${file}`, document.baseURI).href;
     const smplr = await import(smplrUrl);
     const sampler = new smplr.Soundfont(ctx, { instrumentUrl: sfUrl });
     await sampler.load;
     return sampler;
   })();
-  return _guitarSamplerPromise;
+  return _samplersByInstrument[inst];
 }
+// Compat: chamadas antigas. Mantido como alias do violao.
+async function _ensureGuitarSampler() { return _ensureSampler('violao'); }
+// Antigo _chordToMidiNotes: usa _CHORD_DB legacy (somente violao). Mantido
+// pra fallback quando nao ha multiData.
 function _chordToMidiNotes(chordName) {
   const data = _CHORD_DB[chordName];
   if (!data) return [];
@@ -11876,23 +12144,28 @@ function _chordToMidiNotes(chordName) {
     const f = data.frets[i];
     if (f === 'x' || f === undefined) continue;
     const fr = typeof f === 'number' ? f : 0;
-    notes.push(_TUNING_MIDI[i] + fr);
+    notes.push(_TUNING_MIDI_GUITAR[i] + fr);
   }
   return notes;
 }
 async function _playChordSound(chordName, opts) {
   try {
-    const notes = _chordToMidiNotes(chordName);
+    const multiData = opts && opts.multiData;
+    const instrument = (opts && opts.instrument) || _activeCifraInstrument || 'violao';
+    const notes = _chordToMidiFromMulti(chordName, multiData, instrument);
     if (!notes.length) return;
-    const sampler = await _ensureGuitarSampler();
+    const sampler = await _ensureSampler(instrument);
     const ctx = _getAudioCtx();
     if (ctx.state === 'suspended') { try { await ctx.resume(); } catch(e) {} }
     const now = ctx.currentTime;
     const duration = (opts && opts.duration) || 1.6;
     const velocity = (opts && opts.velocity) || 75;
     const gain = (opts && typeof opts.gain === 'number') ? Math.max(0, Math.min(1, opts.gain)) : 1;
+    // Piano dispara mais junto (15ms entre notas, quase acorde); cordas
+    // mantem dedilhado 25ms pra som mais natural.
+    const stagger = instrument === 'piano' ? 0.015 : 0.025;
     notes.forEach((note, i) => {
-      sampler.start({ note, velocity: Math.round(velocity * gain), time: now + i * 0.025, duration });
+      sampler.start({ note, velocity: Math.round(velocity * gain), time: now + i * stagger, duration });
     });
   } catch (e) { /* silencioso: feature opcional */ }
 }
@@ -12077,7 +12350,10 @@ function _ensureCifraFretboard() {
       if (currentChord && currentChord.textContent && currentChord.textContent !== '—') {
         const wrap = fb.querySelector('.cifra-fretboard-svg-wrap');
         if (wrap) {
-          const svg = _renderChordMiniFretboard(currentChord.textContent);
+          // Resgata multiData do root ativo se houver (cifra player rodando)
+          const activeRoot = _activeCifraRoot;
+          const multi = activeRoot && activeRoot._multiData;
+          const svg = _renderChordMiniFretboard(currentChord.textContent, multi, _activeCifraInstrument);
           wrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${currentChord.textContent}<br><small>digitação não cadastrada</small></div>`;
         }
       }
@@ -12120,7 +12396,8 @@ function _updateCifraFretboard(chordName, nextChord, root) {
   if (nameEl) nameEl.textContent = chordName || '—';
   if (nextEl) nextEl.textContent = 'próximo: ' + (nextChord || '—');
   if (wrap) {
-    const svg = _renderChordMiniFretboard(chordName);
+    const multi = root && root._multiData;
+    const svg = _renderChordMiniFretboard(chordName, multi, _activeCifraInstrument);
     wrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${chordName}<br><small>digitação não cadastrada</small></div>`;
   }
   // Re-trigger pulse animation no nome
@@ -12333,6 +12610,8 @@ async function _startCifraPlayer(root, bpm) {
       duration: dur * 1.1,
       velocity: 78,
       gain: (typeof window._cifraVolume === 'number') ? window._cifraVolume : 0.8,
+      multiData: root._multiData,
+      instrument: _activeCifraInstrument,
     });
     // Metronomo: agenda 2 ticks por acorde (beatsPerChord=2). Primeiro
     // tick eh accent (frequencia maior), segundo eh normal.
@@ -12377,8 +12656,12 @@ function _attachChordChipHandlers(root, multiData) {
     chip.appendChild(pop);
     openPopover = pop;
     // Toca o acorde arpejado (lazy load no primeiro click; gesto do usuario
-    // ja autoriza Web Audio em todos os navegadores modernos).
-    _playChordSound(chord);
+    // ja autoriza Web Audio em todos os navegadores modernos). Usa multiData
+    // + instrumento ativo pra escolher sampler e notas corretas.
+    _playChordSound(chord, {
+      multiData: multiData,
+      instrument: _activeCifraInstrument,
+    });
   };
   root.addEventListener('click', (e) => {
     const chip = e.target.closest && e.target.closest('.chord-chip');
