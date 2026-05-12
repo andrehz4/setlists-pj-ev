@@ -34,14 +34,37 @@ export async function curate({ title, sourceLabel, articleText, url, pubDate }) 
     articleText: articleText || "(texto nao disponivel)",
   });
 
+  // JSON mode estruturado: Gemini garante schema + escapa newlines corretamente.
+  // Sem isso, o modelo serializava \n literal dentro do corpo_pt e quebrava o JSON.parse.
+  // O campo `skip` (boolean) faz papel da string "SKIP" do anthropic — JSON mode nao
+  // suporta "responda string OU objeto", entao usamos sempre objeto com flag.
+  const responseSchema = {
+    type: "object",
+    properties: {
+      skip: { type: "boolean", description: "true se a noticia for irrelevante/lixo (rumor sem fonte, clickbait, conteudo nao-PJ)" },
+      titulo_pt: { type: "string" },
+      intro_pt: { type: "string" },
+      corpo_pt: { type: "string" },
+      tags: {
+        type: "array",
+        items: { type: "string", enum: ["turne", "lancamento", "ed-solo", "tenclub", "memoria", "br", "bootleg"] },
+        minItems: 1,
+        maxItems: 3,
+      },
+    },
+    required: ["skip"],
+    propertyOrdering: ["skip", "titulo_pt", "intro_pt", "corpo_pt", "tags"],
+  };
+
   const genai = getClient();
   const model = genai.getGenerativeModel({
     model: MODEL,
-    systemInstruction: system,
+    systemInstruction: system + "\n\nNOTA TECNICA: Output via Gemini structured JSON. Use o campo `skip: true` em vez de retornar string 'SKIP'. Quando `skip: true`, deixe os outros campos vazios. Quando `skip: false`, preencha titulo_pt/intro_pt/corpo_pt/tags conforme as regras.",
     generationConfig: {
       temperature: TEMPERATURE,
       maxOutputTokens: MAX_OUTPUT_TOKENS,
-      responseMimeType: "text/plain",
+      responseMimeType: "application/json",
+      responseSchema,
     },
   });
 
@@ -54,5 +77,25 @@ export async function curate({ title, sourceLabel, articleText, url, pubDate }) 
   }
 
   const text = resp.response?.text?.()?.trim() || "";
-  return validateCurated(text);
+  if (!text) return "SKIP";
+
+  // Com JSON mode, o output ja vem JSON valido. Mas vamos parsear aqui mesmo
+  // pra checar o flag `skip` antes de delegar ao validador compartilhado.
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch (e) {
+    console.warn(`[gemini] JSON mode falhou: ${e.message}; primeiros 200: ${text.slice(0, 200)}`);
+    return "SKIP";
+  }
+  if (parsed.skip === true) return "SKIP";
+
+  // Converte pro shape que o validator espera (sem o campo `skip`)
+  const standardized = {
+    titulo_pt: parsed.titulo_pt,
+    intro_pt: parsed.intro_pt,
+    corpo_pt: parsed.corpo_pt,
+    tags: parsed.tags,
+  };
+  return validateCurated(JSON.stringify(standardized));
 }
