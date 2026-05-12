@@ -112,6 +112,7 @@
   "pry to": { "cifra": false, "tab": true, "tabFormat": "gp", "tabFile": "pry-to-v1.gp", "tuning": "EADGBE", "notes": "Pry, To eh interludio instrumental (faixa 7 do Vitalogy, ~1min). Sem cifra de acordes nomeados, tab-only no UG.", "versions": [
     { "id": "v1", "label": "Versão 1", "file": "pry-to-v1.gp", "format": "gp" }
   ] },
+  "aye davanita": { "cifra": false, "tab": false, "tuning": "EADGBE", "notes": "Faixa instrumental do Vitalogy (faixa 12, ~1min) com 3 guitarras texturais sobre voicings ambiguos (E7 com #11 / F maj7-ish). UG so tem versao em tablatura pura (sem .gp); os rotulos G1/G2/G3 no UG sao partes de guitarra, nao acordes. Sem cifra de acordes nomeados." },
   "whipping": { "cifra": true, "cifraMulti": "whipping.json", "tab": false, "key": "E", "tuning": "EADGBE", "bpm": 155 },
   "bugs": { "cifra": true, "cifraMulti": "bugs.json", "tab": false, "key": "Bb", "tuning": "EADGBE", "bpm": 65, "notes": "Original tocado em acordeao (Eddie Vedder). Cifra eh adaptacao pra violao/uke/piano com strumming proposto em colcheias 4/4." },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
