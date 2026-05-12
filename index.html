@@ -4477,34 +4477,241 @@ html[data-theme="dark"] .alphatab-version-select {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.news-card-body {
-  padding: 0 14px 16px;
-  border-top: 1px dashed var(--divider);
-  padding-top: 14px;
-  margin-top: 0;
-}
-.news-card-body p {
-  font: 400 15px/1.6 var(--font-body, 'Newsreader', Georgia, serif);
-  margin: 0 0 12px;
-  color: var(--ink);
-}
-.news-card-body em {
-  font-style: italic;
-  color: var(--ink-mute);
-}
-.news-card-original {
-  display: inline-block;
-  margin-top: 6px;
-  font: 600 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
-  color: var(--pj);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-}
-.news-card-original:hover { text-decoration: underline; }
 @media (max-width: 480px) {
   .news-grid { grid-template-columns: 1fr; gap: 14px; }
   .news-card-title { font-size: 17px; }
+}
+
+/* ====================================================================
+   NOTICIA: pagina de detalhe (deep-link via #news/<id>)
+   ==================================================================== */
+.news-detail {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 8px 60px;
+}
+.news-detail-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.news-back {
+  background: transparent;
+  border: 1px solid var(--divider-strong);
+  color: var(--ink);
+  padding: 7px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font: 600 11px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.news-back:hover { border-color: var(--pj); color: var(--pj); }
+.news-detail-nav-arrows { display: flex; gap: 8px; }
+.news-nav-arrow {
+  background: transparent;
+  border: 1px solid var(--divider);
+  color: var(--ink-mute);
+  padding: 7px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font: 600 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+.news-nav-arrow:hover { border-color: var(--pj); color: var(--pj); }
+.news-detail-header { margin-bottom: 24px; }
+.news-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font: 600 11px/1.2 var(--font-mono, 'IBM Plex Mono', monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  margin-bottom: 12px;
+}
+.news-detail-source { color: var(--pj); }
+.news-detail-sep { color: var(--ink-dim); opacity: 0.6; }
+.news-detail-tags { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.news-detail-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid var(--divider-strong);
+  border-radius: 10px;
+  color: var(--ink-mute);
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  font-size: 10px;
+}
+.news-detail-title {
+  font: 700 36px/1.15 var(--font-editorial, 'Instrument Serif', serif);
+  color: var(--ink);
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+.news-detail-intro {
+  font: italic 19px/1.5 var(--font-editorial, 'Instrument Serif', serif);
+  color: var(--ink-mute);
+  margin: 0 0 8px;
+}
+.news-detail-hero {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: var(--bg-card-hover) center / cover no-repeat;
+  border-radius: 4px;
+  border-top: 4px solid var(--pj);
+  margin-bottom: 28px;
+}
+.news-detail-body {
+  font: 400 17px/1.75 var(--font-body, 'Newsreader', Georgia, serif);
+  color: var(--ink);
+}
+.news-detail-body p {
+  margin: 0 0 18px;
+}
+.news-detail-body em {
+  font-style: italic;
+  color: var(--ink-mute);
+}
+@media (max-width: 600px) {
+  .news-detail-title { font-size: 26px; }
+  .news-detail-intro { font-size: 16px; }
+  .news-detail-body { font-size: 16px; line-height: 1.7; }
+}
+
+/* ====================================================================
+   CLIPES (grid de videos + lightbox youtube-nocookie)
+   ==================================================================== */
+.clipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  padding: 4px;
+}
+.clipes-card {
+  background: var(--bg-card);
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+.clipes-card:hover, .clipes-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--pj);
+  box-shadow: 0 6px 18px rgba(193, 39, 45, 0.12);
+  outline: none;
+}
+.clipes-card[hidden] { display: none !important; }
+.clipes-card-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-card-hover) center / cover no-repeat;
+}
+.clipes-card-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0) 35%);
+  pointer-events: none;
+}
+.clipes-card-play {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--pj);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 1;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  transition: transform 160ms ease;
+}
+.clipes-card:hover .clipes-card-play { transform: scale(1.1); }
+.clipes-card-meta { padding: 12px 14px 14px; }
+.clipes-card-title {
+  font: 600 17px/1.25 var(--font-editorial, 'Instrument Serif', serif);
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.clipes-card-sub {
+  font: 400 12px/1.4 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-mute);
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+/* Lightbox */
+.clipes-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+.clipes-lightbox.open { display: flex; }
+.clipes-lightbox-inner {
+  background: var(--bg);
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 960px;
+  width: 100%;
+  position: relative;
+}
+.clipes-lightbox-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  z-index: 2;
+  background: rgba(0,0,0,0.6);
+  border: 0;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+.clipes-lightbox-close:hover { background: var(--pj); }
+.clipes-lightbox-frame-wrap {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #000;
+}
+.clipes-lightbox-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.clipes-lightbox-meta { padding: 14px 18px 18px; }
+.clipes-lightbox-title {
+  font: 600 22px/1.2 var(--font-editorial, 'Instrument Serif', serif);
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.clipes-lightbox-sub {
+  font: 400 12px/1.4 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-mute);
+  margin: 0;
+}
+@media (max-width: 480px) {
+  .clipes-grid { grid-template-columns: 1fr; }
 }
 
 /* Layout 2-col: catalog lateral + detail panel.
@@ -6750,16 +6957,17 @@ html[data-theme="dark"] video:focus-visible {
 
 <!-- TABS -->
 <div class="tabs" role="tablist" aria-label="Visualizações do arquivo">
-  <button class="tab active" role="tab" id="tab-timeline" aria-selected="true" aria-controls="view-timeline" tabindex="0" data-view="timeline">Timeline</button>
+  <button class="tab" role="tab" id="tab-timeline" aria-selected="false" aria-controls="view-timeline" tabindex="-1" data-view="timeline">Timeline</button>
   <button class="tab" role="tab" id="tab-ranking" aria-selected="false" aria-controls="view-ranking" tabindex="-1" data-view="ranking">Ranking</button>
   <button class="tab" role="tab" id="tab-gaps" aria-selected="false" aria-controls="view-gaps" tabindex="-1" data-view="gaps">Cobertura por álbum</button>
   <button class="tab" role="tab" id="tab-highlights" aria-selected="false" aria-controls="view-highlights" tabindex="-1" data-view="highlights">Destaques</button>
   <button class="tab" role="tab" id="tab-search" aria-selected="false" aria-controls="view-search" tabindex="-1" data-view="search">Buscar música</button>
-  <button class="tab" role="tab" id="tab-rarity" aria-selected="false" aria-controls="view-rarity" tabindex="-1" data-view="rarity"><span aria-hidden="true">🎲 </span>Raridades</button>
-  <button class="tab" role="tab" id="tab-gallery" aria-selected="false" aria-controls="view-gallery" tabindex="-1" data-view="gallery"><span aria-hidden="true">📷 </span>Galeria</button>
-  <button class="tab" role="tab" id="tab-deep" aria-selected="false" aria-controls="view-deep" tabindex="-1" data-view="deep"><span aria-hidden="true">📖 </span>Deep</button>
-  <button class="tab" role="tab" id="tab-tabs" aria-selected="false" aria-controls="view-tabs" tabindex="-1" data-view="tabs"><span aria-hidden="true">🎸 </span>Cifras &amp; Tabs</button>
-  <button class="tab" role="tab" id="tab-news" aria-selected="false" aria-controls="view-news" tabindex="-1" data-view="news"><span aria-hidden="true">📰 </span>Notícias</button>
+  <button class="tab" role="tab" id="tab-rarity" aria-selected="false" aria-controls="view-rarity" tabindex="-1" data-view="rarity">Raridades</button>
+  <button class="tab" role="tab" id="tab-clipes" aria-selected="false" aria-controls="view-clipes" tabindex="-1" data-view="clipes">Clipes</button>
+  <button class="tab" role="tab" id="tab-gallery" aria-selected="false" aria-controls="view-gallery" tabindex="-1" data-view="gallery">Galeria</button>
+  <button class="tab" role="tab" id="tab-deep" aria-selected="false" aria-controls="view-deep" tabindex="-1" data-view="deep">Deep</button>
+  <button class="tab" role="tab" id="tab-tabs" aria-selected="false" aria-controls="view-tabs" tabindex="-1" data-view="tabs">Cifras &amp; Tabs</button>
+  <button class="tab active" role="tab" id="tab-news" aria-selected="true" aria-controls="view-news" tabindex="0" data-view="news">Notícias</button>
 </div>
 
 <!-- FILTER BAR -->
@@ -6776,7 +6984,7 @@ html[data-theme="dark"] video:focus-visible {
 </div>
 
 <!-- VIEWS -->
-<section class="view active" id="view-timeline" role="tabpanel" aria-labelledby="tab-timeline" tabindex="0">
+<section class="view" id="view-timeline" role="tabpanel" aria-labelledby="tab-timeline" tabindex="0" hidden>
   <h2 class="view-title">Linha do tempo</h2>
   <div class="view-desc">25 shows · clique pra ver o setlist</div>
   <div id="timeline-content"></div>
@@ -6810,6 +7018,12 @@ html[data-theme="dark"] video:focus-visible {
   <div id="rarity-content"></div>
 </section>
 
+<section class="view" id="view-clipes" role="tabpanel" aria-labelledby="tab-clipes" tabindex="0" hidden>
+  <h2 class="view-title">Clipes Oficiais</h2>
+  <div class="view-desc">videoclipes oficiais do Pearl Jam em curadoria contínua. Click pra assistir sem sair do site.</div>
+  <div id="clipes-content"></div>
+</section>
+
 <section class="view" id="view-gallery" role="tabpanel" aria-labelledby="tab-gallery" tabindex="0" hidden>
   <h2 class="view-title">Galeria</h2>
   <div class="view-desc">todas as fotos oficiais. Clique para ampliar</div>
@@ -6829,7 +7043,7 @@ html[data-theme="dark"] video:focus-visible {
   <div id="tabs-content"></div>
 </section>
 
-<section class="view" id="view-news" role="tabpanel" aria-labelledby="tab-news" tabindex="0" hidden>
+<section class="view active" id="view-news" role="tabpanel" aria-labelledby="tab-news" tabindex="0">
   <h2 class="view-title">Notícias</h2>
   <div class="view-desc">arquivo fã pra fã. Bot busca a cada 6h em Stereogum, NME, Pitchfork, Rolling Stone, Consequence, Folha e r/pearljam; curador-IA reescreve em PT-BR no tom de fã veterano. Sem hype, sem tradução literal. Clique no card pra expandir.</div>
   <div id="news-content"></div>
@@ -7015,7 +7229,7 @@ function mediaIndicator(showId) {
 const state = {
   filterArtist: "all",
   filterYear: "all",
-  currentView: "timeline"
+  currentView: "news"
 };
 
 // ========================================================================
@@ -9046,6 +9260,7 @@ function renderCurrent() {
     case "deep": renderDeep(); break;
     case "tabs": renderTabsView(); break;
     case "news": renderNewsView(); break;
+    case "clipes": renderClipesView(); break;
     case "gallery": renderGallery(); break;
   }
   renderStats();
@@ -13072,6 +13287,27 @@ function _newsBodyHtml(body) {
   }).join("");
 }
 
+// Estado da view de Noticias: lista (default) ou detail de um item por id.
+// Deep-link via location.hash (#news/<id>).
+let _newsState = { mode: "list", id: null };
+
+function _newsParseHash() {
+  const m = (location.hash || "").match(/^#news\/([\w-]+)$/);
+  return m ? m[1] : null;
+}
+
+function _newsSetHash(id) {
+  if (id) {
+    if (location.hash !== `#news/${id}`) history.pushState(null, "", `#news/${id}`);
+  } else {
+    if (location.hash.startsWith("#news/")) history.pushState(null, "", location.pathname + location.search);
+  }
+}
+
+window.addEventListener("popstate", () => {
+  if (state.currentView === "news") renderNewsView();
+});
+
 async function renderNewsView() {
   const container = document.getElementById("news-content");
   if (!container) return;
@@ -13088,7 +13324,17 @@ async function renderNewsView() {
     return;
   }
 
-  // chips de filtro por fonte
+  const hashId = _newsParseHash();
+  if (hashId) {
+    const item = items.find(i => i.id === hashId);
+    if (item) { _renderNewsDetail(container, item, items); return; }
+    // id invalido no hash: limpa e cai pro grid
+    _newsSetHash(null);
+  }
+  _renderNewsGrid(container, items, manifest);
+}
+
+function _renderNewsGrid(container, items, manifest) {
   const sources = [...new Set(items.map(i => i.sourceLabel))].sort();
   const chips = `
     <div class="news-filters" role="group" aria-label="Filtros de fonte">
@@ -13102,7 +13348,7 @@ async function renderNewsView() {
   const cards = items.map(item => {
     const img = item.img || "/media/news/_placeholder.svg";
     return `
-      <article class="news-card" data-id="${_newsEscape(item.id)}" data-source-label="${_newsEscape(item.sourceLabel)}">
+      <article class="news-card" data-id="${_newsEscape(item.id)}" data-source-label="${_newsEscape(item.sourceLabel)}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
         <div class="news-card-thumb" style="background-image:url('${_newsEscape(img)}')" aria-hidden="true"></div>
         <div class="news-card-meta">
           <span class="news-card-source">${_newsEscape(item.sourceLabel)}</span>
@@ -13111,10 +13357,6 @@ async function renderNewsView() {
         </div>
         <h3 class="news-card-title">${_newsEscape(item.title_pt)}</h3>
         <p class="news-card-intro">${_newsEscape(item.intro_pt)}</p>
-        <div class="news-card-body" hidden>
-          ${_newsBodyHtml(item.body_pt)}
-          <a class="news-card-original" href="${_newsEscape(item.url)}" target="_blank" rel="noopener noreferrer">ler original ↗</a>
-        </div>
       </article>`;
   }).join("");
 
@@ -13129,18 +13371,23 @@ async function renderNewsView() {
       ${cards}
     </div>`;
 
-  // toggle expansao no click do card
+  // click ou Enter no card abre o detail (atualiza hash + re-renderiza)
   container.querySelectorAll(".news-card").forEach(card => {
-    card.addEventListener("click", (e) => {
-      // nao expandir se clicou no link
-      if (e.target.closest("a")) return;
-      const body = card.querySelector(".news-card-body");
-      const expanded = card.classList.toggle("expanded");
-      if (body) body.hidden = !expanded;
+    const open = () => {
+      const id = card.dataset.id;
+      _newsSetHash(id);
+      renderNewsView();
+      // scroll ao topo da view
+      const sec = document.getElementById("view-news");
+      if (sec && sec.scrollIntoView) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
     });
   });
 
-  // filtros
+  // filtros por fonte
   container.querySelectorAll(".news-chip").forEach(chip => {
     chip.addEventListener("click", () => {
       container.querySelectorAll(".news-chip").forEach(c => {
@@ -13152,6 +13399,192 @@ async function renderNewsView() {
       const src = chip.dataset.source;
       container.querySelectorAll(".news-card").forEach(card => {
         card.hidden = (src !== "all" && card.dataset.sourceLabel !== src);
+      });
+    });
+  });
+}
+
+function _renderNewsDetail(container, item, allItems) {
+  const img = item.img || "/media/news/_placeholder.svg";
+  // proxima/anterior pra navegacao sequencial
+  const idx = allItems.findIndex(i => i.id === item.id);
+  const prev = idx > 0 ? allItems[idx - 1] : null;
+  const next = idx >= 0 && idx < allItems.length - 1 ? allItems[idx + 1] : null;
+
+  container.innerHTML = `
+    <article class="news-detail">
+      <div class="news-detail-nav">
+        <button type="button" class="news-back" aria-label="Voltar para lista">← Voltar</button>
+        <div class="news-detail-nav-arrows">
+          ${prev ? `<button type="button" class="news-nav-arrow news-nav-prev" data-id="${_newsEscape(prev.id)}" aria-label="Notícia anterior">← anterior</button>` : ""}
+          ${next ? `<button type="button" class="news-nav-arrow news-nav-next" data-id="${_newsEscape(next.id)}" aria-label="Próxima notícia">próxima →</button>` : ""}
+        </div>
+      </div>
+      <header class="news-detail-header">
+        <div class="news-detail-meta">
+          <span class="news-detail-source">${_newsEscape(item.sourceLabel)}</span>
+          <span class="news-detail-sep">·</span>
+          <time datetime="${_newsEscape(item.pubDate)}">${_newsRelTime(item.pubDate)}</time>
+          ${Array.isArray(item.tags) && item.tags.length ? `<span class="news-detail-sep">·</span><span class="news-detail-tags">${item.tags.map(t => `<span class="news-detail-tag">${_newsEscape(t)}</span>`).join("")}</span>` : ""}
+        </div>
+        <h1 class="news-detail-title">${_newsEscape(item.title_pt)}</h1>
+        <p class="news-detail-intro">${_newsEscape(item.intro_pt)}</p>
+      </header>
+      <div class="news-detail-hero" style="background-image:url('${_newsEscape(img)}')" aria-hidden="true"></div>
+      <div class="news-detail-body">
+        ${_newsBodyHtml(item.body_pt)}
+      </div>
+    </article>`;
+
+  // botoes
+  const goBack = () => { _newsSetHash(null); renderNewsView(); };
+  container.querySelector(".news-back")?.addEventListener("click", goBack);
+  container.querySelectorAll(".news-nav-arrow").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+      _newsSetHash(id);
+      renderNewsView();
+      const sec = document.getElementById("view-news");
+      if (sec && sec.scrollIntoView) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+// ========================================================================
+// CLIPES (videoclipes oficiais Pearl Jam, embeds youtube-nocookie)
+// ========================================================================
+let CLIPES_MANIFEST = null;
+
+async function _loadClipesManifest() {
+  if (CLIPES_MANIFEST) return CLIPES_MANIFEST;
+  try {
+    const res = await fetch("media/clipes/index.json", { cache: "no-cache" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    CLIPES_MANIFEST = await res.json();
+  } catch {
+    CLIPES_MANIFEST = { updated: null, items: [] };
+  }
+  return CLIPES_MANIFEST;
+}
+
+function _clipesEsc(s) {
+  return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// Mantem um lightbox unico por view (cria sob demanda)
+let _clipesLightbox = null;
+function _clipesOpenLightbox(item) {
+  if (!_clipesLightbox) {
+    _clipesLightbox = document.createElement("div");
+    _clipesLightbox.className = "clipes-lightbox";
+    _clipesLightbox.setAttribute("role", "dialog");
+    _clipesLightbox.setAttribute("aria-modal", "true");
+    document.body.appendChild(_clipesLightbox);
+    _clipesLightbox.addEventListener("click", (e) => {
+      if (e.target === _clipesLightbox) _clipesCloseLightbox();
+    });
+  }
+  const url = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(item.id)}?autoplay=1&modestbranding=1&rel=0`;
+  _clipesLightbox.innerHTML = `
+    <div class="clipes-lightbox-inner">
+      <button type="button" class="clipes-lightbox-close" aria-label="Fechar">×</button>
+      <div class="clipes-lightbox-frame-wrap">
+        <iframe class="clipes-lightbox-frame"
+          src="${_clipesEsc(url)}"
+          title="${_clipesEsc(item.title)}"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="clipes-lightbox-meta">
+        <h3 class="clipes-lightbox-title">${_clipesEsc(item.title)}</h3>
+        <p class="clipes-lightbox-sub">${_clipesEsc(item.album || "")}${item.year ? " · " + item.year : ""}${item.director ? " · dir. " + _clipesEsc(item.director) : ""}</p>
+      </div>
+    </div>`;
+  _clipesLightbox.classList.add("open");
+  document.body.style.overflow = "hidden";
+  _clipesLightbox.querySelector(".clipes-lightbox-close")?.addEventListener("click", _clipesCloseLightbox);
+  document.addEventListener("keydown", _clipesEscHandler);
+}
+
+function _clipesCloseLightbox() {
+  if (!_clipesLightbox) return;
+  _clipesLightbox.classList.remove("open");
+  _clipesLightbox.innerHTML = ""; // descarrega iframe pra parar audio
+  document.body.style.overflow = "";
+  document.removeEventListener("keydown", _clipesEscHandler);
+}
+
+function _clipesEscHandler(e) {
+  if (e.key === "Escape") _clipesCloseLightbox();
+}
+
+async function renderClipesView() {
+  const container = document.getElementById("clipes-content");
+  if (!container) return;
+  container.innerHTML = `<div class="news-loading">Carregando clipes...</div>`;
+  const manifest = await _loadClipesManifest();
+  const items = Array.isArray(manifest.items) ? manifest.items : [];
+
+  if (!items.length) {
+    container.innerHTML = `
+      <div class="news-empty">
+        <p>Catálogo de clipes em curadoria.</p>
+        <p class="news-empty-sub">Em breve.</p>
+      </div>`;
+    return;
+  }
+
+  const albums = [...new Set(items.map(i => i.album).filter(Boolean))].sort();
+  const chips = `
+    <div class="news-filters" role="group" aria-label="Filtros por album">
+      <button class="news-chip active" data-album="all" aria-pressed="true">Todos (${items.length})</button>
+      ${albums.map(a => {
+        const c = items.filter(i => i.album === a).length;
+        return `<button class="news-chip" data-album="${_clipesEsc(a)}" aria-pressed="false">${_clipesEsc(a)} (${c})</button>`;
+      }).join("")}
+    </div>`;
+
+  const cards = items.map(item => {
+    const thumb = `https://i.ytimg.com/vi/${encodeURIComponent(item.id)}/hqdefault.jpg`;
+    return `
+      <article class="clipes-card" data-id="${_clipesEsc(item.id)}" data-album="${_clipesEsc(item.album || "")}" tabindex="0" role="button" aria-label="Tocar: ${_clipesEsc(item.title)}">
+        <div class="clipes-card-thumb" style="background-image:url('${_clipesEsc(thumb)}')">
+          <span class="clipes-card-play" aria-hidden="true">▶</span>
+        </div>
+        <div class="clipes-card-meta">
+          <h3 class="clipes-card-title">${_clipesEsc(item.title)}</h3>
+          <p class="clipes-card-sub">${_clipesEsc(item.album || "")}${item.year ? " · " + item.year : ""}${item.director ? " · dir. " + _clipesEsc(item.director) : ""}</p>
+        </div>
+      </article>`;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="news-header">${chips}</div>
+    <div class="clipes-grid">${cards}</div>`;
+
+  container.querySelectorAll(".clipes-card").forEach(card => {
+    const open = () => {
+      const item = items.find(i => i.id === card.dataset.id);
+      if (item) _clipesOpenLightbox(item);
+    };
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+  });
+
+  container.querySelectorAll(".news-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      container.querySelectorAll(".news-chip").forEach(c => {
+        c.classList.remove("active");
+        c.setAttribute("aria-pressed", "false");
+      });
+      chip.classList.add("active");
+      chip.setAttribute("aria-pressed", "true");
+      const album = chip.dataset.album;
+      container.querySelectorAll(".clipes-card").forEach(card => {
+        card.hidden = (album !== "all" && card.dataset.album !== album);
       });
     });
   });
@@ -13743,6 +14176,10 @@ async function init() {
   document.getElementById("album-modal").addEventListener("click", (e) => {
     if (e.target.id === "album-modal") closeAlbumDoc();
   });
+
+  // Notícias eh a home: renderiza no boot pra evitar tela vazia.
+  // Se o hash for #news/<id>, abre direto na pagina de detalhe.
+  renderCurrent();
 
   hideBootOverlay();
 }

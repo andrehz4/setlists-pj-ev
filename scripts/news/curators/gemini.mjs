@@ -10,7 +10,7 @@ import { loadPrompts, fillTemplate, validateCurated } from "./_shared.mjs";
 
 const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const TEMPERATURE = 0.6;
-const MAX_OUTPUT_TOKENS = 800;
+const MAX_OUTPUT_TOKENS = 4000;
 
 let _client = null;
 function getClient() {

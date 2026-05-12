@@ -66,8 +66,8 @@ export function extractMeta(html, baseUrl) {
       .slice(0, 10)
       .join("\n\n");
   }
-  // cap a 4kB pra economizar tokens
-  if (articleText.length > 4000) articleText = articleText.slice(0, 4000) + "…";
+  // cap a 8kB: precisamos do artigo completo pra traducao integral em PT
+  if (articleText.length > 8000) articleText = articleText.slice(0, 8000) + "…";
 
   // normaliza URL da imagem (relativa → absoluta)
   let imgUrl = null;

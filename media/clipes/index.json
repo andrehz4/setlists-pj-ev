@@ -1,0 +1,9 @@
+{
+  "_meta": {
+    "purpose": "Catalogo de videoclipes oficiais Pearl Jam pra view Clipes. Cada item eh um video do canal oficial Pearl Jam Vevo no YouTube, embedado via youtube-nocookie.com.",
+    "schema": "{ id: string (YouTube video id 11 chars), title: string, song: string?, album: string?, year: int?, director: string?, dur: string?, notes: string? }",
+    "updated": "2026-05-12",
+    "status": "em curadoria — Andre vai popular com ~30-40 videos oficiais. Fonte: playlist oficial PL9C9DD94124C436BB no canal Pearl Jam."
+  },
+  "items": []
+}

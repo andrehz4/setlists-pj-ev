@@ -5,7 +5,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { loadPrompts, fillTemplate, validateCurated } from "./_shared.mjs";
 
 const MODEL = "claude-haiku-4-5";
-const MAX_TOKENS = 800;
+const MAX_TOKENS = 4000;
 const TEMPERATURE = 0.6;
 
 let _client = null;
