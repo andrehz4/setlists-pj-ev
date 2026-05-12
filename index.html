@@ -3459,6 +3459,74 @@ html[data-theme="dark"] .alphatab-surface {
   font: 600 9px/1 var(--font-mono, 'IBM Plex Mono', monospace);
   color: var(--ink-mute);
 }
+/* Diagnostico de cobertura de acordes: badge no header da cifra mostrando
+   quantos acordes do content tem fingerings/notas cadastrados em cada
+   instrumento. Click expande lista dos missing. */
+.cifra-cov-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 6px 12px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  background: rgba(46, 107, 138, 0.04);
+  border-left: 3px solid #2e6b8a;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.cifra-cov-label {
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.cifra-cov-inst {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  cursor: default;
+  font: 500 12px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink);
+  border: 1px solid transparent;
+}
+.cifra-cov-inst.cov-ok {
+  background: rgba(46, 107, 138, 0.08);
+  color: #2e6b8a;
+}
+.cifra-cov-inst.cov-missing {
+  background: rgba(232, 156, 61, 0.12);
+  color: var(--ev-amber, #C16A1A);
+  cursor: pointer;
+  border-color: rgba(232, 156, 61, 0.35);
+}
+.cifra-cov-inst.cov-missing:hover {
+  background: rgba(232, 156, 61, 0.20);
+}
+.cifra-cov-list {
+  padding: 8px 12px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  background: rgba(232, 156, 61, 0.06);
+  border-left: 3px solid var(--ev-amber, #C16A1A);
+  border-radius: 0 4px 4px 0;
+  font: 500 12px/1.5 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink);
+}
+.cifra-cov-list strong {
+  color: var(--ev-amber, #C16A1A);
+  font-weight: 700;
+}
+.cifra-cov-list code {
+  background: rgba(0,0,0,0.06);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin: 0 2px;
+}
 
 /* Seletor de versao da tab: mesma estetica do speed-compact mas com
    accent vermelho PJ pra destacar (musica pode ter 'Ao vivo' alem
@@ -8987,6 +9055,60 @@ async function _loadCifraMulti(jsonFile) {
   _CIFRA_MULTI_CACHE[jsonFile] = null;
   return null;
 }
+// Extrai todos os chord names unicos do content ChordPro (markers [Chord]).
+function _extractChordNames(content) {
+  if (!content) return [];
+  const set = new Set();
+  const re = /\[([^\]]+)\]/g;
+  let m;
+  while ((m = re.exec(content)) !== null) {
+    const name = m[1].trim();
+    if (name) set.add(name);
+  }
+  return Array.from(set);
+}
+// Calcula cobertura por instrumento: pra cada acorde do content, marca se
+// existe entry em instruments.<inst>.chords. Retorna { chords, coverage }.
+function _computeChordCoverage(multi) {
+  if (!multi || !multi.content || !multi.instruments) return null;
+  const chordNames = _extractChordNames(multi.content);
+  const coverage = {};
+  Object.keys(multi.instruments).forEach(inst => {
+    const dict = (multi.instruments[inst] && multi.instruments[inst].chords) || {};
+    const covered = [];
+    const missing = [];
+    chordNames.forEach(n => {
+      if (dict[n]) covered.push(n);
+      else missing.push(n);
+    });
+    coverage[inst] = { covered, missing, total: chordNames.length };
+  });
+  return { chordNames, coverage };
+}
+// Renderiza badge de cobertura: pill por instrumento mostrando X/Y. Pill
+// fica laranja se ha missing (clickavel pra expandir lista abaixo).
+function _renderCoverageBadge(coverage) {
+  if (!coverage) return '';
+  const iconMap = { violao: '🎸', ukulele: '🪗', piano: '🎹' };
+  const entries = Object.entries(coverage.coverage).map(([inst, c]) => {
+    const icon = iconMap[inst] || '🎵';
+    const labelInst = inst.charAt(0).toUpperCase() + inst.slice(1);
+    const ok = c.missing.length === 0;
+    const cls = ok ? 'cov-ok' : 'cov-missing';
+    const status = ok ? '✓' : `⚠ ${c.missing.length}`;
+    return `<span class="cifra-cov-inst ${cls}" data-cov-inst="${inst}" role="button" tabindex="0"
+              aria-label="${labelInst}: ${c.covered.length} de ${c.total} acordes cadastrados${ok ? '' : ', click para ver faltantes'}">
+              ${icon} ${c.covered.length}/${c.total} <span class="cov-sym">${status}</span>
+            </span>`;
+  });
+  const hasAnyMissing = Object.values(coverage.coverage).some(c => c.missing.length > 0);
+  return `<div class="cifra-cov-bar" role="region" aria-label="Cobertura de acordes cadastrados">
+            <span class="cifra-cov-label">Cadastro</span>
+            ${entries.join('')}
+            ${hasAnyMissing ? '<span class="cifra-cov-hint" style="font-size:11px;opacity:.65;font-style:italic;">click no badge laranja</span>' : ''}
+          </div>
+          <div class="cifra-cov-list-wrap" hidden></div>`;
+}
 // Instrumento ativo da cifra (visual: muda diagrama do popover). Default
 // violao; persistido em localStorage 'cifra_instrument'.
 let _activeCifraInstrument = (() => {
@@ -9459,6 +9581,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           <span class="alphatab-status alphatab-status-top" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico &middot; click Play</span>
         </div>
         <div class="cifra-strumming-wrap">${_renderStrummingHeader(multi)}</div>
+        <div class="cifra-cov-wrap">${_renderCoverageBadge(_computeChordCoverage(multi))}</div>
         <div class="alphatab-surface cifra-surface">${_renderChordPro(txt)}</div>
         <div class="alphatab-transport alphatab-transport-bottom" role="toolbar" aria-label="Controles da cifra (rodap&eacute;)">
           <div class="atc-group atc-vol">
@@ -9501,6 +9624,47 @@ function _renderTabPanel(body, songKey, tabMeta) {
           if (wrap) wrap.innerHTML = _renderStrummingHeader(multi);
         });
       });
+
+      // Click no badge de cobertura (laranja) expande lista de acordes
+      // faltantes pra aquele instrumento.
+      const covWrap = cifraPane.querySelector('.cifra-cov-wrap');
+      if (covWrap) {
+        const cov = _computeChordCoverage(multi);
+        const listWrap = covWrap.querySelector('.cifra-cov-list-wrap');
+        const toggleList = (inst) => {
+          if (!cov || !listWrap) return;
+          const cdata = cov.coverage[inst];
+          if (!cdata || cdata.missing.length === 0) return;
+          const iconMap = { violao: '🎸 Violão', ukulele: '🪗 Ukulele', piano: '🎹 Piano' };
+          const label = iconMap[inst] || inst;
+          const items = cdata.missing.map(c => `<code>${c.replace(/</g, '&lt;')}</code>`).join(' ');
+          if (listWrap.dataset.openInst === inst) {
+            listWrap.hidden = true;
+            listWrap.dataset.openInst = '';
+          } else {
+            listWrap.hidden = false;
+            listWrap.dataset.openInst = inst;
+            listWrap.innerHTML = `<div class="cifra-cov-list">
+              <strong>${label}</strong> faltam ${cdata.missing.length} acorde${cdata.missing.length > 1 ? 's' : ''}: ${items}
+              <div style="margin-top:6px;font-size:11px;opacity:.7;">
+                Atualizar <code>media/tabs/cifras-multi/${tabMeta.cifraMulti || '?.json'}</code> em <code>instruments.${inst}.chords</code>.
+              </div>
+            </div>`;
+          }
+        };
+        covWrap.querySelectorAll('.cov-missing').forEach(badge => {
+          badge.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleList(badge.dataset.covInst);
+          });
+          badge.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleList(badge.dataset.covInst);
+            }
+          });
+        });
+      }
 
       // ---- Wiring do cifra player nos botoes do transport (top + bottom) ----
       const playBtns = cifraPane.querySelectorAll('.cifra-mode-play');
