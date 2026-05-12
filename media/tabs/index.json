@@ -33,6 +33,7 @@
   "sirens": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
   "hail hail": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
   "footsteps": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
+  "why go": { "cifra": true, "cifraMulti": "why-go.json", "tab": false, "key": "Em", "tuning": "EADGBE", "bpm": 100 },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
   ] }

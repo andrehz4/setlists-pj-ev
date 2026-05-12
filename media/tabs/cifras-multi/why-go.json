@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Why Go (Pearl Jam, Ten 1991, faixa 4). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-12"
+  },
+  "title": "Why Go",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Em":    { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "A":     { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "Dsus2": { "fingering": "xx0230", "fingers": "xx0130", "fundamental": "D" },
+        "Bm":    { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "D":     { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "C":     { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Em":    { "fingering": "0402", "fingers": "0301", "fundamental": "E" },
+        "A":     { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Dsus2": { "fingering": "2200", "fingers": "1200", "fundamental": "D" },
+        "Bm":    { "fingering": "4222", "fingers": "4111", "fundamental": "B", "barre": 2 },
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C":     { "fingering": "0003", "fingers": "0003", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Em":    { "notes": ["E", "G", "B"],    "fundamental": "E", "inversion": null },
+        "A":     { "notes": ["A", "C#", "E"],   "fundamental": "A", "inversion": null },
+        "Dsus2": { "notes": ["D", "E", "A"],    "fundamental": "D", "inversion": null },
+        "Bm":    { "notes": ["B", "D", "F#"],   "fundamental": "B", "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],    "fundamental": "G", "inversion": null },
+        "D":     { "notes": ["D", "F#", "A"],   "fundamental": "D", "inversion": null },
+        "C":     { "notes": ["C", "E", "G"],    "fundamental": "C", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Em]\n\n{section: Verso 1}\n[Em]She scratches a letter [A]into [Dsus2]a wall made of [Em]stone\n[Em]Maybe someday another [A]child [Dsus2]won't feel as [Em]alone as she [Em]does\nIt's been two years and [A]counting since they [Dsus2]put her in this [Em]place [Em]\nShe's been [A]diagnosed by some stupid [Dsus2]fuck and [Em]mommy agrees\n\n{section: Pré-refrão}\n[Em]\n  Wow!\nAh!\nYeah!\nWhy go home?\nWhy go home?\nWhy go home?\n\n{section: Verso 2}\n[Em]She seems to be [A]stronger but [Dsus2]what they want her to be is [Em]weak\nShe could play [A]pretend, she could join the [Dsus2]game, boy\n[Em]She could be another [Em]clone\n\n{section: Pré-refrão}\nOoh! Ah! Ah yeah\nAh\n\n{section: Refrão}\n[Em]Why go [Bm]home?\n[G]Why go [D]home?\n[Em]Why go [Bm]home?\n[G]Why go [D]home?\nWhat you [Em]taught [Bm]me\nPut me [G]here [D]\nDon't come [Em]visit [C]\n[Em]Mother, [D]sing me\n\n{section: Solo}\n[Em] [G] [A] [D] [Em] [G] [A]\n[Em] [G] [A] [D] [Em] [G] [A]\n[Em] [G] [A] [Bm] [Em] [G] [A]\n[Em] [G] [A] [Bm] [Em] [G]\n[A]\n Ah\n\n{section: Refrão}\n[Em]Why go [Bm]home?\n[G]Why go [D]home?\n[Em]Why go [Bm]home?\n[G]Why go [D]home?\nWhat you [Em]taught [Bm]me\nPut me [G]here [D]\nDon't come [Em]visit [Bm]\nMother, mother, [G]yeah [D]\n[Em]Why go [Bm]home?\n[G]Why go [D]home?\n[Em]Why go [Bm]home?\n[G]Why go [D]home?\n[Em]Why go [Bm]home?\n[G]Why go [D]home?\n[Em]Why go [C]home?\n[Em] [D]Why!\n"
+}
