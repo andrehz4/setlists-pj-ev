@@ -4408,20 +4408,9 @@ html[data-theme="dark"] .alphatab-version-select {
 }
 #view-news > * { position: relative; z-index: 1; }
 
-/* Em Noticias, o titulo padrao da view eh substituido pelo wordmark gigante.
-   A descricao continua mas reskinneada como pull-quote do editor. */
-#view-news .view-title { display: none; }
-#view-news .view-desc {
-  font: italic 15px/1.55 var(--np-body);
-  text-transform: none;
-  letter-spacing: 0;
-  color: var(--np-ink-mute);
-  border-left: 3px solid var(--np-stamp);
-  padding: 2px 0 2px 14px;
-  margin: 4px 0 28px;
-  max-width: 720px;
-  font-family: var(--np-body);
-}
+/* Em Noticias, esconde view-title e view-desc: o wordmark gigante toma o lugar. */
+#view-news .view-title,
+#view-news .view-desc { display: none; }
 
 /* Bandeira tracejada do topo: dia da edicao, hora, edicao #N */
 .news-flag {
