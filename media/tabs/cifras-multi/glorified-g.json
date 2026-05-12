@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Glorified G (Pearl Jam, Vs. 1993, faixa 2). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons resumida; fingerings standard usados onde a notacao era incompleta)",
+    "fetched": "2026-05-12"
+  },
+  "title": "Glorified G",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 112,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "F":  { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C":  { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Cm": { "fingering": "x35543", "fingers": "x13421", "fundamental": "C",  "barre": 3 },
+        "Db": { "fingering": "x46664", "fingers": "x13331", "fundamental": "Db", "barre": 4 },
+        "Eb": { "fingering": "x68886", "fingers": "x13331", "fundamental": "Eb", "barre": 6 },
+        "Em": { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "Bm": { "fingering": "x24432", "fingers": "x13421", "fundamental": "B",  "barre": 2 },
+        "Bb": { "fingering": "x13331", "fingers": "x13331", "fundamental": "Bb", "barre": 1 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 112,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "C":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Cm": { "fingering": "0333", "fingers": "0111", "fundamental": "C",  "barre": 3 },
+        "Db": { "fingering": "1114", "fingers": "1114", "fundamental": "Db", "barre": 1 },
+        "Eb": { "fingering": "0331", "fingers": "0231", "fundamental": "Eb" },
+        "Em": { "fingering": "0432", "fingers": "0431", "fundamental": "E" },
+        "Bm": { "fingering": "4222", "fingers": "4111", "fundamental": "B",  "barre": 2 },
+        "Bb": { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 112,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true  }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":  { "notes": ["D", "F#", "A"],    "fundamental": "D",  "inversion": null },
+        "F":  { "notes": ["F", "A", "C"],     "fundamental": "F",  "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],     "fundamental": "G",  "inversion": null },
+        "C":  { "notes": ["C", "E", "G"],     "fundamental": "C",  "inversion": null },
+        "Cm": { "notes": ["C", "D#", "G"],    "fundamental": "C",  "inversion": null },
+        "Db": { "notes": ["Db", "F", "Ab"],   "fundamental": "Db", "inversion": null },
+        "Eb": { "notes": ["Eb", "G", "Bb"],   "fundamental": "Eb", "inversion": null },
+        "Em": { "notes": ["E", "G", "B"],     "fundamental": "E",  "inversion": null },
+        "Bm": { "notes": ["B", "D", "F#"],    "fundamental": "B",  "inversion": null },
+        "Bb": { "notes": ["Bb", "D", "F"],    "fundamental": "Bb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D]\n[D] [D]\n\n{section: Verso 1}\n[D]Got a gun, [F]fact I got two\n[G]That's okay man 'cause I love [C]God\n[D]Glorified version of a [F]pellet gun\n[G]Feels so manly [C]when armed\n\n{section: Refrão}\n[D](Glorified version of a) pellet gun\n[D](Glorified version of a) pellet gun\n[D](Glorified version of a) pellet gun\n[D](Glorified version of a) pellet gun\n\n{section: Verso 2}\n[D]Don't think, [F]dumb is strength\n[G]Never shot at a [C]living thing\n[D]Glorified version of a [F]pellet gun\n[G]Feels so manly [C]when armed\n\n{section: Refrão}\n[D](Glorified version of a) pellet gun\n[D](Glorified version of a) pellet gun\n[D](Glorified version of a) pellet gun\n[D](Glorified version of a)\n\n{section: Ponte}\n[Cm] [Db] [Eb] [Eb]\n[Cm]Always keep it [Db]loaded [Eb]\n[Cm]Always keep it [Db]loaded [Eb]\n[Cm]Always keep it [Db]loaded [Eb]\n\n(Kindred to be an American)\n[D] [D] [D] [D]\n\n{section: Outro}\n[D](Life comes) [F]I can feel your [G]heart [C]\n[D](Ooh, life comes) [F]I can feel your [G]heart in your [C]neck\n[D](Life comes) [F]I can feel your [G]heart in your [C]neck\n[D](Like some) [F]I can steal your [G]heart from your [C]neck\n\n{section: Solo}\n[D] [F] [Em] [Eb]\n[D] [C] [Bm] [Bb]\nGlorified Glorified\n[D] [F] [Em] [Eb]\n[D] [C] [Bm] [Bb]\n[D]\n"
+}

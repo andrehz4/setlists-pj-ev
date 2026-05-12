@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Dissident (Pearl Jam, Vs. 1993, faixa 6). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra oficial) + Claude web (tabela de subtons resumida; fingerings standard usados onde a notacao era incompleta)",
+    "fetched": "2026-05-12",
+    "note_gm_bb": "Tabela do Claude web menciona Gm/Bb como variacao mas o content do UG nao usa esse acorde explicitamente. Cadastrei mesmo assim no chord dict pra cobertura caso apareca em futuras revisoes."
+  },
+  "title": "Dissident",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 108,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Gmaj7": { "fingering": "320002", "fingers": "320001", "fundamental": "G" },
+        "G7":    { "fingering": "320001", "fingers": "320001", "fundamental": "G" },
+        "G6":    { "fingering": "320000", "fingers": "320000", "fundamental": "G" },
+        "C":     { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Gm":    { "fingering": "355333", "fingers": "134111", "fundamental": "G", "barre": 3 },
+        "Gm7":   { "fingering": "353333", "fingers": "121111", "fundamental": "G", "barre": 3 },
+        "Gsus4": { "fingering": "330011", "fingers": "230011", "fundamental": "G" },
+        "Gm/Bb": { "fingering": "x10033", "fingers": "x10023", "fundamental": "G",  "bass": "Bb" },
+        "Csus2": { "fingering": "x30033", "fingers": "x20034", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 108,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Gmaj7": { "fingering": "0222", "fingers": "0123", "fundamental": "G" },
+        "G7":    { "fingering": "0212", "fingers": "0213", "fundamental": "G" },
+        "G6":    { "fingering": "0202", "fingers": "0102", "fundamental": "G" },
+        "C":     { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Gm":    { "fingering": "0231", "fingers": "0231", "fundamental": "G" },
+        "Gm7":   { "fingering": "0211", "fingers": "0211", "fundamental": "G" },
+        "Gsus4": { "fingering": "0233", "fingers": "0123", "fundamental": "G" },
+        "Gm/Bb": { "fingering": "0231", "fingers": "0231", "fundamental": "G", "bass": "Bb" },
+        "Csus2": { "fingering": "0233", "fingers": "0123", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 108,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":     { "notes": ["G", "B", "D"],        "fundamental": "G", "inversion": null },
+        "Gmaj7": { "notes": ["G", "B", "D", "F#"],  "fundamental": "G", "inversion": null },
+        "G7":    { "notes": ["G", "B", "D", "F"],   "fundamental": "G", "inversion": null },
+        "G6":    { "notes": ["G", "B", "D", "E"],   "fundamental": "G", "inversion": null },
+        "C":     { "notes": ["C", "E", "G"],        "fundamental": "C", "inversion": null },
+        "Gm":    { "notes": ["G", "Bb", "D"],       "fundamental": "G", "inversion": null },
+        "Gm7":   { "notes": ["G", "Bb", "D", "F"],  "fundamental": "G", "inversion": null },
+        "Gsus4": { "notes": ["G", "C", "D"],        "fundamental": "G", "inversion": null },
+        "Gm/Bb": { "notes": ["Bb", "D", "G"],       "fundamental": "G", "inversion": "Bb", "bass": "Bb" },
+        "Csus2": { "notes": ["C", "D", "G"],        "fundamental": "C", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [Gmaj7] [G7] [G7] [G6] [G] [G] [Gmaj7] [G7] [G7] [G6] [G]\n[G] [Gmaj7] [G7] [G7] [G6] [G] [G] [Gmaj7] [G7]\n[G7] [G6] [G]\n\n{section: Verso 1}\n[C]She nursed [Gm]him there, [Gm7]oh, [Gsus4]over a [C]night\n[Gm]I wasn't so [Gm7]sure she wanted him to [Gsus4]stay\nWhat to say? [C]What to say?\n[Gm]But soon she was [Gm7]down, soon he was [Gsus4]low\n[C]At a quarter past, [Gm]a holy no\n[Gm7]She had [Gsus4]to turn around [G] [Gmaj7] [G7]\n\n{section: Refrão}\n[G7]When she couldn't [G6] [G]hold, [G] [Gmaj7] [G7]oh, she folded\n[G7]A dissident is [G6] [G]here\n[G]Escape [Gmaj7] [G7]is never the [G7]safest [G6] [G]path\n[G]Oh, a [Gmaj7] [G7]dissidence, a [G7]dissident is [G6] [G]here\n\n{section: Verso 2}\n[C]And to this day she's [Gm]glided on\n[Gm7]Always home but [Gsus4]so far away\nLike a word misplaced\n[C]Nothing said, what a waste\n[Gm]But when she had [Gm7]contact with the [Gsus4]conflict\n[C]There was meaning but [Gm]she sold him to the state\n[Gm7]She had [Gsus4]to turn around [G] [Gmaj7] [G7]\n\n{section: Refrão}\n[G7]When she couldn't [G6] [G]hold, [G] [Gmaj7] [G7]she folded\n[G7]A dissident is [G6] [G]here\n[G]Escape [Gmaj7] [G7]is never the [G7]safest [G6] [G]path\n[G]Oh, a [Gmaj7] [G7]dissidence, a [G7]dissident is [G6] [G]here\nOh!\n\n{section: Ponte}\n[G] [Gm] [Csus2] [G] [Gm] [Csus2]Oh oh oh\n[G] [Gm] [Csus2]Oh oh oh oh\n[G] [Gm] [Csus2]Oh\n\n{section: Refrão}\n[G]She gave [Gmaj7]him [G7]away when she [G7]couldn't [G6] [G]hold\n[G] [Gmaj7] [G7]No, she folded, a [G7]dissident is [G6] [G]here\n[G]Escape [Gmaj7] [G7]is never the [G7]safest [G6] [G]path\n[G]Oh, a [Gmaj7] [G7]dissidence, a [G7]dissident is [G6] [G]here [G]Oh, couldn't [Gmaj7]hold [G7]on,\n[G7]she couldn't [G6] [G]hold\n\n{section: Outro}\n[G] [Gmaj7] [G7]No, she folded, a [G7]dissident is [G6] [G]here\n[G]Escape [Gmaj7] [G7]is never the [G7] [G6] [G]safest path\n[G]Oh, a [Gmaj7] [G7]dissident is here [G7] [G6] [G]\n"
+}

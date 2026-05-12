@@ -32,7 +32,9 @@
   "animal": { "cifra": true, "cifraMulti": "animal.json", "tab": true, "tabFormat": "gp4", "tabFile": "animal-v1.gp4", "key": "A", "tuning": "EADGBE", "bpm": 106, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "animal-v1.gp4", "format": "gp4" }
   ] },
-  "rearviewmirror": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
+  "rearviewmirror": { "cifra": true, "cifraMulti": "rearviewmirror.json", "tab": true, "tabFormat": "gp4", "tabFile": "rearviewmirror-v1.gp4", "key": "Bm", "tuning": "EADGBE", "bpm": 159, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "rearviewmirror-v1.gp4", "format": "gp4" }
+  ] },
   "do the evolution": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
   "last kiss": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "crazy mary": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
@@ -59,6 +61,15 @@
   ] },
   "release": { "cifra": true, "cifraMulti": "release.json", "tab": true, "tabFormat": "gp5", "tabFile": "release-v1.gp5", "key": "D", "tuning": "EADGBE", "bpm": 64, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "release-v1.gp5", "format": "gp5" }
+  ] },
+  "glorified g": { "cifra": true, "cifraMulti": "glorified-g.json", "tab": true, "tabFormat": "gp5", "tabFile": "glorified-g-v1.gp5", "key": "D", "tuning": "EADGBE", "bpm": 112, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "glorified-g-v1.gp5", "format": "gp5" }
+  ] },
+  "dissident": { "cifra": true, "cifraMulti": "dissident.json", "tab": true, "tabFormat": "gp4", "tabFile": "dissident-v1.gp4", "key": "G", "tuning": "EADGBE", "bpm": 108, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "dissident-v1.gp4", "format": "gp4" }
+  ] },
+  "blood": { "cifra": false, "tab": true, "tabFormat": "gp4", "tabFile": "blood-v1.gp4", "key": "E", "tuning": "EADGBE", "bpm": 120, "notes": "Blood eh tab-only no UG (so riff de tablatura, sem cifra de acordes nomeados)", "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "blood-v1.gp4", "format": "gp4" }
   ] },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }

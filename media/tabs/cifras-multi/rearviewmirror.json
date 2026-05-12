@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Rearviewmirror (Pearl Jam, Vs. 1993, faixa 9). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra oficial) + Claude web (tabela de subtons resumida)",
+    "fetched": "2026-05-12",
+    "note_acordes": "Tabela do Claude web menciona D/F# como acorde principal mas o texto UG usa D simples. Cadastrei D no chord dict (matching o content) e D/F# como variacao caso o usuario queira tocar o slash chord."
+  },
+  "title": "Rearviewmirror",
+  "artist": "Pearl Jam",
+  "key": "Bm",
+  "bpm": 159,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "Bm":   { "fingering": "x24432", "fingers": "x13421", "fundamental": "B",  "barre": 2 },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "D/F#": { "fingering": "200232", "fingers": "100132", "fundamental": "D",  "bass": "F#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 159,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Bm":   { "fingering": "4222", "fingers": "4111", "fundamental": "B", "barre": 2 },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "D/F#": { "fingering": "2220", "fingers": "1230", "fundamental": "D", "bass": "F#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 159,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":    { "notes": ["A", "C#", "E"],    "fundamental": "A", "inversion": null },
+        "Bm":   { "notes": ["B", "D", "F#"],    "fundamental": "B", "inversion": null },
+        "G":    { "notes": ["G", "B", "D"],     "fundamental": "G", "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],    "fundamental": "D", "inversion": null },
+        "D/F#": { "notes": ["F#", "D", "A"],    "fundamental": "D", "inversion": "F#", "bass": "F#" }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A]\n\n{section: Verso 1}\n[A]I took a drive today\nTime to emancipate\n[Bm]I guess it was the beatings\n[A]Made me wise\n[Bm]But I'm not about to give thanks\n[A]Or apologize\n\n{section: Refrão}\n[Bm]I couldn't breathe\n[G]Holding me down\n[D]Hand on my face\n[G]Pushed to the ground\n[Bm]Enmity gauged\n[G]United by fear\n[D]Forced to endure\n[G]What I could not forgive [A] [A]\n\n{section: Verso 2}\n[A]I seem to look away\nThe wounds in the mirror waved\n[Bm]It wasn't my surface\n[A]Most defiled\n\n{section: Refrão}\n[Bm]Head at your feet\n[G]Fool to your crown\n[D]Fist on my plate\n[G]Swallowed it down\n[Bm]Enmity gauged\n[G]United by fear\n[D]Forced to endure\n[G]What I could not forgive, [A]yeah\n\n{section: Ponte}\n[Bm]Saw things, saw things\n[A]Saw things, saw things\n[Bm]Clearer, clearer\n[A]Once you were in my rearview [Bm]mirror [G]\n\n{section: Refrão}\n[D]I gathered speed from [G]you fucking with me\n[Bm]Once and for all\n[G]I'm far away\n[D]Hard to believe\n[G]Finally the shades are raised\n\n{section: Pós-refrão}\n[Bm] [A]\n[Bm]Hey, [A]yeah\n[Bm] [A]Rearview [Bm]mirror [A]\n[Bm]Rearview [A]mirror\n[Bm]Rearview [A]mirror\n\n{section: Outro}\n[Bm] [A] [Bm] [A]\n[Bm] [A] [Bm] [A]\n[Bm]\n"
+}
