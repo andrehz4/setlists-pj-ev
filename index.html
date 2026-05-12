@@ -3035,229 +3035,11 @@ html[data-theme="light"] .drawer-section-label.my-media {
   18%  { transform: scale(1.18); }
   100% { transform: scale(1); }
 }
-.cifra-player-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-  padding: 8px 12px;
-  background: rgba(46, 107, 138, 0.06);
-  border: 1px solid rgba(46, 107, 138, 0.18);
-  border-radius: 4px;
-}
-.cifra-play-btn {
-  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  background: #2e6b8a;
-  color: #fff;
-  border: 0;
-  padding: 8px 14px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 120ms ease;
-  min-width: 86px;
-}
-.cifra-play-btn:hover { background: #1f4e6a; }
-.cifra-play-btn[data-state="playing"] { background: var(--pj, #c1272d); }
-.cifra-play-btn[data-state="playing"]:hover { background: #8a1c20; }
-.cifra-play-btn[data-state="paused"] { background: #d68d20; }
-.cifra-play-btn[data-state="paused"]:hover { background: #b87410; }
-.cifra-pause-btn, .cifra-stop-btn {
-  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #fff;
-  border: 0;
-  padding: 8px 14px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 120ms ease;
-  min-width: 60px;
-}
-.cifra-pause-btn { background: #d68d20; }
-.cifra-pause-btn:hover { background: #b87410; }
-.cifra-stop-btn { background: var(--pj, #c1272d); }
-.cifra-stop-btn:hover { background: #8a1c20; }
-
-/* Card 'Tocando agora' da cifra: FIXED pra nao sumir ao rolar.
-   - View Cifras & Tabs (.in-cifra-view): centralizado embaixo, card largo.
-   - Set list inline (.in-setlist): canto inferior direito como bottom-sheet,
-     posicao igual ao .fretboard-overlay flutuante. */
-.cifra-now-playing {
-  position: fixed;
-  bottom: 110px;            /* default setlist: alinhado com fretboard floating */
-  right: 24px;
-  z-index: 8500;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  width: clamp(420px, 42vw, 560px);  /* default setlist: largura do fretboard */
-  padding: 10px 14px;
-  background: linear-gradient(135deg, rgba(46,107,138,0.14), rgba(46,107,138,0.06));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(46, 107, 138, 0.35);
-  border-left: 4px solid #2e6b8a;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-}
-.cifra-now-playing.in-cifra-view {
-  bottom: 18px;
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(720px, calc(100vw - 32px));
-  padding: 12px 18px;
-  gap: 18px;
-}
-.cifra-now-playing[hidden] { display: none; }
-.cifra-now-current {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex: 1;
-  min-width: 0;
-}
-/* Mini-braco horizontal: SVG 360x140 com 6 cordas e 5 trastes, notas
-   acesas em circulos coloridos. Bem mais expressivo que diagrama 84x100. */
-.cifra-now-diagram {
-  flex-shrink: 0;
-  width: 360px;
-  height: 116px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #6b4a28 0%, #4a3018 100%);
-  border: 1px solid #3a2914;
-  border-radius: 6px;
-  padding: 0;
-  box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.2);
-  overflow: hidden;
-}
-.cifra-now-diagram svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.cifra-now-diagram-empty {
-  font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
-  color: #d0c0a0;
-  text-align: center;
-  padding: 4px;
-}
-.cifra-now-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.cifra-now-label {
-  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-.cifra-now-chord {
-  font: 800 40px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
-  letter-spacing: 0.04em;
-  color: var(--pj, #c1272d);
-  text-transform: uppercase;
-  transition: transform 220ms cubic-bezier(0.2,0.7,0.2,1);
-}
-.cifra-now-playing.cifra-now-pulse .cifra-now-chord {
-  animation: cifra-now-pulse 0.45s ease-out;
-}
-@keyframes cifra-now-pulse {
-  0% { transform: scale(1); }
-  35% { transform: scale(1.14); }
-  100% { transform: scale(1); }
-}
-.cifra-now-next {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-  padding-left: 16px;
-  border-left: 1px dashed rgba(46,107,138,0.3);
-}
-.cifra-now-next-chord {
-  font: 700 22px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
-  letter-spacing: 0.04em;
-  color: #2e6b8a;
-  text-transform: uppercase;
-  opacity: 0.75;
-}
-@media (max-width: 600px) {
-  /* No mobile, card vira full-width na base. Mini-braco compacta. */
-  .cifra-now-playing,
-  .cifra-now-playing.in-cifra-view {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transform: none;
-    width: 100vw;
-    max-width: none;
-    border-radius: 8px 8px 0 0;
-    padding: 8px 10px;
-    gap: 8px;
-    flex-direction: row;
-    align-items: center;
-  }
-  .cifra-now-diagram { width: 200px; height: 80px; flex-shrink: 0; }
-  .cifra-now-chord { font-size: 26px; }
-  .cifra-now-next {
-    padding-left: 8px;
-    border-left: 1px dashed rgba(46,107,138,0.3);
-  }
-  .cifra-now-next-chord { font-size: 16px; }
-}
-
-/* FAB flutuante da cifra. Identico estruturalmente ao .alphatab-fab mas
-   com handlers proprios (state machine separada). Mostra quando o cifra
-   player esta ativo, esconde quando para. */
-.cifra-fab {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  display: none;
-  flex-direction: row;
-  gap: 8px;
-  padding: 10px;
-  background: rgba(26, 22, 17, 0.92);
-  border-radius: 999px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-  z-index: 9997;
-}
-.cifra-fab.show { display: flex; }
-.cifra-fab-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 0;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 120ms ease, background 120ms ease;
-}
-.cifra-fab-btn:hover { transform: scale(1.06); }
-.cifra-fab-btn:active { transform: scale(0.96); }
-.cifra-fab-pause { background: #2e6b8a; }
-.cifra-fab-pause:hover { background: #1f4e6a; }
-.cifra-fab-stop { background: var(--pj, #c1272d); }
-.cifra-fab-stop:hover { background: #8a1c20; }
-@media (max-width: 768px) {
-  .cifra-fab { bottom: 16px; right: 16px; padding: 8px; gap: 6px; }
-  .cifra-fab-btn { width: 44px; height: 44px; font-size: 13px; }
-}
-
-.cifra-player-meta {
-  font: italic 11px/1.4 var(--font-editorial, Georgia, serif);
-  color: var(--ink-mute, #6b5e44);
-}
+/* Player da cifra agora reusa o mesmo transport visual do TAB
+   (.alphatab-transport-top + .alphatab-transport-bottom + .atc-btn-mini +
+   .atc-play-round) e o mesmo FAB (.alphatab-fab). Classes .cifra-player-bar,
+   .cifra-now-playing e .cifra-fab foram removidas porque o layout unificado
+   eliminou a divergencia visual entre as duas abas. */
 .chord-chip-spacer {
   display: inline-block;
   height: 16px;
@@ -3346,6 +3128,20 @@ html[data-theme="light"] .drawer-section-label.my-media {
   fill: var(--pj, #c1272d) !important;
   stroke: var(--pj, #c1272d) !important;
 }
+/* Variante cifra da surface: contem chord-chips (ChordPro renderizado) em
+   vez de partitura vetorial. Mesmo container + scroll, padding maior pra
+   respiro do texto da letra. Cor de fundo discreta. */
+.cifra-surface {
+  padding: 14px 18px;
+  min-height: 140px;
+}
+.cifra-surface .cifra-stanza:first-child { margin-top: 0; }
+.cifra-surface .cifra-stanza:last-child { margin-bottom: 0; }
+/* Limite de altura interna no modo view Cifras (ja vem do .cifra-detail-wrap
+   .alphatab-surface acima) — chord-chips rolam DENTRO desse container.
+   No setlist inline (fora de .cifra-detail-wrap) deixamos auto pra cifra
+   inteira aparecer e rolar com a window. */
+.cifra-detail-wrap .cifra-surface { max-height: 56vh; }
 /* Transport TOP (compacta): fica acima da partitura. Play+Stop+Speed select+Loop
    pra controle rapido sem rolar ate o fim. Espelha estado do bottom via JS. */
 .alphatab-transport-top {
@@ -5052,7 +4848,6 @@ html[data-theme="dark"] .chord-diagram {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-html[data-theme="dark"] .cifra-player-bar,
 html[data-theme="dark"] .alphatab-transport {
   background: rgba(46, 107, 138, 0.14);
   border-color: rgba(46, 107, 138, 0.4);
@@ -9174,49 +8969,84 @@ function _renderTabPanel(body, songKey, tabMeta) {
       if (!cifraPane) return;
       if (!txt) { cifraPane.innerHTML = soonPane('cifra'); return; }
       const bpm = tabMeta.bpm || 90;
-      const playerBar = `
-        <div class="cifra-player-bar">
-          <button type="button" class="cifra-play-btn" data-state="idle" aria-label="Tocar cifra arpejada">▶ Play</button>
-          <button type="button" class="cifra-pause-btn" hidden aria-label="Pausar cifra">❚❚</button>
-          <button type="button" class="cifra-stop-btn" hidden aria-label="Parar cifra">◼ Stop</button>
-          <span class="cifra-player-meta">${bpm} BPM · ~2 beats por acorde · violão acústico</span>
+      // Layout unificado com a aba TAB: mesma estrutura .alphatab-transport-top
+      // + .alphatab-surface + .alphatab-transport-bottom. Diferenca eh que a
+      // surface contem chord-chips em vez da partitura AlphaTab; os botoes
+      // Play/Prev disparam o cifra-player em vez de api.play(). Reusa CSS,
+      // FAB e fretboard do TAB pra zero divergencia visual entre as duas abas.
+      cifraPane.innerHTML = `
+        <div class="alphatab-transport alphatab-transport-top" role="toolbar" aria-label="Controles da cifra (topo)">
+          <button type="button" class="atc-btn-mini alphatab-play cifra-mode-play" data-state="idle" data-icon-only="false" aria-label="Tocar / pausar cifra">▶ Play</button>
+          <button type="button" class="atc-btn-mini alphatab-prev cifra-mode-prev" aria-label="Voltar ao in&iacute;cio" title="In&iacute;cio">⏮</button>
+          <span class="alphatab-status alphatab-status-top" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico &middot; click Play</span>
         </div>
-        <div class="cifra-now-playing" hidden aria-live="polite">
-          <div class="cifra-now-current">
-            <div class="cifra-now-diagram"></div>
-            <div class="cifra-now-info">
-              <span class="cifra-now-label">Tocando</span>
-              <span class="cifra-now-chord">—</span>
-            </div>
+        <div class="alphatab-surface cifra-surface">${_renderChordPro(txt)}</div>
+        <div class="alphatab-transport alphatab-transport-bottom" role="toolbar" aria-label="Controles da cifra (rodap&eacute;)">
+          <div class="atc-group atc-vol">
+            <span class="atc-ico" aria-hidden="true">🔊</span>
+            <input type="range" class="atc-vol-slider cifra-mode-vol" min="0" max="1" step="0.05" value="0.8" aria-label="Volume do arpejo">
           </div>
-          <div class="cifra-now-next">
-            <span class="cifra-now-label">Próximo</span>
-            <span class="cifra-now-next-chord">—</span>
-          </div>
-        </div>`;
-      cifraPane.innerHTML = playerBar + _renderChordPro(txt);
+          <button type="button" class="atc-btn-ico alphatab-prev cifra-mode-prev" aria-label="Voltar ao in&iacute;cio" title="In&iacute;cio">⏮</button>
+          <button type="button" class="atc-play-round alphatab-play cifra-mode-play" data-state="idle" data-icon-only="true" aria-label="Tocar / pausar cifra">▶</button>
+          <div class="atc-spacer"></div>
+          <span class="alphatab-status" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico</span>
+        </div>
+      `;
       _attachChordChipHandlers(cifraPane);
-      const playBtn = cifraPane.querySelector('.cifra-play-btn');
-      const pauseBtn = cifraPane.querySelector('.cifra-pause-btn');
-      const stopBtn = cifraPane.querySelector('.cifra-stop-btn');
-      if (playBtn) {
-        playBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const existing = _CIFRA_PLAYERS.get(cifraPane);
-          if (existing && existing.paused) _resumeCifraPlayer(cifraPane);
-          else _startCifraPlayer(cifraPane, bpm);
+
+      // ---- Wiring do cifra player nos botoes do transport (top + bottom) ----
+      const playBtns = cifraPane.querySelectorAll('.cifra-mode-play');
+      const prevBtns = cifraPane.querySelectorAll('.cifra-mode-prev');
+      const statusEls = cifraPane.querySelectorAll('.alphatab-status');
+      const volSlider = cifraPane.querySelector('.cifra-mode-vol');
+
+      const setAllPlayState = (state) => {
+        playBtns.forEach(btn => {
+          btn.dataset.state = state;
+          const iconOnly = btn.dataset.iconOnly === 'true';
+          if (state === 'playing') btn.textContent = iconOnly ? '❚❚' : '❚❚ Pause';
+          else if (state === 'paused') btn.textContent = iconOnly ? '▶' : '▶ Retomar';
+          else btn.textContent = iconOnly ? '▶' : '▶ Play';
         });
-      }
-      if (pauseBtn) {
-        pauseBtn.addEventListener('click', (e) => {
+      };
+      const setStatus = (txt) => statusEls.forEach(e => e.textContent = txt);
+      // Expor pro cifra player atualizar o estado UI
+      cifraPane._cifraSetAllPlayState = setAllPlayState;
+      cifraPane._cifraSetStatus = setStatus;
+
+      const togglePlay = () => {
+        const existing = _CIFRA_PLAYERS.get(cifraPane);
+        if (existing) {
+          if (existing.paused) _resumeCifraPlayer(cifraPane);
+          else _pauseCifraPlayer(cifraPane);
+        } else {
+          _startCifraPlayer(cifraPane, bpm);
+        }
+      };
+      playBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
           e.stopPropagation();
-          _pauseCifraPlayer(cifraPane);
+          togglePlay();
         });
-      }
-      if (stopBtn) {
-        stopBtn.addEventListener('click', (e) => {
+      });
+      prevBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
           e.stopPropagation();
           _stopCifraPlayer(cifraPane);
+        });
+      });
+      // Volume do smplr (arpejo dos chord-chips). Persistido na sessao via
+      // _cifraVolume global (lido por _playChordSound).
+      if (volSlider) {
+        // Inicializa com valor salvo
+        if (typeof window._cifraVolume === 'number') {
+          volSlider.value = String(Math.max(0, Math.min(1, window._cifraVolume)));
+        } else {
+          window._cifraVolume = parseFloat(volSlider.value);
+        }
+        volSlider.addEventListener('input', (e) => {
+          e.stopPropagation();
+          window._cifraVolume = parseFloat(volSlider.value);
         });
       }
     });
@@ -11211,8 +11041,9 @@ async function _playChordSound(chordName, opts) {
     const now = ctx.currentTime;
     const duration = (opts && opts.duration) || 1.6;
     const velocity = (opts && opts.velocity) || 75;
+    const gain = (opts && typeof opts.gain === 'number') ? Math.max(0, Math.min(1, opts.gain)) : 1;
     notes.forEach((note, i) => {
-      sampler.start({ note, velocity, time: now + i * 0.025, duration });
+      sampler.start({ note, velocity: Math.round(velocity * gain), time: now + i * 0.025, duration });
     });
   } catch (e) { /* silencioso: feature opcional */ }
 }
@@ -11236,60 +11067,77 @@ function _stopAllTabAudio() {
   }
   const f = document.querySelector('.alphatab-fab');
   if (f) f.classList.remove('show');
-  const cf = document.querySelector('.cifra-fab');
-  if (cf) cf.classList.remove('show');
   const fb = document.querySelector('.fretboard-overlay');
   if (fb) fb.classList.remove('show');
 }
 
 function _renderCifraPlayerBar(root, state) {
-  const playBtn = root.querySelector('.cifra-play-btn');
-  const pauseBtn = root.querySelector('.cifra-pause-btn');
-  const stopBtn = root.querySelector('.cifra-stop-btn');
-  if (state === 'idle') {
-    if (playBtn) { playBtn.hidden = false; playBtn.textContent = '▶ Play'; playBtn.dataset.state = 'idle'; }
-    if (pauseBtn) pauseBtn.hidden = true;
-    if (stopBtn) stopBtn.hidden = true;
-  } else if (state === 'playing') {
-    if (playBtn) playBtn.hidden = true;
-    if (pauseBtn) { pauseBtn.hidden = false; pauseBtn.textContent = '❚❚'; }
-    if (stopBtn) stopBtn.hidden = false;
-  } else if (state === 'paused') {
-    if (playBtn) { playBtn.hidden = false; playBtn.textContent = '▶ Retomar'; playBtn.dataset.state = 'paused'; }
-    if (pauseBtn) pauseBtn.hidden = true;
-    if (stopBtn) stopBtn.hidden = false;
+  // Layout unificado com TAB: atualiza .cifra-mode-play (em top + bottom)
+  // via setAllPlayState exposto pelo init. Mantemos compat com .cifra-play-btn
+  // legado (caso algum panel antigo ainda exista) por garantia.
+  if (typeof root._cifraSetAllPlayState === 'function') {
+    root._cifraSetAllPlayState(state);
+  } else {
+    const playBtn = root.querySelector('.cifra-play-btn');
+    if (playBtn) {
+      playBtn.dataset.state = state;
+      playBtn.textContent = state === 'playing' ? '❚❚ Pause' : state === 'paused' ? '▶ Retomar' : '▶ Play';
+    }
+  }
+  if (typeof root._cifraSetStatus === 'function') {
+    if (state === 'playing') root._cifraSetStatus('tocando cifra…');
+    else if (state === 'paused') root._cifraSetStatus('pausado · click Play');
+    else root._cifraSetStatus('violão acústico · click Play');
   }
 }
 
+// FAB unificado com TAB: reusa o mesmo .alphatab-fab. Clonar os botoes pra
+// limpar listeners do AlphaTab quando cifra toma o FAB. Quando o AlphaTab
+// for inicializado depois, ele tambem clona e re-attacha (no _initAlphaTabPanel).
 function _ensureCifraFab() {
-  let fab = document.querySelector('.cifra-fab');
-  if (fab) return fab;
-  fab = document.createElement('div');
-  fab.className = 'cifra-fab';
-  fab.innerHTML = `
-    <button type="button" class="cifra-fab-btn cifra-fab-pause" aria-label="Pausar / retomar cifra">❚❚</button>
-    <button type="button" class="cifra-fab-btn cifra-fab-stop" aria-label="Parar cifra">◼</button>
-  `;
-  document.body.appendChild(fab);
-  fab.querySelector('.cifra-fab-pause').addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (!_activeCifraRoot) return;
-    const p = _CIFRA_PLAYERS.get(_activeCifraRoot);
-    if (!p) return;
-    if (p.paused) _resumeCifraPlayer(_activeCifraRoot);
-    else _pauseCifraPlayer(_activeCifraRoot);
-  });
-  fab.querySelector('.cifra-fab-stop').addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
-  });
+  let fab = document.querySelector('.alphatab-fab');
+  if (!fab) {
+    fab = document.createElement('div');
+    fab.className = 'alphatab-fab';
+    fab.innerHTML = `
+      <button type="button" class="alphatab-fab-btn alphatab-fab-pause" aria-label="Pausar/retomar">❚❚</button>
+      <button type="button" class="alphatab-fab-btn alphatab-fab-stop" aria-label="Parar">◼</button>
+    `;
+    document.body.appendChild(fab);
+  }
+  // Clona os botoes pra apagar handlers anteriores (do AlphaTab eventualmente)
+  const pauseOld = fab.querySelector('.alphatab-fab-pause');
+  const stopOld = fab.querySelector('.alphatab-fab-stop');
+  if (pauseOld) {
+    const pauseNew = pauseOld.cloneNode(true);
+    pauseOld.replaceWith(pauseNew);
+    pauseNew.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!_activeCifraRoot) return;
+      const p = _CIFRA_PLAYERS.get(_activeCifraRoot);
+      if (!p) return;
+      if (p.paused) _resumeCifraPlayer(_activeCifraRoot);
+      else _pauseCifraPlayer(_activeCifraRoot);
+    });
+  }
+  if (stopOld) {
+    const stopNew = stopOld.cloneNode(true);
+    stopOld.replaceWith(stopNew);
+    stopNew.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
+    });
+  }
+  // Esconde o terceiro botao (loop) se existir, cifra nao tem loop ainda
+  const loopBtn = fab.querySelector('.alphatab-fab-loop');
+  if (loopBtn) loopBtn.style.display = 'none';
   return fab;
 }
 
 function _renderCifraFab(state) {
-  const fab = document.querySelector('.cifra-fab');
+  const fab = document.querySelector('.alphatab-fab');
   if (!fab) return;
-  const pauseBtn = fab.querySelector('.cifra-fab-pause');
+  const pauseBtn = fab.querySelector('.alphatab-fab-pause');
   if (state === 'idle') {
     fab.classList.remove('show');
   } else {
@@ -11309,12 +11157,6 @@ function _stopCifraPlayer(root) {
   }
   _CIFRA_PLAYERS.delete(root);
   root.querySelectorAll('.chord-chip.chord-chip-playing').forEach(c => c.classList.remove('chord-chip-playing'));
-  // Esconde card 'Tocando agora'
-  const nowCard = root.querySelector('.cifra-now-playing');
-  if (nowCard) {
-    nowCard.hidden = true;
-    nowCard.classList.remove('cifra-now-pulse');
-  }
   _renderCifraPlayerBar(root, 'idle');
   if (_activeCifraRoot === root) {
     _activeCifraRoot = null;
@@ -11358,21 +11200,10 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
-  // Mostra card "Tocando agora" com mini-braco horizontal + nome + proximo.
-  // Pulsa a cada novo acorde sincronizado com o playback.
-  // Classe de contexto define posicionamento: in-cifra-view (centralizado
-  // embaixo na view dedicada) vs default (canto direito como bottom-sheet,
-  // igual o fretboard floating na faixa do show).
-  const nowCard = root.querySelector('.cifra-now-playing');
-  const nowDiagram = nowCard && nowCard.querySelector('.cifra-now-diagram');
-  const nowChord = nowCard && nowCard.querySelector('.cifra-now-chord');
-  const nowNext = nowCard && nowCard.querySelector('.cifra-now-next-chord');
-  if (nowCard) {
-    const isInCifraView = !!root.closest('.cifra-detail-wrap');
-    nowCard.classList.toggle('in-cifra-view', isInCifraView);
-    nowCard.classList.toggle('in-setlist', !isInCifraView);
-    nowCard.hidden = false;
-  }
+  // Surface da cifra (mesma classe do TAB). Na view Cifras tem scroll
+  // interno (overflow-y auto + max-height 56vh); no setlist scroll rola
+  // a window. scrollCenter funciona em ambos via scrollIntoView.
+  const surface = root.querySelector('.alphatab-surface') || root;
 
   for (let i = 0; i < chips.length; i++) {
     if (aborted) break;
@@ -11385,26 +11216,14 @@ async function _startCifraPlayer(root, bpm) {
     const chip = chips[i];
     chips.forEach(c => c.classList.remove('chord-chip-playing'));
     chip.classList.add('chord-chip-playing');
-    // Atualiza card 'Tocando agora' com diagrama + nome + proximo acorde.
-    if (nowCard) {
-      const chord = chip.dataset.chord;
-      const nextChip = chips[i + 1];
-      const nextChord = nextChip ? nextChip.dataset.chord : '—';
-      if (nowChord) nowChord.textContent = chord;
-      if (nowNext) nowNext.textContent = nextChord;
-      if (nowDiagram) {
-        // Mini-braco horizontal (estilo fretboard) com as notas acesas.
-        const svg = _renderChordMiniFretboard(chord);
-        nowDiagram.innerHTML = svg || `<div class="cifra-now-diagram-empty">${chord}<br><small>digitação<br>não cadastrada</small></div>`;
-      }
-      // Pulse animation re-trigger via classe (force reflow pra reiniciar)
-      nowCard.classList.remove('cifra-now-pulse');
-      void nowCard.offsetWidth;
-      nowCard.classList.add('cifra-now-pulse');
-    }
-    // Scroll center igual a tab: chord ativo sempre no meio do viewport.
+    // Scroll center: chord ativo sempre no meio do scroll container (surface
+    // na view Cifras, window no setlist). scrollIntoView delega corretamente.
     chip.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-    _playChordSound(chip.dataset.chord, { duration: noteDuration * 1.1, velocity: 78 });
+    _playChordSound(chip.dataset.chord, {
+      duration: noteDuration * 1.1,
+      velocity: 78,
+      gain: (typeof window._cifraVolume === 'number') ? window._cifraVolume : 0.8,
+    });
     await new Promise(r => setTimeout(r, noteDuration * 1000));
   }
   _stopCifraPlayer(root);
