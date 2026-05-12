@@ -36,14 +36,16 @@ export const NAME = "community-spotlight";
 export const LABEL = `Community Spotlight (${MODEL})`;
 
 function buildUserText(post) {
+  // Nao passamos author nem permalink pro LLM: por design, o texto da materia
+  // nao deve citar nem usuario nem plataforma. O link e o autor ficam apenas
+  // nos metadados do JSON do item (community_post_url, community_author) pra uso
+  // futuro do frontend, mas o LLM trabalha sobre a OBRA, nao sobre quem postou.
   const lines = [
-    "POST a celebrar:",
-    `Autor: ${post.author}`,
-    `URL do post: ${post.permalink}`,
+    "OBRA a celebrar:",
     `Título original (inglês): ${post.title}`,
     `Flair: ${post.flair || "(sem flair)"}`,
-    `Score: ${post.score} | Comentários: ${post.num_comments}`,
-    `Publicado: ${post.created_iso}`,
+    `Votos: ${post.score} | Comentários: ${post.num_comments}`,
+    `Publicada: ${post.created_iso}`,
     `Imagem cover: ${post.cover_image || "(sem imagem)"}`,
   ];
   if (post.selftext && post.selftext.trim()) {
@@ -52,8 +54,10 @@ function buildUserText(post) {
     lines.push(post.selftext.trim());
   }
   lines.push("");
-  lines.push("Escreva a matéria spotlight conforme o sistema. NÃO esqueça o crédito obrigatório no último parágrafo em itálico:");
-  lines.push(`_Arte original por ${post.author} no r/pearljam. Post: ${post.permalink}._`);
+  lines.push("Escreva a matéria spotlight conforme o sistema. NÃO esqueça o footer obrigatório no último parágrafo em itálico:");
+  lines.push(`_Compartilhada na comunidade mundial de fãs do Pearl Jam._`);
+  lines.push("");
+  lines.push("LEMBRETE: NÃO cite Reddit, r/pearljam, subreddit, nome de usuário, ou qualquer plataforma. Escreva sobre a OBRA.");
   lines.push("");
   lines.push("Retorne JSON.");
   return lines.join("\n");
