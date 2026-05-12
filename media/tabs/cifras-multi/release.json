@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Release (Pearl Jam, Ten 1991, faixa 11). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra oficial) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-12",
+    "note_acordes": "Texto UG oficial usa D7 onde a tabela do Claude web usa D/C. Ambas notacoes representam o mesmo som (D maior com C no baixo = D dominante 7). Mantive D7 no content (do UG) e cadastrei ambos no chord dict pra cobertura."
+  },
+  "title": "Release",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 64,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D":     { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "Bm7":   { "fingering": "x20202", "fingers": "x10102", "fundamental": "B" },
+        "D7":    { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D" },
+        "D/C":   { "fingering": "x32232", "fingers": "x21132", "fundamental": "D",  "bass": "C" },
+        "Bm":    { "fingering": "x24432", "fingers": "x13421", "fundamental": "B",  "barre": 2 },
+        "Cadd9": { "fingering": "x32033", "fingers": "x21034", "fundamental": "C" },
+        "D5":    { "fingering": "x577xx", "fingers": "x134xx", "fundamental": "D" },
+        "C5":    { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 64,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Bm7":   { "fingering": "2222", "fingers": "1111", "fundamental": "B",  "barre": 2 },
+        "D7":    { "fingering": "2223", "fingers": "1112", "fundamental": "D" },
+        "D/C":   { "fingering": "0023", "fingers": "0013", "fundamental": "D",  "bass": "C" },
+        "Bm":    { "fingering": "4222", "fingers": "4111", "fundamental": "B",  "barre": 2 },
+        "Cadd9": { "fingering": "0203", "fingers": "0102", "fundamental": "C" },
+        "D5":    { "fingering": "xx22", "fingers": "xx11", "fundamental": "D",  "barre": 2 },
+        "C5":    { "fingering": "00xx", "fingers": "00xx", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 64,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":     { "notes": ["D", "F#", "A"],       "fundamental": "D",  "inversion": null },
+        "Bm7":   { "notes": ["B", "D", "F#", "A"],  "fundamental": "B",  "inversion": null },
+        "D7":    { "notes": ["D", "F#", "A", "C"],  "fundamental": "D",  "inversion": null },
+        "D/C":   { "notes": ["C", "D", "F#", "A"],  "fundamental": "D",  "inversion": "C", "bass": "C" },
+        "Bm":    { "notes": ["B", "D", "F#"],       "fundamental": "B",  "inversion": null },
+        "Cadd9": { "notes": ["C", "E", "G", "D"],   "fundamental": "C",  "inversion": null },
+        "D5":    { "notes": ["D", "A"],             "fundamental": "D",  "inversion": null },
+        "C5":    { "notes": ["C", "G"],             "fundamental": "C",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D]\n\n{section: Verso 1}\n[D]I see the [Bm7]world, [D7] [D]feel the [Bm7]chill [D7]\n[D]Which way to [Bm7]go, [D7] [D]windowsill [Bm7] [D7]\n[D]I see the [Bm7]words on a [D7]rocking horse of [D]time [Bm7] [D7]\n[D]I see the [Bm7]birds in the [D7]rain [D] [Bm7] [D7]\n\n{section: Refrão}\n[D] [Bm] [D7] [D] [Bm] [D7]\nOh, oh\n[D] [Bm] [D7] [D] [Bm] [D7]\nOh, oh\n\n{section: Verso 2}\n[D]Oh, [Bm7]dear Dad, can [D7]you see [D]me now? [Bm7]\n[D7] [D]I am [Bm7]myself, [D7]like you [D]some[Bm7]how [D7]\n[D]I'll ride the [Bm7]wave [D7]where it [D]takes me [Bm7] [D7]\n[D]I'll hold the [Bm7]pain, [D7]release [D]me [Bm7] [D7]\n\n{section: Refrão}\n[D] [Bm] [Cadd9] [D] [Bm] [Cadd9]\nOh, oh I\n[D] [Bm] [Cadd9] [D] [Bm] [Cadd9]\nOh, oh\n\n{section: Verso 3}\n[D]Oh, [Bm7]dear Dad, can [D7]you see [D]me now? [Bm7] [D7]\n[D]I am [Bm7]myself like [D7]you somehow\n[D]I'll wait up in the [Bm7]dark [D7]for you to speak to [D]me [Bm7] [D7]\n[D]I'll open [Bm7]up, [D7]release [D]me [Bm7] [D7]\n\n{section: Refrão}\nRelease [D]me, [Bm] [Cadd9]release [D]me, [Bm] [Cadd9]ah, release [D]me [Bm] [Cadd9]\n[D] [Bm] [Cadd9] [D] [Bm] [Cadd9]\nOh, oh I\n[D] [Bm] [Cadd9] [D] [Bm] [Cadd9] [D] [Bm] [Cadd9] [D] [Bm] [Cadd9] [D] [Bm] [Cadd9] [D]\nOh, whoa, ah ooh, ooh\n[D]\n\n{section: Interlúdio}\n[D5] [D5] [C5] [D5] [C5] [D5] [C5]\n[D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5]\n[D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5]\n[D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5]\n[D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5]\n\n{section: Outro (Fade Out)}\n[D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5]\n[D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5]\n[D5] [C5] [D5] [C5]\n"
+}

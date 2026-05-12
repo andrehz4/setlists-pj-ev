@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Deep (Pearl Jam, Ten 1991, faixa 10). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra). Fingerings dos 3 instrumentos: standard usado (Andre nao enviou tabela explicita do Claude web pro Deep).",
+    "fetched": "2026-05-12"
+  },
+  "title": "Deep",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 110,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C":   { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "B":   { "fingering": "x24442", "fingers": "x13331", "fundamental": "B",  "barre": 2 },
+        "E":   { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "F#":  { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2 },
+        "F#m": { "fingering": "244222", "fingers": "134111", "fundamental": "F#", "barre": 2 },
+        "A":   { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "Am":  { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C":   { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "B":   { "fingering": "4322", "fingers": "4321", "fundamental": "B" },
+        "E":   { "fingering": "4442", "fingers": "3331", "fundamental": "E" },
+        "F#":  { "fingering": "3121", "fingers": "3121", "fundamental": "F#" },
+        "F#m": { "fingering": "2120", "fingers": "2130", "fundamental": "F#" },
+        "A":   { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Am":  { "fingering": "2000", "fingers": "2000", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C":   { "notes": ["C", "E", "G"],    "fundamental": "C",  "inversion": null },
+        "B":   { "notes": ["B", "D#", "F#"],  "fundamental": "B",  "inversion": null },
+        "E":   { "notes": ["E", "G#", "B"],   "fundamental": "E",  "inversion": null },
+        "F#":  { "notes": ["F#", "A#", "C#"], "fundamental": "F#", "inversion": null },
+        "F#m": { "notes": ["F#", "A", "C#"],  "fundamental": "F#", "inversion": null },
+        "A":   { "notes": ["A", "C#", "E"],   "fundamental": "A",  "inversion": null },
+        "Am":  { "notes": ["A", "C", "E"],    "fundamental": "A",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C] [B] [C] [B] [C] [B] [C] [B] [E]\n\n{section: Pré-verso}\n[F#] [A] [F#] [C] [B] [F#] [A] [F#] [C] [B]\n\n{section: Verso 1}\n[F#m]On the edge, a [A]windowsill\n[F#m]Ponders his maker, [A]ponders his will\n[F#m]To the street below\n[A]He just ain't nothing\n[F#]But he's got a great view\n[C]And he sinks the [B]needle [F#]deep, [A]yeah\n\n{section: Refrão}\nOh!\n[F#]Can't touch the [C]bot[B]tom\n[F#]In too deep, [A]yeah\n\nUh-huh\n[F#]Can't touch the [C]bot[B]tom\n\n{section: Verso 2}\n[F#m]Oh, on the edge of a [A]know-nothing town\n[F#m]Feeling quite superior, [A]the age had come\n[F#m]To the sky above\n[A]He just ain't nothing\n[F#]But he's got a great view\n[C]And he sinks the [B]burning knife [F#]deep, [A]yeah\n\n{section: Refrão}\n[F#]Can't touch the [C]bot[B]tom\n[F#]In too deep, [A]yeah\n\nUh-huh\n[F#]Can't touch the [C]bot[B]tom\n[F#]In too deep\n\n{section: Ponte}\n[Am] [C] [A] [C]\nOh\n[Am] [C] [A] [C]\nOh\n\n{section: Verso 3}\n[F#m]On the edge of a [A]Christmas-clean love\n[F#m]Young virgin down from heaven\n[A]Visiting hell\n[F#m]To the man above her\n[A]She just ain't nothing\n[F#]And she doesn't like the view\n[A]She doesn't like the view\n[F#]She doesn't like the view\n[C]But he sinks himself [B]deep [F#] [A]\n\n{section: Refrão}\nOh!\n[F#]Can't touch the [C]bot[B]tom\n[F#]In too deep, [A]yeah\n\nUh-huh\n[F#]Can't touch the [C]bot[B]tom\n[F#]Can't touch the bot[A]tom\n[F#]Deep, [C]yeah [B]\n\n{section: Outro}\n[C] [B] [Am]Oh, the bottom\n[A]Yeah\n[C] [B] [Am]Oh, the bottom\n[A]Yeah\n[C] [B] [Am]Oh, the bottom\n[A]Yeah\n[C] [B] [Am]Oh, the bottom\n[A]Yeah\n[C] [B] [Am]Oh, the bottom\n[A]Yeah\n[C]Oh\n"
+}
