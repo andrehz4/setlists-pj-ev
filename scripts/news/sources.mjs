@@ -22,6 +22,14 @@ export const SOURCES = [
 
   // Comunidade
   { id: "reddit-pj", label: "r/pearljam", group: "comunidade", url: "https://www.reddit.com/r/pearljam/hot.json?limit=25", alwaysRelevant: true, kind: "reddit" },
+
+  // Oficial: news + loja (Shopify products.json). Tudo daqui e relevante.
+  // Loja: produtos novos (Mirror Ball reissue, vinyl, boxset, etc) viram
+  // noticia editorial via curador, nao ad de venda.
+  { id: "pj-shop-featured", label: "Loja Pearl Jam", group: "tenclub", url: "https://shop.pearljam.com/collections/featured/products.json?limit=30", alwaysRelevant: true, kind: "shopify" },
+  { id: "pj-shop-music", label: "Loja Pearl Jam", group: "tenclub", url: "https://shop.pearljam.com/collections/music/products.json?limit=30", alwaysRelevant: true, kind: "shopify" },
+  // News oficial: RSS quebrado em 2026-05-12. Scraping do JSON inline no HTML.
+  { id: "pj-com-news", label: "Pearl Jam Oficial", group: "tenclub", url: "https://pearljam.com/news/", alwaysRelevant: true, kind: "pjcom-news" },
 ];
 
 // Filtros especificos do Reddit pra cortar memes/shitposts:

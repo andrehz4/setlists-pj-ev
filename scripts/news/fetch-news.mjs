@@ -72,6 +72,8 @@ const parser = new Parser({
 
 async function fetchFeedItems(src) {
   if (src.kind === "reddit") return fetchRedditItems(src);
+  if (src.kind === "shopify") return fetchShopifyItems(src);
+  if (src.kind === "pjcom-news") return fetchPjcomNewsItems(src);
   try {
     const feed = await parser.parseURL(src.url);
     return (feed.items || []).slice(0, 25).map((it) => ({
@@ -123,6 +125,119 @@ async function fetchRedditItems(src) {
   }
 }
 
+// Loja oficial via endpoint Shopify JSON nativo. Cada produto retorna
+// metadata rica (body_html, vendor, tags, variants, images). Filtra produtos
+// com published_at nos ultimos SHOP_NEW_DAYS pra nao polir feed inteiro
+// quando estriar. Vendor "Gift Card" e ignorado. Item retorna ja com
+// preText (body_html limpo) + preImg (1a imagem) pra pular scrape.
+const SHOP_NEW_DAYS = 21;
+async function fetchShopifyItems(src) {
+  try {
+    const res = await got(src.url, {
+      headers: { "User-Agent": UA, "Accept": "application/json" },
+      timeout: { request: 15000 },
+      retry: { limit: 1 },
+    }).json();
+    const products = Array.isArray(res?.products) ? res.products : [];
+    const cutoff = Date.now() - SHOP_NEW_DAYS * 24 * 60 * 60 * 1000;
+    return products
+      .filter((p) => {
+        const ts = new Date(p.published_at || p.created_at || 0).getTime();
+        if (ts < cutoff) return false;
+        if ((p.product_type || "").toLowerCase().includes("gift")) return false;
+        return true;
+      })
+      .map((p) => {
+        const handle = p.handle || String(p.id);
+        const link = `https://shop.pearljam.com/products/${handle}`;
+        const img = p.images?.[0]?.src || p.variants?.[0]?.featured_image?.src || null;
+        // body_html cleanup minimal: tira tags HTML e entities comuns
+        const bodyText = String(p.body_html || "")
+          .replace(/<br\s*\/?>/gi, "\n")
+          .replace(/<\/p>/gi, "\n\n")
+          .replace(/<[^>]+>/g, "")
+          .replace(/&nbsp;/g, " ")
+          .replace(/&amp;/g, "&")
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;|&apos;/g, "'")
+          .replace(/&lt;/g, "<")
+          .replace(/&gt;/g, ">")
+          .replace(/\n{3,}/g, "\n\n")
+          .trim();
+        const vendor = p.vendor || "";
+        const variants = (p.variants || []).map((v) => v.title).filter(Boolean).join(" / ");
+        // articleText pro curador: tudo que da contexto editorial
+        const text = [
+          `Produto: ${p.title}`,
+          vendor ? `Vendor: ${vendor}` : "",
+          variants ? `Formatos: ${variants}` : "",
+          "",
+          bodyText,
+        ].filter(Boolean).join("\n");
+        return {
+          sourceId: src.id,
+          sourceLabel: src.label,
+          group: src.group,
+          title: p.title,
+          link,
+          pubDate: p.published_at || p.created_at || new Date().toISOString(),
+          snippet: bodyText.slice(0, 800),
+          alwaysRelevant: true,
+          kind: "shop",       // propagado pra _pending.json
+          preText: text,      // pula scrape do extract.mjs
+          preImg: img,        // imagem direta do Shopify
+        };
+      });
+  } catch (e) {
+    console.warn(`[shopify] ${src.id} falhou: ${e.message}`);
+    return [];
+  }
+}
+
+// pearljam.com/news: RSS quebrado, mas o HTML tem JSON inline com "articles": [...].
+// Extrai via regex e mapeia pra formato compativel. Cada article vira candidato;
+// link aponta pra pagina individual. O scrape do extract.mjs pega corpo depois.
+async function fetchPjcomNewsItems(src) {
+  try {
+    const html = await got(src.url, {
+      headers: { "User-Agent": UA, "Accept": "text/html" },
+      timeout: { request: 20000 },
+      retry: { limit: 1 },
+    }).text();
+    // procura o array "articles": [...] dentro do HTML (data inline pra template)
+    const m = html.match(/"articles"\s*:\s*(\[[\s\S]*?\])\s*[,}]/);
+    if (!m) {
+      console.warn(`[pjcom-news] JSON inline nao encontrado em ${src.url}`);
+      return [];
+    }
+    let articles;
+    try { articles = JSON.parse(m[1]); } catch (e) {
+      console.warn(`[pjcom-news] JSON parse falhou: ${e.message}`);
+      return [];
+    }
+    return (articles || []).slice(0, 15).map((a) => {
+      const slug = a.slug || a.id;
+      const link = `https://pearljam.com/news/${slug}`;
+      const img = a.square_image_file || a.image_file || null;
+      return {
+        sourceId: src.id,
+        sourceLabel: src.label,
+        group: src.group,
+        title: (a.title || "").trim(),
+        link,
+        pubDate: a.publish_date || a.created_at || new Date().toISOString(),
+        snippet: (a.excerpt || a.description || "").slice(0, 800),
+        alwaysRelevant: true,
+        kind: "pjcom-news",
+        preImg: img,  // texto vem do scrape; imagem ja vem do JSON
+      };
+    });
+  } catch (e) {
+    console.warn(`[pjcom-news] ${src.id} falhou: ${e.message}`);
+    return [];
+  }
+}
+
 async function main() {
   await fs.mkdir(NEWS_DIR, { recursive: true });
   await fs.mkdir(ARCHIVE_DIR, { recursive: true });
@@ -164,7 +279,20 @@ async function main() {
   const pending = [];
   for (const c of fresh) {
     console.log(`[news] processando: ${c.sourceLabel} | ${c.title.slice(0, 70)}`);
-    const { imgUrl, articleText } = await scrapeArticle(c.url);
+    // Fontes que ja vem com texto/imagem pre-extraidos (shop Shopify, pjcom-news)
+    // pulam o scrape do extract.mjs. Demais usam scrape padrao.
+    let imgUrl, articleText;
+    if (c.preText || c.preImg) {
+      articleText = c.preText || "";
+      imgUrl = c.preImg || null;
+      if (!articleText) {
+        const scraped = await scrapeArticle(c.url);
+        articleText = scraped.articleText;
+        if (!imgUrl) imgUrl = scraped.imgUrl;
+      }
+    } else {
+      ({ imgUrl, articleText } = await scrapeArticle(c.url));
+    }
     const localImg = await cacheImage(imgUrl, c.hash);
 
     const out = await curator.curate({
@@ -183,7 +311,7 @@ async function main() {
 
     if (out === "PENDING") {
       // modo routine: empilha em _pending.json com texto bruto pra Claude curar depois
-      pending.push({
+      const pendingItem = {
         id: c.hash,
         url: c.url,
         source: c.sourceId,
@@ -194,7 +322,11 @@ async function main() {
         img: localImg,
         title_orig: c.title,
         article_text: articleText || c.snippet || "",
-      });
+      };
+      // propaga kind (shop, pjcom-news, etc) pra curador Sonnet detectar
+      // e aplicar regra editorial especifica do tipo
+      if (c.kind) pendingItem.kind = c.kind;
+      pending.push(pendingItem);
       // NAO marca seen aqui; so marca depois que a routine commitar.
       continue;
     }

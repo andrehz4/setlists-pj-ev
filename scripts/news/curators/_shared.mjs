@@ -25,6 +25,7 @@ export function fillTemplate(tpl, vars) {
 const VALID_TAGS = new Set([
   "turne", "lancamento", "tenclub", "memoria", "br", "bootleg", "comunidade",
   "eddie", "mike", "stone", "jeff", "matt", "boom", "josh",
+  "loja", // produtos novos da loja oficial (Mirror Ball reissue, vinyl, boxset, livro, etc)
 ]);
 
 // Sanitiza travessao (em-dash U+2014, en-dash U+2013, figure-dash U+2012,
