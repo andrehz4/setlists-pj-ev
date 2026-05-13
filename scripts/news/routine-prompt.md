@@ -34,7 +34,17 @@ Leia esses 3 arquivos. Eles são seus system prompts verbatim, com as regras de 
 - `scripts/news/prompts/system-community-digest.txt` → usado pra items com `kind: "community-digest"`
 - `scripts/news/prompts/system-community-spotlight.txt` → usado pra items com `kind: "community-spotlight"`
 
-## 4. Curatela cada item pendente
+## 4. Curatela cada item pendente — MODO BATCH EFICIENTE
+
+**IMPORTANTE**: o ambiente da routine tem timeout. Não fique pensando 2 minutos por item. Faça curatela DIRETA, rápida, sem reescrita repetida. Pra cada item:
+
+1. Lê o input do `_pending.json`
+2. Identifica o kind
+3. Aplica o system prompt apropriado (já leu no passo 3)
+4. **Em uma única passada**, escreve o objeto curado direto pro array final
+5. Move pro próximo item
+
+Não pare entre items. Não revise excessivamente. Sonnet 4.6 escreve PT-BR de qualidade de primeira passada — confie na sua escrita inicial. Se um item parece SKIP, decida em 5 segundos e pula.
 
 Pra cada item em `_pending.json` items[]:
 
@@ -66,7 +76,7 @@ Pra cada item NÃO-SKIP, gere:
 
 Se for SKIP (irrelevante, hype, menor de idade no spotlight, dia fraco no digest), simplesmente **não inclua no output**. Esse é seu SKIP implícito. O id pendente vai sumir do `_pending.json` no merge.
 
-Monte um array JSON com TODOS os itens não-SKIP e salve em `/tmp/curated.json` usando Write.
+**ESCREVA O ARRAY COMPLETO DE UMA VEZ SÓ** em `/tmp/curated.json` usando o tool Write. NÃO faça múltiplos appends. Composição mental dos N items → 1 chamada de Write com o JSON inteiro.
 
 ## 5. Merge
 
