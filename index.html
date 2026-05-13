@@ -4865,13 +4865,30 @@ html[data-theme="dark"] .alphatab-version-select {
 .news-card-intro {
   font: 400 14px/1.55 var(--np-body);
   color: var(--np-ink-mute);
-  padding: 4px 16px 18px;
+  padding: 4px 16px 8px;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.news-card-cta {
+  align-self: flex-end;
+  margin: 4px 16px 14px auto;
+  font: 700 11px/1 var(--np-typewriter);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--np-stamp);
+  pointer-events: none;
+  transition: transform 120ms ease, color 120ms ease;
+}
+.news-card-cta::before { content: "[ "; opacity: 0.55; }
+.news-card-cta::after  { content: " \2192 ]"; opacity: 0.85; }
+.news-card:hover .news-card-cta,
+.news-card:focus-visible .news-card-cta {
+  transform: translateX(3px);
+  color: var(--np-ink);
 }
 @media (max-width: 480px) {
   .news-grid { grid-template-columns: 1fr; gap: 22px; }
@@ -14092,6 +14109,7 @@ function _renderNewsGrid(container, items, manifest) {
         </div>
         <h3 class="news-card-title">${_newsEscape(item.title_pt)}</h3>
         <p class="news-card-intro">${_newsEscape(item.intro_pt)}</p>
+        <span class="news-card-cta" aria-hidden="true">Ler</span>
       </article>`;
   }).join("");
 
