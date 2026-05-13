@@ -14247,6 +14247,13 @@ function _renderNewsDetail(container, item, allItems) {
   const prev = idx > 0 ? allItems[idx - 1] : null;
   const next = idx >= 0 && idx < allItems.length - 1 ? allItems[idx + 1] : null;
 
+  // body_pt vive em media/news/items/<id>.json desde o split (2026-05-13);
+  // fallback inline pra cobrir items legacy/archive que ainda tem body inline.
+  const bodyInline = item.body_pt || "";
+  const bodyHtml = bodyInline
+    ? _newsBodyHtml(bodyInline)
+    : `<p class="news-detail-loading" aria-live="polite"><em>carregando matéria…</em></p>`;
+
   container.innerHTML = `
     <article class="news-detail">
       <div class="news-detail-nav">
@@ -14267,10 +14274,27 @@ function _renderNewsDetail(container, item, allItems) {
         <p class="news-detail-intro">${_newsEscape(item.intro_pt)}</p>
       </header>
       <div class="news-detail-hero" style="background-image:url('${_newsEscape(img)}')" aria-hidden="true"></div>
-      <div class="news-detail-body">
-        ${_newsBodyHtml(item.body_pt)}
-      </div>
+      <div class="news-detail-body">${bodyHtml}</div>
     </article>`;
+
+  // lazy-fetch do body quando nao veio inline
+  if (!bodyInline) {
+    fetch(`media/news/items/${encodeURIComponent(item.id)}.json`, { cache: "default" })
+      .then(r => r.ok ? r.json() : null)
+      .then(body => {
+        const bodyEl = container.querySelector(".news-detail-body");
+        if (!bodyEl) return;
+        if (body && body.body_pt) {
+          bodyEl.innerHTML = _newsBodyHtml(body.body_pt);
+        } else {
+          bodyEl.innerHTML = `<p class="news-detail-error">Não foi possível carregar a matéria.</p>`;
+        }
+      })
+      .catch(() => {
+        const bodyEl = container.querySelector(".news-detail-body");
+        if (bodyEl) bodyEl.innerHTML = `<p class="news-detail-error">Falha ao carregar a matéria.</p>`;
+      });
+  }
 
   // botoes
   const goBack = () => { _newsSetHash(null); renderNewsView(); };

@@ -63,6 +63,12 @@ const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
 const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
+const ITEMS_DIR = path.join(NEWS_DIR, "items");
+
+function splitItemBody(it) {
+  const { body_pt, ...meta } = it;
+  return { meta, body: body_pt ? { id: it.id, body_pt } : null };
+}
 
 const DIGEST_MIN_POSTS = 5;
 const DIGEST_MAX_INPUT_POSTS = 15;
@@ -375,7 +381,18 @@ async function main() {
   const keepHashes = finalItems.filter((i) => i.img).map((i) => i.id);
   if (!DRY) await gcOrphanImages(keepHashes);
 
-  const out = { updated: new Date().toISOString(), items: finalItems };
+  // split body_pt em items/<id>.json e deixa index.json so com metadata
+  if (!DRY) await fs.mkdir(ITEMS_DIR, { recursive: true });
+  const lightItems = [];
+  for (const it of finalItems) {
+    const { meta, body } = splitItemBody(it);
+    if (!DRY && body) {
+      await fs.writeFile(path.join(ITEMS_DIR, `${body.id}.json`), JSON.stringify(body, null, 2));
+    }
+    lightItems.push(meta);
+  }
+
+  const out = { updated: new Date().toISOString(), items: lightItems };
   if (DRY) {
     console.log("[community] DRY RUN, nao escrevendo arquivos.");
     console.log(JSON.stringify({ added: newItems.length, total: finalItems.length }, null, 2));

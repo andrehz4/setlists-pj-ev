@@ -45,8 +45,15 @@ const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
 const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
+const ITEMS_DIR = path.join(NEWS_DIR, "items");
 
 const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
+
+// body_pt vai pra items/<id>.json; o index.json fica light com so metadata.
+function splitItemBody(it) {
+  const { body_pt, ...meta } = it;
+  return { meta, body: body_pt ? { id: it.id, body_pt } : null };
+}
 
 async function readJson(p, fallback) {
   try { return JSON.parse(await fs.readFile(p, "utf8")); } catch { return fallback; }
@@ -272,16 +279,27 @@ async function main() {
   const keepHashes = finalItems.filter((i) => i.img).map((i) => i.id);
   if (!DRY) await gcOrphanImages(keepHashes);
 
-  const out = { updated: new Date().toISOString(), items: finalItems };
+  // split body_pt em items/<id>.json e deixa index.json so com metadata
+  if (!DRY) await fs.mkdir(ITEMS_DIR, { recursive: true });
+  const lightItems = [];
+  for (const it of finalItems) {
+    const { meta, body } = splitItemBody(it);
+    if (!DRY && body) {
+      await fs.writeFile(path.join(ITEMS_DIR, `${body.id}.json`), JSON.stringify(body, null, 2));
+    }
+    lightItems.push(meta);
+  }
+
+  const out = { updated: new Date().toISOString(), items: lightItems };
   if (DRY) {
     console.log("[news] DRY RUN — nao escrevendo arquivos.");
     console.log(JSON.stringify({ added: curated.length, total: finalItems.length }, null, 2));
-    console.log("--- primeiros 3 itens ---");
-    console.log(JSON.stringify(finalItems.slice(0, 3), null, 2));
+    console.log("--- primeiros 3 itens (light) ---");
+    console.log(JSON.stringify(lightItems.slice(0, 3), null, 2));
   } else {
     await writeJson(INDEX_PATH, out);
     await writeJson(SEEN_PATH, seen);
-    console.log(`[news] escrito: ${INDEX_PATH} (${finalItems.length} items)`);
+    console.log(`[news] escrito: ${INDEX_PATH} (${lightItems.length} items, body em items/)`);
   }
 
   await writeStepSummary({
