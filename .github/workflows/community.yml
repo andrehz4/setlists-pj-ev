@@ -92,5 +92,12 @@ jobs:
               COMMIT_MSG="community: $MODE ($CURATOR) $(date -u +%Y-%m-%dT%H:%MZ)"
             fi
             git commit -m "$COMMIT_MSG"
-            git push
+            # Pull --rebase pra evitar race condition se news.yml ou
+            # a routine pushou no meio. Loop simples de retry (max 3x).
+            for i in 1 2 3; do
+              git pull origin main --rebase --autostash || true
+              if git push origin main 2>&1; then break; fi
+              echo "push tentativa $i falhou, retry..."
+              sleep 2
+            done
           fi
