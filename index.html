@@ -222,6 +222,20 @@ body {
   gap: 12px;
   margin-bottom: 28px;
 }
+.masthead h1.is-home-link {
+  cursor: pointer;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+.masthead h1.is-home-link:hover,
+.masthead h1.is-home-link:focus-visible {
+  opacity: 0.88;
+  outline: none;
+}
+.masthead h1.is-home-link:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
 .masthead h1 {
   font-family: var(--font-display);
   font-size: clamp(32px, 6vw, 64px);
@@ -7480,7 +7494,7 @@ html[data-theme="dark"] video:focus-visible {
     <div class="masthead-meta">Personal archive · Brazil + Chicago 2005-2024</div>
     <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema escuro" aria-pressed="false">☀</button>
   </div>
-  <h1>
+  <h1 id="masthead-home" class="is-home-link" role="link" tabindex="0" aria-label="Voltar para a home, abre Notícias">
     <span class="accent-pj">Pearl Jam</span>
     <span style="color:var(--ink-mute)">+</span>
     <span class="accent-ev">Eddie Vedder</span>
@@ -15018,6 +15032,20 @@ async function init() {
   });
   document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => activateTab(t.dataset.view)));
   document.querySelector(".tabs").addEventListener("keydown", _tabsKeydown);
+  // titulo "Pearl Jam + Eddie Vedder" funciona como atalho pra home (Noticias).
+  // limpa hash residual (ex: noticia aberta), volta pra Noticias e sobe ao topo.
+  const homeLink = document.getElementById("masthead-home");
+  if (homeLink) {
+    const goHome = () => {
+      if (typeof _newsSetHash === "function") _newsSetHash(null);
+      activateTab("news");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    homeLink.addEventListener("click", goHome);
+    homeLink.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goHome(); }
+    });
+  }
   document.querySelector(".filter-bar").addEventListener("click", (e) => {
     const chip = e.target.closest(".filter-chip");
     if (!chip) return;
