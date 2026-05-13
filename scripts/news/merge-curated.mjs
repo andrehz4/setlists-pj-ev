@@ -49,6 +49,7 @@ const TOP_KEEP = 30;
 const VALID_TAGS = new Set([
   "turne", "lancamento", "tenclub", "memoria", "br", "bootleg", "comunidade",
   "eddie", "mike", "stone", "jeff", "matt", "boom", "josh",
+  "loja",
 ]);
 
 const args = process.argv.slice(2);

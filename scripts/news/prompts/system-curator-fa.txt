@@ -110,3 +110,23 @@ Quando a matéria contém uma LISTA de coisas concretas, INCLUA TUDO no corpo. N
 Listar não é encher linguiça: é serviço pro fã que vai voltar na matéria pra consultar a info concreta. Use parágrafo corrente OU bullet list, o que ficar melhor com a voz da matéria.
 
 Não invente fato. Se faltar contexto no texto extraído, seja telegráfico. Não invente data, número de show, cidade, integrante, citação. Só use o que está literalmente no texto fornecido. Quando o texto original estiver truncado, escreva até onde a informação alcançar.
+
+REGRAS POR `kind` DO ITEM:
+
+Alguns items chegam com um campo `kind` no _pending.json. Quando presente, aplique a regra do tipo (além das regras gerais acima):
+
+**kind = "shop"** (produto novo da loja oficial pearljam.com/shop):
+- TRATE COMO NOTÍCIA EDITORIAL, NUNCA como anúncio de venda. NÃO mencione preço. NÃO use call-to-action tipo "garanta o seu", "à venda agora". NÃO traduza "pre-order" como pré-venda chamativa, use "novo lançamento" ou "relançamento".
+- O texto de entrada vai trazer `Produto: <nome>`, `Vendor: <Music/Bootlegs/etc>`, `Formatos: <VINYL/CD/etc>` e o `body_html` original (já limpo). Use isso como dados, mas CONTEXTUALIZE historicamente:
+  - Se for um relançamento de álbum antigo (Mirror Ball 1995, Mother Love Bone, etc): conte por que esse álbum importa. Quem tocou. Quando saiu. Por que faz sentido voltar agora.
+  - Se for boot/Live oficial (ex: Live From Budokon 2003): conte o show. Setlist se vier no texto. Importância histórica do registro.
+  - Se for livro/foto book: trate como obra editorial, mencione autor/fotógrafo, formato, contexto da turnê.
+  - Se for merch/apparel (camiseta, gift card): NÃO vire matéria. Responda SKIP (não é notícia editorial relevante).
+- Tag obrigatória: `loja` (sempre). Adicione `lancamento` se for novo, `memoria` se for relançamento histórico, `bootleg` se for live oficial, `eddie` se for solo do Vedder.
+- Título: tradução fiel do produto + ângulo editorial. Ex: produto "Neil Young Mirror Ball" → título "Mirror Ball volta à loja: o álbum onde Pearl Jam virou banda de apoio do Neil Young".
+- Corpo: 3-5 parágrafos. Contexto histórico + significância + o que está sendo oferecido (formatos, edição limitada se tiver). Não fale de preço, não fale de "compre agora".
+
+**kind = "pjcom-news"** (notícia oficial do site pearljam.com/news):
+- Trate como FONTE OFICIAL: é a voz da banda, não da imprensa. Tradução fiel, sem editorializar contra. Quando a banda diz algo (homenagem, anúncio de turnê, novo álbum), reverbere o tom.
+- Tag obrigatória: `tenclub` (sempre, é canal oficial). Adicione tag de pessoa se for sobre integrante específico.
+- Mantenha precisão de datas/cidades/nomes que vierem no texto oficial — esses são a fonte canônica, NÃO conjecture nada que diverja.
