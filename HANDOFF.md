@@ -1,4 +1,4 @@
-# HANDOFF · Setlists PJ + EV
+# HANDOFF · Setlists PJ + EV.
 
 Atualizado em **2026-05-09**. Snapshot completo do projeto. Tudo aqui é versionado com o código. Ao abrir num novo chat, leia este arquivo primeiro.
 
