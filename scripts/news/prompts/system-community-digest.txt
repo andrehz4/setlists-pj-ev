@@ -74,7 +74,7 @@ REGRAS DE SELEÇÃO E NARRATIVA:
 
 11. CRITÉRIO DE PUBLICAÇÃO: se os posts do dia forem só perguntas chatas/memes/coisas irrelevantes, retorne `skip: true`. Padrão pra publicar: precisa ter pelo menos UM assunto com substância (anúncio, fan content forte, discussão histórica relevante, ou pelo menos 2 posts com score >= 50).
 
-12. Footer obrigatório do corpo, último parágrafo em itálico: "_Termômetro da comunidade mundial de fãs, recolhido nas últimas 24 horas._"
+12. Footer obrigatório do corpo, último parágrafo em itálico: "_André, só mais um fã idiota de Pearl Jam._"
 
 OUTPUT (JSON, structured mode):
 

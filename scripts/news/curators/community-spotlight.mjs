@@ -55,7 +55,7 @@ function buildUserText(post) {
   }
   lines.push("");
   lines.push("Escreva a matéria spotlight conforme o sistema. NÃO esqueça o footer obrigatório no último parágrafo em itálico:");
-  lines.push(`_Compartilhada na comunidade mundial de fãs do Pearl Jam._`);
+  lines.push(`_André, só mais um fã idiota de Pearl Jam._`);
   lines.push("");
   lines.push("LEMBRETE: NÃO cite Reddit, r/pearljam, subreddit, nome de usuário, ou qualquer plataforma. Escreva sobre a OBRA.");
   lines.push("");
