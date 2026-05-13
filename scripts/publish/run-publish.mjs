@@ -1,0 +1,218 @@
+// Orquestrador da publicacao no Instagram. Roda no cron do workflow
+// publish-instagram.yml a cada 30min. Fluxo:
+//   1. le fila + index
+//   2. pega items maduros (publishAt <= now), agrupa por type, max 10 cada
+//   3. hidrata cada item (body_pt + sourceLabel) lendo items/<id>.json
+//   4. gera slide JPG composto em media/news/instagram-slides/<id>.jpg
+//   5. git add + commit + push dos slides (raw.githubusercontent passa a
+//      servir imediatamente)
+//   6. chama publishItems(...) por grupo, com pequena espera entre etapas
+//   7. atualiza queue com postedAt + postId
+//   8. git add + commit + push da queue
+//
+// Flags:
+//   --dry-run        gera slides mas nao publica nem commita
+//   --no-git         pula commits/push (uso local pra teste)
+//   --max-batches=N  limita N grupos por run (default 2: 1 regular + 1 spotlight)
+//
+// Env esperado:
+//   IG_USER_ID, IG_ACCESS_TOKEN (obrigatorios pra publicar)
+//   GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL (default github-actions[bot])
+
+import fs from "node:fs/promises";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
+import { readQueue, writeQueue, pickMatureByType, markPosted, markError, pruneOldPosted } from "./queue.mjs";
+import { buildSlides, SLIDES_DIR } from "./slide-image.mjs";
+import { publishItems } from "./instagram.mjs";
+
+const NEWS_DIR = path.resolve("media/news");
+const INDEX_PATH = path.join(NEWS_DIR, "index.json");
+const ITEMS_DIR = path.join(NEWS_DIR, "items");
+const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
+
+const args = process.argv.slice(2);
+const DRY = args.includes("--dry-run");
+const NO_GIT = args.includes("--no-git");
+const MAX_BATCHES_ARG = args.find((a) => a.startsWith("--max-batches="));
+const MAX_BATCHES = MAX_BATCHES_ARG ? parseInt(MAX_BATCHES_ARG.split("=")[1], 10) : 2;
+
+async function readJson(p, fallback) {
+  try { return JSON.parse(await fs.readFile(p, "utf8")); } catch { return fallback; }
+}
+
+function git(args, opts = {}) {
+  const r = spawnSync("git", args, { encoding: "utf8", ...opts });
+  if (r.status !== 0) {
+    throw new Error(`git ${args.join(" ")} falhou: ${r.stderr || r.stdout}`);
+  }
+  return r.stdout;
+}
+
+function gitTry(args) {
+  const r = spawnSync("git", args, { encoding: "utf8" });
+  return { ok: r.status === 0, out: r.stdout, err: r.stderr };
+}
+
+async function hydrateItem(qEntry, indexById) {
+  const idx = indexById.get(qEntry.id);
+  if (!idx) return null;
+  let body = "";
+  try {
+    const raw = await fs.readFile(path.join(ITEMS_DIR, `${qEntry.id}.json`), "utf8");
+    body = JSON.parse(raw).body_pt || "";
+  } catch {}
+  return { ...idx, body_pt: body };
+}
+
+async function findInArchive(id) {
+  // Items podem ter saido do index pro archive entre o enqueue e o
+  // momento do publish. Fallback: olha archives mes a mes.
+  try {
+    const months = await fs.readdir(ARCHIVE_DIR);
+    for (const f of months) {
+      if (!f.endsWith(".json")) continue;
+      const doc = await readJson(path.join(ARCHIVE_DIR, f), { items: [] });
+      const it = (doc.items || []).find((x) => x.id === id);
+      if (it) return it;
+    }
+  } catch {}
+  return null;
+}
+
+async function commitAndPush(paths, message, retries = 3) {
+  if (NO_GIT || DRY) {
+    console.log(`[git] skip (dry/no-git): ${message}`);
+    return;
+  }
+  // configura autor (sobrescreve se ja estiver set)
+  const name = process.env.GIT_AUTHOR_NAME || "github-actions[bot]";
+  const email = process.env.GIT_AUTHOR_EMAIL || "41898282+github-actions[bot]@users.noreply.github.com";
+  spawnSync("git", ["config", "user.name", name], { encoding: "utf8" });
+  spawnSync("git", ["config", "user.email", email], { encoding: "utf8" });
+
+  for (const p of paths) {
+    spawnSync("git", ["add", p], { encoding: "utf8" });
+  }
+  const diff = spawnSync("git", ["diff", "--cached", "--quiet"], { encoding: "utf8" });
+  if (diff.status === 0) {
+    console.log(`[git] nada pra commitar: ${message}`);
+    return;
+  }
+  git(["commit", "-m", message]);
+
+  for (let i = 0; i < retries; i++) {
+    const pull = gitTry(["pull", "--rebase", "--autostash"]);
+    if (!pull.ok) console.warn(`[git] pull rebase warn: ${pull.err}`);
+    const push = gitTry(["push"]);
+    if (push.ok) {
+      console.log(`[git] push OK (try ${i + 1}): ${message}`);
+      return;
+    }
+    console.warn(`[git] push falhou (try ${i + 1}/${retries}): ${push.err}`);
+    await new Promise((r) => setTimeout(r, 2000 + i * 1000));
+  }
+  throw new Error(`git push falhou apos ${retries} tentativas`);
+}
+
+async function processBatch(type, queue, indexById, nowIso) {
+  const mature = pickMatureByType(queue, type, nowIso, 10);
+  if (mature.length === 0) {
+    console.log(`[publish] tipo=${type}: 0 maduros, skip`);
+    return null;
+  }
+  console.log(`[publish] tipo=${type}: ${mature.length} maduros`);
+
+  const hydrated = [];
+  for (const m of mature) {
+    let h = await hydrateItem(m, indexById);
+    if (!h) h = await findInArchive(m.id);
+    if (h) hydrated.push(h);
+    else console.warn(`[publish] item ${m.id} nao achado em index nem archive, skip`);
+  }
+  if (hydrated.length === 0) {
+    // marca como erro pra nao tentar pra sempre
+    markError(queue, mature.map((m) => m.id), "item nao encontrado em index/archive", nowIso);
+    return { type, attempted: mature.length, succeeded: 0 };
+  }
+
+  // 1. gera slides
+  const slides = await buildSlides(hydrated);
+  console.log(`[publish] slides gerados: ${slides.length} (${slides.filter((s) => s.reused).length} reuso de cache)`);
+
+  if (slides.length === 0) {
+    markError(queue, hydrated.map((h) => h.id), "falha ao gerar slides", nowIso);
+    return { type, attempted: hydrated.length, succeeded: 0 };
+  }
+
+  // 2. commita + push slides pra raw URL funcionar
+  await commitAndPush(
+    ["media/news/instagram-slides/"],
+    `publish-ig: gera slides ${type} (${slides.length}) ${nowIso.slice(0, 16)}Z`,
+  );
+
+  // 3. pequena espera pra raw.githubusercontent indexar (geralmente <2s, mas seguranca)
+  if (!DRY) await new Promise((r) => setTimeout(r, 5000));
+
+  if (DRY) {
+    console.log(`[publish] DRY: slides prontos, pulando chamada IG`);
+    return { type, attempted: hydrated.length, succeeded: 0, dry: true };
+  }
+
+  // 4. publica via API
+  const itemsToPost = hydrated.filter((h) => slides.find((s) => s.id === h.id));
+  try {
+    const r = await publishItems(itemsToPost);
+    console.log(`[publish] OK tipo=${type} postId=${r.postId} count=${r.count}`);
+    markPosted(queue, itemsToPost.map((it) => it.id), r.postId, new Date().toISOString());
+    return { type, attempted: itemsToPost.length, succeeded: itemsToPost.length, postId: r.postId };
+  } catch (e) {
+    console.error(`[publish] FALHA tipo=${type}: ${e.message}`);
+    markError(queue, itemsToPost.map((it) => it.id), e.message, new Date().toISOString());
+    return { type, attempted: itemsToPost.length, succeeded: 0, error: e.message };
+  }
+}
+
+async function main() {
+  const nowIso = new Date().toISOString();
+  console.log(`[publish] run em ${nowIso} | dry=${DRY} no-git=${NO_GIT} max-batches=${MAX_BATCHES}`);
+
+  if (!DRY) {
+    if (!process.env.IG_USER_ID || !process.env.IG_ACCESS_TOKEN) {
+      console.error("IG_USER_ID e IG_ACCESS_TOKEN obrigatorios (env)");
+      process.exit(2);
+    }
+  }
+
+  const queue = await readQueue();
+  const indexDoc = await readJson(INDEX_PATH, { items: [] });
+  const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
+
+  console.log(`[publish] queue: ${queue.items.length} items totais, ${queue.items.filter((q) => !q.postedAt).length} pendentes`);
+
+  const results = [];
+  const types = ["regular", "spotlight"];
+  let batchCount = 0;
+  for (const t of types) {
+    if (batchCount >= MAX_BATCHES) break;
+    const r = await processBatch(t, queue, indexById, nowIso);
+    if (r) { results.push(r); batchCount++; }
+  }
+
+  // housekeeping: limpa postados muito antigos
+  const pruned = pruneOldPosted(queue, nowIso, 30);
+  if (pruned > 0) console.log(`[publish] prune: ${pruned} postados antigos removidos`);
+
+  await writeQueue(queue);
+  await commitAndPush(
+    ["media/news/_publish-queue.json"],
+    `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
+  );
+
+  console.log(`[publish] FIM`, results);
+}
+
+main().catch((e) => {
+  console.error("[publish] FATAL:", e);
+  process.exit(1);
+});

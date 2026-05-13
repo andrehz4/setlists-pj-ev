@@ -8,7 +8,10 @@
     "dev": "node scripts/_devserver.mjs",
     "news:fetch": "node scripts/news/fetch-news.mjs",
     "news:dry": "node scripts/news/fetch-news.mjs --dry-run",
-    "news:fixtures": "node scripts/news/fetch-news.mjs --fixtures --dry-run"
+    "news:fixtures": "node scripts/news/fetch-news.mjs --fixtures --dry-run",
+    "publish:dry": "node scripts/publish/run-publish.mjs --dry-run --no-git",
+    "publish:run": "node scripts/publish/run-publish.mjs",
+    "publish:refresh": "node scripts/publish/refresh-token.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",

@@ -1,0 +1,52 @@
+name: Publish Instagram
+on:
+  schedule:
+    # A cada 30min, offset 17min pra fugir de pico
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Gera slides e simula publish mas nao chama IG API'
+        type: boolean
+        default: false
+      max-batches:
+        description: 'Maximo de batches (regular+spotlight) por run'
+        type: string
+        default: '2'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-instagram
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          # token padrao do workflow ja basta pra push (permissions: contents: write)
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Run publish
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GIT_AUTHOR_NAME: pj-news-bot
+          GIT_AUTHOR_EMAIL: bot@setlists-pj.local
+        run: |
+          ARGS="--max-batches=${{ inputs.max-batches || '2' }}"
+          if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          node scripts/publish/run-publish.mjs $ARGS
