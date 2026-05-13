@@ -17,6 +17,25 @@ const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
 
 const HASHTAGS_FIXED = ["pearljam", "eddievedder", "pjbrasil", "grunge", "smufdpj"];
 const IG_CAPTION_MAX = 2200;
+const SITE_URL = "setlists-pj-ev.pages.dev";
+
+// Trunca body preservando o ultimo paragrafo/frase completa antes do
+// limite. Evita cortar palavra no meio.
+function truncateBody(body, maxChars) {
+  if (!body) return "";
+  if (body.length <= maxChars) return body;
+  const slice = body.slice(0, maxChars);
+  const lastBreak = Math.max(
+    slice.lastIndexOf("\n\n"),
+    slice.lastIndexOf(". "),
+    slice.lastIndexOf("? "),
+    slice.lastIndexOf("! "),
+  );
+  if (lastBreak > maxChars * 0.55) {
+    return slice.slice(0, lastBreak + 1).trim() + "…";
+  }
+  return slice.trim() + "…";
+}
 
 function slideUrlFor(itemId) {
   return `${REPO_PUBLIC_BASE}/media/news/instagram-slides/${encodeURIComponent(itemId)}.jpg`;
@@ -35,40 +54,65 @@ function dedupeTags(list) {
 }
 
 function buildSingleCaption(item) {
-  const lines = [];
-  lines.push(item.title_pt || "");
-  if (item.intro_pt) lines.push("", item.intro_pt);
-  if (item.sourceLabel) lines.push("", `via ${item.sourceLabel}`);
-  const tags = dedupeTags([...HASHTAGS_FIXED, ...(item.tags || [])]);
-  lines.push("", tags.map((t) => `#${t}`).join(" "));
-  return lines.join("\n");
+  // CTA pro nosso site + hashtags vao no rodape; tudo o que sobrar de
+  // espaco no IG_CAPTION_MAX (2200) vai pro corpo title+intro+body.
+  // Fonte original NAO entra na caption: ela aparece dentro do site
+  // quando o leitor clica no link.
+  const hashtags = dedupeTags([...HASHTAGS_FIXED, ...(item.tags || [])])
+    .map((t) => `#${t}`).join(" ");
+  const cta = `leia completo em ${SITE_URL}`;
+  const tail = `\n\n${cta}\n\n${hashtags}`;
+  const budget = IG_CAPTION_MAX - tail.length - 8;
+
+  let head = item.title_pt || "";
+  if (item.intro_pt) head += `\n\n${item.intro_pt}`;
+
+  let caption = head;
+  if (item.body_pt) {
+    const bodyBudget = budget - head.length - 2;
+    if (bodyBudget > 120) {
+      const body = truncateBody(item.body_pt, bodyBudget);
+      if (body) caption += `\n\n${body}`;
+    }
+  }
+  caption += tail;
+  return caption;
 }
 
 function buildCarouselCaption(items) {
-  // Caption do carrossel: lista numerada com titulos + assinatura + hashtags.
-  // Se for 1 item, usa o caption single (mais expressivo).
   if (items.length === 1) return buildSingleCaption(items[0]);
 
-  const lines = [];
-  lines.push("DESTAQUES DA EDIÇÃO");
-  lines.push("");
-  items.forEach((it, i) => {
-    lines.push(`${i + 1}. ${it.title_pt}`);
-  });
-  lines.push("");
-  lines.push("arquivo completo em setlists-pj-ev.pages.dev");
-  lines.push("");
-  const allTags = dedupeTags([
+  // Carrossel: indice numerado + intro curta de cada item + CTA + hashtags.
+  // Body completo nao cabe pra varios items, mas intro de cada da contexto
+  // pro leitor decidir abrir o site.
+  const hashtags = dedupeTags([
     ...HASHTAGS_FIXED,
     ...items.flatMap((it) => Array.isArray(it.tags) ? it.tags : []),
-  ]);
-  lines.push(allTags.map((t) => `#${t}`).join(" "));
+  ]).map((t) => `#${t}`).join(" ");
+  const cta = `leia completo em ${SITE_URL}`;
+  const tail = `\n\n${cta}\n\n${hashtags}`;
+  const budget = IG_CAPTION_MAX - tail.length - 30;
 
-  let caption = lines.join("\n");
+  const header = `DESTAQUES DA EDIÇÃO\n\n`;
+  let body = "";
+  const perItemBudget = Math.floor((budget - header.length) / items.length);
+
+  items.forEach((it, i) => {
+    const title = it.title_pt || "";
+    let intro = it.intro_pt || "";
+    const entryHead = `${i + 1}. ${title}\n`;
+    const remaining = perItemBudget - entryHead.length - 2;
+    if (intro.length > remaining && remaining > 40) {
+      intro = truncateBody(intro, remaining);
+    } else if (remaining <= 40) {
+      intro = "";
+    }
+    body += entryHead + (intro ? `${intro}\n\n` : "\n");
+  });
+
+  let caption = header + body.trim() + tail;
   if (caption.length > IG_CAPTION_MAX) {
-    // corta hashtags primeiro se passar do limite
-    const head = lines.slice(0, -1).join("\n");
-    caption = head.slice(0, IG_CAPTION_MAX - 20) + "...";
+    caption = caption.slice(0, IG_CAPTION_MAX - 3) + "...";
   }
   return caption;
 }
