@@ -22,7 +22,10 @@ const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
 
 const TOP_KEEP = 30;
-const VALID_TAGS = new Set(["turne", "lancamento", "ed-solo", "tenclub", "memoria", "br", "bootleg", "comunidade"]);
+const VALID_TAGS = new Set([
+  "turne", "lancamento", "tenclub", "memoria", "br", "bootleg", "comunidade",
+  "eddie", "mike", "stone", "jeff", "matt", "boom", "josh",
+]);
 
 const args = process.argv.slice(2);
 const USE_STDIN = args.includes("--stdin");

@@ -4740,11 +4740,18 @@ html[data-theme="dark"] .alphatab-version-select {
 .news-tag-turne       { background: var(--np-stamp);   border-color: var(--np-stamp);   transform: rotate(-3deg); }
 .news-tag-comunidade  { background: #2a4f88;            border-color: #2a4f88;            transform: rotate(-1.5deg); }
 .news-tag-memoria     { background: var(--np-ocre);    border-color: var(--np-ocre);    transform: rotate(2deg); }
-.news-tag-ed-solo     { background: #5a3d80;            border-color: #5a3d80;            transform: rotate(-2deg); }
 .news-tag-lancamento  { background: #3a7a4d;            border-color: #3a7a4d;            transform: rotate(3deg); }
 .news-tag-tenclub     { background: #2a2a2c;            border-color: #2a2a2c;            transform: rotate(-2deg); }
 .news-tag-br          { background: var(--np-brasil);  border-color: var(--np-brasil);  transform: rotate(2.5deg); }
 .news-tag-bootleg     { background: #b56424;            border-color: #b56424;            transform: rotate(-2deg); }
+/* Tags por integrante (formacao atual + ex). Cores tematicas: */
+.news-tag-eddie       { background: #5a3d80;            border-color: #5a3d80;            transform: rotate(-2deg); }   /* roxo (mantem o tom antigo de ed-solo) */
+.news-tag-mike        { background: #a04025;            border-color: #a04025;            transform: rotate(2deg); }    /* vermelho-ferrugem (guitarra solo) */
+.news-tag-stone       { background: #4a5e6a;            border-color: #4a5e6a;            transform: rotate(-3deg); }   /* cinza-petroleo (reservado) */
+.news-tag-jeff        { background: #466b3a;            border-color: #466b3a;            transform: rotate(1.5deg); }  /* verde-mato (montana, skate parks) */
+.news-tag-matt        { background: #b87830;            border-color: #b87830;            transform: rotate(-1.5deg); } /* laranja-bateria */
+.news-tag-boom        { background: #356b9a;            border-color: #356b9a;            transform: rotate(3deg); }    /* azul-teclado */
+.news-tag-josh        { background: #997228;            border-color: #997228;            transform: rotate(-2deg); }   /* mostarda */
 /* tags em sequencia: alterna inclinacao pra parecer carimbo manual */
 .news-card-tagstrip .news-tag:nth-child(2),
 .news-hero-tagstrip .news-tag:nth-child(2) { transform: rotate(2deg) translateY(2px); }
@@ -13998,16 +14005,27 @@ async function renderNewsView() {
 // Ordem fixa dos rotulos PT-BR pra cada tag canonica.
 const _NEWS_TAG_LABELS = {
   turne: "turnê",
+  lancamento: "lançamento",
   comunidade: "comunidade",
   memoria: "memória",
-  "ed-solo": "ed solo",
-  lancamento: "lançamento",
   tenclub: "ten club",
   br: "brasil",
   bootleg: "bootleg",
+  // tags por integrante
+  eddie: "eddie",
+  mike: "mike",
+  stone: "stone",
+  jeff: "jeff",
+  matt: "matt",
+  boom: "boom",
+  josh: "josh",
 };
-// Ordem de exibicao dos chips (do mais "newsy" pro mais nicho)
-const _NEWS_TAG_ORDER = ["turne", "lancamento", "ed-solo", "tenclub", "comunidade", "memoria", "br", "bootleg"];
+// Ordem de exibicao dos chips (do mais "newsy" pro mais nicho, integrantes no meio)
+const _NEWS_TAG_ORDER = [
+  "turne", "lancamento",
+  "eddie", "mike", "stone", "jeff", "matt", "boom", "josh",
+  "tenclub", "comunidade", "memoria", "br", "bootleg",
+];
 
 function _renderNewsTagStrip(tags, max = 2) {
   if (!Array.isArray(tags) || !tags.length) return "";

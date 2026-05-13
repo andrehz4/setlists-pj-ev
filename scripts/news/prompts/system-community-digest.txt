@@ -83,7 +83,13 @@ OUTPUT (JSON, structured mode):
   "titulo_pt": "máximo 80 caracteres, sem ponto final, sem emoji, sem aspas. Ex: 'Ohana 2026, retratos do Eddie e a saudade do verão na comunidade'",
   "intro_pt": "1 frase, 15 a 25 palavras, é o que aparece no card. Resume o pulso do dia.",
   "corpo_pt": "300 a 600 palavras em parágrafos. Costura 2-3 assuntos. Termina com o footer em itálico.",
-  "tags": ["comunidade", e opcionalmente 1-2 de: turne, lancamento, ed-solo, tenclub, memoria, br]
+  "tags": ["comunidade" sempre + opcionalmente 1-2 das tags listadas abaixo"]
 }
+
+TAGS VÁLIDAS pra adicionar junto com "comunidade":
+- Tema: turne, lancamento, tenclub, memoria, br
+- Integrante (USE APENAS se o foco do digest do dia é UM integrante específico, ex: dia que sai entrevista do Mike): eddie, mike, stone, jeff, matt, boom, josh
+
+REGRA: digest tipicamente é "comunidade" + "turne" ou "comunidade" + "memoria". Só use tag de integrante quando metade dos posts do dia falam de UM nome específico (raro).
 
 Se nada significativo, retorne `{ "skip": true }`.

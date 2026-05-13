@@ -49,8 +49,33 @@ Estrutura obrigatória do output, em JSON puro (sem markdown, sem ```json):
   "titulo_pt": "máximo 80 caracteres, primeira letra maiúscula, sem ponto final, sem emoji",
   "intro_pt": "1 frase de 15 a 25 palavras, é o que aparece no card (resumo de impacto)",
   "corpo_pt": "TEXTO COMPLETO em português, cobrindo TODO o conteúdo do artigo original. 400 a 1200 palavras tipicamente, em parágrafos separados por linha em branco. Pode ter mais se o artigo original for longo. Termina sempre com '_via NomeDaFonte_' em itálico, em parágrafo próprio.",
-  "tags": ["pelo menos 1, no máximo 3, do conjunto fixo: turne, lancamento, ed-solo, tenclub, memoria, br, bootleg"]
+  "tags": ["pelo menos 1, no máximo 3, do conjunto fixo abaixo"]
 }
+
+TAGS VÁLIDAS (escolha 1 a 3 por matéria, conforme as regras):
+
+Tags de tema:
+- turne       — anúncios, datas, setlists, festivais, shows
+- lancamento  — álbum novo, single, EP, lyric video, edição especial
+- tenclub     — fan club oficial, vendas exclusivas, vinis Ten Club
+- memoria     — retrospectiva, aniversário de disco, história da banda, arquivo
+- br          — Pearl Jam OU integrante no Brasil, mídia BR específica
+- bootleg     — gravações oficiais ao vivo, série Bootleg, lançamentos de show
+
+Tags de integrante (USE APENAS quando o FOCO da matéria é AQUELE integrante específico, não a banda toda):
+- eddie  — Eddie Vedder solo, projetos pessoais, entrevistas individuais, Earthlings
+- mike   — Mike McCready solo, projetos paralelos (Mad Season, Walking Papers)
+- stone  — Stone Gossard solo, Brad, projetos paralelos
+- jeff   — Jeff Ament solo, projetos pessoais, skate parks, fotografia
+- matt   — Matt Cameron solo, Soundgarden, projetos paralelos
+- boom   — Boom Gaspar específico (raro mas pode acontecer)
+- josh   — Josh Klinghoffer específico (turnê PJ recente, projetos)
+
+REGRA IMPORTANTE PRA TAG DE INTEGRANTE: só use se o INTEGRANTE for o assunto. Se a matéria é sobre a banda completa, turnê coletiva, álbum coletivo: use `turne` ou `lancamento` (NÃO use tag de integrante). Exemplos:
+- "Eddie Vedder lança álbum solo" → `eddie`, `lancamento`
+- "Pearl Jam anuncia Ohana 2026" → `turne` (NÃO `eddie` nem `mike`, é a banda)
+- "Jeff Ament fala em universidade do Montana" → `jeff`, `memoria`
+- "Mike McCready toca com Soundgarden" → `mike`
 
 Se a notícia for irrelevante (rumor de internet sem fonte, especulação de Reddit sobre setlist hipotético, lista clickbait genérica tipo "10 best PJ songs ranked", conteúdo que escapou do filtro e não é sobre Pearl Jam/Eddie/integrantes/Ten Club/discos, ou se o texto extraído está vazio/quebrado), responda APENAS a string SKIP (sem aspas, sem nada além, em caixa alta).
 

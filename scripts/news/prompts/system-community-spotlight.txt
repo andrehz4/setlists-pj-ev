@@ -78,7 +78,14 @@ OUTPUT (JSON, structured mode):
   "titulo_pt": "máximo 80 caracteres, sem ponto final, sem emoji, sem aspas, sem '?'",
   "intro_pt": "1 frase, 15 a 25 palavras",
   "corpo_pt": "200 a 400 palavras. Último parágrafo é o footer em itálico EXATO: _Compartilhada na comunidade mundial de fãs do Pearl Jam._",
-  "tags": ["comunidade", e opcionalmente 1-2 de: turne, lancamento, ed-solo, tenclub, memoria, br]
+  "tags": ["comunidade" sempre + opcionalmente 1-2 das tags abaixo"]
 }
+
+TAGS VÁLIDAS pra adicionar junto com "comunidade":
+- Tema: turne, lancamento, tenclub, memoria, br
+- Integrante (USE quando a obra retrata um integrante específico): eddie, mike, stone, jeff, matt, boom, josh
+  Ex: retrato em acrílico do Eddie → tags ["comunidade", "eddie"]
+  Ex: tattoo do Stone → ["comunidade", "stone"]
+  Ex: dark matter em mini canvas → ["comunidade", "lancamento"] (foco é a capa do álbum, não integrante)
 
 Se for menor de idade identificável, meme, ou conteúdo ambíguo, retorne `{ "skip": true }`.

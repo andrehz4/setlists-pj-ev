@@ -78,7 +78,13 @@ export async function curate({ post }) {
       corpo_pt: { type: "string" },
       tags: {
         type: "array",
-        items: { type: "string", enum: ["turne", "lancamento", "ed-solo", "tenclub", "memoria", "br", "bootleg", "comunidade"] },
+        items: {
+          type: "string",
+          enum: [
+            "turne", "lancamento", "tenclub", "memoria", "br", "bootleg", "comunidade",
+            "eddie", "mike", "stone", "jeff", "matt", "boom", "josh",
+          ],
+        },
         minItems: 1,
         maxItems: 3,
       },
