@@ -14316,7 +14316,7 @@ function _renderNewsDetail(container, item, allItems) {
   const idx = allItems.findIndex(i => i.id === item.id);
   const prev = idx > 0 ? allItems[idx - 1] : null;
   const next = idx >= 0 && idx < allItems.length - 1 ? allItems[idx + 1] : null;
-  const related = _pickRelatedNews(item, allItems, 6);
+  const related = _pickRelatedNews(item, allItems, 2);
 
   // body_pt vive em media/news/items/<id>.json desde o split (2026-05-13);
   // fallback inline pra cobrir items legacy/archive que ainda tem body inline.
