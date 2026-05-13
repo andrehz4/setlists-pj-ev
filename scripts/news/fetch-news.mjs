@@ -21,6 +21,7 @@ import { isRelevant, canonicalize, sha10, passesRedditFilter } from "./relevance
 import { scrapeArticle } from "./extract.mjs";
 import { cacheImage, gcOrphanImages, ensureImgDir } from "./image-cache.mjs";
 import { loadCurator } from "./curators/_shared.mjs";
+import { dedupeByContent } from "./dedupe.mjs";
 import { writeStepSummary } from "./_summary.mjs";
 
 // --- args ---
@@ -272,8 +273,23 @@ async function main() {
 
   console.log(`[news] candidatos novos pos-filtros: ${all.length}`);
 
-  all.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-  const fresh = all.slice(0, MAX_NEW_PER_RUN);
+  // Dedupe por similaridade de conteudo dentro do grupo BR. Detecta replicas
+  // de wire/press release que portais (Folha, Globo, Terra, CNN, etc) publicam
+  // quase identicas com minutos de diferenca. Mantem o item com texto mais longo.
+  const { survivors: deduped, removed: brRemoved } = dedupeByContent(all, {
+    threshold: 0.65,
+    groupFilter: "br",
+  });
+  if (brRemoved.length > 0) {
+    console.log(`[news] dedupe BR: ${brRemoved.length} replica(s) removidas`);
+    for (const r of brRemoved) {
+      console.log(`  - removido: [${r.item.sourceLabel}] ${r.item.title.slice(0, 60)}`);
+      console.log(`    em favor de: [${r.replacedBy.sourceLabel}] ${r.replacedBy.title.slice(0, 60)} (sim=${r.similarity})`);
+    }
+  }
+
+  deduped.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+  const fresh = deduped.slice(0, MAX_NEW_PER_RUN);
 
   const curated = [];
   const pending = [];
