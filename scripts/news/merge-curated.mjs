@@ -21,6 +21,28 @@ const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
 const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
+const ITEMS_DIR = path.join(NEWS_DIR, "items");
+
+// Campos pesados (body_pt principalmente) vao pra arquivo proprio
+// em items/<id>.json. O index.json fica leve (so metadata + intro)
+// pra carregar rapido no first paint e pra caber no payload do MCP.
+function splitItem(it) {
+  const { body_pt, ...meta } = it;
+  return { meta, body: { id: it.id, body_pt: body_pt || "" } };
+}
+
+// Re-hidrata um item que pode estar no formato light (sem body_pt) lendo
+// items/<id>.json. Usado pra preservar body_pt ao mover overflow pra archive.
+async function hydrateBody(it) {
+  if (it.body_pt) return it;
+  try {
+    const raw = await fs.readFile(path.join(ITEMS_DIR, `${it.id}.json`), "utf8");
+    const body = JSON.parse(raw);
+    return { ...it, body_pt: body.body_pt || "" };
+  } catch {
+    return it;
+  }
+}
 
 const TOP_KEEP = 30;
 const VALID_TAGS = new Set([
@@ -130,11 +152,12 @@ async function main() {
   const finalItems = merged.slice(0, TOP_KEEP);
   const overflow = merged.slice(TOP_KEEP);
 
-  // arquiva overflow
+  // arquiva overflow (hidrata body antes de arquivar pra preservar conteudo)
   if (overflow.length > 0) {
     await fs.mkdir(ARCHIVE_DIR, { recursive: true });
+    const hydrated = await Promise.all(overflow.map(hydrateBody));
     const byMonth = new Map();
-    for (const it of overflow) {
+    for (const it of hydrated) {
       const ym = (it.pubDate || new Date().toISOString()).slice(0, 7);
       if (!byMonth.has(ym)) byMonth.set(ym, []);
       byMonth.get(ym).push(it);
@@ -146,13 +169,30 @@ async function main() {
       const arr = [...(existing.items || []), ...items.filter((x) => !seenIds.has(x.id))];
       await fs.writeFile(p, JSON.stringify({ month: ym, items: arr }, null, 2));
     }
+    // Remove items/<id>.json dos arquivados (eles agora vivem no archive inline)
+    for (const it of hydrated) {
+      await fs.unlink(path.join(ITEMS_DIR, `${it.id}.json`)).catch(() => {});
+    }
   }
 
   // remove os curados de _pending; resto fica pra proximo run
   const remainingPending = (pendingDoc.items || []).filter((p) => !acceptedIds.has(p.id));
   const newPendingDoc = { generatedAt: pendingDoc.generatedAt, items: remainingPending };
 
-  await fs.writeFile(INDEX_PATH, JSON.stringify({ updated: new Date().toISOString(), items: finalItems }, null, 2));
+  // Split body_pt em arquivos individuais (items/<id>.json) e deixa
+  // index.json so com metadata. Arquivos do archive continuam inline
+  // porque o site nao carrega archive no init.
+  await fs.mkdir(ITEMS_DIR, { recursive: true });
+  const lightItems = [];
+  for (const it of finalItems) {
+    const { meta, body } = splitItem(it);
+    if (body.body_pt) {
+      await fs.writeFile(path.join(ITEMS_DIR, `${body.id}.json`), JSON.stringify(body, null, 2));
+    }
+    lightItems.push(meta);
+  }
+
+  await fs.writeFile(INDEX_PATH, JSON.stringify({ updated: new Date().toISOString(), items: lightItems }, null, 2));
   await fs.writeFile(SEEN_PATH, JSON.stringify(seen, null, 2));
   if (remainingPending.length === 0) {
     await fs.unlink(PENDING_PATH).catch(() => {});
