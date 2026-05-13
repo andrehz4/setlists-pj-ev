@@ -30,6 +30,7 @@ import { sha10 } from "./relevance.mjs";
 import { cacheImage, gcOrphanImages, ensureImgDir } from "./image-cache.mjs";
 import { curate as curateDigest } from "./curators/community-digest.mjs";
 import { curate as curateSpotlight } from "./curators/community-spotlight.mjs";
+import { writeStepSummary } from "./_summary.mjs";
 
 const args = process.argv.slice(2);
 function argVal(name) {
@@ -291,9 +292,20 @@ async function main() {
 
   // ---- Modo routine: salva _pending.json e termina (nao mexe em index.json) ----
   if (IS_ROUTINE) {
+    const pendingTotalAntes = (pendingDoc.items || []).length;
     if (newPending.length === 0) {
       console.log("[community] routine: nada novo pra pendurar.");
       if (!DRY) await writeJson(SEEN_PATH, seen);
+      await writeStepSummary({
+        title: `Community fetch · routine (${MODE})`,
+        meta: { modo: MODE, curator: CURATOR_NAME, dry: DRY },
+        stats: {
+          "coletados nesta run": 0,
+          "pending total agora": pendingTotalAntes,
+          "index atual": currentItems.length,
+        },
+        extras: [{ heading: "Resultado", body: "Nada novo pra pendurar (digest do dia ja existe ou nenhum spotlight passou no filtro)." }],
+      });
       return;
     }
     const merged = {
@@ -308,6 +320,19 @@ async function main() {
       await writeJson(SEEN_PATH, seen);
       console.log(`[community] routine: ${PENDING_PATH} (${merged.items.length} aguardando curadoria)`);
     }
+    await writeStepSummary({
+      title: `Community fetch · routine (${MODE})`,
+      meta: { modo: MODE, curator: CURATOR_NAME, dry: DRY },
+      stats: {
+        "coletados nesta run": newPending.length,
+        "pending total agora": merged.items.length,
+        "index atual": currentItems.length,
+      },
+      pending: newPending,
+      extras: [
+        { heading: "Proximo passo", body: "A routine Sonnet remota le `_pending.json`, cura, e roda `node scripts/news/merge-curated.mjs` pra publicar no `index.json`." },
+      ],
+    });
     return;
   }
 
@@ -315,6 +340,12 @@ async function main() {
   if (newItems.length === 0) {
     if (!DRY) await writeJson(SEEN_PATH, seen);
     console.log("[community] nada a publicar.");
+    await writeStepSummary({
+      title: `Community fetch · ${CURATOR_NAME} (${MODE})`,
+      meta: { modo: MODE, curator: CURATOR_NAME, dry: DRY },
+      stats: { "publicados agora": 0, "index atual": currentItems.length },
+      extras: [{ heading: "Resultado", body: "Nada novo passou no curator." }],
+    });
     return;
   }
 
@@ -355,6 +386,17 @@ async function main() {
     await writeJson(SEEN_PATH, seen);
     console.log(`[community] escrito: ${INDEX_PATH} (${finalItems.length} items)`);
   }
+
+  await writeStepSummary({
+    title: `Community fetch · ${CURATOR_NAME} (${MODE})`,
+    meta: { modo: MODE, curator: CURATOR_NAME, dry: DRY },
+    stats: {
+      "publicados agora": newItems.length,
+      "total no index": finalItems.length,
+      "arquivados (overflow)": overflow.length,
+    },
+    curated: newItems,
+  });
 }
 
 main().catch((e) => {

@@ -14,6 +14,7 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { writeStepSummary } from "./_summary.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -162,6 +163,18 @@ async function main() {
   }
 
   console.log(`[merge] index.json: ${finalItems.length} items.`);
+
+  await writeStepSummary({
+    title: "News merge-curated",
+    meta: { recebidos: curatedInput.length, aceitos: newItems.length, rejeitados: curatedInput.length - newItems.length },
+    stats: {
+      "publicados agora": newItems.length,
+      "total no index": finalItems.length,
+      "pending restante": remainingPending.length,
+      "arquivados (overflow)": overflow.length,
+    },
+    curated: newItems,
+  });
 }
 
 main().catch((e) => {
