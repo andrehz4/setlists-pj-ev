@@ -21,6 +21,7 @@ import { isRelevant, canonicalize, sha10, passesRedditFilter } from "./relevance
 import { scrapeArticle } from "./extract.mjs";
 import { cacheImage, gcOrphanImages, ensureImgDir } from "./image-cache.mjs";
 import { loadCurator } from "./curators/_shared.mjs";
+import { writeStepSummary } from "./_summary.mjs";
 
 // --- args ---
 const args = process.argv.slice(2);
@@ -210,6 +211,8 @@ async function main() {
 
   console.log(`[news] curados agora: ${curated.length} | pendentes pra routine: ${pending.length}`);
 
+  const skippedCount = Math.max(0, fresh.length - curated.length - pending.length);
+
   // Em modo routine, escreve _pending.json e termina (NAO altera index.json).
   if (isRoutineMode) {
     const newPending = {
@@ -224,6 +227,21 @@ async function main() {
       await writeJson(SEEN_PATH, seen); // skipped marcados; pendentes ficam de fora
       console.log(`[news] escrito: ${PENDING_PATH} (${newPending.items.length} aguardando curadoria)`);
     }
+    await writeStepSummary({
+      title: "News fetch · modo routine (so coleta)",
+      meta: { curator: curator.LABEL, fontes: SOURCES.length, dry: DRY },
+      stats: {
+        "candidatos novos": all.length,
+        "coletados nesta run": pending.length,
+        "skipped pelo curator": skippedCount,
+        "pending total agora": newPending.items.length,
+        "index atual": currentItems.length,
+      },
+      pending,
+      extras: [
+        { heading: "Proximo passo", body: "A routine Sonnet remota le `_pending.json`, cura, e roda `node scripts/news/merge-curated.mjs` pra publicar no `index.json`." },
+      ],
+    });
     return;
   }
 
@@ -265,6 +283,19 @@ async function main() {
     await writeJson(SEEN_PATH, seen);
     console.log(`[news] escrito: ${INDEX_PATH} (${finalItems.length} items)`);
   }
+
+  await writeStepSummary({
+    title: "News fetch",
+    meta: { curator: curator.LABEL, fontes: SOURCES.length, dry: DRY },
+    stats: {
+      "candidatos novos": all.length,
+      "publicados agora": curated.length,
+      "skipped pelo curator": skippedCount,
+      "total no index": finalItems.length,
+      "arquivados (overflow)": overflow.length,
+    },
+    curated,
+  });
 }
 
 function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
