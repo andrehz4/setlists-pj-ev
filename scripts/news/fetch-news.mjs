@@ -37,7 +37,7 @@ const LEGACY_NO_CLAUDE = args.includes("--no-claude");
 let CURATOR_NAME = argVal("curator") || process.env.NEWS_CURATOR || "anthropic";
 if (LEGACY_NO_CLAUDE) CURATOR_NAME = "routine"; // backward compat
 
-const MAX_NEW_PER_RUN = 6;
+const MAX_NEW_PER_RUN = 3;
 const TOP_KEEP = 30;
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
