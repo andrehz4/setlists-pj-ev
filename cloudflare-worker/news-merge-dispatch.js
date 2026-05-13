@@ -32,38 +32,70 @@ const REPO_NAME = "setlists-pj-ev";
 const EVENT_TYPE = "news-curated";
 const UA = "setlists-pj-news-merge-dispatch/1.0";
 
+// Limites pra evitar abuse de quota e payload mal-intencionado.
+const MAX_BODY_BYTES = 256 * 1024;     // 256 KB total no body
+const MAX_ITEMS = 30;                  // max items por dispatch
+const MAX_TITULO_LEN = 200;            // titulo_pt
+const MAX_INTRO_LEN = 1000;            // intro_pt
+const MAX_CORPO_LEN = 20000;           // corpo_pt (~3-4k palavras)
+const MIN_CORPO_LEN = 100;             // minimo razoavel pra nao ser teaser
+
+function timingSafeStrEq(a, b) {
+  if (typeof a !== "string" || typeof b !== "string") return false;
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) {
+    diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return diff === 0;
+}
+
 export default {
   async fetch(request, env) {
     if (request.method !== "POST") {
       return json({ error: "method not allowed, use POST" }, 405);
     }
 
-    // 1. auth
-    const secret = request.headers.get("X-Routine-Secret");
-    if (!env.ROUTINE_SECRET || secret !== env.ROUTINE_SECRET) {
+    // 1. auth (comparacao constant-time pra evitar timing attack)
+    const secret = request.headers.get("X-Routine-Secret") || "";
+    if (!env.ROUTINE_SECRET || !timingSafeStrEq(secret, env.ROUTINE_SECRET)) {
       return json({ error: "unauthorized" }, 401);
     }
     if (!env.GH_PAT) {
       return json({ error: "worker mal configurado: GH_PAT ausente" }, 500);
     }
 
-    // 2. parse + validate body
+    // 2. limite de tamanho do body (defesa contra flood)
+    const contentLength = parseInt(request.headers.get("Content-Length") || "0", 10);
+    if (contentLength > MAX_BODY_BYTES) {
+      return json({ error: `body grande demais (${contentLength} > ${MAX_BODY_BYTES})` }, 413);
+    }
+    const rawBody = await request.text();
+    if (rawBody.length > MAX_BODY_BYTES) {
+      return json({ error: `body grande demais (${rawBody.length} > ${MAX_BODY_BYTES})` }, 413);
+    }
+
+    // 3. parse + validate body
     let body;
     try {
-      body = await request.json();
+      body = JSON.parse(rawBody);
     } catch (e) {
-      return json({ error: "json invalido", detail: e.message }, 400);
+      return json({ error: "json invalido" }, 400);
     }
     const curated = body?.curated;
     if (!Array.isArray(curated) || curated.length === 0) {
       return json({ error: "body deve ter { curated: [...] } com pelo menos 1 item" }, 400);
     }
-    // validacao leve de shape
+    if (curated.length > MAX_ITEMS) {
+      return json({ error: `curated tem ${curated.length} items, max ${MAX_ITEMS}` }, 400);
+    }
     for (const it of curated) {
       if (!it || typeof it !== "object") return json({ error: "curated tem item nao-objeto" }, 400);
-      if (typeof it.id !== "string" || !it.id) return json({ error: "curated tem item sem id" }, 400);
-      if (typeof it.titulo_pt !== "string" || !it.titulo_pt) return json({ error: `item ${it.id} sem titulo_pt` }, 400);
-      if (typeof it.corpo_pt !== "string" || it.corpo_pt.length < 100) return json({ error: `item ${it.id} com corpo_pt curto demais` }, 400);
+      if (typeof it.id !== "string" || !it.id || it.id.length > 64) return json({ error: "curated tem item sem id valido" }, 400);
+      if (typeof it.titulo_pt !== "string" || !it.titulo_pt || it.titulo_pt.length > MAX_TITULO_LEN) return json({ error: `item ${it.id} titulo_pt invalido` }, 400);
+      if (it.intro_pt != null && (typeof it.intro_pt !== "string" || it.intro_pt.length > MAX_INTRO_LEN)) return json({ error: `item ${it.id} intro_pt invalido` }, 400);
+      if (typeof it.corpo_pt !== "string" || it.corpo_pt.length < MIN_CORPO_LEN || it.corpo_pt.length > MAX_CORPO_LEN) return json({ error: `item ${it.id} corpo_pt fora de [${MIN_CORPO_LEN}, ${MAX_CORPO_LEN}]` }, 400);
+      if (it.tags != null && (!Array.isArray(it.tags) || it.tags.length > 5)) return json({ error: `item ${it.id} tags invalidas` }, 400);
     }
 
     const stamp = new Date().toISOString().replace(/[:.]/g, "-").replace(/Z$/, "Z");
@@ -122,9 +154,9 @@ export default {
         dispatchBody = (await dispatchResp.text()).slice(0, 500);
       }
     } catch (e) {
+      // detail nao incluido pra nao vazar info interna
       return json({
         error: "github api unreachable",
-        detail: e.message,
         gist_url: gistUrl,
         gist_id: gistId,
       }, 502);
