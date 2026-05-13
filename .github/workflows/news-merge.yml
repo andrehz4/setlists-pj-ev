@@ -48,6 +48,32 @@ jobs:
           fi
           echo "Items no payload: $(jq 'length' /tmp/curated.json)"
 
+      - name: Archive payload bruto antes do merge
+        env:
+          GIST_URL: ${{ github.event.client_payload.gist_url }}
+        run: |
+          STAMP=$(date -u +%Y-%m-%dT%H%MZ)
+          ARCHIVE_DIR=media/news/_routine-archive
+          ARCHIVE_FILE="$ARCHIVE_DIR/${STAMP}.json"
+          mkdir -p "$ARCHIVE_DIR"
+          cp /tmp/curated.json "$ARCHIVE_FILE"
+          echo "## Archive bruto" >> $GITHUB_STEP_SUMMARY
+          echo "- arquivo: \`$ARCHIVE_FILE\`" >> $GITHUB_STEP_SUMMARY
+          if [ -n "$GIST_URL" ]; then
+            echo "- gist fallback do worker: $GIST_URL" >> $GITHUB_STEP_SUMMARY
+          fi
+          # commit do archive antes do merge, pra preservar mesmo se merge-curated.mjs falhar
+          git config user.name "pj-news-bot"
+          git config user.email "bot@setlists-pj.local"
+          git add "$ARCHIVE_FILE"
+          git commit -m "news: archive bruto do payload da routine ${STAMP}"
+          for i in 1 2 3; do
+            git pull origin main --rebase --autostash || true
+            if git push origin main 2>&1; then break; fi
+            echo "push tentativa $i falhou, retry..."
+            sleep 2
+          done
+
       - name: Merge curated
         run: node scripts/news/merge-curated.mjs --file /tmp/curated.json
 
