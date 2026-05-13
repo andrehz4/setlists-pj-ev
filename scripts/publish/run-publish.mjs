@@ -31,6 +31,22 @@ const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
 
+// Ciclo de cores da tarja superior do slide. Muda a cada POSTS_PER_COLOR
+// posts publicados, dando dinamica visual no feed sem perder identidade.
+// Ciclo completo = TARJA_COLORS.length * POSTS_PER_COLOR posts.
+const TARJA_COLORS = [
+  "#c12727", // vermelho sangue PJ (default)
+  "#0a0908", // preto profundo
+  "#a87f2c", // ocre sepia
+  "#2a5b9e", // azul petroleo
+];
+const POSTS_PER_COLOR = 3;
+
+function getCurrentTarjaColor(postCount) {
+  const idx = Math.floor((postCount || 0) / POSTS_PER_COLOR) % TARJA_COLORS.length;
+  return TARJA_COLORS[idx];
+}
+
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
 const NO_GIT = args.includes("--no-git");
@@ -115,7 +131,7 @@ async function commitAndPush(paths, message, retries = 3) {
   throw new Error(`git push falhou apos ${retries} tentativas`);
 }
 
-async function processBatch(type, queue, indexById, nowIso) {
+async function processBatch(type, queue, indexById, nowIso, tarjaColor) {
   const mature = pickMatureByType(queue, type, nowIso, 10);
   if (mature.length === 0) {
     console.log(`[publish] tipo=${type}: 0 maduros, skip`);
@@ -127,8 +143,13 @@ async function processBatch(type, queue, indexById, nowIso) {
   for (const m of mature) {
     let h = await hydrateItem(m, indexById);
     if (!h) h = await findInArchive(m.id);
-    if (h) hydrated.push(h);
-    else console.warn(`[publish] item ${m.id} nao achado em index nem archive, skip`);
+    if (h) {
+      // anota a cor da tarja do post desta rodada
+      h._tarjaColor = tarjaColor;
+      hydrated.push(h);
+    } else {
+      console.warn(`[publish] item ${m.id} nao achado em index nem archive, skip`);
+    }
   }
   if (hydrated.length === 0) {
     // marca como erro pra nao tentar pra sempre
@@ -188,15 +209,26 @@ async function main() {
   const indexDoc = await readJson(INDEX_PATH, { items: [] });
   const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
 
-  console.log(`[publish] queue: ${queue.items.length} items totais, ${queue.items.filter((q) => !q.postedAt).length} pendentes`);
+  console.log(`[publish] queue: ${queue.items.length} items totais, ${queue.items.filter((q) => !q.postedAt).length} pendentes, postCount=${queue.postCount}`);
+
+  // cor da tarja desta rodada (cicla a cada 3 posts publicados)
+  const tarjaColor = getCurrentTarjaColor(queue.postCount);
+  console.log(`[publish] cor da tarja: ${tarjaColor} (ciclo de ${POSTS_PER_COLOR} posts)`);
 
   const results = [];
   const types = ["regular", "spotlight"];
   let batchCount = 0;
   for (const t of types) {
     if (batchCount >= MAX_BATCHES) break;
-    const r = await processBatch(t, queue, indexById, nowIso);
-    if (r) { results.push(r); batchCount++; }
+    const r = await processBatch(t, queue, indexById, nowIso, tarjaColor);
+    if (r) {
+      results.push(r);
+      batchCount++;
+      // 1 batch sucesso = 1 post real no IG = incrementa postCount
+      if (r.succeeded > 0 && r.postId) {
+        queue.postCount = (queue.postCount || 0) + 1;
+      }
+    }
   }
 
   // housekeeping: limpa postados muito antigos
