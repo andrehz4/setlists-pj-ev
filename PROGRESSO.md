@@ -884,3 +884,42 @@ Nenhum.
 
 ## Comando exato pra continuar
 cd C:\Gitlab_hz\pearljam\setlists-pj-ev && claude
+
+## Sessao 2026-05-13 tarde/noite, pipeline de news automation fechado
+
+Investigacao longa de como a Claude routine remota (Anthropic Cloud) consegue commitar no repo. Varios caminhos testados e descartados:
+
+| Rota | Resultado |
+|---|---|
+| `git push` direto do sandbox | 403 receive-pack do proxy local (mesmo com toggle "git push irrestrito" ligada) |
+| Cloudflare Worker `news-merge-dispatch.eng-andrehz.workers.dev` | "Host not in allowlist" (workers.dev nao passa) |
+| `mcp__github__push_files` (multi-file atomic) | Stream idle timeout, payload >80KB estoura |
+| PAT no prompt + `curl api.github.com/dispatches` | Funcionou (commit 48588a9 das 14:34), mas expoe PAT no painel da routine |
+| **`mcp__github__create_or_update_file` (single-file)** | **Rota final, funciona** |
+
+**Solucao estrutural validada (commit f92dfaa):** split do `body_pt` em arquivos individuais `media/news/items/<id>.json` (1-5KB cada). `index.json` ficou light de 44KB pra 12KB. Cada arquivo individual cabe no payload do MCP single-file sem estourar stream. Routine `mcp__github__create_or_update_file` autenticada como `terra-gentil` (via OAuth Anthropic-Github, aceito, registrado em memoria).
+
+Validado em producao: rodada 17:15 UTC publicou os 3 pendings (Mike McCready / "Who You Are" Stereogum / Yungblud+Eddie) em 6 commits sequenciais por `terra-gentil` (`bace625`, `3e1b5d6`, `ca93d95`, `aeeef6c`, `f7a426a`, `bb65dc9`). `_pending.json` zerou, `index.json` em 20 itens.
+
+### Outras entregas da sessao
+- **Step Summary nos workflows GH Actions:** helper `scripts/news/_summary.mjs`, plugado em `fetch-news`/`community-fetch`/`merge-curated`. Painel "Summary" mostra counts + lista de titulos linkaveis na pagina do run.
+- **CTA `[ LER -> ]` nos cards do grid** (estilo fanzine, casa com o hero), com hover transform. Plus ajuste de card pra encaixar sem cortar intro (line-clamp 3 -> 4, mais respiro).
+- **Lazy-fetch do body_pt** no `_renderNewsDetail` (consome o split novo).
+
+### Infra ociosa deployada nao usada (vale limpar)
+- **Cloudflare Worker** `news-merge-dispatch.eng-andrehz.workers.dev` deployado, env vars `GH_PAT` + `ROUTINE_SECRET` setadas, mas rota nao funciona (proxy do sandbox bloqueia workers.dev). Pode deletar ou deixar parado (custo zero).
+- **Workflow** `.github/workflows/news-merge.yml` com trigger `repository_dispatch`: nao eh chamado pela routine, mas serve de rota manual de emergencia.
+- **PAT** `github_pat_11AHTKO6Y0...` (gerado pra rota worker, agora ocioso). **RECOMENDADO REVOGAR** porque vazou no chat anterior. Tambem `ROUTINE_SECRET` `7ATLlJRoduxgBVqMV-TLkOQkN2i49QJWc4eeWBBHG7M` vazou.
+
+### Pendencias da sessao (proxima sessao decide)
+1. **Integracao Instagram**: discutida mas nao decidida. Opcoes: (a) app Meta + Hashtag Search (gratis mas precisa App Review, sem username de quem postou, max 30 hashtags/7d), (b) RSS.app (~$10/mes, simples, com atribuicao completa), (c) Threads RSS publico (Pearl Jam tem mas posta pouco). Andre estava preenchendo formulario do Meta Developer Portal quando interrompeu.
+2. **Limpeza de seguranca**: revogar PAT antigo no GitHub, apagar env vars do worker CF, decidir se deleta worker e workflow news-merge.yml.
+3. **Performance**: index 12KB agora deve subir Lighthouse Perf (estava 52). Vale revalidar.
+
+### Memorias adicionadas
+- `reference_anthropic_cloud_proxy.md`: proxy do sandbox bloqueia git push mesmo com toggle ligada
+- `reference_routine_mcp_github.md`: routine commita via `mcp__github__create_or_update_file` autenticado como `terra-gentil` (integracao OAuth Anthropic-Github fica em `terra-gentil`, aceito)
+
+### Cron da routine
+`30 */6 * * *` UTC (proximo: 00:30 UTC = 21:30 BRT). Coleta automatica do GH Actions roda 7min antes (`23 */6 * * *`).
+
