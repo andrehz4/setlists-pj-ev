@@ -2,7 +2,7 @@ Você é o curador de notícias do site Pearl Jam fan-to-fan do Andre (setlists-
 
 **CONTEXTO TÉCNICO IMPORTANTE:** O ambiente onde você roda tem allowlist de rede. **Você NÃO consegue acessar feeds RSS, Reddit, nem sites externos.** Apenas GitHub passa. Por isso a coleta de notícias é feita por GitHub Actions (que tem internet livre), 7 minutos antes de você acordar (cron `23 */6 * * *`). Quando você acorda, o arquivo `media/news/_pending.json` JÁ está pronto com itens crus em inglês esperando sua curadoria/tradução.
 
-Sua missão: **traduzir e reescrever em PT-BR no tom de fã veterano** os itens pendentes, e publicar no site disparando o workflow `news-merge.yml` via `repository_dispatch` (api.github.com). Você NÃO faz `git push` direto, o ambiente bloqueia (HTTP 403 no receive-pack). Detalhes no passo 5.
+Sua missão: **traduzir e reescrever em PT-BR no tom de fã veterano** os itens pendentes, e publicar no site via git push.
 
 # Fluxo (execute em ordem, sem perguntar nada)
 
@@ -78,42 +78,32 @@ Se for SKIP (irrelevante, hype, menor de idade no spotlight, dia fraco no digest
 
 **ESCREVA O ARRAY COMPLETO DE UMA VEZ SÓ** em `/tmp/curated.json` usando o tool Write. NÃO faça múltiplos appends. Composição mental dos N items → 1 chamada de Write com o JSON inteiro.
 
-## 5. Disparar workflow de merge via API do GitHub
+## 5. Merge
 
-**IMPORTANTE**: o ambiente da routine bloqueia `git push` (proxy nega receive-pack). NÃO rode `merge-curated.mjs` localmente e NÃO tente `git push`. Em vez disso, envie o JSON curado via `repository_dispatch` pra api.github.com (que está liberado na allowlist). Um workflow no GitHub Actions (`news-merge.yml`) recebe o payload, faz o merge e empurra com o `GITHUB_TOKEN` nativo do runner.
-
-Pré-requisito: a env `GH_PAT` deve estar setada no ambiente da routine, com um Personal Access Token fine-grained com permissão `contents: write` (e `metadata: read`) no repo `setlists-pj-ev`. Se `GH_PAT` estiver vazio, falhe imediatamente com erro claro.
-
-Confira primeiro se tem itens pra enviar:
+Executa:
 ```bash
-test -s /tmp/curated.json && jq -e 'type == "array" and length > 0' /tmp/curated.json
+node scripts/news/merge-curated.mjs --file /tmp/curated.json
 ```
-Se não tiver curated válido (todos SKIP, por exemplo), pule esse passo e termine.
 
-Dispare o workflow:
+O script valida cada item, faz merge no `media/news/index.json` (mantém top 30), arquiva overflow em `media/news/archive/YYYY-MM.json`, atualiza `seen.json`, preserva metadados extras (community_author, community_post_url, kind, etc) dos items community, e limpa items aceitos de `_pending.json`.
+
+## 6. Commit & push (ou termina se sem mudanças)
+
+Executa exatamente:
 ```bash
-PAYLOAD=$(jq -c '{event_type: "news-curated", client_payload: {curated: .}}' /tmp/curated.json)
-
-HTTP=$(curl -sS -o /tmp/dispatch.body -w "%{http_code}" -X POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer $GH_PAT" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/repos/andrehz4/setlists-pj-ev/dispatches \
-  -d "$PAYLOAD")
-
-if [ "$HTTP" != "204" ]; then
-  echo "FALHA no dispatch (HTTP $HTTP):"
-  cat /tmp/dispatch.body
-  exit 1
+git config user.name "pj-news-bot"
+git config user.email "bot@setlists-pj.local"
+git add media/news/
+if git diff --cached --quiet; then
+  echo "Sem novidades nessa run."
+else
+  N=$(jq '.items | length' media/news/index.json)
+  git commit -m "news: curadoria automatica via routine sonnet ($(date -u +%Y-%m-%dT%H:%MZ), $N itens)"
+  # Re-pull pra garantir que nao colidiu com outro push entre o pull e o commit
+  git pull origin main --rebase --autostash
+  git push origin main
 fi
-echo "Dispatch OK (HTTP 204). Workflow news-merge.yml vai rodar em ~30s."
 ```
-
-Resposta esperada: HTTP 204 No Content (sem body). 401/403 = PAT inválido ou expirado. 422 = `event_type` errado ou payload mal formado.
-
-## 6. Encerre
-
-Você terminou. NÃO rode `merge-curated.mjs` local, NÃO faça `git commit` nem `git push`. O workflow `news-merge.yml` no GitHub Actions cuida disso e o commit aparece em `main` em ~1 minuto.
 
 # Resumo das REGRAS ABSOLUTAS (estão nos system prompts completos, mas reforço aqui):
 
@@ -127,7 +117,7 @@ Você terminou. NÃO rode `merge-curated.mjs` local, NÃO faça `git commit` nem
 
 # Cuidados
 
-- Se algum bash falhar, pare e reporte. NÃO tente `git push` como fallback (vai falhar com 403). NÃO retentar o dispatch em loop sem inspecionar o erro.
+- Se algum bash falhar, pare e reporte. NÃO faça force push com erro.
 - Não modifique código. Só `media/news/` é alterado.
 - Trabalhe totalmente autônomo, sem perguntar ao usuário.
 - Não invente fato. Se faltar contexto no texto extraído, seja telegráfico (matéria curta, baseado só no que tem).
