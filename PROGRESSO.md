@@ -1,7 +1,148 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-12
+2026-05-12 (madrugada do 13)
+
+## HANDOFF SESSAO 2026-05-12/13 MADRUGADA: SPLIT MODE com Sonnet + redesign fanzine + tags por integrante
+
+### Resumo do estado em uma frase
+Pipeline de Noticias agora roda em **SPLIT MODE**: GH Actions coleta (cron :23, 6 em 6h), routine Sonnet 4.6 cura 7min depois (cron :30). Frontend de Noticias com identidade visual nova (fanzine xerox brasileiro). Site no ar com 7 noticias publicadas pelo Sonnet hoje. HEAD `32c9643`.
+
+### O que esta funcionando hoje
+- **SPLIT MODE operacional**: news.yml (cron 23 */6 * * *) + community.yml (cron 25 12/0 * * *) coletam e escrevem `_pending.json`. Routine Sonnet (cron 30 */6 * * *) acorda, faz git pull, le pending, cura, faz merge, commit + push.
+- **Cloudflare Worker proxy** resolve 403 do Reddit em IPs de cloud: `https://reddit-proxy.eng-andrehz.workers.dev`. Secret `REDDIT_PROXY_URL` configurado no GH e usado tanto por news.yml quanto por community.yml.
+- **3 modos de curadoria coexistem**: gemini (free, default ate hoje), anthropic (Haiku 4.5, precisa key), routine (Sonnet via plano Max, ATIVO).
+- **Frontend Noticias** com tema fanzine xerox completo: papel creme, grain noise SVG, wordmark "NOTICIAS" stencil, hero 3 colunas com numero outline e drop cap, tags-stamp rotacionados em cores semanticas (turne vermelho, comunidade azul, memoria ocre, eddie roxo, mike vermelho-ferrugem, stone cinza-petroleo, jeff verde-mato, matt laranja-bateria, boom azul-teclado, josh mostarda), filtros bracketed `[ tag ]`, auto-scroll pro hero, skeleton xerografico.
+- **Tags por integrante** substituiram `ed-solo`: eddie, mike, stone, jeff, matt, boom, josh. Regra: usa apenas quando o foco da materia eh AQUELE integrante (banda em turne = `turne`).
+- **Assinatura nova nos community items**: "_Andre, so mais um fa idiota de Pearl Jam._" (substituiu "_Compartilhada na comunidade..._" e "_Termometro da comunidade..._"). Items de midia mantem "_via Stereogum_" etc.
+
+### Comparacao 3-way Gemini 2.5 vs Sonnet 4.6 vs Gemini 3.1
+Fizemos um A/B/C com 8 items do mesmo dia. Resultado:
+
+| # | Item | Vencedor | Por que |
+|---|---|---|---|
+| 1 | Digest comunidade | Sonnet | Voz autoral, sem clichês |
+| 2 | Spotlight retrato | Sonnet | Frase "microfone enrolado no cabo, escaladas de palco"; Gemini 3.1 usou "incriveis" (proibido) |
+| 3 | Ohana PJ Online | Empate | Sonnet trouxe quote literal do McCready, Gemini 3.1 mais organizado |
+| 4 | Stereogum | Gemini 3.1 | Sonnet pulou (duplicata semantica); Gemini 3.1 manteve |
+| 5 | Rolling Stone | Sonnet | Trouxe Dave Abbruzzese (estava no input do Stereogum) |
+| 6 | Bad Radio demo | Sonnet | Abertura "Antes do Pearl Jam, antes do 'Ten'..." |
+| 7 | Jeff Ament Montana | Sonnet | Correct tag `jeff`, frase autoral |
+| 8 | Livros recomendados | Gemini 3.1 (mas Sonnet tbm fez) | Ambos listaram autores |
+
+Score: Sonnet 5, Gemini 3.1 2, Empate 1. **Sonnet eh o melhor escritor mas pula duplicatas semanticas e ocasionalmente eh telegrafico demais com listas.** Pra absorver os pontos do Gemini 3.1, adicionei DUAS regras novas no prompt `system-curator-fa.txt`:
+1. **REGRA DE COBERTURA**: NAO SKIP por duplicacao de assunto entre fontes (Stereogum + Rolling Stone + PJ Online IT do mesmo Ohana 2026 viram 3 materias separadas, cada uma com angulo proprio).
+2. **REGRA DE RIQUEZA INFORMACIONAL**: Quando o input tem LISTA concreta (livros, lineup, setlist, datas), listar TUDO no corpo, nao resumir.
+
+Proxima rodagem do Sonnet ja vai aplicar essas regras.
+
+### Cota Sonnet medida
+Antes da primeira run: 8% Sonnet semanal. Depois de 1 run com 8 items pendentes: ~10-12% (estimativa, Andre nao confirmou delta exato). Tempo de execucao: primeira run timeout em ~20min, segunda passou em 10min apos adicionar regra "MODO BATCH EFICIENTE" no prompt da routine + reduzir MAX_NEW_PER_RUN de 6 pra 3.
+
+### Routine Sonnet (estado atual)
+```
+id            : trig_01WTGwu5LzVJrQcxtMpRH3Te
+enabled       : true
+cron          : 30 */6 * * * UTC
+modelo        : claude-sonnet-4-6
+tools         : Bash, Read, Write, Edit, Glob, Grep
+proximo run   : 2026-05-13 06:30 UTC (03:30 BRT)
+painel        : https://claude.ai/code/routines/trig_01WTGwu5LzVJrQcxtMpRH3Te
+```
+
+### Cronograma diario automatico
+```
+UTC      BRT      Workflow
+─────────────────────────────────────────────
+00:23    21:23    GH Actions news.yml (mídia, sempre)
+00:25    21:25    GH Actions community.yml (spotlight noturno)
+00:30    21:30    Routine Sonnet (cura tudo)
+06:23    03:23    GH Actions news.yml
+06:30    03:30    Routine Sonnet
+12:23    09:23    GH Actions news.yml
+12:25    09:25    GH Actions community.yml (digest matinal)
+12:30    09:30    Routine Sonnet
+18:23    15:23    GH Actions news.yml
+18:30    15:30    Routine Sonnet
+```
+
+### Bugs conhecidos / cuidados
+1. **Allowlist da Anthropic Cloud**: routine NAO consegue HTTP externo. Coleta DEVE rodar no GH Actions, routine soh cura. Sempre SPLIT MODE.
+2. **Race condition pull/push**: news.yml e community.yml podiam colidir. Resolvido com loop `git pull --rebase --autostash` + `git push` ate 3 tentativas.
+3. **Timeout do Sonnet em batches grandes**: limite ~15-20min. MAX_NEW_PER_RUN = 3 evita. Plano B se passar: limpar `_pending.json` manualmente.
+4. **"John Klinghoffer"** no input da Rolling Stone (correto eh Josh). Bot mantem o typo da fonte.
+5. **Commit estranho "Update HANDOFF.md"** da conta `terra-gentil` (commit 96b6578) durante a sessao - origem desconhecida, nao foi a routine. Investigar se voltar.
+6. **LF/CRLF warnings em todos os commits**: cosmetico, sem impacto. Windows + git.
+
+### Frentes abertas pro proximo chat
+1. **Validar primeira rodagem automatica da manha** (03:30 BRT): conferir se Sonnet aplicou novas regras (cobertura + riqueza). Olhar tags, listas completas, materias duplicadas que antes eram pulled.
+2. **Calibrar prompts se necessario** apos ver o resultado.
+3. **Anthropic SDK** (Haiku 4.5) ainda nao testado. Falta cadastrar `ANTHROPIC_API_KEY` no GH Secrets pra disparar via workflow_dispatch.
+4. **Medir cota Sonnet por semana**: Andre pode acompanhar o "Somente Sonnet · X%" na status line do Claude Code. Se passar de 30% sem motivo, ajustar frequencia do cron.
+5. **GitHub Student Pack** aprovado, libera em 72h (~14-15 mai 2026). Vale ativar Sentry pra alertas de falha + Namecheap pra dominio custom.
+6. **MAX_NEW_PER_RUN**: atualmente 3. Se proximas runs derem timeout, reduzir pra 2. Se sobrarem cedo, voltar pra 4.
+7. **Spotlight da comunidade como "art piece"** (frente proposta antes mas nao executada): layout especial pro spotlight, imagem dominante, texto reduzido.
+
+### Comando exato pra continuar (proximo chat)
+```
+cd C:\Gitlab_hz\pearljam\setlists-pj-ev && claude
+```
+Pede: "leia o ultimo HANDOFF no PROGRESSO.md e foca em validar a rodagem do Sonnet da manha".
+
+### Arquivos chave (atualizados nesta sessao)
+```
+Coleta + curadoria:
+  scripts/news/fetch-news.mjs              # MAX_NEW_PER_RUN=3
+  scripts/news/community-fetch.mjs         # suporta --curator=routine
+  scripts/news/reddit-community.mjs        # parser com pickCoverImage
+  scripts/news/merge-curated.mjs           # preserva metadados extras
+  scripts/news/sources.mjs                 # 8 fontes RSS
+  scripts/news/curators/_shared.mjs        # VALID_TAGS atualizado
+  scripts/news/curators/gemini.mjs         # schema com tags por integrante
+  scripts/news/curators/community-digest.mjs
+  scripts/news/curators/community-spotlight.mjs
+  scripts/news/curators/routine.mjs        # stub PENDING
+  scripts/news/prompts/system-curator-fa.txt       # voz midia + cobertura + riqueza
+  scripts/news/prompts/system-community-digest.txt # assinatura nova
+  scripts/news/prompts/system-community-spotlight.txt # assinatura nova
+  scripts/news/routine-prompt.md           # modo batch eficiente
+
+CI/CD:
+  .github/workflows/news.yml               # default=routine, pull-rebase retry
+  .github/workflows/community.yml          # default=routine, pull-rebase retry
+
+Infra:
+  cloudflare-worker/reddit-proxy.js        # Worker no eng-andrehz.workers.dev
+
+Frontend:
+  index.html                               # tudo num arquivo (~14600 linhas)
+    - linhas 4362-4970+: CSS Noticias (tema fanzine xerox)
+    - linhas 13900-14160: JS Noticias
+
+Dados:
+  media/news/index.json                    # 7 items publicados pelo Sonnet
+  media/news/seen.json                     # dedup state
+  media/news/_pending.json                 # AGORA VAZIO (Sonnet processou tudo)
+  media/news/archive/                      # overflow >30 items
+  media/news/img/*.jpg                     # cache imagens
+  media/news/_backup-2026-05-12-gemini-baseline/  # baseline Gemini pra comparar
+```
+
+### Secrets/configuracoes externas
+- **GH Secrets**: `GEMINI_API_KEY`, `REDDIT_PROXY_URL`, `ANTHROPIC_API_KEY` (vazia)
+- **GH Variables**: `GEMINI_MODEL` (default gemini-2.5-flash)
+- **Cloudflare Worker**: `reddit-proxy.eng-andrehz.workers.dev` (free tier, 100k req/dia)
+- **Routine Anthropic**: `trig_01WTGwu5LzVJrQcxtMpRH3Te` (env `env_01YJZwpkiM9iGttJApwDgQWL`)
+
+### Regras absolutas dos prompts (NAO MEXER sem motivo forte)
+1. **Anti-travessao**: PROIBIDO em qualquer output. Sanitizer no `_shared.mjs` (stripDashes) tambem garante.
+2. **Anti-mencao Reddit/r/pearljam/subreddit/upvote/u/autor** (so community items).
+3. **Anti-numeros de votos/curtidas/comentarios** no corpo (so community items).
+4. **Tags por integrante**: so quando o foco eh AQUELE integrante. Banda completa = turne ou lancamento.
+5. **NOVA: Cobertura**: nao SKIP por duplicacao semantica entre fontes.
+6. **NOVA: Riqueza informacional**: listar TUDO em listas concretas.
+
+---
 
 ## HANDOFF SESSAO 2026-05-12 NOITE: refino do bot de Noticias, nav reorganizado, playlists no Galeria
 
