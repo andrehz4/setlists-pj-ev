@@ -75,26 +75,61 @@ async function fetchBaseImageBuffer(item) {
   return null;
 }
 
-// Cor de fundo neutra (papel creme fanzine) quando nao tem imagem.
+// Cor de fundo neutra (papel creme fanzine) quando nao ha imagem.
 async function makeFallbackBg() {
   return sharp({
     create: { width: SLIDE_W, height: SLIDE_H, channels: 3, background: { r: 232, g: 222, b: 198 } },
   }).jpeg({ quality: 88 }).toBuffer();
 }
 
+// Aberracao cromatica (faux 3D / anaglyph). Duplica a foto em duas
+// camadas: canal vermelho offset pra esquerda, canais verde+azul
+// (= ciano) offset pra direita. Composite com blend 'screen' por cima
+// da base. Resultado: efeito de "print errado dos anos 70" / parallax
+// estatico que da sensacao de profundidade sem precisar de animacao.
+//
+// OFFSET pequeno (5px) deixa o efeito SUTIL: visivel em close mas nao
+// distrai do conteudo. Aumenta pra 10+ se quiser overt 3D anaglyph
+// classico (precisa oculos vermelho-azul pra ver "3D real").
+async function applyChromaticAberration(buf, offset = 5) {
+  const redLayer = await sharp(buf)
+    .recomb([
+      [1, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0],
+    ])
+    .toBuffer();
+  const cyanLayer = await sharp(buf)
+    .recomb([
+      [0, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+    ])
+    .toBuffer();
+
+  return sharp(buf)
+    .composite([
+      { input: redLayer, left: -offset, top: 0, blend: "screen" },
+      { input: cyanLayer, left: offset, top: 0, blend: "screen" },
+    ])
+    .toBuffer();
+}
+
 function buildOverlaySvg(item) {
   const titulo = escapeXml(item.title_pt || "");
   const intro = escapeXml(item.intro_pt || "");
-  const source = escapeXml((item.sourceLabel || "").toUpperCase());
   const tags = Array.isArray(item.tags) ? item.tags.slice(0, 3) : [];
 
-  const titleLines = wrapText(titulo, 22, 4);
-  const introLines = wrapText(intro, 38, 4);
+  // Padding direito conservador (16 chars no titulo, 28 na intro) garante
+  // que palavras nunca encostem na borda mesmo em Impact/Arial Black do
+  // libvips, que e mais largo que Big Shoulders Stencil.
+  const titleLines = wrapText(titulo, 16, 5);
+  const introLines = wrapText(intro, 28, 5);
 
   const titleLineHeight = 88;
-  const introLineHeight = 42;
-  const titleY = 540;
-  const introY = titleY + titleLines.length * titleLineHeight + 50;
+  const introLineHeight = 44;
+  const titleY = 520;
+  const introY = titleY + titleLines.length * titleLineHeight + 60;
 
   const titleSpans = titleLines
     .map((line, i) => `<tspan x="80" dy="${i === 0 ? 0 : titleLineHeight}">${escapeXml(line)}</tspan>`)
@@ -103,19 +138,19 @@ function buildOverlaySvg(item) {
     .map((line, i) => `<tspan x="80" dy="${i === 0 ? 0 : introLineHeight}">${escapeXml(line)}</tspan>`)
     .join("");
 
-  const tagsY = SLIDE_H - 130;
+  const tagsY = SLIDE_H - 140;
   let tagsX = 80;
   const tagsXml = tags.map((t) => {
     const key = String(t).toLowerCase();
     const label = TAG_LABELS[key] || key.toUpperCase();
     const color = TAG_COLORS[key] || "#444";
-    const w = label.length * 16 + 36;
+    const w = label.length * 17 + 38;
     const rot = (Math.random() * 4 - 2).toFixed(1);
     const x = tagsX;
     tagsX += w + 14;
     return `<g transform="translate(${x},${tagsY}) rotate(${rot})">
-      <rect width="${w}" height="42" rx="2" fill="${color}" />
-      <text x="${w / 2}" y="28" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="22" font-weight="900" fill="#f7f1de" text-anchor="middle" letter-spacing="2">${label}</text>
+      <rect width="${w}" height="46" rx="2" fill="${color}" />
+      <text x="${w / 2}" y="31" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="24" font-weight="900" fill="#f7f1de" text-anchor="middle" letter-spacing="2">${label}</text>
     </g>`;
   }).join("");
 
@@ -123,34 +158,44 @@ function buildOverlaySvg(item) {
     <defs>
       <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="rgba(10,9,8,0)" />
-        <stop offset="40%" stop-color="rgba(10,9,8,0.55)" />
-        <stop offset="100%" stop-color="rgba(10,9,8,0.92)" />
+        <stop offset="25%" stop-color="rgba(10,9,8,0.55)" />
+        <stop offset="55%" stop-color="rgba(10,9,8,0.88)" />
+        <stop offset="100%" stop-color="rgba(10,9,8,0.96)" />
       </linearGradient>
       <linearGradient id="topFade" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="rgba(10,9,8,0.78)" />
+        <stop offset="0%" stop-color="rgba(10,9,8,0.88)" />
         <stop offset="100%" stop-color="rgba(10,9,8,0)" />
       </linearGradient>
+      <filter id="textShadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0a0908" flood-opacity="0.9"/>
+      </filter>
     </defs>
 
-    <!-- escurece topo e base pra contraste com texto -->
-    <rect x="0" y="0" width="${SLIDE_W}" height="200" fill="url(#topFade)" />
-    <rect x="0" y="${SLIDE_H - 900}" width="${SLIDE_W}" height="900" fill="url(#bottomFade)" />
+    <!-- escurece topo (so abaixo da tarja vermelha) e base pra contraste com texto -->
+    <rect x="0" y="105" width="${SLIDE_W}" height="160" fill="url(#topFade)" />
+    <rect x="0" y="${SLIDE_H - 1000}" width="${SLIDE_W}" height="1000" fill="url(#bottomFade)" />
 
-    <!-- flag superior -->
-    <text x="80" y="80" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="34" font-weight="900" fill="#f7f1de" letter-spacing="6">SMUFDPJ</text>
-    <text x="80" y="118" font-family="'Special Elite',Courier,monospace" font-size="18" fill="#f7f1de" opacity="0.78" letter-spacing="4">░ SÓ MAIS UM FÃ DE PEARL JAM ░</text>
+    <!-- tarja vermelha sangue no topo, full-width, com SMUFDPJ inscrito.
+         Vira o "logo" identificador do feed: alta saturacao + tipografia
+         stencil massiva garante reconhecimento em scroll rapido. -->
+    <rect x="0" y="0" width="${SLIDE_W}" height="100" fill="#c12727"/>
+    <rect x="0" y="100" width="${SLIDE_W}" height="5" fill="#0a0908"/>
+    <text x="80" y="72" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="56" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="2" paint-order="stroke fill" letter-spacing="10">SMUFDPJ</text>
+    <text x="${SLIDE_W - 80}" y="58" font-family="'Special Elite',Courier,monospace" font-size="14" fill="#f7f1de" letter-spacing="4" text-anchor="end" opacity="0.92">SÓ MAIS UM FÃ</text>
+    <text x="${SLIDE_W - 80}" y="82" font-family="'Special Elite',Courier,monospace" font-size="14" fill="#f7f1de" letter-spacing="4" text-anchor="end" opacity="0.92">DE PEARL JAM</text>
 
-    <!-- titulo -->
-    <text x="80" y="${titleY}" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="78" font-weight="900" fill="#f7f1de" letter-spacing="-1">${titleSpans}</text>
+    <!-- titulo com stroke preto pesado pra cortar qualquer fundo claro -->
+    <text x="80" y="${titleY}" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="82" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="5" paint-order="stroke fill" letter-spacing="-1" filter="url(#textShadow)">${titleSpans}</text>
 
-    <!-- intro -->
-    <text x="80" y="${introY}" font-family="'Newsreader','Georgia',serif" font-style="italic" font-size="34" fill="#f0e7c8" opacity="0.95">${introSpans}</text>
+    <!-- intro com stroke fino e shadow forte -->
+    <text x="80" y="${introY}" font-family="'Newsreader','Georgia',serif" font-style="italic" font-size="36" fill="#fff5d8" stroke="#0a0908" stroke-width="1.2" paint-order="stroke fill" filter="url(#textShadow)">${introSpans}</text>
 
     <!-- tags stamp -->
     ${tagsXml}
 
-    <!-- source rodape -->
-    <text x="80" y="${SLIDE_H - 60}" font-family="'Special Elite',Courier,monospace" font-size="20" fill="#c8261c" letter-spacing="3" font-weight="700">VIA ${source}</text>
+    <!-- CTA pro nosso site (vitrine no IG, fonte original creditada no caption do post) -->
+    <text x="80" y="${SLIDE_H - 75}" font-family="'Special Elite',Courier,monospace" font-size="20" fill="#ff6b3a" stroke="#0a0908" stroke-width="1.2" paint-order="stroke fill" letter-spacing="3" font-weight="700" filter="url(#textShadow)">LEIA EM</text>
+    <text x="80" y="${SLIDE_H - 42}" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="28" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="2" paint-order="stroke fill" letter-spacing="0" filter="url(#textShadow)">SETLISTS-PJ-EV.PAGES.DEV</text>
   </svg>`;
 }
 
@@ -168,14 +213,24 @@ export async function buildSlide(item) {
   } catch {}
 
   const baseBuf = (await fetchBaseImageBuffer(item)) || (await makeFallbackBg());
-  const cover = await sharp(baseBuf, { failOn: "none" })
+  const coverRaw = await sharp(baseBuf, { failOn: "none" })
     .resize(SLIDE_W, SLIDE_H, { fit: "cover", position: "attention" })
     .toBuffer();
+  // Aplica aberracao cromatica antes dos overlays escuros (faux 3D).
+  // Se falhar (foto cinza/PB ou erro de processamento), cai pra cover puro.
+  let cover;
+  try {
+    cover = await applyChromaticAberration(coverRaw, 5);
+  } catch (e) {
+    console.warn(`[slide] chromatic aberration falhou em ${item.id}, usando cover puro: ${e.message}`);
+    cover = coverRaw;
+  }
 
   // overlay escurecedor base (alem do gradient do svg, pra ainda mais contraste
-  // quando a imagem origem e clara)
+  // quando a imagem origem e clara). 0.50 garante que fotos brancas/studio
+  // viram fundo escuro o suficiente pra texto branco ler bem.
   const overlay = await sharp({
-    create: { width: SLIDE_W, height: SLIDE_H, channels: 4, background: { r: 10, g: 9, b: 8, alpha: 0.35 } },
+    create: { width: SLIDE_W, height: SLIDE_H, channels: 4, background: { r: 10, g: 9, b: 8, alpha: 0.5 } },
   }).png().toBuffer();
 
   const svg = Buffer.from(buildOverlaySvg(item));
