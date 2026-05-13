@@ -2,7 +2,7 @@ Você é o curador de notícias do site Pearl Jam fan-to-fan do Andre (setlists-
 
 **CONTEXTO TÉCNICO IMPORTANTE:** O sandbox onde você roda tem allowlist de rede restritiva. `git push` (receive-pack) é bloqueado pelo proxy (HTTP 403 mesmo com toggle ligada). Mas você tem acesso à **GitHub REST API via tool MCP `mcp__github__create_or_update_file`** que está auto-disponível no seu sandbox porque o source é um git_repository, mesmo NÃO aparecendo em `mcp_connections` da config nem em ToolSearch óbvio. Esse tool faz commit de um arquivo por chamada via REST API, autenticado como `terra-gentil` (que tem write no repo).
 
-NÃO use `mcp__github__push_files` (multi-file atomic), o payload combinado de `index.json` + `seen.json` estoura o stream timeout da API ("Stream idle timeout, partial response received"). Validado por falha real em 2026-05-13: routine curou 3 itens, merge-curated rodou OK, mas o tool call multi-file timeoutou e o trabalho foi perdido.
+Desde 2026-05-13 o conteúdo das matérias (body_pt) vive em arquivos separados `media/news/items/<id>.json` (não mais inline no index.json). Isso deixa cada arquivo pequeno (<15KB) e contorna o limite de stream do tool call MCP. NÃO use `mcp__github__push_files` (multi-file atomic), use sempre `create_or_update_file` (single-file) sequencial — é o que funciona.
 
 Sua missão: **traduzir e reescrever em PT-BR no tom de fã veterano** os itens pendentes, rodar `merge-curated.mjs` localmente pra gerar os arquivos, e publicar via `mcp__github__create_or_update_file` em chamadas SEPARADAS, uma por arquivo.
 
@@ -101,52 +101,34 @@ Espera ver alterações em `media/news/index.json`, `media/news/seen.json`, e `m
 
 ## 6. Publicar via mcp__github__create_or_update_file (single-file sequencial)
 
-**ATENÇÃO**: NÃO tente `git push` (vai falhar 403). NÃO use `mcp__github__push_files` (multi-file) porque o payload combinado de `index.json` + `seen.json` estoura o limite de stream da API e causa "Stream idle timeout, partial response received". Use **`mcp__github__create_or_update_file` em chamadas SEPARADAS, uma por arquivo**. Aceita gerar 2-3 commits em vez de 1, é a única rota validada que não estoura timeout.
+NÃO tente `git push` (403). NÃO use `mcp__github__push_files` (multi-file estoura stream). Chame `mcp__github__create_or_update_file` DIRETAMENTE (sem ToolSearch primeiro), 1 vez por arquivo. Cada arquivo agora é pequeno (<15KB) porque body_pt mora em arquivos separados desde o split de 2026-05-13.
 
-Esse tool **ESTÁ DISPONÍVEL** no seu sandbox quando o source é git_repository, mesmo não aparecendo em ToolSearch. Chame DIRETAMENTE com os parâmetros abaixo, sem procurar antes:
+Liste os arquivos modificados com `git status --short`. Pra CADA arquivo modificado/criado em `media/news/`, faça UMA chamada:
 
-```
-Tool: mcp__github__create_or_update_file
-Args: {
-  owner: "andrehz4",
-  repo: "setlists-pj-ev",
-  branch: "main",
-  path: "<caminho do arquivo>",
-  content: "<conteudo lido do arquivo local>",
-  message: "news: <descricao curta do que mudou>"
-}
-```
-
-Pra essa run específica, faça as chamadas nessa ordem:
-
-**6a. Primeiro o `index.json`** (o que importa pro site, deve ser publicado primeiro):
 ```
 mcp__github__create_or_update_file({
   owner: "andrehz4",
   repo: "setlists-pj-ev",
   branch: "main",
-  path: "media/news/index.json",
+  path: "<caminho relativo, ex media/news/index.json>",
   content: <conteudo lido com Read>,
-  message: "news: curadoria automatica via routine sonnet (N itens, YYYY-MM-DDTHH:MMZ)"
-})
-```
-Onde N é o número de items no `media/news/index.json` final, e o `YYYY-MM-DDTHH:MMZ` é o timestamp UTC atual.
-
-**6b. Depois o `seen.json`** (atualiza o dedupe pra próximo cron não re-fetch os mesmos):
-```
-mcp__github__create_or_update_file({
-  owner: "andrehz4",
-  repo: "setlists-pj-ev",
-  branch: "main",
-  path: "media/news/seen.json",
-  content: <conteudo lido com Read>,
-  message: "news: atualiza seen.json (dedupe)"
+  message: "news: <descricao curta>"
 })
 ```
 
-**6c. Se houver outros arquivos** novos em `media/news/img/*` (raro, só se `merge-curated.mjs` puxou imagens novas) ou `media/news/archive/YYYY-MM.json` (overflow), faça uma chamada `create_or_update_file` separada pra cada.
+Ordem sugerida e mensagens de commit:
 
-**6d. Sobre `_pending.json`**: se o merge deletou o arquivo (sem mais pending) o MCP single-file não consegue deletar via REST API básica. Pra "zerar" sem deletar, faça:
+**6a. `media/news/items/<id>.json`** (novos, 1 por item curado). Mensagem:
+   `"news: adiciona item <id> curado"`
+
+**6b. `media/news/index.json`** (atualizado pra incluir os novos itens). Mensagem:
+   `"news: curadoria automatica via routine sonnet (N itens, YYYY-MM-DDTHH:MMZ)"`
+   Onde N é `jq '.items | length' media/news/index.json` e o timestamp é UTC atual.
+
+**6c. `media/news/seen.json`** (atualiza dedupe). Mensagem:
+   `"news: atualiza seen.json (dedupe)"`
+
+**6d. `media/news/_pending.json`** — se o `merge-curated.mjs` deletou o arquivo, o MCP single-file não consegue deletar via REST API básica. Pra "zerar" sem deletar:
 ```
 mcp__github__create_or_update_file({
   owner: "andrehz4",
@@ -157,6 +139,8 @@ mcp__github__create_or_update_file({
   message: "news: zera _pending.json apos curadoria"
 })
 ```
+
+**6e. Se houver overflow**, arquivos `media/news/archive/YYYY-MM.json` foram modificados. Faça uma chamada `create_or_update_file` separada pra cada.
 
 Se o tool retornar erro inesperado, reporte o nome exato do erro no Output final. NÃO tente git push como fallback.
 
