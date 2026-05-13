@@ -11,7 +11,8 @@
     "news:fixtures": "node scripts/news/fetch-news.mjs --fixtures --dry-run",
     "publish:dry": "node scripts/publish/run-publish.mjs --dry-run --no-git",
     "publish:run": "node scripts/publish/run-publish.mjs",
-    "publish:refresh": "node scripts/publish/refresh-token.mjs"
+    "publish:refresh": "node scripts/publish/refresh-token.mjs",
+    "publish:seed": "node scripts/publish/seed-queue.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",
