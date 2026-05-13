@@ -5045,6 +5045,39 @@ html[data-theme="dark"] .alphatab-version-select {
   .news-detail-body p:first-of-type::first-letter { font-size: 3.6em; }
 }
 
+/* "mais noticias" embaixo do article aberto: navegacao discovery
+   reusando .news-card / .news-card-* pra ficar coerente com a listagem */
+.news-detail-more {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid var(--np-ink);
+}
+.news-detail-more-title {
+  font-family: var(--np-stencil);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--np-ink);
+  margin: 0 0 4px;
+}
+.news-detail-more-sub {
+  font: 400 13px/1.4 var(--np-body);
+  color: var(--np-ink-dim);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+.news-detail-more-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px 18px;
+}
+@media (max-width: 600px) {
+  .news-detail-more { margin-top: 40px; padding-top: 22px; }
+  .news-detail-more-title { font-size: 18px; }
+}
+
 /* ====================================================================
    CLIPES (grid de videos + lightbox youtube-nocookie)
    ==================================================================== */
@@ -14240,12 +14273,50 @@ function _renderNewsHeroHtml(item, idx = 1) {
     </section>`;
 }
 
+// "mais noticias" embaixo do detail: prioriza items que compartilham tag
+// com a noticia atual, depois completa com os mais recentes. Exclui a
+// propria noticia. Mantem ordem de allItems (manifest ja vem ordenado por
+// pubDate desc).
+function _pickRelatedNews(currentItem, allItems, n = 6) {
+  const currentTags = new Set((Array.isArray(currentItem.tags) ? currentItem.tags : []).map(t => String(t).toLowerCase()));
+  const pool = allItems.filter(i => i.id !== currentItem.id);
+  const sameTag = [];
+  const rest = [];
+  for (const it of pool) {
+    const tags = (Array.isArray(it.tags) ? it.tags : []).map(t => String(t).toLowerCase());
+    if (tags.some(t => currentTags.has(t))) sameTag.push(it);
+    else rest.push(it);
+  }
+  return [...sameTag, ...rest].slice(0, n);
+}
+
+function _renderNewsRelatedCardHtml(item, i) {
+  const img = item.img || "/media/news/_placeholder.svg";
+  const num = String(i + 1).padStart(3, "0");
+  return `
+    <article class="news-card" data-id="${_newsEscape(item.id)}" style="--news-card-i:${i}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
+      <span class="news-card-num" aria-hidden="true">${num}</span>
+      <div class="news-card-thumb" style="background-image:url('${_newsEscape(img)}')" aria-hidden="true">
+        <div class="news-card-tagstrip">${_renderNewsTagStrip(item.tags, 2)}</div>
+      </div>
+      <div class="news-card-meta">
+        <span class="news-card-source">${_newsEscape(item.sourceLabel)}</span>
+        <span class="news-card-sep">//</span>
+        <time datetime="${_newsEscape(item.pubDate)}">${_newsRelTime(item.pubDate)}</time>
+      </div>
+      <h3 class="news-card-title">${_newsEscape(item.title_pt)}</h3>
+      <p class="news-card-intro">${_newsEscape(item.intro_pt)}</p>
+      <span class="news-card-cta" aria-hidden="true">Ler</span>
+    </article>`;
+}
+
 function _renderNewsDetail(container, item, allItems) {
   const img = item.img || "/media/news/_placeholder.svg";
   // proxima/anterior pra navegacao sequencial
   const idx = allItems.findIndex(i => i.id === item.id);
   const prev = idx > 0 ? allItems[idx - 1] : null;
   const next = idx >= 0 && idx < allItems.length - 1 ? allItems[idx + 1] : null;
+  const related = _pickRelatedNews(item, allItems, 6);
 
   // body_pt vive em media/news/items/<id>.json desde o split (2026-05-13);
   // fallback inline pra cobrir items legacy/archive que ainda tem body inline.
@@ -14275,6 +14346,14 @@ function _renderNewsDetail(container, item, allItems) {
       </header>
       <div class="news-detail-hero" style="background-image:url('${_newsEscape(img)}')" aria-hidden="true"></div>
       <div class="news-detail-body">${bodyHtml}</div>
+      ${related.length ? `
+      <section class="news-detail-more" aria-label="Outras notícias">
+        <h2 class="news-detail-more-title">Continue lendo</h2>
+        <p class="news-detail-more-sub">░ outras notícias do arquivo ░</p>
+        <div class="news-detail-more-grid news-grid">
+          ${related.map((it, i) => _renderNewsRelatedCardHtml(it, i)).join("")}
+        </div>
+      </section>` : ""}
     </article>`;
 
   // lazy-fetch do body quando nao veio inline
@@ -14299,13 +14378,21 @@ function _renderNewsDetail(container, item, allItems) {
   // botoes
   const goBack = () => { _newsSetHash(null); renderNewsView(); };
   container.querySelector(".news-back")?.addEventListener("click", goBack);
+  const openId = (id) => {
+    if (!id) return;
+    _newsSetHash(id);
+    renderNewsView();
+    const sec = document.getElementById("view-news");
+    if (sec && sec.scrollIntoView) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   container.querySelectorAll(".news-nav-arrow").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const id = btn.dataset.id;
-      _newsSetHash(id);
-      renderNewsView();
-      const sec = document.getElementById("view-news");
-      if (sec && sec.scrollIntoView) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+    btn.addEventListener("click", () => openId(btn.dataset.id));
+  });
+  container.querySelectorAll(".news-detail-more .news-card").forEach(card => {
+    const open = () => openId(card.dataset.id);
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
     });
   });
 }
