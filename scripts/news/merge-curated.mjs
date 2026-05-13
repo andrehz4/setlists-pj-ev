@@ -15,6 +15,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { writeStepSummary } from "./_summary.mjs";
+import { readQueue, writeQueue, enqueue } from "../publish/queue.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -143,6 +144,21 @@ async function main() {
   }
 
   console.log(`[merge] aceitos: ${newItems.length} / ${curatedInput.length}`);
+
+  // enfileira items aceitos pra publicacao no IG (delay padrao 3h). Items
+  // que falharem aqui nao bloqueiam o merge, so logam aviso. Fila vive
+  // em media/news/_publish-queue.json e e consumida pelo workflow
+  // publish-instagram.yml a cada 30min.
+  try {
+    const queue = await readQueue();
+    const added = enqueue(queue, newItems);
+    if (added.length) {
+      await writeQueue(queue);
+      console.log(`[merge] enfileirado pra IG: ${added.length} (publishAt = now+3h)`);
+    }
+  } catch (e) {
+    console.warn(`[merge] falha ao enfileirar IG (segue mesmo assim): ${e.message}`);
+  }
 
   // merge no index
   const map = new Map();

@@ -1,0 +1,36 @@
+name: Refresh IG token
+on:
+  schedule:
+    # Tokens long-lived expiram em 60 dias. Renovamos no dia 1 e dia 15
+    # de cada mes, garantindo no maximo ~15 dias de gap.
+    - cron: '13 6 1,15 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Refresh token
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          # PAT precisa escopo actions:write pra escrever secret. Configurar
+          # em Settings > Secrets > Actions > GH_PAT_SECRETS. Sem ele, o
+          # script imprime o novo token mascarado e Andre roda manual.
+          GH_TOKEN: ${{ secrets.GH_PAT_SECRETS }}
+        run: node scripts/publish/refresh-token.mjs
