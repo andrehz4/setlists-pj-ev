@@ -86,6 +86,8 @@ function buildOverlaySvg(item) {
   const titulo = escapeXml(item.title_pt || "");
   const intro = escapeXml(item.intro_pt || "");
   const tags = Array.isArray(item.tags) ? item.tags.slice(0, 3) : [];
+  // cor da tarja superior cicla a cada 3 posts (calculado em run-publish)
+  const tarjaColor = item._tarjaColor || "#c12727";
 
   // Padding direito conservador (16 chars no titulo, 28 na intro) garante
   // que palavras nunca encostem na borda mesmo em Impact/Arial Black do
@@ -142,10 +144,10 @@ function buildOverlaySvg(item) {
     <rect x="0" y="105" width="${SLIDE_W}" height="160" fill="url(#topFade)" />
     <rect x="0" y="${SLIDE_H - 1000}" width="${SLIDE_W}" height="1000" fill="url(#bottomFade)" />
 
-    <!-- tarja vermelha sangue no topo, full-width, com SMUFDPJ inscrito.
-         Vira o "logo" identificador do feed: alta saturacao + tipografia
-         stencil massiva garante reconhecimento em scroll rapido. -->
-    <rect x="0" y="0" width="${SLIDE_W}" height="100" fill="#c12727"/>
+    <!-- tarja superior full-width com SMUFDPJ inscrito. Cor cicla a cada
+         3 posts (vermelho -> preto -> ocre -> azul -> ...) pra dar
+         dinamica visual no feed sem perder identidade. -->
+    <rect x="0" y="0" width="${SLIDE_W}" height="100" fill="${tarjaColor}"/>
     <rect x="0" y="100" width="${SLIDE_W}" height="5" fill="#0a0908"/>
     <text x="80" y="72" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="56" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="2" paint-order="stroke fill" letter-spacing="10">SMUFDPJ</text>
     <text x="${SLIDE_W - 80}" y="58" font-family="'Special Elite',Courier,monospace" font-size="14" fill="#f7f1de" letter-spacing="4" text-anchor="end" opacity="0.92">SÓ MAIS UM FÃ</text>

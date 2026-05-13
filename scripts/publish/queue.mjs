@@ -15,16 +15,17 @@ export async function readQueue() {
   try {
     const raw = await fs.readFile(QUEUE_PATH, "utf8");
     const doc = JSON.parse(raw);
-    if (!doc || !Array.isArray(doc.items)) return { items: [] };
-    return doc;
+    if (!doc || !Array.isArray(doc.items)) return { items: [], postCount: 0 };
+    return { items: doc.items, postCount: doc.postCount || 0 };
   } catch {
-    return { items: [] };
+    return { items: [], postCount: 0 };
   }
 }
 
 export async function writeQueue(queue) {
   const sorted = {
     items: [...queue.items].sort((a, b) => new Date(a.queuedAt) - new Date(b.queuedAt)),
+    postCount: queue.postCount || 0,
   };
   await fs.writeFile(QUEUE_PATH, JSON.stringify(sorted, null, 2));
 }
