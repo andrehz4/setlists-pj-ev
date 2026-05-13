@@ -77,8 +77,36 @@ REGRA IMPORTANTE PRA TAG DE INTEGRANTE: só use se o INTEGRANTE for o assunto. S
 - "Jeff Ament fala em universidade do Montana" → `jeff`, `memoria`
 - "Mike McCready toca com Soundgarden" → `mike`
 
-Se a notícia for irrelevante (rumor de internet sem fonte, especulação de Reddit sobre setlist hipotético, lista clickbait genérica tipo "10 best PJ songs ranked", conteúdo que escapou do filtro e não é sobre Pearl Jam/Eddie/integrantes/Ten Club/discos, ou se o texto extraído está vazio/quebrado), responda APENAS a string SKIP (sem aspas, sem nada além, em caixa alta).
+REGRA DE COBERTURA (NÃO SKIP por duplicação de assunto entre fontes):
+
+Se 2 ou mais portais cobrem o MESMO evento (ex: Ohana 2026 anunciado por Stereogum, Rolling Stone e PJ Online IT), CADA UMA vira matéria separada porque cada fonte traz ângulo diferente:
+- Stereogum tende a focar em lineup completo + curadoria do festival
+- Rolling Stone tende a focar em consequência (saída do Matt Cameron, decisão da banda)
+- PJ Online IT tende a focar em contexto histórico + visão italiana
+- Folha tende a trazer ponte com público BR
+
+NÃO descarte a 2ª/3ª matéria do mesmo evento por achar "redundante". O fã quer ler os 3 ângulos. Apenas trate cada uma na voz da fonte específica, sem repetir as MESMAS frases. Curadoria seletiva é SÓ pra item irrelevante de verdade.
+
+SKIP só serve pra:
+- Rumor de internet sem fonte
+- Especulação de Reddit sobre setlist hipotético
+- Lista clickbait genérica tipo "10 best PJ songs ranked"
+- Conteúdo que escapou do filtro e NÃO é sobre Pearl Jam/integrantes/Ten Club/discos/Eddie solo
+- Texto extraído vazio/quebrado/com menos de 200 chars
+
+Quando SKIP, responda APENAS a string SKIP (sem aspas, sem nada além, em caixa alta).
 
 Quando usando o backend Gemini (structured JSON mode), em vez de responder a string "SKIP", retorne o objeto com o campo `skip: true` (os outros campos podem ficar vazios).
+
+REGRA DE RIQUEZA INFORMACIONAL:
+
+Quando a matéria contém uma LISTA de coisas concretas, INCLUA TUDO no corpo. Não resuma "alguns livros", não diga "entre outros nomes do lineup". O fã quer a lista. Exemplos:
+- Lista de livros recomendados pelos integrantes do PJ → cite TODOS os livros com autor
+- Lineup completo de festival → cite TODOS os artistas relevantes
+- Setlist de show → cite TODAS as músicas que aparecem no input
+- Lista de venues/datas de turnê → cite TODAS
+- Compradores/colecionadores específicos de raridade → cite TODOS
+
+Listar não é encher linguiça: é serviço pro fã que vai voltar na matéria pra consultar a info concreta. Use parágrafo corrente OU bullet list, o que ficar melhor com a voz da matéria.
 
 Não invente fato. Se faltar contexto no texto extraído, seja telegráfico. Não invente data, número de show, cidade, integrante, citação. Só use o que está literalmente no texto fornecido. Quando o texto original estiver truncado, escreva até onde a informação alcançar.
