@@ -82,39 +82,6 @@ async function makeFallbackBg() {
   }).jpeg({ quality: 88 }).toBuffer();
 }
 
-// Aberracao cromatica (faux 3D / anaglyph). Duplica a foto em duas
-// camadas: canal vermelho offset pra esquerda, canais verde+azul
-// (= ciano) offset pra direita. Composite com blend 'screen' por cima
-// da base. Resultado: efeito de "print errado dos anos 70" / parallax
-// estatico que da sensacao de profundidade sem precisar de animacao.
-//
-// OFFSET pequeno (5px) deixa o efeito SUTIL: visivel em close mas nao
-// distrai do conteudo. Aumenta pra 10+ se quiser overt 3D anaglyph
-// classico (precisa oculos vermelho-azul pra ver "3D real").
-async function applyChromaticAberration(buf, offset = 5) {
-  const redLayer = await sharp(buf)
-    .recomb([
-      [1, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-    ])
-    .toBuffer();
-  const cyanLayer = await sharp(buf)
-    .recomb([
-      [0, 0, 0],
-      [0, 1, 0],
-      [0, 0, 1],
-    ])
-    .toBuffer();
-
-  return sharp(buf)
-    .composite([
-      { input: redLayer, left: -offset, top: 0, blend: "screen" },
-      { input: cyanLayer, left: offset, top: 0, blend: "screen" },
-    ])
-    .toBuffer();
-}
-
 function buildOverlaySvg(item) {
   const titulo = escapeXml(item.title_pt || "");
   const intro = escapeXml(item.intro_pt || "");
@@ -213,18 +180,9 @@ export async function buildSlide(item) {
   } catch {}
 
   const baseBuf = (await fetchBaseImageBuffer(item)) || (await makeFallbackBg());
-  const coverRaw = await sharp(baseBuf, { failOn: "none" })
+  const cover = await sharp(baseBuf, { failOn: "none" })
     .resize(SLIDE_W, SLIDE_H, { fit: "cover", position: "attention" })
     .toBuffer();
-  // Aplica aberracao cromatica antes dos overlays escuros (faux 3D).
-  // Se falhar (foto cinza/PB ou erro de processamento), cai pra cover puro.
-  let cover;
-  try {
-    cover = await applyChromaticAberration(coverRaw, 5);
-  } catch (e) {
-    console.warn(`[slide] chromatic aberration falhou em ${item.id}, usando cover puro: ${e.message}`);
-    cover = coverRaw;
-  }
 
   // overlay escurecedor base (alem do gradient do svg, pra ainda mais contraste
   // quando a imagem origem e clara). 0.50 garante que fotos brancas/studio
