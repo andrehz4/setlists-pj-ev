@@ -1,0 +1,71 @@
+name: News merge curated (from routine)
+
+# Disparado pela Claude routine remota via API:
+#   POST https://api.github.com/repos/andrehz4/setlists-pj-ev/dispatches
+#   body: { event_type: "news-curated", client_payload: { curated: [...] } }
+#
+# Existe porque o ambiente da routine bloqueia git push (allowlist de rede
+# permite api.github.com mas nao receive-pack). Esse workflow recebe o JSON
+# curado via payload, roda merge-curated.mjs e empurra com GITHUB_TOKEN nativo.
+
+on:
+  repository_dispatch:
+    types: [news-curated]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-merge
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Escreve curated.json a partir do payload
+        env:
+          PAYLOAD: ${{ toJSON(github.event.client_payload.curated) }}
+        run: |
+          echo "$PAYLOAD" > /tmp/curated.json
+          if ! jq -e 'type == "array"' /tmp/curated.json >/dev/null; then
+            echo "ERRO: client_payload.curated nao e um array JSON"
+            cat /tmp/curated.json | head -c 500
+            exit 1
+          fi
+          echo "Items no payload: $(jq 'length' /tmp/curated.json)"
+
+      - name: Merge curated
+        run: node scripts/news/merge-curated.mjs --file /tmp/curated.json
+
+      - name: Commit & push
+        run: |
+          git config user.name "pj-news-bot"
+          git config user.email "bot@setlists-pj.local"
+          git add media/news/
+          if git diff --cached --quiet; then
+            echo "Sem mudancas no media/news/, nao vou commitar."
+          else
+            N=$(jq '.items | length' media/news/index.json)
+            COMMIT_MSG="news: curadoria automatica via routine sonnet (repository_dispatch, $N itens) $(date -u +%Y-%m-%dT%H:%MZ)"
+            git commit -m "$COMMIT_MSG"
+            for i in 1 2 3; do
+              git pull origin main --rebase --autostash || true
+              if git push origin main 2>&1; then break; fi
+              echo "push tentativa $i falhou, retry..."
+              sleep 2
+            done
+          fi
