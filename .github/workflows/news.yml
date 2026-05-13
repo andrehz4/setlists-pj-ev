@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
     inputs:
       curator:
-        description: 'Backend de curadoria'
+        description: 'Backend de curadoria (default no cron: routine. Override pra gemini/anthropic)'
         type: choice
-        options: [gemini, anthropic, routine]
-        default: gemini
+        options: [routine, gemini, anthropic]
+        default: routine
       dry-run:
         description: 'Dry run (nao escreve, nao commita)'
         type: boolean
@@ -45,7 +45,10 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           REDDIT_PROXY_URL: ${{ secrets.REDDIT_PROXY_URL }}
-          NEWS_CURATOR: ${{ inputs.curator || 'gemini' }}
+          # Default no cron: routine (so coleta + escreve _pending.json).
+          # Routine Sonnet remota acorda em :30 e cura. Manual via dispatch
+          # pode trocar pra gemini ou anthropic.
+          NEWS_CURATOR: ${{ inputs.curator || 'routine' }}
           # Modelo Gemini: trocavel via repo variable GEMINI_MODEL.
           # Opcoes: gemini-2.5-flash (default), gemini-2.5-flash-lite, gemini-2.5-pro,
           # gemini-3-flash-preview, gemini-3.1-pro-preview. Tabela: ai.google.dev/pricing
@@ -64,7 +67,12 @@ jobs:
           if git diff --cached --quiet; then
             echo "Sem mudancas, nao vou commitar."
           else
-            CURATOR_LABEL="${{ inputs.curator || 'gemini' }}"
-            git commit -m "news: atualizacao automatica ($CURATOR_LABEL) $(date -u +%Y-%m-%dT%H:%MZ)"
+            CURATOR_LABEL="${{ inputs.curator || 'routine' }}"
+            if [ "$CURATOR_LABEL" = "routine" ]; then
+              COMMIT_MSG="news: coleta automatica em _pending.json (routine sonnet ira curar) $(date -u +%Y-%m-%dT%H:%MZ)"
+            else
+              COMMIT_MSG="news: atualizacao automatica ($CURATOR_LABEL) $(date -u +%Y-%m-%dT%H:%MZ)"
+            fi
+            git commit -m "$COMMIT_MSG"
             git push
           fi

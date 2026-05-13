@@ -1,17 +1,23 @@
 name: Community fetch
 on:
   schedule:
-    # Digest: 12:00 UTC = 09:00 BRT
-    - cron: '0 12 * * *'
-    # Spotlight: 00:00 UTC = 21:00 BRT
-    - cron: '0 0 * * *'
+    # Digest: 12:25 UTC = 09:25 BRT (2min depois do news.yml das 12:23,
+    # 5min antes da routine das 12:30)
+    - cron: '25 12 * * *'
+    # Spotlight: 00:25 UTC = 21:25 BRT (mesma logica pro turno noturno)
+    - cron: '25 0 * * *'
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Modo do pipeline'
+        description: 'Modo do pipeline (digest=24h reddit, spotlight=fan art semana, both=ambos)'
         type: choice
         options: [digest, spotlight, both]
         default: both
+      curator:
+        description: 'Backend de curadoria (default routine. Override pra gemini)'
+        type: choice
+        options: [routine, gemini]
+        default: routine
       dry-run:
         description: 'Dry run (nao escreve, nao commita)'
         type: boolean
@@ -45,8 +51,8 @@ jobs:
         id: mode
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            # Cron 12:00 UTC -> digest; cron 00:00 UTC -> spotlight
-            if [ "${{ github.event.schedule }}" = "0 12 * * *" ]; then
+            # Cron 12:25 UTC -> digest; cron 00:25 UTC -> spotlight
+            if [ "${{ github.event.schedule }}" = "25 12 * * *" ]; then
               echo "mode=digest" >> $GITHUB_OUTPUT
             else
               echo "mode=spotlight" >> $GITHUB_OUTPUT
@@ -60,8 +66,12 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
           REDDIT_PROXY_URL: ${{ secrets.REDDIT_PROXY_URL }}
+          # Default no cron: routine (so coleta + escreve _pending.json).
+          # Routine Sonnet remota acorda em :30 e cura. Manual via dispatch
+          # pode trocar pra gemini pra curar na hora.
+          NEWS_CURATOR: ${{ inputs.curator || 'routine' }}
         run: |
-          ARGS="--mode=${{ steps.mode.outputs.mode }}"
+          ARGS="--mode=${{ steps.mode.outputs.mode }} --curator=$NEWS_CURATOR"
           if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           node scripts/news/community-fetch.mjs $ARGS
 
@@ -75,6 +85,12 @@ jobs:
             echo "Sem mudancas, nao vou commitar."
           else
             MODE="${{ steps.mode.outputs.mode }}"
-            git commit -m "community: $MODE $(date -u +%Y-%m-%dT%H:%MZ)"
+            CURATOR="${{ inputs.curator || 'routine' }}"
+            if [ "$CURATOR" = "routine" ]; then
+              COMMIT_MSG="community: $MODE pendente pra routine sonnet $(date -u +%Y-%m-%dT%H:%MZ)"
+            else
+              COMMIT_MSG="community: $MODE ($CURATOR) $(date -u +%Y-%m-%dT%H:%MZ)"
+            fi
+            git commit -m "$COMMIT_MSG"
             git push
           fi
