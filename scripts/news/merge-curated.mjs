@@ -22,7 +22,7 @@ const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
 
 const TOP_KEEP = 30;
-const VALID_TAGS = new Set(["turne", "lancamento", "ed-solo", "tenclub", "memoria", "br", "bootleg"]);
+const VALID_TAGS = new Set(["turne", "lancamento", "ed-solo", "tenclub", "memoria", "br", "bootleg", "comunidade"]);
 
 const args = process.argv.slice(2);
 const USE_STDIN = args.includes("--stdin");
@@ -88,7 +88,7 @@ async function main() {
     if (!validated) { console.warn(`[merge] invalido (skip): ${c?.id || "?"}`); continue; }
     const p = pendingById.get(validated.id);
     if (!p) { console.warn(`[merge] id ${validated.id} nao esta em _pending.json (skip)`); continue; }
-    newItems.push({
+    const baseItem = {
       id: p.id,
       url: p.url,
       source: p.source,
@@ -101,7 +101,17 @@ async function main() {
       intro_pt: validated.intro_pt,
       body_pt: validated.corpo_pt,
       tags: validated.tags,
-    });
+    };
+    // Preserva metadados extras vindos do _pending.json (community-spotlight
+    // tem community_author/community_post_url; community-digest tem
+    // community_posts_count). Esses campos sao opcionais e so existem em
+    // items com kind=community-*.
+    if (p.kind) baseItem.kind = p.kind;
+    if (p.community_author) baseItem.community_author = p.community_author;
+    if (p.community_post_url) baseItem.community_post_url = p.community_post_url;
+    if (p.community_post_score != null) baseItem.community_post_score = p.community_post_score;
+    if (p.community_posts_count != null) baseItem.community_posts_count = p.community_posts_count;
+    newItems.push(baseItem);
     acceptedIds.add(p.id);
     seen[p.id] = { firstSeen: Date.now(), title: p.title_orig || validated.titulo_pt };
   }

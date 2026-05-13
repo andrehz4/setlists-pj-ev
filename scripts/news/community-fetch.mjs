@@ -41,16 +41,26 @@ function argVal(name) {
 }
 const MODE = (argVal("mode") || "both").toLowerCase();
 const DRY = args.includes("--dry-run");
+// Curator: 'gemini' (default) usa community-digest.mjs/community-spotlight.mjs
+// direto; 'routine' apenas coleta+escreve em _pending.json pra Claude routine
+// curar depois (mesma logica do fetch-news.mjs).
+const CURATOR_NAME = (argVal("curator") || process.env.NEWS_CURATOR || "gemini").toLowerCase();
 
 if (!["digest", "spotlight", "both"].includes(MODE)) {
   console.error(`[community] modo invalido: '${MODE}'. Use: digest | spotlight | both`);
   process.exit(1);
 }
+if (!["gemini", "routine"].includes(CURATOR_NAME)) {
+  console.error(`[community] curator invalido: '${CURATOR_NAME}'. Use: gemini | routine`);
+  process.exit(1);
+}
+const IS_ROUTINE = CURATOR_NAME === "routine";
 
 const TOP_KEEP = 30;
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
+const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
 
 const DIGEST_MIN_POSTS = 5;
@@ -70,11 +80,16 @@ function todayUTC() {
   return new Date().toISOString().slice(0, 10).replace(/-/g, ""); // YYYYMMDD
 }
 
-async function runDigest({ seen, currentItems }) {
+async function runDigest({ seen, currentItems, pendingDoc }) {
   const dateKey = todayUTC();
   const id = `cd-${dateKey}`;
   if (seen[id]) {
     console.log(`[digest] ja publicado hoje (${id}), pulando.`);
+    return null;
+  }
+  // Se ja esta em _pending (modo routine ainda nao processou), pula
+  if ((pendingDoc.items || []).some((p) => p.id === id)) {
+    console.log(`[digest] ja em _pending.json (${id}), aguardando routine.`);
     return null;
   }
 
@@ -88,18 +103,49 @@ async function runDigest({ seen, currentItems }) {
     return null;
   }
 
+  // Imagem do digest: usa o cover do post mais votado que tiver imagem
+  const postWithImg = posts.find((p) => p.cover_image);
+  let localImg = null;
+  if (postWithImg) {
+    localImg = await cacheImage(postWithImg.cover_image, id);
+  }
+
+  // ---- Modo routine: escreve item bruto em _pending.json com posts agregados ----
+  if (IS_ROUTINE) {
+    return {
+      _kind: "pending",
+      pending: {
+        id,
+        url: `https://www.reddit.com/r/pearljam/top/?t=day`,
+        source: "reddit-community-digest",
+        sourceLabel: "Comunidade r/pearljam",
+        group: "comunidade",
+        pubDate: new Date().toISOString(),
+        fetchedAt: new Date().toISOString(),
+        img: localImg,
+        kind: "community-digest",
+        community_posts_count: posts.length,
+        // Os posts brutos vao no input pra Claude routine processar
+        community_posts: posts.map((p) => ({
+          author: p.author,
+          title: p.title,
+          flair: p.flair,
+          score: p.score,
+          num_comments: p.num_comments,
+          created_iso: p.created_iso,
+          selftext: p.selftext,
+          permalink: p.permalink,
+        })),
+      },
+    };
+  }
+
+  // ---- Modo gemini (default): cura agora ----
   const out = await curateDigest({ posts, periodLabel: "ultimas 24 horas" });
   if (out === "SKIP") {
     console.log("[digest] curator retornou SKIP, dia fraco.");
     seen[id] = { skipped: true, ts: Date.now(), kind: "community-digest" };
     return null;
-  }
-
-  // imagem do digest: usa o cover do post mais votado que tiver imagem
-  const postWithImg = posts.find((p) => p.cover_image);
-  let localImg = null;
-  if (postWithImg) {
-    localImg = await cacheImage(postWithImg.cover_image, id);
   }
 
   const item = {
@@ -118,10 +164,10 @@ async function runDigest({ seen, currentItems }) {
     community_posts_count: posts.length,
   };
   seen[id] = { firstSeen: Date.now(), kind: "community-digest", title: out.titulo_pt };
-  return item;
+  return { _kind: "curated", item };
 }
 
-async function runSpotlight({ seen, currentItems }) {
+async function runSpotlight({ seen, currentItems, pendingDoc }) {
   console.log(`[spotlight] buscando top.json?t=week...`);
   const all = await fetchTopWeek(25);
   console.log(`[spotlight] ${all.length} posts da semana`);
@@ -130,6 +176,12 @@ async function runSpotlight({ seen, currentItems }) {
   const publishedPostIds = new Set();
   for (const [k, v] of Object.entries(seen)) {
     if (k.startsWith("cs-") && v?.post_id) publishedPostIds.add(v.post_id);
+  }
+  // Tambem pula posts que ja estao em _pending (aguardando routine)
+  for (const p of (pendingDoc.items || [])) {
+    if (p.kind === "community-spotlight" && p.community_post_id) {
+      publishedPostIds.add(p.community_post_id);
+    }
   }
 
   const cand = pickSpotlightCandidate(all, publishedPostIds, { minScore: SPOTLIGHT_MIN_SCORE });
@@ -146,14 +198,42 @@ async function runSpotlight({ seen, currentItems }) {
     return null;
   }
 
+  const localImg = await cacheImage(cand.cover_image, id);
+
+  // ---- Modo routine: escreve item bruto em _pending.json com dados do post ----
+  if (IS_ROUTINE) {
+    return {
+      _kind: "pending",
+      pending: {
+        id,
+        url: cand.permalink,
+        source: "reddit-community-spotlight",
+        sourceLabel: "Comunidade r/pearljam",
+        group: "comunidade",
+        pubDate: cand.created_iso,
+        fetchedAt: new Date().toISOString(),
+        img: localImg,
+        kind: "community-spotlight",
+        community_post_id: cand.id,
+        community_post_url: cand.permalink,
+        community_post_score: cand.score,
+        // Dados pra Claude routine curar (sem repassar author pra evitar
+        // tentacao de cita-lo no texto - regra do prompt)
+        post_title_orig: cand.title,
+        post_flair: cand.flair,
+        post_num_comments: cand.num_comments,
+        post_selftext: cand.selftext,
+      },
+    };
+  }
+
+  // ---- Modo gemini (default): cura agora ----
   const out = await curateSpotlight({ post: cand });
   if (out === "SKIP") {
     console.log("[spotlight] curator retornou SKIP (menor, meme ou ambíguo).");
     seen[id] = { skipped: true, ts: Date.now(), kind: "community-spotlight", post_id: cand.id };
     return null;
   }
-
-  const localImg = await cacheImage(cand.cover_image, id);
 
   const item = {
     id,
@@ -178,7 +258,7 @@ async function runSpotlight({ seen, currentItems }) {
     post_id: cand.id,
     title: out.titulo_pt,
   };
-  return item;
+  return { _kind: "curated", item };
 }
 
 async function main() {
@@ -189,28 +269,55 @@ async function main() {
   const seen = await readJson(SEEN_PATH, {});
   const current = await readJson(INDEX_PATH, { updated: null, items: [] });
   const currentItems = Array.isArray(current.items) ? current.items : [];
+  const pendingDoc = await readJson(PENDING_PATH, { items: [] });
 
-  console.log(`[community] mode=${MODE} | dry=${DRY} | current items: ${currentItems.length} | seen: ${Object.keys(seen).length}`);
+  console.log(`[community] mode=${MODE} | curator=${CURATOR_NAME} | dry=${DRY} | current items: ${currentItems.length} | seen: ${Object.keys(seen).length} | pending: ${(pendingDoc.items||[]).length}`);
 
-  const newItems = [];
+  const results = [];
   if (MODE === "digest" || MODE === "both") {
-    const d = await runDigest({ seen, currentItems });
-    if (d) newItems.push(d);
+    const d = await runDigest({ seen, currentItems, pendingDoc });
+    if (d) results.push(d);
   }
   if (MODE === "spotlight" || MODE === "both") {
-    const s = await runSpotlight({ seen, currentItems });
-    if (s) newItems.push(s);
+    const s = await runSpotlight({ seen, currentItems, pendingDoc });
+    if (s) results.push(s);
   }
 
-  console.log(`[community] novos itens gerados: ${newItems.length}`);
+  // Separa items prontos (curated) de pendentes (routine mode)
+  const newItems = results.filter((r) => r._kind === "curated").map((r) => r.item);
+  const newPending = results.filter((r) => r._kind === "pending").map((r) => r.pending);
 
+  console.log(`[community] curados agora: ${newItems.length} | pendentes pra routine: ${newPending.length}`);
+
+  // ---- Modo routine: salva _pending.json e termina (nao mexe em index.json) ----
+  if (IS_ROUTINE) {
+    if (newPending.length === 0) {
+      console.log("[community] routine: nada novo pra pendurar.");
+      if (!DRY) await writeJson(SEEN_PATH, seen);
+      return;
+    }
+    const merged = {
+      generatedAt: new Date().toISOString(),
+      items: [...(pendingDoc.items || []), ...newPending],
+    };
+    if (DRY) {
+      console.log("[community] DRY routine, nao escrevendo. Novos pending:");
+      console.log(JSON.stringify(newPending, null, 2));
+    } else {
+      await writeJson(PENDING_PATH, merged);
+      await writeJson(SEEN_PATH, seen);
+      console.log(`[community] routine: ${PENDING_PATH} (${merged.items.length} aguardando curadoria)`);
+    }
+    return;
+  }
+
+  // ---- Modo gemini (default): publica direto no index.json ----
   if (newItems.length === 0) {
-    if (!DRY) await writeJson(SEEN_PATH, seen); // salva skipped/visited
+    if (!DRY) await writeJson(SEEN_PATH, seen);
     console.log("[community] nada a publicar.");
     return;
   }
 
-  // Merge no index.json: novos primeiro, dedupe por id, top TOP_KEEP, resto pro archive
   const map = new Map();
   for (const it of newItems) map.set(it.id, it);
   for (const it of currentItems) if (!map.has(it.id)) map.set(it.id, it);
