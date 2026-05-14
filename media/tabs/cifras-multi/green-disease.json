@@ -1,0 +1,307 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Green Disease (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C#m, 130 BPM."
+  },
+  "title": "Green Disease",
+  "artist": "Pearl Jam",
+  "key": "C#m",
+  "bpm": 130,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C#m": {
+          "fingering": "x46654",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 4
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "G#m": {
+          "fingering": "466444",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 4
+        },
+        "D#": {
+          "fingering": "x68886",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 6
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "A7": {
+          "fingering": "x02020",
+          "fingers": "x02030",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "022xxx",
+          "fingers": "023xxx",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "244xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 2
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "A5": {
+          "fingering": "x022xx",
+          "fingers": "x023xx",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C#m": {
+          "fingering": "1104",
+          "fingers": "1104",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "G#m": {
+          "fingering": "4323",
+          "fingers": "4213",
+          "fundamental": null
+        },
+        "D#": {
+          "fingering": "0331",
+          "fingers": "0231",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "A7": {
+          "fingering": "0100",
+          "fingers": "0100",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "4400",
+          "fingers": "2300",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "3100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C#m": {
+          "notes": [
+            "C#",
+            "E",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "G#m": {
+          "notes": [
+            "G#",
+            "B",
+            "D#"
+          ],
+          "fundamental": null
+        },
+        "D#": {
+          "notes": [
+            "D#",
+            "G",
+            "A#"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "A7": {
+          "notes": [
+            "A",
+            "C#",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "E5": {
+          "notes": [
+            "E",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "F#5": {
+          "notes": [
+            "F#",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A7]\n[E5] [F#5] [G5] [A5] (x2)\n\n{section: Verso 1}\n[C#m]It's a disease, and they're all [E]green\n[G#m]It emanates from their [D#]being\n[C#m]A satiation, with [E]occupation\n[C#m]And like weeds, with big [E]leaves\n[G#m]Stealing light from what's [D#]beneath\n[C#m]Where they have more\n[E]Still they take more, [A7]mmmh\n\n{section: Verso 2}\n[C#m]But I know, then I [E]don't\n[G#m]There's a stowaway with my [D#]throat\n[C#m]It's deceiving, I don't [E]believe him\n[C#m]We can scream, out our [E]doors\n[G#m]Behind the wall a fat man [D#]snores\n[C#m]In his dreams he's choking [E]tea leaves\n\n{section: Refrão}\n[A] [E]Well I guess\n[A] [E]There's nothing wrong with what you [D] [E]say\n[A] [E]But don't sell me,\n[A] [E]There can't be better [D]ways\n[A] [E]Tell the captain\n[A] [E]This boat's not safe and we're [D] [E]drowning\n[A] [E]Turns out he's the one making [D]waves\n[A]Waves, waves\n\n{section: Interlúdio}\n[E5] [F#5] [G5] [A5]\n[E5] [F#5] [G5]\n\n{section: Refrão 2}\n[A] [E]But I said\n[A] [E]There's nothing wrong with what you [D] [E]say\n[A] [E]Believe me, just asking you to [D]sway\n[A] [E]No white, or black, just [A] [E]grey\n[D] [E]Can you feel this\n[A] [E]World with your heart and not your [D]brain? [A7]\nBrain.\n\n{section: Outro}\n[E5]G [F#5]R [G5]E [A5]E D\n[E5]G [F#5]R [G5]E [A5]E D\n[E5]"
+}

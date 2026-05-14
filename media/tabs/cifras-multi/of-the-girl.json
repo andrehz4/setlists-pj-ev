@@ -1,0 +1,181 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Of the Girl (Pearl Jam, Binaural 2000).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C#m, 100 BPM."
+  },
+  "title": "Of the Girl",
+  "artist": "Pearl Jam",
+  "key": "C#m",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C#m": {
+          "fingering": "x46654",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 4
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "G#m": {
+          "fingering": "466444",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 4
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C#m": {
+          "fingering": "1104",
+          "fingers": "1104",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "G#m": {
+          "fingering": "4323",
+          "fingers": "4213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C#m": {
+          "notes": [
+            "C#",
+            "E",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "G#m": {
+          "notes": [
+            "G#",
+            "B",
+            "D#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C#m] (riff arpegiado)\n\n{section: Verso 1}\n[C#m]Oh he deals them off of the top, ties them off\nFills it up with his past, gets carried away\nHalf his life a hand me down wasted away\nFills his night with the thought of a girl\n[C#m]Oh he left it alone, drilled the pain with money to buy\n\n{section: Refrão}\n[E]How he makes his [G#m]getaway [C#m]\n[E]How he makes his [G#m]getaway [E] [G#m]\n\n{section: Interlúdio}\n[C#m]\n\n{section: Verso 2}\n[C#m]Oh he chose a path, heavy the fall, quarter to four\nFills his nights with the love of a girl\n\n{section: Refrão}\n[E]How he makes his [G#m]getaway [C#m]\n[E]How he makes his [G#m]getaway [C#m]\n[E]How he makes his [G#m]getaway [E]\n[G#m]Get away\n\n{section: Outro}\n[C#m]"
+}

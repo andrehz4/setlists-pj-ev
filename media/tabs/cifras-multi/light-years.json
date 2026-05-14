@@ -1,0 +1,295 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Light Years (Pearl Jam, Binaural 2000).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 102 BPM."
+  },
+  "title": "Light Years",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 102,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Cadd9": {
+          "fingering": "x32030",
+          "fingers": "x32040",
+          "fundamental": null
+        },
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 4
+        },
+        "Dmaj7": {
+          "fingering": "xx0222",
+          "fingers": "xx0111",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "D D D DU DU D D DU (102 bpm)",
+        "bpm": 102,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "0203",
+          "fingers": "0203",
+          "fundamental": null
+        },
+        "C#": {
+          "fingering": "1114",
+          "fingers": "1114",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Dmaj7": {
+          "fingering": "2224",
+          "fingers": "2213",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D D D DU DU D D DU (102 bpm)",
+        "bpm": 102,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Bb": {
+          "notes": [
+            "Bb",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "Cadd9": {
+          "notes": [
+            "C",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "C#": {
+          "notes": [
+            "C#",
+            "F",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "Dmaj7": {
+          "notes": [
+            "D",
+            "F#",
+            "A",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "Bm": {
+          "notes": [
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D]\n\n{section: Verso 1}\n[D] [Bb]I've used hammers made out of wood\n[Cadd9] [C#] [D]I have played games with pieces and rules\n[Bb] [Cadd9] [C#] [D]I undeciphered tricks at the bar\nBut now you're gone, I haven't figured out why\n[Bb] [Cadd9] [C#] [D]I've come up with riddles and jokes about war\n[Bb] [Cadd9] [C#] [D]I've figured out numbers and what they're for\n[Bb] [Cadd9] [C#]I've understood feelings and I've understood words\nBut how could you be taken away?\n\n{section: Refrão}\n[Dmaj7]And wherever you've gone, and wherever we might [Bm]go\n[A]It don't seem fair, today just disappeared\n[Dmaj7]Your light's reflected now, reflected from a[Bm]far\n[A]We were but stones, your light made us [D]stars.\n[Bb] [Cadd9] [D] [Bb]\n\n{section: Verso 2}\n[D] [Bb]With heavy breath, awakened regrets\n[Cadd9] [C#] [D]Back pages and days alone that coulda been spent\n[Bb] [Cadd9]Together, but we were miles apart\n[C#] [D]Every inch between us becomes light years now\n[Bb] [Cadd9]No time to be void or save up on life\n[C#]Oh, you gotta spend it all\n\n{section: Refrão}\n[Dmaj7]And wherever you've gone, and wherever we might [Bm]go\n[A]It don't seem fair, you seemed to like it here [Dmaj7]\n[Bm]Your light's reflected now, reflected from afar\n[A]We were but stones, your light made us [D] [A]stars\n\n{section: Ponte}\n[A] [C] [B] [A]\n\n{section: Solo}\n[C] [B] [A] [C] [B] [C] [B]\n[C]\n\n{section: Refrão}\n[Dmaj7]And wherever you've gone, and wherever we might [Bm]go\n[A]It don't seem fair, today just disappeared [Dmaj7]\n[Bm]Your light's reflected now, reflected from afar\n[A]We were but stones, your light made us [D] [Bb] [Cadd9] [D] [Bb] [Cadd9]stars\n\n{section: Outro}\n[D] [Bb] [Cadd9] (x4, fade)"
+}

@@ -1,0 +1,199 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Breakerfall (Pearl Jam, Binaural 2000).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom E, 120 BPM."
+  },
+  "title": "Breakerfall",
+  "artist": "Pearl Jam",
+  "key": "E",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "Gm": {
+          "fingering": "355333",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 3
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "F#m": {
+          "fingering": "244222",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 120,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "Gm": {
+          "fingering": "0231",
+          "fingers": "0231",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "F#m": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 120,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "Gm": {
+          "notes": [
+            "G",
+            "Bb",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "F#m": {
+          "notes": [
+            "F#",
+            "A",
+            "C#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E] [Gm] [A]\n\n{section: Verso 1}\n[E]There's a girl on a ledge, she's got nowhere to turn\n[E]'Cause all the love that she had was just wood that she burned [Gm] [A]\n[E]Now her life is on fire, it's no one's concern\n[Gm] [A]She can blame the world or pray till [E]dawn\n\n{section: Refrão}\n[Gm] [A]But only love can [E]breakerfall, [F#m] [A]breakerfall\n[E]Only love can [F#m] [A]breakerfall, [E]fall\n\n{section: Verso 2}\n[E]It's like she lost her invitation to the party on Earth\n[E]And she's standing outside hating everyone here [Gm] [A]\n[E]She's her own disease, crying to her doll\n\n{section: Refrão}\n[Gm] [A]But only love can [E]breakerfall, [F#m] [A]breakerfall\n[E]Only love can [F#m] [A]breakerfall\n[E] [F#m] [A] [E]Only love can breakerfall\n\n{section: Outro}\n[E]Fall, breakerfall (She can blame the world or pray till dawn)\nCan breakerfall\n[Gm] [A]Love, love, love can [E]breakerfall\n[Gm] [A]Only love can [E]breakerfall\n[Gm] [A]Love, love, can [E]breakerfall, fall\n[Gm] [A]Love, love, can [E]breakerfall\n[Gm] [A]Only love can [E]breakerfall"
+}

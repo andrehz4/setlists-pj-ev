@@ -1,0 +1,270 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de In Hiding (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 95 BPM."
+  },
+  "title": "In Hiding",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 95,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "A7sus4": {
+          "fingering": "x02030",
+          "fingers": "x01040",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Dsus4": {
+          "fingering": "xx0233",
+          "fingers": "xx0134",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 95,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "A7sus4": {
+          "fingering": "0200",
+          "fingers": "0200",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Dsus4": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 95,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "A7sus4": {
+          "notes": [
+            "A",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Dsus4": {
+          "notes": [
+            "D",
+            "G",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [A7sus4] [D5] [D] (x4)\n\n{section: Verso 1}\n[D]I shut and locked the [Dsus4]front door\n[G]No way in or [D]out\n[D]I turned and walked the [Dsus4]hallway\n[G]And pulled the curtains [D]down\n[D]I knelt and emptied the [Dsus4]mouth of every [G]club around [D]\n[D] [Dsus4] [G]But nothing's [D]sound,\n[D] [Dsus4] [G]nothing's [D]sound\n[D]I stayed here when my last cab [Dsus4]left me, ignored [G]all my rounds [D]\n[D]Soon I was seeing visions [Dsus4]and cracks along the [G]walls [D]\n[D] [Dsus4] [G]They were upside [D]down\n\nOh...\n[A]I swallowed my wish to keep from [G]lying\n[A]I swallowed my face just to keep from [G]biting... biting, biting\n[A]I swallowed my breath and believed I was [G]diving, diving\n[A]I surfaced and all around me was [G]enlightened\n\n{section: Refrão}\n[E]Now... Ah.ha.ha...\n[A] [D]I'm in hiding, yeah\n[A] [D]I'm in hiding\n[A] [D]I'm in hiding\n[A] [G] [D]I'm in hiding\n\n{section: Verso 2}\n[D]It's been about three days now, since [Dsus4]I've been aground [G] [D]\n[D]No longer overwhelmed and it [Dsus4]seems so simple [G]now [D]\n[D]It's funny when things change so [Dsus4]much, it's all [G]state of mind [D] [A]\n\n{section: Ponte}\n[A]I swallowed my words to keep from [G]lying\n[A]I swallowed my face just to keep from [G]biting I, I...\n[A]I swallowed my breath and went deep, I was [G]diving, I was diving\n[A]I surfaced and all around me was [G]enlightened\n\n{section: Refrão}\nNow I'm\n[A] [D]I'm in hiding, yeah\n[A] [D]I'm in hiding\n[A] [D]I'm in hiding\n[A] [G] [D]I'm in hiding\n[A] [D]I'm in hiding, yeah\n[A] [D]I'm in hiding\n[A] [D]I'm in hiding\n[A] [G] [D]I'm in hiding..."
+}

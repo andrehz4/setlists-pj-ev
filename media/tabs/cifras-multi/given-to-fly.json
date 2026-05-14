@@ -1,0 +1,312 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Given to Fly (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 100 BPM."
+  },
+  "title": "Given to Fly",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Gmaj7": {
+          "fingering": "320002",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Dsus2": {
+          "fingering": "xx0230",
+          "fingers": "xx0130",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Csus4": {
+          "fingering": "x33010",
+          "fingers": "x34010",
+          "fundamental": null
+        },
+        "Bsus4": {
+          "fingering": "x24452",
+          "fingers": "x13441",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Asus4": {
+          "fingering": "x02230",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "Gadd9": {
+          "fingering": "320033",
+          "fingers": "210044",
+          "fundamental": null
+        },
+        "G9/F": {
+          "fingering": "133433",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1,
+          "notes": "approx"
+        },
+        "Dsus4": {
+          "fingering": "xx0233",
+          "fingers": "xx0134",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D U D U D .. U D . (100 bpm)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Gmaj7": {
+          "fingering": "0222",
+          "fingers": "0111",
+          "fundamental": null
+        },
+        "Dsus2": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Csus4": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Bsus4": {
+          "fingering": "4240",
+          "fingers": "3140",
+          "fundamental": null
+        },
+        "Asus4": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "Gadd9": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "G9/F": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Dsus4": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D U D U D .. U D . (100 bpm)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Gmaj7": {
+          "notes": [
+            "G",
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "Dsus2": {
+          "notes": [
+            "D",
+            "E",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Csus4": {
+          "notes": [
+            "C",
+            "F",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Bsus4": {
+          "notes": [
+            "B",
+            "E",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "Asus4": {
+          "notes": [
+            "A",
+            "D",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Gadd9": {
+          "notes": [
+            "G",
+            "A",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "G9/F": {
+          "notes": [
+            "F",
+            "G",
+            "A",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Dsus4": {
+          "notes": [
+            "D",
+            "G",
+            "A"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [Gmaj7] [G] [Gmaj7]\n[Dsus2] [D]\n\n{section: Verso 1}\n[Dsus2] [D] [G]He could've tuned in, tuned in [Gmaj7]But he tuned out\n[G]A bad time, nothing could [Gmaj7]save him\n[Dsus2] [D] [Dsus2] [D] [G]Alone in a corridor, [Gmaj7]waiting, locked out\n[G]He got up outta there, ran for [Gmaj7]hundreds of miles [Dsus2] [D]\n[Dsus2] [D] [G]He made it to the ocean, had a [Gmaj7]smoke in a tree\n[G]The wind rose up, set him down [Gmaj7]on his knee\n\n{section: Ponte}\n[Dsus2] [D] [Dsus2] [D] [Dsus2] [D]\n\n{section: Verso 2}\n[Dsus2] [D] [G]A wave came crashing like a fist to the jaw\n[D]Delivered him wings, \"Hey, look at me now\"\n[G]Arms wide open with the sea as his floor\nOh, power, oh\n[D]\n\n{section: Refrão}\n[Csus4]He's flying [Bsus4] [Asus4]Whole\n[Gadd9]\n[Csus4]High, [Bsus4]wide, [Asus4] [Gadd9] [G9/F]oh\n\n{section: Ponte}\n[G] [Gmaj7] [G] [Gmaj7]\n[Dsus2] [D]\n\n{section: Verso 3}\n[Dsus2] [D] [G]He floated back down cause he [Gmaj7]wanted to share\n[G]His key to the locks on the chains [Gmaj7]he saw [Dsus2] [D]everywhere\n[Dsus2] [D] [G]But first he was stripped and then [Gmaj7]he was stabbed\n[G]By faceless men, well, fuckers\n[Gmaj7]He still stands [Dsus2] [D]\n\n{section: Verso 4}\n[Dsus2] [D] [G]And he still gives his love, he just gives it away\n[D]The love he receives is the love that is saved\n[G]And sometimes is seen a strange spot in the sky\n[D]A human being that was given to fly\n\n{section: Refrão}\n[Csus4]He's flying [Bsus4] [Asus4]Whole\n[Gadd9]\n[Csus4]High, flying, [Bsus4] [Asus4] [Gadd9] [Csus4]oh\n[Bsus4]He's [Asus4]flying\n[Csus4]Whole\n[Bsus4]High, [Asus4]oh, [Gadd9]oh\n\n{section: Outro}\n[Gadd9] [Dsus4] (x8)\n[Gadd9]"
+}

@@ -1,0 +1,200 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de All Those Yesterdays (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom F, 80 BPM."
+  },
+  "title": "All Those Yesterdays",
+  "artist": "Pearl Jam",
+  "key": "F",
+  "bpm": 80,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Ab": {
+          "fingering": "466544",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 4
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 80,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": null
+        },
+        "Ab": {
+          "fingering": "5343",
+          "fingers": "4231",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 80,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Bb": {
+          "notes": [
+            "Bb",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "Ab": {
+          "notes": [
+            "Ab",
+            "C",
+            "Eb"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F] [C] (x2)\n\n{section: Verso 1}\n[F] [C]Don't you think you oughtta rest\n[F] [C]Don't you think you oughtta lay your head down\n[F] [C]Don't you think you oughtta sleep\n[F] [C]Don't you think you oughtta lay your head down tonight\n\n[F] [C] [F] [C]\n\n{section: Verso 2}\n[F] [C]Don't you think you've done enough\n[F] [C]Don't you think you've got enough well maybe\n[F] [C]You don't think there's time to stop\n[F] [C]There's time enough to lay your head down tonight\n\n{section: Refrão}\n[Bb] [C]Maybe it'll wash away\n[Bb] [C]All those yesterday ay ay ay's [F] [C] [F] [C]\n\n{section: Ponte}\n[F] [C]What are you running from; Taking pills to get along\n[F] [C]Creating walls to call your own\n[F] [C]So no one catches you; Drifting off and doing all those things\n[F] [C]That we all do\n\n{section: Refrão}\n[Bb] [C]Maybe I'll wash away\n[Bb] [C]All those yesterdays [F] [C] [F] [C]\n\n[F] [C]All those yesterdays (x6)\n[F] [C]All those paper plates\n\n{section: Outro}\n[F] [Bb] [Ab]You've got time... You've got time to escape\n[F] [Bb] [Ab]There's still time... It's no crime to escape\n[F] [Bb] [Ab]It's no crime to escape... It's no crime to escape\n[F] [Bb] [Ab]There's still time, so escape\n[F] [Bb] [Ab]It's no crime...\n\nAll those yesterdays (repete ate o fim)"
+}

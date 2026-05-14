@@ -1,0 +1,313 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Faithfull (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 108 BPM."
+  },
+  "title": "Faithfull",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 108,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Fadd9/G": {
+          "fingering": "3x3213",
+          "fingers": "3x4213",
+          "fundamental": null,
+          "notes": "G no baixo"
+        },
+        "G#add9": {
+          "fingering": "4x4546",
+          "fingers": "1x1324",
+          "fundamental": null,
+          "barre": 4,
+          "notes": "approx"
+        },
+        "Gadd9": {
+          "fingering": "320033",
+          "fingers": "210044",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "A#5": {
+          "fingering": "x133xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 1
+        },
+        "C5": {
+          "fingering": "x355xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D#5": {
+          "fingering": "x677xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 6
+        },
+        "Cm/G": {
+          "fingering": "3x5543",
+          "fingers": "1x3421",
+          "fundamental": null,
+          "barre": 3
+        },
+        "G/B": {
+          "fingering": "x20003",
+          "fingers": "x20003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Intro/Verso: D. D.UD.U (108 bpm)",
+        "bpm": 108,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Fadd9/G": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "G#add9": {
+          "fingering": "5355",
+          "fingers": "1244",
+          "fundamental": null
+        },
+        "Gadd9": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "A#5": {
+          "fingering": "3300",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "5500",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D#5": {
+          "fingering": "3310",
+          "fingers": "2310",
+          "fundamental": null
+        },
+        "Cm/G": {
+          "fingering": "0333",
+          "fingers": "0111",
+          "fundamental": null,
+          "barre": 3
+        },
+        "G/B": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Intro/Verso: D. D.UD.U (108 bpm)",
+        "bpm": 108,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Fadd9/G": {
+          "notes": [
+            "G",
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "G#add9": {
+          "notes": [
+            "G#",
+            "A#",
+            "C",
+            "D#"
+          ],
+          "fundamental": null
+        },
+        "Gadd9": {
+          "notes": [
+            "G",
+            "A",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "A#5": {
+          "notes": [
+            "Bb",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "C5": {
+          "notes": [
+            "C",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D#5": {
+          "notes": [
+            "D#",
+            "A#"
+          ],
+          "fundamental": null
+        },
+        "Cm/G": {
+          "notes": [
+            "G",
+            "C",
+            "Eb"
+          ],
+          "fundamental": null
+        },
+        "G/B": {
+          "notes": [
+            "B",
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Fadd9/G] [G#add9] [Gadd9] [Fadd9/G]\n[G#add9] [Gadd9] [Fadd9/G]\n\n{section: Verso 1}\n[G#add9] [Gadd9]Plaque on the wall says that no one's slept here\n[Fadd9/G]It's rare to come upon a [G#add9] [Gadd9]bridge that has not been around or been stepped on\n[Fadd9/G]Whatever the notions, we [G#add9] [Gadd9]laced in our prayers\n[Fadd9/G]The man upstairs is used to all of this noise, I'm [G#add9] [Gadd9] [G5]through with screaming\n\n{section: Pré-Refrão 1}\n[G5] [A#5]And echoes [G5]nobody hears, it goes, it goes, it goes\n[A#5]Like echoes [G5]nobody hears, it [A#5]goes, it [G5]goes, it goes like this\n\n{section: Refrão 1}\n[C5] [G]We're faithful, [C5] [G]we all [D#5] [Cm/G]believe, we [G/B] [G]all believe it\n[C5] [G]We're faithful, [C5] [G]oh, we [D#5] [Cm/G]all believe, [G/B] [G]all believe it\n[C5] [G]We're faithful, [C5] [G]we [D#5] [Cm/G]all believe, we [G/B] [G]all believe it\n[C5] [G]We're faithful, [C5] [G]we [D#5] [Cm/G]all believe, we [G/B] [G]all believe it\n\n{section: Interlúdio}\n[G5] [A#5] [G5] [C5] [G5]\n[C5] [D#5] [C5] [F5] [G5]\n\n{section: Pré-Refrão 2}\n[G5] [A#5]And echoes nobody hears, it goes, it goes, it goes\n[A#5]And echoes nobody hears, it goes, it goes, it goes\n\n{section: Refrão 2}\n[C5] [G]We're faithful, [C5] [G]we [D#5] [Cm/G]all believe, [G/B] [G]all believe it\n[C5] [G]We're faithful, [C5] [G]we [D#5] [Cm/G]all believe, [G/B] [G]all believe it\n[C5] [G]So faithful, [C5] [G]oh, we [D#5] [Cm/G]all believe, we [G/B] [G]all believe it\n\n{section: Outro}\n[Fadd9/G] [G#add9] [Gadd9] [Fadd9/G]\nM.Y.T.H. is [G#add9] [Gadd9]belief in the game controls\n[Fadd9/G]That keeps us in a box of fear, we [G#add9] [Gadd9]never listen voice inside\n[Fadd9/G]So drowned out, drowned you are, you [G#add9] [Gadd9]are, you are a furry thing\n[Fadd9/G]And everything is you, [G#add9] [Gadd9]me, you, you, me, it's all related\n[Fadd9/G]What's a boy to do? Just [G#add9] [Gadd9]be darling and I will be\n[Fadd9/G]Too faithful [G#add9]to you"
+}

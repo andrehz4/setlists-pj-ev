@@ -1,0 +1,260 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de All or None (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom Em, 98 BPM."
+  },
+  "title": "All or None",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 98,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Em7": {
+          "fingering": "022030",
+          "fingers": "023040",
+          "fundamental": null
+        },
+        "G6/C#": {
+          "fingering": "4x4430",
+          "fingers": "1x1430",
+          "fundamental": null,
+          "barre": 4,
+          "notes": "approx"
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "x32030",
+          "fingers": "x32040",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "Em/A": {
+          "fingering": "002000",
+          "fingers": "002000",
+          "fundamental": null
+        },
+        "Cmaj7/D": {
+          "fingering": "xx0000",
+          "fingers": "xx0000",
+          "fundamental": null,
+          "notes": "D no baixo"
+        }
+      },
+      "strumming": {
+        "label": "D . D . U D U (98 bpm)",
+        "bpm": 98,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Em7": {
+          "fingering": "0202",
+          "fingers": "0202",
+          "fundamental": null
+        },
+        "G6/C#": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "0203",
+          "fingers": "0203",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "Em/A": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "Cmaj7/D": {
+          "fingering": "2002",
+          "fingers": "2002",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . D . U D U (98 bpm)",
+        "bpm": 98,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Em7": {
+          "notes": [
+            "E",
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "G6/C#": {
+          "notes": [
+            "G",
+            "A",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Cadd9": {
+          "notes": [
+            "C",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Am": {
+          "notes": [
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Em/A": {
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "Cmaj7/D": {
+          "notes": [
+            "D",
+            "C",
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A] [Em7]\n[G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n\n{section: Verso 1}\n[Em7]It's a hopeless situation [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n[Em7]And I'm starting to believe [G6/C#] [C] [Cadd9] [C]\n[Am] [Em/A] [Em7]That this hopeless situation [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n[Em7]Is what I'm trying to achieve [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n\n{section: Refrão}\n[Cmaj7/D]But I try to run on\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]It's all or none\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]all or none\n\n{section: Verso 2}\n[Em7]Here's the selfless confession [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n[Em7]Leading me back to war [G6/C#] [C] [Cadd9] [C]\n[Am] [Em/A] [Em7]Can we help that our destinations [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n[Em7]Are the ones we've been before [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n\n{section: Refrão 2}\n[Cmaj7/D]I still try to run on\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]But it's all or none\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]all or none\n\n{section: Solo 1}\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A] (x4)\n\n{section: Verso 3}\n[Em7]To myself I surrender [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n[Em7]To the one I'll never please [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]\n\n{section: Refrão 3}\n[Cmaj7/D]But I still try to run on\nOh, I still try to run on\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]But it's all or none\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A]all or none\n\n{section: Instrumental}\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A] (x2)\n\n{section: Solo 2}\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A] (x5)\n\n{section: Fade Out}\n[Em7] [G6/C#] [C] [Cadd9] [C] [Am] [Em/A] (x3)"
+}

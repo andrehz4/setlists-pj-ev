@@ -1,0 +1,272 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Insignificance (Pearl Jam, Binaural 2000).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 110 BPM."
+  },
+  "title": "Insignificance",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 110,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "Dsus2": {
+          "fingering": "xx0230",
+          "fingers": "xx0130",
+          "fundamental": null
+        },
+        "Cmaj7": {
+          "fingering": "x32000",
+          "fingers": "x32000",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "F#m": {
+          "fingering": "244222",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 110,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "Dsus2": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "Cmaj7": {
+          "fingering": "0002",
+          "fingers": "0002",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "F#m": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 110,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Dsus2": {
+          "notes": [
+            "D",
+            "E",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Cmaj7": {
+          "notes": [
+            "C",
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "Am": {
+          "notes": [
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "F#m": {
+          "notes": [
+            "F#",
+            "A",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [F#m] [Em] [C] (x3)\n[A]\n\n{section: Verso 1}\n[A]All in all, it's no one's [Dsus2]fault\n[A]Excuses turn to carbon [Dsus2]walls\n[A]Blame it all on chemical [Dsus2]intercourse [A] [Dsus2]\n[A]The swallowed seeds of [Dsus2]arrogance\n[A]Breeding in the thoughts of [Dsus2]ten\n[A]Thousand fools who fight [Dsus2]irrelevance [A] [Dsus2]\n\n{section: Pré-Refrão}\n[Cmaj7]The full moon is dead skin\n[Em]\n[Cmaj7]The one down here's wearing [Em]thin\n[Cmaj7]So set up the ten [Em]pins\n[F]As the human tide rolls [Cmaj7]in\n[F]Like a ball that's spinning\n\n{section: Refrão}\n[Am]Bombs dropping [F#m]down\n[Em]Overhead, [C]underground\n[A]It's instilled, [F#m]to want to [Em]live [C]\n[Am]Bombs dropping [F#m]down\n[Em]Please forgive our [C]hometown\n[A]In our [Dsus2]insignificance [A] [Dsus2] [A] [Dsus2]\n\n{section: Verso 2}\n[A]Turn the jukebox up he said [Dsus2]\n[A]Dancing in [Dsus2]irreverence\n[A]Play C-3, let the song [Dsus2]protest [A] [Dsus2]\n\n{section: Pré-Refrão 2}\n[Cmaj7]The plates begin to shift\n[Em]\n[Cmaj7]Perfect lefts come rolling [Em]in\n[Cmaj7]I was alone and far a[Em]way\n[F]When I heard the band start [Cmaj7]playing\n[F]On the lip, late take off\n\n{section: Refrão}\n[Am]Bombs dropping [F#m]down\n[Em]Overhead, [C]underground\n[A]It's instilled, [F#m]to want to [Em]live [C]\n[Am]Bombs dropping [F#m]down\n[Em]Please forgive our [C]hometown\n[Am] [F#m] [Em] [Am]In our insignificance\n\n{section: Ponte}\n[Am] [Dsus2] [Cmaj7] (x4)\n[Am]Feel like resonance of [Dsus2]distance [Cmaj7]\n[Am]In the blood, the iron [Dsus2]lies [Cmaj7]\n[Am] [Dsus2] [Cmaj7]\n[Am] [F#m] [Em] [C]\n\n{section: Outro}\n[Am] [F#m] [Em] [C]\n[Am]It's instilled, [F#m]to wanna [Em]live [C]\n[Am]Bombs dropping [F#m]down\n[Em]Please forgive our [C]hometown\n[Am] [F#m] [Em] [C]In our insignificance (x2)\n[Am] [F#m] [Em] [C]"
+}

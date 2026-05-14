@@ -1,0 +1,277 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Soon Forget (Pearl Jam, Binaural 2000).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 130 BPM. Capotraste: 4"
+  },
+  "title": "Soon Forget",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 130,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "A7": {
+          "fingering": "x02020",
+          "fingers": "x02030",
+          "fundamental": null
+        },
+        "B7": {
+          "fingering": "x21202",
+          "fingers": "x21304",
+          "fundamental": null
+        },
+        "E7": {
+          "fingering": "020100",
+          "fingers": "020100",
+          "fundamental": null
+        },
+        "Cm": {
+          "fingering": "x35543",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 3
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "D7": {
+          "fingering": "xx0212",
+          "fingers": "xx0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      },
+      "capo": 4
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "A7": {
+          "fingering": "0100",
+          "fingers": "0100",
+          "fundamental": null
+        },
+        "B7": {
+          "fingering": "2322",
+          "fingers": "1422",
+          "fundamental": null
+        },
+        "E7": {
+          "fingering": "1202",
+          "fingers": "1202",
+          "fundamental": null
+        },
+        "Cm": {
+          "fingering": "0333",
+          "fingers": "0111",
+          "fundamental": null,
+          "barre": 3
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "D7": {
+          "fingering": "2223",
+          "fingers": "2213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      },
+      "capo": 4
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "A7": {
+          "notes": [
+            "A",
+            "C#",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "B7": {
+          "notes": [
+            "B",
+            "D#",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "E7": {
+          "notes": [
+            "E",
+            "G#",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Cm": {
+          "notes": [
+            "C",
+            "Eb",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "D7": {
+          "notes": [
+            "D",
+            "F#",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[G]Sorry is the fool who trades his soul for a [C]corvette\n[A7]Thinks he'll get the girl he'll only get the [B7]mechanic\n[E7]What's missing? He's living a day he'll soon [Cm]forget [D]\n[C]That's one more time around. The sun is going [D7]down\n[B7]The moon is out but he's drunk and shouting\n[E7]Putting people down. He's pissing. [C]He's living a day he'll soon [D7]forget [G]\n\n{section: Verso 2}\n[D7]Counts his money every [C]morning\n[D7]The only thing that keeps him [C]horny\n[D7]Locked in a giant house that's [C]alarming\n[Cm]The townsfolk they all [D]laugh\n\n{section: Verso 3}\n[G]Sorry is the fool who trades his love for [C]hi-rise rent\n[A7]Seem the more you make equals the loneliness [B7]you get\n[E7]And it's fitting. He's barely living a day he'll [Cm]soon forget [D]\n\n[C]That's one more time around and there is not a [D7]sound\n[B7]He's lying dead clutching Benjamins. Never put the money [E7]down\n[C]He's stiffening. We're all whistling. [D7]A man we'll soon [G]forget"
+}

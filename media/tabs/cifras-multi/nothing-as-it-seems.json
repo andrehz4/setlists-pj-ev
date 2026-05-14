@@ -1,0 +1,201 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Nothing as It Seems (Pearl Jam, Binaural 2000).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom Bm, 70 BPM. Afinacao: Drop D (DADGBE)"
+  },
+  "title": "Nothing as It Seems",
+  "artist": "Pearl Jam",
+  "key": "Bm",
+  "bpm": 70,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "DADGBE",
+      "chords": {
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Daug": {
+          "fingering": "xx0332",
+          "fingers": "xx0231",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Aadd11": {
+          "fingering": "x02200",
+          "fingers": "x02300",
+          "fundamental": null,
+          "notes": "add11 simplificado"
+        }
+      },
+      "strumming": {
+        "label": "D . D DU DU D DU DU (70 bpm)",
+        "bpm": 70,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Daug": {
+          "fingering": "2110",
+          "fingers": "2110",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Aadd11": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . D DU DU D DU DU (70 bpm)",
+        "bpm": 70,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Bm": {
+          "notes": [
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "Daug": {
+          "notes": [
+            "D",
+            "F#",
+            "A#"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Aadd11": {
+          "notes": [
+            "A",
+            "C#",
+            "D",
+            "E"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Bm] [Daug] [Bm] [Daug]\n[Bm]\n\n{section: Verso 1}\n[Bm]Don't feel like home\n[Daug]He's a little out\n[Bm]And all these words elope\n[Daug]It's nothing like your poem\n\n{section: Verso 2}\n[Bm]Putting in, inputting in\n[Daug]Don't feel like methadone\nA scratching voice, all alone\n[Daug]There's nothing like your baritone\n\n{section: Refrão}\n[Bm] [D]It's nothing as it seems\n[Aadd11]The little that he needs, it's home [Bm]\n[D]The little that he sees\n[Aadd11]Is nothing he concedes, it's home [Bm]\n\n{section: Solo}\n[Bm] [Daug] [Bm] [Daug]\n[Bm]\n\n{section: Ponte}\n[Bm]One uninvited chromosome\n[Daug]A blanket like the ozone\n\n{section: Refrão}\n[Bm] [D]It's nothing as it seems\n[Aadd11]All that he needs, it's home [Bm]\n[D]The little that he frees\n[Aadd11]Is nothing he believes\n\n{section: Pós-Refrão}\n[Bm]Saving up a sunny day\n[Daug]Something maybe two tone\n[D]Anything of his own\n[Daug]A chip off the cornerstore\n[Bm]Who's kidding, rainy day\n[Daug]A one way ticket headstone\n[D]Occupations overthrown\n[Daug]A whisper through a megaphone\n\n{section: Interlúdio}\n(instrumental - mesmo padrão Bm Daug)\n\n{section: Refrão}\n[D]It's nothing as it seems\n[Aadd11]The little that he needs, it's home [Bm]\n[D]The little that he sees\n[Aadd11]Is nothing he concedes, it's home [Bm]\n[D]And all that he frees\n[Aadd11]A little bittersweet, it's home [Bm]\n\n{section: Outro}\n[D]It's nothing as it seems\n[Aadd11]That little that you see, it's home [Bm]"
+}

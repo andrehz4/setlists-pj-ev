@@ -1,0 +1,200 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de No Way (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom B, 100 BPM."
+  },
+  "title": "No Way",
+  "artist": "Pearl Jam",
+  "key": "B",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Gm": {
+          "fingering": "355333",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 3
+        },
+        "F#m": {
+          "fingering": "244222",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Gm": {
+          "fingering": "0231",
+          "fingers": "0231",
+          "fundamental": null
+        },
+        "F#m": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Gm": {
+          "notes": [
+            "G",
+            "Bb",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "F#m": {
+          "notes": [
+            "F#",
+            "A",
+            "C#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[B] [G] (x4, distortion)\n\n{section: Verso 1}\n[B]Here's a token of my [G]openness\n[B]Of my need to not [G]disappear\n[B]How I'm feeling, so [G]revealing to [B]me\n[G]I found my mind too clear\n\n{section: Refrão}\n[B]I just need someone to be there [G]for me\n[B]I just want someone to be there [G]for me\n\n{section: Verso 2}\n[B]All the static in my [G]attic-a\n[B]Shoots down my [G]sciatic nerve\n[B]To the ocean of my [G]platitudes\n[B]Longitudes, latitudes, it's so [G]absurd\n\n{section: Refrão}\n[B]I just need someone to be there for\n[B]I just want someone to be there for\n[G]Someone to be there [B]for\n\n{section: Ponte 1}\n[B]'Cause I'll stop trying to make a [G]difference\n[B]I'm not trying to make a [G]difference\n[B]I'll stop trying to make a [G]difference\n[B]No way\n[B]'Cause I'll stop trying to make a [G]difference\n[B]I'm not trying to make a [G]difference\n[B]I'll stop trying to make a [G]difference\n[B]No way\n\n{section: Interlúdio}\n[Gm]Ooh, let's call in an [F#m]angel (x3)\n\n{section: Ponte 2}\n[B]'Cause I'll stop trying to make a [G]difference\n[B]I'm not trying to make a [G]difference\n[B]I'll stop trying to make a [G]difference\n[B]No way\n[B]I'm not trying to make a [G]difference\n[B]I'm not trying to make a [G]difference\n[B]No [G]way\n[B]No [G]way..."
+}

@@ -1,0 +1,379 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Grievance (Pearl Jam, Binaural 2000).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom E, 115 BPM."
+  },
+  "title": "Grievance",
+  "artist": "Pearl Jam",
+  "key": "E",
+  "bpm": 115,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "x355xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "D7": {
+          "fingering": "xx0212",
+          "fingers": "xx0213",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "x02010",
+          "fingers": "x02010",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "F#5": {
+          "fingering": "244xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 2
+        },
+        "E5": {
+          "fingering": "022xxx",
+          "fingers": "023xxx",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "x32030",
+          "fingers": "x32040",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "D/F#": {
+          "fingering": "200232",
+          "fingers": "200132",
+          "fundamental": null,
+          "notes": "F# no baixo"
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 115,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "5500",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "D7": {
+          "fingering": "2223",
+          "fingers": "2213",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "0000",
+          "fingers": "0000",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "3100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "4400",
+          "fingers": "2300",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "0203",
+          "fingers": "0203",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "D/F#": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 115,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "C5": {
+          "notes": [
+            "C",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "D7": {
+          "notes": [
+            "D",
+            "F#",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "Am7": {
+          "notes": [
+            "A",
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "F#5": {
+          "notes": [
+            "F#",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "E5": {
+          "notes": [
+            "E",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Cadd9": {
+          "notes": [
+            "C",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "D/F#": {
+          "notes": [
+            "F#",
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[E]Have a drink they're [G]buying\n[E]Bottom of, bottle of [G]denial\n\n{section: Refrão 1}\n[D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5] [E5]Big guy,... big eye,... watching me...\n[D5] [C5] [D5] [C5] [D5] [C5] [D5] [C5] [E5]Have to wonder what it sees...\n\n[D5] [C5]Progress... [D5] [C5] [D5] [C5]laced with... [D5] [C5] [D5] [C5]ramifications...\n[D5] [C5] [D5] [C5] [E5]Freedom's big plunge\n\n{section: Refrão 2}\n[D7]Pull the innocent from a [Am7]crowd\n[Am7]Raise the sticks then bring them [A]down\n[Cadd9] [A]If they fail to obey... [Cadd9] [E]if they fail to obey\n\n[E] [G] (x2)\n\n{section: Verso 2}\n[E]For every tool they lend us... [G]a loss of independence [E] [G]\n\n{section: Refrão 3}\n[G5] [F#5] [E5] [D5] [C5] [D5] [C5] [E]I pledge my grievance to the flag\n[G5] [F#5] [E5] [D5] [C5] [D5] [C5] [E]Because you don't give blood... to take it back again\n[G5] [F#5] [G5] [A5] [B5] [C5] [E] [G]Oh we're all deserving something more\n\n{section: Refrão 1}\n[D5] [C5]Progress,... [D5] [C5] [D5] [C5]taste it,... [D5] [C5]invest-it-all\n[D5] [C5]Champagne breakfast for [D5] [C5] [D5] [C5] [D5] [C5]everyone\n\n{section: Refrão 2}\n[D7]Break the innocent when they're [Am7]proud...\n[Am7]Raise the stakes,... then bring em [A]down...\n[Cadd9] [A]If they fail to obey... [Cadd9] [E]if they fail to obey\n\n{section: Refrão 3}\n[G5] [F#5] [E5] [D5] [C5] [D5] [C5] [E]I pledge my grievance to the flag\n[G5] [F#5] [E5] [D5] [C5] [D5] [C5] [E]Because you don't give blood... to take it back again\n[G5] [F#5] [G5] [A5] [B5] [C5] [E] [G]Oh we're all deserving something more\n\n[E] [G] (x4)\n[E] [D/F#]\n[C] [A] (x2)\n\n{section: Outro}\n[E]I want to breathe [D/F#]\n[C]Follow the scene [A]\n[E]I want to taste [D/F#]\n[C]Everyone I see [A]\n[E]I want to run when I'm up high [D/F#]\n[C]I want to run into the sea [A]\n[E] [D/F#] [C] [A]I only want life.... to be...\n[E] [D/F#] [C] [A]I just want to be...\n[E] [D/F#] [C] [A]I will feel alive... as long as I am free..."
+}
