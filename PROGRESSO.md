@@ -3,6 +3,46 @@
 ## Data
 2026-05-14
 
+## HANDOFF SESSAO 2026-05-14 (tarde): Yield + Binaural + Riot Act cifras e GPs em lote
+
+### Resumo do estado em uma frase
+29 cifras JSON geradas e commitadas para Yield (10), Binaural (10) e Riot Act (9). HEAD `1ed54d3`.
+
+### O que foi feito
+- Executado gen_cifras.py: gerou 29 JSONs em `media/tabs/cifras-multi/` (violao/uke/piano, ChordPro PT-BR)
+  - Yield (10): brain-of-j, faithfull, no-way, given-to-fly, wishlist, do-the-evolution, mfc, low-light, in-hiding, all-those-yesterdays
+  - Binaural (10): breakerfall, gods-dice, light-years, nothing-as-it-seems, thin-air, insignificance, of-the-girl, grievance, soon-forget, parting-ways
+  - Riot Act (9): cant-keep, save-you, love-boat-captain, cropduster, i-am-mine, thumbing-my-way, you-are, green-disease, all-or-none
+- Adicionados 7 GPs do Riot Act em `media/tabs/gp/`: save-you, ghost, i-am-mine, thumbing-my-way, you-are, green-disease, bushleaguer
+- index.json atualizado: 94 musicas, 74 com cifra, 72 com tab
+- Scripts temporarios gen_cifras.py e update_index.py removidos
+
+### Estado atual das cifras por album
+- Ten (1991): COMPLETO
+- Vs. (1993): COMPLETO
+- Vitalogy (1994): COMPLETO
+- No Code (1996): COMPLETO (13/13)
+- Yield (1998): 10 cifras + 10 GPs. Pilate: tab-only (sem cifra de acordes). COMPLETO
+- Binaural (2000): 10 cifras + 10 GPs. Rival: tab-only. COMPLETO
+- Riot Act (2002): 9 cifras + 5 GPs. Ghost e Bushleaguer: tab-only. Get Right, Help Help, 1 2 Full: placeholder. COMPLETO
+
+### Proximo passo
+- Proximos albums: Riot Act tem 3 musicas sem conteudo (Get Right, Help Help, 1 2 Full), buscar GPs se disponivel
+- Albums ainda sem cifras: Pearl Jam (2006, "O auto-intitulado"), Backspacer (2009), Lightning Bolt (2013), Gigaton (2020), Dark Matter (2024)
+- Pipeline IG segue rodando sozinho
+
+### Arquivos chave desta sessao
+```
+media/tabs/index.json                   # 94 entradas, 74 cifras, 72 tabs
+media/tabs/cifras-multi/               # +29 novos JSONs Yield/Binaural/Riot Act
+media/tabs/gp/                         # +7 novos GPs Riot Act
+```
+
+### Commit
+`1ed54d3` — Yield/Binaural/Riot Act: 29 cifras JSON + 7 GPs + index.json atualizado
+
+---
+
 ## HANDOFF SESSAO 2026-05-14: No Code cifras e GP completos
 
 ### Resumo do estado em uma frase
