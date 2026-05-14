@@ -1,0 +1,7 @@
+{
+  "id": "TEST20260514-dummy",
+  "title_pt": "TESTE auto-merge: este item nao vai pro IG",
+  "intro_pt": "Item sintetico criado pra validar o fluxo branch -> PR -> merge -> main.",
+  "body_pt": "Se voce esta vendo isso no @smufdpj e porque o merge passou mas o item foi enfileirado. Bug a corrigir. Esperado: ser ignorado.",
+  "tags": ["memoria"]
+}
