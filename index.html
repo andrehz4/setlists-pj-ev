@@ -10906,16 +10906,17 @@ function _renderTabPanel(body, songKey, tabMeta) {
         const idata = multiObj.instruments[_activeCifraInstrument];
         if (!idata || !idata.strumming || !idata.strumming.beats) return '';
         const s = idata.strumming;
+        const _esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
         const cells = s.beats.map(b => {
           const arrow = b.stroke === 'down' ? '↓' : '↑';
           const mutedCls = b.muted ? ' cifra-strum-muted' : '';
           return `<span class="cifra-strum-cell${mutedCls}">
                     <span class="cifra-strum-arrow">${arrow}</span>
-                    <span class="cifra-strum-count">${b.count}</span>
+                    <span class="cifra-strum-count">${_esc(b.count)}</span>
                   </span>`;
         }).join('');
         return `<div class="cifra-strumming-bar" aria-label="Padrão de palhetada">
-                  <span class="cifra-strumming-label">${s.label || 'PADRÃO'} <em>${s.bpm || ''} bpm</em></span>
+                  <span class="cifra-strumming-label">${_esc(s.label) || 'PADRÃO'} <em>${_esc(s.bpm)} bpm</em></span>
                   <div class="cifra-strumming-row">${cells}</div>
                 </div>`;
       };

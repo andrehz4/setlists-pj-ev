@@ -258,6 +258,7 @@
   },
   "last kiss": {
     "cifra": true,
+    "cifraMulti": "last-kiss.json",
     "tab": true,
     "key": "G",
     "tuning": "EADGBE",
@@ -343,6 +344,7 @@
   },
   "footsteps": {
     "cifra": true,
+    "cifraMulti": "footsteps.json",
     "tab": true,
     "key": "G",
     "tuning": "EADGBE",
@@ -1622,6 +1624,7 @@
   },
   "fatal": {
     "cifra": true,
+    "cifraMulti": "fatal.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "fatal-v1.gp5",
@@ -1631,6 +1634,7 @@
   },
   "other side": {
     "cifra": true,
+    "cifraMulti": "other-side.json",
     "tab": false,
     "key": "C",
     "bpm": 80,
@@ -1638,6 +1642,7 @@
   },
   "dirty frank": {
     "cifra": true,
+    "cifraMulti": "dirty-frank.json",
     "tab": false,
     "key": "Em",
     "bpm": 130,
@@ -1645,6 +1650,7 @@
   },
   "brother": {
     "cifra": true,
+    "cifraMulti": "brother.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "brother-v1.gp5",
@@ -1654,6 +1660,7 @@
   },
   "bee girl": {
     "cifra": true,
+    "cifraMulti": "bee-girl.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "bee-girl-v1.gp5",
@@ -1663,6 +1670,7 @@
   },
   "wash": {
     "cifra": true,
+    "cifraMulti": "wash.json",
     "tab": false,
     "key": "Em",
     "bpm": 70,
@@ -1670,6 +1678,7 @@
   },
   "strangest tribe": {
     "cifra": true,
+    "cifraMulti": "strangest-tribe.json",
     "tab": true,
     "tabFormat": "gp4",
     "tabFile": "strangest-tribe-v1.gp4",
@@ -1680,6 +1689,7 @@
   },
   "drifting": {
     "cifra": true,
+    "cifraMulti": "drifting.json",
     "tab": false,
     "key": "G",
     "bpm": 95,
@@ -1687,6 +1697,7 @@
   },
   "let me sleep": {
     "cifra": true,
+    "cifraMulti": "let-me-sleep.json",
     "tab": false,
     "key": "G",
     "bpm": 75,
@@ -1694,6 +1705,7 @@
   },
   "hard to imagine": {
     "cifra": true,
+    "cifraMulti": "hard-to-imagine.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "hard-to-imagine-v1.gp5",
@@ -1703,6 +1715,7 @@
   },
   "undone": {
     "cifra": true,
+    "cifraMulti": "undone.json",
     "tab": false,
     "key": "G",
     "bpm": 90,
