@@ -20,11 +20,25 @@
 import got from "got";
 
 const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
-// Em CI (GH Actions), Reddit bloqueia IP do runner. Usa proxy Cloudflare Worker
-// se REDDIT_PROXY_URL estiver definido (formato: https://reddit-proxy.<acc>.workers.dev).
-// Fallback: chamada direta pro Reddit (funciona em dev local).
+// Com REDDIT_CLIENT_ID + REDDIT_CLIENT_SECRET: usa OAuth application-only (oauth.reddit.com, sem proxy).
+// Sem credenciais: fallback pro proxy Cloudflare Worker (dev local).
 const REDDIT_BASE = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "") || "https://www.reddit.com";
 const BASE = `${REDDIT_BASE}/r/pearljam`;
+
+let _tokenCache = null;
+async function getRedditToken() {
+  if (_tokenCache && _tokenCache.expiresAt > Date.now()) return _tokenCache.token;
+  const { REDDIT_CLIENT_ID: id, REDDIT_CLIENT_SECRET: secret } = process.env;
+  if (!id || !secret) return null;
+  const creds = Buffer.from(`${id}:${secret}`).toString("base64");
+  const res = await got.post("https://www.reddit.com/api/v1/access_token", {
+    headers: { Authorization: `Basic ${creds}`, "User-Agent": UA },
+    form: { grant_type: "client_credentials" },
+    timeout: { request: 10000 },
+  }).json();
+  _tokenCache = { token: res.access_token, expiresAt: Date.now() + (res.expires_in - 60) * 1000 };
+  return _tokenCache.token;
+}
 
 const IMAGE_HOST_RX = /^https?:\/\/(i\.redd\.it|preview\.redd\.it|i\.imgur\.com|imgur\.com)\//i;
 const IMAGE_EXT_RX = /\.(jpe?g|png|gif|webp)(\?|$)/i;
@@ -105,12 +119,12 @@ function isPublishable(p) {
 }
 
 async function fetchTop(period, limit = 25) {
-  const url = `${BASE}/top.json?t=${period}&limit=${limit}`;
-  const res = await got(url, {
-    headers: { "User-Agent": UA, "Accept": "application/json" },
-    timeout: { request: 15000 },
-    retry: { limit: 1 },
-  }).json();
+  const token = await getRedditToken();
+  const baseUrl = token ? "https://oauth.reddit.com/r/pearljam" : BASE;
+  const headers = { "User-Agent": UA, "Accept": "application/json" };
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+  const url = `${baseUrl}/top.json?t=${period}&limit=${limit}`;
+  const res = await got(url, { headers, timeout: { request: 15000 }, retry: { limit: 1 } }).json();
   const posts = (res?.data?.children || []).map((c) => c.data);
   return posts.map(normalizePost).filter(isPublishable);
 }
