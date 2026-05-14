@@ -83,3 +83,49 @@ jobs:
               sleep 2
             done
           fi
+
+      - name: Notifica Telegram (scrape, resumo agregado)
+        # Roda apos commit do scrape. Manda mensagem CURTA: total +
+        # contagem por sourceLabel. Detalhe item-a-item fica no news-merge.yml
+        # depois da curadoria. Falha aqui nao derruba o workflow.
+        if: ${{ inputs.dry-run != true && env.TELEGRAM_BOT_TOKEN != '' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          set +e
+          if [ ! -f media/news/_pending.json ]; then
+            echo "[telegram] sem _pending.json, skip"
+            exit 0
+          fi
+
+          BRT_NOW=$(TZ=America/Sao_Paulo date +"%H:%M")
+          TOTAL=$(jq '.items | length' media/news/_pending.json)
+
+          if [ "$TOTAL" = "0" ] || [ -z "$TOTAL" ]; then
+            echo "[telegram] _pending vazio, skip"
+            exit 0
+          fi
+
+          # contagem por sourceLabel, formatada
+          BY_SOURCE=$(jq -r '
+            .items
+            | group_by(.sourceLabel // .kind // "outros")
+            | map({src: (.[0].sourceLabel // .[0].kind // "outros"), n: length})
+            | sort_by(-.n)
+            | map(.src + " " + (.n | tostring))
+            | join(" · ")
+          ' media/news/_pending.json)
+
+          MSG="🛰️ <b>SMUFDPJ • scrape ${BRT_NOW} BRT</b>%0A${TOTAL} candidatos coletados%0A  ${BY_SOURCE}%0ARoutine cura em ~7min, te aviso o que sobreviver."
+
+          HTTP_CODE=$(curl -s -o /tmp/tg-resp.json -w "%{http_code}" \
+            "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&parse_mode=HTML&disable_web_page_preview=true&text=${MSG}")
+
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "[telegram] OK scrape notif: total=$TOTAL"
+          else
+            echo "[telegram] FALHA HTTP $HTTP_CODE:"
+            cat /tmp/tg-resp.json
+          fi
+          exit 0
