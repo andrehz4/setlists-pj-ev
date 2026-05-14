@@ -3,6 +3,46 @@
 ## Data
 2026-05-14
 
+## HANDOFF SESSAO 2026-05-14 (noite): Lost Dogs cifras e GPs
+
+### Resumo do estado em uma frase
+Lost Dogs (2003) processado: 12 cifras JSON + 6 GPs + index.json com 108 musicas. HEAD `f304cfd`.
+
+### O que foi feito
+- Copiados 6 GPs: sad-v1.gp5, alone-v1.gp5, u-v1.gp4, leaving-here-v1.gp3, whale-song-v1.gp, hold-on-v1.gp4
+- Gerados 12 JSONs cifra em media/tabs/cifras-multi/:
+  All Night, Sad, Down, Don't Gimme No Lip, Whale Song, In The Moonlight (DGDGBE),
+  Education, Black Red Yellow, U, Gremmie Out Of Control, Yellow Ledbetter, Hold On (Double Drop D)
+- Yellow Ledbetter atualizada: cifra=true + cifraMulti adicionados (tab ja existia)
+- Entradas sem cifra: alone (GP apenas), leaving-here (GP apenas), hitchhiker (bass tab, sem GP)
+- index.json: 108 musicas, 86 com cifra, 78 com tab
+
+### Estado atual das cifras por album/compilacao
+- Ten (1991): COMPLETO
+- Vs. (1993): COMPLETO
+- Vitalogy (1994): COMPLETO
+- No Code (1996): COMPLETO (13/13)
+- Yield (1998): COMPLETO
+- Binaural (2000): COMPLETO
+- Riot Act (2002): COMPLETO (Get Right, Help Help, 1 2 Full: placeholder sem GP)
+- Lost Dogs (2003): 12 cifras. Alone e Leaving Here: tab-only. Hitchhiker: sem conteudo.
+
+### Proximo passo
+- Albums ainda sem cifras: Pearl Jam (2006), Backspacer (2009), Lightning Bolt (2013), Gigaton (2020), Dark Matter (2024)
+- Para cada album: coletar GPs do UG Pro e colar cifras da mesma forma
+
+### Arquivos chave desta sessao
+```
+media/tabs/index.json          # 108 entradas
+media/tabs/cifras-multi/       # +12 JSONs Lost Dogs
+media/tabs/gp/                 # +6 GPs Lost Dogs
+```
+
+### Commit
+`f304cfd` — Lost Dogs (2003): 12 cifras JSON + 6 GPs + index.json atualizado
+
+---
+
 ## HANDOFF SESSAO 2026-05-14 (tarde): Yield + Binaural + Riot Act cifras e GPs em lote
 
 ### Resumo do estado em uma frase
