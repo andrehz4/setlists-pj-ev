@@ -114,7 +114,10 @@
       "publishAt": "2026-05-14T21:48:59.906Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-14T22:20:06.903Z",
+        "msg": "IG API /17841414148425536/media: API access blocked."
+      }
     }
   ],
   "postCount": 5
