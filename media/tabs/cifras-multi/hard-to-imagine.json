@@ -1,0 +1,216 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Hard To Imagine (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 90 BPM."
+  },
+  "title": "Hard To Imagine",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[A]Paint a picture, isn't all in gray\n[A]Light your pillow, lay back watch the flames\n[A]I'll tell a story but no one listens that long\n[A]It's hard to imagine, it's hard to imagine\n\n{section: Refrão}\n[D] [B] [A] [C] (x2)\n\n{section: Verso 2}\n[A]Tear upon us all the days are long\n[A]Fly the meadow lay down four years now\n[A]After heaven seen all they saw\n[A]It's hard to imagine, it's hard to imagine\n\n{section: Refrão 2}\n[D] [B] [A] [C] (x3)\n\n{section: Interlúdio}\n[G] [A] [G] [A]\n\n{section: Ponte}\n[G]Things were different then [A]\nAll is different [G]now\nI tried to explain [A]somehow [G]\n[G]Things were different then [A]\nAll is different [G]now\nI tried to explain [A]somehow [G]"
+}

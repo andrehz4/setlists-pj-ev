@@ -1,0 +1,237 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Let Me Sleep (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 75 BPM."
+  },
+  "title": "Let Me Sleep",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 75,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Gadd9": {
+          "fingering": "320033",
+          "fingers": "210044",
+          "fundamental": null
+        },
+        "G7": {
+          "fingering": "320001",
+          "fingers": "210001",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Gm7": {
+          "fingering": "353333",
+          "fingers": "132111",
+          "fundamental": null,
+          "barre": 3
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, balada natal)",
+        "bpm": 75,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Gadd9": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "G7": {
+          "fingering": "0212",
+          "fingers": "0212",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Gm7": {
+          "fingering": "0231",
+          "fingers": "0231",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, balada natal)",
+        "bpm": 75,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Gadd9": {
+          "notes": [
+            "G",
+            "A",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "G7": {
+          "notes": [
+            "G",
+            "B",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Gm7": {
+          "notes": [
+            "G",
+            "Bb",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[G]Cold wind blows on the soles of my [Gadd9]feet\n[G]Heaven knows nothing of [Gadd9]me\n[G]I'm lost, [Gadd9]\n[G]Nowhere to go [Gadd9] [G7]\n\n{section: Refrão}\n[D]Oh when I was a kid oh how [C]magic it [D]seemed\n[C]Oh please let me sleep its [G]Christmas time\n[G] [Gadd9] [G] [Gadd9]\n\n{section: Verso 2}\n[G]Flowered winds was where I [Gadd9]lived\n[G]Thought you burned not froze for your [Gadd9]sins\n[G]Oh I'm so tired and [Gadd9]cold [G] [G7]\n\n{section: Refrão 2}\n[D]Oh when I was a kid oh how [C]magic it [D]seemed\n[C]Oh please let me sleep its [G]Christmas time\n\n{section: Interlúdio}\n[Gm7]\n\n{section: Refrão 3}\n[D]Oh when I was a kid oh how [C]magic it [D]seemed\n[C]Oh please let me sleep its [G]Christmas time\n[D]Oh when I was a kid oh how [C]magic it [D]seemed\n[C]Oh please let me dream it's [G]Christmas time\n\n{section: Outro}\n[G7]"
+}

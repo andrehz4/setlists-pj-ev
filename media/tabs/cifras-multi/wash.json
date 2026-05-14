@@ -1,0 +1,181 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Wash (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom Em, 70 BPM."
+  },
+  "title": "Wash",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 70,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Em7b5": {
+          "fingering": "010033",
+          "fingers": "010034",
+          "fundamental": null,
+          "notes": "meia diminuta"
+        },
+        "Bb5": {
+          "fingering": "x133xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 1
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, balada 70 bpm)",
+        "bpm": 70,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Em7b5": {
+          "fingering": "0102",
+          "fingers": "0102",
+          "fundamental": null
+        },
+        "Bb5": {
+          "fingering": "3300",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, balada 70 bpm)",
+        "bpm": 70,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Em7b5": {
+          "notes": [
+            "E",
+            "G",
+            "Bb",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Bb5": {
+          "notes": [
+            "Bb",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[Em7b5]Oh please let it rain today\n[Em7b5]This city's so filthy like my mind in ways\n[Em7b5]Oh it was the time like a clean new taste\n[Em7b5]Smiling eyes before me\n[Em7b5]And tears from my face [Bb5]\n\n{section: Refrão}\n[G]Wash my love [Bb5]\n[G]Wash my love [Bb5]\n[G]Wash my love... yeah [Bb5] [G]\n\n{section: Verso 2}\n[Em7b5]Sin for sale buying just a need\n[Em7b5]Oh who planted all the devils seeds?\n[Em7b5]And what's the truth? And the truth that lies at home\n[Em7b5]It's on the inside and I can't get it off [Bb5]\n\n{section: Refrão}\n[G]Wash my love [Bb5]\n[G]Wash my love [Bb5]\n[G]Wash my love... yeah [Bb5] [G]\n\n{section: Verso 3}\n[Em7b5]What's clean is pure but hey, I'm white on the outside\n[Em7b5]Though I stray\n[Em7b5]What she don't know today might kill us both tomorrow\n[Em7b5]Bring it back someway [Bb5]\n\n{section: Refrão / Outro}\n[G]Bring it back, back back [Bb5]\n[G]To the clean form [Bb5]\n[G]To the pure form [Bb5] [G]\n[Bb5]Wash my love [G]\n[Bb5]Wash my love [G]\n[Bb5]Wash my love [G]\n[Bb5]Wash my love [G]\n[Bb5]Wash my [G]love (x6)"
+}

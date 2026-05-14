@@ -1,0 +1,294 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Strangest Tribe (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom F#m, 90 BPM. Capo: 1"
+  },
+  "title": "Strangest Tribe",
+  "artist": "Pearl Jam",
+  "key": "F#m",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F#m": {
+          "fingering": "244222",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "C#m": {
+          "fingering": "x46654",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 4
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 2
+        },
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 4
+        },
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A5": {
+          "fingering": "x022xx",
+          "fingers": "x023xx",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      },
+      "capo": 1
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#m": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": null
+        },
+        "C#m": {
+          "fingering": "1104",
+          "fingers": "1104",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "F#": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": null
+        },
+        "C#": {
+          "fingering": "1114",
+          "fingers": "1114",
+          "fundamental": null,
+          "barre": 1
+        },
+        "B5": {
+          "fingering": "4400",
+          "fingers": "2300",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      },
+      "capo": 1
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#m": {
+          "notes": [
+            "F#",
+            "A",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "C#m": {
+          "notes": [
+            "C#",
+            "E",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "Bm": {
+          "notes": [
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "F#": {
+          "notes": [
+            "F#",
+            "A#",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "C#": {
+          "notes": [
+            "C#",
+            "F",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "B5": {
+          "notes": [
+            "B",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F#m] (riff x4)\n\n{section: Verso 1}\n[F#m]It's five below in evidence\nThe winded eves and sideways snow\nHis eminence has yet to show\n\n{section: Refrão}\n[F#m]Follow the ageless tide [C#m]\nFollow the angled [E]light\nFollow the strangest [Bm]tribe\n\n[F#m] [C#m] [F#] [C#m] [F#]\n\n{section: Verso 2}\n[F#m]It's 6:00 AM. You're waiting for...\nYou've had your feast, you're wanting more\n\n{section: Refrão 2}\n[F#m]Follow the wayward mile [C#m]\nFollow the distant [E]high\nFollow the strangest [Bm]tribe\n\n[F#m] [C#m] [F#] [C#m] [F#m]\n\n{section: Refrão 3}\n[F#m]Follow the ancient stripe [C#m]\nFollow the angels [E]try\nFollow the strangest [Bm]tribe\n\n[F#m] [C#m] [F#] [C#m] [F#] [C#m] [F#] [C#m] [F#]"
+}

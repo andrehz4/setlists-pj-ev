@@ -1,0 +1,163 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Dirty Frank (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom Em, 130 BPM."
+  },
+  "title": "Dirty Frank",
+  "artist": "Pearl Jam",
+  "key": "Em",
+  "bpm": 130,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Em7": {
+          "fingering": "022030",
+          "fingers": "023040",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "x02010",
+          "fingers": "x02010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Em7": {
+          "fingering": "0202",
+          "fingers": "0202",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "0000",
+          "fingers": "0000",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Em7": {
+          "notes": [
+            "E",
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Am7": {
+          "notes": [
+            "A",
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Em7] [Am7] (x12)\n\n{section: Verso 1}\n[Em7]Dirty Frank Dahmer he's a gourmet cook, yeah [Am7]\n[Em7]I got a recipe for anglo-saxin soup, yeah [Am7]\n[Em7]Wanted a pass. So she relaxed. Now the [Am7]\n[Em7]Little groupie's getting chopped up in the back [Am7]\n[Em7]I got a cupboard full of fleshy fresh ingredients [Am7]\n[Em7]A very careful at the same time quite expedient [Am7]\n[Em7]Eats meat. A release [Am7]\n[Em7]Bus driving's harder on your head than on your feet [Am7]\n\n{section: Refrão}\n[Em7]Dirty Frank. [Am7]Dirty Frank, yeah (x4)\n\n{section: Verso 2}\n[Em7]Keeps it clean. A keeps it copaseptic [Am7]\n[Em7]A little boys and girls their heads are all collected [Am7]\n[Em7]A not crazy. A per se [Am7]\n[Em7]Just a little strange when he gets hungry [Am7]\n[Em7]City state your town he will continue [Am7]\n[Em7]A stadiums tiny clubs every venue [Am7]\n[Em7]A his bus a your trust [Am7]\n[Em7]There goes another turned into crust [Am7]\n[Em7]Dirty Frank [Am7]Dirty Frank, yeah (x4)\n\n{section: Solo}\n[Em7] (x11)\n\n{section: Verso 3}\n[Em7]Oh, middle of the night we're stopped the freeway shoulder [Am7]\n[Em7]A frank's shoveling to bury the leftovers [Am7]\n[Em7]A they're sunk. He's drunk [Am7]\n[Em7]Now he's gonna drive I'm hiding in my bunk [Am7]\n[Em7]The band all knows. We're too afraid to mention [Am7]\n[Em7]A Don't want to be part of Frank's luncheon [Am7]\n[Em7]A lose weight. A be safe. [Am7]\n[Em7]Where's Mike McCready? My god he's been ate! [Am7]\n\n{section: Refrão 2}\n[Em7]Dirty Frank. [Am7]Dirty Frank, yeah (x4)\n\n{section: Solo 2}\n[Em7] [Am7] (x14, x4 muted, x8)\n\n{section: Ponte}\n[Em7]Why that dirty Frank was a bad mother [Am7]\n[Em7]Hey man, I'm just talking about dirty Frank [Am7]\n\n{section: Verso 4}\n[Em7]Oh he's gone fruit loops it's the perfect job [Am7]\n[Em7]Cook them just to see the look on their face (x10) [Am7]\n[Em7]Mommy mommy I'll just sing mommy no no [Am7]\n\n{section: Outro}\n[Em7]Dirty Frank. Yeah, [Am7]a dirty Frank (x10)"
+}
