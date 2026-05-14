@@ -1,14 +1,17 @@
 // Fila de publicacao no Instagram. Cada item curado pelo Sonnet entra
-// aqui com publishAt = now + 3h (atrasa pra nao postar imediatamente
-// e dar tempo de eventuais correcoes editoriais). O worker do cron le
-// items maduros, agrupa por type (regular vs spotlight), monta carrossel
+// aqui com publishAt = now (sem delay editorial). Decisao: Andre confia
+// 100% na curadoria/traducao da routine Sonnet e nao revisa antes de
+// postar; manter delay so cria janelas mortas no feed (ver memoria
+// feedback_no_publish_delay.md). O worker do cron (30min) le items
+// maduros, agrupa por type (regular vs spotlight), monta carrossel
 // e marca como postado.
 
 import fs from "node:fs/promises";
 import path from "node:path";
 
 const QUEUE_PATH = path.resolve("media/news/_publish-queue.json");
-export const PUBLISH_DELAY_MS = 3 * 60 * 60 * 1000;
+// Zero = posta no proximo cron de 30min apos a curadoria.
+export const PUBLISH_DELAY_MS = 0;
 export const MAX_PER_CAROUSEL = 10;
 
 export async function readQueue() {
