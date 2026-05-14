@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Sometimes (Pearl Jam, No Code 1996, faixa 1). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Sometimes, Pearl Jam)",
+    "fetched": "2026-05-14",
+    "note_compasso": "4/4 a ~60 BPM. Sem capotraste. Intro/Verso 1 orbitam C/D-Abaug-Am (cromatismo descendente). Verso 2 simplifica pra F5-C/E. Ponte explode em power chords ascendentes Bb5-B5-C5-A5. Arranjo original eh fingerpicking acustico; strumming proposto eh editorial."
+  },
+  "title": "Sometimes",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 60,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C/D":   { "fingering": "xx055x", "fingers": "xx023x", "fundamental": "C", "bass": "D", "notes": "corda D solta (0), C no G fret 5, E no B fret 5" },
+        "Abaug": { "fingering": "4x6554", "fingers": "1x3241", "fundamental": "Ab", "notes": "Abaug: Ab-C-E; barre parcial no fret 4" },
+        "Am":    { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "F5":    { "fingering": "133xxx", "fingers": "134xxx", "fundamental": "F", "notes": "power chord F+C" },
+        "C/E":   { "fingering": "032010", "fingers": "032010", "fundamental": "C", "bass": "E" },
+        "A#5":   { "fingering": "x133xx", "fingers": "x134xx", "fundamental": "Bb", "notes": "power chord Bb+F" },
+        "B5":    { "fingering": "x244xx", "fingers": "x134xx", "fundamental": "B",  "notes": "power chord B+F#" },
+        "C5":    { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C",  "notes": "power chord C+G" },
+        "A5":    { "fingering": "x022xx", "fingers": "x011xx", "fundamental": "A",  "notes": "power chord A+E" }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto; original eh dedilhado acustico, fonte UG nao traz)",
+        "bpm": 60,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C/D":   { "fingering": "0003", "fingers": "0003", "fundamental": "C", "bass": "D", "notes": "voicing igual C; uke nao tem baixo D" },
+        "Abaug": { "fingering": "1003", "fingers": "1003", "fundamental": "Ab", "notes": "Abaug (=Caug): G#-C-E-C" },
+        "Am":    { "fingering": "2000", "fingers": "2000", "fundamental": "A" },
+        "F5":    { "fingering": "2010", "fingers": "2010", "fundamental": "F", "notes": "voicing igual F; uke usa triado" },
+        "C/E":   { "fingering": "0003", "fingers": "0003", "fundamental": "C", "bass": "E", "notes": "voicing igual C; uke nao tem baixo E" },
+        "A#5":   { "fingering": "3211", "fingers": "2311", "fundamental": "Bb", "barre": 1, "notes": "voicing igual Bb" },
+        "B5":    { "fingering": "4222", "fingers": "4111", "fundamental": "B",  "barre": 2, "notes": "voicing igual B power chord adaptado" },
+        "C5":    { "fingering": "0003", "fingers": "0003", "fundamental": "C",  "notes": "voicing igual C" },
+        "A5":    { "fingering": "2100", "fingers": "2100", "fundamental": "A",  "notes": "voicing igual A" }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto; original eh dedilhado acustico, fonte UG nao traz)",
+        "bpm": 60,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C/D":   { "notes": ["D", "C", "E", "G"], "fundamental": "C", "inversion": "D", "bass": "D" },
+        "Abaug": { "notes": ["Ab", "C", "E"],      "fundamental": "Ab", "inversion": null },
+        "Am":    { "notes": ["A", "C", "E"],       "fundamental": "A",  "inversion": null },
+        "F5":    { "notes": ["F", "C"],             "fundamental": "F",  "inversion": null, "note": "power chord" },
+        "C/E":   { "notes": ["C", "E", "G"],       "fundamental": "C",  "inversion": "E", "bass": "E" },
+        "A#5":   { "notes": ["Bb", "F"],            "fundamental": "Bb", "inversion": null, "note": "power chord" },
+        "B5":    { "notes": ["B", "F#"],            "fundamental": "B",  "inversion": null },
+        "C5":    { "notes": ["C", "G"],             "fundamental": "C",  "inversion": null },
+        "A5":    { "notes": ["A", "E"],             "fundamental": "A",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C/D] [Abaug] [Am] (riff — ver tab/GP)\n\n{section: Verso 1}\n[C/D]large fingers pushin' [Abaug] [Am] [C/D]me\n[C/D]you're God and you got [Abaug]big [Am]hands [C/D]colors [Abaug] [Am]blend\nthe [C/D]challenges you [Abaug]give [Am]me [F5] [C/E]\n\n{section: Instrumental}\n[F5] [C/E] (riff — ver tab/GP)\n\n{section: Verso 2}\n[F5]seek my [C/E]part\n[F5]devote my[C/E]self\n[F5]my small [C/E]self\n[F5]like a book a[C/E]mongst\n\n{section: Ponte}\nthe [A#5]many on a [B5]shelf\n[C5]sometimes i know, sometimes i [A5]rise\n[A#5]sometimes i fall, sometimes i [B5]don't\n[C5]sometimes i cringe, sometimes i [A#5]live\n[B5]sometimes i walk, sometimes i [C5]kneel\n[A#5]sometimes i speak of nothing at [B5]all\nsometimes i reach to myself. hear God\n\n{section: Outro}\n[A#5] (riff — ver tab/GP x19)\n"
+}

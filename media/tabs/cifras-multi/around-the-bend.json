@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Around the Bend (Pearl Jam, No Code 1996, faixa 13). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Around the Bend, Pearl Jam)",
+    "fetched": "2026-05-14",
+    "note_compasso": "4/4 a ~75 BPM. Sem capotraste. Tom A. Canção de ninar acustica composta por Vedder para o filho recem-nascido de Jack Irons. Loop A-Em-D com variacao F-Bm-Bb nos finais de estrofe. Piano de Brendan O'Brien na gravacao. Strumming nao consta no UG; padrao proposto eh editorial."
+  },
+  "title": "Around the Bend",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 75,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "Em": { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "F":  { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Bm": { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "Bb": { "fingering": "x13331", "fingers": "x12341", "fundamental": "Bb", "barre": 1 }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Em": { "fingering": "0432", "fingers": "0321", "fundamental": "E" },
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Bm": { "fingering": "4222", "fingers": "4111", "fundamental": "B", "barre": 2 },
+        "Bb": { "fingering": "3211", "fingers": "2311", "fundamental": "Bb", "barre": 1 }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":  { "notes": ["A", "C#", "E"],  "fundamental": "A",  "inversion": null },
+        "Em": { "notes": ["E", "G", "B"],   "fundamental": "E",  "inversion": null },
+        "D":  { "notes": ["D", "F#", "A"],  "fundamental": "D",  "inversion": null },
+        "F":  { "notes": ["F", "A", "C"],   "fundamental": "F",  "inversion": null },
+        "Bm": { "notes": ["B", "D", "F#"],  "fundamental": "B",  "inversion": null },
+        "Bb": { "notes": ["Bb", "D", "F"],  "fundamental": "Bb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [Em] [D]\n\n{section: Verso 1}\n[A]I'm wishing you all [Em]well [D]\n[A]Mind a peace with[Em]in your cell [D]\n[A]Covers up I [Em]cast you [D]off\n[A]I'll be watching [Em]as you [D]breathe\n[A]I lie still, you move, [Em]I send you off a[D]round the [F]bend [Em] [Bb]\n\n{section: Instrumental}\n[A] [Em] [D]\n\n{section: Verso 2}\n[A]I hold your head deep [Em]in my arms [D]\n[A]My fingertips they [Em]close your [D]eyes\n[A]Off you dream my [Em]little [D]child\n[A]There's a sun a[Em]round the [D]bend\n[F]There's a sun a[Bm]round the [Bb]bend\n\n{section: Instrumental}\n[A] [Em] [D]\n\n{section: Verso 3}\n[A]All evenings close [Em]like this [D]\n[A]All these moments [Em]that I've [D]missed\n[A]Please forgive me, [Em]won't you [D]dear?\n[A]Please forgive and let me share with you a[Em]round the [D]bend [F] [Bm] [Bb]\n\n{section: Instrumental}\n[A] [Em] [D]\n\n{section: Outro}\n[A]You're an angel [Em]when you [D]sleep\n[A]How I want your soul to keep on, and on, a[Em]round the [D]bend [F] [Bm] [Bb]\n"
+}

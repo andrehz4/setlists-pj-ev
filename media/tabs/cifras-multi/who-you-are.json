@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Who You Are (Pearl Jam, No Code 1996, faixa 3). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Who You Are, Pearl Jam)",
+    "fetched": "2026-05-14",
+    "note_compasso": "4/4 a 80 BPM. Tom E, sem capotraste. Harmonia minimalista: so E e B. Groove hipnotico worldbeat com cítara; batida polirritmica de Jack Irons. Strumming UG: ↓ ↑ ↓ . . ↑ ↓ ↑ (pulso continuo com pausa dupla no 3)."
+  },
+  "title": "Who You Are",
+  "artist": "Pearl Jam",
+  "key": "E",
+  "bpm": 80,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E": { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "B": { "fingering": "x24442", "fingers": "x13442", "fundamental": "B", "barre": 2 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "3", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E": { "fingering": "4442", "fingers": "3421", "fundamental": "E", "barre": 2 },
+        "B": { "fingering": "4322", "fingers": "4211", "fundamental": "B", "barre": 2 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (UG)",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "3", "stroke": "down", "muted": true  },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E": { "notes": ["E", "G#", "B"], "fundamental": "E", "inversion": null },
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": "B", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[E]Come to send. Not condescend\n[E]Transcendent to [B]consequences\n[E]To transcend [B]where we [E]are\n\n{section: Refrão}\n[E]Who are we? [B]Who we [E]are\n\n{section: Verso 2}\n[E]Trampled marks on your souls\n[E]Changes, all you're a [B]part\n[E]Seen it all. Not at [B]all\n[E]Can't defend fucked up men\n[E]Take me for a ride [B]before we [E]leave\n\n{section: Verso 3}\n[E]Circumstance. Clapping hands\n[E]A driving winds. [B]Happenstance\n[E]Off the track, in the mud\n[E]That's the mark in the aforementioned [B]verse\n\n{section: Ponte}\n[E]And a little... Wow... [B]And a [E]little...\n\n{section: Verso 4}\n[E]Just a little time [B]before we [E]leave\n[E]Stop light plays its part so I would say you've got a [B]part\n\n{section: Refrão}\n[B]What's your part? [E]Who you [B]are\n[B]You are who who you [E]are\n"
+}
