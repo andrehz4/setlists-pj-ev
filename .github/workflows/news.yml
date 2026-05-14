@@ -1,8 +1,10 @@
 name: News fetch
 on:
   schedule:
-    # A cada 6h, offset 23min pra fugir de pico de cron do GitHub
-    - cron: '23 */6 * * *'
+    # 4x/dia, 5min antes dos marcos da routine (00:00, 06:00, 12:00, 18:00 BRT).
+    # 23:55, 05:55, 11:55, 17:55 BRT = 02:55, 08:55, 14:55, 20:55 UTC.
+    # 5min de folga pra scrape commitar antes da routine acordar.
+    - cron: '55 2,8,14,20 * * *'
   workflow_dispatch:
     inputs:
       curator:
