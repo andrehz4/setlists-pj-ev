@@ -107,20 +107,17 @@ jobs:
             exit 0
           fi
 
-          # contagem por sourceLabel, formatada
+          # contagem por sourceLabel, formatada (uma fonte por linha)
           BY_SOURCE=$(jq -r '
             .items
             | group_by(.sourceLabel // .kind // "outros")
             | map({src: (.[0].sourceLabel // .[0].kind // "outros"), n: length})
             | sort_by(-.n)
-            | map(.src + " " + (.n | tostring))
-            | join(" · ")
+            | map("  • " + .src + ": " + (.n | tostring))
+            | join("\n")
           ' media/news/_pending.json)
 
-          MSG="🛰️ <b>SMUFDPJ • scrape ${BRT_NOW} BRT</b>
-${TOTAL} candidatos coletados
-  ${BY_SOURCE}
-Routine cura em ~7min, te aviso o que sobreviver."
+          MSG=$(printf '🛰️ <b>Scrape de noticias, %s BRT</b>\n\n<b>%s candidatos novos coletados</b>\n\n<b>Por fonte:</b>\n%s\n\nA curadoria roda em ~7min e seleciona quais vao pro feed @smufdpj. Aviso aqui assim que ela rodar.' "$BRT_NOW" "$TOTAL" "$BY_SOURCE")
 
           HTTP_CODE=$(curl -s -o /tmp/tg-resp.json -w "%{http_code}" \
             -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
