@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Can't Keep (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 95 BPM."
+  },
+  "title": "Can't Keep",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 95,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "F#m": {
+          "fingering": "244222",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 95,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "F#m": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 95,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "F#m": {
+          "notes": [
+            "F#",
+            "A",
+            "C#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Refrão}\n[G]I've lived\nAll this life\nLike an ocean\nIn disguise\nI don't live forever\nYou can't keep\n[C]Me here\n\n{section: Ponte}\n[F#m]I want to race\nWith the sundown\nI want a last breath\nThat I don't let out\n\n{section: Refrão}\n[G]Forgive\nEvery being\nThe bad feelings\nIt's just me\nI won't wait\nFor answers\nYou can't keep\n[C]Me here\n\n{section: Verso 2}\n[F#m]I want to rise\nAnd say goodnight\nWant to take\nA look on the other side\n\n{section: Refrão}\n[G]I've lived\nAll those lives\nIt's been wonder\nFull at night\nI will live forever\nYou can't keep\n[C]Me here"
+}

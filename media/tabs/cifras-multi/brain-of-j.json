@@ -1,0 +1,274 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Brain of J. (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom B, 160 BPM."
+  },
+  "title": "Brain of J.",
+  "artist": "Pearl Jam",
+  "key": "B",
+  "bpm": 160,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "Cm": {
+          "fingering": "x35543",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 3
+        },
+        "Gm": {
+          "fingering": "355333",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 3
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 160,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "Cm": {
+          "fingering": "0333",
+          "fingers": "0111",
+          "fundamental": null,
+          "barre": 3
+        },
+        "Gm": {
+          "fingering": "0231",
+          "fingers": "0231",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 160,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Cm": {
+          "notes": [
+            "C",
+            "Eb",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Gm": {
+          "notes": [
+            "G",
+            "Bb",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[B] [B] [A] [A]\n\n{section: Verso 1}\n[B] [B] [A]Who's got the brain of JFK? What's it mean to [B]us now. Yeah.\n[B] [B] [A]Pause, it sounds distrust. But I can tell you [B]this is no lie. Yeah.\n\n{section: Refrão}\n[Cm]The whole world will be different soon.\n[Gm]\n[B]The whole world will be relieved.\n(x2)\nYeah, trust.\n\n{section: Verso 2}\n[B] [B] [A]You've been taught, whipped into shape, [B]now they got you in line. Yeah.\n[B] [B] [A]Stand behind the stripes. There will be order, [B]so give it a good mind there.\n\n{section: Refrão}\n[Cm]The whole world will be different soon.\n[B]The whole world will be relieved.\nWoh.\n\n{section: Solo}\n[Cm] [Cm] [Gm] [B] (x2)\n[G] [D] (x3)\n[Em] [D]\n\n{section: Ponte}\n[G]And by [D]name, the [G]name they [D]gave me, the [G]name I'm [D]letting [Em] [F] [G]go. Ahh.\n[B] [B] [A] [A] (x8)\n\n{section: Refrão}\n[Cm]The whole world will be different soon.\n[B]The whole world will be relieved.\n[Cm]The whole world will be different soon."
+}

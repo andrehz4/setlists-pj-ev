@@ -1,0 +1,311 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Cropduster (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 110 BPM. Afinacao: 7/8 time"
+  },
+  "title": "Cropduster",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 110,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "G#": {
+          "fingering": "466544",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 4
+        },
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 4
+        },
+        "Eb": {
+          "fingering": "x68886",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 6
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 110,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "G#": {
+          "fingering": "5343",
+          "fingers": "4231",
+          "fundamental": null
+        },
+        "C#": {
+          "fingering": "1114",
+          "fingers": "1114",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Eb": {
+          "fingering": "0331",
+          "fingers": "0231",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 110,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "G#": {
+          "notes": [
+            "G#",
+            "C",
+            "D#"
+          ],
+          "fundamental": null
+        },
+        "C#": {
+          "notes": [
+            "C#",
+            "F",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "Eb": {
+          "notes": [
+            "Eb",
+            "G",
+            "Bb"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F] [G] [Bb] [C] [D] [F] [G] [Bb] [C]\n(compasso 7/8)\n\n{section: Verso 1}\n[A]Light green to green, dark green, [C]brown [A]\n[C]Every life is falling [A]down\n[A]Brown to black, it's coming back [C]\n[C]Dies to be part of the [A]ground\n[G]Seed to seedling, root to stem [F] [E] [G#]\n\n{section: Verso 2}\n[A]Eyes, no eyes, there's no [C]difference [A]\n[C]Every life is looking [A]in\n[C]Swallowing seeds on the deathbed [A]\n[G]Dig a hole in,... the garden [F] [E] [G#]\n\n{section: Ponte}\n[C#]Everyone is practicing,...\n[Eb] [E] [G#]\n[C#]But this world's an accident\n[Eb] [E] [G#]\n[C#]I was the fool because I thought [C]\n\n{section: Refrão}\n[D]I thought the [E]world [G]\n[C]Turns out the world [D]thought [E]me [G]\n[C]It's all the other way round [D] [E]\n[G]We're upside down [C] [A]\n\n{section: Solo}\n[A] [C] [A] [C] [A] [C] [A] [C]\n\n{section: Verso 3}\n[A]Daddy's gone up flames,...\n[C] [A]But this ain't no movie\n[A]This ain't no book you can close\n[A]When the big lie hits your eye. [G] [F] [E] [G#]\n\n{section: Ponte 2}\n[C#]Everybody's practicing\n[Eb] [E] [G#]\n[C#]Our world's an accident\n[Eb] [E] [G#]\n[C#]I was the fool because I thought [C]\n\n{section: Refrão 2}\n[D]I thought the [E]world [G] [C] (x2) [A]\n[C]Turns out the world [D]thought [E]me [G] [C]\n[C]It's all the other way [D]round [E] [G]\n[C]We're upside down\n\n{section: Outro}\n[E] [C] [E] [C] [D] [B] [E]\nDown down down let the fluency set it down\n[C] [E] [C] [D] [B] [E]\nLet the fluency set it down\n[C] [E] [C]\n[D] [B]\nThere's an upside of down\n[F] [G] [Bb] [C] [D] (x5)\nThe moon is rolling around"
+}

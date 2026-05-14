@@ -1,0 +1,364 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de I Am Mine (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 82 BPM."
+  },
+  "title": "I Am Mine",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 82,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A5": {
+          "fingering": "x022xx",
+          "fingers": "x023xx",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "x32030",
+          "fingers": "x32040",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "Fmaj7": {
+          "fingering": "133210",
+          "fingers": "134210",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Dsus2": {
+          "fingering": "xx0230",
+          "fingers": "xx0130",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "G/B": {
+          "fingering": "x20003",
+          "fingers": "x20003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . D . U D U (82 bpm)",
+        "bpm": 82,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "0203",
+          "fingers": "0203",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "Fmaj7": {
+          "fingering": "2410",
+          "fingers": "2410",
+          "fundamental": null
+        },
+        "Dsus2": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G/B": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . D . U D U (82 bpm)",
+        "bpm": 82,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Am": {
+          "notes": [
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Cadd9": {
+          "notes": [
+            "C",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "Fmaj7": {
+          "notes": [
+            "F",
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Dsus2": {
+          "notes": [
+            "D",
+            "E",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Bm": {
+          "notes": [
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "G/B": {
+          "notes": [
+            "B",
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Dsus2] [Fmaj7] [Em] [Dsus2] [Fmaj7] [Em]\n[Dsus2] [Fmaj7] [Em] [Dsus2] [Fmaj7]\n[Em]\n\n{section: Verso 1}\n[A5] [D]The selfish, they're all standing in [F]line\n[D]Faithing and hoping to buy themselves [F]time [C] [G]\n[D]Me, I figure as each breath goes [F]by [C] [G]\n[F] [G] [D]I only own my mind\n[D]The north is to south what the clock is to [F]time [C] [G]\n[D]There's east and there's west and there's everywhere [F]life [C] [G]\n[D]I know I was born and I know that I'll [F]die [C] [G]\n[F] [G] [D]The in between is mine\n[F] [G] [D]I am mine\n\n{section: Refrão}\n[G]And the feeling, it gets left behind [Am] [D]\n[G]All the innocence lost at one [Am]time [D]\n[G]Significant behind the [Am]eyes [D]\n[Cadd9]There's no need to hide\n[Dsus2] [Fmaj7]We are safe tonight\n\n{section: Verso 2}\n[Em] [Dsus2] [Fmaj7] [Em]\n[A] [D]The ocean is full 'cause everyone's [F]crying [C] [G]\n[D]The full moon is looking for friends at [F]high tide [C] [G]\n[D]The sorrow grows bigger when the sorrow's [F]denied [C] [G]\n[F] [G] [D]I only know my mind\n[F] [G] [D]I am mine\n\n{section: Refrão 2}\n[G]And the meaning, it gets left behind [Am] [D]\n[G]All the innocence lost at one [Am]time [D]\n[G]Significant behind the [Am]eyes [D]\n[Cadd9]There's no need to hide\n\n{section: Interlúdio}\n[Dsus2] [Fmaj7] [D] [Cadd9] (x4)\n[Dsus2] [Fmaj7] (x3)\n\n{section: Refrão 3}\n[D] [Cadd9] [G]And the feelings that get left behind [Am] [D]\n[G]All the innocence broken with [Am]lies [D]\n[G]Significance, between the [Am]lines [D]\n[Cadd9]We may need to hide\n[G]And the meanings that get left behind [Am] [D]\n[G]All the innocence lost at one [Am]time [D]\n[G]We're all different behind the [Am]eyes [D]\n[Cadd9]There's no need to hide, yeah\n\n{section: Solo}\n[G] [Am] [D] (x4)\n[Cadd9]"
+}

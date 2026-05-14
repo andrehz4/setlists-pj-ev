@@ -1,0 +1,294 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Do the Evolution (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom Gm, 141 BPM."
+  },
+  "title": "Do the Evolution",
+  "artist": "Pearl Jam",
+  "key": "Gm",
+  "bpm": 141,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "C7": {
+          "fingering": "x32310",
+          "fingers": "x32410",
+          "fundamental": null
+        },
+        "B7": {
+          "fingering": "x21202",
+          "fingers": "x21304",
+          "fundamental": null
+        },
+        "Bb7": {
+          "fingering": "x13131",
+          "fingers": "x13141",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Dsus2": {
+          "fingering": "xx0230",
+          "fingers": "xx0130",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 1
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Gm": {
+          "fingering": "355333",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 3
+        }
+      },
+      "strumming": {
+        "label": "D U . U D U . U (141 bpm)",
+        "bpm": 141,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "C7": {
+          "fingering": "0001",
+          "fingers": "0001",
+          "fundamental": null
+        },
+        "B7": {
+          "fingering": "2322",
+          "fingers": "1422",
+          "fundamental": null
+        },
+        "Bb7": {
+          "fingering": "1211",
+          "fingers": "1211",
+          "fundamental": null
+        },
+        "Dsus2": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Gm": {
+          "fingering": "0231",
+          "fingers": "0231",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D U . U D U . U (141 bpm)",
+        "bpm": 141,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "C7": {
+          "notes": [
+            "C",
+            "E",
+            "G",
+            "Bb"
+          ],
+          "fundamental": null
+        },
+        "B7": {
+          "notes": [
+            "B",
+            "D#",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Bb7": {
+          "notes": [
+            "Bb",
+            "D",
+            "F",
+            "Ab"
+          ],
+          "fundamental": null
+        },
+        "Dsus2": {
+          "notes": [
+            "D",
+            "E",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "Bb": {
+          "notes": [
+            "Bb",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Gm": {
+          "notes": [
+            "G",
+            "Bb",
+            "D"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G5]\n\n{section: Verso 1}\n[G5]I'm ahead, I'm a man\nI'm the first mammal to wear pants, yeah\nI'm at peace with my lust\nI can kill cause in God I trust, yeah\n[C7] [B7] [Bb7] [G5]It's evolution, baby\n\n{section: Verso 2}\n[G5]I'm at peace, I'm the man\nBuying stocks on the day of the crash\nOn the loose, I'm a truck\nAll the rolling hills, I'll flatten 'em out, yeah\n[C7] [B7] [Bb7] [G5]It's herd behavior, uh huh\n[C7] [B7] [Bb7] [G5]It's evolution, baby\n\n{section: Interlúdio}\n[Dsus2] [F] [Bb] [Dsus2]\n\n{section: Refrão}\n[Dsus2]Admire me, admire my [F]home\n[Bb]Admire my son, he's my [Dsus2]clone\nYeah, yeah, yeah, yeah\n[Dsus2]This land is mine, this land is [F]free\n[Bb]I'll do what I want but [Dsus2]irresponsibly\n[C7] [B7] [Bb7] [G5]It's evolution, baby\n\n{section: Ponte}\n[G5]I'm a thief, I'm a liar\nThere's my church, I sing in the choir:\n[D] [F] [E] [Gm]Hallelujah, hallelujah\n\n{section: Refrão}\n[Dsus2]Admire me, admire my [F]home\n[Bb]Admire my son, admire my [Dsus2]clones\n[Dsus2]'Cause we know, appetite for a nightly [F]feast\n[Bb]Those ignorant Indians got nothin' on [Dsus2]me\nNothin', why? Because...\n[C7] [B7] [Bb7]It's evolution, baby\n\n{section: Solo}\n[G5]Yeah\n\n{section: Verso 3}\n[G5]I am ahead, I am advanced\nI'm the first mammal to make plans, yeah\nI crawled the earth, but now I'm higher\n2010, watch it go to fire\n[C7] [B7] [Bb7]It's evolution, baby\n[G5] [C7] [B7] [Bb7]It's evolution, baby\n[G5]Ah\n\n{section: Outro}\n[C7] [B7] [Bb7] [G5]Do the evolution\n[G5]Come on, come on"
+}

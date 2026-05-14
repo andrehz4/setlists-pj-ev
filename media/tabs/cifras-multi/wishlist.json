@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Wishlist (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 116 BPM."
+  },
+  "title": "Wishlist",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 116,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . DU . U DU (116 bpm)",
+        "bpm": 116,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . DU . U DU (116 bpm)",
+        "bpm": 116,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C] [F] [C]\n\n{section: Verso 1}\n[F] [C]I wish I was a neutron bomb for once I could go off\n[F] [C]I wish I was a sacrifice but somehow still lived on\n[F] [C]I wish I was a sentimental ornament you hung on\n[F] [C]The Christmas tree I wish I was the star that went on top\n\n{section: Refrão}\n[F]I wish I was the evidence [C]I wish I was the grounds\n[F]For fifty million hands [C]upraised and [G]open toward the [F]sky\n\n{section: Verso 2}\n[F] [C]I wish I was a sailor with someone who waited for me\n[F] [C]I wish I was as fortunate as fortunate as me\n\n{section: Refrão}\n[F]I wish I was a messenger [C]and all the news was good\n[F]I wish I was the full moon [C]shining off a [G]Camaro's [F]hood\n\n{section: Solo}\n[G] [F] [C] [G]\n[F] [C] [G] [F]\n\n{section: Verso 3}\n[C]I wish I was an alien [F]at home behind the [C]sun\n[C]I wish I was the souvenir [F]you kept your house key [C]on\n\n{section: Refrão}\n[F]I wish I was the pedal brake [C]that you depended on\n[F]I wish I was the verb 'to trust' [C]and never [G]let you [F]down\n\n{section: Outro}\n[C] [F] (x4)\n[C]"
+}

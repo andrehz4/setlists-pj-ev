@@ -1,0 +1,215 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Save You (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 130 BPM."
+  },
+  "title": "Save You",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 130,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "Am": {
+          "notes": [
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Em] [C] (x3)\n[Em]\n\n{section: Verso 1}\n[C]I'm going to save you fucker, [Em]not going to lose you [C]\n[C]I'm going cocky and strong, [Em]can't let you go [C]\n[Am]Too important to [Em]me\n[C]Too important to us, we'd be lost [Em]without you [C]\n[C]Baby, let yourself fall, I'm right [Em]below you now [C]\n\n{section: Refrão}\n[D]And fuck me if I say something\n[Em]You don't want to hear, [G]fuck [C]me [D]\n[Em]And fuck me if you only [G]hear\n[C]What you want to hear [D]\n[Em]Fuck me if I care, but I'm not [D]leaving here [Em]\n\n{section: Verso 2}\n[C]You helped me when I was down, [Em]I'll help when you're down [C]\n[C]Why are you hitting yourself, [Em]come on hit me instead [Am] [Em]\n[C]Let's pick up your will, it's grown [Em]fat and lazy [C]\n[C]I'm sympathetic as well, I don't [Em]go on me now [C]\n\n{section: Refrão 2}\n[D]And I'm not living this life\n[Em]Without you [G]I'm selfish and [C]clear [D]\n[Em]And you're not leaving here without [G]me\n[C]I don't want to be without [D]\n[Em] [D]My best friend, wake up to see [Em] [C] [Em] [C]you\nCould have it all, all\n\n{section: Solo}\n[Em] [C] (x6)\n[Em]\n\n{section: Verso 3}\n[C]Cause there is but you, [Em]and something within you [C]\n[C]It's taken control, let's beat [Em]it, get up let's go [Am] [Em]\n[C]Oh you're in your own world, let's [Em]see the whole world [C]\n[C]Let's pick up your soul [Em]\n\n{section: Refrão 3}\n[D]Fuck me if I say something\n[Em]You don't want to hear, [G]fuck [C]me [D]\n[Em]And fuck me if you only [G]hear\n[C]The treble in your head [D]\n[Em] [D]Please help me, to help [Em] [D]you\n\n{section: Outro}\n[Em] [C] [Em] [C]Help yourself\n[Em] [C] [Em] [C]Help yourself, Help me\n[C] [Em] [C]Please let me to\n[Em] [C] [Em] [C]Please let me to Help you\n[Em] [C] (x6)\n[Em]"
+}

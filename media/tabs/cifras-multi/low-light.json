@@ -1,0 +1,235 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Low Light (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 80 BPM."
+  },
+  "title": "Low Light",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 80,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "x02010",
+          "fingers": "x02010",
+          "fundamental": null
+        },
+        "C/B": {
+          "fingering": "x20010",
+          "fingers": "x20010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 80,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "0000",
+          "fingers": "0000",
+          "fundamental": null
+        },
+        "C/B": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 80,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Am7": {
+          "notes": [
+            "A",
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "C/B": {
+          "notes": [
+            "B",
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G]\n\n{section: Verso 1}\n[Em] [C] [G]Clouds roll by\n[G]Reeling is what they say\n[G]Or is it just my way?\n[Em] [C] [G]Wind blows by,\n\n{section: Refrão}\n[D] [Em]Low light\n[C] [G] [D] [Em]Sidetracked, low light\n\n[C] [C/B] [Am7]Can't see my tracks,\n[C/B] [C] [C/B] [D]Your scent-way back\n\n{section: Verso 2}\n[G]Can I be here all alone?\n[G]Clear a path to my home\n[Em] [C] [G]Blood runs dry\n\n[G]Books and jealousy tell me wrong\n[G]All I feel, calm\n[Em] [C] [G]Voice rolls by,\n\n{section: Refrão}\n[D] [Em]Low light\n[C] [G] [D] [Em]Car crash, low light\n\n[C] [C/B] [Am7]Can't wear my mask,\n[C/B] [C] [C/B] [D]Your first, my last\n\n[Em] [C] [G]Voice goes by\n[G]Two birds is what they'll see\n[G]Getting lost upon their way\n[Em] [C] [G]Wind rolls by,\n\n{section: Refrão}\n[D] [Em]Low light\n[C] [G] [D] [Em]Eye sight, low light\n\n[C] (x4)\n\n[D] [Em]I need the light\n\n[C] [C/B] [Am7] [C/B] [C] [C/B] [Am7]I'll find my way from wrong, what's real?\n[C/B] [C] [C/B] [D]Your dream I see\n\n{section: Outro}\n[D]"
+}

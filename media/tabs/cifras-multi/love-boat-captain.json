@@ -1,0 +1,255 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Love Boat Captain (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 100 BPM."
+  },
+  "title": "Love Boat Captain",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Cm": {
+          "fingering": "x35543",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 3
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "D7": {
+          "fingering": "xx0212",
+          "fingers": "xx0213",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Cm": {
+          "fingering": "0333",
+          "fingers": "0111",
+          "fundamental": null,
+          "barre": 3
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "D7": {
+          "fingering": "2223",
+          "fingers": "2213",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Cm": {
+          "notes": [
+            "C",
+            "Eb",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "D7": {
+          "notes": [
+            "D",
+            "F#",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[C]Is this just another day?\n[Cm]This god forgotten place.\n[G]First comes love and then comes pain. Let the games begin.\n[F]Questions rise and answers fall insurmountable.\n\n{section: Refrão}\n[E]Love boat captain [D7]take the reigns and steer us towards the clear.\n[E]Here. It's already been sung [D7]but it can't be said enough.\nAll you need [G]is love. [F]\n\n{section: Verso 2}\n[C]Is this just another phase? Earthquakes making waves.\n[Cm]Trying to shake the cancer off. Stupid human beings.\n[G]Once you hold the hand of love it's all surmountable. [F]\n\n{section: Interlúdio}\n[A]Hold me and make it the truth.\n[C] [G]That when all is lost there will be you.\n[A]'Cause to the universe I don't mean a thing.\n[C] [G]And there's just one word I still believe.\nAnd it's love.\n\n{section: Verso 3}\n[C] [Cm] [G] [F]\nIt's an art to live with pain. Mix the light into grey.\nLost nine friends we'll never know. Two years ago today.\nAnd if our lives became too long would it add to our regret?\n\n{section: Refrão 2}\n[E]And the young they can lose hope [D7]cause they can't see beyond today.\nThe wisdom that the old can't give away.\nHey, constant recoil. Sometimes life don't leave you alone.\n\n{section: Interlúdio 2}\n[A]Hold me and make it the truth.\n[C] [G]That when all is lost there will be you.\n[A]'Cause to the universe I don't mean a thing.\n[C] [G]And there's just one word that I still believe and it's love.\nLove. love. love. love.\n\n{section: Outro}\n[C] [Cm] [G] [F]\nLove boat captain take the reigns. Steer us towards the clear.\nI know it's already been sung. Can't be said enough.\nLove is all you need. All you need is love.\nLove. Love. Love."
+}

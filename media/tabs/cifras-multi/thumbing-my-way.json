@@ -1,0 +1,346 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Thumbing My Way (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 90 BPM."
+  },
+  "title": "Thumbing My Way",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 2
+        },
+        "G/B": {
+          "fingering": "x20003",
+          "fingers": "x20003",
+          "fundamental": null
+        },
+        "A7sus4": {
+          "fingering": "x02030",
+          "fingers": "x01040",
+          "fundamental": null
+        },
+        "A7": {
+          "fingering": "x02020",
+          "fingers": "x02030",
+          "fundamental": null
+        },
+        "Dm": {
+          "fingering": "xx0231",
+          "fingers": "xx0231",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": null
+        },
+        "G/B": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "A7sus4": {
+          "fingering": "0200",
+          "fingers": "0200",
+          "fundamental": null
+        },
+        "A7": {
+          "fingering": "0100",
+          "fingers": "0100",
+          "fundamental": null
+        },
+        "Dm": {
+          "fingering": "2210",
+          "fingers": "2310",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "F#": {
+          "notes": [
+            "F#",
+            "A#",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "G/B": {
+          "notes": [
+            "B",
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "A7sus4": {
+          "notes": [
+            "A",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "A7": {
+          "notes": [
+            "A",
+            "C#",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Dm": {
+          "notes": [
+            "D",
+            "F",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Bm": {
+          "notes": [
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D5] [F#] [G/B] [A7sus4] [A7] (x2)\n\n{section: Verso 1}\n[D5]I have not been home since you [F#]left long ago [G/B] [A7sus4] [A7]\n[D5]I'm thumbing my way back to [F#]heaven [G/B] [A7sus4] [A7]\n[D5]Counting steps, walking backwards [F#]on the road [G/B] [A7sus4] [A7]\n[D5]I'm counting my way back to [F#]heaven [G/B] [A7sus4] [A7]\n\n{section: Refrão 1}\n[G/B]I can't be free with what's locked inside of [C]me\n[Am]If there was a key, you took it in your [G]hand\n[G/B]There's no wrong or right, but I'm sure there's good and [C]bad\n[Am]The questions linger [G/B]overhead\n\n{section: Verso 2}\n[D5]No matter how cold the winter, there's a [F#]springtime ahead [G/B] [A7sus4] [A7]\n[D5]I'm thumbing my way back to [F#]heaven [G/B] [A7sus4] [A7]\n[D5]I wish that I could hold you [F#] [G/B] [A7sus4] [A7]\n[D5]I wish that I [F#]had [G/B] [A7sus4] [A7]\nThinking 'bout heaven\n\n{section: Ponte}\n[Dm]I let go of a rope, thinking that's what held me [F]back\n[C]And in time I've realized, it's now wrapped [Em]around my neck\n[A#]\n[F]\n[Dm]I can't see what's next, from this lonely [F]overpass\n[C]Hang my head and count my steps, as another [Em]car goes past\n[A#]\n[F]\n\n{section: Refrão 2}\n[G/B]All the rusted signs we ignore throughout [Bm]our lives [C]\n[Am]Choosing the shiny ones [G]instead\n[G/B]I turned my back, now there's no turning [Bm]back [C] [Am] [G/B]\n\n{section: Verso 3}\n[D5]No matter how cold the winter, there's a [F#]springtime ahead [G/B] [A7sus4] [A7]\n[D5]I smile, but who am I [F#]kidding? [G/B] [A7sus4] [A7]\n[D5]I'm just walking the mile, every once in a while I'll get a [F#]ride [G/B] [A7sus4] [A7]\n[D5]I'm thumbing my way back to [F#]heaven [G/B] [A7sus4] [A7]\n\n{section: Outro}\n[D5]Thumbing my way back to heaven [F#] [G/B] [A7sus4] [A7] (x2)\n[D5]"
+}

@@ -1,0 +1,304 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de God's Dice (Pearl Jam, Binaural 2000).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 100 BPM."
+  },
+  "title": "God's Dice",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A5": {
+          "fingering": "x022xx",
+          "fingers": "x023xx",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "x355xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Bb5": {
+          "fingering": "x133xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 1
+        },
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 2
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Asus4": {
+          "fingering": "x02230",
+          "fingers": "x02340",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "5500",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "4400",
+          "fingers": "2300",
+          "fundamental": null
+        },
+        "Bb5": {
+          "fingering": "3300",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Asus4": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "C5": {
+          "notes": [
+            "C",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "B5": {
+          "notes": [
+            "B",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "Bb5": {
+          "notes": [
+            "Bb",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "F#": {
+          "notes": [
+            "F#",
+            "A#",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Asus4": {
+          "notes": [
+            "A",
+            "D",
+            "E"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[A5] [C5] [G5] [B5] [A5]It's out of my hands making your hands meet\n[A5] [C5] [G5] [B5] [A5]Stumbling around it's crumbling out of reach\n[F5] [Bb5] [A5] [C5] [G5] [B5] [A5]It's in the cards your destiny your sanity in tow\n\n{section: Refrão 1}\n[F5] [C5] [D5] [A5]Designate my luck\n[F5] [C5]Resignate\n\n{section: Verso 2}\n[D5] [A5] [C5] [G5] [B5] [A5]This power has no roots to guide, no role\n[A5] [C5] [G5] [B5] [A5]Trust me rusted minds refuse to go\n[F5] [Bb5] [A5] [C5] [G5] [B5] [A5]Unwillingness, it's meaningless to walk away in vain\n\n{section: Refrão 2}\n[F5] [C5] [D5] [A5]Designate my will\n[F5] [G5] [D5] [A5]Designate my fill\n[F5] [G5]Resignate\n\n{section: Verso 3}\n[D5] [A5] [C5] [G5] [B5] [A5]My will is crashing, synapses flashing slow\n[A5] [C5] [G5] [B5] [A5]Days like frame by frame, where do they go\n[F5] [Bb5] [A5] [C5] [G5] [B5] [A5]Why fight, forget it, can I spend it after I go\n\n{section: Ponte}\n[E] [F#] [G] [Asus4] [A] [Asus4] [A]Roll them high\n[E] [F#] [G] [Asus4] [A] [Asus4] [A]Throw them again\n[E] [F#] [G]All God's dice"
+}

@@ -159,9 +159,9 @@
     "capo": 2
   },
   "given to fly": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
-    "key": "B",
+    "key": "G",
     "tuning": "EADGBE",
     "tabFormat": "gp3",
     "tabFile": "given-to-fly-v1.gp3",
@@ -172,7 +172,9 @@
         "file": "given-to-fly-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "given-to-fly.json",
+    "bpm": 100
   },
   "corduroy": {
     "cifra": true,
@@ -235,7 +237,7 @@
     ]
   },
   "do the evolution": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "key": "E",
     "tuning": "EADGBE",
@@ -248,7 +250,9 @@
         "file": "do-the-evolution-v1.gp5",
         "format": "gp5"
       }
-    ]
+    ],
+    "cifraMulti": "do-the-evolution.json",
+    "bpm": 141
   },
   "last kiss": {
     "cifra": false,
@@ -914,7 +918,7 @@
     ]
   },
   "brain of j.": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "brain-of-j-v1.gp3",
@@ -925,10 +929,14 @@
         "file": "brain-of-j-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "brain-of-j.json",
+    "key": "B",
+    "bpm": 160,
+    "tuning": "EADGBE"
   },
   "faithfull": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "ptb",
     "tabFile": "faithfull-v1.ptb",
@@ -939,10 +947,14 @@
         "file": "faithfull-v1.ptb",
         "format": "ptb"
       }
-    ]
+    ],
+    "cifraMulti": "faithfull.json",
+    "key": "G",
+    "bpm": 108,
+    "tuning": "EADGBE"
   },
   "no way": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "no-way-v1.gp3",
@@ -953,10 +965,14 @@
         "file": "no-way-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "no-way.json",
+    "key": "B",
+    "bpm": 100,
+    "tuning": "EADGBE"
   },
   "wishlist": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "wishlist-v1.gp3",
@@ -967,7 +983,11 @@
         "file": "wishlist-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "wishlist.json",
+    "key": "C",
+    "bpm": 116,
+    "tuning": "EADGBE"
   },
   "pilate": {
     "cifra": false,
@@ -984,7 +1004,7 @@
     ]
   },
   "mfc": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "mfc-v1.gp3",
@@ -995,10 +1015,14 @@
         "file": "mfc-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "mfc.json",
+    "key": "F",
+    "bpm": 130,
+    "tuning": "EADGBE"
   },
   "low light": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp4",
     "tabFile": "low-light-v1.gp4",
@@ -1009,10 +1033,14 @@
         "file": "low-light-v1.gp4",
         "format": "gp4"
       }
-    ]
+    ],
+    "cifraMulti": "low-light.json",
+    "key": "G",
+    "bpm": 80,
+    "tuning": "EADGBE"
   },
   "in hiding": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp4",
     "tabFile": "in-hiding-v1.gp4",
@@ -1023,7 +1051,11 @@
         "file": "in-hiding-v1.gp4",
         "format": "gp4"
       }
-    ]
+    ],
+    "cifraMulti": "in-hiding.json",
+    "key": "D",
+    "bpm": 95,
+    "tuning": "EADGBE"
   },
   "push me pull me": {
     "cifra": false,
@@ -1040,7 +1072,7 @@
     ]
   },
   "all those yesterdays": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "all-those-yesterdays-v1.gp3",
@@ -1051,10 +1083,14 @@
         "file": "all-those-yesterdays-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "all-those-yesterdays.json",
+    "key": "F",
+    "bpm": 80,
+    "tuning": "EADGBE"
   },
   "breakerfall": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "breakerfall-v1.gp5",
@@ -1065,10 +1101,14 @@
         "file": "breakerfall-v1.gp5",
         "format": "gp5"
       }
-    ]
+    ],
+    "cifraMulti": "breakerfall.json",
+    "key": "E",
+    "bpm": 120,
+    "tuning": "EADGBE"
   },
   "gods dice": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "gods-dice-v1.gp3",
@@ -1079,10 +1119,14 @@
         "file": "gods-dice-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "gods-dice.json",
+    "key": "A",
+    "bpm": 100,
+    "tuning": "EADGBE"
   },
   "light years": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp4",
     "tabFile": "light-years-v1.gp4",
@@ -1093,10 +1137,14 @@
         "file": "light-years-v1.gp4",
         "format": "gp4"
       }
-    ]
+    ],
+    "cifraMulti": "light-years.json",
+    "key": "D",
+    "bpm": 102,
+    "tuning": "EADGBE"
   },
   "nothing as it seems": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp4",
     "tabFile": "nothing-as-it-seems-v1.gp4",
@@ -1107,10 +1155,14 @@
         "file": "nothing-as-it-seems-v1.gp4",
         "format": "gp4"
       }
-    ]
+    ],
+    "cifraMulti": "nothing-as-it-seems.json",
+    "key": "Bm",
+    "bpm": 70,
+    "tuning": "DADGBE"
   },
   "thin air": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "thin-air-v1.gp3",
@@ -1121,10 +1173,14 @@
         "file": "thin-air-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "thin-air.json",
+    "key": "E",
+    "bpm": 90,
+    "tuning": "EADGBE"
   },
   "insignificance": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "insignificance-v1.gp3",
@@ -1135,10 +1191,14 @@
         "file": "insignificance-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "insignificance.json",
+    "key": "A",
+    "bpm": 110,
+    "tuning": "EADGBE"
   },
   "grievance": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp3",
     "tabFile": "grievance-v1.gp3",
@@ -1149,7 +1209,11 @@
         "file": "grievance-v1.gp3",
         "format": "gp3"
       }
-    ]
+    ],
+    "cifraMulti": "grievance.json",
+    "key": "E",
+    "bpm": 115,
+    "tuning": "EADGBE"
   },
   "rival": {
     "cifra": false,
@@ -1166,7 +1230,7 @@
     ]
   },
   "soon forget": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "soon-forget-v1.gp5",
@@ -1177,10 +1241,15 @@
         "file": "soon-forget-v1.gp5",
         "format": "gp5"
       }
-    ]
+    ],
+    "cifraMulti": "soon-forget.json",
+    "key": "G",
+    "bpm": 130,
+    "tuning": "EADGBE",
+    "capo": 4
   },
   "parting ways": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp4",
     "tabFile": "parting-ways-v1.gp4",
@@ -1191,6 +1260,186 @@
         "file": "parting-ways-v1.gp4",
         "format": "gp4"
       }
+    ],
+    "cifraMulti": "parting-ways.json",
+    "key": "E",
+    "bpm": 90,
+    "tuning": "EADGBE"
+  },
+  "of the girl": {
+    "cifra": true,
+    "cifraMulti": "of-the-girl.json",
+    "tab": false,
+    "key": "C#m",
+    "tuning": "EADGBE",
+    "bpm": 100
+  },
+  "cant keep": {
+    "cifra": true,
+    "cifraMulti": "cant-keep.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 95
+  },
+  "save you": {
+    "cifra": true,
+    "cifraMulti": "save-you.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "save-you-v1.gp4",
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 130,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "save-you-v1.gp4",
+        "format": "gp4"
+      }
     ]
+  },
+  "love boat captain": {
+    "cifra": true,
+    "cifraMulti": "love-boat-captain.json",
+    "tab": false,
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 100
+  },
+  "cropduster": {
+    "cifra": true,
+    "cifraMulti": "cropduster.json",
+    "tab": false,
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 110,
+    "notes": "Compasso 7/8."
+  },
+  "i am mine": {
+    "cifra": true,
+    "cifraMulti": "i-am-mine.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "i-am-mine-v1.gp4",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 82,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "i-am-mine-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "thumbing my way": {
+    "cifra": true,
+    "cifraMulti": "thumbing-my-way.json",
+    "tab": true,
+    "tabFormat": "ptb",
+    "tabFile": "thumbing-my-way-v1.ptb",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 90,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "thumbing-my-way-v1.ptb",
+        "format": "ptb"
+      }
+    ]
+  },
+  "you are": {
+    "cifra": true,
+    "cifraMulti": "you-are.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "you-are-v1.gp5",
+    "key": "C#m",
+    "tuning": "EADGBE",
+    "bpm": 90,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "you-are-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "green disease": {
+    "cifra": true,
+    "cifraMulti": "green-disease.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "green-disease-v1.gp5",
+    "key": "C#m",
+    "tuning": "EADGBE",
+    "bpm": 130,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "green-disease-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "all or none": {
+    "cifra": true,
+    "cifraMulti": "all-or-none.json",
+    "tab": false,
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 98
+  },
+  "ghost": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "ghost-v1.gp4",
+    "tuning": "EADGBE",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "ghost-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "bushleaguer": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "bushleaguer-v1.gp3",
+    "tuning": "EADGBE",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "bushleaguer-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "get right": {
+    "cifra": false,
+    "tab": false,
+    "tuning": "EADGBE"
+  },
+  "help help": {
+    "cifra": false,
+    "tab": false,
+    "tuning": "EADGBE"
+  },
+  "1 2 full": {
+    "cifra": false,
+    "tab": false,
+    "tuning": "EADGBE"
   }
 }

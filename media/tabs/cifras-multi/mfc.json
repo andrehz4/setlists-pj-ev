@@ -1,0 +1,199 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de MFC (Pearl Jam, Yield 1998).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom F, 130 BPM."
+  },
+  "title": "MFC",
+  "artist": "Pearl Jam",
+  "key": "F",
+  "bpm": 130,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 1
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 130,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Bb": {
+          "notes": [
+            "Bb",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso (intro)}\nI got a car, I've got some gas\noh let's get the fuck out of here\nget out of here fast\neveryone's confused\nI don't blame 'em I am too\nif I go I don't want\nto go alone\n\nI hope you get this message\nor you're not home\nI could be there in\n29 minutes or so\nI got my things\nwe'll make it up as we go along\nwith you I could never be alone\n\n{section: Verso 1}\n[F]Sliding... out of reverse [G]into [D]drive, this\n[F]Wheel will be turning [G]right, then [D]straight\n[F]Off in the sunset [G]she'll [D]ride\n\n{section: Verso 2}\n[F]She can... remember a time [G]denied, stood [D]by\n[F]Side of the road, spilled like [G]wine, [D]now\n[F]She's out on her own and [G]line [D]high\n\n{section: Refrão}\n[Bb]There's no leaving here\n[F]Ask, I'm an ear\n[Bb]She's disappeared\n[G]\n\n{section: Verso 3}\n[F]They said... timing was [G]everything, made [D]him\n[F]Want to be everywhere, [G]there's a [D]\n[F]Lot to be said for [G]nowhere [D]\n\n{section: Refrão / Outro}\n[Bb]There's no leaving here\n[F]Ask, I'm an ear\n[Bb]We've disappeared\n[Bb]There's no leaving here\n[F]Ask, I'm an ear\n[Bb]Fuck it, we'll disappear\n[G]"
+}

@@ -1,0 +1,240 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de You Are (Pearl Jam, Riot Act 2002).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C#m, 90 BPM."
+  },
+  "title": "You Are",
+  "artist": "Pearl Jam",
+  "key": "C#m",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C#m": {
+          "fingering": "x46654",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 4
+        },
+        "Eb": {
+          "fingering": "x68886",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 6
+        },
+        "Ab": {
+          "fingering": "466544",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 4
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Cm": {
+          "fingering": "x35543",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 3
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C#m": {
+          "fingering": "1104",
+          "fingers": "1104",
+          "fundamental": null
+        },
+        "Eb": {
+          "fingering": "0331",
+          "fingers": "0231",
+          "fundamental": null
+        },
+        "Ab": {
+          "fingering": "5343",
+          "fingers": "4231",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": null
+        },
+        "Cm": {
+          "fingering": "0333",
+          "fingers": "0111",
+          "fundamental": null,
+          "barre": 3
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C#m": {
+          "notes": [
+            "C#",
+            "E",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "Eb": {
+          "notes": [
+            "Eb",
+            "G",
+            "Bb"
+          ],
+          "fundamental": null
+        },
+        "Ab": {
+          "notes": [
+            "Ab",
+            "C",
+            "Eb"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "Bb": {
+          "notes": [
+            "Bb",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "Cm": {
+          "notes": [
+            "C",
+            "Eb",
+            "G"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C#m] [Eb] [Ab] [C#m] [F] [Bb] (x2)\n\n{section: Verso 1}\n[C#m]This broken wheel is coming undone\nAnd the roads exploding\nBut you're keeping me strong\nRolling along with you\n\n{section: Refrão}\n[C#m] [F]Love is a tower\n[Bb] [C] [Eb]And you're the key\n[Ab] [C] [F]Leading me higher\n[Bb] [Cm] [Eb] [Ab] [Cm]When you let me in\n\n{section: Verso 2}\n[F] [Cm] [F] [Cm]Keeping us close, so close\n[Cm]On down the line\nSometimes I burn like a dot on the sun\nWith no one knowing\nBut you're keeping me strong\nRolling along with you\n\n{section: Refrão}\n[C#m] [F]You are a tower of\n[Bb] [Cm] [Eb]Strength to me\n[Ab] [Cm] [F]The darkening hour\n[Bb] [Cm] [Eb] [Ab]Sees light again\n[Cm] [F] [Bb]Again\n\n{section: Ponte}\n[Cm] [Eb] [Ab] [F] [Cm] [Eb] [Ab] [F] [Bb] [C]\nYou are, you are, you are, you are, you are\n[Eb] [Ab] [F] [Cm] [Eb] [Ab] [F] [Bb]\nYou are, you are, you are, you are,\n\n{section: Interlúdio}\n[Cm] [Eb]\n[Cm]\n\n{section: Outro}\n[Cm] [F] [Eb]Love is a tower\n[Ab] [Cm] [F]Of strength to me\n[Bb] [Cm] [Eb]I am the shoreline\n[Ab] [Cm] [F] [Bb]But you're the sea\n[Cm] [Eb] [Ab] [Cm] [F] [Bb]The sea\n[Cm] [Eb] [Ab]You are,\n[Cm] [F] [Bb] [Cm] [Eb] [Cm]You are."
+}
