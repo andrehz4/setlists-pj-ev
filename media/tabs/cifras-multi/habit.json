@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Habit (Pearl Jam, No Code 1996, faixa 7). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Habit, Pearl Jam)",
+    "fetched": "2026-05-14",
+    "note_compasso": "4/4 a ~120 BPM. Tom A, sem capotraste. Estrofes em A-D-A-G# (descida cromatica do 5o ao 3o menor via G# enharmonico de Ab). Ponte alterna Eb-A (tritonos, tensao maxima). Refrao explode em F-E-D (descida cromatica). Solo fade-out em D-A. Strumming nao consta no UG; padrao proposto eh editorial."
+  },
+  "title": "Habit",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "G#": { "fingering": "466544", "fingers": "134211", "fundamental": "G#", "barre": 4, "notes": "Ab maior = G# maior; barre no fret 4 em forma de E" },
+        "Eb": { "fingering": "x68886", "fingers": "x13341", "fundamental": "Eb", "barre": 6, "notes": "Eb maior; barre no fret 6 em forma de A" },
+        "F":  { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "G#": { "fingering": "5343", "fingers": "4231", "fundamental": "G#", "notes": "Ab maior no uke" },
+        "Eb": { "fingering": "0331", "fingers": "0231", "fundamental": "Eb", "notes": "Eb maior no uke" },
+        "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "E":  { "fingering": "4442", "fingers": "3421", "fundamental": "E", "barre": 2 }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":  { "notes": ["A", "C#", "E"],  "fundamental": "A",  "inversion": null },
+        "D":  { "notes": ["D", "F#", "A"],  "fundamental": "D",  "inversion": null },
+        "G#": { "notes": ["G#", "C", "D#"], "fundamental": "G#", "inversion": null, "note": "enharmonico de Abm; G#=Ab, D#=Eb" },
+        "Eb": { "notes": ["Eb", "G", "Bb"], "fundamental": "Eb", "inversion": null },
+        "F":  { "notes": ["F", "A", "C"],   "fundamental": "F",  "inversion": null },
+        "E":  { "notes": ["E", "G#", "B"],  "fundamental": "E",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [D] [A] [G#]\n\n{section: Verso 1}\n[A]Seen it happen to a [D]couple of friends [A] [G#]\n[A]See it happen and the [D]message it sends [A] [G#]\n[A]Taking off for what's an [D]obvious fall [A] [G#]\n[A]Just to see what all the [D]fuss is about [A] [G#]\n\n{section: Ponte}\n[Eb]It's not your [A]way [Eb]\nNot your [A]way [Eb]\nIt's not your [A]way [Eb]\n\n{section: Verso 2}\n[A]Another habit says it's [D]in love with you [A] [G#]\n[A]Another habit says its [D]love's overdue [A] [G#]\n[A]Another habit like an [D]unwanted friend [A] [G#]\n[A]I'm so happy with my [D]righteous self [A] [G#]\n\n{section: Ponte}\n[Eb]It's not your [A]way [Eb]\nNot your [A]way [Eb]\nIt's not your [A]way [Eb]\n\n{section: Refrão}\n[F]Never thought you'd [E]habit [D]\n[F]Never thought you'd [E]habit [D]\n[F]Never thought you'd [E]habit [D]\n[F]I Never thought you, I never thought [E]you [D]\n[F]Never thought you'd [E]habit [D]\n[F]Never thought you'd [E]habit [D]\n[F]Never thought you'd [E]habit [D]\n[F]I Never thought you, never never thought [E]you [D]\n[F]Never thought you'd [A]habit\n[D]Never thought you'd habit\n[F]Never thought you'd [A]habit\n[D]Never thought you'd habit\n[F]Never thought you'd [A]habit\n[D]Never thought you'd habit\n\n{section: Interlúdio}\n[E]\nSpeaking as a child of the 90's\n\n{section: Refrão}\n[F]Never thought you'd [E]habit [D]\n[F]Never thought you'd [E]habit [D]\n[F]Never thought you'd [E]habit [D]\n[F]I Never thought you, I never thought [E]you [D]\n[F]Never thought you'd [E]habit [D]\n[F]Never thought you'd [E]habit [D]\n[F]Never thought you'd [E]habit [D]\n[F]I Never thought you, never never thought [E]you [D]\n\n{section: Interlúdio}\n[F] [E]\n[G]Never me, [F#]never you, never me\n\n{section: Solo}\n[D] [A] (x10, fade out)\n"
+}

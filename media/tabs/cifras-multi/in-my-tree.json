@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de In My Tree (Pearl Jam, No Code 1996, faixa 4). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais In My Tree, Pearl Jam)",
+    "fetched": "2026-05-14",
+    "note_compasso": "4/4 a ~110 BPM. Sem capotraste. Estrofes giram em E-Emaj7-A-B (descida cromatica no baixo de Emaj7). Refrao sobe pra G-A-E. Ponte tem riff vocal sobre B-C-B-D (notas/acordes alternados). Strumming nao consta no UG; padrao proposto eh editorial."
+  },
+  "title": "In My Tree",
+  "artist": "Pearl Jam",
+  "key": "E",
+  "bpm": 110,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E":    { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "Emaj7": { "fingering": "021100", "fingers": "021100", "fundamental": "E", "notes": "E com 7a maior: E-G#-B-D#" },
+        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "B":    { "fingering": "x24442", "fingers": "x13442", "fundamental": "B", "barre": 2 },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E":    { "fingering": "4442", "fingers": "3421", "fundamental": "E", "barre": 2 },
+        "Emaj7": { "fingering": "1302", "fingers": "1302", "fundamental": "E", "notes": "Emaj7 adaptado uke: E-G#-B-D#" },
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "B":    { "fingering": "4322", "fingers": "4211", "fundamental": "B", "barre": 2 },
+        "G":    { "fingering": "0232", "fingers": "0213", "fundamental": "G" },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E":    { "notes": ["E", "G#", "B"],        "fundamental": "E", "inversion": null },
+        "Emaj7": { "notes": ["E", "G#", "B", "D#"], "fundamental": "E", "inversion": null },
+        "A":    { "notes": ["A", "C#", "E"],         "fundamental": "A", "inversion": null },
+        "B":    { "notes": ["B", "D#", "F#"],        "fundamental": "B", "inversion": null },
+        "G":    { "notes": ["G", "B", "D"],          "fundamental": "G", "inversion": null },
+        "C":    { "notes": ["C", "E", "G"],          "fundamental": "C", "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],         "fundamental": "D", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[E]Up here in my [Emaj7]tree, yeah\n[E]Newspapers matter [Emaj7]not to [A]me, yeah [B]\n[E]No more crowbars [Emaj7]to my [A]head, yeah [B]\n[E]I'm trading stories [Emaj7]with the [A]leaves instead, yeah [B]\n[E]\n[E]Wave to all my [Emaj7]friends, yeah\n[E]They don't seem to [Emaj7]notice [A]me, no [B]\n[E]All their eyes trained [Emaj7]on the [A]street, yo [B]\n[E]Sidewalk cigarettes [Emaj7]and [A]scenes [B]\n\n{section: Refrão}\n[G]Up here so high I start to [A]shake [E]\n[G]Up here so high the [A]sky I [E]scrape\n[G]I'm so high I hold just one breath here within my [A]chest [E]\n[G]Just like [A]innocence [E]\n\n{section: Ponte}\n[B] [C] [B] [D] (riff vocal: Eddie's down in his home)\n[B] [C] [B] [D] (Oh, the blue sky it's his home)\n\n{section: Verso 2}\n[E]I remember [Emaj7]when, yeah\n[E]I swore I knew [Emaj7]every[A]thing, oh yeah [B]\n[E]Let's say knowledge is [Emaj7]a [A]tree, yeah [B]\n[E]It's growing up [Emaj7]just like [A]me, yeah [B]\n\n{section: Refrão}\n[G]I'm so light the [A]wind he [E]shakes\n[G]I'm so high the [A]sky I [E]scrape\n[G]I'm so light I hold just one breath and go back to my [A]nest [E]\n[G]Sleep with [A]innocence [E]\n[G]Up here so high the boughs they [A]break [E]\n[G]Up here so high the [A]sky I [E]scrape\n[G]Had my eyes peeled both wide open, and I got a [A]glimpse [E]\nOf my [G]innocence... got back my inner sense... [A]Baby got it, still got it [E]\n\n{section: Outro}\n[E] [Emaj7] [A] [B]\n"
+}

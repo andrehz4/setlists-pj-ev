@@ -46,9 +46,13 @@
   "last kiss": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
   "crazy mary": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
   "sirens": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
-  "hail hail": { "cifra": true, "cifraMulti": "hail-hail.json", "tab": false, "key": "G", "tuning": "EADGBE", "bpm": 145 },
+  "hail hail": { "cifra": true, "cifraMulti": "hail-hail.json", "tab": true, "tabFormat": "gp4", "tabFile": "hail-hail-v1.gp4", "key": "G", "tuning": "EADGBE", "bpm": 145, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "hail-hail-v1.gp4", "format": "gp4" }
+  ] },
   "off he goes": { "cifra": true, "cifraMulti": "off-he-goes.json", "tab": false, "key": "C", "tuning": "EADGBE", "bpm": 103 },
-  "lukin": { "cifra": true, "cifraMulti": "lukin.json", "tab": false, "key": "Em", "tuning": "EADGBE", "bpm": 250, "notes": "Punk de 1m02s. So power chords E5-D5-C5." },
+  "lukin": { "cifra": true, "cifraMulti": "lukin.json", "tab": true, "tabFormat": "gp3", "tabFile": "lukin-v1.gp3", "key": "Em", "tuning": "EADGBE", "bpm": 250, "notes": "Punk de 1m02s. So power chords E5-D5-C5.", "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "lukin-v1.gp3", "format": "gp3" }
+  ] },
   "present tense": { "cifra": true, "cifraMulti": "present-tense.json", "tab": true, "tabFormat": "gp3", "tabFile": "present-tense-v1.gp3", "key": "D", "tuning": "DADGBE", "bpm": 76, "notes": "Afinacao Drop D (DADGBE). 8 acordes (D, C, Bm, A, F, Dm, G, Bb).", "versions": [
     { "id": "v1", "label": "Versão 1", "file": "present-tense-v1.gp3", "format": "gp3" }
   ] },
@@ -123,5 +127,28 @@
   "bugs": { "cifra": true, "cifraMulti": "bugs.json", "tab": false, "key": "Bb", "tuning": "EADGBE", "bpm": 65, "notes": "Original tocado em acordeao (Eddie Vedder). Cifra eh adaptacao pra violao/uke/piano com strumming proposto em colcheias 4/4." },
   "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
     { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
+  ] },
+  "sometimes": { "cifra": true, "cifraMulti": "sometimes.json", "tab": true, "tabFormat": "gp3", "tabFile": "sometimes-v1.gp3", "key": "C", "tuning": "EADGBE", "bpm": 60, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "sometimes-v1.gp3", "format": "gp3" }
+  ] },
+  "who you are": { "cifra": true, "cifraMulti": "who-you-are.json", "tab": false, "key": "E", "tuning": "EADGBE", "bpm": 80 },
+  "in my tree": { "cifra": true, "cifraMulti": "in-my-tree.json", "tab": true, "tabFormat": "gp4", "tabFile": "in-my-tree-v1.gp4", "key": "E", "tuning": "EADGBE", "bpm": 110, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "in-my-tree-v1.gp4", "format": "gp4" }
+  ] },
+  "smile": { "cifra": true, "cifraMulti": "smile.json", "tab": true, "tabFormat": "gp3", "tabFile": "smile-v1.gp3", "key": "Em", "tuning": "EADGBE", "bpm": 90, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "smile-v1.gp3", "format": "gp3" }
+  ] },
+  "habit": { "cifra": true, "cifraMulti": "habit.json", "tab": true, "tabFormat": "gp4", "tabFile": "habit-v1.gp4", "key": "A", "tuning": "EADGBE", "bpm": 120, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "habit-v1.gp4", "format": "gp4" }
+  ] },
+  "red mosquito": { "cifra": true, "cifraMulti": "red-mosquito.json", "tab": true, "tabFormat": "gp3", "tabFile": "red-mosquito-v1.gp3", "key": "D", "tuning": "EADGBE", "bpm": 100, "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "red-mosquito-v1.gp3", "format": "gp3" }
+  ] },
+  "mankind": { "cifra": true, "cifraMulti": "mankind.json", "tab": true, "tabFormat": "gp3", "tabFile": "mankind-v1.gp3", "key": "B", "tuning": "EADGBE", "bpm": 160, "notes": "Unica musica do No Code cantada por Stone Gossard.", "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "mankind-v1.gp3", "format": "gp3" }
+  ] },
+  "around the bend": { "cifra": true, "cifraMulti": "around-the-bend.json", "tab": false, "key": "A", "tuning": "EADGBE", "bpm": 75, "notes": "Canção de ninar acustica (faixa 13, No Code). Piano de Brendan O'Brien na gravacao." },
+  "im open": { "cifra": false, "tab": true, "tabFormat": "gp4", "tabFile": "im-open-v1.gp4", "key": "E", "tuning": "EADGBE", "notes": "Spoken-word sobre percussao minimalista. Tab-only por ora.", "versions": [
+    { "id": "v1", "label": "Versão 1", "file": "im-open-v1.gp4", "format": "gp4" }
   ] }
 }

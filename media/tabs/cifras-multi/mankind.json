@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Mankind (Pearl Jam, No Code 1996, faixa 11). Estrutura: instruments contem diagramas de acordes por instrumento; content eh ChordPro compartilhado.",
+    "source": "Ultimate Guitar (Oficiais Mankind, Pearl Jam)",
+    "fetched": "2026-05-14",
+    "note_compasso": "4/4 a ~160 BPM. Sem capotraste. Unica musica do No Code com letra e vocal de Stone Gossard (nao de Vedder). Power-pop satirico com riff C5-B5-F#5 no verse e refrao B5-E5-C#5-G#5. Solo de guitarra em E5 (ver tab/GP). Strumming nao consta no UG; padrao proposto eh editorial."
+  },
+  "title": "Mankind",
+  "artist": "Pearl Jam",
+  "key": "B",
+  "bpm": 160,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "B5":  { "fingering": "x244xx", "fingers": "x134xx", "fundamental": "B",  "notes": "power chord B+F#" },
+        "E5":  { "fingering": "022xxx", "fingers": "023xxx", "fundamental": "E",  "notes": "power chord E+B" },
+        "C#5": { "fingering": "x466xx", "fingers": "x134xx", "fundamental": "C#", "notes": "power chord C#+G#" },
+        "G#5": { "fingering": "466xxx", "fingers": "134xxx", "fundamental": "G#", "notes": "power chord G#+D#" },
+        "C5":  { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C",  "notes": "power chord C+G" },
+        "F#5": { "fingering": "x9(11)(11)xx", "fingers": "x134xx", "fundamental": "F#", "notes": "power chord F#+C# (fret 2 na A shape ou 244xxx)" },
+        "A5":  { "fingering": "x022xx", "fingers": "x011xx", "fundamental": "A",  "notes": "power chord A+E" }
+      },
+      "strumming": {
+        "label": "FULL-DOWN ROCK (proposto, fonte UG nao traz)",
+        "bpm": 160,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "B5":  { "fingering": "4222", "fingers": "4111", "fundamental": "B",  "barre": 2, "notes": "power chord adaptado" },
+        "E5":  { "fingering": "4402", "fingers": "3401", "fundamental": "E",  "notes": "power chord E+B no uke" },
+        "C#5": { "fingering": "1113", "fingers": "1113", "fundamental": "C#", "notes": "power chord C#+G# adaptado" },
+        "G#5": { "fingering": "5665", "fingers": "1341", "fundamental": "G#", "barre": 5, "notes": "power chord G#+D# adaptado" },
+        "C5":  { "fingering": "0003", "fingers": "0003", "fundamental": "C",  "notes": "voicing igual C" },
+        "F#5": { "fingering": "3121", "fingers": "3121", "fundamental": "F#", "notes": "power chord F#+C# adaptado" },
+        "A5":  { "fingering": "2100", "fingers": "2100", "fundamental": "A",  "notes": "voicing igual A" }
+      },
+      "strumming": {
+        "label": "FULL-DOWN ROCK (proposto, fonte UG nao traz)",
+        "bpm": 160,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "B5":  { "notes": ["B", "F#"],  "fundamental": "B",  "inversion": null, "note": "power chord" },
+        "E5":  { "notes": ["E", "B"],   "fundamental": "E",  "inversion": null },
+        "C#5": { "notes": ["C#", "G#"], "fundamental": "C#", "inversion": null },
+        "G#5": { "notes": ["G#", "D#"], "fundamental": "G#", "inversion": null },
+        "C5":  { "notes": ["C", "G"],   "fundamental": "C",  "inversion": null },
+        "F#5": { "notes": ["F#", "C#"], "fundamental": "F#", "inversion": null },
+        "A5":  { "notes": ["A", "E"],   "fundamental": "A",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[B5] [E5] [C#5] [G#5]\n[B5] [E5] [C#5] [G#5] [C5] [C5] [B5] [F#5]\n\n{section: Verso 1}\n[C5]You'll be [C5] [B5] [F#5]\n[C5]Going out with [C5]radio [B5] [F#5]\n[C5]Going out with [C5]disco [B5] [F#5]\n[C5]Going out like bac[C5]chanal [B5] [F#5]\n[C5]I'll be [C5] [B5] [F#5]\n[C5]Going out with tele[C5]phone [B5] [F#5]\n[C5]Going out a[C5]lone [B5] [F#5]\n[C5]To the radar [C5]zone [B5] [F#5]\n\n{section: Refrão}\n[B5]It's all just inadvertent [E5]imitation [C#5]and I don't [G#5]mean mine [B5]\nIt's all [E5]across this [C#5]nation [G#5]\n[B5]If it's just inadvertent [E5]simulation, [C#5]a pattern in [G#5]all mankind [B5]\nWhat's got the whole [E5]world [C#5]faking? [A5]\n\n[C5] [C5] [B5] [F#5]\n\n{section: Verso 2}\n[C5]I'll be [C5] [B5] [F#5]\n[C5]Playing with my maga[C5]zine [B5] [F#5]\n[C5]Using up my Lister[C5]ine [B5] [F#5]\n[C5]Like Oval[C5]tine [B5] [F#5]\n[C5]And you'll [C5]be [B5] [F#5]\n[C5]Dipping in your battle[C5]ship [B5] [F#5]\n[C5]For the latest [C5]tip [B5] [F#5]\n[C5]For the latest [C5]dream [B5] [F#5]\n\n{section: Refrão}\n[B5]It's all just inadvertent [E5]imitation [C#5]and I don't [G#5]mean mine [B5]\nIt's all [E5]across this [C#5]nation [G#5]\n[B5]If it's just inadvertent [E5]simulation, [C#5]a pattern in [G#5]all mankind [B5]\nWhat's got the whole [E5]world [C#5]faking? [A5]\n\n{section: Solo}\n[E5] (ver tab/GP)\n\n{section: Outro}\n[B5]If it's just inadvertent [E5]imitation, [C#5]a pattern in [G#5]all mankind [B5]\nWhat's got the whole [E5]world [C#5]faking? [G#5] [B5]\nWhat's got the whole [E5]world [C#5]faking? [G#5] [B5]\nWhat's got the whole [E5]world [C#5]faking? [G#5] [B5]\nWhat's got the whole [E5]world faking? [C#5] [G#5] [A5] [B5]\nWhat's got the whole [E5]world faking? [C#5] [G#5] [A5] [B5]\nWhat's got the whole [E5]world faking? yeah [C#5] [G#5] [A5] [B5]\n"
+}
