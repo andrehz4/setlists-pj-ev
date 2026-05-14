@@ -67,11 +67,13 @@
     ]
   },
   "yellow ledbetter": {
-    "cifra": false,
+    "cifra": true,
     "tab": true,
     "tabFormat": "gp5",
     "key": "E",
-    "tuning": "EADGBE"
+    "tuning": "EADGBE",
+    "cifraMulti": "yellow-ledbetter.json",
+    "bpm": 70
   },
   "better man": {
     "cifra": true,
@@ -1441,5 +1443,175 @@
     "cifra": false,
     "tab": false,
     "tuning": "EADGBE"
+  },
+  "sad": {
+    "cifra": true,
+    "cifraMulti": "sad.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "sad-v1.gp5",
+    "key": "Dm",
+    "bpm": 72,
+    "tuning": "EADGBE",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "sad-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "whale song": {
+    "cifra": true,
+    "cifraMulti": "whale-song.json",
+    "tab": true,
+    "tabFormat": "gp",
+    "tabFile": "whale-song-v1.gp",
+    "key": "D",
+    "bpm": 75,
+    "tuning": "EADGBE",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "whale-song-v1.gp",
+        "format": "gp"
+      }
+    ]
+  },
+  "u": {
+    "cifra": true,
+    "cifraMulti": "u.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "u-v1.gp4",
+    "key": "A",
+    "bpm": 110,
+    "tuning": "EADGBE",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "u-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "hold on": {
+    "cifra": true,
+    "cifraMulti": "hold-on.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "hold-on-v1.gp4",
+    "key": "G",
+    "bpm": 150,
+    "tuning": "DADGBD",
+    "notes": "Afinacao Double Drop D (DADGBD). Bonus track de Vs. e Lost Dogs.",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "hold-on-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "all night": {
+    "cifra": true,
+    "cifraMulti": "all-night.json",
+    "tab": false,
+    "key": "B",
+    "bpm": 130,
+    "tuning": "EADGBE"
+  },
+  "down": {
+    "cifra": true,
+    "cifraMulti": "down.json",
+    "tab": false,
+    "key": "G",
+    "bpm": 100,
+    "tuning": "EADGBE",
+    "notes": "Incluida no I Am Mine single e Lost Dogs."
+  },
+  "dont gimme no lip": {
+    "cifra": true,
+    "cifraMulti": "dont-gimme-no-lip.json",
+    "tab": false,
+    "key": "Am",
+    "bpm": 144,
+    "tuning": "EADGBE"
+  },
+  "in the moonlight": {
+    "cifra": true,
+    "cifraMulti": "in-the-moonlight.json",
+    "tab": false,
+    "key": "Dm",
+    "bpm": 80,
+    "tuning": "DGDGBE",
+    "notes": "Afinacao alternativa D G D G B E."
+  },
+  "education": {
+    "cifra": true,
+    "cifraMulti": "education.json",
+    "tab": false,
+    "key": "Em",
+    "bpm": 80,
+    "tuning": "EADGBE"
+  },
+  "black red yellow": {
+    "cifra": true,
+    "cifraMulti": "black-red-yellow.json",
+    "tab": false,
+    "key": "Am",
+    "bpm": 120,
+    "tuning": "EADGBE",
+    "notes": "Outtake de No Code, incluida no Lost Dogs."
+  },
+  "gremmie out of control": {
+    "cifra": true,
+    "cifraMulti": "gremmie-out-of-control.json",
+    "tab": false,
+    "key": "Dm",
+    "bpm": 130,
+    "tuning": "EADGBE",
+    "notes": "Cover de Jimmie Haskell. Estilo surf rock."
+  },
+  "alone": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "alone-v1.gp5",
+    "tuning": "EADGBE",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "alone-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "leaving here": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "leaving-here-v1.gp3",
+    "tuning": "EADGBE",
+    "notes": "Cover de The High Numbers / The Who.",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "leaving-here-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "hitchhiker": {
+    "cifra": false,
+    "tab": false,
+    "tuning": "EADGBE",
+    "notes": "Bass tab apenas, instrucao vocal. Sem GP disponivel."
   }
 }

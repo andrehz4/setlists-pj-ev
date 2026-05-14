@@ -1,0 +1,234 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Don't Gimme No Lip (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom Am, 144 BPM."
+  },
+  "title": "Don't Gimme No Lip",
+  "artist": "Pearl Jam",
+  "key": "Am",
+  "bpm": 144,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 144,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 144,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Am": {
+          "notes": [
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [G] [G]\n\n{section: Refrão}\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no [C] [Am]\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no [C] [Am]\n\n{section: Verso 1}\n[G]Don't gimme no lip, I've had my [F]fill of [E]it\n[G]Don't gimme no lip, I've lost my [F]taste for [E]it\n[G]Don't gimme no lip, you've got to [F]face this [E]shit\n[G]Don't gimme no lip, Don't gimme no [F]lip [E]\n\n{section: Refrão}\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no [C] [Am]\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no [C] [Am]\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no [C] [Am]\n\n{section: Verso 2}\n[G]Don't gimme no lip, I'm just not [F]having [E]it\n[G]Don't gimme no lip, stuck on your [F]cigar[E]ette\n[G]Don't gimme no lip, I'm wiping [F]off the [E]spit\n[G]Don't gimme no lip, Don't gimme no [F]lip [E]\n\n{section: Ponte}\n[A] [G] [E]It's just a problem\n[G] [F] [E]One i'll be solving\n[A] [G] [E]It's just a problem\n[G] [F] [E]Problem? haha...\n\n{section: Refrão}\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no [C] [Am]\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no [C] [Am]\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no [C] [Am]\n[G]Don't gimme no lip\n[G]Don't gimme no lip\n[G]Don't gimme no"
+}

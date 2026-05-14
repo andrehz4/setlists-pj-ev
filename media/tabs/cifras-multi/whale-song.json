@@ -1,0 +1,275 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Whale Song (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 75 BPM."
+  },
+  "title": "Whale Song",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 75,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Dm": {
+          "fingering": "xx0231",
+          "fingers": "xx0231",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Ab": {
+          "fingering": "466544",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 4
+        },
+        "Eb": {
+          "fingering": "x68886",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 6
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 75,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Dm": {
+          "fingering": "2210",
+          "fingers": "2310",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        },
+        "Ab": {
+          "fingering": "5343",
+          "fingers": "4231",
+          "fundamental": null
+        },
+        "Eb": {
+          "fingering": "0331",
+          "fingers": "0231",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 75,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Dm": {
+          "notes": [
+            "D",
+            "F",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Bm": {
+          "notes": [
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "F": {
+          "notes": [
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "Ab": {
+          "notes": [
+            "Ab",
+            "C",
+            "Eb"
+          ],
+          "fundamental": null
+        },
+        "Eb": {
+          "notes": [
+            "Eb",
+            "G",
+            "Bb"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [Dm]\n\n{section: Verso 1}\n[D]The sun was in clouds, the [Dm]sun looked out [D]\n[D]Exposed a trail of [Dm]mist and spouts [D]\n[D]Ships followed the [Dm]ancient lead [D]\n[D]Deceiving friends under the [Dm]sea [Bm]\n\n{section: Interlúdio}\n[Bm] [G]\n[Bm] [G]\n\n{section: Verso 2}\n[D]Wow, imagine that? They [F]won't fight back [D]\n[D] [F] [D]I got a theory on that\n[D]A whale's heart is as [F]big as a car [D]\n[D]A whaler's thought must be [F]smudged by the dark [B]\n\n{section: Refrão}\n[B]They won't fight [G]back\nI'm sure they [B]know how\nMeans they [G]love\nOr are too [B]proud\n[B]They won't fight [G]back\nI'm sure they [B]know how\nMeans they [G]love\nOr are too [Eb]proud\n\n{section: Pós-Refrão}\nThey [B]swim, it's really [Eb]free\nIt's a [B]beautiful thing to [Eb]see\nThey [B]sing\n\n{section: Interlúdio}\n[Bm] [G]\n[Bm] [G]\n\n{section: Verso 3}\n[D]Hunters of land, [F]hunters of sea [D]\n[D]Exploit anything [F]for money [D]\n[D]I refer to any[F]body [D]\n[D]Who takes advantage of what [F]that is free [B]\n\n{section: Interlúdio}\n[B]They won't fight [G]back\n\n{section: Verso 4}\n[D]It's only a thought that [F]makes it seem right [D]\n[D]What you don't see is because [F]of your sight [B]\n\n{section: Refrão 2}\n[B]Take what you [G]want\nKill what you [B]can\nThat's just one [G]way\nFrom the mind of [B]man\n[B]Take their [G]lives\nSell their [B]parts\nBut there's no [G]taking\nOf their [D]heart\n\n{section: Ponte}\n[D]If I was lost at sea [Dm]\n[D]That harpoon boat in front of [Dm]me\n[D]It's the whale I'd like to [Dm]be\n\n{section: Outro}\n[B]They won't fight back\n[G]They won't fight back\n[B]\n[G]They won't fight back"
+}

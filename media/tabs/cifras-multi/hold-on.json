@@ -1,0 +1,328 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Hold On (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 150 BPM. Afinacao: DADGBD"
+  },
+  "title": "Hold On",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 150,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "DADGBD",
+      "chords": {
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        },
+        "Dm7": {
+          "fingering": "xx0211",
+          "fingers": "xx0211",
+          "fundamental": null
+        },
+        "Dsus2": {
+          "fingering": "xx0230",
+          "fingers": "xx0130",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "x32030",
+          "fingers": "x32040",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 1
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "F5": {
+          "fingering": "133xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 1,
+          "notes": "power chord"
+        },
+        "D#5": {
+          "fingering": "x677xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 6
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 150,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "Dm7": {
+          "fingering": "2213",
+          "fingers": "2213",
+          "fundamental": null
+        },
+        "Dsus2": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "0203",
+          "fingers": "0203",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "F5": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "D#5": {
+          "fingering": "3310",
+          "fingers": "2310",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 150,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Dm7": {
+          "notes": [
+            "D",
+            "F",
+            "A",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "Dsus2": {
+          "notes": [
+            "D",
+            "E",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Cadd9": {
+          "notes": [
+            "C",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Bm": {
+          "notes": [
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "Bb": {
+          "notes": [
+            "Bb",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "F5": {
+          "notes": [
+            "F",
+            "C"
+          ],
+          "fundamental": null
+        },
+        "D#5": {
+          "notes": [
+            "D#",
+            "A#"
+          ],
+          "fundamental": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D5] [Dm7] [Dsus2] [D5] (x2)\n\n{section: Verso 1}\n[D5]I was born [Dm7] [Dsus2] [D5]\nRiding atop a black horse [Dm7] [Dsus2] [D5]\nWhatever prize there was [Dm7] [Dsus2] [D5]\nOh, he could only observe [Dm7] [Dsus2] [D5]\nIt's where the trouble [Cadd9]starts [Bm] [Bb] [Dsus2] [A]\nOh, where does it [Cadd9]end [Bm] [Bb] [Dsus2] [A]\nOh, how could life be [Cadd9]through [Bm] [Bb] [Dsus2] [A]\nBefore it [D5]ends\n\n{section: Refrão}\n[Bb]I know [C]life would be different if I held on, held [F5]on [D#5] [D5]\n[Bb]I know [C]I could be something if I held on, held [F5]on [D#5] [D5]\n\n{section: Interlúdio}\n[D5] [Dm7] [Dsus2] [D5] (x2)\n\n{section: Verso 2}\n[D5]Gave her heart away [Dm7] [Dsus2] [D5]\nI put it in my pocket when it should have been framed [Dm7]\nLost its shine, put it to rest [Dsus2] [D5]\nOut of his [Cadd9]bed [Bm] [Bb] [Dsus2] [A]\nOh, how could it [Cadd9]end [Bm] [Bb] [Dsus2] [A]\nOh, end like [Cadd9]this [Bm] [Bb] [Dsus2] [A]\nHow could it [D5]end\n\n{section: Refrão 2}\n[Bb]I know [C]life would be different if I held on, held [F5]on [D#5] [D5]\n[Bb]I know [C]I could be something if I held on, held [F5]on [D#5] [D5]\n[Bb]I know [C]I could be something if I held on, held [F5]on [D#5] [D5]\n[F5] [G5]I know life would be different if I held on, held on (x6)\n[D5]If I"
+}
