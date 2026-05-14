@@ -80,41 +80,39 @@ Se for SKIP (irrelevante, hype, menor de idade no spotlight, dia fraco no digest
 
 **ESCREVA O ARRAY COMPLETO DE UMA VEZ SÓ** em `/tmp/curated.json` usando o tool Write. NÃO faça múltiplos appends.
 
-## 5. Merge local
+## 5. Cria branch + merge local + commit + push
 
-Roda o merge-curated localmente. Ele valida cada item, atualiza `media/news/index.json` (mantém top 30), arquiva overflow em `media/news/archive/YYYY-MM.json`, atualiza `seen.json`, e limpa items aceitos de `_pending.json`:
+Ordem importa: cria a branch ANTES de rodar `merge-curated.mjs` (pra fugir de edge case onde branch ja existe local e o `checkout` conflita com WD modificado), depois aplica o merge, depois commita, depois pusha. Tudo em uma sequencia continua:
 
 ```bash
+# 5.1. Sanity check do curated.json
 if ! test -s /tmp/curated.json || ! jq -e 'type == "array" and length > 0' /tmp/curated.json >/dev/null; then
   echo "Sem curated valido (todos SKIP ou nenhum pending). Encerrando sem commit."
   exit 0
 fi
-node scripts/news/merge-curated.mjs --file /tmp/curated.json
-```
 
-Conferir o que mudou:
-```bash
-git status --short
-```
-
-Espera ver alterações em `media/news/index.json`, `media/news/seen.json`, e `media/news/_pending.json` (ou deletado se zerou).
-
-## 6. Publicar via git push em branch (NUNCA main, NUNCA MCP)
-
-**Estrategia atual (validada 2026-05-14):** o proxy bloqueia `git push origin main` com HTTP 403. O `mcp__github__create_or_update_file` requer OAuth interativo (impossivel em cron). Mas `git push` em branch que NAO seja main **funciona sem OAuth**.
-
-Fluxo correto:
-
-```bash
-# 1. Configura autor (importante: email noreply@anthropic.com pra committer.login resolver pra "claude")
+# 5.2. Config autor (importante: email noreply@anthropic.com pra committer.login
+# resolver pra "claude" e passar na whitelist do auto-merge)
 git config user.name "Claude"
 git config user.email "noreply@anthropic.com"
 
-# 2. Cria branch determinista por dia (UTC)
-BRANCH="claude/news-routine-$(date -u +%Y%m%d)"
-git checkout -b "$BRANCH" 2>/dev/null || git checkout "$BRANCH"
+# 5.3. Cria branch FRESH a partir de main, ANTES de modificar arquivos.
+# Timestamp completo (YYYYMMDD-HHMM) evita colisao se 2 runs no mesmo dia.
+BRANCH="claude/news-routine-$(date -u +%Y%m%d-%H%M)"
+git checkout -B "$BRANCH"
 
-# 3. Stage + commit com mensagem DETALHADA (ela vai virar body do PR automatico)
+# 5.4. AGORA roda merge-curated. Ele valida cada item, atualiza index.json
+# (top 30), arquiva overflow em archive/YYYY-MM.json, atualiza seen.json e
+# limpa items aceitos de _pending.json.
+node scripts/news/merge-curated.mjs --file /tmp/curated.json
+
+# 5.5. Confere o que mudou
+git status --short
+# Espera ver alteracoes em media/news/index.json, items/<id>.json, seen.json
+# e _pending.json (ou deletado se zerou).
+
+# 5.6. Stage + commit com mensagem DETALHADA (vai virar body do PR automatico).
+# Substitua os placeholders pelos dados reais dos items que voce curou.
 git add media/news/
 git commit -m "news: curadoria automatica via routine sonnet ($(jq '.items | length' media/news/index.json) itens, $(date -u +%Y-%m-%dT%H:%MZ))
 
@@ -126,18 +124,29 @@ SKIP:
 - <id>: <razao>
 "
 
-# 4. Push em branch (o proxy LIBERA branches que nao sejam main)
-git push origin "$BRANCH"
+# 5.7. Push em branch com -u pra setar upstream (proxy libera branches != main)
+git push -u origin "$BRANCH"
 ```
 
-**O que acontece depois (automatico, voce nao precisa fazer):** o workflow `publish-instagram.yml` roda a cada 30min e tem step `Auto-merge routine branches` que detecta esse branch, valida (committer.login "claude" + path media/news/), abre PR, mescla em main, deleta branch e notifica via Telegram. Latencia maxima: 30min entre seu push e o conteudo em main.
+## 6. O que acontece depois (automatico, voce nao faz nada)
+
+O workflow `publish-instagram.yml` roda a cada 30min e tem step `Auto-merge routine branches` que:
+1. Detecta esse branch (prefixo `claude/news-routine-`)
+2. Valida via GitHub API que `committer.login` == "claude" (verificado pelo email noreply@anthropic.com)
+3. Valida que diff so toca em `media/news/`
+4. Abre PR com body extraido do seu commit message
+5. Mescla em main
+6. Deleta o branch remoto
+7. Notifica Telegram do Andre
+
+Latencia maxima: 30min entre seu push e o conteudo em main.
 
 **NAO tente:**
 - `git push origin main` (proxy bloqueia HTTP 403)
 - `mcp__github__create_or_update_file` (requer OAuth interativo)
 - `mcp__github__push_files` (mesmo problema)
 
-Se o `git push` em branch falhar com outro erro que nao 403, reporte exato e termine sem fallback.
+Se o `git push` em branch falhar com erro que nao seja 403, reporte exato e termine sem fallback.
 
 ## 7. Encerre
 
