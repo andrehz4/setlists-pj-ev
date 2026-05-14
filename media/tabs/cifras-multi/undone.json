@@ -1,0 +1,285 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Undone (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 90 BPM."
+  },
+  "title": "Undone",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Asus2": {
+          "fingering": "x02200",
+          "fingers": "x02300",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "x022xx",
+          "fingers": "x023xx",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "x355xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "022xxx",
+          "fingers": "023xxx",
+          "fundamental": null
+        },
+        "Bsus4": {
+          "fingering": "x24452",
+          "fingers": "x13441",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Asus2": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "5500",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "4400",
+          "fingers": "2300",
+          "fundamental": null
+        },
+        "Bsus4": {
+          "fingering": "4240",
+          "fingers": "3140",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Asus2": {
+          "notes": [
+            "A",
+            "B",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "C5": {
+          "notes": [
+            "C",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "E5": {
+          "notes": [
+            "E",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "Bsus4": {
+          "notes": [
+            "B",
+            "E",
+            "F#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[Asus2] [A5] [G] [D] (riff x4)\n\n{section: Refrão}\n[C5]The world has come un-done. Like to\n[G5]change it every day.\n[D5]Change don't come at once. There's a\n[Asus2]wave building before it breaks.\n\n{section: Verso 2}\n[Asus2] [A5] [G] [D] (riff x4)\n\n{section: Refrão 2}\n[C5]The world has come un-done. Like to\n[G5]change it every day.\n[D5]Change don't come at once. There's a\n[Asus2]wave building before it breaks.\n\n{section: Ponte}\n[E5]All this hope... [Bsus4]\n[Asus2] (riff)\n\n{section: Outro}\n[G5] [A5] (x6)"
+}

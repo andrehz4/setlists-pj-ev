@@ -1,0 +1,179 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Drifting (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 95 BPM."
+  },
+  "title": "Drifting",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 95,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, country folk)",
+        "bpm": 95,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto, country folk)",
+        "bpm": 95,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [G]\n\n{section: Verso 1}\n[G]Driftin', driftin', driftin' a[C]way\n[G]I got myself a mansion and I gave it a[D]way\n[G]It's not the world that's heavy, it's just the things that you [C]say\n[G]I'm driftin', [D]driftin' a[G]way\n\n{section: Verso 2}\n[G]Driftin', driftin', driftin' a[C]long\n[G]I rid myself of worries and my worries were [D]gone\n[G]I may run when I want to and I sleep like a [C]dog\n[G]I'm just driftin', [D]driftin' a[G]long\n\n{section: Refrão}\n[C]Suitcoats say there is money to be [G]made\nThey get so damn excited but I guess it's their [D]way\n[G]My road may be lonely just because it's not [C]paved\nIt's good for [G]driftin', [D]driftin' a[G]way\n\n{section: Solo de gaita}\n[G] [C]\n[G] [D]\n[G] [C]\n[G] [D] [G]\n\n{section: Refrão 2}\n[C]Now suitcoats say there is money to be [G]made\nThey get so damn excited nothin' gets in their [D]way\n[G]My road it may be lonely just because it's not [C]paved\nIt's good for [G]driftin', [D]driftin' a[G]way\n\n{section: Verso 3}\n[G]Driftin' driftin' driftin' uh [C]huh\n[G]I feel like goin back there but never for [D]long\n[G]I sometimes wonder if they know that I'm [C]gone\n[G]I'm just driftin', [D]driftin' a[G]long\n[G]Driftin', [D]driftin' a[G]long\n[G]Driftin', [D]driftin' a[C]long [G]"
+}

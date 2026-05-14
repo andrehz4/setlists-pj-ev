@@ -1,0 +1,221 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Brother (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G#m, 93 BPM."
+  },
+  "title": "Brother",
+  "artist": "Pearl Jam",
+  "key": "G#m",
+  "bpm": 93,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G#m": {
+          "fingering": "466444",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 4
+        },
+        "E7": {
+          "fingering": "020100",
+          "fingers": "020100",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 2
+        },
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 4
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "Verso: D-U x D-U x D x D-U x (93 bpm)",
+        "bpm": 93,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G#m": {
+          "fingering": "4323",
+          "fingers": "4213",
+          "fundamental": null
+        },
+        "E7": {
+          "fingering": "1202",
+          "fingers": "1202",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": null
+        },
+        "C#": {
+          "fingering": "1114",
+          "fingers": "1114",
+          "fundamental": null,
+          "barre": 1
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Verso: D-U x D-U x D x D-U x (93 bpm)",
+        "bpm": 93,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G#m": {
+          "notes": [
+            "G#",
+            "B",
+            "D#"
+          ],
+          "fundamental": null
+        },
+        "E7": {
+          "notes": [
+            "E",
+            "G#",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "F#": {
+          "notes": [
+            "F#",
+            "A#",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "C#": {
+          "notes": [
+            "C#",
+            "F",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G#m] [E7] (x4)\n\n{section: Verso 1}\n[G#m]Hand over my face.\n[G#m]I am related to my enemy.\n[G#m]My house on fire,\n[G#m]And my big brother tried to put the blame on me.\n\n{section: Refrão}\n[G#m]Oh, little sister, [F#]you and me can rise above [G#m]\n[F#]Oh, ain't no brother, back to back to back [G#m]\nOh better back on\n\n{section: Instrumental}\n[G#m] (x4)\n\n{section: Verso 2}\n[G#m]You use the flag as a bandage\n[G#m]Oh my big brother's a pocket hypocrisy\n[G#m]In the closet, my pleasures...\n[G#m]Brother don't wanna just let me be\n\n{section: Refrão 2}\n[G#m]Oh, little sister, [F#]you and me can rise above [G#m]\n[F#]Oh, ain't no brother, back to back to back [G#m]\nOh better back on\n[G#m]Oh, little sister, [F#]you and me can walk alone [G#m]\n[F#]Oh, ain't no brother, back to back to back [G#m] [E7]\nOh better back on\n\n{section: Ponte}\n[G#m]Hey now, ooooh [E7]\n[G#m]Hey now, yeah [E7]\n[G#m]Hey now, yeah [E7]\n[G#m]Hey now [E7] [C#]\n\n{section: Interlúdio}\n[B]In my mind there's a clearing\n[B]Rose gardens open grey skies [G#m]\n[B]Oh no one's hurtin' [G#m]\n[B]And I'm joyin' [G#m]\n[B]I'm flying [G#m]\n\n{section: Solo}\n[G#m] (x8)\n\n{section: Refrão 3}\n[G#m]Back to back to back, oh better back on [F#]\n[G#m]Back to back to back, back c'mon [F#]\n[F#]Back to back to back..., back, ooooh [G#m] [E7]\n\n{section: Outro}\n[G#m]Hey now, Brother [E7]\n[G#m]Hey now, oh oh oh oh [E7]\n(repete ate o fade...)"
+}

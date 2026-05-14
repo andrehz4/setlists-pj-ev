@@ -1,0 +1,197 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Last Kiss (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 110 BPM."
+  },
+  "title": "Last Kiss",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 110,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . D U . U D U (110 bpm)",
+        "bpm": 110,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . D U . U D U (110 bpm)",
+        "bpm": 110,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Refrão}\n[G]Oh, where oh where can my baby [Em]be?\n[C]The Lord took her away from [D]me\n[G]She's gone to heaven, so I got to be [Em]good\n[C]So I can see my baby when I leave this [D]world [G]\n\n{section: Verso 1}\n[G]We were out on a date in my daddy's [Em]car\n[C]We hadn't driven very [D]far\n[G]There in the road, up straight a[Em]head\n[C]A car was stalled, the engine was [D]dead\n[G]I couldn't stop, so I swerved to the [Em]right\n[C]I'll never forget the sound that [D]night\n[G]The screamin' tires, the bustin' [Em]glass\n[C]The painful scream that I heard [D]last [G]\n\n{section: Refrão}\n[G]Oh, where oh where can my baby [Em]be?\n[C]The Lord took her away from [D]me\n[G]She's gone to heaven, so I got to be [Em]good\n[C]So I can see my baby when I leave this [D]world [G]\n\n{section: Verso 2}\n[G]When I woke up, the rain was pourin' [Em]down\n[C]There were people standing all a[D]round\n[G]Something warm runnin' in my [Em]eyes\n[C]But somehow I found my baby that [D]night\n[G]I lifted her head, she looked at me and [Em]said\n[C]\"Hold me darling just a little [D]while.\"\n[G]I held her close, I kissed her our last [Em]kiss\n[C]I found the love that I knew I would [D]miss\n[G]But now she's gone, even though I hold her [Em]tight\n[C]I lost my love, my life that [D]night [G]\n\n{section: Refrão}\n[G]Oh, where oh where can my baby [Em]be?\n[C]The Lord took her away from [D]me\n[G]She's gone to heaven, so I got to be [Em]good\n[C]So I can see my baby when I leave this [D]world [G]\n\n{section: Outro}\n[G] [Em] [C]\n[D] [G] [Em] [C]\n[D] [G] [Em] [C]\n[D] [G] [Em] [C]\n[D] [G]"
+}

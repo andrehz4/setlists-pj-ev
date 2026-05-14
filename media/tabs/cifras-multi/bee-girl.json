@@ -1,0 +1,202 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Bee Girl (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 157 BPM."
+  },
+  "title": "Bee Girl",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 157,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "x32030",
+          "fingers": "x32040",
+          "fundamental": null
+        },
+        "C/G": {
+          "fingering": "332010",
+          "fingers": "332010",
+          "fundamental": null,
+          "notes": "G no baixo"
+        },
+        "Fmaj7": {
+          "fingering": "133210",
+          "fingers": "134210",
+          "fundamental": null,
+          "barre": 1
+        }
+      },
+      "strumming": {
+        "label": "D . . U D U (157 bpm)",
+        "bpm": 157,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "0203",
+          "fingers": "0203",
+          "fundamental": null
+        },
+        "C/G": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Fmaj7": {
+          "fingering": "2410",
+          "fingers": "2410",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . . U D U (157 bpm)",
+        "bpm": 157,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Cadd9": {
+          "notes": [
+            "C",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "C/G": {
+          "notes": [
+            "G",
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Fmaj7": {
+          "notes": [
+            "F",
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C] [Cadd9] [C] [C/G]\n\n{section: Verso 1}\n[C]Bee girl, [Cadd9]\n[C]You're gonna die\n[C]You don't want to be famous, [Cadd9] [C]\nYou want to be shy [C/G]\n[Cadd9] [C]Do your dances alone in your room [C/G] [C]\n[Cadd9] [C]Becoming a star will become your doom [Cadd9] [C]\n\n{section: Refrão}\n[C]Bee girl, [Fmaj7]\nBe a girl [C]\n[C]Bee girl, [Fmaj7]\nBe a girl [C]\n\n{section: Verso 2}\n[C]You know time is long, [Cadd9]\n[C]And life is short [C/G]\n[C]Begin to live while you still can [Cadd9] [C] [C/G]\n[C]Believe in nothing, believe me [Cadd9] [C] [C/G]\n[C]Those who can be trusted can change their mind [Cadd9] [C] [C/G]\n\n{section: Interlúdio}\n[Fmaj7]The anxious is the present [C]\nUnwrap your gifts, take your time\n[Fmaj7]Everything you imagined [C]\nNeedn't be stuck in your mind\n\n{section: Refrão 2}\n[C]Bee girl, [Cadd9] [C]\nBe a girl [C/G] [C]\n[C]Bee girl, [Cadd9] [C]\nBe a girl [C/G] [C] [Cadd9] [C]"
+}

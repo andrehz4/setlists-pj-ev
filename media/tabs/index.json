@@ -257,10 +257,13 @@
     "bpm": 141
   },
   "last kiss": {
-    "cifra": false,
-    "tab": false,
+    "cifra": true,
+    "tab": true,
     "key": "G",
-    "tuning": "EADGBE"
+    "tuning": "EADGBE",
+    "tabFormat": "ptb",
+    "tabFile": "last-kiss-v1.ptb",
+    "bpm": 110
   },
   "crazy mary": {
     "cifra": false,
@@ -339,10 +342,13 @@
     ]
   },
   "footsteps": {
-    "cifra": false,
-    "tab": false,
-    "key": "Em",
-    "tuning": "EADGBE"
+    "cifra": true,
+    "tab": true,
+    "key": "G",
+    "tuning": "EADGBE",
+    "tabFormat": "ptb",
+    "tabFile": "footsteps-v1.ptb",
+    "bpm": 131
   },
   "why go": {
     "cifra": true,
@@ -1613,5 +1619,105 @@
     "tab": false,
     "tuning": "EADGBE",
     "notes": "Bass tab apenas, instrucao vocal. Sem GP disponivel."
+  },
+  "fatal": {
+    "cifra": true,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "fatal-v1.gp5",
+    "key": "D",
+    "bpm": 90,
+    "tuning": "EADGBE"
+  },
+  "other side": {
+    "cifra": true,
+    "tab": false,
+    "key": "C",
+    "bpm": 80,
+    "tuning": "EADGBE"
+  },
+  "dirty frank": {
+    "cifra": true,
+    "tab": false,
+    "key": "Em",
+    "bpm": 130,
+    "tuning": "EADGBE"
+  },
+  "brother": {
+    "cifra": true,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "brother-v1.gp5",
+    "key": "G#m",
+    "bpm": 93,
+    "tuning": "EADGBE"
+  },
+  "bee girl": {
+    "cifra": true,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "bee-girl-v1.gp5",
+    "key": "C",
+    "bpm": 157,
+    "tuning": "EADGBE"
+  },
+  "wash": {
+    "cifra": true,
+    "tab": false,
+    "key": "Em",
+    "bpm": 70,
+    "tuning": "EADGBE"
+  },
+  "strangest tribe": {
+    "cifra": true,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "strangest-tribe-v1.gp4",
+    "key": "F#m",
+    "bpm": 90,
+    "tuning": "EADGBE",
+    "capo": 1
+  },
+  "drifting": {
+    "cifra": true,
+    "tab": false,
+    "key": "G",
+    "bpm": 95,
+    "tuning": "EADGBE"
+  },
+  "let me sleep": {
+    "cifra": true,
+    "tab": false,
+    "key": "G",
+    "bpm": 75,
+    "tuning": "EADGBE"
+  },
+  "hard to imagine": {
+    "cifra": true,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "hard-to-imagine-v1.gp5",
+    "key": "A",
+    "bpm": 90,
+    "tuning": "EADGBE"
+  },
+  "undone": {
+    "cifra": true,
+    "tab": false,
+    "key": "G",
+    "bpm": 90,
+    "tuning": "EADGBE"
+  },
+  "dead man": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "dead-man-v1.gp5",
+    "tuning": "EADGBE"
+  },
+  "sweet lew": {
+    "cifra": false,
+    "tab": false,
+    "tuning": "EADGBE"
   }
 }

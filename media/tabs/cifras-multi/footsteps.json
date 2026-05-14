@@ -1,0 +1,313 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Footsteps (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 131 BPM."
+  },
+  "title": "Footsteps",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 131,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Gadd9": {
+          "fingering": "320033",
+          "fingers": "210044",
+          "fundamental": null
+        },
+        "G9/F": {
+          "fingering": "133433",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1,
+          "notes": "approx"
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "x32030",
+          "fingers": "x32040",
+          "fundamental": null
+        },
+        "Em7": {
+          "fingering": "022030",
+          "fingers": "023040",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "D/F#": {
+          "fingering": "200232",
+          "fingers": "200132",
+          "fundamental": null,
+          "notes": "F# no baixo"
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "Asus4": {
+          "fingering": "x02230",
+          "fingers": "x02340",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . . U D U D . . U D . D . D U (131 bpm)",
+        "bpm": 131,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Gadd9": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "G9/F": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Cadd9": {
+          "fingering": "0203",
+          "fingers": "0203",
+          "fundamental": null
+        },
+        "Em7": {
+          "fingering": "0202",
+          "fingers": "0202",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "D/F#": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "Asus4": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D . . U D U D . . U D . D . D U (131 bpm)",
+        "bpm": 131,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Gadd9": {
+          "notes": [
+            "G",
+            "A",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "G9/F": {
+          "notes": [
+            "F",
+            "G",
+            "A",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Cadd9": {
+          "notes": [
+            "C",
+            "D",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "Em7": {
+          "notes": [
+            "E",
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "D/F#": {
+          "notes": [
+            "F#",
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Asus4": {
+          "notes": [
+            "A",
+            "D",
+            "E"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Gadd9] [G9/F] (x4)\n\n{section: Verso 1}\n[Gadd9]Don't even think about reachin' me [G9/F] [Gadd9] [G9/F]\nI won't be home [Gadd9] [G9/F] [Gadd9] [G9/F]\n[Gadd9]Don't even think about stoppin' by [G9/F] [Gadd9] [G9/F]\nDon't think of me at all [Gadd9] [G9/F] [Gadd9] [G9/F]\n\n{section: Refrão}\n[C] [Cadd9] [Em7]I did a what I had to do [C]\nIf there was a reason, [Em7] [C]it was you\n\n{section: Interlúdio}\n[Gadd9] [G9/F] (x4)\n\n{section: Verso 2}\n[Gadd9]I don't even think about getting inside [G9/F] [Gadd9] [G9/F]\nVoices in my head, ooh voices\n\n{section: Refrão 2}\n[C] [Cadd9] [Em7]I got scratches all over my arms [C]\nOne for each day [Em7] [C]since I fell apart\n[C] [Cadd9] [Em7]I did a what I had to do [C]\nIf there was a reason, [Em7] [C]it was you\n\n{section: Pós-Refrão}\n[Em] [D/F#] [G]Footsteps in the hall [A] [Em] [D/F#]\nIt was you [G] [A] [Asus4] [A]\n[Em] [D/F#] [G]Pictures on my chest [A] [Em] [D/F#]\nIt was you [G] [A] [Asus4] [A]\n\n{section: Solo (harmonica)}\n[Gadd9] [G9/F] (x4)\n\n{section: Refrão 3}\n[C] [Cadd9] [Em7]I did a what I had to do [C]\nIf there a was a reason, [Em7] [C]it was you\n[C] [Cadd9] [Em7]If there's something you'd like to do [C]\nOh, just let me [Em7] [C]continue to blame you\n\n{section: Pós-Refrão}\n[Em] [D/F#] [G]Footsteps in the hall [A] [Em] [D/F#]\nIt was you [G] [A] [Asus4] [A]\n[Em] [D/F#] [G]Pictures on my chest [A] [Em] [D/F#]\nIt was you [G] [A] [Asus4] [A]\n\n{section: Outro}\n[Gadd9] [G9/F] (x4)"
+}

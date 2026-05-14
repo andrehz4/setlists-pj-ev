@@ -10765,9 +10765,17 @@ async function _ensureAlphaTab() {
   return _alphaTabPromise;
 }
 async function _initAlphaTabPanel(container, songKey, tabFormat, tabFile) {
+  const slug = _tabSlug(songKey);
+  if (tabFormat === 'ptb') {
+    const ptbUrl = tabFile ? `media/tabs/gp/${tabFile}` : `media/tabs/gp/${slug}.ptb`;
+    container.innerHTML = `<div style="padding:24px;text-align:center;color:var(--text-secondary,#777)">
+      <p style="margin:0 0 10px">Formato PowerTab (.ptb) n&atilde;o &eacute; suportado pelo visualizador.</p>
+      <a href="${ptbUrl}" download style="color:var(--pj,#c1272d);font-weight:600">Baixar arquivo .ptb</a>
+    </div>`;
+    throw Object.assign(new Error('PTB_NOT_SUPPORTED'), { isPtb: true });
+  }
   const at = await _ensureAlphaTab();
   if (!at) throw new Error('alphaTab indisponivel');
-  const slug = _tabSlug(songKey);
   const ext = tabFormat === 'alphatex' ? 'alphatex' : (tabFormat || 'gp');
   // Suporte a tabFile explicito (musicas com varias versoes; manifest tem
   // 'tabFile' apontando pra default da primeira versao). Senao usa o slug.
@@ -12467,7 +12475,9 @@ function _renderTabPanel(body, songKey, tabMeta) {
         }
       }).catch((err) => {
         loading.remove();
-        tabPane.innerHTML = `<div class="tab-pane-soon">tablatura nao p&ocirc;de ser carregada (${(err && err.message) || 'erro desconhecido'})</div>`;
+        if (!err.isPtb) {
+          tabPane.innerHTML = `<div class="tab-pane-soon">tablatura nao p&ocirc;de ser carregada (${(err && err.message) || 'erro desconhecido'})</div>`;
+        }
       });
     }
   }
