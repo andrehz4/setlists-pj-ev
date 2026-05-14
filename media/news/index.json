@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14T21:15:19.495Z",
+  "updated": "2026-05-14T21:28:27.370Z",
   "items": [
     {
       "id": "1fa4196147",
@@ -46,6 +46,40 @@
       "title_pt": "Pearl Jam apoia o Dia das Doencas Raras 2026",
       "intro_pt": "O Ten Club publicou mensagem de apoio ao Rare Disease Day, reafirmando o compromisso historico da banda com a causa.",
       "tags": [
+        "tenclub"
+      ],
+      "kind": "pjcom-news"
+    },
+    {
+      "id": "3ae77150e0",
+      "url": "https://pearljam.com/news/montana-grind-and-paving-the-way",
+      "source": "pj-com-news",
+      "sourceLabel": "Pearl Jam Oficial",
+      "group": "tenclub",
+      "pubDate": "2026-05-14T12:04:05.057Z",
+      "fetchedAt": "2026-05-14T21:28:27.359Z",
+      "img": "/media/news/img/3ae77150e0.jpg",
+      "title_pt": "Jeff Ament assina trilha de dois filmes sobre skate e raízes em Montana",
+      "intro_pt": "Baixista do Pearl Jam compôs músicas para o documentário Montana Grind e o curta Paving the Way, ambos enraizados no estado do Montana.",
+      "tags": [
+        "jeff",
+        "tenclub"
+      ],
+      "kind": "pjcom-news"
+    },
+    {
+      "id": "7ffb597882",
+      "url": "https://pearljam.com/news/music-belongs-in-schools",
+      "source": "pj-com-news",
+      "sourceLabel": "Pearl Jam Oficial",
+      "group": "tenclub",
+      "pubDate": "2026-05-14T12:04:05.057Z",
+      "fetchedAt": "2026-05-14T21:28:27.359Z",
+      "img": "/media/news/img/7ffb597882.jpg",
+      "title_pt": "Mike McCready salva programa de música de escola de Seattle",
+      "intro_pt": "Guitarrista do Pearl Jam e Vitalogy Foundation ajudam a garantir os US$ 30 mil que mantiveram a aula de música na Washington Middle School.",
+      "tags": [
+        "mike",
         "tenclub"
       ],
       "kind": "pjcom-news"
@@ -447,21 +481,6 @@
       "intro_pt": "A American Heart Association recomenda o clássico do Pearl Jam como ritmo ideal para compressões cardíacas.",
       "tags": [
         "memoria"
-      ]
-    },
-    {
-      "id": "d8857630af",
-      "url": "https://www.nme.com/news/music/watch-bruno-mars-cover-nirvanas-smells-like-teen-spirit-at-private-corporate-christmas-party-that-also-featured-yungblud-slash-eddie-vedder-and-more-3918629",
-      "source": "nme-pj",
-      "sourceLabel": "NME",
-      "group": "us",
-      "pubDate": "2025-12-15T11:58:33.000Z",
-      "fetchedAt": "2026-05-14T06:43:32.298Z",
-      "img": "/media/news/img/d8857630af.jpg",
-      "title_pt": "Eddie Vedder e o Natal corporativo com Bruno Mars, Slash e Anthony Kiedis",
-      "intro_pt": "No Capitol Theatre de Nova York, Eddie, Bruno Mars, Slash e Anthony Kiedis tocaram juntos numa festa privada de empresa.",
-      "tags": [
-        "eddie"
       ]
     }
   ]
