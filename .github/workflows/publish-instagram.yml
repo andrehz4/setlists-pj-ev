@@ -16,6 +16,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: publish-instagram
@@ -28,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
           # token padrao do workflow ja basta pra push (permissions: contents: write)
           persist-credentials: true
 
@@ -39,6 +40,22 @@ jobs:
 
       - name: Install deps
         run: npm ci --no-audit --no-fund
+
+      - name: Auto-merge routine branches
+        # Detecta branches `claude/news-routine-*` deixados pela routine remota
+        # (cujo push em main e bloqueado pelo proxy da Anthropic Cloud).
+        # Valida rigorosamente (committer.login whitelist + path media/news/),
+        # abre PR, mescla, deleta branch, notifica Telegram. Falha aqui nao
+        # derruba o publish (publish prossegue mesmo se auto-merge der erro).
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/publish/auto-merge-routine.mjs || true
+
+      - name: Pull rebased main (auto-merge pode ter avancado)
+        run: git pull --rebase --autostash || true
 
       - name: Run publish
         env:

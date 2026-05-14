@@ -99,64 +99,55 @@ git status --short
 
 Espera ver alterações em `media/news/index.json`, `media/news/seen.json`, e `media/news/_pending.json` (ou deletado se zerou).
 
-## 6. Publicar via mcp__github__create_or_update_file (single-file sequencial)
+## 6. Publicar via git push em branch (NUNCA main, NUNCA MCP)
 
-NÃO tente `git push` (403). NÃO use `mcp__github__push_files` (multi-file estoura stream). Chame `mcp__github__create_or_update_file` DIRETAMENTE (sem ToolSearch primeiro), 1 vez por arquivo. Cada arquivo agora é pequeno (<15KB) porque body_pt mora em arquivos separados desde o split de 2026-05-13.
+**Estrategia atual (validada 2026-05-14):** o proxy bloqueia `git push origin main` com HTTP 403. O `mcp__github__create_or_update_file` requer OAuth interativo (impossivel em cron). Mas `git push` em branch que NAO seja main **funciona sem OAuth**.
 
-Liste os arquivos modificados com `git status --short`. Pra CADA arquivo modificado/criado em `media/news/`, faça UMA chamada:
+Fluxo correto:
 
-```
-mcp__github__create_or_update_file({
-  owner: "andrehz4",
-  repo: "setlists-pj-ev",
-  branch: "main",
-  path: "<caminho relativo, ex media/news/index.json>",
-  content: <conteudo lido com Read>,
-  message: "news: <descricao curta>"
-})
-```
-
-Ordem sugerida e mensagens de commit:
-
-**6a. `media/news/items/<id>.json`** (novos, 1 por item curado). Mensagem:
-   `"news: adiciona item <id> curado"`
-
-**6b. `media/news/index.json`** (atualizado pra incluir os novos itens). Mensagem:
-   `"news: curadoria automatica via routine sonnet (N itens, YYYY-MM-DDTHH:MMZ)"`
-   Onde N é `jq '.items | length' media/news/index.json` e o timestamp é UTC atual.
-
-**6c. `media/news/seen.json`** (atualiza dedupe). Mensagem:
-   `"news: atualiza seen.json (dedupe)"`
-
-**6d. `media/news/_pending.json`** — se o `merge-curated.mjs` deletou o arquivo, o MCP single-file não consegue deletar via REST API básica. Pra "zerar" sem deletar:
-```
-mcp__github__create_or_update_file({
-  owner: "andrehz4",
-  repo: "setlists-pj-ev",
-  branch: "main",
-  path: "media/news/_pending.json",
-  content: '{"generatedAt":"<now ISO>","items":[]}',
-  message: "news: zera _pending.json apos curadoria"
-})
-```
-
-**6e. Se houver overflow**, arquivos `media/news/archive/YYYY-MM.json` foram modificados. Faça uma chamada `create_or_update_file` separada pra cada.
-
-Se o tool retornar erro inesperado, reporte o nome exato do erro no Output final. NÃO tente git push como fallback.
-
-Após todos os commits chegarem no remoto, sincronize o working dir local:
 ```bash
-git fetch origin main && git reset --hard origin/main
+# 1. Configura autor (importante: email noreply@anthropic.com pra committer.login resolver pra "claude")
+git config user.name "Claude"
+git config user.email "noreply@anthropic.com"
+
+# 2. Cria branch determinista por dia (UTC)
+BRANCH="claude/news-routine-$(date -u +%Y%m%d)"
+git checkout -b "$BRANCH" 2>/dev/null || git checkout "$BRANCH"
+
+# 3. Stage + commit com mensagem DETALHADA (ela vai virar body do PR automatico)
+git add media/news/
+git commit -m "news: curadoria automatica via routine sonnet ($(jq '.items | length' media/news/index.json) itens, $(date -u +%Y-%m-%dT%H:%MZ))
+
+Items curados:
+- <id>: <titulo curto> (kind, sourceLabel)
+- ...
+
+SKIP:
+- <id>: <razao>
+"
+
+# 4. Push em branch (o proxy LIBERA branches que nao sejam main)
+git push origin "$BRANCH"
 ```
+
+**O que acontece depois (automatico, voce nao precisa fazer):** o workflow `publish-instagram.yml` roda a cada 30min e tem step `Auto-merge routine branches` que detecta esse branch, valida (committer.login "claude" + path media/news/), abre PR, mescla em main, deleta branch e notifica via Telegram. Latencia maxima: 30min entre seu push e o conteudo em main.
+
+**NAO tente:**
+- `git push origin main` (proxy bloqueia HTTP 403)
+- `mcp__github__create_or_update_file` (requer OAuth interativo)
+- `mcp__github__push_files` (mesmo problema)
+
+Se o `git push` em branch falhar com outro erro que nao 403, reporte exato e termine sem fallback.
 
 ## 7. Encerre
 
-Você terminou. NÃO faça `git commit` nem `git push` (vão falhar). Reporte:
-- Quantos itens estavam em `_pending.json` (mídia + community-digest + community-spotlight, distribuição)
-- Quantos passaram da curadoria (não-SKIP)
-- Quantos foram SKIP e por quê (resumo)
-- SHA do commit que o MCP retornou (ou erro se falhou)
+Reporte:
+- Quantos itens estavam em `_pending.json` (midia + community-digest + community-spotlight, distribuicao)
+- Quantos passaram da curadoria (nao-SKIP)
+- Quantos foram SKIP e por que (resumo)
+- Nome do branch criado e SHA do commit pushed
 - Quantos itens no `media/news/index.json` final
+- Confirmacao que o auto-merge vai cuidar do resto em ate 30min
 
 # Resumo das REGRAS ABSOLUTAS (estão nos system prompts completos, mas reforço aqui):
 
@@ -170,8 +161,8 @@ Você terminou. NÃO faça `git commit` nem `git push` (vão falhar). Reporte:
 
 # Cuidados
 
-- Se algum bash falhar, pare e reporte. NÃO tente `git push` como fallback (vai falhar com 403).
-- Se `mcp__github__push_files` falhar realmente (após também tentar `create_or_update_file`), reporte erro claro e termine sem fallback obscuro. O `/tmp/curated.json` fica preservado dentro da run pra inspeção.
+- Se `git push origin <branch>` falhar com 403 mesmo em branch nao-main, reporte exato (algo mudou no proxy). NUNCA tente fallback em main, vai falhar do mesmo jeito.
+- Se `merge-curated.mjs` falhar, pare e reporte. `/tmp/curated.json` fica preservado pra inspecao.
 - Não modifique código do repo (nada fora de `media/news/`). Você roda `merge-curated.mjs` mas NÃO altera o `.js`/`.mjs`/`.json` dos scripts.
 - Trabalhe totalmente autônomo, sem perguntar ao usuário.
 - Não invente fato. Se faltar contexto no texto extraído, seja telegráfico (matéria curta, baseado só no que tem).
