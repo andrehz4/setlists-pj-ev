@@ -3,6 +3,36 @@
 ## Data
 2026-05-14
 
+## HANDOFF SESSAO 2026-05-14 (noite 2): Lost Dogs batch 2 + fallback PTB
+
+### Resumo
+Lost Dogs completo: batch 2 processado (13 cifras, 8 GPs/PTBs). Fallback PTB implementado no player. HEAD `a9d271d`. 122 musicas / 99 cifras / 86 tabs.
+
+### O que foi feito
+- Gerados 13 JSONs cifra: fatal, other-side, dirty-frank, brother, bee-girl, wash, strangest-tribe, drifting, let-me-sleep, last-kiss, footsteps, hard-to-imagine, undone
+- Copiados 8 arquivos GP/PTB: fatal/brother/bee-girl/dead-man/hard-to-imagine (gp5), strangest-tribe (gp4), footsteps/last-kiss (ptb)
+- index.json: +13 novas entradas + update last-kiss e footsteps (tab=true)
+- index.html: fallback PTB em _initAlphaTabPanel - detect tabFormat==='ptb', injeta link de download no container, throw {isPtb:true}; catch nao sobrescreve o fallback
+- Lost Dogs (2003): COMPLETO
+
+### Estado atual
+- Ten/Vs/Vitalogy/No Code/Yield/Binaural/Riot Act/Lost Dogs: COMPLETOS
+- 122 musicas, 99 cifras, 86 tabs
+- PTB suportado com fallback (link de download); footsteps e last-kiss usam ptb
+
+### Proximo passo
+Albums sem cifras: Pearl Jam (2006), Backspacer (2009), Lightning Bolt (2013), Gigaton (2020), Dark Matter (2024)
+
+### Arquivos chave
+```
+media/tabs/index.json            # 122 entradas
+media/tabs/cifras-multi/         # +13 JSONs Lost Dogs batch 2
+media/tabs/gp/                   # +8 GPs/PTBs Lost Dogs batch 2
+index.html linha ~10767          # _initAlphaTabPanel com fallback PTB
+```
+
+---
+
 ## HANDOFF SESSAO 2026-05-14 (noite): Lost Dogs cifras e GPs
 
 ### Resumo do estado em uma frase
