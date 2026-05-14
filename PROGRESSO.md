@@ -1,7 +1,117 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-12 (madrugada do 13)
+2026-05-13 (fim de tarde/noite)
+
+## HANDOFF SESSAO 2026-05-13 NOITE: Instagram @smufdpj no ar, rebrand site, expansao de fontes BR + oficiais
+
+### Resumo do estado em uma frase
+Pipeline IG `@smufdpj` operacional em producao (5 posts ja publicados, ultimo cron de publish funcionou). Site rebrandeado pra "So mais um fa de Pearl Jam". Coleta expandida com 9 fontes BR + 2 oficiais (pearljam.com/news + shop.pearljam.com). HEAD `079fb54`.
+
+### O que esta funcionando hoje
+- **Carrossel IG operacional**: workflow `publish-instagram.yml` cron 30min (`:17,:47`), endpoint `graph.instagram.com/v21.0` via fluxo "Instagram with Instagram Login", token long-lived 60d em GH Secret `IG_ACCESS_TOKEN`. Posts ja publicados: 1 spotlight + 1 regular single + carrossel de 3 slides (backfill manual de items pre-integracao). postCount=3.
+- **Rotacao de cores da tarja superior**: muda a cada 3 posts. Ciclo: vermelho `#c12727` -> preto `#0a0908` -> ocre `#a87f2c` -> azul `#2a5b9e`. Proximo post (4o) ja sai com tarja PRETA (primeira transicao).
+- **Caption do post completa**: title + intro + body_pt inteiro (truncado em ultimo paragrafo/frase antes de 2200 chars) + CTA "leia completo em setlists-pj-ev.pages.dev" + 5 hashtags fixas (`#pearljam #eddievedder #pjbrasil #grunge #smufdpj`) + tags dinamicas. Fonte original NAO mencionada (credito vive dentro da materia no site).
+- **Dedupe BR por similaridade**: Jaccard >= 0.65 sobre shingles de 4 palavras (titulo+snippet normalizado). Cluster por union-find. Em cada cluster, mantem o item com texto mais LONGO. So aplica dentro do group="br".
+- **Site rebrandeado**: title=`So mais um fa de Pearl Jam`. h1 do masthead atualizado, og:title, twitter:title, news-flag-stamp ("SMUFDPJ" no topo de Noticias). Titulo do masthead clicavel = atalho pra home (view Noticias + scroll top).
+- **"Continue lendo" no fim de cada noticia**: 2 cards de outras noticias priorizando mesma tag, depois mais recentes. Click abre a proxima + scroll top.
+- **Fontes novas**:
+  - **pearljam.com/news**: scraper que extrai JSON inline `"articles":[...]` do HTML (RSS oficial continua quebrado). Dry-run pegou 3 items: Ohana 2026, Book Signing Geoff Whitman, EV x Japan Tour Merch. `kind=pjcom-news`, tag obrigatoria `tenclub`.
+  - **shop.pearljam.com**: Shopify products.json nativo (`/collections/featured/products.json` + `/collections/music/products.json`). Filtra produtos `published_at` < 21 dias, ignora Gift Card. Curador trata como noticia editorial (sem mencionar preco, contexto historico). `kind=shop`, tag obrigatoria `loja`.
+  - **8 portais BR**: Rolling Stone BR, Billboard Brasil, CNN Brasil, Terra (Musica), O Globo (Cultura/Musica), Igor Miranda, Tenho Mais Discos Que Amigos, Wikimetal. Junto com Folha = 9 BR.
+
+### Decisoes da sessao
+- **Conta IG**: `@smufdpj` (nova, criada pra projeto, convertida Business + Page FB criada e vinculada). Andre = unico admin do app Meta "Setlists PJ EV Bot" (FB pessoal antiga, conta nova ficou bloqueada por anti-fraude).
+- **Business Verification submetida** em 2026-05-13, status "Em analise" (~2 dias uteis). Token atual funciona em modo Development com conta tester @smufdpj sem precisar de App Review.
+- **GH Secrets configurados**: `IG_USER_ID`, `IG_ACCESS_TOKEN`, `IG_APP_SECRET`, `IG_APP_ID`, `FB_APP_ID`. Refresh do token automatico via `refresh-ig-token.yml` (cron dia 1 e 15 do mes).
+- **Spotlight + regular = posts separados**: confirmado, mantem agrupamento por type.
+- **Reels + Stories no roadmap (task #14)**: 1 render MP4 1080x1920 vai pro Reel E pro Story (mesmo MP4). Bloqueado ate carrossel JPG validar ~1 semana. Story sem link sticker inicialmente (conta nova precisa 10k+ followers pra liberar).
+- **Threads parqueado**: RSS publico nao existe (RSSHub quebrado), RSS.app pago foi descartado. Volta quando virar prioridade.
+
+### Routine Sonnet (estado atual)
+```
+id            : trig_01WTGwu5LzVJrQcxtMpRH3Te
+enabled       : true
+cron          : 30 */6 * * * UTC
+modelo        : claude-sonnet-4-6
+proximo run   : ~21:30 BRT (cura items NME novos coletados as 17:14 BRT)
+```
+
+### Cronograma diario automatico
+```
+UTC      BRT      Workflow
+─────────────────────────────────────────────
+00:23    21:23    GH Actions news.yml (8 fontes EUA + 9 BR + 2 oficiais + reddit)
+00:30    21:30    Routine Sonnet cura _pending.json -> index.json + queue IG
+*/30     */30     GH Actions publish-instagram.yml (publish-instagram.yml :17,:47)
+06:23    03:23    news.yml
+06:30    03:30    Sonnet cura
+12:23    09:23    news.yml
+12:30    09:30    Sonnet cura
+18:23    15:23    news.yml
+18:30    15:30    Sonnet cura
+13/15 mes 06:13   refresh-ig-token.yml (renova token long-lived)
+```
+
+### Bugs conhecidos / cuidados
+1. **GAP de 13/05 cedo**: items curados pelo Sonnet as 14:15 BRT (antes do commit `a9b6aa5` da integracao enqueue no merge-curated) entraram no index.json mas NAO foram pra publish queue. Resolvido via backfill manual (3 items: Stereogum, Rolling Stone, PJ Online IT memoria). A partir do proximo cron Sonnet, integracao funciona automatico.
+2. **Anthropic Cloud bloqueia git push do sandbox**: routine remota usa MCP GitHub `create_or_update_file` single-file (push_files estoura stream).
+3. **LF/CRLF warnings em todos os commits**: cosmetico, sem impacto. Windows + git.
+4. **Stories link sticker** so libera com 10k+ followers; conta nova vai postar story sem link clicavel (so "link na bio" textual).
+
+### Frentes abertas pro proximo chat
+1. **Acompanhar primeiros posts naturais (proximas 6-8h)**:
+   - Sonnet routine 21:30 BRT cura 3 items NME coletados hoje (Hugh Jackman, Even Flow CPR, Bruno Mars cover)
+   - Em 3h depois (~00:30 BRT), publish acorda e posta - PRIMEIRA tarja PRETA aparece (postCount transitiona de 3 pra 4)
+2. **Validar que shop + pjcom-news entram no pipeline real** quando proxima coleta rolar
+3. **Conferir logs de dedupe BR**: ver quais portais foram pegos como replicas (Folha=Terra=CNN pelo mesmo wire)
+4. **Task #14**: Reels + Stories. Aguardar 1 semana de carrossel validado. Implementar quando confortavel.
+5. **Task #2**: App Review Meta. Em analise (~2 dias uteis a partir de 2026-05-13). Quando sair Business Verification, submeter App Review pra instagram_content_publish (sair do modo Development, aceitar publish em qualquer conta IG).
+6. **Tasks #4-5 Threads**: parqueado em decisao de rota.
+7. **Task #8 rebranding extras**: regerar og:image com novo nome, comentarios internos "Ticket Archive" no codigo, README se houver.
+
+### Comando exato pra continuar (proximo chat)
+```
+cd C:\Gitlab_hz\pearljam\setlists-pj-ev && claude
+```
+Pede: "leia o ultimo HANDOFF no PROGRESSO.md e olhamos como ficou as ultimas 12h do pipeline rodando sozinho".
+
+### Arquivos chave (atualizados nesta sessao)
+```
+Pipeline IG publish (novo):
+  scripts/publish/queue.mjs              # fila + postCount + dedupe
+  scripts/publish/slide-image.mjs        # gera JPG 1080x1350, tarja colorida
+  scripts/publish/instagram.mjs          # cliente Graph API + caption builders
+  scripts/publish/refresh-token.mjs      # auto-refresh token 60d
+  scripts/publish/run-publish.mjs        # orquestrador cron 30min
+  scripts/publish/seed-queue.mjs         # helper dev (backfill manual)
+  scripts/publish/smoke-test.mjs         # valida token + escopos
+  .github/workflows/publish-instagram.yml
+  .github/workflows/refresh-ig-token.yml
+
+Coleta expandida:
+  scripts/news/sources.mjs               # +8 BR +2 oficiais
+  scripts/news/fetch-news.mjs            # fetchShopifyItems + fetchPjcomNewsItems + dedupe BR
+  scripts/news/dedupe.mjs                # NOVO: Jaccard sobre shingles
+  scripts/news/curators/_shared.mjs      # VALID_TAGS += "loja"
+  scripts/news/merge-curated.mjs         # VALID_TAGS += "loja", enqueue na fila IG
+  scripts/news/prompts/system-curator-fa.txt  # regras pra kind=shop e kind=pjcom-news
+
+Frontend (site):
+  index.html                             # rebrand SMUFDPJ + h1 clicavel + "Continue lendo"
+
+Dados (produzidos pelo pipeline):
+  media/news/_publish-queue.json         # 5 items, postCount=3
+  media/news/instagram-slides/<id>.jpg   # 3 slides do backfill (cd-... e 92083... excluidos)
+```
+
+### Secrets/configuracoes externas
+- **GH Secrets**: `GEMINI_API_KEY`, `REDDIT_PROXY_URL`, `ANTHROPIC_API_KEY`, `IG_USER_ID`, `IG_ACCESS_TOKEN`, `IG_APP_SECRET`, `IG_APP_ID`, `FB_APP_ID`
+- **Conta IG**: @smufdpj (nova, Business, vinculada a Page FB do projeto)
+- **App Meta**: `Setlists PJ EV Bot` (FB_APP_ID=1679039826640945) com produto Instagram (IG_APP_ID=957999513763966). Modo Development, Business Verification "Em analise"
+- **Token IG**: long-lived ~60 dias, refresh automatico via cron mensal (dia 1 e 15)
+
+---
 
 ## HANDOFF SESSAO 2026-05-12/13 MADRUGADA: SPLIT MODE com Sonnet + redesign fanzine + tags por integrante
 
