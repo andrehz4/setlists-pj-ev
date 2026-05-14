@@ -1,9 +1,10 @@
 name: News fetch
 on:
   schedule:
-    # 8x/dia a cada 3h no :00. 30min antes de cada Routine Sonnet (:30 a cada 6h).
-    # Cada Routine recebe até 2 lotes de scrape acumulados no _pending.json.
-    - cron: '0 */3 * * *'
+    # 8x/dia em BRT: 01h,05h,08h,11h,13h,17h,19h,23h.
+    # 2 scrapes por janela de 6h da Routine (00h,06h,12h,18h BRT).
+    # Em UTC (BRT-3): 04,08,11,14,16,20,22,02.
+    - cron: '0 2,4,8,11,14,16,20,22 * * *'
   workflow_dispatch:
     inputs:
       curator:
