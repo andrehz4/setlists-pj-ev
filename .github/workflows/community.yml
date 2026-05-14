@@ -66,6 +66,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
           REDDIT_PROXY_URL: ${{ secrets.REDDIT_PROXY_URL }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
           # Default no cron: routine (so coleta + escreve _pending.json).
           # Routine Sonnet remota acorda em :30 e cura. Manual via dispatch
           # pode trocar pra gemini pra curar na hora.

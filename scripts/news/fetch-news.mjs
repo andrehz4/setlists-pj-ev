@@ -50,6 +50,21 @@ const ITEMS_DIR = path.join(NEWS_DIR, "items");
 
 const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
 
+let _redditTokenCache = null;
+async function getRedditToken() {
+  if (_redditTokenCache && _redditTokenCache.expiresAt > Date.now()) return _redditTokenCache.token;
+  const { REDDIT_CLIENT_ID: id, REDDIT_CLIENT_SECRET: secret } = process.env;
+  if (!id || !secret) return null;
+  const creds = Buffer.from(`${id}:${secret}`).toString("base64");
+  const res = await got.post("https://www.reddit.com/api/v1/access_token", {
+    headers: { Authorization: `Basic ${creds}`, "User-Agent": UA },
+    form: { grant_type: "client_credentials" },
+    timeout: { request: 10000 },
+  }).json();
+  _redditTokenCache = { token: res.access_token, expiresAt: Date.now() + (res.expires_in - 60) * 1000 };
+  return _redditTokenCache.token;
+}
+
 // body_pt vai pra items/<id>.json; o index.json fica light com so metadata.
 function splitItemBody(it) {
   const { body_pt, ...meta } = it;
@@ -95,15 +110,20 @@ async function fetchFeedItems(src) {
 
 async function fetchRedditItems(src) {
   try {
-    // Em CI, Reddit bloqueia IP do runner (403). Reescreve URL pra usar proxy
-    // se REDDIT_PROXY_URL estiver definido.
-    const proxyBase = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "");
+    const token = await getRedditToken();
     let finalUrl = src.url;
-    if (proxyBase && src.url.startsWith("https://www.reddit.com")) {
-      finalUrl = src.url.replace("https://www.reddit.com", proxyBase);
+    const headers = { "User-Agent": UA, "Accept": "application/json" };
+    if (token) {
+      finalUrl = src.url.replace("https://www.reddit.com", "https://oauth.reddit.com");
+      headers["Authorization"] = `Bearer ${token}`;
+    } else {
+      const proxyBase = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "");
+      if (proxyBase && src.url.startsWith("https://www.reddit.com")) {
+        finalUrl = src.url.replace("https://www.reddit.com", proxyBase);
+      }
     }
     const res = await got(finalUrl, {
-      headers: { "User-Agent": UA, "Accept": "application/json" },
+      headers,
       timeout: { request: 15000 },
       retry: { limit: 1 },
     }).json();
