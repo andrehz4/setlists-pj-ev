@@ -1,7 +1,46 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-13 (fim de tarde/noite)
+2026-05-14
+
+## HANDOFF SESSAO 2026-05-14: No Code cifras e GP completos
+
+### Resumo do estado em uma frase
+No Code 1996 agora tem cifras e/ou GP para todas as 13 faixas no site. HEAD `4839b7f`.
+
+### O que foi feito
+- 9 GP files copiados de Downloads para `media/tabs/gp/` com nomenclatura padrao (sometimes, hail-hail, in-my-tree, smile, habit, red-mosquito, lukin, mankind, im-open)
+- 8 JSONs `cifras-multi` criados (Sometimes, Who You Are, In My Tree, Smile, Habit, Red Mosquito, Mankind, Around the Bend): violao + ukulele + piano, ChordPro inline
+- `media/tabs/index.json` atualizado: 9 novas entradas + hail-hail e lukin promovidos de `tab:false` para `tab:true`; im-open adicionado como tab-only
+- Fix: acordes G e F# faltantes no habit.json (usados no interludio final)
+- Fix: fingering invalido F#5 no mankind.json (era `x9(11)(11)xx`, corrigido para `244xxx`)
+- Commits: `dfeb6e7` (feat) + `4839b7f` (fix)
+
+### Estado atual das cifras por album
+- Ten (1991): alive, animal, black, deep, even flow, garden, glorified g, jeremy, oceans, once, porch, release, why go — COMPLETO
+- Vs. (1993): animal, corduroy, daughter, dissident, elderly woman, go, indifference, last exit, leash, rearviewmirror, rats — COMPLETO
+- Vitalogy (1994): better man, blood, bugs, immortality, nothingman, not for you, pry to, satans bed, spin the black circle, tremor christ, whipping, wma — COMPLETO
+- No Code (1996): around the bend, habit, hail hail, im open (tab-only), in my tree, lukin, mankind, off he goes, present tense, red mosquito, smile, sometimes, who you are — COMPLETO (13/13)
+
+### Proximo passo
+- Nenhuma tarefa de cifras pendente para No Code
+- Pipeline IG segue rodando sozinho (verificar logs se quiser)
+- Proxima sessao: outros albums (Yield, Binaural etc) ou acompanhar pipeline IG
+
+### Arquivos chave desta sessao
+```
+media/tabs/index.json            # manifest atualizado com No Code completo
+media/tabs/cifras-multi/         # 8 novos JSONs criados (sometimes, who-you-are, in-my-tree, smile, habit, red-mosquito, mankind, around-the-bend)
+media/tabs/gp/                   # 9 novos GP files (sometimes-v1.gp3, hail-hail-v1.gp4, in-my-tree-v1.gp4, smile-v1.gp3, habit-v1.gp4, red-mosquito-v1.gp3, lukin-v1.gp3, mankind-v1.gp3, im-open-v1.gp4)
+```
+
+### Comando pra continuar
+```
+cd C:\Gitlab_hz\pearljam\setlists-pj-ev && claude
+```
+Pede: "leia o ultimo HANDOFF no PROGRESSO.md"
+
+---
 
 ## HANDOFF SESSAO 2026-05-13 NOITE: Instagram @smufdpj no ar, rebrand site, expansao de fontes BR + oficiais
 
