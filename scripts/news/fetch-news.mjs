@@ -218,6 +218,7 @@ async function fetchPjcomNewsItems(src) {
       const slug = a.slug || a.id;
       const link = `https://pearljam.com/news/${slug}`;
       const img = a.square_image_file || a.image_file || null;
+      const excerpt = (a.excerpt || a.description || "").slice(0, 800);
       return {
         sourceId: src.id,
         sourceLabel: src.label,
@@ -225,10 +226,11 @@ async function fetchPjcomNewsItems(src) {
         title: (a.title || "").trim(),
         link,
         pubDate: a.publish_date || a.created_at || new Date().toISOString(),
-        snippet: (a.excerpt || a.description || "").slice(0, 800),
+        snippet: excerpt,
         alwaysRelevant: true,
         kind: "pjcom-news",
-        preImg: img,  // texto vem do scrape; imagem ja vem do JSON
+        preImg: img,
+        preText: excerpt,  // evita scrape do pearljam.com que retorna overlay SMS
       };
     });
   } catch (e) {
