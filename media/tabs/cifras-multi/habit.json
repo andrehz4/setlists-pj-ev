@@ -20,7 +20,9 @@
         "G#": { "fingering": "466544", "fingers": "134211", "fundamental": "G#", "barre": 4, "notes": "Ab maior = G# maior; barre no fret 4 em forma de E" },
         "Eb": { "fingering": "x68886", "fingers": "x13341", "fundamental": "Eb", "barre": 6, "notes": "Eb maior; barre no fret 6 em forma de A" },
         "F":  { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
-        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" }
+        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "F#": { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2, "notes": "F# maior em forma de E no fret 2" }
       },
       "strumming": {
         "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
@@ -46,7 +48,9 @@
         "G#": { "fingering": "5343", "fingers": "4231", "fundamental": "G#", "notes": "Ab maior no uke" },
         "Eb": { "fingering": "0331", "fingers": "0231", "fundamental": "Eb", "notes": "Eb maior no uke" },
         "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
-        "E":  { "fingering": "4442", "fingers": "3421", "fundamental": "E", "barre": 2 }
+        "E":  { "fingering": "4442", "fingers": "3421", "fundamental": "E", "barre": 2 },
+        "G":  { "fingering": "0232", "fingers": "0213", "fundamental": "G" },
+        "F#": { "fingering": "3121", "fingers": "3121", "fundamental": "F#", "barre": 1, "notes": "F# maior no uke: barre fret 1 em C e A" }
       },
       "strumming": {
         "label": "COLCHEIAS D-U (proposto, fonte UG nao traz)",
@@ -71,7 +75,9 @@
         "G#": { "notes": ["G#", "C", "D#"], "fundamental": "G#", "inversion": null, "note": "enharmonico de Abm; G#=Ab, D#=Eb" },
         "Eb": { "notes": ["Eb", "G", "Bb"], "fundamental": "Eb", "inversion": null },
         "F":  { "notes": ["F", "A", "C"],   "fundamental": "F",  "inversion": null },
-        "E":  { "notes": ["E", "G#", "B"],  "fundamental": "E",  "inversion": null }
+        "E":  { "notes": ["E", "G#", "B"],  "fundamental": "E",  "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],   "fundamental": "G",  "inversion": null },
+        "F#": { "notes": ["F#", "A#", "C#"], "fundamental": "F#", "inversion": null }
       }
     }
   },
