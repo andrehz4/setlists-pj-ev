@@ -117,10 +117,17 @@ jobs:
             | join(" · ")
           ' media/news/_pending.json)
 
-          MSG="🛰️ <b>SMUFDPJ • scrape ${BRT_NOW} BRT</b>%0A${TOTAL} candidatos coletados%0A  ${BY_SOURCE}%0ARoutine cura em ~7min, te aviso o que sobreviver."
+          MSG="🛰️ <b>SMUFDPJ • scrape ${BRT_NOW} BRT</b>
+${TOTAL} candidatos coletados
+  ${BY_SOURCE}
+Routine cura em ~7min, te aviso o que sobreviver."
 
           HTTP_CODE=$(curl -s -o /tmp/tg-resp.json -w "%{http_code}" \
-            "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&parse_mode=HTML&disable_web_page_preview=true&text=${MSG}")
+            -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "parse_mode=HTML" \
+            --data-urlencode "disable_web_page_preview=true" \
+            --data-urlencode "text=${MSG}")
 
           if [ "$HTTP_CODE" = "200" ]; then
             echo "[telegram] OK scrape notif: total=$TOTAL"
