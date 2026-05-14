@@ -9362,6 +9362,13 @@ function activateTab(viewName, opts) {
     const t = document.getElementById("tab-" + viewName);
     if (t) t.focus();
   }
+  if (!opts || !opts.noScroll) {
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setTimeout(() => {
+      const activeView = document.getElementById('view-' + viewName);
+      if (activeView) activeView.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    }, 50);
+  }
 }
 
 // Keyboard navigation for the tab role pattern (WCAG/APG)
@@ -15049,7 +15056,7 @@ async function init() {
   if (homeLink) {
     const goHome = () => {
       if (typeof _newsSetHash === "function") _newsSetHash(null);
-      activateTab("news");
+      activateTab("news", { noScroll: true });
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
     homeLink.addEventListener("click", goHome);
