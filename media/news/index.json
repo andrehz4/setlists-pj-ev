@@ -1,6 +1,56 @@
 {
-  "updated": "2026-05-13T17:13:07.284Z",
+  "updated": "2026-05-14T06:43:32.309Z",
   "items": [
+    {
+      "id": "befbd1e214",
+      "url": "https://pearljam.com/news/ohana-festival-2026",
+      "source": "pj-com-news",
+      "sourceLabel": "Pearl Jam Oficial",
+      "group": "tenclub",
+      "pubDate": "2026-05-14T04:17:30.906Z",
+      "fetchedAt": "2026-05-14T06:43:32.298Z",
+      "img": "/media/news/img/befbd1e214.jpg",
+      "title_pt": "Ohana Festival 2026 anunciado no site oficial do Pearl Jam",
+      "intro_pt": "O site oficial da banda publicou o anúncio do Ohana Festival 2026, o evento curado por Eddie Vedder na Califórnia.",
+      "tags": [
+        "tenclub",
+        "turne"
+      ],
+      "kind": "pjcom-news"
+    },
+    {
+      "id": "f90b41d453",
+      "url": "https://pearljam.com/news/book-signing-with-geoff-whitman",
+      "source": "pj-com-news",
+      "sourceLabel": "Pearl Jam Oficial",
+      "group": "tenclub",
+      "pubDate": "2026-05-14T04:17:30.906Z",
+      "fetchedAt": "2026-05-14T06:43:32.298Z",
+      "img": "/media/news/img/f90b41d453.jpg",
+      "title_pt": "Sessão de autógrafos com Geoff Whitman anunciada pelo Pearl Jam",
+      "intro_pt": "O site oficial do Pearl Jam divulgou um evento de book signing com Geoff Whitman, sem detalhes confirmados ainda.",
+      "tags": [
+        "tenclub"
+      ],
+      "kind": "pjcom-news"
+    },
+    {
+      "id": "e9c3fbcdbe",
+      "url": "https://pearljam.com/news/ev-x-japan-tour-merch",
+      "source": "pj-com-news",
+      "sourceLabel": "Pearl Jam Oficial",
+      "group": "tenclub",
+      "pubDate": "2026-05-14T04:17:30.906Z",
+      "fetchedAt": "2026-05-14T06:43:32.298Z",
+      "img": "/media/news/img/e9c3fbcdbe.jpg",
+      "title_pt": "Merch da tournê de Eddie pelo Japão disponível no site oficial",
+      "intro_pt": "A loja oficial do Pearl Jam lançou linha de mercadorias exclusivas da tournê de Eddie Vedder pelo Japão.",
+      "tags": [
+        "tenclub",
+        "eddie"
+      ],
+      "kind": "pjcom-news"
+    },
     {
       "id": "cd-20260513",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -313,6 +363,36 @@
       "img": "/media/news/img/f3229bd522.jpg",
       "title_pt": "Yungblud cita Eddie Vedder como inspiração e sugere possível parceria",
       "intro_pt": "O cantor britânico se encontrou com Eddie em festa corporativa e declarou que os dois podem escrever juntos no futuro.",
+      "tags": [
+        "eddie"
+      ]
+    },
+    {
+      "id": "82920cf3fe",
+      "url": "https://www.nme.com/news/music/american-heart-association-says-that-this-90s-grunge-classic-is-perfect-tempo-for-cpr-3919826",
+      "source": "nme-pj",
+      "sourceLabel": "NME",
+      "group": "us",
+      "pubDate": "2025-12-22T14:06:01.000Z",
+      "fetchedAt": "2026-05-14T06:43:32.298Z",
+      "img": "/media/news/img/82920cf3fe.jpg",
+      "title_pt": "Even Flow virou a trilha oficial do RCP segundo a AHA",
+      "intro_pt": "A American Heart Association recomenda o clássico do Pearl Jam como ritmo ideal para compressões cardíacas.",
+      "tags": [
+        "memoria"
+      ]
+    },
+    {
+      "id": "d8857630af",
+      "url": "https://www.nme.com/news/music/watch-bruno-mars-cover-nirvanas-smells-like-teen-spirit-at-private-corporate-christmas-party-that-also-featured-yungblud-slash-eddie-vedder-and-more-3918629",
+      "source": "nme-pj",
+      "sourceLabel": "NME",
+      "group": "us",
+      "pubDate": "2025-12-15T11:58:33.000Z",
+      "fetchedAt": "2026-05-14T06:43:32.298Z",
+      "img": "/media/news/img/d8857630af.jpg",
+      "title_pt": "Eddie Vedder e o Natal corporativo com Bruno Mars, Slash e Anthony Kiedis",
+      "intro_pt": "No Capitol Theatre de Nova York, Eddie, Bruno Mars, Slash e Anthony Kiedis tocaram juntos numa festa privada de empresa.",
       "tags": [
         "eddie"
       ]

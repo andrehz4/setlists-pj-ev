@@ -155,7 +155,7 @@ async function main() {
     const added = enqueue(queue, newItems);
     if (added.length) {
       await writeQueue(queue);
-      console.log(`[merge] enfileirado pra IG: ${added.length} (publishAt = now+3h)`);
+      console.log(`[merge] enfileirado pra IG: ${added.length} (publishAt = now, sem delay)`);
     }
   } catch (e) {
     console.warn(`[merge] falha ao enfileirar IG (segue mesmo assim): ${e.message}`);
