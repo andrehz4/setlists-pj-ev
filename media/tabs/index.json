@@ -6,149 +6,1191 @@
     "started": "2026-05-11",
     "phase": "4 (AlphaTab): black gp5 v5.10 + alive gp4 v4.06 + yellow-ledbetter gp5 v5.10 (Ultimate Guitar); cifras de black/alive/even flow"
   },
-  "black": { "cifra": true, "cifraMulti": "black.json", "tab": true, "tabFormat": "gp5", "tabFile": "black-v1.gp5", "key": "Em", "tuning": "EADGBE", "bpm": 87, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "black-v1.gp5", "format": "gp5" },
-    { "id": "live", "label": "Ao vivo", "file": "black-live.gp5", "format": "gp5" }
-  ] },
-  "alive": { "cifra": true, "cifraMulti": "alive.json", "tab": true, "tabFormat": "gp4", "tabFile": "alive-v1.gp4", "key": "A", "tuning": "EADGBE", "bpm": 78, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "alive-v1.gp4", "format": "gp4" }
-  ] },
-  "even flow": { "cifra": true, "cifraMulti": "even-flow.json", "tab": true, "tabFormat": "gp5", "tabFile": "even-flow-v1.gp5", "key": "D", "tuning": "EADGBE", "bpm": 110, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "even-flow-v1.gp5", "format": "gp5" }
-  ] },
-  "yellow ledbetter": { "cifra": false, "tab": true, "tabFormat": "gp5", "key": "E", "tuning": "EADGBE" },
-  "better man": { "cifra": true, "cifraMulti": "better-man.json", "tab": true, "tabFormat": "gp5", "tabFile": "better-man-v1.gp5", "key": "D", "tuning": "EADGBE", "bpm": 122, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "better-man-v1.gp5", "format": "gp5" },
-    { "id": "live", "label": "Ao vivo", "file": "better-man-live.gp3", "format": "gp3" }
-  ] },
-  "jeremy": { "cifra": true, "cifraMulti": "jeremy.json", "tab": true, "tabFormat": "gp4", "tabFile": "jeremy-v1.gp4", "key": "Am", "tuning": "EADGBE", "bpm": 100, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "jeremy-v1.gp4", "format": "gp4" }
-  ] },
-  "daughter": { "cifra": true, "cifraMulti": "daughter.json", "tab": true, "tabFormat": "gp5", "tabFile": "daughter-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 98, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "daughter-v1.gp5", "format": "gp5" }
-  ] },
-  "elderly woman behind the counter in a small town": { "cifra": true, "cifraMulti": "elderly-woman-behind-the-counter-in-a-small-town.json", "tab": true, "tabFormat": "gp4", "tabFile": "elderly-woman-behind-the-counter-in-a-small-town-v1.gp4", "key": "G", "tuning": "EADGBE", "bpm": 94, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "elderly-woman-behind-the-counter-in-a-small-town-v1.gp4", "format": "gp4" }
-  ] },
-  "just breathe": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE", "capo": 2 },
-  "given to fly": { "cifra": false, "tab": false, "key": "B", "tuning": "EADGBE" },
-  "corduroy": { "cifra": true, "cifraMulti": "corduroy.json", "tab": true, "tabFormat": "gp4", "tabFile": "corduroy-v1.gp4", "key": "Em", "tuning": "EADGBE", "bpm": 88, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "corduroy-v1.gp4", "format": "gp4" }
-  ] },
-  "state of love and trust": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
-  "animal": { "cifra": true, "cifraMulti": "animal.json", "tab": true, "tabFormat": "gp4", "tabFile": "animal-v1.gp4", "key": "A", "tuning": "EADGBE", "bpm": 106, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "animal-v1.gp4", "format": "gp4" }
-  ] },
-  "rearviewmirror": { "cifra": true, "cifraMulti": "rearviewmirror.json", "tab": true, "tabFormat": "gp4", "tabFile": "rearviewmirror-v1.gp4", "key": "Bm", "tuning": "EADGBE", "bpm": 159, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "rearviewmirror-v1.gp4", "format": "gp4" }
-  ] },
-  "do the evolution": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
-  "last kiss": { "cifra": false, "tab": false, "key": "G", "tuning": "EADGBE" },
-  "crazy mary": { "cifra": false, "tab": false, "key": "E", "tuning": "EADGBE" },
-  "sirens": { "cifra": false, "tab": false, "key": "C", "tuning": "EADGBE" },
-  "hail hail": { "cifra": true, "cifraMulti": "hail-hail.json", "tab": true, "tabFormat": "gp4", "tabFile": "hail-hail-v1.gp4", "key": "G", "tuning": "EADGBE", "bpm": 145, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "hail-hail-v1.gp4", "format": "gp4" }
-  ] },
-  "off he goes": { "cifra": true, "cifraMulti": "off-he-goes.json", "tab": false, "key": "C", "tuning": "EADGBE", "bpm": 103 },
-  "lukin": { "cifra": true, "cifraMulti": "lukin.json", "tab": true, "tabFormat": "gp3", "tabFile": "lukin-v1.gp3", "key": "Em", "tuning": "EADGBE", "bpm": 250, "notes": "Punk de 1m02s. So power chords E5-D5-C5.", "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "lukin-v1.gp3", "format": "gp3" }
-  ] },
-  "present tense": { "cifra": true, "cifraMulti": "present-tense.json", "tab": true, "tabFormat": "gp3", "tabFile": "present-tense-v1.gp3", "key": "D", "tuning": "DADGBE", "bpm": 76, "notes": "Afinacao Drop D (DADGBE). 8 acordes (D, C, Bm, A, F, Dm, G, Bb).", "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "present-tense-v1.gp3", "format": "gp3" }
-  ] },
-  "footsteps": { "cifra": false, "tab": false, "key": "Em", "tuning": "EADGBE" },
-  "why go": { "cifra": true, "cifraMulti": "why-go.json", "tab": true, "tabFormat": "gp5", "tabFile": "why-go-v1.gp5", "key": "Em", "tuning": "EADGBE", "bpm": 100, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "why-go-v1.gp5", "format": "gp5" }
-  ] },
-  "oceans": { "cifra": true, "cifraMulti": "oceans.json", "tab": true, "tabFormat": "gp3", "tabFile": "oceans-v1.gp3", "key": "D", "tuning": "EADGBE", "bpm": 78, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "oceans-v1.gp3", "format": "gp3" }
-  ] },
-  "porch": { "cifra": true, "cifraMulti": "porch.json", "tab": true, "tabFormat": "gp5", "tabFile": "porch-v1.gp5", "key": "A", "tuning": "EADGBE", "bpm": 110, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "porch-v1.gp5", "format": "gp5" }
-  ] },
-  "garden": { "cifra": true, "cifraMulti": "garden.json", "tab": true, "tabFormat": "gp5", "tabFile": "garden-v1.gp5", "key": "G", "tuning": "DADGBE", "bpm": 88, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "garden-v1.gp5", "format": "gp5" }
-  ] },
-  "go": { "cifra": true, "cifraMulti": "go.json", "tab": true, "tabFormat": "gp5", "tabFile": "go-v1.gp5", "key": "Dm", "tuning": "DADGBE", "bpm": 120, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "go-v1.gp5", "format": "gp5" }
-  ] },
-  "deep": { "cifra": true, "cifraMulti": "deep.json", "tab": true, "tabFormat": "gp5", "tabFile": "deep-v1.gp5", "key": "C", "tuning": "EADGBE", "bpm": 110, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "deep-v1.gp5", "format": "gp5" }
-  ] },
-  "release": { "cifra": true, "cifraMulti": "release.json", "tab": true, "tabFormat": "gp5", "tabFile": "release-v1.gp5", "key": "D", "tuning": "EADGBE", "bpm": 64, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "release-v1.gp5", "format": "gp5" }
-  ] },
-  "glorified g": { "cifra": true, "cifraMulti": "glorified-g.json", "tab": true, "tabFormat": "gp5", "tabFile": "glorified-g-v1.gp5", "key": "D", "tuning": "EADGBE", "bpm": 112, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "glorified-g-v1.gp5", "format": "gp5" }
-  ] },
-  "dissident": { "cifra": true, "cifraMulti": "dissident.json", "tab": true, "tabFormat": "gp4", "tabFile": "dissident-v1.gp4", "key": "G", "tuning": "EADGBE", "bpm": 108, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "dissident-v1.gp4", "format": "gp4" }
-  ] },
-  "blood": { "cifra": false, "tab": true, "tabFormat": "gp4", "tabFile": "blood-v1.gp4", "key": "E", "tuning": "EADGBE", "bpm": 120, "notes": "Blood eh tab-only no UG (so riff de tablatura, sem cifra de acordes nomeados)", "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "blood-v1.gp4", "format": "gp4" }
-  ] },
-  "rats": { "cifra": true, "cifraMulti": "rats.json", "tab": true, "tabFormat": "gp5", "tabFile": "rats-v1.gp5", "key": "E", "tuning": "EADGBE", "bpm": 95, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "rats-v1.gp5", "format": "gp5" }
-  ] },
-  "leash": { "cifra": true, "cifraMulti": "leash.json", "tab": true, "tabFormat": "gp3", "tabFile": "leash-v1.gp3", "key": "A", "tuning": "EADGBE", "bpm": 110, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "leash-v1.gp3", "format": "gp3" }
-  ] },
-  "indifference": { "cifra": true, "cifraMulti": "indifference.json", "tab": true, "tabFormat": "gp5", "tabFile": "indifference-v1.gp5", "key": "Em", "tuning": "EADGBE", "bpm": 103, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "indifference-v1.gp5", "format": "gp5" }
-  ] },
-  "last exit": { "cifra": true, "cifraMulti": "last-exit.json", "tab": true, "tabFormat": "gp4", "tabFile": "last-exit-v1.gp4", "key": "C", "tuning": "EADGBE", "bpm": 140, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "last-exit-v1.gp4", "format": "gp4" }
-  ] },
-  "spin the black circle": { "cifra": true, "cifraMulti": "spin-the-black-circle.json", "tab": true, "tabFormat": "gp4", "tabFile": "spin-the-black-circle-v1.gp4", "key": "C", "tuning": "EADGBE", "bpm": 165, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "spin-the-black-circle-v1.gp4", "format": "gp4" }
-  ] },
-  "wma": { "cifra": true, "cifraMulti": "wma.json", "tab": false, "key": "G", "tuning": "EADGBE", "bpm": 90, "notes": "W.M.A. eh musica improvisada (guitarras bem recuadas na mixagem). Cifra eh referencial, nao precisa." },
-  "not for you": { "cifra": true, "cifraMulti": "not-for-you.json", "tab": true, "tabFormat": "gp4", "tabFile": "not-for-you-v1.gp4", "key": "Em", "tuning": "EADGBE", "bpm": 140, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "not-for-you-v1.gp4", "format": "gp4" }
-  ] },
-  "tremor christ": { "cifra": true, "cifraMulti": "tremor-christ.json", "tab": true, "tabFormat": "gp3", "tabFile": "tremor-christ-v1.gp3", "key": "A", "tuning": "EADGBE", "bpm": 100, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "tremor-christ-v1.gp3", "format": "gp3" }
-  ] },
-  "nothingman": { "cifra": true, "cifraMulti": "nothingman.json", "tab": true, "tabFormat": "gp3", "tabFile": "nothingman-v1.gp3", "key": "F", "tuning": "EADGBE", "bpm": 78, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "nothingman-v1.gp3", "format": "gp3" }
-  ] },
-  "satans bed": { "cifra": true, "cifraMulti": "satans-bed.json", "tab": true, "tabFormat": "gp3", "tabFile": "satans-bed-v1.gp3", "key": "A", "tuning": "EADGBE", "bpm": 118, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "satans-bed-v1.gp3", "format": "gp3" }
-  ] },
-  "immortality": { "cifra": true, "cifraMulti": "immortality.json", "tab": true, "tabFormat": "gp4", "tabFile": "immortality-v1.gp4", "key": "Em", "tuning": "EADGBE", "bpm": 129, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "immortality-v1.gp4", "format": "gp4" }
-  ] },
-  "pry to": { "cifra": false, "tab": true, "tabFormat": "gp", "tabFile": "pry-to-v1.gp", "tuning": "EADGBE", "notes": "Pry, To eh interludio instrumental (faixa 7 do Vitalogy, ~1min). Sem cifra de acordes nomeados, tab-only no UG.", "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "pry-to-v1.gp", "format": "gp" }
-  ] },
-  "aye davanita": { "cifra": false, "tab": false, "tuning": "EADGBE", "notes": "Faixa instrumental do Vitalogy (faixa 12, ~1min) com 3 guitarras texturais sobre voicings ambiguos (E7 com #11 / F maj7-ish). UG so tem versao em tablatura pura (sem .gp); os rotulos G1/G2/G3 no UG sao partes de guitarra, nao acordes. Sem cifra de acordes nomeados." },
-  "hey foxymophandlemama thats me": { "cifra": false, "tab": false, "tuning": "EADGBE", "notes": "Faixa 14 do Vitalogy (~7min). Colagem de tape com falas de pacientes da Hopkins School (gravacao terapeutica anti-violencia) e a banda improvisando texturas atras. Sem cifra ou tab convencional no UG. Aparece no catalogo como 'em breve'." },
-  "whipping": { "cifra": true, "cifraMulti": "whipping.json", "tab": false, "key": "E", "tuning": "EADGBE", "bpm": 155 },
-  "bugs": { "cifra": true, "cifraMulti": "bugs.json", "tab": false, "key": "Bb", "tuning": "EADGBE", "bpm": 65, "notes": "Original tocado em acordeao (Eddie Vedder). Cifra eh adaptacao pra violao/uke/piano com strumming proposto em colcheias 4/4." },
-  "once": { "cifra": true, "cifraMulti": "once.json", "tab": true, "tabFormat": "gp5", "tabFile": "once-v1.gp5", "key": "G", "tuning": "EADGBE", "bpm": 144, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "once-v1.gp5", "format": "gp5" }
-  ] },
-  "sometimes": { "cifra": true, "cifraMulti": "sometimes.json", "tab": true, "tabFormat": "gp3", "tabFile": "sometimes-v1.gp3", "key": "C", "tuning": "EADGBE", "bpm": 60, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "sometimes-v1.gp3", "format": "gp3" }
-  ] },
-  "who you are": { "cifra": true, "cifraMulti": "who-you-are.json", "tab": false, "key": "E", "tuning": "EADGBE", "bpm": 80 },
-  "in my tree": { "cifra": true, "cifraMulti": "in-my-tree.json", "tab": true, "tabFormat": "gp4", "tabFile": "in-my-tree-v1.gp4", "key": "E", "tuning": "EADGBE", "bpm": 110, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "in-my-tree-v1.gp4", "format": "gp4" }
-  ] },
-  "smile": { "cifra": true, "cifraMulti": "smile.json", "tab": true, "tabFormat": "gp3", "tabFile": "smile-v1.gp3", "key": "Em", "tuning": "EADGBE", "bpm": 90, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "smile-v1.gp3", "format": "gp3" }
-  ] },
-  "habit": { "cifra": true, "cifraMulti": "habit.json", "tab": true, "tabFormat": "gp4", "tabFile": "habit-v1.gp4", "key": "A", "tuning": "EADGBE", "bpm": 120, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "habit-v1.gp4", "format": "gp4" }
-  ] },
-  "red mosquito": { "cifra": true, "cifraMulti": "red-mosquito.json", "tab": true, "tabFormat": "gp3", "tabFile": "red-mosquito-v1.gp3", "key": "D", "tuning": "EADGBE", "bpm": 100, "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "red-mosquito-v1.gp3", "format": "gp3" }
-  ] },
-  "mankind": { "cifra": true, "cifraMulti": "mankind.json", "tab": true, "tabFormat": "gp3", "tabFile": "mankind-v1.gp3", "key": "B", "tuning": "EADGBE", "bpm": 160, "notes": "Unica musica do No Code cantada por Stone Gossard.", "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "mankind-v1.gp3", "format": "gp3" }
-  ] },
-  "around the bend": { "cifra": true, "cifraMulti": "around-the-bend.json", "tab": false, "key": "A", "tuning": "EADGBE", "bpm": 75, "notes": "Canção de ninar acustica (faixa 13, No Code). Piano de Brendan O'Brien na gravacao." },
-  "im open": { "cifra": false, "tab": true, "tabFormat": "gp4", "tabFile": "im-open-v1.gp4", "key": "E", "tuning": "EADGBE", "notes": "Spoken-word sobre percussao minimalista. Tab-only por ora.", "versions": [
-    { "id": "v1", "label": "Versão 1", "file": "im-open-v1.gp4", "format": "gp4" }
-  ] }
+  "black": {
+    "cifra": true,
+    "cifraMulti": "black.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "black-v1.gp5",
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 87,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "black-v1.gp5",
+        "format": "gp5"
+      },
+      {
+        "id": "live",
+        "label": "Ao vivo",
+        "file": "black-live.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "alive": {
+    "cifra": true,
+    "cifraMulti": "alive.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "alive-v1.gp4",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 78,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "alive-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "even flow": {
+    "cifra": true,
+    "cifraMulti": "even-flow.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "even-flow-v1.gp5",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 110,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "even-flow-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "yellow ledbetter": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "key": "E",
+    "tuning": "EADGBE"
+  },
+  "better man": {
+    "cifra": true,
+    "cifraMulti": "better-man.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "better-man-v1.gp5",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 122,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "better-man-v1.gp5",
+        "format": "gp5"
+      },
+      {
+        "id": "live",
+        "label": "Ao vivo",
+        "file": "better-man-live.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "jeremy": {
+    "cifra": true,
+    "cifraMulti": "jeremy.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "jeremy-v1.gp4",
+    "key": "Am",
+    "tuning": "EADGBE",
+    "bpm": 100,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "jeremy-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "daughter": {
+    "cifra": true,
+    "cifraMulti": "daughter.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "daughter-v1.gp5",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 98,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "daughter-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "elderly woman behind the counter in a small town": {
+    "cifra": true,
+    "cifraMulti": "elderly-woman-behind-the-counter-in-a-small-town.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "elderly-woman-behind-the-counter-in-a-small-town-v1.gp4",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 94,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "elderly-woman-behind-the-counter-in-a-small-town-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "just breathe": {
+    "cifra": false,
+    "tab": false,
+    "key": "C",
+    "tuning": "EADGBE",
+    "capo": 2
+  },
+  "given to fly": {
+    "cifra": false,
+    "tab": true,
+    "key": "B",
+    "tuning": "EADGBE",
+    "tabFormat": "gp3",
+    "tabFile": "given-to-fly-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "given-to-fly-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "corduroy": {
+    "cifra": true,
+    "cifraMulti": "corduroy.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "corduroy-v1.gp4",
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 88,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "corduroy-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "state of love and trust": {
+    "cifra": false,
+    "tab": false,
+    "key": "E",
+    "tuning": "EADGBE"
+  },
+  "animal": {
+    "cifra": true,
+    "cifraMulti": "animal.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "animal-v1.gp4",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 106,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "animal-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "rearviewmirror": {
+    "cifra": true,
+    "cifraMulti": "rearviewmirror.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "rearviewmirror-v1.gp4",
+    "key": "Bm",
+    "tuning": "EADGBE",
+    "bpm": 159,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "rearviewmirror-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "do the evolution": {
+    "cifra": false,
+    "tab": true,
+    "key": "E",
+    "tuning": "EADGBE",
+    "tabFormat": "gp5",
+    "tabFile": "do-the-evolution-v1.gp5",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "do-the-evolution-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "last kiss": {
+    "cifra": false,
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE"
+  },
+  "crazy mary": {
+    "cifra": false,
+    "tab": false,
+    "key": "E",
+    "tuning": "EADGBE"
+  },
+  "sirens": {
+    "cifra": false,
+    "tab": false,
+    "key": "C",
+    "tuning": "EADGBE"
+  },
+  "hail hail": {
+    "cifra": true,
+    "cifraMulti": "hail-hail.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "hail-hail-v1.gp4",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 145,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "hail-hail-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "off he goes": {
+    "cifra": true,
+    "cifraMulti": "off-he-goes.json",
+    "tab": false,
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 103
+  },
+  "lukin": {
+    "cifra": true,
+    "cifraMulti": "lukin.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "lukin-v1.gp3",
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 250,
+    "notes": "Punk de 1m02s. So power chords E5-D5-C5.",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "lukin-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "present tense": {
+    "cifra": true,
+    "cifraMulti": "present-tense.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "present-tense-v1.gp3",
+    "key": "D",
+    "tuning": "DADGBE",
+    "bpm": 76,
+    "notes": "Afinacao Drop D (DADGBE). 8 acordes (D, C, Bm, A, F, Dm, G, Bb).",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "present-tense-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "footsteps": {
+    "cifra": false,
+    "tab": false,
+    "key": "Em",
+    "tuning": "EADGBE"
+  },
+  "why go": {
+    "cifra": true,
+    "cifraMulti": "why-go.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "why-go-v1.gp5",
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 100,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "why-go-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "oceans": {
+    "cifra": true,
+    "cifraMulti": "oceans.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "oceans-v1.gp3",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 78,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "oceans-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "porch": {
+    "cifra": true,
+    "cifraMulti": "porch.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "porch-v1.gp5",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 110,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "porch-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "garden": {
+    "cifra": true,
+    "cifraMulti": "garden.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "garden-v1.gp5",
+    "key": "G",
+    "tuning": "DADGBE",
+    "bpm": 88,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "garden-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "go": {
+    "cifra": true,
+    "cifraMulti": "go.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "go-v1.gp5",
+    "key": "Dm",
+    "tuning": "DADGBE",
+    "bpm": 120,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "go-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "deep": {
+    "cifra": true,
+    "cifraMulti": "deep.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "deep-v1.gp5",
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 110,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "deep-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "release": {
+    "cifra": true,
+    "cifraMulti": "release.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "release-v1.gp5",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 64,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "release-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "glorified g": {
+    "cifra": true,
+    "cifraMulti": "glorified-g.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "glorified-g-v1.gp5",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 112,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "glorified-g-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "dissident": {
+    "cifra": true,
+    "cifraMulti": "dissident.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "dissident-v1.gp4",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 108,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "dissident-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "blood": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "blood-v1.gp4",
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 120,
+    "notes": "Blood eh tab-only no UG (so riff de tablatura, sem cifra de acordes nomeados)",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "blood-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "rats": {
+    "cifra": true,
+    "cifraMulti": "rats.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "rats-v1.gp5",
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 95,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "rats-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "leash": {
+    "cifra": true,
+    "cifraMulti": "leash.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "leash-v1.gp3",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 110,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "leash-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "indifference": {
+    "cifra": true,
+    "cifraMulti": "indifference.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "indifference-v1.gp5",
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 103,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "indifference-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "last exit": {
+    "cifra": true,
+    "cifraMulti": "last-exit.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "last-exit-v1.gp4",
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 140,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "last-exit-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "spin the black circle": {
+    "cifra": true,
+    "cifraMulti": "spin-the-black-circle.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "spin-the-black-circle-v1.gp4",
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 165,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "spin-the-black-circle-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "wma": {
+    "cifra": true,
+    "cifraMulti": "wma.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 90,
+    "notes": "W.M.A. eh musica improvisada (guitarras bem recuadas na mixagem). Cifra eh referencial, nao precisa."
+  },
+  "not for you": {
+    "cifra": true,
+    "cifraMulti": "not-for-you.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "not-for-you-v1.gp4",
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 140,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "not-for-you-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "tremor christ": {
+    "cifra": true,
+    "cifraMulti": "tremor-christ.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "tremor-christ-v1.gp3",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 100,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "tremor-christ-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "nothingman": {
+    "cifra": true,
+    "cifraMulti": "nothingman.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "nothingman-v1.gp3",
+    "key": "F",
+    "tuning": "EADGBE",
+    "bpm": 78,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "nothingman-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "satans bed": {
+    "cifra": true,
+    "cifraMulti": "satans-bed.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "satans-bed-v1.gp3",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 118,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "satans-bed-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "immortality": {
+    "cifra": true,
+    "cifraMulti": "immortality.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "immortality-v1.gp4",
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 129,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "immortality-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "pry to": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp",
+    "tabFile": "pry-to-v1.gp",
+    "tuning": "EADGBE",
+    "notes": "Pry, To eh interludio instrumental (faixa 7 do Vitalogy, ~1min). Sem cifra de acordes nomeados, tab-only no UG.",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "pry-to-v1.gp",
+        "format": "gp"
+      }
+    ]
+  },
+  "aye davanita": {
+    "cifra": false,
+    "tab": false,
+    "tuning": "EADGBE",
+    "notes": "Faixa instrumental do Vitalogy (faixa 12, ~1min) com 3 guitarras texturais sobre voicings ambiguos (E7 com #11 / F maj7-ish). UG so tem versao em tablatura pura (sem .gp); os rotulos G1/G2/G3 no UG sao partes de guitarra, nao acordes. Sem cifra de acordes nomeados."
+  },
+  "hey foxymophandlemama thats me": {
+    "cifra": false,
+    "tab": false,
+    "tuning": "EADGBE",
+    "notes": "Faixa 14 do Vitalogy (~7min). Colagem de tape com falas de pacientes da Hopkins School (gravacao terapeutica anti-violencia) e a banda improvisando texturas atras. Sem cifra ou tab convencional no UG. Aparece no catalogo como 'em breve'."
+  },
+  "whipping": {
+    "cifra": true,
+    "cifraMulti": "whipping.json",
+    "tab": false,
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 155
+  },
+  "bugs": {
+    "cifra": true,
+    "cifraMulti": "bugs.json",
+    "tab": false,
+    "key": "Bb",
+    "tuning": "EADGBE",
+    "bpm": 65,
+    "notes": "Original tocado em acordeao (Eddie Vedder). Cifra eh adaptacao pra violao/uke/piano com strumming proposto em colcheias 4/4."
+  },
+  "once": {
+    "cifra": true,
+    "cifraMulti": "once.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "once-v1.gp5",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 144,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "once-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "sometimes": {
+    "cifra": true,
+    "cifraMulti": "sometimes.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "sometimes-v1.gp3",
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 60,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "sometimes-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "who you are": {
+    "cifra": true,
+    "cifraMulti": "who-you-are.json",
+    "tab": false,
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 80
+  },
+  "in my tree": {
+    "cifra": true,
+    "cifraMulti": "in-my-tree.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "in-my-tree-v1.gp4",
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 110,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "in-my-tree-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "smile": {
+    "cifra": true,
+    "cifraMulti": "smile.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "smile-v1.gp3",
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 90,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "smile-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "habit": {
+    "cifra": true,
+    "cifraMulti": "habit.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "habit-v1.gp4",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 120,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "habit-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "red mosquito": {
+    "cifra": true,
+    "cifraMulti": "red-mosquito.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "red-mosquito-v1.gp3",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 100,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "red-mosquito-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "mankind": {
+    "cifra": true,
+    "cifraMulti": "mankind.json",
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "mankind-v1.gp3",
+    "key": "B",
+    "tuning": "EADGBE",
+    "bpm": 160,
+    "notes": "Unica musica do No Code cantada por Stone Gossard.",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "mankind-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "around the bend": {
+    "cifra": true,
+    "cifraMulti": "around-the-bend.json",
+    "tab": false,
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 75,
+    "notes": "Canção de ninar acustica (faixa 13, No Code). Piano de Brendan O'Brien na gravacao."
+  },
+  "im open": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "im-open-v1.gp4",
+    "key": "E",
+    "tuning": "EADGBE",
+    "notes": "Spoken-word sobre percussao minimalista. Tab-only por ora.",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versão 1",
+        "file": "im-open-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "brain of j.": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "brain-of-j-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "brain-of-j-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "faithfull": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "ptb",
+    "tabFile": "faithfull-v1.ptb",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "faithfull-v1.ptb",
+        "format": "ptb"
+      }
+    ]
+  },
+  "no way": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "no-way-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "no-way-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "wishlist": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "wishlist-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "wishlist-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "pilate": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "pilate-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "pilate-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "mfc": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "mfc-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "mfc-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "low light": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "low-light-v1.gp4",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "low-light-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "in hiding": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "in-hiding-v1.gp4",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "in-hiding-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "push me pull me": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "push-me-pull-me-v1.gp5",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "push-me-pull-me-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "all those yesterdays": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "all-those-yesterdays-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "all-those-yesterdays-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "breakerfall": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "breakerfall-v1.gp5",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "breakerfall-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "gods dice": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "gods-dice-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "gods-dice-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "light years": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "light-years-v1.gp4",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "light-years-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "nothing as it seems": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "nothing-as-it-seems-v1.gp4",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "nothing-as-it-seems-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  },
+  "thin air": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "thin-air-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "thin-air-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "insignificance": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "insignificance-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "insignificance-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "grievance": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "grievance-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "grievance-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "rival": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp3",
+    "tabFile": "rival-v1.gp3",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "rival-v1.gp3",
+        "format": "gp3"
+      }
+    ]
+  },
+  "soon forget": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "soon-forget-v1.gp5",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "soon-forget-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "parting ways": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "parting-ways-v1.gp4",
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "parting-ways-v1.gp4",
+        "format": "gp4"
+      }
+    ]
+  }
 }
