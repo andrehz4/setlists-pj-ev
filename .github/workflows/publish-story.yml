@@ -1,0 +1,58 @@
+name: Publish Instagram Story
+on:
+  schedule:
+    # Diario, 12:00 UTC = 09:00 BRT (manha cedo, pico de uso IG)
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Gera MP4 mas nao chama IG API'
+        type: boolean
+        default: false
+      force:
+        description: 'Republica mesmo se ja postou hoje (ignora _story-log)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-story
+  cancel-in-progress: false
+
+jobs:
+  publish-story:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -n 1
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Run publish-story
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GIT_AUTHOR_NAME: pj-news-bot
+          GIT_AUTHOR_EMAIL: bot@setlists-pj.local
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          node scripts/publish/run-publish-story.mjs $ARGS

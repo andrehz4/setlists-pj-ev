@@ -220,4 +220,73 @@ export async function publishItems(items, { igUserId, accessToken } = {}) {
   return { postId, count: items.length, captionLen: caption.length };
 }
 
+// ============================================================
+// Story (media_type=STORIES) - video vertical 1080x1920, max 60s.
+// Diferente de imagem: video precisa de processamento server-side
+// antes do publish, entao polleia status_code do container ate
+// FINISHED. Sem caption (story nao suporta caption via API; usuario
+// pode adicionar link sticker depois, manualmente, no app).
+// ============================================================
+
+export async function createStoryContainer({ igUserId, accessToken, videoUrl }) {
+  const r = await postIG(`/${igUserId}/media`, {
+    media_type: "STORIES",
+    video_url: videoUrl,
+    access_token: accessToken,
+  });
+  if (!r.id) throw new Error("createStoryContainer: sem id na resposta");
+  return r.id;
+}
+
+async function getContainerStatus({ accessToken, containerId }) {
+  const res = await got.get(`${API_BASE}/${containerId}`, {
+    searchParams: { fields: "status_code,status", access_token: accessToken },
+    timeout: { request: 15000 },
+    retry: { limit: 1 },
+    throwHttpErrors: false,
+    responseType: "json",
+  });
+  if (res.statusCode >= 400) {
+    throw new Error(`getContainerStatus ${containerId}: HTTP ${res.statusCode} ${res.body?.error?.message || ""}`);
+  }
+  return res.body || {};
+}
+
+async function waitContainerReady({ accessToken, containerId, timeoutMs = 180000, intervalMs = 5000 }) {
+  const start = Date.now();
+  let last = {};
+  while (Date.now() - start < timeoutMs) {
+    try {
+      last = await getContainerStatus({ accessToken, containerId });
+      const sc = last.status_code;
+      if (sc === "FINISHED") return last;
+      if (sc === "ERROR" || sc === "EXPIRED") {
+        throw new Error(`container ${containerId} status_code=${sc}: ${last.status || ""}`);
+      }
+    } catch (e) {
+      // erro transitorio: loga e segue tentando
+      console.warn(`[story] poll status falhou (segue): ${e.message}`);
+    }
+    await new Promise((r) => setTimeout(r, intervalMs));
+  }
+  throw new Error(`container ${containerId} nao ficou pronto em ${timeoutMs}ms (ultimo status: ${last.status_code || "?"})`);
+}
+
+// Helper completo: dado um videoUrl publicamente acessivel (raw.githubusercontent
+// ou similar), cria container STORIES, aguarda processar e publica.
+// Retorna { postId, containerId }.
+export async function publishStory({ videoUrl, igUserId, accessToken } = {}) {
+  if (!igUserId) igUserId = process.env.IG_USER_ID;
+  if (!accessToken) accessToken = process.env.IG_ACCESS_TOKEN;
+  if (!igUserId || !accessToken) {
+    throw new Error("publishStory: IG_USER_ID e IG_ACCESS_TOKEN obrigatorios");
+  }
+  if (!videoUrl) throw new Error("publishStory: videoUrl obrigatorio");
+
+  const containerId = await createStoryContainer({ igUserId, accessToken, videoUrl });
+  await waitContainerReady({ accessToken, containerId });
+  const postId = await publishContainer({ igUserId, accessToken, creationId: containerId });
+  return { postId, containerId };
+}
+
 export { buildSingleCaption, buildCarouselCaption, slideUrlFor };

@@ -25,3 +25,6 @@ lighthouse-*
 # package.json / package-lock.json eram ignorados antes (so havia
 # deps de dev a11y); agora sao versionados pq o News bot depende deles.
 .dev.log
+
+# Artefatos locais do pipeline story IG (mockups intermediarios)
+tmp/
