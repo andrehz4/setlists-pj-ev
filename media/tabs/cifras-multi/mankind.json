@@ -20,7 +20,7 @@
         "C#5": { "fingering": "x466xx", "fingers": "x134xx", "fundamental": "C#", "notes": "power chord C#+G#" },
         "G#5": { "fingering": "466xxx", "fingers": "134xxx", "fundamental": "G#", "notes": "power chord G#+D#" },
         "C5":  { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C",  "notes": "power chord C+G" },
-        "F#5": { "fingering": "x9(11)(11)xx", "fingers": "x134xx", "fundamental": "F#", "notes": "power chord F#+C# (fret 2 na A shape ou 244xxx)" },
+        "F#5": { "fingering": "244xxx", "fingers": "134xxx", "fundamental": "F#", "notes": "power chord F#+C# no fret 2" },
         "A5":  { "fingering": "x022xx", "fingers": "x011xx", "fundamental": "A",  "notes": "power chord A+E" }
       },
       "strumming": {
