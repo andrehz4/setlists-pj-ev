@@ -109,7 +109,7 @@ jobs:
             exit 0
           fi
 
-          # contagem por sourceLabel, formatada (uma fonte por linha)
+          # contagem por sourceLabel
           BY_SOURCE=$(jq -r '
             .items
             | group_by(.sourceLabel // .kind // "outros")
@@ -119,7 +119,21 @@ jobs:
             | join("\n")
           ' media/news/_pending.json)
 
-          MSG=$(printf '🛰️ <b>Scrape de noticias, %s BRT</b>\n\n<b>%s candidatos novos coletados</b>\n\n<b>Por fonte:</b>\n%s\n\nA curadoria roda em ~7min e seleciona quais vao pro feed @smufdpj. Aviso aqui assim que ela rodar.' "$BRT_NOW" "$TOTAL" "$BY_SOURCE")
+          # lista titulo + fonte de cada candidato (max 20 pra nao estourar
+          # 4096 chars do Telegram). Titulo trunca em 80 chars.
+          ITEMS_LIST=$(jq -r '
+            .items[:20] | to_entries | map(
+              "\((.key + 1)). " +
+              (.value.title_orig // .value.title // .value.post_title_orig // "?" | .[0:80]) +
+              " · " +
+              (.value.sourceLabel // .value.kind // "outros")
+            ) | join("\n")
+          ' media/news/_pending.json)
+
+          OVERFLOW=""
+          if [ "$TOTAL" -gt 20 ]; then OVERFLOW=$(printf '\n\n(+%s candidatos nao listados)' "$((TOTAL - 20))"); fi
+
+          MSG=$(printf '🛰️ <b>Scrape de noticias, %s BRT</b>\n\n<b>%s candidatos novos coletados</b>\n\n<b>Por fonte:</b>\n%s\n\n<b>Manchetes:</b>\n%s%s\n\nA curadoria roda em ~5min e seleciona quais vao pro feed @smufdpj. Aviso aqui o que sobreviver.' "$BRT_NOW" "$TOTAL" "$BY_SOURCE" "$ITEMS_LIST" "$OVERFLOW")
 
           HTTP_CODE=$(curl -s -o /tmp/tg-resp.json -w "%{http_code}" \
             -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \

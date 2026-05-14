@@ -186,11 +186,72 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor) {
     const r = await publishItems(itemsToPost);
     console.log(`[publish] OK tipo=${type} postId=${r.postId} count=${r.count}`);
     markPosted(queue, itemsToPost.map((it) => it.id), r.postId, new Date().toISOString());
-    return { type, attempted: itemsToPost.length, succeeded: itemsToPost.length, postId: r.postId };
+    return {
+      type,
+      attempted: itemsToPost.length,
+      succeeded: itemsToPost.length,
+      postId: r.postId,
+      items: itemsToPost.map((it) => ({ id: it.id, title_pt: it.title_pt, tags: it.tags || [] })),
+    };
   } catch (e) {
     console.error(`[publish] FALHA tipo=${type}: ${e.message}`);
     markError(queue, itemsToPost.map((it) => it.id), e.message, new Date().toISOString());
     return { type, attempted: itemsToPost.length, succeeded: 0, error: e.message };
+  }
+}
+
+// Notif Telegram apos publish bem-sucedido (so dispara se houve post real).
+async function notifyTelegram(results) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+
+  const success = results.filter((r) => r.succeeded > 0 && r.postId);
+  if (success.length === 0) return; // nada postado, silencio
+
+  const totalItems = success.reduce((s, r) => s + r.items.length, 0);
+  const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
+
+  const lines = [];
+  lines.push(`✅ <b>Publicado no @smufdpj, ${brtNow} BRT</b>`);
+  lines.push("");
+  for (const batch of success) {
+    const label = batch.type === "spotlight" ? "Spotlight da comunidade" : "Notícias regulares";
+    lines.push(`<b>${batch.items.length} ${batch.items.length === 1 ? "post" : "posts"} (${label})</b>`);
+    lines.push(`<i>postId: <code>${batch.postId}</code></i>`);
+    lines.push("");
+    for (let i = 0; i < batch.items.length; i++) {
+      const it = batch.items[i];
+      const titulo = (it.title_pt || "(sem titulo)")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const tagsStr = it.tags.length ? `  <i>tags: ${it.tags.join(", ")}</i>` : "";
+      lines.push(`${i + 1}. <b>${titulo}</b>${tagsStr}`);
+      lines.push(`   ↳ https://setlists-pj-ev.pages.dev/n/${it.id}`);
+    }
+    lines.push("");
+  }
+  lines.push(`Total: ${totalItems} item(s) no feed agora.`);
+
+  const text = lines.join("\n");
+  const truncated = text.length > 3900 ? text.slice(0, 3900) + "\n\n(truncado)" : text;
+
+  try {
+    const params = new URLSearchParams({
+      chat_id: chatId,
+      parse_mode: "HTML",
+      disable_web_page_preview: "true",
+      text: truncated,
+    });
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+    });
+    const json = await res.json();
+    if (!json.ok) console.warn("[publish] telegram falhou:", json);
+    else console.log("[publish] telegram notif enviada");
+  } catch (e) {
+    console.warn("[publish] telegram erro:", e.message);
   }
 }
 
@@ -240,6 +301,9 @@ async function main() {
     ["media/news/_publish-queue.json"],
     `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
   );
+
+  // Notif Telegram so se houve post real (vazio = silencio)
+  if (!DRY) await notifyTelegram(results);
 
   console.log(`[publish] FIM`, results);
 }
