@@ -195,7 +195,53 @@ async function main() {
   await commitAndPush(["media/news/instagram-stories/_story-log.json"],
     `publish-story: log sucesso ${dateKey} postId=${postId}`);
 
+  // 8. notif Telegram (so se sucesso real)
+  await notifyTelegramStory({ items, postId, track, dateKey });
+
   console.log(`[story] FIM`);
+}
+
+async function notifyTelegramStory({ items, postId, track, dateKey }) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+
+  const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
+
+  const lines = [];
+  lines.push(`🎬 <b>Story publicado, ${brtNow} BRT</b>`);
+  lines.push(`<i>postId: <code>${postId}</code> · trilha: ${track.name}</i>`);
+  lines.push("");
+  lines.push(`<b>${items.length} ${items.length === 1 ? "manchete" : "manchetes"} do dia ${dateKey}</b>`);
+  lines.push("");
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    const titulo = (it.title_pt || it.title || "(sem titulo)")
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    lines.push(`${i + 1}. <b>${titulo}</b>`);
+    lines.push(`   ↳ https://setlists-pj-ev.pages.dev/n/${it.id}`);
+  }
+
+  const text = lines.join("\n");
+  const truncated = text.length > 3900 ? text.slice(0, 3900) + "\n\n(truncado)" : text;
+  try {
+    const params = new URLSearchParams({
+      chat_id: chatId,
+      parse_mode: "HTML",
+      disable_web_page_preview: "true",
+      text: truncated,
+    });
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+    });
+    const json = await res.json();
+    if (!json.ok) console.warn("[story] telegram falhou:", json);
+    else console.log("[story] telegram notif enviada");
+  } catch (e) {
+    console.warn("[story] telegram erro:", e.message);
+  }
 }
 
 main().catch((e) => {
