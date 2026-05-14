@@ -92,3 +92,61 @@ jobs:
               sleep 2
             done
           fi
+
+      - name: Notifica Telegram (preview do que vai pro feed)
+        # Step pos-merge. Avisa Andre 17min antes do proximo cron de
+        # publish-instagram.yml (que roda :17/:47). Falha aqui NAO derruba
+        # o workflow porque notificacao e nice-to-have.
+        if: success() && env.TELEGRAM_BOT_TOKEN != ''
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          set +e
+          # estima horario do proximo cron de publish em BRT
+          NOW_UTC=$(date -u +%s)
+          MIN_UTC=$(date -u +%M)
+          # proximo :17 ou :47 UTC
+          if [ "$MIN_UTC" -lt 17 ]; then NEXT_MIN=17
+          elif [ "$MIN_UTC" -lt 47 ]; then NEXT_MIN=47
+          else NEXT_MIN=17; fi
+          NEXT_HOUR_BRT=$(TZ=America/Sao_Paulo date -d "now $([ "$NEXT_MIN" = 17 ] && [ "$MIN_UTC" -ge 47 ] && echo '+1 hour')" +%H)
+          NEXT_AT_BRT="${NEXT_HOUR_BRT}:${NEXT_MIN}"
+
+          # monta mensagem HTML a partir do payload curado
+          MSG=$(jq -r --arg next "$NEXT_AT_BRT" '
+            . as $arr |
+            "<b>📰 SMUFDPJ • " + (length | tostring) + " " + (if length == 1 then "noticia" else "noticias" end) + " curadas</b>\n" +
+            "Vao pro feed @smufdpj as <b>" + $next + " BRT</b>\n\n" +
+            (
+              [ . | to_entries[] |
+                ((.key + 1) | tostring) + ". " +
+                "<b>" + (.value.titulo_pt | gsub("<"; "&lt;") | gsub(">"; "&gt;") | gsub("&"; "&amp;")) + "</b>\n" +
+                "   <code>" + .value.id + "</code>" +
+                (if (.value.tags // []) | length > 0 then "  •  " + (.value.tags | join(" ")) else "" end) + "\n" +
+                "   ↳ https://setlists-pj-ev.pages.dev/n/" + .value.id
+              ] | join("\n\n")
+            ) +
+            "\n\nPra cancelar algum, edita _publish-queue.json e seta postedAt=\"skipped\""
+          ' /tmp/curated.json)
+
+          # trunca em 3900 chars pra ficar abaixo do limite IG de 4096
+          if [ "${#MSG}" -gt 3900 ]; then
+            MSG="${MSG:0:3900}...\n\n(truncado, total: ${#MSG} chars)"
+          fi
+
+          HTTP_CODE=$(curl -s -o /tmp/tg-resp.json -w "%{http_code}" \
+            -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "parse_mode=HTML" \
+            --data-urlencode "disable_web_page_preview=true" \
+            --data-urlencode "text=${MSG}")
+
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "[telegram] OK: notificacao enviada"
+          else
+            echo "[telegram] FALHA HTTP $HTTP_CODE:"
+            cat /tmp/tg-resp.json
+          fi
+          # nunca derruba workflow por causa da notif
+          exit 0
