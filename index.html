@@ -10827,11 +10827,14 @@ function _renderTabPanel(body, songKey, tabMeta) {
   const infoBar = (keyInfo || capoInfo || tuningInfo)
     ? `<div class="tab-info">${keyInfo}${capoInfo}${tuningInfo}</div>` : '';
 
-  const bar = '<div class="lyric-lang-bar tab-lang-bar" role="tablist" aria-label="Formato (cifra ou tablatura)">' +
-    tabTabs.map(t =>
-      `<button type="button" class="lyric-lang-btn${t.key===defaultTabType?' active':''}" data-tabtype="${t.key}" aria-pressed="${t.key===defaultTabType}">${t.label}</button>`
-    ).join('') +
-    '</div>';
+  const availableTabs = tabTabs.filter(t => t.has);
+  const bar = availableTabs.length > 1
+    ? '<div class="lyric-lang-bar tab-lang-bar" role="tablist" aria-label="Formato (cifra ou tablatura)">' +
+      availableTabs.map(t =>
+        `<button type="button" class="lyric-lang-btn${t.key===defaultTabType?' active':''}" data-tabtype="${t.key}" aria-pressed="${t.key===defaultTabType}">${t.label}</button>`
+      ).join('') +
+      '</div>'
+    : '';
 
   const soonPane = (which) => {
     const label = which === 'cifra' ? 'cifra' : 'tablatura';
