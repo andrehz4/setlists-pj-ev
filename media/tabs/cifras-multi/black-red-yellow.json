@@ -1,0 +1,230 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Black, Red, Yellow (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom Am, 120 BPM."
+  },
+  "title": "Black, Red, Yellow",
+  "artist": "Pearl Jam",
+  "key": "Am",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "A5": {
+          "fingering": "x022xx",
+          "fingers": "x023xx",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "022xxx",
+          "fingers": "023xxx",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "Dm": {
+          "fingering": "xx0231",
+          "fingers": "xx0231",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 120,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "4400",
+          "fingers": "2300",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "Dm": {
+          "fingering": "2210",
+          "fingers": "2310",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 120,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "E5": {
+          "notes": [
+            "E",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Am": {
+          "notes": [
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "Dm": {
+          "notes": [
+            "D",
+            "F",
+            "A"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G5] [A5] (slide G5 para A5)\n\n{section: Verso 1}\n[G5] [A5]Exponentially [G5] [A5]serving.\n[G5] [A5]Perpetually [G5] [A5]unnerving.\n[A5]Vehicle swerving.\n[A5]The adjectives they are all a-[G5]blurring.\n[A5]Freud walking the [G5]sidelines\n[A5]Clipboard scoring the [G5]brain.\n[A5]Black magic painted [G5]traits.\n[A5]Makes me [G5]sane.\n\n{section: Refrão}\n[E5]Hormones firing like a fifty foot Roman, yeah.\n[E5]Please don't make me explain.\n[A5]Don't matter anyway.\n\n{section: Verso 2}\n[G5] [A5]Phantom pain [G5] [A5]in my brain.\n[G5] [A5]It's all that's left [G5] [A5]of my leg. [D5]\nBlack and Red and Yellow and Black and Red and Yellow.\n[A5]Heard you repeat a-what ya [G5] [A5]heard.\n[A5]Me knowing the truth [G5]\nI can not con[A5]cure.\n\n{section: Refrão 2}\n[E5]Hormones firing like a fifty foot Roman, yeah.\n[E5]Please don't make me explain.\n[A5]Don't matter anyway.\n[E5]Hormones firing like a fifty foot Roman, yeah.\n[E5]Please don't make me explain.\n\n{section: Interlúdio}\n[G5] [A5]Yo bro.\n[G5] [A5]Tell us what's happenin'.\n[G5] [A5] (interlude falado)\n\n{section: Refrão 3}\n[E5]Hormones firing like a fifty foot Roman, yeah.\n[E5]Please don't make me explain.\n[A5]Don't fucking matter anyway.\n[E5]Hormones firing like a fifty foot Roman, yeah.\n[E5]Please don't make me explain."
+}

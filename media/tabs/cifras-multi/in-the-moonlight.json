@@ -1,0 +1,255 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de In The Moonlight (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom Dm, 80 BPM. Afinacao: DGDGBE"
+  },
+  "title": "In The Moonlight",
+  "artist": "Pearl Jam",
+  "key": "Dm",
+  "bpm": 80,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "DGDGBE",
+      "chords": {
+        "Dm": {
+          "fingering": "xx0231",
+          "fingers": "xx0231",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Gm": {
+          "fingering": "355333",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 3
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 80,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Dm": {
+          "fingering": "2210",
+          "fingers": "2310",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": null
+        },
+        "Gm": {
+          "fingering": "0231",
+          "fingers": "0231",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 80,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Dm": {
+          "notes": [
+            "D",
+            "F",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "Bm": {
+          "notes": [
+            "B",
+            "D",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "Bb": {
+          "notes": [
+            "Bb",
+            "D",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "Gm": {
+          "notes": [
+            "G",
+            "Bb",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "Am": {
+          "notes": [
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Dm] (riff)\n\n{section: Verso 1}\n[Dm]Getting wind out to get back. It's a\nSteady shore to her land\nIt's getting closer to the fence\nIn the [Bm] [Bb] [Dm]moonlight\n[Dm]Giving two lost wings\nA beautiful star sea\nA wonderful sense of beauty\nIn the [Bm] [Bb] [Dm]moonlight\n\n{section: Refrão 1}\nIt's a love drawn [Bm] [Bb] [Dm]nearer\nDarkened days are spent [Bm] [Bb] [Dm]in\n\n{section: Refrão 2}\n[Gm]A night bird is following [Am]you all the [Gm]time [Dm]\n\n{section: Verso 2}\n[Dm]Under a star-lined ceiling\nAnd darkness, so sleep\nYour sense is revealed\nIn the [Bm] [Bb] [Dm]moonlight\n\n{section: Refrão 1}\nIt's a love drawn [Bm] [Bb] [Dm]nearer\nDarkened days are spent [Bm] [Bb] [Dm]in\n\n{section: Refrão 2}\n[Gm]A night bird is following [Am]you all the [Gm]time [Dm]\n\n{section: Solo}\n[Dm] [G] [Gm] [Bb] [Am] [C] [Dm]\n\n{section: Refrão 1}\nIt's a love drawn [Bm] [Bb] [Dm]nearer\nDarkened days are spent [Bm] [Bb] [Dm]in\n\n{section: Refrão 2}\n[Gm]A night bird is following [Am]you all the [Gm]time [Dm]\n[Gm]A night bird is following [Am]you all the [Gm]time [Dm]\n\n{section: Outro}\n[Gm] [Bb] [C] [Dm] (x4, fade out)"
+}

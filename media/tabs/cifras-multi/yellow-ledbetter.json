@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Yellow Ledbetter (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom E, 70 BPM."
+  },
+  "title": "Yellow Ledbetter",
+  "artist": "Pearl Jam",
+  "key": "E",
+  "bpm": 70,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Fingerpicking + COLCHEIAS (70 bpm)",
+        "bpm": 70,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Fingerpicking + COLCHEIAS (70 bpm)",
+        "bpm": 70,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E] [B] [A] [E]\n[B] [A]\n[E]\n\n{section: Verso 1}\n[E]Unsealed, on a porch a [B]letter sat\n[A]Then you said, \"I wanna leave it a[E]gain\"\nOnce I saw her on a [B]beach of weathered sand\n[A]And on the sand I wanna leave her a[E]gain\nOn a [B]weekend I wanna wish it all away, yeah\n[A]And they called and I said that I'll go\nAnd I said that I'll call out a[E]gain\nAnd the reason I ought ta [B]leave her calm, I know\n[A]I said, \"I don't know whether I'm the boxer or the [E]bag\"\n\n{section: Refrão}\n[E]Oh yeah, yeah yeah can you see them, [B]out on the porch? [A]\nYeah, but they don't [E]wave\nI see them 'round the [B]front way, yeah\n[A]And I know, and I know I don't wanna [E]stay\nMake me cry\n\n{section: Solo}\n[E] [B] [A] [E]\n[B] [A] [E] [B]\n[A] [E]\n\n{section: Verso 2}\n[E] [B]\n[A]I see oh, I don't know why there's something else [E]\nI want to, wanna [B]drum it all away\n[A]I said, \"I don't know whether I was the boxer or the [E]bag\"\n\n{section: Refrão 2}\n[E]Oh yeah, yeah yeah can you see them, [B]out on the porch? [A]\nYeah, but they don't [E]wave\nI see them 'round the [B]front way\n[A]And I know, and I know I don't want to [E]stay at all [B] [A] [E]\n\n{section: Ponte}\nI don't want to [B]stay\n[A] [E]I don't want to [B]stay\n[A]I don't want to [E]stay\n\n{section: Interlúdio}\n[A] [B] [E] [B] [B] [E]\n[A] [B] [E] [B] [A]\n\n{section: Outro}\n[E] [B] [A] [E]\n[B] [A] [E] [B]\n[A] [E]"
+}

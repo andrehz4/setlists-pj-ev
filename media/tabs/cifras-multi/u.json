@@ -1,0 +1,323 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de U (Pearl Jam, Lost Dogs 2003).",
+    "source": "Ultimate Guitar (Pro)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 110 BPM."
+  },
+  "title": "U",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 110,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 4
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "022xxx",
+          "fingers": "023xxx",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "x022xx",
+          "fingers": "x023xx",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 2
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 110,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C#": {
+          "fingering": "1114",
+          "fingers": "1114",
+          "fundamental": null,
+          "barre": 1
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "4400",
+          "fingers": "2300",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0130",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "4400",
+          "fingers": "2300",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3421",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 110,
+        "beats": [
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C#": {
+          "notes": [
+            "C#",
+            "F",
+            "G#"
+          ],
+          "fundamental": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "E5": {
+          "notes": [
+            "E",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "B5": {
+          "notes": [
+            "B",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "B": {
+          "notes": [
+            "B",
+            "D#",
+            "F#"
+          ],
+          "fundamental": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C#] [C] [C#] [C] [C#] [C] [C#] [C#]\n\n{section: Verso 1}\n[D5]Thought it was easy to fall in love but [E5] [A] [D5]U U U\n[D5]You are different, this much I know, yeah [E5] [A]U U U\n[G]It might be your guile, it could be your [A]mind\n[B5]It might be the way you take your [E]time, oh [A] [D5]U U U\n\n{section: Refrão}\n[D5] [E5] [G5] [A5]U, it's U, it's U U U (x2)\n\n{section: Verso 2}\n[D5]I never know how much to say with [E5] [A] [D5]U U U\n[D5]I'd like to go deep but is it safe with [E5] [A]U U U\n[G]It might be your needs, it could be your [A]eyes\n[B5]It might be the way you sym[E]pathize, oh [A] [D5]U U U\n\n{section: Refrão}\n[D5] [E5] [G5] [A5]U, it's U, it's U U U (x2)\n\n{section: Ponte}\n[D5]You break laws and pay no [E5]fines\n[G5]You get yours and then get [A]mine\n[D5]I don't think it's easy to stay in love, [E5]but [A] [D5]U U U\n\n{section: Outro}\n[D5] [E5] [G5] [A5] (x2)\nFinal em [A5]"
+}
