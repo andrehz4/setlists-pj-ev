@@ -113,21 +113,24 @@ jobs:
           NEXT_HOUR_BRT=$(TZ=America/Sao_Paulo date -d "now $([ "$NEXT_MIN" = 17 ] && [ "$MIN_UTC" -ge 47 ] && echo '+1 hour')" +%H)
           NEXT_AT_BRT="${NEXT_HOUR_BRT}:${NEXT_MIN}"
 
+          BRT_NOW=$(TZ=America/Sao_Paulo date +"%H:%M")
+
           # monta mensagem HTML a partir do payload curado
-          MSG=$(jq -r --arg next "$NEXT_AT_BRT" '
+          MSG=$(jq -r --arg next "$NEXT_AT_BRT" --arg now "$BRT_NOW" '
             . as $arr |
-            "<b>📰 SMUFDPJ • " + (length | tostring) + " " + (if length == 1 then "noticia" else "noticias" end) + " curadas</b>\n" +
-            "Vao pro feed @smufdpj as <b>" + $next + " BRT</b>\n\n" +
+            "📰 <b>Curadoria concluida, " + $now + " BRT</b>\n\n" +
+            "<b>" + (length | tostring) + " " + (if length == 1 then "noticia vai" else "noticias vao" end) +
+            " pro feed @smufdpj as " + $next + " BRT</b>\n\n" +
             (
               [ . | to_entries[] |
                 ((.key + 1) | tostring) + ". " +
                 "<b>" + (.value.titulo_pt | gsub("<"; "&lt;") | gsub(">"; "&gt;") | gsub("&"; "&amp;")) + "</b>\n" +
                 "   <code>" + .value.id + "</code>" +
-                (if (.value.tags // []) | length > 0 then "  •  " + (.value.tags | join(" ")) else "" end) + "\n" +
+                (if (.value.tags // []) | length > 0 then "  tags: " + (.value.tags | join(", ")) else "" end) + "\n" +
                 "   ↳ https://setlists-pj-ev.pages.dev/n/" + .value.id
               ] | join("\n\n")
             ) +
-            "\n\nPra cancelar algum, edita _publish-queue.json e seta postedAt=\"skipped\""
+            "\n\nPra cancelar alguma, edita _publish-queue.json no repo e seta postedAt=\"skipped\" no id."
           ' /tmp/curated.json)
 
           # trunca em 3900 chars pra ficar abaixo do limite IG de 4096
