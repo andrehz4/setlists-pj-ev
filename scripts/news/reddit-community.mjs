@@ -66,13 +66,18 @@ function isPublishable(p) {
 
 async function fetchTop(period, limit = 25) {
   const url = `${BASE}/top/.rss?t=${period}&limit=${limit}`;
-  const xml = await got(url, {
-    headers: { "User-Agent": UA },
-    timeout: { request: 15000 },
-    retry: { limit: 1 },
-  }).text();
-  const feed = await rssParser.parseString(xml);
-  return (feed.items || []).map(normalizeRssItem).filter(isPublishable);
+  try {
+    const xml = await got(url, {
+      headers: { "User-Agent": UA },
+      timeout: { request: 15000 },
+      retry: { limit: 1 },
+    }).text();
+    const feed = await rssParser.parseString(xml);
+    return (feed.items || []).map(normalizeRssItem).filter(isPublishable);
+  } catch (err) {
+    console.warn(`[reddit] fetchTop(${period}) falhou: ${err.message}. Retornando lista vazia.`);
+    return [];
+  }
 }
 
 export async function fetchTopDay(limit = 25) {
