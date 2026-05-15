@@ -6,6 +6,7 @@ import sharp from "sharp";
 import fs from "node:fs/promises";
 import path from "node:path";
 import got from "got";
+import { getEditionNumber } from "./edition.mjs";
 
 const SLIDE_W = 1080;
 const SLIDE_H = 1350;
@@ -87,30 +88,29 @@ async function fetchBaseImageBuffer(item) {
   return null;
 }
 
+// Data em BRT (UTC-3), mesmo timezone do numero de edicao / story-log.
 function formatDate(isoDate) {
   try {
     const d = new Date(isoDate);
+    const brt = new Date(d.getTime() - 3 * 60 * 60 * 1000);
     return [
-      String(d.getDate()).padStart(2, "0"),
-      String(d.getMonth() + 1).padStart(2, "0"),
-      d.getFullYear(),
+      String(brt.getUTCDate()).padStart(2, "0"),
+      String(brt.getUTCMonth() + 1).padStart(2, "0"),
+      brt.getUTCFullYear(),
     ].join("/");
   } catch {
     return "";
   }
 }
 
-function editionNum(id) {
-  // numero de edicao estavel derivado do id (hex), 3 digitos
-  return String(parseInt((id || "0").slice(0, 4), 16) % 900 + 100);
-}
-
-function buildCadernoBSvg(item) {
+function buildCadernoBSvg(item, edition, editionDate) {
   const tarjaColor = item._tarjaColor || "#c12727";
   const tags = Array.isArray(item.tags) ? item.tags : [];
   const cat  = escapeXml(CAT_LABELS[tags[0]] || "Notícias");
-  const date = escapeXml(formatDate(item.pubDate || item.fetchedAt));
-  const ed   = editionNum(item.id);
+  // Data = data da edicao (dia da postagem no IG), consistente com o
+  // numero de edicao. A fonte original da noticia vai no caption do post.
+  const date = escapeXml(formatDate(editionDate));
+  const ed   = String(edition);
 
   // Headline: ~18 chars/linha, max 4 linhas
   const headLines = wrapText(item.title_pt || "", 18, 4);
@@ -151,11 +151,11 @@ function buildCadernoBSvg(item) {
     letter-spacing="3" text-anchor="end" opacity="0.85"
   >${date}</text>
 
-  <!-- Eyebrow / categoria -->
+  <!-- Eyebrow: PEARL JAM caixa alta (reconhecimento de marca instantaneo) -->
   <text x="${SIDE}" y="${EYEBROW_Y}"
-    font-family="${SERIF}" font-style="italic" font-weight="600"
-    font-size="34" fill="${tarjaColor}" letter-spacing="1.5"
-  >Caderno · ${cat}</text>
+    font-family="${SANS_BK}" font-weight="900"
+    font-size="32" fill="${tarjaColor}" letter-spacing="3"
+  >PEARL JAM · ${cat.toUpperCase()}</text>
   <rect x="${SIDE}" y="${EYEBROW_RY}" width="${EYEBROW_RW}" height="7" fill="${tarjaColor}"/>
 
   <!-- Headline -->
@@ -202,6 +202,9 @@ export async function buildSlide(item) {
   } catch {}
 
   const photoRaw = await fetchBaseImageBuffer(item);
+  // Edicao = dia da postagem no IG (hoje), nao a data da noticia.
+  const editionDate = new Date();
+  const edition = await getEditionNumber(editionDate);
 
   // Base creme 1080x1350
   const base = await sharp({
@@ -223,7 +226,7 @@ export async function buildSlide(item) {
   }
 
   // SVG Caderno B por cima (transparente onde nao ha elementos)
-  const svg = Buffer.from(buildCadernoBSvg(item));
+  const svg = Buffer.from(buildCadernoBSvg(item, edition, editionDate));
   layers.push({ input: svg, blend: "over" });
 
   await sharp(base)
