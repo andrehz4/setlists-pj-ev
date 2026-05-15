@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Quick Escape (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Quick Escape",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "E",
+  "bpm": 160,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E": { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "D": { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "A": { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "C": { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "B": { "fingering": "x24442", "fingers": "x13331", "fundamental": "B", "barre": 2 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 160,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E": { "fingering": "4442", "fingers": "4321", "fundamental": "E" },
+        "D": { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "A": { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "C": { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "B": { "fingering": "4322", "fingers": "4211", "fundamental": "B" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 160,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E": { "notes": ["E", "G#", "B"], "fundamental": "E", "inversion": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "C": { "notes": ["C", "E", "G"],  "fundamental": "C", "inversion": null },
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": "B", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E] [D] [E] [D] [E] [D] [E] [D]\n\n{section: Verso 1}\n[D]Reconnaissance on the [E]corner\nIn the old world not so far\n[D]First we took an aeroplane\nThen a [E]boat to Zanzibar\n[A]Queen cranking on the blaster\nAnd Mercury did rise\n[E]Come along where we all belonged\nYou were yours and I was mine\n\n{section: Instrumental}\n[E]\n\n{section: Refrão}\n[C]Had to... [A]Quick es[E]cape\n[B]Had to... quick es[E]cape\n[C]Had to... [A]Quick escape\n\n{section: Instrumental 2}\n[E] [D] [E] [D] [E] [D] [E] [D]\n\n{section: Verso 2}\n[D]Crossed the border to Mo[E]rocco\nKashmir then Marrakesh\n[D]The lengths we had to go to then\nTo find a [E]place Trump hadn't fucked up yet\n[A]Living life on the back porch\nLifting rocks to make a wage\n[E]Every sunset paid attention to\nNot a starry night went to waste\n\n{section: Refrão 2}\n[C]Had to... [A]Quick es[E]cape\n[B]Had to... Quick es[E]cape\n[E]Had to... [C]Quick [A]es[B]cape [E]\n\n{section: Instrumental 3}\n[C] [A] [E] [C] [A] [E] [C] [A] [E]\n[E]\n\n{section: Ponte}\n[E]And here we are, the red planet\nCraters across the skyline\nA sleep sack in a bivouac\nAnd a Kerouac sense of time\n[C]And we think about the [A]old days\nOf green grass, sky and red wine\n[E]Shouldn't known, so fragile\nAnd avoided this one-way flight\n\n{section: Refrão 3}\n[C]Had to... [A]Quick es[E]cape\n[B]Had to... Quick es[E]cape\n[E]Had to... [C]Quick [A]es[B]cape [E]\n\n{section: Outro}\n[E]\n[C] [A] [E] [C] [A] [E] [C] [A] [E] [C] [A] [E]\n[C] [A] [E] [C] [A] [E] [C] [A] [E] [C] [A] [E]\n[C] [A] [E] [C] [A] [E]"
+}

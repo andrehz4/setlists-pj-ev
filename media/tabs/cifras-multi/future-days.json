@@ -1,0 +1,130 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Future Days (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Future Days",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "C#",
+  "bpm": 107,
+  "capo": 1,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": "D"
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": "G"
+        },
+        "A/C#": {
+          "fingering": "x42220",
+          "fingers": "x42220",
+          "fundamental": "C#"
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": "B",
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": "A"
+        },
+        "A7": {
+          "fingering": "x02020",
+          "fingers": "x02020",
+          "fundamental": "A"
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 107,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "3", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "down",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": "D"
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0231",
+          "fundamental": "G"
+        },
+        "A/C#": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": "A"
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": "B",
+          "barre": 4
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": "A"
+        },
+        "A7": {
+          "fingering": "0100",
+          "fingers": "0100",
+          "fundamental": "A"
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 107,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "3", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "down",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": "G", "inversion": null },
+        "A/C#": { "notes": ["C#", "E", "A"], "fundamental": "C#", "inversion": "1a" },
+        "Bm": { "notes": ["B", "D", "F#"], "fundamental": "B", "inversion": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "A7": { "notes": ["A", "C#", "E", "G"], "fundamental": "A", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [A/C#] [Bm] [A] [G] [D]\n[D] [A/C#] [Bm] [A] [G]\n[D]\n\n{section: Verso 1}\n[D]                    [G]\nIf I ever were to lose you\n                    [D]           [G]\nI'd surely lose myself\n[D]                         [G]\nEverything I have found dear\n                        [D]          [G]\nI've not found by myself\n[D]                        [G]\nTry and sometimes you'll succeed\n                       [D]            [G]\nTo make this man of me\n[D]                          [G]\nAll my stolen missing parts\n                          [D]         [G]\nI've no need for anymore\n\n{section: Refrão}\n[D]         [A/C#]\nI believe\n[G]                      [D]\nAnd I believe cause I can see\n[A/C#]        [Bm]\nOur future days\n[G]          [D]\nDays of you and me\n\n{section: Ponte}\n[D] [G] [D] [G]\n[D]\n\n{section: Verso 2}\n[D]                          [G]\nBack when I was feeling broken\n                    [D]        [G]\nI focused on a prayer\n[D]                         [G]\nYou came deep as any ocean\n                          [D]          [G]\nDid something out there hear?\n[D]                             [G]\nAll the complexities and games\n                               [D]               [G]\nNo one wins but somehow they're still played\n[D]                           [G]\nAll the missing crooked hearts\n                                [D]           [G]\nThey may die but in us they live on\n\n{section: Refrão 2}\n[D]         [A/C#]\nI believe\n[G]                      [D]\nAnd I believe cause I can see\n[A/C#]        [Bm]\nOur future days\n[G]          [D]\nDays of you and me\n\n{section: Ponte 2}\n[A]                    [Bm]\nWhen hurricanes and cyclones raged\n[A]              [D]\nWhen winds turned dirt to dust\n[A]                    [Bm]\nWhen floods they came or tides they raised\n[G]        [A]   [A7]\nEver closer became us\n\n{section: Verso 3}\n[D]                         [G]\nAll the promises at sundown\n                      [D]          [G]\nI've meant them like the rest\n[D]                          [G]\nAll the demons used to come round\n                          [D]          [G]\nI'm grateful now they've left\n[D]                          [G]\nSo persistent in my ways\n                      [D]                  [G]\nHey Angel I am here to stay\n[D]                             [G]\nNo resistance, no alarms\n                                      [D]              [G]\nPlease, this is just too good to be gone\n\n{section: Refrão Final}\n[D]         [A/C#]\nI believe\n[G]                      [D]\nAnd I believe cause I can see\n[A/C#]        [Bm]\nOur future days\n[G]          [D]\nDays of you and me\n[G]          [D]\nYou and me\n[G]          [D]\nDays of you and me\n\n{section: Outro}\n[D] [A/C#] [Bm] [A] [G] [D]\n[D] [A/C#] [Bm] [A] [G] [D]\n[D] [A/C#] [Bm] [A] [G] [D]"
+}

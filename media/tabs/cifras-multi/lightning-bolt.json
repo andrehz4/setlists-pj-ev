@@ -1,0 +1,151 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Lightning Bolt (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Lightning Bolt",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "A",
+  "bpm": 128,
+  "capo": 0,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": "A"
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": "C"
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": "D"
+        },
+        "A/G": {
+          "fingering": "302220",
+          "fingers": "302220",
+          "fundamental": "G"
+        },
+        "D/F#": {
+          "fingering": "200232",
+          "fingers": "200132",
+          "fundamental": "F#"
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": "F",
+          "barre": 1
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": "E"
+        },
+        "E7": {
+          "fingering": "020100",
+          "fingers": "020100",
+          "fundamental": "E"
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 128,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": "A"
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": "C"
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": "D"
+        },
+        "A/G": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": "A"
+        },
+        "D/F#": {
+          "fingering": "2225",
+          "fingers": "2225",
+          "fundamental": "D"
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": "F"
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "4321",
+          "fundamental": "E"
+        },
+        "E7": {
+          "fingering": "1202",
+          "fingers": "1202",
+          "fundamental": "E"
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 128,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": "C", "inversion": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "A/G": { "notes": ["G", "A", "C#", "E"], "fundamental": "G", "inversion": "baixo G" },
+        "D/F#": { "notes": ["F#", "A", "D"], "fundamental": "F#", "inversion": "baixo F#" },
+        "F": { "notes": ["F", "A", "C"], "fundamental": "F", "inversion": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": "E", "inversion": null },
+        "E7": { "notes": ["E", "G#", "B", "D"], "fundamental": "E", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A]\n\n{section: Verso 1}\n[A] She comes on like a stone\nBut you don't know where from she was thrown\nLike a burning meteor from miles high\nLooking for a place to land\nShe said, \"Have you got yourself some sand?\"\nAnd whatever you replied, she took as yes\n[A] Now she comes after thee\n[D] With her newly planted seeds and soon you're\n[A] [D] prone down on your knees and there you dig\n[A] [D] And then before you know the weeds are obesely overgrown\n[A] [D] with all the wild seed she sows in your sleep\n\n{section: Refrão}\n[A] [C] You gotta know you'll never let her go\n[A] [D] [C] She's a lightning bolt!\n[A] [D] [C] Lightning bolt!\n[A] [D] [C] Lightning bolt!\n\n{section: Interlúdio}\n[A] [C] [D] [C] (x4)\n\n{section: Ponte}\n[A] [A/G] Always something and never nothing\n[D/F#] [F] [A] [A/G] [D/F#] [F] Isn't that the way we're taught to be...to be\n[A] [A/G] Flipping through the worn out pages\n[D/F#] [F] [E] And stages when you knew not who to be / Yeah yeah\n[E] [E] [E7] Until the lightning strike sets you free\n\n{section: Refrão 2}\n[A] [C] You gotta know you'll never let her go\n[A] [D] [C] She's a lightning bolt!\n[A] [D] [C] Lightning bolt!\n[A] [D] [C] Lightning bolt!\n\n{section: Verso 2}\n[A] The crashing stormy waves erode her\nShoreline everyday until the\nCastle of her ways turn to sand\nShe holds her lovely breast\nAs her birds fall from the nest\nFlying towards the great northwest, yeah yeah yeah\n[A] And with no repair in sight\n[D] There is no god with such might\n[A] As to open her world wide with subterfuge\n[A] [D] And your death will soon arrive as she finally decides\n[A] That all her problems, they won't die with you\n\n{section: Outro}\n[A] [D] (fade out)"
+}
