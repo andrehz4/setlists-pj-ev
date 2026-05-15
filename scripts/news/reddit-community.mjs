@@ -73,10 +73,10 @@ async function fetchTop(period, limit = 25) {
       retry: { limit: 1 },
     }).text();
     const feed = await rssParser.parseString(xml);
-    return (feed.items || []).map(normalizeRssItem).filter(isPublishable);
+    return { posts: (feed.items || []).map(normalizeRssItem).filter(isPublishable), fetchError: null };
   } catch (err) {
     console.warn(`[reddit] fetchTop(${period}) falhou: ${err.message}. Retornando lista vazia.`);
-    return [];
+    return { posts: [], fetchError: err.message };
   }
 }
 
