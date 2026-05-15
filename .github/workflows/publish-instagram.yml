@@ -1,8 +1,15 @@
 name: Publish Instagram
 on:
   schedule:
-    # A cada 30min, offset 17min pra fugir de pico
-    - cron: '17,47 * * * *'
+    # Roda apenas dentro das janelas ativas, a cada 20min.
+    # Fora das janelas nao ha conteudo novo entrando na fila.
+    #
+    # Janela A: community manhã (12:25 UTC) + routine (12:30 UTC) = 09:10-10:50 BRT
+    - cron: '10,30,50 12,13 * * *'
+    # Janela B: story diario (16:00 UTC = 13:00 BRT) + ~40min de janela
+    - cron: '0,20,40 16 * * *'
+    # Janela C: community noite (00:25 UTC) + routine (00:30 UTC) = 21:10-22:50 BRT
+    - cron: '10,30,50 0,1 * * *'
   workflow_dispatch:
     inputs:
       dry-run:
