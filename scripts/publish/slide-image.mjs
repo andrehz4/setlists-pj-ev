@@ -1,10 +1,6 @@
-// Gerador de slide composto pro carrossel IG. Pega a foto da noticia,
-// recorta em 1080x1350 (formato 4:5 do feed/carrossel), escurece, e
-// compoe overlay SVG com titulo + intro + bandeira "SMUFDPJ" + tags.
-// Tipografia usa fontes do sistema (DejaVu/Liberation no Ubuntu) com
-// fallback declarado pras Google Fonts caso o ambiente tenha. Pra
-// fidelidade total ao fanzine, futuro: subir TTFs em media/fonts/ +
-// fc-cache no workflow.
+// Gerador de slide para carrossel IG no layout Caderno B.
+// Newspaper editorial creme: masthead preto, serif, foto incrustada, rodape.
+// Formato 1080x1350 (4:5 feed/carrossel). Scale 3.375 sobre o design 320x400.
 
 import sharp from "sharp";
 import fs from "node:fs/promises";
@@ -13,21 +9,42 @@ import got from "got";
 
 const SLIDE_W = 1080;
 const SLIDE_H = 1350;
-const IMG_LOCAL_DIR = path.resolve("media/news/img");
 export const SLIDES_DIR = path.resolve("media/news/instagram-slides");
 
-const TAG_LABELS = {
-  turne: "TURNÊ", lancamento: "LANÇAMENTO", tenclub: "TEN CLUB",
-  memoria: "MEMÓRIA", br: "BRASIL", bootleg: "BOOTLEG",
-  comunidade: "COMUNIDADE", eddie: "EDDIE", mike: "MIKE",
-  stone: "STONE", jeff: "JEFF", matt: "MATT", boom: "BOOM", josh: "JOSH",
-};
-const TAG_COLORS = {
-  turne: "#c8261c", lancamento: "#1b6e7b", tenclub: "#7a4d23",
-  memoria: "#a87f2c", br: "#2d6b39", bootleg: "#5a4b2c",
-  comunidade: "#2a5b9e", eddie: "#5a3d80", mike: "#8a3a30",
-  stone: "#3a4d5a", jeff: "#4a6b3a", matt: "#c45a1c",
-  boom: "#2e4d7a", josh: "#8a6d1c",
+// Caderno B — layout constants (1080px)
+const SIDE       = 61;    // margem lat. (= 18 * 3.375)
+const CONT_W     = SLIDE_W - SIDE * 2; // 958
+const BAR_H      = 88;    // masthead bar height (design: 16px font + padding × 3.375)
+const EYEBROW_Y  = 216;   // baseline do eyebrow
+const EYEBROW_RY = 226;   // rule abaixo do eyebrow
+const EYEBROW_RW = 340;   // largura da rule
+const HEADLINE_Y = 341;   // baseline 1a linha do headline
+const HEADLINE_S = 88;    // font-size headline
+const HEADLINE_LH = 86;   // line-height entre linhas do headline
+const BYLINE_RY  = 648;   // rule horizontal acima do byline
+const BYLINE_Y   = 680;   // baseline do byline text
+const PHOTO_TOP  = 700;   // y do topo da foto
+const PHOTO_H    = 422;   // altura da foto
+const CAPTION_RY = 1130;  // rule abaixo da foto / acima da caption
+const CAPTION_Y  = 1165;  // baseline da caption
+const FOOTER_Y   = 1318;  // baseline do rodape
+
+// Paleta
+const CREME = "#f4ede0";
+const TINTA = "#0a0908";
+const SEPIA = "#5a4a2a";
+const REGUA = "#c8b894";
+
+// Fontes sistema (sem Google Fonts no CI/sharp)
+const SERIF   = "'Georgia','Times New Roman',serif";
+const MONO    = "'Courier New',Courier,monospace";
+const SANS_BK = "'Arial Black',Impact,'Helvetica Neue',sans-serif";
+
+const CAT_LABELS = {
+  turne: "Turnê", lancamento: "Lançamento", tenclub: "Ten Club",
+  memoria: "Memória", br: "Brasil", bootleg: "Bootleg",
+  comunidade: "Comunidade", eddie: "Eddie", mike: "Mike",
+  stone: "Stone", jeff: "Jeff", matt: "Matt", boom: "Boom", josh: "Josh",
 };
 
 function escapeXml(s) {
@@ -36,8 +53,6 @@ function escapeXml(s) {
   );
 }
 
-// Quebra texto em linhas que cabem dentro de `maxChars` por linha,
-// respeitando palavras. Trunca em maxLines com elipse.
 function wrapText(text, maxChars, maxLines) {
   const words = String(text || "").split(/\s+/);
   const lines = [];
@@ -56,8 +71,6 @@ function wrapText(text, maxChars, maxLines) {
 }
 
 async function fetchBaseImageBuffer(item) {
-  // tenta arquivo local primeiro (media/news/img/<hash>.jpg) com hash = id curto
-  // o image-cache salva por sha10 do url; o item.img aponta pra /media/news/img/...
   if (item.img && item.img.startsWith("/media/news/img/")) {
     const local = path.join(process.cwd(), item.img.replace(/^\//, ""));
     try {
@@ -65,7 +78,6 @@ async function fetchBaseImageBuffer(item) {
       if (buf.length > 1024) return buf;
     } catch {}
   }
-  // fallback: baixa direto do url do item ou do og:image
   const src = item.img || item.imgRemote || null;
   if (src && /^https?:/.test(src)) {
     try {
@@ -75,97 +87,106 @@ async function fetchBaseImageBuffer(item) {
   return null;
 }
 
-// Cor de fundo neutra (papel creme fanzine) quando nao ha imagem.
-async function makeFallbackBg() {
-  return sharp({
-    create: { width: SLIDE_W, height: SLIDE_H, channels: 3, background: { r: 232, g: 222, b: 198 } },
-  }).jpeg({ quality: 88 }).toBuffer();
+function formatDate(isoDate) {
+  try {
+    const d = new Date(isoDate);
+    return [
+      String(d.getDate()).padStart(2, "0"),
+      String(d.getMonth() + 1).padStart(2, "0"),
+      d.getFullYear(),
+    ].join("/");
+  } catch {
+    return "";
+  }
 }
 
-function buildOverlaySvg(item) {
-  const titulo = escapeXml(item.title_pt || "");
-  const intro = escapeXml(item.intro_pt || "");
-  const tags = Array.isArray(item.tags) ? item.tags.slice(0, 3) : [];
-  // cor da tarja superior cicla a cada 3 posts (calculado em run-publish)
+function editionNum(id) {
+  // numero de edicao estavel derivado do id (hex), 3 digitos
+  return String(parseInt((id || "0").slice(0, 4), 16) % 900 + 100);
+}
+
+function buildCadernoBSvg(item) {
   const tarjaColor = item._tarjaColor || "#c12727";
+  const tags = Array.isArray(item.tags) ? item.tags : [];
+  const cat  = escapeXml(CAT_LABELS[tags[0]] || "Notícias");
+  const date = escapeXml(formatDate(item.pubDate || item.fetchedAt));
+  const ed   = editionNum(item.id);
 
-  // Padding direito conservador (16 chars no titulo, 28 na intro) garante
-  // que palavras nunca encostem na borda mesmo em Impact/Arial Black do
-  // libvips, que e mais largo que Big Shoulders Stencil.
-  const titleLines = wrapText(titulo, 16, 5);
-  const introLines = wrapText(intro, 28, 5);
-
-  const titleLineHeight = 88;
-  const introLineHeight = 44;
-  const titleY = 520;
-  const introY = titleY + titleLines.length * titleLineHeight + 60;
-
-  const titleSpans = titleLines
-    .map((line, i) => `<tspan x="80" dy="${i === 0 ? 0 : titleLineHeight}">${escapeXml(line)}</tspan>`)
-    .join("");
-  const introSpans = introLines
-    .map((line, i) => `<tspan x="80" dy="${i === 0 ? 0 : introLineHeight}">${escapeXml(line)}</tspan>`)
+  // Headline: ~18 chars/linha, max 4 linhas
+  const headLines = wrapText(item.title_pt || "", 18, 4);
+  const headSpans = headLines
+    .map((l, i) => `<tspan x="${SIDE}" dy="${i === 0 ? 0 : HEADLINE_LH}">${escapeXml(l)}</tspan>`)
     .join("");
 
-  const tagsY = SLIDE_H - 140;
-  let tagsX = 80;
-  const tagsXml = tags.map((t) => {
-    const key = String(t).toLowerCase();
-    const label = TAG_LABELS[key] || key.toUpperCase();
-    const color = TAG_COLORS[key] || "#444";
-    const w = label.length * 17 + 38;
-    const rot = (Math.random() * 4 - 2).toFixed(1);
-    const x = tagsX;
-    tagsX += w + 14;
-    return `<g transform="translate(${x},${tagsY}) rotate(${rot})">
-      <rect width="${w}" height="46" rx="2" fill="${color}" />
-      <text x="${w / 2}" y="31" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="24" font-weight="900" fill="#f7f1de" text-anchor="middle" letter-spacing="2">${label}</text>
-    </g>`;
-  }).join("");
+  // Caption = primeira frase do intro, quebrada em ate 2 linhas
+  const captRaw   = (item.intro_pt || "").split(/[.!?]/)[0].trim();
+  const captLines = wrapText(captRaw + (captRaw ? "." : ""), 62, 2);
+  const captSpans = captLines
+    .map((l, i) => `<tspan x="${SIDE}" dy="${i === 0 ? 0 : 36}">${escapeXml(l)}</tspan>`)
+    .join("");
+
+  const byline = `POR @SMUFDPJ  ·  ${date}  ·  5 MIN DE LEITURA`;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${SLIDE_W}" height="${SLIDE_H}" viewBox="0 0 ${SLIDE_W} ${SLIDE_H}">
-    <defs>
-      <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="rgba(10,9,8,0)" />
-        <stop offset="25%" stop-color="rgba(10,9,8,0.55)" />
-        <stop offset="55%" stop-color="rgba(10,9,8,0.88)" />
-        <stop offset="100%" stop-color="rgba(10,9,8,0.96)" />
-      </linearGradient>
-      <linearGradient id="topFade" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="rgba(10,9,8,0.88)" />
-        <stop offset="100%" stop-color="rgba(10,9,8,0)" />
-      </linearGradient>
-      <filter id="textShadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0a0908" flood-opacity="0.9"/>
-      </filter>
-    </defs>
 
-    <!-- escurece topo (so abaixo da tarja vermelha) e base pra contraste com texto -->
-    <rect x="0" y="105" width="${SLIDE_W}" height="160" fill="url(#topFade)" />
-    <rect x="0" y="${SLIDE_H - 1000}" width="${SLIDE_W}" height="1000" fill="url(#bottomFade)" />
+  <!-- masthead bar preta -->
+  <rect x="0" y="0" width="${SLIDE_W}" height="${BAR_H}" fill="${TINTA}"/>
+  <!-- linha dupla abaixo do bar: 2 tracos finos no creme -->
+  <rect x="0" y="${BAR_H}"     width="${SLIDE_W}" height="4"  fill="${CREME}"/>
+  <rect x="0" y="${BAR_H + 8}" width="${SLIDE_W}" height="2"  fill="${CREME}"/>
 
-    <!-- tarja superior full-width com SMUFDPJ inscrito. Cor cicla a cada
-         3 posts (vermelho -> preto -> ocre -> azul -> ...) pra dar
-         dinamica visual no feed sem perder identidade. -->
-    <rect x="0" y="0" width="${SLIDE_W}" height="100" fill="${tarjaColor}"/>
-    <rect x="0" y="100" width="${SLIDE_W}" height="5" fill="#0a0908"/>
-    <text x="80" y="72" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="56" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="2" paint-order="stroke fill" letter-spacing="10">SMUFDPJ</text>
-    <text x="${SLIDE_W - 80}" y="58" font-family="'Special Elite',Courier,monospace" font-size="14" fill="#f7f1de" letter-spacing="4" text-anchor="end" opacity="0.92">SÓ MAIS UM FÃ</text>
-    <text x="${SLIDE_W - 80}" y="82" font-family="'Special Elite',Courier,monospace" font-size="14" fill="#f7f1de" letter-spacing="4" text-anchor="end" opacity="0.92">DE PEARL JAM</text>
+  <!-- Wordmark serif italic (font-size 16 do design × 3.375 = 54 → ajustado a barra 88px) -->
+  <text x="${SIDE}" y="56"
+    font-family="${SERIF}" font-style="italic" font-weight="700"
+    font-size="36" fill="${CREME}" letter-spacing="-0.5"
+  >S&#243; mais Um F&#227; de Pearl Jam</text>
 
-    <!-- titulo com stroke preto pesado pra cortar qualquer fundo claro -->
-    <text x="80" y="${titleY}" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="82" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="5" paint-order="stroke fill" letter-spacing="-1" filter="url(#textShadow)">${titleSpans}</text>
+  <!-- Edicao + data (canto direito) -->
+  <text x="${SLIDE_W - SIDE}" y="38"
+    font-family="${MONO}" font-size="18" fill="${CREME}"
+    letter-spacing="3" text-anchor="end" opacity="0.85"
+  >ANO 1 · N° ${ed}</text>
+  <text x="${SLIDE_W - SIDE}" y="62"
+    font-family="${MONO}" font-size="18" fill="${CREME}"
+    letter-spacing="3" text-anchor="end" opacity="0.85"
+  >${date}</text>
 
-    <!-- intro com stroke fino e shadow forte -->
-    <text x="80" y="${introY}" font-family="'Newsreader','Georgia',serif" font-style="italic" font-size="36" fill="#fff5d8" stroke="#0a0908" stroke-width="1.2" paint-order="stroke fill" filter="url(#textShadow)">${introSpans}</text>
+  <!-- Eyebrow / categoria -->
+  <text x="${SIDE}" y="${EYEBROW_Y}"
+    font-family="${SERIF}" font-style="italic" font-weight="600"
+    font-size="34" fill="${tarjaColor}" letter-spacing="1.5"
+  >Caderno · ${cat}</text>
+  <rect x="${SIDE}" y="${EYEBROW_RY}" width="${EYEBROW_RW}" height="7" fill="${tarjaColor}"/>
 
-    <!-- tags stamp -->
-    ${tagsXml}
+  <!-- Headline -->
+  <text x="${SIDE}" y="${HEADLINE_Y}"
+    font-family="${SERIF}" font-weight="900"
+    font-size="${HEADLINE_S}" fill="${TINTA}" letter-spacing="-1"
+  >${headSpans}</text>
 
-    <!-- CTA pro nosso site (vitrine no IG, fonte original creditada no caption do post) -->
-    <text x="80" y="${SLIDE_H - 75}" font-family="'Special Elite',Courier,monospace" font-size="20" fill="#ff6b3a" stroke="#0a0908" stroke-width="1.2" paint-order="stroke fill" letter-spacing="3" font-weight="700" filter="url(#textShadow)">LEIA EM</text>
-    <text x="80" y="${SLIDE_H - 42}" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="28" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="2" paint-order="stroke fill" letter-spacing="0" filter="url(#textShadow)">SETLISTS-PJ-EV.PAGES.DEV</text>
-  </svg>`;
+  <!-- Byline rule + texto -->
+  <rect x="${SIDE}" y="${BYLINE_RY}" width="${CONT_W}" height="2.5" fill="${REGUA}"/>
+  <text x="${SIDE}" y="${BYLINE_Y}"
+    font-family="${MONO}" font-size="25" fill="${SEPIA}" letter-spacing="1.5"
+  >${escapeXml(byline)}</text>
+
+  <!-- Espaco da foto (transparente — sharp compoe a imagem aqui) -->
+
+  <!-- Rule + caption abaixo da foto -->
+  <rect x="${SIDE}" y="${CAPTION_RY}" width="${CONT_W}" height="2.5" fill="${REGUA}"/>
+  <text x="${SIDE}" y="${CAPTION_Y}"
+    font-family="${SERIF}" font-style="italic" font-size="28" fill="${SEPIA}"
+  >${captSpans}</text>
+
+  <!-- Rodape -->
+  <text x="${SIDE}" y="${FOOTER_Y}"
+    font-family="${MONO}" font-size="23" fill="${TINTA}" opacity="0.7" letter-spacing="3"
+  >CONTINUA EM</text>
+  <text x="${SLIDE_W - SIDE}" y="${FOOTER_Y}"
+    font-family="${SANS_BK}" font-size="26" fill="${TINTA}" text-anchor="end"
+  >SETLISTS-PJ-EV.PAGES.DEV &#x2192;</text>
+
+</svg>`;
 }
 
 export async function ensureSlidesDir() {
@@ -175,35 +196,44 @@ export async function ensureSlidesDir() {
 export async function buildSlide(item) {
   await ensureSlidesDir();
   const dest = path.join(SLIDES_DIR, `${item.id}.jpg`);
-  // se ja existe, reusa
   try {
     const st = await fs.stat(dest);
     if (st.size > 1024) return { path: dest, reused: true };
   } catch {}
 
-  const baseBuf = (await fetchBaseImageBuffer(item)) || (await makeFallbackBg());
-  const cover = await sharp(baseBuf, { failOn: "none" })
-    .resize(SLIDE_W, SLIDE_H, { fit: "cover", position: "attention" })
-    .toBuffer();
+  const photoRaw = await fetchBaseImageBuffer(item);
 
-  // overlay escurecedor base (alem do gradient do svg, pra ainda mais contraste
-  // quando a imagem origem e clara). 0.50 garante que fotos brancas/studio
-  // viram fundo escuro o suficiente pra texto branco ler bem.
-  const overlay = await sharp({
-    create: { width: SLIDE_W, height: SLIDE_H, channels: 4, background: { r: 10, g: 9, b: 8, alpha: 0.5 } },
+  // Base creme 1080x1350
+  const base = await sharp({
+    create: { width: SLIDE_W, height: SLIDE_H, channels: 3, background: { r: 244, g: 237, b: 224 } },
   }).png().toBuffer();
 
-  const svg = Buffer.from(buildOverlaySvg(item));
+  const layers = [];
 
-  await sharp(cover)
-    .composite([{ input: overlay, blend: "over" }, { input: svg, blend: "over" }])
+  // Foto redimensionada e incrustada na area reservada.
+  // "top" como posicao de crop: rostos estao sempre no terco superior
+  // da imagem, tanto em retratos quanto em fotos de show/entrevista.
+  if (photoRaw) {
+    try {
+      const photoBuf = await sharp(photoRaw, { failOn: "none" })
+        .resize(CONT_W, PHOTO_H, { fit: "cover", position: "top" })
+        .toBuffer();
+      layers.push({ input: photoBuf, top: PHOTO_TOP, left: SIDE });
+    } catch {}
+  }
+
+  // SVG Caderno B por cima (transparente onde nao ha elementos)
+  const svg = Buffer.from(buildCadernoBSvg(item));
+  layers.push({ input: svg, blend: "over" });
+
+  await sharp(base)
+    .composite(layers)
     .jpeg({ quality: 88, mozjpeg: true })
     .toFile(dest);
 
   return { path: dest, reused: false };
 }
 
-// Gera N slides em sequencia. Retorna array de paths.
 export async function buildSlides(items) {
   const out = [];
   for (const it of items) {
