@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Let The Records Play (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Let The Records Play",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "D",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "notes": "Afinacao Open D alternativa: D A D A A D. Riffs baseados em tablatura - ver tab para referencia completa. Acordes aqui sao aproximacoes para uso pedagogico.",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "DADAAD",
+      "chords": {
+        "D":  { "fingering": "000000", "fingers": "000000", "fundamental": "D" },
+        "F":  { "fingering": "335553", "fingers": "335553", "fundamental": "F", "barre": 3 },
+        "G":  { "fingering": "557775", "fingers": "557775", "fundamental": "G", "barre": 5 },
+        "A":  { "fingering": "779997", "fingers": "779997", "fundamental": "A", "barre": 7 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":  { "notes": ["D", "F#", "A"],  "fundamental": "D", "inversion": null },
+        "F":  { "notes": ["F", "A", "C"],   "fundamental": "F", "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],   "fundamental": "G", "inversion": null },
+        "A":  { "notes": ["A", "C#", "E"],  "fundamental": "A", "inversion": null }
+      }
+    }
+  },
+  "content": "{title: Let The Records Play}\n{artist: Pearl Jam}\n{album: Lightning Bolt (2013)}\n{key: D}\n{tempo: 100}\n\n{section: Intro}\n{comment: Riff em afinacao D A D A A D. Ver tab para riff completo.}\n[D]\n\n{section: Riff Principal}\n{comment: Main riff - blues progressao em D. Riff ascendente nos primeiros 3 frets.}\n[D] [F] [G] [A]\n\n{section: Chorus}\n{comment: Chorus - progressao alternada com slides.}\n[D] [F] [G] [A] [D]\n\n{section: Instrumental}\n[D] [F] [G] [A]"
+}

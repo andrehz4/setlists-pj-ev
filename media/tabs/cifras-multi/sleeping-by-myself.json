@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Sleeping By Myself (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Sleeping By Myself",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "A",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":        { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "F#m":      { "fingering": "244222", "fingers": "134111", "fundamental": "F#", "barre": 2 },
+        "C#m":      { "fingering": "x46654", "fingers": "x13421", "fundamental": "C#", "barre": 4 },
+        "D":        { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "E":        { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "Eadd2/G":  { "fingering": "xx3230", "fingers": "xx3230", "fundamental": "G" },
+        "F#7sus4":  { "fingering": "xx2435", "fingers": "xx2435", "fundamental": "F#" },
+        "F#7":      { "fingering": "xx2434", "fingers": "xx2434", "fundamental": "F#" },
+        "Bm":       { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "C#7":      { "fingering": "x21202", "fingers": "x21202", "fundamental": "C#" },
+        "A7":       { "fingering": "320031", "fingers": "320031", "fundamental": "A" },
+        "D/A":      { "fingering": "332020", "fingers": "332020", "fundamental": "A" },
+        "F6":       { "fingering": "xx1013", "fingers": "xx1013", "fundamental": "F" },
+        "Bm/C#":    { "fingering": "x46432", "fingers": "x13421", "fundamental": "C#" },
+        "Bm/F#":    { "fingering": "224432", "fingers": "224421", "fundamental": "F#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":        { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "F#m":      { "fingering": "2120", "fingers": "2130", "fundamental": "F#" },
+        "C#m":      { "fingering": "1104", "fingers": "1103", "fundamental": "C#" },
+        "D":        { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "E":        { "fingering": "4442", "fingers": "4321", "fundamental": "E" },
+        "Eadd2/G":  { "fingering": "4442", "fingers": "4321", "fundamental": "G" },
+        "F#7sus4":  { "fingering": "2230", "fingers": "2230", "fundamental": "F#" },
+        "F#7":      { "fingering": "2230", "fingers": "2230", "fundamental": "F#" },
+        "Bm":       { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "C#7":      { "fingering": "1112", "fingers": "1112", "fundamental": "C#" },
+        "A7":       { "fingering": "0100", "fingers": "0100", "fundamental": "A" },
+        "D/A":      { "fingering": "2225", "fingers": "2225", "fundamental": "A" },
+        "F6":       { "fingering": "2013", "fingers": "2013", "fundamental": "F" },
+        "Bm/C#":    { "fingering": "4222", "fingers": "4111", "fundamental": "C#" },
+        "Bm/F#":    { "fingering": "4222", "fingers": "4111", "fundamental": "F#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":        { "notes": ["A", "C#", "E"],          "fundamental": "A",  "inversion": null },
+        "F#m":      { "notes": ["F#", "A", "C#"],         "fundamental": "F#", "inversion": null },
+        "C#m":      { "notes": ["C#", "E", "G#"],         "fundamental": "C#", "inversion": null },
+        "D":        { "notes": ["D", "F#", "A"],          "fundamental": "D",  "inversion": null },
+        "E":        { "notes": ["E", "G#", "B"],          "fundamental": "E",  "inversion": null },
+        "Eadd2/G":  { "notes": ["G", "B", "D", "E"],     "fundamental": "G",  "inversion": "1a" },
+        "F#7sus4":  { "notes": ["F#", "B", "C#", "E"],   "fundamental": "F#", "inversion": null },
+        "F#7":      { "notes": ["F#", "A#", "C#", "E"],  "fundamental": "F#", "inversion": null },
+        "Bm":       { "notes": ["B", "D", "F#"],         "fundamental": "B",  "inversion": null },
+        "C#7":      { "notes": ["C#", "F", "G#", "B"],   "fundamental": "C#", "inversion": null },
+        "A7":       { "notes": ["A", "C#", "E", "G"],    "fundamental": "A",  "inversion": null },
+        "D/A":      { "notes": ["A", "D", "F#"],         "fundamental": "A",  "inversion": "1a" },
+        "F6":       { "notes": ["F", "A", "C", "D"],     "fundamental": "F",  "inversion": null },
+        "Bm/C#":    { "notes": ["C#", "B", "D", "F#"],  "fundamental": "C#", "inversion": "baixo C#" },
+        "Bm/F#":    { "notes": ["F#", "B", "D"],        "fundamental": "F#", "inversion": "1a" }
+      }
+    }
+  },
+  "content": "{title: Sleeping By Myself}\n{artist: Pearl Jam}\n{album: Lightning Bolt (2013)}\n{key: A}\n{tempo: 90}\n\n{section: Intro}\n[A] [F#m] [C#m] / [A] [F#m] [C#m]\n\n{section: Verso 1}\n[A] [F#m] [C#m] I should have known there was someone else\n[A] [F#m] [C#m] Down below I always kept it to myself\n[D] Now I believe in nothing\n[E] [Eadd2/G] [F#7sus4] [F#7] Not today, as I move myself out of your sight\n[Bm] [E] I'll be sleeping by myself tonight\n\n{section: Verso 2}\n[A] [F#m] [C#m] I could never go with no one else\n[A] [F#m] [C#m] The hurt don't show, but who knows Time will tell\n[D] Now I believe in nothing\n[E] But the pain\n[Eadd2/G] [F#7sus4] [F#7] And I can't see this turning out right\n[Bm] [E] I'll be sleeping by myself tonight\n\n{section: Refrão}\n[A] Forever be sad and lonely\n[C#7] [D] Forever never be the same\n[D] [Bm] I close my eyes, wait for a sign\n[E] Am I just waiting in vain?\n\n{section: Interlúdio}\n[A] [A7] [D/A] [F6] / [A] [A7] [D/A] [Bm] [E]\n\n{section: Ponte}\n[D] [Bm] I close my eyes, wait for a sign\n[E] Am I just waiting in vain?\n\n{section: Verso 3}\n[A] [F#m] [C#m] Oh I believe in love and disaster\n[A] [F#m] [C#m] Sometimes the two are just the same\n[A] [F#m] [C#m] I'm beginning to see, what's left of me\n[A] [F#m] [C#m] Is gonna have to be free to survive\n[Bm] [E] I'll be sleeping by myself tonight\n\n{section: Interlúdio 2}\n[A] [A7] [D/A] [Bm] [E]\n\n{section: Outro}\n[D] Now I believe in nothing\n[E] But the pain\n[Eadd2/G] [F#7sus4] [F#7] And I can't see this turning out right\n[Bm] [E] Oh, I'll be sleeping by myself\n[Bm] [E] I'll be sleeping by myself\n[Bm] [Bm/C#] [D] [Bm/F#] [E] [A] I'll be sleeping by myself tonight"
+}

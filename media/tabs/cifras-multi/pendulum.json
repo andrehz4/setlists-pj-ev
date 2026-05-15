@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Pendulum (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Pendulum",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "Am",
+  "bpm": 72,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Am": { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "F":  { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Dm": { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "C":  { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 72,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Am": { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Dm": { "fingering": "2210", "fingers": "2310", "fundamental": "D" },
+        "C":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 72,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Am": { "notes": ["A", "C", "E"],    "fundamental": "A", "inversion": null },
+        "F":  { "notes": ["F", "A", "C"],    "fundamental": "F", "inversion": null },
+        "Dm": { "notes": ["D", "F", "A"],    "fundamental": "D", "inversion": null },
+        "C":  { "notes": ["C", "E", "G"],    "fundamental": "C", "inversion": null }
+      }
+    }
+  },
+  "content": "{title: Pendulum}\n{artist: Pearl Jam}\n{album: Lightning Bolt (2013)}\n{subtitle: Acoustic}\n{key: Am}\n{tempo: 72}\n\n{section: Intro}\n[Am] [F] / [Am] [F]\n\n{section: Verso 1}\n[Am] [F] Can't know what's high\n[Am] Till you been down so low\n[F] The future's bright\n[Am] Lit up with nowhere to go\n[F] To and fro the pendulum throws\n\n{section: Refrão}\n[Dm] [F] [Am] We are here and then we go\n[Dm] [C] [Am] My shadow left me long ago\n\n{section: Verso 2}\n[Am] [F] Understand what we don't know\n[Am] [F] This might pass, this might last, this may grow\n\n{section: Refrão 2}\n[Dm] [F] [Am] Easy come easy go\n[Dm] [C] [Am] Easy left me a long time ago\n\n{section: Interlúdio}\n[Dm] [F] [Am] / [Dm] [C] [Am] / [Am] [F]\n\n{section: Ponte}\n[Dm] [F] [Am] I'm in the fire, but I'm still cold\n[Dm] [C] [Am] Nothing works, works for me anymore\n\n{section: Outro}\n[Am] [F] Ahh ah ah ah aaahh\n{comment: Repete com vocalises}\nTo and fro the pendulum throws\n[Am] [F]\n{comment: Várias repetições com vocalises - fade out}\n[Am] [F]\n[Am] [F]"
+}
