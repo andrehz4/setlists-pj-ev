@@ -1,0 +1,131 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Supersonic (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar (adaptado)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom B, 140 BPM."
+  },
+  "title": "Supersonic",
+  "artist": "Pearl Jam",
+  "key": "B",
+  "bpm": 140,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13331",
+          "fundamental": null,
+          "barre": 2
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13331",
+          "fundamental": null,
+          "barre": 4
+        },
+        "G#": {
+          "fingering": "466544",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 4
+        },
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "B": {
+          "fingering": "4322",
+          "fingers": "4312",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3331",
+          "fundamental": null
+        },
+        "C#": {
+          "fingering": "6544",
+          "fingers": "4322",
+          "fundamental": null
+        },
+        "G#": {
+          "fingering": "4564",
+          "fingers": "1342",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": null },
+        "C#": { "notes": ["C#", "F", "G#"], "fundamental": null },
+        "G#": { "notes": ["G#", "B#", "D#", "F#"], "fundamental": null },
+        "F#": { "notes": ["F#", "A#", "C#"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[B] [E] [C#] [G#] [E] [B] [A] [B] [F#]\n\n{section: Verso 1}\n [B]                                      [G#]\nYeah, I been dreamin' of gettin' along\n [B]                       [E]\nNow I'm awake, dreamin' keep it on keeping on\n[B]                                          [G#]\nI catch a break, then a punch to the head\n                      [F#]\nI smile big with a toothless grin, yeah\n\n{section: Refrão}\n [B]                                [G#]\nSupersonic gone and took my soul\n[E]\nI caught the rhythm but the clock was slow yeh\n [C#]\nSupersonic, truth be told\n          [F#] [E]\nI don't need you to live, but I'll never let you go\n\n{section: Instrumental}\n[B] [G#] [B] [F#]\n\n{section: Verso 2}\n [B]                                   [G#]\nYeh I been thinkin', I already know\n [B]                             [E]\nNothin' bout nothin' or so I have been told, yeh\n[B]                                          [G#]\nI'm not the paper, I'm more like the fold\n                            [F#]\nCut the crease and put the shit in the whole, yeah\n\n{section: Refrão 2}\n [B]                                [G#]\nSupersonic gone and took my soul\n[E]\nI caught the rhythm but the clock was slow yeh\n [C#]\nSupersonic, truth be told\n          [F#] [E]\nI don't need you to live, but I'll never let you go\n\n [B]                             [G#]\nSupersonic, gotta feel it now\n    [E]\nI need to hear, need to feel it loud yeh\n [C#]\nSupersonic, truth be told\n        [F#] [E]\nI wanna live my life with the volume full...\n\n{section: Solo}\n[B] [A] [F#] [E] [C#] [F#]\n[B] [A] [F#] [B] [C#] [B]\n\n{section: Refrão 3}\n [B]                                [G#]\nSupersonic gone and took my soul\n[E]\nI caught the rhythm but the clock was slow yeh\n [C#]\nSupersonic, truth be told\n          [F#] [E]\nI don't need you to live, but I'll never let you go\n\n [B]                             [G#]\nSupersonic, gotta feel it now\n    [E]\nI need to hear, need to feel it loud yeh\n [C#]\nSupersonic, truth be told\n        [F#] [E]\nI wanna live my life with the volume full...\n\n{section: Outro}\n[B] [E] [C#] [G#] [E]\nYeah yeah yeah..."
+}

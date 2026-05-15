@@ -1,0 +1,154 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de The End (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar (adaptado)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom F#, 118 BPM. Strumming especial: down/muted/down/up/down/muted/down/up."
+  },
+  "title": "The End",
+  "artist": "Pearl Jam",
+  "key": "F#",
+  "bpm": 118,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F#5": {
+          "fingering": "244xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Bsus2": {
+          "fingering": "x24422",
+          "fingers": "x13411",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13331",
+          "fundamental": null,
+          "barre": 2
+        },
+        "D#m": {
+          "fingering": "x68876",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 6
+        },
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13331",
+          "fundamental": null,
+          "barre": 4
+        },
+        "G#7": {
+          "fingering": "466544",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 4
+        },
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Especial 8 beats (118 BPM)",
+        "bpm": 118,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#5": {
+          "fingering": "3100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": null
+        },
+        "Bsus2": {
+          "fingering": "4220",
+          "fingers": "3110",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4312",
+          "fundamental": null
+        },
+        "D#m": {
+          "fingering": "3321",
+          "fingers": "3321",
+          "fundamental": null
+        },
+        "C#": {
+          "fingering": "6544",
+          "fingers": "4322",
+          "fundamental": null
+        },
+        "G#7": {
+          "fingering": "4564",
+          "fingers": "1342",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "4200",
+          "fingers": "3100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Especial 8 beats (118 BPM)",
+        "bpm": 118,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#5": { "notes": ["F#", "C#"], "fundamental": null },
+        "F#": { "notes": ["F#", "A#", "C#"], "fundamental": null },
+        "Bsus2": { "notes": ["B", "C#", "F#"], "fundamental": null },
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": null },
+        "D#m": { "notes": ["D#", "F#", "A#"], "fundamental": null },
+        "C#": { "notes": ["C#", "F", "G#"], "fundamental": null },
+        "G#7": { "notes": ["G#", "B#", "D#", "F#"], "fundamental": null },
+        "B5": { "notes": ["B", "F#"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F#5]\n\n{section: Verso 1}\n[F#5]                              [D#m]               [F#5]\nWhat were all those dreams we shared those many years ago?\n[F#5]                [D#m]                     [F#5]\nWhat were all those plans we made now left beside the road?\n  [D#m]              [F#5]\nBehind  us in the road\n\n{section: Verso 2}\n[F#5]                    [D#m]                   [F#5]\n\"More than friends,\" I always pledged cause friends, they come and go\n[F#5]    [D#m]            [F#5]\nPeople change, as does everything, I wanted to grow old\n  [D#m]                [F#5]\nI just  want to grow old\n\n{section: Refrão}\n[F#]       [B]    [F#]    [B]           [F#]     [G#7]\nSlide up next to me, I'm just a human being\n[B]              [C#]      [D#m]                  [C#]           [B]\nI will take the blame, but just the same, this is not me\n    [B]   [D#m]  [B]    [D#m]\nYou see? Believe\n    [B]               [Bsus2]\nI'm better than this\n[B5]    [F#]    [B]   [F#]   [B]                 [F#] [G#7]\nDon't leave me so cold or buried beneath the stones\n[B]             [C#] [D#m]              [C#]          [B]    [D#m]\nI just want to hold on and know I'm worth your love\n [B]     [D#m]        [B]    [D#m]\nEnough, I don't think\n        [B]           [Bsus2] [B5] [F#5]\nThere's such a thing\n\n{section: Verso 3}\n[F#5]              [D#m]              [F#5]\nIt's my fault now, I been caught a sickness in my bones\n[F#5]       [D#m]                [F#5]\nHow it pains to leave you here with the kids on your own\n[D#m]               [F#5]\nJust don't let me go\n\n{section: Refrão 2}\n[F#]      [B]  [F#]        [B]              [F#]    [G#7]\nHelp me see myself, cause I can no longer tell\n[B]               [C#]    [D#m]           [C#]    [B]    [D#m]\nLookin out from the inside of the bottom of a well\n     [B]    [D#m]  [B]   [D#m]\nIt's hell, I yell\n    [B]           [Bsus2]\nBut no one hears\n[B5] [F#] [B] [F#] [B]            [F#]   [G#7]\nBefore I disappear, whisper in my ear\n[B]                [C#]   [D#m]        [C#]         [B]   [D#m]\nGive me something to echo in my unknown future's ear\n   [B]    [D#m]    [B]  [D#m]\nMy dear, the end\n      [B]    [D#m]    [B]   [D#m]\nComes near, I'm here\n    [B]\nBut not much longer"
+}

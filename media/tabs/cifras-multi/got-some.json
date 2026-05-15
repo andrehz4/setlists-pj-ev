@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Got Some (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 160 BPM."
+  },
+  "title": "Got Some",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 160,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02230",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13331",
+          "fundamental": null,
+          "barre": 1
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU",
+        "bpm": 160,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU",
+        "bpm": 160,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "Bb": { "notes": ["Bb", "D", "F"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [C] [F] ([F]) x2\n\n{section: Verso 1}\n [A]                    [C]                    [F]\nEvery night with the lights out where you gone? What's wrong?\n[A]                  [C]                  [F]              ([D])\nEvery time you can try but can't turn on, a rock song\n[A]                 [C]        [F]                 ([D])\nI got some if you need it, I got some if you need it\n[A]                 [C]        [F]                 ([D])\nI got some if you need it, I got some if you need it\n\n{section: Refrão 1}\n[A]                  [C]              [F]                     [D]\nGet it now, get it on, before its gone, let's everybody carry on, carry on\n[A]                  [C]               [F]                     [D]\nGet it now, set it off, before its gone, let's everybody carry on, carry on\n\n{section: Pré-Refrão 1}\n[D]                         [D]   [C]   [Bb]                               [Bb]  [A]   [G]\nPrecipitation, which side are you on? Are you on the rise, are you falling down?\n             [C]\nLet me know, c'mon let's go yeah\n\n{section: Verso 2}\n[A]                 [C]        [F]                 ([D])\nI got some if you need it, I got some if you need it\n[A]                 [C]        [F]                 ([D])\nI got some if you need it, I got some if you need it\n\n{section: Refrão 2}\n[A]                  [C]              [F]                     [D]\nGet it now, get it on, before its gone, let's everybody carry on, carry on\n[A]                  [C]               [F]                     [D]\nTurn it up, set it off, before its gone, let's everybody get it on, get it on\n\n{section: Pré-Refrão 2}\n[D]                          [D]   [C]   [Bb]                               [Bb]   [A]   [G]\nThis situation, which side are you on? Are you getting out? Are you dropping bombs?\n                  [C]\nHave you heard of diplomatic resolve? Yeah\n[D]                         [D]   [C]   [Bb]                               [Bb]  [A]   [G]\nPrecipitation, which side are you on? Are you on the rise, are you falling down?\n             [C]\nLet me know, c'mon let's go Yeah\n\n{section: Interlúdio}\n[D]    [D] [C] [Bb]    [Bb] [A] [G]    [C]\n[D]  [F]  [G]  ([G])\n\n{section: Bridge}\n[D]                         [F]          [G]\nI got some if you need it I got some, oh, oh, oh, oh.\n\n{section: Refrão 3}\n[A]                   [C]              [F]                     [D]\nGet it now, get enough, before its gone, let's everybody carry on, carry on\n[A]                  [C]               [F]                     [D]\nTurn it up, set it off, before its gone, let's everybody get it on, get it on\n\n{section: Outro}\n[D]                          [D]   [C]   [Bb]                               [Bb]   [A]   [G]\nThis situation, which side are you on? Are you getting out? Are you dropping bombs?\n                  [C]\nHave you heard of diplomatic resolve? Yeah\n[D]                         [D]   [C]   [Bb]                          [Bb]   [A]   [G]\nPrecipitation, which side are you on? Are you drying up, are you a big drop?\n                         [C]\nAre you a puddle full of detrimental?\n\n[D]        [D] [C] [Bb]         [Bb] [A] [G]          [C]\nGot some,      got some,      carry on, carry on\n[D]                         [D] [C] [Bb]                         [Bb] [A] [G]\nI got some if you need it,      I got some if you need it\n         [C]        [D]\nCarry on, let's go"
+}
