@@ -2118,5 +2118,78 @@
     "tuning": "DGDGBD",
     "bpm": 169,
     "notes": "Afinacao Open G (DGDGBD)."
+  },
+  "who ever said": {
+    "cifra": true,
+    "cifraMulti": "who-ever-said.json",
+    "tab": false,
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 100
+  },
+  "superblood wolfmoon": {
+    "cifra": true,
+    "cifraMulti": "superblood-wolfmoon.json",
+    "tab": false,
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 154
+  },
+  "dance of the clairvoyants": {
+    "cifra": true,
+    "cifraMulti": "dance-of-the-clairvoyants.json",
+    "tab": false,
+    "key": "F#m",
+    "tuning": "EADGBE",
+    "bpm": 106
+  },
+  "quick escape": {
+    "cifra": true,
+    "cifraMulti": "quick-escape.json",
+    "tab": false,
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 160
+  },
+  "alright": {
+    "cifra": true,
+    "cifraMulti": "alright.json",
+    "tab": false,
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 88
+  },
+  "seven oclock": {
+    "cifra": true,
+    "cifraMulti": "seven-oclock.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 82
+  },
+  "never destination": {
+    "cifra": true,
+    "cifraMulti": "never-destination.json",
+    "tab": false,
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 112
+  },
+  "take the long way": {
+    "cifra": true,
+    "cifraMulti": "take-the-long-way.json",
+    "tab": false,
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 100,
+    "notes": "Compasso 7/4 no verso, 4/4 no refrao, 6/4 no outro."
+  },
+  "comes then goes": {
+    "cifra": true,
+    "cifraMulti": "comes-then-goes.json",
+    "tab": false,
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 80
   }
 }
