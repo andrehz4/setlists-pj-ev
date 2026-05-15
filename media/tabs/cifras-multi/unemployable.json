@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Unemployable (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 120 BPM."
+  },
+  "title": "Unemployable",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F#m": {
+          "fingering": "244222",
+          "fingers": "134111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "E/B": {
+          "fingering": "x22100",
+          "fingers": "x23100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "↓ . ↓ ↑ ↓ ↑ ↓ ↑ a 120bpm",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#m": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "3111",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3331",
+          "fundamental": null
+        },
+        "E/B": {
+          "fingering": "4442",
+          "fingers": "3331",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "↓ . ↓ ↑ ↓ ↑ ↓ ↑ a 120bpm",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#m": { "notes": ["F#", "A", "C#"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "Bm": { "notes": ["B", "D", "F#"], "fundamental": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": null },
+        "E/B": { "notes": ["B", "E", "G#", "B"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F#m]    [D]   [A]\n[G]   [Bm]\n[Bm]   [A]  [G]\n[Bm]   [A]  [G]\n\n{section: Verso 1}\n           [A]\nHe's got a big gold ring\n            [Bm]     [F#m]\nWhich says \"Jesus Saves\"\n         [A]\nAnd it's dented from the punch\n          [Bm]        [F#m]\nThrown at work that day\n         [A]\nWhere he smashed a metal locker\n         [Bm]       [F#m]\nWhere he kept his things\n          [A]\nAfter the big boss said\n               [Bm]      [F#m]\n\"You'd best be on your way\"\n\n{section: Refrão}\n    [E] [E/B] [D]        [E]      [E/B]  [D]\nOh yeah,  So this life is sacrifice\n    [E] [E/B] [D]       [E]           [E/B]   [D]\nOh yeah,  Jumping trains just to survive\n\n{section: Verso 2}\n         [A]\nWell his wife and kids' asleep\n         [Bm]     [F#m]\nBut he's still awake\n       [A]\nOn his brain weighs the curse\n          [Bm]       [F#m]\nOf thirty bills unpaid\n     [A]\nGets up, lights a cigarette\n     [Bm]       [F#m]\nHe's grown to hate\n        [A]\nThinkin if he can't sleep\n            [Bm]   [F#m]\nHow will he ever dream\n\n{section: Refrão 2}\n  [E] [E/B] [D]       [E]      [E/B]  [D]\nYeah,  so this life is sacrifice\n    [E] [E/B] [D]    [E]          [E/B]    [D]\nOh yeah,  to a stranger's bottom line\n    [E] [E/B] [D]             [E]\nOh yeah,  I've seen the light\n\n{section: Bridge}\n        [D]               [Bm]  [F#m]\nOhh ohh ohhh    Ohh ohh ohhhh\n              [D]             [E]\nI'm scared of life, near to death\n        [D]               [Bm]   [F#m]\nOhh ohh ohhh    Ohh ohh ohhhh\n              [D]                [E]\nI've seen the light, scared of life\n\n{section: Interlúdio}\n[F#m]    [D]   [A]\n[G]   [Bm]\n[Bm]   [A]  [G]\n[Bm]   [A]  [G]  [A]  [G]\n\n{section: Outro}\n  [E] [E/B] [D]       [E]      [E/B]  [D]\nYeah,  so this life is sacrifice\n   [E] [E/B] [D]       [E]         [E/B]     [D]\nOh yeah,  was a dream that had to die\n    [E] [E/B] [D]              [E]\nOh yeah,  I've seen the light\n        [D]               [Bm]  [F#m]\nOhh ohh ohhh    Ohh ohh ohhhh\n              [D]             [E]\nI'm scared of life, near to death\n        [D]               [Bm]   [F#m]\nOhh ohh ohhh    Ohh ohh ohhhh\n              [D]                [E]\nI've seen the light, scared of life\n        [D]               [Bm]  [F#m]\nOhh ohh ohhh    Ohh ohh ohhhh\n                [D]\nAnd I'm near to death\n        [E]              [D]     [E]\nHere to die, scared of life\n        [D]              [E]\nNear to death, here to die\n          [D]    [E]    [D]   [E]   [D]   [E]   [D]\nScared of life"
+}

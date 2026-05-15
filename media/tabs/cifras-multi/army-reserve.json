@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Army Reserve (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom B, 120 BPM."
+  },
+  "title": "Army Reserve",
+  "artist": "Pearl Jam",
+  "key": "B",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13442",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "B": {
+          "fingering": "4322",
+          "fingers": "4311",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n    [B]             [A]\nHow long must she stand\n[G]\nBefore the ground, it gives way\n[B]             [A]\nTo an endless fall\n[G]\nShe can feel this war on her face\n[B]                [A]\nThe stars on her pillow\n[G]\nShe's folding in darkness begging for slumber\n\n{section: Refrão}\n [D]       [F]\nI'm not blind\n      [G]      [D]\nI can see it coming\n[D]          [F]\nLooks like lightning\n[G]             [D]\nIn my child's eye\n [D]       [F]\nI'm not frantic\n      [G]       [D]\nI can feel it coming\n[D]         [F]\nViolently shakes\n[G]      [D]\nMy body\n\n{section: Verso 2}\n[B]         [A]\nHer son's slanted\n[G]\nAlways giving her the sideways eye\n[B]                     [A]\nThe empty chair where dad sits\n[G]\nHow loud can silence get?\n[B]            [A]\nAnd mom, she reassures\n[G]\nTo contain him but it's becoming a lie\n[B]                     [A]\nShe tells herself and anyone else\n[G]\nFather is risking his life for our freedoms\n\n{section: Refrão 2}\n[D]       [F]\nI'm not blind\n      [G]      [D]\nI can see it coming\n[D]          [F]\nLooks like lightning\n[G]             [D]\nIn my child's eye\n\n{section: Outro}\n[D]       [F]\nI'm not frantic\n      [G]       [D]\nI can feel it coming\n[D]              [F]\nDarling you'll save me\n       [G]    [D]\nIf you save yourself"
+}

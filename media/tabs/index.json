@@ -1732,5 +1732,125 @@
     "cifra": false,
     "tab": false,
     "tuning": "EADGBE"
+  },
+  "life wasted": {
+    "cifra": true,
+    "cifraMulti": "life-wasted.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "life-wasted-v1.gp5",
+    "key": "F#",
+    "tuning": "EADGBE",
+    "bpm": 126
+  },
+  "world wide suicide": {
+    "cifra": true,
+    "cifraMulti": "world-wide-suicide.json",
+    "tab": true,
+    "tabFormat": "gp4",
+    "tabFile": "world-wide-suicide-v1.gp4",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 140
+  },
+  "comatose": {
+    "cifra": true,
+    "cifraMulti": "comatose.json",
+    "tab": false,
+    "key": "B",
+    "tuning": "EADGBE",
+    "bpm": 120
+  },
+  "severed hand": {
+    "cifra": true,
+    "cifraMulti": "severed-hand.json",
+    "tab": false,
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 120
+  },
+  "marker in the sand": {
+    "cifra": true,
+    "cifraMulti": "marker-in-the-sand.json",
+    "tab": false,
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 130
+  },
+  "parachutes": {
+    "cifra": true,
+    "cifraMulti": "parachutes.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "parachutes-v1.gp5",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 80
+  },
+  "unemployable": {
+    "cifra": true,
+    "cifraMulti": "unemployable.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "unemployable-v1.gp5",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 120
+  },
+  "big wave": {
+    "cifra": true,
+    "cifraMulti": "big-wave.json",
+    "tab": false,
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 153
+  },
+  "gone": {
+    "cifra": true,
+    "cifraMulti": "gone.json",
+    "tab": false,
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 100
+  },
+  "wasted reprise": {
+    "cifra": true,
+    "cifraMulti": "wasted-reprise.json",
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "wasted-reprise-v1.gpx",
+    "key": "F",
+    "tuning": "EADGBE",
+    "bpm": 120
+  },
+  "army reserve": {
+    "cifra": true,
+    "cifraMulti": "army-reserve.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "army-reserve-v1.gp5",
+    "key": "B",
+    "tuning": "EADGBE",
+    "bpm": 120
+  },
+  "come back": {
+    "cifra": true,
+    "cifraMulti": "come-back.json",
+    "tab": true,
+    "tabFormat": "gp",
+    "tabFile": "come-back-v1.gp",
+    "key": "F",
+    "tuning": "EADGBE",
+    "bpm": 80
+  },
+  "inside job": {
+    "cifra": true,
+    "cifraMulti": "inside-job.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "inside-job-v1.gp5",
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 80
   }
 }

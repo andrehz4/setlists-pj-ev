@@ -1,0 +1,108 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Wasted Reprise (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom F, 120 BPM."
+  },
+  "title": "Wasted Reprise",
+  "artist": "Pearl Jam",
+  "key": "F",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Eb": {
+          "fingering": "x6888x",
+          "fingers": "x1234x",
+          "fundamental": null,
+          "barre": 6
+        },
+        "Bbm": {
+          "fingering": "x13321",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 1
+        }
+      },
+      "strumming": {
+        "label": "↓ . ↓ . ↓ . ↓ . a 120bpm (down/muted x4)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Eb": {
+          "fingering": "0333",
+          "fingers": "0234",
+          "fundamental": null
+        },
+        "Bbm": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "↓ . ↓ . ↓ . ↓ . a 120bpm (down/muted x4)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "Eb": { "notes": ["Eb", "G", "Bb"], "fundamental": null },
+        "Bbm": { "notes": ["Bb", "Db", "F"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F] [C] [Eb] [Bbm]\n\n{section: Verso}\n[F]                 [C]\n    I've faced it, a life wasted\n[Eb]                  [Bbm]\nand I'm never going back again\n[F]                 [C]\n    Having tasted, a life wasted\n[Eb]                  [Bbm]\nI ain't never going back again\n[F]                [C]\n    I escaped it, a life wasted\n[Eb]                 [Bbm]\nand I ain't never going back... again\n\n{section: Outro}\n[F] [C] [Eb] [Bbm] [F]"
+}

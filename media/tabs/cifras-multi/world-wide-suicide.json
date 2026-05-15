@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de World Wide Suicide (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 140 BPM."
+  },
+  "title": "World Wide Suicide",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 140,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A5": {
+          "fingering": "577xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "244xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "x355xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "x577xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "3100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "0050",
+          "fingers": "0030",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "4200",
+          "fingers": "3100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A5": { "notes": ["A", "E"], "fundamental": null },
+        "F#5": { "notes": ["F#", "C#"], "fundamental": null },
+        "G5": { "notes": ["G", "D"], "fundamental": null },
+        "C5": { "notes": ["C", "G"], "fundamental": null },
+        "D5": { "notes": ["D", "A"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "B5": { "notes": ["B", "F#"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A5] [F#5] [G5]\n[A5] [F#5] [G5]\n[A5] [F#5] [G5] [C5] [D5]\n\n{section: Verso 1}\n   [A]\nI felt the earth on Monday, it moved beneath my feet\n   [G]\nIn the form of a morning paper, laid out for me to see\n [A]\nSaw his face in a corner picture, I recognized the name\n  [G]\nCould not stop staring at the face I'd never see again\n\n{section: Pré-Refrão}\n[A5]      [F#5] [G5]    [A5]        [F#5]  [G5]   [A5]\nIt's a shame to awake in a world of pain\n          [F#5]  [G5]        [C5]             [D5]\nWhat does it mean when a war has taken over\n[A5]      [F#5] [G5]    [A5]        [F#5]  [G5]   [A5]\nIt's the same everyday in a hell man made\n          [F#5]  [G5]      [C5]                  [D5]\nWhat can be saved, and who will be left to hold her?\n\n{section: Refrão}\n[A5]   [C5]   [G5]   [A5]     [C5] [G5]\n    The whole world\n [A5]        [C5] [G5]\nWorld over\n         [D5]\nIt's a worldwide suicide\n\n{section: Verso 2}\n [A]\nMedals on a wooden mantle, next to a handsome face\n [G]\nThat the president took for granted\nWriting checks that others pay\n [A]\nAnd in all the madness\nThought becomes numb and naive\n [G]\nSo much to talk about, nothing for to say\n\n{section: Pré-Refrão 2}\n[A5]        [F#5] [G5]    [A5]          [F#5]  [G5]   [A5]\nIt's the same everyday and the wave won't break\n          [F#5]  [G5]              [C5]             [D5]\nTell you to pray, while the devils on their shoulder\n[A5]         [F#5] [G5]    [A5]        [F#5]    [G5]   [A5]\nLaying claim to the take that our soldiers save\n          [F#5]  [G5]          [C5]             [D5]\nDoes not equate, and the truth's already out there\n\n{section: Refrão 2}\n[A5]   [C5]   [G5]   [A5]     [C5] [G5]\n    The whole world\n [A5]        [C5] [G5]\nWorld over\n         [D5]\nIt's a worldwide suicide\n[A5]   [C5]   [G5]   [A5]     [C5] [G5]\n    The whole world\n [A5]        [C5] [G5]\nWorld over\n         [D5]\nIt's a worldwide suicide\n\n{section: Instrumental}\n[B5] [A5]\n\n{section: Verso 3}\n  [B5]\nLooking in the eyes of the fallen\nYou got to know there's another, another, another, another\nAnother way\n\n{section: Pré-Refrão 3}\n[A5]      [F#5] [G5]    [A5]        [F#5]  [G5]   [A5]\nIt's a shame to awake in a world of pain\n          [F#5]  [G5]        [C5]             [D5]\nWhat does it mean when a war has taken over\n[A5]       [F#5] [G5]    [A5]           [F#5]  [G5]   [A5]\nIt's the same everyday and the wave won't break\n          [F#5]  [G5]             [C5]             [D5]\nTell you to pray, while the devils on their shoulder\n\n{section: Refrão 3}\n[A5]   [C5]   [G5]   [A5]     [C5] [G5]\n    The whole world\n [A5]        [C5] [G5]\nWorld over\n         [D5]\nIt's a worldwide suicide\n[A5]   [C5]   [G5]   [A5]     [C5] [G5]\n    The whole world\n [A5]        [C5] [G5]\nWorld over\n         [D5]\nIt's a worldwide suicide"
+}

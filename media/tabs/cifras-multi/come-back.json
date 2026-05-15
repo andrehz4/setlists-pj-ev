@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Come Back (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom F, 80 BPM."
+  },
+  "title": "Come Back",
+  "artist": "Pearl Jam",
+  "key": "F",
+  "bpm": 80,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 1
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "C7": {
+          "fingering": "x32310",
+          "fingers": "x32410",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "4211",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "C7": {
+          "fingering": "0001",
+          "fingers": "0001",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "Bb": { "notes": ["Bb", "D", "F"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "C7": { "notes": ["C", "E", "G", "Bb"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F]  [C]  [Bb]  x2\n\n{section: Verso 1}\n[F]\nIf I keep holding out\n         [Bb]\nwill the light shine through,\n           [F]\nunder this broken roof?\n          [Bb]\nIt's only rain that I feel,\n          [F]\nI've been wishing out the days;\n[Bb]        [C]        [F]\nOhh, ohh, oh, come back\n\n{section: Verso 2}\n            [F]\nI have been planning out,\n         [Bb]\nall that I'd say to you\n          [F]\nSince you slipped away,\n            [Bb]\nknow that I still remain true\n          [F]\nI've been wishing out the days,\n[C]                      [F]\nplease say that if you hadn't gone now;\n                [Bb]\nI wouldn't have lost you another way,\n         [F]\nfrom wherever you are,\n[Bb]        [C]        [F]    [C]\nOhh, ohh, oh, come back\n\n{section: Refrão 1}\n          [C7]               [F]  [C]\nAnd these days they linger on\n           [C7]                      [F]   [Bb]\nAnd in the night I've been waiting for,\n              [F]                 [Bb]             [F]\nthe real possibility that I may meet you in my dreams,\n        [C]\nI go to sleep\n\n{section: Verso 3}\n[F]                    [Bb]\nIf I don't fall apart, will my memory stay clear?\n[F]               [Bb]\nSo you had to go, and I had to remain here\n        [F]                    [Bb]\nBut the strangest thing today,\n   [C]            [C7]              [F]\nso far away and yet you feel so close;\n                  [Bb]\nand I'm not gonna question it any other way\n                 [F]\nThere must be an open door,\n    [Bb]            [C]            [F]    [C]\nfor you uhh, uhh, uhh, to come back\n\n{section: Refrão 2}\n          [C7]               [F]  [C]\nAnd these days they linger on\n          [C7]                      [F]   [C]\nAnd every night I've been waiting for,\n              [Bb]                [F]              [Bb]     [C]\nthe real possibility that I may meet you in my dreams,\n                 [Bb]               [F]                  [C]\nSometimes you're there and you're talking back to me\n         [Bb]                                      [F]\nCome the morning I can swear that you're next to me,\n          [C]\nand it's okay\n\n{section: Solo}\n[F] [C] [Bb]\n      [F]        [Bb]\nIt's ok, it's ok\n\n{section: Outro}\n[F]          [C]         [F]          [C]\nOh, I need you, come back, come back\n[F]         [C]         [F]          [C]\nI, I need you, come back, come back\n[F]         [C]         [F]          [C]\nI, I need you, come back, come back\n\n[F]                  [Bb]\nWhoooo whooo whooo whoo\n[F]           [Bb]\nWhoooo whoo whooo\n[F]"
+}

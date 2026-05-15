@@ -1,0 +1,139 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Severed Hand (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 120 BPM."
+  },
+  "title": "Severed Hand",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "Em": { "notes": ["E", "G", "B"], "fundamental": null },
+        "Am": { "notes": ["A", "C", "E"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [A] [C] [G] (x3)\n[A] [A] [C] [G] (último acorde G 4x, então riff principal)\n\n{section: Verso 1}\n( [A] [A] [C] [G] ) x4\nBig man stands behind an open door\nSaid, leave your lady on the cement floor\n\n{section: Bridge}\n[D] [D] [C] [F]     [A] [A] [C] [G]     [A] [A] [C] [G]\ngot some kicks, want to take a ride?\nI said, yeah!\ntake your pick, leave yourself behind\nI said, yeah!\n\n{section: Refrão}\n[D] [A] [C] [G]\nI've no fear but for falling down\n[D] [A] [C] [G]\nSo look out below I am falling now\n[D] [A] [C] [G]\nOh please understand I just need, my friend,\n[C]\na way a way a way home\n\n{section: Verso 2}\n( [A] [A] [C] [G] ) x4\nTried to walk, found a severed hand\nRecognized for the wedding band\n\nSaid it's ok, do you want some more?\nI said, yeah!\nSaid You'll see dragons after 3 or 4\nI said, yeah!\n\nUnder stand I'm not falling down\nI said, look around, the rooms taller now,\nI can't close my eyes, cause I see the sound in waves\nIn waves, lets me stay calm, Only if I...\n\n{section: Break}\n[Am] [C] [G] [Em] (x4)\nDon't lose control\nExplore and not explode\nA preternatural other plane\nWith the power to maintain\n\nLike a tear in all we know\nOnce dissolved we are free to grow\nWhat is human, what is more?\nI'll answer this when I get home\n\n{section: Outro}\n[A] [A] [C] [G] (riff principal até o fim, solo de wah por cima)"
+}
