@@ -111,11 +111,20 @@ async function main() {
 
   const newItems = [];
   const acceptedIds = new Set();
+  const mergeWarnings = [];
   for (const c of curatedInput) {
     const validated = validateCurated(c);
-    if (!validated) { console.warn(`[merge] invalido (skip): ${c?.id || "?"}`); continue; }
+    if (!validated) {
+      console.warn(`[merge] invalido (skip): ${c?.id || "?"}`);
+      mergeWarnings.push(`Item invalido ignorado: id="${c?.id || "?"}" (titulo ausente, muito longo ou corpo curto demais)`);
+      continue;
+    }
     const p = pendingById.get(validated.id);
-    if (!p) { console.warn(`[merge] id ${validated.id} nao esta em _pending.json (skip)`); continue; }
+    if (!p) {
+      console.warn(`[merge] id ${validated.id} nao esta em _pending.json (skip)`);
+      mergeWarnings.push(`ID ${validated.id} nao encontrado em _pending.json (skip)`);
+      continue;
+    }
     const baseItem = {
       id: p.id,
       url: p.url,
@@ -159,6 +168,7 @@ async function main() {
     }
   } catch (e) {
     console.warn(`[merge] falha ao enfileirar IG (segue mesmo assim): ${e.message}`);
+    mergeWarnings.push(`Fila IG nao atualizada: ${e.message}`);
   }
 
   // merge no index
@@ -221,6 +231,14 @@ async function main() {
 
   console.log(`[merge] index.json: ${finalItems.length} items.`);
 
+  // Agrupa itens aceitos por fonte pra mostrar no summary
+  const sourceMap = new Map();
+  for (const it of newItems) {
+    const lbl = it.sourceLabel || it.source || "desconhecida";
+    sourceMap.set(lbl, (sourceMap.get(lbl) || 0) + 1);
+  }
+  const sourceResults = [...sourceMap.entries()].map(([label, count]) => ({ label, count, error: null }));
+
   await writeStepSummary({
     title: "News merge-curated",
     meta: { recebidos: curatedInput.length, aceitos: newItems.length, rejeitados: curatedInput.length - newItems.length },
@@ -230,6 +248,8 @@ async function main() {
       "pending restante": remainingPending.length,
       "arquivados (overflow)": overflow.length,
     },
+    sources: sourceResults.length ? sourceResults : undefined,
+    warnings: mergeWarnings.length ? mergeWarnings : undefined,
     curated: newItems,
   });
 }
