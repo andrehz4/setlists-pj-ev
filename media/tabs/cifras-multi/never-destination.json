@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Never Destination (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Never Destination",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "A",
+  "bpm": 112,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "C9": { "fingering": "x23033", "fingers": "x23011", "fundamental": "C" },
+        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 112,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C9": { "fingering": "0203", "fingers": "0203", "fundamental": "C" },
+        "E":  { "fingering": "4442", "fingers": "4321", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 112,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":  { "notes": ["A", "C#", "E"],    "fundamental": "A", "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],     "fundamental": "G", "inversion": null },
+        "D":  { "notes": ["D", "F#", "A"],    "fundamental": "D", "inversion": null },
+        "C9": { "notes": ["C", "D", "E", "G"], "fundamental": "C", "inversion": null },
+        "E":  { "notes": ["E", "G#", "B"],    "fundamental": "E", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A] [G]\n[A] [G]\n[A] [G]\n[A] [G]\n\n{section: Verso 1}\n[A]Blisters on my fingers, [G]blisters on my brain\n[A]Blisters on the voices, [G]crazy makes insane[A]\nThere's an [G]angry sea, an ocean in my eyes\n[A]The waves are rolling, [G]I'm becoming blind\n[D]I won't be taken, [C9]won't take myself\n[D]Kicking and screaming, have to [C9]knock me off the shelf\n[A]Feels like illusion, [G]this taking place?\n[A]Disease of confusion, [G]stripped off our grace\n[E]Don't wanna believe it, these endless miles\n[D] [A] [G]Never destination, just more denial\n[A]More denial [G]\n\n{section: Verso 2}\n[A]Some resolution, [G]some justice tied\n[A]To this collusion [G]hiding in plain sight\n[A]So see you later, [G]never say goodbye\n[A]This little trick [G]I play on my own mind\n[D]I'm a recluse in search of [C9]new friends\n[D]How they gonna find me [C9]back where the road ends\n[A]Off on the distance, [G]leviathans\n[A]50 foot and breaking [G]on our innocence\n[E]Don't wanna believe it, these endless miles\n[D] [A] [G]Never destination, just more denial\n[A]More denial [G]\n\n{section: Instrumental}\n[A] [G]\n[A] [G]\n[A] [G]\n[A] [G]\n[D] [C9]\n[D] [C9]\n[A] [G]\n[A] [G]\n\n{section: Coda}\n[E]I can't believe it, these endless lies\n[D] [A] [G]Never destination, just more denial\n[A]More denial [G]\n\n{section: Instrumental 2}\n[A]\n\n{section: Ponte}\n[A]When you make the drop, the gaping maw\nKeeps us alive, should we survive\nWhen you make the drop, the gaping maw\nKeeps us alive, should we survive\nWhen you make the drop, the gaping maw\n\n{section: Instrumental 3}\n[E]\n[A] [G]\n[A] [G]\n\n{section: Verso 3}\n[A]Thank you Bob Honey, [G]thanks Paul Theroux\n[A]If ever I die, [G]to this place let me go[A]\nOff on the [G]distance, leviathans\n[A]50 foot and breaking [G]on my innocence\n[D]I won't be taken, [C9]won't take myself\n[D]Kicking and screaming, have to [C9]knock me off the shelf\n[A]Say see-ya later, [G]never say goodbye\n[A]This a little trick [G]I play on my own mind\n[E]Don't wanna believe it, these endless miles\n[D]Never destination, just more denial\n\n{section: Instrumental 4}\n[A]\n[A] [G]\n[A] [G]\n\n{section: Outro}\n[A]She was a singer in a [G]rock-and-roll band\n[A]Had command of all [G]her voices\n[A]Turned herself into [G]a hologram\n[A]It all came down [G]to choices\n[D]So I say til then, [C9]never say goodbye\n[G]A little trick I play, [C9] [D]on my mind\n"
+}

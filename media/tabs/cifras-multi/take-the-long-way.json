@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Take The Long Way (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Take The Long Way",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "Em",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Em": { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "Am": { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Bm": { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "C":  { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "7/4 no verso, 4/4 no refrão",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Em": { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
+        "Am": { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Bm": { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "C":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "7/4 no verso, 4/4 no refrão",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Em": { "notes": ["E", "G", "B"],  "fundamental": "E", "inversion": null },
+        "Am": { "notes": ["A", "C", "E"],  "fundamental": "A", "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],  "fundamental": "G", "inversion": null },
+        "Bm": { "notes": ["B", "D", "F#"], "fundamental": "B", "inversion": null },
+        "C":  { "notes": ["C", "E", "G"],  "fundamental": "C", "inversion": null },
+        "D":  { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n{comment: Compasso 7/4. Ver tab GP5 para riff completo. A cifra abaixo e uma aproximacao em 4/4.}\n[Em] [Am] [G]\n[Em] [Am] [G]\n[Em] [Am] [G]\n[Em] [Am] [G]\n\n{section: Verso 1}\n{comment: 7/4 - progressao Em Am G. Contar 1 2 3 4 5 6 7 por compasso.}\n[Em] [Am] [G]\n[Em] [Am] [G]\n[Em] [Am] [G]\n[Em] [Am] [G]\n\n{section: Pré-Refrão 1}\n{comment: Riff complexo - ver tab GP5 para referencia completa.}\n[Em]\n[Bm]\n[Am]\n[Em]\n[Bm]\n[Am]\n[Em]\n[Bm]\n[Am]\n\n{section: Refrão 1}\n{comment: Muda para 4/4.}\n[C] [Bm]\n[C] [Bm]\n[C] [Bm]\n[C] [Bm]\n\n{section: Verso 2}\n{comment: Volta para 7/4.}\n[Em] [Am] [G]\n[Em] [Am] [G]\n[Em] [Am] [G]\n[Em] [Am] [G]\n\n{section: Pré-Refrão 2}\n[Em] [Bm] [Am]\n[Em] [Bm] [Am]\n\n{section: Refrão 2}\n{comment: 4/4.}\n[C] [Bm]\n[C] [Bm]\n[C] [Bm]\n[C] [Bm]\n\n{section: Solo}\n{comment: Instrumental com wah. Base em Am.}\n[Am]\n\n{section: Outro}\n{comment: Muda para 6/4. Repetir ate fade.}\n[Am] [D]\n[Am] [D]\n[Am] [D]\n[Am] [D]\n"
+}

@@ -1,0 +1,99 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Comes Then Goes (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Comes Then Goes",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "E",
+  "bpm": 80,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E":    { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "G5":   { "fingering": "355x00", "fingers": "134x00", "fundamental": "G" },
+        "A5":   { "fingering": "x02200", "fingers": "x02300", "fundamental": "A" },
+        "D5":   { "fingering": "xx0230", "fingers": "xx0130", "fundamental": "D" },
+        "Asus2": { "fingering": "x02200", "fingers": "x01200", "fundamental": "A" },
+        "E/A":  { "fingering": "002100", "fingers": "002100", "fundamental": "A" },
+        "Bm/F#": { "fingering": "2x4432", "fingers": "213421", "fundamental": "F#", "barre": 2 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 80,
+        "beats": [
+          { "count": "1",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "rest", "muted": false },
+          { "count": "2",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "3",  "stroke": "up",   "muted": false },
+          { "count": "&",  "stroke": "rest", "muted": false },
+          { "count": "4",  "stroke": "up",   "muted": false },
+          { "count": "a",  "stroke": "down", "muted": false },
+          { "count": "+",  "stroke": "rest", "muted": false },
+          { "count": "e",  "stroke": "up",   "muted": false },
+          { "count": "a+", "stroke": "down", "muted": false },
+          { "count": "e+", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E":    { "fingering": "4442", "fingers": "4321", "fundamental": "E" },
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "G5":   { "fingering": "0230", "fingers": "0231", "fundamental": "G" },
+        "A5":   { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "D5":   { "fingering": "2210", "fingers": "2210", "fundamental": "D" },
+        "Asus2": { "fingering": "2200", "fingers": "1200", "fundamental": "A" },
+        "E/A":  { "fingering": "2442", "fingers": "1341", "fundamental": "A" },
+        "Bm/F#": { "fingering": "4222", "fingers": "4111", "fundamental": "F#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 80,
+        "beats": [
+          { "count": "1",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "rest", "muted": false },
+          { "count": "2",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "3",  "stroke": "up",   "muted": false },
+          { "count": "&",  "stroke": "rest", "muted": false },
+          { "count": "4",  "stroke": "up",   "muted": false },
+          { "count": "a",  "stroke": "down", "muted": false },
+          { "count": "+",  "stroke": "rest", "muted": false },
+          { "count": "e",  "stroke": "up",   "muted": false },
+          { "count": "a+", "stroke": "down", "muted": false },
+          { "count": "e+", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E":    { "notes": ["E", "G#", "B"],      "fundamental": "E",  "inversion": null },
+        "A":    { "notes": ["A", "C#", "E"],      "fundamental": "A",  "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],      "fundamental": "D",  "inversion": null },
+        "G":    { "notes": ["G", "B", "D"],       "fundamental": "G",  "inversion": null },
+        "G5":   { "notes": ["G", "D"],            "fundamental": "G",  "inversion": null },
+        "A5":   { "notes": ["A", "E"],            "fundamental": "A",  "inversion": null },
+        "D5":   { "notes": ["D", "A"],            "fundamental": "D",  "inversion": null },
+        "Asus2": { "notes": ["A", "B", "E"],      "fundamental": "A",  "inversion": null },
+        "E/A":  { "notes": ["A", "E", "G#", "B"], "fundamental": "A",  "inversion": "1a" },
+        "Bm/F#": { "notes": ["F#", "B", "D"],     "fundamental": "F#", "inversion": "1a" }
+      }
+    }
+  },
+  "content": "{section: Intro}\n{comment: Fingerpicking - ver tab para padrão completo.}\n[E]\n\n{section: Verso 1}\n[E]High or low, where'd ya go?\n[E]Are you stuck in the middle? A [A]spectral in[Asus2]visible [A]ghost\n[E]I'm here juxta[G5]posed [A5] [D5] [E]\n[D]Like images of [A]angels in the [E]snow [G5] [A5] [D5] [E]\n[D]Our courage melts away, it [A]comes then [E]goes [E/A] [E]\n\n{section: Verso 2}\n[E]Where ya been? Can I find\n[E]A glimpse of my friend, don't know where or [A]when one of us [Asus2]left [A]\n[E]The other be[G5]hind [A5] [D5] [E]\n[D]Divisions came and [A]troubles multi[E]plied [G5] [A5] [D5] [E]\n[D]Incisions made by [A]scalpel blades of [E]time [E/A] [E]\n\n{section: Refrão 1}\n[G]Co-[E]mes then [A]goes [D] [E] [E/A] [E]\n[G]Co-[E]mes then [A]goes [D] [E]\n\n{section: Verso 3}\n[E]Can I say, how ya been?\n[E]I can guess and conjecture, my [A]altered per[Asus2]ceptions un[A]clear\n[E]Please inter[G5]fere [A5] [D5] [E]\n[D]Sadness comes, with it a [A]sea of tears [E] [G5] [A5] [D5] [E]\n[D]Would some love be best had it [A]not appeared? [E] [E/A] [E]\n\n{section: Verso 4}\n[E]Is this you? Here I stand\n[E]Intense recollections of [A]pain, self-ne[Asus2]glecting a[A]gain\n[E]Like you, I keep it [G5]in [A5] [D5] [E]\n[D]Thought you found a game where you [A]could win [E] [G5] [A5] [D5] [E]\n[D]Yeah, it's all vivisection [A]in the [E]end [E/A] [E]\n\n{section: Refrão 2}\n[G]Co-[E]mes then [A]goes [D] [E] [E/A] [E]\n[G]Co-[E]mes then [A]goes [E]\n[Bm/F#]Co-[A]mes then [E]goes\n\n{section: Ponte}\n{comment: Instrumental x2, depois variacao.}\n[G] [G5] [A5] [D5] [E]\n[G] [G5] [A5] [D5] [E]\n\n{section: Verso 5}\n[E]High or low, try again\n[E]She fell off the altar, a [A]vision you caught her but [Asus2]then [A]\n[E]A woodcut in [G5]red [A5] [D5] [E]\n[D]Wish it was not you that she [A]had led [E] [G5] [A5] [D5] [E]\n[D]Selfish navigation [A]with no [E]end [E/A] [E]\n\n{section: Verso 6}\n[E]Where'd ya sleep? Can I find\n[E]A deeper connection in the [A]face of re[Asus2]jection I'm [A]trying\n[E]I'm try[G5]ing [A5] [D5] [E]\n[D]Evidence in the [A]echoes of your [E]mind [G5] [A5] [D5] [E]\n[D]Leads me to believe we [A]missed the [E]signs [E/A] [E]\n\n{section: Verso 7}\n[E]Can I try, one last time?\n[E]Could all use a saviour from [A]human be[Asus2]haviour some[A]times\n[E]And the kids are al[G5]right [A5] [D5] [E]\n[D]The Queen of Collections [A]took your time [E] [G5] [A5] [D5] [E]\n[D]Sadness comes cause some [A]of it was [E]mine [E/A] [E]\n\n{section: Refrão 3}\n[G]Co-[E]mes then [A]goes [D] [E]\n[G]Co-[E]mes then [A]goes [E] [G5] [A5] [D5] [E]\n[Bm/F#]Co-[A]mes then [E]goes [G5] [A5] [D5] [E]\n[Bm/F#]Co-[A]mes then [E]goes\n\n{section: Outro}\n{comment: Fingerpicking - ver tab para padrão completo.}\n[E]\n"
+}
