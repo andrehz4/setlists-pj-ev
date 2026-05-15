@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Good And Evil (Eddie Vedder, Earthling 2022). Rock em Do com progressao incomum B D# E C.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Good And Evil",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "C",
+  "bpm": 115,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "B":    { "fingering": "x24442", "fingers": "x13331", "fundamental": "B",  "barre": 2 },
+        "D#":   { "fingering": "x68886", "fingers": "x13331", "fundamental": "D#", "barre": 6 },
+        "E":    { "fingering": "022100", "fingers": "023100", "fundamental": "E"  },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C"  },
+        "A#":   { "fingering": "x13331", "fingers": "x13331", "fundamental": "A#", "barre": 1 },
+        "G#":   { "fingering": "466544", "fingers": "134211", "fundamental": "G#", "barre": 4 },
+        "F#":   { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2 },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 115,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "B":    { "fingering": "4322", "fingers": "4311", "fundamental": "B"  },
+        "D#":   { "fingering": "0331", "fingers": "0231", "fundamental": "D#" },
+        "E":    { "fingering": "4442", "fingers": "4442", "fundamental": "E"  },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C"  },
+        "A#":   { "fingering": "3211", "fingers": "3211", "fundamental": "A#" },
+        "G#":   { "fingering": "5343", "fingers": "4232", "fundamental": "G#" },
+        "F#":   { "fingering": "3121", "fingers": "3121", "fundamental": "F#" },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 115,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "B":    { "notes": ["B",  "D#", "F#"],       "fundamental": "B",  "inversion": null },
+        "D#":   { "notes": ["D#", "G",  "A#"],       "fundamental": "D#", "inversion": null },
+        "E":    { "notes": ["E",  "G#", "B"],        "fundamental": "E",  "inversion": null },
+        "C":    { "notes": ["C",  "E",  "G"],        "fundamental": "C",  "inversion": null },
+        "A#":   { "notes": ["A#", "D",  "F"],        "fundamental": "A#", "inversion": null },
+        "G#":   { "notes": ["G#", "C",  "D#"],       "fundamental": "G#", "inversion": null },
+        "F#":   { "notes": ["F#", "A#", "C#"],       "fundamental": "F#", "inversion": null },
+        "G":    { "notes": ["G",  "B",  "D"],        "fundamental": "G",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[B] [D#] [E] [C] (x4)\n\n{section: Verso 1}\nOh, when you look in the [B]mirror [A#] [B] [C]\nOh, tell me what do you [B]see? [A#] [B] [C]\nAn older woman showering in [B]victims blood? [A#] [B] [C]\nOr have yourself you de[B]ceived? [A#] [B] [C]\nDo your rich accommo[B]dations [A#] [B] [C]\nNumb you to what you be[B]lieve? [A#] [B] [C]\nOh, for the love of a [B]gun [A#] [B] [C]\nYou're like a bullet aimed to de[B]ceive [A#] [B] [C]\n\n{section: Refrão}\n[G#]You talked yourself, you talked yourself\nYou're living a [B]lie (x4)\n\n{section: Interlúdio}\n[B] [D#] [E] [C] (x2)\n\n{section: Verso 2}\nI hear you're gone on ad[B]venture [A#] [B] [C]\nI hear you're living the [B]dream [A#] [B] [C]\nOh, with your poor excuse for a [B]husband [A#] [B] [C]\nA safari [B]scene [A#] [B] [C]\nOh, look at you dressed up as [B]hunters [A#] [B] [C]\nLike some fucked-up Hallo[B]ween [A#] [B] [C]\nOh, a majestic creature and a [B]bullet [A#] [B] [C]\nAnd a dour [B]queen [A#] [B] [C]\n\n{section: Refrão 2}\n[G#]You talked yourself... (x4)\n\n{section: Ponte}\n[B] [F#] [G] [B] [F#] [G]\nAnd I [B]wake up with forgiveness every [F#]day in my [G]heart\nBut for [B]you, I have not got any, [F#]dear [G]\nOh, you [B]felt just fine looking the [F#]elephant in the [G]eye\nYou [B]pulled the trigger, you're fucking sick I [F#]wonder [G]why?\n\n{section: Interlúdio 2}\n[C] [D#] [C] [D#] (x2)\n\n{section: Outro}\n[C]I wish you well, I wish you Hell, I wish you were by[D#]gone (x3)\n[C]Change your ways and change your aim, don't live in de[D#]nial\n[B] [D#] [E] [C] (x2)\n"
+}

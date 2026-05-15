@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Light Today (Eddie Vedder, Ukulele Songs 2011).",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Light Today",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "F#m",
+  "bpm": 110,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F#m":  { "fingering": "244222", "fingers": "134111", "fundamental": "F#", "barre": 2 },
+        "F":    { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "Asus2":{ "fingering": "x02200", "fingers": "x02300", "fundamental": "A" },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#m":  { "fingering": "2120", "fingers": "2120", "fundamental": "F#" },
+        "F":    { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Asus2":{ "fingering": "2200", "fingers": "1200", "fundamental": "A" },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#m":  { "notes": ["F#", "A", "C#"],  "fundamental": "F#", "inversion": null },
+        "F":    { "notes": ["F", "A", "C"],    "fundamental": "F",  "inversion": null },
+        "Asus2":{ "notes": ["A", "B", "E"],    "fundamental": "A",  "inversion": null },
+        "G":    { "notes": ["G", "B", "D"],    "fundamental": "G",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F#m] [F] [Asus2] [G]\n[F#m] [F] [Asus2] [G]\n\n{section: Refrão}\n[F#m]I saw the [F]light to[Asus2]day [G]\n[F#m]I saw the [F]light to[Asus2]day [G]\n[F#m]I saw the [F]light to[Asus2]day [G]\n[F#m]I saw the [F]light to[Asus2]day [G]\n\n{section: Verso}\n[F#m]Silence [F]louder when so [Asus2]long [G]\n[F#m]The [F]quiet building in the [Asus2]dark [G]\n[F#m]Surrender to the [F]game [Asus2] [G]\n[F#m]I saw the [F]light to[Asus2]day [G]\n[F#m]The silent [F]scream that we're a[Asus2]part [G]\n[F#m]I dare to [F]dream for there you [Asus2]are [G]\n[F#m]I bleed, but I [F]won't [Asus2]break [G]\n[F#m]I saw the [F]light to[Asus2]day [G]\n\n{section: Refrão 2}\n[F#m]I saw the [F]light to[Asus2]day [G]\n[F#m]I saw the [F]light today, [Asus2]today, [G][F#m]to[F]day, [Asus2]today, today\n\n{section: Outro}\n[G] [F#m] [F]\n"
+}

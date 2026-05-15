@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Fallout Today (Eddie Vedder, Earthling 2022). Rock moderado em Mi.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Fallout Today",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "E",
+  "bpm": 120,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F#m":  { "fingering": "244222", "fingers": "134111", "fundamental": "F#", "barre": 2 },
+        "E":    { "fingering": "022100", "fingers": "023100", "fundamental": "E"  },
+        "A":    { "fingering": "x02220", "fingers": "x02230", "fundamental": "A"  },
+        "B":    { "fingering": "x24442", "fingers": "x13331", "fundamental": "B",  "barre": 2 },
+        "C#m":  { "fingering": "x46654", "fingers": "x13421", "fundamental": "C#", "barre": 4 },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D"  },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#m":  { "fingering": "2120", "fingers": "2120", "fundamental": "F#" },
+        "E":    { "fingering": "4442", "fingers": "4442", "fundamental": "E"  },
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A"  },
+        "B":    { "fingering": "4322", "fingers": "4311", "fundamental": "B"  },
+        "C#m":  { "fingering": "1104", "fingers": "1104", "fundamental": "C#" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D"  },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#m":  { "notes": ["F#", "A",  "C#"],       "fundamental": "F#", "inversion": null },
+        "E":    { "notes": ["E",  "G#", "B"],        "fundamental": "E",  "inversion": null },
+        "A":    { "notes": ["A",  "C#", "E"],        "fundamental": "A",  "inversion": null },
+        "B":    { "notes": ["B",  "D#", "F#"],       "fundamental": "B",  "inversion": null },
+        "C#m":  { "notes": ["C#", "E",  "G#"],       "fundamental": "C#", "inversion": null },
+        "D":    { "notes": ["D",  "F#", "A"],        "fundamental": "D",  "inversion": null },
+        "G":    { "notes": ["G",  "B",  "D"],        "fundamental": "G",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E] [G] [E]\n\n{section: Verso 1}\nOh, [F#m]multiplied the questions in her [E]mind\nOh, [F#m]trying to subtract the great di[E]vide\n[F#m]Feeling drowned in her perceptions\n[A]Reaching out in all directions\n[B]No es[E]cape [G] [E]\n\n{section: Verso 2}\nOh, [F#m]second chances granted one more [E]time\nAnd in the [F#m]depths of darkness, found the [E]light\n[F#m]And the hope she thought abandoned\n[A]Was not lost for her companion\n[B]Kept it safe\n\n{section: Refrão}\nFor the [E]fallout to[C#m]day was just a [B]test of strength [A]\nOh, don't [E]leave it a[C#m]lone, dare carry it [B]on your own [A]\nDon't make [E]light of the [D]weight, you'll for[C#m]tify the [B]chains\n[A]And don't beg for forgiveness\nWe all need to share and shake the [E]pain\n\n{section: Solo}\n[C#m] [E] [A] [F#m] [C#m] [E] [A]\n[F#m] [C#m] [E] [A] [F#m] [A] [F#m] [B]\n\n{section: Refrão 2}\nFor the [E]fallout to[C#m]day was just a [B]test of strength [A]\nOh, don't [E]feel this a[C#m]lone or carry it [B]on your own [A]\nDon't make [E]light of these [D]weights, you'll for[C#m]tify it's [B]chains\n[A]Never beg for forgiveness\nIt's a gift to share and shake the [E]pain\n[E]Share the pain\n"
+}

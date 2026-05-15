@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Satellite (Eddie Vedder, Ukulele Songs 2011). Original em ukulele. Nao confundir com Satellite do Pearl Jam.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Satellite",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "C",
+  "bpm": 100,
+  "capo": null,
+  "default_instrument": "ukulele",
+  "notes": "Diferente da musica Satellite do Pearl Jam. Versao solo de Eddie Vedder em ukulele.",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Dm":     { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "G":      { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Em7":    { "fingering": "022030", "fingers": "023040", "fundamental": "E" },
+        "A7":     { "fingering": "x02020", "fingers": "x02030", "fundamental": "A" },
+        "C":      { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "C7":     { "fingering": "x32310", "fingers": "x32410", "fundamental": "C" },
+        "Gdim":   { "fingering": "xx5656", "fingers": "xx1243", "fundamental": "G" },
+        "Cm":     { "fingering": "x35543", "fingers": "x13421", "fundamental": "C", "barre": 3 },
+        "Fm":     { "fingering": "133111", "fingers": "134111", "fundamental": "F", "barre": 1 },
+        "G7sus4": { "fingering": "320013", "fingers": "210014", "fundamental": "G" },
+        "G7":     { "fingering": "320001", "fingers": "210001", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Dm":     { "fingering": "2210", "fingers": "2310", "fundamental": "D" },
+        "G":      { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Em7":    { "fingering": "0202", "fingers": "0202", "fundamental": "E" },
+        "A7":     { "fingering": "0100", "fingers": "0100", "fundamental": "A" },
+        "C":      { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "C7":     { "fingering": "0001", "fingers": "0001", "fundamental": "C" },
+        "Gdim":   { "fingering": "0101", "fingers": "0101", "fundamental": "G" },
+        "Cm":     { "fingering": "0333", "fingers": "0333", "fundamental": "C" },
+        "Fm":     { "fingering": "1013", "fingers": "1013", "fundamental": "F" },
+        "G7sus4": { "fingering": "0213", "fingers": "0213", "fundamental": "G" },
+        "G7":     { "fingering": "0212", "fingers": "0213", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Dm":     { "notes": ["D", "F", "A"],          "fundamental": "D",  "inversion": null },
+        "G":      { "notes": ["G", "B", "D"],          "fundamental": "G",  "inversion": null },
+        "Em7":    { "notes": ["E", "G", "B", "D"],     "fundamental": "E",  "inversion": null },
+        "A7":     { "notes": ["A", "C#", "E", "G"],    "fundamental": "A",  "inversion": null },
+        "C":      { "notes": ["C", "E", "G"],          "fundamental": "C",  "inversion": null },
+        "C7":     { "notes": ["C", "E", "G", "Bb"],    "fundamental": "C",  "inversion": null },
+        "Gdim":   { "notes": ["G", "Bb", "Db"],        "fundamental": "G",  "inversion": null },
+        "Cm":     { "notes": ["C", "Eb", "G"],         "fundamental": "C",  "inversion": null },
+        "Fm":     { "notes": ["F", "Ab", "C"],         "fundamental": "F",  "inversion": null },
+        "G7sus4": { "notes": ["G", "C", "D", "F"],     "fundamental": "G",  "inversion": null },
+        "G7":     { "notes": ["G", "B", "D", "F"],     "fundamental": "G",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G7sus4]   [G7]  (x4)\n\n{section: Verso 1}\n[Dm]                [G]\nIts no shame that love's a game that\n[Em7]                  [A7]\nI can only play with you\n         [Dm]\nWhat I'm saying is I'm here\n[G]           [C]       [C7]\nWaiting for you\n\n{section: Refrão}\n[G]                   [Gdim]\nI've seen the light I'm satisfied that\n[Cm]                        [G]\nThe brightest star that's you\n[G]         [Gdim]\nSatellite I'm holding tight\n[Cm]              [G]\nBeaming back to you\n\n{section: Verso 2}\n[Dm]             [G]\nDays turn into night turns into\n[Em7]            [A7]\nDays turn into today\n                    [Dm]\nDon't think I'm out playin cause I'm inside\n[G]           [C]          [C7]\nWaiting for you\n\n{section: Refrão 2}\n[G]                   [Gdim]\nI've felt the light I'm satisfied that\n[Cm]                  [G]\nThe highest high is you\n[G]         [Gdim]\nSatellite I'm holding tight\n[Cm]              [G]\nBeaming back to you\n\n{section: Ponte}\n[Dm]              [Fm]\nDon't you worry I believe your story you were\n             [C]                    [A7]\nPut away for something you didn't do, but I'm\n[Dm]                [G]\nWaiting I've been saving my love...\n\n{section: Coda}\n[G7sus4]   [G7]  (x4)\n"
+}

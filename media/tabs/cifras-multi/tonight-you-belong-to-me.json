@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Tonight You Belong To Me (Eddie Vedder, Ukulele Songs 2011). Standard dos anos 1920 coberto por EV.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Tonight You Belong To Me",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "G",
+  "bpm": 90,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "G7":    { "fingering": "320001", "fingers": "210001", "fundamental": "G" },
+        "C":     { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Cm":    { "fingering": "x35543", "fingers": "x13421", "fundamental": "C",  "barre": 3 },
+        "D":     { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "D7":    { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D" },
+        "Dmaj7": { "fingering": "xx0222", "fingers": "xx0111", "fundamental": "D" },
+        "A7":    { "fingering": "x02020", "fingers": "x02030", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (vals/swing suave)",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "G7":    { "fingering": "0212", "fingers": "0213", "fundamental": "G" },
+        "C":     { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Cm":    { "fingering": "0333", "fingers": "0111", "fundamental": "C" },
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "D7":    { "fingering": "2223", "fingers": "1223", "fundamental": "D" },
+        "Dmaj7": { "fingering": "2224", "fingers": "1123", "fundamental": "D" },
+        "A7":    { "fingering": "0100", "fingers": "0100", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (vals/swing suave)",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":     { "notes": ["G", "B", "D"],          "fundamental": "G",  "inversion": null },
+        "G7":    { "notes": ["G", "B", "D", "F"],     "fundamental": "G",  "inversion": null },
+        "C":     { "notes": ["C", "E", "G"],           "fundamental": "C",  "inversion": null },
+        "Cm":    { "notes": ["C", "D#", "G"],          "fundamental": "C",  "inversion": null },
+        "D":     { "notes": ["D", "F#", "A"],          "fundamental": "D",  "inversion": null },
+        "D7":    { "notes": ["D", "F#", "A", "C"],    "fundamental": "D",  "inversion": null },
+        "Dmaj7": { "notes": ["D", "F#", "A", "C#"],   "fundamental": "D",  "inversion": null },
+        "A7":    { "notes": ["A", "C#", "E", "G"],    "fundamental": "A",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[G]I know you be[G]long\n[G7]to somebody [C]new\n[Cm]but to[G]night\n[D]you belong to [G]me\n\n{section: Verso 2}\n[Cm] [Dmaj7] [G]Although we're a[G7]part\n[C]you are a part of my [Cm]heart\n[G]but to[G]night\n[D]you belong to [G]me\n\n{section: Ponte}\n[G] [G7] [Cm]Way down by the stream\nhow sweet it will seem\n[G]once more just to [A7]dreaming\n[D]in the moon[D7]light\n[G]my honey I know\n\n{section: Verso 3}\n[G7]With the dawn\n[C]that you will be [Cm]gone\n[G]but to[G]night\n[D]you belong to [G]me\n\n{section: Outro}\n[Cm]But to[G]night\n[D7]you be[D]long\n[G]to me\n"
+}

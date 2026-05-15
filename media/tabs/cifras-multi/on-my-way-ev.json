@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de On My Way (Eddie Vedder, Earthling 2022). Minimalista, basicamente F e G.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "On My Way",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "G",
+  "bpm": 100,
+  "capo": null,
+  "default_instrument": "violao",
+  "notes": "Diferente de On My Way de outras artistas. Faixa de encerramento do Earthling.",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F":   { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "Cm7": { "fingering": "x35343", "fingers": "x13121", "fundamental": "C",  "barre": 3 },
+        "G":   { "fingering": "320003", "fingers": "210003", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (minimalista/etéreo)",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F":   { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Cm7": { "fingering": "0333", "fingers": "0333", "fundamental": "C" },
+        "G":   { "fingering": "0232", "fingers": "0231", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (minimalista/etéreo)",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F":   { "notes": ["F", "A", "C"],         "fundamental": "F", "inversion": null },
+        "Cm7": { "notes": ["C", "Eb", "G", "Bb"],  "fundamental": "C", "inversion": null },
+        "G":   { "notes": ["G", "B", "D"],         "fundamental": "G", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F] [Cm7] [F] [Cm7] [F] [Cm7]\n[F]I'll be on my [G]way [F] [G] [F] [G] [F] [G] [F] [G] [F] [G] [F] [G] [F] [G]\n\n{section: Verso 1}\n[F]Took the long [G]way [F] [G] [F]\n[G]Took the long [F]way [G] [F] [G] [F] [G]\n\n{section: Refrão}\n[F]I'll be on my [G]way [F] [G] [F] [G] [F] [G] [F] [G] [F]\n\n{section: Verso 2}\n[G]Not got [F]half\n[G]Half of what we [F]got [G] [F]\n[G]Half of what we [F]got [G] [F] [G] [F]\n\n{section: Refrão 2}\n[G]I'll be [F]on my [G]way [F] [G] [F] [G] [F]\n\n{section: Outro}\n[G]Can you hear its echo, [F]Victor? [G] [F]\n[G]When we love, [F]invincible [G] [F] [G]\n[F]I'll.. [G] [F] [G]\n"
+}

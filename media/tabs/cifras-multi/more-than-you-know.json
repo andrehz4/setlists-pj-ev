@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de More Than You Know (Eddie Vedder, Ukulele Songs 2011). Padrao jazz lento em Si bemol.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "More Than You Know",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "Bb",
+  "bpm": 65,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Bb":   { "fingering": "x13331", "fingers": "x13421", "fundamental": "Bb", "barre": 1 },
+        "F7#5": { "fingering": "xx3443", "fingers": "xx2341", "fundamental": "F",
+                  "note": "F A C# Eb - dominante com quinta aumentada" },
+        "Bb7":  { "fingering": "x13231", "fingers": "x13241", "fundamental": "Bb", "barre": 1 },
+        "G7":   { "fingering": "320001", "fingers": "320001", "fundamental": "G"  },
+        "C7":   { "fingering": "x32310", "fingers": "x32410", "fundamental": "C"  },
+        "F7":   { "fingering": "131211", "fingers": "131211", "fundamental": "F",  "barre": 1 },
+        "A7":   { "fingering": "x02020", "fingers": "x02030", "fundamental": "A"  },
+        "Dm":   { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D"  },
+        "Ebm":  { "fingering": "x68876", "fingers": "x13421", "fundamental": "Eb", "barre": 6 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (jazz lento)",
+        "bpm": 65,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Bb":   { "fingering": "3211", "fingers": "4211", "fundamental": "Bb" },
+        "F7#5": { "fingering": "2313", "fingers": "1213", "fundamental": "F",
+                  "note": "F A C# Eb voicing ukulele" },
+        "Bb7":  { "fingering": "3211", "fingers": "4211", "fundamental": "Bb",
+                  "note": "variacao: 1211" },
+        "G7":   { "fingering": "0212", "fingers": "0213", "fundamental": "G"  },
+        "C7":   { "fingering": "0001", "fingers": "0001", "fundamental": "C"  },
+        "F7":   { "fingering": "2313", "fingers": "1213", "fundamental": "F"  },
+        "A7":   { "fingering": "0100", "fingers": "0100", "fundamental": "A"  },
+        "Dm":   { "fingering": "2210", "fingers": "2310", "fundamental": "D"  },
+        "Ebm":  { "fingering": "3321", "fingers": "4321", "fundamental": "Eb" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (jazz lento)",
+        "bpm": 65,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Bb":   { "notes": ["Bb", "D", "F"],           "fundamental": "Bb", "inversion": null },
+        "F7#5": { "notes": ["F", "A", "C#", "Eb"],     "fundamental": "F",  "inversion": null },
+        "Bb7":  { "notes": ["Bb", "D", "F", "Ab"],     "fundamental": "Bb", "inversion": null },
+        "G7":   { "notes": ["G", "B", "D", "F"],       "fundamental": "G",  "inversion": null },
+        "C7":   { "notes": ["C", "E", "G", "Bb"],      "fundamental": "C",  "inversion": null },
+        "F7":   { "notes": ["F", "A", "C", "Eb"],      "fundamental": "F",  "inversion": null },
+        "A7":   { "notes": ["A", "C#", "E", "G"],      "fundamental": "A",  "inversion": null },
+        "Dm":   { "notes": ["D", "F", "A"],            "fundamental": "D",  "inversion": null },
+        "Ebm":  { "notes": ["Eb", "Gb", "Bb"],         "fundamental": "Eb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[Bb]More than you [F7#5]know, more than you [Bb]know [Bb7]\n[Bb7]Lately I [G7]find you're on my [C7]mind [F7]\n[Bb]More than you [Ebm]know [Bb] [Bb]\n[Bb]Whether I'm [F7#5]right, whether I'm [Bb]wrong [Bb7]\n[Bb7]I need you [G7]so, more than you [C7]know [F7]\n[Bb]More than you [Ebm]know [Bb] [Bb]\n\n{section: Refrão}\n[A7]Loving you the way that I [Dm]do\n[A7]There's nothing I can do a[Dm]bout it\n[A7]And a little bit of love that I [Dm]get\n[Dm]May be all that you can [G7]give\n[G7]But I can't live with[C7]out it [F7]\n\n{section: Verso 2}\n[Bb]Oh how I'd [F7#5]cry, oh how I'd [Bb]cry [Bb7]\n[Bb7]If you got [G7]tired and said, \"Good[C7]bye\" [F7]\n[Ebm]More than I'd [Bb]show\n[Bb]More than you'd [G7]ever, ever [C7]know [F7]\n[Bb]More than you [Ebm]know [Bb] [Bb]\n[Bb]More than you'd [G7]ever, ever [C7]know [F7]\n[Bb]More than you [Ebm]know [Bb] [Bb]\n"
+}

@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Rose Of Jericho (Eddie Vedder, Earthling 2022). Folk/rock em La menor.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Rose Of Jericho",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "Am",
+  "bpm": 95,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Am": { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "Em": { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "C":  { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (folk/rock moderado)",
+        "bpm": 95,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Am": { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "Em": { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (folk/rock moderado)",
+        "bpm": 95,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Am": { "notes": ["A", "C", "E"],  "fundamental": "A", "inversion": null },
+        "Em": { "notes": ["E", "G", "B"],  "fundamental": "E", "inversion": null },
+        "D":  { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "C":  { "notes": ["C", "E", "G"],  "fundamental": "C", "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],  "fundamental": "G", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Am] [Em] [C] [G]  (x4)\n\n{section: Verso 1}\n[Am]A long time [Em]ago, in a [C]desert so [G]dry\n[Am]A simple life[Em]form, adapt[C]ing just to sur[G]vive\n[Am]A living fos[Em]sil, with no [C]roots to un[G]wind\n[Am]A holy rol[Em]ler, open [C]wings to the [G]sky\n\n[Am]A flash of [Em]lightning, be[C]fore the thunder [G]cracked\n[Am]Set trees a-[Em]burning, but [C]not the dino[G]saur plant\n[Am]'Cause she's a [Em]tumbler who can [C]bury her [G]tracks\n[Am]A resurrec[Em]tion, she keeps [C]coming [G]back\n\n{section: Refrão}\n[Am]The winds, they [Em]blow\n[D]Spread the seeds, the rose of Jeri[C]cho\n[Am]Forests [Em]fall\n[D]By hands of man like domi[C]noes\n[Am]Touch and [Em]go\n[D]Two outta three, Rocham[C]beau\n[Am]The rock you [Em]throw\n[D]Can't beat the rose of Jericho\n\n{section: Interlúdio}\n[Am] [Em] [C] [G]  (x2)\n\n{section: Verso 2}\n[Am]Stuck at a [Em]bus stop, read[C]ing H. D. Tho[G]reau\n[Am]The smell of as[Em]phalt makes it [C]hard to swal[G]low\n[Am]Another heat[Em]wave, becom[C]ing all that we [G]know\n[Am]We should've lis[Em]tened to the [C]voice of the [G]rose\n\n{section: Refrão 2}\n[Am]The winds, they [Em]blow\n[D]Spread the seeds, the rose of Jeri[C]cho\n[Am]Forests [Em]fall\n[D]By hands of man like domi[C]noes\n[Am]Touch and [Em]go\n[D]Two outta three, Rocham[C]beau\n[Am]The rock you [Em]throw\n[D]Can't beat the rose of Jericho\nCan't drown the rose of Jericho, can't beat the rose of Jericho\nCan't kill the rose of Jericho, the lesson here is Econo, yeah\n\n{section: Outro}\n[Am] [Em] [C] [G]\nThe winds, they blow  (x4)\n"
+}

@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de The Dark (Eddie Vedder, Earthling 2022). Pop/rock em Sol.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "The Dark",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "G",
+  "bpm": 82,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "Am":   { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 82,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Am":   { "fingering": "2000", "fingers": "1000", "fundamental": "A" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 82,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":    { "notes": ["G", "B", "D"],    "fundamental": "G", "inversion": null },
+        "C":    { "notes": ["C", "E", "G"],    "fundamental": "C", "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],   "fundamental": "D", "inversion": null },
+        "Am":   { "notes": ["A", "C", "E"],    "fundamental": "A", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [C] [G] [C]\n\n{section: Verso 1}\n[G]I didn't mean to up and scare ya\nI came here to [C]open up\n[G]I've been able to hear ya\nWhen you speak to yourself\n[C]I've been seeing you're good\nI've been hearing you're bad\n[G]I've been feeling so guilty\nYou've been feeling so [D]sad\n\n{section: Pré-Refrão}\n[D]These nights with the sky still full of stars [C]\nOh, I'm gonna find you in the [G]dark\n\n{section: Refrão}\n[C]I'll find you in the [G]dark\n[C]I'll find you in the [G]dark [D]\nLet me [C]lift, lift you out of the [G]dark [C] [G] [C]\n\n{section: Verso 2}\n[G]Walking the moon as if on a leash\nFollow my shadow in the sand\nBlue light beaming down on me\nAnd the [C]footprints you have left\nYour silence covers me\nLike heavy water fathoms underneath the [G]sea\nMidnight, not a cloud in the sky\nI should be lost in your [D]eyes\n\n{section: Pré-Refrão 2}\n[D]These nights with the sky still full of stars [C]\nOh, I'm gonna find you in the [G]dark\n\n{section: Refrão 2}\n[C]I'll find you in the [G]dark (x2)\n[C]I'll find you in the [G]dark [D] [G]\n[C]I'll find you in the [G]dark (x2)\nLet me [C]lift\n\n{section: Ponte}\n[Am]We all could, we all could [C]use some re[G]demption [C]\n[Am]We all fail, fail in the [D]face of per[G]fection [C] [Am]\n[D]Surrender to apologies\n[G]Oh, [C]you gotta bury me?\nWhy'd ya gotta bury [G]me?\n\n{section: Refrão 3}\n[G]Come find me in the dark (x4)\n\n{section: Ponte 2}\nIs there a [C]thread of con[G]nection?\nIs there a [C]deeper con[G]fession?\n[D]Let's find a way into the [G]clear\n[C]I'll find you in the [G]dark\n[C]Come find me in the dark [G] [D] [G]\n\n{section: Solo}\n[G] [C] [G] [C] [G] [D]\n[G] [C] [G] [C] [G] [D] [G]\n\n{section: Outro}\n[C]I'll find you in the [G]dark\n[C]Come find me in the dark [G] [D] [C]\n[C]Let us lift\n"
+}
