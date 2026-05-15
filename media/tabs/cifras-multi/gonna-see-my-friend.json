@@ -1,0 +1,165 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Gonna See My Friend (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom B, 145 BPM."
+  },
+  "title": "Gonna See My Friend",
+  "artist": "Pearl Jam",
+  "key": "B",
+  "bpm": 145,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "244xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "022xxx",
+          "fingers": "011xxx",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "577xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 5
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "C5": {
+          "fingering": "x355xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 3
+        },
+        "D5": {
+          "fingering": "x577xx",
+          "fingers": "x134xx",
+          "fundamental": null,
+          "barre": 5
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13331",
+          "fundamental": null,
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "8 COLCHEIAS D-U (padrão)",
+        "bpm": 145,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "B5": {
+          "fingering": "4200",
+          "fingers": "4200",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "3100",
+          "fingers": "3100",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "4200",
+          "fingers": "4200",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "2200",
+          "fingers": "2200",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "C5": {
+          "fingering": "0050",
+          "fingers": "0050",
+          "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "2200",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4321",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "8 COLCHEIAS D-U (padrão)",
+        "bpm": 145,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "B5": { "notes": ["B", "F#"], "fundamental": null },
+        "F#5": { "notes": ["F#", "C#"], "fundamental": null },
+        "E5": { "notes": ["E", "B"], "fundamental": null },
+        "A5": { "notes": ["A", "E"], "fundamental": null },
+        "G5": { "notes": ["G", "D"], "fundamental": null },
+        "C5": { "notes": ["C", "G"], "fundamental": null },
+        "D5": { "notes": ["D", "A"], "fundamental": null },
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[B] [A] [B] [A] [A]...\n\n{section: Verso 1}\n[B5]                  [F#5]\nDo you want to hear something sad?\n           [B5]           [F#5]\nwe are but victims of desire\n[B5]                   [F#5]\nI'm gonna shake this day\n                   [B5]              [F#5]\nI wanna shake this day before I retire\n\n{section: Refrão}\n[E5]       \nI'm gonna see my friend\n         \nI'm gonna see my friend, make it go away\n[E5]         \nI'm sick of everything\n         \nI'm gonna see my friend, make it go away\n         [C5] [D5]\n\n{section: Verso 2}\n[B5]                 [F#5]                     [B5]               [F#5]\nWell I said I... I won't be long before we all walk off the wire\n     [B5]               [F#5]                      [B5]               [F#5]\nWell I'm gonna see my friend, I'm gonna see my friend for what I require\n[B5]            [F#5]\nWell I said I will come in quick\n              [B5]              [F#5]\ndon't want my flame to get no higher\n\n{section: Refrão 2}\n[E5]\nI'm gonna see my friend\nI'm gonna see my friend, make it go away\n[C5] [D5]\n[E5]\nI'm sick of everything\nI'm gonna see my friend, make it go away\n[C5] [D5]\n[E5]\nI'm gonna see my friend\ngonna see my friend, make it go away\n[C5] [D5]\n\n{section: Interlúdio}\n[A5] [A5] [G5] [F#5] [E5]\n\n{section: Bridge}\n[A5]\nWanna leave it all\n[G5]\nWanna give it up\n[F#5]          [E5]\nWanna see it gone once and for all\n\n[A5]\nWanna feel withdrawl\n[G5]\nWant an overhaul\n[F#5]\nWanna be there\n[E5]\nHard as a statue, black as a tattoo\n[E5]\nNever to wash away\n\n{section: Verso 3}\n[B5]               [F#5]\nGonna take me an astral plane\n          [B5]                [F#5]\nI'm gonna tunnel through denial\n    [B5]                   [F#5]\nBut I'm gonna shake this thing\n                   [B5]                [F#5]\nI wanna shake this thing before I retire\n\n{section: Refrão 3}\n[E5]\nI'm gonna see my friend\nI'm gonna see my friend, make it go away\n[C5] [D5]\n[E5]\nI'm sick of everything\nI'm gonna see my friend, make it go away\n[C5] [D5]\n[E5]\nI'm gonna see my friend\nI'm gonna see my friend, make it go away\n[C5] [D5]\n\n{section: Outro}\n[B] [B] [A] [A] [B] [B] [A] [A]..."
+}

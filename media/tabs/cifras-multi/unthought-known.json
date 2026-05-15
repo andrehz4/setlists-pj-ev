@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Unthought Known (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar (adaptado)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom F, 90 BPM."
+  },
+  "title": "Unthought Known",
+  "artist": "Pearl Jam",
+  "key": "F",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Dm": {
+          "fingering": "xx0231",
+          "fingers": "xx0231",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "C7": {
+          "fingering": "x32310",
+          "fingers": "x32410",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Dm": {
+          "fingering": "2210",
+          "fingers": "2310",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "C7": {
+          "fingering": "0001",
+          "fingers": "0001",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "Dm": { "notes": ["D", "F", "A"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "C7": { "notes": ["C", "E", "G", "Bb"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F] [Dm] [C] [C7] x2\n\n{section: Verso 1}\n[F]       [Dm]                  [C]          [C7]\nAll the thoughts you never see you are always thinking\n[F]        [Dm]                 [C]        [C7]\nBrain is wide, the brain is deep Oh, are you sinking?\n[F]        [Dm]             [C]        [C7]\nFeel the path of every day which road you taking?\n[F]         [Dm]           [C]         [C7]\nBreathing hard, making hay yeah, this is living\n[F]        [Dm]         [C]           [C7]\nLook for love in evidence that you're worth keeping\n[F]         [Dm]            [C]            [C7]\nSwallowed whole in negatives it's so sad and sickening\n[F]       [Dm]      [C]         [C7]\nFeel the air up above Oh, pool of blue sky\n[F]        [Dm]          [C]        [C7]\nFill the air up with love all black with starlight\n[F]         [Dm]         [C]         [C7]\nFeel the sky blanket you with gems and rhinestones!!!\n[F]        [Dm]             [C]        [C7]\nSee the path cut by the moon for you to walk on\n[F]   [Dm]    [C]       [C7]\n              For you to walk on...\n\n{section: Refrão}\n[Dm] [F] [C] [G] x2\n        [Dm]            [F]\nNothing left, nothing left\n        [C]              [G]\nNothing there, nothing here,\n        [Dm]            [F]\nNothing left, nothing left\n        [C]              [G]\nNothing there, nothing left,\n        [Dm]            [F]\nNothing left, nothing left\n        [C]              [G]\nNothing there, nothing here\n\n{section: Solo}\n[F]  [Dm]  [C]  [C7] x2\n\n{section: Verso 2}\n[F]       [Dm]              [C]        [C7]\nSee the path cut by the moon for you to walk on\n[F]       [Dm]                [C]              [C7]\nSee the waves on distant shores awaiting your arrival\n[F]         [Dm]              [C]             [C7]\nDream the dreams of other men you'll be no one's rival\n[F]         [Dm]               [C]                [C7]\nDream the dreams of others then you will be no one's rival\n\n{section: Outro}\n[F]  [Dm]  [C]  [C7]\n[F]        [Dm]            [C]           [C7]\nA distant time, a distant space that's where we're living\n[F]          [Dm]              [C]        [C7]\nA distant time, a distant place so what ya giving?\n[F]  [Dm]  [C]"
+}

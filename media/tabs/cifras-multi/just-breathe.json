@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Just Breathe (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar (adaptado)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 108 BPM. Strumming especial: down/muted/muted/up/muted/up/down/muted."
+  },
+  "title": "Just Breathe",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 108,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Dm": {
+          "fingering": "xx0231",
+          "fingers": "xx0231",
+          "fundamental": null
+        },
+        "G7": {
+          "fingering": "320001",
+          "fingers": "320001",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Especial 8 beats (108 BPM)",
+        "bpm": 108,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": true },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "up", "muted": true },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Dm": {
+          "fingering": "2210",
+          "fingers": "2310",
+          "fundamental": null
+        },
+        "G7": {
+          "fingering": "0212",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Especial 8 beats (108 BPM)",
+        "bpm": 108,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": true },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "up", "muted": true },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "Am": { "notes": ["A", "C", "E"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "Dm": { "notes": ["D", "F", "A"], "fundamental": null },
+        "G7": { "notes": ["G", "B", "D", "F"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C] [G] [C] [G]\n\n{section: Verso 1}\n[C]                                            [G]\nYes I understand that every life must end, uhhuh\n[C]                                             [G]\nAs we sit alone, I know someday we must go, uhhuh\n   [C]                                                [G]\nOh I'm a lucky man to count on both hands the ones I love\n[C]                                                        [G]\nSome folks just have one, yeah others they've got none uhhuh\n[Am]\n  Stay with me...\n[F]                     [C] [G]\n Let's just breathe...\n\n{section: Verso 2}\n[C]                                                [G]\nPracticed are my sins, never gonna let me win, uhhuh\n[C]                                             [G]\nUnder everything, just another human being, uhhuh\n     [C]                                                           [G]\nYeah I don't wanna hurt, there's so much in this world to make me bleed\n[Am]\n  Stay with me\n      [F]\nYou're all I see...\n\n{section: Refrão}\n[G]                 [Dm]\n Did I say that I need you?\n[G]                 [Dm]\n Did I say that I want you?\n[F]                     [Am]\nOh, if I didn't I'm a fool you see\n[Dm]           [Dm]          [G7]\nNo one knows this more than    me\n   [G]\nAs I come clean...\n\n{section: Verso 3}\n  [C]                                            [G]\nI wonder everyday, as I look upon your face, uhhuh\n[C]                                                 [G]\nEverything you gave and nothing you would take, oh no\n[Am]\nNothing you would take\n     [F]\nEverything you gave...\n\n{section: Refrão 2}\n[G]                 [Dm]\n Did I say that I need you?\n[G]                 [Dm]\n Did I say that I want you?\n[F]                     [Am]\nOh, if I didn't I'm a fool you see\n[Dm]           [Dm]          [G7]\nNo one knows this more than    me\n    [G]              [C]\nAnd I come clean uhhuh\n\n{section: Bridge}\n[G] [C] [G]\n\n{section: Outro}\n[Am]\nNothing you would take\n     [F]\nEverything you gave\n[Am]\nHold me til I die\n         [F]\nMeet you on the other side..."
+}

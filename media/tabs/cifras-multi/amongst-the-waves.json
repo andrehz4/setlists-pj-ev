@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Amongst the Waves (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar (adaptado)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 120 BPM."
+  },
+  "title": "Amongst the Waves",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [F] x2\n\n{section: Verso 1}\n [D]                 [F]\nWhat used to be a house of cards\n[D]                 [F]\nHas turned into a reservoir\n[A]\nSaved the tears that were waterfalling\nLets go swim tonight, darling\n [D]                  [F]\nOnce outside the undertow\n[D]               [F]\nJust you and me and nothing more\n[A]\nIf not for love I would be drowning\n[G]\nI've seen it work both ways, but I am up\n\n{section: Refrão}\n       [D]                [A]\nRiding high amongst the waves\n                [G]\nI can feel like I\n       [D]                  [A]\nHave a soul that has been saved\n                [G]\nI can feel like I\n    [D]             [A]\nPut away my early grave\n\n             [D] [C]\nGotta say it now\n       [C] [G]\nBetter loud\n         [D]   [F]\nThan too late\n\n{section: Interlúdio}\n[D] [F] x2\n\n{section: Verso 2}\n[D]                 [F]\nRemember back the early days\n[D]                     [F]\nWhen you were young and thus amazed\n[D]            [F]\nSuddenly the channel changed\n[D]                      [F]\nThe first time you saw blood\n\n[D]             [F]\nCut to later, now youre strong\n[D]\nYouve bled yourself, the wounds are gone\n[F]\nIt's rare then where is nothing wrong\n[A]\nSurvived and youre amongst the fittest\n[G]\nLove aint love until you give it up\n\n{section: Refrão 2}\n       [D]              [A]\nRiding high amongst the waves\n                [G]\nI can feel like I\n       [D]                  [A]\nHave a soul that has been saved\n              [G]\nI can see the light\n       [D]                     [A]\nComing through the clouds in rays\n\n             [D] [C]\nGotta say it now\n       [C] [G]\nBetter loud\n         [D]   [A]\nthan too late\n\n        [D] [C]\nGotta say it now\n       [C] [G]\nBetter loud\n         [D]\nthan too late\n\n{section: Bridge}\n[A] [G] [C] [G]\n\n{section: Refrão 3}\n       [D]              [A]\nRiding high amongst the waves\n                [G]\nI can feel like I\n       [D]                  [A]\nHave a soul that has been saved\n              [G]\nI can see the light\n       [D]                     [A]\nComing through the clouds in rays\n\n             [D] [C]\nGotta say it now\n       [C] [G]\nBetter loud\n         [D]   [A]\nthan too late\n\n{section: Outro}\n[D] [C] [C] [G] [D] [A]"
+}

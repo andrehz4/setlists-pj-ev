@@ -1,0 +1,135 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Johnny Guitar (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom A, 110 BPM."
+  },
+  "title": "Johnny Guitar",
+  "artist": "Pearl Jam",
+  "key": "A",
+  "bpm": 110,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02230",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Dsus4": {
+          "fingering": "xx0233",
+          "fingers": "xx0124",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "4431",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Dsus4": {
+          "fingering": "2230",
+          "fingers": "2230",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "Dsus4": { "notes": ["D", "G", "A"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A]       [E]       [C]       [F]      [D]      [Dsus4]\n[A]       [E]       [C]       [F]      [D]      [Dsus4]\n\n{section: Verso 1}\n[F]             [D]              [A]\nJohnny Guitar Watson staring at me\n            [F]         [D]            [A]\nRiding on 3 wheels, a woman on his knee\n       [F]             [D]             [A]\nWith a leg under the red dress I wish I could see\n        [F]              [D]           [A]\nFurther North the warmth of loving lingering\n        [F]         [D]           [G]\nNow Johnny he be having lots of women\n       [G]              [F]                [A]\nOh the reason he'd be smiling known to him\n[F]               [D]            [A]\nOn the left the girl in red so innocent\n                [F]            [D]                [A]\nNever sheds her clothes even when she goes to bed\n       [F]              [D]                  [A]\nYeah the type of girl responsible for original sin\n     [F]              [D]               [A]\nCan't help but wonder where and who she is\n     [F]             [D]               [G]\nOh and the memory's always getting clearer\n         [F]          [D]                    [C]\nFirst thirty years and more I've loved her so\n      [G]           [D]        [G]          [A]\nBut now I need to know why she's with him\n\n{section: Refrão 1}\n[A]\nAnd I sleep with the light on in case she comes\n[A]\nAnd I sleep with the light on in case she comes\n\n{section: Verso 2}\n[F]           [D]             [A]\nRecently as I was waiting on a dream\n     [F]        [D]                   [A]\nShe came to visit lost and lonely me\n   [F]              [D]                     [A]\nOh she leaned over the bed and with the lips above my head\n    [F]          [D]            [A]\nShe asked if I had seen her Johnny\n    [F]     [D]      [G]                 [F]                      [D]\nOh and I hide my disappointment cause for years I have been hoping\n    [C]               [D]           [F]             [G]                 [A]\nOh yeah I have been hoping that when she came that she would come for me\n\n{section: Bridge}\n[E]      [C]     [F]      [D]\nHey... hey\n\n{section: Refrão 2}\n     [A]                             [E]\nI'll hide my disappointment cause for years I have been hoping\n     [C]                      [F]           [D]          [Dsus4]\nThat when she came she'd be coming just for me\n     [A]                             [E]\nI'll hide my disappointment cause for years I have been hoping\n     [C]                      [F]           [D]          [Dsus4]\nThat when she came she'd be coming just for me\n\n{section: Outro}\n[A]       [E]       [C]       [F]      [D]      [Dsus4]\nAw yeah    Aw yeah     Hoo\n[A]       [E]       [C]       [F]      [D]      [Dsus4]"
+}

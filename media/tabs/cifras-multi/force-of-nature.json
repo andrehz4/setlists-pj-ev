@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Force of Nature (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar (adaptado)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 115 BPM."
+  },
+  "title": "Force of Nature",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 115,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 115,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 115,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Bm": { "notes": ["B", "D", "F#"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "F#": { "notes": ["F#", "A#", "C#"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Bm] [D] x6\n[A] [G]\n\n{section: Verso 1}\n [Bm]          [D]      [Bm]         [D]\n Understand she's a force of nature\n[Bm]         [D]      [Bm]          [D]\n Contraband hiding deep inside her soul\n[Bm]      [D]      [Bm]               [A]\n Exorcising her will to lose control\n      [G]\n She lets go\n\n{section: Verso 2}\n [Bm]        [D]            [Bm]              [D]\n A common man, he don't stand a chance, no\n[Bm]        [D]        [Bm]       [D]\n Wonderland pulling Alice in the hole\n[Bm]         [D]           [Bm]                 [A]\n No way to save someone who won't take the rope\n          [G]\n And just let's go\n\n{section: Refrão}\n [D]                  [A]\n One man stands the edge of the ocean\n   [Bm]            [G]\n A beacon on dry land\n       [D]         [A]\n Eyes upon the horizon\n        [G]               [Bm]   [D]\n In the dark before the dawn\n\n{section: Interlúdio}\n[Bm] [D] x3\n\n{section: Verso 3}\n[Bm]     [D]          [Bm]          [D]\n Hurricane has the trade winds blowing\n[Bm]           [D]       [Bm]         [D]\n A gale force shaking windows in the storm\n[Bm]         [D]     [Bm]                 [A]\n Shipwreck on the rock that he calls home\n                [G]\n With one light on\n\n{section: Refrão 2}\n [D]                   [A]\n Somewhere there's a siren singing\n   [Bm]           [G]\n A song only he hears\n         [D]                     [A]\n All the strength that you might think\n           [G]\n Would disappear, resolving\n\n [D]               [A]\n One man stands alone, awaiting\n [Bm]              [G]\n For her to come home\n       [D]         [A]\n Eyes upon the horizon\n        [G]                                  [A]    [Bm] [A] [Bm]\n In the dark before the darkness meets the dawn\n\n{section: Bridge}\n         [A]\nMakes me ache, makes me shake\n         [G]                                    [F#]\nIs it so wrong to think that love can keep us safe?\n\n{section: Verso 4}\n[Bm]         [D]       [Bm]        [D]\n Last I saw, he was out there waiting\n[Bm]          [D]       [Bm]           [D]\n A silhouette in the black light, full moon glow\n[Bm]          [D]        [Bm]              [A]\n In the sand there he stands upon the shore\n       [G]\n Forevermore\n\n{section: Refrão 3}\n [D]                   [A]\n Somewhere there's a siren singing\n   [Bm]           [G]\n A song only he hears\n         [D]                     [A]\n All the strength that you might think\n           [G]\n Would disappear, resolving\n\n [D]               [A]\n One man stands along, awaiting\n [Bm]              [G]\n For her to come home\n          [D]               [A]\n Eyes are closed you cannot know\n         [G]                   [D]\n But his heart don't seem to roam, roam\n\n{section: Solo / Outro}\n[D] [A] [Bm] [G]\n[D] [A] [G] [Bm]"
+}

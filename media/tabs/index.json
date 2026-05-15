@@ -154,11 +154,14 @@
     ]
   },
   "just breathe": {
-    "cifra": false,
-    "tab": false,
+    "cifra": true,
+    "cifraMulti": "just-breathe.json",
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "just-breathe-v1.gpx",
     "key": "C",
     "tuning": "EADGBE",
-    "capo": 2
+    "bpm": 108
   },
   "given to fly": {
     "cifra": true,
@@ -1852,5 +1855,99 @@
     "key": "C",
     "tuning": "EADGBE",
     "bpm": 80
+  },
+  "gonna see my friend": {
+    "cifra": true,
+    "cifraMulti": "gonna-see-my-friend.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "gonna-see-my-friend-v1.gp5",
+    "key": "B",
+    "tuning": "EADGBE",
+    "bpm": 145
+  },
+  "got some": {
+    "cifra": true,
+    "cifraMulti": "got-some.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "got-some-v1.gp5",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 160
+  },
+  "the fixer": {
+    "cifra": true,
+    "cifraMulti": "the-fixer.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "the-fixer-v1.gp5",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 135
+  },
+  "johnny guitar": {
+    "cifra": true,
+    "cifraMulti": "johnny-guitar.json",
+    "tab": true,
+    "tabFormat": "gp",
+    "tabFile": "johnny-guitar-v1.gp",
+    "key": "A",
+    "tuning": "EADGBE",
+    "bpm": 110
+  },
+  "amongst the waves": {
+    "cifra": true,
+    "cifraMulti": "amongst-the-waves.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "amongst-the-waves-v1.gp5",
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 120
+  },
+  "unthought known": {
+    "cifra": true,
+    "cifraMulti": "unthought-known.json",
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "unthought-known-v1.gpx",
+    "key": "F",
+    "tuning": "EADGBE",
+    "bpm": 90
+  },
+  "supersonic": {
+    "cifra": true,
+    "cifraMulti": "supersonic.json",
+    "tab": false,
+    "key": "B",
+    "tuning": "EADGBE",
+    "bpm": 140
+  },
+  "speed of sound": {
+    "cifra": true,
+    "cifraMulti": "speed-of-sound.json",
+    "tab": false,
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 100
+  },
+  "force of nature": {
+    "cifra": true,
+    "cifraMulti": "force-of-nature.json",
+    "tab": false,
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 115
+  },
+  "the end": {
+    "cifra": true,
+    "cifraMulti": "the-end.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "the-end-v1.gp5",
+    "key": "F#",
+    "tuning": "EADGBE",
+    "bpm": 118
   }
 }

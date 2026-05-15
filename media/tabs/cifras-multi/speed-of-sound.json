@@ -1,0 +1,151 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Speed of Sound (Pearl Jam, Backspacer 2009).",
+    "source": "Ultimate Guitar (adaptado)",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 100 BPM."
+  },
+  "title": "Speed of Sound",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D#m": {
+          "fingering": "x68876",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 6
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "G/B": {
+          "fingering": "x20003",
+          "fingers": "x10003",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Dsus4": {
+          "fingering": "xx0233",
+          "fingers": "xx0134",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D#m": {
+          "fingering": "3321",
+          "fingers": "3321",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "G/B": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Dsus4": {
+          "fingering": "2233",
+          "fingers": "1122",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "COLCHEIAS D-U (proposto)",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D#m": { "notes": ["D#", "F#", "A#"], "fundamental": null },
+        "Em": { "notes": ["E", "G", "B"], "fundamental": null },
+        "G/B": { "notes": ["B", "G", "D"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "Dsus4": { "notes": ["D", "G", "A"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D#m] [Em] [G/B] [C] x2\n\n{section: Verso 1}\n [D#m]             [Em]\nyesterdays, how quick they change\n[G/B]                      [C]\nall lost and long gone now\n     [D#m]             [Em]\nit's hard to remember any thing\n[G/B]                      [C]\nmoving at the speed of sound\n[G/B]                        [C]\nmoving with the speed of sound\n\n{section: Refrão}\n            [C]     [G/B]     [G]\nand yet i'm still holding tight\n         [C]     [G/B]     [G]\nto this dream of distant light\n         [C]     [G/B]     [G]\nand that somehow i'll survive\n         [F]\nbut this night has been a long one waiting on a sun that just don't come\n\n{section: Interlúdio}\n[Em] [D] [Em] [D] [C] [D]\n\n{section: Verso 2}\n    [C]     [G/B]     [G]\ncan i forgive what i\n[Dsus4]    [C]     [G/B]     [G]\ncannot forget and live a lie?\n[Dsus4]    [C]     [G/B]\ni could give it one more try\n\n{section: Verso 3}\n[D#m]             [Em]\nwhy deny this drive inside?\n[G/B]                      [C]\njust looking for some peace\n[D#m]             [Em]\novertime i get me some\n[G/B]             [C]\nit gets the best of me\n[G/B]                      [C]\nnot much left you see\n\n{section: Refrão 2}\n            [C]     [G/B]     [G]\nand yet i'm still holding tight\n        [C]        [G/B]     [G]\nto this dream of distant light\n         [C]       [G/B]     [G]\nand that somehow i'll survive\n[F]\nbut this night has been a long one waiting on a word that never comes\n\n{section: Interlúdio}\n[Em] [D] [Em] [D] [C] [D]\n\n{section: Outro}\n   [C]    [G/B]       [G]\na whisper in the dark\n[Dsus4]    [C]    [G/B]       [G]\nis that you or just my thoughts?\n[Dsus4]    [C]    [G/B]       [G]\nwide awake and reaching out\n\n   [C]    [G/B]       [G]\nit's gone so quiet now\n[Dsus4]    [C]    [G/B]       [G]\ncould it be i'm farther out?\n[Dsus4]    [C]    [G/B]       [G]\nmoving faster than the speed of sound"
+}
