@@ -2030,73 +2030,242 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .chip-regular { background:transparent; color:var(--ink-mute); border:1px solid var(--rule); }
 .chip-staple  { background:transparent; color:var(--ink-dim);  border:1px solid var(--rule); opacity:0.5; }
 
-/* ── Rarity view ──────────────────────────────────────────────────────────── */
-.luck-hero {
-  background: linear-gradient(135deg, var(--card) 0%, rgba(255,160,0,0.08) 100%);
-  border:1px solid rgba(255,160,0,0.2);
-  border-radius:12px;
-  padding:28px 32px;
-  margin-bottom:28px;
-  display:flex;
-  align-items:center;
-  gap:32px;
+/* ── Rarity view — redesenho 2026-05 ─────────────────────────────────────── */
+/* hero bilhete-mestre */
+.rar-hero {
+  position:relative; margin:22px 0 40px;
+  background:var(--bg-card); border:1.5px solid var(--ink);
+  box-shadow:6px 6px 0 var(--ink);
+  display:grid; grid-template-columns:250px 1fr 1fr; isolation:isolate;
 }
-.luck-score-circle {
-  width:88px;height:88px;flex-shrink:0;
-  border-radius:50%;
-  background:conic-gradient(#ffa000 calc(var(--pct)*1%),var(--rule) 0);
-  display:grid;place-items:center;
-  font-family:var(--font-editorial);
-  position:relative;
+.rar-hero::before {
+  content:''; position:absolute; left:230px; top:0; bottom:0;
+  border-left:2px dashed var(--ink);
 }
-.luck-score-circle::before {
-  content:'';position:absolute;inset:8px;border-radius:50%;background:var(--card);
+.rar-hero::after {
+  content:'ARQUIVO'; position:absolute; right:-8px; top:18px;
+  font:700 11px/1 'Big Shoulders Stencil Display',var(--font-display);
+  letter-spacing:.28em; color:var(--pj); border:2px solid var(--pj);
+  padding:5px 9px; transform:rotate(6deg);
+  background:var(--bg-card); z-index:2;
 }
-.luck-score-num {
-  position:relative;z-index:1;font-size:26px;font-weight:900;color:#ffa000;
+.rar-stub {
+  padding:20px 16px; display:flex; flex-direction:column;
+  align-items:flex-start; gap:11px;
 }
-.luck-meta { display:flex;flex-direction:column;gap:6px; }
-.luck-meta h3 { margin:0;font-size:20px;font-family:var(--font-editorial); }
-.luck-meta p  { margin:0;color:var(--ink-mute);font-size:13px; }
-
+.rar-stub-row {
+  font:600 10px/1.4 var(--font-mono); letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink-dim);
+}
+.rar-stub-row b {
+  display:block; font:900 14px/1.05 var(--font-display);
+  letter-spacing:.01em; color:var(--ink); margin-top:3px;
+}
+.rar-barcode {
+  width:100%; height:32px; margin-top:auto;
+  background:repeating-linear-gradient(90deg,
+    var(--ink) 0 1px, transparent 1px 3px,
+    var(--ink) 3px 5px, transparent 5px 8px,
+    var(--ink) 8px 10px, transparent 10px 12px,
+    var(--ink) 12px 13px, transparent 13px 18px);
+}
+.rar-serial { font:600 9px var(--font-mono); color:var(--ink-dim); letter-spacing:.06em; }
+.rar-gauge-col {
+  padding:22px 24px 20px; border-left:2px dashed var(--ink);
+  border-right:1px solid var(--divider); position:relative;
+}
+.rar-gauge-col .rg-eyebrow {
+  font:700 10px var(--font-mono); letter-spacing:.26em;
+  text-transform:uppercase; color:var(--ink-dim);
+}
+.rar-gauge-col h3 {
+  margin:5px 0 12px; font:900 22px/1 var(--font-display);
+  letter-spacing:-.01em; text-transform:uppercase; color:var(--ink);
+}
+.rar-gauge-col h3 .red { color:var(--pj); }
+.rar-gauge-col svg { width:100%; max-width:280px; height:auto; }
+.rar-gauge-col .gauge-value {
+  font:900 76px/1 var(--font-display); letter-spacing:-.04em; fill:var(--ev);
+}
+.rar-gauge-col .gauge-of { font:600 11px var(--font-mono); letter-spacing:.22em; fill:var(--ink-dim); }
+.rar-gauge-col .gauge-tick { font:600 8px var(--font-mono); letter-spacing:.12em; fill:var(--ink-dim); }
+.rar-gfoot {
+  margin-top:8px; padding-top:8px; border-top:1px dashed var(--divider-strong);
+  display:flex; gap:14px;
+}
+.rar-gfoot div { flex:1; }
+.rar-gfoot .l { font:700 9px var(--font-mono); letter-spacing:.18em; text-transform:uppercase; color:var(--ink-dim); }
+.rar-gfoot .v { font:400 11px/1.35 var(--font-mono); color:var(--ink-mute); margin-top:2px; }
+.rar-stats-col {
+  padding:22px 24px 20px; display:grid;
+  grid-template-rows:auto auto auto; gap:12px;
+}
+.rar-stat {
+  display:grid; grid-template-columns:auto 1fr; gap:11px; align-items:end;
+  padding-bottom:12px; border-bottom:1px dashed var(--divider-strong);
+}
+.rar-stat:last-child { border-bottom:0; padding-bottom:0; }
+.rar-stat .num { font:900 54px/0.9 var(--font-display); letter-spacing:-.04em; color:var(--ink); }
+.rar-stat.r .num { color:var(--pj); }
+.rar-stat.o .num { color:var(--ev); }
+.rar-stat .meta { padding-bottom:5px; }
+.rar-stat .lab { font:700 10px var(--font-mono); letter-spacing:.22em; text-transform:uppercase; color:var(--ink-mute); }
+.rar-stat .sub { font:400 11px/1.35 var(--font-mono); color:var(--ink-dim); margin-top:3px; }
+/* badge */
+.rar-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  font:600 10px var(--font-mono); letter-spacing:.20em; text-transform:uppercase;
+  color:var(--ink-dim); padding:5px 10px;
+  border:1px dashed var(--divider-strong); margin:18px 0 0;
+}
+.rar-badge::before {
+  content:''; width:7px; height:7px; border-radius:50%;
+  background:var(--heard); box-shadow:0 0 0 3px rgba(74,115,66,.18);
+}
+/* section headings */
+.rar-section-head {
+  margin:50px 0 20px; display:grid; grid-template-columns:auto 1fr auto;
+  gap:14px; align-items:end; border-bottom:2px solid var(--ink); padding-bottom:10px;
+}
+.rar-section-head .kicker {
+  font:700 11px var(--font-mono); letter-spacing:.26em;
+  text-transform:uppercase; color:var(--pj);
+}
+.rar-section-head h2 {
+  margin:3px 0 0; font:900 28px/1 var(--font-display);
+  letter-spacing:-.01em; text-transform:uppercase; color:var(--ink);
+}
+.rar-section-head p {
+  margin:0; font:400 12px/1.45 var(--font-mono); color:var(--ink-mute);
+  max-width:48ch; text-align:right; align-self:end; padding-bottom:4px;
+}
+.rar-section-num {
+  font:900 50px/0.85 'Big Shoulders Stencil Display',var(--font-display);
+  color:var(--divider-strong); letter-spacing:-.02em; align-self:start;
+}
+/* Mural de Troféus */
+.rar-trophy-wall { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.rar-trophy {
+  position:relative; background:var(--bg-card);
+  border:1.5px solid var(--ink); box-shadow:4px 4px 0 var(--ink);
+  padding:18px 18px 15px; display:grid; grid-template-rows:auto 1fr auto;
+  min-height:185px; overflow:hidden;
+  transition:transform 160ms ease, box-shadow 160ms ease;
+}
+.rar-trophy:hover { transform:translate(-1px,-1px); box-shadow:5px 5px 0 var(--ink); }
+.rar-trophy::after {
+  content:'RARO'; position:absolute;
+  font:900 96px/1 'Big Shoulders Stencil Display',var(--font-display);
+  letter-spacing:-.04em; color:var(--divider-strong); opacity:.5;
+  bottom:-20px; right:-8px; transform:rotate(-8deg); pointer-events:none; z-index:0;
+}
+.rar-trophy > * { position:relative; z-index:1; }
+.rar-trophy-top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+.rar-trophy-stamp {
+  font:900 12px/1 'Big Shoulders Stencil Display',var(--font-display);
+  letter-spacing:.14em; text-transform:uppercase; padding:5px 9px;
+  border:2.5px double; transform:rotate(-4deg);
+}
+.rar-trophy.once .rar-trophy-stamp { color:var(--pj); border-color:var(--pj); background:rgba(156,31,34,.07); }
+.rar-trophy.ultra .rar-trophy-stamp { color:var(--ev); border-color:var(--ev); background:rgba(160,103,30,.08); }
+.rar-trophy-plays { font:900 50px/0.9 var(--font-display); letter-spacing:-.04em; color:var(--ink); text-align:right; }
+.rar-trophy-plays small { display:block; font:600 9px var(--font-mono); letter-spacing:.20em; text-transform:uppercase; color:var(--ink-dim); margin-top:2px; }
+.rar-trophy-body { padding:9px 0 11px; }
+.rar-trophy-song { font:800 19px/1.1 var(--font-display); letter-spacing:-.005em; text-transform:uppercase; color:var(--ink); }
+.rar-trophy-album { font:400 11px var(--font-mono); color:var(--ink-mute); margin-top:3px; }
+.rar-trophy-foot { border-top:1px dashed var(--divider-strong); padding-top:10px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.rar-trophy-show { font:600 11px var(--font-mono); letter-spacing:.10em; text-transform:uppercase; color:var(--ink-mute); }
+.rar-trophy-show b { color:var(--ink); }
+.rar-trophy-serial { font:400 9px var(--font-mono); color:var(--ink-dim); letter-spacing:.06em; }
+/* Espectro */
+.rar-spectrum { background:var(--bg-card); border:1.5px solid var(--ink); box-shadow:4px 4px 0 var(--ink); padding:22px 22px 18px; }
+.rar-spec-bars {
+  display:grid; grid-template-columns:repeat(7,1fr); gap:10px;
+  align-items:end; height:200px; padding:18px 0 0; border-bottom:2px solid var(--ink);
+}
+.rar-sp { display:flex; flex-direction:column; justify-content:flex-end; height:100%; position:relative; }
+.rar-sp .bar {
+  background:repeating-linear-gradient(45deg,
+    var(--bar-color) 0 5px, color-mix(in oklab,var(--bar-color) 55%,transparent) 5px 8px);
+  border:1.5px solid var(--ink); border-bottom:0; position:relative;
+}
+.rar-sp .count { position:absolute; left:0; right:0; top:-20px; text-align:center; font:900 14px/1 var(--font-display); color:var(--ink); letter-spacing:-.01em; }
+.rar-spec-axis { display:grid; grid-template-columns:repeat(7,1fr); gap:10px; padding-top:8px; }
+.rar-spec-axis div { font:700 10px/1.3 var(--font-mono); letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); text-align:center; }
+.rar-spec-axis div small { display:block; font:400 9px var(--font-mono); color:var(--ink-dim); letter-spacing:.03em; text-transform:none; margin-top:3px; }
+.rar-spec-legend { margin-top:16px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; font:400 12px/1.5 var(--font-mono); color:var(--ink-mute); }
+.rar-spec-legend .swatch { display:inline-flex; align-items:center; gap:7px; }
+.rar-spec-legend .swatch i { width:13px; height:13px; display:inline-block; border:1.5px solid var(--ink); }
+/* Ranking */
+.rar-ranking { display:grid; gap:10px; }
+.rar-rank-row {
+  display:grid; grid-template-columns:62px 1.4fr 2.4fr 88px;
+  align-items:center; gap:15px; background:var(--bg-card);
+  border:1.5px solid var(--ink); padding:13px 15px; position:relative;
+}
+.rar-rank-row.gold   { box-shadow:4px 4px 0 var(--ev); }
+.rar-rank-row.silver { box-shadow:4px 4px 0 var(--divider-strong); }
+.rar-rank-row.bronze { box-shadow:4px 4px 0 #8a5a2c; }
+.rar-rank-row.flat   { box-shadow:3px 3px 0 var(--ink); }
+.rk-pos { font:900 40px/0.85 'Big Shoulders Stencil Display',var(--font-display); letter-spacing:-.02em; color:var(--ink); }
+.rar-rank-row.gold .rk-pos   { color:var(--ev); }
+.rar-rank-row.silver .rk-pos { color:var(--divider-strong); }
+.rar-rank-row.bronze .rk-pos { color:#8a5a2c; }
+.rk-meta { display:flex; flex-direction:column; gap:3px; }
+.rk-date { font:700 13px var(--font-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink); }
+.rk-place { font:400 11px var(--font-mono); color:var(--ink-mute); }
+.rk-bar { position:relative; height:10px; background:var(--divider); border:1px solid var(--ink); }
+.rk-bar i {
+  display:block; height:100%;
+  background:repeating-linear-gradient(90deg,
+    var(--pj) 0 5px, color-mix(in oklab,var(--pj) 50%,var(--bg-card)) 5px 9px);
+}
+.rk-bar span { position:absolute; left:0; right:0; top:-18px; font:400 10px var(--font-mono); color:var(--ink-dim); letter-spacing:.04em; }
+.rk-score { text-align:right; font:900 32px/0.9 var(--font-display); color:var(--ink); }
+.rk-score small { display:block; font:600 9px var(--font-mono); letter-spacing:.20em; text-transform:uppercase; color:var(--ink-dim); margin-top:3px; }
+/* Wanted */
+.rar-wanted-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.rar-wanted {
+  position:relative; background:var(--bg-card); border:2.5px double var(--ink);
+  padding:14px 12px 12px; text-align:center;
+  display:flex; flex-direction:column; gap:5px; align-items:center;
+  box-shadow:3px 3px 0 var(--ink);
+  transition:transform 160ms ease, box-shadow 160ms ease;
+}
+.rar-wanted:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink); }
+.rar-wanted-head { font:700 10px 'Big Shoulders Stencil Display',var(--font-display); letter-spacing:.28em; text-transform:uppercase; color:var(--pj); border-bottom:2px solid var(--pj); padding-bottom:6px; margin-bottom:3px; width:100%; }
+.rar-wanted-plays { font:900 34px/0.9 var(--font-display); letter-spacing:-.03em; color:var(--ink); }
+.rar-wanted-plays small { display:block; font:600 9px var(--font-mono); letter-spacing:.20em; text-transform:uppercase; color:var(--ink-dim); margin-top:1px; }
+.rar-wanted-song { font:800 13px/1.15 var(--font-display); letter-spacing:-.005em; text-transform:uppercase; color:var(--ink); }
+.rar-wanted-album { font:400 10px var(--font-mono); color:var(--ink-mute); }
+.rar-wanted-foot { margin-top:3px; font:700 9px var(--font-mono); letter-spacing:.24em; text-transform:uppercase; color:var(--ink-dim); }
+/* tabela legada (all rarities) */
 .rarity-table { width:100%;border-collapse:collapse;margin-bottom:32px; }
-.rarity-table th {
-  text-align:left;padding:8px 12px;font-size:11px;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--ink-mute);border-bottom:1px solid var(--rule);
-}
-.rarity-table td { padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle; }
-.rarity-table tr:hover td { background:var(--card); }
+.rarity-table th { text-align:left;padding:8px 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);border-bottom:1px solid var(--divider); }
+.rarity-table td { padding:10px 12px;border-bottom:1px solid var(--divider);vertical-align:middle; }
+.rarity-table tr:hover td { background:var(--bg-card-hover); }
 .rarity-table .rt-song { font-weight:600;font-size:14px; }
 .rarity-table .rt-album { font-size:11px;color:var(--ink-mute);margin-top:2px; }
 .rarity-table .rt-show  { font-size:11px;color:var(--ink-dim); }
-.rarity-table .rt-plays { font-family:var(--font-editorial);font-size:18px;font-weight:700;color:var(--ink); }
-.rarity-table .rt-plays.ultra { color:#ffcc80; }
-.rarity-table .rt-plays.once  { color:#ffb3b3; }
-
-.classics-grid {
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:24px;
+.rarity-table .rt-plays { font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--ink); }
+.rarity-table .rt-plays.ultra { color:var(--ev); }
+.rarity-table .rt-plays.once  { color:var(--pj); }
+/* Responsivo */
+@media (max-width:980px) {
+  .rar-hero { grid-template-columns:1fr; }
+  .rar-hero::before { display:none; }
+  .rar-gauge-col { border-left:0; border-top:2px dashed var(--ink); }
+  .rar-trophy-wall { grid-template-columns:1fr 1fr; }
+  .rar-wanted-grid { grid-template-columns:1fr 1fr; }
+  .rar-section-head { grid-template-columns:auto 1fr; }
+  .rar-section-head p { grid-column:1/-1; text-align:left; }
+  .rar-rank-row { grid-template-columns:50px 1fr; }
+  .rar-rank-row .rk-bar,.rar-rank-row .rk-score { grid-column:1/-1; }
 }
-.classic-card {
-  background:var(--card);border:1px solid var(--rule);border-radius:8px;
-  padding:14px 16px;cursor:default;
+@media (max-width:600px) {
+  .rar-trophy-wall { grid-template-columns:1fr; }
+  .rar-wanted-grid { grid-template-columns:1fr 1fr; }
 }
-.classic-card .cc-plays { font-size:22px;font-family:var(--font-editorial);font-weight:700;color:var(--pj);margin-bottom:4px; }
-.classic-card .cc-song  { font-size:13px;font-weight:600; }
-.classic-card .cc-album { font-size:11px;color:var(--ink-mute); }
-
-.rarity-section-title {
-  font-family:var(--font-editorial);font-size:18px;font-weight:700;margin:32px 0 6px;
-}
-.rarity-section-sub { font-size:12px;color:var(--ink-mute);margin-bottom:16px; }
-
-.data-source-badge {
-  position:relative;z-index:2;
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:11px;color:var(--ink-mute);
-  background:var(--card);border:1px solid var(--rule);
-  border-radius:20px;padding:4px 12px;margin-bottom:32px;
-}
-.data-source-badge::before { content:'🔄'; }
 
 
 /* ── Real album covers ────────────────────────────────────────────────────── */
@@ -2548,73 +2717,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 /* lyrics-panel desativado em 2026-05-07: lyrics agora são inline dentro do drawer */
 #lyrics-panel { display: none !important; }
 
-/* LuckGauge: meio-donut SVG no Raridades (mudança 3/4 do redesign) */
-.luck-gauge {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 22px;
-  align-items: center;
-  background: var(--bg-card, #e4d3aa);
-  padding: 22px;
-  margin: 0 0 24px;
-  box-shadow: 3px 3px 0 var(--ink, #1a1611), inset 0 0 0 1px rgba(26,22,17,.08);
-}
-.luck-gauge svg { overflow: visible; }
-.luck-gauge .lg-tick {
-  font: 600 9px var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.16em;
-  fill: var(--ink-dim, #6b5e44);
-}
-.luck-gauge .lg-value {
-  font: 900 48px/1 var(--font-display, 'Big Shoulders Display', serif);
-  fill: var(--ev, #8c5a1c);
-  letter-spacing: -0.02em;
-}
-.luck-gauge .lg-of {
-  font: 600 10px var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.18em;
-  fill: var(--ink-dim, #6b5e44);
-}
-.luck-gauge .lg-eyebrow {
-  font: 700 11px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--ink-dim, #6b5e44);
-  margin-bottom: 8px;
-}
-.luck-gauge .lg-headline {
-  font: 900 28px/1 var(--font-display, 'Big Shoulders Display', serif);
-  text-transform: uppercase;
-  letter-spacing: -0.015em;
-  color: var(--ink, #1a1611);
-  margin-bottom: 8px;
-}
-.luck-gauge .lg-body {
-  font: 400 13px/1.55 var(--font-body, 'IBM Plex Mono', monospace);
-  color: var(--ink-stamp, #4a3f2c);
-}
-.luck-gauge .lg-foot {
-  display: flex;
-  gap: 24px;
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--rule-ticket, #9a8b68);
-}
-.luck-gauge .lg-foot-eb {
-  font: 600 9px/1 var(--font-ticket, 'Oswald', sans-serif);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-dim, #6b5e44);
-}
-.luck-gauge .lg-foot-tx {
-  font: 500 11px/1.3 var(--font-body, 'IBM Plex Mono', monospace);
-  color: var(--ink-stamp, #4a3f2c);
-  margin-top: 4px;
-}
-@media (max-width: 720px) {
-  .luck-gauge { grid-template-columns: 1fr; justify-items: center; text-align: center; }
-  .luck-gauge .lg-foot { justify-content: center; }
-}
+/* luck-gauge: classe removida no redesign 2026-05 (substituída por .rar-gauge-col) */
 
 /* LoadingStamp: carimbo arquival ao trocar de tab (mudança 2/4 do redesign) */
 #loading-stamp {
@@ -9456,23 +9559,26 @@ function _tabsKeydown(e) {
 }
 
 function renderLuckGauge(value, luck) {
-  const max = 100, r = 110, cx = 130, cy = 130;
-  const arcPath = (start, end) => {
-    const s = Math.PI * (1 - start / max), e = Math.PI * (1 - end / max);
-    const x1 = cx + r * Math.cos(s), y1 = cy - r * Math.sin(s);
-    const x2 = cx + r * Math.cos(e), y2 = cy - r * Math.sin(e);
-    const large = (end - start) > max / 2 ? 1 : 0;
-    return `M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+  // Retorna { label, svg } para uso no hero bilhete-mestre
+  const max = 100, r = 130, cx = 160, cy = 170;
+  const pt = (v) => {
+    const a = Math.PI * (1 - v / max);
+    return [cx + r * Math.cos(a), cy - r * Math.sin(a)];
   };
-  const angle = Math.PI * (1 - value / max);
-  const nx = cx + (r - 10) * Math.cos(angle), ny = cy - (r - 10) * Math.sin(angle);
+  const [sx, sy] = pt(0);
+  const [ex, ey] = pt(max);
+  const [vx, vy] = pt(value);
+  const largeArc = value > 50 ? 1 : 0;
+  const pAngle = Math.PI * (1 - value / max);
+  const px = (cx + (r - 18) * Math.cos(pAngle)).toFixed(1);
+  const py = (cy - (r - 18) * Math.sin(pAngle)).toFixed(1);
   const ticks = [0, 25, 50, 75, 100].map(t => {
     const a = Math.PI * (1 - t / max);
-    const x1 = cx + (r + 4) * Math.cos(a), y1 = cy - (r + 4) * Math.sin(a);
-    const x2 = cx + (r + 12) * Math.cos(a), y2 = cy - (r + 12) * Math.sin(a);
-    const lx = cx + (r + 22) * Math.cos(a), ly = cy - (r + 22) * Math.sin(a);
-    return `<line x1="${x1.toFixed(2)}" y1="${y1.toFixed(2)}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}" stroke="var(--ink-dim)" stroke-width="1.5"/>
-            <text x="${lx.toFixed(2)}" y="${(ly+3).toFixed(2)}" text-anchor="middle" class="lg-tick">${t}</text>`;
+    const [x1,y1] = [cx+(r+4)*Math.cos(a), cy-(r+4)*Math.sin(a)];
+    const [x2,y2] = [cx+(r+12)*Math.cos(a), cy-(r+12)*Math.sin(a)];
+    const [lx,ly] = [cx+(r+24)*Math.cos(a), cy-(r+24)*Math.sin(a)];
+    return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--divider-strong)" stroke-width="1.5"/>
+            <text x="${lx.toFixed(1)}" y="${(ly+3).toFixed(1)}" text-anchor="middle" class="gauge-tick">${t}</text>`;
   }).join('');
   let label;
   if (value >= 86)      label = 'Pegou raridades';
@@ -9480,29 +9586,16 @@ function renderLuckGauge(value, luck) {
   else if (value >= 51) label = 'Sortudo na média';
   else if (value >= 31) label = 'Set razoável';
   else                  label = 'Set previsível';
-  return `
-  <div class="luck-gauge">
-    <svg viewBox="0 0 260 160" width="260" height="160" role="img" aria-labelledby="lg-title-${value} lg-desc-${value}">
-      <title id="lg-title-${value}">Luck score: ${value} de ${max}, classificação ${label}</title>
-      <desc id="lg-desc-${value}">Medidor em formato de meia-lua mostrando ${value} pontos de ${max}. Classificação: ${label}. Média de ${luck.avgCareerPlays} execuções por música na carreira do Pearl Jam, calculado sobre ${luck.sampleSize} faixas dos seus shows.</desc>
-      <path d="${arcPath(0, max)}" stroke="var(--divider)" stroke-width="14" fill="none"/>
-      <path d="${arcPath(0, value)}" stroke="var(--ev)" stroke-width="14" fill="none"/>
-      ${ticks}
-      <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(2)}" y2="${ny.toFixed(2)}" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
-      <circle cx="${cx}" cy="${cy}" r="6" fill="var(--ink)"/>
-      <text x="${cx}" y="${cy - 30}" text-anchor="middle" class="lg-value" aria-hidden="true">${value}</text>
-      <text x="${cx}" y="${cy - 12}" text-anchor="middle" class="lg-of" aria-hidden="true">/${max}</text>
-    </svg>
-    <div class="luck-gauge-text">
-      <div class="lg-eyebrow">Luck score</div>
-      <div class="lg-headline">${label}</div>
-      <div class="lg-body">Média de <strong>${luck.avgCareerPlays} plays</strong> por música na carreira do PJ. Calculado sobre ${luck.sampleSize} faixas dos seus shows.</div>
-      <div class="lg-foot">
-        <div><div class="lg-foot-eb">Quanto menor</div><div class="lg-foot-tx">média histórica</div></div>
-        <div><div class="lg-foot-eb">Quanto maior</div><div class="lg-foot-tx">raridades vistas</div></div>
-      </div>
-    </div>
-  </div>`;
+  const svg = `<svg viewBox="0 0 320 200" role="img" aria-label="Luck score ${value}/100">
+    <path d="M ${sx.toFixed(1)} ${sy.toFixed(1)} A ${r} ${r} 0 0 1 ${ex.toFixed(1)} ${ey.toFixed(1)}" stroke="var(--divider-strong)" stroke-width="16" fill="none"/>
+    <path d="M ${sx.toFixed(1)} ${sy.toFixed(1)} A ${r} ${r} 0 ${largeArc} 1 ${vx.toFixed(1)} ${vy.toFixed(1)}" stroke="var(--ev)" stroke-width="16" fill="none"/>
+    ${ticks}
+    <line x1="${cx}" y1="${cy}" x2="${px}" y2="${py}" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="7" fill="var(--ink)"/>
+    <text x="${cx}" y="142" text-anchor="middle" class="gauge-value">${value}</text>
+    <text x="${cx}" y="166" text-anchor="middle" class="gauge-of">/ ${max}</text>
+  </svg>`;
+  return { label, svg };
 }
 
 function renderRarity() {
@@ -9588,86 +9681,192 @@ function renderRarity() {
     </div>`;
   }).join('');
 
+  // ── extra vars para o novo layout ──
+  const uniqueSongCount = Object.keys(songShowMap).length;
+  const _yrs = shows.map(s => parseInt(s.date.slice(0,4))).filter(Boolean);
+  const yearRange = _yrs.length ? `${Math.min(..._yrs)}–${Math.max(..._yrs)}` : '–';
+  const trophyItems = [...onceEver, ...ultraRare].slice(0, 6);
+  const rankCls = (i) => i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : 'flat';
+  const BAR_COLORS = ['var(--pj)','var(--pj)','var(--ev)','var(--ev)','var(--ink-mute)','var(--ink-mute)','var(--ink)'];
+  const SPEC_LABELS = [
+    {r:'1×',s:'once-ever'},{r:'2–5×',s:'ultra-rara'},{r:'6–25×',s:'rara'},
+    {r:'26–100×',s:'incomum'},{r:'101–300×',s:'regular'},{r:'301–1000×',s:'frequente'},{r:'1000+×',s:'staple'}
+  ];
+  const gaugeData = luck ? renderLuckGauge(pct, luck) : null;
+
   container.innerHTML = `
-    <div class="data-source-badge">Dados: pearljam.com/vitalogy/songs · atualizado em ${updatedAt}</div>
+    <span class="rar-badge">Dados: pearljam.com/vitalogy/songs · atualizado em ${updatedAt}</span>
 
-    ${luck ? renderLuckGauge(pct, luck) : ''}
+    <!-- HERO: bilhete-mestre -->
+    <section class="rar-hero" aria-label="Resumo Luck Score">
+      <div class="rar-stub">
+        <div class="rar-stub-row">Arquivo<b>${yearRange}</b></div>
+        <div class="rar-stub-row">Shows assistidos<b>${shows.length} noites</b></div>
+        <div class="rar-stub-row">Músicas únicas<b>${uniqueSongCount}</b></div>
+        <div class="rar-stub-row">Raridades ≤100×<b>${rareSongs.length} músicas</b></div>
+        <div style="flex:1"></div>
+        <div class="rar-barcode" aria-hidden="true"></div>
+        <div class="rar-serial">SR · ${shows.length}·${String(uniqueSongCount).padStart(3,'0')}-LK</div>
+      </div>
 
-    <div class="chart-block">
-      <div class="chart-title">Distribuição de raridade das músicas que você ouviu</div>
-      ${histoHtml}
+      <div class="rar-gauge-col">
+        <div class="rg-eyebrow">Luck Score · 0–100</div>
+        <h3>Você pegou <span class="red">${gaugeData ? gaugeData.label.toLowerCase() + '.' : 'raridades.'}</span></h3>
+        ${gaugeData ? gaugeData.svg : ''}
+        <div class="rar-gfoot">
+          <div><div class="l">Quanto menor</div><div class="v">média histórica de plays</div></div>
+          <div><div class="l">Quanto maior</div><div class="v">mais raridades vistas</div></div>
+        </div>
+      </div>
+
+      <div class="rar-stats-col">
+        <div class="rar-stat r">
+          <div class="num">${String(rareSongs.length).padStart(2,'0')}</div>
+          <div class="meta">
+            <div class="lab">Raridades ≤100×</div>
+            <div class="sub">músicas com menos de 100 plays na carreira</div>
+          </div>
+        </div>
+        <div class="rar-stat o">
+          <div class="num">${String(onceEver.length).padStart(2,'0')}</div>
+          <div class="meta">
+            <div class="lab">Once-ever · 1×</div>
+            <div class="sub">você estava lá quando aconteceu algo único</div>
+          </div>
+        </div>
+        <div class="rar-stat">
+          <div class="num">${luck ? luck.avgCareerPlays : '–'}<small style="font-size:28px;color:var(--ink-dim)">×</small></div>
+          <div class="meta">
+            <div class="lab">Média plays / música</div>
+            <div class="sub">calculado sobre ${luck ? luck.sampleSize : 0} faixas dos seus shows</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    ${trophyItems.length ? `
+    <!-- 01 · MURAL DE TROFÉUS -->
+    <div class="rar-section-head">
+      <span class="rar-section-num">01</span>
+      <div>
+        <div class="kicker">Mural de Troféus</div>
+        <h2>O que você ganhou na loteria</h2>
+      </div>
+      <p>Once-ever e ultra-raras (até 5× tocadas). Os carimbos que valem ouro no seu arquivo.</p>
     </div>
+    <div class="rar-trophy-wall">
+      ${trophyItems.map((e,i) => `
+      <article class="rar-trophy ${e.timesPlayed === 1 ? 'once' : 'ultra'}">
+        <div class="rar-trophy-top">
+          <div class="rar-trophy-stamp">${e.timesPlayed === 1 ? 'Once-ever' : 'Ultra-rara'}</div>
+          <div class="rar-trophy-plays">${e.timesPlayed}<small>× na carreira</small></div>
+        </div>
+        <div class="rar-trophy-body">
+          <div class="rar-trophy-song">${e.song}</div>
+          <div class="rar-trophy-album">${getAlbumTitle(e.song) || 'b-side / jam'}</div>
+        </div>
+        <div class="rar-trophy-foot">
+          <div class="rar-trophy-show">${e.shows[0].date} · <b>${e.shows[0].city.split(',')[0]}</b></div>
+          <div class="rar-trophy-serial">#${String(i+1).padStart(3,'0')}/${uniqueSongCount}</div>
+        </div>
+      </article>`).join('')}
+    </div>` : ''}
 
+    <!-- 02 · ESPECTRO DE RARIDADE -->
+    <div class="rar-section-head">
+      <span class="rar-section-num">02</span>
+      <div>
+        <div class="kicker">Espectro de raridade</div>
+        <h2>De onde vieram as músicas que você ouviu</h2>
+      </div>
+      <p>Distribuição das suas músicas por faixa de frequência histórica. Mais peso à esquerda = setlists mais raros.</p>
+    </div>
+    <section class="rar-spectrum">
+      <div class="rar-spec-bars">
+        ${histo.map((h,i) => `
+        <div class="rar-sp">
+          <div class="bar" style="--bar-color:${BAR_COLORS[i]};height:${h.count ? (h.count/histoMax*100).toFixed(0) : 2}%">
+            ${h.count ? `<span class="count">${String(h.count).padStart(2,'0')}</span>` : ''}
+          </div>
+        </div>`).join('')}
+      </div>
+      <div class="rar-spec-axis">
+        ${SPEC_LABELS.map(s => `<div>${s.r}<small>${s.s}</small></div>`).join('')}
+      </div>
+      <div class="rar-spec-legend">
+        <span class="swatch"><i style="background:var(--pj)"></i> Faixa rara</span>
+        <span class="swatch"><i style="background:var(--ev)"></i> Faixa incomum</span>
+        <span class="swatch"><i style="background:var(--ink-mute)"></i> Faixa regular</span>
+        <span class="swatch"><i style="background:var(--ink)"></i> Faixa staple</span>
+      </div>
+    </section>
 
-    ${onceEver.length ? `
-    <div class="rarity-section-title">🔴 Once-ever: tocadas 1× na história</div>
-    <div class="rarity-section-sub">Você estava lá quando aconteceu algo único.</div>
-    <table class="rarity-table">
-      <tr><th>Música</th><th>Plays</th><th>Show</th></tr>
-      ${onceEver.map(e => `
-        <tr>
-          <td><div class="rt-song">${e.song}</div><div class="rt-album">${getAlbumTitle(e.song)}</div></td>
-          <td><div class="rt-plays once">1×</div></td>
-          <td><div class="rt-show">${e.shows.map(s => s.date + ' · ' + s.city.split(',')[0]).join('<br>')}</div></td>
-        </tr>`).join('')}
-    </table>` : ''}
+    ${showLucks.length ? `
+    <!-- 03 · LEADERBOARD -->
+    <div class="rar-section-head">
+      <span class="rar-section-num">03</span>
+      <div>
+        <div class="kicker">Leaderboard</div>
+        <h2>Suas noites mais sortudas</h2>
+      </div>
+      <p>Shows ranqueados pelo Luck Score do setlist — do mais raro ao mais previsível.</p>
+    </div>
+    <div class="rar-ranking">
+      ${showLucks.map(({show,luck:l},i) => `
+      <div class="rar-rank-row ${rankCls(i)}">
+        <div class="rk-pos">${String(i+1).padStart(2,'0')}</div>
+        <div class="rk-meta">
+          <div class="rk-date">${show.date.replace(/-/g,' · ')}</div>
+          <div class="rk-place">${show.city}${show.tour ? ' · ' + show.tour : ''}</div>
+        </div>
+        <div class="rk-bar">
+          <span>média ${l.avgCareerPlays} plays/música · ${l.sampleSize} faixas</span>
+          <i style="width:${l.score}%"></i>
+        </div>
+        <div class="rk-score">${l.score}<small>Luck</small></div>
+      </div>`).join('')}
+    </div>` : ''}
 
-    ${ultraRare.length ? `
-    <div class="rarity-section-title">🟠 Ultra-raras: 2 a 5× na carreira</div>
-    <div class="rarity-section-sub">Músicas que quase nunca aparecem nos setlists.</div>
-    <table class="rarity-table">
-      <tr><th>Música</th><th>Plays na carreira</th><th>Show(s)</th></tr>
-      ${ultraRare.map(e => `
-        <tr>
-          <td><div class="rt-song">${e.song}</div><div class="rt-album">${getAlbumTitle(e.song)}</div></td>
-          <td><div class="rt-plays ultra">${e.timesPlayed}×</div></td>
-          <td><div class="rt-show">${e.shows.map(s => s.date + ' · ' + s.city.split(',')[0]).join('<br>')}</div></td>
-        </tr>`).join('')}
-    </table>` : ''}
-
-    <div class="rarity-section-title">📊 Todas as raridades que você pegou</div>
-    <div class="rarity-section-sub">Músicas raras (≤100× na carreira) que você ouviu ao vivo, ordenadas por frequência.</div>
+    ${rareSongs.length ? `
+    <!-- 04 · TODAS AS RARIDADES -->
+    <div class="rar-section-head">
+      <span class="rar-section-num">04</span>
+      <div>
+        <div class="kicker">Arquivo completo</div>
+        <h2>Todas as raridades que você pegou</h2>
+      </div>
+      <p>Músicas raras (≤100× na carreira) ordenadas por frequência histórica.</p>
+    </div>
     <table class="rarity-table">
       <tr><th>#</th><th>Música</th><th>Plays na carreira</th><th>Tipo</th></tr>
-      ${rareSongs.map((e, i) => `
+      ${rareSongs.map((e,i) => `
         <tr>
-          <td style="color:var(--ink-mute);font-size:12px">${String(i+1).padStart(2,'0')}</td>
+          <td style="color:var(--ink-dim);font-size:12px">${String(i+1).padStart(2,'0')}</td>
           <td><div class="rt-song">${e.song}</div><div class="rt-album">${getAlbumTitle(e.song)}</div></td>
           <td>${rarityChip(e.timesPlayed)}</td>
           <td style="font-size:11px;color:var(--ink-mute)">${e.db ? e.db.type : '…'}</td>
         </tr>`).join('')}
-    </table>
-
-    <div class="rarity-section-title">🏆 Luck Score por show</div>
-    <div class="rarity-section-sub">Seus shows ordenados do set mais raro ao mais previsível.</div>
-    <table class="rarity-table">
-      <tr><th>Show</th><th>Luck Score</th><th>Média plays/música</th></tr>
-      ${showLucks.map(({ show, luck }) => `
-        <tr>
-          <td>
-            <div class="rt-song">${show.date} · ${show.city.split(',')[0]}</div>
-            <div class="rt-album">${show.tour}</div>
-          </td>
-          <td>
-            <div style="display:flex;align-items:center;gap:8px;">
-              <div style="width:${luck.score}px;max-width:100px;height:6px;background:var(--pj);border-radius:3px;"></div>
-              <strong>${luck.score}</strong>
-            </div>
-          </td>
-          <td style="color:var(--ink-mute);font-size:13px">${luck.avgCareerPlays} plays avg</td>
-        </tr>`).join('')}
-    </table>
+    </table>` : ''}
 
     ${notSeenClassics.length ? `
-    <div class="rarity-section-title">👀 Clássicos que você ainda não viu ao vivo</div>
-    <div class="rarity-section-sub">Músicas com 300+ plays na carreira que não apareceram nos seus shows.</div>
-    <div class="classics-grid">
+    <!-- 05 · WANTED -->
+    <div class="rar-section-head">
+      <span class="rar-section-num">05</span>
+      <div>
+        <div class="kicker">Wanted · clássicos faltando</div>
+        <h2>Ainda não pegou ao vivo</h2>
+      </div>
+      <p>Tocadas 300× ou mais na carreira do PJ — mas nunca pintaram nas suas noites. Wish-list pro próximo show.</p>
+    </div>
+    <div class="rar-wanted-grid">
       ${notSeenClassics.map(d => `
-        <div class="classic-card">
-          <div class="cc-plays">${d.timesPlayed}×</div>
-          <div class="cc-song">${d.title}</div>
-          <div class="cc-album">${getAlbumTitle(d.title)}</div>
-        </div>`).join('')}
+      <div class="rar-wanted">
+        <div class="rar-wanted-head">★ Wanted ★</div>
+        <div class="rar-wanted-plays">${d.timesPlayed}<small>× ever</small></div>
+        <div class="rar-wanted-song">${d.title}</div>
+        <div class="rar-wanted-album">${getAlbumTitle(d.title) || '–'}</div>
+        <div class="rar-wanted-foot">— missing —</div>
+      </div>`).join('')}
     </div>` : ''}
   `;
 }
