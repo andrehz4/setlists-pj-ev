@@ -447,7 +447,19 @@ async function main() {
   });
 }
 
-main().catch((e) => {
-  console.error("[community] FATAL:", e);
-  process.exit(1);
-});
+// Watchdog + exit explicito: mesmo motivo do fetch-news.mjs. got/sharp deixam
+// socket no event loop que pode segurar o processo por minutos. Aborta em 6min
+// (timeout do workflow e 8min) e encerra na hora quando o trabalho termina.
+const WATCHDOG_MS = 6 * 60 * 1000;
+const watchdog = setTimeout(() => {
+  console.error(`[community] WATCHDOG: passou de ${WATCHDOG_MS / 60000}min sem terminar, abortando`);
+  process.exit(2);
+}, WATCHDOG_MS);
+watchdog.unref();
+
+main()
+  .then(() => process.exit(0))
+  .catch((e) => {
+    console.error("[community] FATAL:", e);
+    process.exit(1);
+  });
