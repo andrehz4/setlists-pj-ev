@@ -1949,5 +1949,174 @@
     "key": "F#",
     "tuning": "EADGBE",
     "bpm": 118
+  },
+  "lightning bolt": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "lightning-bolt-v1.gp5",
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 128,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "lightning-bolt-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "getaway": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "getaway-v1.gp5",
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 124,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "getaway-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "mind your manners": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "mind-your-manners-v1.gp5",
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 176,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "mind-your-manners-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "future days": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "future-days-v1.gp5",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 75,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "future-days-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "sleeping by myself": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp",
+    "tabFile": "sleeping-by-myself-v1.gp",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 90,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "sleeping-by-myself-v1.gp",
+        "format": "gp"
+      }
+    ]
+  },
+  "yellow moon": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "yellow-moon-v1.gp5",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 84,
+    "versions": [
+      {
+        "id": "v1",
+        "label": "Versao 1",
+        "file": "yellow-moon-v1.gp5",
+        "format": "gp5"
+      }
+    ]
+  },
+  "wreckage": {
+    "cifra": true,
+    "cifraMulti": "wreckage.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 104
+  },
+  "dark matter": {
+    "cifra": true,
+    "cifraMulti": "dark-matter.json",
+    "tab": false,
+    "key": "Em",
+    "tuning": "EADGBE",
+    "bpm": 140
+  },
+  "setting sun": {
+    "cifra": true,
+    "cifraMulti": "setting-sun.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 90
+  },
+  "wont tell": {
+    "cifra": true,
+    "cifraMulti": "wont-tell.json",
+    "tab": false,
+    "key": "B",
+    "tuning": "EADGBE",
+    "bpm": 85
+  },
+  "something special": {
+    "cifra": true,
+    "cifraMulti": "something-special.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 120
+  },
+  "waiting for stevie": {
+    "cifra": true,
+    "cifraMulti": "waiting-for-stevie.json",
+    "tab": false,
+    "key": "D",
+    "tuning": "DADGBE",
+    "bpm": 112,
+    "notes": "Afinacao Drop D (DADGBE)."
+  },
+  "react respond": {
+    "cifra": true,
+    "cifraMulti": "react-respond.json",
+    "tab": false,
+    "key": "A",
+    "tuning": "EADG",
+    "bpm": 120,
+    "notes": "Tab de baixo (default_instrument: baixo)."
+  },
+  "scared of fear": {
+    "cifra": true,
+    "cifraMulti": "scared-of-fear.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "DGDGBD",
+    "bpm": 169,
+    "notes": "Afinacao Open G (DGDGBD)."
   }
 }

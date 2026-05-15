@@ -1,0 +1,97 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Something Special (Pearl Jam, Dark Matter 2024). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "cifra transcrita pelo usuario + Claude",
+    "fetched": "2026-05-15"
+  },
+  "title": "Something Special",
+  "artist": "Pearl Jam",
+  "album": "Dark Matter (2024)",
+  "key": "G",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":          { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Bm":         { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "F#":         { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2 },
+        "D7":         { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D" },
+        "Em":         { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "C":          { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Am":         { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "D":          { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "Gsus2/F#":   { "fingering": "200033", "fingers": "200011", "fundamental": "G" },
+        "Em7":        { "fingering": "022030", "fingers": "023040", "fundamental": "E" },
+        "Cmaj7":      { "fingering": "x32000", "fingers": "x32000", "fundamental": "C" },
+        "Csus2add13": { "fingering": "x32033", "fingers": "x32011", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":          { "fingering": "0232", "fingers": "0132", "fundamental": "G" },
+        "Bm":         { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "F#":         { "fingering": "3121", "fingers": "3121", "fundamental": "F#" },
+        "D7":         { "fingering": "2223", "fingers": "1112", "fundamental": "D" },
+        "Em":         { "fingering": "0402", "fingers": "0302", "fundamental": "E" },
+        "C":          { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Am":         { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "D":          { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Gsus2/F#":   { "fingering": "0230", "fingers": "0130", "fundamental": "G" },
+        "Em7":        { "fingering": "0202", "fingers": "0202", "fundamental": "E" },
+        "Cmaj7":      { "fingering": "0002", "fingers": "0002", "fundamental": "C" },
+        "Csus2add13": { "fingering": "0203", "fingers": "0203", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":          { "notes": ["G",  "B",  "D"],          "fundamental": "G",  "inversion": null },
+        "Bm":         { "notes": ["B",  "D",  "F#"],         "fundamental": "B",  "inversion": null },
+        "F#":         { "notes": ["F#", "A#", "C#"],         "fundamental": "F#", "inversion": null },
+        "D7":         { "notes": ["D",  "F#", "A",  "C"],   "fundamental": "D",  "inversion": null },
+        "Em":         { "notes": ["E",  "G",  "B"],          "fundamental": "E",  "inversion": null },
+        "C":          { "notes": ["C",  "E",  "G"],          "fundamental": "C",  "inversion": null },
+        "Am":         { "notes": ["A",  "C",  "E"],          "fundamental": "A",  "inversion": null },
+        "D":          { "notes": ["D",  "F#", "A"],          "fundamental": "D",  "inversion": null },
+        "Gsus2/F#":   { "notes": ["F#", "G",  "A",  "D"],  "fundamental": "G",  "inversion": null },
+        "Em7":        { "notes": ["E",  "G",  "B",  "D"],   "fundamental": "E",  "inversion": null },
+        "Cmaj7":      { "notes": ["C",  "E",  "G",  "B"],   "fundamental": "C",  "inversion": null },
+        "Csus2add13": { "notes": ["C",  "D",  "E",  "G",  "A"], "fundamental": "C", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [Bm] [F#] [D7]\n[Em] [C] [C] [Cmaj7] [C]\n\n{section: Verso 1}\n[G]                               [Bm]\n If you could see what I see now\n                   [F#]                  [D7]\nYou gotta know I'm looking up oh so proud\n                          [Em]     [C]\nThe one I used to hold is oh so special\n      [G]\nMmm...\n\n{section: Verso 2}\n[G]                                         [Bm]\nAnd every setback now but a chance to grow\n                          [F#]           [D7]\nIf further proof that you're phenomenal\n                                   [Em]         [C]\nYou better believe it that you are something special\nWhoa, whoa\n\n{section: Verso 3}\n[G]                                         [Bm]\n Afraid to fail, oh, same as afraid to try\n                      [F#]                    [D7]\nThese are the days to accept all the invites\n                                 [Em]     [C]\n'Cause you're so cool and, baby, on the level\n           [Am]\nOh, oh, oh oh!\n\n{section: Refrão}\n               [D]\nAnd someday you\n    [G]                    [Em]                 [Am]\nMay find yourself in the place that I now do\n                [D]                           [G]        [Em] [Am]\nAnd someway you, yeah, you're gonna have to let it go\n             [D]            [G]             [Gsus2/F#]\nAnd I got proof 'cause my heart It aches\n           [Em7]             [D]  [C]\nand breaks,   but I believe in you\n        [Cmaj7]\nIt's the truth\n[C]\nUh, uhh...\n\n{section: Verso 4}\n[G]                                            [Bm]\n And it's okay, should this life knock you down\n                               [F#]                    [D7]\nThe twisted wheel, you know it keeps on spinning 'round\n                               [Em]     [C]\nBet on yourself, your number's oh so special\n      [G]\nMmm...\n\n{section: Verso 5}\n[G]                                                   [Bm]\nAnd when it gets fucked up, you need a helping hand\n                               [F#]                [D7]\nDo it yourself, you're not the type to need a man\n                                    [Em]           [C]\nBut if you find one, he better know you're damn special\n[C] [Csus2add13]    [C]       [Am]\n            Oh, oh, oh, oh!\n\n{section: Refrão 2}\n               [D]\nAnd someday you\n    [G]                    [Em]                 [Am]\nMay find yourself in the place that I now do\n           [D]                     [G]        [Em] [Am]\nAnd someway you're gonna have to let it go\n             [D]         [G]             [Gsus2/F#]\nAnd I got proof for my heart It aches\n           [Em7]             [D]  [C]\nand breaks,   but I believe in you\n         [Cmaj7]        [C]                  [G]\nOh, ain't   it, oh, ain't it the truth?\n\n{section: Solo}\n[Bm] [F#] [D7] [Em] [C] [G]\n\n{section: Verso 6}\n[G]                                            [Bm]\nRemind yourself and find what makes you free\n                            [F#]                  [D7]\nIt's goal to go and time to find out what you seek\n                 [Em]       [C]\nAnd in between, avoid the Devil\n            [G]\nOh, oh, oh, oh!\n\n{section: Verso 7}\n[G]                                                  [Bm]\nAnd if the night grows long, you're not feeling loved\n                    [F#]                    [D7]\nI will be there and not 'cause it's my job\n                               [Em]       [C]\nI work for free because you're both so special\n\n{section: Refrão 3}\n         [Am]        [D]\nOh, ain't  it, oh, ain't it the truth?\n[G]              [Em]                   [Am]\n We believe, believe, believe in you\n           [D]\nWe all got something\n   [G]       [Em]                [Am]\nWe all got something to prove\n           [D]                         [G]     [Gsus2/F#]\nOh, out of everyone, you're not just anyone\n           [Em7]     [D]    [C]\nYou're the one and only you\n     [Cmaj7] [C]\nWe done all we can do\n\n{section: Outro}\n[G] [Bm] [F#] [D7] [Em] [C]\n"
+}

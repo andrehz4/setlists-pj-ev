@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Waiting for Stevie (Pearl Jam, Dark Matter 2024). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas Drop D, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "cifra transcrita pelo usuario + Claude",
+    "fetched": "2026-05-15",
+    "note_afinacao": "Violao em Drop D (DADGBE) — corda 6 afinada em D."
+  },
+  "title": "Waiting for Stevie",
+  "artist": "Pearl Jam",
+  "album": "Dark Matter (2024)",
+  "key": "D",
+  "bpm": 112,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "DADGBE",
+      "chords": {
+        "D":     { "fingering": "000232", "fingers": "000132", "fundamental": "D" },
+        "Am":    { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "F":     { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "A#":    { "fingering": "x13331", "fingers": "x13331", "fundamental": "A#", "barre": 1 },
+        "Cadd9": { "fingering": "x32033", "fingers": "x32011", "fundamental": "C" },
+        "Bm":    { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "D7":    { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D" },
+        "Em":    { "fingering": "022000", "fingers": "023000", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 112,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Am":    { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "F":     { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "G":     { "fingering": "0232", "fingers": "0132", "fundamental": "G" },
+        "A#":    { "fingering": "3211", "fingers": "3211", "fundamental": "A#" },
+        "Cadd9": { "fingering": "0203", "fingers": "0203", "fundamental": "C" },
+        "Bm":    { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "D7":    { "fingering": "2223", "fingers": "1112", "fundamental": "D" },
+        "Em":    { "fingering": "0402", "fingers": "0302", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 112,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":     { "notes": ["D",  "F#", "A"],       "fundamental": "D",  "inversion": null },
+        "Am":    { "notes": ["A",  "C",  "E"],        "fundamental": "A",  "inversion": null },
+        "F":     { "notes": ["F",  "A",  "C"],        "fundamental": "F",  "inversion": null },
+        "G":     { "notes": ["G",  "B",  "D"],        "fundamental": "G",  "inversion": null },
+        "A#":    { "notes": ["A#", "D",  "F"],        "fundamental": "A#", "inversion": null },
+        "Cadd9": { "notes": ["C",  "D",  "E",  "G"], "fundamental": "C",  "inversion": null },
+        "Bm":    { "notes": ["B",  "D",  "F#"],       "fundamental": "B",  "inversion": null },
+        "D7":    { "notes": ["D",  "F#", "A",  "C"], "fundamental": "D",  "inversion": null },
+        "Em":    { "notes": ["E",  "G",  "B"],        "fundamental": "E",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [Am] [F] [G] (x2)\n[D]\n\n{section: Refrão 1}\n             [D]              [Am]\nYou can be loved by everyone\n             [F] [G]            [D]\nAnd not feel,  not feel love\n                           [Am]\nYou can be told by everyone\n            [F]  [G]              [D]\nAnd not hear a word from above\n\n{section: Verso 1}\n[A#]                                                     [D]\n  Swallowed up by the sound cutting holes in the clouds\n[A#]                                               [D]     [Cadd9]\n  Finds herself in the song, hears her own voice rising\n\n{section: Refrão 2}\n             [D]              [Am]\nYou can be loved by everyone\n                   [F] [G]            [D]\nAnd still not feel,  not feel love\n                                    [Am]\nYou can relate, but still can't stop\n                   [F]    [G]                  [D]\nOr conquer the fear you are what you're not\n                                  [Am]\nWould have to take an act of faith\n              [F]    [G]               [D]\nTo find relief and escape the blame\n\n{section: Verso 2}\n[A#]                                                  [D]\n  Words follow her down, needs to shake 'em off now, now\n[A#]                                        [D]     [Cadd9]\n  This godforsaken town don't deserve her anyhow\n\n{section: Bridge}\n[Bm]             [D7]\n  Callin' on a messenger\n[G]              [Em]\n Awaitin' on a face\n[Bm]                        [D7]\n  That she could trust, a messenger\n        [G]         [Em]\nFor her love, her love\n[D] [Am] [F] [G] (x2)\n[D]\n\n{section: Refrão 3}\n             [F] [G]        [D]\nAnd not feel,  feel love\n                              [Am]\nYou can be told to not give up\n                  [F]  [G]              [D]\nAnd still not hear a word from above\n                                   [Am]\nYou can't take or give what you got\n                 [F]    [G]                   [D]\nDissolve the fear you are what you're not, no\n                            [Am]\nYou can be loved by everyone\n             [F] [G]        [D]\nAnd not feel,  feel love\n\n{section: Solo de Guitarra}\n[D] [Am] [F] [G] (x2)\n[D]\n\n{section: Outro}\n                [Am] [F] [G] [D]\nYou can be loved\n(repeat)\n[D] [G] [D] [G]\n"
+}

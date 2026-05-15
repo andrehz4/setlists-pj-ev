@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Dark Matter (Pearl Jam, Dark Matter 2024). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas power chords, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Dark Matter",
+  "artist": "Pearl Jam",
+  "album": "Dark Matter (2024)",
+  "key": "Em",
+  "bpm": 140,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E5":  { "fingering": "022xxx", "fingers": "012xxx", "fundamental": "E" },
+        "G5":  { "fingering": "355xxx", "fingers": "134xxx", "fundamental": "G", "barre": 3 },
+        "A5":  { "fingering": "x022xx", "fingers": "x012xx", "fundamental": "A" },
+        "A#5": { "fingering": "x133xx", "fingers": "x134xx", "fundamental": "A#", "barre": 1 },
+        "C5":  { "fingering": "x355xx", "fingers": "x134xx", "fundamental": "C", "barre": 3 },
+        "D5":  { "fingering": "x577xx", "fingers": "x134xx", "fundamental": "D", "barre": 5 },
+        "F5":  { "fingering": "133xxx", "fingers": "134xxx", "fundamental": "F", "barre": 1 },
+        "F#5": { "fingering": "244xxx", "fingers": "134xxx", "fundamental": "F#", "barre": 2 }
+      },
+      "strumming": {
+        "label": "PALM-MUTED ROCK",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": true },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E5":  { "fingering": "42xx", "fingers": "21xx", "fundamental": "E" },
+        "G5":  { "fingering": "02xx", "fingers": "01xx", "fundamental": "G" },
+        "A5":  { "fingering": "24xx", "fingers": "13xx", "fundamental": "A" },
+        "A#5": { "fingering": "35xx", "fingers": "13xx", "fundamental": "A#" },
+        "C5":  { "fingering": "05xx", "fingers": "04xx", "fundamental": "C" },
+        "D5":  { "fingering": "22xx", "fingers": "11xx", "fundamental": "D" },
+        "F5":  { "fingering": "10xx", "fingers": "10xx", "fundamental": "F" },
+        "F#5": { "fingering": "21xx", "fingers": "21xx", "fundamental": "F#" }
+      },
+      "strumming": {
+        "label": "PALM-MUTED ROCK",
+        "bpm": 140,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": true },
+          { "count": "2", "stroke": "down", "muted": true },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E5":  { "notes": ["E", "B"],   "fundamental": "E",  "inversion": null },
+        "G5":  { "notes": ["G", "D"],   "fundamental": "G",  "inversion": null },
+        "A5":  { "notes": ["A", "E"],   "fundamental": "A",  "inversion": null },
+        "A#5": { "notes": ["Bb", "F"],  "fundamental": "Bb", "inversion": null },
+        "C5":  { "notes": ["C", "G"],   "fundamental": "C",  "inversion": null },
+        "D5":  { "notes": ["D", "A"],   "fundamental": "D",  "inversion": null },
+        "F5":  { "notes": ["F", "C"],   "fundamental": "F",  "inversion": null },
+        "F#5": { "notes": ["F#", "C#"], "fundamental": "F#", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E5] [G5] [A5] [A#5]\n[E5] [G5] [A5] [A#5]\n\n{section: Verso 1}\n[E5]Steal the lights from our eyes\nTake my blood from my heart\n[G5]We're in all of this [A5]dark [A#5]matter\n[E5]Take the breaths from my chest\nTake the thoughts from my mind\n[G5]We're losing time, [A5]dark [E5]matter\n\n{section: Pré-Refrão}\n[C5]Denounce the demagogues\nKing diamonds to discard\n[E5] [C5]Deploy the dialogue\nYour word against the law\n\n{section: Refrão}\n[E5]It's strange these days\n[G5]When everybody else pays\n[A5]For someone else's mis[A#5]take\n[E5]This blame takes shape\n[G5]Still everybody else pays\n[A5]For someone else's mis[A#5]take [E5]\n\n{section: Verso 2}\n[E5]You're running away\nWe're pulling apart\n[G5]In all of this [A5]dark [A#5]matter\n[E5]I once heard a sin\nAnd it stuck in my head\n[G5]Arrested the press\n[A5]No one knows what happened [E5]next\n\n{section: Pré-Refrão 2}\n[C5]Renounce the demigods\nKing diamonds to discard\n[E5] [C5]Deploy the dialogue\nYour word against the law\n\n{section: Refrão 2}\n[E5]It's strange these days\n[G5]When everybody else pays\n[A5]For someone else's mis[A#5]take\n[E5]This blame takes shape\n[G5]Still everybody else pays\n[A5]For someone else's mis[A#5]take\n\n{section: Interlúdio}\n[C5]No tolerance for intolerance so I've\n[D5]No patience left for im[C5]patience no more\n[D5]No love lost for lost [A5]loves\n[F#5]No sorrow for the un[F5]accountable\n\n{section: Ponte}\n[E5] [G5] [A5] [A#5]\n\n{section: Solo}\n[E5] [G5] [A5] [A#5] [E5] [G5] [A5] [A#5]\n\n{section: Refrão 3}\n[E5]It's strange these days\n[G5]When everybody else pays\n[A5]For someone else's mis[A#5]take\n[E5]This blame takes shape\n[G5]Still everybody else pays\n[A5]For someone else's mis[A#5]take [E5]\n"
+}

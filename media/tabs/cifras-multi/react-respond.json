@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de React Respond (Pearl Jam, Dark Matter 2024). Instrumento principal: baixo (bass tab). Violao, ukulele e piano incluem acordes inferidos da progressao de baixo. Sem letras — musica com baixo proeminente.",
+    "source": "Cifra transcrita pelo usuario + Claude",
+    "fetched": "2026-05-15"
+  },
+  "title": "React Respond",
+  "artist": "Pearl Jam",
+  "album": "Dark Matter (2024)",
+  "key": "A",
+  "bpm": 120,
+  "default_instrument": "baixo",
+  "instruments": {
+    "baixo": {
+      "label": "Baixo",
+      "tuning": "EADG",
+      "tab": true,
+      "tab_sections": [
+        {
+          "label": "Intro / Verso",
+          "content": "G|---------|-------------|---------|-------------|---------|-------------|---------|-------------|\nD|---------|-------------|---------|-------------|---------|-------------|---------|-------------|\nA|5-7----5-|(5)-7--------|5-7----5-|(5)-7--------|5-7----5-|(5)-7--------|5-7----5-|(5)-7--------|\nE|----0-0--|------0-0-0-0|----0-0--|------0-0-0-0|----0-0--|------0-0-0-0|----0-0--|------0-0-0-0|"
+        },
+        {
+          "label": "Refrão",
+          "content": "G|---------------|---------------|---------------|---------------|---------------|\nD|---------------|---------------|---------------|---------------|---------------|\nA|5-5-5-5-5-5-5-5|5-5-5-5-5-5-5-5|---------------|---------------|---------------|\nE|---------------|---------------|6-6-6-6-6-6-6-6|5-5-5-5-5-5-5-5|6-6-6-6-6-6-6-6|\n\nG|---------------|---------------|---------------|---------------|---|\nD|---------------|---------------|---------------|---------------|---|\nA|---------------|---------------|---------------|---------------|---|\nE|0-0-0-0-0-0-0-0|6-6-6-6-6-6-6-6|5-5-5-5-5-5-5-5|1-1-1-1-1-1-1-1|---|"
+        },
+        {
+          "label": "Ponte",
+          "content": "G|---------------|---------------|\nD|---------------|---------------|\nA|5-5-5-5-5-5-5-5|5-5-5-5-5-5-5-5|\nE|---------------|---------------|"
+        },
+        {
+          "label": "Outro",
+          "content": "G|---------|-------------|---------|-------------|\nD|---------|-------------|---------|-------------|\nA|5-7----5-|(5)-7--------|5-7----5-|(5)-7--------|\nE|----0-0--|------0-0-0-0|----0-0--|------0-0-0-0|"
+        }
+      ]
+    },
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Am": { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "E5": { "fingering": "022xxx", "fingers": "011xxx", "fundamental": "E" },
+        "F":  { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Bb": { "fingering": "x13331", "fingers": "x13331", "fundamental": "Bb", "barre": 1 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Am": { "fingering": "2000", "fingers": "2000", "fundamental": "A" },
+        "E5": { "fingering": "4200", "fingers": "3200", "fundamental": "E" },
+        "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Bb": { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Am": { "notes": ["A", "C", "E"],   "fundamental": "A",  "inversion": null },
+        "E5": { "notes": ["E", "B"],         "fundamental": "E",  "inversion": null },
+        "F":  { "notes": ["F", "A", "C"],   "fundamental": "F",  "inversion": null },
+        "Bb": { "notes": ["Bb", "D", "F"],  "fundamental": "Bb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Am] [Am] [Am] [Am]\n(progressao de baixo: A5-7-A, E pedal)\n\n{section: Verso 1}\n[Am] [Am] [Am] [Am]\n(progressao de baixo: A5-7-A, E pedal)\n\n{section: Refrão}\n[F] [Bb] [Am] [Am]\n[F] [Bb] [Am] [Am]\n\n{section: Verso 2}\n[Am] [Am] [Am] [Am]\n(progressao de baixo: A5-7-A, E pedal)\n\n{section: Ponte}\n[F] [Bb] [Am] [Am]\n[F] [Bb] [Am] [Am]\n[F] [Bb] [Am] [Am]\n[F] [Bb] [Am] [Am]\n\n{section: Outro}\n[Am] [Am] [Am] [Am]\n(progressao de baixo: A5-7-A, E pedal)\n"
+}

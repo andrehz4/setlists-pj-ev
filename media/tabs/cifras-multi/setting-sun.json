@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Setting Sun (Pearl Jam, Dark Matter 2024). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Setting Sun",
+  "artist": "Pearl Jam",
+  "album": "Dark Matter (2024)",
+  "key": "G",
+  "bpm": 90,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":        { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Cadd9":    { "fingering": "x32033", "fingers": "x32011", "fundamental": "C" },
+        "Gsus2/F#": { "fingering": "200033", "fingers": "200011", "fundamental": "F#" },
+        "Dm":       { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "C":        { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "SLOW BALLAD",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":        { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Cadd9":    { "fingering": "0203", "fingers": "0203", "fundamental": "C" },
+        "Gsus2/F#": { "fingering": "0232", "fingers": "0231", "fundamental": "F#" },
+        "Dm":       { "fingering": "2210", "fingers": "2310", "fundamental": "D" },
+        "C":        { "fingering": "0003", "fingers": "0003", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "SLOW BALLAD",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":        { "notes": ["G", "B", "D"],          "fundamental": "G",  "inversion": null },
+        "Cadd9":    { "notes": ["C", "D", "E", "G"],     "fundamental": "C",  "inversion": null },
+        "Gsus2/F#": { "notes": ["F#", "G", "A", "D"],   "fundamental": "F#", "inversion": null },
+        "Dm":       { "notes": ["D", "F", "A"],          "fundamental": "D",  "inversion": null },
+        "C":        { "notes": ["C", "E", "G"],          "fundamental": "C",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [Cadd9] [G] [Cadd9]\nThe cast was made\n\n{section: Verso 1}\n[G]to reset broken [Cadd9]bones\nBut there's no such thing to [G]fix a love gone [Cadd9]wrong\nKeep knocking the [G]door 'cause I know [Cadd9]someone's there\nI wait on the [G]porch hoping someday, [Cadd9]I'll be let in\nThey say in the [G]end everything will [Cadd9]be okay\nIf it's not [G]okay, well then, it [Cadd9]ain't the end\n\n{section: Ponte}\n[Gsus2/F#]Had dreams to you I would be[Cadd9]long\n[G]Had [Gsus2/F#]the dream you would stay with [Cadd9]me 'til kingdom [G]come\n[Gsus2/F#]Turns out forever has come and [Cadd9]gone\n[G]Am I the on[Gsus2/F#]ly one [Cadd9]hanging [G]on?\n\n{section: Verso 2}\n[G] [Cadd9]Hand in hand, yeah, we [G]took it [Cadd9]on\nYou answered my [G]prayers, now from my [Cadd9]knees, I can't get up\nLost patience with [G]time, yeah, hurry up your [Cadd9]patience tonight\nI'd like some of [G]yours, in trade, can take [Cadd9]all of mine\n\n{section: Ponte 2}\n[Gsus2/F#]I dreamt to you I would be[Cadd9]long\n[G]Held [Gsus2/F#]the dream you would stay with [Cadd9]me 'til kingdom [G]come\n[Gsus2/F#]Turns out it was more like hit and [Cadd9]run\n[G]Am I the on[Gsus2/F#]ly one [Cadd9]hanging [G]on?\nAm I the on[Gsus2/F#]ly one [Cadd9]hanging [G]on?\n\n{section: Solo}\n[Dm] [C] [G] [Dm] [C] [G]\n\n{section: Refrão}\n[Dm]If you could see [C]what I [G]see now\n[Dm]You'd find a way [C]to stay some[G]how\n[Dm]Oh, if you could see, yeah, [C]what I [G]see now\n[Dm]You'd make your way [C]to stay some[G]how\n[G] [Dm] [C] [G]\nMay your days [Dm]be long [C]'til kingdom [G]come\nMay our days [Dm]be long [C]before kingdom [G]come\nMay our days [Dm]be long un[C]til kingdom [G]come [Dm] [C]\n[G]We can become [Dm]one last set[C]ting [G]sun\n[Dm]Am I the only [C]one hanging [G]on?\n[Dm]We could become [C]one last set[G]ting sun\n[Dm]Or be the sun [C]at the break of [G]dawn\n\n{section: Outro}\n[Dm] [C] [G] Let us not [Dm]fade\n[C] [G] Let us not [Dm]fade [Cadd9]\n"
+}
