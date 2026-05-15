@@ -301,7 +301,6 @@ async function main() {
     } catch (err) {
       console.warn(`[community] runDigest falhou: ${err.message}. Continuando com spotlight.`);
       allWarnings.push(`runDigest falhou: ${err.message}`);
-      sourceResults.push({ label: "Reddit r/pearljam top/day (digest)", count: 0, error: err.message });
     }
   }
   if (MODE === "spotlight" || MODE === "both") {
@@ -311,7 +310,6 @@ async function main() {
     } catch (err) {
       console.warn(`[community] runSpotlight falhou: ${err.message}.`);
       allWarnings.push(`runSpotlight falhou: ${err.message}`);
-      sourceResults.push({ label: "Reddit r/pearljam top/week (spotlight)", count: 0, error: err.message });
     }
   }
 
