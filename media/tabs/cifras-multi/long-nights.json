@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Long Nights (Eddie Vedder, Into The Wild 2007). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Long Nights",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "Gm",
+  "bpm": 75,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Gm": { "fingering": "355333", "fingers": "134111", "fundamental": "G", "barre": 3 },
+        "F":  { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "C":  { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Bb": { "fingering": "x13331", "fingers": "x13331", "fundamental": "Bb", "barre": 1 },
+        "Am": { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "Dm": { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "G7": { "fingering": "320001", "fingers": "210001", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Gm": { "fingering": "0231", "fingers": "0231", "fundamental": "G" },
+        "F":  { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "C":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Bb": { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" },
+        "Am": { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "Dm": { "fingering": "2210", "fingers": "2310", "fundamental": "D" },
+        "G7": { "fingering": "0212", "fingers": "0212", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Gm": { "notes": ["G", "Bb", "D"],    "fundamental": "G",  "inversion": null },
+        "F":  { "notes": ["F", "A", "C"],     "fundamental": "F",  "inversion": null },
+        "C":  { "notes": ["C", "E", "G"],     "fundamental": "C",  "inversion": null },
+        "Bb": { "notes": ["Bb", "D", "F"],    "fundamental": "Bb", "inversion": null },
+        "Am": { "notes": ["A", "C", "E"],     "fundamental": "A",  "inversion": null },
+        "Dm": { "notes": ["D", "F", "A"],     "fundamental": "D",  "inversion": null },
+        "G7": { "notes": ["G", "B", "D", "F"],"fundamental": "G",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Gm]\n\n{section: Verso 1}\n[Gm]\nHave no fear\n              [F]\nFor when I'm alone\n                                [C]\nI'll be better off than I was before\n     [Gm]\nI've got this light\n                  [F]\nI'll be around to grow\nWho I was before\n     [C]\nI cannot recall\n\n{section: Refrão}\n  [Bb]          [Am]        [Dm]\nLong nights allow me to feel\n           [G7]\nI'm falling  I am falling\n[Bb]           [Am]\nThe lights go  out\n       [Dm]\nLet me feel\nI'm falling\n[G7]             [Bb]            [Am]\n  I am falling safely to the ground\n  [Dm]\nAh\n\n{section: Verso 2}\n     [Gm]                              [F]\nI'll take this soul that's inside me now\nLike a brand new friend\n             [C]\nI'll forever know\n     [Gm]\nI've got this light\n                [F]\nAnd the will to show\n                        [C]\nI will always be better than before\n\n{section: Refrão 2}\n  [Bb]             [Am]      [Dm]\nLong nights allow  me to feel\n           [G7]\nI'm falling  I am falling\n[Bb]           [Am]\nThe lights go  out\n       [Dm]\nLet me feel\nI'm falling\n[G7]             [Bb]           [Am]\n  I am falling safely to the  ground\nAh\n\n{section: Outro}\n[Dm]\n"
+}

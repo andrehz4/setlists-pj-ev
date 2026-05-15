@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Rise (Eddie Vedder, Into The Wild 2007). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Rise",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "G",
+  "bpm": 85,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C": { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "D": { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "C": { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D": { "fingering": "2220", "fingers": "1230", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": { "notes": ["G", "B", "D"],  "fundamental": "G", "inversion": null },
+        "C": { "notes": ["C", "E", "G"],  "fundamental": "C", "inversion": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G]\n\n{section: Verso 1}\n[G]\nSuch is the way of the world\n              [C]\nYou can never know\n[G]\nJust where to put all your faith\n                [C]\nAnd how will it grow\n      [D]\nGonna rise up\n\n{section: Refrão}\n[G]                           [C]\nBurning black holes in dark memories\n      [D]\nGonna rise up\n[G]                     [C]\nTurning mistakes into gold\n\n{section: Ponte}\n[G] [D] [C] [G]\n[D] [C]\n\n{section: Verso 2}\n[G]\nSuch is the passage of time\n            [C]\nToo fast to fold\n[G]\nSuddenly swallowed by signs\n          [C]\nLow and behold\n      [D]\nGonna rise up\n\n{section: Refrão 2}\n[G]                    [C]\nFind my direction magnetically\n      [D]\nGonna rise up\n[G]                        [C]\nThrow down my ace in the hole\n\n{section: Outro}\n[D] [G] [C] [D]\n[G] [C]\n[G] [D] [C] [G]\n"
+}

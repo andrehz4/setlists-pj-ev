@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Tuolumne (Eddie Vedder, Into The Wild 2007). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Tuolumne",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "C",
+  "bpm": 109,
+  "notes": "Instrumental. Acordes complexos com baixo alternado. Dm11/C e aproximacao de Dm7/C.",
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C":       { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Cadd9":   { "fingering": "x32033", "fingers": "x32011", "fundamental": "C" },
+        "Dm11/C":  { "fingering": "x30011", "fingers": "x30011", "fundamental": "C" },
+        "D7/F#":   { "fingering": "200212", "fingers": "200213", "fundamental": "F#" },
+        "D/F#":    { "fingering": "200232", "fingers": "200132", "fundamental": "F#" },
+        "Dm/F":    { "fingering": "1x0231", "fingers": "1x0231", "fundamental": "F" },
+        "F6":      { "fingering": "xx3231", "fingers": "xx3231", "fundamental": "F" },
+        "D":       { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 109,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C":       { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Cadd9":   { "fingering": "0033", "fingers": "0033", "fundamental": "C" },
+        "Dm11/C":  { "fingering": "3210", "fingers": "3210", "fundamental": "C" },
+        "D7/F#":   { "fingering": "2420", "fingers": "2420", "fundamental": "F#" },
+        "D/F#":    { "fingering": "2220", "fingers": "1230", "fundamental": "F#" },
+        "Dm/F":    { "fingering": "2213", "fingers": "2213", "fundamental": "F" },
+        "F6":      { "fingering": "0031", "fingers": "0031", "fundamental": "F" },
+        "D":       { "fingering": "2220", "fingers": "1230", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 109,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C":       { "notes": ["C", "E", "G"],       "fundamental": "C",  "inversion": null },
+        "Cadd9":   { "notes": ["C", "D", "E", "G"],  "fundamental": "C",  "inversion": null },
+        "Dm11/C":  { "notes": ["C", "D", "F", "A"],  "fundamental": "C",  "inversion": null },
+        "D7/F#":   { "notes": ["F#", "A", "C", "D"], "fundamental": "F#", "inversion": "primeira" },
+        "D/F#":    { "notes": ["F#", "A", "D"],       "fundamental": "F#", "inversion": "primeira" },
+        "Dm/F":    { "notes": ["F", "A", "D"],        "fundamental": "F",  "inversion": "primeira" },
+        "F6":      { "notes": ["F", "A", "C", "D"],   "fundamental": "F",  "inversion": null },
+        "D":       { "notes": ["D", "F#", "A"],       "fundamental": "D",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Tema 1}\n[C] [Cadd9] [Dm11/C] [Cadd9] [C] [Cadd9] [Dm11/C] [Cadd9]\n[C] [Cadd9] [Dm11/C] [Cadd9] [C] [Cadd9] [Dm11/C] [Cadd9]\n[D7/F#] [D/F#] [D7/F#] [D/F#] [Dm/F] [F6] [Dm/F]\n[F6]\n\n{section: Tema 2}\n[C] [Cadd9] [C] [Cadd9] [C]\n[C] [Cadd9] [Dm11/C] [Cadd9] [C] [Cadd9] [Dm11/C] [Cadd9]\n[D7/F#] [D/F#] [D7/F#] [D/F#] [Dm/F] [F6] [Dm/F] [F6]\n"
+}

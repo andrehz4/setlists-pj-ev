@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Guaranteed (Eddie Vedder, Into The Wild 2007). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Guaranteed",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "G",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Bm":   { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "G7":   { "fingering": "320001", "fingers": "210001", "fundamental": "G" },
+        "C/E":  { "fingering": "032010", "fingers": "032010", "fundamental": "E" },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Bm":   { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "G7":   { "fingering": "0212", "fingers": "0212", "fundamental": "G" },
+        "C/E":  { "fingering": "0003", "fingers": "0003", "fundamental": "E" },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":    { "notes": ["G", "B", "D"],     "fundamental": "G", "inversion": null },
+        "Bm":   { "notes": ["B", "D", "F#"],    "fundamental": "B", "inversion": null },
+        "G7":   { "notes": ["G", "B", "D", "F"],"fundamental": "G", "inversion": null },
+        "C/E":  { "notes": ["E", "G", "C"],     "fundamental": "E", "inversion": "primeira" },
+        "C":    { "notes": ["C", "E", "G"],     "fundamental": "C", "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],    "fundamental": "D", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [Bm] [G7] [C/E]\n[C] [G] [D]\n\n{section: Verso 1}\n[G]                    [Bm]\nOn bended knee is no way to be free\n[G7]                         [C/E]\nLifting up an empty cup, I ask silently\n[C]                          [G]\nAll my destinations will accept the one that's me\n   [D]\nSo I can breathe\n\n{section: Verso 2}\n[G]                          [Bm]\nCircles they grow and they swallow people whole\n[G7]                                     [C/E]\nHalf their lives they say goodnight to wives they'll never know\n  [C]                             [G]\nA mind full of questions, and a teacher in my soul\n    [D]\nAnd so it goes\n\n{section: Verso 3}\n[G]                    [Bm]\nDon't come closer or I'll have to go\n[G7]                          [C/E]\nHolding me like gravity are places that pull\n[C]                            [G]\nIf ever there was someone to keep me at home\n   [D]\nIt would be you\n\n{section: Verso 4}\n[G]                          [Bm]\nEveryone I come across, in cages they bought\n     [G7]                                    [C/E]\nThey think of me and my wandering, but I'm never what they thought\n     [C]                           [G]\nI've got my indignation, but I'm pure in all my thoughts\n[D]\nI'm alive\n[G]                       [Bm]\nWind in my hair, I feel part of everywhere\n[G7]                       [C/E]\nUnderneath my being is a road that disappeared\n[C]                                       [G]\nLate at night I hear the trees, they're singing with the dead\n[D]\nOverhead\n\n{section: Verso 5}\n[G]                   [Bm]\nLeave it to me as I find away to be\n   [G7]                       [C/E]\nConsider me a satellite, forever orbiting\n[C]                                   [G]\nI knew all the rules, but the rules did not know me\n [D]\nGuaranteed\n\n{section: Outro}\n[G]     [Bm]\nHmm.. mm..\n[G7]                     [C/E]\n  Hmm.. mm.. mm.. mm.. mm\n[C]               [G]\nHmm.. mm.. mm.. mm.. mm\n[D]\nHmm..\n[G] [Bm] [G7] [C/E]\n[C] [G] [D] [G]\n[Bm] [G7] [C/E] [C]\n[G] [D] [G] [Bm]\n[G7] [C/E] [C] [G]\n[D] [G]\n"
+}

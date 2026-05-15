@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Setting Forth (Eddie Vedder, Into The Wild 2007). Estrutura: instruments contem diagramas de acordes por instrumento; content eh o texto ChordPro compartilhado.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Setting Forth",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "D",
+  "bpm": 85,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D":     { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "Em":    { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "A":     { "fingering": "x02220", "fingers": "x02230", "fundamental": "A" },
+        "D/F#":  { "fingering": "200232", "fingers": "200132", "fundamental": "F#" },
+        "Dsus4": { "fingering": "xx0233", "fingers": "xx0134", "fundamental": "D" },
+        "Em7":   { "fingering": "022030", "fingers": "023040", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Em":    { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "A":     { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "D/F#":  { "fingering": "2220", "fingers": "1230", "fundamental": "F#" },
+        "Dsus4": { "fingering": "0230", "fingers": "0230", "fundamental": "D" },
+        "Em7":   { "fingering": "0202", "fingers": "0202", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D":     { "notes": ["D", "F#", "A"],     "fundamental": "D",  "inversion": null },
+        "Em":    { "notes": ["E", "G", "B"],       "fundamental": "E",  "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],       "fundamental": "G",  "inversion": null },
+        "A":     { "notes": ["A", "C#", "E"],      "fundamental": "A",  "inversion": null },
+        "D/F#":  { "notes": ["F#", "A", "D"],      "fundamental": "F#", "inversion": "primeira" },
+        "Dsus4": { "notes": ["D", "G", "A"],       "fundamental": "D",  "inversion": null },
+        "Em7":   { "notes": ["E", "G", "B", "D"],  "fundamental": "E",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D]\n\n{section: Verso 1}\n[D] [Em]\n   Being, no concern\n[D]  [Em]\n   Point of no return\n[D]  [Em]\n   Go forward and reverse\n[D]  [G]             [A]\n   This I will recall\n[D]  [G]                  [A]\n   Yeah, every time I fall\n\n{section: Refrão}\n [D] [A]  [Em]                   [G]\nKeep setting forth in the universe\n[D] [A]  [Em]                   [G]\nKeep setting forth in the universe\n\n{section: Ponte}\n [Em]          [D/F#]\nOut here realigned\n                [G]\nA planet out of sight\n                    [D]   [A]\nOn nature drunk and high\n\n{section: Refrão 2}\n [D]  [A]    [Em]  [G]\nKeep...\n[D]  [A]    [Em]  [G]\nKeep...\n\n{section: Instrumental}\n [D]  [A]    [Em]  [G]\n\n{section: Outro}\n [Dsus4] [D] [Em]\n[Dsus4] [D] [Em7]\n"
+}

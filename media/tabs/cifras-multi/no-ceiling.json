@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de No Ceiling (Eddie Vedder, Into The Wild 2007). Capo 3 - shapes relativos ao capo, soam 3 semitons acima (Fm real). Estrutura: instruments contem diagramas de acordes por instrumento; content eh o texto ChordPro compartilhado.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "No Ceiling",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "Gm",
+  "bpm": 90,
+  "capo": 3,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Dm":    { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C":     { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "F":     { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Am":    { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "Dsus2": { "fingering": "xx0230", "fingers": "xx0230", "fundamental": "D" },
+        "Dsus4": { "fingering": "xx0233", "fingers": "xx0134", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Dm":    { "fingering": "2210", "fingers": "2310", "fundamental": "D" },
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "C":     { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "F":     { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Am":    { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "Dsus2": { "fingering": "0230", "fingers": "0230", "fundamental": "D" },
+        "Dsus4": { "fingering": "0233", "fingers": "0234", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Dm":    { "notes": ["D", "F", "A"],    "fundamental": "D", "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],    "fundamental": "G", "inversion": null },
+        "C":     { "notes": ["C", "E", "G"],    "fundamental": "C", "inversion": null },
+        "F":     { "notes": ["F", "A", "C"],    "fundamental": "F", "inversion": null },
+        "Am":    { "notes": ["A", "C", "E"],    "fundamental": "A", "inversion": null },
+        "Dsus2": { "notes": ["D", "E", "A"],    "fundamental": "D", "inversion": null },
+        "Dsus4": { "notes": ["D", "G", "A"],    "fundamental": "D", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Dm] [Dsus2] [Dm] [Dm] [Dsus2] [Dsus4] [Dsus2] [Dsus2] [Dm]\n\n{section: Verso 1}\n[Dm]         [G]\nComes the morning\n          [C]\nWhen I can feel\n             [F]\nThat there's nothing\n          [Dm]\nLeft to be concealed\n[Dm]     [G]\nMoving on,\n       [C]\na scene surreal\n          [F]\nKnow my heart will never\n            [G]\nNever be far from here\n\n{section: Refrão}\n[Am]   [C]       [G]\nSure as I am breathing\n[Dm]\nSure as I'm sad\n[Am]   [C]         [G]\nI'll keep this wisdom\n[Dm]\nIn my flesh\n[Am]    [C]        [G]\nI leave here believing\n[Dm]\nMore than I had\n[Am]   [C]        [G]\nAnd there's a reason I'll be\n[G]                 [F]\nReason I'll be back\n\n{section: Verso 2}\n[Dm]      [G]\nAs I walk\n               [C]\nthe Hemisphere\n            [F]\nGot my wish\n                  [Dm]\nto up and disappear\n            [G]\nI been wounded\n             [C]\nI been healed\n                 [F]\nNow for landing I been\n                          [G]\nLanding I been cleared\n\n{section: Refrão 2}\n[Am]   [C]       [G]\nSure as I am breathing\n[Dm]\nSure as I'm sad\n[Am]   [C]         [G]\nI'll keep this wisdom\n[Dm]\nIn my flesh\n[Am]    [C]        [G]\nI leave here believing\n[Dm]\nMore than I had\n[Am]    [C]       [G]\nThis love has got\n   [G]\nNo ceiling\n"
+}
