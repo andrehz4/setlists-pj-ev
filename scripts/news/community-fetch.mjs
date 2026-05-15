@@ -91,21 +91,25 @@ function todayUTC() {
   return new Date().toISOString().slice(0, 10).replace(/-/g, ""); // YYYYMMDD
 }
 
-async function runDigest({ seen, currentItems, pendingDoc }) {
+async function runDigest({ seen, currentItems, pendingDoc, warnings, sourceResults }) {
   const dateKey = todayUTC();
   const id = `cd-${dateKey}`;
   if (seen[id]) {
     console.log(`[digest] ja publicado hoje (${id}), pulando.`);
+    sourceResults.push({ label: "Reddit r/pearljam top/day (digest)", count: 0, error: null });
     return null;
   }
   // Se ja esta em _pending (modo routine ainda nao processou), pula
   if ((pendingDoc.items || []).some((p) => p.id === id)) {
     console.log(`[digest] ja em _pending.json (${id}), aguardando routine.`);
+    sourceResults.push({ label: "Reddit r/pearljam top/day (digest)", count: 0, error: null });
     return null;
   }
 
   console.log(`[digest] buscando top.json?t=day...`);
-  const all = await fetchTopDay(25);
+  const { posts: all, fetchError: digestFetchError } = await fetchTopDay(25);
+  sourceResults.push({ label: "Reddit r/pearljam top/day (digest)", count: all.length, error: digestFetchError });
+  if (digestFetchError) warnings.push(`Reddit top/day: ${digestFetchError}`);
   const posts = all.slice(0, DIGEST_MAX_INPUT_POSTS);
   console.log(`[digest] ${all.length} posts elegiveis, usando top ${posts.length}`);
 
@@ -178,9 +182,11 @@ async function runDigest({ seen, currentItems, pendingDoc }) {
   return { _kind: "curated", item };
 }
 
-async function runSpotlight({ seen, currentItems, pendingDoc }) {
+async function runSpotlight({ seen, currentItems, pendingDoc, warnings, sourceResults }) {
   console.log(`[spotlight] buscando top.json?t=week...`);
-  const all = await fetchTopWeek(25);
+  const { posts: all, fetchError: spotlightFetchError } = await fetchTopWeek(25);
+  sourceResults.push({ label: "Reddit r/pearljam top/week (spotlight)", count: all.length, error: spotlightFetchError });
+  if (spotlightFetchError) warnings.push(`Reddit top/week: ${spotlightFetchError}`);
   console.log(`[spotlight] ${all.length} posts da semana`);
 
   // Constroi set de IDs ja publicados (qualquer chave cs-* no seen)
@@ -285,20 +291,27 @@ async function main() {
   console.log(`[community] mode=${MODE} | curator=${CURATOR_NAME} | dry=${DRY} | current items: ${currentItems.length} | seen: ${Object.keys(seen).length} | pending: ${(pendingDoc.items||[]).length}`);
 
   const results = [];
+  const allWarnings = [];
+  const sourceResults = [];
+
   if (MODE === "digest" || MODE === "both") {
     try {
-      const d = await runDigest({ seen, currentItems, pendingDoc });
+      const d = await runDigest({ seen, currentItems, pendingDoc, warnings: allWarnings, sourceResults });
       if (d) results.push(d);
     } catch (err) {
       console.warn(`[community] runDigest falhou: ${err.message}. Continuando com spotlight.`);
+      allWarnings.push(`runDigest falhou: ${err.message}`);
+      sourceResults.push({ label: "Reddit r/pearljam top/day (digest)", count: 0, error: err.message });
     }
   }
   if (MODE === "spotlight" || MODE === "both") {
     try {
-      const s = await runSpotlight({ seen, currentItems, pendingDoc });
+      const s = await runSpotlight({ seen, currentItems, pendingDoc, warnings: allWarnings, sourceResults });
       if (s) results.push(s);
     } catch (err) {
       console.warn(`[community] runSpotlight falhou: ${err.message}.`);
+      allWarnings.push(`runSpotlight falhou: ${err.message}`);
+      sourceResults.push({ label: "Reddit r/pearljam top/week (spotlight)", count: 0, error: err.message });
     }
   }
 
@@ -322,6 +335,8 @@ async function main() {
           "pending total agora": pendingTotalAntes,
           "index atual": currentItems.length,
         },
+        sources: sourceResults.length ? sourceResults : undefined,
+        warnings: allWarnings.length ? allWarnings : undefined,
         extras: [{ heading: "Resultado", body: "Nada novo pra pendurar (digest do dia ja existe ou nenhum spotlight passou no filtro)." }],
       });
       return;
@@ -346,6 +361,8 @@ async function main() {
         "pending total agora": merged.items.length,
         "index atual": currentItems.length,
       },
+      sources: sourceResults.length ? sourceResults : undefined,
+      warnings: allWarnings.length ? allWarnings : undefined,
       pending: newPending,
       extras: [
         { heading: "Proximo passo", body: "A routine Sonnet remota le `_pending.json`, cura, e roda `node scripts/news/merge-curated.mjs` pra publicar no `index.json`." },
@@ -362,6 +379,8 @@ async function main() {
       title: `Community fetch · ${CURATOR_NAME} (${MODE})`,
       meta: { modo: MODE, curator: CURATOR_NAME, dry: DRY },
       stats: { "publicados agora": 0, "index atual": currentItems.length },
+      sources: sourceResults.length ? sourceResults : undefined,
+      warnings: allWarnings.length ? allWarnings : undefined,
       extras: [{ heading: "Resultado", body: "Nada novo passou no curator." }],
     });
     return;
@@ -424,6 +443,8 @@ async function main() {
       "total no index": finalItems.length,
       "arquivados (overflow)": overflow.length,
     },
+    sources: sourceResults.length ? sourceResults : undefined,
+    warnings: allWarnings.length ? allWarnings : undefined,
     curated: newItems,
   });
 }

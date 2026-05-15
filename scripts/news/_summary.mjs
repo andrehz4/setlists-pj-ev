@@ -63,6 +63,8 @@ export async function writeStepSummary({
   curated,
   pending,
   skipped,
+  sources,
+  warnings,
   extras,
 } = {}) {
   const out = [];
@@ -70,6 +72,21 @@ export async function writeStepSummary({
   if (meta) out.push(fmtMeta(meta));
   if (stats) out.push(fmtStats(stats));
 
+  if (sources && sources.length > 0) {
+    out.push(`### Fontes verificadas (${sources.length})`, "");
+    out.push("| Fonte | Itens | Status |");
+    out.push("| --- | --- | --- |");
+    for (const s of sources) {
+      const status = s.error ? `ERRO: ${esc(String(s.error).slice(0, 80))}` : "ok";
+      out.push(`| ${esc(s.label)} | ${s.count ?? "-"} | ${status} |`);
+    }
+    out.push("");
+  }
+  if (warnings && warnings.length > 0) {
+    out.push(`### Avisos (${warnings.length})`, "");
+    for (const w of warnings) out.push(`- ${esc(w)}`);
+    out.push("");
+  }
   if (curated && curated.length > 0) {
     out.push(`### Publicados agora (${curated.length})`, "", fmtList(curated, "curated"));
   }

@@ -81,7 +81,7 @@ async function fetchFeedItems(src) {
   if (src.kind === "pjcom-news") return fetchPjcomNewsItems(src);
   try {
     const feed = await parser.parseURL(src.url);
-    return (feed.items || []).slice(0, 25).map((it) => ({
+    const items = (feed.items || []).slice(0, 25).map((it) => ({
       sourceId: src.id,
       sourceLabel: src.label,
       group: src.group,
@@ -91,9 +91,10 @@ async function fetchFeedItems(src) {
       snippet: (it.contentSnippet || it.content || "").slice(0, 800),
       alwaysRelevant: !!src.alwaysRelevant,
     }));
+    return { items, error: null };
   } catch (e) {
     console.warn(`[feed] ${src.id} falhou: ${e.message}`);
-    return [];
+    return { items: [], error: e.message };
   }
 }
 
@@ -110,7 +111,7 @@ async function fetchRedditItems(src) {
       retry: { limit: 1 },
     }).json();
     const posts = res?.data?.children?.map((c) => c.data) || [];
-    return posts
+    const items = posts
       .filter((p) => passesRedditFilter(p, REDDIT_FILTER))
       .map((p) => ({
         sourceId: src.id,
@@ -122,9 +123,10 @@ async function fetchRedditItems(src) {
         snippet: p.selftext?.slice(0, 800) || "",
         alwaysRelevant: true,
       }));
+    return { items, error: null };
   } catch (e) {
     console.warn(`[reddit] ${src.id} falhou: ${e.message}`);
-    return [];
+    return { items: [], error: e.message };
   }
 }
 
@@ -143,7 +145,7 @@ async function fetchShopifyItems(src) {
     }).json();
     const products = Array.isArray(res?.products) ? res.products : [];
     const cutoff = Date.now() - SHOP_NEW_DAYS * 24 * 60 * 60 * 1000;
-    return products
+    const items = products
       .filter((p) => {
         const ts = new Date(p.published_at || p.created_at || 0).getTime();
         if (ts < cutoff) return false;
@@ -191,9 +193,10 @@ async function fetchShopifyItems(src) {
           preImg: img,        // imagem direta do Shopify
         };
       });
+    return { items, error: null };
   } catch (e) {
     console.warn(`[shopify] ${src.id} falhou: ${e.message}`);
-    return [];
+    return { items: [], error: e.message };
   }
 }
 
@@ -218,7 +221,7 @@ async function fetchPjcomNewsItems(src) {
       console.warn(`[pjcom-news] JSON parse falhou: ${e.message}`);
       return [];
     }
-    return (articles || []).slice(0, 15).map((a) => {
+    const items = (articles || []).slice(0, 15).map((a) => {
       const slug = a.slug || a.id;
       const link = `https://pearljam.com/news/${slug}`;
       const img = a.square_image_file || a.image_file || null;
@@ -237,9 +240,10 @@ async function fetchPjcomNewsItems(src) {
         preText: excerpt,  // evita scrape do pearljam.com que retorna overlay SMS
       };
     });
+    return { items, error: null };
   } catch (e) {
     console.warn(`[pjcom-news] ${src.id} falhou: ${e.message}`);
-    return [];
+    return { items: [], error: e.message };
   }
 }
 
@@ -260,8 +264,12 @@ async function main() {
   console.log(`[news] curator: ${curator.LABEL} | fontes: ${SOURCES.length} | seen: ${Object.keys(seen).length} | current: ${currentItems.length} | dry: ${DRY}`);
 
   const all = [];
+  const sourceResults = [];
+  const allWarnings = [];
   for (const src of SOURCES) {
-    const items = await fetchFeedItems(src);
+    const { items, error } = await fetchFeedItems(src);
+    sourceResults.push({ label: src.label, count: items.length, error });
+    if (error) allWarnings.push(`${src.label}: ${error}`);
     for (const it of items) {
       if (!it.link || !it.title) continue;
       const url = canonicalize(it.link);
@@ -369,6 +377,7 @@ async function main() {
       seen[c.hash] = { firstSeen: Date.now(), title: c.title };
     } catch (err) {
       console.warn(`[news] ERRO em "${c.title.slice(0, 60)}" (${c.url}): ${err.message}`);
+      allWarnings.push(`Item com erro [${c.sourceLabel}] "${c.title.slice(0, 60)}": ${err.message}`);
       // Marca como erro no seen pra nao entrar em loop de reprocessamento infinito.
       // Na proxima run, o item so volta se seen for limpo manualmente.
       seen[c.hash] = { error: true, ts: Date.now(), title: c.title, msg: err.message };
@@ -403,6 +412,8 @@ async function main() {
         "pending total agora": newPending.items.length,
         "index atual": currentItems.length,
       },
+      sources: sourceResults,
+      warnings: allWarnings.length ? allWarnings : undefined,
       pending,
       extras: [
         { heading: "Proximo passo", body: "A routine Sonnet remota le `_pending.json`, cura, e roda `node scripts/news/merge-curated.mjs` pra publicar no `index.json`." },
@@ -471,6 +482,8 @@ async function main() {
       "total no index": finalItems.length,
       "arquivados (overflow)": overflow.length,
     },
+    sources: sourceResults,
+    warnings: allWarnings.length ? allWarnings : undefined,
     curated,
   });
 }
