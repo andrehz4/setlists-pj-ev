@@ -1,0 +1,188 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de State of Love and Trust (Pearl Jam, Singles OST 1992).",
+    "source": "Transcrição comunitária + Claude (voicings multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "State of Love and Trust",
+  "artist": "Pearl Jam",
+  "album": "Singles (OST)",
+  "year": 1992,
+  "key": "Am",
+  "bpm": 164,
+  "capo": null,
+  "notes": "Também em Rearviewmirror (2004). Progressão F-Am no verso, F-Am-C-G-Am no refrão.",
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "x02010",
+          "fingers": "x02010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Padrão 2 compassos D-U (↓ . ↓ . ↓ ↑ ↓ ↑ / . ↑ ↓ . ↓ ↑ ↓ ↑)",
+        "bpm": 164,
+        "beats": [
+          { "count": "1",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "miss", "muted": false },
+          { "count": "2",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "miss", "muted": false },
+          { "count": "3",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "4",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "1",  "stroke": "miss", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "2",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "miss", "muted": false },
+          { "count": "3",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "4",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0132",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "4111",
+          "fundamental": null,
+          "barre": 2
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "0000",
+          "fingers": "0000",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "Padrão 2 compassos D-U (↓ . ↓ . ↓ ↑ ↓ ↑ / . ↑ ↓ . ↓ ↑ ↓ ↑)",
+        "bpm": 164,
+        "beats": [
+          { "count": "1",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "miss", "muted": false },
+          { "count": "2",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "miss", "muted": false },
+          { "count": "3",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "4",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "1",  "stroke": "miss", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "2",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "miss", "muted": false },
+          { "count": "3",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false },
+          { "count": "4",  "stroke": "down", "muted": false },
+          { "count": "&",  "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F": {
+          "notes": ["F", "A", "C"],
+          "fundamental": "F",
+          "inversion": null
+        },
+        "Am": {
+          "notes": ["A", "C", "E"],
+          "fundamental": "A",
+          "inversion": null
+        },
+        "C": {
+          "notes": ["C", "E", "G"],
+          "fundamental": "C",
+          "inversion": null
+        },
+        "G": {
+          "notes": ["G", "B", "D"],
+          "fundamental": "G",
+          "inversion": null
+        },
+        "Bm": {
+          "notes": ["B", "D", "F#"],
+          "fundamental": "B",
+          "inversion": null
+        },
+        "D": {
+          "notes": ["D", "F#", "A"],
+          "fundamental": "D",
+          "inversion": null
+        },
+        "Am7": {
+          "notes": ["A", "C", "E", "G"],
+          "fundamental": "A",
+          "inversion": null
+        }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F] [Am]\n[F] [Am] [F] [Am]\nOh\n[F] [Am] [F] [Am] [F] [Am]\n\n{section: Verso 1}\n[F]State of love and [Am]trust as I [F]busted down the [Am]pretext\n[F]Sin still plays and [Am]preaches, but to [F]have an empty [Am]court, uh huh\n[F]And the signs are [Am]passin', [F]grip the wheel, can't [Am]read it\n[F]Sacrifice re[Am]ceiving the [F]smell that's on my [Am]hands, hands, yeah\n\n{section: Refrão}\n[F]And I [Am]listen for the [C]voice in[G]side my [Am]head\n[Bm]Nothin', I'll [C]do this one my[D]self\n\n{section: Verso 2}\n[F]Lay her [Am]down as priest does, [F]should the Lord be [Am]accountin'\n[F]Will be in my [Am]honor, make it [F]pain, painfully [Am]quick, uh huh\n[F]Promises are [Am]whispered in the [F]age of [Am]darkness\n[F]Want to be en[Am]lightened like I [F]want to be told the [Am]end, end, yeah\n\n{section: Pré-Refrão}\n[F]And the [Am]barrel shakes aimed [C]directly at [G]my [Am]head\nOh, [Bm]help me, [C]help me from my[D]self\n\n{section: Refrão 2}\n[F]And I [Am]listen from [C]both [G]sides of a [Am]friend\n[G]Nothin', I'll [F]do this one my[D]self [F] [Am] [F] [Am]\n\n{section: Bridge}\n[F]Myself, [Am][F]myself [Am] [F] [Am] [F] [Am]\n[F] [Am]\n[F] [Am]\nYeah\n\n{section: Solo 1}\n[F] [Am] [F] [Am] [F] [Am] [F] [Am]\n[F]Hey, na na na na, [Am]hey that's something\n[F]Hey, na na na na, [Am]hey that's something\n[F]Hey, na na na na, [Am]hey that's something\n[F]Wanna back, back it away, [Am]yeah\n\n{section: Refrão 3}\n[F]And I [Am]listen, yeah, [C]for the voice in[G]side my [Am]head\n[Bm]Nothin', I'll [C]do this one my[D]self\n[F]Oh, ah, and the [Am]barrel waits, [C]trigger shakes\n[G]Aimed right at my [Am]head, don't won't you [G]help me\n[F]Help me from my[D]self\n\n{section: Solo 2}\n[F] [Am] [C] [G] [Am] [Bm] [C] [D]\n[F] [Am] [C] [G] [Am] [G] [F] [D]\n\n{section: Bridge 2}\n[F]State of love and [Am]trust, and a\n[F]State of love and [Am]trust, and a\n[F]State of love and [Am]trust, and a\n[F]State of love and [Am]yeah yeah yeah [F] [Am] [F] [Am] [F] [Am] [F] [Am]\n\n{section: Outro}\n[Am7]"
+}

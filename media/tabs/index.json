@@ -200,9 +200,11 @@
     ]
   },
   "state of love and trust": {
-    "cifra": false,
+    "cifra": true,
+    "cifraMulti": "state-of-love-and-trust.json",
     "tab": false,
-    "key": "E",
+    "key": "Am",
+    "bpm": 164,
     "tuning": "EADGBE"
   },
   "animal": {
