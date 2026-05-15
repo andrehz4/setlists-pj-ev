@@ -75,7 +75,11 @@ const DIGEST_MAX_INPUT_POSTS = 15;
 const SPOTLIGHT_MIN_SCORE = 50;
 
 async function readJson(p, fallback) {
-  try { return JSON.parse(await fs.readFile(p, "utf8")); } catch { return fallback; }
+  try { return JSON.parse(await fs.readFile(p, "utf8")); }
+  catch (err) {
+    if (err.code !== "ENOENT") console.warn(`[community] readJson: ${path.basename(p)} corrompido ou ilegivel (${err.message}), usando fallback`);
+    return fallback;
+  }
 }
 async function writeJson(p, data) {
   if (DRY) return;
@@ -282,12 +286,20 @@ async function main() {
 
   const results = [];
   if (MODE === "digest" || MODE === "both") {
-    const d = await runDigest({ seen, currentItems, pendingDoc });
-    if (d) results.push(d);
+    try {
+      const d = await runDigest({ seen, currentItems, pendingDoc });
+      if (d) results.push(d);
+    } catch (err) {
+      console.warn(`[community] runDigest falhou: ${err.message}. Continuando com spotlight.`);
+    }
   }
   if (MODE === "spotlight" || MODE === "both") {
-    const s = await runSpotlight({ seen, currentItems, pendingDoc });
-    if (s) results.push(s);
+    try {
+      const s = await runSpotlight({ seen, currentItems, pendingDoc });
+      if (s) results.push(s);
+    } catch (err) {
+      console.warn(`[community] runSpotlight falhou: ${err.message}.`);
+    }
   }
 
   // Separa items prontos (curated) de pendentes (routine mode)

@@ -57,7 +57,11 @@ function splitItemBody(it) {
 }
 
 async function readJson(p, fallback) {
-  try { return JSON.parse(await fs.readFile(p, "utf8")); } catch { return fallback; }
+  try { return JSON.parse(await fs.readFile(p, "utf8")); }
+  catch (err) {
+    if (err.code !== "ENOENT") console.warn(`[news] readJson: ${path.basename(p)} corrompido ou ilegivel (${err.message}), usando fallback`);
+    return fallback;
+  }
 }
 async function writeJson(p, data) {
   if (DRY) return;
@@ -295,39 +299,60 @@ async function main() {
   const pending = [];
   for (const c of fresh) {
     console.log(`[news] processando: ${c.sourceLabel} | ${c.title.slice(0, 70)}`);
-    // Fontes que ja vem com texto/imagem pre-extraidos (shop Shopify, pjcom-news)
-    // pulam o scrape do extract.mjs. Demais usam scrape padrao.
-    let imgUrl, articleText;
-    if (c.preText || c.preImg) {
-      articleText = c.preText || "";
-      imgUrl = c.preImg || null;
-      if (!articleText) {
-        const scraped = await scrapeArticle(c.url);
-        articleText = scraped.articleText;
-        if (!imgUrl) imgUrl = scraped.imgUrl;
+    try {
+      // Fontes que ja vem com texto/imagem pre-extraidos (shop Shopify, pjcom-news)
+      // pulam o scrape do extract.mjs. Demais usam scrape padrao.
+      let imgUrl, articleText;
+      if (c.preText || c.preImg) {
+        articleText = c.preText || "";
+        imgUrl = c.preImg || null;
+        if (!articleText) {
+          const scraped = await scrapeArticle(c.url);
+          articleText = scraped.articleText;
+          if (!imgUrl) imgUrl = scraped.imgUrl;
+        }
+      } else {
+        ({ imgUrl, articleText } = await scrapeArticle(c.url));
       }
-    } else {
-      ({ imgUrl, articleText } = await scrapeArticle(c.url));
-    }
-    const localImg = await cacheImage(imgUrl, c.hash);
+      const localImg = await cacheImage(imgUrl, c.hash);
 
-    const out = await curator.curate({
-      title: c.title,
-      sourceLabel: c.sourceLabel,
-      articleText: articleText || c.snippet,
-      url: c.url,
-      pubDate: c.pubDate,
-    });
+      const out = await curator.curate({
+        title: c.title,
+        sourceLabel: c.sourceLabel,
+        articleText: articleText || c.snippet,
+        url: c.url,
+        pubDate: c.pubDate,
+      });
 
-    if (out === "SKIP") {
-      console.log(`[news] SKIP: ${c.title.slice(0, 70)}`);
-      seen[c.hash] = { skipped: true, ts: Date.now(), title: c.title };
-      continue;
-    }
+      if (out === "SKIP") {
+        console.log(`[news] SKIP: ${c.title.slice(0, 70)}`);
+        seen[c.hash] = { skipped: true, ts: Date.now(), title: c.title };
+        continue;
+      }
 
-    if (out === "PENDING") {
-      // modo routine: empilha em _pending.json com texto bruto pra Claude curar depois
-      const pendingItem = {
+      if (out === "PENDING") {
+        // modo routine: empilha em _pending.json com texto bruto pra Claude curar depois
+        const pendingItem = {
+          id: c.hash,
+          url: c.url,
+          source: c.sourceId,
+          sourceLabel: c.sourceLabel,
+          group: c.group,
+          pubDate: c.pubDate,
+          fetchedAt: new Date().toISOString(),
+          img: localImg,
+          title_orig: c.title,
+          article_text: articleText || c.snippet || "",
+        };
+        // propaga kind (shop, pjcom-news, etc) pra curador Sonnet detectar
+        // e aplicar regra editorial especifica do tipo
+        if (c.kind) pendingItem.kind = c.kind;
+        pending.push(pendingItem);
+        // NAO marca seen aqui; so marca depois que a routine commitar.
+        continue;
+      }
+
+      curated.push({
         id: c.hash,
         url: c.url,
         source: c.sourceId,
@@ -336,32 +361,18 @@ async function main() {
         pubDate: c.pubDate,
         fetchedAt: new Date().toISOString(),
         img: localImg,
-        title_orig: c.title,
-        article_text: articleText || c.snippet || "",
-      };
-      // propaga kind (shop, pjcom-news, etc) pra curador Sonnet detectar
-      // e aplicar regra editorial especifica do tipo
-      if (c.kind) pendingItem.kind = c.kind;
-      pending.push(pendingItem);
-      // NAO marca seen aqui; so marca depois que a routine commitar.
-      continue;
+        title_pt: out.titulo_pt,
+        intro_pt: out.intro_pt,
+        body_pt: out.corpo_pt,
+        tags: out.tags,
+      });
+      seen[c.hash] = { firstSeen: Date.now(), title: c.title };
+    } catch (err) {
+      console.warn(`[news] ERRO em "${c.title.slice(0, 60)}" (${c.url}): ${err.message}`);
+      // Marca como erro no seen pra nao entrar em loop de reprocessamento infinito.
+      // Na proxima run, o item so volta se seen for limpo manualmente.
+      seen[c.hash] = { error: true, ts: Date.now(), title: c.title, msg: err.message };
     }
-
-    curated.push({
-      id: c.hash,
-      url: c.url,
-      source: c.sourceId,
-      sourceLabel: c.sourceLabel,
-      group: c.group,
-      pubDate: c.pubDate,
-      fetchedAt: new Date().toISOString(),
-      img: localImg,
-      title_pt: out.titulo_pt,
-      intro_pt: out.intro_pt,
-      body_pt: out.corpo_pt,
-      tags: out.tags,
-    });
-    seen[c.hash] = { firstSeen: Date.now(), title: c.title };
   }
 
   console.log(`[news] curados agora: ${curated.length} | pendentes pra routine: ${pending.length}`);
