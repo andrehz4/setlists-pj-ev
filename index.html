@@ -7978,6 +7978,51 @@ body.in-forum .filter-bar { display: none !important; }
 .show-chip .sc-date { font-family: var(--font-display); font-size: 17px; color: var(--ink); line-height: 1; }
 .show-chip .sc-venue { font-family: var(--font-editorial); font-style: italic; font-size: 12.5px; color: var(--ink-mute); margin-top: 3px; line-height: 1.2; }
 
+/* Forum — Tela 05 · thread atrelada a show */
+.show-thread { background: var(--bg); display: grid; grid-template-columns: 360px 1fr; min-height: 100%; }
+.show-sidecard { padding: 24px 28px 32px; border-right: 1px solid var(--divider); background: var(--bg-card-sunk); display: flex; flex-direction: column; gap: 18px; }
+.show-sidecard .show-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--pj); }
+.show-sidecard h2 { font-family: var(--font-display); font-size: 30px; letter-spacing: -0.01em; text-transform: uppercase; color: var(--ink); line-height: 0.98; margin: 6px 0 6px; }
+.show-sidecard .show-venue { font-family: var(--font-editorial); font-style: italic; font-size: 19px; color: var(--ink-mute); line-height: 1.2; }
+.show-sidecard .show-city { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim); margin-top: 6px; }
+.show-poster { aspect-ratio: 1/1.2; border: 1px solid var(--divider-strong); background: radial-gradient(circle at 30% 25%, rgba(193,39,45,0.30), transparent 55%), radial-gradient(circle at 70% 80%, rgba(232,161,58,0.20), transparent 60%), var(--bg-card); display: grid; place-items: center; position: relative; overflow: hidden; }
+.show-poster::before { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(245,241,232,0.08); pointer-events: none; }
+.show-poster-text { font-family: var(--font-display); font-size: 26px; text-transform: uppercase; color: var(--ink); text-align: center; letter-spacing: -0.01em; line-height: 1; position: relative; z-index: 1; }
+.show-poster-text small { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-dim); margin-top: 8px; }
+.show-mini-set-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 8px; }
+.show-mini-set ol { counter-reset: smini; list-style: none; margin: 0; padding: 0; font-family: var(--font-editorial); font-style: italic; font-size: 14px; }
+.show-mini-set ol li { counter-increment: smini; display: grid; grid-template-columns: 22px 1fr; gap: 8px; padding: 3px 0; border-bottom: 1px dotted var(--divider); color: var(--ink-mute); }
+.show-mini-set ol li::before { content: counter(smini, decimal-leading-zero); font-family: var(--font-mono); font-style: normal; font-size: 9.5px; color: var(--ink-dim); }
+.show-mini-set ol li.played { color: var(--ink); }
+.show-mini-set ol li.highlight { color: var(--ev); }
+.show-mini-set ol li .album { font-family: var(--font-mono); font-style: normal; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); text-align: right; }
+.show-thread-main { padding: 24px 32px 48px; }
+.show-thread-tabs { display: flex; border-bottom: 1px solid var(--divider); margin-bottom: 22px; }
+.show-thread-tab { padding: 12px 16px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); background: none; border: none; border-bottom: 2px solid transparent; }
+.show-thread-tab.active { color: var(--ink); border-bottom-color: var(--pj); }
+.show-thread-tab .count { font: inherit; font-size: 9px; color: var(--ink-dim); margin-left: 6px; padding: 1px 6px; border: 1px solid var(--divider-strong); vertical-align: middle; }
+.show-thread-meta { display: flex; gap: 12px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.08em; padding: 6px 0 20px; }
+.show-thread-meta .pill { padding: 4px 10px; border: 1px solid var(--divider-strong); color: var(--ink); letter-spacing: 0.16em; text-transform: uppercase; font-size: 10px; }
+.show-thread-meta .pill.heard { border-color: var(--heard); color: var(--heard); }
+.show-thread-meta .pill.ev { border-color: var(--ev); color: var(--ev); }
+
+/* Forum — Tela 06 · estado vazio (categoria sem threads) */
+.empty-state { padding: 90px 32px; text-align: center; max-width: 720px; margin: 0 auto; }
+.empty-stamp { width: 150px; height: 150px; margin: 0 auto 26px; border: 2px dashed var(--pj); display: grid; place-items: center; position: relative; border-radius: 50%; background: repeating-linear-gradient(45deg, transparent 0 6px, rgba(193,39,45,0.05) 6px 7px); transform: rotate(-6deg); }
+.empty-stamp::before { content: ""; position: absolute; inset: 8px; border: 1px solid var(--pj); border-radius: 50%; opacity: 0.4; }
+.empty-stamp .stamp-text { font-family: var(--font-display); font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--pj); text-align: center; line-height: 0.95; }
+.empty-stamp .stamp-text small { display: block; font-family: var(--font-mono); font-size: 9px; color: var(--ev); letter-spacing: 0.25em; margin-top: 4px; }
+.empty-state .empty-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pj); margin-bottom: 10px; }
+.empty-state h1 { font-family: var(--font-editorial); font-style: italic; font-size: clamp(32px, 4vw, 44px); color: var(--ink); margin: 0 0 12px; line-height: 1.1; text-wrap: pretty; }
+.empty-state .empty-sub { font-family: var(--font-body); font-size: 17px; color: var(--ink-mute); line-height: 1.55; margin: 0 auto 28px; max-width: 560px; text-wrap: pretty; }
+.empty-state .empty-cta { display: inline-flex; gap: 10px; }
+.empty-meta { margin-top: 36px; padding-top: 22px; border-top: 1px dashed var(--divider); display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); }
+.empty-meta b { color: var(--ink); font-weight: normal; }
+.empty-suggestions { margin-top: 38px; padding-top: 26px; border-top: 1px solid var(--divider); text-align: left; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.empty-sugg { border: 1px solid var(--divider-strong); background: var(--bg-card); padding: 16px; }
+.empty-sugg .es-eyebrow { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pj); margin-bottom: 8px; }
+.empty-sugg .es-title { font-family: var(--font-editorial); font-style: italic; font-size: 16px; color: var(--ink); line-height: 1.25; margin: 0; }
+
 /* Forum mobile — 860px (tablet) */
 @media (max-width: 860px) {
   /* Subnav: scroll horizontal, sem quebra de linha */
@@ -8011,6 +8056,15 @@ body.in-forum .filter-bar { display: none !important; }
   .profile-avatar { width: 88px; height: 88px; font-size: 32px; }
   .profile-stats-strip { grid-template-columns: repeat(3, 1fr); }
   .profile-body { grid-template-columns: 1fr; padding: 20px 16px 40px; gap: 24px; }
+
+  /* Tela 05 (show) e 06 (vazio): 1 coluna */
+  .show-thread { grid-template-columns: 1fr; }
+  .show-sidecard { border-right: none; border-bottom: 1px solid var(--divider); }
+  .show-thread-main { padding: 20px 16px 40px; }
+  .show-thread-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .show-thread-tabs::-webkit-scrollbar { display: none; }
+  .empty-state { padding: 56px 16px; }
+  .empty-suggestions { grid-template-columns: 1fr; }
 }
 
 /* Forum mobile — 600px (telefone) */
@@ -10768,6 +10822,8 @@ function renderForum() {
     case "thread":   el.innerHTML = _fThreadHtml(); break;
     case "composer": el.innerHTML = _fComposerHtml(); break;
     case "profile":  el.innerHTML = _fProfileHtml(); break;
+    case "show":     el.innerHTML = _fShowHtml(); break;
+    case "empty":    el.innerHTML = _fEmptyHtml(); break;
     default:         el.innerHTML = _fHomeHtml();
   }
   _forumWireEvents(el);
@@ -10783,6 +10839,19 @@ function _forumWireEvents(el) {
   });
   el.querySelectorAll(".forum-cat").forEach(btn => {
     btn.addEventListener("click", () => {
+      const cat = btn.dataset.fcat;
+      if (cat === "cifras") {
+        _fState.screen = "empty";
+        renderForum();
+        document.getElementById("view-forum").scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      if (_fState.screen === "empty") {
+        _fState.screen = "home";
+        renderForum();
+        document.getElementById("view-forum").scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
       el.querySelectorAll(".forum-cat").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
     });
@@ -10801,13 +10870,14 @@ function _forumWireEvents(el) {
   });
 }
 
-function _fSubnav() {
+function _fSubnav(activeId) {
   return '<div class="forum-subnav">' +
-    _fCategories.map(c =>
-      '<button class="forum-cat' + (c.active ? " active" : "") + '">' +
+    _fCategories.map(c => {
+      const isActive = activeId ? (c.id === activeId) : !!c.active;
+      return '<button class="forum-cat' + (isActive ? " active" : "") + '" data-fcat="' + c.id + '">' +
       '<span>' + c.label + '</span><span class="cat-count">' + c.count + '</span>' +
-      '</button>'
-    ).join("") +
+      '</button>';
+    }).join("") +
     '</div>';
 }
 
@@ -11001,7 +11071,7 @@ function _fThreadHtml() {
           '<div class="rail-show-venue">Pedreira Paulo Leminski, Curitiba</div>' +
           '<div class="rail-show-meta">Dark Matter World Tour · 22 músicas</div>' +
         '</div>' +
-        '<div style="margin-top:12px"><button class="btn sm" style="width:100%;justify-content:center">Abrir página do show →</button></div>' +
+        '<div style="margin-top:12px"><button class="btn sm" data-fgo="show" style="width:100%;justify-content:center">Abrir página do show →</button></div>' +
       '</div>' +
       '<div class="rail-card">' +
         '<div class="rail-card-label">// VOZES NA THREAD</div>' +
@@ -11256,6 +11326,180 @@ function _fProfileHtml() {
     '</div>';
 
   return head + stats + '<div class="profile-body">' + mainContent + rail + '</div>';
+}
+
+function _fShowHtml() {
+  const setItems = [
+    {t:"Release",a:"Ten"},{t:"Of the Girl",a:"Binaural"},{t:"Animal",a:"Vs."},
+    {t:"Got Some",a:"Backspacer"},{t:"Why Go",a:"Ten"},{t:"Mind Your Manners",a:"L. Bolt"},
+    {t:"Off He Goes",a:"No Code",hi:true},{t:"Even Flow",a:"Ten"},{t:"Daughter",a:"Vs."},
+    {t:"Black",a:"Ten"},{t:"Alive",a:"Ten"},
+  ];
+  const setOl = setItems.map(s =>
+    '<li class="played' + (s.hi ? ' highlight' : '') + '"><span>' + s.t + '</span><span class="album">' + s.a + '</span></li>'
+  ).join("") +
+    '<li><span style="color:var(--ink-dim);font-style:italic">+ 10 no encore</span><span></span></li>';
+
+  const sidecard =
+    '<div class="show-sidecard">' +
+      '<div class="show-eyebrow">PEARL JAM · BR</div>' +
+      '<h2>04 NOV<br>2011</h2>' +
+      '<div class="show-venue">Estádio do Morumbi</div>' +
+      '<div class="show-city">São Paulo · BR · turnê PJ20</div>' +
+      '<div class="show-poster"><div class="show-poster-text">PJ<br>SP 11<small>POSTER OFICIAL</small></div></div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+        '<span class="tag" style="border-color:var(--heard);color:var(--heard)">★ TAVA LÁ — 47</span>' +
+        '<span class="tag">23 BOOTLEGS</span>' +
+        '<span class="tag pj">21 MÚSICAS</span>' +
+      '</div>' +
+      '<div class="show-mini-set">' +
+        '<div class="show-mini-set-label">// SETLIST · 21 MÚSICAS</div>' +
+        '<ol>' + setOl + '</ol>' +
+      '</div>' +
+    '</div>';
+
+  const tabs =
+    '<div class="show-thread-tabs">' +
+      '<button class="show-thread-tab">Setlist<span class="count">21</span></button>' +
+      '<button class="show-thread-tab">Interpretações<span class="count">8</span></button>' +
+      '<button class="show-thread-tab">Galeria<span class="count">34</span></button>' +
+      '<button class="show-thread-tab">Bootlegs<span class="count">23</span></button>' +
+      '<button class="show-thread-tab active">Conversa<span class="count">142</span></button>' +
+    '</div>';
+
+  const meta =
+    '<div class="show-thread-meta">' +
+      '<span class="pill heard">★ 47 TAVA LÁ</span>' +
+      '<span class="pill">142 POSTS · 38 THREADS</span>' +
+      '<span class="pill">ÚLTIMO · há 6 h</span>' +
+      '<span style="margin-left:auto"><button class="btn primary sm" data-fgo="composer"><span style="font-size:14px;line-height:1">+</span> Abrir thread</button></span>' +
+    '</div>';
+
+  const fato =
+    '<div style="margin-bottom:22px;padding:14px 18px;background:var(--bg-card);border:1px solid var(--divider-strong);border-left:3px solid var(--ev)">' +
+      '<div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ev);margin-bottom:6px">// FATO DE ARQUIVO</div>' +
+      '<p style="margin:0;font-family:var(--font-editorial);font-style:italic;font-size:16px;color:var(--ink-mute);line-height:1.4">Única noite no Brasil em que <span style="color:var(--ev)">Off He Goes</span> foi tocada na turnê PJ20. O fórum confirma com 4 áudios independentes da plateia.</p>' +
+    '</div>';
+
+  const postRoot =
+    '<div class="post root op">' +
+      '<div class="post-avatar">RG</div>' +
+      '<div>' +
+        '<div class="post-byline">' +
+          '<span class="post-author">rgrillo</span>' +
+          '<span class="post-badge op">OP</span>' +
+          '<span class="post-badge tava-la">🤧 Tava lá</span>' +
+          '<span class="post-badge gold">Arquivista</span>' +
+          '<span class="post-date">há 2 sem · thread #389</span>' +
+        '</div>' +
+        '<div class="post-body">' +
+          '<p>Acabei a masterização do soundboard de SP 2011 essa semana. <strong>FLAC, 24-bit</strong>, sem ginga. Crackles do começo de <em>Release</em> sumiram, o resto tá honesto.</p>' +
+          '<p>Anexei abaixo o trecho de <em>Off He Goes</em> — esse foi <strong>o</strong> momento da noite pra mim. Não tocaram em mais nenhum show da turnê no Brasil.</p>' +
+        '</div>' +
+        '<div class="audio-attach"><button class="play" aria-label="play">▶</button><div class="waveform"></div><div class="audio-meta">Off He Goes · SP 2011 · soundboard · 6:18</div></div>' +
+        '<div style="display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap">' +
+          '<span class="tag" style="border-color:var(--heard);color:var(--heard)">FLAC · 480 mb</span>' +
+          '<span class="tag">Soundboard · oficial</span>' +
+          '<span class="tag">Master: rgrillo</span>' +
+        '</div>' +
+        _fReactions([{k:"active heard",ico:"🤧",l:"Tava lá",n:31},{k:"active",ico:"🤘",l:"Mata",n:142},{k:"",ico:"♥",l:"",n:74},{k:"active gold",ico:"✦",l:"Salvar",n:88}]) +
+      '</div>' +
+    '</div>';
+
+  const postCurador =
+    '<div class="post">' +
+      '<div class="post-avatar pj">AH</div>' +
+      '<div>' +
+        '<div class="post-byline">' +
+          '<span class="post-author">andrehz4</span>' +
+          '<span class="post-badge op">curador</span>' +
+          '<span class="post-badge tava-la">🤧 Tava lá</span>' +
+          '<span class="post-date">há 2 sem</span>' +
+        '</div>' +
+        '<div class="post-body"><p>Subi no arquivo. <em>Off He Goes</em> de SP 2011 virou destaque oficial dessa data — incluí o crédito do seu master no rodapé. Obrigado, irmão.</p></div>' +
+        _fReactions([{k:"active",ico:"🤘",l:"Mata",n:56},{k:"",ico:"♥",l:"",n:22}]) +
+      '</div>' +
+    '</div>';
+
+  const postAnon =
+    '<div class="post">' +
+      '<div class="post-avatar">?</div>' +
+      '<div>' +
+        '<div class="post-byline">' +
+          '<span class="post-author post-anon">anônimo · cipriano #114</span>' +
+          '<span class="post-badge tava-la">🤧 Tava lá</span>' +
+          '<span class="post-date">há 9 dias</span>' +
+        '</div>' +
+        '<div class="post-body"><p>Tinha 16 anos, primeiro show de banda gringa. Fui sozinho de ônibus do Tatuapé. Quando o riff de <em>Off He Goes</em> começou eu sentei no chão da pista, sem brinks. Acho que chorei. Não vou conferir.</p></div>' +
+        _fReactions([{k:"active heard",ico:"🤧",l:"Tava lá",n:18},{k:"",ico:"♥",l:"",n:41}]) +
+      '</div>' +
+    '</div>';
+
+  const replyComposer =
+    '<div class="reply-composer">' +
+      '<div class="reply-composer-head"><span>↳ contribuir nesta conversa</span><span style="margin-left:auto;color:var(--ink-dim)">show 04 nov 2011</span></div>' +
+      '<div class="reply-composer-toolbar">' +
+        '<span class="tool-group"><button class="tool-btn b">B</button><button class="tool-btn i">I</button></span>' +
+        '<span class="tool-group"><button class="tool-btn">❝</button><button class="tool-btn">🎵</button><button class="tool-btn">🖼</button><button class="tool-btn">🎙</button></span>' +
+        '<button class="tool-btn" style="margin-left:auto;color:var(--ev)">⚠ spoiler</button>' +
+      '</div>' +
+      '<div class="reply-textarea"><span class="placeholder">conta o que você lembra desse show. áudio que sobreviveu no HD, foto do ingresso, palpite sobre por que <em>Off He Goes</em> só veio aqui…</span></div>' +
+      '<div class="reply-composer-foot">' +
+        '<div class="reply-foot-id"><span>Postar como:</span><span class="who">@você</span><span class="anon">— ou anônimo (cipriano #429)</span></div>' +
+        '<button class="btn primary">Publicar →</button>' +
+      '</div>' +
+    '</div>';
+
+  const main =
+    '<div class="show-thread-main">' +
+      tabs + meta + fato + postRoot + postCurador + postAnon +
+      '<div style="text-align:center;padding:16px 0 8px"><button class="btn">Carregar mais 139 posts</button></div>' +
+      replyComposer +
+    '</div>';
+
+  return '<div class="crumbs" style="padding:0 32px;max-width:1400px;margin:16px auto 0">' +
+      '<button class="crumb-back" data-fgo="home">Fórum</button>' +
+      '<span class="sep">/</span><span>Timeline</span>' +
+      '<span class="sep">/</span><span>2011</span>' +
+      '<span class="sep">/</span><span class="here">04 nov 2011 · São Paulo</span>' +
+    '</div>' +
+    '<div class="show-thread" style="max-width:1400px;margin:16px auto 0;border:1px solid var(--divider)">' +
+      sidecard + main +
+    '</div>';
+}
+
+function _fEmptyHtml() {
+  const toolbar =
+    '<div class="forum-toolbar">' +
+      '<div class="forum-toolbar-left">' +
+        '<button class="btn primary" data-fgo="composer"><span style="font-size:14px;line-height:1">+</span> Nova thread em "Cifras & Tabs"</button>' +
+        '<span style="color:var(--ink-dim);font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase">Ordenar:</span>' +
+        '<button class="sort-chip active">Atividade</button>' +
+        '<button class="sort-chip">Mais novos</button>' +
+      '</div>' +
+    '</div>';
+
+  const suggestions = [
+    'Off He Goes — afinação aberta sol ou padrão? Discussão eterna.',
+    'Tab de Yellow Ledbetter — a versão que circula tá certa?',
+    'Como o Mike afina pra Even Flow ao vivo? Vi 3 versões diferentes.',
+  ].map(s =>
+    '<div class="empty-sugg"><div class="es-eyebrow">// IDEIA</div><p class="es-title">"' + s + '"</p></div>'
+  ).join("");
+
+  return _fSubnav("cifras") + toolbar +
+    '<div class="empty-state">' +
+      '<div class="empty-stamp"><div class="stamp-text">CATEGORIA<br>VAZIA<small>· Arquivo nº 07 ·</small></div></div>' +
+      '<div class="empty-eyebrow">// CIFRAS & TABS</div>' +
+      '<h1>"Ainda não tocou nesse pedaço do arquivo."</h1>' +
+      '<p class="empty-sub">Ninguém abriu uma thread aqui ainda. Se você ralou pra entender o arpejo de <em>Off He Goes</em>, postou uma tab caseira no celular, ou só quer perguntar qual afinação o Stone usa — abre a primeira. Os outros chegam atrás.</p>' +
+      '<div class="empty-cta">' +
+        '<button class="btn primary" data-fgo="composer"><span style="font-size:14px;line-height:1">+</span> Abrir a primeira thread</button>' +
+        '<button class="btn" data-fgo="home">↶ Voltar pra "Tudo"</button>' +
+      '</div>' +
+      '<div class="empty-suggestions">' + suggestions + '</div>' +
+      '<div class="empty-meta"><span><b>0</b> threads</span><span><b>0</b> posts</span><span>cipriano <b>#429</b> tá esperando</span></div>' +
+    '</div>';
 }
 
 // ========================================================================
