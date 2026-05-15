@@ -32,7 +32,7 @@ import { spawn } from "node:child_process";
 import sharp from "sharp";
 import got from "got";
 import { pickStyle, DEFAULT_STYLE } from "./story-styles/index.mjs";
-import { dayOfYear } from "./story-track.mjs";
+import { getEditionNumber } from "./edition.mjs";
 
 const STORY_STYLE = process.env.STORY_STYLE || process.env.INTRO_STYLE || DEFAULT_STYLE;
 const activeStyle = pickStyle(STORY_STYLE);
@@ -68,7 +68,7 @@ const MONTH_PT_LONG = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JU
 const DOW_PT_SHORT = ["DOM","SEG","TER","QUA","QUI","SEX","SAB"];
 const DOW_PT_LONG = ["DOMINGO","SEGUNDA-FEIRA","TERÇA-FEIRA","QUARTA-FEIRA","QUINTA-FEIRA","SEXTA-FEIRA","SÁBADO"];
 
-function buildIntroState({ date, itemCount, tarjaColor, badgeAnim }) {
+function buildIntroState({ date, itemCount, tarjaColor, badgeAnim, edition }) {
   return {
     W, H,
     day: date.getUTCDate(),
@@ -77,7 +77,7 @@ function buildIntroState({ date, itemCount, tarjaColor, badgeAnim }) {
     year: date.getUTCFullYear(),
     dayOfWeekShort: DOW_PT_SHORT[date.getUTCDay()],
     dayOfWeekLong: DOW_PT_LONG[date.getUTCDay()],
-    edition: dayOfYear(date),
+    edition,
     itemCount,
     tarjaColor,
     // animacao do badge: frames (base64 PNG), fps original do GIF e
@@ -484,7 +484,8 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
   await fs.mkdir(tmpDir, { recursive: true });
 
   const badgeAnim = await loadBadgeAnimated();
-  const introState = buildIntroState({ date, itemCount: items.length, tarjaColor, badgeAnim });
+  const edition = await getEditionNumber(date);
+  const introState = buildIntroState({ date, itemCount: items.length, tarjaColor, badgeAnim, edition });
   console.log(`[story-video] style: ${STORY_STYLE} | edicao Nº ${introState.edition} | ${introState.dayOfWeekShort}`);
 
   // pre-renderiza um BG por card (5 buffers em memoria, ~10MB cada PNG -> ok)
