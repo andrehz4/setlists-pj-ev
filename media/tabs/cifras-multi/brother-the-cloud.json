@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Brother The Cloud (Eddie Vedder, Earthling 2022). Balada em Sol# menor.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Brother The Cloud",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "G#m",
+  "bpm": 75,
+  "capo": null,
+  "default_instrument": "violao",
+  "notes": "Tonalidade em Sol sustenido menor (= La bemol menor). Acordes em notacao sustenida.",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D#":   { "fingering": "x68886", "fingers": "x13331", "fundamental": "D#", "barre": 6 },
+        "G#m":  { "fingering": "466444", "fingers": "134111", "fundamental": "G#", "barre": 4 },
+        "B":    { "fingering": "x24442", "fingers": "x13331", "fundamental": "B",  "barre": 2 },
+        "F#":   { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2 },
+        "A#":   { "fingering": "x13331", "fingers": "x13331", "fundamental": "A#", "barre": 1 },
+        "C#":   { "fingering": "x46664", "fingers": "x13331", "fundamental": "C#", "barre": 4 },
+        "Cm":   { "fingering": "x35543", "fingers": "x13421", "fundamental": "C",  "barre": 3 },
+        "A#m":  { "fingering": "x13321", "fingers": "x13421", "fundamental": "A#", "barre": 1 },
+        "G#":   { "fingering": "466544", "fingers": "134211", "fundamental": "G#", "barre": 4 },
+        "E":    { "fingering": "022100", "fingers": "023100", "fundamental": "E"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D#":   { "fingering": "0331", "fingers": "0231", "fundamental": "D#" },
+        "G#m":  { "fingering": "1342", "fingers": "1342", "fundamental": "G#" },
+        "B":    { "fingering": "4322", "fingers": "4311", "fundamental": "B"  },
+        "F#":   { "fingering": "3121", "fingers": "3121", "fundamental": "F#" },
+        "A#":   { "fingering": "3211", "fingers": "3211", "fundamental": "A#" },
+        "C#":   { "fingering": "1114", "fingers": "1114", "fundamental": "C#" },
+        "Cm":   { "fingering": "0333", "fingers": "0111", "fundamental": "C"  },
+        "A#m":  { "fingering": "3120", "fingers": "3120", "fundamental": "A#" },
+        "G#":   { "fingering": "5343", "fingers": "4232", "fundamental": "G#" },
+        "E":    { "fingering": "4442", "fingers": "4442", "fundamental": "E"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D#":   { "notes": ["D#", "G",  "A#"],       "fundamental": "D#", "inversion": null },
+        "G#m":  { "notes": ["G#", "B",  "D#"],       "fundamental": "G#", "inversion": null },
+        "B":    { "notes": ["B",  "D#", "F#"],       "fundamental": "B",  "inversion": null },
+        "F#":   { "notes": ["F#", "A#", "C#"],       "fundamental": "F#", "inversion": null },
+        "A#":   { "notes": ["A#", "D",  "F"],        "fundamental": "A#", "inversion": null },
+        "C#":   { "notes": ["C#", "F",  "G#"],       "fundamental": "C#", "inversion": null },
+        "Cm":   { "notes": ["C",  "D#", "G"],        "fundamental": "C",  "inversion": null },
+        "A#m":  { "notes": ["A#", "C#", "F"],        "fundamental": "A#", "inversion": null },
+        "G#":   { "notes": ["G#", "C",  "D#"],       "fundamental": "G#", "inversion": null },
+        "E":    { "notes": ["E",  "G#", "B"],        "fundamental": "E",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D#] [G#m] [B] [F#] [D#]\n[D#] [G#m] [B] [F#] [D#]\n\n{section: Verso 1}\n[D#]I had a bro[G#m]ther [B] [F#] [D#]\nBut now my [G#m]brother is [B]gone [F#]\nOh I [D#]search the sky for a\n[G#m]glimpse of his blue [B]eyes\n[F#]And there I [D#]find\nHis [G#]image in the [C#]clouds [B]\n\n{section: Refrão}\n[A#]If I could [C#]wish, wish it a[Cm]way\n[B]I would bleed out my [C#]knees and [A#]pray\n[C#]If I could [Cm]give, all that I have\n[B]To bring him [C#]back to[D#]day\nThese are but [C#]dreams\nAs sad as it [Cm]seems\n[B]I'm always [C#]wide a[D#]wake [G#m] [B] [F#]\n\n{section: Verso 2}\n[D#]Understand it was not\n[G#m]easy for my [B]friend\nOh [C#]promises [D#]\nEven to your[G#m]self cannot be [B]kept\n[F#]Enlarge the [D#]hole in my heart\n[G#m]Rising river [B]in the dark\n[F#]Erodes the [D#]shore\n'Til our [G#m]shores were far a[C#]part [B]\n\n{section: Refrão 2}\n[A#]If I could [C#]wish, wish it a[Cm]way\n[B]I would bleed out my [C#]knees and [A#]pray\n[C#]If I could [Cm]give, all that I have\n[B]To bring him [C#]back to[D#]day\nThese are but [C#]dreams\nAs sad as it [Cm]seems\n[B]They never [C#]go away\n\n{section: Ponte}\n[G#m]There's no previous reference\nFor this [B]level of [C#]pain\n[G#m]I can't feign indifference\nCan't look a[B]way [F#]\n[G#m]The years they go by\nThe hurt I still hide\nIf I look okay, it's [B]just the out[C#]side\n[G#m]There's no previous reference\nFor this [A#m]level of pain\n[B]Oh I could [C#]hear him sing\n\n{section: Instrumental}\n[D#] [G#m] [B] [F#]\n[D#] [G#m] [C#] [B]\n\n{section: Refrão 3}\n[A#]If I could [C#]wish, wish it a[Cm]way\n[B]I would bleed out my [C#]knees and [A#]pray\n[C#]If I could [Cm]give, all that I have\n[B]To bring back [C#]yester[D#]day\nThese are but [C#]dreams\n[Cm]Sad as it seems, [B]they never [C#]go a[D#]way\n\n{section: Instrumental 2}\n[G#m] [F#] [E] [C#]\n\n{section: Outro}\n[G#m]And I would not wish upon [F#]you\n[E]But should you ever leave this [C#]earth\n[G#m]Before me, I doubt this high[F#]ly\n[E]Do for me, what I'd [C#]do for [G#m]you\n[F#]Put your arms around my [E]friend (x3)\n[C#]Say for me, fuck [G#m]you\n[G#m]What are [F#]friends? [E] [C#] (x4)\n[G#m]What are friends for?\n"
+}

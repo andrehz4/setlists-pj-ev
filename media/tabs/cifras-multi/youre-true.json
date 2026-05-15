@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de You're True (Eddie Vedder, Ukulele Songs 2011). Original em ukulele em Do.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "You're True",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "C",
+  "bpm": 110,
+  "capo": null,
+  "default_instrument": "ukulele",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Csus4": { "fingering": "x33010", "fingers": "x34010", "fundamental": "C" },
+        "C":     { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Caug":  { "fingering": "x32110", "fingers": "x32110", "fundamental": "C" },
+        "Am":    { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "C7":    { "fingering": "x32310", "fingers": "x32410", "fundamental": "C" },
+        "F7":    { "fingering": "131211", "fingers": "131211", "fundamental": "F", "barre": 1 },
+        "Em7":   { "fingering": "022030", "fingers": "023040", "fundamental": "E" },
+        "A9":    { "fingering": "x02200", "fingers": "x02300", "fundamental": "A" },
+        "Dm7":   { "fingering": "xx0211", "fingers": "xx0211", "fundamental": "D" },
+        "Fm":    { "fingering": "133111", "fingers": "134111", "fundamental": "F", "barre": 1 },
+        "D7":    { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "G7":    { "fingering": "320001", "fingers": "210001", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Csus4": { "fingering": "0013", "fingers": "0013", "fundamental": "C" },
+        "C":     { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Caug":  { "fingering": "1114", "fingers": "1114", "fundamental": "C" },
+        "Am":    { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "C7":    { "fingering": "0001", "fingers": "0001", "fundamental": "C" },
+        "F7":    { "fingering": "2313", "fingers": "2314", "fundamental": "F" },
+        "Em7":   { "fingering": "0202", "fingers": "0202", "fundamental": "E" },
+        "A9":    { "fingering": "0000", "fingers": "0000", "fundamental": "A" },
+        "Dm7":   { "fingering": "2213", "fingers": "2213", "fundamental": "D" },
+        "Fm":    { "fingering": "1013", "fingers": "1013", "fundamental": "F" },
+        "D7":    { "fingering": "2223", "fingers": "1223", "fundamental": "D" },
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "G7":    { "fingering": "0212", "fingers": "0213", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Csus4": { "notes": ["C", "F", "G"],           "fundamental": "C",  "inversion": null },
+        "C":     { "notes": ["C", "E", "G"],           "fundamental": "C",  "inversion": null },
+        "Caug":  { "notes": ["C", "E", "G#"],          "fundamental": "C",  "inversion": null },
+        "Am":    { "notes": ["A", "C", "E"],           "fundamental": "A",  "inversion": null },
+        "C7":    { "notes": ["C", "E", "G", "Bb"],     "fundamental": "C",  "inversion": null },
+        "F7":    { "notes": ["F", "A", "C", "Eb"],     "fundamental": "F",  "inversion": null },
+        "Em7":   { "notes": ["E", "G", "B", "D"],      "fundamental": "E",  "inversion": null },
+        "A9":    { "notes": ["A", "C#", "E", "B"],     "fundamental": "A",  "inversion": null },
+        "Dm7":   { "notes": ["D", "F", "A", "C"],      "fundamental": "D",  "inversion": null },
+        "Fm":    { "notes": ["F", "Ab", "C"],          "fundamental": "F",  "inversion": null },
+        "D7":    { "notes": ["D", "F#", "A", "C"],     "fundamental": "D",  "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],           "fundamental": "G",  "inversion": null },
+        "G7":    { "notes": ["G", "B", "D", "F"],      "fundamental": "G",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Csus4]  [C]      [Csus4]  [C]      [Csus4]  [C]      [Csus4]  [C]\n\n{section: Verso 1}\n[Csus4]  [C]      [Csus4]  [C]      [Csus4]  [C]      [Csus4]  [C]\nLonely cliffs and waterfalls\n[Csus4]     [C]            [Csus4]       [C]      [Csus4]  [C]      [Csus4]  [C]\nIf no one sees me, I'm not here at all\n[C]         [Caug]          [Am]          [C7]\nYou could be the one to liberate me from the sun\n   [F7]                       [Csus4]  [C]      [Csus4]  [C]\nSo please, give the moon to me\n\n{section: Verso 2}\n[Em7]      [A9]\nI'd be indebted to ya\n[Dm7]              [Fm]\nWalk the dog and pay rent to ya\n[C]                [D7]        [Fm]\nIf you'd say the word, I'm yours\n        [G]   [G7]\nOh, I'm sure\n\n{section: Verso 3}\n[Csus4]   [C]    [Csus4]   [C]      [Csus4]  [C]      [Csus4]  [C]\nNothing ever goes my way\n[Csus4]        [C]          [Csus4]    [C]      [Csus4]  [C]      [Csus4]  [C]\nBut with you here, that all will change\n[C]              [Caug]\nSuddenly I'm a newborn child\n        [Am]       [C7]               [F7]\nAnd I'm ready to live awhile with you\n                        [Csus4]  [C]      [Csus4]  [C]\nThere's so much left to do\n\n{section: Ponte}\n[Em7]      [A9]\nAnd so I thank you dearly\n[Dm7]         [Fm]\nFor letting me see clearly\n[C]              [D7]        [Fm]\n\"Open up,\" she said. \"Be you\n   [G]     [G7]\nBe true.\"\n\n{section: Verso 4}\n    [Csus4]  [C]       [Csus4]  [C]      [Csus4]  [C]      [Csus4]  [C]\nNow I'm at home in my own skin\n    [Csus4]   [C]           [Csus4]       [C]      [Csus4]  [C]      [Csus4]  [C]\nI'm like an ocean whose tide's come in\n[Em7]            [A9]            [Dm7]            [Fm]\nYes, you could be the one to hold my hand beneath the full moon\n[C]                [D7]          [Fm]\nYou could be the one, you're true\n\n{section: Outro}\n       [G]   [G7]\nYou're true\n           [Csus4]  [C]      [Csus4]  [C]      [Csus4]  [C]      [Csus4]  [C]\nYou're true\nYou're true\n"
+}

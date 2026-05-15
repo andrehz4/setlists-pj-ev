@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Power Of Right (Eddie Vedder, Earthling 2022). Andamento energico em La menor.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Power Of Right",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "Am",
+  "bpm": 125,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Am":  { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "C":   { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "D":   { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "E":   { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "F":   { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Bb":  { "fingering": "x13331", "fingers": "x13331", "fundamental": "Bb", "barre": 1 },
+        "Ab":  { "fingering": "466544", "fingers": "134211", "fundamental": "Ab", "barre": 4 },
+        "G":   { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Eb":  { "fingering": "x68886", "fingers": "x13341", "fundamental": "Eb", "barre": 6 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 125,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "down",  "muted": true  },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": true  },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Am":  { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "C":   { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "D":   { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "E":   { "fingering": "4442", "fingers": "3331", "fundamental": "E" },
+        "F":   { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Bb":  { "fingering": "3211", "fingers": "4211", "fundamental": "Bb" },
+        "Ab":  { "fingering": "5343", "fingers": "4232", "fundamental": "Ab" },
+        "G":   { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Eb":  { "fingering": "0331", "fingers": "0231", "fundamental": "Eb" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 125,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "down",  "muted": true  },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": true  },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Am":  { "notes": ["A", "C", "E"],           "fundamental": "A",   "inversion": null },
+        "C":   { "notes": ["C", "E", "G"],           "fundamental": "C",   "inversion": null },
+        "D":   { "notes": ["D", "F#", "A"],          "fundamental": "D",   "inversion": null },
+        "E":   { "notes": ["E", "G#", "B"],          "fundamental": "E",   "inversion": null },
+        "F":   { "notes": ["F", "A", "C"],           "fundamental": "F",   "inversion": null },
+        "Bb":  { "notes": ["Bb", "D", "F"],          "fundamental": "Bb",  "inversion": null },
+        "Ab":  { "notes": ["Ab", "C", "Eb"],         "fundamental": "Ab",  "inversion": null },
+        "G":   { "notes": ["G", "B", "D"],           "fundamental": "G",   "inversion": null },
+        "Eb":  { "notes": ["Eb", "G", "Bb"],         "fundamental": "Eb",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Am] [C] [D] [E] [F] [E] [E] [D]  (x4)\n\n{section: Verso 1}\n[Am] [C] [D] [E] [F] [E] [E] [D]\nBright man scared\n[Am] [C] [D] [E] [F] [E] [E] [D]\nLiving in fear\n[Am] [C] [D] [E] [F] [E] [E] [D]\nAn itchy trigger finger\n[Am] [C] [D] [E] [F] [E] [E] [D]\nA clown in his ear\n[Am] [C] [D] [E] [F] [E] [E] [D]\nHis intimidation\n[Am] [C] [D] [E] [F] [E] [E] [D]\nBorn of his fear\n[Am]Hyp[C]notized [D]bloodshot [E]eyes [F] [E] [E] [D]\nAnd a mind unclear\n\n{section: Refrão}\n[C]She came out of nowhere he had to be near her\n[Bb]On a moonless night she was the only light\n[C]No escape from her pull of gravitation\n[Bb]She color-blinded sight [F]she echoed in his [Ab]eyes\n[Am] [C] [D] [E] [F] [E] [E] [D]\nShe had the power of right\n\n{section: Verso 2}\n[Am] [C] [D] [E] [F] [E] [E] [D]\nKnocking knocking the door\n[Am] [C] [D] [E] [F] [E] [E] [D]\nWith his centrifugal force\n[Am]Couldn't [C]take the [D]first [E]step [F] [E] [E] [D]\nRocking back and forth\n[Am] [C] [D] [E] [F] [E] [E] [D]\nHeld his invitation\n[Am] [C] [D] [E] [F] [E] [E] [D]\nHe fell on his sword\n[Am]Hyp[C]notized [D]bloodshot [E]eyes [F] [E] [E] [D]\nAnd he's begging for more\n\n{section: Refrão 2}\n[C]She took possession on a cross she kept him\n[Bb]Behind the scenes bu-burning gasoline\n[C]He took her to the altar she's thinking 'bout cremation\n[Bb]Hands up in the air [F]crying cocktail [Ab]tears\n\n{section: Ponte}\n[G]Fuck the past or you'll fuck your [Bb]future\n[G]No questions asked for fear that the [Bb]truth hurts\n[G]Atomic blast he was out[Bb]maneuvered\n[C]Didn't stand a chance a fucking [Eb]hoover\n\n{section: Coda}\n[Am] [C] [D] [E] [F] [E] [E] [D]\nThe power of right  (x4)\n\n{section: Outro}\n[Am]Heed the [C]power [D]equal [E]power [F] [E] [E] [D]  (x4)\n"
+}

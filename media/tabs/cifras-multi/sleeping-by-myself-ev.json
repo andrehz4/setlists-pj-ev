@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Sleeping By Myself (Eddie Vedder, Ukulele Songs 2011).",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Sleeping By Myself",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "F",
+  "bpm": 108,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F":      { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "F6":     { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1,
+                    "note": "variacao: xx3231 sem barre" },
+        "Am":     { "fingering": "x02210", "fingers": "x02310", "fundamental": "A"  },
+        "Bb":     { "fingering": "x13331", "fingers": "x13421", "fundamental": "Bb", "barre": 1 },
+        "C7":     { "fingering": "x32310", "fingers": "x32410", "fundamental": "C"  },
+        "Eb5":    { "fingering": "x68886", "fingers": "x13331", "fundamental": "Eb", "barre": 6 },
+        "Dsus4":  { "fingering": "xx0233", "fingers": "xx0124", "fundamental": "D"  },
+        "Dadd11": { "fingering": "xx0230", "fingers": "xx0230", "fundamental": "D"  },
+        "F7":     { "fingering": "131211", "fingers": "131211", "fundamental": "F",  "barre": 1 },
+        "Dbdim7": { "fingering": "x45454", "fingers": "x12131", "fundamental": "Db" },
+        "G7":     { "fingering": "320001", "fingers": "320001", "fundamental": "G"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (balada)",
+        "bpm": 108,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F":      { "fingering": "2010", "fingers": "2010", "fundamental": "F"  },
+        "F6":     { "fingering": "2212", "fingers": "2312", "fundamental": "F"  },
+        "Am":     { "fingering": "2000", "fingers": "1000", "fundamental": "A"  },
+        "Bb":     { "fingering": "3211", "fingers": "4211", "fundamental": "Bb" },
+        "C7":     { "fingering": "0001", "fingers": "0001", "fundamental": "C"  },
+        "Eb5":    { "fingering": "3310", "fingers": "2310", "fundamental": "Eb" },
+        "Dsus4":  { "fingering": "2230", "fingers": "1230", "fundamental": "D"  },
+        "Dadd11": { "fingering": "2230", "fingers": "1230", "fundamental": "D"  },
+        "F7":     { "fingering": "2310", "fingers": "2310", "fundamental": "F"  },
+        "Dbdim7": { "fingering": "1212", "fingers": "1213", "fundamental": "Db" },
+        "G7":     { "fingering": "0212", "fingers": "0213", "fundamental": "G"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (balada)",
+        "bpm": 108,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F":      { "notes": ["F", "A", "C"],             "fundamental": "F",  "inversion": null },
+        "F6":     { "notes": ["F", "A", "C", "D"],        "fundamental": "F",  "inversion": null },
+        "Am":     { "notes": ["A", "C", "E"],             "fundamental": "A",  "inversion": null },
+        "Bb":     { "notes": ["Bb", "D", "F"],            "fundamental": "Bb", "inversion": null },
+        "C7":     { "notes": ["C", "E", "G", "Bb"],       "fundamental": "C",  "inversion": null },
+        "Eb5":    { "notes": ["Eb", "Bb"],                "fundamental": "Eb", "inversion": null },
+        "Dsus4":  { "notes": ["D", "G", "A"],             "fundamental": "D",  "inversion": null },
+        "Dadd11": { "notes": ["D", "F#", "A", "G"],       "fundamental": "D",  "inversion": null },
+        "F7":     { "notes": ["F", "A", "C", "Eb"],       "fundamental": "F",  "inversion": null },
+        "Dbdim7": { "notes": ["Db", "E", "G", "Bb"],      "fundamental": "Db", "inversion": null },
+        "G7":     { "notes": ["G", "B", "D", "F"],        "fundamental": "G",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[F]I should have [F6]known [Am]there was someone else\n[F]Down be[F6]low [Am]I always kept it to myself\n[Bb]Now I believe in nothin', [C7]not today\n[Eb5]As I move myself out of your [Dsus4]sight [Dadd11]\n[Bb]I'll be sleeping [C7]by myself to[F]night\n\n{section: Verso 2}\n[F]I could ne[F6]ver go [Am]to no one else\n[F]The hurt don't [F6]show but who knows, [Am]time will tell\n[Bb]I believe in nothin' [C7]but the pain\n[Eb5]And I can't see this turning out [Dsus4]right [Dadd11]\n[Bb]I'll be sleeping [C7]by myself to[F]night\n\n{section: Ponte}\n[F7]Forever be sad and lonely\n[Dbdim7]Forever never be the [Bb]same\nI close my eyes\n[G7]Wait for a sign\n[C7]Am I just waiting in vain?\n\n{section: Verso 3}\n[F]Oh, I be[F6]lieve in [Am]love and disaster\n[F]Sometimes the [F6]two are just the [Am]same\n[Bb]I'm beginning to see\n[C7]What's left of me\n[Eb5]Is gonna have to be free to [Dsus4]sur[Dadd11]vive\n[Bb]I'll be sleeping [C7]by myself\n[Bb]I'll be sleeping [C7]by myself\n[Bb]I'll be sleeping [C7]by myself\n[F]Tonight\n"
+}

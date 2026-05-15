@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Broken Heart (Eddie Vedder, Ukulele Songs 2011). Original em ukulele em Sol.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Broken Heart",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "G",
+  "bpm": 110,
+  "capo": null,
+  "default_instrument": "ukulele",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "G7":   { "fingering": "320001", "fingers": "210001", "fundamental": "G" },
+        "Cm":   { "fingering": "x35543", "fingers": "x13421", "fundamental": "C", "barre": 3 },
+        "A":    { "fingering": "x02220", "fingers": "x02230", "fundamental": "A" },
+        "Asus4":{ "fingering": "x02230", "fingers": "x02340", "fundamental": "A" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "Em":   { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "D7":   { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "G7":   { "fingering": "0212", "fingers": "0213", "fundamental": "G" },
+        "Cm":   { "fingering": "0333", "fingers": "0333", "fundamental": "C" },
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Asus4":{ "fingering": "2200", "fingers": "2300", "fundamental": "A" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Em":   { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
+        "D7":   { "fingering": "2223", "fingers": "1223", "fundamental": "D" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 110,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":    { "notes": ["G", "B", "D"],       "fundamental": "G",  "inversion": null },
+        "C":    { "notes": ["C", "E", "G"],       "fundamental": "C",  "inversion": null },
+        "G7":   { "notes": ["G", "B", "D", "F"],  "fundamental": "G",  "inversion": null },
+        "Cm":   { "notes": ["C", "Eb", "G"],      "fundamental": "C",  "inversion": null },
+        "A":    { "notes": ["A", "C#", "E"],      "fundamental": "A",  "inversion": null },
+        "Asus4":{ "notes": ["A", "D", "E"],       "fundamental": "A",  "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],      "fundamental": "D",  "inversion": null },
+        "Em":   { "notes": ["E", "G", "B"],       "fundamental": "E",  "inversion": null },
+        "D7":   { "notes": ["D", "F#", "A", "C"], "fundamental": "D",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[G]     [C]       [G]     [G7]\nDon't mind me, just let me be\n[C]     [Cm]      [G]     [G]\nMy eyes so far away\n[G]     [C]       [G]     [G7]\nI don't need no sympathy\n[A]     [Asus4]   [D]     [D]\nThe word gets overplayed\n\n{section: Refrão}\n[C]     [D]     [G]     [Em]\nI'm alright, it's just tonight\n[C]     [D]     [G]     [G]\nI can't play the part\n[C]     [D]     [G]     [Em]\nI'm alright, it's alright\n[D7]    [D7]    [C]     [A]\nIt's just a broken heart.\n\n{section: Break}\n[C]  [A] (x3)\n\n{section: Verso 2}\n[G]     [C]       [G]     [G7]\nDon't have eyes for the world outside\n[C]     [Cm]      [G]     [G]\nThey're closed and turned within\n[G]     [C]       [G]     [G7]\nTrying to find a light inside\n[A]     [Asus4]   [D]     [D]\nIt's there and growing dim\n\n{section: Refrão 2}\n[C]     [D]     [G]     [Em]\nI'm alright, it's just tonight\n[C]     [D]     [G]     [G]\nI can't play the part\n[C]     [D]     [G]     [Em]\nI'm alright, it's alright\n[D7]    [D7]    [C]     [A]\nIt's just one broken heart.\n\n{section: Break 2}\n[C]  [A] (x3)\n"
+}

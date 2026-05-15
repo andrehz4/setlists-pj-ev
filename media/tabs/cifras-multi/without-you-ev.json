@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Without You (Eddie Vedder, Ukulele Songs 2011).",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Without You",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "G",
+  "bpm": 76,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C"  },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G"  },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D"  },
+        "Am7":  { "fingering": "x02010", "fingers": "x02010", "fundamental": "A"  },
+        "Cm":   { "fingering": "x35543", "fingers": "x13421", "fundamental": "C",  "barre": 3 },
+        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A"  },
+        "G7":   { "fingering": "320001", "fingers": "320001", "fundamental": "G"  },
+        "D7":   { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (slow/contemplativo)",
+        "bpm": 76,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C"  },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G"  },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D"  },
+        "Am7":  { "fingering": "0000", "fingers": "0000", "fundamental": "A"  },
+        "Cm":   { "fingering": "0333", "fingers": "0111", "fundamental": "C"  },
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A"  },
+        "G7":   { "fingering": "0212", "fingers": "0213", "fundamental": "G"  },
+        "D7":   { "fingering": "2223", "fingers": "1114", "fundamental": "D"  }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (slow/contemplativo)",
+        "bpm": 76,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C":    { "notes": ["C", "E", "G"],           "fundamental": "C",  "inversion": null },
+        "G":    { "notes": ["G", "B", "D"],           "fundamental": "G",  "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],          "fundamental": "D",  "inversion": null },
+        "Am7":  { "notes": ["A", "C", "E", "G"],      "fundamental": "A",  "inversion": null },
+        "Cm":   { "notes": ["C", "Eb", "G"],          "fundamental": "C",  "inversion": null },
+        "A":    { "notes": ["A", "C#", "E"],          "fundamental": "A",  "inversion": null },
+        "G7":   { "notes": ["G", "B", "D", "F"],      "fundamental": "G",  "inversion": null },
+        "D7":   { "notes": ["D", "F#", "A", "C"],     "fundamental": "D",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[C]I'll grow when [G]you grow\n[D]Let me loosen up the [C]blindfold [G]\n[C]I'll fly when [G]you cry\n[D]Lift us out of this [C]landslide [G]\n[G]Wherever you [C]go\n[G]Whenever we [Cm]part\n\n{section: Refrão}\n[G]I'll keep on healing all the [A]scars\n[Am7]That we've collected from the start\n[G]I'd rather this than live without you\n[A]For every wish upon a star\n[Am7]That goes unanswered in the dark\n[G]There is a dream I've dreamt about you\n[G7]And from afar, I lie a[G]wake\n[G7]Close my eyes to find I [Am7]wouldn't be the [D7]same\n\n{section: Verso 2}\n[C]I'll shine when [G]you shine\n[D]Painted pictures on my [C]mind [G]\n[C]Sun sets on this [G]ocean\n[D]Never once on my de[C]votion [G]\n[G]However you [C]are\n[G]Or far that you [Cm]fall\n\n{section: Refrão 2}\n[G]I'll keep on healing all the [A]scars\n[Am7]That we've collected from the start\n[G]I'd rather this than live without you\n[A]For every wish upon a star\n[Am7]That goes unanswered in the dark\n[G]There is a dream I've dreamt about you\n[G7]And from afar, I lie a[G]wake\n[G7]Close my eyes to find I [Am7]wouldn't be the [D7]same\n[G]Without [A]you\n[Am7]Without [G]you\n"
+}

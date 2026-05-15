@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Goodbye (Eddie Vedder, Ukulele Songs 2011). Original em ukulele em Si bemol.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Goodbye",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "Bb",
+  "bpm": 75,
+  "capo": null,
+  "default_instrument": "ukulele",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Bbmaj7": { "fingering": "x13231", "fingers": "x13241", "fundamental": "Bb", "barre": 1 },
+        "Bb":     { "fingering": "x13331", "fingers": "x13331", "fundamental": "Bb", "barre": 1 },
+        "Bb7":    { "fingering": "x13131", "fingers": "x13121", "fundamental": "Bb", "barre": 1 },
+        "Bb9":    { "fingering": "x10011", "fingers": "x10011", "fundamental": "Bb" },
+        "C7":     { "fingering": "x32310", "fingers": "x32410", "fundamental": "C" },
+        "C9":     { "fingering": "x32030", "fingers": "x32040", "fundamental": "C" },
+        "F":      { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Eb":     { "fingering": "x68886", "fingers": "x13331", "fundamental": "Eb", "barre": 6 },
+        "Ebm":    { "fingering": "x68876", "fingers": "x13421", "fundamental": "Eb", "barre": 6 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Bbmaj7": { "fingering": "3210", "fingers": "3210", "fundamental": "Bb" },
+        "Bb":     { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" },
+        "Bb7":    { "fingering": "1211", "fingers": "1211", "fundamental": "Bb" },
+        "Bb9":    { "fingering": "0211", "fingers": "0211", "fundamental": "Bb" },
+        "C7":     { "fingering": "0001", "fingers": "0001", "fundamental": "C" },
+        "C9":     { "fingering": "0201", "fingers": "0201", "fundamental": "C" },
+        "F":      { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Eb":     { "fingering": "3331", "fingers": "3331", "fundamental": "Eb" },
+        "Ebm":    { "fingering": "3321", "fingers": "3321", "fundamental": "Eb" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 75,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Bbmaj7": { "notes": ["Bb", "D", "F", "A"],    "fundamental": "Bb", "inversion": null },
+        "Bb":     { "notes": ["Bb", "D", "F"],         "fundamental": "Bb", "inversion": null },
+        "Bb7":    { "notes": ["Bb", "D", "F", "Ab"],   "fundamental": "Bb", "inversion": null },
+        "Bb9":    { "notes": ["Bb", "D", "F", "Ab", "C"], "fundamental": "Bb", "inversion": null },
+        "C7":     { "notes": ["C", "E", "G", "Bb"],    "fundamental": "C",  "inversion": null },
+        "C9":     { "notes": ["C", "E", "G", "Bb", "D"], "fundamental": "C", "inversion": null },
+        "F":      { "notes": ["F", "A", "C"],          "fundamental": "F",  "inversion": null },
+        "Eb":     { "notes": ["Eb", "G", "Bb"],        "fundamental": "Eb", "inversion": null },
+        "Ebm":    { "notes": ["Eb", "Gb", "Bb"],       "fundamental": "Eb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[Bbmaj7] [Bb] [Bb7] [Bb9]    [C7]   [C9]  [C7]  [C9]\nI've got our love to remember\n[Bbmaj7] [Bb]\nThat will never change\n[Bb7] [Bb9]            [C7]   [C9]\nI have you in my head\n[F]                     [Eb]\nAnd though I'll never hold you\n[F]                    [Ebm]\nAnd I'm still asking why\n[Bbmaj7]  [Bb]    [C7]   [F]   [Bb]\nI guess that this is goodbye\n\n{section: Verso 2}\n[Bbmaj7] [Bb] [Bb7]      [Bb9]     [C7] [C9] [C7] [C9]\nMy dreams suddenly seem so empty\n[Bbmaj7]    [Bb]\nI could go it on my own\n[Bb7]    [Bb9]          [C7] [C9] [C7] [C9]\nBut I feel like playin' dead\n[F]                           [Eb]\nAnd for what feels like the first time\n[F]                      [Ebm]\nI don't know where you are tonight\n[Bbmaj7]  [Bb]   [C7]   [F]  [Bb]\nI guess that this is goodbye\n\n{section: Verso 3}\n[Bbmaj7] [Bb] [Bb7] [Bb9]    [C7]   [C9]  [C7]  [C9]\nWe lived half our lives together\n[Bbmaj7]   [Bb]\nA cloud full of tears\n[Bb7]    [Bb9]            [C7] [C9] [C7] [C9]\nIt's a lot of weight to bear\n\n{section: Outro}\n[F]            [Eb]\nAnd the sun, it may be shining\n[F]            [Ebm]\nBut there's an ocean in my eyes\n[Bbmaj7]    [Bb]      [C7]   [F]  [Bb]\nCause I know that this is goodbye\n[Bbmaj7]  [Bb]        [C7]   [F]  [Bb]\nCause I know that this is goodbye\n[Bbmaj7]  [Bb]   [C7]   [F]  [Bb]\nI know that this is goodbye\n"
+}

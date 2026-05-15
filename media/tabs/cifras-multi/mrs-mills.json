@@ -1,0 +1,95 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Mrs Mills (Eddie Vedder, Earthling 2022). Swing/jazz em Fa.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Mrs Mills",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "F",
+  "bpm": 95,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F":   { "fingering": "133211", "fingers": "134211", "fundamental": "F",  "barre": 1 },
+        "G":   { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Bb":  { "fingering": "x13331", "fingers": "x13331", "fundamental": "Bb", "barre": 1 },
+        "Am":  { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "C":   { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Gm":  { "fingering": "310033", "fingers": "310033", "fundamental": "G" },
+        "Dm":  { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "D7":  { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D" },
+        "G7":  { "fingering": "320001", "fingers": "320001", "fundamental": "G" },
+        "Gm7": { "fingering": "310030", "fingers": "310030", "fundamental": "G" },
+        "F/A": { "fingering": "x02211", "fingers": "x02311", "fundamental": "A", "inversion": "primeira" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (swing/cabaret)",
+        "bpm": 95,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "down",  "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F":   { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "G":   { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Bb":  { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" },
+        "Am":  { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "C":   { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Gm":  { "fingering": "0231", "fingers": "0231", "fundamental": "G" },
+        "Dm":  { "fingering": "2210", "fingers": "2310", "fundamental": "D" },
+        "D7":  { "fingering": "2223", "fingers": "1223", "fundamental": "D" },
+        "G7":  { "fingering": "0212", "fingers": "0213", "fundamental": "G" },
+        "Gm7": { "fingering": "0211", "fingers": "0211", "fundamental": "G" },
+        "F/A": { "fingering": "2010", "fingers": "2010", "fundamental": "A", "inversion": "primeira" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG (swing/cabaret)",
+        "bpm": 95,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "up",    "muted": false },
+          { "count": "&", "stroke": "down",  "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F":   { "notes": ["F", "A", "C"],        "fundamental": "F",  "inversion": null },
+        "G":   { "notes": ["G", "B", "D"],        "fundamental": "G",  "inversion": null },
+        "Bb":  { "notes": ["Bb", "D", "F"],       "fundamental": "Bb", "inversion": null },
+        "Am":  { "notes": ["A", "C", "E"],        "fundamental": "A",  "inversion": null },
+        "C":   { "notes": ["C", "E", "G"],        "fundamental": "C",  "inversion": null },
+        "Gm":  { "notes": ["G", "Bb", "D"],       "fundamental": "G",  "inversion": null },
+        "Dm":  { "notes": ["D", "F", "A"],        "fundamental": "D",  "inversion": null },
+        "D7":  { "notes": ["D", "F#", "A", "C"],  "fundamental": "D",  "inversion": null },
+        "G7":  { "notes": ["G", "B", "D", "F"],   "fundamental": "G",  "inversion": null },
+        "Gm7": { "notes": ["G", "Bb", "D", "F"],  "fundamental": "G",  "inversion": null },
+        "F/A": { "notes": ["A", "F", "A", "C"],   "fundamental": "A",  "inversion": "primeira" }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F] [G] [Bb] [F] [C]\n\n{section: Verso 1}\n[F]Mrs. Mills waits in the [Am]dark for the red light to go [C]on [Gm]\n[Bb]And the curtains will be drawn so [F]none could [C]see\n[F]All the townsfolk, they don't [Am]know what the men do down be[C]low [Gm]\n[Bb]In the shadows of a disco [F]neon [C]glow\n\n{section: Refrão}\n[Dm]In the spot[D7]light, she lifts her [G]wings [G7]high\n[Bb]And sings like no[F]body be[C]fore\n[Dm]Holds her [D7]own as their hands, they [G]roam [G7]\n[Bb]O'er the ivory that is her [F]flesh and [G]bone\n[Bb]Oh, and every suitor gets their [Am]own [G]song\n[Bb]To none of them she ever [F]will be[G]long\n[Bb]'Cause no one takes a [F]Mrs. Mills [G]home\n\n{section: Verso 2}\n[F]Mrs. Mills waits down the [Am]stairs, crimson carpet leads you [C]there [Gm]\n[Bb]Leaving broken hearts, a trail of [F]those who [C]dared\n[F]Mr. Wonder, then Sir [Am]John, Miss Madonna played by [C]Paul [Gm]\n[Bb]Even royalty, they have to [F]leave by [C]dawn\n\n{section: Refrão 2}\n[Dm]As they [D7]play her, a sound like a [G]prayer [G7]\n[Bb]She sings like no[F]body be[C]fore\n[Dm]Holds her [D7]own as the sound un[G]folds [G7]\n[Bb]O'er ivories, are hers and [F]hers a[G]lone\n[Bb]Oh, and every suitor gets their [Am]own [G]song\n[Bb]To none of them she ever [F]will be[G]long\n[Bb]'Cause no one takes a [F]Mrs. Mills [G]home\n\n{section: Outro}\n[F] [Gm7] [F/A] [Bb]  [F] [Gm7] [Am] [Bb]  (x4)\n[F] [Gm] [Am] [Bb]  (x4)\n"
+}

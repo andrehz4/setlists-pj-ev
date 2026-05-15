@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de The Haves (Eddie Vedder, Earthling 2022). Rock/pop em Sol.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "The Haves",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "G",
+  "bpm": 90,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Am":   { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "Bm":   { "fingering": "x24432", "fingers": "x13421", "fundamental": "B",  "barre": 2 },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Em":   { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "Cm":   { "fingering": "x35543", "fingers": "x13421", "fundamental": "C",  "barre": 3 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Am":   { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "Bm":   { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Em":   { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
+        "Cm":   { "fingering": "0333", "fingers": "0111", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 90,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": true  },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Am":   { "notes": ["A",  "C",  "E"],       "fundamental": "A",  "inversion": null },
+        "Bm":   { "notes": ["B",  "D",  "F#"],      "fundamental": "B",  "inversion": null },
+        "D":    { "notes": ["D",  "F#", "A"],        "fundamental": "D",  "inversion": null },
+        "C":    { "notes": ["C",  "E",  "G"],        "fundamental": "C",  "inversion": null },
+        "G":    { "notes": ["G",  "B",  "D"],        "fundamental": "G",  "inversion": null },
+        "Em":   { "notes": ["E",  "G",  "B"],        "fundamental": "E",  "inversion": null },
+        "Cm":   { "notes": ["C",  "D#", "G"],        "fundamental": "C",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [Am] [Bm] [D] [C]\n[Am] [C] [D] [G]\n\n{section: Verso 1}\n[Am]When you wake [Bm]up\n[D]It just might [C]be [Am]\n[C]The first of many [D]blows that you'll re[G]ceive [Am]\n[Bm]To[D]day\n[C]What we [Am]need [C]\n[D]We want what we [Em]need\n[D]We need what's a[C]bove\nWe're always [Em]reaching\n[D]For something a[C]bove [Cm]\n\n{section: Refrão}\nBut we've got e[G]nough\n[D]All of the [Em]haves they have [D]not [C]\n[Am]Not got half of [C]what we [D]got [G]\n[D]They want [Em]more\n[D]I just want [C]you\n[Am]Better believe it [C]\n[D]I beg of [G]you\n\n{section: Verso 2}\n[Am]Why don't you [Bm]know [D]\n[C]That I [Am]know\n[C]When you're hurting\n[D]After all these years I [G]know [Am]\nLike [Bm]Siamese [D]twins\n[C]I can feel every one of [Am]senses\n[C]We're just the [D]same [G]\n[Am]Unconditional [Bm]love [D]easier [C]said\n[Am]Said than [C]done\n[D]We want what we [Em]need\n[D]We need what's a[C]bove\nWe find ourselves [Em]reaching\n[D]For something a[C]bove [Cm]\n\n{section: Refrão 2}\nBut we've got e[G]nough\n[D]All of the [Em]haves they have [D]not [C]\n[Am]Not got half of [C]what we [D]got [G]\n[D]The ceiling's so [Em]high\n[D]When you're down on the [C]floor\n[Am]It's easy to be [D]wanting\nTo be wanting [G]more\n\n{section: Ponte}\n[G]All those [Am]years a[Bm]go\n[D]When we could have [C]met\n[Am]So [C]hard,\n[D]Oh hard not to re[G]gret\n[Am]But I know we [Bm]got\n[D]A lot of [C]life\n[Am]Life to live [C]yet\n[D]We want what we [Em]need\n[D]We need what's a[C]bove\nWe find ourselves [Em]reaching\n[D]For something a[C]bove [Cm]\n\n{section: Refrão 3}\nBut we've got e[G]nough\n[D]All of the [Em]haves they have [D]not [C]\n[Am]Not got half of [C]what we [D]got [G]\n\n{section: Outro}\n[D] [Em] [D] [C] [Am] [C] [D]\n[G] [D] [Em] [D] [C] [Am] [D]\n"
+}

@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Longing To Belong (Eddie Vedder, Ukulele Songs 2011).",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Longing To Belong",
+  "artist": "Eddie Vedder",
+  "album": "Ukulele Songs (2011)",
+  "key": "C",
+  "bpm": 80,
+  "capo": null,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Cmaj7":  { "fingering": "x32000", "fingers": "x32000", "fundamental": "C" },
+        "Fadd9":  { "fingering": "x03013", "fingers": "x03013", "fundamental": "F" },
+        "Dm":     { "fingering": "xx0231", "fingers": "xx0231", "fundamental": "D" },
+        "A":      { "fingering": "x02220", "fingers": "x02340", "fundamental": "A" },
+        "G7":     { "fingering": "320001", "fingers": "320001", "fundamental": "G" },
+        "C":      { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "F":      { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Cmaj7":  { "fingering": "0002", "fingers": "0002", "fundamental": "C" },
+        "Fadd9":  { "fingering": "2013", "fingers": "2013", "fundamental": "F" },
+        "Dm":     { "fingering": "2210", "fingers": "2310", "fundamental": "D" },
+        "A":      { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "G7":     { "fingering": "0212", "fingers": "0213", "fundamental": "G" },
+        "C":      { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "F":      { "fingering": "2010", "fingers": "2010", "fundamental": "F" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Cmaj7":  { "notes": ["C", "E", "G", "B"],        "fundamental": "C",  "inversion": null },
+        "Fadd9":  { "notes": ["F", "G", "A", "C"],        "fundamental": "F",  "inversion": null },
+        "Dm":     { "notes": ["D", "F", "A"],             "fundamental": "D",  "inversion": null },
+        "A":      { "notes": ["A", "C#", "E"],            "fundamental": "A",  "inversion": null },
+        "G7":     { "notes": ["G", "B", "D", "F"],        "fundamental": "G",  "inversion": null },
+        "C":      { "notes": ["C", "E", "G"],             "fundamental": "C",  "inversion": null },
+        "F":      { "notes": ["F", "A", "C"],             "fundamental": "F",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Cmaj7] [Fadd9] [Cmaj7]\n[Fadd9]\n\n{section: Verso 1}\n[Cmaj7]I'm falling harder than I've\n[Cmaj7]Ever fell before, mmh [Fadd9]\n[Cmaj7]I'm fallin fast while hoping\n[Cmaj7]I'll land in your [Fadd9]arms\n\n{section: Refrão}\n[Dm]'Cause all my time is spent here\n[Fadd9]Longing to belong [G7] to [Cmaj7]you [Fadd9]\n\n{section: Interlúdio}\n[Cmaj7] [Fadd9] [C] [F]\n[C] [F] [C] [F]\n[Cmaj7] [Fadd9]\n\n{section: Verso 2}\n[Cmaj7]I dream of circles perfect\n[Cmaj7]Eyes within your [Fadd9]face\n[Cmaj7]My heart's an open wound that\n[Cmaj7]Only you'd re[Fadd9]place\n\n{section: Ponte}\n[Dm]And though the [Cmaj7]moon is [G7]rising\n[Dm]Can't put your [Cmaj7]picture [G7]down [Dm]\n[Cmaj7]Love can be frightening when you [G7]fall [Cmaj7]\n\n{section: Interlúdio 2}\n[Fadd9] [Cmaj7] [Fadd9]\n\n{section: Refrão 2}\n[Dm]And when the time is right\n[F]I hope that you'll re[G7]spond\n[Dm]Like when the wind gets tired\n[F]The ocean becomes [G7]calm\n[Dm]I may be dreaming but I'm\n[F]Longing to belong [G7] to [Cmaj7]you\n\n{section: Outro}\n[Fadd9] [Cmaj7] [Fadd9] [C]\n[F] [C] [F] [C]\n[F] [Cmaj7] [Fadd9] [Cmaj7]\n[Fadd9] [Cmaj7]\n"
+}

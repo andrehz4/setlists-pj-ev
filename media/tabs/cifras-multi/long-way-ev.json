@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Long Way (Eddie Vedder, Earthling 2022). Balada em Re. Nao confundir com Take The Long Way do Pearl Jam.",
+    "source": "Ultimate Guitar / transcrição comunitária + Claude (subtons multi-instrumento)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Long Way",
+  "artist": "Eddie Vedder",
+  "album": "Earthling (2022)",
+  "key": "D",
+  "bpm": 85,
+  "capo": null,
+  "default_instrument": "violao",
+  "notes": "Diferente de Take The Long Way (Pearl Jam, Riot Act). Musica solo de EV do Earthling. Intro usa F#/G (F# sobre baixo G) — aproximado como G no diagrama de acordes.",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Am":    { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "G":     { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "FsG":   { "fingering": "200003", "fingers": "100003", "fundamental": "G", "label": "F#/G" },
+        "D":     { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "Cadd9": { "fingering": "x32033", "fingers": "x32011", "fundamental": "C" },
+        "Em":    { "fingering": "022000", "fingers": "023000", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Am":    { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "G":     { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "FsG":   { "fingering": "0202", "fingers": "0201", "fundamental": "G", "label": "F#/G" },
+        "D":     { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Cadd9": { "fingering": "0203", "fingers": "0203", "fundamental": "C" },
+        "Em":    { "fingering": "0402", "fingers": "0401", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Am":    { "notes": ["A", "C", "E"],          "fundamental": "A",  "inversion": null },
+        "G":     { "notes": ["G", "B", "D"],          "fundamental": "G",  "inversion": null },
+        "FsG":   { "notes": ["G", "A#", "C#", "F#"],  "fundamental": "G",  "inversion": null, "label": "F#/G" },
+        "D":     { "notes": ["D", "F#", "A"],         "fundamental": "D",  "inversion": null },
+        "Cadd9": { "notes": ["C", "D", "E", "G"],     "fundamental": "C",  "inversion": null },
+        "Em":    { "notes": ["E", "G", "B"],          "fundamental": "E",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Am] [G] [FsG] [D]  (x2)\n[Cadd9] [D]\n[D] [Cadd9]\n[Cadd9] [D]\n\n{section: Verso 1}\n[D]His eyes appear va[Cadd9]cant\n[Cadd9]He'd taken more than his [D]share\n[D]Trying hard not to a[Cadd9]waken\n[Cadd9]The voice of regret in his [D]ear\n[D]He can't escape the time[Cadd9]line\n[Cadd9]So much worse than he had [D]feared\n[D]Lived every mo[Cadd9]ment\n[Cadd9]Wishing the past would disap[D]pear\n\n{section: Refrão}\n[G]He took the long [Cadd9]way\n[D]On the free[Cadd9]way\n[G]He took the long [Cadd9]way\n[Em] [D]On the free[Cadd9]way\n\n{section: Interlúdio}\n[Cadd9] [D]\n\n{section: Verso 2}\n[D]She was his all and every[Cadd9]thing\n[Cadd9]But her strength it needed [D]space\n[D]Her love was but a haunt[Cadd9]ing\n[Cadd9]She left but never went a[D]way\n\n{section: Refrão 2}\n[G]She took the long [Cadd9]way\n[D]On the free[Cadd9]way  (x4)\n\n{section: Solo}\n[Cadd9] [D]  (x4)\n[Am] [G] [D]  (x4)\n\n{section: Refrão 3}\nShe took the long way  (x4)\n\n{section: Ponte}\n[Am]Well it couldn't be had\n[Cadd9]What he wanted to hold\n[G]He dared to let [Cadd9]go\n[D]He should have [Cadd9]known\n\n{section: Refrão 4}\nShe took the long way  (x4)\n\n{section: Outro}\n[G] [Cadd9]\n[Em] [D] [Cadd9]  (x2)\n[G]\n"
+}
