@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Won't Tell (Pearl Jam, Dark Matter 2024). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "cifra transcrita pelo usuario + Claude",
+    "fetched": "2026-05-15"
+  },
+  "title": "Won't Tell",
+  "artist": "Pearl Jam",
+  "album": "Dark Matter (2024)",
+  "key": "B",
+  "bpm": 85,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G#m": { "fingering": "466444", "fingers": "134111", "fundamental": "G#", "barre": 4 },
+        "E":   { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "C#m": { "fingering": "x46654", "fingers": "x13421", "fundamental": "C#", "barre": 4 },
+        "B":   { "fingering": "x24442", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "A":   { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "D#m": { "fingering": "x68876", "fingers": "x13421", "fundamental": "D#", "barre": 6 },
+        "F#":  { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2 },
+        "A#":  { "fingering": "x13331", "fingers": "x13331", "fundamental": "A#", "barre": 1 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G#m": { "fingering": "4342", "fingers": "4342", "fundamental": "G#" },
+        "E":   { "fingering": "4442", "fingers": "3211", "fundamental": "E" },
+        "C#m": { "fingering": "6444", "fingers": "1344", "fundamental": "C#", "barre": 6 },
+        "B":   { "fingering": "4322", "fingers": "4211", "fundamental": "B" },
+        "A":   { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "D#m": { "fingering": "8766", "fingers": "4321", "fundamental": "D#" },
+        "F#":  { "fingering": "3121", "fingers": "3121", "fundamental": "F#" },
+        "A#":  { "fingering": "3211", "fingers": "3211", "fundamental": "A#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G#m": { "notes": ["G#", "B",  "D#"], "fundamental": "G#", "inversion": null },
+        "E":   { "notes": ["E",  "G#", "B"],  "fundamental": "E",  "inversion": null },
+        "C#m": { "notes": ["C#", "E",  "G#"], "fundamental": "C#", "inversion": null },
+        "B":   { "notes": ["B",  "D#", "F#"], "fundamental": "B",  "inversion": null },
+        "A":   { "notes": ["A",  "C#", "E"],  "fundamental": "A",  "inversion": null },
+        "D#m": { "notes": ["D#", "F#", "A#"], "fundamental": "D#", "inversion": null },
+        "F#":  { "notes": ["F#", "A#", "C#"], "fundamental": "F#", "inversion": null },
+        "A#":  { "notes": ["A#", "D",  "F"],  "fundamental": "A#", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G#m] [E]\n\n{section: Verso 1}\n[G#m]                 [G#m]\n   Her eyes were soft and sympathized\n                          [E]\nA vision so uncompromised floated in\n       [G#m]\nAs she pulled the book up off the shelf\n                                         [E]\nHer dressin' gown and nothing else but a secret grin\n[C#m]      [G#m]\n   And I always had one question\n                             [E]                 [C#m]\nFree of all suggestion, do I say or keep it in?\n                    [B]\nYou can find me here\n\n{section: Refrão}\n                 [C#m]        [A]\nWaitin' for your message to come\nCan you heal?\n[B]\nCan you feel\n           [C#m]   [E]\nThe chains in my heart?\n   [B]         [C#m]        [A]\nWaitin for a message to come\nCan you heal?\n[B]\nCan you feel\n           [C#m]   [E]\nThe change in my heart?\n\n{section: Interlúdio}\n[G#m] [E]\n   In my heart\n\n{section: Verso 2}\n[G#m]    [G#m]\n   She laid the book upon the desk\n                            [E]\nOpened to the page I asked, \"Could that be the one?\"\n       [G#m]\nAs she smiled and played a minor chord\n                                   [E]                   [C#m]\nIn a key I never heard before, one song and it was done\n                    [B]\nYou can find me here\n\n{section: Refrão 2}\n                 [C#m]        [A]\nWaitin' for your message to come\nCan you heal?\n[B]\nCan you feel\n           [C#m]   [E]\nThe chains in my heart?\n   [B]         [C#m]        [A]\nWaitin for a message to come\nCan you heal?\n[B]\nCan you feel\n           [C#m]   [E]\nThe change in my heart?\n\n{section: Bridge}\n        [E]              [D#m]\nOh, I'd open the door, I'd let you in\n  [C#m]                  [B]\nI would open it if you came\n    [E]              [D#m]\nBut if it's not you knocking\n                   [A#]\nIt's staying closed\n        [E]              [D#m]\nOh, I'd open the door, shed all my skin\n      [C#m]       [B]\nAllow for a bit grace\n\n{section: Interlúdio 2}\n    [E]                   [F#]\nFor in my dream you told\n      [E]                 [F#]\nMe to let the longing go\n            [E]                   [F#]\nOh, and the promise I still hold\n\n{section: Solo}\n[B] [C#m] [A] [B] [C#m] [E] [B] [C#m] [A] [B] [C#m] [E] [G#m]\n\n{section: Outro}\n[C#m] [A] [B] [C#m] [E] [B] [C#m] [A] [B] [C#m] [E] [G#m]\n"
+}

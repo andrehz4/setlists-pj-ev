@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Wreckage (Pearl Jam, Dark Matter 2024). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Wreckage",
+  "artist": "Pearl Jam",
+  "album": "Dark Matter (2024)",
+  "key": "G",
+  "bpm": 104,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":        { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Bm":       { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "Em":       { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "D":        { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "C":        { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "Am":       { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "Cadd9":    { "fingering": "x32033", "fingers": "x32011", "fundamental": "C" },
+        "Gmaj7/B":  { "fingering": "x20003", "fingers": "x20003", "fundamental": "B" },
+        "Em7":      { "fingering": "022030", "fingers": "023040", "fundamental": "E" },
+        "F":        { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "Cmaj7":    { "fingering": "x32000", "fingers": "x32000", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 104,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":        { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Bm":       { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "Em":       { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
+        "D":        { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C":        { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "Am":       { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "Cadd9":    { "fingering": "0203", "fingers": "0203", "fundamental": "C" },
+        "Gmaj7/B":  { "fingering": "0222", "fingers": "0111", "fundamental": "B" },
+        "Em7":      { "fingering": "0202", "fingers": "0202", "fundamental": "E" },
+        "F":        { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "Cmaj7":    { "fingering": "0002", "fingers": "0002", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 104,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "rest",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":        { "notes": ["G", "B", "D"],       "fundamental": "G",  "inversion": null },
+        "Bm":       { "notes": ["B", "D", "F#"],      "fundamental": "B",  "inversion": null },
+        "Em":       { "notes": ["E", "G", "B"],       "fundamental": "E",  "inversion": null },
+        "D":        { "notes": ["D", "F#", "A"],      "fundamental": "D",  "inversion": null },
+        "C":        { "notes": ["C", "E", "G"],       "fundamental": "C",  "inversion": null },
+        "Am":       { "notes": ["A", "C", "E"],       "fundamental": "A",  "inversion": null },
+        "Cadd9":    { "notes": ["C", "D", "E", "G"],  "fundamental": "C",  "inversion": null },
+        "Gmaj7/B":  { "notes": ["B", "D", "F#", "G"],"fundamental": "B",  "inversion": "primeira" },
+        "Em7":      { "notes": ["E", "G", "B", "D"],  "fundamental": "E",  "inversion": null },
+        "F":        { "notes": ["F", "A", "C"],       "fundamental": "F",  "inversion": null },
+        "Cmaj7":    { "notes": ["C", "E", "G", "B"],  "fundamental": "C",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[G] [Bm] [G] [Bm] [G] [Bm] [Em] [D]\n[G] [Bm] [G] [Bm] [G] [Bm] [Em] [D]\n\n{section: Verso 1}\n[G]Visited by [Bm]thought, an[G]other darkened [Bm]day\n[G]How you are like the [Bm]sun hiding some[Em]where beyond the [D]rain\n[G]I'm needing for the [Bm]light, [G]stormy is the [Bm]grey\n[G]Rivers over[Bm]flowing, drown[Em]ing all our yester[D]days\n\n{section: Pré-Refrão 1}\n[C]Visited by [G]thoughts on an[Em]other darkened [D]week\n[C]How even every [G]winner hits a [Em]losing [D]streak\n[C]The mistakes we all [G]make and per[Em]fectly re[D]peat\n[C]Chains are made by [G]DNA re[Em]fusing, refusing to re[D]lease\n\n{section: Instrumental}\n[G] [Bm] [G] [Bm] [G] [Bm] [Em7] [D]\n\n{section: Verso 2}\n[G]Combing through the [Bm]wreckage, [G]pouring through the [Bm]sane\n[G]Surrounded by the [Bm]remnants, what we [Em]could and couldn't [D]have\n[G]Raking through the [Bm]ashes fall[Em]ing through my [D]hands\n[G]Charcoal on the [Bm]faces in the [Em]burned up photo[D]graphs\n\n{section: Pré-Refrão 2}\n[C]Oh, visited by [G]thoughts, and [Em]this I got to [D]say\n[C]If you're feeling the [G]leaving, I can't [Em]make you [D]stay\n[C]I've only ever [G]wanted for it [Em]not to be this [D]way\n[C]But you're now like the [G]water, and the [Em]water will find its [D]way\n\n{section: Refrão 1}\n[Em]Combing through the wreck[D]age [G]\n[F]Holding out, hold[Em7]ing on\n[Am]Combing through the wreckage\n[C]Combing through the [Cmaj7]wreckage\n\n{section: Solo}\n[G] [Bm] [G] [Bm] [G] [Bm] [Em] [D]\n[G] [Bm] [G] [Bm] [G] [Bm] [Em] [D]\n\n{section: Pré-Refrão 3}\n[C]Oh, visited by [G]thoughts and not [Em]just in the [D]night\n[C]That I no longer [G]give a fuck who is [Em]wrong and who's [D]right\n[C]This game of winner [G]takes all, and [Em]all means nothing [D]left\n[C]Spoils go the [G]victor, and the [Em]other left for [D]dead [G] [Bm] [G] [Bm]\n\n{section: Refrão 2}\n[Am]Combing through the wreckage\n[G]Holding out, hold[F]ing on [Em]\n[Am]Combing through the wreckage\n\n{section: Ponte}\n[Cadd9]Combing through the wreckage\n[Gmaj7/B] [Cadd9]Holding out, holding on\n[Gmaj7/B]Holding out\n[Cadd9]Holding you, hold[Em]ing on\n\n{section: Outro}\n[C] [G] [Em] [D]\n[C] [G] [Em] [D]\n[C] [G] Combing through the wreckage\n[Em] [D] Combing through the wreckage\n"
+}
