@@ -1,0 +1,171 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Life Wasted (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom F#, 126 BPM."
+  },
+  "title": "Life Wasted",
+  "artist": "Pearl Jam",
+  "key": "F#",
+  "bpm": 126,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F#5": {
+          "fingering": "244xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "C#5": {
+          "fingering": "x466xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "022xxx",
+          "fingers": "011xxx",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "Emaj7": {
+          "fingering": "021100",
+          "fingers": "021100",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 126,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#5": {
+          "fingering": "3100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "C#5": {
+          "fingering": "1140",
+          "fingers": "1140",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "4200",
+          "fingers": "3100",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "4200",
+          "fingers": "3100",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3331",
+          "fundamental": null
+        },
+        "Emaj7": {
+          "fingering": "4441",
+          "fingers": "3321",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 126,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#5": { "notes": ["F#", "C#"], "fundamental": null },
+        "C#5": { "notes": ["C#", "G#"], "fundamental": null },
+        "E5": { "notes": ["E", "B"], "fundamental": null },
+        "B5": { "notes": ["B", "F#"], "fundamental": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": null },
+        "Emaj7": { "notes": ["E", "G#", "B", "D#"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F#5] [C#5]   [E5] [B5] (x2)\n\n{section: Verso 1}\n[F#5] [C#5]                                [E5]      [B5]\n    You're always saying that there's something wrong\n[F#5] [C#5]                      [E5]               [B5]\n    I'm starting to believe it's your plan all along\n[F#5] [C#5]                         [E5]       [B5]\n    Death came around, forced to hear its song\n[F#5] [C#5]                        [E5]      [B5]\n    And know tomorrow can't be depended on\n\n{section: Interlúdio 1}\n[E]            [Emaj7]\n  I seen the home inside your head\n[E]          [Emaj7]\nAll locked doors and unmade beds\n[E]      [Emaj7]\n  Open sores unattended\n[E]      [Emaj7]\nLet me say just once that\n\n{section: Refrão}\n[F#5] [C#5]            [F#5] [C#5]\n    I have faced it,   a life wasted\n[F#5] [C#5]             [B5]\n    I'm never going back again\n[F#5] [C#5]            [F#5] [C#5]\n    I escaped it,       a life wasted\n[F#5] [C#5]             [B5]\n    I'm never going back again\n[F#5] [C#5]            [F#5] [C#5]\n    Having tasted,     a life wasted\n[F#5] [C#5]             [B5]\n    I'm never going back again\n\n{section: Interlúdio 2}\n[E]           [Emaj7]\n  The world awaits just up the stairs\n[E]         [Emaj7]\nLeave the pain for someone else\n[E]         [Emaj7]\n  Nothing back there for you to find\n[E]         [Emaj7]\nOr was it you, you left behind?\n\n{section: Solo}\n[F#5] [C#5]   [E5] [B5] (x4)\n\n{section: Verso 2}\n[F#5] [C#5]                           [E5]       [B5]\n    You're always saying you're too weak to be strong\n[F#5] [C#5]                            [E5]     [B5]\n    You're harder on yourself than just about anyone\n[F#5] [C#5]                          [E5]     [B5]\n    Why swim the channel just to get this far?\n[F#5] [C#5]                     [E5]    [B5]\n    Halfway there, why would you turn around?\n\n[A]            [E]                   [A]              [E]\n  Darkness comes in waves, tell me why invite it to stay?\n        [A]\nYou're warm with negativity\n     [E]             [A]\nYes, comfort is an energy\n        [E]\nBut why let the sad song play?\n\n{section: Refrão 2}\n[F#5] [C#5]            [F#5] [C#5]\n    I have faced it,   a life wasted\n[F#5] [C#5]             [B5]\n    I'm never going back again\n[F#5] [C#5]            [F#5] [C#5]\n    I escaped it,       a life wasted\n[F#5] [C#5]             [B5]\n    I'm never going back again\n[F#5] [C#5]            [F#5] [C#5]\n    Having tasted,     a life wasted\n[F#5] [C#5]             [B5]\n    I'm never going back again\n[F#5] [C#5]            [F#5] [C#5]\n    Oh I erased it,    a life wasted\n[F#5] [C#5]             [B5]\n    I'm never going back again\n\n{section: Outro}\n[F#5] [C#5]   [E5] [B5] (mesmo que intro, até fadeout)"
+}

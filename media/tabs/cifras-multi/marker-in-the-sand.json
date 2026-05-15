@@ -1,0 +1,163 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Marker In The Sand (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 130 BPM."
+  },
+  "title": "Marker In The Sand",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 130,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C5": {
+          "fingering": "x355xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "Bb5": {
+          "fingering": "x133xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "F5": {
+          "fingering": "133xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 1
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Eb": {
+          "fingering": "x6888x",
+          "fingers": "x1234x",
+          "fundamental": null,
+          "barre": 6
+        },
+        "Eb5": {
+          "fingering": "x688xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "C#5": {
+          "fingering": "x466xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 130,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C5": {
+          "fingering": "0050",
+          "fingers": "0030",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        },
+        "Bb5": {
+          "fingering": "3100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "F5": {
+          "fingering": "2010",
+          "fingers": "1010",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "4211",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Eb": {
+          "fingering": "0333",
+          "fingers": "0234",
+          "fundamental": null
+        },
+        "Eb5": {
+          "fingering": "1340",
+          "fingers": "1340",
+          "fundamental": null
+        },
+        "C#5": {
+          "fingering": "1140",
+          "fingers": "1140",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 130,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C5": { "notes": ["C", "G"], "fundamental": null },
+        "G5": { "notes": ["G", "D"], "fundamental": null },
+        "Bb5": { "notes": ["Bb", "F"], "fundamental": null },
+        "F5": { "notes": ["F", "C"], "fundamental": null },
+        "Bb": { "notes": ["Bb", "D", "F"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "Eb": { "notes": ["Eb", "G", "Bb"], "fundamental": null },
+        "Eb5": { "notes": ["Eb", "Bb"], "fundamental": null },
+        "C#5": { "notes": ["C#", "G#"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n( [C5]   [G5] [Bb5] [F5]   [C5]   [G5] [Bb5]  [F5] ) x2\n\n{section: Verso 1}\n            [C5]      [G5] [Bb5] [F5]\nThere is a Marker,\n        [C5]       [G5]  [Bb5] [F5]\nNo one sees it cause of sand\n                 [C5]    [G5] [Bb5] [F5]\nThat has covered over\n         [C5]   [G5] [Bb5] [F5]\nAll the messages it kept\n               [C5]      [G5] [Bb5] [F5]\nFrom misunderstanding,\n       [C5]   [G5]  [Bb5]  [F5]\nWhat Original Truth was\n            [C5]    [G5] [Bb5] [F5]\nAnd now expanding\n      [C5]         [G5] [Bb5] [F5]       [Bb]   [F]\nIn a faith, but not in love...\n\n{section: Refrão 1}\n[Bb]\nWhat went wrong?\n                  [Eb]\nWalking tightrope high\n             [Bb]\nOver moral ground.\n               [Eb]\nSeeing visions of\n                [F]\nFalling up somehow.\n            [Bb]\nOh do come down\n                 [Eb]\nWith the living, let\n                [Bb]\nWhat is living love.\n                 [Eb]\nSo unforgiving, yet\n                     [F]\nNeeding forgiveness first...\n                [C5]  [G5] [Bb5] [F5]\nGod, what do you say?\n\n[C5]  [G5] [Bb5]\n\n{section: Verso 2}\n  [F5]       [C5]   [G5] [Bb5] [F5]\nThose undecided\n           [C5]        [G5] [Bb5] [F5]\nNeedn't have faith to be free.\n              [C5]    [G5] [Bb5] [F5]\nAnd those misguided,\n             [C5]         [G5] [Bb5] [F5]\nThere was a plan for them to be...\n                  [C5]  [G5] [Bb5] [F5]\nNow you got both sides\n           [C5]         [G5] [Bb5] [F5]\nClaiming 'killing in god's name'.\n            [C5]    [G5] [Bb5] [F5]\nBut god is nowhere\n         [C5]     [G5] [Bb5] [F5]      [Bb] [F]\nTo be found, conveniently...\n\n{section: Refrão 2}\n          [Bb]\nWhat goes on?\n                   [Eb]\nWalking tightrope high\n             [Bb]\nOver moral ground.\n                 [Eb]\nWalk the bridges be-\n                     [F]\n-fore you burn them down!\n         [Bb]\nDo come round\n                 [Eb]\nWith the living, let\n                [Bb]\nWhat is living love.\n              [Eb]\nUnforgiving, yet\n                     [F]\nNeeding forgiveness first...\n\nGod, what do you say?\n                [C5]   [G5] [Bb5] [F5]\nGod, what do you say?\n\n{section: Interlúdio}\n[C5]  [G5] [Bb5] [F5] [C5]  [G5] [Bb5] [F5]\n[F5]  [Eb5] . [Eb5]  [C#5]\n[F5]  [Eb5] . [Eb5]  [C#5]\n[F5]  [Eb5] . [Eb5]  [C#5]\n[F5]  [Eb5]\n[C5]  [G5] [Bb5] [F5] [C5]  [G5] [Bb5] [F5]\n\n{section: Verso 3}\n           [C5]     [G5] [Bb5] [F5]\nI feel a sickness...\n            [C5]    [G5] [Bb5] [F5]\nA sickness coming over me\n                [C5]   [G5] [Bb5] [F5]\nLike watching freedom\n               [C5]      [G5] [Bb5] [F5]\nBeing sucked straight out to sea\n             [C5]  [G5] [Bb5] [F5]\nAnd the solution?\n               [C5]   [G5]  [Bb5] [F5]\nWell, from me far would it be\n             [C5]  [G5] [Bb5] [F5]\nBut the delusion\n                 [C5]   [G5] [Bb5] [F5]  [Bb] [F]\nIs feeling dangerous to me\n\n{section: Refrão 3}\n            [Bb]\nWhat goes wrong?\n                   [Eb]\nWalking tightrope high\n             [Bb]\nOver moral ground.\n               [Eb]\nSeeing visions of\n                [F]\nFalling up somehow.\n             [Bb]\nOh, do come down\n                 [Eb]\nWith the living, let\n                [Bb]\nWhat is living love,\n               [Eb]\nUnforgiving...yet\n                     [F]\nNeeding forgiveness first?\n\nOh, what do you say?\n                     [Bb]  [Eb]\nGod, what do you say?\n\n{section: Outro}\n              [Bb]           [Eb]\nWhat do you say?\n         [Bb]            [Eb]\nCalling out, calling out\n[Bb]   [Eb] (fim em Bb)"
+}

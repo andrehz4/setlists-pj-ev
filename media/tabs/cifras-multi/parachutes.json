@@ -1,0 +1,207 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Parachutes (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom G, 80 BPM."
+  },
+  "title": "Parachutes",
+  "artist": "Pearl Jam",
+  "key": "G",
+  "bpm": 80,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "Amadd9": {
+          "fingering": "x02200",
+          "fingers": "x02300",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "Ammaj7": {
+          "fingering": "x02110",
+          "fingers": "x02110",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "x02010",
+          "fingers": "x02010",
+          "fundamental": null
+        },
+        "D7/F#": {
+          "fingering": "200212",
+          "fingers": "200213",
+          "fundamental": null
+        },
+        "G7": {
+          "fingering": "320001",
+          "fingers": "210001",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 1
+        },
+        "Daug": {
+          "fingering": "xx4332",
+          "fingers": "xx4332",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "Amadd9": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "Ammaj7": {
+          "fingering": "2110",
+          "fingers": "2110",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "0000",
+          "fingers": "0000",
+          "fundamental": null
+        },
+        "D7/F#": {
+          "fingering": "2223",
+          "fingers": "1112",
+          "fundamental": null
+        },
+        "G7": {
+          "fingering": "0212",
+          "fingers": "0212",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "4211",
+          "fundamental": null
+        },
+        "Daug": {
+          "fingering": "3332",
+          "fingers": "2231",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "3111",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "Amadd9": { "notes": ["A", "B", "C#", "E"], "fundamental": null },
+        "Am": { "notes": ["A", "C", "E"], "fundamental": null },
+        "Ammaj7": { "notes": ["A", "C", "E", "G#"], "fundamental": null },
+        "Am7": { "notes": ["A", "C", "E", "G"], "fundamental": null },
+        "D7/F#": { "notes": ["F#", "A", "C", "D"], "fundamental": null },
+        "G7": { "notes": ["G", "B", "D", "F"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "Bb": { "notes": ["Bb", "D", "F"], "fundamental": null },
+        "Daug": { "notes": ["D", "F#", "A#"], "fundamental": null },
+        "Bm": { "notes": ["B", "D", "F#"], "fundamental": null },
+        "Em": { "notes": ["E", "G", "B"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Verso 1}\n[G]                         [Amadd9]\nWhy deny all the troubles when combined\n[Am]                     [Am] [Ammaj7] [Am7] [D7/F#]     [G]\nWith the missing links it don't feel like home now\n            [G]                               [Am]\nThat you're gone all the troubles suddenly explained infinitum\n                          [Am] [Ammaj7] [Am7]  [D7/F#]\nYou're always wishing and ne-ver    here at home\n[G]\nYou all the dreams we shared and\n[G7]         [C]\nlights we turned on\n        [F]             [Bb]\nbut the house is getting dark\n    [G7]              [C]\nand I don't want to know your past\n    [F]               [Bb]\nbut together share the dawn\n\n{section: Refrão}\n    [Daug]    [G]  [Bm]  [Em]         [Bm]\nand I won't neeeeeeed nothing else\n                 [Am]\ncause when we're dead\n            [C]      [G]\nwe would've had it all\n[G]   [Bm] [Em]              [Bm]            [Am]\nAnd I  would've fallen from the sky 'til you\n                [C]      [G]\nParachutes have opened now\n\n{section: Verso 2}\n[G]                            [Am]\nHeaven knows if there's a ceiling\n        [Am]\nCome so low with the kneeling\n[Am] [Ammaj7] [Am7]  [D7/F#]  [G]\nPlease    know that I got all the friends I'm needing\n          [G7]         [C]\nBefore my light goes out\n       [F]              [Bb]\nAs the doors are closing now\n    [G7]            [C]\nAnd far away will be my home\n       [F]          [Bb]\nAnd to grasp this, I don't know\n\n{section: Refrão 2}\n      [Daug]  [G] [Bm] [Em]\nBut I don't neeeeeed\n        [Bm]                [Am]                 [C]    [G]\nFurther back and forth, a wave will break on me today\n    [G] [Bm]\nAnd love\n[Em]                   [Bm]              [Am]\nWish the world could glow again with love\n                  [C]     [G]\nOne can't seem to have enough\n    [G]  [Bm]\nAnd waaar\n[Em]                [Bm]                [Am]\nBreak the sky and tell me what it's for\n                  [C]     [G]\nI'll travel there on my own\n     [G]  [Bm]  [Em]\nAnd looooooove\n       [Bm]\nWhat a different life\n    [Am]               [C]         [G]\nHad I not found this love with you"
+}

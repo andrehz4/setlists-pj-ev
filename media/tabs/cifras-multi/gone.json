@@ -1,0 +1,160 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Gone (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 100 BPM."
+  },
+  "title": "Gone",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Cmaj7": {
+          "fingering": "x32000",
+          "fingers": "x32000",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "Bm7b5/A": {
+          "fingering": "x04232",
+          "fingers": "x01232",
+          "fundamental": null
+        },
+        "Aadd9": {
+          "fingering": "x02200",
+          "fingers": "x02300",
+          "fundamental": null
+        },
+        "Asus4": {
+          "fingering": "x02230",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Cmaj7": {
+          "fingering": "0002",
+          "fingers": "0002",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "Bm7b5/A": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": null
+        },
+        "Aadd9": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "Asus4": {
+          "fingering": "2230",
+          "fingers": "2230",
+          "fundamental": null
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Cmaj7": { "notes": ["C", "E", "G", "B"], "fundamental": null },
+        "Em": { "notes": ["E", "G", "B"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "Bm7b5/A": { "notes": ["A", "B", "D", "F"], "fundamental": null },
+        "Aadd9": { "notes": ["A", "B", "C#", "E"], "fundamental": null },
+        "Asus4": { "notes": ["A", "D", "E"], "fundamental": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Cmaj7]  [Em]\n[Cmaj7]  [Em]\n[Cmaj7]  [Em]\n[G]      [A]\n\n{section: Verso 1}\n[Cmaj7]   [Em]\nNo more upset mornings\n[Cmaj7]   [Em]\nNo more tired evenings\n[Cmaj7]  [Em]\nThis American dream\n[G]    [A]\nI am disbelieving\n[Cmaj7]    [Em]\nWhen the gas in my tank\n[Cmaj7]      [Em]\nFeels like money in the bank\n[Cmaj7]      [Em]\nGonna blow it all this time\n[G]       [A]\nTake me one last ride\n\n{section: Refrão}\n[Bm7b5/A]          [Aadd9]\n         For the lights of this city\n[Bm7b5/A]                 [Aadd9]\n         They only look good when I'm speeding\n[Bm7b5/A]                 [Aadd9]\n         Gonna leave em all behind me\n      [G]\nCause this time I'm\n[Asus4]                          [C]       [D]\nGone, long gone, this time I'm letting go of it all\n[Asus4]                    [C]   [D]\nSo long, cause this time I'm gone\n[Asus4]       [C]      [D]\n\n{section: Verso 2}\n[Cmaj7]  [Em]\nIn the far off distance\n[Cmaj7] [Em]\nAs my tail-lights fade\n[Cmaj7]  [Em]\nNo one thinks to witness\n[G]        [A]\nBut they will someday\n[Cmaj7]       [Em]\nFeel like a question is forming\n[Cmaj7]   [Em]\nAnd the answers far\n[Cmaj7]  [Em]\nI will be what i could be\n[G]          [A]\nOnce I get out of this town\n\n{section: Refrão 2}\n[Bm7b5/A]          [Aadd9]\n         For the lights of this city\n[Bm7b5/A]            [Aadd9]\n         They have lost all feeling\n[Bm7b5/A]                 [Aadd9]\n         Gonna leave em all behind me\n      [G]\nCause this time I'm\n[Asus4]                          [C]       [D]\nGone, long gone, this time I'm letting go of it all\n[Asus4]                             [C]       [D]\nSo long, long gone, this time I'm letting go of it all\n[Asus4]                    [C]   [D]\n         cause this time I'm gone\n\n{section: Outro}\n[Asus4]\nEverything               [C]  [D]\nIf nothing is everything,      I'll have it all\n[Asus4]\nIf nothing is everything\nIf nothing is everything,      I'll have it all\n[C]  [D]   [C]  [D]    [A]\n     I      am gone"
+}

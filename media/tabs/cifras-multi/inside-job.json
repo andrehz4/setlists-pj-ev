@@ -1,0 +1,152 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Inside Job (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom C, 80 BPM."
+  },
+  "title": "Inside Job",
+  "artist": "Pearl Jam",
+  "key": "C",
+  "bpm": 80,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13442",
+          "fundamental": null,
+          "barre": 2
+        },
+        "Am7": {
+          "fingering": "x02010",
+          "fingers": "x02010",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 1
+        },
+        "F": {
+          "fingering": "133211",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 1
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": null
+        },
+        "Em": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4311",
+          "fundamental": null
+        },
+        "Am7": {
+          "fingering": "0000",
+          "fingers": "0000",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "4211",
+          "fundamental": null
+        },
+        "F": {
+          "fingering": "2010",
+          "fingers": "2010",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3331",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 80,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "C": { "notes": ["C", "E", "G"], "fundamental": null },
+        "Em": { "notes": ["E", "G", "B"], "fundamental": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": null },
+        "Am7": { "notes": ["A", "C", "E", "G"], "fundamental": null },
+        "Bb": { "notes": ["Bb", "D", "F"], "fundamental": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[C] [Em]\n[D] [D] [C] - [D] [D] [Em] x2\n[C] [Em] x2\n\n{section: Verso 1}\n [C]                [Em]\nUnderneath this smile lies everything\n[C]                  [Em]\nAll my hopes and anger, pride and shame\n[C]              [Em]\nMake myself a pact not to shut doors on the past Just\n[C]           [Em]\nfor today I am free\n\n{section: Refrão}\n     [C]     [B]    [Am7] [D]\nI'll not lose my  faith\n    [C]      [B]   [Am7]    [D]\nIt's an inside job to-    day\n  [C]        [B]   [Am7]    [C]    [Em] [C] [Em]\nI know this one thing     well\n\n{section: Verso 2}\n  [C]                          [Em]\nI used to try and kill love, it was the highest sin\n[C]                 [Em]\nBreathing insecurity out and in\n[C]                     [Em]\nSearching hope, I'm shown the way to run straight\n                 [C]           [Em]\nPursuing the greater way for all human light.\n\n      [C]                  [Em]\nHow I choose to feel is how I am.\n      [C]                  [Em]\nHow I choose to feel is how I am.\n\n{section: Refrão 2}\n     [C]     [B]    [Am7] [D]\nI'll not lose my  faith\n    [C]      [B]   [Am7]    [D]\nIt's an inside job to-    day\n\n{section: Bridge}\n[C]        [B]\nHolding on, the light of night\n[Am7]           [Bb]              [Am7]         [Bb]\nOn my knees to rise and fix my broken soul Again\n\n{section: Solo}\n[E] [D] [C] [D] (x6)\n\n{section: Outro}\n       [C]     [B]  [Am7] [D]\nLet me run into the rain\n    [C]     [B]     [Am7] [D]\nTo be a human light a - gain\n\n       [C]     [B]  [Am7] [D]\nLet me run into the rain\n       [C]     [B]     [Am7]  [D]\nTo shine a human light to - day\n\n[C]    [B]     [Am7]  [F]      [Am7] [C]    [F]     [Am7] [C]    [D]\nLife comes from with - in  your heart and de - sire\n[C]    [B]     [Am7]  [F]      [Am7] [C]    [F]     [Am7] [C]    [D]\nLife comes from with - in  my   heart and de - sire"
+}

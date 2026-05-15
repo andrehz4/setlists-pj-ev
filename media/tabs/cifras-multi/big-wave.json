@@ -1,0 +1,151 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Big Wave (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom D, 153 BPM."
+  },
+  "title": "Big Wave",
+  "artist": "Pearl Jam",
+  "key": "D",
+  "bpm": 153,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "x24432",
+          "fingers": "x13421",
+          "fundamental": null,
+          "barre": 2
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x02340",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": null,
+          "barre": 2
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": null
+        },
+        "D#m7": {
+          "fingering": "x68676",
+          "fingers": "x13464",
+          "fundamental": null
+        },
+        "D#m": {
+          "fingering": "x68876",
+          "fingers": "x13441",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "↓ ↑ x ↑ x ↑ ↓ x a 153bpm (verso)",
+        "bpm": 153,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": true },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": true },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": null
+        },
+        "Bm": {
+          "fingering": "4222",
+          "fingers": "3111",
+          "fundamental": null
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3331",
+          "fundamental": null
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "F#": {
+          "fingering": "3121",
+          "fingers": "4121",
+          "fundamental": null
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": null
+        },
+        "D#m7": {
+          "fingering": "1323",
+          "fingers": "1323",
+          "fundamental": null
+        },
+        "D#m": {
+          "fingering": "1343",
+          "fingers": "1243",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "↓ ↑ x ↑ x ↑ ↓ x a 153bpm (verso)",
+        "bpm": 153,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": true },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": true },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": true }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D": { "notes": ["D", "F#", "A"], "fundamental": null },
+        "Bm": { "notes": ["B", "D", "F#"], "fundamental": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": null },
+        "F#": { "notes": ["F#", "A#", "C#"], "fundamental": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": null },
+        "D#m7": { "notes": ["D#", "F#", "A#", "C#"], "fundamental": null },
+        "D#m": { "notes": ["D#", "F#", "A#"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [Bm] x4\n\n{section: Verso 1}\n  [D]              [Bm]    [D]    [Bm]\nI used to be crustacean (Woah)\n      [D]          [Bm]    [D]    [Bm]\nIn an underwater nation (Yeah)\n      [D]             [Bm]   [D] [Bm]\nAnd I surf in celebration (Woah)\n     [D]           [Bm]    [D]    [Bm]\nOf a billion adaptations (Yeah)\n\n{section: Refrão}\n[D]                            [E]                      [D]  [Bm] [D] [Bm]\nGot me a big wave, ride me a big wave, got me a big wave\n[D]                            [E]                      [D]  [Bm] [D] [Bm]\nGot me a big wave, ride me a big wave, got me a big wave\n[D]          [E]               [Bm]\nI feel the need planted in me\n            [A]                    [D]              [E]\nMillions of years ago, can't you see the oceans size?\n         [Bm]\nDefining time and time arising\n[F#]             [G]\nArms laid upon me\n         [A]              [D]\nBeing so kind to let me ride\n\n{section: Interlúdio}\n[D] [Bm] [Bm]\n[D] [Bm] [Bm]\n\n{section: Verso 2}\n  [D]              [Bm]    [D]   [Bm]\nI scream in affirmation (Woah)\n       [D]           [Bm]     [D]  [Bm]\nOf connecting dislocations (Yeah)\n      [D]           [Bm]     [D]  [Bm]\nAnd exceeding limitations (Woah)\n    [D]            [Bm]    [D]   [Bm]\nBy achieving levitation (Yeah)\n\n{section: Refrão 2}\n[D]                            [E]                      [D]  [Bm] [D] [Bm]\nGot me a big wave, ride me a big wave, got me a big wave\n[D]                            [E]                      [D]  [Bm] [D] [Bm]\nGot me a big wave, ride me a big wave, got me a big wave\n[D]          [E]               [Bm]\nI feel the need planted in me\n            [A]                    [D]              [E]\nMillions of years ago, can't you see the oceans size?\n         [Bm]\nDefining time and time arising\n[F#]             [G]\nArms laid upon me\n         [A]              [D]\nBeing so kind to let me ride\n\n{section: Interlúdio 2}\n[D#m7] [D#m]\n[D#m7] [D#m]\n\n{section: Solo}\n[D] [E] [Bm] [A]\n\n{section: Outro}\n[D] [Bm]\nFade out..."
+}

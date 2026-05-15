@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Comatose (Pearl Jam, Pearl Jam 2006).",
+    "source": "Ultimate Guitar",
+    "fetched": "2026-05-14",
+    "note_compasso": "Tom B, 120 BPM."
+  },
+  "title": "Comatose",
+  "artist": "Pearl Jam",
+  "key": "B",
+  "bpm": 120,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Dsus2": {
+          "fingering": "xx0230",
+          "fingers": "xx0130",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "577xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "022xxx",
+          "fingers": "011xxx",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "D#5": {
+          "fingering": "x688xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "A#5": {
+          "fingering": "x133xx",
+          "fingers": "x134xx",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "244xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "355xxx",
+          "fingers": "134xxx",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Dsus2": {
+          "fingering": "2230",
+          "fingers": "2230",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "E5": {
+          "fingering": "4200",
+          "fingers": "3100",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "4200",
+          "fingers": "3100",
+          "fundamental": null
+        },
+        "D#5": {
+          "fingering": "1340",
+          "fingers": "1340",
+          "fundamental": null
+        },
+        "A#5": {
+          "fingering": "3100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "F#5": {
+          "fingering": "3100",
+          "fingers": "2100",
+          "fundamental": null
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": null
+        }
+      },
+      "strumming": {
+        "label": "D-DU-UDU (proposto)",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Dsus2": { "notes": ["D", "A"], "fundamental": null },
+        "A5": { "notes": ["A", "E"], "fundamental": null },
+        "E5": { "notes": ["E", "B"], "fundamental": null },
+        "B5": { "notes": ["B", "F#"], "fundamental": null },
+        "D#5": { "notes": ["D#", "A#"], "fundamental": null },
+        "A#5": { "notes": ["A#", "F"], "fundamental": null },
+        "F#5": { "notes": ["F#", "C#"], "fundamental": null },
+        "G5": { "notes": ["G", "D"], "fundamental": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Dsus2] [A5] [Dsus2]\n[Dsus2] [A5] [E5]\n[Dsus2] [A5] [Dsus2]\n\n{section: Verso 1}\n [B5]               [E5] [D#5]  [A#5]\nConsider me an object.\n[B5]            [E5] [D#5]  [A#5]\nPut me in a vacuum.\n[B5]               [E5] [D#5]  [A#5]\nFree of all conditions.\n[B5]                [E5] [D#5]  [A#5]\nFree of air and friction.\n [B5]               [E5] [D#5]  [A#5]\nYeh, I'll be hanging upside down.\n[B5]               [E5] [D#5]  [A#5]\nAnd there I will swing.\n[B5]      [E5] [D#5]  [A#5] [B5]  [A#5]\nFor all  Et---er--ni---ty.\n\n{section: Refrão}\n [Dsus2] [A5] [Dsus2]                [Dsus2] [A5] [E5]\n            Feel it rising,             Yeh, next stop falling\n[Dsus2] [A5] [Dsus2]                  [F#5]            [G5]\n          Feel it rising          Comatose, with no fear of falling\n\n{section: Verso 2}\n[B5]               [E5] [D#5]  [A#5]\nConsider me an abcess.\n[B5]               [E5] [D#5]  [A#5]\nLeave me in my vacuum.\n[B5]                  [E5] [D#5]  [A#5]\nBlood on all the pistons.\n[B5]            [E5] [D#5]  [A#5]\nRunning my transmission\n\n{section: Refrão 2}\n[Dsus2] [A5] [Dsus2]                [Dsus2] [A5] [E5]\n            Feel it rising,             Yeh, next stop falling\n[Dsus2] [A5] [Dsus2]                  [F#5]            [G5]\n          Feel it rising          Comatose, with no fear of falling\n[Dsus2] [A5] [Dsus2]                [Dsus2] [A5] [E5]\n            Feel it rising,             Yeh, next stop falling\n[Dsus2] [A5] [Dsus2]\n          Feel it rising\n\n{section: Break}\n[F#5] [G5] [A5]     [F#5] [G5] [A5]           [F#5] [G5] [A5]\n     High above, I'll break the law\n        [E5] [F#5] [G5]\nIf it's illegal\n        [E5] [F#5] [G5]\nTo be in love,...\n[F#5] [G5] [A5]             [D5]\nLeave the hatred,.. On the cross\n\n{section: Solo}\n(riff do verso x4)\n\n{section: Verso 3}\n[B5]               [E5] [D#5]  [A#5]\nYeh, I'll be hanging upside down.\n[B5]               [E5] [D#5]  [A#5]\nAnd there I will swing.\n[B5]      [E5] [D#5]  [A#5] [B5] [A#5]\nFor all  Et---er--ni---ty.\n\n{section: Refrão 3}\n[Dsus2] [A5] [Dsus2]                [Dsus2] [A5] [E5]\n            Feel it rising,             Yeh, next stop falling\n[Dsus2] [A5] [Dsus2]                  [F#5]            [G5]\n          Feel it rising          Comatose, with no fear of falling\n[Dsus2] [A5] [Dsus2]                [Dsus2] [A5] [E5]\n            Feel it rising,             Yeh, next stop falling\n[Dsus2] [A5] [Dsus2]                [F#5]             [G5]\n            Feel it rising    Something never thought you'd be part of.\n[Dsus2] [A5] [Dsus2]"
+}
