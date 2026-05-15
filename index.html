@@ -1099,6 +1099,23 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .lb-prev { left: 0; }
 .lb-next { right: 0; }
 .lb-arrow.hidden { opacity: 0; pointer-events: none; }
+.lb-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,0.45);
+  border: none;
+  border-radius: 50%;
+  color: rgba(255,255,255,0.85);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 11;
+  transition: color 0.15s, background 0.15s;
+}
+.lb-close:hover { color: #fff; background: var(--pj); }
 .lb-counter {
   position: absolute;
   bottom: 18px;
@@ -8213,7 +8230,7 @@ body.in-forum .filter-bar { display: none !important; }
 <!-- VIEWS -->
 <section class="view" id="view-timeline" role="tabpanel" aria-labelledby="tab-timeline" tabindex="0" hidden>
   <h2 class="view-title">Linha do tempo</h2>
-  <div class="view-desc">25 shows · clique pra ver o setlist</div>
+  <div class="view-desc" id="timeline-desc">25 shows · clique pra ver o setlist</div>
   <div id="timeline-content"></div>
 </section>
 <section class="view" id="view-ranking" role="tabpanel" aria-labelledby="tab-ranking" tabindex="0" hidden>
@@ -8350,6 +8367,7 @@ body.in-forum .filter-bar { display: none !important; }
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagem" tabindex="-1" hidden>
   <div class="spinner" id="lightbox-spinner" role="status" aria-label="Carregando imagem"></div>
   <img id="lightbox-img" src="" alt="">
+  <button class="lb-close" id="lb-close" type="button" aria-label="Fechar visualizador"><span aria-hidden="true">&#215;</span></button>
   <button class="lb-arrow lb-prev" id="lb-prev" aria-label="Imagem anterior"><span aria-hidden="true">&#8249;</span></button>
   <button class="lb-arrow lb-next" id="lb-next" aria-label="Próxima imagem"><span aria-hidden="true">&#8250;</span></button>
   <div class="lb-counter" id="lb-counter" aria-live="polite"></div>
@@ -8592,6 +8610,12 @@ function fmtDate(d) {
 
 function renderTimeline() {
   const shows = filteredShows();
+  const _tlDesc = document.getElementById("timeline-desc");
+  if (_tlDesc) {
+    const _aLbl = state.filterArtist === "all" ? "" : " · " + state.filterArtist;
+    const _yLbl = state.filterYear === "all" ? "" : " · " + state.filterYear;
+    _tlDesc.textContent = shows.length + (shows.length === 1 ? " show" : " shows") + _aLbl + _yLbl + " · clique pra ver o setlist";
+  }
   const byYear = {};
   shows.forEach(s => {
     const y = s.date.slice(0,4);
@@ -16574,7 +16598,16 @@ async function init() {
     const current = document.documentElement.getAttribute("data-theme") || "dark";
     applyTheme(current === "dark" ? "light" : "dark");
   });
-  document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => activateTab(t.dataset.view)));
+  document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+    const v = t.dataset.view;
+    if (v === "news" && state.currentView === "news"
+        && typeof _newsParseHash === "function" && _newsParseHash()) {
+      _newsSetHash(null);
+      renderNewsView();
+      return;
+    }
+    activateTab(v);
+  }));
   document.querySelector(".tabs").addEventListener("keydown", _tabsKeydown);
   // titulo "Pearl Jam + Eddie Vedder" funciona como atalho pra home (Noticias).
   // limpa hash residual (ex: noticia aberta), volta pra Noticias e sobe ao topo.
