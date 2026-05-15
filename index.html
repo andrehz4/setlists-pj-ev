@@ -4778,6 +4778,74 @@ html[data-theme="dark"] .alphatab-version-select {
   gap: 28px 22px;
   padding: 4px;
 }
+/* Tag pill plana pra lista compacta (sem rotacao) */
+.news-tag-pill {
+  display: inline-block;
+  padding: 2px 7px;
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--np-paper, #f4ecda);
+  background: var(--np-ink, #1a1410);
+  border-radius: 2px;
+}
+/* Lista compacta: itens 20+ (sem thumbnail, so texto) */
+.news-list {
+  margin-top: 36px;
+  border-top: 2px solid var(--np-ink);
+}
+.news-list-header {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  padding: 10px 4px 8px;
+  border-bottom: 1px solid var(--divider);
+}
+.news-list-item {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  gap: 0 12px;
+  align-items: center;
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--divider);
+  cursor: pointer;
+  transition: background 120ms ease;
+  text-align: left;
+  background: transparent;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  width: 100%;
+  color: var(--ink);
+}
+.news-list-item:hover { background: var(--bg-card); }
+.news-list-item:focus-visible { outline: 2px solid var(--pj); outline-offset: -2px; }
+.news-list-num {
+  font: 700 9px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+.news-list-title {
+  font: 400 14px/1.3 var(--font-editorial, Georgia, serif);
+  color: var(--ink);
+  text-align: left;
+}
+.news-list-item:hover .news-list-title { color: var(--pj); }
+.news-list-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font: 400 10px/1 var(--font-mono, 'IBM Plex Mono', monospace);
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .news-list-item { grid-template-columns: 28px 1fr; }
+  .news-list-meta { display: none; }
+}
 .news-card {
   background: var(--np-paper);
   border: 2px solid var(--np-ink);
@@ -14136,9 +14204,11 @@ function _newsEditionNumber(count) {
 }
 
 function _renderNewsGrid(container, items, manifest) {
-  // Hero = primeiro item (mais recente). Grid recebe items[1..].
+  // Hero = primeiro item (mais recente). Grid recebe items[1..19] (19 cards,
+  // total 20 com hero). Itens 20+ vao para lista compacta abaixo do grid.
   const heroItem = items[0];
-  const gridItems = items.slice(1);
+  const gridItems = items.slice(1, 20);
+  const listItems = items.slice(20);
 
   // Filtros por TAG (em vez de por fonte). Conta itens por tag.
   const tagCounts = new Map();
@@ -14179,6 +14249,24 @@ function _renderNewsGrid(container, items, manifest) {
       </article>`;
   }).join("");
 
+  const listHtml = listItems.length ? `
+    <div class="news-list">
+      <div class="news-list-header">mais notícias — ${listItems.length} item${listItems.length !== 1 ? 's' : ''}</div>
+      ${listItems.map((item, i) => {
+        const num = String(i + 21).padStart(3, "0");
+        const tagsAttr = (Array.isArray(item.tags) ? item.tags : []).join(",");
+        const tagLabel = (Array.isArray(item.tags) && item.tags[0]) ? (_NEWS_TAG_LABELS[item.tags[0]] || item.tags[0]) : "";
+        return `<button class="news-list-item" data-id="${_newsEscape(item.id)}" data-tags="${_newsEscape(tagsAttr)}" tabindex="0" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
+          <span class="news-list-num" aria-hidden="true">${num}</span>
+          <span class="news-list-title">${_newsEscape(item.title_pt)}</span>
+          <span class="news-list-meta">
+            ${tagLabel ? `<span class="news-tag-pill">${_newsEscape(tagLabel)}</span>` : ""}
+            <time datetime="${_newsEscape(item.pubDate)}">${_newsRelTime(item.pubDate)}</time>
+          </span>
+        </button>`;
+      }).join("")}
+    </div>` : "";
+
   const updatedLabel = manifest.updated ? `atualizado ${_newsRelTime(manifest.updated)}` : "";
   const bannerDate = _newsBannerDate(manifest.updated);
   const edition = _newsEditionNumber(items.length);
@@ -14203,7 +14291,8 @@ function _renderNewsGrid(container, items, manifest) {
     </div>
     <div class="news-grid">
       ${cards}
-    </div>`;
+    </div>
+    ${listHtml}`;
 
   // Auto-scroll ate o hero na PRIMEIRA carga da view: usuario que abre o
   // site cai direto na materia em destaque, sem ter que rolar pelo wordmark
@@ -14241,7 +14330,7 @@ function _renderNewsGrid(container, items, manifest) {
   });
 
   // click ou Enter no card abre o detail
-  container.querySelectorAll(".news-card").forEach(card => {
+  container.querySelectorAll(".news-card, .news-list-item").forEach(card => {
     const open = () => {
       const id = card.dataset.id;
       _newsSetHash(id);
@@ -14268,7 +14357,7 @@ function _renderNewsGrid(container, items, manifest) {
       const tag = chip.dataset.tag;
       // hero so aparece em "Todas" (senao o filtro perde o ponto)
       if (hero) hero.style.display = (tag === "all") ? "" : "none";
-      container.querySelectorAll(".news-card").forEach(card => {
+      container.querySelectorAll(".news-card, .news-list-item").forEach(card => {
         const cardTags = (card.dataset.tags || "").split(",").filter(Boolean);
         card.hidden = (tag !== "all" && !cardTags.includes(tag));
       });
