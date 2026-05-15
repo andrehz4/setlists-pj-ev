@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Swallowed Whole (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Swallowed Whole",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "D",
+  "bpm": 139,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": "D"
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": "C"
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": "A"
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": "E"
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": "G"
+        }
+      },
+      "strumming": {
+        "label": "Refrão (139 BPM)",
+        "bpm": 139,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": "D"
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": "C"
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "1000",
+          "fundamental": "A"
+        },
+        "Em": {
+          "fingering": "0402",
+          "fingers": "0401",
+          "fundamental": "E"
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0231",
+          "fundamental": "G"
+        }
+      },
+      "strumming": {
+        "label": "Refrão (139 BPM)",
+        "bpm": 139,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": "C", "inversion": null },
+        "Am": { "notes": ["A", "C", "E"], "fundamental": "A", "inversion": null },
+        "Em": { "notes": ["E", "G", "B"], "fundamental": "E", "inversion": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": "G", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D] [C]\n\n{section: Verso 1}\n[D]\nI can feel the dawn / I can feel the Earth\n[C]\nI can feel the living all around\nRound round round / All around, round round round\n[D]\nI could choose a path / I could choose the word\nI can start the healing\n[C]\nBring it now, now now now / Bring it now, now now now\n\n{section: Refrão}\n[Am]               [C]           [Em]\nWhispered songs inside the wind\n[D]           [Am]\nBreathing in forgiveness\n[C]                   [Em]\nLike vibrations with no end\n[D]           [Am]\nHear the planet humming\n[C]                      [Em]\nWhat is clear far from the noise\n[D]\nGet swallowed whole\n\n{section: Verso 2}\n[D]\nI could feel the sun / I can see the sound\n[C]\nI could set myself right here and drown\ndrown drown drown / drown drown drown\n[D]\nI can feel the rush / I could clear the clouds\n[C]\nI could set the needle, spin it loud\nLoud loud loud loud / Loud loud loud loud\n[D]\nI can here the crash / I can fee the pound\n[C]\nI can feel the current pulling down\ndown down down / down down down down\n\n{section: Refrão 2}\n[Am] [Em] [D] [C]\n\n{section: Break}\n[Am]             [Em]\nWith no quiet to be found\n[D]                [C]\nSpirit lifted off the ground\n[C]             [D]\nAn what lies beyond the grave\n[C]              [D]\nMight be welcome change\n[G]          [C]\nTime will come, come what may\n[D]\nWith now rest in peace / Until that day\n\n{section: Interlúdio}\n[D] [C] [D] [C]\n\n{section: Verso 3}\n[D]\nI could choose a path / I could choose the word\n[C]\nI can start the healing, bring it now\nNow now now / Now now now now\n[D]\nI could be the sun / I can be the sound\n[C]\nI could set myself right here and drown\ndrown drown drown / drown drown drown\n\n{section: Outro}\n[Am]               [C]           [Em]\nWhispered songs inside the wind\n[D]           [Am]\nBreathing in forgiveness\n[C]                    [Em]\nAnd the chapter I've not read\n[D]\nTurn the page..."
+}

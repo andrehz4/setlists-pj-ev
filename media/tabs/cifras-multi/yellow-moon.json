@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Yellow Moon (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Yellow Moon",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "E",
+  "bpm": 84,
+  "capo": 1,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Esus2": {
+          "fingering": "024400",
+          "fingers": "024400",
+          "fundamental": "E"
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13331",
+          "fundamental": "B",
+          "barre": 2
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": "A"
+        },
+        "E/G#": {
+          "fingering": "422100",
+          "fingers": "421100",
+          "fundamental": "G#"
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": "D"
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": "E"
+        },
+        "F#m": {
+          "fingering": "244222",
+          "fingers": "134111",
+          "fundamental": "F#",
+          "barre": 2
+        },
+        "G#m": {
+          "fingering": "466444",
+          "fingers": "134111",
+          "fundamental": "G#",
+          "barre": 4
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 84,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Esus2": {
+          "fingering": "4400",
+          "fingers": "4400",
+          "fundamental": "E"
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4211",
+          "fundamental": "B"
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": "A"
+        },
+        "E/G#": {
+          "fingering": "4445",
+          "fingers": "4445",
+          "fundamental": "G#"
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": "D"
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "4321",
+          "fundamental": "E"
+        },
+        "F#m": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": "F#"
+        },
+        "G#m": {
+          "fingering": "4322",
+          "fingers": "4211",
+          "fundamental": "G#"
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 84,
+        "beats": [
+          { "count": "1", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "2", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false },
+          { "count": "3", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "rest",  "muted": false },
+          { "count": "4", "stroke": "down",  "muted": false },
+          { "count": "&", "stroke": "up",    "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Esus2": { "notes": ["E", "F#", "B"], "fundamental": "E", "inversion": null },
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": "B", "inversion": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "E/G#": { "notes": ["G#", "B", "E"], "fundamental": "G#", "inversion": "1a" },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": "E", "inversion": null },
+        "F#m": { "notes": ["F#", "A", "C#"], "fundamental": "F#", "inversion": null },
+        "G#m": { "notes": ["G#", "B", "D#"], "fundamental": "G#", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Esus2] [B] [Esus2] [B]\n\n{section: Verso 1}\n[Esus2]         [B]   [Esus2]    [B]\nHere far away\n[Esus2]          [A]         [E/G#]      [B]\nOne could feel the earth vibrate\n[Esus2]           [B]   [Esus2]    [B]\nMoon changing shape and shade\n[Esus2]          [A]          [E/G#]    [B]\nAs we all do under its gaze\n\n{section: Refrão}\n[D]         [E]   [B]          [A]\nYellow moon on the rise\n[D]         [E]   [B]\nYellow moon on the rise\n\n{section: Solo 1}\n[Esus2] [B] [Esus2] [B]\n\n{section: Verso 2}\n[Esus2]  [B]  [Esus2]  [B]\nRound we go\n[Esus2]        [A]          [E/G#]   [B]\nWhere we stop no one knows\n[B]         [A]    [E/G#]   [B]\nSo tonight the moon I go\n\n{section: Refrão 2}\n[D]         [E]   [B]          [A]\nYellow moon on the rise\n[D]         [E]\nOoooooooh\n\n{section: Interlúdio}\n[F#m]         [G#m]      [A]           [B]\nAn echo that rings a bullet unchained\n[F#m]      [G#m]    [A]         [B]\nOne life, one grave joins the parade\n[F#m]         [G#m]        [A]             [B]\nAt night the sky grows dark with fallen stars\n[F#m]       [G#m]     [A]               [B]  [A]\nWho comes so far a headstone and grave\n[B]          [A]       [B]\nThe colors turn grey, the black and white fades\n\n{section: Refrão 3}\n[D]         [E]   [B]          [A]\nYellow moon on the rise\n[D]         [E]   [B]\nYellow moon on the rise\n\n{section: Solo 2}\n[Esus2] [B] [Esus2] [B]\n\n{section: Refrão Final}\n[D]         [E]   [B]          [A]\nYellow moon on the rise\n[D]         [E]   [B]          [A]\nYellow moon on the rise\n[D]         [E]\nOoooooooh"
+}

@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Seven O'Clock (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Seven O'Clock",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "G",
+  "bpm": 82,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "G/B":  { "fingering": "x20003", "fingers": "x20003", "fundamental": "B" },
+        "Em":   { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "Em/B": { "fingering": "x22000", "fingers": "x23000", "fundamental": "B" },
+        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "C#m":  { "fingering": "x46654", "fingers": "x13421", "fundamental": "C#", "barre": 4 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 82,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "G/B":  { "fingering": "0230", "fingers": "0231", "fundamental": "B" },
+        "Em":   { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
+        "Em/B": { "fingering": "0422", "fingers": "0411", "fundamental": "B" },
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "C#m":  { "fingering": "1104", "fingers": "1103", "fundamental": "C#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 82,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "G":    { "notes": ["G", "B", "D"],    "fundamental": "G",  "inversion": null },
+        "C":    { "notes": ["C", "E", "G"],    "fundamental": "C",  "inversion": null },
+        "G/B":  { "notes": ["B", "D", "G"],    "fundamental": "B",  "inversion": "1a" },
+        "Em":   { "notes": ["E", "G", "B"],    "fundamental": "E",  "inversion": null },
+        "Em/B": { "notes": ["B", "E", "G"],    "fundamental": "B",  "inversion": "1a" },
+        "A":    { "notes": ["A", "C#", "E"],   "fundamental": "A",  "inversion": null },
+        "D":    { "notes": ["D", "F#", "A"],   "fundamental": "D",  "inversion": null },
+        "C#m":  { "notes": ["C#", "E", "G#"],  "fundamental": "C#", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Em] [Em/B] [G] [A]\n[Em] [Em/B] [Em]\n[Em] [Em/B] [G] [A]\n[Em] [Em/B] [Em]\n\n{section: Verso 1}\n[G]Seven o'clock in the [C]morning, got a message from afar\n[G/B]Down under an oasis [C]where there are dreams still being born\n[G]And summer spoke to [C]winter relaying all encouraging words\n[G/B]And I was fully [C]grateful mutant messages were heard\n[G]Moved on from my des[C]pondency and left it in the bed\n[G/B]Do I leave it there still [C]sleeping or maybe kill it better yet?\n[G]For this is no time for de[C]pression or self indulgent hesitance\n[G/B]This fucked-up situation [C]calls for all hands, [G]hands on [C]deck\n[G]Freedom is as freedom [C]does and freedom is a verb\n[G/B]They giveth and they [C]taketh and you fight to keep that what you've earned\n[G]We saw the destination, [C]got so close before its turned\n[G/B]Swim sideways from this [C]undertow and do not be de[G]terred [C]\n\n{section: Refrão 1}\n[A]Floodlight dreams go [Em]drifting past\n[G]All the lives we could've [D]had\n[A]Distant loves floating a[Em]bove\n[G]Close these eyes. They've seen e[D]nough\n\n{section: Instrumental}\n[Em] [Em/B] [G] [A]\n[Em] [Em/B] [Em]\n[Em] [Em/B] [G] [A]\n[Em] [Em/B] [Em]\n\n{section: Verso 2}\n[G]Caught the butterfly, broke its [C]wing then put it on display\n[G/B]Stripped of all its beauty [C]once it could not fly high away\n[G]Still alive like a passer-[C]by overdosed on gamma rays\n[G/B]Another \"God's\" creation [C]destined to be thrown a[G]way [C]\n[G]Sitting Bull and Crazy [C]Horse they forged the north and west\n[G/B]Then you get Sitting Bullshit [C]as our sitting president\n[G]Talking to his mirror, [C]whats he say, what's it say back?\n[G/B]A tragedy of errors, [C]who'll be last to have a [G]laugh? [C]\n\n{section: Refrão 2}\n[A]His best days gone, [Em]hard to admit\n[G]Throwing angry punches with [D]nothing to hit\n[A]Luminous thoughts were [Em]once all he had\n[G]Fading lights, lost elo[D]quence\n[A]There's still a fire in the [Em]engine room\n[G]Knows relief will be co[D]ming soon\n\n{section: Instrumental 2}\n[C#m] [D] [A] [E]\n[C#m] [D] [A] [E]\n\n{section: Outro 1}\n[C#m]What's to be [D]done\n[A]Carve a path for [E]Rivers reign\n[C#m]Much to be [D]done,\n[A]Oceans rising [E]with the waves\n[C#m]Held by these [D]thoughts\n[A]They refuse to slip a[E]way, o-oh\n[C#m]Hangman in [D]dreamland\n[A]About to call your [E]name\n\n{section: Interludio}\n[C#m]Hey yeah hee-ee hee-ee uh oh [D]oooh [A] [E]\n[C#m]Hey yeah hee-ee hee-ee uh oh [D]oooh [A] [E]\n\n{section: Outro 2}\n[C#m]Much to be done, much to be [D]\n[A]Much to be done, much to be [E]\n[C#m]Much to be done, much to be [D]\n[A]Much to be done, much to be [E]\n[C#m]Much to be done, much to be [D]\n[A]Much to be done, much to be [E]\n[C#m]Much to be done [D] [A]"
+}

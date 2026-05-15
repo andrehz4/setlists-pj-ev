@@ -276,10 +276,13 @@
     "tuning": "EADGBE"
   },
   "sirens": {
-    "cifra": false,
+    "cifra": true,
+    "cifraMulti": "sirens.json",
     "tab": false,
-    "key": "C",
-    "tuning": "EADGBE"
+    "key": "C#",
+    "tuning": "EADGBE",
+    "bpm": 72,
+    "capo": 3
   },
   "hail hail": {
     "cifra": true,
@@ -1951,11 +1954,12 @@
     "bpm": 118
   },
   "lightning bolt": {
-    "cifra": false,
+    "cifra": true,
+    "cifraMulti": "lightning-bolt.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "lightning-bolt-v1.gp5",
-    "key": "E",
+    "key": "A",
     "tuning": "EADGBE",
     "bpm": 128,
     "versions": [
@@ -1968,11 +1972,12 @@
     ]
   },
   "getaway": {
-    "cifra": false,
+    "cifra": true,
+    "cifraMulti": "getaway.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "getaway-v1.gp5",
-    "key": "C",
+    "key": "Am",
     "tuning": "EADGBE",
     "bpm": 124,
     "versions": [
@@ -1985,11 +1990,12 @@
     ]
   },
   "mind your manners": {
-    "cifra": false,
+    "cifra": true,
+    "cifraMulti": "mind-your-manners.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "mind-your-manners-v1.gp5",
-    "key": "E",
+    "key": "B",
     "tuning": "EADGBE",
     "bpm": 176,
     "versions": [
@@ -2002,13 +2008,15 @@
     ]
   },
   "future days": {
-    "cifra": false,
+    "cifra": true,
+    "cifraMulti": "future-days.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "future-days-v1.gp5",
-    "key": "G",
+    "key": "C#",
     "tuning": "EADGBE",
-    "bpm": 75,
+    "bpm": 107,
+    "capo": 1,
     "versions": [
       {
         "id": "v1",
@@ -2019,11 +2027,12 @@
     ]
   },
   "sleeping by myself": {
-    "cifra": false,
+    "cifra": true,
+    "cifraMulti": "sleeping-by-myself.json",
     "tab": true,
     "tabFormat": "gp",
     "tabFile": "sleeping-by-myself-v1.gp",
-    "key": "G",
+    "key": "A",
     "tuning": "EADGBE",
     "bpm": 90,
     "versions": [
@@ -2036,13 +2045,15 @@
     ]
   },
   "yellow moon": {
-    "cifra": false,
+    "cifra": true,
+    "cifraMulti": "yellow-moon.json",
     "tab": true,
     "tabFormat": "gp5",
     "tabFile": "yellow-moon-v1.gp5",
-    "key": "G",
+    "key": "E",
     "tuning": "EADGBE",
     "bpm": 84,
+    "capo": 1,
     "versions": [
       {
         "id": "v1",
@@ -2191,5 +2202,47 @@
     "key": "E",
     "tuning": "EADGBE",
     "bpm": 80
+  },
+  "my fathers son": {
+    "cifra": true,
+    "cifraMulti": "my-fathers-son.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 90
+  },
+  "infallible": {
+    "cifra": true,
+    "cifraMulti": "infallible.json",
+    "tab": false,
+    "key": "F#m",
+    "tuning": "Eb Ab Db Gb Bb Eb",
+    "bpm": 120,
+    "notes": "Afinacao meio tom abaixo (Eb Ab Db Gb Bb Eb)."
+  },
+  "pendulum": {
+    "cifra": true,
+    "cifraMulti": "pendulum.json",
+    "tab": false,
+    "key": "Am",
+    "tuning": "EADGBE",
+    "bpm": 72
+  },
+  "let the records play": {
+    "cifra": true,
+    "cifraMulti": "let-the-records-play.json",
+    "tab": false,
+    "key": "D",
+    "tuning": "DADAAD",
+    "bpm": 100,
+    "notes": "Open D alternativo: D A D A A D."
+  },
+  "swallowed whole": {
+    "cifra": true,
+    "cifraMulti": "swallowed-whole.json",
+    "tab": false,
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 139
   }
 }

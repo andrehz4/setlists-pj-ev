@@ -1,0 +1,143 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Infallible (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Infallible",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "F#m",
+  "bpm": 120,
+  "capo": 0,
+  "notes": "Afinacao meio tom abaixo (Eb Ab Db Gb Bb Eb). Acordes soam meio tom abaixo dos shapes tocados.",
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "Eb Ab Db Gb Bb Eb",
+      "chords": {
+        "F#m": {
+          "fingering": "244222",
+          "fingers": "134111",
+          "fundamental": "F#m",
+          "barre": 2
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": "E"
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": "D"
+        },
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13341",
+          "fundamental": "C#",
+          "barre": 4
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": "A"
+        },
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": "G"
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13331",
+          "fundamental": "B",
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#m": {
+          "fingering": "2120",
+          "fingers": "2130",
+          "fundamental": "F#m"
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "4321",
+          "fundamental": "E"
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": "D"
+        },
+        "C#": {
+          "fingering": "1114",
+          "fingers": "1114",
+          "fundamental": "C#"
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": "A"
+        },
+        "G": {
+          "fingering": "0232",
+          "fingers": "0231",
+          "fundamental": "G"
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4211",
+          "fundamental": "B"
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 120,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#m": { "notes": ["F#", "A", "C#"], "fundamental": "F#m", "inversion": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": "E", "inversion": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "C#": { "notes": ["C#", "F", "G#"], "fundamental": "C#", "inversion": null },
+        "A": { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": "G", "inversion": null },
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": "B", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F#m] [E] [D] [C#]\n\n{section: Verso 1}\n[F#m] [E] Keep on locking your doors\n[D] Keep on building your floors\n[C#] Keep on just as before\n[F#m] [E] Pay disasters no mind\n[D] Didn't get you this time\n[C#] No prints left at the crime\n\n{section: Pré-Refrão}\n[D] [B] [D] Our ships come in\n[B] And its sinking\n\n{section: Refrão}\n[A] [G] Of everything that's possible\n[F#m] [E] In the hearts and minds of men\n[A] [G] Somehow it is the biggest things\n[F#m] That keep on slipping\n[E] Right through our hands\n[A] [G] By thinking we're infallible\n[F#m] [E] We are tempting fate instead\n[D] [B] [D] Time we best begin\n[B] [F#m] Here at the ending\n\n{section: Interlúdio}\n[F#m] [E] [D] [C#]\n\n{section: Verso 2}\n[F#m] [E] Wanna third second chance\n[D] Put your faith in big hands\n[C#] Pay no more than a glance\n[F#m] [E] All good things come to an end\n[D] This could be good as it gets\n[C#] How's the view from the fence?\n\n{section: Pré-Refrão 2}\n[D] [B] [D] You think we been here before\n[B] You are mistaken\n\n{section: Refrão 2}\n[A] [G] Of everything that's possible\n[F#m] [E] In the hearts and minds of men\n[A] [G] When progress could be plausible\n[F#m] [E] In reverse we curse ourselves\n[A] [G] By thinking we're infallible\n[F#m] [E] We are tempting fate instead\n[D] [B] [D] Time we best begin\n[E] [F#m] Here at the ending\n\n{section: Solo}\n[F#m] [E] [D] [C#] (progressão)\n\n{section: Refrão 3}\n[A] [G] Of everything that's possible\n[F#m] [E] In the hearts and minds of men\n[A] [G] When progress could be plausible\n[F#m] [E] In reverse we curse ourselves\n[A] [G] By thinking we're infallible\n[F#m] [E] We are tempting fate instead\n[D] [B] [D] Time we best begin\n[E] [F#m] Here at the ending\n\n{section: Outro}\n[A] Ooh yeah yeaheey\n[G] Yeah yeahey\n[F#m] Oh yeah\n[E] Oh yeah...yeaah\n[D] [B] [D] Time we best begin\n[B] [F#m] Here at the ending\n[E] [D] Here at the ending\n[C#] (pausa)\n[F#m] [E] [D] [C#] (x2, fade)"
+}

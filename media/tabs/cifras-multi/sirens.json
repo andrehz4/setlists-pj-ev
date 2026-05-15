@@ -1,0 +1,150 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Sirens (Pearl Jam, Lightning Bolt 2013).",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Sirens",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "C#",
+  "bpm": 72,
+  "capo": 3,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F#": {
+          "fingering": "244322",
+          "fingers": "134211",
+          "fundamental": "F#",
+          "barre": 2
+        },
+        "F#sus2": {
+          "fingering": "244200",
+          "fingers": "134000",
+          "fundamental": "F#",
+          "barre": 2
+        },
+        "D#m": {
+          "fingering": "x46654",
+          "fingers": "x13421",
+          "fundamental": "D#",
+          "barre": 4
+        },
+        "C#": {
+          "fingering": "x46664",
+          "fingers": "x13341",
+          "fundamental": "C#",
+          "barre": 4
+        },
+        "G#": {
+          "fingering": "466544",
+          "fingers": "134211",
+          "fundamental": "G#",
+          "barre": 4
+        },
+        "A#m": {
+          "fingering": "x13321",
+          "fingers": "x13421",
+          "fundamental": "A#",
+          "barre": 1
+        },
+        "G#m": {
+          "fingering": "466444",
+          "fingers": "134111",
+          "fundamental": "G#",
+          "barre": 4
+        },
+        "B": {
+          "fingering": "x24442",
+          "fingers": "x13331",
+          "fundamental": "B",
+          "barre": 2
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 72,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#": {
+          "fingering": "3121",
+          "fingers": "3121",
+          "fundamental": "F#"
+        },
+        "F#sus2": {
+          "fingering": "3120",
+          "fingers": "3120",
+          "fundamental": "F#"
+        },
+        "D#m": {
+          "fingering": "3314",
+          "fingers": "3314",
+          "fundamental": "D#"
+        },
+        "C#": {
+          "fingering": "1114",
+          "fingers": "1114",
+          "fundamental": "C#"
+        },
+        "G#": {
+          "fingering": "5343",
+          "fingers": "5321",
+          "fundamental": "G#"
+        },
+        "A#m": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": "A#"
+        },
+        "G#m": {
+          "fingering": "4322",
+          "fingers": "4211",
+          "fundamental": "G#"
+        },
+        "B": {
+          "fingering": "4322",
+          "fingers": "4211",
+          "fundamental": "B"
+        }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 72,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#": { "notes": ["F#", "A#", "C#"], "fundamental": "F#", "inversion": null },
+        "F#sus2": { "notes": ["F#", "B", "C#"], "fundamental": "F#", "inversion": null },
+        "D#m": { "notes": ["D#", "F#", "A#"], "fundamental": "D#", "inversion": null },
+        "C#": { "notes": ["C#", "F", "G#"], "fundamental": "C#", "inversion": null },
+        "G#": { "notes": ["G#", "C", "D#"], "fundamental": "G#", "inversion": null },
+        "A#m": { "notes": ["A#", "C#", "F"], "fundamental": "A#", "inversion": null },
+        "G#m": { "notes": ["G#", "B", "D#"], "fundamental": "G#", "inversion": null },
+        "B": { "notes": ["B", "D#", "F#"], "fundamental": "B", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F#] [F#sus2] [F#] [F#sus2] [D#m]\n\n{section: Interlúdio}\n[F#] [F#sus2] Hear the sirens.\n[F#] [F#sus2] [D#m] Hear the sirens.\n\n{section: Verso 1}\n[F#] [F#sus2] Hear the si[F#]rens,\n[F#sus2] [D#m] Hear the circus so pro[F#]found.\n[F#sus2] I hear the si[F#]rens\n[F#sus2] [D#m] More and more in this here town\n\n{section: Pré-Refrão}\n[C#] Let me catch my breath to breathe\n[G#] [F#] [A#m] And reach across the bed\n[C#] Just to know we're safe\n[G#] [F#] [D#m] I am a grateful man\n[C#] The slightest bit of light\n[G#] [F#] [A#m] And I can see you clear\n\n{section: Refrão}\n[D#m] Oh, have to take your hand\n[F#] [C#] [G#m] And feel your breath for fear this someday will be over\n[D#m] [F#] [C#] [G#m] I pull you close, so much to lose knowing that nothing lasts forever\n[B] [F#] I didn't care before you were here.\n[C#] [G#m] I danced in laughter with the ever after\n[B] But all things change\n[F#] [C#] Let this remain\n\n{section: Pós-Refrão}\n[F#] [F#sus2] [F#] [F#sus2] [D#m]\n\n{section: Verso 2}\n[F#] [F#sus2] Hear the sirens\n[F#] [F#sus2] [D#m] Covering distance in the night.\n[F#] [F#sus2] The sound echoing closer.\n[F#] [F#sus2] [D#m] Will they come for me next time?\n\n{section: Pré-Refrão 2}\n[C#] [G#] [F#] [A#m] For every choice, mistake I've made, it's not my plan\n[C#] [G#] [F#] [D#m] To send you in the arms of another man\n[C#] [G#] [F#] [A#m] And if you choose to stay I'll wait, I'll understand\n\n{section: Refrão 2}\n[D#m] Oh, it's a fragile thing\n[F#] [C#] This life we lead\n[G#m] [D#m] If I think too much I can get overwhelmed by the grace\n[F#] [C#] [G#m] By which we live our lives with death over our shoulders\n[B] [F#] Want you to know that should I go\n[C#] [G#m] I always loved you, held you high above, too.\n[B] [F#] [A#m] I study your face, and fear goes away.\n\n{section: Solo}\n[F#] [D#m] [A#m] [F#] [G#]\n\n{section: Interlúdio 2}\n[F#] [F#sus2] (x4)\n\n{section: Refrão 3}\n[D#m] [F#] [C#] It's a fragile thing, this life we lead.\n[G#m] [D#m] If I think too much I can get overwhelmed by the grace\n[F#] [C#] [G#m] By which we live our lives with death over our shoulders\n\n{section: Outro}\n[B] [F#] Want you to know that should I go,\n[C#] [G#m] I always loved you, held you high above, too.\n[B] [F#] I study your face, and the fear goes away,\n[C#] The fear goes away,\n[G#m] The fear goes away,\n[B] [F#] The fear goes away.\n[C#] Ahah, ohoh\n[G#m] Ahah, ohoh\n[B] [F#] [C#] [G#m] [B]"
+}

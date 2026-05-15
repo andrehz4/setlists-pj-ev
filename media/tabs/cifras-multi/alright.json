@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Alright (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Alright",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "E",
+  "bpm": 88,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E":  { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "A":  { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Em": { "fingering": "022000", "fingers": "023000", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 88,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E":  { "fingering": "4442", "fingers": "4321", "fundamental": "E" },
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Em": { "fingering": "0402", "fingers": "0401", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 88,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "up",   "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E":  { "notes": ["E", "G#", "B"], "fundamental": "E", "inversion": null },
+        "A":  { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "D":  { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],  "fundamental": "G", "inversion": null },
+        "Em": { "notes": ["E", "G", "B"],  "fundamental": "E", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E] [E] [E] [E]\n\n{section: Verso 1}\n[E](riff instrumental)\n[A]You can't hide the lies\n[E]In the rings of a tree\n[A]If your heart still beats free\n[E]Keep it for yourself\n[A]When you want to run\n[E]And leave some part unrevealed\n[A]Like the flight of the bee\n[E]Keep it for yourself\n\n{section: Refrão 1}\n[G]It's alright, to be alone\nTo listen for a heartbeat,\n[A]It's [Em]your own\n[G]It's alright, to quiet up\n[A]To disappear in thin air,\n[Em]It's your own\n\n{section: Verso 2}\n[E]Should your living [D]truth die\nCould be an acid trip\n[E]\n[D]Leave the eucharist whole\n[E]Keep it for yourself\n[E]If you tire of the [D]game\nHit the road towards the clouds\n[E]\n[D]Find the groove in the sound\n[E]Keep it for yourself\n\n{section: Refrão 2}\n[G]It's alright, to say no\n[A]Be a disappointment in your own [Em]home\n[G]It's alright, to turn it off\n[A]Ignore the rules of the state,\n[Em]It's your own\n[G]It's alright, to shut it down\n[A]Disappear in thin air,\n[Em]It's your home\n[G]It's alright, to be alone\nTo listen for a heartbeat,\n[A]It's [Em]your own\n\n{section: Outro}\n[D]You can't hide your eyes"
+}
