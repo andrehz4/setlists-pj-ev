@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Society (Eddie Vedder, Into The Wild 2007). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Society",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "Bm",
+  "bpm": 165,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Bm": { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "D":  { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "A":  { "fingering": "x02220", "fingers": "x02230", "fundamental": "A" },
+        "G":  { "fingering": "320003", "fingers": "210003", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 165,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Bm": { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "D":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "A":  { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "G":  { "fingering": "0232", "fingers": "0231", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 165,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Bm": { "notes": ["B", "D", "F#"], "fundamental": "B", "inversion": null },
+        "D":  { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "A":  { "notes": ["A", "C#", "E"], "fundamental": "A", "inversion": null },
+        "G":  { "notes": ["G", "B", "D"],  "fundamental": "G", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Bm]\n\n{section: Verso 1}\n[D]          [A]         [D]\n It's a mystery to me\n                     [G]                   [A]\nWe have a greed with which we have agreed\n        [G]                     [A]             [Bm]\nAnd you think you have to want more than you  need\n  [G]                  [A]            [Bm]\nUntil you have it all you won't be  free\n\n{section: Refrão}\n     [G]                      [D]\nSociety you're a crazy breed\n                    [A]          [Bm]\nHope you're not lonely without me\n\n{section: Verso 2}\n             [D]                  [A]\nWhen you want more than you have\n             [D]\nYou think you need\n                                 [G]\nWhen you think more than you want\n                [A]\nYour thoughts begin to bleed\n  [G]                   [A]        [Bm]\nI think I need to find a bigger  place\n                [G]                       [A]\n'Cause when you have more than you think\n             [Bm]\nYou need more  space\n\n{section: Refrão 2}\n     [G]                      [D]\nSociety you're a crazy breed\n                    [A]          [Bm]\nHope you're not lonely without me\n     [G]              [D]\nSociety crazy indeed\n                    [A]         [Bm]\nHope you're not lonely without  me\n\n{section: Solo}\n[D] [A] [D] [G]\n[A] [G] [A] [Bm]\n[G] [A] [Bm] [G]\n[D] [A] [Bm]\n\n{section: Verso 3}\n        [D]                  [A]               [D]\nThere's those thinking more or less less is more\n                    [G]              [A]\nBut if less is more how you keeping score\n          [G]                   [A]          [Bm]\nMeans for every point you make your level  drops\n[G]                          [A]            [Bm]\n Kinda like you're starting from the top\nYou can't do that\n\n{section: Refrão 3}\n     [G]                      [D]\nSociety you're a crazy breed\n                    [A]          [Bm]\nHope you're not lonely without me\n     [G]              [D]\nSociety crazy indeed\n                    [A]         [Bm]\nHope you're not lonely without  me\n\n{section: Outro}\n     [G]               [D]\nSociety have mercy on me\n                    [A]                [Bm]\nI hope you're not angry if I disagree\n     [G]              [D]\nSociety crazy indeed\n                      [A]\nI hope you're not lonely\n       [Bm]\nWithout  me\n"
+}

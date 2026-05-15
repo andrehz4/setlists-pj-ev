@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de End of the Road (Eddie Vedder, Into The Wild 2007). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "End of the Road",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "Gm",
+  "bpm": 85,
+  "capo": 3,
+  "notes": "Acorde G nesta musica usa voicing x32000 (sem 5a e 3a no agudo). Shapes relativos ao capo.",
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "D6":     { "fingering": "xx0202", "fingers": "xx0102", "fundamental": "D" },
+        "E7":     { "fingering": "020100", "fingers": "020100", "fundamental": "E" },
+        "A7":     { "fingering": "x02020", "fingers": "x02030", "fundamental": "A" },
+        "A7sus4": { "fingering": "x02030", "fingers": "x02040", "fundamental": "A" },
+        "D":      { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "D7":     { "fingering": "xx0212", "fingers": "xx0213", "fundamental": "D" },
+        "G":      { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "Em":     { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
+        "F":      { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "C":      { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "D6":     { "fingering": "2202", "fingers": "2201", "fundamental": "D" },
+        "E7":     { "fingering": "1202", "fingers": "1202", "fundamental": "E" },
+        "A7":     { "fingering": "0100", "fingers": "0100", "fundamental": "A" },
+        "A7sus4": { "fingering": "0130", "fingers": "0130", "fundamental": "A" },
+        "D":      { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "D7":     { "fingering": "2020", "fingers": "2020", "fundamental": "D" },
+        "G":      { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "Em":     { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
+        "F":      { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "C":      { "fingering": "0003", "fingers": "0003", "fundamental": "C" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 85,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "D6":     { "notes": ["D", "F#", "A", "B"],  "fundamental": "D", "inversion": null },
+        "E7":     { "notes": ["E", "G#", "B", "D"],  "fundamental": "E", "inversion": null },
+        "A7":     { "notes": ["A", "C#", "E", "G"],  "fundamental": "A", "inversion": null },
+        "A7sus4": { "notes": ["A", "D", "E", "G"],   "fundamental": "A", "inversion": null },
+        "D":      { "notes": ["D", "F#", "A"],        "fundamental": "D", "inversion": null },
+        "D7":     { "notes": ["D", "F#", "A", "C"],  "fundamental": "D", "inversion": null },
+        "G":      { "notes": ["G", "B", "D"],         "fundamental": "G", "inversion": null },
+        "Em":     { "notes": ["E", "G", "B"],         "fundamental": "E", "inversion": null },
+        "F":      { "notes": ["F", "A", "C"],         "fundamental": "F", "inversion": null },
+        "C":      { "notes": ["C", "E", "G"],         "fundamental": "C", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[D6] [E7]\n\n{section: Verso 1}\n[D6]\n  I won't be the last\n[E7]\n I won't be the first\n[D6]\n  (to) find a way to where\n[E7]\n  The sky meets the Earth\n[A7]\n  It's alright\n[A7sus4]    [D]\n  And all wrong\n     [A7]\n  For me it begins\n[A7sus4] [D] [D7]          [G]\n  At the end of the road\n   [A7sus4]  [A7]\n We come and go\n\n{section: Instrumental}\n[D6] [E7]\n[D6] [E7]\n[D6] [E7]\n[A7] [A7sus4]  [D]\n[A7] [A7sus4]  [D]  [D7]  [G]\n[A7sus4]  [A7]\n[Em]  [F]  [C]  [F]  [C]  [Em]  [Em]\n[F]  [C]  [F]  [C]  [Em]\n"
+}

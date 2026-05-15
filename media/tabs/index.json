@@ -278,11 +278,16 @@
   "sirens": {
     "cifra": true,
     "cifraMulti": "sirens.json",
-    "tab": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "sirens-v1.gp5",
     "key": "C#",
     "tuning": "EADGBE",
     "bpm": 72,
-    "capo": 3
+    "capo": 3,
+    "versions": [
+      { "id": "v1", "label": "Versao 1", "file": "sirens-v1.gp5", "format": "gp5" }
+    ]
   },
   "hail hail": {
     "cifra": true,
@@ -2244,5 +2249,197 @@
     "key": "D",
     "tuning": "EADGBE",
     "bpm": 139
+  },
+  "setting forth": {
+    "cifra": true,
+    "cifraMulti": "setting-forth.json",
+    "tab": false,
+    "key": "D",
+    "tuning": "EADGBE",
+    "bpm": 85
+  },
+  "no ceiling": {
+    "cifra": true,
+    "cifraMulti": "no-ceiling.json",
+    "tab": false,
+    "key": "Gm",
+    "tuning": "EADGBE",
+    "bpm": 90,
+    "capo": 3
+  },
+  "far behind": {
+    "cifra": true,
+    "cifraMulti": "far-behind.json",
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "far-behind-v1.gpx",
+    "key": "E",
+    "tuning": "EADGBE",
+    "bpm": 90,
+    "versions": [
+      { "id": "v1", "label": "Versao 1", "file": "far-behind-v1.gpx", "format": "gpx" },
+      { "id": "v2", "label": "Versao 2", "file": "far-behind-v2.gpx", "format": "gpx" }
+    ]
+  },
+  "the wolf": {
+    "cifra": true,
+    "cifraMulti": "the-wolf.json",
+    "tab": false,
+    "key": "Eb",
+    "tuning": "EADGBE",
+    "bpm": 60
+  },
+  "end of the road": {
+    "cifra": true,
+    "cifraMulti": "end-of-the-road.json",
+    "tab": false,
+    "key": "Gm",
+    "tuning": "EADGBE",
+    "bpm": 85,
+    "capo": 3
+  },
+  "guaranteed": {
+    "cifra": true,
+    "cifraMulti": "guaranteed.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "guaranteed-v1.gp5",
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 100,
+    "versions": [
+      { "id": "v1", "label": "Versao 1", "file": "guaranteed-v1.gp5", "format": "gp5" }
+    ]
+  },
+  "hard sun": {
+    "cifra": true,
+    "cifraMulti": "hard-sun.json",
+    "tab": false,
+    "key": "Eb",
+    "tuning": "EADGBE",
+    "bpm": 72,
+    "capo": 1
+  },
+  "society": {
+    "cifra": true,
+    "cifraMulti": "society.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "society-v1.gp5",
+    "key": "Bm",
+    "tuning": "EADGBE",
+    "bpm": 165,
+    "versions": [
+      { "id": "v1", "label": "Versao 1", "file": "society-v1.gp5", "format": "gp5" }
+    ]
+  },
+  "rise": {
+    "cifra": true,
+    "cifraMulti": "rise.json",
+    "tab": false,
+    "key": "G",
+    "tuning": "EADGBE",
+    "bpm": 85
+  },
+  "long nights": {
+    "cifra": true,
+    "cifraMulti": "long-nights.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "long-nights-v1.gp5",
+    "key": "Gm",
+    "tuning": "EADGBE",
+    "bpm": 75,
+    "versions": [
+      { "id": "v1", "label": "Versao 1", "file": "long-nights-v1.gp5", "format": "gp5" }
+    ]
+  },
+  "tuolumne": {
+    "cifra": true,
+    "cifraMulti": "tuolumne.json",
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "tuolumne-v1.gp5",
+    "key": "C",
+    "tuning": "EADGBE",
+    "bpm": 109,
+    "versions": [
+      { "id": "v1", "label": "Versao 1", "file": "tuolumne-v1.gp5", "format": "gp5" }
+    ]
+  },
+  "without you (ev)": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "without-you-ev-v1.gp5",
+    "key": "G",
+    "tuning": "EADGBE"
+  },
+  "sleeping by myself (ev)": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "sleeping-by-myself-ev-v1.gpx",
+    "key": "A",
+    "tuning": "EADGBE",
+    "versions": [
+      { "id": "v1", "label": "Versao 1 (EV solo)", "file": "sleeping-by-myself-ev-v1.gpx", "format": "gpx" }
+    ]
+  },
+  "light today": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "light-today-ev-v1.gpx",
+    "key": "G",
+    "tuning": "EADGBE"
+  },
+  "cant keep": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gp5",
+    "tabFile": "cant-keep-v1.gp5",
+    "key": "E",
+    "tuning": "EADGBE"
+  },
+  "more than you know": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "more-than-you-know-ev-v1.gpx",
+    "key": "G",
+    "tuning": "EADGBE"
+  },
+  "sleepless nights": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "sleepless-nights-ev-v1.gpx",
+    "key": "G",
+    "tuning": "EADGBE"
+  },
+  "goodbye (ev)": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "goodbye-ev-v1.gpx",
+    "key": "G",
+    "tuning": "EADGBE"
+  },
+  "once in a while": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "once-in-a-while-ev-v1.gpx",
+    "key": "G",
+    "tuning": "EADGBE"
+  },
+  "broken heart": {
+    "cifra": false,
+    "tab": true,
+    "tabFormat": "gpx",
+    "tabFile": "broken-heart-ev-v1.gpx",
+    "key": "G",
+    "tuning": "EADGBE"
   }
 }

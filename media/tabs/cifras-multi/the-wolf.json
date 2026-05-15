@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de The Wolf (Eddie Vedder, Into The Wild 2007). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "The Wolf",
+  "artist": "Eddie Vedder",
+  "album": "Into The Wild (2007)",
+  "key": "Eb",
+  "bpm": 60,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Eb":  { "fingering": "x68886", "fingers": "x13331", "fundamental": "Eb", "barre": 6 },
+        "Gb":  { "fingering": "244322", "fingers": "134211", "fundamental": "Gb", "barre": 2 },
+        "Db":  { "fingering": "x46664", "fingers": "x13331", "fundamental": "Db", "barre": 4 },
+        "Ab":  { "fingering": "466544", "fingers": "134211", "fundamental": "Ab", "barre": 4 },
+        "Ebm": { "fingering": "x68876", "fingers": "x13421", "fundamental": "Eb", "barre": 6 },
+        "Bbm": { "fingering": "x13321", "fingers": "x13421", "fundamental": "Bb", "barre": 1 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 60,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Eb":  { "fingering": "0331", "fingers": "0221", "fundamental": "Eb" },
+        "Gb":  { "fingering": "3121", "fingers": "3121", "fundamental": "Gb" },
+        "Db":  { "fingering": "1114", "fingers": "1113", "fundamental": "Db" },
+        "Ab":  { "fingering": "1343", "fingers": "1232", "fundamental": "Ab" },
+        "Ebm": { "fingering": "3321", "fingers": "4321", "fundamental": "Eb" },
+        "Bbm": { "fingering": "3111", "fingers": "4111", "fundamental": "Bb" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 60,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "4", "stroke": "rest", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Eb":  { "notes": ["Eb", "G", "Bb"],  "fundamental": "Eb", "inversion": null },
+        "Gb":  { "notes": ["Gb", "Bb", "Db"], "fundamental": "Gb", "inversion": null },
+        "Db":  { "notes": ["Db", "F", "Ab"],  "fundamental": "Db", "inversion": null },
+        "Ab":  { "notes": ["Ab", "C", "Eb"],  "fundamental": "Ab", "inversion": null },
+        "Ebm": { "notes": ["Eb", "Gb", "Bb"], "fundamental": "Eb", "inversion": null },
+        "Bbm": { "notes": ["Bb", "Db", "F"],  "fundamental": "Bb", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[Eb]\n[Gb] [Eb] [Db]\n[Gb] [Eb] [Db]\n[Ab]\n\n{section: Verso}\n [Gb] [Eb]     [Db]  [Gb]\n    I Aaaaaam\n   [Eb] [Db]    [Gb] [Eb]\n   I   Aaaam\n   [Db]      [Ab]         [Gb]\n   I  Aaaaa Aaaam Ihhh\n[Eb]    [Db]  [Gb] [Eb]  [Db]\n   Ihhhh     Ihhhh\n[Gb] [Eb]   [Db]  [Ab]\n     Ihhhhhhhh uuuhhhh\n\n{section: Outro}\n[Gb] [Eb] [Db]\n[Gb] [Eb] [Db]\n[Gb] [Eb] [Db]\n[Ab]\n"
+}
