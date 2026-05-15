@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Superblood Wolfmoon (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Superblood Wolfmoon",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "A",
+  "bpm": 154,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "A":   { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "C#m": { "fingering": "x46654", "fingers": "x13421", "fundamental": "C#", "barre": 4 },
+        "F#":  { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2 },
+        "E":   { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "B":   { "fingering": "x24442", "fingers": "x13331", "fundamental": "B", "barre": 2 },
+        "C#":  { "fingering": "x46664", "fingers": "x13341", "fundamental": "C#", "barre": 4 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 154,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "A":   { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "C#m": { "fingering": "1104", "fingers": "1103", "fundamental": "C#" },
+        "F#":  { "fingering": "3121", "fingers": "3121", "fundamental": "F#" },
+        "E":   { "fingering": "4442", "fingers": "4321", "fundamental": "E" },
+        "B":   { "fingering": "4322", "fingers": "4211", "fundamental": "B" },
+        "C#":  { "fingering": "1114", "fingers": "1114", "fundamental": "C#" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 154,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "A":   { "notes": ["A", "C#", "E"],   "fundamental": "A",  "inversion": null },
+        "C#m": { "notes": ["C#", "E", "G#"],  "fundamental": "C#", "inversion": null },
+        "F#":  { "notes": ["F#", "A#", "C#"], "fundamental": "F#", "inversion": null },
+        "E":   { "notes": ["E", "G#", "B"],   "fundamental": "E",  "inversion": null },
+        "B":   { "notes": ["B", "D#", "F#"],  "fundamental": "B",  "inversion": null },
+        "C#":  { "notes": ["C#", "F", "G#"],  "fundamental": "C#", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A]\nSuperblood wolfmoon\n\n{section: Intro 2}\n[C#m]Took her away too soon\n[F#] [E] [A]Superblood wolfmoon\n[C#m]Took her away too soon\n\n{section: Refrão}\n[F#] [E] [F#] [A]I can hear you singing in the distance\n[B] [F#] [E]I can see you when I close my eyes\nOnce [F#] [A]you were somewhere and now you're everywhere\n[B] [F#] [E]I'm feeling selfish and I want what's right\nI ask [F#] [A]for forgiveness, I beg of myself\n[B] [C#]Feeling angry, knock it off the shelf\n\n{section: Pré-Verso}\n[A] [C#m] [F#] [E]\n[A] [C#m] [F#] [E]\n\n{section: Verso 1}\n[A] [C#m]Right now I feel a lack of innocence\n[F#] [E]Searching for reveal, hypnotonic resonance\n[A] [C#m]I feel not much of anything\n[F#] [E]And the cause is life or death\n\n{section: Refrão}\n[F#] [A]Throughout the hopelessness, focus on your focusness\n[B] [F#] [E]I've been hoping that our hope dies last\nI [F#] [A]don't know anything, I question everything\n[B] [F#]This life I love is going way too fast\n[E] [F#] [A]Both my eyes are swollen, my face is broken\n[B]And I'm hoping that I hurt your\nHoping that I hurt your\n[C#]Hoping that I hurt your fist\n\n{section: Pré-Verso}\n[A] [C#m] [F#] [E]\n[A] [C#m]She was a stunner and I am stunned\n\n{section: Verso 2}\n[F#] [E]And the first thought and second thought was \"could be the one\"\n[A] [C#m]I was a prisoner, her keys and the cuffs\n[F#] [E]Yeah, I was feeling fortunate to be locked up\n[A] [C#m]But the world kept a spinning, always felt like it was ending\n[F#] [E]And love \"not with standing\", we are each of us fucked\n\n{section: Refrão}\n[F#] [E] [F#] [A]I would hear you singing in the distance\n[B] [F#] [E]I can see you when I close my eyes\nOnce [F#] [A]you were somewhere and now you're everywhere\n[B] [F#] [E]I'm feeling selfish and I want what's right\nI ask [F#] [A]for forgiveness, I beg of myself\n[B] [C#]Feeling angry, knock it off the shelf\n\n{section: Solo}\n[E] [F#]\n[E] [F#]\n[E] [F#]\n[E] [F#]\n\n{section: Interludio}\n[F#] [A] [B]\n[F#] [E] [F#] [A]Superblood wolfmoon\nTook her away too soon\n[F#] [E] [F#] [A]Superblood wolfmoon\nTook her away too soon\n[F#] [E] [F#] [A]Superblood wolfmoon\nTook her away too soon\n\n{section: Refrão}\n[B] [F#] [E] [F#] [A]I can hear you singing in the distance\n[B] [F#] [E]I can see you when I close my eyes\nOnce [F#] [A]you were somewhere and now you're everywhere\n[B] [F#]I'm feeling selfish and I want what's right\n[E] [F#] [A]Focus on your focusness, don't allow for hopelessness\n[B] [F#] [E]I've been hoping that our hope dies last\nI [F#] [A]don't know anything, I question everything\n[B] [E] [F#]This life I love is going way too fast\n"
+}

@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Dance Of The Clairvoyants (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Dance Of The Clairvoyants",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "F#m",
+  "bpm": 106,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "F#m": { "fingering": "244222", "fingers": "134111", "fundamental": "F#", "barre": 2 },
+        "D":   { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "Bm":  { "fingering": "x24432", "fingers": "x13421", "fundamental": "B", "barre": 2 },
+        "E":   { "fingering": "022100", "fingers": "023100", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 106,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "F#m": { "fingering": "2120", "fingers": "2130", "fundamental": "F#" },
+        "D":   { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "Bm":  { "fingering": "4222", "fingers": "4111", "fundamental": "B" },
+        "E":   { "fingering": "4442", "fingers": "4321", "fundamental": "E" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 106,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "F#m": { "notes": ["F#", "A", "C#"],  "fundamental": "F#", "inversion": null },
+        "D":   { "notes": ["D", "F#", "A"],   "fundamental": "D",  "inversion": null },
+        "Bm":  { "notes": ["B", "D", "F#"],   "fundamental": "B",  "inversion": null },
+        "E":   { "notes": ["E", "G#", "B"],   "fundamental": "E",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[F#m] [D]\n[F#m] [D]\n[Bm]\n\n{section: Verso 1}\n[F#m]Confusion is to commotion\n[D] [F#m]What love is to our devotion\nImperceptibly big\nBig as the ocean\n[D] [Bm]And equally hard to control\n[F#m]So save your predictions\nAnd burn your assumptions\n[D]Love is friction\n[F#m]Ripe for comfort\nEndless equations\nAnd tugging persuasions\n[D]Doors open up\n[Bm]To interpretation\n\n{section: Refrão}\n[Bm] [D] [F#m] [E]Expecting perfection leaves a lot to endure\n[Bm] [D]When the past is the present and the future's no more\n[F#m] [E]When every tomorrow is the same as before\n\n{section: Verso 2}\n[F#m] [D] [F#m] [D]The looser things get\n[Bm]The tighter you become\n[F#m]The looser things get\nTighter\nNot one man\n[D]Can be greater than the sum\nThat's not a negative thought\n[F#m]I'm positive, positive, positive\n[D]Falling down, not staying down\n[Bm]Coulda held me up rather than tearing me down\nDrown in the river\n\n{section: Refrão}\n[Bm] [D] [F#m] [E]Expecting perfection leaves a lot to endure\n[Bm] [D]When the past is the present and the future's no more\n[F#m] [E]When every tomorrow is the same as before\n\n{section: Pós-Refrão}\n[Bm] [E] [D]Numbers keep falling off the calendar's floor\n[Bm]We're stuck in our boxes\n[E] [D]Windows open no more\n[Bm]Couldn't lift up the forgetmenots\n[E] [D]Not recalling what they're for\n[Bm]I'm in love with clairvoyants\n[E] [D]'Cause they're out of this world\n\n{section: Ponte}\n[F#m] [D] [Bm]\n\n{section: Interludio}\n[F#m]I know the girls wanna dance\n[D]Fall away their circumstance\n[F#m]I know the boys wanna grow\n[D]Their dicks and fix and file things\n[Bm] [F#m]I know the girls wanna dance\n[D]Clairvoyants in a trance\n[F#m]I know the boys wanna grow\n[D] [Bm]Their dicks and fix and file things\n\n{section: Outro}\n[F#m]Stand back when the spirit comes\n[F#m]Stand back when the spirit comes\n[D]Stand back when the spirit comes\n[Bm]Stand back\n[F#m]Stand back when the spirit comes\n[F#m]Stand back when the spirit comes\n[D]Stand back when the spirit comes\n[Bm]Stand back\n[F#m]Stand back when the spirit comes\n[F#m]Stand back when the spirit comes\n[D]Stand back when the spirit comes\n[Bm]Stand back\n[F#m] [D]\n"
+}

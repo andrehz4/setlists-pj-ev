@@ -1,0 +1,97 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Who Ever Said (Pearl Jam, Gigaton 2020). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web (tabela de subtons pros 3 instrumentos)",
+    "fetched": "2026-05-15"
+  },
+  "title": "Who Ever Said",
+  "artist": "Pearl Jam",
+  "album": "Gigaton (2020)",
+  "key": "E",
+  "bpm": 100,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "E":    { "fingering": "022100", "fingers": "023100", "fundamental": "E" },
+        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
+        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
+        "Am":   { "fingering": "x02210", "fingers": "x02310", "fundamental": "A" },
+        "C/G":  { "fingering": "332010", "fingers": "321010", "fundamental": "C" },
+        "F#":   { "fingering": "244322", "fingers": "134211", "fundamental": "F#", "barre": 2 },
+        "D/A":  { "fingering": "x00232", "fingers": "x00132", "fundamental": "D" },
+        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
+        "F":    { "fingering": "133211", "fingers": "134211", "fundamental": "F", "barre": 1 },
+        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
+        "A5":   { "fingering": "x02200", "fingers": "x02300", "fundamental": "A" },
+        "G5":   { "fingering": "355400", "fingers": "134000", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "E":    { "fingering": "4442", "fingers": "4321", "fundamental": "E" },
+        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
+        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
+        "Am":   { "fingering": "2000", "fingers": "1000", "fundamental": "A" },
+        "C/G":  { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "F#":   { "fingering": "3121", "fingers": "3121", "fundamental": "F#" },
+        "D/A":  { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
+        "F":    { "fingering": "2010", "fingers": "2010", "fundamental": "F" },
+        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
+        "A5":   { "fingering": "2100", "fingers": "1200", "fundamental": "A" },
+        "G5":   { "fingering": "0230", "fingers": "0231", "fundamental": "G" }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 100,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false },
+          { "count": "3", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "up",   "muted": false },
+          { "count": "4", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "rest", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "E":    { "notes": ["E", "G#", "B"],  "fundamental": "E",  "inversion": null },
+        "G":    { "notes": ["G", "B", "D"],   "fundamental": "G",  "inversion": null },
+        "A":    { "notes": ["A", "C#", "E"],  "fundamental": "A",  "inversion": null },
+        "Am":   { "notes": ["A", "C", "E"],   "fundamental": "A",  "inversion": null },
+        "C/G":  { "notes": ["G", "C", "E"],   "fundamental": "G",  "inversion": "primeira" },
+        "F#":   { "notes": ["F#", "A#", "C#"],"fundamental": "F#", "inversion": null },
+        "D/A":  { "notes": ["A", "D", "F#"],  "fundamental": "A",  "inversion": "primeira" },
+        "D":    { "notes": ["D", "F#", "A"],  "fundamental": "D",  "inversion": null },
+        "F":    { "notes": ["F", "A", "C"],   "fundamental": "F",  "inversion": null },
+        "C":    { "notes": ["C", "E", "G"],   "fundamental": "C",  "inversion": null },
+        "A5":   { "notes": ["A", "E"],         "fundamental": "A",  "inversion": null },
+        "G5":   { "notes": ["G", "D"],         "fundamental": "G",  "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[E]\n\n{section: Verso 1}\n[E]Drowning in their dissertations\nRandom speakers in my mind\nYeah, they never stop their fortifications\nAnd blocking my precious time\n[G]You used to let it go and let it float away\n[A]You don't get to speak with twice as much to say\n\n{section: Pré-Refrão}\n[Am]It's all in the [C/G]delivery\n[F#]Said the messenger who is [D/A]now dead\n[Am]Was all on the [C/G]periphery\n[F#]I didn't see him but I heard [D/A]what he said\n[Am]Aw, sideways talk, [C/G]poisoning our thoughts\n[F#]Everyone walks and it's no [D/A]ones [D]fault\n\n{section: Refrão}\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n\n{section: Instrumental}\n[Am] [C/G] [F#] [D/A]\n[Am] [C/G] [F#] [D/A]\n[Am] [C/G] [F#] [D/A]\n[Am] [C/G] [F#] [D/A]\n[D]\n\n{section: Refrão}\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n\n{section: Instrumental}\n[Am] [G] [F] [C] [G]\n[Am]\n\n{section: Ponte}\n[G]Home is where... [F]The broken heart is [C] [G] [Am]\n[G]Home is where... [F]every scar is [C] [G] [Am]\n[G]Home is where... [F]every scar is [C] [G]\n[Am]Blinking stars, beneath you roam\n[G]Room to tomb and [F]cradle to grave\n[C]All the answers [G]will be found\n[Am]In the mistakes that we have made\n[G]In the mistakes [F]that we have made\n[C] [G]\n\n{section: Instrumental}\n[Am] [G] [F] [C] [G]\n\n{section: Ponte 2}\n[Am]One bad ear and [G]one eye blind\n[F]It takes a village [C]but don't take [G]mine\n[Am]Living forward in a [C]backwards town\n[F#]I feed 'em drinks just to [D]watch 'em drown\n[Am]Swallow my pencil and [C/G]bleed out my pen\n[F#]Surrender the wish we'll be [D/A]together again\n[Am]But I won't [C/G]give up...\n[F#]No I won't give [D/A]up on satisfaction...\n[Am]Satisfaction [C/G] [F#] [D/A]\n[Am] [C/G] [F#]\nNo I won't give up on satisfaction\n[D/A]Give up on satisfaction\n\n{section: Ponte 3}\n[Am]Pull myself aside on a [C/G]sleepless night\n[F#]Sadness blurs, I'm in need of [A]a light\n[Am]Out of balance, balance, [C/G]balance this time\n[F#]I'm feeling fading, calling as I'm [D/A]falling out of sight\n\n{section: Pré-Refrão}\n[Am]As the silence gets louder [C/G]my heart gets pounding\n[F#]And ventricles pumping, [D/A]working overtime\n[Am]Our freedoms fraught with danger [C/G]being circumscribed\n[F#]A life cut short and [D/A]circumsized\n[Am]A rubble of commandments from the [C/G]road, step aside\n[F#]A rumble of commandments in the [D/A]road, step aside\n\n{section: Refrão}\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n[E]Whoever said it's all been said\n[A]Gave up on [G]satisfaction\n\n{section: Outro}\n[A5] [G5] [A5] [G5]\n[E]\n"
+}
