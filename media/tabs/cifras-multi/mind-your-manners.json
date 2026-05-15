@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Mind Your Manners (Pearl Jam, Lightning Bolt 2013). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Mind Your Manners",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "B",
+  "bpm": 176,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "B5": { "fingering": "x24400", "fingers": "x13400", "fundamental": null, "barre": 2 },
+        "F5": { "fingering": "133000", "fingers": "134000", "fundamental": null, "barre": 1 },
+        "E5": { "fingering": "022000", "fingers": "023000", "fundamental": null },
+        "D5": { "fingering": "xx0230", "fingers": "xx0130", "fundamental": null },
+        "C5": { "fingering": "x35500", "fingers": "x13400", "fundamental": null, "barre": 3 },
+        "A5": { "fingering": "x02200", "fingers": "x02300", "fundamental": null },
+        "G5": { "fingering": "355000", "fingers": "134000", "fundamental": null, "barre": 3 },
+        "F#5": { "fingering": "244000", "fingers": "134000", "fundamental": null, "barre": 2 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 176,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "B5": { "fingering": "4200", "fingers": "4200", "fundamental": null },
+        "F5": { "fingering": "5300", "fingers": "5300", "fundamental": null },
+        "E5": { "fingering": "4400", "fingers": "4400", "fundamental": null },
+        "D5": { "fingering": "2200", "fingers": "2200", "fundamental": null },
+        "C5": { "fingering": "5300", "fingers": "5300", "fundamental": null },
+        "A5": { "fingering": "2100", "fingers": "2100", "fundamental": null },
+        "G5": { "fingering": "0230", "fingers": "0231", "fundamental": null },
+        "F#5": { "fingering": "3210", "fingers": "3210", "fundamental": null }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 176,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "B5": { "notes": ["B", "F#"], "fundamental": "B", "inversion": null },
+        "F5": { "notes": ["F", "C"], "fundamental": "F", "inversion": null },
+        "E5": { "notes": ["E", "B"], "fundamental": "E", "inversion": null },
+        "D5": { "notes": ["D", "A"], "fundamental": "D", "inversion": null },
+        "C5": { "notes": ["C", "G"], "fundamental": "C", "inversion": null },
+        "A5": { "notes": ["A", "E"], "fundamental": "A", "inversion": null },
+        "G5": { "notes": ["G", "D"], "fundamental": "G", "inversion": null },
+        "F#5": { "notes": ["F#", "C#"], "fundamental": "F#", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n(riff de guitarra)\n\n{section: Verso 1}\n[B5]                      [F5]         [E5]       [D5]\nI've got an unfortunate feeling, I been beaten down\n[B5]       [C5]    [B5]    [A5]\n(continua)\n[B5]                 [F5]         [E5]         [D5]\nI feel that I'm done believing, now the truth is coming out\n[B5]       [C5]    [B5]    [A5]\n(continua)\n[B5]          [F5]    [E5]       [D5]\nWhat they've taken is more than a vow\n[B5]       [C5]    [B5]    [A5]\n(continua)\n[B5]            [F5]        [E5]           [D5]\nThey've taken your innocence and then they\n[B5]          [C5]      [B5]      [A5]\nThrow em on a burning pile\n\n{section: Refrão}\n[D5]          [C5]    [D5]      [C5]   [A5]       [C5]\nAll along they're saying, \"Mind your manners!\"\n\n{section: Verso 2}\n[B5]               [F5]           [E5]         [D5]\nI caught myself believing that I needed God\n[B5]       [C5]    [B5]    [A5]\n(continua)\n[B5]            [F5]              [E5]             [D5]\nAnd if he's out there somewhere we sure could use him now\n[B5]       [C5]    [B5]    [A5]\n(continua)\n[B5]            [F5]     [E5]     [D5]\nTry my patience! My patience tried\n[B5]       [C5]    [B5]    [A5]\n(continua)\n[B5]                  [F5]              [E5]          [D5]\nThis world's a long love letter that makes me want to cry\n[B5]       [C5]    [B5]    [A5]\n(continua)\n\n{section: Refrão 2}\n[D5]          [C5]    [D5]      [C5]   [A5]           [C5]\nAll along they're saying, \"Mind your manners!\"\nThat's all they're saying\n\n{section: Interlúdio}\n[A5]                                          [G5]\nSelf-realized and metaphysically redeemed\n[F#5]\nMay not live another life\n[G5]\nMay not solve all mysteries\n[A5]\nRight around the corner\n[G5]\nCould be bigger than ourselves\n[F#5]\nWe could will it to the sky\n[G5]\nOr we could something else\n\n{section: Solo}\n[B5] [F5] [E5] [D5] [B5] [C5] [B5] [A5] x4\n\n{section: Refrão 3}\n[D5]             [C5]    [D5]      [C5]   [A5]           [C5]\nAnd all along they're saying, \"Mind your manners!\"\nAlways prayin'\n\n{section: Interlúdio 2}\n[A5]                                          [G5]\nSelf-realized and metaphysically redeemed\n[F#5]\nMay not live another life\n[G5]\nMay not solve all mysteries\n[A5]\nRight around the corner\n[G5]\nCould be bigger than ourselves\n[F#5]\nWe could will it to the sky\n[G5]\nOr we could something else\n\n{section: Outro}\n[B5]    [E5]    [G5]    [D5]    [A5]    [D5]\nGo to Heaven (that's swell)\nHow do you like your living hell?\n[B5]    [E5]    [G5]    [D5]    [A5]    [D5]\n(x2)\n[B5]    [E5]    [G5]    [D5]    [A5]    [D5]    [A5]    [D5]    [A5]    [B5]\nLiving heeeeeeeeeell"
+}

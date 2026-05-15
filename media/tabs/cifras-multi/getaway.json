@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "purpose": "Cifra multi-instrumento de Getaway (Pearl Jam, Lightning Bolt 2013). Estrutura: instruments contem diagramas de acordes por instrumento (violao 6 cordas, ukulele 4 cordas, piano notas); content eh o texto ChordPro compartilhado entre os 3.",
+    "source": "Ultimate Guitar (texto da cifra) + Claude web",
+    "fetched": "2026-05-15"
+  },
+  "title": "Getaway",
+  "artist": "Pearl Jam",
+  "album": "Lightning Bolt (2013)",
+  "key": "Am",
+  "bpm": 124,
+  "default_instrument": "violao",
+  "instruments": {
+    "violao": {
+      "label": "Violão",
+      "tuning": "EADGBE",
+      "chords": {
+        "Am": { "fingering": "x02210", "fingers": "x02310", "fundamental": null },
+        "C": { "fingering": "x32010", "fingers": "x32010", "fundamental": null },
+        "D": { "fingering": "xx0232", "fingers": "xx0132", "fundamental": null },
+        "G": { "fingering": "320003", "fingers": "210003", "fundamental": null },
+        "F": { "fingering": "133211", "fingers": "134211", "fundamental": null, "barre": 1 },
+        "E": { "fingering": "022100", "fingers": "023100", "fundamental": null },
+        "A5": { "fingering": "x02200", "fingers": "x02300", "fundamental": null },
+        "C5": { "fingering": "x35500", "fingers": "x35500", "fundamental": null, "barre": 3 },
+        "D5": { "fingering": "xx0230", "fingers": "xx0130", "fundamental": null },
+        "G5": { "fingering": "355x00", "fingers": "355x00", "fundamental": null, "barre": 3 }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 124,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "ukulele": {
+      "label": "Ukulele",
+      "tuning": "GCEA",
+      "chords": {
+        "Am": { "fingering": "2000", "fingers": "1000", "fundamental": null },
+        "C": { "fingering": "0003", "fingers": "0003", "fundamental": null },
+        "D": { "fingering": "2220", "fingers": "1230", "fundamental": null },
+        "G": { "fingering": "0232", "fingers": "0231", "fundamental": null },
+        "F": { "fingering": "2010", "fingers": "2010", "fundamental": null },
+        "E": { "fingering": "4442", "fingers": "4321", "fundamental": null },
+        "A5": { "fingering": "2100", "fingers": "2100", "fundamental": null },
+        "C5": { "fingering": "5300", "fingers": "5300", "fundamental": null },
+        "D5": { "fingering": "2210", "fingers": "2210", "fundamental": null },
+        "G5": { "fingering": "0230", "fingers": "0231", "fundamental": null }
+      },
+      "strumming": {
+        "label": "WHOLE SONG",
+        "bpm": 124,
+        "beats": [
+          { "count": "1", "stroke": "down", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "2", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "down", "muted": false },
+          { "count": "3", "stroke": "up", "muted": false },
+          { "count": "&", "stroke": "up", "muted": false }
+        ]
+      }
+    },
+    "piano": {
+      "label": "Piano",
+      "chords": {
+        "Am": { "notes": ["A", "C", "E"], "fundamental": "A", "inversion": null },
+        "C": { "notes": ["C", "E", "G"], "fundamental": "C", "inversion": null },
+        "D": { "notes": ["D", "F#", "A"], "fundamental": "D", "inversion": null },
+        "G": { "notes": ["G", "B", "D"], "fundamental": "G", "inversion": null },
+        "F": { "notes": ["F", "A", "C"], "fundamental": "F", "inversion": null },
+        "E": { "notes": ["E", "G#", "B"], "fundamental": "E", "inversion": null },
+        "A5": { "notes": ["A", "E"], "fundamental": "A", "inversion": null },
+        "C5": { "notes": ["C", "G"], "fundamental": "C", "inversion": null },
+        "D5": { "notes": ["D", "A"], "fundamental": "D", "inversion": null },
+        "G5": { "notes": ["G", "D"], "fundamental": "G", "inversion": null }
+      }
+    }
+  },
+  "content": "{section: Intro}\n[A5] [C5] [A5] [C5] [A5] [D5] [C5] [G5]\n\n{section: Verso 1}\n[Am]                           [C]\nEveryone's a critic looking back up the river\n[Am]                [C]        [Am]   [D]      [C]    [G]\nEvery boat is leaking in this town\n[Am]                              [C]\nEverybody is thinking they can all be delivered\n[Am]      [D]           [C]         [G]\nSitting in a box like lost and found\n\n{section: Ponte 1}\n[F]          [Am]      [G]\nBut I found my place and it's all right\n[F]                   [Am]                [G]\nWe're all searching for a better way\n[F]          [Am]      [G]\nGet this off my plate\n[C]                 [D]\nIt's all right, I got my own way to believe\n\n{section: Verso 2}\n[Am]                             [C]\nFind a lighthouse in the dark stormy weather\n[Am]               [C]           [Am]    [D]      [C]    [G]\nWe all could use a sedative right now\n[Am]                                      [C]\nHoly rollers sitting with their backs to the middle\n[Am]       [D]         [C]        [G]\nAll alone and sinking the bow\n\n{section: Ponte 2}\n[F]                              [Am]              [G]\nAnd if you want to have to pray, it's all right\n[F]                              [Am]                  [G]\nWe all be thinking with our different brain\n[F]          [Am]      [G]\nGet this off my plate\n[C]                 [D]\nIt's all right, I got my own way to believe\n\n{section: Refrão}\n[Am]         [C]\nIt's okay, sometimes you find yourself\n[F]                                       [E]\nHaving to put all your faith in no faith\n[Am]                     [C]\nMine is mine and yours won't take its place\n[F]                    [E]\nNow, make your getaway\n\n{section: Verso 3}\n[Am]                              [C]\nScience says we're making love like the lizards\n[Am]              [C]            [Am]    [D]        [C]    [G]\nTry and say that fossils ain't profound\n[Am]                                       [C]\nSimon says we're not allowed to consider\n[Am]      [D]                  [C]     [G]\nSimon says stand up sit down you're out\n\n{section: Ponte 3}\n[F]          [Am]      [G]\nBut I found my place\n[F]                 [Am]                    [G]\nAnd it's all right, I'm bearing witness to some better things\n[F]          [Am]      [G]\nGet this off my plate\n[C]                 [D]\nIt's all right, I've got my own way to believe\n\n{section: Refrão 2}\n[Am]         [C]\nIt's okay, sometimes you find yourself\n[F]                                  [E]\nBeing told to change your ways\n[Am]                     [C]\nThere's no way, mine is mine and yours won't take its place\n[F]                    [E]\nNow make your getaway\n\n{section: Outro}\n[Am]         [C]\nIt's okay, sometimes you find yourself\n[F]                                       [E]\nHaving to put all your faith in no faith\n[Am]                     [C]\nMine is mine and yours won't take its place\n[F]                    [E]\nNow make your getaway, it's okay\n[Am]         [C]\nSometimes you find yourself\n[F]                           [E]\nBeing told to change your ways\n[Am]                    [C]\nFor god's sake, mine is mine and yours won't take its place\n[F]    [E]\n(fade)"
+}
