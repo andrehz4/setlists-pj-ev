@@ -1,15 +1,26 @@
 name: Publish Instagram
 on:
   schedule:
-    # Roda apenas dentro das janelas ativas, a cada 20min.
-    # Fora das janelas nao ha conteudo novo entrando na fila.
+    # Roda apenas dentro das 4 janelas ativas (routine + story), a cada 20min.
+    # Cada janela cobre ~1h40 = 5 runs, garantindo que o publish nao perde
+    # nenhum item que a routine ou o community-fetch jogou na fila.
     #
-    # Janela A: community manhã (12:25 UTC) + routine (12:30 UTC) = 09:10-10:50 BRT
-    - cron: '10,30,50 12,13 * * *'
-    # Janela B: story diario (16:00 UTC = 13:00 BRT) + ~40min de janela
+    # Janela A: routine 06:30 BRT (09:30 UTC) — noticias manha
+    # Runs: 09:10, 09:30, 09:50, 10:10, 10:30 UTC = 06:10-07:30 BRT
+    - cron: '10,30,50 9 * * *'
+    - cron: '10,30 10 * * *'
+    # Janela B: community digest (12:25 UTC) + routine 09:30 BRT (12:30 UTC)
+    # Runs: 12:10, 12:30, 12:50, 13:10, 13:30 UTC = 09:10-10:30 BRT
+    - cron: '10,30,50 12 * * *'
+    - cron: '10,30 13 * * *'
+    # Janela C: story diario (16:00 UTC = 13:00 BRT)
+    # Runs: 16:00, 16:20, 16:40, 17:00, 17:20 UTC = 13:00-14:20 BRT
     - cron: '0,20,40 16 * * *'
-    # Janela C: community noite (00:25 UTC) + routine (00:30 UTC) = 21:10-22:50 BRT
-    - cron: '10,30,50 0,1 * * *'
+    - cron: '0,20 17 * * *'
+    # Janela D: community spotlight (00:25 UTC) + routine 21:30 BRT (00:30 UTC)
+    # Runs: 00:10, 00:30, 00:50, 01:10, 01:30 UTC = 21:10-22:30 BRT
+    - cron: '10,30,50 0 * * *'
+    - cron: '10,30 1 * * *'
   workflow_dispatch:
     inputs:
       dry-run:
