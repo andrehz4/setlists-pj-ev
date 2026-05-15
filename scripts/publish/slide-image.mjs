@@ -3,10 +3,12 @@
 // Formato 1080x1350 (4:5 feed/carrossel). Scale 3.375 sobre o design 320x400.
 
 import sharp from "sharp";
+import smartcrop from "smartcrop-sharp";
 import fs from "node:fs/promises";
 import path from "node:path";
 import got from "got";
 import { getEditionNumber } from "./edition.mjs";
+import { faceCropRegion } from "./face-crop.mjs";
 
 const SLIDE_W = 1080;
 const SLIDE_H = 1350;
@@ -217,32 +219,57 @@ export async function buildSlide(item) {
 
   const layers = [];
 
-  // Foto na moldura SEM cortar nada (garante que nenhuma cabeca e
-  // cortada). A foto inteira entra com fit:inside e o vazio da
-  // moldura e preenchido por uma versao da propria foto em cover,
-  // desfocada e escurecida (tecnica letterbox-blur, estilo editorial).
+  // Foto full-bleed com enquadramento inteligente, em 3 niveis:
+  //  1) deteccao de rosto real (blazeface): se houver gente, recorta
+  //     mantendo todos os rostos no terco superior com headroom;
+  //  2) smartcrop (pele+bordas+saturacao): melhor pra poster/album/
+  //     objeto sem rosto;
+  //  3) cover "attention": ultimo recurso.
+  // Sempre preenche a moldura inteira (sem barra, sem blur).
   if (photoRaw) {
     try {
-      // Fundo: foto cover + blur forte + escurecida
-      const bg = await sharp(photoRaw, { failOn: "none" })
-        .resize(CONT_W, PHOTO_H, { fit: "cover", position: "centre" })
-        .blur(30)
-        .modulate({ brightness: 0.5 })
-        .toBuffer();
+      const meta = await sharp(photoRaw, { failOn: "none" }).metadata();
+      let photoBuf = null;
 
-      // Frente: foto inteira, sem corte, encaixada na moldura
-      const fg = await sharp(photoRaw, { failOn: "none" })
-        .resize(CONT_W, PHOTO_H, { fit: "inside", withoutEnlargement: false })
-        .toBuffer();
-      const fgMeta = await sharp(fg).metadata();
-      const fgLeft = Math.max(0, Math.round((CONT_W - fgMeta.width) / 2));
-      const fgTop  = Math.max(0, Math.round((PHOTO_H - fgMeta.height) / 2));
+      // 1) rosto real
+      try {
+        const fc = await faceCropRegion(photoRaw, CONT_W, PHOTO_H);
+        if (fc) {
+          photoBuf = await sharp(photoRaw, { failOn: "none" })
+            .extract(fc)
+            .resize(CONT_W, PHOTO_H, { fit: "cover" })
+            .toBuffer();
+        }
+      } catch {}
 
-      const framed = await sharp(bg)
-        .composite([{ input: fg, left: fgLeft, top: fgTop }])
-        .toBuffer();
+      // 2) smartcrop
+      if (!photoBuf) {
+        try {
+          const { topCrop: c } = await smartcrop.crop(photoRaw, {
+            width: CONT_W,
+            height: PHOTO_H,
+          });
+          if (c && c.width > 0 && c.height > 0) {
+            const left = Math.max(0, Math.min(meta.width - 1, Math.round(c.x)));
+            const top = Math.max(0, Math.min(meta.height - 1, Math.round(c.y)));
+            const width = Math.max(1, Math.min(meta.width - left, Math.round(c.width)));
+            const height = Math.max(1, Math.min(meta.height - top, Math.round(c.height)));
+            photoBuf = await sharp(photoRaw, { failOn: "none" })
+              .extract({ left, top, width, height })
+              .resize(CONT_W, PHOTO_H, { fit: "cover" })
+              .toBuffer();
+          }
+        } catch {}
+      }
 
-      layers.push({ input: framed, top: PHOTO_TOP, left: SIDE });
+      // 3) attention
+      if (!photoBuf) {
+        photoBuf = await sharp(photoRaw, { failOn: "none" })
+          .resize(CONT_W, PHOTO_H, { fit: "cover", position: "attention" })
+          .toBuffer();
+      }
+
+      layers.push({ input: photoBuf, top: PHOTO_TOP, left: SIDE });
     } catch {}
   }
 
