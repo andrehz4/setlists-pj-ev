@@ -200,41 +200,8 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor) {
   }
 }
 
-// Notif Telegram apos publish bem-sucedido (so dispara se houve post real).
-async function notifyTelegram(results) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return;
-
-  const success = results.filter((r) => r.succeeded > 0 && r.postId);
-  if (success.length === 0) return; // nada postado, silencio
-
-  const totalItems = success.reduce((s, r) => s + r.items.length, 0);
-  const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
-
-  const lines = [];
-  lines.push(`✅ <b>Publicado no @smufdpj, ${brtNow} BRT</b>`);
-  lines.push("");
-  for (const batch of success) {
-    const label = batch.type === "spotlight" ? "Spotlight da comunidade" : "Notícias regulares";
-    lines.push(`<b>${batch.items.length} ${batch.items.length === 1 ? "post" : "posts"} (${label})</b>`);
-    lines.push(`<i>postId: <code>${batch.postId}</code></i>`);
-    lines.push("");
-    for (let i = 0; i < batch.items.length; i++) {
-      const it = batch.items[i];
-      const titulo = (it.title_pt || "(sem titulo)")
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      const tagsStr = it.tags.length ? `  <i>tags: ${it.tags.join(", ")}</i>` : "";
-      lines.push(`${i + 1}. <b>${titulo}</b>${tagsStr}`);
-      lines.push(`   ↳ https://setlists-pj-ev.pages.dev/n/${it.id}`);
-    }
-    lines.push("");
-  }
-  lines.push(`Total: ${totalItems} item(s) no feed agora.`);
-
-  const text = lines.join("\n");
+async function sendTelegram(token, chatId, text) {
   const truncated = text.length > 3900 ? text.slice(0, 3900) + "\n\n(truncado)" : text;
-
   try {
     const params = new URLSearchParams({
       chat_id: chatId,
@@ -252,6 +219,60 @@ async function notifyTelegram(results) {
     else console.log("[publish] telegram notif enviada");
   } catch (e) {
     console.warn("[publish] telegram erro:", e.message);
+  }
+}
+
+async function notifyTelegram(results) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+
+  const success = results.filter((r) => r.succeeded > 0 && r.postId);
+  const failed = results.filter((r) => r.succeeded === 0 && r.error);
+
+  if (success.length > 0) {
+    const totalItems = success.reduce((s, r) => s + r.items.length, 0);
+    const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
+    const lines = [];
+    lines.push(`✅ <b>Publicado no @smufdpj, ${brtNow} BRT</b>`);
+    lines.push("");
+    for (const batch of success) {
+      const label = batch.type === "spotlight" ? "Spotlight da comunidade" : "Notícias regulares";
+      lines.push(`<b>${batch.items.length} ${batch.items.length === 1 ? "post" : "posts"} (${label})</b>`);
+      lines.push(`<i>postId: <code>${batch.postId}</code></i>`);
+      lines.push("");
+      for (let i = 0; i < batch.items.length; i++) {
+        const it = batch.items[i];
+        const titulo = (it.title_pt || "(sem titulo)")
+          .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const tagsStr = it.tags.length ? `  <i>tags: ${it.tags.join(", ")}</i>` : "";
+        lines.push(`${i + 1}. <b>${titulo}</b>${tagsStr}`);
+        lines.push(`   ↳ https://setlists-pj-ev.pages.dev/n/${it.id}`);
+      }
+      lines.push("");
+    }
+    lines.push(`Total: ${totalItems} item(s) no feed agora.`);
+    await sendTelegram(token, chatId, lines.join("\n"));
+  }
+
+  if (failed.length > 0) {
+    const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
+    const lines = [];
+    lines.push(`❌ <b>Falha ao publicar no @smufdpj, ${brtNow} BRT</b>`);
+    lines.push("");
+    for (const batch of failed) {
+      const err = (batch.error || "erro desconhecido")
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      lines.push(`<b>tipo: ${batch.type}</b> — ${batch.attempted} item(s) tentado(s)`);
+      lines.push(`<code>${err}</code>`);
+      lines.push("");
+    }
+    const tokenError = failed.some((r) => /blocked|token|expired|oauth/i.test(r.error || ""));
+    if (tokenError) {
+      lines.push("⚠️ Provavel token expirado. Reautorize em Meta Developer Portal e atualize o secret:");
+      lines.push("<code>gh secret set IG_ACCESS_TOKEN --repo andrehz4/setlists-pj-ev</code>");
+    }
+    await sendTelegram(token, chatId, lines.join("\n"));
   }
 }
 
@@ -302,8 +323,13 @@ async function main() {
     `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
   );
 
-  // Notif Telegram so se houve post real (vazio = silencio)
   if (!DRY) await notifyTelegram(results);
+
+  const allFailed = results.length > 0 && results.every((r) => r.succeeded === 0 && r.error);
+  if (allFailed) {
+    console.error("[publish] todos os batches falharam, sinalizando erro pro workflow");
+    process.exitCode = 1;
+  }
 
   console.log(`[publish] FIM`, results);
 }
