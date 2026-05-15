@@ -117,8 +117,10 @@ function buildCadernoBSvg(item, edition, editionDate) {
   const date = escapeXml(formatDate(editionDate));
   const ed   = String(edition);
 
-  // Headline: ~18 chars/linha, max 4 linhas
-  const headLines = wrapText(item.title_pt || "", 18, 4);
+  // Headline: "Pearl Jam" sempre em CAIXA ALTA (reforco de marca);
+  // ~18 chars/linha, max 4 linhas
+  const titulo = String(item.title_pt || "").replace(/pearl\s+jam/gi, "PEARL JAM");
+  const headLines = wrapText(titulo, 18, 4);
   const headSpans = headLines
     .map((l, i) => `<tspan x="${SIDE}" dy="${i === 0 ? 0 : HEADLINE_LH}">${escapeXml(l)}</tspan>`)
     .join("");
