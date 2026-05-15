@@ -80,13 +80,15 @@ async function main() {
       }
     }
   } else {
+    // NAO imprime o token — log do Actions e publico no repo publico.
+    // Para adotar o token manualmente, rode o script localmente:
+    //   $env:IG_ACCESS_TOKEN = "<token atual>"
+    //   node scripts/publish/refresh-token.mjs
     console.log("");
-    console.log("[refresh] pra adotar, rode manualmente:");
-    console.log("  gh secret set IG_ACCESS_TOKEN --repo andrehz4/setlists-pj-ev");
-    console.log("  (cole o token completo quando perguntado)");
-    console.log("");
-    console.log("token completo (NAO commite nem cole em chat publico):");
-    console.log(r.access_token);
+    console.log("[refresh] GH_PAT_SECRETS nao configurado — token gerado mas NAO salvo.");
+    console.log("[refresh] Configure o secret GH_PAT_SECRETS (PAT escopo 'repo') no repo.");
+    console.log("[refresh] Veja instrucoes em .github/workflows/refresh-ig-token.yml");
+    process.exit(1);
   }
 }
 

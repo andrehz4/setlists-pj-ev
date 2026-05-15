@@ -1,9 +1,22 @@
 name: Refresh IG token
+# Tokens long-lived do Instagram expiram em 60 dias.
+# Roda no dia 1 de cada mes — suficiente pra renovar dentro do prazo.
+#
+# PRE-REQUISITO: secret GH_PAT_SECRETS com um PAT de escopo "repo".
+#   Como criar:
+#     1. github.com > Settings > Developer settings > Personal access tokens > Tokens (classic)
+#     2. "Generate new token (classic)" > seleciona escopo "repo" > Generate
+#     3. Copia o token gerado
+#     4. No repo: Settings > Secrets and variables > Actions > New repository secret
+#        Name: GH_PAT_SECRETS  |  Value: <token copiado>
+#   Esse PAT so precisa existir uma vez. Nao expira enquanto voce nao revogar.
+#
+# SEM o PAT: o workflow falha com mensagem clara e NAO imprime o token no log.
 on:
   schedule:
-    # Tokens long-lived expiram em 60 dias. Renovamos no dia 1 e dia 15
-    # de cada mes, garantindo no maximo ~15 dias de gap.
-    - cron: '13 6 1,15 * *'
+    # Dia 1 de cada mes, 06:13 UTC. Token expira em 60 dias, renovar 1x/mes e
+    # suficiente com boa margem de seguranca.
+    - cron: '13 6 1 * *'
   workflow_dispatch:
 
 permissions:
@@ -18,6 +31,16 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Verifica GH_PAT_SECRETS
+        env:
+          PAT: ${{ secrets.GH_PAT_SECRETS }}
+        run: |
+          if [ -z "$PAT" ]; then
+            echo "::error::GH_PAT_SECRETS nao configurado. Veja instrucoes no topo deste workflow."
+            exit 1
+          fi
+          echo "GH_PAT_SECRETS presente, prosseguindo."
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -29,8 +52,6 @@ jobs:
       - name: Refresh token
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-          # PAT precisa escopo actions:write pra escrever secret. Configurar
-          # em Settings > Secrets > Actions > GH_PAT_SECRETS. Sem ele, o
-          # script imprime o novo token mascarado e Andre roda manual.
           GH_TOKEN: ${{ secrets.GH_PAT_SECRETS }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: node scripts/publish/refresh-token.mjs
