@@ -490,7 +490,23 @@ async function main() {
 
 function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
 
-main().catch((e) => {
-  console.error("[news] FATAL:", e);
-  process.exit(1);
-});
+// Watchdog: se o trabalho real travar (socket de feed/scrape pendurado sem
+// fechar, download de imagem sem timeout no nivel de socket), aborta com
+// mensagem clara em vez de queimar 12min de CI ate o GitHub dar "cancelled"
+// opaco. O trabalho normal termina em ~30-45s, entao 8min e folga enorme.
+const WATCHDOG_MS = 8 * 60 * 1000;
+const watchdog = setTimeout(() => {
+  console.error(`[news] WATCHDOG: passou de ${WATCHDOG_MS / 60000}min sem terminar, abortando`);
+  process.exit(2);
+}, WATCHDOG_MS);
+watchdog.unref();
+
+// process.exit explicito: o main() resolve em segundos, mas got/rss-parser/sharp
+// podem deixar um socket no event loop que demora minutos pra fechar (ou nunca
+// fecha). Como todas as escritas de arquivo sao await, e seguro encerrar aqui.
+main()
+  .then(() => process.exit(0))
+  .catch((e) => {
+    console.error("[news] FATAL:", e);
+    process.exit(1);
+  });
