@@ -15,7 +15,7 @@ export const SLIDES_DIR = path.resolve("media/news/instagram-slides");
 // Caderno B — layout constants (1080px)
 const SIDE       = 61;    // margem lat. (= 18 * 3.375)
 const CONT_W     = SLIDE_W - SIDE * 2; // 958
-const BAR_H      = 88;    // masthead bar height (design: 16px font + padding × 3.375)
+const BAR_H      = 120;   // masthead bar height (design 320px: ~36px × 3.375)
 const EYEBROW_Y  = 216;   // baseline do eyebrow
 const EYEBROW_RY = 226;   // rule abaixo do eyebrow
 const EYEBROW_RW = 340;   // largura da rule
@@ -135,18 +135,18 @@ function buildCadernoBSvg(item, edition, editionDate) {
   <rect x="0" y="${BAR_H}"     width="${SLIDE_W}" height="4"  fill="${CREME}"/>
   <rect x="0" y="${BAR_H + 8}" width="${SLIDE_W}" height="2"  fill="${CREME}"/>
 
-  <!-- Wordmark serif italic (font-size 16 do design × 3.375 = 54 → ajustado a barra 88px) -->
-  <text x="${SIDE}" y="56"
+  <!-- Wordmark serif italic, centrado verticalmente na barra 120px -->
+  <text x="${SIDE}" y="74"
     font-family="${SERIF}" font-style="italic" font-weight="700"
     font-size="36" fill="${CREME}" letter-spacing="-0.5"
   >S&#243; mais Um F&#227; de Pearl Jam</text>
 
-  <!-- Edicao + data (canto direito) -->
-  <text x="${SLIDE_W - SIDE}" y="38"
+  <!-- Edicao + data (canto direito), 2 linhas centradas -->
+  <text x="${SLIDE_W - SIDE}" y="54"
     font-family="${MONO}" font-size="18" fill="${CREME}"
     letter-spacing="3" text-anchor="end" opacity="0.85"
   >ANO 1 · N° ${ed}</text>
-  <text x="${SLIDE_W - SIDE}" y="62"
+  <text x="${SLIDE_W - SIDE}" y="82"
     font-family="${MONO}" font-size="18" fill="${CREME}"
     letter-spacing="3" text-anchor="end" opacity="0.85"
   >${date}</text>
