@@ -15,13 +15,15 @@
 
 import brutalist from "./brutalist.mjs";
 import editorialBadge from "./editorial-badge.mjs";
+import cadernoB from "./caderno-b.mjs";
 
 export const STYLES = {
   brutalist,
   "editorial-badge": editorialBadge,
+  "caderno-b": cadernoB,
 };
 
-export const DEFAULT_STYLE = "editorial-badge";
+export const DEFAULT_STYLE = "caderno-b";
 
 export function pickStyle(name) {
   return STYLES[name] || STYLES[DEFAULT_STYLE];
