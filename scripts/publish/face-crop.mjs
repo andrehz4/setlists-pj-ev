@@ -77,12 +77,19 @@ export async function faceCropRegion(photoBuf, targetW, targetH) {
 
   const AR = targetW / targetH;
 
-  // Altura do corte: rosto(s) ocupam ~32% da altura -> sobra
-  // headroom acima e torso/contexto abaixo. Limita zoom: nunca
-  // menor que 55% da imagem (evita super zoom em rosto distante)
-  // nem maior que a propria imagem.
-  let cropH = faceH / 0.32;
-  cropH = Math.max(cropH, H * 0.55);
+  // Se o rosto encosta no topo da fonte, a cabeca/testa quase
+  // sempre ja vem cortada na imagem original (thumbnail/og:image).
+  // Nesse caso NAO da zoom: usa o maior corte possivel pra mostrar
+  // o maximo de contexto (corpo/cena) em vez de um closeup de
+  // cabeca cortada. headTop=true.
+  const headTop = minY <= H * 0.03;
+
+  // Altura do corte. Normal: rosto(s) ~28% da altura -> bastante
+  // headroom acima e torso/contexto abaixo. Com headTop: o maior
+  // corte possivel (mostra tudo, menos zoom = menos cara de
+  // cabeca cortada). Limites: nunca abaixo de 60% da imagem.
+  let cropH = headTop ? H : faceH / 0.28;
+  cropH = Math.max(cropH, H * 0.6);
   cropH = Math.min(cropH, H);
   let cropW = cropH * AR;
   if (cropW > W) {
@@ -90,11 +97,12 @@ export async function faceCropRegion(photoBuf, targetW, targetH) {
     cropH = cropW / AR;
   }
 
-  // Posicao: centro horizontal no centro dos rostos; vertical
-  // colocando o centro dos rostos a ~38% do topo do corte
-  // (headroom natural acima da cabeca).
+  // Posicao: centro horizontal no centro dos rostos. Vertical:
+  // normal coloca o centro dos rostos a ~42% do topo (headroom);
+  // com headTop ancora no topo (top=0), ja que nao ha o que
+  // mostrar acima.
   let left = faceCX - cropW / 2;
-  let top = faceCY - cropH * 0.38;
+  let top = headTop ? 0 : faceCY - cropH * 0.42;
 
   // Garante que a caixa-uniao dos rostos cabe inteira no corte
   if (minX < left) left = minX;
