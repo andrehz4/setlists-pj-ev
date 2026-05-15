@@ -208,6 +208,70 @@ async function notifyTelegram(text) {
   }
 }
 
+// Aplica arquivos do branch diretamente quando gh pr merge falha por conflito.
+// Para JSONs de lista (index, queue, archives): faz merge por id (union).
+// Para demais arquivos: aplica a versao do branch.
+async function applyBranchDirectly(branch, files) {
+  console.log(`  conflito detectado, aplicando branch arquivo a arquivo...`);
+
+  const JSON_MERGE_PATHS = [
+    "media/news/index.json",
+    "media/news/_publish-queue.json",
+  ];
+
+  for (const f of files) {
+    if (f.match(/^media\/news\/items\//)) {
+      // Arquivo novo: aplica direto, sem conflito possivel
+      shTry(`git checkout "origin/${branch}" -- "${f}"`);
+      continue;
+    }
+
+    const isJsonMerge = JSON_MERGE_PATHS.includes(f) || f.match(/^media\/news\/archive\//);
+    if (isJsonMerge) {
+      try {
+        const branchDoc = JSON.parse(sh(`git show "origin/${branch}:${f}"`));
+        let mainDoc;
+        try {
+          mainDoc = JSON.parse(sh(`cat "${f}"`));
+        } catch {
+          mainDoc = branchDoc;
+        }
+        const mainIds = new Set((mainDoc.items || []).map((i) => i.id));
+        const newItems = (branchDoc.items || []).filter((i) => !mainIds.has(i.id));
+        if (newItems.length > 0) {
+          mainDoc.items = [...(mainDoc.items || []), ...newItems];
+          // propaga postCount se existir no branch
+          if (branchDoc.postCount > (mainDoc.postCount || 0)) {
+            mainDoc.postCount = branchDoc.postCount;
+          }
+          await fs.writeFile(f, JSON.stringify(mainDoc, null, 2) + "\n", "utf8");
+          console.log(`    ${f}: +${newItems.length} items mergeados`);
+        } else {
+          console.log(`    ${f}: sem items novos, mantendo main`);
+        }
+      } catch (e) {
+        console.warn(`    aviso ao mesclar ${f}: ${e.message}, usando versao do branch`);
+        shTry(`git checkout "origin/${branch}" -- "${f}"`);
+      }
+      continue;
+    }
+
+    // Demais arquivos (seen.json, _pending.json, etc.): usa versao do branch
+    shTry(`git checkout "origin/${branch}" -- "${f}"`);
+  }
+
+  const diff = shTry("git diff --cached --quiet");
+  // git diff --cached nao detecta untracked, usa git status
+  const status = sh("git status --porcelain media/news/").trim();
+  if (!status) {
+    console.log("  nada a commitar (apply direto sem mudancas)");
+    return false;
+  }
+  sh("git add media/news/");
+  sh(`git commit -m "news: apply direto de ${branch} (conflito resolvido via merge de JSON)"`);
+  return true;
+}
+
 async function processBranch(branch) {
   console.log(`\n[auto-merge] >>> ${branch}`);
   const v = validateBranch(branch);
@@ -253,11 +317,25 @@ async function processBranch(branch) {
   console.log(`  PR #${prNum} ${prs[0].url}`);
 
   const merge = shTry(`gh pr merge ${prNum} --merge --delete-branch -R ${REPO}`);
+
   if (!merge.ok) {
-    console.error(`  ERRO mesclando PR #${prNum}: ${merge.err}`);
-    return { branch, prNum, error: merge.err };
+    if (/merge conflict/i.test(merge.err) || /conflict/i.test(merge.err)) {
+      console.warn(`  conflito no PR #${prNum}, tentando apply direto...`);
+      const applied = await applyBranchDirectly(branch, v.files);
+      if (!applied) {
+        return { branch, prNum, error: "apply direto sem mudancas" };
+      }
+      // fecha PR (conflito foi resolvido via commit direto em main)
+      shTry(`gh pr close ${prNum} --comment "Mesclado via apply direto (conflito de JSON resolvido). Commit em main." -R ${REPO}`);
+      shTry(`git push origin --delete ${branch}`);
+      console.log(`  PR #${prNum} fechado, branch deletado, apply OK`);
+    } else {
+      console.error(`  ERRO mesclando PR #${prNum}: ${merge.err}`);
+      return { branch, prNum, error: merge.err };
+    }
+  } else {
+    console.log(`  PR #${prNum} mesclado, branch deletado`);
   }
-  console.log(`  PR #${prNum} mesclado, branch deletado`);
 
   await notifyTelegram(buildTelegramMsg(items, prNum, branch));
 
