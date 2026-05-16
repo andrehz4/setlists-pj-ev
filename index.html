@@ -8149,9 +8149,159 @@ body.in-forum .filter-bar { display: none !important; }
   .audio-attach .waveform { display: none; }
 }
 
+/* ====================================================
+   BANDA SECTION — pixel sprites beat-em-up
+   ==================================================== */
+#view-banda { padding: 0 0 80px; }
+.banda-stage { max-width: 1400px; margin: 0 auto; padding: 56px 32px 80px; }
+.banda-hint {
+  max-width: 1400px; margin: 0 auto; padding: 14px 32px;
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-dim); border-bottom: 1px solid var(--divider);
+}
+.banda-hint .kbd { display: inline-block; padding: 2px 8px; border: 1px solid var(--divider-strong); border-radius: 3px; color: var(--ink-mute); font-size: 10px; }
+.banda-hint .pulse-pj { display: inline-block; width: 8px; height: 8px; background: var(--pj); border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
+.banda-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; align-items: start; }
+@media (max-width: 1280px) { .banda-row { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px)  { .banda-row { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+.bm { position: relative; cursor: pointer; user-select: none; }
+.bm-photo-wrap {
+  position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden;
+  background: var(--bg-card); border: 1px solid var(--divider);
+  transition: border-color 0.2s, transform 0.25s ease;
+}
+.bm-photo-wrap img, .bm-photo-fallback {
+  width: 100%; height: 100%; object-fit: cover; object-position: var(--bm-pos, center top);
+  display: block; transition: filter 0.4s ease, transform 0.6s ease, opacity 0.4s;
+}
+.bm-photo-fallback {
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 8px, transparent 8px 16px),
+    linear-gradient(135deg, var(--bg-card) 0%, var(--divider) 100%);
+  color: var(--ink-dim); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+}
+.bm-fallback-glyph { font-family: var(--font-display); font-size: 56px; color: var(--divider-strong); letter-spacing: -0.04em; line-height: 1; }
+.bm:hover .bm-photo-wrap { border-color: var(--divider-strong); }
+.bm:hover .bm-photo-wrap img, .bm:hover .bm-photo-fallback { transform: scale(1.03); }
+.bm-press {
+  position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding: 16px;
+  pointer-events: none; opacity: 0; transition: opacity 0.25s ease;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%);
+}
+.bm-press-label {
+  font-family: "Press Start 2P", monospace; font-size: 9px; letter-spacing: 0.05em;
+  color: var(--pj); text-shadow: 0 0 8px rgba(193,39,45,0.6), 2px 2px 0 #000;
+  animation: blink 1s steps(2) infinite;
+}
+.bm:hover .bm-press { opacity: 1; }
+.bm.is-open .bm-press { opacity: 0; }
+.bm.is-open .bm-photo-wrap { border-color: var(--pj); box-shadow: 0 0 0 1px var(--pj), 0 0 32px rgba(193,39,45,0.25); }
+.bm.is-open .bm-photo-wrap img, .bm.is-open .bm-photo-fallback { filter: grayscale(1) contrast(1.1) brightness(0.7); }
+.bm.is-open .bm-photo-wrap::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(193,39,45,0.35) 0%, rgba(193,39,45,0) 60%),
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(0,0,0,0.15) 2px 4px);
+  pointer-events: none; mix-blend-mode: multiply;
+}
+.bm-meta { margin-top: 12px; padding: 0 2px; }
+.bm-name { font-family: var(--font-display); font-size: clamp(18px, 1.6vw, 26px); letter-spacing: -0.01em; line-height: 1; text-transform: uppercase; margin-bottom: 4px; transition: color 0.2s; }
+.bm.is-open .bm-name { color: var(--pj); }
+.bm-role { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); }
+.bm.is-open .bm-role { color: var(--ev); }
+.bm-stage { margin-top: 14px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.45s cubic-bezier(.2,.7,.2,1), opacity 0.3s ease; }
+.bm.is-open .bm-stage { max-height: 720px; opacity: 1; }
+.bm-bio {
+  position: relative; background: var(--bg-card); border: 1px solid var(--divider-strong);
+  border-left: 3px solid var(--pj); padding: 16px 18px 18px; margin-bottom: 18px;
+  transform: translateY(-12px); opacity: 0;
+  transition: transform 0.4s cubic-bezier(.2,.7,.2,1) 0.1s, opacity 0.4s ease 0.1s;
+}
+.bm.is-open .bm-bio { transform: translateY(0); opacity: 1; }
+.bm-bio::after {
+  content: ""; position: absolute; bottom: -10px; left: 50%; width: 18px; height: 18px;
+  background: var(--bg-card); border-right: 1px solid var(--divider-strong); border-bottom: 1px solid var(--divider-strong);
+  transform: translateX(-50%) rotate(45deg);
+}
+.bm-bio-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.bm-bio-pip { font-family: "Press Start 2P", monospace; font-size: 8px; color: var(--pj); }
+.bm-bio-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); }
+.bm-stats { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; color: var(--ink-mute); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed var(--divider); }
+.bm-stats dt { color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.12em; font-size: 9px; }
+.bm-stats dd { color: var(--ink); }
+.bm-text { font-family: var(--font-editorial); font-style: italic; font-size: 15.5px; line-height: 1.45; color: var(--ink); text-wrap: pretty; }
+.bm-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.bm-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ev); padding: 2px 8px; border: 1px solid var(--ev-soft); border-radius: 2px; }
+.bm-sprite-stage {
+  position: relative; height: 200px; display: flex; align-items: flex-end; justify-content: center;
+}
+.bm-sprite-stage::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 60px;
+  background: linear-gradient(to top, rgba(193,39,45,0.08) 0%, transparent 100%),
+    repeating-linear-gradient(90deg, transparent 0 14px, rgba(245,241,232,0.04) 14px 15px);
+  border-top: 1px solid var(--divider); pointer-events: none;
+}
+.bm-sprite-stage::after {
+  content: ""; position: absolute; bottom: 10px; left: 50%; width: 70%; height: 14px;
+  background: radial-gradient(ellipse, rgba(193,39,45,0.4) 0%, transparent 70%);
+  transform: translateX(-50%); filter: blur(4px); pointer-events: none;
+}
+.bm-sprite-wrap {
+  position: relative; z-index: 2; width: 120px; height: 180px;
+  display: flex; align-items: flex-end; justify-content: center;
+  transform: translateY(40px); opacity: 0;
+  transition: transform 0.5s cubic-bezier(.34,1.56,.64,1) 0.15s, opacity 0.3s ease 0.15s;
+}
+.bm.is-open .bm-sprite-wrap { transform: translateY(0); opacity: 1; }
+.bm-sprite-shadow {
+  position: absolute; bottom: 6px; left: 50%; width: 60px; height: 8px;
+  background: rgba(0,0,0,0.55); border-radius: 50%; transform: translateX(-50%);
+  filter: blur(2px); z-index: 1; animation: shadow-bob 1.2s ease-in-out infinite;
+}
+.bm.is-open .bm-sprite-anim {
+  animation: sprite-bob 1.2s ease-in-out infinite, sprite-spawn 0.55s cubic-bezier(.34,1.56,.64,1) backwards;
+}
+.bm-sprite-anim { position: relative; width: 120px; height: auto; }
+.bm-sprite-anim .bm-sprite { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; }
+.bm-sprite-anim .bm-sprite.bfA { animation: bframe-A 0.42s steps(1, end) infinite; }
+.bm-sprite-anim .bm-sprite.bfB { animation: bframe-B 0.42s steps(1, end) infinite; }
+.bm-sprite-anim .bm-sprite.bfC { animation: bframe-C 0.42s steps(1, end) infinite; }
+.bm-sprite-anim .bm-sprite.bfA-static { position: relative; opacity: 1; }
+@keyframes bframe-A { 0%, 33.32% { opacity: 1; } 33.33%, 100% { opacity: 0; } }
+@keyframes bframe-B { 0%, 33.32% { opacity: 0; } 33.33%, 66.65% { opacity: 1; } 66.66%, 100% { opacity: 0; } }
+@keyframes bframe-C { 0%, 66.65% { opacity: 0; } 66.66%, 100% { opacity: 1; } }
+.bm-sprite-svg {
+  z-index: 2; width: 120px; height: auto; image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges; shape-rendering: crispEdges;
+  filter: drop-shadow(2px 4px 0 rgba(0,0,0,0.6));
+}
+.bm-hud {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 90px;
+  font-family: "Press Start 2P", monospace; font-size: 7px; color: var(--ink); text-align: center;
+  opacity: 0; transition: opacity 0.3s ease 0.4s;
+}
+.bm.is-open .bm-hud { opacity: 1; }
+.bm-hud-name { color: var(--pj); margin-bottom: 3px; letter-spacing: 0.05em; text-shadow: 1px 1px 0 #000; }
+.bm-hud-bar { height: 6px; background: #000; border: 1px solid var(--ink); position: relative; overflow: hidden; }
+.bm-hud-fill { height: 100%; background: linear-gradient(to right, var(--pj) 0%, var(--ev) 100%); width: 100%; transform-origin: left center; animation: hp-tick 0.6s steps(8) 0.5s backwards; }
+.bm-close {
+  position: absolute; top: 8px; right: 8px; width: 28px; height: 28px;
+  background: rgba(0,0,0,0.7); border: 1px solid var(--pj); color: var(--pj);
+  font-family: var(--font-mono); font-size: 14px; cursor: pointer;
+  display: none; align-items: center; justify-content: center; z-index: 5; border-radius: 0;
+}
+.bm.is-open .bm-close { display: flex; }
+.bm-close:hover { background: var(--pj); color: var(--ink); }
+.bm-combo {
+  position: fixed; pointer-events: none; font-family: "Press Start 2P", monospace; font-size: 22px;
+  color: var(--ev); text-shadow: 3px 3px 0 #000, 0 0 12px rgba(232,161,58,0.7);
+  z-index: 999; animation: combo-pop 0.9s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Oswald:wght@300..700&family=IBM+Plex+Mono:ital,wght@0,300..600;1,300..500&family=Caveat:wght@400..700&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -8212,6 +8362,7 @@ body.in-forum .filter-bar { display: none !important; }
   <button class="tab" role="tab" id="tab-rarity" aria-selected="false" aria-controls="view-rarity" tabindex="-1" data-view="rarity">Raridades</button>
   <button class="tab" role="tab" id="tab-deep" aria-selected="false" aria-controls="view-deep" tabindex="-1" data-view="deep">Deep</button>
   <button class="tab has-dot" role="tab" id="tab-forum" aria-selected="false" aria-controls="view-forum" tabindex="-1" data-view="forum">Fórum</button>
+  <button class="tab" role="tab" id="tab-banda" aria-selected="false" aria-controls="view-banda" tabindex="-1" data-view="banda">A Banda</button>
 </div>
 
 <!-- FILTER BAR -->
@@ -8283,6 +8434,10 @@ body.in-forum .filter-bar { display: none !important; }
 
 <section class="view" id="view-forum" role="tabpanel" aria-labelledby="tab-forum" tabindex="0" hidden>
   <div id="forum-content"></div>
+</section>
+
+<section class="view" id="view-banda" role="tabpanel" aria-labelledby="tab-banda" tabindex="0" hidden>
+  <div id="banda-content"></div>
 </section>
 
 <section class="view active" id="view-news" role="tabpanel" aria-labelledby="tab-news" tabindex="0">
@@ -10787,9 +10942,957 @@ function renderCurrent() {
     case "news": renderNewsView(); break;
     case "gallery": renderGallery(); break;
     case "forum": renderForum(); break;
+    case "banda": renderBanda(); break;
   }
   renderStats();
 }
+
+
+// ========================================================================
+// BANDA — A Banda (beat-em-up pixel sprites)
+// ========================================================================
+(function() {
+const PJ_MEMBERS = (function() {
+/* ============================================================
+   PEARL JAM BAND SPRITES — 3 frames each, beat'em up style
+   Frames cycle: A → B → C → A → B → C... at ~5 FPS
+   Each sprite is 28×32 pixel grid. '.' = transparent.
+   Per-member palette maps single chars to colors.
+============================================================ */
+
+return [
+  /* ───────────────────── EDDIE VEDDER ───────────────────── */
+  {
+    id: "eddie",
+    name: "Eddie Vedder",
+    role: "Vocal · Letras",
+    photo: "media/band/eddie.jpg",
+    photoPos: "center 18%",
+    initials: "EV",
+    bio: {
+      born: "23 dez 1964 · Evanston, IL",
+      since: "1990 · Pearl Jam",
+      also: "Solo (2007–), Into the Wild OST",
+      voice: "Barítono · contralto invertido"
+    },
+    text: "A voz que define o som da banda. Surfa, milita, sussurra um <em>“yeah”</em> que vira hino. Quando a letra acaba, improvisa frases inteiras que jamais saem do disco mas todo mundo grava na cabeça.",
+    tags: ["Surf", "Ativismo", "Whistle solo"],
+    palette: {
+      h:"#3a2415", H:"#5c3a1e",
+      s:"#e8c4a0", S:"#c89878",
+      e:"#1a1a1a", m:"#8a6a4a",
+      t:"#1a1a1a", T:"#2a2a2a",
+      p:"#2c4258", P:"#1a2d44",
+      b:"#0a0a0a",
+      c:"#b8b3a4", C:"#5a5042",
+      r:"#c1272d", w:"#f5f1e8"
+    },
+    // Frame A — mic raised TO MOUTH, screaming
+    frameA: [
+      "..........hhhhhh............",
+      ".........HHHHHHHH...........",
+      "........HHHHHHHHHH..........",
+      ".......HHhhhhhhhhh..........",
+      "......HHhhhhhhhhhh..........",
+      "......hhhhhhhhhhhh..........",
+      "......hhsssssssshh..........",
+      "......hssssssssshh..........",
+      "......hsseeSseesshh.........",
+      "......hsssssssssshh.........",
+      ".......sssSmsSsss.h.........",
+      ".......ssSmmmmSss.hh........",
+      "........SmmmmmmS..hh........",
+      ".........mmmmmm...CC........",
+      ".........ssssss....ch.......",
+      "........rttttttr...ch.......",
+      "......ssrttttttr...c........",
+      ".....sssrttttttr..ss........",
+      "....ssss.tttttt.ssssc.......",
+      "....ssss.tttttt.sssccc......",
+      ".....sss.tttttt.sss.c.......",
+      "......s..tttttt..s..c.......",
+      ".........tTTTTt.....c.......",
+      ".........pppppp.............",
+      ".........pPPPPp.............",
+      ".........pPPPPp.............",
+      ".........pP..Pp.............",
+      ".........pP..Pp.............",
+      ".........pP..Pp.............",
+      ".........bb..bb.............",
+      ".........bb..bb.............",
+      "........bbbbbbbb............"
+    ],
+    // Frame B — mic at chest level (idle, holding strap)
+    frameB: [
+      "..........hhhhhh............",
+      ".........HHHHHHHH...........",
+      "........HHHHHHHHHH..........",
+      ".......HHhhhhhhhhh..........",
+      "......HHhhhhhhhhhh..........",
+      "......hhhhhhhhhhhh..........",
+      "......hhsssssssshh..........",
+      "......hssssssssshh..........",
+      "......hsseeSseesshh.........",
+      "......hsssssssssshh.........",
+      ".......sssSmsSsss.h.........",
+      ".......ssSmmmmSss.hh........",
+      "........SmmmmmmS..hh........",
+      ".........mmmmmm....h........",
+      ".........ssssss....hh.......",
+      "........rttttttr....h.......",
+      "......ssrttttttr...sC.......",
+      ".....sssrttttttr..ssC.......",
+      "....ssss.tttttt.ssssc.......",
+      "....ssss.tttttt.sssccc......",
+      ".....sss.tttttt.sss.c.......",
+      "......s..tttttt..s..c.......",
+      ".........tTTTTt.....c.......",
+      ".........pppppp.............",
+      ".........pPPPPp.............",
+      ".........pPPPPp.............",
+      ".........pP..Pp.............",
+      ".........pP..Pp.............",
+      ".........pP..Pp.............",
+      ".........bb..bb.............",
+      ".........bb..bb.............",
+      "........bbbbbbbb............"
+    ],
+    // Frame C — free arm thrown UP, fist clenched (preacher pose)
+    frameC: [
+      "..........hhhhhh............",
+      ".........HHHHHHHH...........",
+      "........HHHHHHHHHH..........",
+      ".......HHhhhhhhhhh..........",
+      "......HHhhhhhhhhhh..........",
+      "......hhhhhhhhhhhh..........",
+      "......hhsssssssshh..........",
+      "......hssssssssshh..........",
+      "......hsseeSseesshh.........",
+      "......hsssssssssshh.........",
+      ".......sssSmsSsss.h.........",
+      ".......ssSmmmmSss.hh........",
+      "........SmmmmmmS..hh........",
+      ".........mmmmmm....h........",
+      ".........ssssss....hh.......",
+      "........rttttttr....h.......",
+      "......ssrttttttr...s........",
+      ".....sssrttttttr..ss........",
+      "....ssss.tttttt.ssssc.CC....",
+      "....ssss.tttttt.sssccccc....",
+      ".....sss.tttttt.sss.c.......",
+      "......s..tttttt..s..cc......",
+      ".........tTTTTt.....c.......",
+      ".........pppppp.............",
+      ".........pPPPPp.............",
+      ".........pPPPPp.............",
+      ".........pP..Pp.............",
+      ".........pP..Pp.............",
+      ".........pP..Pp.............",
+      ".........bb..bb.............",
+      ".........bb..bb.............",
+      "........bbbbbbbb............"
+    ]
+  },
+
+  /* ───────────────────── STONE GOSSARD ───────────────────── */
+  {
+    id: "stone",
+    name: "Stone Gossard",
+    role: "Guitarra rítmica",
+    photo: "media/band/stone.jpg",
+    photoPos: "center 12%",
+    initials: "SG",
+    bio: {
+      born: "20 jul 1966 · Seattle, WA",
+      since: "1990 · co-fundador",
+      also: "Green River, Mother Love Bone, Brad",
+      sig: "Riff de “Alive” · acordes abertos"
+    },
+    text: "Arquiteto rítmico. Dissonância controlada, voicings abertos, riffs angulares. Quem amarra a engrenagem no chão quando o Mike sai voando.",
+    tags: ["Les Paul", "Riff master", "Brad"],
+    palette: {
+      h:"#3a2818", H:"#5e4530",
+      s:"#e8c8a4", S:"#c89878",
+      e:"#1a1a1a", f:"#3a3a3a",
+      t:"#1a1a1a", T:"#2a2a2a",
+      p:"#1f1f1f", P:"#0f0f0f",
+      b:"#0a0a0a",
+      g:"#d4a347", G:"#8a6a23",
+      n:"#3a2415", N:"#1a0e05",
+      w:"#f5f1e8", r:"#7a1a1d"
+    },
+    // Frame A — pick hand UP (mid-downstroke begins)
+    frameA: [
+      "..........hhhhhh............",
+      ".........HHHHHHH............",
+      "........HHhhhhhhh...........",
+      ".......HHhhhhhhhh...........",
+      ".......hhhhhhhhhh...........",
+      "........sssssss.............",
+      "........sssssss.............",
+      "........ffefeff.............",
+      "........fSSSSSf.............",
+      ".........sssss..............",
+      "........ssssss..............",
+      ".......rttttttr.............",
+      "......sttttttts.............",
+      "......stttttttsg............",
+      ".....ssttttttssgg...........",
+      ".....ssttttttssgggn.........",
+      "....sssttttttsssggnn........",
+      "....sss.tttt.sssgggssN......",
+      "....sss.tttt.sssgggssnN.....",
+      "....ssss....sssgggggnnN.....",
+      ".....s..pppp..s.gggg.nN.....",
+      "........ppppp...gggg..N.....",
+      "........pPPPp....gg.........",
+      "........pPPPp...............",
+      "........pPPPp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........bb.bb...............",
+      "........bb.bb...............",
+      ".......bbbbbbb..............",
+      "............................"
+    ],
+    // Frame B — pick hand mid-strum (across body)
+    frameB: [
+      "..........hhhhhh............",
+      ".........HHHHHHH............",
+      "........HHhhhhhhh...........",
+      ".......HHhhhhhhhh...........",
+      ".......hhhhhhhhhh...........",
+      "........sssssss.............",
+      "........sssssss.............",
+      "........ffefeff.............",
+      "........fSSSSSf.............",
+      ".........sssss..............",
+      "........ssssss..............",
+      ".......rttttttr.............",
+      "......sttttttts.............",
+      "......stttttttsg............",
+      ".....ssttttttssgg...........",
+      ".....ssttttttssgggn.........",
+      "....sssttttttsssggnn........",
+      "....sss.tttt.sssggggnN......",
+      "....sss.tttt.sssggggnnN.....",
+      "....ssss....sssgggggnnN.....",
+      ".....s..pppp..s.gggg.nN.....",
+      "........ppppp...gggg..N.....",
+      "........pPPPp....gg.........",
+      "........pPPPp...............",
+      "........pPPPp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........bb.bb...............",
+      "........bb.bb...............",
+      ".......bbbbbbb..............",
+      "............................"
+    ],
+    // Frame C — pick hand DOWN (end of downstroke / windmill bottom)
+    frameC: [
+      "..........hhhhhh............",
+      ".........HHHHHHH............",
+      "........HHhhhhhhh...........",
+      ".......HHhhhhhhhh...........",
+      ".......hhhhhhhhhh...........",
+      "........sssssss.............",
+      "........sssssss.............",
+      "........ffefeff.............",
+      "........fSSSSSf.............",
+      ".........sssss..............",
+      "........ssssss..............",
+      ".......rttttttr.............",
+      "......sttttttts.............",
+      "......stttttttsg............",
+      ".....ssttttttssgg...........",
+      ".....ssttttttssgggn.........",
+      "....sssttttttsssggnn........",
+      "....sss.tttt.sssggggnN......",
+      "....sss.tttt.sssggggnnN.....",
+      "....ssss....sssgggggnnN.....",
+      ".....s..pppp..s.ssgg.nN.....",
+      "........ppppp...ssgg..N.....",
+      "........pPPPp...ssg.........",
+      "........pPPPp...............",
+      "........pPPPp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........bb.bb...............",
+      "........bb.bb...............",
+      ".......bbbbbbb..............",
+      "............................"
+    ]
+  },
+
+  /* ───────────────────── JEFF AMENT ───────────────────── */
+  {
+    id: "jeff",
+    name: "Jeff Ament",
+    role: "Baixo · Capas",
+    photo: "media/band/jeff.jpg",
+    photoPos: "center 15%",
+    initials: "JA",
+    bio: {
+      born: "10 mar 1963 · Big Sandy, MT",
+      since: "1990 · co-fundador",
+      also: "Green River, MLB, Tres Mts.",
+      sig: "Stick bass · linhas melódicas"
+    },
+    text: "Designer das capas, do logo, da identidade visual inteira. Anda de skate, joga basquete, escreveu “Jeremy” e “Nothingman”. Veste boné porque é Montana, não porque é estilo.",
+    tags: ["Beanie", "Skate", "Stick bass"],
+    palette: {
+      H:"#1a1a1a", h:"#0a0a0a",
+      s:"#e8c4a0", S:"#c89878",
+      e:"#1a1a1a",
+      t:"#3a3a3a", T:"#1a1a1a",
+      w:"#f5f1e8",
+      p:"#2a2a2a", P:"#1a1a1a",
+      b:"#0a0a0a",
+      n:"#c89a5c", N:"#8a6a3a",
+      g:"#3a2415", G:"#1f1408",
+      r:"#c1272d"
+    },
+    // Frame A — pluck hand DOWN, fret hand high on neck
+    frameA: [
+      "............................",
+      ".........HHHHHHH............",
+      "........HHHHHHHHH...........",
+      "........HhhhhhhhH...........",
+      "........HHHHHHHH............",
+      ".........ssssss.............",
+      ".........ssssss.............",
+      ".........seesee.............",
+      ".........ssSsss.............",
+      "..........smms..............",
+      "..........smms..............",
+      "........rtttttr.............",
+      ".......rttwwwwwttr..........",
+      "......sttwwTwwwwtts.........",
+      "......sttwwwwTwwtts.........",
+      ".....ssttwwwwwwwttssn.......",
+      "....sssstttttttssssnN.......",
+      "....sss.tttttttssssnN.......",
+      "....sss.tttttttssssnNgg.....",
+      "....ssss......sssNNgggg.....",
+      ".....s..pppppp..s.Nggggg....",
+      "........ppppppp...gGGggg....",
+      "........pPPPPPp...ggggg.....",
+      "........pPPPPPp....gg.......",
+      "........pPPPPPp.............",
+      "........pPP.PPp.............",
+      "........pPP.PPp.............",
+      "........pPP.PPp.............",
+      "........bbb.bbb.............",
+      "........bbb.bbb.............",
+      ".......bbbbbbbbb............",
+      "............................"
+    ],
+    // Frame B — both hands centered on bass
+    frameB: [
+      "............................",
+      ".........HHHHHHH............",
+      "........HHHHHHHHH...........",
+      "........HhhhhhhhH...........",
+      "........HHHHHHHH............",
+      ".........ssssss.............",
+      ".........ssssss.............",
+      ".........seesee.............",
+      ".........ssSsss.............",
+      "..........smms..............",
+      "..........smms..............",
+      "........rtttttr.............",
+      ".......rttwwwwwttr..........",
+      "......sttwwTwwwwtts.........",
+      "......sttwwwwTwwtts.........",
+      ".....ssttwwwwwwwttssn.......",
+      "....sssstttttttssssnN.......",
+      "....sss.ttttttt.sssnN.......",
+      "....sss.ttttttt.sssnNgg.....",
+      "....ssss......sssNNgggg.....",
+      ".....s..pppppp..s.Nggggg....",
+      "........ppppppp...gGGggg....",
+      "........pPPPPPp...ggggg.....",
+      "........pPPPPPp....gg.......",
+      "........pPPPPPp.............",
+      "........pPP.PPp.............",
+      "........pPP.PPp.............",
+      "........pPP.PPp.............",
+      "........bbb.bbb.............",
+      "........bbb.bbb.............",
+      ".......bbbbbbbbb............",
+      "............................"
+    ],
+    // Frame C — JUMP! both legs bent, body lifted
+    frameC: [
+      "............................",
+      ".........HHHHHHH............",
+      "........HHHHHHHHH...........",
+      "........HhhhhhhhH...........",
+      "........HHHHHHHH............",
+      ".........ssssss.............",
+      ".........ssssss.............",
+      ".........seesee.............",
+      ".........ssSsss.............",
+      "..........smms..............",
+      "..........smms..............",
+      "........rtttttr.............",
+      ".......rttwwwwwttr..........",
+      "......sttwwTwwwwtts.........",
+      "......sttwwwwTwwtts.........",
+      ".....ssttwwwwwwwttssn.......",
+      "....sssstttttttssssnN.......",
+      "....sss.ttttttt.sssnN.......",
+      "....sss.ttttttt.sssnNgg.....",
+      "....ssss......sssNNgggg.....",
+      ".....s..pppppp..s.Nggggg....",
+      "........ppppppss..gGGggg....",
+      "........pPPPPPss..ggggg.....",
+      "........pPPPPPp....gg.......",
+      "........pPPPPPp.............",
+      "........pPP.PPp.............",
+      "........pPP.PPp.............",
+      "........pPP.PPp.............",
+      "........bbb.bbb.............",
+      "........bbb.bbb.............",
+      ".......bbbbbbbbb............",
+      "............................"
+    ]
+  },
+
+  /* ───────────────────── MIKE McCREADY ───────────────────── */
+  {
+    id: "mike",
+    name: "Mike McCready",
+    role: "Guitarra solo",
+    photo: "media/band/mike.jpg",
+    photoPos: "center 20%",
+    initials: "MM",
+    bio: {
+      born: "5 abr 1966 · Pensacola, FL",
+      since: "1990 · Pearl Jam",
+      also: "Mad Season, Temple of the Dog",
+      sig: "Strat amassada · solo de Alive"
+    },
+    text: "O solo. Stratocaster amassada de tanto chão. Fraseado bluesy, Hendrix encontrando Stevie Ray Vaughan numa esquina de Seattle. Aprendeu Ace Frehley antes de aprender Kenny Burrell.",
+    tags: ["Strat", "Hendrix", "Mad Season"],
+    palette: {
+      H:"#f0e8d4", h:"#c8c0a8",
+      s:"#f0c9a8", S:"#c89878",
+      e:"#1a1a1a",
+      t:"#1a1a1a", T:"#0a0a0a",
+      p:"#1a1a1a", P:"#0a0a0a",
+      b:"#0a0a0a",
+      g:"#0a0a0a", G:"#1a1a1a",
+      w:"#f0ebd4", W:"#c8c0a8",
+      n:"#d4a767", N:"#8a6a3a",
+      r:"#7a1a1d"
+    },
+    // Frame A — fret hand HIGH on neck (lead bend), arched back
+    frameA: [
+      ".........HHHHHHH............",
+      "........HHHHhHHHH...........",
+      ".......HHHHhhHHHHH..........",
+      "......HHhHHhHHHhHH..........",
+      ".....HHhhhhhhhhhhH..........",
+      ".....hhhhhhhhhhhh...........",
+      "......hsssssssssh...........",
+      "......hssssssssh............",
+      ".......seeSseesh............",
+      ".......sssssssss............",
+      ".......sSmmmmmSs............",
+      "........ssmmmss.............",
+      "........rttttr..............",
+      ".......rttttttr.............",
+      "......stttttttts............",
+      ".....sstttttttts............",
+      "....sssttttttttss...........",
+      "....sss.tttttt..ss..........",
+      "....sss.tttttt..ssss........",
+      "....ssss.....nNNNNssss......",
+      ".....s..pppppwwWwwppss......",
+      "........ppppwwgggwwpp.......",
+      "........pPPpwggGggwpp.......",
+      "........pPPpwwgggwwpp.......",
+      "........pPPp.wwwww..........",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........bb.bb...............",
+      "........bb.bb...............",
+      ".......bbbbbbb..............",
+      "............................"
+    ],
+    // Frame B — neutral playing pose
+    frameB: [
+      ".........HHHHHHH............",
+      "........HHHHhHHHH...........",
+      ".......HHHHhhHHHHH..........",
+      "......HHhHHhHHHhHH..........",
+      ".....HHhhhhhhhhhhH..........",
+      ".....hhhhhhhhhhhh...........",
+      "......hsssssssssh...........",
+      "......hssssssssh............",
+      ".......seeSseesh............",
+      ".......sssssssss............",
+      ".......sSmmmmmSs............",
+      "........ssmmmss.............",
+      "........rttttr..............",
+      ".......rttttttr.............",
+      "......stttttttts............",
+      ".....sstttttttts............",
+      "....sssttttttttss...........",
+      "....sss.tttttt..ss..........",
+      "....sss.tttttt..ss..........",
+      "....ssss.....nNNNNnsss......",
+      ".....s..pppppwwWwwppss......",
+      "........ppppwwgggwwpp.......",
+      "........pPPpwggGggwpp.......",
+      "........pPPpwwgggwwpp.......",
+      "........pPPp.wwwww..........",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........bb.bb...............",
+      "........bb.bb...............",
+      ".......bbbbbbb..............",
+      "............................"
+    ],
+    // Frame C — leg kicked OUT, leaning back wild
+    frameC: [
+      ".........HHHHHHH............",
+      "........HHHHhHHHH...........",
+      ".......HHHHhhHHHHH..........",
+      "......HHhHHhHHHhHH..........",
+      ".....HHhhhhhhhhhhH..........",
+      ".....hhhhhhhhhhhh...........",
+      "......hsssssssssh...........",
+      "......hssssssssh............",
+      ".......seeSseesh............",
+      ".......sssssssss............",
+      ".......sSmmmmmSs............",
+      "........ssmmmss.............",
+      "........rttttr..............",
+      ".......rttttttr.............",
+      "......stttttttts............",
+      ".....sstttttttts............",
+      "....sssttttttttss...........",
+      "....sss.tttttt..ss..........",
+      "....sss.tttttt..ss..........",
+      "....ssss.....nNNNNnsss......",
+      ".....s..pppppwwWwwppss......",
+      "........ppppwwssgwwpp.......",
+      "........pPPpwgssggwpp.......",
+      "........pPPpwwgggwwpp.......",
+      "........pPPp.wwwww..........",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........pP.Pp...............",
+      "........bb.bb...............",
+      "........bb.bb...............",
+      ".......bbbbbbb..............",
+      "............................"
+    ]
+  },
+
+  /* ───────────────────── MATT CAMERON ───────────────────── */
+  {
+    id: "matt",
+    name: "Matt Cameron",
+    role: "Bateria",
+    photo: "media/band/matt.jpg",
+    photoPos: "center 25%",
+    initials: "MC",
+    bio: {
+      born: "28 nov 1962 · San Diego, CA",
+      since: "1998 · Pearl Jam",
+      also: "Soundgarden, Skin Yard, Wellwater",
+      sig: "Compassos compostos em rock direto"
+    },
+    text: "Bateria do Soundgarden virou bateria do Pearl Jam. Polirritmia disfarçada de groove. Compositor — escreveu “You Are”, “Unthought Known”, parte do <em>Backspacer</em>.",
+    tags: ["Soundgarden", "5/4", "Hi-hat"],
+    palette: {
+      h:"#3a2818", H:"#5e4530",
+      s:"#e8c4a0", S:"#c89878",
+      e:"#1a1a1a", m:"#7a4a2a",
+      t:"#1a1a1a", T:"#2a2a2a",
+      k:"#c89a5c", K:"#8a6a3a",
+      c:"#d4a347", C:"#8a6a23",
+      d:"#7a1a1d", D:"#4a0f12",
+      w:"#f0ebd4", W:"#c8c0a8",
+      b:"#0a0a0a"
+    },
+    // Frame A — LEFT stick striking down, RIGHT stick up high
+    frameA: [
+      "..cccccc..........cccccc....",
+      ".cCCCCCCc........cCCCCCCc...",
+      "..cccccc..........cccccc....",
+      "....C.K...............C.....",
+      "....C.K....hhhhhh.....C.....",
+      "....CK....HHHHHHHH....C.....",
+      "....CK...HHhhhhhhh....C.....",
+      "....K....hhhhhhhhh..........",
+      "..........sssssss...........",
+      "..........seeSees...........",
+      "..........smmmmmm...........",
+      "...........mmmmmm...........",
+      "..K........tttttt.........k.",
+      "..KK.....rtttttttr.......kk.",
+      "...KK..sstttttttts......kk..",
+      "....KK.sstttttttts....kk....",
+      ".....K..sttttttttss..kk.....",
+      ".......ssttttttttssssk......",
+      "......sss..tttt..sssk..k....",
+      ".....wwwwwddddddwwwww.kk....",
+      "....wWWWWdDDDDDDdWWWWw......",
+      "....wWWWWdDDDDDDdWWWWw......",
+      "....wWWWWdDDDDDDdWWWWw......",
+      ".....wwwwdDDDDDDdwwww.......",
+      "........bdDDDDDDdb..........",
+      "........bdDDDDDDdb..........",
+      "........bdDDDDDDdb..........",
+      "........bbDDDDDDbb..........",
+      ".......bbbDDDDDDbbb.........",
+      "......bbbbbbbbbbbbbb........",
+      "............................",
+      "............................"
+    ],
+    // Frame B — both sticks DOWN on drums (impact!)
+    frameB: [
+      "..cccccc..........cccccc....",
+      ".cCCCCCCc........cCCCCCCc...",
+      "..cccccc..........cccccc....",
+      "....C.................C.....",
+      "....C......hhhhhh.....C.....",
+      "....C.....HHHHHHHH....C.....",
+      "....C....HHhhhhhhh....C.....",
+      ".........hhhhhhhhh..........",
+      "..........sssssss...........",
+      "..........seeSees...........",
+      "..........smmmmmm...........",
+      "...........mmmmmm...........",
+      "..K........tttttt.........k.",
+      "..KK.....rtttttttr.......kk.",
+      "...KK..sstttttttts......kk..",
+      "....KK.sstttttttts....kk....",
+      ".....KKssttttttttss..kk.....",
+      "......sssttttttttssssk......",
+      "......sss..tttt..sssk.......",
+      ".....wwwwwddddddwwwww.......",
+      "....wWWWWdDDDDDDdWWWWw......",
+      "....wWWWWdDDDDDDdWWWWw......",
+      "....wWWWWdDDDDDDdWWWWw......",
+      ".....wwwwdDDDDDDdwwww.......",
+      "........bdDDDDDDdb..........",
+      "........bdDDDDDDdb..........",
+      "........bdDDDDDDdb..........",
+      "........bbDDDDDDbb..........",
+      ".......bbbDDDDDDbbb.........",
+      "......bbbbbbbbbbbbbb........",
+      "............................",
+      "............................"
+    ],
+    // Frame C — LEFT stick up high, RIGHT stick striking down
+    frameC: [
+      "..cccccc..........cccccc....",
+      ".cCCCCCCc........cCCCCCCc...",
+      "..cccccc..........cccccc....",
+      "....C................kC.....",
+      "....C......hhhhhh....kC.....",
+      "....C.....HHHHHHHH....k.....",
+      "....C....HHhhhhhhh....k.....",
+      ".........hhhhhhhhh.....k....",
+      "..........sssssss...........",
+      "..........seeSees...........",
+      "..........smmmmmm...........",
+      "...........mmmmmm...........",
+      "..K........tttttt.........k.",
+      "..KK.....rtttttttr........k.",
+      "...KK..sstttttttts......k...",
+      "....KK.sstttttttts....kk....",
+      ".....KKssttttttttss..kk.....",
+      "......sssttttttttssss.......",
+      ".....Ksss..tttt..sssk.......",
+      ".....KKwwwddddddwwwww.......",
+      "....wWWWWdDDDDDDdWWWWw......",
+      "....wWWWWdDDDDDDdWWWWw......",
+      "....wWWWWdDDDDDDdWWWWw......",
+      ".....wwwwdDDDDDDdwwww.......",
+      "........bdDDDDDDdb..........",
+      "........bdDDDDDDdb..........",
+      "........bdDDDDDDdb..........",
+      "........bbDDDDDDbb..........",
+      ".......bbbDDDDDDbbb.........",
+      "......bbbbbbbbbbbbbb........",
+      "............................",
+      "............................"
+    ]
+  },
+
+  /* ───────────────────── BOOM GASPAR ───────────────────── */
+  {
+    id: "boom",
+    name: "Boom Gaspar",
+    role: "Teclados · Hammond",
+    photo: "media/band/boom.jpg",
+    photoPos: "center 22%",
+    initials: "BG",
+    bio: {
+      born: "1953 · Havaí, EUA",
+      since: "2002 · auxiliar de turnê",
+      also: "B3 Brothers, amigo de surfe do Eddie",
+      sig: "Hammond B3 em “Love Boat Captain”"
+    },
+    text: "O som que ninguém percebe que sustenta o som. Hammond B3 no fundo, almofada harmônica que faz “Love Boat Captain” respirar. Conheceu o Eddie surfando no Havaí — chegou na banda pela porta do oceano.",
+    tags: ["Hammond B3", "Havaí", "Riot Act"],
+    palette: {
+      h:"#1a2540", H:"#2a3a5a",
+      s:"#c89878", S:"#a87a5a",
+      e:"#0a0a0a", E:"#2a2a2a",
+      m:"#f0ebd4", M:"#c8c0a8",
+      t:"#1a1a1a", T:"#0a0a0a",
+      b:"#5a3a20", B:"#3a2415",
+      w:"#f0ebd4", K:"#0a0a0a"
+    },
+    // Frame A — left hand striking LEFT keys (bass notes)
+    frameA: [
+      "............................",
+      "............................",
+      ".......hhhhhhhhhhhh.........",
+      "......hhhhhhhhhhhhh.........",
+      ".....hhhhhhhhhhhhhh.........",
+      "......hhhhhhhhhhhhh.........",
+      "........ssssssssss..........",
+      ".......eeeesseeeee..........",
+      "......eEEEsseEEEEe..........",
+      ".......eeeeeeeeeee..........",
+      "........ssssssssss..........",
+      "........smmmmmmmms..........",
+      "........mmmmmmmmmm..........",
+      ".........mmmmmmmm...........",
+      "..........mmmmmm............",
+      "..........ttttt.............",
+      ".......tttttttttt...........",
+      "......ttttttttttts..........",
+      ".....ttttttttttttts.........",
+      ".....tttttttttttttts........",
+      "....ttttttttttttttts........",
+      "....tttsstttttttttts........",
+      "....bBBssBBBBBBBBBBb........",
+      "....bwwwwwwwwwwwwwwb........",
+      "....bKwwKwKwsswKwKwb........",
+      "....bwwwwwwsssswwwwb........",
+      "....bKwwKwKwsswKwKwb........",
+      "....bBBBBBBBBBBBBBBb........",
+      ".....bBBBBBBBBBBBBb.........",
+      "......BBBBBBBBBBBB..........",
+      "............................",
+      "............................"
+    ],
+    // Frame B — both hands centered on keys
+    frameB: [
+      "............................",
+      "............................",
+      ".......hhhhhhhhhhhh.........",
+      "......hhhhhhhhhhhhh.........",
+      ".....hhhhhhhhhhhhhh.........",
+      "......hhhhhhhhhhhhh.........",
+      "........ssssssssss..........",
+      ".......eeeesseeeee..........",
+      "......eEEEsseEEEEe..........",
+      ".......eeeeeeeeeee..........",
+      "........ssssssssss..........",
+      "........smmmmmmmms..........",
+      "........mmmmmmmmmm..........",
+      ".........mmmmmmmm...........",
+      "..........mmmmmm............",
+      "..........ttttt.............",
+      ".......tttttttttt...........",
+      "......ttttttttttts..........",
+      ".....ttttttttttttts.........",
+      ".....tttttttttttttts........",
+      "....ttttttttttttttts........",
+      "....ttttttttttttttts........",
+      "....bBBBBBBBBBBBBBBb........",
+      "....bwwwwwwwwwwwwwwb........",
+      "....bKwwKwKwsswKwKwb........",
+      "....bwwwwwwsssswwwwb........",
+      "....bKwwKwKwsswKwKwb........",
+      "....bBBBBBBBBBBBBBBb........",
+      ".....bBBBBBBBBBBBBb.........",
+      "......BBBBBBBBBBBB..........",
+      "............................",
+      "............................"
+    ],
+    // Frame C — right hand striking RIGHT keys (lead/high notes), pointing
+    frameC: [
+      "............................",
+      "............................",
+      ".......hhhhhhhhhhhh.........",
+      "......hhhhhhhhhhhhh.........",
+      ".....hhhhhhhhhhhhhh.........",
+      "......hhhhhhhhhhhhh.........",
+      "........ssssssssss..........",
+      ".......eeeesseeeee..........",
+      "......eEEEsseEEEEe..........",
+      ".......eeeeeeeeeee..........",
+      "........ssssssssss..........",
+      "........smmmmmmmms..........",
+      "........mmmmmmmmmm..........",
+      ".........mmmmmmmm...........",
+      "..........mmmmmm............",
+      "..........ttttt.............",
+      ".......tttttttttt...........",
+      "......ttttttttttts..........",
+      ".....ttttttttttttts.........",
+      ".....tttttttttttttts........",
+      "....ttttttttttttttts........",
+      "....ttttttttttttttss........",
+      "....bBBBBBBBBBBBBBss........",
+      "....bwwwwwwwwwwwwwwb........",
+      "....bKwwKwKwsswKwKwb........",
+      "....bwwwwwwsssswwwwb........",
+      "....bKwwKwKwsswKwKwb........",
+      "....bBBBBBBBBBBBBBBb........",
+      ".....bBBBBBBBBBBBBb.........",
+      "......BBBBBBBBBBBB..........",
+      "............................",
+      "............................"
+    ]
+  }
+];
+
+})();
+
+function _bmFrameToSvg(rows, palette, scale, cls) {
+  const h = rows.length;
+  const w = Math.max(...rows.map(r => r.length));
+  const rects = [];
+  for (let y = 0; y < h; y++) {
+    const row = rows[y];
+    let runStart = -1, runChar = null;
+    for (let x = 0; x <= w; x++) {
+      const ch = (row[x] || ".");
+      if (ch !== runChar) {
+        if (runChar && runChar !== "." && palette[runChar]) {
+          rects.push('<rect x="' + runStart + '" y="' + y + '" width="' + (x - runStart) + '" height="1" fill="' + palette[runChar] + '"/>');
+        }
+        runStart = x;
+        runChar = ch;
+      }
+    }
+  }
+  return '<svg class="bm-sprite-svg ' + cls + '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + w + ' ' + h + '" width="' + (w * scale) + '" height="' + (h * scale) + '" shape-rendering="crispEdges">' + rects.join("") + '</svg>';
+}
+
+function _bmSpriteMarkup(m, scale) {
+  scale = scale || 4;
+  const p = m.palette;
+  const a = _bmFrameToSvg(m.frameA, p, scale, "bfA");
+  const b = _bmFrameToSvg(m.frameB, p, scale, "bfB");
+  const c = _bmFrameToSvg(m.frameC, p, scale, "bfC");
+  const aStatic = a.replace('class="bm-sprite-svg bfA"', 'class="bm-sprite-svg bfA bfA-static"');
+  return '<div class="bm-sprite-anim">' + aStatic + b + c + '</div>';
+}
+
+const _bmStatLabel = { born: "Nasceu", since: "Na banda", also: "Tambem em", voice: "Tessitura", sig: "Assinatura" };
+
+function _bmCardHtml(m, i) {
+  const bioRows = Object.entries(m.bio).map(([k, v]) =>
+    '<dt>' + (_bmStatLabel[k] || k) + '</dt><dd>' + v + '</dd>'
+  ).join('');
+  const tags = m.tags.map(t => '<span class="bm-tag">#' + t + '</span>').join('');
+  const photo = m.photo
+    ? '<img src="' + m.photo + '" alt="' + m.name + '" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="bm-photo-fallback" style="display:none"><div class="bm-fallback-glyph">' + m.initials + '</div><div>foto em breve</div></div>'
+    : '<div class="bm-photo-fallback"><div class="bm-fallback-glyph">' + m.initials + '</div><div>foto em breve</div></div>';
+  return '<article class="bm" data-idx="' + i + '" style="--bm-pos:' + (m.photoPos || 'center top') + '">' +
+    '<div class="bm-photo-wrap">' + photo +
+      '<div class="bm-press"><div class="bm-press-label">&#9654; PRESS START</div></div>' +
+      '<button class="bm-close" aria-label="Fechar">&times;</button>' +
+    '</div>' +
+    '<div class="bm-meta"><h3 class="bm-name">' + m.name + '</h3><div class="bm-role">' + m.role + '</div></div>' +
+    '<div class="bm-stage">' +
+      '<div class="bm-bio">' +
+        '<div class="bm-bio-eyebrow"><span class="bm-bio-pip">&#9660;</span><span class="bm-bio-label">Ficha do Personagem</span></div>' +
+        '<dl class="bm-stats">' + bioRows + '</dl>' +
+        '<p class="bm-text">' + m.text + '</p>' +
+        '<div class="bm-tags">' + tags + '</div>' +
+      '</div>' +
+      '<div class="bm-sprite-stage">' +
+        '<div class="bm-hud"><div class="bm-hud-name">' + m.name.toUpperCase() + '</div><div class="bm-hud-bar"><div class="bm-hud-fill"></div></div></div>' +
+        '<div class="bm-sprite-wrap">' + _bmSpriteMarkup(m, 4) + '<div class="bm-sprite-shadow"></div></div>' +
+      '</div>' +
+    '</div>' +
+  '</article>';
+}
+
+let _bmInited = false;
+
+window.renderBanda = function renderBanda() {
+  const container = document.getElementById('banda-content');
+  if (!container) return;
+  if (_bmInited) return;
+  _bmInited = true;
+
+  container.innerHTML =
+    '<div class="banda-hint">' +
+      '<span class="pulse-pj"></span>' +
+      '<span>Clique numa foto pra spawnar o personagem</span>' +
+      '<span style="margin-left:auto">Fechar: <span class="kbd">ESC</span> ou <span class="kbd">clique fora</span></span>' +
+    '</div>' +
+    '<div class="banda-stage"><div class="banda-row" id="banda-row">' +
+      PJ_MEMBERS.map(_bmCardHtml).join('') +
+    '</div></div>';
+
+  const cards = [...container.querySelectorAll('.bm')];
+
+  function bmOpen(el) {
+    const idx = +el.dataset.idx;
+    cards.forEach(c => { if (c !== el) c.classList.remove('is-open'); });
+    el.classList.add('is-open');
+    const rect = el.getBoundingClientRect();
+    const flash = document.createElement('div');
+    flash.className = 'bm-combo';
+    flash.textContent = ['HIT!', 'COMBO!', 'K.O.', 'NICE!', 'RIFF!', 'BOOM!'][idx] || 'GO!';
+    flash.style.left = (rect.left + rect.width / 2) + 'px';
+    flash.style.top = (rect.top + 12) + 'px';
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 1000);
+  }
+  function bmCloseAll() { cards.forEach(c => c.classList.remove('is-open')); }
+
+  cards.forEach(el => {
+    el.querySelector('.bm-photo-wrap').addEventListener('click', e => {
+      if (e.target.closest('.bm-close')) return;
+      if (el.classList.contains('is-open')) bmCloseAll();
+      else bmOpen(el);
+    });
+    el.querySelector('.bm-close').addEventListener('click', e => {
+      e.stopPropagation();
+      bmCloseAll();
+    });
+  });
+
+  document.addEventListener('keydown', function bmKey(e) {
+    if (e.key === 'Escape') { bmCloseAll(); return; }
+    if (!e.key.startsWith('Arrow')) return;
+    const open = cards.findIndex(c => c.classList.contains('is-open'));
+    if (open < 0) return;
+    let next = open;
+    if (e.key === 'ArrowRight') next = (open + 1) % cards.length;
+    if (e.key === 'ArrowLeft')  next = (open - 1 + cards.length) % cards.length;
+    if (next !== open) bmOpen(cards[next]);
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.bm') && !e.target.closest('.bm-combo')) bmCloseAll();
+  });
+};
+})();
+
 
 // ========================================================================
 // FORUM
