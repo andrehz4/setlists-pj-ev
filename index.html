@@ -2053,11 +2053,12 @@ html[data-theme="light"] .drawer-section-label.my-media {
 .song-meta-row .meta-never::before { background: var(--never, var(--ink-dim)); }
 .song-shows { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .song-shows-list { display: flex; align-items: center; gap: 3px; flex-wrap: wrap; max-width: 200px; }
-.show-dot { width: 16px; height: 20px; border: 1px solid var(--pj); background: var(--pj); display: inline-block; position: relative; cursor: pointer; transition: opacity .15s; }
+.show-dot { width: 18px; height: 22px; border: 1px solid var(--pj); background: var(--pj); display: inline-block; position: relative; cursor: pointer; transition: opacity .15s; }
 .show-dot:hover { opacity: .75; }
 .show-dot.ev { border-color: var(--ev); background: var(--ev); }
 .show-dot.outline { background: transparent; }
 .show-dot.outline.ev { border-color: var(--ev); }
+.show-dot::after { content: ""; position: absolute; left: 50%; transform: translateX(-50%); top: 50%; width: 8px; height: 1px; background: var(--bg); }
 .song-count-pill { display: inline-flex; align-items: baseline; gap: 4px; background: var(--bg-card); border: 1px solid var(--divider-strong); padding: 6px 12px; border-radius: 2px; }
 .song-count-pill .n { font: 700 20px/1 var(--font-display); letter-spacing: -.01em; color: var(--ink); }
 .song-count-pill .lbl { font: 500 9px/1 var(--font-mono); letter-spacing: .22em; text-transform: uppercase; color: var(--ink-dim); }
@@ -9392,10 +9393,10 @@ function renderSearch(query) {
     let extras = '';
     if (lyricText || lyricPT || interpText || noteText) {
       const parts = [];
-      if (lyricText) { const lyrHtml = lyricText.split('\n').map(l => `<div>${l ? esc(l) : '&nbsp;'}</div>`).join(''); parts.push(`<details class="lyric" open><summary>Letra · em inglês</summary><div class="body" lang="en">${lyrHtml}</div></details>`); }
-      if (lyricPT) { const trdHtml = lyricPT.split('\n').map(l => `<div>${l ? esc(l) : '&nbsp;'}</div>`).join(''); parts.push(`<details class="lyric trad" open><summary>Tradução · em português</summary><div class="body" lang="pt">${trdHtml}</div></details>`); }
-      if (interpText) { const intHtml = interpText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join(''); parts.push(`<details class="interp" open><summary>Análise crítica · em inglês</summary><div class="body" lang="en">${intHtml}</div></details>`); }
-      if (noteText) { const noteHtml = noteText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join(''); parts.push(`<details class="interp" open><summary>Opinião · em português</summary><div class="body" lang="pt">${noteHtml}</div></details>`); }
+      if (lyricText) { const lyrHtml = lyricText.split('\n').map(l => `<div>${l ? esc(l) : '&nbsp;'}</div>`).join(''); parts.push(`<details class="lyric"><summary>Letra · em inglês</summary><div class="body" lang="en">${lyrHtml}</div></details>`); }
+      if (lyricPT) { const trdHtml = lyricPT.split('\n').map(l => `<div>${l ? esc(l) : '&nbsp;'}</div>`).join(''); parts.push(`<details class="lyric trad"><summary>Tradução · em português</summary><div class="body" lang="pt">${trdHtml}</div></details>`); }
+      if (interpText) { const intHtml = interpText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join(''); parts.push(`<details class="interp"><summary>Análise crítica · em inglês</summary><div class="body" lang="en">${intHtml}</div></details>`); }
+      if (noteText) { const noteHtml = noteText.split(/\n+/).map(p => p.trim() ? `<p>${esc(p)}</p>` : '').join(''); parts.push(`<details class="interp"><summary>Opinião · em português</summary><div class="body" lang="pt">${noteHtml}</div></details>`); }
       extras = `<div class="search-extras">${parts.join('')}</div>`;
     }
 
