@@ -18194,8 +18194,11 @@ async function init() {
     const freq = songFrequency();
     const total = Object.keys(SONG_TO_ALBUM).length;
     if (stamp) stamp.textContent = total;
-    const top = freq.sort((a,b) => b.count - a.count).slice(0, 8);
     const FAV = "Rearviewmirror";
+    const sorted = freq.slice().sort((a,b) => b.count - a.count);
+    const favEntry = sorted.find(f => f.song === FAV);
+    const others = sorted.filter(f => f.song !== FAV).slice(0, favEntry ? 7 : 8);
+    const top = favEntry ? [favEntry, ...others] : others;
     container.innerHTML = top.map(f => {
       const isFav = f.song === FAV;
       return `<button class="chip chip-song${isFav ? ' is-fav' : ''}" data-song="${f.song.replace(/"/g,'&quot;')}">${isFav ? '<span class="fav-star" aria-hidden="true">★</span>' : ''}${f.song} <span class="chip-count">${f.count}×</span></button>`;
