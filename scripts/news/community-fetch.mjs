@@ -319,6 +319,29 @@ async function main() {
 
   console.log(`[community] curados agora: ${newItems.length} | pendentes pra routine: ${newPending.length}`);
 
+  // Alerta Telegram quando Reddit retornar 0 posts por erro de API
+  const redditErrors = sourceResults.filter((s) => s.error);
+  if (redditErrors.length > 0 && !DRY) {
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+    if (token && chatId) {
+      const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
+      const errs = redditErrors.map((s) => `• ${s.label}: <code>${String(s.error).slice(0, 200)}</code>`).join("\n");
+      const msg = `⚠️ <b>Community fetch falhou, ${brtNow} BRT</b>\n\nReddit retornou 0 posts por erro de API. Digest e/ou Spotlight nao foram coletados.\n\n${errs}\n\nVerificar: REDDIT_PROXY_URL, credenciais OAuth, status Reddit.`;
+      try {
+        const params = new URLSearchParams({ chat_id: chatId, parse_mode: "HTML", disable_web_page_preview: "true", text: msg });
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: params.toString(),
+        });
+        console.log("[community] alerta Telegram enviado: Reddit com erro");
+      } catch (e) {
+        console.warn("[community] telegram alerta erro:", e.message);
+      }
+    }
+  }
+
   // ---- Modo routine: salva _pending.json e termina (nao mexe em index.json) ----
   if (IS_ROUTINE) {
     const pendingTotalAntes = (pendingDoc.items || []).length;

@@ -94,8 +94,7 @@ jobs:
           fi
 
       - name: Notifica Telegram (preview do que vai pro feed)
-        # Step pos-merge. Avisa Andre 17min antes do proximo cron de
-        # publish-instagram.yml (que roda :17/:47). Falha aqui NAO derruba
+        # Step pos-merge. Avisa Andre sobre o que vai pro feed. Falha aqui NAO derruba
         # o workflow porque notificacao e nice-to-have.
         if: success() && env.TELEGRAM_BOT_TOKEN != ''
         env:
@@ -106,10 +105,11 @@ jobs:
           # estima horario do proximo cron de publish em BRT
           NOW_UTC=$(date -u +%s)
           MIN_UTC=$(date -u +%M)
-          # proximo :17 ou :47 UTC
-          if [ "$MIN_UTC" -lt 17 ]; then NEXT_MIN=17
-          elif [ "$MIN_UTC" -lt 47 ]; then NEXT_MIN=47
-          else NEXT_MIN=17; fi
+          # proximo :12, :32 ou :52 UTC (cron do publish-instagram.yml)
+          if [ "$MIN_UTC" -lt 12 ]; then NEXT_MIN=12
+          elif [ "$MIN_UTC" -lt 32 ]; then NEXT_MIN=32
+          elif [ "$MIN_UTC" -lt 52 ]; then NEXT_MIN=52
+          else NEXT_MIN=12; fi
           NEXT_HOUR_BRT=$(TZ=America/Sao_Paulo date -d "now $([ "$NEXT_MIN" = 17 ] && [ "$MIN_UTC" -ge 47 ] && echo '+1 hour')" +%H)
           NEXT_AT_BRT="${NEXT_HOUR_BRT}:${NEXT_MIN}"
 

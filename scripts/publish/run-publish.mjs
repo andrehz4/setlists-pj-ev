@@ -25,6 +25,7 @@ import { spawnSync } from "node:child_process";
 import { readQueue, writeQueue, pickMatureByType, markPosted, markError, pruneOldPosted } from "./queue.mjs";
 import { buildSlides, SLIDES_DIR } from "./slide-image.mjs";
 import { publishItems } from "./instagram.mjs";
+import { writeStepSummary } from "../news/_summary.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -324,6 +325,26 @@ async function main() {
   );
 
   if (!DRY) await notifyTelegram(results);
+
+  const publishedBatches = results.filter((r) => r.succeeded > 0 && r.items);
+  const failedBatches = results.filter((r) => r.succeeded === 0 && r.error);
+  const publishedItems = publishedBatches.flatMap((r) =>
+    r.items.map((it) => ({ ...it, sourceLabel: r.type === "spotlight" ? "Spotlight da comunidade" : "Noticia regular" }))
+  );
+  await writeStepSummary({
+    title: "Publish Instagram",
+    meta: { dry: DRY, "max-batches": MAX_BATCHES, run: nowIso.slice(0, 16) + "Z" },
+    stats: {
+      "batches": results.length,
+      "publicados": publishedBatches.reduce((s, r) => s + r.succeeded, 0),
+      "falhas": failedBatches.length,
+    },
+    curated: publishedItems.length > 0 ? publishedItems : undefined,
+    extras: [
+      ...(results.length === 0 ? [{ heading: "Resultado", body: "Fila vazia, nenhum item maduro." }] : []),
+      ...failedBatches.map((r) => ({ heading: `Falha (${r.type})`, body: `\`${r.error}\`` })),
+    ],
+  });
 
   const allFailed = results.length > 0 && results.every((r) => r.succeeded === 0 && r.error);
   if (allFailed) {
