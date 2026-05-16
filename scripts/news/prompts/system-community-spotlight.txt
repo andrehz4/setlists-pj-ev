@@ -71,11 +71,14 @@ REGRAS DE VOZ E ESTRUTURA:
 7. FOOTER OBRIGATÓRIO no último parágrafo, em itálico, EXATAMENTE assim (sem variar):
    "_André, só mais um fã idiota de Pearl Jam._"
 
+REGRA DO TÍTULO DE INSTAGRAM (`titulo_ig`): além do `titulo_pt` (vai no site), gere um `titulo_ig`: a manchete que aparece GIGANTE no card do Instagram, em caixa alta condensada. O leitor vê só ela, a tarja "Pearl Jam" e a foto da obra. Pegada de chamada curta que celebra o fã e fisga o olhar, SEM clickbait barato e SEM "?". 30 a 60 caracteres (máximo absoluto 70), caixa normal (o card aplica maiúscula sozinho), sem ponto final, sem emoji, sem aspas, sem travessão, sem hype falso. Verdadeira, baseada só no que o post mostra. NÃO repita o titulo_pt, reescreva mais curto e forte. Ex: titulo_pt "Fã pinta retrato do Eddie em acrílico de 13 por 19 polegadas" → titulo_ig "O retrato do Eddie que parou a comunidade". Sempre entregue o campo preenchido.
+
 OUTPUT (JSON, structured mode):
 
 {
   "skip": false,
   "titulo_pt": "máximo 80 caracteres, sem ponto final, sem emoji, sem aspas, sem '?'",
+  "titulo_ig": "manchete curta de impacto pro card do Instagram, 30 a 60 caracteres, caixa normal, sem ponto final, sem '?'. Regra completa logo acima",
   "intro_pt": "1 frase, 15 a 25 palavras",
   "corpo_pt": "200 a 400 palavras. Último parágrafo é o footer em itálico EXATO: _Compartilhada na comunidade mundial de fãs do Pearl Jam._",
   "tags": ["comunidade" sempre + opcionalmente 1-2 das tags abaixo"]

@@ -43,6 +43,7 @@ export async function curate({ title, sourceLabel, articleText, url, pubDate }) 
     properties: {
       skip: { type: "boolean", description: "true se a noticia for irrelevante/lixo (rumor sem fonte, clickbait, conteudo nao-PJ)" },
       titulo_pt: { type: "string" },
+      titulo_ig: { type: "string", description: "manchete curta de impacto pro card do Instagram, 30 a 60 caracteres, caixa normal, sem ponto final. Ver secao TITULO DE INSTAGRAM do system prompt" },
       intro_pt: { type: "string" },
       corpo_pt: { type: "string" },
       tags: {
@@ -59,7 +60,7 @@ export async function curate({ title, sourceLabel, articleText, url, pubDate }) 
       },
     },
     required: ["skip"],
-    propertyOrdering: ["skip", "titulo_pt", "intro_pt", "corpo_pt", "tags"],
+    propertyOrdering: ["skip", "titulo_pt", "titulo_ig", "intro_pt", "corpo_pt", "tags"],
   };
 
   const genai = getClient();
@@ -99,6 +100,7 @@ export async function curate({ title, sourceLabel, articleText, url, pubDate }) 
   // Converte pro shape que o validator espera (sem o campo `skip`)
   const standardized = {
     titulo_pt: parsed.titulo_pt,
+    titulo_ig: parsed.titulo_ig,
     intro_pt: parsed.intro_pt,
     corpo_pt: parsed.corpo_pt,
     tags: parsed.tags,

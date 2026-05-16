@@ -70,6 +70,7 @@ Pra cada item NÃO-SKIP, gere:
 {
   "id": "<copie o id exato do item pendente, sem mudar>",
   "titulo_pt": "<conforme regras do prompt apropriado, max 80 chars>",
+  "titulo_ig": "<manchete curta de impacto pro card do Instagram, 30 a 60 chars, caixa normal, sem ponto final. Ver secao TITULO DE INSTAGRAM no system prompt>",
   "intro_pt": "<conforme regras>",
   "corpo_pt": "<conforme regras (tamanho varia por kind, leia o prompt)>",
   "tags": ["<conforme regras: tags validas no system prompt>"]
@@ -167,6 +168,8 @@ Reporte:
 **#3 NUNCA citar números de votos/curtidas/comentários** no corpo. Use linguagem qualitativa ("virou destaque", "viralizou na comunidade", "dominou as conversas"). Aplicável a `community-*`.
 
 **#4 TAGS POR INTEGRANTE só quando o foco é AQUELE integrante específico.** Pra banda completa em turnê/lançamento, use `turne` ou `lancamento`. Tags válidas: turne, lancamento, tenclub, memoria, br, bootleg, comunidade, eddie, mike, stone, jeff, matt, boom, josh.
+
+**#5 SEMPRE preencher `titulo_ig`** em TODO item curado (mídia, digest e spotlight). É a manchete curta de impacto que aparece gigante no card do Instagram, 30 a 60 caracteres, caixa normal, sem ponto final, sem travessão, sem hype falso, sustentada pelos fatos. NÃO é cópia do titulo_pt: é mais curta e mais forte. Regra completa na seção TÍTULO DE INSTAGRAM de cada system prompt. Item sem titulo_ig cai no titulo_pt no card (fallback), mas o objetivo é sempre ter a versão chamativa.
 
 # Cuidados
 

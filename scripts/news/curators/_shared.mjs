@@ -84,6 +84,16 @@ export function validateCurated(rawText) {
   parsed.intro_pt = stripDashes(parsed.intro_pt);
   parsed.corpo_pt = stripDashes(parsed.corpo_pt);
 
+  // titulo_ig: manchete curta de impacto pro card do Instagram. Campo
+  // OPCIONAL e aditivo: item sem ele NAO eh rejeitado (o renderer cai no
+  // titulo_pt como fallback). Sanitiza travessao e trunca defensivo em 90
+  // (mesma folga do titulo_pt) caso o LLM ignore o limite de ~60.
+  if (typeof parsed.titulo_ig === "string" && parsed.titulo_ig.trim()) {
+    parsed.titulo_ig = truncateAtWord(stripDashes(parsed.titulo_ig.trim()), 90);
+  } else {
+    delete parsed.titulo_ig;
+  }
+
   // Safety net: so trunca se LLM gerar intro absurdamente longa (>400 chars).
   // Em uso normal nao dispara; CSS clamp 3 linhas + ellipsis cuidam do visual.
   parsed.intro_pt = truncateAtWord(parsed.intro_pt, 400);

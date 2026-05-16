@@ -76,11 +76,14 @@ REGRAS DE SELEÇÃO E NARRATIVA:
 
 12. Footer obrigatório do corpo, último parágrafo em itálico: "_André, só mais um fã idiota de Pearl Jam._"
 
+REGRA DO TÍTULO DE INSTAGRAM (`titulo_ig`): além do `titulo_pt` (vai no site), gere um `titulo_ig`: a manchete que aparece GIGANTE no card do Instagram, em caixa alta condensada. O leitor vê só ela, a tarja "Pearl Jam" e a foto. Estilo manchete de jornal esportivo BR, soco curto que faz parar o dedo no feed. 30 a 60 caracteres (máximo absoluto 70), caixa normal (o card aplica maiúscula sozinho), sem ponto final, sem emoji, sem aspas, sem travessão, sem hype falso. Sustentada pelos fatos, sem mentira. NÃO repita o titulo_pt, reescreva mais curto e forte. Ex: titulo_pt "Ohana 2026, retratos do Eddie e a saudade do verão na comunidade" → titulo_ig "Ohana 2026 acende a comunidade". Sempre entregue o campo preenchido.
+
 OUTPUT (JSON, structured mode):
 
 {
   "skip": false,
   "titulo_pt": "máximo 80 caracteres, sem ponto final, sem emoji, sem aspas. Ex: 'Ohana 2026, retratos do Eddie e a saudade do verão na comunidade'",
+  "titulo_ig": "manchete curta de impacto pro card do Instagram, 30 a 60 caracteres, caixa normal, sem ponto final. Regra completa logo acima",
   "intro_pt": "1 frase, 15 a 25 palavras, é o que aparece no card. Resume o pulso do dia.",
   "corpo_pt": "300 a 600 palavras em parágrafos. Costura 2-3 assuntos. Termina com o footer em itálico.",
   "tags": ["comunidade" sempre + opcionalmente 1-2 das tags listadas abaixo"]
