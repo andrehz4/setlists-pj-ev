@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-15T15:14:04.005Z",
+  "updated": "2026-05-16T09:09:55.872Z",
   "items": [
     {
       "id": "1fa4196147",
@@ -167,6 +167,24 @@
         "eddie"
       ],
       "kind": "pjcom-news"
+    },
+    {
+      "id": "cs-ed58e07c93",
+      "url": "https://www.reddit.com/r/pearljam/comments/1tc134r/got_the_stickman_tattoo_to_match_my_fathers_tat/",
+      "source": "reddit-community-spotlight",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-13T14:20:12.000Z",
+      "fetchedAt": "2026-05-16T09:09:55.679Z",
+      "img": null,
+      "title_pt": "Fã tatua o Stickman para casar com a tatuagem do pai, 26 anos depois",
+      "intro_pt": "Segunda tattoo do fã reproduz o símbolo icônico do Pearl Jam para espelhar o que o pai carrega no corpo há 26 anos.",
+      "tags": [
+        "comunidade"
+      ],
+      "kind": "community-spotlight",
+      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tc134r/got_the_stickman_tattoo_to_match_my_fathers_tat/",
+      "community_post_score": 381
     },
     {
       "id": "5004b07415",
@@ -466,22 +484,6 @@
       "img": "/media/news/img/db8d720857.jpg",
       "title_pt": "Farewell to Seasons: graphic novel e rock opera de Mike McCready chegam em outubro",
       "intro_pt": "Com lançamento marcado para 6 de outubro, o projeto tem editora Z2, ilustrador argentino, coautoria com Mark Sable e edições especiais com soundtrack.",
-      "tags": [
-        "mike",
-        "lancamento"
-      ]
-    },
-    {
-      "id": "d5415adefd",
-      "url": "https://stereogum.com/2492044/pearl-jams-mike-mccready-announces-grunge-opera/news",
-      "source": "stereogum-pj",
-      "sourceLabel": "Stereogum",
-      "group": "us",
-      "pubDate": "2026-03-12T16:24:10.000Z",
-      "fetchedAt": "2026-05-13T17:13:07.274Z",
-      "img": "/media/news/img/d5415adefd.jpg",
-      "title_pt": "Mike McCready anuncia rock-ópera sobre a cena grunge de Seattle",
-      "intro_pt": "O guitarrista lança 'Farewell To Seasons', graphic novel e álbum de rock opera sobre os anos 90 de Seattle.",
       "tags": [
         "mike",
         "lancamento"
