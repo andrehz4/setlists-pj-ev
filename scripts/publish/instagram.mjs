@@ -37,8 +37,8 @@ function truncateBody(body, maxChars) {
   return slice.trim() + "…";
 }
 
-function slideUrlFor(itemId) {
-  return `${REPO_PUBLIC_BASE}/media/news/instagram-slides/${encodeURIComponent(itemId)}.jpg`;
+function slideUrlFor(itemId, suffix = "") {
+  return `${REPO_PUBLIC_BASE}/media/news/instagram-slides/${encodeURIComponent(itemId)}${suffix}.jpg`;
 }
 
 function dedupeTags(list) {
@@ -180,7 +180,7 @@ export async function publishContainer({ igUserId, accessToken, creationId }) {
 // como carrossel (ou single image se for 1 item).
 // coverImageUrl: opcional. Quando presente E for carrossel (>=2 items),
 // vira o PRIMEIRO slide (capa Card 11). Solo (1 item) ignora a capa.
-export async function publishItems(items, { igUserId, accessToken, coverImageUrl } = {}) {
+export async function publishItems(items, { igUserId, accessToken, coverImageUrl, slideSuffix = "" } = {}) {
   if (!items || items.length === 0) throw new Error("publishItems: items vazio");
   if (!igUserId) igUserId = process.env.IG_USER_ID;
   if (!accessToken) accessToken = process.env.IG_ACCESS_TOKEN;
@@ -193,7 +193,7 @@ export async function publishItems(items, { igUserId, accessToken, coverImageUrl
     const caption = buildSingleCaption(it);
     const containerId = await createSingleImageContainer({
       igUserId, accessToken,
-      imageUrl: slideUrlFor(it.id),
+      imageUrl: slideUrlFor(it.id, slideSuffix),
       caption,
     });
     // pequena pausa pra IG processar a imagem antes do publish
@@ -220,7 +220,7 @@ export async function publishItems(items, { igUserId, accessToken, coverImageUrl
   for (const it of items) {
     const id = await createSlideContainer({
       igUserId, accessToken,
-      imageUrl: slideUrlFor(it.id),
+      imageUrl: slideUrlFor(it.id, slideSuffix),
     });
     childrenIds.push(id);
     await new Promise((r) => setTimeout(r, 500));
