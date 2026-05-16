@@ -20604,5 +20604,27 @@ document.addEventListener("DOMContentLoaded", init);
 })();
 </script>
 
+<script>
+/* cifras-v2: pagina dedicada de validacao — abre direto na aba Cifras & Tabs
+   (o site normal abre em Noticias; aqui o conteudo a validar e so o de cifras). */
+(function () {
+  var tries = 0;
+  function openCifras() {
+    if (typeof activateTab !== "function" || typeof state === "undefined") {
+      if (tries++ < 100) return window.setTimeout(openCifras, 80);
+      return;
+    }
+    try {
+      if (state.currentView !== "tabs") activateTab("tabs", { noScroll: true });
+      window.scrollTo({ top: 0 });
+    } catch (e) {
+      if (tries++ < 100) window.setTimeout(openCifras, 120);
+    }
+  }
+  if (document.readyState === "complete") openCifras();
+  else window.addEventListener("load", openCifras);
+})();
+</script>
+
 </body>
 </html>
