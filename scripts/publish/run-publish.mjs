@@ -191,6 +191,13 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleCol
   //    primeiro como lider. Gera a capa ANTES do push pra ela ir no mesmo
   //    commit dos slides (raw URL precisa estar publicada antes do publish).
   const itemsToPost = hydrated.filter((h) => slides.find((s) => s.id === h.id));
+  // Item hidratado sem slide gerado = falha no buildSlide. Marca erro pra
+  // nao ficar voltando pro topo da fila a cada run (bloqueando 1 slot).
+  const failedSlide = hydrated.filter((h) => !slides.find((s) => s.id === h.id));
+  if (failedSlide.length) {
+    console.warn(`[publish] ${failedSlide.length} item(s) sem slide, marcando erro: ${failedSlide.map((h) => h.id).join(", ")}`);
+    markError(queue, failedSlide.map((h) => h.id), "falha ao gerar slide", nowIso);
+  }
   let coverImageUrl = null;
   if (LAYOUT === "card02" && itemsToPost.length >= 2) {
     try {

@@ -52,7 +52,7 @@ export async function curate({ title, sourceLabel, articleText, url, pubDate }) 
           type: "string",
           enum: [
             "turne", "lancamento", "tenclub", "memoria", "br", "bootleg",
-            "eddie", "mike", "stone", "jeff", "matt", "boom", "josh",
+            "eddie", "mike", "stone", "jeff", "matt", "boom", "josh", "loja",
           ],
         },
         minItems: 1,
