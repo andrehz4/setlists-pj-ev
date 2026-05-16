@@ -3,6 +3,45 @@
 ## Data
 2026-05-16
 
+## HANDOFF SESSAO 2026-05-16: Redesign slide IG (Card02/Card11), Fase 2 OK, Fase 1 pendente
+
+### Resumo
+Mudanca grande e faseada no slide do Instagram. Novo design (bundle Claude Design "layoutinstagram"): notícia/solo vira Card 02 (foto cheia, tarja vermelha, manchete no rodapé, estilo Atlético-MG), carrossel ganha capa Card 11 (PEARL JAAAM preto, foto do item líder). FASE 2 (campo titulo_ig) FEITA E COMMITADA `cedc730`. FASE 1 (render) AINDA NAO COMECOU.
+
+### Decisoes travadas com Andre
+- Motor de render: sharp+SVG com fontes .ttf embarcadas (Anton/Oswald/Inter/Playfair, todas SIL OFL). NAO usar Puppeteer.
+- Capa do carrossel: puxa titulo_ig + foto da PRIMEIRA notícia do batch (item líder).
+- Validacao: so amostras locais. Eu gero JPGs (capa+solo+carrossel) com notícias reais, Andre olha, so então vira a flag.
+- Fase 2 sobe sozinha (additiva, fallback, invisível até Fase 1). Ja subiu.
+
+### Fase 2, FEITO (commit cedc730)
+Campo `titulo_ig` (curador) -> `title_ig` (index), manchete curta de impacto estilo jornal esportivo, separada do titulo_pt. Opcional, fallback pra title_pt. 8 arquivos: 3 prompts (system-curator-fa/community-digest/community-spotlight), routine-prompt.md (4c + regra #5), _shared.mjs, merge-curated.mjs, gemini.mjs, fetch-news.mjs. Verificado: 4 testes unitarios passam, sintaxe OK.
+
+### Proximo passo, FASE 1 (spec exato pra retomar a frio)
+Bundle de design extraido em: `C:\Users\engan\.claude\projects\C--Gitlab-hz-pearljam\999b26b6-4b2e-427c-9e2d-c3cf47247684\tool-results\design-extract\layoutinstagram\` (cards.jsx: Card02_RedLabel linha ~146, Card_BigTypeFooter linha ~676).
+
+1. Embarcar fontes: `media/fonts/` com Anton-Regular, Oswald-{Medium,Bold}, Inter-{Regular..Black}, PlayfairDisplay-{Italic,BlackItalic} .ttf (SIL OFL, Google Fonts). Criar `scripts/publish/fonts.conf`. Setar `FONTCONFIG_FILE` (no slide-image.mjs antes do sharp e/ou no publish-instagram.yml).
+2. Reescrever miolo do `scripts/publish/slide-image.mjs`: MANTER fetchBaseImageBuffer, detectFaces/cropFromFaces/smartcrop 3-tier, findBetterImage, getImageOverrideUrl, band fallback, getEditionNumber, cache, buildSlides. SUBSTITUIR buildCadernoBSvg por buildCard02Svg (foto full-bleed cover 1080x1350, gradiente, cunha vermelha canto, wordmark topo, rodapé: tarja vermelha categoria + manchete Anton autosize 3 linhas usando item.title_ig||item.title_pt + crédito) e buildCoverSvg (fundo #0a0a0a, PEARL/JAAAM Anton ~380px, foto líder box top290 left/right110 h540 com sombra, rodapé tarja DESTAQUES EDIÇÃO Nº X DATA + manchete líder). Flag SLIDE_LAYOUT (default cadernob, manter builder antigo p/ rollback). Sufixo de versão de layout no nome do .jpg p/ invalidar cache.
+3. `instagram.mjs`: publishItems aceita coverImageUrl opcional; carrossel (>=2) prepend capa; solo (1) so Card02.
+4. `run-publish.mjs`: carrossel cap 9 itens (capa+9=10 limite IG); processBatch gera capa do hydrated[0] como slide sintético `_cover-<tipo>-<data>.jpg`, push junto, passa coverImageUrl.
+5. Auto-fit manchete: heuristica largura Anton (~0.42em/char) reduzindo font-size até caber.
+6. Script de preview (lendo media/news/index.json) gera 1 capa+1 solo+1 carrossel em tmp/preview/, mostrar pro Andre. Se fonte nao renderizar no Windows libvips, consertar fontconfig ANTES de declarar pronto. Portao de aprovacao.
+7. So com OK do Andre: SLIDE_LAYOUT=card02 default. Rollback = flag.
+
+### Arquivos chave Fase 1
+```
+scripts/publish/slide-image.mjs     # reescrita do miolo, atras de flag
+scripts/publish/instagram.mjs       # suporte a capa no carrossel
+scripts/publish/run-publish.mjs     # orquestra capa + cap de 9
+media/fonts/                        # NOVO, .ttf OFL
+scripts/publish/fonts.conf          # NOVO, fontconfig
+.github/workflows/publish-instagram.yml  # FONTCONFIG_FILE / SLIDE_LAYOUT env
+```
+
+### Intocado (nao quebrar): scrape, fila, Telegram, refresh token, Story, render do site.
+
+---
+
 ## HANDOFF SESSAO 2026-05-16: Cifras v2 (redesign isolado em prod)
 
 ### Resumo
