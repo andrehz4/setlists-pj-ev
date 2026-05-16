@@ -55,6 +55,7 @@ export async function gcOrphanImages(keepHashes) {
   for (const f of files) {
     if (!f.endsWith(".jpg")) continue;
     const hash = f.replace(/\.jpg$/, "");
+    if (hash.startsWith("_")) continue; // preserva fallbacks e assets especiais
     if (!keep.has(hash)) {
       await fs.unlink(path.join(IMG_DIR, f)).catch(() => {});
       removed++;
