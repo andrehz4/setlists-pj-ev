@@ -16239,6 +16239,20 @@ function _renderTabPanel(body, songKey, tabMeta) {
            </label>`
         : '';
       // Header de padrao de palhetada: usa o padrao do instrumento ativo.
+      // Traducao display-only de labels de secao/palhetada (o JSON e
+      // compartilhado com o site ao vivo, entao NAO mexer no dado; so na
+      // renderizacao). Alinhado a regra "secoes sempre em PT".
+      const _ptStrumLabel = (raw) => {
+        const k = String(raw ?? '').trim().toLowerCase();
+        const MAP = {
+          'whole song': 'Música toda', 'full song': 'Música toda',
+          'verse': 'Verso', 'pre-chorus': 'Pré-refrão', 'prechorus': 'Pré-refrão',
+          'chorus': 'Refrão', 'bridge': 'Ponte', 'intro': 'Intro',
+          'outro': 'Final', 'solo': 'Solo', 'interlude': 'Interlúdio',
+          'breakdown': 'Quebra', 'refrain': 'Refrão', 'ending': 'Final',
+        };
+        return MAP[k] || raw;
+      };
       const _renderStrummingHeader = (multiObj) => {
         if (!multiObj || !multiObj.instruments) return '';
         const idata = multiObj.instruments[_activeCifraInstrument];
@@ -16254,7 +16268,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
                   </span>`;
         }).join('');
         return `<div class="cifra-strumming-bar" aria-label="Padrão de palhetada">
-                  <span class="cifra-strumming-label">${_esc(s.label) || 'PADRÃO'} <em>${_esc(s.bpm)} bpm</em></span>
+                  <span class="cifra-strumming-label">${_esc(_ptStrumLabel(s.label)) || 'PADRÃO'} <em>${_esc(s.bpm)} bpm</em></span>
                   <div class="cifra-strumming-row">${cells}</div>
                 </div>`;
       };
