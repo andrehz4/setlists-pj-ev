@@ -176,7 +176,9 @@ export async function publishContainer({ igUserId, accessToken, creationId }) {
 // Helper completo: dado um array de items (cada um com .id), pega URLs
 // dos slides (que assumimos ja terem sido pushados pro repo) e publica
 // como carrossel (ou single image se for 1 item).
-export async function publishItems(items, { igUserId, accessToken } = {}) {
+// coverImageUrl: opcional. Quando presente E for carrossel (>=2 items),
+// vira o PRIMEIRO slide (capa Card 11). Solo (1 item) ignora a capa.
+export async function publishItems(items, { igUserId, accessToken, coverImageUrl } = {}) {
   if (!items || items.length === 0) throw new Error("publishItems: items vazio");
   if (!igUserId) igUserId = process.env.IG_USER_ID;
   if (!accessToken) accessToken = process.env.IG_ACCESS_TOKEN;
@@ -198,11 +200,21 @@ export async function publishItems(items, { igUserId, accessToken } = {}) {
     return { postId, count: 1, captionLen: caption.length };
   }
 
-  if (items.length > 10) {
-    throw new Error(`publishItems: carrossel suporta max 10 slides, recebido ${items.length}`);
+  const totalSlides = items.length + (coverImageUrl ? 1 : 0);
+  if (totalSlides > 10) {
+    throw new Error(`publishItems: carrossel suporta max 10 slides, recebido ${totalSlides} (${items.length} items + ${coverImageUrl ? "capa" : "sem capa"})`);
   }
 
   const childrenIds = [];
+  // Capa (Card 11) entra como primeiro slide do carrossel.
+  if (coverImageUrl) {
+    const coverId = await createSlideContainer({
+      igUserId, accessToken,
+      imageUrl: coverImageUrl,
+    });
+    childrenIds.push(coverId);
+    await new Promise((r) => setTimeout(r, 500));
+  }
   for (const it of items) {
     const id = await createSlideContainer({
       igUserId, accessToken,
