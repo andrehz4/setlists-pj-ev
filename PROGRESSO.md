@@ -89,6 +89,14 @@ isolado — ver [[feedback_players_isolados]]). Pontos no codigo (linhas aprox):
    ::before ainda visivel? media/band/<id>.jpg JA sao alta-res.
 8. (#14) Braço/fretboard SEMPRE aberto na view Cifras; so colapsa por clique do user.
    Ver [[feedback_fretboard_posicionamento]] (docked inline na view Cifras).
+9. (#15) Numeracao do catalogo = ordem REAL da discografia. Albuns por
+   lancamento (Ten 1991 -> ... -> Dark Matter 2024), faixas na ordem real do
+   album. Numero = posicao real na discografia (Once=1 ... Setting Sun ~208),
+   COM gaps onde a faixa nao tem cifra. Fonte ordem/tracklist: media/albums/*.md
+   ou array ALBUMS no JS. Render: catItemHtml + ordem do entries.map em
+   renderTabsView; numeracao provavel via CSS counter. CONFIRMAR c/ Andre:
+   indice global da discografia (com gaps ~208) vs sequencial 1..N so cifras.
+   Interpretacao atual = indice global real (~208), foi o que ele descreveu.
 
 NAO COMECEI A IMPLEMENTAR (sessao longa demais, regra de contexto). Cifras-v2
 estavel e tudo commitado ate aqui (ultimo: tag teal + fotos <img> + perf bootstrap).
