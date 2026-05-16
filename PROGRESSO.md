@@ -3,6 +3,85 @@
 ## Data
 2026-05-16
 
+## HANDOFF SESSAO 2026-05-16 (fim): Analise geral do projeto, backlog consolidado
+
+### Estado
+Sessao de analise. Nenhum arquivo de codigo alterado. Lista completa de proximos
+desenvolvimentos gerada e registrada aqui.
+
+### O que foi feito
+Leitura completa do projeto (PROGRESSO.md, PIPELINE.md, FORUM_HANDOFF.md,
+PRODUTO_FANCARD_PLANO.md, MEDIA_AUDIT_2026-05-11.md) e geracao de backlog
+priorizado com 34 itens distribuidos em 7 frentes.
+
+### Proximo passo
+Ver lista abaixo. Item mais urgente: bugs #7-#15 da cifras-v2.html.
+
+### Backlog consolidado (34 itens)
+
+#### URGENTE: bugs cifras-v2 (resolver antes de portar pro index.html)
+1. Volume do mixer nao funciona (~L18466 api.changeTrackVolume, ~L18576 master)
+2. Play nao faz scroll ate tablatura + braco (revisar _firstPlayScrolled ~L17520)
+3. Loop: permitir marcar inicio/fim mesmo pausado (_loopState ~L14225)
+4. Loop: feedback visual do intervalo marcado (marcador na cifra/tab)
+5. Label "WHOLE SONG" -> PT-BR (confirmar com Andre: "Musica toda"?)
+6. Seletor instrumento topo<->baixo desincronizados (handlers ~L16323 e ~L18943)
+7. Mixer ainda mostra foto antiga de Mike/Stone (~L18441, investigar member null ou cache CF)
+8. Braco sempre aberto na view Cifras (docked inline, ver feedback_fretboard_posicionamento)
+9. Numeracao catalogo = ordem real da discografia (indice global ~208 com gaps, confirmar com Andre)
+Apos aprovacao Andre: portar diff para index.html e deletar cifras-v2.html.
+
+#### CONTEUDO: albums sem cifras (5 albums)
+10. Pearl Jam (2006)
+11. Backspacer (2009)
+12. Lightning Bolt (2013)
+13. Gigaton (2020)
+14. Dark Matter (2024)
+Processo: UG Pro -> gen_cifras.py -> media/tabs/index.json
+
+#### PRODUTO: Fan Card "Meu Analytics PJ" (PRODUTO_FANCARD_PLANO.md)
+15. Refactor computeFanAnalytics + extrair analytics-core.js
+16. Worker setlistfm-proxy.js + ajuste CSP _headers (Andre gera API key no setlist.fm)
+17. fancard.html V1 (input, fetch paginado, Canvas 1080x1350/1920, download + share)
+18. Aba "Meu Card" no index.html
+19. QA V1 (a11y 100, PT-BR, share mobile) + deploy
+20. V2 paga (gate Worker KV, premium sem marca dagua + 4K) - apos aprovacao setlist.fm
+
+#### COMUNIDADE: Forum (FORUM_HANDOFF.md)
+21. Andre cria tabelas no Supabase (forum_users, topics, posts, reports)
+22. Backend FastAPI: auth.py, forum.py, schemas/forum.py, services/ + Google OAuth vars Railway
+23. Frontend: forum.html, forum-topic.html, auth-callback.html + link "Comunidade" no nav
+
+#### MIDIA: Gaps de fotos/audio
+24. media/comunidade/ nao existe (22 fotos, chip Comunidade quebrado no site)
+25. ev-2014-05-06: 4 my_photos sem fonte no Drive
+26. pj-2011-11-03/04/06/09 + pj-2013-03-31/04-03/04-06: 11 fotos pessoais faltando
+27. pj-2005-12-02: 26 MP3s de audio faltando
+28. ev-2014-05-07 a 12 + ev-2018-03-28/29/30: varios gaps (fonte externa necessaria)
+
+#### INSTAGRAM / PIPELINE
+29. App Review Meta: submeter instagram_content_publish apos Business Verification aprovada
+30. Reels + Stories MP4 1080x1920 (bloqueado ate ~1 semana de carrossel JPG validado)
+31. Threads: parqueado (sem RSS publico disponivel)
+
+#### INFRA / BRANDING
+32. Dominio custom (Student Pack -> Namecheap) + sitemap.xml, robots.txt, og:image
+33. Sentry (Student Pack) para alertas de falha no pipeline
+34. og:image regerado com branding "So mais um fa de Pearl Jam"
+
+### Arquivos chave
+```
+setlists-pj-ev/cifras-v2.html       # bugs #1-#9, aguardando aprovacao Andre
+setlists-pj-ev/index.html           # destino final do port das cifras
+media/tabs/index.json               # 122 musicas, 5 albums sem cifra
+PRODUTO_FANCARD_PLANO.md            # spec completo do Fan Card
+FORUM_HANDOFF.md                    # spec completo do Forum
+MEDIA_AUDIT_2026-05-11.md           # detalhes dos gaps de midia
+```
+
+---
+
+
 ## HANDOFF SESSAO 2026-05-16 (noite 2): PLANO redesign do STORY (nao iniciado)
 
 ### Contexto
