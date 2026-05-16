@@ -102,11 +102,21 @@ function buildIntroFrame({ tRel, state }) {
 function buildOutroFrame({ tRel, state }) {
   const { W, H, tarjaColor } = state;
 
-  const typeP = easeOutCubic(progress(tRel, 0.0, 0.4));
-  const ctaP  = easeOutBack(progress(tRel, 0.3, 0.5));
-  const footP = easeOutCubic(progress(tRel, 0.7, 0.5));
+  const typeP   = easeOutCubic(progress(tRel, 0.0, 0.4));
+  const ctaP    = easeOutBack(progress(tRel, 0.3, 0.5));
+  const handleP = easeOutBack(progress(tRel, 0.6, 0.45)); // pop da tag @smufdpj
+  const footP   = easeOutCubic(progress(tRel, 0.7, 0.5));
 
   const cx = W / 2;
+
+  // Tag do @smufdpj (destaque na tela final). Mesma linguagem da faixa
+  // EDIÇÃO/tarja de categoria: caixa de cor de contraste + pop.
+  const hTxt = "@smufdpj";
+  const hFS = 60, hPadX = 40, hPadY = 22;
+  const hTextW = Math.round(hTxt.length * hFS * 0.52);
+  const hBoxW = hTextW + hPadX * 2;
+  const hBoxH = hFS + hPadY * 2;
+  const hY = 1480;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
     <rect width="${W}" height="${H}" fill="${tarjaColor}"/>
@@ -122,9 +132,13 @@ function buildOutroFrame({ tRel, state }) {
         font-family="${F_ANTON}" font-size="150" fill="#ffffff" letter-spacing="2">LINK NA BIO</text>
     </g>
 
-    <text x="${cx}" y="1520" text-anchor="middle"
-      font-family="${F_PLAYFAIR}" font-style="italic" font-weight="900" font-size="58"
-      fill="#ffffff" opacity="${footP.toFixed(2)}">@smufdpj</text>
+    <g transform="translate(${cx} ${hY + hBoxH / 2}) scale(${easeOutBack(handleP).toFixed(3)})"
+       transform-origin="0 0" opacity="${clamp01(handleP * 2).toFixed(2)}">
+      <rect x="${-hBoxW / 2}" y="${-hBoxH / 2}" width="${hBoxW}" height="${hBoxH}" fill="${labelBg(tarjaColor)}"/>
+      <text x="0" y="${hFS * 0.36}" text-anchor="middle"
+        font-family="${F_INTER_XB}" font-weight="800" font-size="${hFS}"
+        fill="#ffffff" letter-spacing="1">${hTxt}</text>
+    </g>
 
     <text x="${cx}" y="${H - 90}" text-anchor="middle"
       font-family="${F_INTER_XB}" font-weight="800" font-size="26"
