@@ -3,6 +3,33 @@
 ## Data
 2026-05-16
 
+## HANDOFF SESSAO 2026-05-16 (tarde): Cifras v2 — iteracoes de design
+
+### Estado
+`cifras-v2.html` no ar isolado (setlists-pj-ev.pages.dev/cifras-v2.html), `index.html`
+ao vivo INTOCADO. HEAD cifras-v2 `dab5631`. Abre direto na aba Cifras (bootstrap).
+
+### Iteracoes feitas (todas so no cifras-v2.html)
+- Masthead limpo: removido selo "songbook" + paragrafo descritivo; titulo a esquerda (grid 1fr auto).
+- Travessao removido do quote do empty-state (regra no-em-dash).
+- Mixer flutuante REMOVIDO. Agora e card inferior SEGURO: o `.mixer-aside` saiu de
+  dentro da `.tabs-layout` e virou IRMAO dela (classe `.mixer-card`), ultimo card
+  do #view-tabs, largura total. NAO toca no grid -> tablatura nao quebra.
+  (1a tentativa virou grid-row e quebrou o rodape da tab -> revertida `2a6de9b`,
+  refeita segura `620a101`.) Selector JS 17387 -> `#view-tabs .mixer-aside`;
+  os 2 `closest('.tabs-layout')` (18549/18568) sao guarded -> no-op seguro.
+- Fotos do mixer usam PJ_MEMBERS[].photo + photoPos (mesma qualidade/enquadramento
+  da secao BANDA), 64px. JS em _populateMixer.
+- Fix label "INSTRUMENTO ↓" cortado/sobre o botao Violao (margin-top+padding-top na .cifra-instr-bar).
+
+### Proximo passo
+Andre validando visualmente, iterando. Pendente possivelmente: posicao do rack de
+instrumentos (subir?), revisar card do mixer com tracks reais. Quando aprovado:
+portar as mudancas pro index.html ao vivo e apagar cifras-v2.html (desativar antiga).
+Extracao original documentada no handoff "Cifras v2 (redesign isolado)" mais abaixo.
+
+---
+
 ## HANDOFF SESSAO 2026-05-16: Redesign slide IG (Card02/Card11), Fase 2 OK, Fase 1 pendente
 
 ### Resumo
