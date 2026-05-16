@@ -25,6 +25,9 @@
 //  [20.5, 22.0)  outro (1.5s, curto e seco)
 // Transicao entre estados: 0.25s de crossfade (alpha overlay).
 
+// fontconfig-boot ANTES de sharp: side-effect seta o env do fontconfig
+// e fornece as familias F_* (Anton/Inter/Playfair), iguais ao slide.
+import { F_ANTON, F_INTER, F_INTER_SB, F_INTER_XB, F_PLAYFAIR } from "./fontconfig-boot.mjs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
@@ -40,8 +43,9 @@ const activeStyle = pickStyle(STORY_STYLE);
 const W = 1080;
 const H = 1920;
 const FPS = 30;
-const TOTAL_S = 22.0;
-const TOTAL_FRAMES = TOTAL_S * FPS;
+// Timeline DINAMICA: total = intro + N cards + outro. Calculada por run
+// em buildStoryVideo (antes era fixa 22s e o array de items era
+// preenchido repetindo a mesma materia ate 5 quando havia poucas).
 
 // Marcos da timeline (em segundos)
 const T_INTRO_END = 3.0;
@@ -72,6 +76,7 @@ function buildIntroState({ date, itemCount, tarjaColor, badgeAnim, edition }) {
   return {
     W, H,
     day: date.getUTCDate(),
+    month: date.getUTCMonth() + 1,
     monthShort: MONTH_PT[date.getUTCMonth()],
     monthLong: MONTH_PT_LONG[date.getUTCMonth()],
     year: date.getUTCFullYear(),
@@ -255,6 +260,15 @@ async function fetchImageBuffer(item) {
       return await got(src, { timeout: { request: 15000 }, retry: { limit: 1 }, responseType: "buffer" }).buffer();
     } catch {}
   }
+  // Sem foto propria (ex: community spotlight): foto oficial da banda
+  // (mesmo conjunto do slide), escolhida pelo 1o nibble hex do id.
+  try {
+    const hex = String(item.id || "").replace(/[^0-9a-f]/gi, "")[0] || "0";
+    const n = (parseInt(hex, 16) % 4) + 1;
+    const fb = path.join(process.cwd(), `media/news/img/_band-fallback-${n}.jpg`);
+    const buf = await fs.readFile(fb);
+    if (buf && buf.length > 1024) return buf;
+  } catch {}
   return null;
 }
 
@@ -349,59 +363,123 @@ function tagsChipsAnimatedSvg(tags, yBase, animProgress) {
 const buildIntroFrame = activeStyle.intro;
 const buildOutroFrame = activeStyle.outro;
 
-// CARD: tarjas slide-in -> chips pop -> source label fade -> headline typewriter
-function buildCardSvg({ tarjaColor, item, idx, total, tRel, isLast }) {
-  // tRel: 0..3.5
-  // 0.0-0.3: tarjas slide
-  // 0.2-0.7: chips pop (stagger interno)
-  // 0.4-0.7: contador "01/05" fade
-  // 0.5-0.9: source label fade
-  // 0.8-2.6: headline typewriter (1.8s pra escrever)
-  // 2.6-3.5: estatico
-  const tarjaP = progress(tRel, 0.0, 0.3);
-  const chipsP = progress(tRel, 0.2, 0.7);
-  const counterOpacity = easeOutCubic(progress(tRel, 0.4, 0.3));
-  const sourceOpacity = easeOutCubic(progress(tRel, 0.5, 0.4));
-  const headerOpacity = easeOutCubic(progress(tRel, 0.0, 0.4));
-  const footerOpacity = easeOutCubic(progress(tRel, 0.0, 0.4));
+// ===== Helpers do padrao card02 no story (vertical 1080x1920) =====
 
-  const title = item.title_pt || "";
-  const titleLines = wrapText(title, 14, 5);
-  const totalChars = titleLines.reduce((a, l) => a + l.length, 0);
+const SIDE_S = 64;
+const CAT_LABELS_S = {
+  turne: "Turnê", lancamento: "Lançamento", tenclub: "Ten Club",
+  memoria: "Memória", br: "Brasil", bootleg: "Bootleg",
+  comunidade: "Comunidade", eddie: "Eddie", mike: "Mike",
+  stone: "Stone", jeff: "Jeff", matt: "Matt", boom: "Boom",
+  josh: "Josh", loja: "Loja",
+};
+
+// Quebra editorial balanceada (~3 palavras/linha), igual ao slide card02.
+function splitBalancedS(words, L) {
+  const total = words.join(" ").length;
+  const target = total / L;
+  const lines = [];
+  let i = 0;
+  for (let ln = 0; ln < L; ln++) {
+    let line = words[i++] || "";
+    while (
+      i < words.length &&
+      (words.length - i) > (L - ln - 1) &&
+      (line + " " + words[i]).length <= Math.ceil(target * 1.12)
+    ) line += " " + words[i++];
+    lines.push(line);
+  }
+  while (i < words.length) lines[L - 1] += " " + words[i++];
+  return lines;
+}
+function balancedWrapS(text, maxChars, maxLines) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
+  if (words.length === 0) return [""];
+  const startL = Math.min(maxLines, Math.max(1, Math.ceil(words.length / 3)));
+  for (let L = startL; L <= maxLines; L++) {
+    const lines = splitBalancedS(words, L);
+    if (lines.every((ln) => ln.length <= maxChars)) return lines;
+  }
+  return splitBalancedS(words, maxLines)
+    .map((l) => l.length > maxChars ? l.slice(0, maxChars - 1).replace(/[.,;:!?\s]+$/, "") + "…" : l);
+}
+
+// Cunha vermelha (cor do ciclo) cortada em 42%, igual ao Card 02.
+function coverWedgeS(size, color, opacity = 1) {
+  return `<g opacity="${opacity.toFixed(2)}"><defs>
+    <linearGradient id="wcard" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="${color}"/>
+      <stop offset="42%" stop-color="${color}"/>
+      <stop offset="42.5%" stop-color="${color}" stop-opacity="0"/>
+    </linearGradient></defs>
+    <rect x="0" y="0" width="${size}" height="${size}" fill="url(#wcard)"/></g>`;
+}
+
+// CARD card02: wedge -> wordmark/counter fade -> tarja pop -> manchete typewriter
+function buildCardSvg({ tarjaColor, item, idx, total, tRel, isLast }) {
+  const headOpacity = easeOutCubic(progress(tRel, 0.0, 0.4));   // wordmark/counter/wedge
+  const tagP = progress(tRel, 0.2, 0.6);                         // tarja pop
+  const footerOpacity = easeOutCubic(progress(tRel, 0.0, 0.4));  // site
+
+  const title = (item.title_ig || item.title_pt || "").toUpperCase();
+  const usableW = W - SIDE_S * 2; // 952
+  const headFS = 96;
+  const maxChars = Math.max(8, Math.floor(usableW / (headFS * 0.46))); // ~21
+  const lines = balancedWrapS(title, maxChars, 5);
+  const totalChars = lines.reduce((a, l) => a + l.length, 0);
   const headlineP = easeOutCubic(progress(tRel, 0.8, 1.8));
   const charsToShow = Math.floor(headlineP * totalChars);
-  const visibleLines = sliceWrapped(titleLines, charsToShow);
-
-  const titleLineHeight = 120;
-  const titleBaseY = 1400;
-  const titleStartY = titleBaseY - (titleLines.length - 1) * titleLineHeight;
-  const titleSpans = visibleLines
-    .map((line, i) => `<tspan x="${W / 2}" dy="${i === 0 ? 0 : titleLineHeight}" text-anchor="middle">${escapeXml(line)}</tspan>`)
-    .join("");
-
-  // cursor pisca enquanto typewriter ainda nao terminou
+  const visibleLines = sliceWrapped(lines, charsToShow);
   const typingDone = charsToShow >= totalChars;
   const cursorBlink = !typingDone && Math.floor(tRel * 4) % 2 === 0 ? "▌" : "";
-  const sourceLabel = (item.sourceLabel || "").toUpperCase();
-  const tagsBlock = tagsChipsAnimatedSvg(Array.isArray(item.tags) ? item.tags : [], 240, chipsP);
+
+  // Layout ancorado no fundo (espelha o footerBlock do slide card02).
+  const lh = Math.round(headFS * 0.96); // 92
+  const siteFS = 28, siteMargin = 40, bottomPad = 110;
+  const siteBaseline = H - bottomPad;
+  const lastBaseline = siteBaseline - siteFS - siteMargin;
+  const firstBaseline = lastBaseline - (lines.length - 1) * lh;
+  const headTopY = firstBaseline - headFS * 0.78;
+  const headSpans = visibleLines
+    .map((l, i) => `<tspan x="${SIDE_S}" y="${firstBaseline + i * lh}">${escapeXml(l)}${i === visibleLines.length - 1 ? cursorBlink : ""}</tspan>`)
+    .join("");
+
+  // Tarja (Inter ExtraBold, cor do ciclo). pop com escala.
+  const tags = Array.isArray(item.tags) ? item.tags : [];
+  const cat = (CAT_LABELS_S[tags[0]] || "Notícia").toUpperCase();
+  const tagFS = 34, tagLS = 2.4, tPadX = 28, tPadT = 18, tPadB = 16;
+  const tagTextW = Math.round(cat.length * tagFS * 0.60 + Math.max(0, cat.length - 1) * tagLS);
+  const tagBoxW = tagTextW + tPadX * 2;
+  const tagBoxH = tagFS + tPadT + tPadB;
+  const tagBottomY = headTopY - 34;
+  const tagTopY = tagBottomY - tagBoxH;
+  const tagTextBaseline = tagTopY + tPadT + tagFS * 0.80;
+  const tagScale = easeOutBack(tagP);
+  const tagOpacity = clamp01(tagP * 2);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-    ${defsBlock()}
-    <rect x="0" y="136" width="${W}" height="220" fill="url(#topShade)" />
-    <rect x="0" y="900" width="${W}" height="850" fill="url(#darkFade)" />
+    ${coverWedgeS(300, tarjaColor, headOpacity)}
 
-    ${tarjasSvg(tarjaColor, tarjaP)}
-    ${brandHeaderSvg(headerOpacity)}
+    <text x="${W / 2}" y="120" text-anchor="middle"
+      font-family="${F_PLAYFAIR}" font-style="italic" font-weight="900" font-size="42"
+      fill="#ffffff" letter-spacing="-0.8" opacity="${headOpacity.toFixed(2)}">Só Mais um Fã de PEARL JAM</text>
 
-    ${tagsBlock}
+    <text x="${W - SIDE_S}" y="${H - bottomPad}" text-anchor="end"
+      font-family="${F_INTER_SB}" font-size="26" fill="#ffffff"
+      opacity="${(footerOpacity * 0.7).toFixed(2)}" letter-spacing="2">${String(idx).padStart(2,"0")} / ${String(total).padStart(2,"0")}</text>
 
-    <text x="${W - 60}" y="280" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="60" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="2" paint-order="stroke fill" letter-spacing="4" text-anchor="end" opacity="${counterOpacity.toFixed(2)}" filter="url(#textShadow)">${String(idx).padStart(2,"0")} / ${String(total).padStart(2,"0")}</text>
+    <g transform="translate(${SIDE_S} ${Math.round(tagTopY)}) scale(${tagScale.toFixed(3)})" transform-origin="0 ${tagBoxH / 2}" opacity="${tagOpacity.toFixed(2)}">
+      <rect x="0" y="0" width="${tagBoxW}" height="${Math.round(tagBoxH)}" fill="${tarjaColor}"/>
+      <text x="${tPadX}" y="${Math.round(tPadT + tagFS * 0.80)}"
+        font-family="${F_INTER_XB}" font-weight="800" font-size="${tagFS}"
+        fill="#ffffff" letter-spacing="${tagLS}">${escapeXml(cat)}</text>
+    </g>
 
-    <text x="${W / 2}" y="${titleStartY - 90}" font-family="'Special Elite',Courier,monospace" font-size="32" fill="#ff6b3a" stroke="#0a0908" stroke-width="1.2" paint-order="stroke fill" letter-spacing="6" text-anchor="middle" filter="url(#textShadow)" opacity="${sourceOpacity.toFixed(2)}">${escapeXml(sourceLabel)}</text>
+    <text font-family="${F_ANTON}" font-size="${headFS}" fill="#ffffff" letter-spacing="0.5">${headSpans}</text>
 
-    <text x="${W / 2}" y="${titleStartY}" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="100" font-weight="900" fill="#f7f1de" stroke="#0a0908" stroke-width="5" paint-order="stroke fill" letter-spacing="-1" filter="url(#textShadow)">${titleSpans}${cursorBlink ? `<tspan opacity="0.7">${cursorBlink}</tspan>` : ""}</text>
-
-    ${brandFooterSvg(footerOpacity)}
+    <text x="${SIDE_S}" y="${siteBaseline}"
+      font-family="${F_INTER_SB}" font-size="${siteFS}" fill="#ffffff"
+      opacity="${(footerOpacity * 0.85).toFixed(2)}" letter-spacing="0.5">setlists-pj-ev.pages.dev</text>
   </svg>`;
 }
 
@@ -432,12 +510,21 @@ async function prepareCardBg(item) {
   if (!baseBuf) baseBuf = await makeFallbackBg();
   const cover = await sharp(baseBuf, { failOn: "none" })
     .resize(W, H, { fit: "cover", position: "attention" })
+    .sharpen(1.1)
     .toBuffer();
-  const overlay = await sharp({
-    create: { width: W, height: H, channels: 4, background: { r: 10, g: 9, b: 8, alpha: 0.5 } },
-  }).png().toBuffer();
+  // Gradiente padrao card02 (vertical): topo leve pro wordmark ler, meio
+  // limpo pra foto respirar, base forte pra manchete Anton/tarja/site.
+  const grad = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000" stop-opacity="0.32"/>
+      <stop offset="22%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="52%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="74%" stop-color="#000" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.96"/>
+    </linearGradient></defs>
+    <rect x="0" y="0" width="${W}" height="${H}" fill="url(#g)"/></svg>`);
   return await sharp(cover)
-    .composite([{ input: overlay, blend: "over" }])
+    .composite([{ input: grad, blend: "over" }])
     .png()
     .toBuffer();
 }
@@ -477,8 +564,11 @@ function runFfmpeg(args) {
 export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new Date(), outPath, tmpDir, concurrency = 8 } = {}) {
   if (!Array.isArray(items) || items.length === 0) throw new Error("buildStoryVideo: items vazio");
   if (items.length > 5) items = items.slice(0, 5);
-  while (items.length < 5) items.push(items[items.length % Math.max(1, items.length)]);
+  // SEM repetir: 1 noticia = 1 card. Timeline dinamica acompanha.
   if (!trackPath) throw new Error("buildStoryVideo: trackPath obrigatorio");
+
+  const totalS = T_INTRO_END + items.length * T_CARD_DUR + T_OUTRO_DUR;
+  const totalFrames = Math.round(totalS * FPS);
 
   tmpDir = tmpDir || await fs.mkdtemp(path.join(os.tmpdir(), "smufdpj-story-"));
   await fs.mkdir(tmpDir, { recursive: true });
@@ -492,9 +582,8 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
   console.log(`[story-video] preparando ${items.length} BGs...`);
   const bgBuffers = await Promise.all(items.map(prepareCardBg));
 
-  // gera lista de tarefas frame-a-frame
-  const totalFrames = Math.round(TOTAL_FRAMES);
-  console.log(`[story-video] renderizando ${totalFrames} frames @${FPS}fps...`);
+  // gera lista de tarefas frame-a-frame (totalFrames ja calculado acima)
+  console.log(`[story-video] ${items.length} card(s), ${totalS.toFixed(1)}s, renderizando ${totalFrames} frames @${FPS}fps...`);
 
   // helper: gera um frame pelo seu indice global
   async function renderFrame(idx) {
@@ -545,7 +634,7 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
     "-i", path.join(tmpDir, "frame_%05d.png"),
     "-i", trackPath,
     "-filter_complex",
-    `[1:a]atrim=0:${TOTAL_S},afade=t=in:d=0.3,afade=t=out:st=${(TOTAL_S - 0.5).toFixed(2)}:d=0.5,loudnorm=I=-16:TP=-1.5:LRA=11[aout]`,
+    `[1:a]atrim=0:${totalS},afade=t=in:d=0.3,afade=t=out:st=${(totalS - 0.5).toFixed(2)}:d=0.5,loudnorm=I=-16:TP=-1.5:LRA=11[aout]`,
     "-map", "0:v", "-map", "[aout]",
     "-c:v", "libx264", "-pix_fmt", "yuv420p", "-r", String(FPS),
     "-profile:v", "main", "-level", "4.0",
@@ -556,7 +645,7 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
   ];
   console.log(`[story-video] mixando audio + encoding MP4...`);
   await runFfmpeg(args);
-  return { outPath, duration: TOTAL_S, tmpDir, frames: totalFrames };
+  return { outPath, duration: totalS, tmpDir, frames: totalFrames };
 }
 
 // CLI util pra teste local
@@ -570,7 +659,8 @@ if (process.argv[1]?.endsWith("story-video.mjs")) {
     process.exit(2);
   }
   const track = await pickTrackForDate();
-  const tarjaColor = "#c12727";
+  const { CYCLE_COLORS } = await import("./color-cycle.mjs");
+  const tarjaColor = CYCLE_COLORS[0]; // preto, 1a cor do ciclo (preview)
   const r = await buildStoryVideo({ items, trackPath: track.path, tarjaColor });
   console.log("[story-video] OK", { outPath: r.outPath, duration: r.duration, frames: r.frames, items: items.length, track: track.name });
   if (!keepTmp) await fs.rm(r.tmpDir, { recursive: true, force: true });
