@@ -18840,7 +18840,11 @@ async function _playChordSound(chordName, opts) {
     // mantem dedilhado 25ms pra som mais natural.
     const stagger = instrument === 'piano' ? 0.015 : 0.025;
     notes.forEach((note, i) => {
-      sampler.start({ note, velocity: Math.round(velocity * gain), time: now + i * stagger, duration });
+      // #7: volume real via 'gain' de saida do sampler (smplr suporta).
+      // Velocity fica natural (timbre consistente); o controle de volume
+      // do transport (.cifra-mode-vol -> window._cifraVolume -> opts.gain)
+      // agora altera a saida de verdade, nao so a velocity (quase imperceptivel).
+      sampler.start({ note, velocity, gain, time: now + i * stagger, duration });
     });
   } catch (e) { /* silencioso: feature opcional */ }
 }
