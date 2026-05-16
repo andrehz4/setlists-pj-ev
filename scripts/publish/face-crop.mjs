@@ -27,68 +27,77 @@ async function getModel() {
   return _modelPromise;
 }
 
-// Retorna {left,top,width,height} no espaco de pixels da imagem
-// original, ja na proporcao targetW:targetH, ou null se nao houver
-// rosto detectado com confianca.
-export async function faceCropRegion(photoBuf, targetW, targetH) {
+// Roda o blazeface e retorna { W, H, faces, topCut }.
+//   faces  = [{x1,y1,x2,y2,prob}] (so confianca >= 0.6)
+//   topCut = true se algum rosto encosta no topo da imagem
+//            (minY <= 3% da altura) -> fonte provavelmente ja veio
+//            cortada na testa/cabeca (thumbnail/og:image ruim).
+// Retorna null se o modelo/tfjs estiver indisponivel.
+export async function detectFaces(photoBuf) {
   let model;
   try {
     model = await getModel();
   } catch {
-    return null; // tfjs/modelo indisponivel -> chamador usa fallback
+    return null;
   }
 
-  const { data, info } = await sharp(photoBuf, { failOn: "none" })
-    .removeAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
+  let info, data;
+  try {
+    ({ data, info } = await sharp(photoBuf, { failOn: "none" })
+      .removeAlpha()
+      .raw()
+      .toBuffer({ resolveWithObject: true }));
+  } catch {
+    return null;
+  }
   const W = info.width;
   const H = info.height;
 
-  let faces;
+  let raw;
   let input;
   try {
     input = _tf.tensor3d(new Uint8Array(data), [H, W, info.channels]);
-    faces = await model.estimateFaces(input, false);
+    raw = await model.estimateFaces(input, false);
   } catch {
     return null;
   } finally {
     if (input) input.dispose();
   }
 
-  const valid = (faces || []).filter((f) => {
-    const p = Array.isArray(f.probability) ? f.probability[0] : f.probability;
-    return (p ?? 1) >= 0.6;
-  });
-  if (valid.length === 0) return null;
+  const faces = (raw || [])
+    .map((f) => {
+      const p = Array.isArray(f.probability) ? f.probability[0] : f.probability;
+      const [x1, y1] = f.topLeft;
+      const [x2, y2] = f.bottomRight;
+      return { x1, y1, x2, y2, prob: p ?? 1 };
+    })
+    .filter((f) => f.prob >= 0.6);
 
-  // Caixa-uniao de todos os rostos
+  const topCut = faces.some((f) => f.y1 <= H * 0.03);
+  return { W, H, faces, topCut };
+}
+
+// Geometria pura: dada a deteccao e a proporcao alvo, devolve a
+// janela de corte ou null se nao houver rosto.
+export function cropFromFaces(det, targetW, targetH) {
+  if (!det || !det.faces || det.faces.length === 0) return null;
+  const { W, H, faces, topCut } = det;
+
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-  for (const f of valid) {
-    const [x1, y1] = f.topLeft;
-    const [x2, y2] = f.bottomRight;
-    minX = Math.min(minX, x1); minY = Math.min(minY, y1);
-    maxX = Math.max(maxX, x2); maxY = Math.max(maxY, y2);
+  for (const f of faces) {
+    minX = Math.min(minX, f.x1); minY = Math.min(minY, f.y1);
+    maxX = Math.max(maxX, f.x2); maxY = Math.max(maxY, f.y2);
   }
   const faceW = Math.max(1, maxX - minX);
   const faceH = Math.max(1, maxY - minY);
   const faceCX = minX + faceW / 2;
   const faceCY = minY + faceH / 2;
-
   const AR = targetW / targetH;
 
-  // Se o rosto encosta no topo da fonte, a cabeca/testa quase
-  // sempre ja vem cortada na imagem original (thumbnail/og:image).
-  // Nesse caso NAO da zoom: usa o maior corte possivel pra mostrar
-  // o maximo de contexto (corpo/cena) em vez de um closeup de
-  // cabeca cortada. headTop=true.
-  const headTop = minY <= H * 0.03;
-
-  // Altura do corte. Normal: rosto(s) ~28% da altura -> bastante
-  // headroom acima e torso/contexto abaixo. Com headTop: o maior
-  // corte possivel (mostra tudo, menos zoom = menos cara de
-  // cabeca cortada). Limites: nunca abaixo de 60% da imagem.
-  let cropH = headTop ? H : faceH / 0.28;
+  // Com topCut a cabeca ja veio cortada: nao da zoom, usa o maior
+  // corte possivel (mostra o maximo de contexto). Normal: rosto(s)
+  // ~28% da altura, com headroom acima e torso abaixo.
+  let cropH = topCut ? H : faceH / 0.28;
   cropH = Math.max(cropH, H * 0.6);
   cropH = Math.min(cropH, H);
   let cropW = cropH * AR;
@@ -97,20 +106,14 @@ export async function faceCropRegion(photoBuf, targetW, targetH) {
     cropH = cropW / AR;
   }
 
-  // Posicao: centro horizontal no centro dos rostos. Vertical:
-  // normal coloca o centro dos rostos a ~42% do topo (headroom);
-  // com headTop ancora no topo (top=0), ja que nao ha o que
-  // mostrar acima.
   let left = faceCX - cropW / 2;
-  let top = headTop ? 0 : faceCY - cropH * 0.42;
+  let top = topCut ? 0 : faceCY - cropH * 0.42;
 
-  // Garante que a caixa-uniao dos rostos cabe inteira no corte
   if (minX < left) left = minX;
   if (maxX > left + cropW) left = maxX - cropW;
   if (minY < top) top = minY;
   if (maxY > top + cropH) top = maxY - cropH;
 
-  // Clamp aos limites da imagem
   left = Math.max(0, Math.min(W - cropW, left));
   top = Math.max(0, Math.min(H - cropH, top));
 
@@ -120,4 +123,11 @@ export async function faceCropRegion(photoBuf, targetW, targetH) {
     width: Math.round(cropW),
     height: Math.round(cropH),
   };
+}
+
+// Conveniencia: detecta + calcula a janela. Mantem a API usada pelo
+// slide-image.mjs. Retorna {left,top,width,height} ou null.
+export async function faceCropRegion(photoBuf, targetW, targetH) {
+  const det = await detectFaces(photoBuf);
+  return cropFromFaces(det, targetW, targetH);
 }

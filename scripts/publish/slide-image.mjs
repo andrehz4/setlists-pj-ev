@@ -8,7 +8,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import got from "got";
 import { getEditionNumber } from "./edition.mjs";
-import { faceCropRegion } from "./face-crop.mjs";
+import { detectFaces, cropFromFaces } from "./face-crop.mjs";
+import { findBetterImage } from "./find-better-image.mjs";
 
 const SLIDE_W = 1080;
 const SLIDE_H = 1350;
@@ -230,14 +231,36 @@ export async function buildSlide(item) {
   // Sempre preenche a moldura inteira (sem barra, sem blur).
   if (photoRaw) {
     try {
-      const meta = await sharp(photoRaw, { failOn: "none" }).metadata();
+      let srcBuf = photoRaw;
+
+      // 0) Deteccao de rosto na imagem primaria. Se o rosto vier
+      //    colado no topo (fonte cortada na testa/cabeca), raspa a
+      //    pagina da materia atras de uma foto melhor e persiste no
+      //    cache local (conserta tambem os runs futuros).
+      let det = await detectFaces(srcBuf);
+      if (det && det.faces.length > 0 && det.topCut && item.url) {
+        try {
+          const better = await findBetterImage(item.url);
+          if (better && better.buffer) {
+            srcBuf = better.buffer;
+            det = await detectFaces(srcBuf);
+            if (item.img && item.img.startsWith("/media/news/img/")) {
+              const dest = path.join(process.cwd(), item.img.replace(/^\//, ""));
+              await fs.writeFile(dest, srcBuf).catch(() => {});
+            }
+            console.log(`[slide] ${item.id}: fonte cortada no rosto -> imagem melhor de ${better.url}`);
+          }
+        } catch {}
+      }
+
+      const meta = await sharp(srcBuf, { failOn: "none" }).metadata();
       let photoBuf = null;
 
-      // 1) rosto real
+      // 1) rosto real (reaproveita a deteccao ja feita)
       try {
-        const fc = await faceCropRegion(photoRaw, CONT_W, PHOTO_H);
+        const fc = cropFromFaces(det, CONT_W, PHOTO_H);
         if (fc) {
-          photoBuf = await sharp(photoRaw, { failOn: "none" })
+          photoBuf = await sharp(srcBuf, { failOn: "none" })
             .extract(fc)
             .resize(CONT_W, PHOTO_H, { fit: "cover" })
             .toBuffer();
@@ -247,7 +270,7 @@ export async function buildSlide(item) {
       // 2) smartcrop
       if (!photoBuf) {
         try {
-          const { topCrop: c } = await smartcrop.crop(photoRaw, {
+          const { topCrop: c } = await smartcrop.crop(srcBuf, {
             width: CONT_W,
             height: PHOTO_H,
           });
@@ -256,7 +279,7 @@ export async function buildSlide(item) {
             const top = Math.max(0, Math.min(meta.height - 1, Math.round(c.y)));
             const width = Math.max(1, Math.min(meta.width - left, Math.round(c.width)));
             const height = Math.max(1, Math.min(meta.height - top, Math.round(c.height)));
-            photoBuf = await sharp(photoRaw, { failOn: "none" })
+            photoBuf = await sharp(srcBuf, { failOn: "none" })
               .extract({ left, top, width, height })
               .resize(CONT_W, PHOTO_H, { fit: "cover" })
               .toBuffer();
@@ -266,7 +289,7 @@ export async function buildSlide(item) {
 
       // 3) attention
       if (!photoBuf) {
-        photoBuf = await sharp(photoRaw, { failOn: "none" })
+        photoBuf = await sharp(srcBuf, { failOn: "none" })
           .resize(CONT_W, PHOTO_H, { fit: "cover", position: "attention" })
           .toBuffer();
       }
