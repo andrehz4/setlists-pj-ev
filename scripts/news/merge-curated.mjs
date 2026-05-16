@@ -78,7 +78,20 @@ function validateCurated(c) {
   if (typeof c.intro_pt !== "string" || !c.intro_pt.trim()) return null;
   if (typeof c.corpo_pt !== "string" || c.corpo_pt.length < 100) return null;
   const tags = Array.isArray(c.tags) ? c.tags.filter((t) => VALID_TAGS.has(t)).slice(0, 3) : [];
-  return { id: c.id, titulo_pt: c.titulo_pt, intro_pt: c.intro_pt, corpo_pt: c.corpo_pt, tags: tags.length ? tags : ["memoria"] };
+  // titulo_ig: manchete curta de impacto pro card do Instagram. OPCIONAL e
+  // aditivo: ausencia NAO invalida o item (o renderer cai no titulo_pt).
+  // Trunca defensivo em 90 (mesma folga do titulo_pt) se o LLM exagerar.
+  const tituloIg = (typeof c.titulo_ig === "string" && c.titulo_ig.trim())
+    ? c.titulo_ig.trim().slice(0, 90)
+    : null;
+  return {
+    id: c.id,
+    titulo_pt: c.titulo_pt,
+    titulo_ig: tituloIg,
+    intro_pt: c.intro_pt,
+    corpo_pt: c.corpo_pt,
+    tags: tags.length ? tags : ["memoria"],
+  };
 }
 
 async function main() {
@@ -139,6 +152,10 @@ async function main() {
       body_pt: validated.corpo_pt,
       tags: validated.tags,
     };
+    // title_ig: manchete curta pro card do Instagram. So entra no index se a
+    // routine gerou (campo opcional). Item sem ele faz fallback pra title_pt
+    // no renderer do slide. Mantem o index limpo (sem chave null).
+    if (validated.titulo_ig) baseItem.title_ig = validated.titulo_ig;
     // Preserva metadados extras vindos do _pending.json (community-spotlight
     // tem community_author/community_post_url; community-digest tem
     // community_posts_count). Esses campos sao opcionais e so existem em

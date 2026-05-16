@@ -370,6 +370,9 @@ async function main() {
         fetchedAt: new Date().toISOString(),
         img: localImg,
         title_pt: out.titulo_pt,
+        // title_ig: manchete curta pro card do IG. undefined some no
+        // JSON.stringify (fallback pra title_pt no renderer do slide).
+        title_ig: out.titulo_ig,
         intro_pt: out.intro_pt,
         body_pt: out.corpo_pt,
         tags: out.tags,
