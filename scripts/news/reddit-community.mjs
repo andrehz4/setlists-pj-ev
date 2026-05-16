@@ -1,29 +1,18 @@
-// Fetch da comunidade r/pearljam via RSS (sem necessidade de OAuth).
-//   fetchTopDay()  → /top/.rss?t=day,  janela 24h, ideal pro digest
-//   fetchTopWeek() → /top/.rss?t=week, janela 7d,  ideal pro spotlight
+// Fetch da comunidade r/pearljam via API JSON do Reddit (mesmo padrao do fetch-news.mjs).
+//   fetchTopDay()  → /r/pearljam/top.json?t=day,  janela 24h, ideal pro digest
+//   fetchTopWeek() → /r/pearljam/top.json?t=week, janela 7d,  ideal pro spotlight
 //
-// RSS nao traz score nem flair; posts da feed top sao considerados
-// pontuados (score=999) por definicao. Imagem extraida do campo content:encoded.
+// Usa REDDIT_PROXY_URL que ja lida com OAuth. Retorna score, flair e
+// num_comments reais (RSS nao fornecia esses campos).
 
 import got from "got";
-import Parser from "rss-parser";
 
 const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
 const REDDIT_BASE = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "") || "https://www.reddit.com";
 const BASE = `${REDDIT_BASE}/r/pearljam`;
 
-const rssParser = new Parser({
-  customFields: { item: [["media:thumbnail", "mediaThumbnail"]] },
-});
-
 const IMAGE_HOST_RX = /^https?:\/\/(i\.redd\.it|preview\.redd\.it|i\.imgur\.com|imgur\.com)\//i;
 const IMAGE_EXT_RX = /\.(jpe?g|png|gif|webp)(\?|$)/i;
-
-function extractImageFromHtml(html) {
-  if (!html) return null;
-  const m = html.match(/src="(https?:\/\/[^"]+\.(?:jpg|jpeg|png|gif|webp)[^"]*)"/i);
-  return m?.[1]?.replace(/&amp;/g, "&") || null;
-}
 
 export function pickCoverImage(post) {
   if (!post) return null;
@@ -33,28 +22,37 @@ export function pickCoverImage(post) {
   return null;
 }
 
-function normalizeRssItem(item) {
-  const id = item.link?.match(/comments\/([a-z0-9]+)\//i)?.[1] || Math.random().toString(36).slice(2);
-  const thumbnailUrl = item.mediaThumbnail?.["$"]?.url || null;
-  const contentImage = extractImageFromHtml(item["content:encoded"] || item.content || "");
-  const cover = thumbnailUrl && /^https?:\/\//.test(thumbnailUrl) ? thumbnailUrl : contentImage;
+function extractPreviewImage(p) {
+  try {
+    const src = p.preview?.images?.[0]?.source?.url;
+    if (src) return src.replace(/&amp;/g, "&");
+  } catch { /* */ }
+  return null;
+}
+
+function normalizeJsonPost(p) {
+  const permalink = `https://www.reddit.com${p.permalink}`;
+  const directImg = p.post_hint === "image" ? p.url : null;
+  const previewImg = extractPreviewImage(p);
+  const thumbImg = p.thumbnail && /^https?:\/\//.test(p.thumbnail) ? p.thumbnail : null;
+  const cover = directImg || previewImg || thumbImg || null;
   return {
-    id,
-    permalink: item.link || "",
-    title: item.title || "",
-    author: item.creator ? `u/${item.creator}` : "u/[deleted]",
-    score: 999,            // feed top = pontuado por definicao
-    num_comments: 0,
-    flair: null,
-    selftext: (item.contentSnippet || "").slice(0, 1200),
-    is_gallery: false,
-    over_18: false,
-    locked: false,
-    removed: false,
-    created_utc: item.pubDate ? Math.floor(new Date(item.pubDate).getTime() / 1000) : 0,
-    created_iso: item.pubDate ? new Date(item.pubDate).toISOString() : new Date().toISOString(),
+    id: p.id,
+    permalink,
+    title: p.title || "",
+    author: p.author ? `u/${p.author}` : "u/[deleted]",
+    score: p.score || 0,
+    num_comments: p.num_comments || 0,
+    flair: p.link_flair_text || null,
+    selftext: (p.selftext || "").slice(0, 1200),
+    is_gallery: !!p.is_gallery,
+    over_18: !!p.over_18,
+    locked: !!p.locked,
+    removed: !!(p.removed_by_category || p.removal_reason),
+    created_utc: p.created_utc || 0,
+    created_iso: new Date((p.created_utc || 0) * 1000).toISOString(),
     cover_image: cover,
-    url: item.link || "",
+    url: permalink,
   };
 }
 
@@ -65,15 +63,15 @@ function isPublishable(p) {
 }
 
 async function fetchTop(period, limit = 25) {
-  const url = `${BASE}/top/.rss?t=${period}&limit=${limit}`;
+  const url = `${BASE}/top.json?t=${period}&limit=${limit}`;
   try {
-    const xml = await got(url, {
-      headers: { "User-Agent": UA },
+    const res = await got(url, {
+      headers: { "User-Agent": UA, Accept: "application/json" },
       timeout: { request: 15000 },
       retry: { limit: 1 },
-    }).text();
-    const feed = await rssParser.parseString(xml);
-    return { posts: (feed.items || []).map(normalizeRssItem).filter(isPublishable), fetchError: null };
+    }).json();
+    const posts = (res?.data?.children || []).map((c) => c.data);
+    return { posts: posts.map(normalizeJsonPost).filter(isPublishable), fetchError: null };
   } catch (err) {
     console.warn(`[reddit] fetchTop(${period}) falhou: ${err.message}. Retornando lista vazia.`);
     return { posts: [], fetchError: err.message };
@@ -89,10 +87,12 @@ export async function fetchTopWeek(limit = 25) {
 }
 
 // Heuristicas pra spotlight: posts que sao fan content de verdade.
-// Sem flair no RSS, a deteccao e so por titulo.
+// Com JSON API temos flair real: verifica primeiro, cai no titulo como fallback.
 const FAN_TITLE_RX = /\b(tattoo|tatuagem|painting|drawing|portrait|sketch|cake|cap|cosplay|build|carved|stitched|knitted|cover of|cover by|i made|i drew|i painted|i (just )?finished|here'?s my|my (first|new|latest))\b/i;
+const FAN_FLAIR_RX = /\b(fan art|art|photo|tattoo|oc|original content|merch|collection)\b/i;
 
 export function isFanContent(p) {
+  if (p.flair && FAN_FLAIR_RX.test(p.flair)) return true;
   if (FAN_TITLE_RX.test(p.title)) return true;
   return false;
 }
