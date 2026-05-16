@@ -1,7 +1,51 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-14
+2026-05-16
+
+## HANDOFF SESSAO 2026-05-16: Cifras v2 (redesign isolado em prod)
+
+### Resumo
+Redesign songbook PJ da secao Cifras & Tabs entregue como pagina ISOLADA em prod
+para validacao, sem tocar no site ao vivo. HEAD `94a3d18`.
+
+### O que foi feito
+- Recebido handoff Claude Design (bundle gzip). Achado critico: o index.html do
+  bundle estava sobre uma base ANTIGA do site (search/forum/footer divergentes).
+  Copia wholesale teria regredido o site inteiro.
+- Extraido SO o redesign de cifras (6 mudancas): bloco CSS `#view-tabs` ~2160
+  linhas + realocacao do seletor de instrumento + masthead em renderTabsView +
+  data-attrs de album no .cifra-header + funcao _inferTrackMember + mixer com
+  fotos da banda. Tudo aplicado SOBRE o index.html ATUAL via patch filtrado.
+- Gerado `cifras-v2.html` = index.html atual + redesign. Diff live->v2 confere:
+  so cifras + titulo, ZERO mudanca em search/news/footer. 3 scripts inline
+  passam node --check. Commit isolado (so o arquivo novo), push feito.
+
+### Estado atual
+- `cifras-v2.html` no ar isolado: setlists-pj-ev.pages.dev/cifras-v2.html
+- `index.html` ao vivo INTOCADO. Cifras antiga continua default.
+- 7 arquivos uncommitted (pipeline IG autonomo + scratch dirs) NAO mexidos.
+
+### Proximo passo
+- Andre valida visualmente cifras-v2.html no prod (todos os estados: catalogo,
+  cifra, transport tocando, troca de instrumento, mixer, tab/AlphaTab, dark/light).
+- QUANDO aprovado: portar as 6 mudancas para o index.html ao vivo e apagar
+  cifras-v2.html (desativar a antiga). Build script/diff documentado abaixo.
+
+### Arquivos chave
+```
+cifras-v2.html                                  # pagina v2 isolada (nova)
+index.html linha ~8457                           # ancora insercao CSS (antes /* FOOTER */)
+index.html renderTabsView (~15550)               # masthead + cifra-header data-attrs
+index.html _inferTrackKind/_populateMixer (~16096) # _inferTrackMember + mixer fotos
+bundle design: extracao = design.html linhas 8329-10486 (bloco CSS) + hunks
+  -13951 -15605 -15809 -16096 -16105 (patch filtrado, ignorar resto = base velha)
+```
+
+### Commit
+`94a3d18` — Adiciona cifras-v2.html: redesign isolado da secao Cifras & Tabs
+
+---
 
 ## HANDOFF SESSAO 2026-05-14 (noite 2): Lost Dogs batch 2 + fallback PTB
 
