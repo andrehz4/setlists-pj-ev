@@ -23,10 +23,30 @@ ao vivo INTOCADO. HEAD cifras-v2 `dab5631`. Abre direto na aba Cifras (bootstrap
 - Fix label "INSTRUMENTO ↓" cortado/sobre o botao Violao (margin-top+padding-top na .cifra-instr-bar).
 
 ### Proximo passo
-Andre validando visualmente, iterando. Pendente possivelmente: posicao do rack de
-instrumentos (subir?), revisar card do mixer com tracks reais. Quando aprovado:
-portar as mudancas pro index.html ao vivo e apagar cifras-v2.html (desativar antiga).
-Extracao original documentada no handoff "Cifras v2 (redesign isolado)" mais abaixo.
+### BACKLOG DE BUGS/PEDIDOS (lista do Andre 2026-05-16, tasks #7-#14)
+Todos no cifras-v2.html. Varios mexem no PLAYER DE CIFRA ORIGINAL (sensivel,
+isolado — ver [[feedback_players_isolados]]). Pontos no codigo (linhas aprox):
+1. (#7) Volume nao funciona: .mixer-track-slider handler ~L18466 (api.changeTrackVolume),
+   .mixer-master-slider ~L18576. Conferir wiring real com AlphaTab/cifra player.
+2. (#8) Play deve dar scroll down ate tablatura+braço. Play em _startCifraPlayer /
+   botoes play ~L16465; ja existe _firstPlayScrolled ~L17520, revisar.
+3. (#9) Loop so funciona tocando; tem que marcar/ativar pausado tbm. _loopState ~L14225.
+4. (#10) Loop: marcador visual de inicio/fim ao clicar (feedback na cifra/tab).
+5. (#11) Trocar "WHOLE SONG" por label PT. Andre escreveu "Paleta!" (ambiguo,
+   provavel erro de voz) — CONFIRMAR texto antes (sugestao "Música toda").
+6. (#12) Sincronizar seletor instrumento topo<->baixo (violao/uke/piano). 2 conjuntos
+   de botoes data-cifra-inst; _activeCifraInstrument; handlers ~L16323 e ~L18943.
+7. (#13) Mixer ainda com foto antiga (Mike/Stone nos cards Lead/Rhythm/Outro/Verse).
+   Fix do <img> ~L18441-18449 usa _pjm.photo. Investigar: member null? cache CF?
+   ::before ainda visivel? media/band/<id>.jpg JA sao alta-res.
+8. (#14) Braço/fretboard SEMPRE aberto na view Cifras; so colapsa por clique do user.
+   Ver [[feedback_fretboard_posicionamento]] (docked inline na view Cifras).
+
+NAO COMECEI A IMPLEMENTAR (sessao longa demais, regra de contexto). Cifras-v2
+estavel e tudo commitado ate aqui (ultimo: tag teal + fotos <img> + perf bootstrap).
+
+Quando os bugs forem resolvidos e Andre aprovar: portar tudo pro index.html ao
+vivo e apagar cifras-v2.html. Extracao original no handoff "Cifras v2 (redesign isolado)" abaixo.
 
 ---
 
