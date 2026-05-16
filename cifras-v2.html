@@ -10698,26 +10698,18 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   background: rgba(168,32,29,0.04) !important;
   box-shadow: inset 0 -3px 0 var(--track-color, var(--cf-stamp)) !important;
 }
-/* foto agora e <img> real (igual secao BANDA) — esconde o ::before antigo */
-#view-tabs .mixer-card .mixer-track::before { display: none !important; }
-#view-tabs .mixer-card .mixer-track::after { display: none !important; }
-#view-tabs .mixer-card .mixer-track-photo {
+/* #13: foto via ::before — mecanismo PROVADO do mixer flutuante (o <img>
+   nao renderizava em runtime). Agora GRANDE no card (72px) + crop do
+   photoPos. background-image vem de --mixer-photo (setado inline no track).
+   Estados active/muted ja tratados pelas regras base .mixer-track::before. */
+#view-tabs .mixer-card .mixer-track::before {
+  display: block !important;
   width: 72px !important;
   height: 72px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-  border: 2px solid var(--track-color, var(--cf-rule)) !important;
-  background: var(--cf-paper-dark) !important;
-  flex: 0 0 auto !important;
-  display: block !important;
+  background-position: var(--mixer-photo-pos, center top) !important;
+  margin: 0 auto !important;
 }
-#view-tabs .mixer-card .mixer-track.active .mixer-track-photo {
-  box-shadow: 0 0 0 3px var(--cf-paper), 0 0 0 5px var(--track-color, var(--cf-stamp)) !important;
-}
-#view-tabs .mixer-card .mixer-track.muted .mixer-track-photo {
-  filter: grayscale(1) brightness(0.62) !important;
-  border-color: var(--cf-ink-dim) !important;
-}
+#view-tabs .mixer-card .mixer-track::after { display: none !important; }
 #view-tabs .mixer-card .mixer-track-info {
   display: flex !important;
   flex-direction: column !important;
@@ -18570,7 +18562,6 @@ function _populateMixer(mixerAside, tracks) {
     const roleHtml = member ? `<span class="mixer-track-role" style="font:700 8px/1 var(--font-mono);letter-spacing:.16em;color:var(--ink-dim);text-transform:uppercase;display:block;margin-top:2px;">${esc(member.role)}</span>` : '';
     return `
       <div class="mixer-track active" data-idx="${i}" data-kind="${kind}"${trackIdAttr} style="--track-color:${color}${photoStyle}" role="listitem" title="${esc(rawName)}">
-        ${photoImg}
         <div class="mixer-track-info">
           <span class="mixer-track-name" title="${esc(displayName)}">${esc(displayName)}${roleHtml}</span>
         </div>
