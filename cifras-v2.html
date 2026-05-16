@@ -8817,9 +8817,9 @@ html[data-theme="dark"] #view-tabs {
   flex-shrink: 0;
 }
 #view-tabs .cat-item-status.status-ready {
-  background: var(--cf-stamp);
+  background: var(--cf-teal);
   color: var(--cf-paper);
-  border-color: var(--cf-stamp);
+  border-color: var(--cf-teal);
 }
 #view-tabs .cat-item-status.status-cifra-only,
 #view-tabs .cat-item-status.status-tab-only {
@@ -10691,13 +10691,26 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   background: rgba(168,32,29,0.04) !important;
   box-shadow: inset 0 -3px 0 var(--track-color, var(--cf-stamp)) !important;
 }
-#view-tabs .mixer-card .mixer-track::before {
-  width: 64px !important;
-  height: 64px !important;
-  background-position: var(--mixer-photo-pos, center top) !important;
-  margin: 0 auto !important;
-}
+/* foto agora e <img> real (igual secao BANDA) — esconde o ::before antigo */
+#view-tabs .mixer-card .mixer-track::before { display: none !important; }
 #view-tabs .mixer-card .mixer-track::after { display: none !important; }
+#view-tabs .mixer-card .mixer-track-photo {
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid var(--track-color, var(--cf-rule)) !important;
+  background: var(--cf-paper-dark) !important;
+  flex: 0 0 auto !important;
+  display: block !important;
+}
+#view-tabs .mixer-card .mixer-track.active .mixer-track-photo {
+  box-shadow: 0 0 0 3px var(--cf-paper), 0 0 0 5px var(--track-color, var(--cf-stamp)) !important;
+}
+#view-tabs .mixer-card .mixer-track.muted .mixer-track-photo {
+  filter: grayscale(1) brightness(0.62) !important;
+  border-color: var(--cf-ink-dim) !important;
+}
 #view-tabs .mixer-card .mixer-track-info {
   display: flex !important;
   flex-direction: column !important;
@@ -18444,9 +18457,15 @@ function _populateMixer(mixerAside, tracks) {
     const photoStyle = member ? `;--mixer-photo:url('${_photo}');--mixer-photo-pos:${_photoPos}` : '';
     const displayName = member ? member.label : rawName;
     const trackIdAttr = member ? ` data-track-id="${member.id}"` : '';
+    // Foto real <img> (mesma tecnica/asset da secao BANDA: media/band/<id>.jpg
+    // + object-position do photoPos). Andre pediu explicitamente essas fotos.
+    const photoImg = (member && _photo)
+      ? `<img class="mixer-track-photo" src="${_photo}" alt="${esc(displayName)}" loading="lazy" decoding="async" style="object-position:${_photoPos}" onerror="this.style.display='none'">`
+      : '';
     const roleHtml = member ? `<span class="mixer-track-role" style="font:700 8px/1 var(--font-mono);letter-spacing:.16em;color:var(--ink-dim);text-transform:uppercase;display:block;margin-top:2px;">${esc(member.role)}</span>` : '';
     return `
       <div class="mixer-track active" data-idx="${i}" data-kind="${kind}"${trackIdAttr} style="--track-color:${color}${photoStyle}" role="listitem" title="${esc(rawName)}">
+        ${photoImg}
         <div class="mixer-track-info">
           <span class="mixer-track-name" title="${esc(displayName)}">${esc(displayName)}${roleHtml}</span>
         </div>
@@ -20741,8 +20760,13 @@ document.addEventListener("DOMContentLoaded", init);
       if (tries++ < 100) window.setTimeout(openCifras, 120);
     }
   }
-  if (document.readyState === "complete") openCifras();
-  else window.addEventListener("load", openCifras);
+  // Perf: tenta JA (poll curto) em vez de esperar o 'load' (todos os assets).
+  // openCifras e idempotente, entao pode disparar varias vezes.
+  openCifras();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", openCifras);
+  }
+  window.addEventListener("load", openCifras);
 })();
 </script>
 
