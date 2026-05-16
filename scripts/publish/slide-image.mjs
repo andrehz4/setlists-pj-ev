@@ -16,6 +16,20 @@ const SLIDE_W = 1080;
 const SLIDE_H = 1350;
 export const SLIDES_DIR = path.resolve("media/news/instagram-slides");
 
+// Fallback: fotos oficiais da banda usadas quando o item nao tem foto propria.
+// Ciclo determinístico pelo primeiro nibble hex do id (0-f → 0-3).
+const BAND_FALLBACKS = [
+  path.resolve("media/news/img/_band-fallback-1.jpg"),
+  path.resolve("media/news/img/_band-fallback-2.jpg"),
+  path.resolve("media/news/img/_band-fallback-3.jpg"),
+  path.resolve("media/news/img/_band-fallback-4.jpg"),
+];
+
+function bandFallbackPath(id) {
+  const hex = String(id || "").replace(/[^0-9a-f]/gi, "")[0] || "0";
+  return BAND_FALLBACKS[parseInt(hex, 16) % BAND_FALLBACKS.length];
+}
+
 // Caderno B — layout constants (1080px)
 const SIDE       = 61;    // margem lat. (= 18 * 3.375)
 const CONT_W     = SLIDE_W - SIDE * 2; // 958
@@ -112,6 +126,16 @@ async function fetchBaseImageBuffer(item) {
       return await got(src, { timeout: { request: 15000 }, retry: { limit: 1 }, responseType: "buffer" }).buffer();
     } catch {}
   }
+
+  // Fallback: foto da banda quando o item nao tem imagem propria
+  try {
+    const fallback = bandFallbackPath(item.id);
+    const buf = await fs.readFile(fallback);
+    if (buf && buf.length > 1024) {
+      console.log(`[slide] ${item.id}: sem foto propria, usando fallback da banda (${path.basename(fallback)})`);
+      return buf;
+    }
+  } catch {}
   return null;
 }
 
