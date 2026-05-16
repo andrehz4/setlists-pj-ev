@@ -16,6 +16,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { writeStepSummary } from "./_summary.mjs";
 import { readQueue, writeQueue, enqueue } from "../publish/queue.mjs";
+import { stripDashes } from "./curators/_shared.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -81,15 +82,18 @@ function validateCurated(c) {
   // titulo_ig: manchete curta de impacto pro card do Instagram. OPCIONAL e
   // aditivo: ausencia NAO invalida o item (o renderer cai no titulo_pt).
   // Trunca defensivo em 90 (mesma folga do titulo_pt) se o LLM exagerar.
+  // Sanitiza travessao tambem no caminho routine (regra ABSOLUTA do site).
+  // _shared.validateCurated ja faz isso pros backends gemini/anthropic; aqui
+  // (routine/Sonnet) faltava: defesa em profundidade caso o LLM teime.
   const tituloIg = (typeof c.titulo_ig === "string" && c.titulo_ig.trim())
-    ? c.titulo_ig.trim().slice(0, 90)
+    ? stripDashes(c.titulo_ig.trim()).slice(0, 90)
     : null;
   return {
     id: c.id,
-    titulo_pt: c.titulo_pt,
+    titulo_pt: stripDashes(c.titulo_pt),
     titulo_ig: tituloIg,
-    intro_pt: c.intro_pt,
-    corpo_pt: c.corpo_pt,
+    intro_pt: stripDashes(c.intro_pt),
+    corpo_pt: stripDashes(c.corpo_pt),
     tags: tags.length ? tags : ["memoria"],
   };
 }
