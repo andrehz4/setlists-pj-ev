@@ -231,7 +231,10 @@
       "publishAt": "2026-05-15T21:10:47.072Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-16T06:06:41.851Z",
+        "msg": "item nao encontrado em index/archive"
+      }
     },
     {
       "id": "c936249f77",
@@ -249,7 +252,10 @@
       "publishAt": "2026-05-15T21:10:47.072Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-16T06:06:41.851Z",
+        "msg": "item nao encontrado em index/archive"
+      }
     },
     {
       "id": "0c98a8ea13",
@@ -258,7 +264,10 @@
       "publishAt": "2026-05-15T21:10:47.072Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-16T06:06:41.851Z",
+        "msg": "item nao encontrado em index/archive"
+      }
     },
     {
       "id": "3da6768bd0",
@@ -267,7 +276,10 @@
       "publishAt": "2026-05-15T21:10:47.072Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-16T06:06:41.851Z",
+        "msg": "item nao encontrado em index/archive"
+      }
     }
   ],
   "postCount": 9
