@@ -238,12 +238,9 @@
       "type": "spotlight",
       "queuedAt": "2026-05-16T09:09:55.687Z",
       "publishAt": "2026-05-16T09:09:55.687Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T23:06:17.289Z",
-        "msg": "IG API /17841414148425536/media: Only photo or video can be accepted as media type."
-      }
+      "postedAt": "2026-05-16T23:15:16.373Z",
+      "postId": "18046697099549458",
+      "error": null
     },
     {
       "id": "e33ddb848d",
@@ -277,25 +274,19 @@
       "type": "regular",
       "queuedAt": "2026-05-16T15:13:34.024Z",
       "publishAt": "2026-05-16T15:13:34.024Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T23:06:11.402Z",
-        "msg": "IG API /17841414148425536/media: Only photo or video can be accepted as media type."
-      }
+      "postedAt": "2026-05-16T23:14:58.519Z",
+      "postId": "18110724220681489",
+      "error": null
     },
     {
       "id": "69a923b280",
       "type": "regular",
       "queuedAt": "2026-05-16T15:13:34.024Z",
       "publishAt": "2026-05-16T15:13:34.024Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T23:06:11.402Z",
-        "msg": "IG API /17841414148425536/media: Only photo or video can be accepted as media type."
-      }
+      "postedAt": "2026-05-16T23:14:58.519Z",
+      "postId": "18110724220681489",
+      "error": null
     }
   ],
-  "postCount": 11
+  "postCount": 13
 }
