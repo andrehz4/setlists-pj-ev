@@ -225,18 +225,6 @@
       "error": null
     },
     {
-      "id": "9d478ed323",
-      "type": "regular",
-      "queuedAt": "2026-05-15T21:10:47.072Z",
-      "publishAt": "2026-05-15T21:10:47.072Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T10:37:03.094Z",
-        "msg": "item nao encontrado em index/archive"
-      }
-    },
-    {
       "id": "c936249f77",
       "type": "regular",
       "queuedAt": "2026-05-15T21:10:47.072Z",
@@ -244,42 +232,6 @@
       "postedAt": "2026-05-16T01:30:46.918Z",
       "postId": "17867041341654194",
       "error": null
-    },
-    {
-      "id": "d5e2293454",
-      "type": "regular",
-      "queuedAt": "2026-05-15T21:10:47.072Z",
-      "publishAt": "2026-05-15T21:10:47.072Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T10:37:03.094Z",
-        "msg": "item nao encontrado em index/archive"
-      }
-    },
-    {
-      "id": "0c98a8ea13",
-      "type": "regular",
-      "queuedAt": "2026-05-15T21:10:47.072Z",
-      "publishAt": "2026-05-15T21:10:47.072Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T10:37:03.094Z",
-        "msg": "item nao encontrado em index/archive"
-      }
-    },
-    {
-      "id": "3da6768bd0",
-      "type": "regular",
-      "queuedAt": "2026-05-15T21:10:47.072Z",
-      "publishAt": "2026-05-15T21:10:47.072Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T10:37:03.094Z",
-        "msg": "item nao encontrado em index/archive"
-      }
     },
     {
       "id": "cs-ed58e07c93",
@@ -291,42 +243,6 @@
       "error": {
         "at": "2026-05-16T22:04:27.172Z",
         "msg": "IG API /17841414148425536/media: Only photo or video can be accepted as media type."
-      }
-    },
-    {
-      "id": "a4760111f5",
-      "type": "regular",
-      "queuedAt": "2026-05-16T09:09:55.687Z",
-      "publishAt": "2026-05-16T09:09:55.687Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T10:37:03.094Z",
-        "msg": "item nao encontrado em index/archive"
-      }
-    },
-    {
-      "id": "e18d1673ce",
-      "type": "regular",
-      "queuedAt": "2026-05-16T09:09:55.687Z",
-      "publishAt": "2026-05-16T09:09:55.687Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T10:37:03.094Z",
-        "msg": "item nao encontrado em index/archive"
-      }
-    },
-    {
-      "id": "5665b2da4b",
-      "type": "regular",
-      "queuedAt": "2026-05-16T09:09:55.687Z",
-      "publishAt": "2026-05-16T09:09:55.687Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-16T10:37:03.094Z",
-        "msg": "item nao encontrado em index/archive"
       }
     },
     {
