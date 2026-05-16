@@ -11896,9 +11896,9 @@ window.renderBanda = function renderBanda() {
     setTimeout(() => flash.remove(), 1000);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     setTimeout(() => {
-      const stage = el.querySelector('.bm-stage');
-      if (stage) stage.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' });
-    }, 120);
+      const sprite = el.querySelector('.bm-sprite-stage');
+      if (sprite) sprite.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'end' });
+    }, 200);
   }
   function bmCloseAll() { cards.forEach(c => c.classList.remove('is-open')); }
 
