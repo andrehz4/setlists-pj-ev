@@ -215,8 +215,9 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleCol
   }
 
   // 5. publica via API
+  const slideSuffix = LAYOUT === "card02" ? ".card02" : "";
   try {
-    const r = await publishItems(itemsToPost, { coverImageUrl });
+    const r = await publishItems(itemsToPost, { coverImageUrl, slideSuffix });
     console.log(`[publish] OK tipo=${type} postId=${r.postId} count=${r.count}`);
     markPosted(queue, itemsToPost.map((it) => it.id), r.postId, new Date().toISOString());
     return {
