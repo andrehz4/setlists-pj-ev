@@ -21,6 +21,7 @@ import { pickTrackForDate } from "./story-track.mjs";
 import { buildStoryVideo } from "./story-video.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishStory } from "./instagram.mjs";
+import { writeStepSummary } from "../news/_summary.mjs";
 
 const STORIES_DIR = path.resolve("media/news/instagram-stories");
 const LOG_PATH = path.join(STORIES_DIR, "_story-log.json");
@@ -197,6 +198,17 @@ async function main() {
 
   // 8. notif Telegram (so se sucesso real)
   await notifyTelegramStory({ items, postId, track, dateKey });
+
+  await writeStepSummary({
+    title: "Publish Instagram Story",
+    meta: { dry: DRY, data: dateKey, trilha: track.name, tarja: tarjaColor },
+    stats: { "manchetes": items.length, "postId": postId || "n/a" },
+    curated: items.map((it) => ({
+      title_pt: it.title_pt || it.title,
+      sourceLabel: it.kind || "regular",
+      url: `https://setlists-pj-ev.pages.dev/n/${it.id}`,
+    })),
+  });
 
   console.log(`[story] FIM`);
 }

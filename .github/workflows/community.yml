@@ -1,10 +1,9 @@
 name: Community fetch
 on:
   schedule:
-    # Digest: 12:25 UTC = 09:25 BRT (2min depois do news.yml das 12:23,
-    # 5min antes da routine das 12:30)
+    # Digest: 12:25 UTC = 09:25 BRT (1h antes da routine das 12:00 BRT)
     - cron: '25 12 * * *'
-    # Spotlight: 00:25 UTC = 21:25 BRT (mesma logica pro turno noturno)
+    # Spotlight: 00:25 UTC = 21:25 BRT (1h antes da routine das 00:00 BRT)
     - cron: '25 0 * * *'
   workflow_dispatch:
     inputs:
@@ -72,6 +71,8 @@ jobs:
           # Routine Sonnet remota acorda em :30 e cura. Manual via dispatch
           # pode trocar pra gemini pra curar na hora.
           NEWS_CURATOR: ${{ inputs.curator || 'routine' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           ARGS="--mode=${{ steps.mode.outputs.mode }} --curator=$NEWS_CURATOR"
           if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
