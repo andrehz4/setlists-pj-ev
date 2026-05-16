@@ -10610,6 +10610,129 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   transform: translateY(-50%) translateX(0);
 }
 
+/* ===================================================================
+   MIXER COMO CARD INFERIOR v2 (seguro). O mixer agora e' IRMAO da
+   .tabs-layout (fora do grid) — ultimo card do #view-tabs, largura
+   total. NAO toca na .tabs-layout, entao a tablatura nao quebra.
+   Selecionado por .mixer-card; cobre base, :hover e .pinned.
+   =================================================================== */
+#view-tabs .mixer-aside.mixer-card,
+#view-tabs .mixer-aside.mixer-card:hover,
+#view-tabs .mixer-aside.mixer-card.pinned {
+  position: static !important;
+  inset: auto !important;
+  top: auto !important; right: auto !important; bottom: auto !important; left: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 28px 0 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  z-index: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  border: 1px solid var(--cf-rule) !important;
+  border-top: 5px solid var(--cf-stamp) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--cf-shadow) !important;
+  background: linear-gradient(180deg, var(--cf-paper) 0%, var(--cf-paper-dark) 100%) !important;
+  transition: none !important;
+}
+@media (max-width: 720px) {
+  #view-tabs .mixer-aside.mixer-card { display: flex !important; }
+}
+#view-tabs .mixer-card .mixer-header {
+  justify-content: flex-start !important;
+  padding: 12px 18px !important;
+  border-bottom: 2px solid var(--cf-rule) !important;
+  background: var(--cf-paper-dark) !important;
+}
+#view-tabs .mixer-card .mixer-title { display: inline !important; }
+#view-tabs .mixer-card .mixer-toggle { display: none !important; }
+#view-tabs .mixer-card .mixer-master {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 18px !important;
+  border-bottom: 1px dashed var(--cf-rule-soft) !important;
+}
+#view-tabs .mixer-card .mixer-master-slider { display: inline-block !important; flex: 0 0 220px !important; }
+#view-tabs .mixer-card .mixer-master-val { display: inline !important; }
+#view-tabs .mixer-card .mixer-tracks {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-content: flex-start !important;
+  overflow: visible !important;
+  flex: 1 1 auto !important;
+  padding: 14px !important;
+  gap: 0 !important;
+}
+#view-tabs .mixer-card .mixer-track {
+  flex: 1 0 150px !important;
+  max-width: 210px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  padding: 16px 10px !important;
+  border: 0 !important;
+  border-right: 1px dashed var(--cf-rule-soft) !important;
+  border-radius: 0 !important;
+  text-align: center !important;
+}
+#view-tabs .mixer-card .mixer-track.active {
+  border-left: 0 !important;
+  background: rgba(168,32,29,0.04) !important;
+  box-shadow: inset 0 -3px 0 var(--track-color, var(--cf-stamp)) !important;
+}
+#view-tabs .mixer-card .mixer-track::before {
+  width: 64px !important;
+  height: 64px !important;
+  background-position: var(--mixer-photo-pos, center top) !important;
+  margin: 0 auto !important;
+}
+#view-tabs .mixer-card .mixer-track::after { display: none !important; }
+#view-tabs .mixer-card .mixer-track-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 1px !important;
+  width: 100% !important;
+  flex: 0 0 auto !important;
+}
+#view-tabs .mixer-card .mixer-track-name {
+  display: block !important;
+  font: 700 italic 13px/1.2 var(--font-editorial), serif !important;
+  color: var(--cf-ink) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  text-align: center !important;
+}
+#view-tabs .mixer-card .mixer-track-row {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  flex: 0 0 auto !important;
+}
+#view-tabs .mixer-card .mixer-track-slider { display: block !important; width: 100% !important; }
+#view-tabs .mixer-card .mixer-track-val { display: inline !important; }
+#view-tabs .mixer-card .mixer-track-controls {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+
 /* ====================================================================
    FIM REDESIGN CIFRAS & TABS
    ==================================================================== */
@@ -17384,7 +17507,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
 
           // Popula o mixer-aside (sidebar lateral direita estilo Songsterr).
           // Como o voice-picker, so existe no contexto Cifras & Tabs.
-          const mixerAside = document.querySelector('.tabs-layout .mixer-aside');
+          const mixerAside = document.querySelector('#view-tabs .mixer-aside');
           if (mixerAside && typeof _populateMixer === 'function') _populateMixer(mixerAside, tracks);
 
           // Popula checkboxes de tracks no fretboard (filtro visual)
@@ -17790,23 +17913,23 @@ function renderTabsView() {
           <div class="cifra-empty-sub">Black, Alive e Even Flow t&ecirc;m cifra. Tab vetorial: Black.</div>
         </div>
       </section>
-      <aside class="mixer-aside" aria-label="Mixer de tracks">
-        <div class="mixer-header">
-          <h3 class="mixer-title">Instrumentos</h3>
-          <button type="button" class="mixer-toggle" aria-label="Fixar painel" title="Fixar">📌</button>
-        </div>
-        <div class="mixer-master">
-          <button type="button" class="mixer-master-icon" aria-label="Mute master" title="Mute master">🔊</button>
-          <input type="range" class="mixer-master-slider" min="0" max="1" step="0.05" value="0.8" aria-label="Volume master">
-          <span class="mixer-master-val">80%</span>
-        </div>
-        <div class="mixer-tracks" role="list">
-          <div class="mixer-empty" style="font:italic 11px/1.4 var(--font-editorial, Georgia, serif);color:var(--ink-dim);text-align:center;padding:16px 4px;">
-            Selecione uma m&uacute;sica com tab pra controlar tracks.
-          </div>
-        </div>
-      </aside>
     </div>
+    <aside class="mixer-aside mixer-card" aria-label="Mixer de tracks">
+      <div class="mixer-header">
+        <h3 class="mixer-title">Instrumentos</h3>
+        <button type="button" class="mixer-toggle" aria-label="Fixar painel" title="Fixar">📌</button>
+      </div>
+      <div class="mixer-master">
+        <button type="button" class="mixer-master-icon" aria-label="Mute master" title="Mute master">🔊</button>
+        <input type="range" class="mixer-master-slider" min="0" max="1" step="0.05" value="0.8" aria-label="Volume master">
+        <span class="mixer-master-val">80%</span>
+      </div>
+      <div class="mixer-tracks" role="list">
+        <div class="mixer-empty" style="font:italic 11px/1.4 var(--font-editorial, Georgia, serif);color:var(--ink-dim);text-align:center;padding:16px 4px;">
+          Selecione uma m&uacute;sica com tab pra controlar tracks.
+        </div>
+      </div>
+    </aside>
   `;
 
   const search = container.querySelector('.catalog-search');
@@ -18315,7 +18438,10 @@ function _populateMixer(mixerAside, tracks) {
     }
     const color = (member && MEMBER_COLORS[member.id]) || TRACK_COLORS[i % TRACK_COLORS.length];
     const icon = _MIXER_ICONS[kind] || _MIXER_ICONS.guitar;
-    const photoStyle = member ? `;--mixer-photo:url('media/band/${member.id}.jpg')` : '';
+    const _pjm = member && typeof PJ_MEMBERS !== 'undefined' ? PJ_MEMBERS.find(m => m.id === member.id) : null;
+    const _photo = (_pjm && _pjm.photo) ? _pjm.photo : (member ? `media/band/${member.id}.jpg` : '');
+    const _photoPos = (_pjm && _pjm.photoPos) ? _pjm.photoPos : 'center top';
+    const photoStyle = member ? `;--mixer-photo:url('${_photo}');--mixer-photo-pos:${_photoPos}` : '';
     const displayName = member ? member.label : rawName;
     const trackIdAttr = member ? ` data-track-id="${member.id}"` : '';
     const roleHtml = member ? `<span class="mixer-track-role" style="font:700 8px/1 var(--font-mono);letter-spacing:.16em;color:var(--ink-dim);text-transform:uppercase;display:block;margin-top:2px;">${esc(member.role)}</span>` : '';
