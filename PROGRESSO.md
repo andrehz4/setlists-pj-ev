@@ -3,6 +3,41 @@
 ## Data
 2026-05-16
 
+## HANDOFF SESSAO 2026-05-16 (noite 3): STORY redesign FEITO E NO AR
+
+### Estado
+Story IG redesenhado no padrao card02/Card11 e na main: commit `914fd6b`.
+Validado local com ffmpeg (1 noticia em 24h: 8s, sem repeticao). O cron
+publish-story.yml (13h BRT) ja vai usar o design novo.
+
+### O que entrou (`914fd6b`)
+- FIX bug: story repetia a unica noticia 5x quando havia 1 em 24h.
+  Removido o padding; timeline DINAMICA (intro + N cards + outro).
+  1 noticia = 8s. "N manchetes" agora correto.
+- `color-cycle.mjs`: fonte unica do ciclo de cor (preto/vermelho/ocre/
+  azul, 3 posts/cor). run-publish + run-publish-story usam. Story nao
+  tem mais paleta antiga duplicada (#c12727/#0a0908).
+- `fontconfig-boot.mjs`: bootstrap fontconfig + familias F_* extraidos
+  do slide-image. Story agora tem Anton/Inter/Playfair reais.
+- `story-video.mjs` buildCardSvg reescrito no padrao card02 (foto cheia+
+  gradiente, cunha cor do ciclo, wordmark Playfair, tarja Inter,
+  manchete Anton title_ig||title_pt quebra balanceada+typewriter, site).
+  Band-fallback p/ item sem foto.
+- `story-styles/card11.mjs` (novo, DEFAULT): intro/outro espelhando a
+  capa Card 11. Estilos antigos via env STORY_STYLE p/ rollback.
+
+### Rollback
+STORY_STYLE=caderno-b (intro/outro antigos). O resto (card, timeline,
+ciclo de cor) nao tem flag; rollback = reverter o commit.
+
+### Observacao fora do escopo (feed, ja tratado por outra sessao)
+Commit `505c8b0` "fix: media_type=IMAGE" e run `publish-ig fila 0/2`:
+o publish do carrossel teve erro na Graph API (faltava media_type=IMAGE),
+ja corrigido por outra sessao. Acompanhar proximo run do feed pra
+confirmar que voltou a postar.
+
+---
+
 ## HANDOFF SESSAO 2026-05-16 (fim): Analise geral do projeto, backlog consolidado
 
 ### Estado
