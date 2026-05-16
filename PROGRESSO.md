@@ -130,9 +130,18 @@ valor dinamico. Resultado: 1 item=8s, 5 items=22s, sem repeticao.
   JAAAM Anton 380, edicao No X, data). Style novo default em story-styles/.
 - Story de 1 item = ENCURTAR: timeline dinamica, intro + 1 card + outro
   (~8s). Sem repetir, sem card de fechamento.
-- PENDENTE (perguntar no inicio da proxima sessao): validar por amostra
-  MP4 local (precisa ffmpeg na maquina do Andre) ou por artifact do
-  dry-run no CI.
+- Validacao: RESOLVIDO. ffmpeg+ffprobe presentes na maquina do Andre
+  (gyan 8.1). Validar MP4 LOCALMENTE via
+  `node scripts/publish/run-publish-story.mjs --dry-run --force --no-git`
+  (gera media/news/instagram-stories/<data>.mp4 sem publicar/commitar) e
+  extrair frames com ffmpeg pra revisar. Nao precisa de CI.
+
+### Estado do "antes" (rodado 2026-05-16 noite 2, confirma necessidade)
+Rodado dry com 1 noticia em 24h: bug confirmado VISUALMENTE (intro "Hoje
+sairam 5 manchetes" / cards "01/05" / 5x a mesma materia). Design antigo
+caderno-b (header SMUFDPJ stencil, intro creme "3" azul, typewriter,
+fonte fallback Arial Black, Big Shoulders nem embarcada). Confirma o
+redesign completo + fix do padding L480.
 
 ### Arquivos chave
 ```
