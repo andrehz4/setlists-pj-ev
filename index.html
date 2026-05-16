@@ -11894,6 +11894,11 @@ window.renderBanda = function renderBanda() {
     flash.style.top = (rect.top + 12) + 'px';
     document.body.appendChild(flash);
     setTimeout(() => flash.remove(), 1000);
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(() => {
+      const stage = el.querySelector('.bm-stage');
+      if (stage) stage.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' });
+    }, 120);
   }
   function bmCloseAll() { cards.forEach(c => c.classList.remove('is-open')); }
 
