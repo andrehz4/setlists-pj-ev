@@ -16450,6 +16450,22 @@ function _renderTabPanel(body, songKey, tabMeta) {
           else _pauseCifraPlayer(cifraPane);
         } else {
           _startCifraPlayer(cifraPane, bpm);
+          // #8: ao iniciar, rola pra trazer a area da cifra + o braço pra
+          // viewport (so a 1a vez por pane; so na view Cifras, nao no
+          // player do setlist — ver players isolados).
+          if (!cifraPane._cifraPlayScrolled && cifraPane.closest('.cifra-detail-wrap')) {
+            cifraPane._cifraPlayScrolled = true;
+            const anchor = cifraPane.querySelector('.alphatab-transport-top')
+              || cifraPane.querySelector('.cifra-surface')
+              || cifraPane.querySelector('.alphatab-surface');
+            if (anchor) {
+              const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              requestAnimationFrame(() => {
+                const y = anchor.getBoundingClientRect().top + window.scrollY - 16;
+                window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
+              });
+            }
+          }
         }
       };
       playBtns.forEach(btn => {
