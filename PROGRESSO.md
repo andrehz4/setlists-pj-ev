@@ -3,6 +3,54 @@
 ## Data
 2026-05-16
 
+## HANDOFF SESSAO 2026-05-16 (noite): Redesign slide IG FASE 1 NO AR
+
+### Estado
+Fase 1 do redesign do slide Instagram FECHADA e flag virada. `SLIDE_LAYOUT`
+default = `card02` (slide-image.mjs). Proximo run do publish-instagram.yml
+(cron) ja posta no design novo. Fase 2 (titulo_ig) ja estava no ar (`cedc730`).
+
+### O que foi entregue (Fase 1)
+- Fontes OFL embarcadas em `media/fonts/` (Anton, Inter x3 pesos, Playfair
+  Black Italic) + bootstrap fontconfig (FONTCONFIG_FILE em tmp, path absoluto,
+  funciona Windows e CI). Confirmado renderizando.
+- `slide-image.mjs` reescrito: caminho `cadernob` PRESERVADO byte a byte
+  (rollback). Novos builders Card 02 (foto cheia, cunha, wordmark Playfair,
+  tarja, manchete Anton 78 com quebra editorial balanceada ~3 palavras/linha,
+  auto-fit 78->50, CTA "LEIA MAIS …" + site) e Capa Card 11 (PEARL/JAAAM Anton
+  380 lh .78 atras, foto 860x700 com sombra, wordmark, tarja + manchete Anton
+  70 + site). Specs do canvas do bundle seguidos a risca.
+- `renderPhoto`: tratamento de foto por resolucao (nitida >=1.25x; realce
+  unsharp+grao 0.55-1.25x; contida+fundo desfocado <0.55x). Sem IA.
+- `image-cache.mjs`: nao corta mais 16:9; guarda lado<=1800 q85 EXIF. Site
+  usa background cover, nao quebra. `recache-images.mjs`: re-cache unico das
+  30 (11 melhoraram pra alta res, resto sem fonte melhor segue 720p+realce).
+- Ciclo de cor unico (3 posts/cor: preto->vermelho->ocre->azul, via
+  queue.postCount em run-publish): dirige FUNDO da capa + cunha/tarja do
+  Card 02. Carrossel: capa Card 11 + ate 9 noticias (cap IG 10).
+- Scripts de preview: preview-slides/feed/covers/cover-colors.mjs (dev only).
+
+### Rollback
+`SLIDE_LAYOUT=cadernob` no env do step "Run publish" do publish-instagram.yml,
+ou reverter o default em slide-image.mjs. Builder cadernob intacto.
+
+### Proximo passo
+Acompanhar primeiro run real do publish-instagram no design novo (Telegram
+avisa). Conferir 1 post real no feed @smufdpj. Fase 2 vai gerando title_ig
+ao longo dos proximos runs da routine (manchete fica no tamanho cheio 78px).
+
+### Arquivos chave
+```
+scripts/publish/slide-image.mjs   # nucleo, flag default card02
+scripts/publish/run-publish.mjs   # capa + cap 9 + ciclo de cor
+scripts/publish/instagram.mjs     # coverImageUrl no carrossel
+scripts/news/image-cache.mjs      # alta res sem corte 16:9
+scripts/news/recache-images.mjs   # re-cache unico (ja rodado)
+media/fonts/*.ttf                 # fontes OFL
+```
+
+---
+
 ## HANDOFF SESSAO 2026-05-16 (tarde): Cifras v2 — iteracoes de design
 
 ### Estado

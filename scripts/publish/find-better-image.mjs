@@ -27,7 +27,7 @@ function absUrl(src, base) {
 
 // Coleta candidatos de imagem da pagina, em ordem de preferencia:
 // og/twitter, JSON-LD, depois <figure>/<article> imgs grandes.
-function extractCandidates(html, baseUrl) {
+export function extractCandidates(html, baseUrl) {
   const $ = cheerio.load(html);
   const out = [];
   const push = (u) => {

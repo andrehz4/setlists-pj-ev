@@ -1,5 +1,10 @@
-// Cache local de imagens: baixa, resize com sharp pra 1280x720 cover JPEG q82,
-// salva em media/news/img/<hash>.jpg.
+// Cache local de imagens: baixa e guarda com sharp em media/news/img/<hash>.jpg.
+// NAO corta mais pra 16:9 1280x720. Preserva a proporcao original, lado maior
+// ate 1800px (downscale apenas, sem ampliar), JPEG q85 mozjpeg, com
+// auto-orientacao EXIF. Motivo: o slide do IG e 1080x1350 (retrato); guardar
+// alto e sem corte deixa a foto nitida e da o quadro inteiro pro recorte
+// inteligente de rosto. O site usa background cover, entao proporcao livre
+// nao quebra. Custo: jpg maior no repo (~250-500KB vs ~150KB), aceitavel.
 // Garbage collection: remove arquivos que nao estao mais referenciados.
 
 import got from "got";
@@ -37,8 +42,9 @@ export async function cacheImage(remoteUrl, hash) {
       return null;
     }
     await sharp(buf, { failOn: "none" })
-      .resize(1280, 720, { fit: "cover", position: "attention" })
-      .jpeg({ quality: 82, mozjpeg: true })
+      .rotate() // honra orientacao EXIF (sem corte 16:9 a orientacao importa)
+      .resize(1800, 1800, { fit: "inside", withoutEnlargement: true })
+      .jpeg({ quality: 85, mozjpeg: true })
       .toFile(dest);
     return `/media/news/img/${hash}.jpg`;
   } catch (e) {

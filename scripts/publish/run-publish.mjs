@@ -23,8 +23,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { readQueue, writeQueue, pickMatureByType, markPosted, markError, pruneOldPosted } from "./queue.mjs";
-import { buildSlides, SLIDES_DIR } from "./slide-image.mjs";
-import { publishItems } from "./instagram.mjs";
+import { buildSlides, buildCoverSlide, SLIDES_DIR, LAYOUT } from "./slide-image.mjs";
+import { publishItems, slideUrlFor } from "./instagram.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
@@ -46,6 +46,22 @@ const POSTS_PER_COLOR = 3;
 function getCurrentTarjaColor(postCount) {
   const idx = Math.floor((postCount || 0) / POSTS_PER_COLOR) % TARJA_COLORS.length;
   return TARJA_COLORS[idx];
+}
+
+// Ciclo de cor do layout card02 (paleta aprovada pelo Andre). Mesma regra
+// de POSTS_PER_COLOR: 3 posts numa cor, troca, +3, troca. Dirige o FUNDO
+// da capa (Card 11) E a cunha + tarja do Card 02. Variedade visual no
+// feed a longo prazo sem perder identidade.
+const CYCLE_COLORS = [
+  "#0a0a0a", // preto
+  "#E10600", // vermelho
+  "#a87f2c", // ocre sepia
+  "#2a5b9e", // azul petroleo
+];
+
+function getCurrentCycleColor(postCount) {
+  const idx = Math.floor((postCount || 0) / POSTS_PER_COLOR) % CYCLE_COLORS.length;
+  return CYCLE_COLORS[idx];
 }
 
 const args = process.argv.slice(2);
@@ -132,8 +148,11 @@ async function commitAndPush(paths, message, retries = 3) {
   throw new Error(`git push falhou apos ${retries} tentativas`);
 }
 
-async function processBatch(type, queue, indexById, nowIso, tarjaColor) {
-  const mature = pickMatureByType(queue, type, nowIso, 10);
+async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleColor) {
+  // No layout card02 o carrossel ganha 1 slide de capa (Card 11). A capa
+  // conta no limite de 10 do IG, entao cap de 9 items + capa = 10.
+  const matureLimit = LAYOUT === "card02" ? 9 : 10;
+  const mature = pickMatureByType(queue, type, nowIso, matureLimit);
   if (mature.length === 0) {
     console.log(`[publish] tipo=${type}: 0 maduros, skip`);
     return null;
@@ -145,8 +164,9 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor) {
     let h = await hydrateItem(m, indexById);
     if (!h) h = await findInArchive(m.id);
     if (h) {
-      // anota a cor da tarja do post desta rodada
+      // anota a cor da tarja (cadernob) e a cor do ciclo (card02/capa)
       h._tarjaColor = tarjaColor;
+      h._cycleColor = cycleColor;
       hydrated.push(h);
     } else {
       console.warn(`[publish] item ${m.id} nao achado em index nem archive, skip`);
@@ -167,24 +187,40 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor) {
     return { type, attempted: hydrated.length, succeeded: 0 };
   }
 
-  // 2. commita + push slides pra raw URL funcionar
+  // 2. items que terao slide; capa do carrossel (card02, >=2 items) usa o
+  //    primeiro como lider. Gera a capa ANTES do push pra ela ir no mesmo
+  //    commit dos slides (raw URL precisa estar publicada antes do publish).
+  const itemsToPost = hydrated.filter((h) => slides.find((s) => s.id === h.id));
+  let coverImageUrl = null;
+  if (LAYOUT === "card02" && itemsToPost.length >= 2) {
+    try {
+      const coverId = `_cover-${type}`;
+      await buildCoverSlide(itemsToPost[0], coverId, cycleColor);
+      coverImageUrl = slideUrlFor(coverId);
+      console.log(`[publish] capa gerada (lider=${itemsToPost[0].id})`);
+    } catch (e) {
+      console.warn(`[publish] falha ao gerar capa (segue sem capa): ${e.message}`);
+      coverImageUrl = null;
+    }
+  }
+
+  // 3. commita + push slides (inclui a capa) pra raw URL funcionar
   await commitAndPush(
     ["media/news/instagram-slides/"],
-    `publish-ig: gera slides ${type} (${slides.length}) ${nowIso.slice(0, 16)}Z`,
+    `publish-ig: gera slides ${type} (${slides.length}${coverImageUrl ? "+capa" : ""}) ${nowIso.slice(0, 16)}Z`,
   );
 
-  // 3. pequena espera pra raw.githubusercontent indexar (geralmente <2s, mas seguranca)
+  // 4. pequena espera pra raw.githubusercontent indexar (geralmente <2s, mas seguranca)
   if (!DRY) await new Promise((r) => setTimeout(r, 5000));
 
   if (DRY) {
-    console.log(`[publish] DRY: slides prontos, pulando chamada IG`);
+    console.log(`[publish] DRY: slides prontos${coverImageUrl ? " (com capa)" : ""}, pulando chamada IG`);
     return { type, attempted: hydrated.length, succeeded: 0, dry: true };
   }
 
-  // 4. publica via API
-  const itemsToPost = hydrated.filter((h) => slides.find((s) => s.id === h.id));
+  // 5. publica via API
   try {
-    const r = await publishItems(itemsToPost);
+    const r = await publishItems(itemsToPost, { coverImageUrl });
     console.log(`[publish] OK tipo=${type} postId=${r.postId} count=${r.count}`);
     markPosted(queue, itemsToPost.map((it) => it.id), r.postId, new Date().toISOString());
     return {
@@ -296,14 +332,16 @@ async function main() {
 
   // cor da tarja desta rodada (cicla a cada 3 posts publicados)
   const tarjaColor = getCurrentTarjaColor(queue.postCount);
-  console.log(`[publish] cor da tarja: ${tarjaColor} (ciclo de ${POSTS_PER_COLOR} posts)`);
+  // cor do ciclo card02/capa (mesma regra de 3 posts/cor)
+  const cycleColor = getCurrentCycleColor(queue.postCount);
+  console.log(`[publish] cor: tarja=${tarjaColor} ciclo=${cycleColor} (a cada ${POSTS_PER_COLOR} posts)`);
 
   const results = [];
   const types = ["regular", "spotlight"];
   let batchCount = 0;
   for (const t of types) {
     if (batchCount >= MAX_BATCHES) break;
-    const r = await processBatch(t, queue, indexById, nowIso, tarjaColor);
+    const r = await processBatch(t, queue, indexById, nowIso, tarjaColor, cycleColor);
     if (r) {
       results.push(r);
       batchCount++;
