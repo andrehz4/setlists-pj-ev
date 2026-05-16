@@ -10746,6 +10746,32 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   gap: 6px !important;
 }
 
+/* ===================================================================
+   NUMERACAO DO CATALOGO = ORDEM REAL DA DISCOGRAFIA (task #15).
+   O numero agora vem do HTML (.cat-item-num) com a posicao real da
+   faixa na discografia (com gaps onde nao ha cifra), entao o counter
+   CSS sequencial e desligado.
+   =================================================================== */
+#view-tabs .catalog-list { counter-reset: none !important; }
+#view-tabs .cat-item { counter-increment: none !important; }
+#view-tabs .cat-item::before { content: none !important; }
+#view-tabs .cat-item.active::before { content: none !important; }
+#view-tabs .cat-item-num {
+  font: 700 11px/1 var(--font-mono), monospace;
+  letter-spacing: 0.06em;
+  color: var(--cf-ink-dim);
+  text-align: right;
+  padding-right: 4px;
+  white-space: nowrap;
+  align-self: center;
+}
+#view-tabs .cat-item:hover:not(.disabled) .cat-item-num,
+#view-tabs .cat-item.active .cat-item-num { color: var(--cf-stamp); }
+#view-tabs .cat-item.active .cat-item-num::before {
+  content: '▸ ';
+  font-weight: 900;
+}
+
 /* ====================================================================
    FIM REDESIGN CIFRAS & TABS
    ==================================================================== */
@@ -17860,11 +17886,26 @@ function renderTabsView() {
     title: displayName(key),
     albumTitle: getAlbumTitle(displayName(key)),
   }));
-  // Ordenar: cifra+tab primeiro, depois so cifra, depois so tab, depois placeholders.
+  // Numero REAL na discografia: percorre ALBUMS na ordem de lancamento e
+  // numera cada faixa (Ten faixa 1 = 1 ... Dark Matter ... ate o fim).
+  // Primeira aparicao do song vence (regravacoes/coletaneas nao renumeram).
+  const DISCOG_NUM = (() => {
+    const m = {}; let n = 0;
+    for (const al of (typeof ALBUMS !== 'undefined' ? ALBUMS : [])) {
+      for (const s of (al.songs || [])) {
+        n++; const k = _lyricsNorm(s);
+        if (!(k in m)) m[k] = n;
+      }
+    }
+    return m;
+  })();
+  // Ordenar pela ordem real da discografia (numero crescente). Faixas sem
+  // album conhecido vao pro fim, em ordem alfabetica.
   entries.sort((a, b) => {
-    const sa = (a.meta.cifra ? 2 : 0) + (a.meta.tab ? 1 : 0);
-    const sb = (b.meta.cifra ? 2 : 0) + (b.meta.tab ? 1 : 0);
-    if (sa !== sb) return sb - sa;
+    const da = DISCOG_NUM[a.key], db = DISCOG_NUM[b.key];
+    if (da != null && db != null) return da - db;
+    if (da != null) return -1;
+    if (db != null) return 1;
     return a.title.localeCompare(b.title);
   });
 
@@ -17888,8 +17929,11 @@ function renderTabsView() {
     const coverHtml = (album && ALBUM_COVERS.has(album.id))
       ? `<span class="cat-item-cover album-cover-img-wrap" data-album-id="${album.id}" aria-hidden="true"></span>`
       : `<span class="cat-item-cover album-cover-fallback ${album ? (album.artist === 'Pearl Jam' ? 'pj' : album.artist === 'Eddie Vedder' ? 'ev' : 'misc') : 'misc'}" aria-hidden="true">${album ? (album.abbrev || album.title.slice(0,3)).replace(/\n.*$/,'') : '?'}</span>`;
+    const _dn = DISCOG_NUM[key];
+    const numStr = (_dn != null) ? String(_dn).padStart(2, '0') : '··';
     return `
       <button type="button" class="cat-item${disabledCls}" data-song-key="${key}" data-status="${s}" ${s === 'soon' ? 'aria-disabled="true"' : ''}>
+        <span class="cat-item-num" aria-hidden="true">${numStr}</span>
         ${coverHtml}
         <span class="cat-item-meta">
           <span class="cat-item-title">${title.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
