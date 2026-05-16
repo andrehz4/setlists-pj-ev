@@ -10,6 +10,7 @@ import got from "got";
 import { getEditionNumber } from "./edition.mjs";
 import { detectFaces, cropFromFaces } from "./face-crop.mjs";
 import { findBetterImage } from "./find-better-image.mjs";
+import { getImageOverrideUrl } from "./image-overrides.mjs";
 
 const SLIDE_W = 1080;
 const SLIDE_H = 1350;
@@ -78,6 +79,26 @@ function wrapText(text, maxChars, maxLines) {
 }
 
 async function fetchBaseImageBuffer(item) {
+  // Opcao B: override manual tem prioridade sobre tudo. Se houver
+  // uma URL boa cadastrada pra esse id, baixa, persiste no cache
+  // local (pra reusos futuros e pro git) e usa.
+  try {
+    const ovUrl = await getImageOverrideUrl(item.id);
+    if (ovUrl) {
+      const buf = await got(ovUrl, { timeout: { request: 15000 }, retry: { limit: 1 }, responseType: "buffer" }).buffer();
+      if (buf && buf.length > 1024) {
+        if (item.img && item.img.startsWith("/media/news/img/")) {
+          const dest = path.join(process.cwd(), item.img.replace(/^\//, ""));
+          await fs.writeFile(dest, buf).catch(() => {});
+        }
+        console.log(`[slide] ${item.id}: usando imagem de override manual (${ovUrl})`);
+        return buf;
+      }
+    }
+  } catch (e) {
+    console.warn(`[slide] override de ${item.id} falhou (${e.message}), seguindo com fonte normal`);
+  }
+
   if (item.img && item.img.startsWith("/media/news/img/")) {
     const local = path.join(process.cwd(), item.img.replace(/^\//, ""));
     try {

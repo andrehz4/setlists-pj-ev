@@ -1,0 +1,4 @@
+{
+  "_README": "Override manual de imagem por item. Quando a foto da fonte vem ruim (cortada no rosto etc), coloque aqui: \"<id-do-item>\": \"<url-da-imagem-boa>\". O id e o mesmo do media/news/index.json (ex: d83c1231b7). Na proxima geracao do slide a imagem boa e baixada, usada e persistida no cache local. Tem prioridade sobre tudo (cache, og:image, busca automatica).",
+  "d83c1231b7": "https://blog-admin.siriusxm.com/wp-content/uploads/2026/02/EddieVedder_MatterOfTime_PearlJamRadio.jpg"
+}
