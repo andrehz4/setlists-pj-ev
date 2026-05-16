@@ -19,11 +19,15 @@ function labelBg(bg) {
 }
 
 function bigTypeSvg({ W, y, fs, opacity, slideY = 0 }) {
+  // Nome CERTO ("PEARL" / "JAM") so no story (capa/final). O carrossel
+  // mantem o "JAAAM" estilizado do bundle. textLength iguala a largura
+  // das duas linhas (JAM tem 3 letras, sem isso ficaria curto demais).
+  const TW = W - 110;
   return `<g opacity="${opacity.toFixed(2)}" transform="translate(0 ${slideY.toFixed(1)})">
-    <text x="${W / 2}" y="${y}" text-anchor="middle"
-      font-family="${F_ANTON}" font-size="${fs}" fill="#ffffff" letter-spacing="-12">PEARL</text>
-    <text x="${W / 2}" y="${y + Math.round(fs * 0.80)}" text-anchor="middle"
-      font-family="${F_ANTON}" font-size="${fs}" fill="#ffffff" letter-spacing="-12">JAAAM</text>
+    <text x="${W / 2}" y="${y}" text-anchor="middle" textLength="${TW}" lengthAdjust="spacingAndGlyphs"
+      font-family="${F_ANTON}" font-size="${fs}" fill="#ffffff">PEARL</text>
+    <text x="${W / 2}" y="${y + Math.round(fs * 0.80)}" text-anchor="middle" textLength="${TW}" lengthAdjust="spacingAndGlyphs"
+      font-family="${F_ANTON}" font-size="${fs}" fill="#ffffff">JAM</text>
   </g>`;
 }
 
