@@ -13,51 +13,19 @@
 //
 // Formato 1080x1350 (Instagram 4:5).
 
-import os from "node:os";
 import fs from "node:fs/promises";
-import fssync from "node:fs";
 import path from "node:path";
 import got from "got";
+// side-effect: bootstrap do fontconfig (env setado antes de sharp).
+// Tambem fornece as familias F_* (fonte unica, compartilhada com story).
+import { F_ANTON, F_INTER, F_INTER_SB, F_INTER_XB, F_PLAYFAIR } from "./fontconfig-boot.mjs";
 import { getEditionNumber } from "./edition.mjs";
 import { detectFaces, cropFromFaces } from "./face-crop.mjs";
 import { findBetterImage } from "./find-better-image.mjs";
 import { getImageOverrideUrl } from "./image-overrides.mjs";
 
-// ────────────────────────────────────────────────────────────────────────
-// Bootstrap de fontes. libvips/pango resolve familia via fontconfig. Em vez
-// de depender de fonte de sistema (o que limitava o layout antigo a Georgia),
-// embarcamos .ttf OFL em media/fonts/ e geramos um fonts.conf com path
-// ABSOLUTO em tmp, apontando FONTCONFIG_FILE/FONTCONFIG_PATH pra ele. Path
-// absoluto resolvido em runtime funciona igual no Windows (preview local) e
-// no Ubuntu do CI, independente do cwd. fontconfig inicializa lazy no
-// primeiro render de texto, entao setar o env no load do modulo basta.
-const FONTS_DIR = path.resolve("media/fonts");
-function bootstrapFontconfig() {
-  try {
-    if (!fssync.existsSync(FONTS_DIR)) return;
-    const fcDir = path.join(os.tmpdir(), "smufdpj-fontconfig");
-    const cacheDir = path.join(fcDir, "cache");
-    fssync.mkdirSync(cacheDir, { recursive: true });
-    const conf = `<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-  <dir>${FONTS_DIR.replace(/\\/g, "/")}</dir>
-  <cachedir>${cacheDir.replace(/\\/g, "/")}</cachedir>
-  <include ignore_missing="yes">/etc/fonts/fonts.conf</include>
-</fontconfig>
-`;
-    const confPath = path.join(fcDir, "fonts.conf");
-    fssync.writeFileSync(confPath, conf);
-    process.env.FONTCONFIG_FILE = confPath;
-    process.env.FONTCONFIG_PATH = fcDir;
-  } catch (e) {
-    console.warn(`[slide] bootstrap fontconfig falhou (segue com fonte de sistema): ${e.message}`);
-  }
-}
-bootstrapFontconfig();
-
-// sharp importado DEPOIS do bootstrap (env de fontconfig setado antes do
-// primeiro uso de libvips).
+// sharp importado dinamicamente DEPOIS do import de fontconfig-boot
+// (cujo side-effect ja setou o env antes do primeiro uso de libvips).
 const { default: sharp } = await import("sharp");
 const { default: smartcrop } = await import("smartcrop-sharp");
 
@@ -71,13 +39,7 @@ export const SLIDES_DIR = path.resolve("media/news/instagram-slides");
 // todo o caminho antigo continuam intactos pra esse rollback.
 const LAYOUT = (process.env.SLIDE_LAYOUT || "card02").toLowerCase();
 
-// Familias exatas (name table dos .ttf do fontsource: peso embutido na
-// familia pros nao-Regular/Bold, por isso referencia a string literal).
-const F_ANTON   = "'Anton','Impact',sans-serif";
-const F_INTER   = "'Inter',system-ui,sans-serif";
-const F_INTER_SB = "'Inter SemiBold','Inter',system-ui,sans-serif";
-const F_INTER_XB = "'Inter ExtraBold','Inter',system-ui,sans-serif";
-const F_PLAYFAIR = "'Playfair Display Black','Playfair Display',Georgia,serif";
+// Familias F_* importadas de ./fontconfig-boot.mjs (fonte unica).
 
 // Fallback: fotos oficiais da banda usadas quando o item nao tem foto propria.
 // Ciclo determinístico pelo primeiro nibble hex do id (0-f → 0-3).

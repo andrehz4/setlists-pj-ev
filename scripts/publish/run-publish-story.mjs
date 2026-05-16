@@ -21,6 +21,7 @@ import { pickTrackForDate } from "./story-track.mjs";
 import { buildStoryVideo } from "./story-video.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishStory } from "./instagram.mjs";
+import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
 
 const STORIES_DIR = path.resolve("media/news/instagram-stories");
@@ -28,13 +29,7 @@ const LOG_PATH = path.join(STORIES_DIR, "_story-log.json");
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 
-// Mesmo ciclo do run-publish: vermelho -> preto -> ocre -> azul, 3 posts por cor
-const TARJA_COLORS = ["#c12727", "#0a0908", "#a87f2c", "#2a5b9e"];
-const POSTS_PER_COLOR = 3;
-function tarjaColorFromPostCount(postCount) {
-  const idx = Math.floor((postCount || 0) / POSTS_PER_COLOR) % TARJA_COLORS.length;
-  return TARJA_COLORS[idx];
-}
+// Ciclo de cor: fonte unica em ./color-cycle.mjs (mesma do carrossel/capa).
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
@@ -131,10 +126,10 @@ async function main() {
   const track = await pickTrackForDate(brt);
   console.log(`[story] trilha: ${track.name} (cycle ${track.cyclePos + 1}/${track.cycleLen})`);
 
-  // 3. cor da tarja (mesma do carrossel atual)
+  // 3. cor do ciclo (mesma do carrossel/capa: fonte unica color-cycle.mjs)
   const queue = await readQueue();
-  const tarjaColor = tarjaColorFromPostCount(queue.postCount);
-  console.log(`[story] tarja: ${tarjaColor} (postCount=${queue.postCount})`);
+  const tarjaColor = getCurrentCycleColor(queue.postCount);
+  console.log(`[story] cor do ciclo: ${tarjaColor} (postCount=${queue.postCount})`);
 
   // 4. renderiza video
   const outPath = path.join(STORIES_DIR, `${dateKey}.mp4`);

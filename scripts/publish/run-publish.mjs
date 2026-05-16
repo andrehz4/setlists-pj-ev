@@ -25,6 +25,7 @@ import { spawnSync } from "node:child_process";
 import { readQueue, writeQueue, pickMatureByType, markPosted, markError, pruneOldPosted } from "./queue.mjs";
 import { buildSlides, buildCoverSlide, SLIDES_DIR, LAYOUT } from "./slide-image.mjs";
 import { publishItems, slideUrlFor } from "./instagram.mjs";
+import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
@@ -48,21 +49,9 @@ function getCurrentTarjaColor(postCount) {
   return TARJA_COLORS[idx];
 }
 
-// Ciclo de cor do layout card02 (paleta aprovada pelo Andre). Mesma regra
-// de POSTS_PER_COLOR: 3 posts numa cor, troca, +3, troca. Dirige o FUNDO
-// da capa (Card 11) E a cunha + tarja do Card 02. Variedade visual no
-// feed a longo prazo sem perder identidade.
-const CYCLE_COLORS = [
-  "#0a0a0a", // preto
-  "#E10600", // vermelho
-  "#a87f2c", // ocre sepia
-  "#2a5b9e", // azul petroleo
-];
-
-function getCurrentCycleColor(postCount) {
-  const idx = Math.floor((postCount || 0) / POSTS_PER_COLOR) % CYCLE_COLORS.length;
-  return CYCLE_COLORS[idx];
-}
+// Ciclo de cor card02/capa: agora em ./color-cycle.mjs (fonte unica,
+// compartilhada com run-publish-story). Dirige o FUNDO da capa Card 11
+// e a cunha + tarja do Card 02.
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
