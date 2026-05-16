@@ -232,7 +232,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-16T06:06:41.851Z",
+        "at": "2026-05-16T10:37:03.094Z",
         "msg": "item nao encontrado em index/archive"
       }
     },
@@ -253,7 +253,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-16T06:06:41.851Z",
+        "at": "2026-05-16T10:37:03.094Z",
         "msg": "item nao encontrado em index/archive"
       }
     },
@@ -265,7 +265,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-16T06:06:41.851Z",
+        "at": "2026-05-16T10:37:03.094Z",
         "msg": "item nao encontrado em index/archive"
       }
     },
@@ -277,7 +277,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-16T06:06:41.851Z",
+        "at": "2026-05-16T10:37:03.094Z",
         "msg": "item nao encontrado em index/archive"
       }
     },
@@ -286,8 +286,8 @@
       "type": "spotlight",
       "queuedAt": "2026-05-16T09:09:55.687Z",
       "publishAt": "2026-05-16T09:09:55.687Z",
-      "postedAt": null,
-      "postId": null,
+      "postedAt": "2026-05-16T10:37:20.142Z",
+      "postId": "18052780907757103",
       "error": null
     },
     {
@@ -297,7 +297,10 @@
       "publishAt": "2026-05-16T09:09:55.687Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-16T10:37:03.094Z",
+        "msg": "item nao encontrado em index/archive"
+      }
     },
     {
       "id": "e18d1673ce",
@@ -306,7 +309,10 @@
       "publishAt": "2026-05-16T09:09:55.687Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-16T10:37:03.094Z",
+        "msg": "item nao encontrado em index/archive"
+      }
     },
     {
       "id": "5665b2da4b",
@@ -315,8 +321,11 @@
       "publishAt": "2026-05-16T09:09:55.687Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-16T10:37:03.094Z",
+        "msg": "item nao encontrado em index/archive"
+      }
     }
   ],
-  "postCount": 9
+  "postCount": 10
 }
