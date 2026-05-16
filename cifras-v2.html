@@ -8529,7 +8529,7 @@ html[data-theme="dark"] #view-tabs {
 
 #view-tabs .cifras-masthead {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: end;
   gap: 22px;
   padding: 28px 0 16px;
@@ -10309,14 +10309,14 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 }
 #view-tabs .mixer-aside {
   position: fixed !important;
-  top: 50% !important;
+  top: 42% !important;
   right: 0 !important;
   left: auto !important;
   bottom: auto !important;
   transform: translateY(-50%);
   width: 68px !important;
-  height: 80vh !important;
-  max-height: 720px !important;
+  height: 58vh !important;
+  max-height: 520px !important;
   background: linear-gradient(180deg, var(--cf-paper) 0%, var(--cf-paper-dark) 100%) !important;
   border: 1px solid var(--cf-rule) !important;
   border-right: 0 !important;
@@ -17765,18 +17765,12 @@ function renderTabsView() {
 
   container.innerHTML = `
     <header class="cifras-masthead" aria-label="Cifras & Tablaturas">
-      <div class="cifras-masthead-mark">songbook · curado por andré</div>
       <h2 class="cifras-masthead-title">Cifras<em>&amp; tablaturas</em></h2>
       <div class="cifras-masthead-meta">
         <span>edição 2026</span>
         <strong>${entries.length.toString().padStart(2, '0')}</strong>
         <span>faixas</span>
       </div>
-      <p class="cifras-masthead-rule">
-        Chord-chips clicáveis com diagrama interativo, tablaturas vetoriais via AlphaTab,
-        mini-braço da guitarra acompanhando o playback. Top 20 hits do PJ ao vivo —
-        em curação contínua.
-      </p>
     </header>
     <div class="tabs-intro">
       Cifras com chord-chips e diagrama interativo, tablaturas vetoriais via AlphaTab.
