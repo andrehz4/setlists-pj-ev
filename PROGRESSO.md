@@ -3,6 +3,70 @@
 ## Data
 2026-05-16
 
+## HANDOFF SESSAO 2026-05-16 (noite 2): PLANO redesign do STORY (nao iniciado)
+
+### Contexto
+Slide IG (carrossel/solo + capa) FECHADO e no ar: Fase 2 `cedc730`, Fase 1
+`b4ead66`, QA fixes `cc200d5`. SLIDE_LAYOUT default=card02. Proxima frente:
+aplicar o mesmo padrao visual no STORY diario e corrigir bug. NADA do story
+foi alterado ainda, so analisado.
+
+### BUG CONFIRMADO no story (prioridade)
+`scripts/publish/story-video.mjs:480`:
+`while (items.length < 5) items.push(items[items.length % Math.max(1, items.length)]);`
+Se houver 1 noticia em 24h, o story REPETE ela 5x (5 cards iguais). Timeline
+fixa 22s (intro 3s + 5 cards x 3.5s + outro 1.5s). `resolveSegment` ja lida
+com contagem variavel; `selectStoryItems` ja retorna 1..5 sem repetir.
+FIX: remover a linha de padding; tornar timeline dinamica:
+TOTAL_S = T_INTRO_END + items.length*T_CARD_DUR + T_OUTRO_DUR; TOTAL_FRAMES
+derivado; ffmpeg `atrim=0:${TOTAL_S}` e fade-out `st=${TOTAL_S-0.5}` usam o
+valor dinamico. Resultado: 1 item=8s, 5 items=22s, sem repeticao.
+
+### PLANO visual (padrao novo no story) — tarefa grande, propor antes
+1. Fontes: story-video.mjs importa sharp direto (L32), SEM bootstrap
+   fontconfig -> nao tem Anton/Inter/Playfair. Extrair o bootstrap do
+   slide-image.mjs pra modulo compartilhado (ex scripts/publish/fontconfig-boot.mjs)
+   e usar nos dois.
+2. Ciclo de cor: unificar. Hoje DUPLICADO: run-publish.mjs (CYCLE_COLORS
+   inline) e run-publish-story.mjs (TARJA_COLORS paleta ANTIGA
+   #c12727/#0a0908/...). Extrair scripts/publish/color-cycle.mjs
+   (CYCLE_COLORS=#0a0a0a/#E10600/#a87f2c/#2a5b9e + getCurrentCycleColor),
+   importar em run-publish, run-publish-story e (referencia) slide-image.
+3. Card do story (buildCardSvg, 1080x1920): trocar a estetica xerox
+   (Big Shoulders/Special Elite + tarjas topo/baixo + SMUFDPJ stencil)
+   pelo padrao card02: foto cheia tratada (renderPhoto), cunha vermelha
+   da cor do ciclo, wordmark Playfair "So Mais um Fa de PEARL JAM", tarja
+   Inter (categoria), manchete Anton (title_ig||title_pt, quebra
+   balanceada). Considerar exportar renderPhoto + atoms SVG de slide-image
+   pra reuso.
+4. Intro/outro: criar style novo em story-styles/ (ex "card02") espelhando
+   a capa Card 11 (PEARL JAAAM Anton 380, edicao No X, data). DEFAULT_STYLE
+   -> novo. Styles antigos ficam pra rollback.
+
+### DECISOES p/ pedir ao Andre (proxima sessao)
+- Visual: redesign completo do card vs incremental (so fonte+cor+cunha
+  mantendo animacao atual). Incremental e mais seguro/rapido.
+- Story de 1 item = 8s: ok, ou card final "so isso por hoje" em vez de
+  encurtar tanto?
+- Validacao: amostra MP4 local exige ffmpeg na maquina do Andre; se nao
+  tiver, validar por artifact do dry-run no CI.
+
+### Arquivos chave
+```
+scripts/publish/story-video.mjs        # bug L480 + buildCardSvg + timeline
+scripts/publish/run-publish-story.mjs  # orquestrador, TARJA_COLORS antigo L32
+scripts/publish/story-select.mjs       # OK (retorna 1..5, sem repetir)
+scripts/publish/story-styles/*.mjs     # intro/outro plug (estetica antiga)
+scripts/publish/slide-image.mjs        # fonte do padrao novo p/ reuso
+.github/workflows/publish-story.yml    # cron 13h BRT, instala ffmpeg
+```
+
+### Comando p/ continuar
+cd C:\Gitlab_hz\pearljam\setlists-pj-ev && claude
+Peca: "leia o PROGRESSO, vamos no redesign do story (bug + padrao novo)"
+
+---
+
 ## HANDOFF SESSAO 2026-05-16 (noite): Redesign slide IG FASE 1 NO AR
 
 ### Estado
