@@ -16368,6 +16368,19 @@ function _renderTabPanel(body, songKey, tabMeta) {
             b.classList.toggle('active', active);
             b.setAttribute('aria-pressed', active ? 'true' : 'false');
           });
+          // #12: sincroniza tambem o seletor de BAIXO (tabs do braço
+          // .cifra-fretboard-instr). O caminho inverso (baixo->cima) ja
+          // existia; faltava cima->baixo. So Violao/Ukulele/Piano existem
+          // no braço; outros instrumentos do topo deixam as 3 inativas.
+          const _cfb = document.querySelector('.cifra-fretboard');
+          if (_cfb) {
+            _cfb.dataset.inst = inst;
+            _cfb.querySelectorAll('.cifra-fretboard-instr .fretboard-tab').forEach(x => {
+              const a = x.dataset.inst === inst;
+              x.classList.toggle('active', a);
+              x.setAttribute('aria-pressed', a ? 'true' : 'false');
+            });
+          }
           // Le multiData ATUAL do pane (pode ter sido trocado por alt_version)
           const curMulti = cifraPane._multiData;
           // Re-render strumming header com padrao do novo instrumento
