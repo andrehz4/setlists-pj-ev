@@ -16455,6 +16455,17 @@ function _renderTabPanel(body, songKey, tabMeta) {
       const bracoBtn = cifraPane.querySelector('.cifra-mode-braco');
       const metronomeBtns = cifraPane.querySelectorAll('.cifra-mode-metronome');
       const loopBtns = cifraPane.querySelectorAll('.cifra-mode-loop');
+      // #14: braço visivel desde o load (nao espera o play). Respeita o
+      // toggle 'Braço' (default on). So na view Cifras (nao no setlist).
+      requestAnimationFrame(() => {
+        const bracoOn = !bracoBtn || bracoBtn.dataset.state === 'on';
+        if (bracoOn && cifraPane.closest && cifraPane.closest('.cifra-detail-wrap')) {
+          const chips = cifraPane.querySelectorAll('.chord-chip[data-chord]');
+          const first = chips[0] ? chips[0].dataset.chord : '—';
+          const next = chips[1] ? chips[1].dataset.chord : '';
+          try { _updateCifraFretboard(first, next, cifraPane); } catch (_) {}
+        }
+      });
 
       const setAllPlayState = (state) => {
         playBtns.forEach(btn => {
@@ -19205,7 +19216,9 @@ function _stopCifraPlayer(root) {
   }
   _CIFRA_PLAYERS.delete(root);
   root.querySelectorAll('.chord-chip.chord-chip-playing').forEach(c => c.classList.remove('chord-chip-playing'));
-  _hideCifraFretboard();
+  // #14: NAO esconder o braço ao parar. Andre quer ele sempre aberto; so
+  // some por acao do usuario (botao Braço off ou X de fechar). Pause ja
+  // mantinha; agora stop tambem. Troca de musica recria via _ensureCifraFretboard.
   _renderCifraPlayerBar(root, 'idle');
   if (_activeCifraRoot === root) {
     _activeCifraRoot = null;
