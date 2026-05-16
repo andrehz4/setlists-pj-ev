@@ -43,13 +43,17 @@ valor dinamico. Resultado: 1 item=8s, 5 items=22s, sem repeticao.
    a capa Card 11 (PEARL JAAAM Anton 380, edicao No X, data). DEFAULT_STYLE
    -> novo. Styles antigos ficam pra rollback.
 
-### DECISOES p/ pedir ao Andre (proxima sessao)
-- Visual: redesign completo do card vs incremental (so fonte+cor+cunha
-  mantendo animacao atual). Incremental e mais seguro/rapido.
-- Story de 1 item = 8s: ok, ou card final "so isso por hoje" em vez de
-  encurtar tanto?
-- Validacao: amostra MP4 local exige ffmpeg na maquina do Andre; se nao
-  tiver, validar por artifact do dry-run no CI.
+### DECISOES TRAVADAS pelo Andre (2026-05-16 noite 2)
+- Visual: REDESIGN COMPLETO. Card do story na linguagem card02 (foto
+  cheia tratada via renderPhoto, cunha da cor do ciclo, wordmark
+  Playfair, tarja Inter categoria, manchete Anton title_ig||title_pt
+  quebra balanceada) + intro/outro espelhando a capa Card 11 (PEARL
+  JAAAM Anton 380, edicao No X, data). Style novo default em story-styles/.
+- Story de 1 item = ENCURTAR: timeline dinamica, intro + 1 card + outro
+  (~8s). Sem repetir, sem card de fechamento.
+- PENDENTE (perguntar no inicio da proxima sessao): validar por amostra
+  MP4 local (precisa ffmpeg na maquina do Andre) ou por artifact do
+  dry-run no CI.
 
 ### Arquivos chave
 ```
@@ -148,22 +152,34 @@ isolado — ver [[feedback_players_isolados]]). Pontos no codigo (linhas aprox):
    provavel erro de voz) — CONFIRMAR texto antes (sugestao "Música toda").
 6. (#12) Sincronizar seletor instrumento topo<->baixo (violao/uke/piano). 2 conjuntos
    de botoes data-cifra-inst; _activeCifraInstrument; handlers ~L16323 e ~L18943.
-7. (#13) Mixer ainda com foto antiga (Mike/Stone nos cards Lead/Rhythm/Outro/Verse).
-   Fix do <img> ~L18441-18449 usa _pjm.photo. Investigar: member null? cache CF?
-   ::before ainda visivel? media/band/<id>.jpg JA sao alta-res.
-8. (#14) Braço/fretboard SEMPRE aberto na view Cifras; so colapsa por clique do user.
-   Ver [[feedback_fretboard_posicionamento]] (docked inline na view Cifras).
-9. (#15) Numeracao do catalogo = ordem REAL da discografia. Albuns por
-   lancamento (Ten 1991 -> ... -> Dark Matter 2024), faixas na ordem real do
-   album. Numero = posicao real na discografia (Once=1 ... Setting Sun ~208),
-   COM gaps onde a faixa nao tem cifra. Fonte ordem/tracklist: media/albums/*.md
-   ou array ALBUMS no JS. Render: catItemHtml + ordem do entries.map em
-   renderTabsView; numeracao provavel via CSS counter. CONFIRMAR c/ Andre:
-   indice global da discografia (com gaps ~208) vs sequencial 1..N so cifras.
-   Interpretacao atual = indice global real (~208), foi o que ele descreveu.
+7. (#13) FEITO/VERIFICADO: codigo correto. _populateMixer ~L18441 monta
+   <img class="mixer-track-photo" src=_pjm.photo (media/band/<id>.jpg, mesma
+   da BANDA) style=object-position:_photoPos; CSS .mixer-card esconde o
+   ::before antigo e estiliza .mixer-track-photo 72px. Todos os 4 nomes
+   (Lead/Rhythm/Outro/Verse) resolvem member (lead/rhythm match, ou fallback
+   mike/stone). Se Andre ainda ve foto antiga = cache Cloudflare/browser:
+   hard refresh (Ctrl+F5) apos o build. Se persistir, pedir screenshot.
+8. (#14) PENDENTE. ATENCAO: existem DOIS bracos distintos —
+   `.fretboard-overlay` (braco animado do TAB/AlphaTab, ~L16752) e
+   `.cifra-fretboard` (diagrama de acorde da view CIFRA, ~L16366/16599).
+   O pedido do Andre e o da view CIFRA. Botao "Braço" toggla .cifra-fretboard
+   ~L16583-16599 e SO mostra quando playback inicia + braco on. Mudar pra
+   SEMPRE visivel (render no load do painel cifra, nao gated por play),
+   colapsa so por clique do user no proprio braco. Ver [[feedback_fretboard_posicionamento]].
+9. (#15) FEITO E NO AR (commit 1dddbde). Catalogo ordenado/numerado pela
+   discografia real via DISCOG_NUM (de ALBUMS). Sanity: Once=1, Even Flow=2,
+   Black=5, Setting Sun=150 (NAO 208 — covers/EV vem depois de darkmatter no
+   array ALBUMS; Andre tinha chutado ~208, 150 e o real). 285 faixas no total.
+   Numero real com gaps; counter CSS sequencial desligado; .cat-item-num no HTML.
 
-NAO COMECEI A IMPLEMENTAR (sessao longa demais, regra de contexto). Cifras-v2
-estavel e tudo commitado ate aqui (ultimo: tag teal + fotos <img> + perf bootstrap).
+STATUS: #15 e #13 fechados. #7,#8,#9,#10,#11,#12,#14 sao um CLUSTER coeso de
+state-machine do player de cifra (sensivel, ja causou "quebrou tudo" antes).
+Decidido NAO atacar em contexto exausto sem browser. Precisa sessao nova
+focada, idealmente testando no browser cada mudanca isolada.
+
+#11: "WHOLE SONG" NAO existe estatico no HTML (grep vazio) — provavel string
+gerada em runtime pelo AlphaTab (seletor de loop). Inspecionar no DOM ao vivo.
+Confirmar com Andre o texto PT desejado (ele escreveu "Paleta!", ambiguo).
 
 Quando os bugs forem resolvidos e Andre aprovar: portar tudo pro index.html ao
 vivo e apagar cifras-v2.html. Extracao original no handoff "Cifras v2 (redesign isolado)" abaixo.
