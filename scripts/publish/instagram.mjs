@@ -135,6 +135,7 @@ async function postIG(path, body) {
 
 export async function createSlideContainer({ igUserId, accessToken, imageUrl }) {
   const r = await postIG(`/${igUserId}/media`, {
+    media_type: "IMAGE",
     image_url: imageUrl,
     is_carousel_item: "true",
     access_token: accessToken,
@@ -156,6 +157,7 @@ export async function createCarouselContainer({ igUserId, accessToken, childrenI
 
 export async function createSingleImageContainer({ igUserId, accessToken, imageUrl, caption }) {
   const r = await postIG(`/${igUserId}/media`, {
+    media_type: "IMAGE",
     image_url: imageUrl,
     caption,
     access_token: accessToken,
