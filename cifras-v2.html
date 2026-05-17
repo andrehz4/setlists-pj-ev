@@ -17965,6 +17965,30 @@ function renderTabsView() {
         if (!(k in m)) m[k] = n;
       }
     }
+    // Aliases: manifest usa nomes ligeiramente diferentes dos ALBUMS.
+    // Mapa: chave-do-manifest -> chave-normalizada-do-ALBUMS.
+    const ALIAS = {
+      // Divergencias de normalizacao (pontuacao, typo, abreviacao)
+      'brain of j.':   'brain of j',        // manifest preserva ponto
+      '1 2 full':      '12 full',            // "1/2 Full" -> espaco vs sem espaco
+      'comes then goes': 'come then goes',   // typo no manifest
+      'drifting':      'driftin',            // manifest usa forma completa
+      'bushleaguer':   'buhleaguer',         // manifest tira o $ de Bu$hleaguer
+      'dream a little dream': 'dream a little dream of me',
+      // EV solo: manifest adiciona sufixo (ev) pra desambiguar covers
+      'sleeping by myself (ev)': 'sleeping by myself',
+      'cant keep (ev)':   'cant keep',
+      'goodbye (ev)':     'goodbye',
+      'long way (ev)':    'long way',
+      'on my way (ev)':   'on my way',
+      'picture (ev)':     'picture',
+      'satellite (ev)':   'satellite',
+      'try (ev)':         'try',
+      'without you (ev)': 'without you',
+    };
+    for (const [alias, canonical] of Object.entries(ALIAS)) {
+      if (!(alias in m) && canonical in m) m[alias] = m[canonical];
+    }
     return m;
   })();
   // Ordenar pela ordem real da discografia (numero crescente). Faixas sem
