@@ -1,10 +1,5 @@
 name: Publish Instagram
 on:
-  schedule:
-    # 3 runs por janela, sempre 12min apos cada rotina Claude (00,06,12,18h BRT).
-    # UTC = BRT+3: janelas em 03,09,15,21h UTC. Runs: :12, :32, :52.
-    # Agenda BRT: 00:12/32/52, 06:12/32/52, 12:12/32/52, 18:12/32/52
-    - cron: '12,32,52 3,9,15,21 * * *'
   workflow_dispatch:
     inputs:
       dry-run:
