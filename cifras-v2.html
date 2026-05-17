@@ -17574,12 +17574,15 @@ function _renderTabPanel(body, songKey, tabMeta) {
             // + bottom transport cabem juntos na tela sem usuario rolar.
             if (!_firstPlayScrolled && body && body.closest('.cifra-detail-wrap')) {
               _firstPlayScrolled = true;
-              const topBar = tabPane.querySelector('.alphatab-transport-top');
-              const anchor = topBar || surface;
-              if (anchor) {
-                const y = anchor.getBoundingClientRect().top + window.scrollY - 16;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-              }
+              const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              requestAnimationFrame(() => {
+                const topBar = tabPane.querySelector('.alphatab-transport-top');
+                const anchor = topBar || surface;
+                if (anchor) {
+                  const y = anchor.getBoundingClientRect().top + window.scrollY - 16;
+                  window.scrollTo({ top: Math.max(0, y), behavior: reduced ? 'auto' : 'smooth' });
+                }
+              });
             }
           } else if (e.state === 2) {
             _setAllPlayState(false);
