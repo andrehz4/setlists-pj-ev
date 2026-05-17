@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-17T09:05:27.052Z",
+  "updated": "2026-05-17T15:09:26.918Z",
   "items": [
+    {
+      "id": "cd-20260517",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-17T14:01:14.474Z",
+      "fetchedAt": "2026-05-17T15:09:26.707Z",
+      "img": null,
+      "title_pt": "Pittsburgh faz um ano, RS de 96 revive e a comunidade celebra Dave Abbruzzese",
+      "intro_pt": "A comunidade global celebrou o aniversário do show de Pittsburgh e relembrou as capas icônicas da Rolling Stone de 1996.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "Pittsburgh faz 1 ano e o 96 volta ao feed",
+      "kind": "community-digest",
+      "community_posts_count": 8
+    },
     {
       "id": "214bf41340",
       "url": "https://www.tenhomaisdiscosqueamigos.com/2026/05/16/pearl-jam-significado-black",
@@ -476,22 +495,6 @@
       "tags": [
         "memoria",
         "bootleg"
-      ]
-    },
-    {
-      "id": "38b7aca402",
-      "url": "https://www.pearljamonline.it/jeff-ament-e-metropolis-the-documentary-il-ritorno-alle-radici-della-scena-di-seattle",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-04-29T10:37:16.000Z",
-      "fetchedAt": "2026-05-13T14:34:20.744Z",
-      "img": "/media/news/img/38b7aca402.jpg",
-      "title_pt": "Jeff Ament se reúne com Green River em documentário sobre o Metropolis de Seattle",
-      "intro_pt": "O documentário sobre o clube all-ages que moldou a cena de Seattle traz a reunião de Ament, Mark Arm e Steve Turner, 3/5 dos Green River.",
-      "tags": [
-        "jeff",
-        "memoria"
       ]
     }
   ]
