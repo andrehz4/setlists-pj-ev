@@ -5594,6 +5594,8 @@ html[data-theme="dark"] .alphatab-version-select {
     grid-template-columns: 1fr;
     padding-right: 0;
   }
+  /* Hover nao funciona em touch; mixer se sobrepoem ao masthead. Some. */
+  .mixer-aside { display: none !important; }
 }
 
 /* ======= MIXER ASIDE (sidebar minimalista, overlay com hover-expand) =======
@@ -10338,6 +10340,16 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 @media (max-width: 720px) {
   #view-tabs .mixer-aside { display: none !important; }
 }
+/* Mobile 720-880px: grid ainda tava em 320px 1fr (regra !important acima).
+   Restaura 1 coluna e some mixer que sai da tela. */
+@media (max-width: 880px) {
+  #view-tabs .tabs-layout,
+  #view-tabs .tabs-layout.mixer-pinned {
+    grid-template-columns: 1fr !important;
+    padding-right: 0 !important;
+  }
+  #view-tabs .mixer-aside { display: none !important; }
+}
 
 /* === MIXER conteudo interno: musicos com fotos === */
 #view-tabs .mixer-header {
@@ -10641,7 +10653,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   background: linear-gradient(180deg, var(--cf-paper) 0%, var(--cf-paper-dark) 100%) !important;
   transition: none !important;
 }
-@media (max-width: 720px) {
+@media (max-width: 880px) {
   #view-tabs .mixer-aside.mixer-card { display: flex !important; }
 }
 #view-tabs .mixer-card .mixer-header {
@@ -18352,9 +18364,12 @@ function _inferTrackMeta(name) {
 // caem pra null (card sem foto, layout antigo continua funcional).
 function _inferMusicianPhoto(name) {
   const n = String(name || '').toLowerCase();
-  if (/stone|gossard|rhythm|ritm/.test(n)) return 'media/musicians/stone.png';
-  if (/mike|mccready|lead|solo/.test(n)) return 'media/musicians/mike.png';
-  if (/jeff|ament|bass|baix/.test(n)) return 'media/musicians/jeff.png';
+  if (/stone|gossard|rhythm|ritm/.test(n)) return 'media/band/stone.jpg';
+  if (/mike|mccready|lead|solo/.test(n)) return 'media/band/mike.jpg';
+  if (/jeff|ament|bass|baix/.test(n)) return 'media/band/jeff.jpg';
+  if (/eddie|vedder|vox|vocal|voice|sing|cant/.test(n)) return 'media/band/eddie.jpg';
+  if (/matt|cameron|drum|bater|percuss/.test(n)) return 'media/band/matt.jpg';
+  if (/boom|gaspar|piano|key|organ|hammond/.test(n)) return 'media/band/boom.jpg';
   return null;
 }
 
@@ -18861,12 +18876,14 @@ async function _playChordSound(chordName, opts) {
     // Piano dispara mais junto (15ms entre notas, quase acorde); cordas
     // mantem dedilhado 25ms pra som mais natural.
     const stagger = instrument === 'piano' ? 0.015 : 0.025;
+    // Controla volume pelo canal de saida do sampler: setVolume(v) onde
+    // v usa midiVelToGain internamente (v²/16129). sqrt(gain)*127 mapeia
+    // nosso 0-1 linear pra ganho linear no output.
+    if (sampler.output && typeof sampler.output.setVolume === 'function') {
+      sampler.output.setVolume(Math.round(Math.sqrt(gain) * 127));
+    }
     notes.forEach((note, i) => {
-      // #7: volume real via 'gain' de saida do sampler (smplr suporta).
-      // Velocity fica natural (timbre consistente); o controle de volume
-      // do transport (.cifra-mode-vol -> window._cifraVolume -> opts.gain)
-      // agora altera a saida de verdade, nao so a velocity (quase imperceptivel).
-      sampler.start({ note, velocity, gain, time: now + i * stagger, duration });
+      sampler.start({ note, velocity, time: now + i * stagger, duration });
     });
   } catch (e) { /* silencioso: feature opcional */ }
 }
@@ -19394,6 +19411,7 @@ function _attachChordChipHandlers(root, multiData) {
     _playChordSound(chord, {
       multiData: multiData,
       instrument: _activeCifraInstrument,
+      gain: (typeof window._cifraVolume === 'number') ? window._cifraVolume : 1,
     });
   };
   root.addEventListener('click', (e) => {
