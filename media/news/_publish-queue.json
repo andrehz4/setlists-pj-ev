@@ -295,7 +295,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-17T06:30:01.852Z",
+        "at": "2026-05-17T10:39:47.925Z",
         "msg": "IG API /17841414148425536/media: API access blocked."
       }
     },
@@ -307,7 +307,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-17T06:30:01.852Z",
+        "at": "2026-05-17T10:39:47.925Z",
         "msg": "IG API /17841414148425536/media: API access blocked."
       }
     },
@@ -319,7 +319,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-17T06:30:01.852Z",
+        "at": "2026-05-17T10:39:47.925Z",
         "msg": "IG API /17841414148425536/media: API access blocked."
       }
     },
@@ -331,7 +331,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-17T06:30:01.852Z",
+        "at": "2026-05-17T10:39:47.925Z",
         "msg": "IG API /17841414148425536/media: API access blocked."
       }
     },
@@ -343,7 +343,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-17T06:30:01.852Z",
+        "at": "2026-05-17T10:39:47.925Z",
         "msg": "IG API /17841414148425536/media: API access blocked."
       }
     },
@@ -355,7 +355,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-17T06:30:01.852Z",
+        "at": "2026-05-17T10:39:47.925Z",
         "msg": "IG API /17841414148425536/media: API access blocked."
       }
     },
@@ -367,7 +367,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-17T06:30:01.852Z",
+        "at": "2026-05-17T10:39:47.925Z",
         "msg": "IG API /17841414148425536/media: API access blocked."
       }
     },
@@ -378,7 +378,10 @@
       "publishAt": "2026-05-17T09:05:26.668Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-17T10:39:55.847Z",
+        "msg": "IG API /17841414148425536/media: API access blocked."
+      }
     }
   ],
   "postCount": 13
