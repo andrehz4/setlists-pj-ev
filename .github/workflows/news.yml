@@ -1,10 +1,5 @@
 name: News fetch
 on:
-  schedule:
-    # 8x/dia em BRT: 01h,05h,08h,11h,13h,17h,19h,23h.
-    # 2 scrapes por janela de 6h da Routine (00h,06h,12h,18h BRT).
-    # Em UTC (BRT-3): 04,08,11,14,16,20,22,02.
-    - cron: '0 2,4,8,11,14,16,20,22 * * *'
   workflow_dispatch:
     inputs:
       curator:
@@ -43,19 +38,12 @@ jobs:
 
       - name: Fetch news
         env:
-          # Define ambas as keys; o curator nao usado simplesmente nao chama.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           REDDIT_PROXY_URL: ${{ secrets.REDDIT_PROXY_URL }}
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-          # Default no cron: routine (so coleta + escreve _pending.json).
-          # Routine Sonnet remota acorda em :30 e cura. Manual via dispatch
-          # pode trocar pra gemini ou anthropic.
           NEWS_CURATOR: ${{ inputs.curator || 'routine' }}
-          # Modelo Gemini: trocavel via repo variable GEMINI_MODEL.
-          # Opcoes: gemini-2.5-flash (default), gemini-2.5-flash-lite, gemini-2.5-pro,
-          # gemini-3-flash-preview, gemini-3.1-pro-preview. Tabela: ai.google.dev/pricing
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
         run: |
           ARGS=""
@@ -78,8 +66,6 @@ jobs:
               COMMIT_MSG="news: atualizacao automatica ($CURATOR_LABEL) $(date -u +%Y-%m-%dT%H:%MZ)"
             fi
             git commit -m "$COMMIT_MSG"
-            # Pull --rebase pra evitar race condition se community.yml ou
-            # a routine pushou no meio. Loop simples de retry (max 3x).
             for i in 1 2 3; do
               git pull origin main --rebase --autostash || true
               if git push origin main 2>&1; then break; fi
@@ -89,9 +75,6 @@ jobs:
           fi
 
       - name: Notifica Telegram (scrape, resumo agregado)
-        # Roda apos commit do scrape. Manda mensagem CURTA: total +
-        # contagem por sourceLabel. Detalhe item-a-item fica no news-merge.yml
-        # depois da curadoria. Falha aqui nao derruba o workflow.
         if: ${{ inputs.dry-run != true && env.TELEGRAM_BOT_TOKEN != '' }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -111,7 +94,6 @@ jobs:
             exit 0
           fi
 
-          # contagem por sourceLabel
           BY_SOURCE=$(jq -r '
             .items
             | group_by(.sourceLabel // .kind // "outros")
@@ -121,8 +103,6 @@ jobs:
             | join("\n")
           ' media/news/_pending.json)
 
-          # lista titulo + fonte de cada candidato (max 20 pra nao estourar
-          # 4096 chars do Telegram). Titulo trunca em 80 chars.
           ITEMS_LIST=$(jq -r '
             .items[:20] | to_entries | map(
               "\((.key + 1)). " +
