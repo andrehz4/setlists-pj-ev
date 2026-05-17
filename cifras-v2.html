@@ -17823,6 +17823,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           _setLoopState('off', '🔁 Loop');
           api.isLooping = false;
           api.playbackRange = null;
+          try { if (api.selection !== undefined) api.selection = null; } catch (_e) {}
           _setAllStatus('pronto · click Play');
           hideLoopOverlay();
           // Esconde botao "play loop" do FAB
@@ -17837,6 +17838,20 @@ function _renderTabPanel(body, songKey, tabMeta) {
               _setLoopState('arm', '◉ marcando…');
               _setAllStatus('clique num beat na tab pra marcar o início');
               showLoopOverlay('Clique no <strong>primeiro beat</strong> do trecho que vai repetir<br><small>diretamente na tablatura abaixo</small>');
+              // beatMouseDown so funciona apos player inicializado (cursor ativo).
+              // Se nunca tocou (state 0), dispara play->pause rapido pra ativar.
+              if (_fabState === 0) {
+                let _initDone = false;
+                const _initFn = (ev) => {
+                  if (ev.state === 1 && !_initDone) {
+                    _initDone = true;
+                    api.playerStateChanged.off(_initFn);
+                    api.pause();
+                  }
+                };
+                api.playerStateChanged.on(_initFn);
+                api.play();
+              }
             } else {
               loopReset();
             }
@@ -17868,9 +17883,11 @@ function _renderTabPanel(body, songKey, tabMeta) {
             if (cur === 'off') return;
             if (cur === 'arm') {
               loopStart = beat;
-              _setLoopState('arm2', '◉ marcando fim');
-              _setAllStatus('clique num beat de FIM do loop');
-              showLoopOverlay('Início marcado ✓<br>Agora clique no <strong>último beat</strong> do trecho<br><small>o loop vai repetir entre esses dois pontos</small>');
+              const barN = (beat.voice && beat.voice.bar) ? beat.voice.bar.index + 1 : '?';
+              _setLoopState('arm2', `◉ C${barN}→?`);
+              _setAllStatus(`início: compasso ${barN} · agora clique no beat FINAL`);
+              showLoopOverlay(`Início marcado ✓ <em>(compasso ${barN})</em><br>Agora clique no <strong>último beat</strong> do trecho<br><small>o loop vai repetir entre esses dois pontos</small>`);
+              try { if (api.selection !== undefined) api.selection = { start: beat, end: beat }; } catch (_e) {}
             } else if (cur === 'arm2') {
               const startTick = loopStart.absolutePlaybackStart;
               const endTick = beat.absolutePlaybackEnd || (beat.absolutePlaybackStart + (beat.playbackDuration || 480));
@@ -17878,13 +17895,17 @@ function _renderTabPanel(body, songKey, tabMeta) {
                 _setAllStatus('fim precisa ser depois do inicio');
                 _setLoopState('arm', '◉ marcando…');
                 showLoopOverlay('Fim precisa ser <strong>depois</strong> do início. Clique no primeiro beat de novo.');
+                try { if (api.selection !== undefined) api.selection = null; } catch (_e) {}
                 return;
               }
+              const barS = (loopStart.voice && loopStart.voice.bar) ? loopStart.voice.bar.index + 1 : '?';
+              const barE = (beat.voice && beat.voice.bar) ? beat.voice.bar.index + 1 : '?';
               api.playbackRange = { startTick, endTick };
               api.isLooping = true;
-              _setLoopState('on', '🔁 Loop ATIVO');
-              _setAllStatus(`loop ativo · ${Math.round((endTick - startTick) / 480)} beats · click play do FAB pra tocar`);
+              _setLoopState('on', `🔁 C${barS}→${barE}`);
+              _setAllStatus(`loop ativo: compasso ${barS}→${barE}`);
               hideLoopOverlay();
+              try { if (api.selection !== undefined) api.selection = { start: loopStart, end: beat }; } catch (_e) {}
               const fabLoop = document.querySelector('.alphatab-fab-loop');
               if (fabLoop) fabLoop.style.display = 'flex';
             }
