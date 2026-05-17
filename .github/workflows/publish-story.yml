@@ -1,8 +1,5 @@
 name: Publish Instagram Story
 on:
-  schedule:
-    # Diario, 16:00 UTC = 13:00 BRT (horario de almoco BR, IG cheio)
-    - cron: '0 16 * * *'
   workflow_dispatch:
     inputs:
       dry-run:
