@@ -23,7 +23,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import {
   fetchTopDay,
-  fetchTopWeek,
   pickSpotlightCandidate,
 } from "./reddit-community.mjs";
 import { sha10 } from "./relevance.mjs";
@@ -72,7 +71,9 @@ function splitItemBody(it) {
 
 const DIGEST_MIN_POSTS = 5;
 const DIGEST_MAX_INPUT_POSTS = 15;
-const SPOTLIGHT_MIN_SCORE = 50;
+// Spotlight usa top/day (mesmo endpoint do digest, sem risco de 403 no t=week).
+// Score minimo menor pois posts do dia ainda nao acumularam pontos da semana.
+const SPOTLIGHT_MIN_SCORE = 20;
 
 async function readJson(p, fallback) {
   try { return JSON.parse(await fs.readFile(p, "utf8")); }
@@ -183,10 +184,12 @@ async function runDigest({ seen, currentItems, pendingDoc, warnings, sourceResul
 }
 
 async function runSpotlight({ seen, currentItems, pendingDoc, warnings, sourceResults }) {
-  console.log(`[spotlight] buscando top.json?t=week...`);
-  const { posts: all, fetchError: spotlightFetchError } = await fetchTopWeek(25);
-  sourceResults.push({ label: "Reddit r/pearljam top/week (spotlight)", count: all.length, error: spotlightFetchError });
-  if (spotlightFetchError) warnings.push(`Reddit top/week: ${spotlightFetchError}`);
+  // Usa top/day (mesmo endpoint do digest) porque t=week e bloqueado pelo Reddit
+  // em IPs de GitHub Actions runners sem OAuth. Score minimo reduzido pra compensar.
+  console.log(`[spotlight] buscando top.json?t=day (limit=50)...`);
+  const { posts: all, fetchError: spotlightFetchError } = await fetchTopDay(50);
+  sourceResults.push({ label: "Reddit r/pearljam top/day (spotlight)", count: all.length, error: spotlightFetchError });
+  if (spotlightFetchError) warnings.push(`Reddit top/day (spotlight): ${spotlightFetchError}`);
   console.log(`[spotlight] ${all.length} posts da semana`);
 
   // Constroi set de IDs ja publicados (qualquer chave cs-* no seen)
