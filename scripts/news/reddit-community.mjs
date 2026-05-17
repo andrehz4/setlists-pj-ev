@@ -6,10 +6,46 @@
 // num_comments reais (RSS nao fornecia esses campos).
 
 import got from "got";
+import { Buffer } from "node:buffer";
 
 const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
 const REDDIT_BASE = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "") || "https://www.reddit.com";
 const BASE = `${REDDIT_BASE}/r/pearljam`;
+
+// Cache de token OAuth dentro do processo (valido por ~1h)
+let _oauthToken = null;
+let _tokenExpiry = 0;
+
+async function getOAuthToken() {
+  if (_oauthToken && Date.now() < _tokenExpiry) return _oauthToken;
+
+  const clientId = process.env.REDDIT_CLIENT_ID;
+  const clientSecret = process.env.REDDIT_CLIENT_SECRET;
+  if (!clientId || !clientSecret) return null;
+
+  try {
+    const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+    const res = await got.post("https://www.reddit.com/api/v1/access_token", {
+      headers: {
+        "User-Agent": UA,
+        "Authorization": `Basic ${credentials}`,
+      },
+      form: { grant_type: "client_credentials" },
+      timeout: { request: 10000 },
+    }).json();
+
+    if (res.access_token) {
+      _oauthToken = res.access_token;
+      _tokenExpiry = Date.now() + ((res.expires_in || 3600) * 1000) - 60_000;
+      console.log("[reddit] OAuth token obtido com sucesso");
+      return _oauthToken;
+    }
+    console.warn(`[reddit] OAuth retornou sem access_token: ${JSON.stringify(res)}`);
+  } catch (err) {
+    console.warn(`[reddit] falha ao obter OAuth token: ${err.message}. Usando proxy sem auth.`);
+  }
+  return null;
+}
 
 const IMAGE_HOST_RX = /^https?:\/\/(i\.redd\.it|preview\.redd\.it|i\.imgur\.com|imgur\.com)\//i;
 const IMAGE_EXT_RX = /\.(jpe?g|png|gif|webp)(\?|$)/i;
@@ -63,10 +99,20 @@ function isPublishable(p) {
 }
 
 async function fetchTop(period, limit = 25) {
-  const url = `${BASE}/top.json?t=${period}&limit=${limit}`;
+  const token = await getOAuthToken();
+
+  // Com OAuth: usa oauth.reddit.com (sem restricao de periodo nem bloqueio de IP).
+  // Sem OAuth: usa proxy (pode falhar em t=week se Reddit bloquear o IP do runner).
+  const url = token
+    ? `https://oauth.reddit.com/r/pearljam/top.json?t=${period}&limit=${limit}`
+    : `${BASE}/top.json?t=${period}&limit=${limit}`;
+  const headers = token
+    ? { "User-Agent": UA, "Accept": "application/json", "Authorization": `Bearer ${token}` }
+    : { "User-Agent": UA, "Accept": "application/json" };
+
   try {
     const res = await got(url, {
-      headers: { "User-Agent": UA, Accept: "application/json" },
+      headers,
       timeout: { request: 15000 },
       retry: { limit: 1 },
     }).json();
