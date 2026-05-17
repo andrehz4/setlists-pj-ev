@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-17T03:13:43.553Z",
+  "updated": "2026-05-17T09:05:27.052Z",
   "items": [
     {
       "id": "214bf41340",
@@ -300,6 +300,26 @@
       ]
     },
     {
+      "id": "cs-709cbca03f",
+      "url": "https://www.reddit.com/r/pearljam/comments/1tapjfn/my_graduation_cap_this_year/",
+      "source": "reddit-community-spotlight",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-12T03:24:55.000Z",
+      "fetchedAt": "2026-05-17T09:05:26.660Z",
+      "img": "/media/news/img/cs-709cbca03f.jpg",
+      "title_pt": "Fã decora capelo de formatura com pôsteres de shows do Pearl Jam",
+      "intro_pt": "A formatura de 2026 chegou com pôsteres de Nova York e Dublin na capelo, e virou destaque entre os fãs.",
+      "tags": [
+        "comunidade",
+        "turne"
+      ],
+      "title_ig": "O capelo mais Pearl Jam da turma de 2026",
+      "kind": "community-spotlight",
+      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tapjfn/my_graduation_cap_this_year/",
+      "community_post_score": 207
+    },
+    {
       "id": "88c3c9a891",
       "url": "https://www.pearljamonline.it/jeff-ament-agli-studenti-del-montana-tutto-e-possibile",
       "source": "pjonline-it",
@@ -472,22 +492,6 @@
       "tags": [
         "jeff",
         "memoria"
-      ]
-    },
-    {
-      "id": "5aa00e262b",
-      "url": "https://www.pearljamonline.it/jeff-ament-e-mike-mccready-due-volti-dei-pearl-jam-tra-radici-comunita-e-impegno-sociale",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-04-28T16:30:44.000Z",
-      "fetchedAt": "2026-05-13T14:34:20.744Z",
-      "img": "/media/news/img/5aa00e262b.jpg",
-      "title_pt": "Jeff Ament fala em formatura no Montana; Mike McCready embaixador do Seattle Rock Day",
-      "intro_pt": "Ament volta às raízes como orador na MSU-Northern enquanto McCready representa a cena de Seattle no evento beneficente da KISW 99.9.",
-      "tags": [
-        "jeff",
-        "mike"
       ]
     }
   ]
