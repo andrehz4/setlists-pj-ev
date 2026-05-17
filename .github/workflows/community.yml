@@ -1,10 +1,5 @@
 name: Community fetch
 on:
-  schedule:
-    # Digest: 12:25 UTC = 09:25 BRT (1h antes da routine das 12:00 BRT)
-    - cron: '25 12 * * *'
-    # Spotlight: 00:25 UTC = 21:25 BRT (1h antes da routine das 00:00 BRT)
-    - cron: '25 0 * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -49,16 +44,7 @@ jobs:
       - name: Determine mode
         id: mode
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            # Cron 12:25 UTC -> digest; cron 00:25 UTC -> spotlight
-            if [ "${{ github.event.schedule }}" = "25 12 * * *" ]; then
-              echo "mode=digest" >> $GITHUB_OUTPUT
-            else
-              echo "mode=spotlight" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "mode=${{ inputs.mode || 'both' }}" >> $GITHUB_OUTPUT
-          fi
+          echo "mode=${{ inputs.mode || 'both' }}" >> $GITHUB_OUTPUT
 
       - name: Fetch community
         env:
