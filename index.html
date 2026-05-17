@@ -4796,6 +4796,65 @@ html[data-theme="dark"] .alphatab-version-select {
   color: var(--np-paper);
 }
 .news-chip.active::before, .news-chip.active::after { opacity: 0.85; }
+.news-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 28px 0 12px;
+  border-top: 1px dashed var(--np-ink);
+  margin-top: 28px;
+}
+.news-page-btn {
+  background: var(--np-paper);
+  border: 1px solid var(--np-ink);
+  color: var(--np-ink);
+  padding: 7px 11px;
+  border-radius: 0;
+  cursor: pointer;
+  font: 700 12px/1 var(--np-typewriter);
+  letter-spacing: 0.08em;
+  min-width: 34px;
+  text-align: center;
+  transition: background 100ms ease, color 100ms ease, transform 80ms ease, box-shadow 80ms ease;
+  box-shadow: 2px 2px 0 var(--np-ink);
+}
+.news-page-btn:hover:not(:disabled) {
+  background: var(--np-ink);
+  color: var(--np-paper);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--np-ink);
+}
+.news-page-btn.active {
+  background: var(--np-stamp);
+  border-color: var(--np-stamp);
+  color: var(--np-paper);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+  cursor: default;
+}
+.news-page-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+  box-shadow: none;
+}
+.news-page-arrow {
+  font-size: 15px;
+  padding: 7px 13px;
+  letter-spacing: 0;
+}
+.news-page-ellipsis {
+  font: 400 14px/1 var(--np-typewriter);
+  color: var(--np-ink-dim);
+  padding: 0 2px;
+  user-select: none;
+  align-self: center;
+}
+@media (max-width: 480px) {
+  .news-pagination { gap: 5px; padding: 22px 0 8px; }
+  .news-page-btn { padding: 10px 13px; min-width: 40px; font-size: 13px; }
+  .news-page-arrow { padding: 10px 16px; font-size: 16px; }
+}
 .news-updated {
   font: 400 11px/1.2 var(--np-typewriter);
   letter-spacing: 0.08em;
@@ -17053,6 +17112,8 @@ function _newsBodyHtml(body) {
 // Estado da view de Noticias: lista (default) ou detail de um item por id.
 // Deep-link via location.hash (#news/<id>).
 let _newsState = { mode: "list", id: null };
+let _newsPage = 1;
+let _activeNewsTag = "all";
 
 function _newsParseHash() {
   const m = (location.hash || "").match(/^#news\/([\w-]+)$/);
@@ -17153,13 +17214,26 @@ function _newsEditionNumber(count) {
 }
 
 function _renderNewsGrid(container, items, manifest) {
-  // Hero = primeiro item (mais recente). Grid recebe items[1..19] (19 cards,
-  // total 20 com hero). Itens 20+ vao para lista compacta abaixo do grid.
-  const heroItem = items[0];
-  const gridItems = items.slice(1, 20);
-  const listItems = items.slice(20);
+  const PAGE_SIZE = 22;
+  const tag = _activeNewsTag || "all";
 
-  // Filtros por TAG (em vez de por fonte). Conta itens por tag.
+  // Filtrar por tag
+  const filteredItems = tag === "all"
+    ? items
+    : items.filter(it => (Array.isArray(it.tags) ? it.tags : []).includes(tag));
+
+  // Paginar
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / PAGE_SIZE));
+  if (_newsPage > totalPages) _newsPage = totalPages;
+  if (_newsPage < 1) _newsPage = 1;
+
+  const startIdx = (_newsPage - 1) * PAGE_SIZE;
+  const pageItems = filteredItems.slice(startIdx, startIdx + PAGE_SIZE);
+
+  const heroItem = _newsPage === 1 && pageItems.length > 0 ? pageItems[0] : null;
+  const gridItems = _newsPage === 1 ? pageItems.slice(1) : pageItems;
+
+  // Chips de filtro (contagens sempre sobre o total)
   const tagCounts = new Map();
   items.forEach(it => (Array.isArray(it.tags) ? it.tags : []).forEach(t => {
     if (!t) return;
@@ -17168,19 +17242,21 @@ function _renderNewsGrid(container, items, manifest) {
   const orderedTags = _NEWS_TAG_ORDER.filter(t => tagCounts.has(t));
   const chips = `
     <div class="news-filters" role="group" aria-label="Filtros por tag">
-      <button class="news-chip active" data-tag="all" aria-pressed="true">Todas (${items.length})</button>
+      <button class="news-chip${tag === "all" ? " active" : ""}" data-tag="all" aria-pressed="${tag === "all"}">Todas (${items.length})</button>
       ${orderedTags.map(t => {
         const label = _NEWS_TAG_LABELS[t] || t;
-        return `<button class="news-chip" data-tag="${_newsEscape(t)}" aria-pressed="false">${_newsEscape(label)} (${tagCounts.get(t)})</button>`;
+        const isActive = t === tag;
+        return `<button class="news-chip${isActive ? " active" : ""}" data-tag="${_newsEscape(t)}" aria-pressed="${isActive}">${_newsEscape(label)} (${tagCounts.get(t)})</button>`;
       }).join("")}
     </div>`;
 
-  const heroHtml = heroItem ? _renderNewsHeroHtml(heroItem, 1) : "";
+  const heroHtml = heroItem ? _renderNewsHeroHtml(heroItem, startIdx + 1) : "";
 
   const cards = gridItems.map((item, i) => {
     const img = item.img || "/media/news/img/_band-fallback-1.jpg";
     const tagsAttr = (Array.isArray(item.tags) ? item.tags : []).join(",");
-    const num = String(i + 2).padStart(3, "0"); // 002, 003... (hero eh 001)
+    const globalNum = startIdx + (heroItem ? i + 2 : i + 1);
+    const num = String(globalNum).padStart(3, "0");
     return `
       <article class="news-card" data-id="${_newsEscape(item.id)}" data-tags="${_newsEscape(tagsAttr)}" style="--news-card-i:${i}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
         <span class="news-card-num" aria-hidden="true">${num}</span>
@@ -17198,27 +17274,10 @@ function _renderNewsGrid(container, items, manifest) {
       </article>`;
   }).join("");
 
-  const listHtml = listItems.length ? `
-    <div class="news-list">
-      <div class="news-list-header">mais notícias — ${listItems.length} item${listItems.length !== 1 ? 's' : ''}</div>
-      ${listItems.map((item, i) => {
-        const num = String(i + 21).padStart(3, "0");
-        const tagsAttr = (Array.isArray(item.tags) ? item.tags : []).join(",");
-        const tagLabel = (Array.isArray(item.tags) && item.tags[0]) ? (_NEWS_TAG_LABELS[item.tags[0]] || item.tags[0]) : "";
-        return `<button class="news-list-item" data-id="${_newsEscape(item.id)}" data-tags="${_newsEscape(tagsAttr)}" tabindex="0" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
-          <span class="news-list-num" aria-hidden="true">${num}</span>
-          <span class="news-list-title">${_newsEscape(item.title_pt)}</span>
-          <span class="news-list-meta">
-            ${tagLabel ? `<span class="news-tag-pill">${_newsEscape(tagLabel)}</span>` : ""}
-            <time datetime="${_newsEscape(item.pubDate)}">${_newsRelTime(item.pubDate)}</time>
-          </span>
-        </button>`;
-      }).join("")}
-    </div>` : "";
-
   const updatedLabel = manifest.updated ? `atualizado ${_newsRelTime(manifest.updated)}` : "";
   const bannerDate = _newsBannerDate(manifest.updated);
   const edition = _newsEditionNumber(items.length);
+  const paginationHtml = _renderNewsPaginationHtml(totalPages, _newsPage);
 
   container.innerHTML = `
     <div class="news-flag" aria-hidden="true">
@@ -17241,21 +17300,13 @@ function _renderNewsGrid(container, items, manifest) {
     <div class="news-grid">
       ${cards}
     </div>
-    ${listHtml}`;
+    ${paginationHtml}`;
 
-  // Auto-scroll ate o hero na PRIMEIRA carga da view: usuario que abre o
-  // site cai direto na materia em destaque, sem ter que rolar pelo wordmark
-  // ele mesmo. So roda 1x por sessao da pagina (flag global). Respeita
-  // prefers-reduced-motion: se desativado, behavior 'auto' (jump) em vez
-  // de smooth, e se algum motivo o usuario tiver scrollado antes do
-  // setTimeout, nao interrompe.
-  if (!window._newsInitialScrollDone && heroItem) {
+  // Auto-scroll ate o hero na PRIMEIRA carga da view (apenas pagina 1)
+  if (!window._newsInitialScrollDone && heroItem && _newsPage === 1) {
     window._newsInitialScrollDone = true;
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // pequeno delay pras imagens do hero terem chance de carregar e
-    // o layout estabilizar
     setTimeout(() => {
-      // se usuario ja scrollou manualmente, nao interrompe
       if (window.scrollY > 80) return;
       const hero = container.querySelector(".news-hero");
       if (!hero) return;
@@ -17279,7 +17330,7 @@ function _renderNewsGrid(container, items, manifest) {
   });
 
   // click ou Enter no card abre o detail
-  container.querySelectorAll(".news-card, .news-list-item").forEach(card => {
+  container.querySelectorAll(".news-card").forEach(card => {
     const open = () => {
       const id = card.dataset.id;
       _newsSetHash(id);
@@ -17293,25 +17344,59 @@ function _renderNewsGrid(container, items, manifest) {
     });
   });
 
-  // filtros por TAG (afeta hero + grid)
-  const hero = container.querySelector(".news-hero");
+  // filtros por TAG: re-renderiza grid da pagina 1
   container.querySelectorAll(".news-chip").forEach(chip => {
     chip.addEventListener("click", () => {
-      container.querySelectorAll(".news-chip").forEach(c => {
-        c.classList.remove("active");
-        c.setAttribute("aria-pressed", "false");
-      });
-      chip.classList.add("active");
-      chip.setAttribute("aria-pressed", "true");
-      const tag = chip.dataset.tag;
-      // hero so aparece em "Todas" (senao o filtro perde o ponto)
-      if (hero) hero.style.display = (tag === "all") ? "" : "none";
-      container.querySelectorAll(".news-card, .news-list-item").forEach(card => {
-        const cardTags = (card.dataset.tags || "").split(",").filter(Boolean);
-        card.hidden = (tag !== "all" && !cardTags.includes(tag));
-      });
+      _activeNewsTag = chip.dataset.tag;
+      _newsPage = 1;
+      _renderNewsGrid(container, items, manifest);
     });
   });
+
+  // paginacao
+  container.querySelectorAll(".news-page-btn[data-page]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      const newPage = parseInt(btn.dataset.page, 10);
+      if (!newPage) return;
+      _newsPage = newPage;
+      _renderNewsGrid(container, items, manifest);
+      const sec = document.getElementById("view-news");
+      if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+function _renderNewsPaginationHtml(total, current) {
+  if (total <= 1) return "";
+
+  // Gera array de paginas com reticencias: sempre mostra 1, pagina atual +/-1, e ultima
+  const shown = new Set([1, total]);
+  for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) shown.add(i);
+  if (total <= 7) { for (let i = 1; i <= total; i++) shown.add(i); }
+
+  const arr = [...shown].sort((a, b) => a - b);
+  const pages = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (i > 0 && arr[i] - arr[i - 1] > 1) pages.push("…");
+    pages.push(arr[i]);
+  }
+
+  const prevDisabled = current <= 1;
+  const nextDisabled = current >= total;
+
+  const btnHtml = pages.map(p => {
+    if (p === "…") return `<span class="news-page-ellipsis" aria-hidden="true">…</span>`;
+    const isActive = p === current;
+    return `<button type="button" class="news-page-btn${isActive ? " active" : ""}" data-page="${p}" ${isActive ? 'aria-current="page"' : ""} aria-label="Ir para página ${p}">${p}</button>`;
+  }).join("");
+
+  return `
+    <nav class="news-pagination" aria-label="Paginação de notícias">
+      <button type="button" class="news-page-btn news-page-arrow" data-page="${current - 1}" ${prevDisabled ? "disabled" : ""} aria-label="Página anterior">←</button>
+      ${btnHtml}
+      <button type="button" class="news-page-btn news-page-arrow" data-page="${current + 1}" ${nextDisabled ? "disabled" : ""} aria-label="Próxima página">→</button>
+    </nav>`;
 }
 
 // HTML do hero. A noticia mais recente vira capa: numero outline gigante,
