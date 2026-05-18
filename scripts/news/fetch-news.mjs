@@ -15,6 +15,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import Parser from "rss-parser";
+import { fetchRedditRss } from "./reddit-rss-fetch.mjs";
 import got from "got";
 import { SOURCES, REDDIT_FILTER } from "./sources.mjs";
 import { isRelevant, canonicalize, sha10, passesRedditFilter } from "./relevance.mjs";
@@ -103,7 +104,7 @@ async function fetchFeedItems(src) {
 // Filtra posts de r/pearljam para evitar overlap com community-fetch.mjs.
 async function fetchRedditSearchItems(src) {
   try {
-    const feed = await parser.parseURL(src.url);
+    const feed = await fetchRedditRss(src.url);
     const items = (feed.items || [])
       .slice(0, 25)
       .filter((it) => {
