@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrando... — SMUFDPJ Fórum</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:ital,wght@0,400;0,500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root {
+  --bg: #0a0908; --bg-card: #141210; --ink: #f5f1e8;
+  --ink-mute: #a8a092; --ink-dim: #6b6459; --divider: #2a2520;
+  --pj: #c1272d;
+  --font-display: "Archivo Black", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-editorial: "Instrument Serif", serif;
+}
+html[data-theme="light"] {
+  --bg: #f3ede0; --bg-card: #ebe4d3; --ink: #1a1612;
+  --ink-mute: #5a5245; --ink-dim: #8a7f6d; --divider: #d4cbb5;
+  --pj: #9c1f22;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--ink); font-family: var(--font-mono); min-height: 100vh; display: grid; place-items: center; }
+.card {
+  text-align: center;
+  padding: 48px 40px;
+  border: 1px solid var(--divider);
+  background: var(--bg-card);
+  max-width: 360px;
+  width: 100%;
+}
+.logo { font-family: var(--font-display); font-size: 28px; color: var(--pj); margin-bottom: 24px; text-transform: uppercase; letter-spacing: -0.01em; }
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid var(--divider);
+  border-top-color: var(--pj);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 20px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.msg { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); }
+.err { color: var(--pj); font-size: 12px; letter-spacing: 0.1em; margin-top: 12px; display: none; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">SMUFDPJ</div>
+  <div class="spinner" id="spinner"></div>
+  <p class="msg" id="msg">Autenticando...</p>
+  <p class="err" id="err"></p>
+</div>
+
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const token = params.get("token");
+
+  if (!token) {
+    document.getElementById("spinner").style.display = "none";
+    document.getElementById("msg").textContent = "Token não encontrado.";
+    const err = document.getElementById("err");
+    err.style.display = "block";
+    err.textContent = "Tente entrar novamente.";
+    setTimeout(() => { location.replace("forum.html"); }, 2500);
+    return;
+  }
+
+  localStorage.setItem("forum_token", token);
+  document.getElementById("msg").textContent = "Bem-vindo!";
+  location.replace("forum.html");
+})();
+</script>
+</body>
+</html>
