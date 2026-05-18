@@ -198,6 +198,32 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .error-msg { background: rgba(193,39,45,0.1); border: 1px solid var(--pj-soft); padding: 10px 14px; font-family: var(--font-mono); font-size: 11px; color: var(--pj); display: none; }
 .error-msg.visible { display: block; }
 
+/* ── Forum Highlights ── */
+.forum-highlights { display: grid; grid-template-columns: 1.4fr 1fr 1fr; border-top: 1px solid var(--divider); border-bottom: 1px solid var(--divider); margin: 0 32px; }
+.fh-cell { padding: 22px 24px; border-right: 1px solid var(--divider); }
+.fh-cell:last-child { border-right: none; }
+.fh-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 10px; }
+.fh-label.pj { color: var(--pj); }
+.fh-headline { font-family: var(--font-editorial); font-style: italic; font-size: 20px; color: var(--ink); line-height: 1.2; margin: 0 0 6px; cursor: pointer; }
+.fh-headline:hover { color: var(--pj); }
+.fh-meta { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.08em; text-transform: uppercase; }
+.fh-mini-list { display: flex; flex-direction: column; gap: 10px; }
+.fh-mini-item { display: flex; gap: 10px; align-items: baseline; border-bottom: 1px dotted var(--divider); padding-bottom: 8px; cursor: pointer; }
+.fh-mini-item:last-child { border-bottom: none; padding-bottom: 0; }
+.fh-mini-item:hover .fh-mini-title { color: var(--pj); }
+.fh-mini-num { font-family: var(--font-display); font-size: 16px; color: var(--ink-dim); width: 24px; flex-shrink: 0; }
+.fh-mini-num.top { color: var(--pj); }
+.fh-mini-title { font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink); line-height: 1.25; flex: 1; }
+.fh-mini-meta { font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); letter-spacing: 0.08em; white-space: nowrap; }
+.rail-users { display: flex; flex-direction: column; gap: 8px; }
+.rail-user { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; }
+.rail-user .av { width: 28px; height: 28px; border-radius: 50%; background: var(--bg-card-sunk); border: 1px solid var(--divider-strong); display: grid; place-items: center; font-family: var(--font-display); font-size: 10px; color: var(--ink-mute); overflow: hidden; flex-shrink: 0; }
+.rail-user .av img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.rail-user .who { color: var(--ink); letter-spacing: 0.08em; text-transform: uppercase; font-size: 10.5px; }
+.rail-user .count { margin-left: auto; color: var(--ink-dim); font-size: 10px; }
+@media (max-width: 860px) { .forum-highlights { grid-template-columns: 1fr; margin: 0 16px; } .fh-cell { border-right: none; border-bottom: 1px solid var(--divider); } .fh-cell:last-child { border-bottom: none; } }
+@media (max-width: 600px) { .forum-highlights { display: none; } }
+
 /* ── Loading / empty states ── */
 .loading-state, .empty-list {
   padding: 64px 32px; text-align: center;
@@ -255,15 +281,17 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 <nav class="forum-subnav" id="subnav" aria-label="Categorias do fórum"></nav>
 
+<div id="highlightsArea"></div>
+
 <div class="forum-toolbar">
   <div class="forum-toolbar-left" id="sortBar">
+    <button class="btn primary" id="newTopicBtn" style="display:none"><span class="plus">+</span> Nova thread</button>
     <button class="sort-chip active" data-sort="activity">Atividade</button>
     <button class="sort-chip" data-sort="newest">Mais novos</button>
-    <button class="sort-chip" data-sort="norepply">Sem resposta</button>
+    <button class="sort-chip" data-sort="noreply">Sem resposta</button>
   </div>
   <div class="forum-toolbar-right">
     <input type="search" class="search-input" placeholder="Buscar no fórum…" id="searchInput" aria-label="Buscar tópicos">
-    <button class="btn primary" id="newTopicBtn" style="display:none"><span class="plus">+</span> Nova thread</button>
   </div>
 </div>
 
@@ -367,10 +395,10 @@ function logout() {
   _state.token = null;
   _state.user = null;
   renderAuthArea();
-  document.getElementById("newTopicBtn").style.display = "none";
 }
 function renderAuthArea() {
   const area = document.getElementById("authArea");
+  const btn = document.getElementById("newTopicBtn");
   if (_state.token && _state.user) {
     const u = _state.user;
     const avHtml = u.avatar_url
@@ -383,14 +411,71 @@ function renderAuthArea() {
         <button class="logout-btn" id="logoutBtn">Sair</button>
       </div>`;
     document.getElementById("logoutBtn").addEventListener("click", logout);
-    document.getElementById("newTopicBtn").style.display = "";
+    if (btn) btn.style.display = "";
   } else {
     area.innerHTML = `<button class="auth-btn primary" id="loginBtn">Entrar com Google</button>`;
     document.getElementById("loginBtn").addEventListener("click", () => {
       location.href = API_BASE + "/auth/google/login";
     });
-    document.getElementById("newTopicBtn").style.display = "none";
+    if (btn) btn.style.display = "none";
   }
+}
+
+// ── Render highlights ────────────────────────────────────────
+function renderHighlights(items) {
+  const area = document.getElementById("highlightsArea");
+  if (!items || items.length === 0) { area.innerHTML = ""; return; }
+
+  const top = items.slice().sort((a, b) => b.reply_count - a.reply_count);
+  const hot = top[0];
+  const hotAv = hot.avatar_url
+    ? `<img src="${san(hot.avatar_url)}" alt="${san(hot.display_name)}">`
+    : initials(hot.display_name);
+
+  const miniItems = top.slice(0, 3).map((t, i) =>
+    `<div class="fh-mini-item" data-id="${san(t.id)}">
+      <span class="fh-mini-num${i === 0 ? " top" : ""}">${i + 1}</span>
+      <span class="fh-mini-title">${san(t.title)}</span>
+      <span class="fh-mini-meta">${t.reply_count} resp.</span>
+    </div>`
+  ).join("");
+
+  const seen = new Map();
+  const voices = items
+    .filter(t => { if (seen.has(t.display_name)) return false; seen.set(t.display_name, t); return true; })
+    .slice(0, 4);
+  const voiceItems = voices.map(t => {
+    const av = t.avatar_url
+      ? `<img src="${san(t.avatar_url)}" alt="${san(t.display_name)}">`
+      : initials(t.display_name);
+    return `<div class="rail-user">
+      <div class="av">${av}</div>
+      <span class="who">${san(t.display_name)}</span>
+    </div>`;
+  }).join("");
+
+  area.innerHTML = `
+    <div class="forum-highlights">
+      <div class="fh-cell">
+        <div class="fh-label pj">// Em alta agora</div>
+        <h3 class="fh-headline" data-id="${san(hot.id)}">${san(hot.title)}</h3>
+        <div class="fh-meta">${hot.reply_count} respostas · ${san(hot.display_name)}</div>
+      </div>
+      <div class="fh-cell">
+        <div class="fh-label">// Tópicos quentes</div>
+        <div class="fh-mini-list">${miniItems}</div>
+      </div>
+      <div class="fh-cell">
+        <div class="fh-label">// Vozes recentes</div>
+        <div class="rail-users">${voiceItems}</div>
+      </div>
+    </div>`;
+
+  area.querySelectorAll("[data-id]").forEach(el => {
+    el.addEventListener("click", () => {
+      location.href = `forum-topic.html?id=${encodeURIComponent(el.dataset.id)}`;
+    });
+  });
 }
 
 // ── Render subnav ─────────────────────────────────────────────
@@ -405,9 +490,11 @@ function renderSubnav() {
 function renderThreads(data) {
   const list = document.getElementById("threadList");
   if (!data || !data.items || data.items.length === 0) {
+    document.getElementById("highlightsArea").innerHTML = "";
     list.innerHTML = `<div class="empty-list"><h2>Nenhum tópico ainda</h2><p>Seja o primeiro a começar uma conversa.</p></div>`;
     return;
   }
+  renderHighlights(data.items);
   list.innerHTML = data.items.map(t => {
     const avHtml = t.avatar_url
       ? `<img src="${san(t.avatar_url)}" alt="${san(t.display_name)}">`
