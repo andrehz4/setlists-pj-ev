@@ -15,10 +15,11 @@ const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
 const PROXY_BASE = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "");
 // Subreddits extras (virgula-separados) via env. Default: eddievedder.
 // Posts de fora do r/pearljam passam pelo filtro PJ_REL_RX antes de entrar no pipeline.
+// Cada sub e buscado separadamente (Reddit bloqueia multi-sub RSS de IPs cloud).
 const EXTRA_SUBS = (process.env.REDDIT_EXTRA_SUBS || "eddievedder")
   .split(",").map(s => s.trim()).filter(Boolean);
-const ALL_SUBS = ["pearljam", ...EXTRA_SUBS].join("+");
-const RSS_BASE = (PROXY_BASE || "https://www.reddit.com") + `/r/${ALL_SUBS}`;
+const ALL_SUBS = ["pearljam", ...EXTRA_SUBS];
+const REDDIT_BASE = (PROXY_BASE || "https://www.reddit.com");
 
 const rssParser = new Parser({
   headers: {
@@ -114,15 +115,29 @@ function isRelevantForCommunity(post) {
 }
 
 async function fetchTop(period, limit = 25) {
-  const url = `${RSS_BASE}/top.rss?t=${period}&limit=${limit}`;
-  try {
-    const feed = await rssParser.parseURL(url);
-    const posts = (feed.items || []).slice(0, limit).map(normalizeRssEntry).filter(isPublishable).filter(isRelevantForCommunity);
-    return { posts, fetchError: null };
-  } catch (err) {
-    console.warn(`[reddit] fetchTop RSS(${period}) falhou: ${err.message}. Retornando lista vazia.`);
-    return { posts: [], fetchError: err.message };
-  }
+  const errors = [];
+  const seen = new Set();
+  const merged = [];
+
+  await Promise.all(ALL_SUBS.map(async (sub) => {
+    const url = REDDIT_BASE + "/r/" + sub + "/top.rss?t=" + period + "&limit=" + limit;
+    try {
+      const feed = await rssParser.parseURL(url);
+      const posts = (feed.items || []).slice(0, limit)
+        .map(normalizeRssEntry)
+        .filter(isPublishable)
+        .filter(isRelevantForCommunity);
+      for (const p of posts) {
+        if (!seen.has(p.id)) { seen.add(p.id); merged.push(p); }
+      }
+    } catch (err) {
+      console.warn("[reddit] fetchTop RSS(" + period + ") " + sub + " falhou: " + err.message + ".");
+      errors.push(sub + ": " + err.message);
+    }
+  }));
+
+  const fetchError = errors.length ? errors.join("; ") : null;
+  return { posts: merged.slice(0, limit), fetchError };
 }
 
 export async function fetchTopDay(limit = 25) {
