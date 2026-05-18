@@ -290,7 +290,8 @@ function buildSearchSummary(sourceResults) {
   if (ok.length) {
     lines.push("Reddit consultado com sucesso:");
     for (const s of ok) {
-      lines.push(`- **\**: \ post\ encontrado\`)
+      const plural = s.count !== 1 ? "s" : "";
+      lines.push("- **" + s.label + "**: " + s.count + " post" + plural + " encontrado" + plural);
     }
     lines.push("");
     lines.push("Nenhum passou nos filtros para publicacao nesta execucao.");
@@ -299,10 +300,11 @@ function buildSearchSummary(sourceResults) {
     if (lines.length) lines.push("");
     lines.push("Fontes com erro:");
     for (const s of err) {
-      lines.push(`- **\**: \`)
+      lines.push("- **" + s.label + "**: " + String(s.error).slice(0, 120));
     }
   }
-  return lines.join("\n");
+  return lines.join("
+");
 }
 
 async function main() {
