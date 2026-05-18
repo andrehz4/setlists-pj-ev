@@ -22,6 +22,7 @@ class TopicOut(BaseModel):
     title: str
     body: str
     category: str
+    site: str
     display_name: str
     avatar_url: str | None
     pinned: bool
@@ -34,6 +35,7 @@ class PostOut(BaseModel):
     id: str
     topic_id: str
     body: str
+    site: str
     display_name: str
     avatar_url: str | None
     created_at: str
@@ -49,3 +51,4 @@ class TopicsPageOut(BaseModel):
     total: int
     page: int
     per_page: int
+    site: str

@@ -23,5 +23,21 @@ class Settings(BaseSettings):
         description="Frontend origin (used in OAuth redirect)",
     )
 
+    # Mapeamento origem → site. Formato: "https://dominio.com=pj,https://outro.com=terra-gentil"
+    SITE_ORIGINS: str = Field(
+        default="https://setlists-pj-ev.pages.dev=pj",
+        description="Mapa de origens para site ID, separado por vírgula",
+    )
+
+    @property
+    def site_origin_map(self) -> dict[str, str]:
+        result = {}
+        for pair in self.SITE_ORIGINS.split(","):
+            pair = pair.strip()
+            if "=" in pair:
+                origin, site = pair.split("=", 1)
+                result[origin.strip()] = site.strip()
+        return result
+
 
 settings = Settings()

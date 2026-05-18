@@ -24,12 +24,10 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://setlists-pj-ev.pages.dev",
+    allow_origins=list(settings.site_origin_map.keys()) + [
         "http://localhost:3000",
         "http://localhost:5500",
         "http://localhost:8080",
-        # TODO: adicionar origem do app terra-gentil se necessário
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
