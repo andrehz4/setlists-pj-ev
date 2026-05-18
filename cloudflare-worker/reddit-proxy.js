@@ -5,19 +5,18 @@
 //
 // Endpoints suportados (espelha estrutura do Reddit):
 //   GET /r/<sub>/top.json?t=day&limit=25
-//   GET /r/<sub>/top.json?t=week&limit=25
+//   GET /r/<sub>/top.rss?t=day&limit=25
 //   GET /r/<sub>/hot.json?limit=25
 //   GET /r/<sub>/new.json?limit=25
 //   GET /r/<sub>/about.json
 //
-// Seguranca leve: aceita somente paths /r/<sub>/<endpoint>.json com
-// caracteres seguros, e bloqueia anything else. Sem auth, mas se quiser
-// proteger pode adicionar um shared-secret via header.
+// Seguranca leve: aceita somente paths /r/<sub>/<endpoint>.(json|rss) com
+// caracteres seguros, e bloqueia anything else.
 //
 // Deploy: cole este arquivo no Dashboard CF → Workers → Create Worker → Quick Edit.
 
 const REDDIT_BASE = "https://www.reddit.com";
-const ALLOWED_PATH_RX = /^\/r\/[a-zA-Z0-9_]{2,30}\/(top|hot|new|about|rising|controversial)\.json$/;
+const ALLOWED_PATH_RX = /^\/r\/[a-zA-Z0-9_]{2,30}\/(top|hot|new|about|rising|controversial)\.(json|rss)$/;
 const UA = "setlists-pj-news-bot/1.0 (by /u/andre, contact: setlists-pj-ev.pages.dev)";
 
 export default {
@@ -39,7 +38,7 @@ export default {
       resp = await fetch(target, {
         headers: {
           "User-Agent": UA,
-          "Accept": "application/json",
+          "Accept": "application/rss+xml, application/xml, application/json, */*",
         },
         cf: {
           cacheTtl: 60,
@@ -55,10 +54,11 @@ export default {
     }
 
     const body = await resp.text();
+    const contentType = resp.headers.get("content-type") || "text/plain; charset=utf-8";
     return new Response(body, {
       status: 200,
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
+        "Content-Type": contentType,
         "Cache-Control": "public, max-age=60",
         "Access-Control-Allow-Origin": "*",
       },
