@@ -41,24 +41,10 @@ const LAYOUT = (process.env.SLIDE_LAYOUT || "card02").toLowerCase();
 
 // Familias F_* importadas de ./fontconfig-boot.mjs (fonte unica).
 
-// Fallback: fotos oficiais da banda usadas quando o item nao tem foto propria.
-// Origem: media/band/*.jpg — adicione mais fotos la para aumentar a variedade.
-// Selecao deterministica pelo primeiro nibble hex do id.
-const BAND_DIR = path.resolve("media/band");
-const _bandJpgs = await (async () => {
-  try {
-    const entries = await fs.readdir(BAND_DIR);
-    const jpgs = entries.filter(f => /\.(jpg|jpeg)$/i.test(f)).sort().map(f => path.join(BAND_DIR, f));
-    return jpgs.length > 0 ? jpgs : null;
-  } catch { return null; }
-})();
-const BAND_FALLBACKS = _bandJpgs || [path.resolve("media/news/img/_band-fallback-1.jpg")];
-
-function bandFallbackPath(id) {
-  const hex = String(id || "").replace(/[^0-9a-f]/gi, "")[0] || "0";
-  const dayOfYear = Math.floor(Date.now() / 86400000);
-  return BAND_FALLBACKS[(parseInt(hex, 16) + dayOfYear) % BAND_FALLBACKS.length];
-}
+// Fallback: fotos oficiais da banda. Logica em band-fallback.mjs (testavel).
+import { loadBandFallbacks, pickFallback } from "./band-fallback.mjs";
+const BAND_FALLBACKS = await loadBandFallbacks();
+function bandFallbackPath(id) { return pickFallback(BAND_FALLBACKS, id); }
 
 // Caderno B — layout constants (1080px). MANTIDO (layout antigo, rollback).
 const SIDE       = 61;    // margem lat. (= 18 * 3.375)
