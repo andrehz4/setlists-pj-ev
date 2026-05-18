@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tópico — SMUFDPJ Fórum</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<style>
+/* ── Variáveis e reset ── */
+:root {
+  --bg: #0a0908; --bg-card: #141210; --bg-card-hover: #1b1915;
+  --ink: #f5f1e8; --ink-mute: #a8a092; --ink-dim: #6b6459;
+  --divider: #2a2520; --divider-strong: #403930;
+  --pj: #c1272d; --pj-soft: #7a1a1d; --ev: #e8a13a; --ev-soft: #8c5d1f;
+  --heard: #5a8a52; --bg-card-sunk: #100e0c;
+  --font-display: "Archivo Black", sans-serif;
+  --font-editorial: "Instrument Serif", serif;
+  --font-body: "Newsreader", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+html[data-theme="light"] {
+  --bg: #f3ede0; --bg-card: #ebe4d3; --bg-card-hover: #e0d8c3;
+  --ink: #1a1612; --ink-mute: #5a5245; --ink-dim: #8a7f6d;
+  --divider: #d4cbb5; --divider-strong: #b3a78a;
+  --pj: #9c1f22; --pj-soft: #6b1518; --ev: #a0671e; --ev-soft: #6e4716;
+  --heard: #4a7342; --bg-card-sunk: #e6dec8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+/* ── Header ── */
+.site-header { border-bottom: 1px solid var(--divider); background: var(--bg-card-sunk); position: sticky; top: 0; z-index: 100; }
+.header-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 20px; height: 56px; }
+.site-logo { font-family: var(--font-display); font-size: 17px; color: var(--pj); text-transform: uppercase; letter-spacing: -0.01em; text-decoration: none; flex-shrink: 0; }
+.header-back { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); text-decoration: none; padding: 6px 10px; border: 1px solid var(--divider); }
+.header-back:hover { color: var(--ink); border-color: var(--ink-dim); }
+.header-spacer { flex: 1; }
+.theme-toggle { background: transparent; border: 1px solid var(--divider-strong); color: var(--ink); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; }
+.theme-toggle:hover { border-color: var(--pj); color: var(--pj); }
+.user-badge { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); }
+.user-badge .av { width: 28px; height: 28px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--pj-soft); display: grid; place-items: center; font-family: var(--font-display); font-size: 10px; color: var(--pj); overflow: hidden; }
+.user-badge .av img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.logout-btn { background: none; border: none; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); cursor: pointer; padding: 4px; }
+.logout-btn:hover { color: var(--pj); }
+.auth-btn { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.auth-btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
+
+/* ── Thread view layout ── */
+.thread-view { padding: 28px 32px 60px; display: grid; grid-template-columns: 1fr 280px; gap: 36px; max-width: 1400px; margin: 0 auto; }
+.crumbs { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 18px; }
+.crumbs a { color: var(--pj); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.crumbs .sep { opacity: 0.4; margin: 0 8px; }
+.crumbs .here { color: var(--ink); }
+.thread-head { border-bottom: 1px solid var(--divider); padding-bottom: 22px; margin-bottom: 22px; }
+.thread-head h1 { font-family: var(--font-editorial); font-style: italic; font-size: clamp(26px, 3vw, 38px); color: var(--ink); line-height: 1.15; margin: 8px 0 14px; }
+.thread-head .head-tags { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+.thread-head .head-meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim); letter-spacing: 0.08em; margin-top: 8px; }
+.thread-head .head-meta b { color: var(--ink); font-weight: normal; text-transform: uppercase; }
+
+/* ── Posts ── */
+.post { display: grid; grid-template-columns: 56px 1fr; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--divider); }
+.post.root { background: rgba(193,39,45,0.04); border-left: 3px solid var(--pj); padding: 22px 22px 22px 18px; margin-bottom: 6px; }
+.post-avatar { width: 52px; height: 52px; background: var(--bg-card); border: 1px solid var(--divider-strong); border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-size: 17px; color: var(--ink-mute); overflow: hidden; flex-shrink: 0; }
+.post-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.post-byline { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.post-author { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.post-badge { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 2px 6px; border: 1px solid var(--divider-strong); color: var(--ink-mute); line-height: 1.4; }
+.post-badge.op { color: var(--pj); border-color: var(--pj-soft); }
+.post-date { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.08em; margin-left: auto; }
+.post-body { font-family: var(--font-body); font-size: 16.5px; color: var(--ink); line-height: 1.6; }
+.post-body p { margin: 0 0 12px; }
+.post-body p:last-child { margin-bottom: 0; }
+.post-tools { display: flex; gap: 16px; margin-top: 14px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
+.post-tools button { background: none; border: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ink-dim); padding: 0; cursor: pointer; }
+.post-tools button:hover { color: var(--pj); }
+
+/* ── Sidebar ── */
+.thread-rail { display: flex; flex-direction: column; gap: 22px; position: sticky; top: 72px; align-self: flex-start; }
+.rail-card { border: 1px solid var(--divider); background: var(--bg-card); padding: 18px; }
+.rail-card-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 12px; }
+.rail-card-label.pj { color: var(--pj); }
+.rail-stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dotted var(--divider); font-family: var(--font-mono); font-size: 11px; }
+.rail-stat-row:last-child { border-bottom: none; }
+.rail-stat-row .k { color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-size: 10px; }
+.rail-stat-row .v { color: var(--ink); font-family: var(--font-display); font-size: 14px; }
+
+/* ── Tags ── */
+.tag { padding: 2px 7px; border: 1px solid var(--divider-strong); color: var(--ink-mute); line-height: 1.4; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; }
+.tag.pj { color: var(--pj); border-color: var(--pj-soft); }
+.tag.ev { color: var(--ev); border-color: var(--ev-soft); }
+
+/* ── Reply composer ── */
+.reply-section { margin-top: 28px; }
+.reply-section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 14px; }
+.reply-composer { border: 1px solid var(--divider-strong); background: var(--bg-card); }
+.reply-composer-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--divider); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+.reply-textarea { width: 100%; padding: 14px; min-height: 110px; font-family: var(--font-body); font-size: 15.5px; color: var(--ink); line-height: 1.55; background: var(--bg-card); border: none; outline: none; resize: vertical; }
+.reply-textarea::placeholder { color: var(--ink-dim); font-style: italic; font-family: var(--font-editorial); font-size: 16px; }
+.reply-composer-foot { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-top: 1px solid var(--divider); background: var(--bg-card-sunk); gap: 10px; flex-wrap: wrap; }
+.reply-char-count { font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); }
+.reply-char-count.warn { color: var(--ev); }
+.reply-error { font-family: var(--font-mono); font-size: 11px; color: var(--pj); margin-top: 8px; display: none; }
+.reply-error.visible { display: block; }
+.btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; line-height: 1; }
+.btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
+.btn.sm { padding: 6px 11px; font-size: 10px; }
+
+/* Login gate */
+.login-gate { border: 1px dashed var(--divider-strong); padding: 22px; text-align: center; margin-top: 28px; }
+.login-gate p { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 14px; }
+
+/* Modal de report */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; place-items: center; z-index: 200; padding: 20px; }
+.modal-overlay.open { display: grid; }
+.modal-box { background: var(--bg-card); border: 1px solid var(--divider-strong); width: 100%; max-width: 420px; padding: 24px; }
+.modal-box h2 { font-family: var(--font-editorial); font-style: italic; font-size: 22px; color: var(--ink); margin: 0 0 16px; }
+.modal-box textarea { width: 100%; background: var(--bg-card-sunk); border: 1px solid var(--divider-strong); padding: 10px 12px; font-family: var(--font-body); font-size: 15px; color: var(--ink); min-height: 80px; resize: vertical; outline: none; border-radius: 0; }
+.modal-box textarea:focus { border-color: var(--pj); }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; }
+
+/* Loading/error */
+.loading-state, .error-state { padding: 64px 32px; text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); max-width: 1400px; margin: 0 auto; }
+
+/* Responsivo */
+@media (max-width: 860px) {
+  .thread-view { grid-template-columns: 1fr; padding: 20px 16px 40px; gap: 24px; }
+  .thread-rail { position: static; }
+  .header-inner { padding: 0 16px; }
+}
+@media (max-width: 600px) {
+  .post { grid-template-columns: 40px 1fr; gap: 12px; }
+  .post.root { padding: 16px 14px; }
+  .post-avatar { width: 40px; height: 40px; font-size: 14px; }
+  .post-body { font-size: 15.5px; }
+  .post-date { font-size: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SUBSTITUIR pela URL do Railway -->
+<script>const API_BASE = "https://SUBSTITUIR-URL-DO-RAILWAY.up.railway.app";</script>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">SMUFDPJ</a>
+    <a href="forum.html" class="header-back">← Fórum</a>
+    <div class="header-spacer"></div>
+    <button class="theme-toggle" id="themeToggle" title="Alternar tema" aria-label="Alternar tema">◑</button>
+    <div id="authArea"></div>
+  </div>
+</header>
+
+<div id="pageContent">
+  <div class="loading-state">Carregando tópico…</div>
+</div>
+
+<!-- Modal de reportar -->
+<div class="modal-overlay" id="reportModal" role="dialog" aria-modal="true" aria-label="Reportar post">
+  <div class="modal-box">
+    <h2>Reportar post</h2>
+    <textarea id="reportReason" placeholder="Descreva o motivo (opcional)…" maxlength="500"></textarea>
+    <div class="modal-actions">
+      <button class="btn sm" id="reportCancel">Cancelar</button>
+      <button class="btn sm primary" id="reportSubmit">Enviar report</button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+let _reportTargetId = null;
+let _token = localStorage.getItem("forum_token");
+let _user = null;
+
+function san(str) {
+  return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+}
+function sanHtml(str) {
+  return DOMPurify.sanitize(str || "", {
+    ALLOWED_TAGS: ["b", "strong", "em", "i", "p", "br"],
+    ALLOWED_ATTR: [],
+  });
+}
+function timeAgo(iso) {
+  const d = new Date(iso);
+  const diff = (Date.now() - d) / 1000;
+  if (diff < 60) return "agora";
+  if (diff < 3600) return Math.floor(diff / 60) + "min";
+  if (diff < 86400) return Math.floor(diff / 3600) + "h";
+  if (diff < 604800) return Math.floor(diff / 86400) + "d";
+  return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
+}
+function initials(name) {
+  return (name || "?").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+}
+function avatarHtml(url, name) {
+  return url ? `<img src="${san(url)}" alt="${san(name)}">` : initials(name);
+}
+
+async function apiFetch(path, opts = {}) {
+  const headers = { "Content-Type": "application/json", ...(opts.headers || {}) };
+  if (_token) headers["Authorization"] = "Bearer " + _token;
+  const res = await fetch(API_BASE + path, { ...opts, headers });
+  if (res.status === 401) { logout(); return null; }
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).detail || "Erro " + res.status);
+  return res.json();
+}
+
+function logout() {
+  localStorage.removeItem("forum_token");
+  _token = null; _user = null;
+  renderAuthArea();
+}
+
+function renderAuthArea() {
+  const area = document.getElementById("authArea");
+  if (_token && _user) {
+    area.innerHTML = `
+      <div class="user-badge">
+        <div class="av">${avatarHtml(_user.avatar_url, _user.display_name)}</div>
+        <span>${san(_user.display_name)}</span>
+        <button class="logout-btn" id="logoutBtn">Sair</button>
+      </div>`;
+    document.getElementById("logoutBtn").addEventListener("click", logout);
+  } else {
+    area.innerHTML = `<button class="auth-btn primary" id="loginBtn">Entrar com Google</button>`;
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      location.href = API_BASE + "/auth/google/login";
+    });
+  }
+}
+
+function renderTopic(data) {
+  const { topic: t, posts } = data;
+  const isOP = (authorName) => authorName === t.display_name;
+
+  function renderPost(p, isRoot) {
+    const opBadge = isRoot || isOP(p.display_name) ? `<span class="post-badge op">OP</span>` : "";
+    return `
+      <div class="post${isRoot ? " root" : ""}" data-post-id="${san(p.id)}">
+        <div class="post-avatar">${avatarHtml(p.avatar_url, p.display_name)}</div>
+        <div>
+          <div class="post-byline">
+            <span class="post-author">${san(p.display_name)}</span>
+            ${opBadge}
+            <span class="post-date">${timeAgo(p.created_at)}</span>
+          </div>
+          <div class="post-body"><p>${sanHtml(p.body).replace(/\n/g, "<br>")}</p></div>
+          <div class="post-tools">
+            <button class="report-btn" data-id="${san(p.id)}">⚑ Reportar</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  const replySection = _token
+    ? `<div class="reply-section">
+        <div class="reply-section-label">Responder</div>
+        <div class="reply-composer">
+          <div class="reply-composer-head">
+            <span>${san(_user?.display_name || "você")}</span>
+          </div>
+          <textarea class="reply-textarea" id="replyBody" maxlength="5000" placeholder="Escreva sua resposta…"></textarea>
+          <div class="reply-composer-foot">
+            <span class="reply-char-count" id="replyCount">0 / 5000</span>
+            <button class="btn primary" id="replySubmit">Publicar resposta</button>
+          </div>
+        </div>
+        <div class="reply-error" id="replyError"></div>
+      </div>`
+    : `<div class="login-gate">
+        <p>Entre para responder</p>
+        <button class="btn primary" id="loginGateBtn">Entrar com Google</button>
+      </div>`;
+
+  document.getElementById("pageContent").innerHTML = `
+    <div class="thread-view">
+      <div>
+        <div class="crumbs">
+          <a href="forum.html">Fórum</a>
+          <span class="sep">›</span>
+          <span class="here">${san(t.title)}</span>
+        </div>
+        <div class="thread-head">
+          <div class="head-tags"><span class="tag${t.category === 'geral' ? '' : ' pj'}">${san(t.category)}</span></div>
+          <h1>${san(t.title)}</h1>
+          <div class="head-meta">
+            <span>por <b>${san(t.display_name)}</b></span>
+            <span>${timeAgo(t.created_at)}</span>
+            <span>${posts.length} resposta${posts.length !== 1 ? "s" : ""}</span>
+          </div>
+        </div>
+        ${renderPost({ id: t.id, body: t.body, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at }, true)}
+        ${posts.map(p => renderPost(p, false)).join("")}
+        ${replySection}
+      </div>
+      <aside class="thread-rail">
+        <div class="rail-card">
+          <div class="rail-card-label pj">Tópico</div>
+          <div class="rail-stat-row"><span class="k">Respostas</span><span class="v">${posts.length}</span></div>
+          <div class="rail-stat-row"><span class="k">Criado</span><span class="v">${timeAgo(t.created_at)}</span></div>
+          <div class="rail-stat-row"><span class="k">Categoria</span><span class="v">${san(t.category)}</span></div>
+        </div>
+        <a href="forum.html" class="btn">← Voltar ao Fórum</a>
+      </aside>
+    </div>`;
+
+  document.title = san(t.title) + " — SMUFDPJ Fórum";
+
+  // Wire events
+  document.querySelectorAll(".report-btn").forEach(btn => {
+    btn.addEventListener("click", () => openReport(btn.dataset.id));
+  });
+
+  if (_token) {
+    const replyBody = document.getElementById("replyBody");
+    replyBody.addEventListener("input", () => {
+      const n = replyBody.value.length;
+      const el = document.getElementById("replyCount");
+      el.textContent = n + " / 5000";
+      el.classList.toggle("warn", n > 4500);
+    });
+    document.getElementById("replySubmit").addEventListener("click", () => submitReply(t.id));
+  } else {
+    const gateBtn = document.getElementById("loginGateBtn");
+    if (gateBtn) gateBtn.addEventListener("click", () => { location.href = API_BASE + "/auth/google/login"; });
+  }
+}
+
+async function submitReply(topicId) {
+  const body = document.getElementById("replyBody").value.trim();
+  const errEl = document.getElementById("replyError");
+  if (!body || body.length < 2) {
+    errEl.textContent = "Mensagem muito curta."; errEl.classList.add("visible"); return;
+  }
+  const btn = document.getElementById("replySubmit");
+  btn.disabled = true; btn.textContent = "Publicando…";
+  errEl.classList.remove("visible");
+  try {
+    await apiFetch(`/forum/topics/${encodeURIComponent(topicId)}/posts`, {
+      method: "POST",
+      body: JSON.stringify({ body }),
+    });
+    location.reload();
+  } catch (err) {
+    errEl.textContent = err.message || "Erro ao publicar.";
+    errEl.classList.add("visible");
+    btn.disabled = false; btn.textContent = "Publicar resposta";
+  }
+}
+
+// ── Report modal ───────────────────────────────────────────────
+function openReport(postId) {
+  if (!_token) { alert("Entre com Google para reportar."); return; }
+  _reportTargetId = postId;
+  document.getElementById("reportReason").value = "";
+  document.getElementById("reportModal").classList.add("open");
+}
+function closeReport() {
+  document.getElementById("reportModal").classList.remove("open");
+  _reportTargetId = null;
+}
+async function submitReport() {
+  if (!_reportTargetId) return;
+  const reason = document.getElementById("reportReason").value.trim();
+  try {
+    await apiFetch("/forum/reports", {
+      method: "POST",
+      body: JSON.stringify({ target_id: _reportTargetId, target_type: "post", reason: reason || null }),
+    });
+    closeReport();
+    alert("Report enviado. Obrigado!");
+  } catch {
+    alert("Erro ao enviar report.");
+  }
+}
+
+// ── Tema ──────────────────────────────────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", saved);
+  document.getElementById("themeToggle").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const next = cur === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────
+async function init() {
+  initTheme();
+  renderAuthArea();
+
+  document.getElementById("reportCancel").addEventListener("click", closeReport);
+  document.getElementById("reportSubmit").addEventListener("click", submitReport);
+  document.getElementById("reportModal").addEventListener("click", e => {
+    if (e.target === document.getElementById("reportModal")) closeReport();
+  });
+
+  const params = new URLSearchParams(location.search);
+  const topicId = params.get("id");
+  if (!topicId) {
+    document.getElementById("pageContent").innerHTML = `<div class="error-state">Tópico não encontrado. <a href="forum.html" style="color:var(--pj)">Voltar ao fórum</a></div>`;
+    return;
+  }
+
+  try {
+    const data = await apiFetch(`/forum/topics/${encodeURIComponent(topicId)}`);
+    if (data) renderTopic(data);
+  } catch (err) {
+    document.getElementById("pageContent").innerHTML = `<div class="error-state">Erro ao carregar tópico: ${san(err.message)}. <a href="forum.html" style="color:var(--pj)">Voltar ao fórum</a></div>`;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
