@@ -56,7 +56,8 @@ const BAND_FALLBACKS = _bandJpgs || [path.resolve("media/news/img/_band-fallback
 
 function bandFallbackPath(id) {
   const hex = String(id || "").replace(/[^0-9a-f]/gi, "")[0] || "0";
-  return BAND_FALLBACKS[parseInt(hex, 16) % BAND_FALLBACKS.length];
+  const dayOfYear = Math.floor(Date.now() / 86400000);
+  return BAND_FALLBACKS[(parseInt(hex, 16) + dayOfYear) % BAND_FALLBACKS.length];
 }
 
 // Caderno B — layout constants (1080px). MANTIDO (layout antigo, rollback).
