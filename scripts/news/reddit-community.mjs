@@ -13,7 +13,12 @@ import { load as cheerioLoad } from "cheerio";
 
 const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
 const PROXY_BASE = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "");
-const RSS_BASE = (PROXY_BASE || "https://www.reddit.com") + "/r/pearljam";
+// Subreddits extras (virgula-separados) via env. Default: eddievedder.
+// Posts de fora do r/pearljam passam pelo filtro PJ_REL_RX antes de entrar no pipeline.
+const EXTRA_SUBS = (process.env.REDDIT_EXTRA_SUBS || "eddievedder")
+  .split(",").map(s => s.trim()).filter(Boolean);
+const ALL_SUBS = ["pearljam", ...EXTRA_SUBS].join("+");
+const RSS_BASE = (PROXY_BASE || "https://www.reddit.com") + `/r/${ALL_SUBS}`;
 
 const rssParser = new Parser({
   headers: {
@@ -96,11 +101,23 @@ function isPublishable(p) {
   return true;
 }
 
+// Relevancia PJ para posts de subreddits extras (fora do r/pearljam)
+const PJ_REL_RX = /\bpearl\s*jam\b|\bvedder\b|\bstone gossard\b|\bjeff ament\b|\bmike mccready\b|\bmatt cameron\b/i;
+
+function isFromPearljamSub(post) {
+  return post.permalink && post.permalink.includes("/r/pearljam/");
+}
+
+function isRelevantForCommunity(post) {
+  if (isFromPearljamSub(post)) return true;
+  return PJ_REL_RX.test(post.title) || PJ_REL_RX.test(post.selftext || "");
+}
+
 async function fetchTop(period, limit = 25) {
   const url = `${RSS_BASE}/top.rss?t=${period}&limit=${limit}`;
   try {
     const feed = await rssParser.parseURL(url);
-    const posts = (feed.items || []).slice(0, limit).map(normalizeRssEntry).filter(isPublishable);
+    const posts = (feed.items || []).slice(0, limit).map(normalizeRssEntry).filter(isPublishable).filter(isRelevantForCommunity);
     return { posts, fetchError: null };
   } catch (err) {
     console.warn(`[reddit] fetchTop RSS(${period}) falhou: ${err.message}. Retornando lista vazia.`);
