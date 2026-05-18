@@ -79,6 +79,7 @@ async function fetchFeedItems(src) {
   if (src.kind === "reddit") return fetchRedditItems(src);
   if (src.kind === "shopify") return fetchShopifyItems(src);
   if (src.kind === "pjcom-news") return fetchPjcomNewsItems(src);
+  if (src.kind === "reddit-search-rss") return fetchRedditSearchItems(src);
   try {
     const feed = await parser.parseURL(src.url);
     const items = (feed.items || []).slice(0, 25).map((it) => ({
@@ -98,6 +99,33 @@ async function fetchFeedItems(src) {
   }
 }
 
+// Busca Reddit Search RSS: captura posts sobre Pearl Jam em qualquer subreddit.
+// Filtra posts de r/pearljam para evitar overlap com community-fetch.mjs.
+async function fetchRedditSearchItems(src) {
+  try {
+    const feed = await parser.parseURL(src.url);
+    const items = (feed.items || [])
+      .slice(0, 25)
+      .filter((it) => {
+        const link = (it.link || "").toLowerCase();
+        return !link.includes("/r/pearljam/");
+      })
+      .map((it) => ({
+        sourceId: src.id,
+        sourceLabel: src.label,
+        group: src.group,
+        title: (it.title || "").trim(),
+        link: (it.link || "").trim(),
+        pubDate: it.isoDate || it.pubDate || new Date().toISOString(),
+        snippet: (it.contentSnippet || it.content || "").slice(0, 800),
+        alwaysRelevant: true,
+      }));
+    return { items, error: null };
+  } catch (e) {
+    console.warn(`[reddit-search] ${src.id} falhou: ${e.message}`);
+    return { items: [], error: e.message };
+  }
+}
 async function fetchRedditItems(src) {
   try {
     const proxyBase = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "");
