@@ -9,7 +9,8 @@ from slowapi.middleware import SlowAPIMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
 from app.core.config import settings
-from app.routes import auth, forum
+from app.core.limiter import limiter
+from app.routes import auth, feed, forum
 
 logging.basicConfig(
     level=logging.INFO,
@@ -21,6 +22,7 @@ app = FastAPI(
     version=settings.APP_VERSION,
     description="API do Fórum SMUFDPJ",
 )
+app.state.limiter = limiter
 
 app.add_middleware(
     CORSMiddleware,
@@ -30,7 +32,7 @@ app.add_middleware(
         "http://localhost:8080",
     ],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
 )
 
@@ -40,6 +42,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(forum.router, prefix="/forum", tags=["Forum"])
+app.include_router(feed.router, prefix="/feed", tags=["Feed"])
 
 
 @app.get("/health", tags=["Health"])
