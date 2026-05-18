@@ -43,6 +43,11 @@ export const SOURCES = [
   { id: "pj-shop-music", label: "Loja Pearl Jam", group: "tenclub", url: "https://shop.pearljam.com/collections/music/products.json?limit=30", alwaysRelevant: true, kind: "shopify" },
   // News oficial: RSS quebrado em 2026-05-12. Scraping do JSON inline no HTML.
   { id: "pj-com-news", label: "Pearl Jam Oficial", group: "tenclub", url: "https://pearljam.com/news/", alwaysRelevant: true, kind: "pjcom-news" },
+
+  // Reddit Search: captura posts sobre Pearl Jam em qualquer subreddit (r/music, r/alternativerock, etc.)
+  // Complementa r/pearljam: pega anuncios, releases e discussoes que aparecem fora da comunidade dedicada.
+  // Posts de r/pearljam sao filtrados no handler pra evitar overlap com community-fetch.mjs.
+  { id: "reddit-search-pj", label: "Reddit Search (Pearl Jam)", group: "comunidade", url: "https://www.reddit.com/search.rss?q=%22Pearl+Jam%22&sort=top&t=week&limit=25", alwaysRelevant: true, kind: "reddit-search-rss" },
 ];
 
 // Filtros especificos do Reddit pra cortar memes/shitposts:
