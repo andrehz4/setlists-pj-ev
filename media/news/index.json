@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-18T03:11:14.659Z",
+  "updated": "2026-05-18T21:12:40.881Z",
   "items": [
     {
       "id": "cd-20260517",
@@ -19,6 +19,22 @@
       "title_ig": "Pittsburgh faz 1 ano e o 96 volta ao feed",
       "kind": "community-digest",
       "community_posts_count": 8
+    },
+    {
+      "id": "584585954a",
+      "url": "https://www.reddit.com/r/Music/comments/1tff1ul/was_1991_the_biggest_year_ever_for_landmark_albums",
+      "source": "reddit-search-pj",
+      "sourceLabel": "Reddit Search (Pearl Jam)",
+      "group": "comunidade",
+      "pubDate": "2026-05-17T04:23:03.000Z",
+      "fetchedAt": "2026-05-18T21:12:40.636Z",
+      "img": null,
+      "title_pt": "1991: o ano em que Ten, Nevermind e o Black Album mudaram tudo",
+      "intro_pt": "Os números de 1991 voltam à tona e colocam Ten no panteão dos discos que definiram uma geração inteira.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "O ano em que Ten mudou a música"
     },
     {
       "id": "214bf41340",
@@ -479,22 +495,6 @@
       "intro_pt": "Filmagens de Houston e do Pinkpop Festival reaparecem após mais de três décadas e mostram a cena de Seattle no exato momento em que tudo explodia.",
       "tags": [
         "memoria"
-      ]
-    },
-    {
-      "id": "05050cc335",
-      "url": "https://www.pearljamonline.it/pearl-jam-riemergono-video-inediti-dai-concerti-di-oakland-1997-in-apertura-dei-rolling-stones",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-04-30T16:34:05.000Z",
-      "fetchedAt": "2026-05-13T14:34:20.744Z",
-      "img": "/media/news/img/05050cc335.jpg",
-      "title_pt": "Oakland 1997: vídeos inéditos de PJ abrindo pra Rolling Stones ressurgem",
-      "intro_pt": "Fan-shots inéditos e um pro-shot de 13 minutos mostram uma banda se recalibrando antes de lançar Yield, abrindo pra uma das maiores do rock.",
-      "tags": [
-        "memoria",
-        "bootleg"
       ]
     }
   ]
