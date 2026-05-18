@@ -209,3 +209,115 @@ class TestJWT:
         with pytest.raises(HTTPException) as exc:
             verify_jwt(token)
         assert exc.value.status_code == 401
+
+
+# ── Testes de isolamento do Feed ─────────────────────────────────────────────
+
+class TestFeedIsolation:
+    """GET /feed/posts deve filtrar por site derivado do Origin."""
+
+    def test_pj_origin_busca_com_site_pj(self, client: TestClient):
+        captured_args = []
+
+        async def fake_fetch(query, *args):
+            captured_args.extend(args)
+            return []
+
+        async def fake_fetchval(query, *args):
+            return 0
+
+        mock_conn = AsyncMock()
+        mock_conn.fetch = fake_fetch
+        mock_conn.fetchval = fake_fetchval
+
+        from contextlib import asynccontextmanager
+
+        @asynccontextmanager
+        async def fake_get_conn():
+            yield mock_conn
+
+        with patch("app.routes.feed.get_conn", fake_get_conn):
+            resp = client.get(
+                "/feed/posts",
+                headers={"origin": "https://setlists-pj-ev.pages.dev"},
+            )
+        assert resp.status_code == 200
+        assert "pj" in captured_args
+
+    def test_terra_gentil_origin_busca_com_site_terra_gentil(self, client: TestClient):
+        captured_args = []
+
+        async def fake_fetch(query, *args):
+            captured_args.extend(args)
+            return []
+
+        async def fake_fetchval(query, *args):
+            return 0
+
+        mock_conn = AsyncMock()
+        mock_conn.fetch = fake_fetch
+        mock_conn.fetchval = fake_fetchval
+
+        from contextlib import asynccontextmanager
+
+        @asynccontextmanager
+        async def fake_get_conn():
+            yield mock_conn
+
+        with patch("app.routes.feed.get_conn", fake_get_conn):
+            resp = client.get(
+                "/feed/posts",
+                headers={"origin": "https://terra-gentil.pages.dev"},
+            )
+        assert resp.status_code == 200
+        assert "terra-gentil" in captured_args
+
+    def test_origem_invalida_retorna_403(self, client: TestClient):
+        resp = client.get(
+            "/feed/posts",
+            headers={"origin": "https://hacker.io"},
+        )
+        assert resp.status_code == 403
+
+    def test_post_de_outro_site_retorna_404(self, client: TestClient, valid_token: str):
+        """Post criado no site PJ nao pode ser lido via origin terra-gentil."""
+        mock_conn = AsyncMock()
+        mock_conn.fetchrow = AsyncMock(return_value=None)
+        mock_conn.fetch = AsyncMock(return_value=[])
+
+        from contextlib import asynccontextmanager
+
+        @asynccontextmanager
+        async def fake_get_conn():
+            yield mock_conn
+
+        with patch("app.routes.feed.get_conn", fake_get_conn):
+            resp = client.get(
+                "/feed/posts/00000000-0000-0000-0000-000000000099",
+                headers={
+                    "origin": "https://terra-gentil.pages.dev",
+                    "authorization": f"Bearer {valid_token}",
+                },
+            )
+        assert resp.status_code == 404
+
+    def test_like_post_outro_site_retorna_404(self, client: TestClient, valid_token: str):
+        """Toggle like em post de outro site deve retornar 404."""
+        mock_conn = AsyncMock()
+        mock_conn.fetchval = AsyncMock(return_value=None)
+
+        from contextlib import asynccontextmanager
+
+        @asynccontextmanager
+        async def fake_get_conn():
+            yield mock_conn
+
+        with patch("app.routes.feed.get_conn", fake_get_conn):
+            resp = client.post(
+                "/feed/posts/00000000-0000-0000-0000-000000000099/likes",
+                headers={
+                    "origin": "https://terra-gentil.pages.dev",
+                    "authorization": f"Bearer {valid_token}",
+                },
+            )
+        assert resp.status_code == 404

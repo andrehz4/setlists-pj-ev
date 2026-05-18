@@ -3,10 +3,9 @@ import uuid
 from typing import Optional
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
-from slowapi import Limiter
-from slowapi.util import get_remote_address
 
 from app.core.config import settings
+from app.core.limiter import limiter
 from app.schemas.forum import (
     PostCreate,
     PostOut,
@@ -21,7 +20,6 @@ from app.services.db import get_conn
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
-limiter = Limiter(key_func=get_remote_address)
 
 ALLOWED_SITES = {"pj", "terra-gentil"}
 
