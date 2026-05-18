@@ -4,41 +4,81 @@
 2026-05-18
 
 ## Estado atual
-- Reddit RSS retornando 403 de IPs do GitHub Actions (Node.js rss-parser bloqueado, curl funciona)
-- Community fetch (spotlight + digest) sem dados do Reddit enquanto isso
-- Pipeline de news (fetch-news.mjs) tambem tem fonte reddit-search-pj nova que pode estar 403
-- Resto do pipeline (news, IG, story) funcionando normalmente
+Fórum da comunidade implementado e no GitHub. Railway ainda não configurado.
 
-## O que foi feito nessa sessao (2026-05-18)
+## O que foi feito hoje (2026-05-18) — sessao do forum
 
-### Bugs corrigidos
-- REDDIT_PROXY_URL removido do workflow community.yml (proxy retornava 400, Reddit direto retornava 200 no curl)
-- Syntax error em community-fetch.mjs (buildSearchSummary com template literals corrompidos pelo PowerShell) - corrigido via Bash splice
+### Forum implementado (commits 1299d7b e 3f71272)
+- `backend/` FastAPI criado dentro do repo setlists-pj-ev
+  - Google OAuth 2.0 (authlib + Starlette sessions)
+  - JWT HS256 7 dias (python-jose)
+  - asyncpg + Supabase PostgreSQL
+  - SlowAPI rate limit 1 post/min por IP
+  - Isolamento por site: coluna `site` em todas as tabelas, _resolve_site() via Origin header
+  - CORS derivado dinamicamente de SITE_ORIGINS env var
+  - 12 testes unitarios em tests/test_site_isolation.py
+- `forum.html` — lista de topicos, paginacao, categorias, composer modal
+- `forum-topic.html` — thread completa, reply, report
+- `auth-callback.html` — captura token OAuth e redireciona
+- `index.html` — link "Comunidade" no nav
+- `FORUM_HANDOFF.md` — SQL atualizado com coluna `site` e indices
 
-### Features adicionadas
-- **Step summary melhorado**: buildSearchSummary() mostra "Reddit consultado com sucesso: X posts encontrados" ou erros claros em vez de mensagem vaga
-- **Expansao Reddit (pipeline comunidade)**: reddit-community.mjs agora busca r/pearljam + r/eddievedder separadamente via Promise.all, com filtro PJ_REL_RX para posts de fora do r/pearljam
-- **Nova fonte news pipeline**: reddit-search-pj adicionado em sources.mjs (busca "Pearl Jam" em todo Reddit via RSS search), com handler fetchRedditSearchItems() em fetch-news.mjs que filtra posts de r/pearljam para evitar overlap
+### Arquitetura de isolamento
+- Um unico servico Railway serve PJ e terra-gentil
+- Site derivado do Origin HTTP header (nao do frontend)
+- SITE_ORIGINS env var: "https://setlists-pj-ev.pages.dev=pj,https://terra-gentil.pages.dev=terra-gentil"
+- Banco tem CHECK constraints impedindo valores invalidos
 
-### Problema aberto: Reddit 403
-- curl direto retorna 200, mas Node.js rss-parser retorna 403
-- Reddit bloqueia IPs de cloud (GitHub Actions) para requisicoes Node.js
-- SOLUCAO NECESSARIA: implementar Reddit OAuth (CLIENT_ID + CLIENT_SECRET ja estao no workflow, so estao vazios)
-- Alternativa: novo proxy (Railway estava com outage hoje 06:37-07:26 UTC, ja resolvido)
+## Proximo passo concreto — Railway setup (onde paramos)
 
-## Proximo passo concreto
-Implementar Reddit OAuth em reddit-community.mjs:
-1. Andre registra app em reddit.com/prefs/apps (tipo "script")
-2. Configura REDDIT_CLIENT_ID e REDDIT_CLIENT_SECRET nos secrets do GitHub
-3. Implementar client credentials flow no codigo (trocar RSS por JSON API autenticada)
+### Ordem exata a executar:
 
-## Arquivos-chave modificados nessa sessao
-- `.github/workflows/community.yml` - removeu REDDIT_PROXY_URL, step diagnostico temporario removido
-- `scripts/news/community-fetch.mjs` - buildSearchSummary(), usa sourceResults para feedback claro
-- `scripts/news/reddit-community.mjs` - multi-sub (pearljam+eddievedder), fetchTop paralelo, isRelevantForCommunity
-- `scripts/news/sources.mjs` - nova fonte reddit-search-pj
-- `scripts/news/fetch-news.mjs` - handler fetchRedditSearchItems()
+1. **Supabase** — Andre roda SQL do FORUM_HANDOFF.md (tabelas com coluna site)
+
+2. **Google Cloud Console** — criar credenciais OAuth
+   - Acesse console.cloud.google.com → APIs & Services → Credentials
+   - Create Credentials → OAuth 2.0 Client ID → Web application
+   - Authorized redirect URI: `https://<railway-url>/auth/google/callback`
+   - Salva CLIENT_ID e CLIENT_SECRET
+
+3. **Railway**
+   - New Project → Deploy from GitHub → andrehz4/setlists-pj-ev
+   - Root Directory: `backend`
+   - Adicionar variaveis de ambiente:
+     ```
+     DATABASE_URL        = <Supabase connection string>
+     GOOGLE_CLIENT_ID    = <do Google Cloud Console>
+     GOOGLE_CLIENT_SECRET= <do Google Cloud Console>
+     JWT_SECRET          = <gerar: python -c "import secrets; print(secrets.token_hex(32))">
+     FORUM_CORS_ORIGIN   = https://setlists-pj-ev.pages.dev
+     SITE_ORIGINS        = https://setlists-pj-ev.pages.dev=pj
+     ENVIRONMENT         = production
+     ```
+   - Copiar a URL gerada pelo Railway (ex: smufdpj-forum.up.railway.app)
+
+4. **Frontend** — substituir placeholder pela URL real do Railway
+   - forum.html linha 1 do script: `const API_BASE = "https://SUBSTITUIR..."`
+   - forum-topic.html linha 1 do script: idem
+
+5. **Google Cloud Console** — voltar e adicionar a URL do Railway como redirect URI
+
+6. **Testar** — abrir forum.html, clicar "Entrar com Google", verificar fluxo completo
+
+## Estado anterior (sessao de 2026-05-17 — bugs e pipeline)
+- Reddit RSS retornando 403 de IPs do GitHub Actions
+- Pipeline de news/community funcionando menos Reddit
+- Reddit OAuth pendente (CLIENT_ID e CLIENT_SECRET em branco nos secrets)
+
+## Arquivos-chave
+- `backend/app/main.py` — entry point FastAPI
+- `backend/app/routes/forum.py` — endpoints + _resolve_site()
+- `backend/app/core/config.py` — SITE_ORIGINS e site_origin_map
+- `backend/tests/test_site_isolation.py` — 12 testes
+- `FORUM_HANDOFF.md` — SQL completo para rodar no Supabase
+- `forum.html`, `forum-topic.html`, `auth-callback.html` — paginas frontend
 
 ## Blockers
-- Reddit 403 de GitHub Actions IPs para Node.js: precisa OAuth ou proxy novo
-- triggerall reportando falha quando pipelines passaram (analisar pendente)
+- Railway ainda nao configurado (parou aqui)
+- Supabase: tabelas ainda nao criadas (Andre faz manualmente)
+- Google Cloud Console: credenciais OAuth ainda nao criadas
+- forum.html e forum-topic.html: API_BASE ainda com placeholder
