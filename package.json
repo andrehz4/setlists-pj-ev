@@ -15,7 +15,8 @@
     "publish:seed": "node scripts/publish/seed-queue.mjs",
     "publish:smoke": "node scripts/publish/smoke-test.mjs",
     "publish:story:dry": "node scripts/publish/run-publish-story.mjs --dry-run --no-git",
-    "publish:story": "node scripts/publish/run-publish-story.mjs"
+    "publish:story": "node scripts/publish/run-publish-story.mjs",
+    "test": "node --test scripts/publish/band-fallback.test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",
