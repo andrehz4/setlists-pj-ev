@@ -516,6 +516,16 @@ function initTheme() {
 async function init() {
   initTheme();
   renderSubnav();
+  if (_state.token && !_state.user) {
+    try {
+      const data = await apiFetch("/auth/me");
+      _state.user = data;
+      localStorage.setItem("forum_user", JSON.stringify(data));
+    } catch (_) {
+      localStorage.removeItem("forum_token");
+      _state.token = null;
+    }
+  }
   renderAuthArea();
 
   // Eventos subnav
