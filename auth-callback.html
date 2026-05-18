@@ -70,6 +70,14 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-m
   }
 
   localStorage.setItem("forum_token", token);
+  const name = params.get("name");
+  const avatar = params.get("avatar");
+  if (name) {
+    localStorage.setItem("forum_user", JSON.stringify({
+      display_name: decodeURIComponent(name),
+      avatar_url: avatar ? decodeURIComponent(avatar) : null,
+    }));
+  }
   document.getElementById("msg").textContent = "Bem-vindo!";
   location.replace("forum.html");
 })();

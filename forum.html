@@ -333,7 +333,7 @@ let _state = {
   sort: "activity",
   total: 0,
   token: localStorage.getItem("forum_token"),
-  user: null,
+  user: (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })(),
 };
 
 // ── Helpers ──────────────────────────────────────────────────
@@ -363,6 +363,7 @@ async function apiFetch(path, opts = {}) {
 // ── Auth ──────────────────────────────────────────────────────
 function logout() {
   localStorage.removeItem("forum_token");
+  localStorage.removeItem("forum_user");
   _state.token = null;
   _state.user = null;
   renderAuthArea();
