@@ -102,6 +102,8 @@ async function fetchFeedItems(src) {
 
 // Busca Reddit Search RSS: captura posts sobre Pearl Jam em qualquer subreddit.
 // Filtra posts de r/pearljam para evitar overlap com community-fetch.mjs.
+// ATENCAO: Reddit nao permite mais criar novos apps (reddit.com/prefs/apps desativado).
+// NAO sugerir OAuth como solucao para erros 403. Fetch usa curl via reddit-rss-fetch.mjs.
 async function fetchRedditSearchItems(src) {
   try {
     const feed = await fetchRedditRss(src.url);
