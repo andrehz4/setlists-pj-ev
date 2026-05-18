@@ -145,14 +145,18 @@ export async function fetchTopWeek(limit = 25) {
   return fetchTop("day", limit);
 }
 
-// Heuristicas pra spotlight: posts que sao fan content de verdade.
-// Flair vem do RSS via <category>; titulo e fallback quando flair nao existe.
-const FAN_TITLE_RX = /\b(tattoo|tatuagem|painting|drawing|portrait|sketch|cake|cap|cosplay|build|carved|stitched|knitted|cover of|cover by|i made|i drew|i painted|i (just )?finished|here'?s my|my (first|new|latest))\b/i;
+// Heuristicas pra spotlight: posts visuais/fan content.
+// Flair nao vem pelo RSS quando o sub nao obriga (ex: r/pearljam) — dependemos do titulo e da imagem.
+// Upload direto no Reddit (preview.redd.it) = conteudo visual real, nao thumbnail de link externo.
+const DIRECT_UPLOAD_RX = /^https?:\/\/preview\.redd\.it\//i;
+const FAN_TITLE_RX = /\b(tattoo|tatuagem|painting|drawing|portrait|sketch|cake|cap|cosplay|build|carved|stitched|knitted|cover of|cover by|i made|i drew|i painted|i (just )?finished|here'?s my|my (first|new|latest)|wallpaper|artist|artwork|illustration|design|fanart|fan art|photo|pic\b|pics\b|picture|merch|collection|poster|vinyl|ticket|setlist)\b/i;
 const FAN_FLAIR_RX = /\b(fan art|art|photo|tattoo|oc|original content|merch|collection)\b/i;
 
 export function isFanContent(p) {
   if (p.flair && FAN_FLAIR_RX.test(p.flair)) return true;
   if (FAN_TITLE_RX.test(p.title)) return true;
+  // Upload direto no Reddit = post visual (foto de show, wallpaper, arte, etc.)
+  if (p.cover_image && DIRECT_UPLOAD_RX.test(p.cover_image)) return true;
   return false;
 }
 
