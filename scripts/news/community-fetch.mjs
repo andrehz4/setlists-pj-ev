@@ -303,8 +303,7 @@ function buildSearchSummary(sourceResults) {
       lines.push("- **" + s.label + "**: " + String(s.error).slice(0, 120));
     }
   }
-  return lines.join("
-");
+  return lines.join("\n");
 }
 
 async function main() {
