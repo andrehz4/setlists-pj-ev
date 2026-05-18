@@ -281,6 +281,30 @@ async function runSpotlight({ seen, currentItems, pendingDoc, warnings, sourceRe
   return { _kind: "curated", item };
 }
 
+
+function buildSearchSummary(sourceResults) {
+  if (!sourceResults || sourceResults.length === 0) return "Nenhuma fonte consultada.";
+  const lines = [];
+  const ok = sourceResults.filter(s => !s.error);
+  const err = sourceResults.filter(s => s.error);
+  if (ok.length) {
+    lines.push("Reddit consultado com sucesso:");
+    for (const s of ok) {
+      lines.push(`- **\**: \ post\ encontrado\`)
+    }
+    lines.push("");
+    lines.push("Nenhum passou nos filtros para publicacao nesta execucao.");
+  }
+  if (err.length) {
+    if (lines.length) lines.push("");
+    lines.push("Fontes com erro:");
+    for (const s of err) {
+      lines.push(`- **\**: \`)
+    }
+  }
+  return lines.join("\n");
+}
+
 async function main() {
   await fs.mkdir(NEWS_DIR, { recursive: true });
   await fs.mkdir(ARCHIVE_DIR, { recursive: true });
@@ -361,7 +385,7 @@ async function main() {
         },
         sources: sourceResults.length ? sourceResults : undefined,
         warnings: allWarnings.length ? allWarnings : undefined,
-        extras: [{ heading: "Resultado", body: "Nada novo pra pendurar (digest do dia ja existe ou nenhum spotlight passou no filtro)." }],
+        extras: [{ heading: "Resultado", body: buildSearchSummary(sourceResults) }],
       });
       return;
     }
@@ -405,7 +429,7 @@ async function main() {
       stats: { "publicados agora": 0, "index atual": currentItems.length },
       sources: sourceResults.length ? sourceResults : undefined,
       warnings: allWarnings.length ? allWarnings : undefined,
-      extras: [{ heading: "Resultado", body: "Nada novo passou no curator." }],
+      extras: [{ heading: "Resultado", body: buildSearchSummary(sourceResults) }],
     });
     return;
   }
