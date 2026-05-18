@@ -46,50 +46,13 @@ jobs:
         run: |
           echo "mode=${{ inputs.mode || 'both' }}" >> $GITHUB_OUTPUT
 
-      - name: Diagnostico Reddit proxy
-        env:
-          REDDIT_PROXY_URL: ${{ secrets.REDDIT_PROXY_URL }}
-        run: |
-          echo "=== Diagnostico Reddit RSS ==="
-          if [ -z "$REDDIT_PROXY_URL" ]; then
-            echo "[diag] REDDIT_PROXY_URL nao configurado, vai usar reddit.com direto"
-            BASE_URL="https://www.reddit.com"
-          else
-            echo "[diag] REDDIT_PROXY_URL configurado"
-            BASE_URL="$REDDIT_PROXY_URL"
-          fi
-
-          TEST_URL="${BASE_URL}/r/pearljam/top.rss?t=day&limit=5"
-          echo "[diag] Testando URL do proxy (valor mascarado pelo GitHub)..."
-          HTTP_STATUS=$(curl -s -o /tmp/reddit_resp.txt -w "%{http_code}" \
-            -H "User-Agent: setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)" \
-            -H "Accept: application/rss+xml, application/xml, text/xml, */*" \
-            --max-time 15 \
-            "$TEST_URL" || echo "CURL_FAIL")
-          echo "[diag] HTTP status via proxy: $HTTP_STATUS"
-          echo "[diag] Primeiros 400 bytes da resposta:"
-          head -c 400 /tmp/reddit_resp.txt || echo "(sem resposta)"
-          echo ""
-
-          echo "[diag] Testando reddit.com diretamente (sem proxy)..."
-          HTTP_DIRECT=$(curl -s -o /tmp/reddit_direct.txt -w "%{http_code}" \
-            -H "User-Agent: setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)" \
-            -H "Accept: application/rss+xml, application/xml, text/xml, */*" \
-            --max-time 15 \
-            "https://www.reddit.com/r/pearljam/top.rss?t=day&limit=5" || echo "CURL_FAIL")
-          echo "[diag] HTTP status direto: $HTTP_DIRECT"
-          echo "[diag] Primeiros 400 bytes (direto):"
-          head -c 400 /tmp/reddit_direct.txt || echo "(sem resposta)"
-          echo ""
-          echo "=== Fim diagnostico ==="
-
       - name: Fetch community
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
-          REDDIT_PROXY_URL: ${{ secrets.REDDIT_PROXY_URL }}
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          # REDDIT_PROXY_URL removido: proxy retornava 400, reddit.com direto funciona
           NEWS_CURATOR: ${{ inputs.curator || 'routine' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
