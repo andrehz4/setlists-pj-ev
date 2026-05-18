@@ -7,11 +7,14 @@
 // de acesso mais permissiva por ser consumido por feed readers.
 // Score e num_comments nao estao disponiveis no RSS; filtros de spotlight usam
 // apenas presenca de imagem e heuristicas de titulo/flair.
+//
+// ATENCAO: Reddit nao permite mais criar novos apps (reddit.com/prefs/apps desativado).
+// NAO sugerir Reddit OAuth como solucao para bloqueios 403.
+// Alternativas viaveis: proxy residencial, Pushshift/Arctic Shift, Cloudflare Worker.
 
-import Parser from "rss-parser";
 import { load as cheerioLoad } from "cheerio";
+import { fetchRedditRss } from "./reddit-rss-fetch.mjs";
 
-const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
 const PROXY_BASE = process.env.REDDIT_PROXY_URL?.replace(/\/+$/, "");
 // Subreddits extras (virgula-separados) via env. Default: eddievedder.
 // Posts de fora do r/pearljam passam pelo filtro PJ_REL_RX antes de entrar no pipeline.
@@ -21,13 +24,6 @@ const EXTRA_SUBS = (process.env.REDDIT_EXTRA_SUBS || "eddievedder")
 const ALL_SUBS = ["pearljam", ...EXTRA_SUBS];
 const REDDIT_BASE = (PROXY_BASE || "https://www.reddit.com");
 
-const rssParser = new Parser({
-  headers: {
-    "User-Agent": UA,
-    "Accept": "application/rss+xml, application/xml, text/xml, */*",
-  },
-  timeout: 15000,
-});
 
 const IMAGE_HOST_RX = /^https?:\/\/(i\.redd\.it|preview\.redd\.it|i\.imgur\.com|imgur\.com)\//i;
 const IMAGE_EXT_RX = /\.(jpe?g|png|gif|webp)(\?|$)/i;
@@ -122,7 +118,7 @@ async function fetchTop(period, limit = 25) {
   await Promise.all(ALL_SUBS.map(async (sub) => {
     const url = REDDIT_BASE + "/r/" + sub + "/top.rss?t=" + period + "&limit=" + limit;
     try {
-      const feed = await rssParser.parseURL(url);
+      const feed = await fetchRedditRss(url);
       const posts = (feed.items || []).slice(0, limit)
         .map(normalizeRssEntry)
         .filter(isPublishable)
