@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil — SMUFDPJ Fórum</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
+<script src="/purify.min.js"></script>
+<style>
+:root {
+  --bg: #0a0908; --bg-card: #141210; --bg-card-hover: #1b1915;
+  --ink: #f5f1e8; --ink-mute: #a8a092; --ink-dim: #6b6459;
+  --divider: #2a2520; --divider-strong: #403930;
+  --pj: #c1272d; --pj-soft: #7a1a1d; --ev: #e8a13a; --ev-soft: #8c5d1f;
+  --heard: #5a8a52; --bg-card-sunk: #100e0c;
+  --font-display: "Archivo Black", sans-serif;
+  --font-editorial: "Instrument Serif", serif;
+  --font-body: "Newsreader", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+html[data-theme="light"] {
+  --bg: #f3ede0; --bg-card: #ebe4d3; --bg-card-hover: #e0d8c3;
+  --ink: #1a1612; --ink-mute: #5a5245; --ink-dim: #8a7f6d;
+  --divider: #d4cbb5; --divider-strong: #b3a78a;
+  --pj: #9c1f22; --pj-soft: #6b1518; --ev: #a0671e; --ev-soft: #6e4716;
+  --heard: #4a7342; --bg-card-sunk: #e6dec8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+/* Header */
+.site-header { border-bottom: 1px solid var(--divider); background: var(--bg-card-sunk); position: sticky; top: 0; z-index: 100; }
+.header-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 20px; height: 56px; }
+.site-logo { font-family: var(--font-display); font-size: 17px; color: var(--pj); text-transform: uppercase; letter-spacing: -0.01em; text-decoration: none; flex-shrink: 0; }
+.header-back { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); text-decoration: none; padding: 6px 10px; border: 1px solid var(--divider); }
+.header-back:hover { color: var(--ink); border-color: var(--ink-dim); }
+.header-spacer { flex: 1; }
+.theme-toggle { background: transparent; border: 1px solid var(--divider-strong); color: var(--ink); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; }
+.theme-toggle:hover { border-color: var(--pj); color: var(--pj); }
+.user-badge { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); }
+.user-badge .av { width: 28px; height: 28px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--pj-soft); display: grid; place-items: center; font-family: var(--font-display); font-size: 10px; color: var(--pj); overflow: hidden; }
+.user-badge .av img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.logout-btn { background: none; border: none; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); cursor: pointer; padding: 4px; }
+.logout-btn:hover { color: var(--pj); }
+.auth-btn { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.auth-btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
+
+/* Page layout */
+.profile-view { padding: 40px 32px 80px; max-width: 960px; margin: 0 auto; }
+
+/* Profile hero */
+.profile-hero { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 40px; }
+.profile-avatar-wrap { flex-shrink: 0; }
+.profile-avatar { width: 88px; height: 88px; border-radius: 50%; border: 2px solid var(--pj-soft); background: var(--bg-card); display: grid; place-items: center; font-family: var(--font-display); font-size: 28px; color: var(--pj); overflow: hidden; }
+.profile-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.profile-info { flex: 1; min-width: 0; }
+.profile-name { font-family: var(--font-editorial); font-style: italic; font-size: clamp(28px, 4vw, 42px); color: var(--ink); line-height: 1.1; margin-bottom: 10px; }
+.profile-meta { display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
+.profile-meta span { display: flex; align-items: center; gap: 5px; }
+
+/* Stats grid */
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--divider); border: 1px solid var(--divider); margin-bottom: 40px; }
+.stat-cell { background: var(--bg-card); padding: 20px 24px; }
+.stat-label { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 8px; }
+.stat-value { font-family: var(--font-display); font-size: 32px; color: var(--ink); line-height: 1; }
+.stat-value.pj { color: var(--pj); }
+.stat-value.ev { color: var(--ev); }
+.stat-value.heard { color: var(--heard); }
+
+/* Section header */
+.section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
+.section-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--pj); }
+.section-line { flex: 1; height: 1px; background: var(--divider); }
+
+/* Topic list */
+.topic-row { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; border-bottom: 1px solid var(--divider); }
+.topic-row:last-child { border-bottom: none; }
+.topic-row-title { font-family: var(--font-editorial); font-style: italic; font-size: 19px; color: var(--ink); text-decoration: none; line-height: 1.2; }
+.topic-row-title:hover { color: var(--pj); }
+.topic-row-meta { display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); }
+.topic-row-meta .tag { padding: 1px 6px; border: 1px solid var(--divider-strong); color: var(--ink-mute); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; }
+.topic-row-body { font-family: var(--font-body); font-size: 14.5px; color: var(--ink-mute); line-height: 1.45; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+/* Empty state */
+.empty-topics { padding: 32px 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim); text-align: center; }
+
+/* Loading/error */
+.loading-state, .error-state { padding: 80px 32px; text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); }
+
+.btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; line-height: 1; text-decoration: none; }
+.btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
+
+@media (max-width: 600px) {
+  .profile-view { padding: 24px 16px 60px; }
+  .header-inner { padding: 0 16px; }
+  .profile-hero { gap: 18px; }
+  .profile-avatar { width: 64px; height: 64px; font-size: 20px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid .stat-cell:last-child { grid-column: span 2; }
+  .stat-value { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<script>const API_BASE = "https://perpetual-energy-production-1a69.up.railway.app";</script>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">SMUFDPJ</a>
+    <a href="forum.html" class="header-back">← Fórum</a>
+    <div class="header-spacer"></div>
+    <button class="theme-toggle" id="themeToggle" title="Alternar tema" aria-label="Alternar tema">◑</button>
+    <div id="authArea"></div>
+  </div>
+</header>
+
+<div id="pageContent">
+  <div class="loading-state">Carregando perfil…</div>
+</div>
+
+<script>
+"use strict";
+
+let _token = localStorage.getItem("forum_token");
+let _user = (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })();
+
+function san(str) {
+  return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+}
+function timeAgo(iso) {
+  const d = new Date(iso);
+  const diff = (Date.now() - d) / 1000;
+  if (diff < 60) return "agora";
+  if (diff < 3600) return Math.floor(diff / 60) + "min";
+  if (diff < 86400) return Math.floor(diff / 3600) + "h";
+  if (diff < 604800) return Math.floor(diff / 86400) + "d";
+  return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
+}
+function joinDate(iso) {
+  return new Date(iso).toLocaleDateString("pt-BR", { month: "long", year: "numeric" });
+}
+function initials(name) {
+  return (name || "?").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+}
+function avatarHtml(url, name, size) {
+  const s = size || 88;
+  return url ? `<img src="${san(url)}" alt="${san(name)}" style="width:${s}px;height:${s}px;object-fit:cover;border-radius:50%">` : initials(name);
+}
+
+async function apiFetch(path, opts = {}) {
+  const headers = { "Content-Type": "application/json", ...(opts.headers || {}) };
+  if (_token) headers["Authorization"] = "Bearer " + _token;
+  const res = await fetch(API_BASE + path, { ...opts, headers });
+  if (res.status === 401) { logout(); return null; }
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).detail || "Erro " + res.status);
+  return res.json();
+}
+
+function logout() {
+  localStorage.removeItem("forum_token");
+  localStorage.removeItem("forum_user");
+  _token = null; _user = null;
+  renderAuthArea();
+}
+
+function renderAuthArea() {
+  const area = document.getElementById("authArea");
+  if (_token && _user) {
+    area.innerHTML = `
+      <div class="user-badge">
+        <div class="av">${avatarHtml(_user.avatar_url, _user.display_name, 28)}</div>
+        <span>${san(_user.display_name)}</span>
+        <button class="logout-btn" id="logoutBtn">Sair</button>
+      </div>`;
+    document.getElementById("logoutBtn").addEventListener("click", logout);
+  } else {
+    area.innerHTML = `<button class="auth-btn primary" id="loginBtn">Entrar com Google</button>`;
+    document.getElementById("loginBtn").addEventListener("click", () => { location.href = API_BASE + "/auth/google/login"; });
+  }
+}
+
+function renderProfile(data) {
+  const topicsHtml = data.recent_topics.length
+    ? data.recent_topics.map(t => `
+        <div class="topic-row">
+          <a href="forum-topic.html?id=${encodeURIComponent(t.id)}" class="topic-row-title">${san(t.title)}</a>
+          <div class="topic-row-meta">
+            <span class="tag">${san(t.category)}</span>
+            <span>${timeAgo(t.created_at)}</span>
+            <span>${t.reply_count} resposta${t.reply_count !== 1 ? "s" : ""}</span>
+          </div>
+          <div class="topic-row-body">${san(t.body)}</div>
+        </div>`).join("")
+    : `<div class="empty-topics">Nenhum tópico criado ainda</div>`;
+
+  document.getElementById("pageContent").innerHTML = `
+    <div class="profile-view">
+      <div class="profile-hero">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar">${avatarHtml(data.avatar_url, data.display_name)}</div>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">${san(data.display_name)}</div>
+          <div class="profile-meta">
+            <span>Membro desde ${joinDate(data.created_at)}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-cell">
+          <div class="stat-label">Tópicos</div>
+          <div class="stat-value pj">${data.topic_count}</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Respostas</div>
+          <div class="stat-value">${data.post_count}</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Reações recebidas</div>
+          <div class="stat-value ev">${data.reactions_received}</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-title">// Tópicos recentes</span>
+        <span class="section-line"></span>
+      </div>
+      <div id="recentTopics">${topicsHtml}</div>
+
+      <div style="margin-top:36px">
+        <a href="forum.html" class="btn">← Voltar ao fórum</a>
+      </div>
+    </div>`;
+
+  document.title = san(data.display_name) + " — SMUFDPJ Fórum";
+}
+
+function initTheme() {
+  const saved = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", saved);
+  document.getElementById("themeToggle").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const next = cur === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+}
+
+async function init() {
+  initTheme();
+
+  if (_token && !_user) {
+    try {
+      const data = await apiFetch("/auth/me");
+      _user = data;
+      localStorage.setItem("forum_user", JSON.stringify(data));
+    } catch (_) {
+      localStorage.removeItem("forum_token");
+      _token = null;
+    }
+  }
+
+  renderAuthArea();
+
+  const params = new URLSearchParams(location.search);
+  const profileId = params.get("id");
+  if (!profileId) {
+    document.getElementById("pageContent").innerHTML = `<div class="error-state">Perfil não encontrado. <a href="forum.html" style="color:var(--pj)">Voltar ao fórum</a></div>`;
+    return;
+  }
+
+  try {
+    const data = await apiFetch(`/forum/users/${encodeURIComponent(profileId)}/profile`);
+    if (data) renderProfile(data);
+  } catch (err) {
+    document.getElementById("pageContent").innerHTML = `<div class="error-state">Erro ao carregar perfil: ${san(err.message)}. <a href="forum.html" style="color:var(--pj)">Voltar ao fórum</a></div>`;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

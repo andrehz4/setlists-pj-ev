@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
 <script src="/purify.min.js"></script>
 <style>
-/* ── Variáveis e reset ── */
 :root {
   --bg: #0a0908; --bg-card: #141210; --bg-card-hover: #1b1915;
   --ink: #f5f1e8; --ink-mute: #a8a092; --ink-dim: #6b6459;
@@ -32,7 +31,7 @@ html[data-theme="light"] {
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; min-height: 100vh; }
 
-/* ── Header ── */
+/* Header */
 .site-header { border-bottom: 1px solid var(--divider); background: var(--bg-card-sunk); position: sticky; top: 0; z-index: 100; }
 .header-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 20px; height: 56px; }
 .site-logo { font-family: var(--font-display); font-size: 17px; color: var(--pj); text-transform: uppercase; letter-spacing: -0.01em; text-decoration: none; flex-shrink: 0; }
@@ -49,7 +48,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .auth-btn { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 .auth-btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
 
-/* ── Thread view layout ── */
+/* Thread layout */
 .thread-view { padding: 28px 32px 60px; display: grid; grid-template-columns: 1fr 280px; gap: 36px; max-width: 1400px; margin: 0 auto; }
 .crumbs { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 18px; }
 .crumbs a { color: var(--pj); text-decoration: none; }
@@ -62,24 +61,49 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .thread-head .head-meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim); letter-spacing: 0.08em; margin-top: 8px; }
 .thread-head .head-meta b { color: var(--ink); font-weight: normal; text-transform: uppercase; }
 
-/* ── Posts ── */
+/* Posts */
 .post { display: grid; grid-template-columns: 56px 1fr; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--divider); }
 .post.root { background: rgba(193,39,45,0.04); border-left: 3px solid var(--pj); padding: 22px 22px 22px 18px; margin-bottom: 6px; }
 .post-avatar { width: 52px; height: 52px; background: var(--bg-card); border: 1px solid var(--divider-strong); border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-size: 17px; color: var(--ink-mute); overflow: hidden; flex-shrink: 0; }
 .post-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .post-byline { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 6px; }
-.post-author { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.post-author { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.post-author:hover { color: var(--pj); }
 .post-badge { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 2px 6px; border: 1px solid var(--divider-strong); color: var(--ink-mute); line-height: 1.4; }
 .post-badge.op { color: var(--pj); border-color: var(--pj-soft); }
 .post-date { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.08em; margin-left: auto; }
 .post-body { font-family: var(--font-body); font-size: 16.5px; color: var(--ink); line-height: 1.6; }
 .post-body p { margin: 0 0 12px; }
 .post-body p:last-child { margin-bottom: 0; }
-.post-tools { display: flex; gap: 16px; margin-top: 14px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
+
+/* Quote block */
+.quote-block { border-left: 3px solid var(--ev); background: var(--bg-card); padding: 10px 14px; margin: 12px 0; font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); line-height: 1.5; }
+
+/* Spoiler */
+.spoiler { background: var(--bg-card); border: 1px dashed var(--ev-soft); padding: 10px 14px; margin: 12px 0; cursor: pointer; user-select: none; }
+.spoiler-label { display: block; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ev); margin-bottom: 6px; }
+.spoiler-content { color: transparent; text-shadow: 0 0 8px var(--ink-mute); transition: all 0.2s; pointer-events: none; font-family: var(--font-body); font-size: 15px; }
+.spoiler.revealed .spoiler-content { color: var(--ink); text-shadow: none; }
+
+/* Reactions */
+.reactions { display: flex; gap: 6px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
+.react-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border: 1px solid var(--divider-strong); background: transparent; font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); line-height: 1; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+.react-chip:hover { border-color: var(--ink-mute); color: var(--ink); }
+.react-chip .ico { font-size: 13px; }
+.react-chip .rcount { font-family: var(--font-display); font-size: 13px; color: var(--ink-dim); }
+.react-chip.active { background: rgba(193,39,45,0.08); border-color: var(--pj); color: var(--ink); }
+.react-chip.active .rcount { color: var(--pj); }
+.react-chip.active.heard { background: rgba(90,138,82,0.1); border-color: var(--heard); color: var(--heard); }
+.react-chip.active.heard .rcount { color: var(--heard); }
+.react-chip.active.gold { background: rgba(232,161,58,0.1); border-color: var(--ev); color: var(--ev); }
+.react-chip.active.gold .rcount { color: var(--ev); }
+
+/* Post tools */
+.post-tools { display: flex; gap: 16px; margin-top: 10px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
 .post-tools button { background: none; border: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ink-dim); padding: 0; cursor: pointer; }
 .post-tools button:hover { color: var(--pj); }
 
-/* ── Sidebar ── */
+/* Sidebar */
 .thread-rail { display: flex; flex-direction: column; gap: 22px; position: sticky; top: 72px; align-self: flex-start; }
 .rail-card { border: 1px solid var(--divider); background: var(--bg-card); padding: 18px; }
 .rail-card-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 12px; }
@@ -89,16 +113,26 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .rail-stat-row .k { color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-size: 10px; }
 .rail-stat-row .v { color: var(--ink); font-family: var(--font-display); font-size: 14px; }
 
-/* ── Tags ── */
+/* Tags */
 .tag { padding: 2px 7px; border: 1px solid var(--divider-strong); color: var(--ink-mute); line-height: 1.4; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; }
 .tag.pj { color: var(--pj); border-color: var(--pj-soft); }
 .tag.ev { color: var(--ev); border-color: var(--ev-soft); }
 
-/* ── Reply composer ── */
+/* Buttons */
+.btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; line-height: 1; text-decoration: none; }
+.btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
+.btn.sm { padding: 6px 11px; font-size: 10px; }
+.btn.ghost { border-color: transparent; color: var(--ink-mute); }
+
+/* Reply composer */
 .reply-section { margin-top: 28px; }
 .reply-section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 14px; }
 .reply-composer { border: 1px solid var(--divider-strong); background: var(--bg-card); }
 .reply-composer-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--divider); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+.composer-toolbar { display: flex; gap: 4px; align-items: center; padding: 6px 10px; border-bottom: 1px solid var(--divider); background: var(--bg-card-sunk); }
+.tool-btn { background: transparent; border: 1px solid transparent; color: var(--ink-mute); font-family: var(--font-mono); font-size: 11px; padding: 4px 8px; cursor: pointer; line-height: 1; }
+.tool-btn:hover { border-color: var(--divider-strong); color: var(--ink); }
+.tool-btn.divider { width: 1px; height: 14px; background: var(--divider-strong); padding: 0; margin: 0 4px; cursor: default; border: none; }
 .reply-textarea { width: 100%; padding: 14px; min-height: 110px; font-family: var(--font-body); font-size: 15.5px; color: var(--ink); line-height: 1.55; background: var(--bg-card); border: none; outline: none; resize: vertical; }
 .reply-textarea::placeholder { color: var(--ink-dim); font-style: italic; font-family: var(--font-editorial); font-size: 16px; }
 .reply-composer-foot { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-top: 1px solid var(--divider); background: var(--bg-card-sunk); gap: 10px; flex-wrap: wrap; }
@@ -106,15 +140,12 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .reply-char-count.warn { color: var(--ev); }
 .reply-error { font-family: var(--font-mono); font-size: 11px; color: var(--pj); margin-top: 8px; display: none; }
 .reply-error.visible { display: block; }
-.btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; line-height: 1; }
-.btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
-.btn.sm { padding: 6px 11px; font-size: 10px; }
 
 /* Login gate */
 .login-gate { border: 1px dashed var(--divider-strong); padding: 22px; text-align: center; margin-top: 28px; }
 .login-gate p { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 14px; }
 
-/* Modal de report */
+/* Modals */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; place-items: center; z-index: 200; padding: 20px; }
 .modal-overlay.open { display: grid; }
 .modal-box { background: var(--bg-card); border: 1px solid var(--divider-strong); width: 100%; max-width: 420px; padding: 24px; }
@@ -126,7 +157,6 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 /* Loading/error */
 .loading-state, .error-state { padding: 64px 32px; text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); max-width: 1400px; margin: 0 auto; }
 
-/* Responsivo */
 @media (max-width: 860px) {
   .thread-view { grid-template-columns: 1fr; padding: 20px 16px 40px; gap: 24px; }
   .thread-rail { position: static; }
@@ -138,12 +168,13 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
   .post-avatar { width: 40px; height: 40px; font-size: 14px; }
   .post-body { font-size: 15.5px; }
   .post-date { font-size: 10px; }
+  .reactions { gap: 4px; }
+  .react-chip { padding: 4px 8px; font-size: 10px; }
 }
 </style>
 </head>
 <body>
 
-<!-- SUBSTITUIR pela URL do Railway -->
 <script>const API_BASE = "https://perpetual-energy-production-1a69.up.railway.app";</script>
 
 <header class="site-header">
@@ -160,13 +191,12 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
   <div class="loading-state">Carregando tópico…</div>
 </div>
 
-<!-- Modal de reportar -->
 <div class="modal-overlay" id="reportModal" role="dialog" aria-modal="true" aria-label="Reportar post">
   <div class="modal-box">
     <h2>Reportar post</h2>
     <textarea id="reportReason" placeholder="Descreva o motivo (opcional)…" maxlength="500"></textarea>
     <div class="modal-actions">
-      <button class="btn sm" id="reportCancel">Cancelar</button>
+      <button class="btn sm ghost" id="reportCancel">Cancelar</button>
       <button class="btn sm primary" id="reportSubmit">Enviar report</button>
     </div>
   </div>
@@ -177,16 +207,11 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 let _reportTargetId = null;
 let _token = localStorage.getItem("forum_token");
-let _user = null;
+let _user = (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })();
+let _topicId = null;
 
 function san(str) {
   return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
-}
-function sanHtml(str) {
-  return DOMPurify.sanitize(str || "", {
-    ALLOWED_TAGS: ["b", "strong", "em", "i", "p", "br"],
-    ALLOWED_ATTR: [],
-  });
 }
 function timeAgo(iso) {
   const d = new Date(iso);
@@ -204,6 +229,27 @@ function avatarHtml(url, name) {
   return url ? `<img src="${san(url)}" alt="${san(name)}">` : initials(name);
 }
 
+function escapeHtml(str) {
+  return (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function renderBody(rawText) {
+  const escaped = escapeHtml(rawText);
+  const withSpoilers = escaped.replace(
+    /\[spoiler\]([\s\S]*?)\[\/spoiler\]/gi,
+    (_, c) => `<span class="spoiler"><span class="spoiler-label">⚠ spoiler — clique para revelar</span><span class="spoiler-content">${c.trim()}</span></span>`
+  );
+  const withQuotes = withSpoilers.replace(
+    /^&gt;([^\n]*)/gm,
+    (_, c) => `<div class="quote-block">${c.trim()}</div>`
+  );
+  const withParas = "<p>" + withQuotes.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+  return DOMPurify.sanitize(withParas, {
+    ALLOWED_TAGS: ["p", "br", "div", "span"],
+    ALLOWED_ATTR: ["class"],
+  });
+}
+
 async function apiFetch(path, opts = {}) {
   const headers = { "Content-Type": "application/json", ...(opts.headers || {}) };
   if (_token) headers["Authorization"] = "Bearer " + _token;
@@ -215,6 +261,7 @@ async function apiFetch(path, opts = {}) {
 
 function logout() {
   localStorage.removeItem("forum_token");
+  localStorage.removeItem("forum_user");
   _token = null; _user = null;
   renderAuthArea();
 }
@@ -231,41 +278,71 @@ function renderAuthArea() {
     document.getElementById("logoutBtn").addEventListener("click", logout);
   } else {
     area.innerHTML = `<button class="auth-btn primary" id="loginBtn">Entrar com Google</button>`;
-    document.getElementById("loginBtn").addEventListener("click", () => {
-      location.href = API_BASE + "/auth/google/login";
-    });
+    document.getElementById("loginBtn").addEventListener("click", () => { location.href = API_BASE + "/auth/google/login"; });
   }
+}
+
+function renderChips(reactions, myReactions, postId, targetType) {
+  return [
+    { type: "tava_la", ico: "🤧", label: "Tava lá", cls: "heard" },
+    { type: "mata",    ico: "🤘", label: "Mata",    cls: ""      },
+    { type: "curtir",  ico: "♥",  label: "",        cls: ""      },
+    { type: "salvar",  ico: "✦",  label: "Salvar",  cls: "gold"  },
+  ].map(r => {
+    const active = (myReactions || []).includes(r.type);
+    const cnt = (reactions || {})[r.type] || 0;
+    const cls = active ? `react-chip active${r.cls ? " " + r.cls : ""}` : "react-chip";
+    return `<button class="${cls}" data-type="${r.type}" data-id="${san(postId)}" data-ttype="${targetType}">
+      <span class="ico">${r.ico}</span>${r.label ? `<span>${san(r.label)}</span>` : ""}${cnt > 0 ? `<span class="rcount">${cnt}</span>` : ""}
+    </button>`;
+  }).join("");
+}
+
+function renderPost(p, isRoot, opName) {
+  const targetType = isRoot ? "topic" : "post";
+  const isOp = p.display_name === opName;
+  const chips = renderChips(p.reactions, p.my_reactions, p.id, targetType);
+  const profileHref = p.user_id ? `forum-profile.html?id=${encodeURIComponent(p.user_id)}` : null;
+  const authorEl = profileHref
+    ? `<a href="${profileHref}" class="post-author">${san(p.display_name)}</a>`
+    : `<span class="post-author">${san(p.display_name)}</span>`;
+  const quoteBtn = _token
+    ? `<button class="quote-btn" data-name="${san(p.display_name)}" data-body="${san((p.body || "").slice(0, 200))}">❝ Citar</button>`
+    : "";
+  return `
+    <div class="post${isRoot ? " root" : ""}" data-post-id="${san(p.id)}">
+      <div class="post-avatar">${avatarHtml(p.avatar_url, p.display_name)}</div>
+      <div>
+        <div class="post-byline">
+          ${authorEl}
+          ${isRoot || isOp ? '<span class="post-badge op">OP</span>' : ""}
+          <span class="post-date">${timeAgo(p.created_at)}</span>
+        </div>
+        <div class="post-body">${renderBody(p.body)}</div>
+        <div class="reactions">${chips}</div>
+        <div class="post-tools">
+          ${quoteBtn}
+          <button class="report-btn" data-id="${san(p.id)}">⚑ Reportar</button>
+        </div>
+      </div>
+    </div>`;
 }
 
 function renderTopic(data) {
   const { topic: t, posts } = data;
-  const isOP = (authorName) => authorName === t.display_name;
-
-  function renderPost(p, isRoot) {
-    const opBadge = isRoot || isOP(p.display_name) ? `<span class="post-badge op">OP</span>` : "";
-    return `
-      <div class="post${isRoot ? " root" : ""}" data-post-id="${san(p.id)}">
-        <div class="post-avatar">${avatarHtml(p.avatar_url, p.display_name)}</div>
-        <div>
-          <div class="post-byline">
-            <span class="post-author">${san(p.display_name)}</span>
-            ${opBadge}
-            <span class="post-date">${timeAgo(p.created_at)}</span>
-          </div>
-          <div class="post-body"><p>${sanHtml(p.body).replace(/\n/g, "<br>")}</p></div>
-          <div class="post-tools">
-            <button class="report-btn" data-id="${san(p.id)}">⚑ Reportar</button>
-          </div>
-        </div>
-      </div>`;
-  }
 
   const replySection = _token
     ? `<div class="reply-section">
         <div class="reply-section-label">Responder</div>
         <div class="reply-composer">
           <div class="reply-composer-head">
+            <div class="av" style="width:24px;height:24px;border-radius:50%;background:var(--bg-card-sunk);border:1px solid var(--pj-soft);display:grid;place-items:center;font-family:var(--font-display);font-size:9px;color:var(--pj);overflow:hidden;flex-shrink:0">${avatarHtml(_user?.avatar_url, _user?.display_name)}</div>
             <span>${san(_user?.display_name || "você")}</span>
+          </div>
+          <div class="composer-toolbar">
+            <button class="tool-btn" id="toolSpoiler" title="Inserir spoiler">⚠ spoiler</button>
+            <span class="tool-btn divider"></span>
+            <span style="font-family:var(--font-mono);font-size:9.5px;color:var(--ink-dim);letter-spacing:0.14em;text-transform:uppercase;padding:0 4px">[ ] para quote: comece a linha com &gt;</span>
           </div>
           <textarea class="reply-textarea" id="replyBody" maxlength="5000" placeholder="Escreva sua resposta…"></textarea>
           <div class="reply-composer-foot">
@@ -289,7 +366,7 @@ function renderTopic(data) {
           <span class="here">${san(t.title)}</span>
         </div>
         <div class="thread-head">
-          <div class="head-tags"><span class="tag${t.category === 'geral' ? '' : ' pj'}">${san(t.category)}</span></div>
+          <div class="head-tags"><span class="tag">${san(t.category)}</span></div>
           <h1>${san(t.title)}</h1>
           <div class="head-meta">
             <span>por <b>${san(t.display_name)}</b></span>
@@ -297,16 +374,18 @@ function renderTopic(data) {
             <span>${posts.length} resposta${posts.length !== 1 ? "s" : ""}</span>
           </div>
         </div>
-        ${renderPost({ id: t.id, body: t.body, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at }, true)}
-        ${posts.map(p => renderPost(p, false)).join("")}
+        ${renderPost({ id: t.id, user_id: t.user_id, body: t.body, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at, reactions: t.reactions, my_reactions: t.my_reactions }, true, t.display_name)}
+        ${posts.map(p => renderPost(p, false, t.display_name)).join("")}
         ${replySection}
       </div>
       <aside class="thread-rail">
         <div class="rail-card">
-          <div class="rail-card-label pj">Tópico</div>
+          <div class="rail-card-label pj">// Tópico</div>
           <div class="rail-stat-row"><span class="k">Respostas</span><span class="v">${posts.length}</span></div>
           <div class="rail-stat-row"><span class="k">Criado</span><span class="v">${timeAgo(t.created_at)}</span></div>
           <div class="rail-stat-row"><span class="k">Categoria</span><span class="v">${san(t.category)}</span></div>
+          <div class="rail-stat-row"><span class="k">🤧 Tava lá</span><span class="v" style="color:var(--heard)">${t.reactions?.tava_la || 0}</span></div>
+          <div class="rail-stat-row"><span class="k">🤘 Mata</span><span class="v">${t.reactions?.mata || 0}</span></div>
         </div>
         <a href="forum.html" class="btn">← Voltar ao Fórum</a>
       </aside>
@@ -314,12 +393,24 @@ function renderTopic(data) {
 
   document.title = san(t.title) + " — SMUFDPJ Fórum";
 
-  // Wire events
+  // Reactions
+  document.querySelectorAll(".react-chip").forEach(btn => {
+    btn.addEventListener("click", () => toggleReaction(btn));
+  });
+
+  // Spoiler reveal
+  document.addEventListener("click", e => {
+    const sp = e.target.closest(".spoiler");
+    if (sp) sp.classList.toggle("revealed");
+  });
+
+  // Report buttons
   document.querySelectorAll(".report-btn").forEach(btn => {
     btn.addEventListener("click", () => openReport(btn.dataset.id));
   });
 
   if (_token) {
+    // Char count
     const replyBody = document.getElementById("replyBody");
     replyBody.addEventListener("input", () => {
       const n = replyBody.value.length;
@@ -327,10 +418,61 @@ function renderTopic(data) {
       el.textContent = n + " / 5000";
       el.classList.toggle("warn", n > 4500);
     });
+
+    // Submit reply
     document.getElementById("replySubmit").addEventListener("click", () => submitReply(t.id));
+
+    // Spoiler button
+    document.getElementById("toolSpoiler").addEventListener("click", () => {
+      const ta = replyBody;
+      const start = ta.selectionStart, end = ta.selectionEnd;
+      const sel = ta.value.substring(start, end) || "texto spoiler";
+      ta.value = ta.value.substring(0, start) + `[spoiler]${sel}[/spoiler]` + ta.value.substring(end);
+      ta.focus();
+    });
+
+    // Quote buttons
+    document.querySelectorAll(".quote-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const ta = replyBody;
+        const quoteLine = `> ${san(btn.dataset.name)}: ${san(btn.dataset.body)}`;
+        ta.value = (ta.value ? ta.value + "\n\n" : "") + quoteLine + "\n\n";
+        ta.focus();
+        ta.scrollIntoView({ behavior: "smooth", block: "end" });
+      });
+    });
   } else {
     const gateBtn = document.getElementById("loginGateBtn");
     if (gateBtn) gateBtn.addEventListener("click", () => { location.href = API_BASE + "/auth/google/login"; });
+  }
+}
+
+async function toggleReaction(btn) {
+  if (!_token) { location.href = API_BASE + "/auth/google/login"; return; }
+  const type = btn.dataset.type;
+  const targetId = btn.dataset.id;
+  const targetType = btn.dataset.ttype;
+  const clsMap = { heard: "heard", gold: "gold" };
+  const suffix = { tava_la: "heard", salvar: "gold" }[type] || "";
+
+  try {
+    const data = await apiFetch("/forum/reactions", {
+      method: "POST",
+      body: JSON.stringify({ target_id: targetId, target_type: targetType, type }),
+    });
+    if (data === null) return;
+    const { active, count } = data;
+    btn.classList.toggle("active", active);
+    if (suffix) btn.classList.toggle(suffix, active);
+    let rcount = btn.querySelector(".rcount");
+    if (count > 0) {
+      if (!rcount) { rcount = document.createElement("span"); rcount.className = "rcount"; btn.appendChild(rcount); }
+      rcount.textContent = count;
+    } else if (rcount) {
+      rcount.remove();
+    }
+  } catch (err) {
+    console.error("Reaction error:", err);
   }
 }
 
@@ -356,7 +498,6 @@ async function submitReply(topicId) {
   }
 }
 
-// ── Report modal ───────────────────────────────────────────────
 function openReport(postId) {
   if (!_token) { alert("Entre com Google para reportar."); return; }
   _reportTargetId = postId;
@@ -377,12 +518,9 @@ async function submitReport() {
     });
     closeReport();
     alert("Report enviado. Obrigado!");
-  } catch {
-    alert("Erro ao enviar report.");
-  }
+  } catch { alert("Erro ao enviar report."); }
 }
 
-// ── Tema ──────────────────────────────────────────────────────
 function initTheme() {
   const saved = localStorage.getItem("theme") || "light";
   document.documentElement.setAttribute("data-theme", saved);
@@ -394,9 +532,20 @@ function initTheme() {
   });
 }
 
-// ── Init ──────────────────────────────────────────────────────
 async function init() {
   initTheme();
+
+  if (_token && !_user) {
+    try {
+      const data = await apiFetch("/auth/me");
+      _user = data;
+      localStorage.setItem("forum_user", JSON.stringify(data));
+    } catch (_) {
+      localStorage.removeItem("forum_token");
+      _token = null;
+    }
+  }
+
   renderAuthArea();
 
   document.getElementById("reportCancel").addEventListener("click", closeReport);
@@ -406,14 +555,14 @@ async function init() {
   });
 
   const params = new URLSearchParams(location.search);
-  const topicId = params.get("id");
-  if (!topicId) {
+  _topicId = params.get("id");
+  if (!_topicId) {
     document.getElementById("pageContent").innerHTML = `<div class="error-state">Tópico não encontrado. <a href="forum.html" style="color:var(--pj)">Voltar ao fórum</a></div>`;
     return;
   }
 
   try {
-    const data = await apiFetch(`/forum/topics/${encodeURIComponent(topicId)}`);
+    const data = await apiFetch(`/forum/topics/${encodeURIComponent(_topicId)}`);
     if (data) renderTopic(data);
   } catch (err) {
     document.getElementById("pageContent").innerHTML = `<div class="error-state">Erro ao carregar tópico: ${san(err.message)}. <a href="forum.html" style="color:var(--pj)">Voltar ao fórum</a></div>`;
