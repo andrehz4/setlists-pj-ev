@@ -71,9 +71,9 @@ function splitItemBody(it) {
 
 const DIGEST_MIN_POSTS = 5;
 const DIGEST_MAX_INPUT_POSTS = 15;
-// Spotlight usa top/day (mesmo endpoint do digest, sem risco de 403 no t=week).
-// Score minimo menor pois posts do dia ainda nao acumularam pontos da semana.
-const SPOTLIGHT_MIN_SCORE = 20;
+// Score nao disponivel no RSS; filtro desabilitado (0).
+// Spotlight filtra por presenca de imagem + heuristicas de fan content no titulo/flair.
+const SPOTLIGHT_MIN_SCORE = 0;
 
 async function readJson(p, fallback) {
   try { return JSON.parse(await fs.readFile(p, "utf8")); }
