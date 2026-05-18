@@ -42,13 +42,17 @@ const LAYOUT = (process.env.SLIDE_LAYOUT || "card02").toLowerCase();
 // Familias F_* importadas de ./fontconfig-boot.mjs (fonte unica).
 
 // Fallback: fotos oficiais da banda usadas quando o item nao tem foto propria.
-// Ciclo determinístico pelo primeiro nibble hex do id (0-f → 0-3).
-const BAND_FALLBACKS = [
-  path.resolve("media/news/img/_band-fallback-1.jpg"),
-  path.resolve("media/news/img/_band-fallback-2.jpg"),
-  path.resolve("media/news/img/_band-fallback-3.jpg"),
-  path.resolve("media/news/img/_band-fallback-4.jpg"),
-];
+// Origem: media/band/*.jpg — adicione mais fotos la para aumentar a variedade.
+// Selecao deterministica pelo primeiro nibble hex do id.
+const BAND_DIR = path.resolve("media/band");
+const _bandJpgs = await (async () => {
+  try {
+    const entries = await fs.readdir(BAND_DIR);
+    const jpgs = entries.filter(f => /\.(jpg|jpeg)$/i.test(f)).sort().map(f => path.join(BAND_DIR, f));
+    return jpgs.length > 0 ? jpgs : null;
+  } catch { return null; }
+})();
+const BAND_FALLBACKS = _bandJpgs || [path.resolve("media/news/img/_band-fallback-1.jpg")];
 
 function bandFallbackPath(id) {
   const hex = String(id || "").replace(/[^0-9a-f]/gi, "")[0] || "0";
