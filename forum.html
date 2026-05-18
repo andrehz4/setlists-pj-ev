@@ -436,13 +436,13 @@ function renderHighlights(items) {
     `<div class="fh-mini-item" data-id="${san(t.id)}">
       <span class="fh-mini-num${i === 0 ? " top" : ""}">${i + 1}</span>
       <span class="fh-mini-title">${san(t.title)}</span>
-      <span class="fh-mini-meta">${t.reply_count} resp.</span>
+      <span class="fh-mini-meta">${t.reply_count} ${t.reply_count === 1 ? "resp." : "resps."}</span>
     </div>`
   ).join("");
 
-  const seen = new Map();
+  const seen = new Set();
   const voices = items
-    .filter(t => { if (seen.has(t.display_name)) return false; seen.set(t.display_name, t); return true; })
+    .filter(t => { const k = (t.display_name || "").toLowerCase().trim(); if (seen.has(k)) return false; seen.add(k); return true; })
     .slice(0, 4);
   const voiceItems = voices.map(t => {
     const av = t.avatar_url
@@ -459,7 +459,7 @@ function renderHighlights(items) {
       <div class="fh-cell">
         <div class="fh-label pj">// Em alta agora</div>
         <h3 class="fh-headline" data-id="${san(hot.id)}">${san(hot.title)}</h3>
-        <div class="fh-meta">${hot.reply_count} respostas · ${san(hot.display_name)}</div>
+        <div class="fh-meta">${hot.reply_count} ${hot.reply_count === 1 ? "resposta" : "respostas"} · ${san(hot.display_name)}</div>
       </div>
       <div class="fh-cell">
         <div class="fh-label">// Tópicos quentes</div>
