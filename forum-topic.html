@@ -77,7 +77,8 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .post-body p:last-child { margin-bottom: 0; }
 
 /* Quote block */
-.quote-block { border-left: 3px solid var(--ev); background: var(--bg-card); padding: 10px 14px; margin: 12px 0; font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); line-height: 1.5; }
+.quote-block { border-left: 3px solid var(--ev); background: var(--bg-card); padding: 12px 16px; margin: 14px 0; font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); line-height: 1.5; }
+.quote-who { display: block; font-family: var(--font-mono); font-style: normal; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ev); margin-bottom: 6px; }
 
 /* Spoiler */
 .spoiler { background: var(--bg-card); border: 1px dashed var(--ev-soft); padding: 10px 14px; margin: 12px 0; cursor: pointer; user-select: none; }
@@ -240,6 +241,9 @@ function renderBody(rawText) {
     (_, c) => `<span class="spoiler"><span class="spoiler-label">⚠ spoiler — clique para revelar</span><span class="spoiler-content">${c.trim()}</span></span>`
   );
   const withQuotes = withSpoilers.replace(
+    /^&gt;([^:\n]+):([^\n]*)/gm,
+    (_, who, text) => `<div class="quote-block"><span class="quote-who">↳ ${who.trim()} escreveu</span>${text.trim()}</div>`
+  ).replace(
     /^&gt;([^\n]*)/gm,
     (_, c) => `<div class="quote-block">${c.trim()}</div>`
   );

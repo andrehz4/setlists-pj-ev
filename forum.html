@@ -136,7 +136,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .search-input { flex: 0 1 280px; padding: 8px 12px; background: var(--bg-card); color: var(--ink); border: 1px solid var(--divider-strong); font-family: var(--font-mono); font-size: 12px; border-radius: 0; }
 .search-input::placeholder { color: var(--ink-dim); }
 .thread-list { padding: 0 32px 40px; max-width: 1400px; margin: 0 auto; }
-.thread-row { display: grid; grid-template-columns: 44px 1fr 130px 100px; gap: 18px; align-items: center; padding: 18px 4px; border-bottom: 1px solid var(--divider); position: relative; cursor: pointer; }
+.thread-row { display: grid; grid-template-columns: 44px 1fr 180px 130px 100px; gap: 18px; align-items: center; padding: 18px 4px; border-bottom: 1px solid var(--divider); position: relative; cursor: pointer; }
 .thread-row:hover .thread-title { color: var(--pj); }
 .thread-row.pinned { background: rgba(193,39,45,0.04); border-left: 2px solid var(--pj); padding-left: 12px; }
 .thread-avatar { width: 40px; height: 40px; background: var(--bg-card); border: 1px solid var(--divider-strong); border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-size: 14px; color: var(--ink-mute); overflow: hidden; flex-shrink: 0; }
@@ -149,10 +149,23 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .thread-author { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-dim); margin-top: 6px; }
 .thread-author .who { color: var(--ink-mute); text-transform: uppercase; }
 .thread-author .ago { opacity: 0.6; margin-left: 8px; }
+.thread-anchor { font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute); letter-spacing: 0.08em; border-left: 1px dashed var(--divider-strong); padding-left: 14px; line-height: 1.4; }
+.thread-anchor .anchor-label { display: block; font-size: 9px; letter-spacing: 0.22em; color: var(--ink-dim); margin-bottom: 2px; text-transform: uppercase; }
+.thread-anchor .anchor-where { color: var(--ink); display: block; }
+.thread-anchor.pj .anchor-label { color: var(--pj); }
 .thread-stats { display: flex; gap: 14px; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); }
 .thread-stats .stat-bit { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .thread-stats .stat-bit b { font-family: var(--font-display); font-size: 16px; color: var(--ink); font-weight: normal; }
 .thread-stats .stat-bit em { font-style: normal; font-size: 9px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; }
+/* Empty state stamp */
+.empty-stamp-wrap { padding: 80px 32px; text-align: center; }
+.empty-stamp { width: 150px; height: 150px; margin: 0 auto 26px; border: 2px dashed var(--pj); display: grid; place-items: center; position: relative; border-radius: 50%; background: repeating-linear-gradient(45deg, transparent 0 6px, rgba(193,39,45,0.05) 6px 7px); transform: rotate(-6deg); }
+.empty-stamp::before { content: ""; position: absolute; inset: 8px; border: 1px solid var(--pj); border-radius: 50%; opacity: 0.4; }
+.empty-stamp-text { font-family: var(--font-display); font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--pj); text-align: center; line-height: 0.95; }
+.empty-stamp-text small { display: block; font-family: var(--font-mono); font-size: 9px; color: var(--ev); letter-spacing: 0.25em; margin-top: 4px; }
+.empty-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pj); margin-bottom: 10px; }
+.empty-title { font-family: var(--font-editorial); font-style: italic; font-size: clamp(28px, 4vw, 38px); color: var(--ink); margin: 0 0 12px; line-height: 1.1; }
+.empty-sub { font-family: var(--font-body); font-size: 17px; color: var(--ink-mute); line-height: 1.55; margin: 0 auto 28px; max-width: 520px; }
 .thread-activity { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-mute); text-align: right; line-height: 1.4; }
 .thread-activity .ago { display: block; color: var(--ink); font-size: 11.5px; margin-bottom: 2px; }
 .thread-activity .who { color: var(--ink-dim); letter-spacing: 0.08em; }
@@ -242,7 +255,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
   .search-input { width: 100%; flex: none; }
   .thread-list { padding: 0 16px 32px; }
   .thread-row { grid-template-columns: 38px 1fr; gap: 12px; }
-  .thread-row .thread-stats, .thread-row .thread-activity { display: none; }
+  .thread-row .thread-anchor, .thread-row .thread-stats, .thread-row .thread-activity { display: none; }
   .thread-title { font-size: 17px; }
   .header-inner { padding: 0 16px; }
   .forum-header { padding: 20px 16px 0; }
@@ -491,7 +504,17 @@ function renderThreads(data) {
   const list = document.getElementById("threadList");
   if (!data || !data.items || data.items.length === 0) {
     document.getElementById("highlightsArea").innerHTML = "";
-    list.innerHTML = `<div class="empty-list"><h2>Nenhum tópico ainda</h2><p>Seja o primeiro a começar uma conversa.</p></div>`;
+    const cat = _state.category || "";
+    list.innerHTML = `
+      <div class="empty-stamp-wrap">
+        <div class="empty-stamp">
+          <div class="empty-stamp-text">CATEGORIA<br>VAZIA<small>${cat ? san(cat.toUpperCase()) : "FÓRUM"}</small></div>
+        </div>
+        <div class="empty-eyebrow">Sem tópicos aqui</div>
+        <h2 class="empty-title">Ninguém falou ainda</h2>
+        <p class="empty-sub">Seja o primeiro a abrir uma conversa nesta categoria.</p>
+        ${_state.token ? `<button class="btn primary" onclick="openComposer()"><span class="plus">+</span> Abrir thread</button>` : ""}
+      </div>`;
     return;
   }
   renderHighlights(data.items);
@@ -508,8 +531,13 @@ function renderThreads(data) {
           <p class="thread-snippet">${san(t.body)}</p>
           <div class="thread-author">por <span class="who">${san(t.display_name)}</span><span class="ago">· ${timeAgo(t.created_at)}</span></div>
         </div>
+        <div class="thread-anchor pj">
+          <span class="anchor-label">Categoria</span>
+          <span class="anchor-where">${san(t.category)}</span>
+        </div>
         <div class="thread-stats">
-          <div class="stat-bit"><b>${t.reply_count}</b><em>respostas</em></div>
+          <div class="stat-bit"><b>${t.reply_count}</b><em>resp.</em></div>
+          <div class="stat-bit"><b>${(t.reactions && t.reactions.mata) || 0}</b><em>🤘</em></div>
         </div>
         <div class="thread-activity">
           <span class="ago">${timeAgo(t.last_post_at)}</span>
