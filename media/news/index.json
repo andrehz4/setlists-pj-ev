@@ -1,6 +1,42 @@
 {
-  "updated": "2026-05-18T21:12:40.881Z",
+  "updated": "2026-05-19T15:15:14.063Z",
   "items": [
+    {
+      "id": "cd-20260519",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-19T12:25:25.693Z",
+      "fetchedAt": "2026-05-19T15:15:13.908Z",
+      "img": "/media/news/img/cd-20260519.jpg",
+      "title_pt": "Pearl Jam no Congresso americano, na NHL e a ressurreição do Mirror Ball",
+      "intro_pt": "Da audiência no Congresso dos EUA aos playoffs da NHL, o nome do Pearl Jam apareceu em lugares inesperados na comunidade de fãs.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "Pearl Jam no Congresso e nos playoffs da NHL",
+      "kind": "community-digest",
+      "community_posts_count": 14
+    },
+    {
+      "id": "e35a77452f",
+      "url": "https://www.pearljamonline.it/dalle-strade-di-seattle-a-dark-matter-stone-gossard-e-la-storia-dei-pearl-jam",
+      "source": "pjonline-it",
+      "sourceLabel": "PJ Online IT",
+      "group": "fan",
+      "pubDate": "2026-05-19T09:54:57.000Z",
+      "fetchedAt": "2026-05-19T15:15:13.907Z",
+      "img": "/media/news/img/e35a77452f.jpg",
+      "title_pt": "Stone Gossard reconstrói a história do Pearl Jam no podcast Lip Service",
+      "intro_pt": "Para o podcast Lip Service da Spin Magazine, Stone Gossard reconstrói a história inteira da banda com rara lucidez emocional.",
+      "tags": [
+        "stone",
+        "memoria"
+      ],
+      "title_ig": "Stone conta tudo: de Seattle ao Dark Matter"
+    },
     {
       "id": "cd-20260517",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -462,37 +498,6 @@
       "img": "/media/news/img/2c236f1ab1.jpg",
       "title_pt": "RADIOHEART: documentário sobre DJ Kevin Cole e a rádio que moldou a cena de Seattle",
       "intro_pt": "O filme sobre Kevin Cole e a KEXP estreia no SIFF com as primeiras sessões esgotadas e traça o papel invisível da rádio na história do rock alternativo.",
-      "tags": [
-        "memoria"
-      ]
-    },
-    {
-      "id": "ae6b7b2407",
-      "url": "https://www.pearljamonline.it/prima-dei-pearl-jam-eddie-vedder-e-gli-indian-style-arrivano-finalmente-in-streaming",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-05T13:56:20.000Z",
-      "fetchedAt": "2026-05-13T14:34:20.744Z",
-      "img": "/media/news/img/ae6b7b2407.jpg",
-      "title_pt": "Indian Style, banda pré-Pearl Jam de Eddie Vedder, chega ao streaming",
-      "intro_pt": "Três músicas gravadas em 1990 em Los Angeles saem do circuito de bootleg e entram no catálogo oficial digital pela primeira vez.",
-      "tags": [
-        "eddie",
-        "memoria"
-      ]
-    },
-    {
-      "id": "1b82968d02",
-      "url": "https://www.pearljamonline.it/1992-senza-filtri-quando-pearl-jam-e-soundgarden-dividevano-il-palco-e-tutto-poteva-succedere",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-05T08:45:31.000Z",
-      "fetchedAt": "2026-05-13T14:34:20.744Z",
-      "img": "/media/news/img/1b82968d02.jpg",
-      "title_pt": "Vídeos de 1992: PJ abrindo pra Soundgarden e jam histórica com Neil Young ressurgem",
-      "intro_pt": "Filmagens de Houston e do Pinkpop Festival reaparecem após mais de três décadas e mostram a cena de Seattle no exato momento em que tudo explodia.",
       "tags": [
         "memoria"
       ]
