@@ -361,6 +361,10 @@ function renderTopic(data) {
         <button class="btn primary" id="loginGateBtn">Entrar com Google</button>
       </div>`;
 
+  const allItems = [t, ...posts];
+  const totalTavaLa = allItems.reduce((s, x) => s + ((x.reactions?.tava_la) || 0), 0);
+  const totalMata   = allItems.reduce((s, x) => s + ((x.reactions?.mata)    || 0), 0);
+
   document.getElementById("pageContent").innerHTML = `
     <div class="thread-view">
       <div>
@@ -388,8 +392,8 @@ function renderTopic(data) {
           <div class="rail-stat-row"><span class="k">Respostas</span><span class="v">${posts.length}</span></div>
           <div class="rail-stat-row"><span class="k">Criado</span><span class="v">${timeAgo(t.created_at)}</span></div>
           <div class="rail-stat-row"><span class="k">Categoria</span><span class="v">${san(t.category)}</span></div>
-          <div class="rail-stat-row"><span class="k">🤧 Tava lá</span><span class="v" style="color:var(--heard)">${t.reactions?.tava_la || 0}</span></div>
-          <div class="rail-stat-row"><span class="k">🤘 Mata</span><span class="v">${t.reactions?.mata || 0}</span></div>
+          <div class="rail-stat-row"><span class="k">🤧 Tava lá</span><span class="v" style="color:var(--heard)">${totalTavaLa}</span></div>
+          <div class="rail-stat-row"><span class="k">🤘 Mata</span><span class="v">${totalMata}</span></div>
         </div>
         <a href="forum.html" class="btn">← Voltar ao Fórum</a>
       </aside>
