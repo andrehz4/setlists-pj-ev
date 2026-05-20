@@ -176,6 +176,37 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
   .reactions { gap: 4px; }
   .react-chip { padding: 4px 8px; font-size: 10px; }
 }
+
+/* ── Tool modals ─────────────────────────────────────────────── */
+.tool-modal { position:fixed; inset:0; z-index:500; background:rgba(0,0,0,.55); display:flex; align-items:center; justify-content:center; }
+.tool-modal-inner { background:var(--bg-card); border:1px solid var(--divider-strong); padding:20px; width:340px; display:flex; flex-direction:column; gap:10px; }
+.tool-modal-label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--pj); }
+.tool-modal-inner input[type=text],
+.tool-modal-inner input[type=date],
+.tool-modal-inner input[type=url] { background:var(--bg-card-sunk); border:1px solid var(--divider); color:var(--ink); font-family:var(--font-mono); font-size:12px; padding:7px 10px; width:100%; outline:none; }
+.tool-modal-inner input[type=text]:focus,
+.tool-modal-inner input[type=date]:focus,
+.tool-modal-inner input[type=url]:focus { border-color:var(--pj); }
+.tool-modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:4px; }
+.tool-modal-error { font-family:var(--font-mono); font-size:10px; color:var(--pj); min-height:14px; }
+.audio-tabs { display:flex; gap:4px; }
+.tab-btn { background:transparent; border:1px solid var(--divider); color:var(--ink-dim); font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; padding:5px 10px; cursor:pointer; }
+.tab-btn.active { border-color:var(--pj); color:var(--pj); }
+#audioTimer { font-family:var(--font-mono); font-size:22px; color:var(--ink-mute); text-align:center; padding:8px 0; }
+#audioTimer.recording { color:var(--pj); }
+
+/* ── Embed setlist card ────────────────────────────────────────── */
+.embed-setlist { display:flex; border-radius:4px; overflow:hidden; margin:10px 0; }
+.embed-setlist .bar { width:4px; background:var(--pj); flex-shrink:0; }
+.embed-setlist .body { background:var(--bg-card-sunk); padding:10px 14px; flex:1; }
+.embed-setlist-eyebrow { font-family:var(--font-mono); font-size:9px; color:var(--ink-dim); letter-spacing:0.12em; text-transform:uppercase; }
+.embed-setlist-banda { font-family:var(--font-display); font-size:13px; color:var(--pj); margin-top:2px; }
+.embed-setlist-venue { font-family:var(--font-mono); font-size:10px; color:var(--ink-mute); margin-top:2px; }
+
+/* ── Audio player ──────────────────────────────────────────────── */
+.audio-attach { background:var(--bg-card-sunk); border:1px solid var(--divider); border-radius:4px; padding:10px 14px; margin:8px 0; }
+.audio-attach audio { width:100%; max-width:320px; height:32px; display:block; }
+.audio-attach-label { font-family:var(--font-mono); font-size:9px; color:var(--ink-dim); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; }
 </style>
 </head>
 <body>
@@ -203,6 +234,44 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
     <div class="modal-actions">
       <button class="btn sm ghost" id="reportCancel">Cancelar</button>
       <button class="btn sm primary" id="reportSubmit">Enviar report</button>
+    </div>
+  </div>
+</div>
+
+<!-- Setlist modal -->
+<div class="tool-modal" id="setlistModal" style="display:none">
+  <div class="tool-modal-inner">
+    <div class="tool-modal-label">// Inserir setlist</div>
+    <input type="text" id="slBanda" value="Pearl Jam" placeholder="Banda">
+    <input type="date" id="slData">
+    <input type="text" id="slLocal" placeholder="Local / Venue">
+    <div class="tool-modal-actions">
+      <button class="btn sm" id="slCancel">Cancelar</button>
+      <button class="btn sm primary" id="slInsert">Inserir</button>
+    </div>
+  </div>
+</div>
+
+<!-- Audio modal -->
+<div class="tool-modal" id="audioModal" style="display:none">
+  <div class="tool-modal-inner">
+    <div class="tool-modal-label">// Gravar ou colar audio</div>
+    <div class="audio-tabs">
+      <button class="tab-btn active" data-audiotab="rec">Gravar mic</button>
+      <button class="tab-btn" data-audiotab="url">Colar URL</button>
+    </div>
+    <div id="audioTabRec">
+      <div id="audioTimer">0:00 / 0:15</div>
+      <div id="audioPreviewWrap" style="display:none"><audio id="audioPreview" controls style="width:100%"></audio></div>
+      <button class="btn sm" id="audioRecBtn">Iniciar gravacao</button>
+      <div class="tool-modal-error" id="audioRecErr"></div>
+    </div>
+    <div id="audioTabUrl" style="display:none">
+      <input type="url" id="audioUrlInput" placeholder="https://exemplo.com/audio.mp3">
+    </div>
+    <div class="tool-modal-actions">
+      <button class="btn sm" id="audioCancel">Cancelar</button>
+      <button class="btn sm primary" id="audioInsert" disabled>Inserir</button>
     </div>
   </div>
 </div>
@@ -240,10 +309,18 @@ function escapeHtml(str) {
 }
 
 function renderBody(rawText) {
-  // Extract [img] data URIs before HTML escaping so DOMPurify never sees them
-  const imgSlots = [];
-  const VALID_IMG = /^data:image\/(jpeg|png|gif|webp);base64,/i;
-  const withSlots = rawText.replace(
+  const VALID_IMG   = /^data:image\/(jpeg|png|gif|webp);base64,/i;
+  const VALID_AUDIO = /^data:audio\/(webm|ogg|mpeg|wav);base64,/i;
+  const VALID_URL   = /^https:\/\//i;
+
+  const imgSlots     = [];
+  const audioSlots   = [];
+  const setlistSlots = [];
+
+  // 1. Extract special tags before any HTML processing
+  let processed = rawText;
+
+  processed = processed.replace(
     /\[img\]([^\][\n]{10,}?)\[\/img\]/gi,
     (_, src) => {
       if (imgSlots.length >= 4 || !VALID_IMG.test(src.trim())) return "";
@@ -252,7 +329,34 @@ function renderBody(rawText) {
     }
   );
 
-  const escaped = escapeHtml(withSlots);
+  processed = processed.replace(
+    /\[audio\]([^\][\n]{20,}?)\[\/audio\]/gi,
+    (_, src) => {
+      if (audioSlots.length >= 2 || !VALID_AUDIO.test(src.trim())) return "";
+      audioSlots.push({ type: "data", src: src.trim() });
+      return `__AUDIOSLOT${audioSlots.length - 1}__`;
+    }
+  );
+
+  processed = processed.replace(
+    /\[audio-url\]([^\]\n]{10,300}?)\[\/audio-url\]/gi,
+    (_, url) => {
+      if (audioSlots.length >= 2 || !VALID_URL.test(url.trim())) return "";
+      audioSlots.push({ type: "url", src: url.trim() });
+      return `__AUDIOSLOT${audioSlots.length - 1}__`;
+    }
+  );
+
+  processed = processed.replace(
+    /\[setlist\]([^\n]{5,200}?)\[\/setlist\]/gi,
+    (_, content) => {
+      setlistSlots.push(content.trim());
+      return `__SETSLOT${setlistSlots.length - 1}__`;
+    }
+  );
+
+  // 2. Standard text transformations
+  const escaped = escapeHtml(processed);
   const withSpoilers = escaped.replace(
     /\[spoiler\]([\s\S]*?)\[\/spoiler\]/gi,
     (_, c) => `<span class="spoiler"><span class="spoiler-label">&#9888; spoiler — clique para revelar</span><span class="spoiler-content">${c.trim()}</span></span>`
@@ -264,34 +368,87 @@ function renderBody(rawText) {
     /^&gt;([^\n]*)/gm,
     (_, c) => `<div class="quote-block">${c.trim()}</div>`
   );
-  const withBold = withQuotes.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+  const withBold   = withQuotes.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
   const withItalic = withBold.replace(/_([^_\n]+)_/g, "<em>$1</em>");
-  const withParas = "<p>" + withItalic.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+  const withParas  = "<p>" + withItalic.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+
   const sanitized = DOMPurify.sanitize(withParas, {
     ALLOWED_TAGS: ["p", "br", "div", "span", "strong", "em"],
     ALLOWED_ATTR: ["class"],
   });
 
-  if (!imgSlots.length) return sanitized;
+  const hasMedia = imgSlots.length || audioSlots.length || setlistSlots.length;
+  if (!hasMedia) return sanitized;
 
-  // Re-inject images via DOM property (never via innerHTML) to prevent XSS
+  // 3. Post-process: inject rich elements via DOM (never via innerHTML) to prevent XSS
   const wrap = document.createElement("div");
   wrap.innerHTML = sanitized;
-  const walker = document.createTreeWalker(wrap, NodeFilter.SHOW_TEXT);
-  const pending = [];
-  while (walker.nextNode()) {
-    const node = walker.currentNode;
-    const m = node.nodeValue.match(/__IMGSLOT(\d+)__/);
-    if (m) pending.push({ node, idx: parseInt(m[1]) });
+
+  function walkTextNodes(root, callback) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const hits = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const m = node.nodeValue.match(/__(?:IMGSLOT|AUDIOSLOT|SETSLOT)(\d+)__/);
+      if (m) hits.push({ node, full: m[0] });
+    }
+    for (const h of hits) callback(h.node, h.full);
   }
-  for (const { node, idx } of pending) {
-    if (idx >= imgSlots.length) continue;
-    const imgEl = document.createElement("img");
-    imgEl.src = imgSlots[idx];
-    imgEl.alt = "foto";
-    imgEl.style.cssText = "max-width:100%;border-radius:6px;display:block;margin:8px 0";
-    node.parentNode.replaceChild(imgEl, node);
-  }
+
+  walkTextNodes(wrap, (node, marker) => {
+    let el = null;
+
+    if (marker.startsWith("__IMGSLOT")) {
+      const idx = parseInt(marker.replace("__IMGSLOT", "").replace("__", ""));
+      if (idx >= imgSlots.length) return;
+      el = document.createElement("img");
+      el.src = imgSlots[idx];
+      el.alt = "foto";
+      el.style.cssText = "max-width:100%;border-radius:6px;display:block;margin:8px 0";
+    }
+
+    if (marker.startsWith("__AUDIOSLOT")) {
+      const idx = parseInt(marker.replace("__AUDIOSLOT", "").replace("__", ""));
+      if (idx >= audioSlots.length) return;
+      const slot = audioSlots[idx];
+      const wrap2 = document.createElement("div");
+      wrap2.className = "audio-attach";
+      const label = document.createElement("div");
+      label.className = "audio-attach-label";
+      label.textContent = "audio";
+      const audio = document.createElement("audio");
+      audio.controls = true;
+      audio.src = slot.src;
+      wrap2.appendChild(label);
+      wrap2.appendChild(audio);
+      el = wrap2;
+    }
+
+    if (marker.startsWith("__SETSLOT")) {
+      const idx = parseInt(marker.replace("__SETSLOT", "").replace("__", ""));
+      if (idx >= setlistSlots.length) return;
+      const parts = setlistSlots[idx].split(/\s*\|\s*/);
+      const banda = parts[0] || "";
+      const data  = parts[1] || "";
+      const venue = parts[2] || "";
+      const card = document.createElement("div");
+      card.className = "embed-setlist";
+      const bar = document.createElement("div"); bar.className = "bar";
+      const body = document.createElement("div"); body.className = "body";
+      const eyebrow = document.createElement("div"); eyebrow.className = "embed-setlist-eyebrow";
+      eyebrow.textContent = "Setlist do show";
+      const bandaEl = document.createElement("div"); bandaEl.className = "embed-setlist-banda";
+      bandaEl.textContent = banda;
+      const venueEl = document.createElement("div"); venueEl.className = "embed-setlist-venue";
+      venueEl.textContent = [data, venue].filter(Boolean).join(" · ");
+      body.appendChild(eyebrow); body.appendChild(bandaEl); body.appendChild(venueEl);
+      card.appendChild(bar); card.appendChild(body);
+      el = card;
+    }
+
+    if (el) node.parentNode.replaceChild(el, node);
+  });
+
   return wrap.innerHTML;
 }
 
@@ -521,11 +678,8 @@ function renderTopic(data) {
       wrapSel("[spoiler]", "[/spoiler]", "texto spoiler");
     });
 
-    ["toolSetlist", "toolAudio"].forEach(id => {
-      document.getElementById(id).addEventListener("click", () => {
-        alert("Em breve: funcionalidade de anexos.");
-      });
-    });
+    document.getElementById("toolSetlist").addEventListener("click", () => openSetlistModal(replyBody));
+    document.getElementById("toolAudio").addEventListener("click", () => openAudioModal(replyBody));
 
     _replyPhotos = [];
 
@@ -652,6 +806,173 @@ async function toggleReaction(btn) {
   } catch (err) {
     console.error("Reaction error:", err);
   }
+}
+
+// ── Setlist modal ─────────────────────────────────────────────
+function openSetlistModal(targetTextarea) {
+  const modal = document.getElementById("setlistModal");
+  document.getElementById("slBanda").value = "Pearl Jam";
+  document.getElementById("slData").value = "";
+  document.getElementById("slLocal").value = "";
+  modal.style.display = "flex";
+  setTimeout(() => document.getElementById("slData").focus(), 50);
+
+  function close() { modal.style.display = "none"; cleanup(); }
+
+  function insert() {
+    const banda = document.getElementById("slBanda").value.trim() || "Pearl Jam";
+    const data  = document.getElementById("slData").value;
+    const local = document.getElementById("slLocal").value.trim();
+    if (!data || !local) { document.getElementById("slLocal").focus(); return; }
+    const dateStr = new Date(data + "T12:00:00").toLocaleDateString("pt-BR", { day:"2-digit", month:"short", year:"numeric" });
+    const tag = `[setlist]${banda} | ${dateStr} | ${local}[/setlist]`;
+    const start = targetTextarea.selectionStart;
+    const before = targetTextarea.value.substring(0, start);
+    const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
+    targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
+    targetTextarea.focus();
+    close();
+  }
+
+  const slInsert = document.getElementById("slInsert");
+  const slCancel = document.getElementById("slCancel");
+  slInsert.addEventListener("click", insert);
+  slCancel.addEventListener("click", close);
+  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+
+  function cleanup() {
+    slInsert.removeEventListener("click", insert);
+    slCancel.removeEventListener("click", close);
+  }
+}
+
+// ── Audio modal ───────────────────────────────────────────────
+function openAudioModal(targetTextarea) {
+  const modal     = document.getElementById("audioModal");
+  const recBtn    = document.getElementById("audioRecBtn");
+  const timer     = document.getElementById("audioTimer");
+  const errEl     = document.getElementById("audioRecErr");
+  const preview   = document.getElementById("audioPreview");
+  const prevWrap  = document.getElementById("audioPreviewWrap");
+  const urlInput  = document.getElementById("audioUrlInput");
+  const insertBtn = document.getElementById("audioInsert");
+  const cancelBtn = document.getElementById("audioCancel");
+
+  // Reset state
+  urlInput.value = "";
+  errEl.textContent = "";
+  timer.textContent = "0:00 / 0:15";
+  timer.classList.remove("recording");
+  prevWrap.style.display = "none";
+  preview.src = "";
+  insertBtn.disabled = true;
+  recBtn.textContent = "Iniciar gravacao";
+
+  let mediaRec = null, audioChunks = [], timerInterval = null, elapsed = 0;
+  let pendingDataUrl = null;
+  let activeTab = "rec";
+
+  // Tabs
+  document.querySelectorAll("[data-audiotab]").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.audiotab === "rec");
+    btn.onclick = () => {
+      activeTab = btn.dataset.audiotab;
+      document.querySelectorAll("[data-audiotab]").forEach(b => b.classList.toggle("active", b === btn));
+      document.getElementById("audioTabRec").style.display = activeTab === "rec" ? "" : "none";
+      document.getElementById("audioTabUrl").style.display = activeTab === "url" ? "" : "none";
+      insertBtn.disabled = activeTab === "url" ? !urlInput.value.startsWith("https://") : !pendingDataUrl;
+    };
+  });
+  document.getElementById("audioTabRec").style.display = "";
+  document.getElementById("audioTabUrl").style.display = "none";
+
+  urlInput.addEventListener("input", () => {
+    if (activeTab === "url") insertBtn.disabled = !urlInput.value.trim().startsWith("https://");
+  });
+
+  function stopRecording() {
+    if (mediaRec && mediaRec.state !== "inactive") mediaRec.stop();
+    clearInterval(timerInterval);
+    timer.classList.remove("recording");
+    recBtn.textContent = "Gravar novamente";
+  }
+
+  recBtn.addEventListener("click", async () => {
+    if (mediaRec && mediaRec.state === "recording") { stopRecording(); return; }
+    try {
+      errEl.textContent = "";
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioChunks = []; pendingDataUrl = null; elapsed = 0;
+      prevWrap.style.display = "none"; preview.src = "";
+      insertBtn.disabled = true;
+
+      const mimeType = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/ogg"]
+        .find(t => MediaRecorder.isTypeSupported(t)) || "";
+      mediaRec = new MediaRecorder(stream, mimeType ? { mimeType, audioBitsPerSecond: 16000 } : { audioBitsPerSecond: 16000 });
+
+      mediaRec.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+      mediaRec.onstop = () => {
+        stream.getTracks().forEach(t => t.stop());
+        const blob = new Blob(audioChunks, { type: mediaRec.mimeType || "audio/webm" });
+        const reader = new FileReader();
+        reader.onload = ev => {
+          const dataUrl = ev.target.result;
+          if (dataUrl.length > 44000) {
+            errEl.textContent = "Gravacao muito longa. Tente novamente (max ~15s).";
+            insertBtn.disabled = true;
+            return;
+          }
+          pendingDataUrl = dataUrl;
+          preview.src = dataUrl;
+          prevWrap.style.display = "";
+          if (activeTab === "rec") insertBtn.disabled = false;
+        };
+        reader.readAsDataURL(blob);
+      };
+
+      mediaRec.start(200);
+      recBtn.textContent = "Parar";
+      timer.classList.add("recording");
+
+      timerInterval = setInterval(() => {
+        elapsed++;
+        const m = Math.floor(elapsed / 60), s = elapsed % 60;
+        timer.textContent = `${m}:${String(s).padStart(2, "0")} / 0:15`;
+        if (elapsed >= 15) stopRecording();
+      }, 1000);
+    } catch (err) {
+      errEl.textContent = "Sem acesso ao microfone. Verifique as permissoes do navegador.";
+    }
+  });
+
+  function close() {
+    if (mediaRec && mediaRec.state !== "inactive") mediaRec.stop();
+    clearInterval(timerInterval);
+    modal.style.display = "none";
+  }
+
+  insertBtn.addEventListener("click", () => {
+    let tag = "";
+    if (activeTab === "rec" && pendingDataUrl) {
+      tag = `[audio]${pendingDataUrl}[/audio]`;
+    } else if (activeTab === "url") {
+      const url = urlInput.value.trim();
+      if (!url.startsWith("https://")) return;
+      tag = `[audio-url]${url}[/audio-url]`;
+    }
+    if (!tag) return;
+    const start = targetTextarea.selectionStart;
+    const before = targetTextarea.value.substring(0, start);
+    const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
+    targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
+    targetTextarea.focus();
+    close();
+  });
+
+  cancelBtn.addEventListener("click", close);
+  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+
+  modal.style.display = "flex";
 }
 
 async function submitReply(topicId) {
