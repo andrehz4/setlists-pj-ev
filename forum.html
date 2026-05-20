@@ -451,12 +451,31 @@ function timeAgo(iso) {
 function initials(name) {
   return (name || "?").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
 }
+const _HTTP_MSGS = {
+  400: "Dados inválidos. Verifique o que foi enviado.",
+  401: "Sessão expirada. Entre novamente.",
+  403: "Sem permissão para esta ação.",
+  404: "Conteúdo não encontrado.",
+  422: "Texto muito longo ou formato inválido.",
+  429: "Muitas tentativas seguidas. Aguarde um momento.",
+  500: "Erro no servidor. Tente novamente em breve.",
+  503: "Serviço temporariamente indisponível.",
+};
 async function apiFetch(path, opts = {}) {
   const headers = { "Content-Type": "application/json", ...(opts.headers || {}) };
   if (_state.token) headers["Authorization"] = "Bearer " + _state.token;
-  const res = await fetch(API_BASE + path, { ...opts, headers });
+  let res;
+  try {
+    res = await fetch(API_BASE + path, { ...opts, headers });
+  } catch (_) {
+    throw new Error("Sem conexão com o servidor. Verifique sua internet.");
+  }
   if (res.status === 401) { logout(); return null; }
-  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).detail || "Erro " + res.status);
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    const serverMsg = typeof body.detail === "string" ? body.detail : null;
+    throw new Error(serverMsg || _HTTP_MSGS[res.status] || "Erro " + res.status);
+  }
   return res.json();
 }
 
