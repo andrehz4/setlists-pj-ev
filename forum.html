@@ -353,20 +353,16 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
     </div>
     <div class="composer-form">
 
-      <div class="composer-field">
-        <label>01 · Categoria</label>
-        <div class="cat-pills" id="catPills"></div>
-        <input type="hidden" id="topicCategory" value="geral">
-      </div>
+      <input type="hidden" id="topicCategory" value="geral">
 
       <div class="composer-field">
-        <label>02 · Título</label>
+        <label>01 · Título</label>
         <input type="text" id="topicTitle" maxlength="120" placeholder="conta em uma frase — sem caps lock">
         <div class="char-count" id="titleCount">0 / 120</div>
       </div>
 
       <div class="composer-field">
-        <label>03 · O que você quer dizer</label>
+        <label>02 · O que você quer dizer</label>
         <div class="composer-body-wrap">
           <div class="ctoolbar">
             <button class="tool-btn b" data-ct="bold" title="Negrito (**texto**)">B</button>
@@ -377,26 +373,25 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
             <button class="tool-btn" data-ct="list" title="Lista">&#9636;</button>
             <button class="tool-btn" data-ct="link" title="Link ([texto](url))">&#8594;</button>
             <span class="tool-sep"></span>
-            <button class="tool-btn" data-ct="setlist" title="Incorporar setlist (em breve)">&#127925;</button>
-            <button class="tool-btn" data-ct="music" title="Música (em breve)">&#9836;</button>
-            <button class="tool-btn" data-ct="photo" title="Foto (em breve)">&#128444;</button>
-            <button class="tool-btn" data-ct="audio" title="Áudio (em breve)">&#127897;</button>
+            <button class="tool-btn" data-ct="photo" title="Anexar foto">&#128444;</button>
             <span class="tool-sep"></span>
             <button class="tool-btn" data-ct="spoiler" title="Spoiler">&#9888;</button>
             <button class="tool-btn" data-ct="undo" title="Desfazer" style="margin-left:auto">&#8635;</button>
             <button class="tool-btn" data-ct="redo" title="Refazer">&#8634;</button>
           </div>
-          <textarea class="composer-textarea" id="topicBody" maxlength="5000" placeholder="escreve o que quiser — formatação com os botões acima ou markdown básico"></textarea>
+          <textarea class="composer-textarea" id="topicBody" maxlength="50000" placeholder="escreve o que quiser — formatação com os botões acima ou markdown básico"></textarea>
           <div class="composer-preview-pane" id="topicPreviewPane"></div>
         </div>
+        <div id="photoAttachRow" style="display:none;gap:8px;flex-wrap:wrap;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
         <div class="composer-field-foot">
-          <div class="char-count" id="bodyCount">0 / 5000</div>
+          <div class="char-count" id="bodyCount">0 / 50000</div>
           <button class="btn sm" id="ctPreviewBtn">Prévia</button>
         </div>
+        <input type="file" id="photoFileInput" accept="image/jpeg,image/png,image/gif,image/webp" multiple style="display:none">
       </div>
 
       <div class="composer-field">
-        <label>04 · Tags (opcional, até 4)</label>
+        <label>03 · Tags (opcional, até 4)</label>
         <div class="tag-editor" id="tagEditor">
           <input type="text" class="tag-input-el" id="tagInput" placeholder="+ adicionar tag e pressionar Enter···" maxlength="30">
         </div>
@@ -647,6 +642,7 @@ async function loadTopics() {
 
 // ── Composer ──────────────────────────────────────────────────
 let _composerTags = [];
+let _composerPhotos = [];
 let _ctPreviewing = false;
 
 function _escHtml(s) {
@@ -671,8 +667,58 @@ function updateComposerMeta() {
   const meta = document.getElementById("composerMeta");
   if (meta) {
     const tagStr = _composerTags.length ? `${_composerTags.length} tag${_composerTags.length > 1 ? "s" : ""}` : "0 tags";
-    meta.textContent = `${tagStr} · ${bodyLen} car.`;
+    const photoStr = _composerPhotos.length ? ` · ${_composerPhotos.length} foto${_composerPhotos.length > 1 ? "s" : ""}` : "";
+    meta.textContent = `${tagStr}${photoStr} · ${bodyLen} car.`;
   }
+}
+
+function renderPhotoRow() {
+  const row = document.getElementById("photoAttachRow");
+  if (!row) return;
+  row.innerHTML = "";
+  if (!_composerPhotos.length) { row.style.display = "none"; return; }
+  row.style.display = "flex";
+  _composerPhotos.forEach((p, i) => {
+    const wrap = document.createElement("div");
+    wrap.style.cssText = "position:relative;display:inline-block";
+    const img = document.createElement("img");
+    img.src = p.dataUrl;
+    img.alt = p.name;
+    img.style.cssText = "width:72px;height:72px;object-fit:cover;border-radius:4px;border:1px solid var(--divider)";
+    const rm = document.createElement("button");
+    rm.innerHTML = "&#215;";
+    rm.title = "Remover foto";
+    rm.style.cssText = "position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:12px;line-height:1;padding:0;display:grid;place-items:center";
+    rm.addEventListener("click", () => { _composerPhotos.splice(i, 1); renderPhotoRow(); updateComposerMeta(); });
+    wrap.appendChild(img);
+    wrap.appendChild(rm);
+    row.appendChild(wrap);
+  });
+}
+
+function compressImage(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const maxDim = 400;
+        let w = img.width, h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+          else { w = Math.round(w * maxDim / h); h = maxDim; }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", 0.65));
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
 
 function renderTagChips() {
@@ -710,6 +756,7 @@ function buildCatPills(activeId) {
 
 function openComposer() {
   _composerTags = [];
+  _composerPhotos = [];
   _ctPreviewing = false;
   const ta = document.getElementById("topicBody");
   if (ta) { ta.style.display = ""; ta.value = ""; }
@@ -720,7 +767,8 @@ function openComposer() {
   document.getElementById("topicTitle").value = "";
   document.getElementById("topicCategory").value = "geral";
   document.getElementById("composerError").classList.remove("visible");
-  buildCatPills("geral");
+  const photoRow = document.getElementById("photoAttachRow");
+  if (photoRow) { photoRow.innerHTML = ""; photoRow.style.display = "none"; }
   renderTagChips();
   updateComposerMeta();
   document.getElementById("composerOverlay").classList.add("open");
@@ -729,6 +777,7 @@ function openComposer() {
 function closeComposer() {
   document.getElementById("composerOverlay").classList.remove("open");
   _composerTags = [];
+  _composerPhotos = [];
   _ctPreviewing = false;
 }
 
@@ -740,6 +789,7 @@ async function submitTopic() {
   if (!title || title.length < 3) { errEl.textContent = "Título muito curto (mínimo 3 caracteres)."; errEl.classList.add("visible"); return; }
   if (!body || body.length < 10) { errEl.textContent = "Texto muito curto (mínimo 10 caracteres)."; errEl.classList.add("visible"); return; }
   if (_composerTags.length) body += "\n\n" + _composerTags.map(t => "#" + t).join(" ");
+  if (_composerPhotos.length) body += "\n\n" + _composerPhotos.map(p => `[img]${p.dataUrl}[/img]`).join("\n");
   const btn = document.getElementById("composerSubmit");
   btn.disabled = true; btn.textContent = "Publicando…";
   errEl.classList.remove("visible");
@@ -778,7 +828,7 @@ function initComposer() {
     ta.setSelectionRange(start + prefix.length, start + prefix.length + sel.length);
     const n = ta.value.length;
     const bc = document.getElementById("bodyCount");
-    if (bc) { bc.textContent = n + " / 5000"; bc.classList.toggle("warn", n > 4500); }
+    if (bc) { bc.textContent = n + " / 50000"; bc.classList.toggle("warn", n > 48000); }
     updateComposerMeta();
   }
 
@@ -806,7 +856,7 @@ function initComposer() {
     redo: () => { ta.focus(); document.execCommand("redo"); },
     setlist: () => alert("Em breve: incorporar setlist do arquivo."),
     music:   () => alert("Em breve: linkar música."),
-    photo:   () => alert("Em breve: anexar foto."),
+    photo:   () => document.getElementById("photoFileInput").click(),
     audio:   () => alert("Em breve: anexar áudio."),
   };
 
@@ -816,10 +866,25 @@ function initComposer() {
     ctActions[btn.dataset.ct]?.();
   });
 
+  const photoInput = document.getElementById("photoFileInput");
+  photoInput.addEventListener("change", async () => {
+    const files = Array.from(photoInput.files).filter(f => f.type.startsWith("image/"));
+    for (const file of files) {
+      if (_composerPhotos.length >= 4) break;
+      try {
+        const dataUrl = await compressImage(file);
+        _composerPhotos.push({ dataUrl, name: file.name });
+      } catch (_) {}
+    }
+    photoInput.value = "";
+    renderPhotoRow();
+    updateComposerMeta();
+  });
+
   ta.addEventListener("input", () => {
     const n = ta.value.length;
     const bc = document.getElementById("bodyCount");
-    if (bc) { bc.textContent = n + " / 5000"; bc.classList.toggle("warn", n > 4500); }
+    if (bc) { bc.textContent = n + " / 50000"; bc.classList.toggle("warn", n > 48000); }
     updateComposerMeta();
   });
 

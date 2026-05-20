@@ -214,6 +214,7 @@ let _reportTargetId = null;
 let _token = localStorage.getItem("forum_token");
 let _user = (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })();
 let _topicId = null;
+let _replyPhotos = [];
 
 function san(str) {
   return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
@@ -239,14 +240,26 @@ function escapeHtml(str) {
 }
 
 function renderBody(rawText) {
-  const escaped = escapeHtml(rawText);
+  // Extract [img] data URIs before HTML escaping so DOMPurify never sees them
+  const imgSlots = [];
+  const VALID_IMG = /^data:image\/(jpeg|png|gif|webp);base64,/i;
+  const withSlots = rawText.replace(
+    /\[img\]([^\][\n]{10,}?)\[\/img\]/gi,
+    (_, src) => {
+      if (imgSlots.length >= 4 || !VALID_IMG.test(src.trim())) return "";
+      imgSlots.push(src.trim());
+      return `__IMGSLOT${imgSlots.length - 1}__`;
+    }
+  );
+
+  const escaped = escapeHtml(withSlots);
   const withSpoilers = escaped.replace(
     /\[spoiler\]([\s\S]*?)\[\/spoiler\]/gi,
-    (_, c) => `<span class="spoiler"><span class="spoiler-label">⚠ spoiler — clique para revelar</span><span class="spoiler-content">${c.trim()}</span></span>`
+    (_, c) => `<span class="spoiler"><span class="spoiler-label">&#9888; spoiler — clique para revelar</span><span class="spoiler-content">${c.trim()}</span></span>`
   );
   const withQuotes = withSpoilers.replace(
     /^&gt;([^:\n]+):([^\n]*)/gm,
-    (_, who, text) => `<div class="quote-block"><span class="quote-who">↳ ${who.trim()} escreveu</span>${text.trim()}</div>`
+    (_, who, text) => `<div class="quote-block"><span class="quote-who">&#8627; ${who.trim()} escreveu</span>${text.trim()}</div>`
   ).replace(
     /^&gt;([^\n]*)/gm,
     (_, c) => `<div class="quote-block">${c.trim()}</div>`
@@ -254,10 +267,32 @@ function renderBody(rawText) {
   const withBold = withQuotes.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
   const withItalic = withBold.replace(/_([^_\n]+)_/g, "<em>$1</em>");
   const withParas = "<p>" + withItalic.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
-  return DOMPurify.sanitize(withParas, {
+  const sanitized = DOMPurify.sanitize(withParas, {
     ALLOWED_TAGS: ["p", "br", "div", "span", "strong", "em"],
     ALLOWED_ATTR: ["class"],
   });
+
+  if (!imgSlots.length) return sanitized;
+
+  // Re-inject images via DOM property (never via innerHTML) to prevent XSS
+  const wrap = document.createElement("div");
+  wrap.innerHTML = sanitized;
+  const walker = document.createTreeWalker(wrap, NodeFilter.SHOW_TEXT);
+  const pending = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    const m = node.nodeValue.match(/__IMGSLOT(\d+)__/);
+    if (m) pending.push({ node, idx: parseInt(m[1]) });
+  }
+  for (const { node, idx } of pending) {
+    if (idx >= imgSlots.length) continue;
+    const imgEl = document.createElement("img");
+    imgEl.src = imgSlots[idx];
+    imgEl.alt = "foto";
+    imgEl.style.cssText = "max-width:100%;border-radius:6px;display:block;margin:8px 0";
+    node.parentNode.replaceChild(imgEl, node);
+  }
+  return wrap.innerHTML;
 }
 
 async function apiFetch(path, opts = {}) {
@@ -361,13 +396,15 @@ function renderTopic(data) {
             <button class="tool-btn" id="toolAudio" title="Áudio">&#127897;</button>
             <button class="tool-btn" id="toolSpoiler" title="Spoiler">&#9888;</button>
           </div>
-          <textarea class="reply-textarea" id="replyBody" maxlength="5000" placeholder="conta como foi pra você. credita a foto, tagueia spoiler se for review fresca."></textarea>
+          <textarea class="reply-textarea" id="replyBody" maxlength="50000" placeholder="conta como foi pra você. credita a foto, tagueia spoiler se for review fresca."></textarea>
           <div class="reply-preview-pane" id="replyPreviewPane"></div>
+          <div id="replyPhotoRow" style="display:none;gap:8px;flex-wrap:wrap;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
+          <input type="file" id="replyPhotoInput" accept="image/jpeg,image/png,image/gif,image/webp" multiple style="display:none">
           <div class="reply-composer-foot">
             <div class="reply-foot-id">
               <span>Postando como:</span>
               <span class="who">${san(_user?.display_name || "você")}</span>
-              <span class="reply-char-count" id="replyCount" style="margin-left:4px">0 / 5000</span>
+              <span class="reply-char-count" id="replyCount" style="margin-left:4px">0 / 50000</span>
             </div>
             <div style="display:flex;gap:10px;align-items:center">
               <button class="btn" id="replyPreviewBtn">Prévia</button>
@@ -445,8 +482,8 @@ function renderTopic(data) {
     replyBody.addEventListener("input", () => {
       const n = replyBody.value.length;
       const el = document.getElementById("replyCount");
-      el.textContent = n + " / 5000";
-      el.classList.toggle("warn", n > 4500);
+      el.textContent = n + " / 50000";
+      el.classList.toggle("warn", n > 48000);
     });
 
     // Submit reply
@@ -484,10 +521,75 @@ function renderTopic(data) {
       wrapSel("[spoiler]", "[/spoiler]", "texto spoiler");
     });
 
-    ["toolSetlist", "toolPhoto", "toolAudio"].forEach(id => {
+    ["toolSetlist", "toolAudio"].forEach(id => {
       document.getElementById(id).addEventListener("click", () => {
         alert("Em breve: funcionalidade de anexos.");
       });
+    });
+
+    _replyPhotos = [];
+
+    function compressReplyImg(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const img = new Image();
+          img.onload = () => {
+            const maxDim = 400;
+            let w = img.width, h = img.height;
+            if (w > maxDim || h > maxDim) {
+              if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+              else { w = Math.round(w * maxDim / h); h = maxDim; }
+            }
+            const canvas = document.createElement("canvas");
+            canvas.width = w; canvas.height = h;
+            canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL("image/jpeg", 0.65));
+          };
+          img.onerror = reject;
+          img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderReplyPhotoRow() {
+      const row = document.getElementById("replyPhotoRow");
+      if (!row) return;
+      row.innerHTML = "";
+      if (!_replyPhotos.length) { row.style.display = "none"; return; }
+      row.style.display = "flex";
+      _replyPhotos.forEach((p, i) => {
+        const wrap = document.createElement("div");
+        wrap.style.cssText = "position:relative;display:inline-block";
+        const imgEl = document.createElement("img");
+        imgEl.src = p.dataUrl;
+        imgEl.alt = p.name;
+        imgEl.style.cssText = "width:72px;height:72px;object-fit:cover;border-radius:4px;border:1px solid var(--divider)";
+        const rm = document.createElement("button");
+        rm.innerHTML = "&#215;";
+        rm.title = "Remover foto";
+        rm.style.cssText = "position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:12px;line-height:1;padding:0;display:grid;place-items:center";
+        rm.addEventListener("click", () => { _replyPhotos.splice(i, 1); renderReplyPhotoRow(); });
+        wrap.appendChild(imgEl); wrap.appendChild(rm);
+        row.appendChild(wrap);
+      });
+    }
+
+    const replyPhotoInput = document.getElementById("replyPhotoInput");
+    document.getElementById("toolPhoto").addEventListener("click", () => replyPhotoInput.click());
+    replyPhotoInput.addEventListener("change", async () => {
+      const files = Array.from(replyPhotoInput.files).filter(f => f.type.startsWith("image/"));
+      for (const file of files) {
+        if (_replyPhotos.length >= 4) break;
+        try {
+          const dataUrl = await compressReplyImg(file);
+          _replyPhotos.push({ dataUrl, name: file.name });
+        } catch (_) {}
+      }
+      replyPhotoInput.value = "";
+      renderReplyPhotoRow();
     });
 
     // Preview toggle
@@ -553,11 +655,12 @@ async function toggleReaction(btn) {
 }
 
 async function submitReply(topicId) {
-  const body = document.getElementById("replyBody").value.trim();
+  let body = document.getElementById("replyBody").value.trim();
   const errEl = document.getElementById("replyError");
   if (!body || body.length < 2) {
     errEl.textContent = "Mensagem muito curta."; errEl.classList.add("visible"); return;
   }
+  if (_replyPhotos.length) body += "\n\n" + _replyPhotos.map(p => `[img]${p.dataUrl}[/img]`).join("\n");
   const btn = document.getElementById("replySubmit");
   btn.disabled = true; btn.textContent = "Publicando…";
   errEl.classList.remove("visible");
@@ -566,7 +669,7 @@ async function submitReply(topicId) {
       method: "POST",
       body: JSON.stringify({ body }),
     });
-    if (result !== null) location.reload();
+    if (result !== null) { _replyPhotos = []; location.reload(); }
   } catch (err) {
     errEl.textContent = err.message || "Erro ao publicar.";
     errEl.classList.add("visible");
