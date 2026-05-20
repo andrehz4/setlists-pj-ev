@@ -443,7 +443,7 @@ function renderTopic(data) {
     document.querySelectorAll(".quote-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const ta = replyBody;
-        const quoteLine = `> ${san(btn.dataset.name)}: ${san(btn.dataset.body)}`;
+        const quoteLine = `> ${btn.dataset.name}: ${btn.dataset.body}`;
         ta.value = (ta.value ? ta.value + "\n\n" : "") + quoteLine + "\n\n";
         ta.focus();
         ta.scrollIntoView({ behavior: "smooth", block: "end" });
