@@ -127,20 +127,24 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 /* Reply composer */
 .reply-section { margin-top: 28px; }
-.reply-section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 14px; }
 .reply-composer { border: 1px solid var(--divider-strong); background: var(--bg-card); }
 .reply-composer-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--divider); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
-.composer-toolbar { display: flex; gap: 4px; align-items: center; padding: 6px 10px; border-bottom: 1px solid var(--divider); background: var(--bg-card-sunk); }
-.tool-btn { background: transparent; border: 1px solid transparent; color: var(--ink-mute); font-family: var(--font-mono); font-size: 11px; padding: 4px 8px; cursor: pointer; line-height: 1; }
+.reply-composer-toolbar { display: flex; gap: 4px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--divider); background: var(--bg-card-sunk); }
+.tool-btn { background: transparent; border: 1px solid transparent; color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px; width: 30px; height: 30px; display: inline-grid; place-items: center; cursor: pointer; }
 .tool-btn:hover { border-color: var(--divider-strong); color: var(--ink); }
-.tool-btn.divider { width: 1px; height: 14px; background: var(--divider-strong); padding: 0; margin: 0 4px; cursor: default; border: none; }
+.tool-btn.b { font-weight: 700; }
+.tool-btn.i { font-style: italic; font-family: var(--font-editorial); font-size: 16px; }
+.tool-btn.divider { width: 1px; height: 16px; background: var(--divider-strong); padding: 0; margin: 0 4px; cursor: default; border: none; pointer-events: none; }
 .reply-textarea { width: 100%; padding: 14px; min-height: 110px; font-family: var(--font-body); font-size: 15.5px; color: var(--ink); line-height: 1.55; background: var(--bg-card); border: none; outline: none; resize: vertical; }
 .reply-textarea::placeholder { color: var(--ink-dim); font-style: italic; font-family: var(--font-editorial); font-size: 16px; }
 .reply-composer-foot { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-top: 1px solid var(--divider); background: var(--bg-card-sunk); gap: 10px; flex-wrap: wrap; }
+.reply-foot-id { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); }
+.reply-foot-id .who { color: var(--ink-mute); }
 .reply-char-count { font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); }
 .reply-char-count.warn { color: var(--ev); }
 .reply-error { font-family: var(--font-mono); font-size: 11px; color: var(--pj); margin-top: 8px; display: none; }
 .reply-error.visible { display: block; }
+.reply-preview-pane { display: none; padding: 14px; min-height: 80px; border-top: 1px solid var(--divider); background: var(--bg-card-sunk); font-family: var(--font-body); font-size: 15.5px; color: var(--ink); line-height: 1.55; }
 
 /* Login gate */
 .login-gate { border: 1px dashed var(--divider-strong); padding: 22px; text-align: center; margin-top: 28px; }
@@ -247,9 +251,11 @@ function renderBody(rawText) {
     /^&gt;([^\n]*)/gm,
     (_, c) => `<div class="quote-block">${c.trim()}</div>`
   );
-  const withParas = "<p>" + withQuotes.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+  const withBold = withQuotes.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+  const withItalic = withBold.replace(/_([^_\n]+)_/g, "<em>$1</em>");
+  const withParas = "<p>" + withItalic.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
   return DOMPurify.sanitize(withParas, {
-    ALLOWED_TAGS: ["p", "br", "div", "span"],
+    ALLOWED_TAGS: ["p", "br", "div", "span", "strong", "em"],
     ALLOWED_ATTR: ["class"],
   });
 }
@@ -337,21 +343,36 @@ function renderTopic(data) {
 
   const replySection = _token
     ? `<div class="reply-section">
-        <div class="reply-section-label">Responder</div>
         <div class="reply-composer">
           <div class="reply-composer-head">
-            <div class="av" style="width:24px;height:24px;border-radius:50%;background:var(--bg-card-sunk);border:1px solid var(--pj-soft);display:grid;place-items:center;font-family:var(--font-display);font-size:9px;color:var(--pj);overflow:hidden;flex-shrink:0">${avatarHtml(_user?.avatar_url, _user?.display_name)}</div>
-            <span>${san(_user?.display_name || "você")}</span>
+            <span>Responder a esta thread</span>
+            <span style="margin-left:auto;color:var(--ink-dim)">&#8627; resposta direta</span>
           </div>
-          <div class="composer-toolbar">
-            <button class="tool-btn" id="toolSpoiler" title="Inserir spoiler">⚠ spoiler</button>
+          <div class="reply-composer-toolbar">
+            <button class="tool-btn b" id="toolBold" title="Negrito">B</button>
+            <button class="tool-btn i" id="toolItalic" title="Itálico">I</button>
+            <button class="tool-btn" id="toolStrike" title="Tachado">&#8997;</button>
             <span class="tool-btn divider"></span>
-            <span style="font-family:var(--font-mono);font-size:9.5px;color:var(--ink-dim);letter-spacing:0.14em;text-transform:uppercase;padding:0 4px">[ ] para quote: comece a linha com &gt;</span>
+            <button class="tool-btn" id="toolQuote" title="Citar">&#10077;</button>
+            <button class="tool-btn" id="toolList" title="Lista">&#9636;</button>
+            <span class="tool-btn divider"></span>
+            <button class="tool-btn" id="toolSetlist" title="Incorporar setlist">&#127925;</button>
+            <button class="tool-btn" id="toolPhoto" title="Foto">&#128444;</button>
+            <button class="tool-btn" id="toolAudio" title="Áudio">&#127897;</button>
+            <button class="tool-btn" id="toolSpoiler" title="Spoiler">&#9888;</button>
           </div>
-          <textarea class="reply-textarea" id="replyBody" maxlength="5000" placeholder="Escreva sua resposta…"></textarea>
+          <textarea class="reply-textarea" id="replyBody" maxlength="5000" placeholder="conta como foi pra você. credita a foto, tagueia spoiler se for review fresca."></textarea>
+          <div class="reply-preview-pane" id="replyPreviewPane"></div>
           <div class="reply-composer-foot">
-            <span class="reply-char-count" id="replyCount">0 / 5000</span>
-            <button class="btn primary" id="replySubmit">Publicar resposta</button>
+            <div class="reply-foot-id">
+              <span>Postando como:</span>
+              <span class="who">${san(_user?.display_name || "você")}</span>
+              <span class="reply-char-count" id="replyCount" style="margin-left:4px">0 / 5000</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center">
+              <button class="btn" id="replyPreviewBtn">Prévia</button>
+              <button class="btn primary" id="replySubmit">Publicar resposta</button>
+            </div>
           </div>
         </div>
         <div class="reply-error" id="replyError"></div>
@@ -418,8 +439,9 @@ function renderTopic(data) {
   });
 
   if (_token) {
-    // Char count
     const replyBody = document.getElementById("replyBody");
+
+    // Char count
     replyBody.addEventListener("input", () => {
       const n = replyBody.value.length;
       const el = document.getElementById("replyCount");
@@ -430,23 +452,69 @@ function renderTopic(data) {
     // Submit reply
     document.getElementById("replySubmit").addEventListener("click", () => submitReply(t.id));
 
-    // Spoiler button
-    document.getElementById("toolSpoiler").addEventListener("click", () => {
-      const ta = replyBody;
-      const start = ta.selectionStart, end = ta.selectionEnd;
-      const sel = ta.value.substring(start, end) || "texto spoiler";
-      ta.value = ta.value.substring(0, start) + `[spoiler]${sel}[/spoiler]` + ta.value.substring(end);
-      ta.focus();
+    // Helper: wrap selection in prefix/suffix
+    function wrapSel(prefix, suffix, placeholder) {
+      const start = replyBody.selectionStart, end = replyBody.selectionEnd;
+      const sel = replyBody.value.substring(start, end) || placeholder;
+      replyBody.value = replyBody.value.substring(0, start) + prefix + sel + suffix + replyBody.value.substring(end);
+      replyBody.focus();
+      replyBody.setSelectionRange(start + prefix.length, start + prefix.length + sel.length);
+    }
+
+    document.getElementById("toolBold").addEventListener("click", () => wrapSel("**", "**", "texto"));
+    document.getElementById("toolItalic").addEventListener("click", () => wrapSel("_", "_", "texto"));
+    document.getElementById("toolStrike").addEventListener("click", () => wrapSel("~~", "~~", "texto"));
+
+    document.getElementById("toolQuote").addEventListener("click", () => {
+      const start = replyBody.selectionStart, end = replyBody.selectionEnd;
+      const sel = replyBody.value.substring(start, end) || "trecho";
+      const quoted = sel.split("\n").map(l => "> " + l).join("\n");
+      replyBody.value = replyBody.value.substring(0, start) + quoted + replyBody.value.substring(end);
+      replyBody.focus();
     });
 
-    // Quote buttons
+    document.getElementById("toolList").addEventListener("click", () => {
+      const start = replyBody.selectionStart;
+      replyBody.value = replyBody.value.substring(0, start) + "- " + replyBody.value.substring(start);
+      replyBody.focus();
+      replyBody.setSelectionRange(start + 2, start + 2);
+    });
+
+    document.getElementById("toolSpoiler").addEventListener("click", () => {
+      wrapSel("[spoiler]", "[/spoiler]", "texto spoiler");
+    });
+
+    ["toolSetlist", "toolPhoto", "toolAudio"].forEach(id => {
+      document.getElementById(id).addEventListener("click", () => {
+        alert("Em breve: funcionalidade de anexos.");
+      });
+    });
+
+    // Preview toggle
+    let _previewing = false;
+    document.getElementById("replyPreviewBtn").addEventListener("click", () => {
+      const pane = document.getElementById("replyPreviewPane");
+      _previewing = !_previewing;
+      if (_previewing) {
+        pane.innerHTML = renderBody(replyBody.value || "");
+        pane.style.display = "block";
+        replyBody.style.display = "none";
+        document.getElementById("replyPreviewBtn").textContent = "Editar";
+        pane.querySelectorAll(".spoiler").forEach(sp => sp.addEventListener("click", () => sp.classList.toggle("revealed")));
+      } else {
+        pane.style.display = "none";
+        replyBody.style.display = "";
+        document.getElementById("replyPreviewBtn").textContent = "Prévia";
+      }
+    });
+
+    // Quote buttons on each post
     document.querySelectorAll(".quote-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        const ta = replyBody;
         const quoteLine = `> ${btn.dataset.name}: ${btn.dataset.body}`;
-        ta.value = (ta.value ? ta.value + "\n\n" : "") + quoteLine + "\n\n";
-        ta.focus();
-        ta.scrollIntoView({ behavior: "smooth", block: "end" });
+        replyBody.value = (replyBody.value ? replyBody.value + "\n\n" : "") + quoteLine + "\n\n";
+        replyBody.focus();
+        replyBody.scrollIntoView({ behavior: "smooth", block: "end" });
       });
     });
   } else {
