@@ -302,9 +302,9 @@ function renderChips(reactions, myReactions, postId, targetType) {
   }).join("");
 }
 
-function renderPost(p, isRoot, opName) {
+function renderPost(p, isRoot, opUserId) {
   const targetType = isRoot ? "topic" : "post";
-  const isOp = p.display_name === opName;
+  const isOp = p.user_id === opUserId;
   const chips = renderChips(p.reactions, p.my_reactions, p.id, targetType);
   const profileHref = p.user_id ? `forum-profile.html?id=${encodeURIComponent(p.user_id)}` : null;
   const authorEl = profileHref
@@ -382,8 +382,8 @@ function renderTopic(data) {
             <span>${posts.length} resposta${posts.length !== 1 ? "s" : ""}</span>
           </div>
         </div>
-        ${renderPost({ id: t.id, user_id: t.user_id, body: t.body, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at, reactions: t.reactions, my_reactions: t.my_reactions }, true, t.display_name)}
-        ${posts.map(p => renderPost(p, false, t.display_name)).join("")}
+        ${renderPost({ id: t.id, user_id: t.user_id, body: t.body, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at, reactions: t.reactions, my_reactions: t.my_reactions }, true, t.user_id)}
+        ${posts.map(p => renderPost(p, false, t.user_id)).join("")}
         ${replySection}
       </div>
       <aside class="thread-rail">
@@ -494,14 +494,15 @@ async function submitReply(topicId) {
   btn.disabled = true; btn.textContent = "Publicando…";
   errEl.classList.remove("visible");
   try {
-    await apiFetch(`/forum/topics/${encodeURIComponent(topicId)}/posts`, {
+    const result = await apiFetch(`/forum/topics/${encodeURIComponent(topicId)}/posts`, {
       method: "POST",
       body: JSON.stringify({ body }),
     });
-    location.reload();
+    if (result !== null) location.reload();
   } catch (err) {
     errEl.textContent = err.message || "Erro ao publicar.";
     errEl.classList.add("visible");
+  } finally {
     btn.disabled = false; btn.textContent = "Publicar resposta";
   }
 }
