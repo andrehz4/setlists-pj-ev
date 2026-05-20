@@ -1,6 +1,24 @@
 {
-  "updated": "2026-05-19T15:15:14.063Z",
+  "updated": "2026-05-20T15:10:21.778Z",
   "items": [
+    {
+      "id": "cd-20260520",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-20T12:25:25.352Z",
+      "fetchedAt": "2026-05-20T15:10:21.599Z",
+      "img": "/media/news/img/cd-20260520.jpg",
+      "title_pt": "Dave Krusen diz que Pearl Jam já tem novo baterista confirmado",
+      "intro_pt": "Dave Krusen, baterista original do Pearl Jam, disse no fórum oficial da banda que o substituto de Matt Cameron já foi definido.",
+      "tags": [
+        "comunidade"
+      ],
+      "title_ig": "Pearl Jam já tem novo baterista",
+      "kind": "community-digest",
+      "community_posts_count": 8
+    },
     {
       "id": "cd-20260519",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -485,21 +503,6 @@
       "tags": [
         "memoria",
         "lancamento"
-      ]
-    },
-    {
-      "id": "2c236f1ab1",
-      "url": "https://www.pearljamonline.it/radioheart-il-ritratto-di-kevin-cole-e-il-cuore-invisibile-della-musica-di-seattle",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-06T10:31:50.000Z",
-      "fetchedAt": "2026-05-13T14:34:20.744Z",
-      "img": "/media/news/img/2c236f1ab1.jpg",
-      "title_pt": "RADIOHEART: documentário sobre DJ Kevin Cole e a rádio que moldou a cena de Seattle",
-      "intro_pt": "O filme sobre Kevin Cole e a KEXP estreia no SIFF com as primeiras sessões esgotadas e traça o papel invisível da rádio na história do rock alternativo.",
-      "tags": [
-        "memoria"
       ]
     }
   ]
