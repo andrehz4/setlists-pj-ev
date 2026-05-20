@@ -182,34 +182,60 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .composer-overlay.open { display: grid; }
 .composer-modal {
   background: var(--bg-card); border: 1px solid var(--divider-strong);
-  width: 100%; max-width: 680px; display: flex; flex-direction: column;
+  width: 100%; max-width: 760px; display: flex; flex-direction: column;
   max-height: 90vh;
 }
 .composer-modal-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 18px; border-bottom: 1px solid var(--divider);
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 18px; border-bottom: 1px solid var(--divider);
   font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim);
+  flex-shrink: 0;
 }
 .composer-modal-close {
-  background: none; border: none; color: var(--ink-dim); cursor: pointer; font-size: 18px; line-height: 1; padding: 4px;
+  background: none; border: none; color: var(--ink-dim); cursor: pointer; font-size: 18px; line-height: 1; padding: 4px; margin-left: 4px;
 }
 .composer-modal-close:hover { color: var(--pj); }
 .composer-form { padding: 20px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
 .composer-field { display: flex; flex-direction: column; gap: 6px; }
 .composer-field label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); }
-.composer-field input, .composer-field textarea, .composer-field select {
+.composer-field input {
   background: var(--bg-card-sunk); border: 1px solid var(--divider-strong);
   padding: 12px 14px; font-family: var(--font-body); font-size: 16px; color: var(--ink); width: 100%;
   border-radius: 0; outline: none;
 }
-.composer-field input:focus, .composer-field textarea:focus, .composer-field select:focus { border-color: var(--pj); }
-.composer-field input::placeholder, .composer-field textarea::placeholder { color: var(--ink-dim); font-style: italic; }
-.composer-field textarea { min-height: 200px; resize: vertical; }
-.composer-field .char-count { font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); text-align: right; }
-.composer-field .char-count.warn { color: var(--ev); }
-.composer-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.composer-field input:focus { border-color: var(--pj); }
+.composer-field input::placeholder { color: var(--ink-dim); font-style: italic; }
+.char-count { font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); text-align: right; }
+.char-count.warn { color: var(--ev); }
+.composer-actions { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .error-msg { background: rgba(193,39,45,0.1); border: 1px solid var(--pj-soft); padding: 10px 14px; font-family: var(--font-mono); font-size: 11px; color: var(--pj); display: none; }
 .error-msg.visible { display: block; }
+
+/* ── Category pills ── */
+.cat-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.cat-pill { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink-mute); cursor: pointer; }
+.cat-pill:hover { border-color: var(--ink-mute); color: var(--ink); }
+.cat-pill.active { background: rgba(193,39,45,0.1); border-color: var(--pj); color: var(--pj); }
+
+/* ── Composer toolbar & body ── */
+.tool-btn { background: transparent; border: 1px solid transparent; color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px; width: 30px; height: 30px; display: inline-grid; place-items: center; cursor: pointer; flex-shrink: 0; }
+.tool-btn:hover { border-color: var(--divider-strong); color: var(--ink); }
+.tool-btn.b { font-weight: 700; }
+.tool-btn.i { font-style: italic; font-family: var(--font-editorial); font-size: 16px; }
+.tool-sep { width: 1px; height: 16px; background: var(--divider-strong); margin: 0 4px; flex-shrink: 0; align-self: center; }
+.ctoolbar { display: flex; gap: 2px; align-items: center; padding: 6px 10px; border-bottom: 1px solid var(--divider); background: var(--bg-card-sunk); flex-wrap: wrap; }
+.composer-body-wrap { border: 1px solid var(--divider-strong); }
+.composer-textarea { width: 100%; padding: 14px; min-height: 180px; font-family: var(--font-body); font-size: 16px; color: var(--ink); line-height: 1.55; background: var(--bg-card-sunk); border: none; outline: none; resize: vertical; display: block; }
+.composer-textarea::placeholder { color: var(--ink-dim); font-style: italic; font-family: var(--font-editorial); }
+.composer-preview-pane { display: none; padding: 14px; min-height: 80px; background: var(--bg-card-sunk); font-family: var(--font-body); font-size: 16px; color: var(--ink); line-height: 1.55; border-top: 1px solid var(--divider); }
+.composer-field-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+
+/* ── Tag editor ── */
+.tag-editor { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding: 8px 10px; border: 1px solid var(--divider-strong); background: var(--bg-card-sunk); min-height: 44px; }
+.tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: rgba(193,39,45,0.08); border: 1px solid var(--pj-soft); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pj); }
+.tag-chip .rm { background: none; border: none; color: var(--pj); cursor: pointer; font-size: 12px; padding: 0 0 0 2px; line-height: 1; }
+.tag-input-el { background: transparent; border: none; outline: none; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink); flex: 1; min-width: 120px; padding: 2px 0; }
+.tag-input-el::placeholder { color: var(--ink-dim); }
 
 /* ── Forum Highlights ── */
 .forum-highlights { display: grid; grid-template-columns: 1.4fr 1fr 1fr; border-top: 1px solid var(--divider); border-bottom: 1px solid var(--divider); margin: 0 32px; }
@@ -318,36 +344,71 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 <div class="composer-overlay" id="composerOverlay" role="dialog" aria-modal="true" aria-label="Novo tópico">
   <div class="composer-modal">
     <div class="composer-modal-head">
-      <span>Nova thread</span>
+      <span>// Nova thread</span>
+      <span style="color:var(--ink-dim);font-size:10px;margin-left:4px">rascunho salvo automaticamente</span>
+      <div style="display:flex;gap:8px;margin-left:auto">
+        <button class="btn sm ghost" id="composerCancel">Cancelar</button>
+      </div>
       <button class="composer-modal-close" id="composerClose" aria-label="Fechar">×</button>
     </div>
     <div class="composer-form">
+
       <div class="composer-field">
-        <label for="topicTitle">Título</label>
-        <input type="text" id="topicTitle" maxlength="120" placeholder="Sobre o que você quer falar?">
+        <label>01 · Categoria</label>
+        <div class="cat-pills" id="catPills"></div>
+        <input type="hidden" id="topicCategory" value="geral">
+      </div>
+
+      <div class="composer-field">
+        <label>02 · Título</label>
+        <input type="text" id="topicTitle" maxlength="120" placeholder="conta em uma frase — sem caps lock">
         <div class="char-count" id="titleCount">0 / 120</div>
       </div>
+
       <div class="composer-field">
-        <label for="topicCategory">Categoria</label>
-        <select id="topicCategory">
-          <option value="geral">Geral</option>
-          <option value="shows">Shows</option>
-          <option value="albums">Álbuns</option>
-          <option value="setlist">Setlist</option>
-          <option value="records">Records</option>
-          <option value="bootleg">Bootleg</option>
-        </select>
+        <label>03 · O que você quer dizer</label>
+        <div class="composer-body-wrap">
+          <div class="ctoolbar">
+            <button class="tool-btn b" data-ct="bold" title="Negrito (**texto**)">B</button>
+            <button class="tool-btn i" data-ct="italic" title="Itálico (_texto_)">I</button>
+            <button class="tool-btn" data-ct="strike" title="Tachado (~~texto~~)">&#8997;</button>
+            <span class="tool-sep"></span>
+            <button class="tool-btn" data-ct="quote" title="Citar">&#10077;</button>
+            <button class="tool-btn" data-ct="list" title="Lista">&#9636;</button>
+            <button class="tool-btn" data-ct="link" title="Link ([texto](url))">&#8594;</button>
+            <span class="tool-sep"></span>
+            <button class="tool-btn" data-ct="setlist" title="Incorporar setlist (em breve)">&#127925;</button>
+            <button class="tool-btn" data-ct="music" title="Música (em breve)">&#9836;</button>
+            <button class="tool-btn" data-ct="photo" title="Foto (em breve)">&#128444;</button>
+            <button class="tool-btn" data-ct="audio" title="Áudio (em breve)">&#127897;</button>
+            <span class="tool-sep"></span>
+            <button class="tool-btn" data-ct="spoiler" title="Spoiler">&#9888;</button>
+            <button class="tool-btn" data-ct="undo" title="Desfazer" style="margin-left:auto">&#8635;</button>
+            <button class="tool-btn" data-ct="redo" title="Refazer">&#8634;</button>
+          </div>
+          <textarea class="composer-textarea" id="topicBody" maxlength="5000" placeholder="escreve o que quiser — formatação com os botões acima ou markdown básico"></textarea>
+          <div class="composer-preview-pane" id="topicPreviewPane"></div>
+        </div>
+        <div class="composer-field-foot">
+          <div class="char-count" id="bodyCount">0 / 5000</div>
+          <button class="btn sm" id="ctPreviewBtn">Prévia</button>
+        </div>
       </div>
+
       <div class="composer-field">
-        <label for="topicBody">Texto</label>
-        <textarea id="topicBody" maxlength="5000" placeholder="Escreva sua mensagem…"></textarea>
-        <div class="char-count" id="bodyCount">0 / 5000</div>
+        <label>04 · Tags (opcional, até 4)</label>
+        <div class="tag-editor" id="tagEditor">
+          <input type="text" class="tag-input-el" id="tagInput" placeholder="+ adicionar tag e pressionar Enter···" maxlength="30">
+        </div>
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--ink-dim);margin-top:3px;letter-spacing:0.12em">ENTER para adicionar · ATÉ 4 TAGS</div>
       </div>
+
       <div class="error-msg" id="composerError"></div>
       <div class="composer-actions">
-        <button class="btn ghost" id="composerCancel">Cancelar</button>
-        <button class="btn primary" id="composerSubmit">Publicar thread →</button>
+        <span id="composerMeta" style="font-family:var(--font-mono);font-size:10px;color:var(--ink-dim);letter-spacing:0.1em"></span>
+        <button class="btn primary" id="composerSubmit">Publicar thread &#8594;</button>
       </div>
+
     </div>
   </div>
 </div>
@@ -358,13 +419,16 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 // ── Config ──────────────────────────────────────────────────
 const CATS = [
   { id: "", label: "Todos" },
+  { id: "shows", label: "Shows & Relatos" },
+  { id: "setlist", label: "Setlists & Palpites" },
+  { id: "musicas", label: "Músicas & Letras" },
+  { id: "albums", label: "Álbuns & Discografia" },
+  { id: "bootleg", label: "Bootlegs & Áudios" },
+  { id: "cifras", label: "Cifras & Tabs" },
+  { id: "eddie", label: "Eddie Vedder solo" },
   { id: "geral", label: "Geral" },
-  { id: "shows", label: "Shows" },
-  { id: "albums", label: "Álbuns" },
-  { id: "setlist", label: "Setlist" },
-  { id: "records", label: "Records" },
-  { id: "bootleg", label: "Bootleg" },
 ];
+const COMPOSER_CATS = CATS.filter(c => c.id !== "");
 
 // ── Estado ──────────────────────────────────────────────────
 let _state = {
@@ -582,20 +646,100 @@ async function loadTopics() {
 }
 
 // ── Composer ──────────────────────────────────────────────────
-function openComposer() { document.getElementById("composerOverlay").classList.add("open"); }
+let _composerTags = [];
+let _ctPreviewing = false;
+
+function _escHtml(s) {
+  return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function renderPreview(raw) {
+  const esc = _escHtml(raw);
+  const bold = esc.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+  const italic = bold.replace(/_([^_\n]+)_/g, "<em>$1</em>");
+  const spoiler = italic.replace(/\[spoiler\]([\s\S]*?)\[\/spoiler\]/gi,
+    (_, c) => `<span style="background:var(--bg-card);border:1px dashed var(--ev-soft);padding:2px 8px;color:var(--ev);font-family:var(--font-mono);font-size:12px">&#9888; spoiler</span>`);
+  const quotes = spoiler.replace(/^&gt;([^\n]*)/gm, (_, c) => `<div style="border-left:3px solid var(--ev);background:var(--bg-card);padding:6px 12px;margin:4px 0;font-style:italic;color:var(--ink-mute)">${c.trim()}</div>`);
+  const paras = "<p>" + quotes.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+  return DOMPurify.sanitize(paras, {
+    ALLOWED_TAGS: ["p", "br", "strong", "em", "div", "span"],
+    ALLOWED_ATTR: ["style"],
+  });
+}
+
+function updateComposerMeta() {
+  const bodyLen = (document.getElementById("topicBody")?.value || "").length;
+  const meta = document.getElementById("composerMeta");
+  if (meta) {
+    const tagStr = _composerTags.length ? `${_composerTags.length} tag${_composerTags.length > 1 ? "s" : ""}` : "0 tags";
+    meta.textContent = `${tagStr} · ${bodyLen} car.`;
+  }
+}
+
+function renderTagChips() {
+  const editor = document.getElementById("tagEditor");
+  const input = document.getElementById("tagInput");
+  if (!editor || !input) return;
+  editor.querySelectorAll(".tag-chip").forEach(el => el.remove());
+  _composerTags.forEach((tag, i) => {
+    const chip = document.createElement("span");
+    chip.className = "tag-chip";
+    chip.innerHTML = `${san(tag)}<button class="rm" data-i="${i}" title="Remover">&#215;</button>`;
+    editor.insertBefore(chip, input);
+  });
+  editor.querySelectorAll(".rm").forEach(btn => {
+    btn.addEventListener("click", () => {
+      _composerTags.splice(parseInt(btn.dataset.i), 1);
+      renderTagChips(); updateComposerMeta();
+    });
+  });
+}
+
+function buildCatPills(activeId) {
+  const container = document.getElementById("catPills");
+  if (!container) return;
+  container.innerHTML = COMPOSER_CATS.map(c =>
+    `<button class="cat-pill${c.id === activeId ? " active" : ""}" data-cid="${san(c.id)}">${san(c.label)}</button>`
+  ).join("");
+  container.querySelectorAll(".cat-pill").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.getElementById("topicCategory").value = btn.dataset.cid;
+      container.querySelectorAll(".cat-pill").forEach(b => b.classList.toggle("active", b === btn));
+    });
+  });
+}
+
+function openComposer() {
+  _composerTags = [];
+  _ctPreviewing = false;
+  const ta = document.getElementById("topicBody");
+  if (ta) { ta.style.display = ""; ta.value = ""; }
+  const pane = document.getElementById("topicPreviewPane");
+  if (pane) pane.style.display = "none";
+  const prevBtn = document.getElementById("ctPreviewBtn");
+  if (prevBtn) prevBtn.textContent = "Prévia";
+  document.getElementById("topicTitle").value = "";
+  document.getElementById("topicCategory").value = "geral";
+  document.getElementById("composerError").classList.remove("visible");
+  buildCatPills("geral");
+  renderTagChips();
+  updateComposerMeta();
+  document.getElementById("composerOverlay").classList.add("open");
+}
+
 function closeComposer() {
   document.getElementById("composerOverlay").classList.remove("open");
-  document.getElementById("topicTitle").value = "";
-  document.getElementById("topicBody").value = "";
-  document.getElementById("composerError").classList.remove("visible");
+  _composerTags = [];
+  _ctPreviewing = false;
 }
+
 async function submitTopic() {
   const title = document.getElementById("topicTitle").value.trim();
-  const body = document.getElementById("topicBody").value.trim();
-  const category = document.getElementById("topicCategory").value;
+  let body = document.getElementById("topicBody").value.trim();
+  const category = document.getElementById("topicCategory").value || "geral";
   const errEl = document.getElementById("composerError");
   if (!title || title.length < 3) { errEl.textContent = "Título muito curto (mínimo 3 caracteres)."; errEl.classList.add("visible"); return; }
   if (!body || body.length < 10) { errEl.textContent = "Texto muito curto (mínimo 10 caracteres)."; errEl.classList.add("visible"); return; }
+  if (_composerTags.length) body += "\n\n" + _composerTags.map(t => "#" + t).join(" ");
   const btn = document.getElementById("composerSubmit");
   btn.disabled = true; btn.textContent = "Publicando…";
   errEl.classList.remove("visible");
@@ -613,6 +757,108 @@ async function submitTopic() {
     errEl.classList.add("visible");
     btn.disabled = false; btn.textContent = "Publicar thread →";
   }
+}
+
+function initComposer() {
+  document.getElementById("composerClose").addEventListener("click", closeComposer);
+  document.getElementById("composerCancel").addEventListener("click", closeComposer);
+  document.getElementById("composerSubmit").addEventListener("click", submitTopic);
+  document.getElementById("composerOverlay").addEventListener("click", e => {
+    if (e.target === document.getElementById("composerOverlay")) closeComposer();
+  });
+
+  const ta = document.getElementById("topicBody");
+
+  function wrapCT(prefix, suffix, placeholder) {
+    if (_ctPreviewing) return;
+    const start = ta.selectionStart, end = ta.selectionEnd;
+    const sel = ta.value.substring(start, end) || placeholder;
+    ta.value = ta.value.substring(0, start) + prefix + sel + suffix + ta.value.substring(end);
+    ta.focus();
+    ta.setSelectionRange(start + prefix.length, start + prefix.length + sel.length);
+    const n = ta.value.length;
+    const bc = document.getElementById("bodyCount");
+    if (bc) { bc.textContent = n + " / 5000"; bc.classList.toggle("warn", n > 4500); }
+    updateComposerMeta();
+  }
+
+  const ctActions = {
+    bold:    () => wrapCT("**", "**", "texto"),
+    italic:  () => wrapCT("_", "_", "texto"),
+    strike:  () => wrapCT("~~", "~~", "texto"),
+    spoiler: () => wrapCT("[spoiler]", "[/spoiler]", "texto spoiler"),
+    link:    () => wrapCT("[", "](url)", "texto"),
+    quote: () => {
+      if (_ctPreviewing) return;
+      const s = ta.selectionStart, e2 = ta.selectionEnd;
+      const sel = ta.value.substring(s, e2) || "trecho";
+      const q = sel.split("\n").map(l => "> " + l).join("\n");
+      ta.value = ta.value.substring(0, s) + q + ta.value.substring(e2);
+      ta.focus(); updateComposerMeta();
+    },
+    list: () => {
+      if (_ctPreviewing) return;
+      const s = ta.selectionStart;
+      ta.value = ta.value.substring(0, s) + "- " + ta.value.substring(s);
+      ta.focus(); ta.setSelectionRange(s + 2, s + 2); updateComposerMeta();
+    },
+    undo: () => { ta.focus(); document.execCommand("undo"); },
+    redo: () => { ta.focus(); document.execCommand("redo"); },
+    setlist: () => alert("Em breve: incorporar setlist do arquivo."),
+    music:   () => alert("Em breve: linkar música."),
+    photo:   () => alert("Em breve: anexar foto."),
+    audio:   () => alert("Em breve: anexar áudio."),
+  };
+
+  document.querySelector(".ctoolbar").addEventListener("click", e => {
+    const btn = e.target.closest("[data-ct]");
+    if (!btn) return;
+    ctActions[btn.dataset.ct]?.();
+  });
+
+  ta.addEventListener("input", () => {
+    const n = ta.value.length;
+    const bc = document.getElementById("bodyCount");
+    if (bc) { bc.textContent = n + " / 5000"; bc.classList.toggle("warn", n > 4500); }
+    updateComposerMeta();
+  });
+
+  document.getElementById("topicTitle").addEventListener("input", e => {
+    const el = document.getElementById("titleCount");
+    if (el) { const n = e.target.value.length; el.textContent = n + " / 120"; el.classList.toggle("warn", n > 100); }
+  });
+
+  document.getElementById("ctPreviewBtn").addEventListener("click", () => {
+    const pane = document.getElementById("topicPreviewPane");
+    _ctPreviewing = !_ctPreviewing;
+    if (_ctPreviewing) {
+      pane.innerHTML = renderPreview(ta.value || "");
+      pane.style.display = "block";
+      ta.style.display = "none";
+      document.getElementById("ctPreviewBtn").textContent = "Editar";
+    } else {
+      pane.style.display = "none";
+      ta.style.display = "";
+      document.getElementById("ctPreviewBtn").textContent = "Prévia";
+    }
+  });
+
+  const tagInput = document.getElementById("tagInput");
+  tagInput.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === ",") {
+      e.preventDefault();
+      const val = tagInput.value.trim().replace(/^#/, "").replace(/[^a-zA-Z0-9À-ɏ_-]/g, "");
+      if (val && _composerTags.length < 4 && !_composerTags.includes(val)) {
+        _composerTags.push(val);
+        renderTagChips(); updateComposerMeta();
+      }
+      tagInput.value = "";
+    }
+    if (e.key === "Backspace" && !tagInput.value && _composerTags.length) {
+      _composerTags.pop();
+      renderTagChips(); updateComposerMeta();
+    }
+  });
 }
 
 // ── Tema ──────────────────────────────────────────────────────
@@ -673,26 +919,7 @@ async function init() {
 
   // Composer
   document.getElementById("newTopicBtn").addEventListener("click", openComposer);
-  document.getElementById("composerClose").addEventListener("click", closeComposer);
-  document.getElementById("composerCancel").addEventListener("click", closeComposer);
-  document.getElementById("composerSubmit").addEventListener("click", submitTopic);
-  document.getElementById("composerOverlay").addEventListener("click", e => {
-    if (e.target === document.getElementById("composerOverlay")) closeComposer();
-  });
-
-  // Char counts
-  document.getElementById("topicTitle").addEventListener("input", e => {
-    const el = document.getElementById("titleCount");
-    const n = e.target.value.length;
-    el.textContent = n + " / 120";
-    el.classList.toggle("warn", n > 100);
-  });
-  document.getElementById("topicBody").addEventListener("input", e => {
-    const el = document.getElementById("bodyCount");
-    const n = e.target.value.length;
-    el.textContent = n + " / 5000";
-    el.classList.toggle("warn", n > 4500);
-  });
+  initComposer();
 
   // Busca
   let searchTimer;
