@@ -1,6 +1,22 @@
 {
-  "updated": "2026-05-21T15:14:13.072Z",
+  "updated": "2026-05-21T21:06:31.238Z",
   "items": [
+    {
+      "id": "5608115c56",
+      "url": "https://rollingstone.com.br/musica/pearl-jam-jeremy-duas-tragedias",
+      "source": "rolling-stone-br",
+      "sourceLabel": "Rolling Stone Brasil",
+      "group": "br",
+      "pubDate": "2026-05-21T18:36:18.000Z",
+      "fetchedAt": "2026-05-21T21:06:30.949Z",
+      "img": "/media/news/img/5608115c56.jpg",
+      "title_pt": "As duas tragédias reais que inspiraram Jeremy, do Pearl Jam",
+      "intro_pt": "A letra de Jeremy não é ficção: Eddie Vedder a escreveu a partir de dois casos reais de violência juvenil que o marcaram.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Jeremy não é ficção: a história real por trás da música"
+    },
     {
       "id": "cd-20260521",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -492,21 +508,6 @@
       "kind": "community-spotlight",
       "community_post_url": "https://www.reddit.com/r/pearljam/comments/1t78820/new_ed_portrait_13x19_acrylic_hope_you_dig_it/",
       "community_post_score": 442
-    },
-    {
-      "id": "fececaea00",
-      "url": "https://www.pearljamonline.it/mike-mccready-rompe-il-silenzio-sui-pearl-jam-e-sul-futuro-della-band-sono-frustrato",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-08T08:16:06.000Z",
-      "fetchedAt": "2026-05-13T14:34:20.744Z",
-      "img": "/media/news/img/fececaea00.jpg",
-      "title_pt": "Mike McCready admite frustração com paralisação do PJ e quer voltar a tocar",
-      "intro_pt": "Em entrevista em Seattle, o guitarrista fala sem rodeios sobre a busca por baterista, a saudade da estrada e a perda de Matt Cameron.",
-      "tags": [
-        "mike"
-      ]
     }
   ]
 }
