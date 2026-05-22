@@ -1,10 +1,26 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-18
+2026-05-22
 
 ## Estado atual
-Fórum da comunidade implementado e no GitHub. Railway ainda não configurado.
+Bug de fotos corrigido. 47 testes unitarios do chat passando. Railway ainda nao configurado.
+
+## O que foi feito hoje (2026-05-22) — fix fotos + testes
+
+### Bug corrigido: fotos nao postavam
+- Causa raiz: `backend/app/schemas/forum.py` tinha `max_length=5000` em `TopicCreate.body` e `PostCreate.body`
+- Foto JPEG 400x400 comprimida em base64 ocupa ~40KB de texto, muito acima do limite
+- Fix: limite aumentado para 200000 em ambos os schemas
+- Comportamento anterior: qualquer post com foto retornava 422
+
+### Testes unitarios criados (47 testes, todos passando)
+- `backend/tests/test_chat_funcionalidades.py`
+- Cobre: criar topico, criar resposta, listar topicos, visualizar topico
+- Cobre: foto unica, 4 fotos, setlist embed, autenticacao JWT
+- Cobre: validacoes (titulo curto/longo, corpo curto, body > 200000)
+- Cobre: isolamento de site (origin invalida = 403)
+- Fixture `reset_rate_limit` para evitar 429 falso entre testes
 
 ## O que foi feito hoje (2026-05-18) — sessao do forum
 
