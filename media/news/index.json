@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-22T09:09:40.909Z",
+  "updated": "2026-05-22T15:12:35.971Z",
   "items": [
+    {
+      "id": "cd-20260522",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-22T12:25:22.156Z",
+      "fetchedAt": "2026-05-22T15:12:35.709Z",
+      "img": "/media/news/img/cd-20260522.jpg",
+      "title_pt": "Stone confirma: novo baterista do Pearl Jam já foi escolhido",
+      "intro_pt": "A comunidade global de fãs acordou com a notícia mais esperada: Stone confirma que a vaga na bateria já foi preenchida, mas o nome segue em mistério.",
+      "tags": [
+        "comunidade",
+        "turne"
+      ],
+      "title_ig": "Stone confirma: novo baterista escolhido",
+      "kind": "community-digest",
+      "community_posts_count": 8
+    },
     {
       "id": "0ac63f3cc6",
       "url": "https://www.pearljamonline.it/stone-gossard-sul-nuovo-batterista-dei-pearl-jam-adoro-il-mistero-e-tutto-cosi-eccitante",
@@ -489,23 +508,6 @@
       "tags": [
         "tenclub"
       ]
-    },
-    {
-      "id": "bf1ba4fb94",
-      "url": "https://shop.pearljam.com/products/neil-young-pearl-jam-mirror-ball",
-      "source": "pj-shop-featured",
-      "sourceLabel": "Loja Pearl Jam",
-      "group": "tenclub",
-      "pubDate": "2026-05-10T17:00:05Z",
-      "fetchedAt": "2026-05-15T15:13:03.534Z",
-      "img": "/media/news/img/bf1ba4fb94.jpg",
-      "title_pt": "Mirror Ball está de volta: o álbum onde o Pearl Jam virou banda de apoio do Neil Young",
-      "intro_pt": "Relançamento do clássico de 1995 recoloca em evidência um dos encontros mais genuínos do rock alternativo americano.",
-      "tags": [
-        "loja",
-        "memoria"
-      ],
-      "kind": "shop"
     }
   ]
 }
