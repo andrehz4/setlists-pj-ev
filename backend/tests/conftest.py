@@ -1,6 +1,7 @@
 import os
+from unittest.mock import AsyncMock, patch
+
 import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
 from fastapi.testclient import TestClient
 
 # Variáveis mínimas para o app inicializar em testes
@@ -13,6 +14,17 @@ os.environ.setdefault(
     "https://setlists-pj-ev.pages.dev=pj,https://terra-gentil.pages.dev=terra-gentil",
 )
 os.environ.setdefault("ENVIRONMENT", "test")
+
+
+@pytest.fixture(autouse=True)
+def disable_rate_limit():
+    """Desliga o rate limit nos testes via API publica do SlowAPI (limiter.enabled).
+    Evita 429 falso entre testes sem depender de atributos internos como _storage."""
+    from app.core.limiter import limiter
+    previous = limiter.enabled
+    limiter.enabled = False
+    yield
+    limiter.enabled = previous
 
 
 @pytest.fixture

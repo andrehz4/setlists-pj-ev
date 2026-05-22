@@ -31,12 +31,16 @@ class Settings(BaseSettings):
 
     @property
     def site_origin_map(self) -> dict[str, str]:
+        cached = self.__dict__.get("_site_origin_map_cache")
+        if cached is not None:
+            return cached
         result = {}
         for pair in self.SITE_ORIGINS.split(","):
             pair = pair.strip()
             if "=" in pair:
                 origin, site = pair.split("=", 1)
                 result[origin.strip()] = site.strip()
+        self.__dict__["_site_origin_map_cache"] = result
         return result
 
 

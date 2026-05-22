@@ -440,6 +440,11 @@ let _state = {
 function san(str) {
   return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
 }
+// Só aceita URLs https; bloqueia javascript:, data:, etc. em src/href de terceiros.
+function sanUrl(url) {
+  const u = (url || "").trim();
+  return /^https:\/\//i.test(u) ? san(u) : "";
+}
 function timeAgo(iso) {
   const diff = (Date.now() - new Date(iso)) / 1000;
   if (diff < 60) return "agora";
@@ -450,6 +455,10 @@ function timeAgo(iso) {
 }
 function initials(name) {
   return (name || "?").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+}
+function avatarHtml(url, name) {
+  const safe = sanUrl(url);
+  return safe ? `<img src="${safe}" alt="${san(name)}">` : san(initials(name));
 }
 const _HTTP_MSGS = {
   400: "Dados inválidos. Verifique o que foi enviado.",
@@ -492,9 +501,7 @@ function renderAuthArea() {
   const btn = document.getElementById("newTopicBtn");
   if (_state.token && _state.user) {
     const u = _state.user;
-    const avHtml = u.avatar_url
-      ? `<img src="${san(u.avatar_url)}" alt="${san(u.display_name)}">`
-      : initials(u.display_name);
+    const avHtml = avatarHtml(u.avatar_url, u.display_name);
     area.innerHTML = `
       <div class="user-badge">
         <div class="av">${avHtml}</div>
@@ -519,9 +526,7 @@ function renderHighlights(items) {
 
   const top = items.slice().sort((a, b) => b.reply_count - a.reply_count);
   const hot = top[0];
-  const hotAv = hot.avatar_url
-    ? `<img src="${san(hot.avatar_url)}" alt="${san(hot.display_name)}">`
-    : initials(hot.display_name);
+  const hotAv = avatarHtml(hot.avatar_url, hot.display_name);
 
   const miniItems = top.slice(0, 3).map((t, i) =>
     `<div class="fh-mini-item" data-id="${san(t.id)}">
@@ -536,9 +541,7 @@ function renderHighlights(items) {
     .filter(t => { const k = (t.display_name || "").toLowerCase().trim(); if (seen.has(k)) return false; seen.add(k); return true; })
     .slice(0, 4);
   const voiceItems = voices.map(t => {
-    const av = t.avatar_url
-      ? `<img src="${san(t.avatar_url)}" alt="${san(t.display_name)}">`
-      : initials(t.display_name);
+    const av = avatarHtml(t.avatar_url, t.display_name);
     return `<div class="rail-user">
       <div class="av">${av}</div>
       <span class="who">${san(t.display_name)}</span>
@@ -597,9 +600,7 @@ function renderThreads(data) {
   }
   renderHighlights(data.items);
   list.innerHTML = data.items.map(t => {
-    const avHtml = t.avatar_url
-      ? `<img src="${san(t.avatar_url)}" alt="${san(t.display_name)}">`
-      : initials(t.display_name);
+    const avHtml = avatarHtml(t.avatar_url, t.display_name);
     return `
       <div class="thread-row${t.pinned ? " pinned" : ""}" data-id="${san(t.id)}">
         <div class="thread-avatar">${avHtml}</div>
@@ -664,6 +665,10 @@ let _composerTags = [];
 let _composerPhotos = [];
 let _ctPreviewing = false;
 
+// Limites alinhados ao backend (body max 200000 chars). Foto grande trava o browser.
+const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;   // 8 MB por arquivo de entrada
+const MAX_BODY_CHARS = 200000;              // teto do backend (TopicCreate.body)
+
 function _escHtml(s) {
   return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -681,13 +686,19 @@ function renderPreview(raw) {
   });
 }
 
-function updateComposerMeta() {
+function _totalBodyChars() {
   const bodyLen = (document.getElementById("topicBody")?.value || "").length;
+  const photoChars = _composerPhotos.reduce((s, p) => s + p.dataUrl.length + 11, 0);
+  return bodyLen + photoChars;
+}
+function updateComposerMeta() {
+  const total = _totalBodyChars();
   const meta = document.getElementById("composerMeta");
   if (meta) {
     const tagStr = _composerTags.length ? `${_composerTags.length} tag${_composerTags.length > 1 ? "s" : ""}` : "0 tags";
     const photoStr = _composerPhotos.length ? ` · ${_composerPhotos.length} foto${_composerPhotos.length > 1 ? "s" : ""}` : "";
-    meta.textContent = `${tagStr}${photoStr} · ${bodyLen} car.`;
+    const over = total > MAX_BODY_CHARS ? " · LIMITE EXCEDIDO" : "";
+    meta.textContent = `${tagStr}${photoStr} · ${total} car.${over}`;
   }
 }
 
@@ -809,6 +820,11 @@ async function submitTopic() {
   if (!body || body.length < 10) { errEl.textContent = "Texto muito curto (mínimo 10 caracteres)."; errEl.classList.add("visible"); return; }
   if (_composerTags.length) body += "\n\n" + _composerTags.map(t => "#" + t).join(" ");
   if (_composerPhotos.length) body += "\n\n" + _composerPhotos.map(p => `[img]${p.dataUrl}[/img]`).join("\n");
+  if (body.length > MAX_BODY_CHARS) {
+    errEl.textContent = "Conteúdo muito grande (fotos pesadas demais). Remova uma foto e tente de novo.";
+    errEl.classList.add("visible");
+    return;
+  }
   const btn = document.getElementById("composerSubmit");
   btn.disabled = true; btn.textContent = "Publicando…";
   errEl.classList.remove("visible");
@@ -887,7 +903,14 @@ function initComposer() {
 
   const photoInput = document.getElementById("photoFileInput");
   photoInput.addEventListener("change", async () => {
-    const files = Array.from(photoInput.files).filter(f => f.type.startsWith("image/"));
+    const all = Array.from(photoInput.files).filter(f => f.type.startsWith("image/"));
+    const tooBig = all.filter(f => f.size > MAX_UPLOAD_BYTES);
+    const files = all.filter(f => f.size <= MAX_UPLOAD_BYTES);
+    const errEl = document.getElementById("composerError");
+    if (tooBig.length) {
+      errEl.textContent = `Foto acima de 8 MB ignorada (${tooBig.length}). Reduza o tamanho antes de anexar.`;
+      errEl.classList.add("visible");
+    }
     for (const file of files) {
       if (_composerPhotos.length >= 4) break;
       try {

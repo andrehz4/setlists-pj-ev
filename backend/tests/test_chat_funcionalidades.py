@@ -4,35 +4,22 @@ Testes de funcionalidades do chat/forum.
 Cobre: criar topico, criar resposta, listar topicos, visualizar topico,
        fotos em base64, reports, autenticacao e limites de tamanho.
 """
-import pytest
 from contextlib import asynccontextmanager
 from unittest.mock import AsyncMock, patch
+
+import pytest
 from starlette.testclient import TestClient
-
-
-@pytest.fixture(autouse=True)
-def reset_rate_limit():
-    """Reseta o storage do SlowAPI entre cada teste para evitar 429 falso."""
-    from app.core.limiter import limiter
-    try:
-        limiter._storage.reset()
-    except Exception:
-        pass
-    yield
-    try:
-        limiter._storage.reset()
-    except Exception:
-        pass
-
 
 ORIGIN_PJ = "https://setlists-pj-ev.pages.dev"
 TOPIC_ID = "00000000-0000-0000-0000-000000000001"
 POST_ID = "00000000-0000-0000-0000-000000000002"
+USER_ID = "00000000-0000-0000-0000-000000000001"
 
 
 def _fake_topic_row():
     return {
         "id": TOPIC_ID,
+        "user_id": USER_ID,
         "title": "Show em São Paulo",
         "body": "Quem vai ao show?",
         "category": "shows",
@@ -50,6 +37,7 @@ def _fake_user_row():
 def _fake_topic_full_row():
     return {
         "id": TOPIC_ID,
+        "user_id": USER_ID,
         "title": "Show em São Paulo",
         "body": "Quem vai ao show?",
         "category": "shows",
@@ -60,12 +48,15 @@ def _fake_topic_full_row():
         "created_at": "2026-05-22T10:00:00",
         "last_post_at": "2026-05-22T10:00:00",
         "reply_count": 0,
+        "reactions": {},
+        "my_reactions": [],
     }
 
 
 def _fake_post_row():
     return {
         "id": POST_ID,
+        "user_id": USER_ID,
         "topic_id": TOPIC_ID,
         "body": "Vou sim!",
         "site": "pj",
@@ -74,6 +65,12 @@ def _fake_post_row():
 
 
 def _make_get_conn(mock_conn):
+    # conn.transaction() precisa ser um context manager assincrono (asyncpg)
+    @asynccontextmanager
+    async def _txn():
+        yield mock_conn
+    mock_conn.transaction = lambda *a, **k: _txn()
+
     @asynccontextmanager
     async def fake_get_conn():
         yield mock_conn
@@ -597,5 +594,189 @@ class TestLimiteTamanhoCorpo:
                 f"/forum/topics/{TOPIC_ID}/posts",
                 json={"body": body},
                 headers={"origin": ORIGIN_PJ, "authorization": f"Bearer {valid_token}"},
+            )
+        assert resp.status_code == 201
+
+
+# ── Reactions ────────────────────────────────────────────────────────────────
+
+class TestReactions:
+    """POST /forum/reactions (toggle de reacao em topico ou post)."""
+
+    def test_adicionar_reacao_retorna_active_true(self, client: TestClient, valid_token: str):
+        mock_conn = AsyncMock()
+        # exists=1, already=None (nao reagiu ainda), count final=1
+        mock_conn.fetchval = AsyncMock(side_effect=[1, None, 1])
+        mock_conn.execute = AsyncMock()
+        with patch("app.routes.forum.get_conn", _make_get_conn(mock_conn)):
+            resp = client.post(
+                "/forum/reactions",
+                json={"target_id": TOPIC_ID, "target_type": "topic", "type": "mata"},
+                headers={"origin": ORIGIN_PJ, "authorization": f"Bearer {valid_token}"},
+            )
+        assert resp.status_code == 200
+        data = resp.json()
+        assert data["active"] is True
+        assert data["count"] == 1
+
+    def test_remover_reacao_retorna_active_false(self, client: TestClient, valid_token: str):
+        mock_conn = AsyncMock()
+        # exists=1, already=1 (ja reagiu, vai remover), count final=0
+        mock_conn.fetchval = AsyncMock(side_effect=[1, 1, 0])
+        mock_conn.execute = AsyncMock()
+        with patch("app.routes.forum.get_conn", _make_get_conn(mock_conn)):
+            resp = client.post(
+                "/forum/reactions",
+                json={"target_id": POST_ID, "target_type": "post", "type": "tava_la"},
+                headers={"origin": ORIGIN_PJ, "authorization": f"Bearer {valid_token}"},
+            )
+        assert resp.status_code == 200
+        assert resp.json()["active"] is False
+        assert resp.json()["count"] == 0
+
+    def test_alvo_inexistente_retorna_404(self, client: TestClient, valid_token: str):
+        mock_conn = AsyncMock()
+        mock_conn.fetchval = AsyncMock(return_value=None)  # exists=None
+        with patch("app.routes.forum.get_conn", _make_get_conn(mock_conn)):
+            resp = client.post(
+                "/forum/reactions",
+                json={"target_id": TOPIC_ID, "target_type": "topic", "type": "mata"},
+                headers={"origin": ORIGIN_PJ, "authorization": f"Bearer {valid_token}"},
+            )
+        assert resp.status_code == 404
+
+    def test_tipo_invalido_retorna_422(self, client: TestClient, valid_token: str):
+        resp = client.post(
+            "/forum/reactions",
+            json={"target_id": TOPIC_ID, "target_type": "topic", "type": "joinha"},
+            headers={"origin": ORIGIN_PJ, "authorization": f"Bearer {valid_token}"},
+        )
+        assert resp.status_code == 422
+
+    def test_target_type_invalido_retorna_422(self, client: TestClient, valid_token: str):
+        resp = client.post(
+            "/forum/reactions",
+            json={"target_id": TOPIC_ID, "target_type": "comentario", "type": "mata"},
+            headers={"origin": ORIGIN_PJ, "authorization": f"Bearer {valid_token}"},
+        )
+        assert resp.status_code == 422
+
+    def test_sem_auth_retorna_401(self, client: TestClient):
+        resp = client.post(
+            "/forum/reactions",
+            json={"target_id": TOPIC_ID, "target_type": "topic", "type": "mata"},
+            headers={"origin": ORIGIN_PJ},
+        )
+        assert resp.status_code == 401
+
+    def test_origin_invalida_retorna_403(self, client: TestClient, valid_token: str):
+        resp = client.post(
+            "/forum/reactions",
+            json={"target_id": TOPIC_ID, "target_type": "topic", "type": "mata"},
+            headers={"origin": "https://hacker.io", "authorization": f"Bearer {valid_token}"},
+        )
+        assert resp.status_code == 403
+
+    def test_get_topic_retorna_reactions_e_my_reactions(self, client: TestClient, valid_token: str):
+        """get_topic deve serializar reactions (jsonb) e my_reactions (array)."""
+        row = _fake_topic_full_row()
+        row["reactions"] = {"mata": 5, "tava_la": 2}
+        row["my_reactions"] = ["mata"]
+        mock_conn = AsyncMock()
+        mock_conn.fetchrow = AsyncMock(return_value=row)
+        mock_conn.fetch = AsyncMock(return_value=[])
+        with patch("app.routes.forum.get_conn", _make_get_conn(mock_conn)):
+            resp = client.get(
+                f"/forum/topics/{TOPIC_ID}",
+                headers={"origin": ORIGIN_PJ, "authorization": f"Bearer {valid_token}"},
+            )
+        assert resp.status_code == 200
+        topic = resp.json()["topic"]
+        assert topic["reactions"]["mata"] == 5
+        assert "mata" in topic["my_reactions"]
+
+
+# ── Robustez de serializacao e erros de DB ───────────────────────────────────
+
+class TestSerializacaoEErros:
+    def test_reactions_jsonb_como_string_e_parseado(self, client: TestClient):
+        """asyncpg pode devolver jsonb como string; o backend deve parsear para dict."""
+        row = _fake_topic_full_row()
+        row["reactions"] = '{"mata": 3}'  # string JSON, como asyncpg as vezes devolve
+        mock_conn = AsyncMock()
+        mock_conn.fetchrow = AsyncMock(return_value=row)
+        mock_conn.fetch = AsyncMock(return_value=[])
+        with patch("app.routes.forum.get_conn", _make_get_conn(mock_conn)):
+            resp = client.get(f"/forum/topics/{TOPIC_ID}", headers={"origin": ORIGIN_PJ})
+        assert resp.status_code == 200
+        assert resp.json()["topic"]["reactions"]["mata"] == 3
+
+    def test_reactions_jsonb_invalido_vira_dict_vazio(self, client: TestClient):
+        """String jsonb corrompida nao deve quebrar a resposta."""
+        row = _fake_topic_full_row()
+        row["reactions"] = "{nao eh json valido"
+        mock_conn = AsyncMock()
+        mock_conn.fetchrow = AsyncMock(return_value=row)
+        mock_conn.fetch = AsyncMock(return_value=[])
+        with patch("app.routes.forum.get_conn", _make_get_conn(mock_conn)):
+            resp = client.get(f"/forum/topics/{TOPIC_ID}", headers={"origin": ORIGIN_PJ})
+        assert resp.status_code == 200
+        assert resp.json()["topic"]["reactions"] == {}
+
+    def test_erro_de_db_nao_e_engolido(self, client: TestClient, valid_token: str):
+        """Excecao do asyncpg deve propagar (vira 500 em prod), nunca ser silenciada.
+        O client de teste usa raise_server_exceptions=True, entao a excecao sobe ate aqui."""
+        mock_conn = AsyncMock()
+        mock_conn.fetchrow = AsyncMock(side_effect=RuntimeError("conexao perdida"))
+        with patch("app.routes.forum.get_conn", _make_get_conn(mock_conn)):
+            with pytest.raises(RuntimeError, match="conexao perdida"):
+                client.post(
+                    "/forum/topics",
+                    json={"title": "Titulo valido aqui", "body": "Corpo com dez chars.", "category": "geral"},
+                    headers={"origin": ORIGIN_PJ, "authorization": f"Bearer {valid_token}"},
+                )
+
+
+# ── Infra: health checks, correlation id, auth case-insensitive ──────────────
+
+class TestInfraestrutura:
+    def test_health_leve_nao_toca_db(self, client: TestClient):
+        resp = client.get("/health")
+        assert resp.status_code == 200
+        assert resp.json()["status"] == "ok"
+
+    def test_health_db_ok(self, client: TestClient):
+        mock_conn = AsyncMock()
+        mock_conn.fetchval = AsyncMock(return_value=1)
+        with patch("app.main.get_conn", _make_get_conn(mock_conn)):
+            resp = client.get("/health/db")
+        assert resp.status_code == 200
+        assert resp.json()["db"] == "ok"
+
+    def test_health_db_falha_retorna_503(self, client: TestClient):
+        mock_conn = AsyncMock()
+        mock_conn.fetchval = AsyncMock(side_effect=RuntimeError("sem banco"))
+        with patch("app.main.get_conn", _make_get_conn(mock_conn)):
+            resp = client.get("/health/db")
+        assert resp.status_code == 503
+        assert resp.json()["db"] == "error"
+
+    def test_correlation_id_no_response(self, client: TestClient):
+        resp = client.get("/health")
+        assert "x-request-id" in resp.headers
+
+    def test_correlation_id_propagado_do_request(self, client: TestClient):
+        resp = client.get("/health", headers={"x-request-id": "abc123"})
+        assert resp.headers["x-request-id"] == "abc123"
+
+    def test_bearer_case_insensitive(self, client: TestClient, valid_token: str):
+        """Token com 'bearer' minusculo deve ser aceito (RFC 7235)."""
+        mock_conn = AsyncMock()
+        mock_conn.fetchrow = AsyncMock(side_effect=[_fake_topic_row(), _fake_user_row()])
+        with patch("app.routes.forum.get_conn", _make_get_conn(mock_conn)):
+            resp = client.post(
+                "/forum/topics",
+                json={"title": "Titulo valido aqui", "body": "Corpo com dez chars.", "category": "geral"},
+                headers={"origin": ORIGIN_PJ, "authorization": f"bearer {valid_token}"},
             )
         assert resp.status_code == 201

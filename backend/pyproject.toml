@@ -1,0 +1,23 @@
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+# E/F: pyflakes+pycodestyle, I: isort, B: bugbear, S: bandit (SAST), UP: pyupgrade
+select = ["E", "F", "I", "B", "S", "UP"]
+ignore = [
+    "E501",   # comprimento de linha (queries SQL longas)
+    "B008",   # Depends() no default de argumento e padrao do FastAPI
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Testes podem usar assert (S101) e dados hardcoded de teste (S105/S106)
+"tests/*" = ["S101", "S105", "S106"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]

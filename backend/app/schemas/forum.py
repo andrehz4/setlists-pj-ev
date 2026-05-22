@@ -17,8 +17,15 @@ class ReportCreate(BaseModel):
     reason: str | None = Field(default=None, max_length=500)
 
 
+class ReactionCreate(BaseModel):
+    target_id: str
+    target_type: str = Field(pattern="^(topic|post)$")
+    type: str = Field(pattern="^(tava_la|mata|curtir|salvar)$")
+
+
 class TopicOut(BaseModel):
     id: str
+    user_id: str
     title: str
     body: str
     category: str
@@ -29,16 +36,21 @@ class TopicOut(BaseModel):
     created_at: str
     last_post_at: str
     reply_count: int
+    reactions: dict[str, int] = {}
+    my_reactions: list[str] = []
 
 
 class PostOut(BaseModel):
     id: str
+    user_id: str
     topic_id: str
     body: str
     site: str
     display_name: str
     avatar_url: str | None
     created_at: str
+    reactions: dict[str, int] = {}
+    my_reactions: list[str] = []
 
 
 class TopicDetailOut(BaseModel):
