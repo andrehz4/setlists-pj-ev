@@ -1,12 +1,10 @@
 import logging
 import uuid
-from typing import Optional
 
-from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 
-from app.core.config import settings
 from app.core.limiter import limiter
-from app.routes.forum import _resolve_site
+from app.dependencies import optional_auth, require_auth, resolve_site
 from app.schemas.feed import (
     CommentCreate,
     FeedCommentOut,
@@ -15,28 +13,15 @@ from app.schemas.feed import (
     FeedPostDetailOut,
     FeedPostOut,
 )
-from app.services.auth_service import verify_jwt
 from app.services.db import get_conn
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-
-def _require_auth(authorization: Optional[str] = Header(default=None)) -> str:
-    if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token ausente")
-    token = authorization.removeprefix("Bearer ").strip()
-    return verify_jwt(token)["user_id"]
-
-
-def _optional_auth(authorization: Optional[str] = Header(default=None)) -> Optional[str]:
-    if not authorization or not authorization.startswith("Bearer "):
-        return None
-    try:
-        token = authorization.removeprefix("Bearer ").strip()
-        return verify_jwt(token)["user_id"]
-    except HTTPException:
-        return None
+# Aliases para compatibilidade com testes que mockam app.routes.feed.*
+_resolve_site = resolve_site
+_require_auth = require_auth
+_optional_auth = optional_auth
 
 
 @router.get("/posts", response_model=FeedPageOut, tags=["Feed"])
@@ -44,7 +29,7 @@ async def list_posts(
     request: Request,
     page: int = 1,
     per_page: int = 20,
-    user_id: Optional[str] = Depends(_optional_auth),
+    user_id: str | None = Depends(_optional_auth),
 ):
     site = _resolve_site(request)
     per_page = min(per_page, 50)
@@ -115,7 +100,7 @@ async def create_post(
 async def get_post(
     post_id: str,
     request: Request,
-    user_id: Optional[str] = Depends(_optional_auth),
+    user_id: str | None = Depends(_optional_auth),
 ):
     site = _resolve_site(request)
 

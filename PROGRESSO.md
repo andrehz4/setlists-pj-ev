@@ -4,23 +4,33 @@
 2026-05-22
 
 ## Estado atual
-Bug de fotos corrigido. 47 testes unitarios do chat passando. Railway ainda nao configurado.
+Hardening completo do forum apos vistoria de sprint. 84 testes passando, ruff limpo, CI criado.
+ACAO PENDENTE DO ANDRE: rodar `backend/migrations/001_fix_body_reactions_indexes.sql` no Supabase.
 
-## O que foi feito hoje (2026-05-22) — fix fotos + testes
+## ACAO URGENTE (resolve o 500 ao postar foto em producao)
+O 500 atual NAO e o Pydantic (ja corrigido). A coluna `body` no Supabase ainda e
+VARCHAR(5000); a foto passa na validacao mas estoura o tipo da coluna no INSERT.
+Rodar no Supabase SQL Editor:
+  ALTER TABLE forum_topics ALTER COLUMN body TYPE text;
+  ALTER TABLE forum_posts  ALTER COLUMN body TYPE text;
+(arquivo completo: backend/migrations/001_fix_body_reactions_indexes.sql, inclui
+ tabela forum_reactions e indices)
 
-### Bug corrigido: fotos nao postavam
-- Causa raiz: `backend/app/schemas/forum.py` tinha `max_length=5000` em `TopicCreate.body` e `PostCreate.body`
-- Foto JPEG 400x400 comprimida em base64 ocupa ~40KB de texto, muito acima do limite
-- Fix: limite aumentado para 200000 em ambos os schemas
-- Comportamento anterior: qualquer post com foto retornava 422
+## O que foi feito hoje (2026-05-22) — vistoria de sprint + hardening
 
-### Testes unitarios criados (47 testes, todos passando)
-- `backend/tests/test_chat_funcionalidades.py`
-- Cobre: criar topico, criar resposta, listar topicos, visualizar topico
-- Cobre: foto unica, 4 fotos, setlist embed, autenticacao JWT
-- Cobre: validacoes (titulo curto/longo, corpo curto, body > 200000)
-- Cobre: isolamento de site (origin invalida = 403)
-- Fixture `reset_rate_limit` para evitar 429 falso entre testes
+### Fix original (commit anterior)
+- max_length de body 5000 -> 200000 em TopicCreate/PostCreate
+
+### Hardening pos-vistoria (este commit)
+- CI/CD: `.github/workflows/backend-ci.yml` (ruff + pytest + cobertura + pip-audit), pyproject.toml, requirements-dev.txt
+- Seguranca: sort com whitelist (anti SQL-injection), CORS localhost so em dev, rate limit le X-Forwarded-For (Railway), avatar so aceita https no front (sanUrl), Bearer case-insensitive
+- Reactions: endpoint POST /forum/reactions implementado (estava 404 no front), reactions+my_reactions em TopicOut/PostOut
+- Arquitetura: create_post em transacao, last_post_at no INSERT, filtro de site nos posts, deps compartilhadas em app/dependencies.py
+- Performance: N+1 de reply_count trocado por LEFT JOIN; indices na migracao
+- Observabilidade: logs JSON + correlation id (x-request-id), /health leve + /health/db
+- Frontend: limite de 8MB por foto, contador inclui peso das fotos, validacao de tamanho total antes de enviar
+- Testes: 84 no total (era 67); reactions, erros de DB, health checks, serializacao jsonb
+- Migracao SQL: backend/migrations/001_fix_body_reactions_indexes.sql (body->text, forum_reactions, indices)
 
 ## O que foi feito hoje (2026-05-18) — sessao do forum
 

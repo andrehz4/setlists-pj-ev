@@ -4,11 +4,11 @@ Testes de isolamento de site.
 Garante que um request vindo do domínio PJ nunca lê/escreve dados do
 terra-gentil, e vice-versa. É o contrato mais crítico do backend.
 """
-import pytest
-from unittest.mock import AsyncMock, patch, MagicMock
-from starlette.testclient import TestClient
-from starlette.requests import Request
+from unittest.mock import AsyncMock, patch
 
+import pytest
+from starlette.requests import Request
+from starlette.testclient import TestClient
 
 # ── Testes de _resolve_site (pura, sem DB) ──────────────────────────────────
 
@@ -33,17 +33,19 @@ class TestResolveSite:
         assert _resolve_site(req) == "terra-gentil"
 
     def test_origem_desconhecida_levanta_403(self):
-        from app.routes.forum import _resolve_site
         from fastapi import HTTPException
+
+        from app.routes.forum import _resolve_site
         req = self._make_request("https://site-malicioso.com")
         with pytest.raises(HTTPException) as exc:
             _resolve_site(req)
         assert exc.value.status_code == 403
 
     def test_sem_origin_em_producao_levanta_403(self):
-        from app.routes.forum import _resolve_site
         from fastapi import HTTPException
+
         import app.core.config as cfg
+        from app.routes.forum import _resolve_site
         original = cfg.settings.ENVIRONMENT
         cfg.settings.ENVIRONMENT = "production"
         try:
@@ -55,8 +57,8 @@ class TestResolveSite:
             cfg.settings.ENVIRONMENT = original
 
     def test_sem_origin_em_development_retorna_pj(self):
-        from app.routes.forum import _resolve_site
         import app.core.config as cfg
+        from app.routes.forum import _resolve_site
         original = cfg.settings.ENVIRONMENT
         cfg.settings.ENVIRONMENT = "development"
         try:
@@ -196,15 +198,17 @@ class TestJWT:
         assert payload["user_id"] == "user-123"
 
     def test_token_invalido_levanta_401(self):
-        from app.services.auth_service import verify_jwt
         from fastapi import HTTPException
+
+        from app.services.auth_service import verify_jwt
         with pytest.raises(HTTPException) as exc:
             verify_jwt("token.invalido.aqui")
         assert exc.value.status_code == 401
 
     def test_token_adulterado_levanta_401(self):
-        from app.services.auth_service import create_jwt, verify_jwt
         from fastapi import HTTPException
+
+        from app.services.auth_service import create_jwt, verify_jwt
         token = create_jwt("user-123") + "adulterado"
         with pytest.raises(HTTPException) as exc:
             verify_jwt(token)

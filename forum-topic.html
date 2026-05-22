@@ -285,8 +285,17 @@ let _user = (() => { try { return JSON.parse(localStorage.getItem("forum_user"))
 let _topicId = null;
 let _replyPhotos = [];
 
+// Limites alinhados ao backend (body max 200000 chars). Foto grande trava o browser.
+const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;   // 8 MB por arquivo de entrada
+const MAX_BODY_CHARS = 200000;              // teto do backend (PostCreate.body)
+
 function san(str) {
   return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+}
+// Só aceita URLs https; bloqueia javascript:, data:, etc. em src/href de terceiros.
+function sanUrl(url) {
+  const u = (url || "").trim();
+  return /^https:\/\//i.test(u) ? san(u) : "";
 }
 function timeAgo(iso) {
   const d = new Date(iso);
@@ -301,7 +310,8 @@ function initials(name) {
   return (name || "?").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
 }
 function avatarHtml(url, name) {
-  return url ? `<img src="${san(url)}" alt="${san(name)}">` : initials(name);
+  const safe = sanUrl(url);
+  return safe ? `<img src="${safe}" alt="${san(name)}">` : san(initials(name));
 }
 
 function escapeHtml(str) {
@@ -753,7 +763,14 @@ function renderTopic(data) {
     const replyPhotoInput = document.getElementById("replyPhotoInput");
     document.getElementById("toolPhoto").addEventListener("click", () => replyPhotoInput.click());
     replyPhotoInput.addEventListener("change", async () => {
-      const files = Array.from(replyPhotoInput.files).filter(f => f.type.startsWith("image/"));
+      const all = Array.from(replyPhotoInput.files).filter(f => f.type.startsWith("image/"));
+      const tooBig = all.filter(f => f.size > MAX_UPLOAD_BYTES);
+      const files = all.filter(f => f.size <= MAX_UPLOAD_BYTES);
+      const errEl = document.getElementById("replyError");
+      if (tooBig.length && errEl) {
+        errEl.textContent = `Foto acima de 8 MB ignorada (${tooBig.length}). Reduza o tamanho antes de anexar.`;
+        errEl.classList.add("visible");
+      }
       for (const file of files) {
         if (_replyPhotos.length >= 4) break;
         try {
@@ -1001,6 +1018,11 @@ async function submitReply(topicId) {
     errEl.textContent = "Mensagem muito curta."; errEl.classList.add("visible"); return;
   }
   if (_replyPhotos.length) body += "\n\n" + _replyPhotos.map(p => `[img]${p.dataUrl}[/img]`).join("\n");
+  if (body.length > MAX_BODY_CHARS) {
+    errEl.textContent = "Conteúdo muito grande (fotos pesadas demais). Remova uma foto e tente de novo.";
+    errEl.classList.add("visible");
+    return;
+  }
   const btn = document.getElementById("replySubmit");
   btn.disabled = true; btn.textContent = "Publicando…";
   errEl.classList.remove("visible");
