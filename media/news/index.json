@@ -1,6 +1,39 @@
 {
-  "updated": "2026-05-22T15:12:35.971Z",
+  "updated": "2026-05-22T21:13:30.938Z",
   "items": [
+    {
+      "id": "3859c08c22",
+      "url": "https://www.rollingstone.com/music/music-news/pearl-jam-new-drummer-ohana-festival-reveal-1235567570",
+      "source": "rollingstone-music",
+      "sourceLabel": "Rolling Stone",
+      "group": "us",
+      "pubDate": "2026-05-22T16:13:52.000Z",
+      "fetchedAt": "2026-05-22T21:13:30.604Z",
+      "img": "/media/news/img/3859c08c22.jpg",
+      "title_pt": "Pearl Jam vai revelar o novo baterista no palco do Ohana em setembro",
+      "intro_pt": "Stone Gossard entregou numa entrevista que a escolha já está feita, mas o nome só sai quando a banda pisar no palco em setembro.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "Pearl Jam tem baterista novo, mas não conta ainda"
+    },
+    {
+      "id": "3cc6f0e073",
+      "url": "https://igormiranda.com.br/2026/05/pearl-jam-baterista-especulado-confirma-nao-ter-entrado",
+      "source": "igor-miranda",
+      "sourceLabel": "Igor Miranda",
+      "group": "br",
+      "pubDate": "2026-05-22T15:57:28.000Z",
+      "fetchedAt": "2026-05-22T21:13:30.604Z",
+      "img": "/media/news/img/3cc6f0e073.jpg",
+      "title_pt": "Krusen nega retorno e confirma: Pearl Jam já tem novo baterista",
+      "intro_pt": "Dave Krusen descartou a própria volta mas confirmou via Instagram que o Pearl Jam já escolheu o substituto de Matt Cameron.",
+      "tags": [
+        "turne",
+        "br"
+      ],
+      "title_ig": "Krusen fora: PJ já tem baterista novo mas guarda o segredo"
+    },
     {
       "id": "cd-20260522",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -478,36 +511,6 @@
       "kind": "community-spotlight",
       "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tapjfn/my_graduation_cap_this_year/",
       "community_post_score": 207
-    },
-    {
-      "id": "88c3c9a891",
-      "url": "https://www.pearljamonline.it/jeff-ament-agli-studenti-del-montana-tutto-e-possibile",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-11T14:34:39.000Z",
-      "fetchedAt": "2026-05-13T01:28:45.279Z",
-      "img": "/media/news/img/88c3c9a891.jpg",
-      "title_pt": "Jeff Ament discursa na formatura do Montana: tudo é possível",
-      "intro_pt": "Baixista do Pearl Jam foi orador na colação da Montana State University-Northern em 9 de maio, com discurso pessoal e sem rodeios.",
-      "tags": [
-        "jeff"
-      ]
-    },
-    {
-      "id": "94362d47ec",
-      "url": "https://www.pearljamonline.it/i-pearl-jam-consigliano-i-libri-da-leggere-nella-primavera-estate-2026",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-11T07:56:54.000Z",
-      "fetchedAt": "2026-05-13T01:28:45.279Z",
-      "img": "/media/news/img/94362d47ec.jpg",
-      "title_pt": "Os livros que Jeff, Stone, Mike e Eddie recomendam para o verão 2026",
-      "intro_pt": "A newsletter do Ten Club trouxe as listas de leitura dos quatro integrantes do Pearl Jam para a primavera e o verão de 2026.",
-      "tags": [
-        "tenclub"
-      ]
     }
   ]
 }
