@@ -3,12 +3,12 @@ from pydantic import BaseModel, Field
 
 class TopicCreate(BaseModel):
     title: str = Field(min_length=3, max_length=120)
-    body: str = Field(min_length=10, max_length=5000)
+    body: str = Field(min_length=10, max_length=200000)
     category: str = Field(default="geral", max_length=40)
 
 
 class PostCreate(BaseModel):
-    body: str = Field(min_length=2, max_length=5000)
+    body: str = Field(min_length=2, max_length=200000)
 
 
 class ReportCreate(BaseModel):
