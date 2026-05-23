@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-23T03:12:54.633Z",
+  "updated": "2026-05-23T15:09:09.445Z",
   "items": [
+    {
+      "id": "cd-20260523",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-23T12:25:24.262Z",
+      "fetchedAt": "2026-05-23T15:09:09.266Z",
+      "img": "/media/news/img/cd-20260523.jpg",
+      "title_pt": "Dark Matter em debate e novos fãs descobrindo Last Kiss",
+      "intro_pt": "A comunidade global de fãs misturou debate técnico sobre produção com a descoberta de um novato aprendendo Pearl Jam.",
+      "tags": [
+        "comunidade",
+        "lancamento"
+      ],
+      "title_ig": "Dark Matter divide a galera na comunidade",
+      "kind": "community-digest",
+      "community_posts_count": 5
+    },
     {
       "id": "02606c80b1",
       "url": "https://www.terra.com.br/diversao/musica/pearl-jam-so-deve-revelar-novo-baterista-em-setembro-nosso-misterio,fca1d6e884aba07d2ed417c455842cc0hnesab2e.html",
@@ -493,21 +512,6 @@
       "tags": [
         "turne",
         "eddie"
-      ]
-    },
-    {
-      "id": "23c6120aaa",
-      "url": "https://www.rollingstone.com/music/music-news/pearl-jam-first-concert-matt-cameron-departed-ohana-1235561220",
-      "source": "rollingstone-music",
-      "sourceLabel": "Rolling Stone",
-      "group": "us",
-      "pubDate": "2026-05-12T16:23:54.000Z",
-      "fetchedAt": "2026-05-13T01:28:45.279Z",
-      "img": "/media/news/img/23c6120aaa.jpg",
-      "title_pt": "Pearl Jam anuncia primeiro show desde a saída de Matt Cameron",
-      "intro_pt": "Rolling Stone confirma: PJ marca presença no Ohana Festival em setembro, com McCready admitindo que o novo baterista ainda não foi escolhido.",
-      "tags": [
-        "turne"
       ]
     }
   ]
