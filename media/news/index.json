@@ -1,6 +1,40 @@
 {
-  "updated": "2026-05-22T21:13:30.938Z",
+  "updated": "2026-05-23T03:12:54.633Z",
   "items": [
+    {
+      "id": "02606c80b1",
+      "url": "https://www.terra.com.br/diversao/musica/pearl-jam-so-deve-revelar-novo-baterista-em-setembro-nosso-misterio,fca1d6e884aba07d2ed417c455842cc0hnesab2e.html",
+      "source": "terra-musica",
+      "sourceLabel": "Terra",
+      "group": "br",
+      "pubDate": "2026-05-22T20:33:05.000Z",
+      "fetchedAt": "2026-05-23T03:12:54.620Z",
+      "img": "/media/news/img/02606c80b1.jpg",
+      "title_pt": "Novo baterista do Pearl Jam será revelado no Ohana Festival em setembro",
+      "intro_pt": "Stone Gossard confirmou que o substituto de Matt Cameron vai ser revelado quando a banda subir ao palco do Ohana Festival, em 27 de setembro.",
+      "tags": [
+        "turne",
+        "matt"
+      ],
+      "title_ig": "O novo baterista do PJ só aparece em setembro"
+    },
+    {
+      "id": "1ae5147883",
+      "url": "https://rollingstone.com.br/musica/pearl-jam-so-deve-revelar-novo-baterista-em-setembro-nosso-misterio",
+      "source": "rolling-stone-br",
+      "sourceLabel": "Rolling Stone Brasil",
+      "group": "br",
+      "pubDate": "2026-05-22T20:24:21.000Z",
+      "fetchedAt": "2026-05-23T03:12:54.620Z",
+      "img": "/media/news/img/1ae5147883.jpg",
+      "title_pt": "Pearl Jam e o baterista misterioso: os sinais contraditórios antes do Ohana",
+      "intro_pt": "Um diz que o misterioso baterista já está escolhido, outro diz que nem existe ainda: o Pearl Jam de 2026.",
+      "tags": [
+        "turne",
+        "matt"
+      ],
+      "title_ig": "Três integrantes, três versões do mesmo mistério"
+    },
     {
       "id": "3859c08c22",
       "url": "https://www.rollingstone.com/music/music-news/pearl-jam-new-drummer-ohana-festival-reveal-1235567570",
@@ -475,42 +509,6 @@
       "tags": [
         "turne"
       ]
-    },
-    {
-      "id": "f4da2b894e",
-      "url": "https://www.pearljamonline.it/bad-radio-eddie-vedder-e-una-vecchia-cassetta-che-racconta-linizio-di-tutto",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-12T10:30:59.000Z",
-      "fetchedAt": "2026-05-13T01:28:45.279Z",
-      "img": "/media/news/img/f4da2b894e.jpg",
-      "title_pt": "A fita demo que Eddie fotocopiou no posto de gasolina antes do Pearl Jam",
-      "intro_pt": "Newsletter do Ten Club revelou a história de uma cassete dos Bad Radio, entregue pessoalmente por Eddie num negócio de instrumentos em San Diego.",
-      "tags": [
-        "memoria",
-        "eddie"
-      ]
-    },
-    {
-      "id": "cs-709cbca03f",
-      "url": "https://www.reddit.com/r/pearljam/comments/1tapjfn/my_graduation_cap_this_year/",
-      "source": "reddit-community-spotlight",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-05-12T03:24:55.000Z",
-      "fetchedAt": "2026-05-17T09:05:26.660Z",
-      "img": "/media/news/img/cs-709cbca03f.jpg",
-      "title_pt": "Fã decora capelo de formatura com pôsteres de shows do Pearl Jam",
-      "intro_pt": "A formatura de 2026 chegou com pôsteres de Nova York e Dublin na capelo, e virou destaque entre os fãs.",
-      "tags": [
-        "comunidade",
-        "turne"
-      ],
-      "title_ig": "O capelo mais Pearl Jam da turma de 2026",
-      "kind": "community-spotlight",
-      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tapjfn/my_graduation_cap_this_year/",
-      "community_post_score": 207
     }
   ]
 }
