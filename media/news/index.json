@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-24T03:14:45.969Z",
+  "updated": "2026-05-24T15:09:32.712Z",
   "items": [
+    {
+      "id": "cd-20260524",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-24T12:25:26.667Z",
+      "fetchedAt": "2026-05-24T15:09:32.400Z",
+      "img": "/media/news/img/cd-20260524.jpg",
+      "title_pt": "Mirror Ball do Ten Club chega, pôster de divórcio fica: o fã PJ em 24 de maio",
+      "intro_pt": "Envelopes do Ten Club chegando com Mirror Ball e histórias humanas aqueceram a comunidade global de fãs neste fim de semana.",
+      "tags": [
+        "comunidade",
+        "tenclub"
+      ],
+      "title_ig": "Mirror Ball chega, pôster fica: PJ no coração",
+      "kind": "community-digest",
+      "community_posts_count": 7
+    },
     {
       "id": "cd-20260523",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -496,22 +515,6 @@
       "intro_pt": "Festival de Eddie Vedder anuncia grade para setembro e confirma o PJ no palco, com a questão do novo baterista ainda em aberto.",
       "tags": [
         "turne"
-      ]
-    },
-    {
-      "id": "d5839f315b",
-      "url": "https://stereogum.com/2498720/ohana-festival-announces-2026-lineup/news",
-      "source": "stereogum-pj",
-      "sourceLabel": "Stereogum",
-      "group": "us",
-      "pubDate": "2026-05-12T16:51:18.000Z",
-      "fetchedAt": "2026-05-13T14:34:20.744Z",
-      "img": "/media/news/img/d5839f315b.jpg",
-      "title_pt": "Ohana 2026 confirma Eddie solo e Pearl Jam, com Tyler Childers e Maná",
-      "intro_pt": "O festival de Dana Point volta em setembro com Vedder na dupla função de headliner, pela primeira vez sem Matt Cameron.",
-      "tags": [
-        "turne",
-        "eddie"
       ]
     }
   ]
