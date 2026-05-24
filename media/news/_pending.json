@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-24T02:00:49.283Z",
+  "generatedAt": "2026-05-24T04:00:42.607Z",
   "items": [
     {
       "id": "9ea401442d",
@@ -468,6 +468,30 @@
       "img": null,
       "title_orig": "Ticketmaster / Livenation do not care about your time, money, or health.",
       "article_text": "—\n FINAL EDIT: This is a solid timely response directly from the Gorge Amphitheatre: (https://www.instagram.com/p/DYsLrEHTV8P/?igsh=MXEwbmhkcHg1NzJtcA==)\n And we did get in! We finished setting up camp not too long ago. The organization from the staff in the campsite and the 4+ (extra?) security lines was decent. Total time from highway exit to inside camp was 11hrs & 8 Mins 😵‍💫\n —-\n Don’t forget this: Ticketmaster and Livenation don’t give a fuck about you.\n Pearl Jam has been saying it for as long as I can remember (for the unaware, you should google)\n This event sold out in what? 15 minutes? We all payed the ticket, you know it wasn’t cheap — and it only goes up…\n You’re sitting in this line because of their greed.\n Not because of your planning\n Not because of the traffic\n This venue "
+    },
+    {
+      "id": "a46318a767",
+      "url": "https://www.reddit.com/r/lovethissmug/comments/1tlykt9/i_love_when_a_video_game_gets_assigned_an",
+      "source": "reddit-search-pj",
+      "sourceLabel": "Reddit Search (Pearl Jam)",
+      "group": "comunidade",
+      "pubDate": "2026-05-24T01:48:20.000Z",
+      "fetchedAt": "2026-05-24T04:00:42.551Z",
+      "img": null,
+      "title_orig": "i love when a video game gets assigned an unrelated \"theme song\" by its fanbase",
+      "article_text": "i mostly see this phenomenon on tiktok. when a game gets popular, people spontaneously use a certain song (NOT an official song) when posting about it, and it quickly becomes associated with that game. sometimes the vibe/theme of the song matches, sometimes it doesn't. i just love how these things seemingly happen out of nowhere. i mean, who the hell was the first person to post about mouthwashing to headlock by imogen heap, and why did it catch on so well?\n please tell me yall know what i'm talking about...and give me other examples because i'm dying for them, thanks and goodbye mwuah\n edit: my favorites that i've seen in the comments: - even flow by pearl jam x tony hawk's pro skater - invisible by duran duran x metal gear solid v - supersonic rocket ship by the kinks x kerbal space prog"
+    },
+    {
+      "id": "971c3d9910",
+      "url": "https://www.reddit.com/r/StableDiffusion/comments/1tlw09a/microsoft_lens_first_tests_its_pretty_decent",
+      "source": "reddit-search-pj",
+      "sourceLabel": "Reddit Search (Pearl Jam)",
+      "group": "comunidade",
+      "pubDate": "2026-05-23T23:49:43.000Z",
+      "fetchedAt": "2026-05-24T04:00:42.607Z",
+      "img": null,
+      "title_orig": "Microsoft Lens First Tests: It's Pretty Decent! - ComfyUI Native Support About to Be Merged",
+      "article_text": "Model weights: https://huggingface.co/Comfy-Org/Lens\n PR: https://github.com/Comfy-Org/ComfyUI/pull/14077\n You'll need to git the merge pull request if you're in a hurry:\n git fetch origin pull/14077/head:pr-14077\n git checkout pr-14077\n Supported Resolutions (Width × Height):\n Base resolution = 1024\n  \n Aspect Ratio Resolution (width × height) \n  \n 1:2 736 × 1472 \n  9:16 768 × 1376 \n  2:3 832 × 1248 \n  3:4 864 × 1152 \n  1:1 1024 × 1024 \n  4:3 1152 × 864 \n  3:2 1248 × 832 \n  16:9 1376 × 768 \n  2:1 1472 × 736 \n \n Base resolution = 1440 (default)\n  \n Aspect Ratio Resolution (width × height) \n  \n 1:2 1040 × 2080 \n  9:16 1088 × 1936 \n  2:3 1168 × 1760 \n  3:4 1216 × 1616 \n  1:1 1440 × 1440 \n  4:3 1616 × 1216 \n  3:2 1760 × 1168 \n  16:9 1936 × 1088 \n  2:1 2080 × 1040 \n \n It works pretty well with"
     }
   ]
 }
