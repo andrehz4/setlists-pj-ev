@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-24T15:09:32.712Z",
+  "updated": "2026-05-25T09:13:36.171Z",
   "items": [
     {
       "id": "cd-20260524",
@@ -19,6 +19,26 @@
       "title_ig": "Mirror Ball chega, pôster fica: PJ no coração",
       "kind": "community-digest",
       "community_posts_count": 7
+    },
+    {
+      "id": "cs-2496b13fc4",
+      "url": "https://www.reddit.com/r/pearljam/comments/1tm38pk/poster_from_ny/",
+      "source": "reddit-community-spotlight",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-24T05:37:12.000Z",
+      "fetchedAt": "2026-05-25T09:13:36.159Z",
+      "img": "/media/news/img/cs-2496b13fc4.jpg",
+      "title_pt": "Fã negocia o divórcio e garante para si todos os pôsteres do Pearl Jam",
+      "intro_pt": "Na divisão dos bens, os pôsteres do Pearl Jam foram o item pelo qual o fã não abriu mão de forma nenhuma.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "No divórcio, os pôsteres ficaram com ele",
+      "kind": "community-spotlight",
+      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tm38pk/poster_from_ny/",
+      "community_post_score": 0
     },
     {
       "id": "cd-20260523",
@@ -501,21 +521,6 @@
       ],
       "kind": "community-digest",
       "community_posts_count": 9
-    },
-    {
-      "id": "92083b48d6",
-      "url": "https://www.pearljamonline.it/pearl-jam-pronti-al-ritorno-live-allohana-festival-2026-chi-e-il-nuovo-batterista",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-12T16:53:53.000Z",
-      "fetchedAt": "2026-05-13T01:28:45.279Z",
-      "img": "/media/news/img/92083b48d6.jpg",
-      "title_pt": "Ohana 2026: Pearl Jam de volta aos palcos, mas quem toca bateria?",
-      "intro_pt": "Festival de Eddie Vedder anuncia grade para setembro e confirma o PJ no palco, com a questão do novo baterista ainda em aberto.",
-      "tags": [
-        "turne"
-      ]
     }
   ]
 }
