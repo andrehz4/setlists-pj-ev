@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-25T09:13:36.171Z",
+  "updated": "2026-05-25T15:15:42.577Z",
   "items": [
+    {
+      "id": "cd-20260525",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-25T12:25:24.802Z",
+      "fetchedAt": "2026-05-25T15:15:42.324Z",
+      "img": "/media/news/img/cd-20260525.jpg",
+      "title_pt": "Eddie no pit do Springsteen e a torcida pelo baterista misterioso do PJ",
+      "intro_pt": "Eddie Vedder foi flagrado na plateia do show do Springsteen em Boston enquanto a comunidade debate o baterista misterioso que chega em setembro.",
+      "tags": [
+        "comunidade",
+        "turne"
+      ],
+      "title_ig": "Eddie de surpresa no show do Springsteen",
+      "kind": "community-digest",
+      "community_posts_count": 7
+    },
     {
       "id": "cd-20260524",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -503,24 +522,6 @@
         "turne",
         "br"
       ]
-    },
-    {
-      "id": "cd-20260513",
-      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
-      "source": "reddit-community-digest",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-05-13T00:36:47.179Z",
-      "fetchedAt": "2026-05-13T01:28:45.279Z",
-      "img": "/media/news/img/cd-20260513.jpg",
-      "title_pt": "Ohana 2026 confirmado: Eddie, Pearl Jam e comunidade em festa",
-      "intro_pt": "A confirmação do Ohana 2026 com Eddie e Pearl Jam foi a notícia que dominou o dia na comunidade global de fãs.",
-      "tags": [
-        "comunidade",
-        "turne"
-      ],
-      "kind": "community-digest",
-      "community_posts_count": 9
     }
   ]
 }
