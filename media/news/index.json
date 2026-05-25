@@ -1,6 +1,56 @@
 {
-  "updated": "2026-05-25T15:15:42.577Z",
+  "updated": "2026-05-25T21:10:41.626Z",
   "items": [
+    {
+      "id": "d80a80d8d5",
+      "url": "https://igormiranda.com.br/2026/05/pearl-jam-quando-pretende-revelar-novo-baterista",
+      "source": "igor-miranda",
+      "sourceLabel": "Igor Miranda",
+      "group": "br",
+      "pubDate": "2026-05-25T18:08:12.000Z",
+      "fetchedAt": "2026-05-25T21:10:41.363Z",
+      "img": "/media/news/img/d80a80d8d5.jpg",
+      "title_pt": "Pearl Jam adia revelação do novo baterista para o palco do Ohana Festival",
+      "intro_pt": "Stone Gossard confirma que o Pearl Jam só revelará o novo baterista no palco do Ohana Festival, em setembro.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "Pearl Jam guarda o segredo do baterista"
+    },
+    {
+      "id": "2d65a72566",
+      "url": "https://www.terra.com.br/diversao/musica/rock-in-rio/rock-in-rio-2026-tera-pearl-jam-miley-cyrus-a-resposta-de-roberto-medina,2e09f8056a0632a7ee2e0bbec4364157qpprtg7e.html",
+      "source": "terra-musica",
+      "sourceLabel": "Terra",
+      "group": "br",
+      "pubDate": "2026-05-25T17:45:05.000Z",
+      "fetchedAt": "2026-05-25T21:10:41.363Z",
+      "img": "/media/news/img/2d65a72566.jpg",
+      "title_pt": "Roberto Medina não nega Pearl Jam no Rock in Rio 2026",
+      "intro_pt": "Roberto Medina não confirma nem descarta Pearl Jam no Rock in Rio 2026, cujo headliner para 6 de setembro ainda está em aberto.",
+      "tags": [
+        "turne",
+        "br"
+      ],
+      "title_ig": "Medina não confirma nem nega Pearl Jam no Rock in Rio"
+    },
+    {
+      "id": "ef36fa73ee",
+      "url": "https://rollingstone.com.br/musica/rock-in-rio-2026-tera-pearl-jam-miley-cyrus-a-resposta-de-roberto-medina",
+      "source": "rolling-stone-br",
+      "sourceLabel": "Rolling Stone Brasil",
+      "group": "br",
+      "pubDate": "2026-05-25T17:33:18.000Z",
+      "fetchedAt": "2026-05-25T21:10:41.363Z",
+      "img": "/media/news/img/ef36fa73ee.jpg",
+      "title_pt": "Medina questiona rumores de Pearl Jam e Miley Cyrus no Rock in Rio 2026",
+      "intro_pt": "O criador do Rock in Rio contestou reportagens sobre Pearl Jam e Miley Cyrus no lineup de 2026, sem fechar as portas.",
+      "tags": [
+        "turne",
+        "br"
+      ],
+      "title_ig": "O que Medina disse sobre Pearl Jam no Rock in Rio"
+    },
     {
       "id": "cd-20260525",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -471,57 +521,6 @@
         "tenclub"
       ],
       "kind": "pjcom-news"
-    },
-    {
-      "id": "e9c3fbcdbe",
-      "url": "https://pearljam.com/news/ev-x-japan-tour-merch",
-      "source": "pj-com-news",
-      "sourceLabel": "Pearl Jam Oficial",
-      "group": "tenclub",
-      "pubDate": "2026-05-14T04:17:30.906Z",
-      "fetchedAt": "2026-05-14T06:43:32.298Z",
-      "img": "/media/news/img/e9c3fbcdbe.jpg",
-      "title_pt": "Merch da tournê de Eddie pelo Japão disponível no site oficial",
-      "intro_pt": "A loja oficial do Pearl Jam lançou linha de mercadorias exclusivas da tournê de Eddie Vedder pelo Japão.",
-      "tags": [
-        "tenclub",
-        "eddie"
-      ],
-      "kind": "pjcom-news"
-    },
-    {
-      "id": "cs-ed58e07c93",
-      "url": "https://www.reddit.com/r/pearljam/comments/1tc134r/got_the_stickman_tattoo_to_match_my_fathers_tat/",
-      "source": "reddit-community-spotlight",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-05-13T14:20:12.000Z",
-      "fetchedAt": "2026-05-16T09:09:55.679Z",
-      "img": null,
-      "title_pt": "Fã tatua o Stickman para casar com a tatuagem do pai, 26 anos depois",
-      "intro_pt": "Segunda tattoo do fã reproduz o símbolo icônico do Pearl Jam para espelhar o que o pai carrega no corpo há 26 anos.",
-      "tags": [
-        "comunidade"
-      ],
-      "kind": "community-spotlight",
-      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tc134r/got_the_stickman_tattoo_to_match_my_fathers_tat/",
-      "community_post_score": 381
-    },
-    {
-      "id": "5004b07415",
-      "url": "https://www.wikimetal.com.br/pearl-jam-anuncia-primeiro-show-saida-baterista-matt-cameron",
-      "source": "wikimetal",
-      "sourceLabel": "Wikimetal",
-      "group": "br",
-      "pubDate": "2026-05-13T13:26:08.000Z",
-      "fetchedAt": "2026-05-15T15:13:03.534Z",
-      "img": "/media/news/img/5004b07415.jpg",
-      "title_pt": "Pearl Jam confirma presença no Ohana 2026, primeiro show após saída de Matt Cameron",
-      "intro_pt": "O Pearl Jam vai headlinear o Ohana Festival em setembro, com baterista substituto ainda não revelado e rumores de Brasil.",
-      "tags": [
-        "turne",
-        "br"
-      ]
     }
   ]
 }
