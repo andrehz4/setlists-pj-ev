@@ -369,6 +369,10 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
             <button class="tool-btn i" data-ct="italic" title="Itálico (_texto_)">I</button>
             <button class="tool-btn" data-ct="strike" title="Tachado (~~texto~~)">&#8997;</button>
             <span class="tool-sep"></span>
+            <button class="tool-btn" data-ct="alignleft"   title="Alinhar à esquerda">&#8676;</button>
+            <button class="tool-btn" data-ct="aligncenter" title="Centralizar">&#8801;</button>
+            <button class="tool-btn" data-ct="alignright"  title="Alinhar à direita">&#8677;</button>
+            <span class="tool-sep"></span>
             <button class="tool-btn" data-ct="quote" title="Citar">&#10077;</button>
             <button class="tool-btn" data-ct="list" title="Lista">&#9636;</button>
             <button class="tool-btn" data-ct="link" title="Link ([texto](url))">&#8594;</button>
@@ -878,6 +882,9 @@ function initComposer() {
     bold:    () => wrapCT("**", "**", "texto"),
     italic:  () => wrapCT("_", "_", "texto"),
     strike:  () => wrapCT("~~", "~~", "texto"),
+    alignleft:   () => wrapCT("[esq]",    "[/esq]",    "texto alinhado à esquerda"),
+    aligncenter: () => wrapCT("[centro]", "[/centro]", "texto centralizado"),
+    alignright:  () => wrapCT("[dir]",    "[/dir]",    "texto alinhado à direita"),
     spoiler: () => wrapCT("[spoiler]", "[/spoiler]", "texto spoiler"),
     link:    () => wrapCT("[", "](url)", "texto"),
     quote: () => {

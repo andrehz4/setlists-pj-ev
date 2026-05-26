@@ -75,6 +75,9 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .post-body { font-family: var(--font-body); font-size: 16.5px; color: var(--ink); line-height: 1.6; }
 .post-body p { margin: 0 0 12px; }
 .post-body p:last-child { margin-bottom: 0; }
+.post-body .align-esq    { display: block; text-align: left;   margin: 6px 0; }
+.post-body .align-centro { display: block; text-align: center; margin: 6px 0; }
+.post-body .align-dir    { display: block; text-align: right;  margin: 6px 0; }
 
 /* Quote block */
 .quote-block { border-left: 3px solid var(--ev); background: var(--bg-card); padding: 12px 16px; margin: 14px 0; font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); line-height: 1.5; }
@@ -381,7 +384,11 @@ function renderBody(rawText) {
   );
   const withBold   = withQuotes.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
   const withItalic = withBold.replace(/_([^_\n]+)_/g, "<em>$1</em>");
-  const withParas  = "<p>" + withItalic.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+  const withAlign  = withItalic.replace(
+    /\[(esq|centro|dir)\]([\s\S]*?)\[\/\1\]/gi,
+    (_, dir, content) => `<span class="align-${dir.toLowerCase()}">${content.trim()}</span>`
+  );
+  const withParas  = "<p>" + withAlign.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
 
   const sanitized = DOMPurify.sanitize(withParas, {
     ALLOWED_TAGS: ["p", "br", "div", "span", "strong", "em"],
@@ -416,7 +423,7 @@ function renderBody(rawText) {
       el = document.createElement("img");
       el.src = imgSlots[idx];
       el.alt = "foto";
-      el.style.cssText = "max-width:100%;border-radius:6px;display:block;margin:8px 0";
+      el.style.cssText = "max-width:100%;border-radius:6px;display:inline-block;margin:8px 0";
     }
 
     if (kind === "AUDIO") {
@@ -574,6 +581,10 @@ function renderTopic(data) {
             <button class="tool-btn i" id="toolItalic" title="Itálico">I</button>
             <button class="tool-btn" id="toolStrike" title="Tachado">&#8997;</button>
             <span class="tool-btn divider"></span>
+            <button class="tool-btn" id="toolAlignLeft"   title="Alinhar à esquerda">&#8676;</button>
+            <button class="tool-btn" id="toolAlignCenter" title="Centralizar">&#8801;</button>
+            <button class="tool-btn" id="toolAlignRight"  title="Alinhar à direita">&#8677;</button>
+            <span class="tool-btn divider"></span>
             <button class="tool-btn" id="toolQuote" title="Citar">&#10077;</button>
             <button class="tool-btn" id="toolList" title="Lista">&#9636;</button>
             <span class="tool-btn divider"></span>
@@ -687,6 +698,9 @@ function renderTopic(data) {
     document.getElementById("toolBold").addEventListener("click", () => wrapSel("**", "**", "texto"));
     document.getElementById("toolItalic").addEventListener("click", () => wrapSel("_", "_", "texto"));
     document.getElementById("toolStrike").addEventListener("click", () => wrapSel("~~", "~~", "texto"));
+    document.getElementById("toolAlignLeft").addEventListener("click",   () => wrapSel("[esq]",    "[/esq]",    "texto alinhado à esquerda"));
+    document.getElementById("toolAlignCenter").addEventListener("click", () => wrapSel("[centro]", "[/centro]", "texto centralizado"));
+    document.getElementById("toolAlignRight").addEventListener("click",  () => wrapSel("[dir]",    "[/dir]",    "texto alinhado à direita"));
 
     document.getElementById("toolQuote").addEventListener("click", () => {
       const start = replyBody.selectionStart, end = replyBody.selectionEnd;
