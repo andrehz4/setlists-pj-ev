@@ -498,8 +498,8 @@ function bodySnippet(body, max = 180) {
   t = t.replace(/\*\*([^*\n]+)\*\*/g, "$1");
   t = t.replace(/_([^_\n]+)_/g, "$1");
   t = t.replace(/~~([^~\n]+)~~/g, "$1");
-  // Tags hashtag trailing somem (ja aparecem como chips coloridas)
-  t = t.replace(/\n\n((?:#[\wÀ-ɏ_-]+\s*)+)$/u, "");
+  // Bloco de tags hashtag em qualquer posicao (aparecem como chips no topico)
+  t = t.replace(/\n\n(?:#[\wÀ-ɏ_-]+(?:[ \t]+|(?=\n\n|$)))+(?=\n\n|$)/gu, "");
   t = t.replace(/\s+/g, " ").trim();
   if (t.length > max) t = t.slice(0, max - 1) + "…";
   return t;
