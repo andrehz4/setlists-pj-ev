@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-25T21:10:41.626Z",
+  "updated": "2026-05-26T03:08:43.261Z",
   "items": [
     {
       "id": "d80a80d8d5",
@@ -69,6 +69,26 @@
       "title_ig": "Eddie de surpresa no show do Springsteen",
       "kind": "community-digest",
       "community_posts_count": 7
+    },
+    {
+      "id": "cs-068fbce93f",
+      "url": "https://www.reddit.com/r/pearljam/comments/1tmzqk9/ed_at_springsteen_in_boston/",
+      "source": "reddit-community-spotlight",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-25T05:40:26.000Z",
+      "fetchedAt": "2026-05-26T03:08:42.900Z",
+      "img": "/media/news/img/cs-068fbce93f.jpg",
+      "title_pt": "Eddie Vedder curte show do Springsteen em Boston na plateia",
+      "intro_pt": "Um fã flagrou Eddie Vedder no pit do show de Springsteen em Boston, cantando junto e posando para selfies com o público.",
+      "tags": [
+        "comunidade",
+        "eddie"
+      ],
+      "title_ig": "Eddie no pit do Springsteen em Boston",
+      "kind": "community-spotlight",
+      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tmzqk9/ed_at_springsteen_in_boston/",
+      "community_post_score": 0
     },
     {
       "id": "cd-20260524",
@@ -503,22 +523,6 @@
       "tags": [
         "tenclub",
         "turne"
-      ],
-      "kind": "pjcom-news"
-    },
-    {
-      "id": "f90b41d453",
-      "url": "https://pearljam.com/news/book-signing-with-geoff-whitman",
-      "source": "pj-com-news",
-      "sourceLabel": "Pearl Jam Oficial",
-      "group": "tenclub",
-      "pubDate": "2026-05-14T04:17:30.906Z",
-      "fetchedAt": "2026-05-14T06:43:32.298Z",
-      "img": "/media/news/img/f90b41d453.jpg",
-      "title_pt": "Sessão de autógrafos com Geoff Whitman anunciada pelo Pearl Jam",
-      "intro_pt": "O site oficial do Pearl Jam divulgou um evento de book signing com Geoff Whitman, sem detalhes confirmados ainda.",
-      "tags": [
-        "tenclub"
       ],
       "kind": "pjcom-news"
     }
