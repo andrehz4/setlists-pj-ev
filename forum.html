@@ -232,8 +232,12 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 /* ── Tag editor ── */
 .tag-editor { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding: 8px 10px; border: 1px solid var(--divider-strong); background: var(--bg-card-sunk); min-height: 44px; }
-.tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: rgba(193,39,45,0.08); border: 1px solid var(--pj-soft); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pj); }
-.tag-chip .rm { background: none; border: none; color: var(--pj); cursor: pointer; font-size: 12px; padding: 0 0 0 2px; line-height: 1; }
+.tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: transparent; border: 1px solid var(--divider-strong); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-mute); }
+.tag-chip .rm { background: none; border: none; color: var(--ink-mute); cursor: pointer; font-size: 12px; padding: 0 0 0 2px; line-height: 1; }
+.tag-chip.pj { background: rgba(193,39,45,0.08); border-color: var(--pj-soft); color: var(--pj); }
+.tag-chip.pj .rm { color: var(--pj); }
+.tag-chip.ev { background: rgba(232,161,58,0.08); border-color: var(--ev-soft); color: var(--ev); }
+.tag-chip.ev .rm { color: var(--ev); }
 .tag-input-el { background: transparent; border: none; outline: none; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink); flex: 1; min-width: 120px; padding: 2px 0; }
 .tag-input-el::placeholder { color: var(--ink-dim); }
 
@@ -812,6 +816,14 @@ function compressImage(file) {
   });
 }
 
+function tagColorClass(tag) {
+  // Hash deterministico: mesma tag sempre cai na mesma cor (pj / ev / neutra)
+  let h = 0;
+  const s = (tag || "").toLowerCase();
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return ["pj", "", "ev"][h % 3];
+}
+
 function renderTagChips() {
   const editor = document.getElementById("tagEditor");
   const input = document.getElementById("tagInput");
@@ -819,7 +831,8 @@ function renderTagChips() {
   editor.querySelectorAll(".tag-chip").forEach(el => el.remove());
   _composerTags.forEach((tag, i) => {
     const chip = document.createElement("span");
-    chip.className = "tag-chip";
+    const variant = tagColorClass(tag);
+    chip.className = variant ? `tag-chip ${variant}` : "tag-chip";
     chip.innerHTML = `${san(tag)}<button class="rm" data-i="${i}" title="Remover">&#215;</button>`;
     editor.insertBefore(chip, input);
   });
