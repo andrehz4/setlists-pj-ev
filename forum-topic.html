@@ -330,11 +330,15 @@ function tagColorClass(tag) {
 }
 
 function extractTopicTags(body) {
-  // Composer adiciona '\n\n#tag1 #tag2 #tag3 #tag4' no final do body.
-  const m = (body || "").match(/\n\n((?:#[\wÀ-ɏ_-]+\s*)+)$/u);
-  if (!m) return { tags: [], cleanBody: body || "" };
+  // Composer adiciona '\n\n#tag1 #tag2' em qualquer posicao (antes ou depois das fotos).
+  // Acha um bloco isolado de hashtags entre quebras de paragrafo ou fim de string.
+  const re = /\n\n((?:#[\wÀ-ɏ_-]+(?:[ \t]+|(?=\n\n|$)))+)(?=\n\n|$)/u;
+  const src = body || "";
+  const m = src.match(re);
+  if (!m) return { tags: [], cleanBody: src };
   const tags = m[1].trim().split(/\s+/).filter(t => t.startsWith("#")).map(t => t.slice(1));
-  return { tags, cleanBody: body.slice(0, -m[0].length) };
+  const cleanBody = src.slice(0, m.index) + src.slice(m.index + m[0].length);
+  return { tags, cleanBody };
 }
 
 function renderBody(rawText) {
