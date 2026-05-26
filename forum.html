@@ -833,6 +833,13 @@ async function submitTopic() {
       method: "POST",
       body: JSON.stringify({ title, body, category }),
     });
+    if (data === null) {
+      const loginUrl = API_BASE + "/auth/google/login";
+      errEl.innerHTML = `Sua sessão expirou. <a href="${loginUrl}" style="color:var(--accent);text-decoration:underline;font-weight:600">Entre novamente com Google</a> para publicar a thread.`;
+      errEl.classList.add("visible");
+      btn.disabled = false; btn.textContent = "Publicar thread →";
+      return;
+    }
     if (data) {
       closeComposer();
       location.href = `forum-topic.html?id=${encodeURIComponent(data.id)}`;

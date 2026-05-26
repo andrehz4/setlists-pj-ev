@@ -330,12 +330,13 @@ function renderBody(rawText) {
   // 1. Extract special tags before any HTML processing
   let processed = rawText;
 
+  // Placeholders usam char de controle  pra evitar conflito com markdown (_italic_, **bold**)
   processed = processed.replace(
     /\[img\]([^\][\n]{10,}?)\[\/img\]/gi,
     (_, src) => {
       if (imgSlots.length >= 4 || !VALID_IMG.test(src.trim())) return "";
       imgSlots.push(src.trim());
-      return `__IMGSLOT${imgSlots.length - 1}__`;
+      return `IMG${imgSlots.length - 1}`;
     }
   );
 
@@ -344,7 +345,7 @@ function renderBody(rawText) {
     (_, src) => {
       if (audioSlots.length >= 2 || !VALID_AUDIO.test(src.trim())) return "";
       audioSlots.push({ type: "data", src: src.trim() });
-      return `__AUDIOSLOT${audioSlots.length - 1}__`;
+      return `AUDIO${audioSlots.length - 1}`;
     }
   );
 
@@ -353,7 +354,7 @@ function renderBody(rawText) {
     (_, url) => {
       if (audioSlots.length >= 2 || !VALID_URL.test(url.trim())) return "";
       audioSlots.push({ type: "url", src: url.trim() });
-      return `__AUDIOSLOT${audioSlots.length - 1}__`;
+      return `AUDIO${audioSlots.length - 1}`;
     }
   );
 
@@ -361,7 +362,7 @@ function renderBody(rawText) {
     /\[setlist\]([^\n]{5,200}?)\[\/setlist\]/gi,
     (_, content) => {
       setlistSlots.push(content.trim());
-      return `__SETSLOT${setlistSlots.length - 1}__`;
+      return `SET${setlistSlots.length - 1}`;
     }
   );
 
@@ -399,7 +400,7 @@ function renderBody(rawText) {
     const hits = [];
     while (walker.nextNode()) {
       const node = walker.currentNode;
-      const m = node.nodeValue.match(/__(?:IMGSLOT|AUDIOSLOT|SETSLOT)(\d+)__/);
+      const m = node.nodeValue.match(/\x01(IMG|AUDIO|SET)(\d+)\x01/);
       if (m) hits.push({ node, full: m[0] });
     }
     for (const h of hits) callback(h.node, h.full);
@@ -407,9 +408,10 @@ function renderBody(rawText) {
 
   walkTextNodes(wrap, (node, marker) => {
     let el = null;
+    const kind = marker.replace(/[\x01\d]/g, "");
+    const idx  = parseInt(marker.replace(/[\x01A-Z]/g, ""), 10);
 
-    if (marker.startsWith("__IMGSLOT")) {
-      const idx = parseInt(marker.replace("__IMGSLOT", "").replace("__", ""));
+    if (kind === "IMG") {
       if (idx >= imgSlots.length) return;
       el = document.createElement("img");
       el.src = imgSlots[idx];
@@ -417,8 +419,7 @@ function renderBody(rawText) {
       el.style.cssText = "max-width:100%;border-radius:6px;display:block;margin:8px 0";
     }
 
-    if (marker.startsWith("__AUDIOSLOT")) {
-      const idx = parseInt(marker.replace("__AUDIOSLOT", "").replace("__", ""));
+    if (kind === "AUDIO") {
       if (idx >= audioSlots.length) return;
       const slot = audioSlots[idx];
       const wrap2 = document.createElement("div");
@@ -434,8 +435,7 @@ function renderBody(rawText) {
       el = wrap2;
     }
 
-    if (marker.startsWith("__SETSLOT")) {
-      const idx = parseInt(marker.replace("__SETSLOT", "").replace("__", ""));
+    if (kind === "SET") {
       if (idx >= setlistSlots.length) return;
       const parts = setlistSlots[idx].split(/\s*\|\s*/);
       const banda = parts[0] || "";
@@ -1031,7 +1031,14 @@ async function submitReply(topicId) {
       method: "POST",
       body: JSON.stringify({ body }),
     });
-    if (result !== null) { _replyPhotos = []; location.reload(); }
+    if (result === null) {
+      const loginUrl = API_BASE + "/auth/google/login";
+      errEl.innerHTML = `Sua sessão expirou. <a href="${loginUrl}" style="color:var(--accent);text-decoration:underline;font-weight:600">Entre novamente com Google</a> para publicar a resposta.`;
+      errEl.classList.add("visible");
+      return;
+    }
+    _replyPhotos = [];
+    location.reload();
   } catch (err) {
     errEl.textContent = err.message || "Erro ao publicar.";
     errEl.classList.add("visible");
