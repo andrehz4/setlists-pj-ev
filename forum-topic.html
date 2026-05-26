@@ -80,6 +80,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .post-body .align-dir    { display: block; text-align: right;  margin: 6px 0; }
 .post-body .img-align    { display: block; margin: 8px 0; }
 .post-body .img-align img { max-width: 100%; border-radius: 6px; display: inline-block; }
+.post-tags { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 4px; }
 
 /* Quote block */
 .quote-block { border-left: 3px solid var(--ev); background: var(--bg-card); padding: 12px 16px; margin: 14px 0; font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); line-height: 1.5; }
@@ -149,6 +150,24 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .reply-char-count.warn { color: var(--ev); }
 .reply-error { font-family: var(--font-mono); font-size: 11px; color: var(--pj); margin-top: 8px; display: none; }
 .reply-error.visible { display: block; }
+.reply-extras { padding: 12px 14px; border-top: 1px solid var(--divider); background: var(--bg-card); display: flex; flex-direction: column; gap: 12px; }
+.reply-extras-section { display: flex; flex-direction: column; gap: 6px; }
+.reply-extras-label { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); }
+.reply-attachments { display: flex; gap: 8px; flex-wrap: wrap; }
+.reply-attach-btn { padding: 8px 12px; border: 1px dashed var(--divider-strong); background: transparent; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+.reply-attach-btn:hover { border-color: var(--ink-mute); color: var(--ink); }
+.reply-attach-btn .ico { color: var(--pj); font-family: var(--font-display); font-size: 12px; line-height: 1; }
+.reply-attach-btn.added { border-style: solid; border-color: var(--heard); color: var(--heard); }
+.reply-attach-btn.added .ico { color: var(--heard); }
+.reply-tag-editor { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding: 6px 8px; border: 1px solid var(--divider-strong); background: var(--bg-card-sunk); min-height: 36px; }
+.reply-tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: transparent; border: 1px solid var(--divider-strong); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-mute); }
+.reply-tag-chip .rm { background: none; border: none; color: var(--ink-mute); cursor: pointer; font-size: 12px; padding: 0 0 0 2px; line-height: 1; }
+.reply-tag-chip.pj { background: rgba(193,39,45,0.08); border-color: var(--pj-soft); color: var(--pj); }
+.reply-tag-chip.pj .rm { color: var(--pj); }
+.reply-tag-chip.ev { background: rgba(232,161,58,0.08); border-color: var(--ev-soft); color: var(--ev); }
+.reply-tag-chip.ev .rm { color: var(--ev); }
+.reply-tag-input { background: transparent; border: none; outline: none; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink); flex: 1; min-width: 120px; padding: 2px 0; }
+.reply-tag-input::placeholder { color: var(--ink-dim); }
 .reply-preview-pane { display: none; padding: 14px; min-height: 80px; border-top: 1px solid var(--divider); background: var(--bg-card-sunk); font-family: var(--font-body); font-size: 15.5px; color: var(--ink); line-height: 1.55; }
 
 /* Login gate */
@@ -289,6 +308,7 @@ let _token = localStorage.getItem("forum_token");
 let _user = (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })();
 let _topicId = null;
 let _replyPhotos = [];
+let _replyTags = [];
 
 // Limites alinhados ao backend (body max 200000 chars). Foto grande trava o browser.
 const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;   // 8 MB por arquivo de entrada
@@ -577,8 +597,21 @@ function renderPost(p, isRoot, opUserId) {
   const authorEl = profileHref
     ? `<a href="${profileHref}" class="post-author">${san(p.display_name)}</a>`
     : `<span class="post-author">${san(p.display_name)}</span>`;
+  // Posts (não-root) podem ter hashtags no fim do body, igual ao tópico
+  let postBody = p.body;
+  let postTagsHtml = "";
+  if (!isRoot) {
+    const { tags, cleanBody } = extractTopicTags(p.body);
+    postBody = cleanBody;
+    if (tags.length) {
+      postTagsHtml = `<div class="post-tags">${tags.map(tag => {
+        const variant = tagColorClass(tag);
+        return `<span class="tag${variant ? " " + variant : ""}">${san(tag)}</span>`;
+      }).join("")}</div>`;
+    }
+  }
   const quoteBtn = _token
-    ? `<button class="quote-btn" data-name="${san(p.display_name)}" data-body="${san((p.body || "").slice(0, 200))}">❝ Citar</button>`
+    ? `<button class="quote-btn" data-name="${san(p.display_name)}" data-body="${san((postBody || "").slice(0, 200))}">❝ Citar</button>`
     : "";
   return `
     <div class="post${isRoot ? " root" : ""}" data-post-id="${san(p.id)}">
@@ -589,7 +622,8 @@ function renderPost(p, isRoot, opUserId) {
           ${isRoot || isOp ? '<span class="post-badge op">OP</span>' : ""}
           <span class="post-date">${timeAgo(p.created_at)}</span>
         </div>
-        <div class="post-body">${renderBody(p.body)}</div>
+        <div class="post-body">${renderBody(postBody)}</div>
+        ${postTagsHtml}
         <div class="reactions">${chips}</div>
         <div class="post-tools">
           ${quoteBtn}
@@ -620,16 +654,30 @@ function renderTopic(data) {
             <span class="tool-btn divider"></span>
             <button class="tool-btn" id="toolQuote" title="Citar">&#10077;</button>
             <button class="tool-btn" id="toolList" title="Lista">&#9636;</button>
-            <span class="tool-btn divider"></span>
-            <button class="tool-btn" id="toolSetlist" title="Incorporar setlist">&#127925;</button>
-            <button class="tool-btn" id="toolPhoto" title="Foto">&#128444;</button>
-            <button class="tool-btn" id="toolAudio" title="Áudio">&#127897;</button>
             <button class="tool-btn" id="toolSpoiler" title="Spoiler">&#9888;</button>
           </div>
           <textarea class="reply-textarea" id="replyBody" maxlength="50000" placeholder="conta como foi pra você. credita a foto, tagueia spoiler se for review fresca."></textarea>
           <div class="reply-preview-pane" id="replyPreviewPane"></div>
           <div id="replyPhotoRow" style="display:none;gap:8px;flex-wrap:wrap;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
           <input type="file" id="replyPhotoInput" accept="image/jpeg,image/png,image/gif,image/webp" multiple style="display:none">
+          <div class="reply-extras">
+            <div class="reply-extras-section">
+              <div class="reply-extras-label">05 · Anexos</div>
+              <div class="reply-attachments" id="replyAttachments">
+                <button type="button" class="reply-attach-btn" data-rattach="setlist"><span class="ico">+</span> <span class="rlabel">incorporar setlist</span></button>
+                <button type="button" class="reply-attach-btn" data-rattach="music"><span class="ico">+</span> <span class="rlabel">incorporar música</span></button>
+                <button type="button" class="reply-attach-btn" data-rattach="photo"><span class="ico">+</span> <span class="rlabel">foto (até 5)</span></button>
+                <button type="button" class="reply-attach-btn" data-rattach="audio"><span class="ico">+</span> <span class="rlabel">áudio curto (até 2min)</span></button>
+                <button type="button" class="reply-attach-btn" data-rattach="spoiler"><span class="ico">+</span> <span class="rlabel">bloco com spoiler</span></button>
+              </div>
+            </div>
+            <div class="reply-extras-section">
+              <div class="reply-extras-label">06 · Tags (opcional, até 4)</div>
+              <div class="reply-tag-editor" id="replyTagEditor">
+                <input class="reply-tag-input" id="replyTagInput" placeholder="+ adicionar tag···" maxlength="30">
+              </div>
+            </div>
+          </div>
           <div class="reply-composer-foot">
             <div class="reply-foot-id">
               <span>Postando como:</span>
@@ -720,6 +768,7 @@ function renderTopic(data) {
       const el = document.getElementById("replyCount");
       el.textContent = n + " / 50000";
       el.classList.toggle("warn", n > 48000);
+      updateReplyAttachStatus();
     });
 
     // Submit reply
@@ -760,10 +809,95 @@ function renderTopic(data) {
       wrapSel("[spoiler]", "[/spoiler]", "texto spoiler");
     });
 
-    document.getElementById("toolSetlist").addEventListener("click", () => openSetlistModal(replyBody));
-    document.getElementById("toolAudio").addEventListener("click", () => openAudioModal(replyBody));
-
     _replyPhotos = [];
+    _replyTags = [];
+
+    const replyAttachActions = {
+      setlist: () => openSetlistModal(replyBody),
+      music:   () => alert("Em breve: linkar música."),
+      photo:   () => document.getElementById("replyPhotoInput").click(),
+      audio:   () => openAudioModal(replyBody),
+      spoiler: () => wrapSel("[spoiler]", "[/spoiler]", "texto spoiler"),
+    };
+    document.getElementById("replyAttachments").addEventListener("click", e => {
+      const btn = e.target.closest(".reply-attach-btn");
+      if (!btn) return;
+      replyAttachActions[btn.dataset.rattach]?.();
+    });
+
+    function updateReplyAttachStatus() {
+      const body = replyBody.value || "";
+      const detected = {
+        setlist: /\[setlist\]/i.test(body),
+        music:   /\[music(?:a|á)?\]/i.test(body),
+        photo:   _replyPhotos.length > 0,
+        audio:   /\[audio(?:-url)?\]/i.test(body),
+        spoiler: /\[spoiler\]/i.test(body),
+      };
+      const addedLabel = {
+        setlist: "setlist incorporado",
+        music:   "música incorporada",
+        photo:   `${_replyPhotos.length} foto${_replyPhotos.length === 1 ? "" : "s"} anexada${_replyPhotos.length === 1 ? "" : "s"}`,
+        audio:   "áudio anexado",
+        spoiler: "spoiler ativo",
+      };
+      const baseLabel = {
+        setlist: "incorporar setlist",
+        music:   "incorporar música",
+        photo:   "foto (até 5)",
+        audio:   "áudio curto (até 2min)",
+        spoiler: "bloco com spoiler",
+      };
+      document.querySelectorAll("#replyAttachments .reply-attach-btn").forEach(btn => {
+        const key = btn.dataset.rattach;
+        const isAdded = !!detected[key];
+        btn.classList.toggle("added", isAdded);
+        const ico = btn.querySelector(".ico");
+        const lab = btn.querySelector(".rlabel");
+        if (ico) ico.textContent = isAdded ? "✓" : "+";
+        if (lab) lab.textContent = isAdded ? addedLabel[key] : baseLabel[key];
+      });
+    }
+
+    function renderReplyTagChips() {
+      const editor = document.getElementById("replyTagEditor");
+      const input = document.getElementById("replyTagInput");
+      if (!editor || !input) return;
+      editor.querySelectorAll(".reply-tag-chip").forEach(el => el.remove());
+      _replyTags.forEach((tag, i) => {
+        const chip = document.createElement("span");
+        const variant = tagColorClass(tag);
+        chip.className = variant ? `reply-tag-chip ${variant}` : "reply-tag-chip";
+        chip.innerHTML = `${san(tag)}<button class="rm" data-i="${i}" title="Remover">&#215;</button>`;
+        editor.insertBefore(chip, input);
+      });
+      editor.querySelectorAll(".rm").forEach(btn => {
+        btn.addEventListener("click", () => {
+          _replyTags.splice(parseInt(btn.dataset.i), 1);
+          renderReplyTagChips();
+        });
+      });
+    }
+
+    const replyTagInput = document.getElementById("replyTagInput");
+    if (replyTagInput) {
+      replyTagInput.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === ",") {
+          e.preventDefault();
+          const val = replyTagInput.value.trim().replace(/^#/, "").replace(/[^a-zA-Z0-9À-ɏ_-]/g, "");
+          if (val && _replyTags.length < 4 && !_replyTags.includes(val)) {
+            _replyTags.push(val);
+            renderReplyTagChips();
+          }
+          replyTagInput.value = "";
+        }
+        if (e.key === "Backspace" && !replyTagInput.value && _replyTags.length) {
+          _replyTags.pop();
+          renderReplyTagChips();
+        }
+      });
+    }
+    updateReplyAttachStatus();
 
     function compressReplyImg(file) {
       return new Promise((resolve, reject) => {
@@ -810,7 +944,7 @@ function renderTopic(data) {
         rm.innerHTML = "&#215;";
         rm.title = "Remover foto";
         rm.style.cssText = "position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:12px;line-height:1;padding:0;display:grid;place-items:center";
-        rm.addEventListener("click", () => { _replyPhotos.splice(i, 1); renderReplyPhotoRow(); });
+        rm.addEventListener("click", () => { _replyPhotos.splice(i, 1); renderReplyPhotoRow(); updateReplyAttachStatus(); });
         thumb.appendChild(imgEl); thumb.appendChild(rm);
         const alignRow = document.createElement("div");
         alignRow.style.cssText = "display:flex;gap:0;width:72px";
@@ -830,7 +964,6 @@ function renderTopic(data) {
     }
 
     const replyPhotoInput = document.getElementById("replyPhotoInput");
-    document.getElementById("toolPhoto").addEventListener("click", () => replyPhotoInput.click());
     replyPhotoInput.addEventListener("change", async () => {
       const all = Array.from(replyPhotoInput.files).filter(f => f.type.startsWith("image/"));
       const tooBig = all.filter(f => f.size > MAX_UPLOAD_BYTES);
@@ -849,6 +982,7 @@ function renderTopic(data) {
       }
       replyPhotoInput.value = "";
       renderReplyPhotoRow();
+      updateReplyAttachStatus();
     });
 
     // Preview toggle
@@ -1111,6 +1245,7 @@ async function submitReply(topicId) {
     errEl.textContent = "Mensagem muito curta."; errEl.classList.add("visible"); return;
   }
   if (_replyPhotos.length) body += "\n\n" + _replyPhotos.map(p => `[img:${p.align || "centro"}]${p.dataUrl}[/img]`).join("\n");
+  if (typeof _replyTags !== "undefined" && _replyTags.length) body += "\n\n" + _replyTags.map(t => "#" + t).join(" ");
   if (body.length > MAX_BODY_CHARS) {
     errEl.textContent = "Conteúdo muito grande (fotos pesadas demais). Remova uma foto e tente de novo.";
     errEl.classList.add("visible");
