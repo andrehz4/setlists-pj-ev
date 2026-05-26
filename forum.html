@@ -237,6 +237,15 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .tag-input-el { background: transparent; border: none; outline: none; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink); flex: 1; min-width: 120px; padding: 2px 0; }
 .tag-input-el::placeholder { color: var(--ink-dim); }
 
+/* ── Anexos (status de anexos) ── */
+.composer-attachments { display: flex; gap: 8px; flex-wrap: wrap; }
+.attach-btn { padding: 10px 14px; border: 1px dashed var(--divider-strong); background: transparent; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: border-color 120ms, color 120ms; }
+.attach-btn:hover { border-color: var(--ink-mute); color: var(--ink); }
+.attach-btn .ico { color: var(--pj); font-family: var(--font-display); font-size: 13px; line-height: 1; }
+.attach-btn.added { border-style: solid; border-color: var(--heard, #4a8a3f); color: var(--heard, #4a8a3f); }
+.attach-btn.added .ico { color: var(--heard, #4a8a3f); }
+.attach-btn.added:hover { border-color: var(--heard, #4a8a3f); color: var(--heard, #4a8a3f); opacity: 0.85; }
+
 /* ── Forum Highlights ── */
 .forum-highlights { display: grid; grid-template-columns: 1.4fr 1fr 1fr; border-top: 1px solid var(--divider); border-bottom: 1px solid var(--divider); margin: 0 32px; }
 .fh-cell { padding: 22px 24px; border-right: 1px solid var(--divider); }
@@ -395,7 +404,18 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
       </div>
 
       <div class="composer-field">
-        <label>03 · Tags (opcional, até 4)</label>
+        <label>03 · Anexos</label>
+        <div class="composer-attachments" id="composerAttachments">
+          <button type="button" class="attach-btn" data-attach="setlist"><span class="ico">+</span> <span class="label">incorporar setlist</span></button>
+          <button type="button" class="attach-btn" data-attach="music"><span class="ico">+</span> <span class="label">incorporar música</span></button>
+          <button type="button" class="attach-btn" data-attach="photo"><span class="ico">+</span> <span class="label">foto (até 4)</span></button>
+          <button type="button" class="attach-btn" data-attach="audio"><span class="ico">+</span> <span class="label">áudio curto</span></button>
+          <button type="button" class="attach-btn" data-attach="spoiler"><span class="ico">+</span> <span class="label">bloco com spoiler</span></button>
+        </div>
+      </div>
+
+      <div class="composer-field">
+        <label>04 · Tags (opcional, até 4)</label>
         <div class="tag-editor" id="tagEditor">
           <input type="text" class="tag-input-el" id="tagInput" placeholder="+ adicionar tag e pressionar Enter···" maxlength="30">
         </div>
@@ -704,6 +724,43 @@ function updateComposerMeta() {
     const over = total > MAX_BODY_CHARS ? " · LIMITE EXCEDIDO" : "";
     meta.textContent = `${tagStr}${photoStr} · ${total} car.${over}`;
   }
+  updateAttachmentStatus();
+}
+
+function updateAttachmentStatus() {
+  const container = document.getElementById("composerAttachments");
+  if (!container) return;
+  const body = document.getElementById("topicBody")?.value || "";
+  const detected = {
+    setlist: /\[setlist\]/i.test(body),
+    music:   /\[music(?:a|á)?\]/i.test(body),
+    photo:   _composerPhotos.length > 0,
+    audio:   /\[audio(?:-url)?\]/i.test(body),
+    spoiler: /\[spoiler\]/i.test(body),
+  };
+  const addedLabel = {
+    setlist: "setlist incorporado",
+    music:   "música incorporada",
+    photo:   `${_composerPhotos.length} foto${_composerPhotos.length === 1 ? "" : "s"} anexada${_composerPhotos.length === 1 ? "" : "s"}`,
+    audio:   "áudio anexado",
+    spoiler: "spoiler ativo",
+  };
+  const baseLabel = {
+    setlist: "incorporar setlist",
+    music:   "incorporar música",
+    photo:   "foto (até 4)",
+    audio:   "áudio curto",
+    spoiler: "bloco com spoiler",
+  };
+  container.querySelectorAll(".attach-btn").forEach(btn => {
+    const key = btn.dataset.attach;
+    const isAdded = !!detected[key];
+    btn.classList.toggle("added", isAdded);
+    const ico = btn.querySelector(".ico");
+    const lab = btn.querySelector(".label");
+    if (ico) ico.textContent = isAdded ? "✓" : "+";
+    if (lab) lab.textContent = isAdded ? addedLabel[key] : baseLabel[key];
+  });
 }
 
 function renderPhotoRow() {
@@ -913,6 +970,12 @@ function initComposer() {
     const btn = e.target.closest("[data-ct]");
     if (!btn) return;
     ctActions[btn.dataset.ct]?.();
+  });
+
+  document.getElementById("composerAttachments").addEventListener("click", e => {
+    const btn = e.target.closest(".attach-btn");
+    if (!btn) return;
+    ctActions[btn.dataset.attach]?.();
   });
 
   const photoInput = document.getElementById("photoFileInput");
