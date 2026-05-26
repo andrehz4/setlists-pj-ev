@@ -182,8 +182,8 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .composer-overlay.open { display: grid; }
 .composer-modal {
   background: var(--bg-card); border: 1px solid var(--divider-strong);
-  width: 100%; max-width: 760px; display: flex; flex-direction: column;
-  max-height: 90vh;
+  width: 100%; max-width: 1180px; display: flex; flex-direction: column;
+  max-height: 92vh;
 }
 .composer-modal-head {
   display: flex; align-items: center; gap: 10px;
@@ -195,7 +195,36 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
   background: none; border: none; color: var(--ink-dim); cursor: pointer; font-size: 18px; line-height: 1; padding: 4px; margin-left: 4px;
 }
 .composer-modal-close:hover { color: var(--pj); }
-.composer-form { padding: 20px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
+.composer-modal-body { display: grid; grid-template-columns: 1fr 320px; gap: 28px; overflow-y: auto; }
+.composer-form { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.composer-rail { padding: 22px 22px 24px 0; display: flex; flex-direction: column; gap: 18px; border-left: 1px solid var(--divider); padding-left: 22px; }
+.rail-card { border: 1px solid var(--divider); background: var(--bg-card-sunk); padding: 16px; }
+.rail-card h3 { font-family: var(--font-editorial); font-style: italic; font-size: 17px; color: var(--ink); margin: 0 0 8px; }
+.rail-card-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 12px; }
+.rail-card-label.pj { color: var(--pj); }
+.id-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px dotted var(--divider); cursor: pointer; }
+.id-row:last-child { border-bottom: none; }
+.id-row.disabled { opacity: 0.55; cursor: not-allowed; }
+.id-radio { width: 16px; height: 16px; border: 1px solid var(--ink-mute); border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; margin-top: 2px; }
+.id-radio.active { border-color: var(--pj); }
+.id-radio.active::after { content: ""; width: 8px; height: 8px; background: var(--pj); border-radius: 50%; }
+.id-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
+.id-sub { font-family: var(--font-editorial); font-style: italic; font-size: 13px; color: var(--ink-mute); margin-top: 2px; line-height: 1.4; }
+.tip-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+.tip-list li { padding-left: 16px; position: relative; font-family: var(--font-body); font-size: 13px; color: var(--ink-mute); line-height: 1.45; }
+.tip-list li::before { content: "›"; position: absolute; left: 0; top: -2px; font-family: var(--font-display); color: var(--pj); }
+.tip-list code { font-family: var(--font-mono); font-size: 11px; background: var(--bg-card); border: 1px solid var(--divider); padding: 1px 5px; color: var(--ev); }
+.rail-preview .preview-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; min-height: 16px; }
+.rail-preview .preview-title { font-family: var(--font-editorial); font-style: italic; font-size: 16px; color: var(--ink); line-height: 1.25; margin: 0 0 6px; }
+.rail-preview .preview-snippet { font-family: var(--font-body); font-size: 13px; color: var(--ink-mute); line-height: 1.5; margin: 0; }
+.rail-preview .preview-author { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.08em; margin-top: 10px; }
+.rail-preview .preview-author .who { color: var(--ink-mute); text-transform: uppercase; }
+.rail-preview .preview-author .ago { opacity: 0.6; margin-left: 6px; }
+@media (max-width: 860px) {
+  .composer-modal { max-width: 760px; }
+  .composer-modal-body { grid-template-columns: 1fr; }
+  .composer-rail { border-left: none; border-top: 1px solid var(--divider); padding: 18px 22px 22px; }
+}
 .composer-field { display: flex; flex-direction: column; gap: 6px; }
 .composer-field label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); }
 .composer-field input {
@@ -364,18 +393,31 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
       </div>
       <button class="composer-modal-close" id="composerClose" aria-label="Fechar">×</button>
     </div>
+    <div class="composer-modal-body">
     <div class="composer-form">
 
-      <input type="hidden" id="topicCategory" value="geral">
+      <div class="composer-field">
+        <label>01 · Categoria</label>
+        <div class="cat-pills" id="catPills"></div>
+        <input type="hidden" id="topicCategory" value="geral">
+      </div>
 
       <div class="composer-field">
-        <label>01 · Título</label>
-        <input type="text" id="topicTitle" maxlength="120" placeholder="conta em uma frase — sem caps lock">
+        <label>02 · Ancorar em um show ou música (opcional)</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" class="attach-btn" data-anchor="show"><span class="ico">+</span> <span class="label">linkar show</span></button>
+          <button type="button" class="attach-btn" data-anchor="music"><span class="ico">+</span> <span class="label">linkar música</span></button>
+        </div>
+      </div>
+
+      <div class="composer-field">
+        <label>03 · Título</label>
+        <input type="text" id="topicTitle" maxlength="120" placeholder="conta em uma frase, sem caps lock">
         <div class="char-count" id="titleCount">0 / 120</div>
       </div>
 
       <div class="composer-field">
-        <label>02 · O que você quer dizer</label>
+        <label>04 · O que você quer dizer</label>
         <div class="composer-body-wrap">
           <div class="ctoolbar">
             <button class="tool-btn b" data-ct="bold" title="Negrito (**texto**)">B</button>
@@ -408,22 +450,22 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
       </div>
 
       <div class="composer-field">
-        <label>03 · Anexos</label>
+        <label>05 · Anexos</label>
         <div class="composer-attachments" id="composerAttachments">
           <button type="button" class="attach-btn" data-attach="setlist"><span class="ico">+</span> <span class="label">incorporar setlist</span></button>
           <button type="button" class="attach-btn" data-attach="music"><span class="ico">+</span> <span class="label">incorporar música</span></button>
-          <button type="button" class="attach-btn" data-attach="photo"><span class="ico">+</span> <span class="label">foto (até 4)</span></button>
-          <button type="button" class="attach-btn" data-attach="audio"><span class="ico">+</span> <span class="label">áudio curto</span></button>
+          <button type="button" class="attach-btn" data-attach="photo"><span class="ico">+</span> <span class="label">foto (até 5)</span></button>
+          <button type="button" class="attach-btn" data-attach="audio"><span class="ico">+</span> <span class="label">áudio curto (até 2min)</span></button>
           <button type="button" class="attach-btn" data-attach="spoiler"><span class="ico">+</span> <span class="label">bloco com spoiler</span></button>
         </div>
       </div>
 
       <div class="composer-field">
-        <label>04 · Tags (opcional, até 4)</label>
+        <label>06 · Tags (opcional, até 4)</label>
         <div class="tag-editor" id="tagEditor">
-          <input type="text" class="tag-input-el" id="tagInput" placeholder="+ adicionar tag e pressionar Enter···" maxlength="30">
+          <input type="text" class="tag-input-el" id="tagInput" placeholder="+ adicionar tag···" maxlength="30">
         </div>
-        <div style="font-family:var(--font-mono);font-size:9px;color:var(--ink-dim);margin-top:3px;letter-spacing:0.12em">ENTER para adicionar · ATÉ 4 TAGS</div>
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--ink-dim);margin-top:3px;letter-spacing:0.12em">ENTER para adicionar, ATÉ 4 TAGS</div>
       </div>
 
       <div class="error-msg" id="composerError"></div>
@@ -432,6 +474,49 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
         <button class="btn primary" id="composerSubmit">Publicar thread &#8594;</button>
       </div>
 
+    </div>
+
+    <aside class="composer-rail">
+      <div class="rail-card">
+        <div class="rail-card-label pj">// POSTAR COMO</div>
+        <div class="id-row" id="idRowUser">
+          <span class="id-radio active"></span>
+          <div>
+            <div class="id-label" id="idUserName">@você</div>
+            <div class="id-sub" id="idUserMeta">conectado</div>
+          </div>
+        </div>
+        <div class="id-row disabled" title="Em breve">
+          <span class="id-radio"></span>
+          <div>
+            <div class="id-label">Anônimo</div>
+            <div class="id-sub">você vira "cipriano #429" nesta thread, não some no histórico, só esconde o nome</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rail-card">
+        <h3>Combinados da casa</h3>
+        <ul class="tip-list">
+          <li>Em review de show recente, marca <code>spoiler</code> no setlist.</li>
+          <li>Bootleg que não é seu, credita quem gravou.</li>
+          <li>Brigar é ok. <em>Bater</em> não é.</li>
+          <li>Se for tradução de letra, anexa o original, fica mais bonito.</li>
+          <li>Fotos de plateia: corta rostos de quem não consentiu.</li>
+        </ul>
+      </div>
+
+      <div class="rail-card rail-preview">
+        <div class="rail-card-label">// PRÉVIA RÁPIDA</div>
+        <div class="preview-tags" id="previewTags"></div>
+        <h3 class="preview-title" id="previewTitle">Sua thread aparece aqui</h3>
+        <p class="preview-snippet" id="previewSnippet">Comece a escrever pra ver a prévia.</p>
+        <div class="preview-author">
+          <span class="who" id="previewWho">@você</span>
+          <span class="ago">· agora</span>
+        </div>
+      </div>
+    </aside>
     </div>
   </div>
 </div>
@@ -499,7 +584,7 @@ function extractTopicTags(body) {
 function bodySnippet(body, max = 180) {
   let t = String(body || "");
   // Tira anexos pesados (base64 nao aparece no preview)
-  t = t.replace(/\[img\][\s\S]*?\[\/img\]/gi, " [foto] ");
+  t = t.replace(/\[img(?::[a-z]+)?\][\s\S]*?\[\/img\]/gi, " [foto] ");
   t = t.replace(/\[audio\][\s\S]*?\[\/audio\]/gi, " [áudio] ");
   t = t.replace(/\[audio-url\][\s\S]*?\[\/audio-url\]/gi, " [áudio] ");
   t = t.replace(/\[setlist\][\s\S]*?\[\/setlist\]/gi, " [setlist] ");
@@ -788,8 +873,8 @@ function updateAttachmentStatus() {
   const baseLabel = {
     setlist: "incorporar setlist",
     music:   "incorporar música",
-    photo:   "foto (até 4)",
-    audio:   "áudio curto",
+    photo:   "foto (até 5)",
+    audio:   "áudio curto (até 2min)",
     spoiler: "bloco com spoiler",
   };
   container.querySelectorAll(".attach-btn").forEach(btn => {
@@ -810,8 +895,11 @@ function renderPhotoRow() {
   if (!_composerPhotos.length) { row.style.display = "none"; return; }
   row.style.display = "flex";
   _composerPhotos.forEach((p, i) => {
+    if (!p.align) p.align = "centro";
     const wrap = document.createElement("div");
-    wrap.style.cssText = "position:relative;display:inline-block";
+    wrap.style.cssText = "position:relative;display:inline-flex;flex-direction:column;align-items:stretch;gap:3px";
+    const thumb = document.createElement("div");
+    thumb.style.cssText = "position:relative;width:72px;height:72px";
     const img = document.createElement("img");
     img.src = p.dataUrl;
     img.alt = p.name;
@@ -821,8 +909,20 @@ function renderPhotoRow() {
     rm.title = "Remover foto";
     rm.style.cssText = "position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:12px;line-height:1;padding:0;display:grid;place-items:center";
     rm.addEventListener("click", () => { _composerPhotos.splice(i, 1); renderPhotoRow(); updateComposerMeta(); });
-    wrap.appendChild(img);
-    wrap.appendChild(rm);
+    thumb.appendChild(img); thumb.appendChild(rm);
+    const alignRow = document.createElement("div");
+    alignRow.style.cssText = "display:flex;gap:0;width:72px";
+    [["esq","⇤","Alinhar à esquerda"],["centro","≡","Centralizar"],["dir","⇥","Alinhar à direita"]].forEach(([a, ico, title]) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = ico;
+      b.title = title;
+      const active = p.align === a;
+      b.style.cssText = `flex:1;height:18px;border:1px solid var(--divider-strong);background:${active ? "var(--pj)" : "var(--bg-card-sunk)"};color:${active ? "#fff" : "var(--ink-mute)"};font-size:11px;cursor:pointer;padding:0;line-height:1`;
+      b.addEventListener("click", () => { p.align = a; renderPhotoRow(); });
+      alignRow.appendChild(b);
+    });
+    wrap.appendChild(thumb); wrap.appendChild(alignRow);
     row.appendChild(wrap);
   });
 }
@@ -875,7 +975,7 @@ function renderTagChips() {
   editor.querySelectorAll(".rm").forEach(btn => {
     btn.addEventListener("click", () => {
       _composerTags.splice(parseInt(btn.dataset.i), 1);
-      renderTagChips(); updateComposerMeta();
+      renderTagChips(); updateComposerMeta(); updateRailPreview();
     });
   });
 }
@@ -909,9 +1009,45 @@ function openComposer() {
   document.getElementById("composerError").classList.remove("visible");
   const photoRow = document.getElementById("photoAttachRow");
   if (photoRow) { photoRow.innerHTML = ""; photoRow.style.display = "none"; }
+  buildCatPills("geral");
   renderTagChips();
+  updateRailIdentity();
+  updateRailPreview();
   updateComposerMeta();
   document.getElementById("composerOverlay").classList.add("open");
+}
+
+function updateRailIdentity() {
+  const u = _state.user;
+  const nameEl = document.getElementById("idUserName");
+  const metaEl = document.getElementById("idUserMeta");
+  const whoEl = document.getElementById("previewWho");
+  const name = u && u.display_name ? "@" + u.display_name.split(" ")[0].toLowerCase() : "@você";
+  if (nameEl) nameEl.textContent = name;
+  if (metaEl) metaEl.textContent = u ? "conectado" : "não conectado";
+  if (whoEl) whoEl.textContent = name;
+}
+
+function updateRailPreview() {
+  const title = (document.getElementById("topicTitle")?.value || "").trim();
+  const body = (document.getElementById("topicBody")?.value || "").trim();
+  const tagsEl = document.getElementById("previewTags");
+  const titleEl = document.getElementById("previewTitle");
+  const snipEl = document.getElementById("previewSnippet");
+  if (tagsEl) {
+    tagsEl.innerHTML = _composerTags.map(tag => {
+      const variant = tagColorClass(tag);
+      return `<span class="tag${variant ? " " + variant : ""}">${san(tag)}</span>`;
+    }).join("");
+  }
+  if (titleEl) {
+    titleEl.textContent = title || "Sua thread aparece aqui";
+    titleEl.style.color = title ? "var(--ink)" : "var(--ink-dim)";
+  }
+  if (snipEl) {
+    snipEl.textContent = body ? bodySnippet(body, 140) : "Comece a escrever pra ver a prévia.";
+    snipEl.style.color = body ? "var(--ink-mute)" : "var(--ink-dim)";
+  }
 }
 
 function closeComposer() {
@@ -929,7 +1065,7 @@ async function submitTopic() {
   if (!title || title.length < 3) { errEl.textContent = "Título muito curto (mínimo 3 caracteres)."; errEl.classList.add("visible"); return; }
   if (!body || body.length < 10) { errEl.textContent = "Texto muito curto (mínimo 10 caracteres)."; errEl.classList.add("visible"); return; }
   if (_composerTags.length) body += "\n\n" + _composerTags.map(t => "#" + t).join(" ");
-  if (_composerPhotos.length) body += "\n\n" + _composerPhotos.map(p => `[img]${p.dataUrl}[/img]`).join("\n");
+  if (_composerPhotos.length) body += "\n\n" + _composerPhotos.map(p => `[img:${p.align || "centro"}]${p.dataUrl}[/img]`).join("\n");
   if (body.length > MAX_BODY_CHARS) {
     errEl.textContent = "Conteúdo muito grande (fotos pesadas demais). Remova uma foto e tente de novo.";
     errEl.classList.add("visible");
@@ -1027,6 +1163,10 @@ function initComposer() {
     ctActions[btn.dataset.attach]?.();
   });
 
+  document.querySelectorAll(".composer-form [data-anchor]").forEach(btn => {
+    btn.addEventListener("click", () => alert("Em breve: ancorar em show ou música do arquivo."));
+  });
+
   const photoInput = document.getElementById("photoFileInput");
   photoInput.addEventListener("change", async () => {
     const all = Array.from(photoInput.files).filter(f => f.type.startsWith("image/"));
@@ -1038,7 +1178,7 @@ function initComposer() {
       errEl.classList.add("visible");
     }
     for (const file of files) {
-      if (_composerPhotos.length >= 4) break;
+      if (_composerPhotos.length >= 5) break;
       try {
         const dataUrl = await compressImage(file);
         _composerPhotos.push({ dataUrl, name: file.name });
@@ -1054,11 +1194,13 @@ function initComposer() {
     const bc = document.getElementById("bodyCount");
     if (bc) { bc.textContent = n + " / 50000"; bc.classList.toggle("warn", n > 48000); }
     updateComposerMeta();
+    updateRailPreview();
   });
 
   document.getElementById("topicTitle").addEventListener("input", e => {
     const el = document.getElementById("titleCount");
     if (el) { const n = e.target.value.length; el.textContent = n + " / 120"; el.classList.toggle("warn", n > 100); }
+    updateRailPreview();
   });
 
   document.getElementById("ctPreviewBtn").addEventListener("click", () => {
@@ -1083,13 +1225,13 @@ function initComposer() {
       const val = tagInput.value.trim().replace(/^#/, "").replace(/[^a-zA-Z0-9À-ɏ_-]/g, "");
       if (val && _composerTags.length < 4 && !_composerTags.includes(val)) {
         _composerTags.push(val);
-        renderTagChips(); updateComposerMeta();
+        renderTagChips(); updateComposerMeta(); updateRailPreview();
       }
       tagInput.value = "";
     }
     if (e.key === "Backspace" && !tagInput.value && _composerTags.length) {
       _composerTags.pop();
-      renderTagChips(); updateComposerMeta();
+      renderTagChips(); updateComposerMeta(); updateRailPreview();
     }
   });
 }

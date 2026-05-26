@@ -78,6 +78,8 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .post-body .align-esq    { display: block; text-align: left;   margin: 6px 0; }
 .post-body .align-centro { display: block; text-align: center; margin: 6px 0; }
 .post-body .align-dir    { display: block; text-align: right;  margin: 6px 0; }
+.post-body .img-align    { display: block; margin: 8px 0; }
+.post-body .img-align img { max-width: 100%; border-radius: 6px; display: inline-block; }
 
 /* Quote block */
 .quote-block { border-left: 3px solid var(--ev); background: var(--bg-card); padding: 12px 16px; margin: 14px 0; font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); line-height: 1.5; }
@@ -356,10 +358,10 @@ function renderBody(rawText) {
 
   // Placeholders usam char de controle  pra evitar conflito com markdown (_italic_, **bold**)
   processed = processed.replace(
-    /\[img\]([^\][\n]{10,}?)\[\/img\]/gi,
-    (_, src) => {
-      if (imgSlots.length >= 4 || !VALID_IMG.test(src.trim())) return "";
-      imgSlots.push(src.trim());
+    /\[img(?::(esq|centro|dir))?\]([^\][\n]{10,}?)\[\/img\]/gi,
+    (_, align, src) => {
+      if (imgSlots.length >= 5 || !VALID_IMG.test(src.trim())) return "";
+      imgSlots.push({ src: src.trim(), align: align ? align.toLowerCase() : "" });
       return `IMG${imgSlots.length - 1}`;
     }
   );
@@ -441,10 +443,20 @@ function renderBody(rawText) {
 
     if (kind === "IMG") {
       if (idx >= imgSlots.length) return;
-      el = document.createElement("img");
-      el.src = imgSlots[idx];
-      el.alt = "foto";
-      el.style.cssText = "max-width:100%;border-radius:6px;display:inline-block;margin:8px 0";
+      const slot = imgSlots[idx];
+      const img = document.createElement("img");
+      img.src = slot.src;
+      img.alt = "foto";
+      img.style.cssText = "max-width:100%;border-radius:6px;display:inline-block";
+      if (slot.align) {
+        const wrap2 = document.createElement("div");
+        wrap2.className = "img-align align-" + slot.align;
+        wrap2.appendChild(img);
+        el = wrap2;
+      } else {
+        img.style.cssText += ";margin:8px 0";
+        el = img;
+      }
     }
 
     if (kind === "AUDIO") {
@@ -785,8 +797,11 @@ function renderTopic(data) {
       if (!_replyPhotos.length) { row.style.display = "none"; return; }
       row.style.display = "flex";
       _replyPhotos.forEach((p, i) => {
+        if (!p.align) p.align = "centro";
         const wrap = document.createElement("div");
-        wrap.style.cssText = "position:relative;display:inline-block";
+        wrap.style.cssText = "position:relative;display:inline-flex;flex-direction:column;align-items:stretch;gap:3px";
+        const thumb = document.createElement("div");
+        thumb.style.cssText = "position:relative;width:72px;height:72px";
         const imgEl = document.createElement("img");
         imgEl.src = p.dataUrl;
         imgEl.alt = p.name;
@@ -796,7 +811,20 @@ function renderTopic(data) {
         rm.title = "Remover foto";
         rm.style.cssText = "position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:12px;line-height:1;padding:0;display:grid;place-items:center";
         rm.addEventListener("click", () => { _replyPhotos.splice(i, 1); renderReplyPhotoRow(); });
-        wrap.appendChild(imgEl); wrap.appendChild(rm);
+        thumb.appendChild(imgEl); thumb.appendChild(rm);
+        const alignRow = document.createElement("div");
+        alignRow.style.cssText = "display:flex;gap:0;width:72px";
+        [["esq","⇤","Alinhar à esquerda"],["centro","≡","Centralizar"],["dir","⇥","Alinhar à direita"]].forEach(([a, ico, title]) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.textContent = ico;
+          b.title = title;
+          const active = p.align === a;
+          b.style.cssText = `flex:1;height:18px;border:1px solid var(--divider-strong);background:${active ? "var(--pj)" : "var(--bg-card-sunk)"};color:${active ? "#fff" : "var(--ink-mute)"};font-size:11px;cursor:pointer;padding:0;line-height:1`;
+          b.addEventListener("click", () => { p.align = a; renderReplyPhotoRow(); });
+          alignRow.appendChild(b);
+        });
+        wrap.appendChild(thumb); wrap.appendChild(alignRow);
         row.appendChild(wrap);
       });
     }
@@ -813,7 +841,7 @@ function renderTopic(data) {
         errEl.classList.add("visible");
       }
       for (const file of files) {
-        if (_replyPhotos.length >= 4) break;
+        if (_replyPhotos.length >= 5) break;
         try {
           const dataUrl = await compressReplyImg(file);
           _replyPhotos.push({ dataUrl, name: file.name });
@@ -1082,7 +1110,7 @@ async function submitReply(topicId) {
   if (!body || body.length < 2) {
     errEl.textContent = "Mensagem muito curta."; errEl.classList.add("visible"); return;
   }
-  if (_replyPhotos.length) body += "\n\n" + _replyPhotos.map(p => `[img]${p.dataUrl}[/img]`).join("\n");
+  if (_replyPhotos.length) body += "\n\n" + _replyPhotos.map(p => `[img:${p.align || "centro"}]${p.dataUrl}[/img]`).join("\n");
   if (body.length > MAX_BODY_CHARS) {
     errEl.textContent = "Conteúdo muito grande (fotos pesadas demais). Remova uma foto e tente de novo.";
     errEl.classList.add("visible");
