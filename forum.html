@@ -180,6 +180,16 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
   display: none; place-items: center; z-index: 200; padding: 20px;
 }
 .composer-overlay.open { display: grid; }
+.tool-modal { position:fixed; inset:0; z-index:500; background:rgba(0,0,0,.55); display:flex; align-items:center; justify-content:center; }
+.tool-modal-inner { background:var(--bg-card); border:1px solid var(--divider-strong); padding:20px; width:340px; display:flex; flex-direction:column; gap:10px; }
+.tool-modal-label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--pj); }
+.tool-modal-inner input[type=text],
+.tool-modal-inner input[type=date],
+.tool-modal-inner input[type=url] { background:var(--bg-card-sunk); border:1px solid var(--divider); color:var(--ink); font-family:var(--font-mono); font-size:12px; padding:7px 10px; width:100%; outline:none; }
+.tool-modal-inner input[type=text]:focus,
+.tool-modal-inner input[type=date]:focus,
+.tool-modal-inner input[type=url]:focus { border-color:var(--pj); }
+.tool-modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:4px; }
 .composer-modal {
   background: var(--bg-card); border: 1px solid var(--divider-strong);
   width: 100%; max-width: 1180px; display: flex; flex-direction: column;
@@ -521,6 +531,34 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
   </div>
 </div>
 
+<!-- Setlist (show) modal -->
+<div class="tool-modal" id="setlistModal" style="display:none">
+  <div class="tool-modal-inner">
+    <div class="tool-modal-label">// Linkar show</div>
+    <input type="text" id="slBanda" value="Pearl Jam" placeholder="Banda">
+    <input type="date" id="slData">
+    <input type="text" id="slLocal" placeholder="Local / Venue">
+    <div class="tool-modal-actions">
+      <button class="btn sm" id="slCancel">Cancelar</button>
+      <button class="btn sm primary" id="slInsert">Inserir</button>
+    </div>
+  </div>
+</div>
+
+<!-- Music modal -->
+<div class="tool-modal" id="musicModal" style="display:none">
+  <div class="tool-modal-inner">
+    <div class="tool-modal-label">// Linkar música</div>
+    <input type="text" id="muTitulo" placeholder="Título da música">
+    <input type="text" id="muAlbum" placeholder="Álbum (opcional)">
+    <input type="url" id="muUrl" placeholder="URL da cifra/letra (opcional, https://)">
+    <div class="tool-modal-actions">
+      <button class="btn sm" id="muCancel">Cancelar</button>
+      <button class="btn sm primary" id="muInsert">Inserir</button>
+    </div>
+  </div>
+</div>
+
 <script>
 "use strict";
 
@@ -588,6 +626,7 @@ function bodySnippet(body, max = 180) {
   t = t.replace(/\[audio\][\s\S]*?\[\/audio\]/gi, " [áudio] ");
   t = t.replace(/\[audio-url\][\s\S]*?\[\/audio-url\]/gi, " [áudio] ");
   t = t.replace(/\[setlist\][\s\S]*?\[\/setlist\]/gi, " [setlist] ");
+  t = t.replace(/\[musica\][\s\S]*?\[\/musica\]/gi, " [música] ");
   t = t.replace(/\[spoiler\][\s\S]*?\[\/spoiler\]/gi, " [spoiler] ");
   // Alinhamento e markdown ficam transparentes
   t = t.replace(/\[(esq|centro|dir)\]([\s\S]*?)\[\/\1\]/gi, "$2");
@@ -1097,6 +1136,87 @@ async function submitTopic() {
   }
 }
 
+// ── Modais de show e música ──────────────────────────────────
+function openSetlistModal(targetTextarea) {
+  const modal = document.getElementById("setlistModal");
+  document.getElementById("slBanda").value = "Pearl Jam";
+  document.getElementById("slData").value = "";
+  document.getElementById("slLocal").value = "";
+  modal.style.display = "flex";
+  setTimeout(() => document.getElementById("slData").focus(), 50);
+
+  function close() { modal.style.display = "none"; cleanup(); }
+
+  function insert() {
+    const banda = document.getElementById("slBanda").value.trim() || "Pearl Jam";
+    const data  = document.getElementById("slData").value;
+    const local = document.getElementById("slLocal").value.trim();
+    if (!data || !local) { document.getElementById("slLocal").focus(); return; }
+    const dateStr = new Date(data + "T12:00:00").toLocaleDateString("pt-BR", { day:"2-digit", month:"short", year:"numeric" });
+    const tag = `[setlist]${banda} | ${dateStr} | ${local}[/setlist]`;
+    const start = targetTextarea.selectionStart;
+    const before = targetTextarea.value.substring(0, start);
+    const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
+    targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
+    targetTextarea.focus();
+    updateComposerMeta();
+    close();
+  }
+
+  const slInsert = document.getElementById("slInsert");
+  const slCancel = document.getElementById("slCancel");
+  slInsert.addEventListener("click", insert);
+  slCancel.addEventListener("click", close);
+  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+
+  function cleanup() {
+    slInsert.removeEventListener("click", insert);
+    slCancel.removeEventListener("click", close);
+  }
+}
+
+function openMusicModal(targetTextarea) {
+  const modal = document.getElementById("musicModal");
+  const tituloEl = document.getElementById("muTitulo");
+  const albumEl  = document.getElementById("muAlbum");
+  const urlEl    = document.getElementById("muUrl");
+  tituloEl.value = ""; albumEl.value = ""; urlEl.value = "";
+  modal.style.display = "flex";
+  setTimeout(() => tituloEl.focus(), 50);
+
+  function close() { modal.style.display = "none"; cleanup(); }
+
+  function insert() {
+    const titulo = tituloEl.value.trim();
+    const album  = albumEl.value.trim();
+    const url    = urlEl.value.trim();
+    if (!titulo) { tituloEl.focus(); return; }
+    if (url && !/^https:\/\//i.test(url)) { urlEl.focus(); return; }
+    const parts = [titulo];
+    if (album) parts.push(album);
+    if (url)   parts.push(url);
+    const tag = `[musica]${parts.join(" | ")}[/musica]`;
+    const start = targetTextarea.selectionStart;
+    const before = targetTextarea.value.substring(0, start);
+    const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
+    targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
+    targetTextarea.focus();
+    updateComposerMeta();
+    close();
+  }
+
+  const muInsert = document.getElementById("muInsert");
+  const muCancel = document.getElementById("muCancel");
+  muInsert.addEventListener("click", insert);
+  muCancel.addEventListener("click", close);
+  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+
+  function cleanup() {
+    muInsert.removeEventListener("click", insert);
+    muCancel.removeEventListener("click", close);
+  }
+}
+
 function initComposer() {
   document.getElementById("composerClose").addEventListener("click", closeComposer);
   document.getElementById("composerCancel").addEventListener("click", closeComposer);
@@ -1145,8 +1265,8 @@ function initComposer() {
     },
     undo: () => { ta.focus(); document.execCommand("undo"); },
     redo: () => { ta.focus(); document.execCommand("redo"); },
-    setlist: () => alert("Em breve: incorporar setlist do arquivo."),
-    music:   () => alert("Em breve: linkar música."),
+    setlist: () => openSetlistModal(document.getElementById("topicBody")),
+    music:   () => openMusicModal(document.getElementById("topicBody")),
     photo:   () => document.getElementById("photoFileInput").click(),
     audio:   () => alert("Em breve: anexar áudio."),
   };
@@ -1164,7 +1284,11 @@ function initComposer() {
   });
 
   document.querySelectorAll(".composer-form [data-anchor]").forEach(btn => {
-    btn.addEventListener("click", () => alert("Em breve: ancorar em show ou música do arquivo."));
+    btn.addEventListener("click", () => {
+      const ta = document.getElementById("topicBody");
+      if (btn.dataset.anchor === "show")  openSetlistModal(ta);
+      if (btn.dataset.anchor === "music") openMusicModal(ta);
+    });
   });
 
   const photoInput = document.getElementById("photoFileInput");
