@@ -322,8 +322,9 @@ function escapeHtml(str) {
 }
 
 function renderBody(rawText) {
-  const VALID_IMG   = /^data:image\/(jpeg|png|gif|webp);base64,/i;
-  const VALID_AUDIO = /^data:audio\/(webm|ogg|mpeg|wav);base64,/i;
+  // (;codecs=opus etc) pode aparecer entre o tipo e ;base64, no MediaRecorder
+  const VALID_IMG   = /^data:image\/(jpeg|png|gif|webp)(;[\w=.-]+)*;base64,/i;
+  const VALID_AUDIO = /^data:audio\/(webm|ogg|mpeg|wav)(;[\w=.-]+)*;base64,/i;
   const VALID_URL   = /^https:\/\//i;
 
   const imgSlots     = [];
