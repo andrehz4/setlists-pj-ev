@@ -190,6 +190,27 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .tool-modal-inner input[type=date]:focus,
 .tool-modal-inner input[type=url]:focus { border-color:var(--pj); }
 .tool-modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:4px; }
+.audio-tabs { display:flex; gap:0; border-bottom:1px solid var(--divider); }
+.audio-tabs .tab-btn { background:transparent; border:none; color:var(--ink-mute); font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; padding:8px 12px; cursor:pointer; border-bottom:2px solid transparent; }
+.audio-tabs .tab-btn.active { color:var(--pj); border-bottom-color:var(--pj); }
+.mu-list { max-height:240px; overflow-y:auto; border:1px solid var(--divider); background:var(--bg-card-sunk); margin-top:6px; }
+.mu-list-item { display:grid; grid-template-columns:1fr auto; gap:8px; padding:7px 10px; border-bottom:1px dotted var(--divider); cursor:pointer; align-items:baseline; }
+.mu-list-item:last-child { border-bottom:none; }
+.mu-list-item:hover { background:var(--bg-card); }
+.mu-list-item.has-audio .mu-title::after { content:" ♪"; color:var(--ev); }
+.mu-list-item.selected { background:rgba(193,39,45,0.08); border-left:2px solid var(--pj); padding-left:8px; }
+.mu-title { font-family:var(--font-body); font-size:13px; color:var(--ink); line-height:1.2; }
+.mu-meta { font-family:var(--font-mono); font-size:9.5px; color:var(--ink-dim); letter-spacing:0.06em; text-transform:uppercase; }
+.mu-empty { padding:18px 12px; text-align:center; font-family:var(--font-mono); font-size:10px; color:var(--ink-dim); letter-spacing:0.12em; text-transform:uppercase; }
+.mu-selected { margin-top:8px; padding:10px; background:var(--bg-card-sunk); border:1px solid var(--divider); display:flex; flex-direction:column; gap:6px; }
+.mu-selected .mu-sel-title { font-family:var(--font-editorial); font-style:italic; font-size:15px; color:var(--ink); }
+.mu-selected .mu-sel-album { font-family:var(--font-mono); font-size:10px; color:var(--ev); letter-spacing:0.08em; }
+.mu-selected audio { width:100%; height:32px; }
+.mu-audio-picker { display:flex; gap:6px; flex-wrap:wrap; font-family:var(--font-mono); font-size:10px; color:var(--ink-dim); }
+.mu-audio-picker button { background:transparent; border:1px solid var(--divider-strong); color:var(--ink-mute); padding:3px 7px; cursor:pointer; font-family:var(--font-mono); font-size:10px; }
+.mu-audio-picker button.active { border-color:var(--pj); color:var(--pj); }
+#muSearch { background:var(--bg-card-sunk); border:1px solid var(--divider); color:var(--ink); font-family:var(--font-mono); font-size:12px; padding:7px 10px; width:100%; outline:none; }
+#muSearch:focus { border-color:var(--pj); }
 .composer-modal {
   background: var(--bg-card); border: 1px solid var(--divider-strong);
   width: 100%; max-width: 1180px; display: flex; flex-direction: column;
@@ -547,11 +568,22 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 <!-- Music modal -->
 <div class="tool-modal" id="musicModal" style="display:none">
-  <div class="tool-modal-inner">
+  <div class="tool-modal-inner" style="width:420px">
     <div class="tool-modal-label">// Linkar música</div>
-    <input type="text" id="muTitulo" placeholder="Título da música">
-    <input type="text" id="muAlbum" placeholder="Álbum (opcional)">
-    <input type="url" id="muUrl" placeholder="URL da cifra/letra (opcional, https://)">
+    <div class="audio-tabs">
+      <button class="tab-btn active" data-mutab="cat">Do catálogo</button>
+      <button class="tab-btn" data-mutab="man">Manual</button>
+    </div>
+    <div id="muTabCat">
+      <input type="search" id="muSearch" placeholder="Buscar (Alive, Black, Just Breathe…)">
+      <div id="muList" class="mu-list"></div>
+      <div id="muSelected" class="mu-selected" style="display:none"></div>
+    </div>
+    <div id="muTabMan" style="display:none">
+      <input type="text" id="muTitulo" placeholder="Título da música">
+      <input type="text" id="muAlbum" placeholder="Álbum (opcional)">
+      <input type="url" id="muUrl" placeholder="URL da cifra/letra (opcional, https://)">
+    </div>
     <div class="tool-modal-actions">
       <button class="btn sm" id="muCancel">Cancelar</button>
       <button class="btn sm primary" id="muInsert">Inserir</button>
@@ -1175,23 +1207,142 @@ function openSetlistModal(targetTextarea) {
   }
 }
 
+let _songsCatalog = null;
+let _songsLoading = null;
+async function loadSongsCatalog() {
+  if (_songsCatalog) return _songsCatalog;
+  if (_songsLoading) return _songsLoading;
+  _songsLoading = fetch("/media/songs.json")
+    .then(r => r.ok ? r.json() : Promise.reject(new Error("songs.json " + r.status)))
+    .then(j => { _songsCatalog = j; return j; })
+    .catch(err => { _songsLoading = null; throw err; });
+  return _songsLoading;
+}
+function _muNorm(s) {
+  return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+
 function openMusicModal(targetTextarea) {
   const modal = document.getElementById("musicModal");
+  const tabCat = document.getElementById("muTabCat");
+  const tabMan = document.getElementById("muTabMan");
+  const searchEl = document.getElementById("muSearch");
+  const listEl = document.getElementById("muList");
+  const selectedEl = document.getElementById("muSelected");
   const tituloEl = document.getElementById("muTitulo");
   const albumEl  = document.getElementById("muAlbum");
   const urlEl    = document.getElementById("muUrl");
   tituloEl.value = ""; albumEl.value = ""; urlEl.value = "";
+  searchEl.value = "";
+  selectedEl.style.display = "none";
+  listEl.innerHTML = `<div class="mu-empty">Carregando catálogo…</div>`;
   modal.style.display = "flex";
-  setTimeout(() => tituloEl.focus(), 50);
+  setTimeout(() => searchEl.focus(), 50);
+
+  let _activeTab = "cat";
+  let _selectedSong = null;
+  let _selectedAudio = null;
+
+  function setTab(name) {
+    _activeTab = name;
+    tabCat.style.display = name === "cat" ? "" : "none";
+    tabMan.style.display = name === "man" ? "" : "none";
+    document.querySelectorAll("#musicModal .audio-tabs .tab-btn").forEach(b => {
+      b.classList.toggle("active", b.dataset.mutab === name);
+    });
+  }
+  modal.querySelectorAll(".audio-tabs .tab-btn").forEach(b => {
+    b.addEventListener("click", () => setTab(b.dataset.mutab));
+  });
+
+  function renderList(filter) {
+    if (!_songsCatalog) return;
+    const q = _muNorm(filter).trim();
+    const all = _songsCatalog.songs;
+    const filtered = q
+      ? all.filter(s => _muNorm(s.title).includes(q) || _muNorm(s.album).includes(q))
+      : all.slice(0, 80);
+    if (!filtered.length) {
+      listEl.innerHTML = `<div class="mu-empty">Nada encontrado</div>`;
+      return;
+    }
+    const items = filtered.slice(0, 200).map((s, i) => {
+      const hasAudio = s.audio && s.audio.length;
+      const meta = [s.album, s.year].filter(Boolean).join(" · ");
+      return `<div class="mu-list-item${hasAudio ? " has-audio" : ""}" data-i="${i}">
+        <div><div class="mu-title">${san(s.title)}</div><div class="mu-meta">${san(meta)}</div></div>
+      </div>`;
+    }).join("");
+    listEl.innerHTML = items;
+    listEl.querySelectorAll(".mu-list-item").forEach(el => {
+      el.addEventListener("click", () => {
+        const idx = parseInt(el.dataset.i);
+        listEl.querySelectorAll(".mu-list-item").forEach(x => x.classList.remove("selected"));
+        el.classList.add("selected");
+        selectSong(filtered[idx]);
+      });
+    });
+  }
+
+  function selectSong(song) {
+    _selectedSong = song;
+    _selectedAudio = song.audio && song.audio.length ? song.audio[0] : null;
+    tituloEl.value = song.title;
+    albumEl.value  = song.album || "";
+    urlEl.value    = "";
+    renderSelected();
+  }
+
+  function audioUrl(a) {
+    return `${_songsCatalog.r2_audio_base}/${a.show_id}/${encodeURIComponent(a.file)}`;
+  }
+
+  function renderSelected() {
+    if (!_selectedSong) { selectedEl.style.display = "none"; return; }
+    selectedEl.style.display = "";
+    const s = _selectedSong;
+    const meta = [s.album, s.year].filter(Boolean).join(" · ");
+    const audios = s.audio || [];
+    let html = `<div class="mu-sel-title">${san(s.title)}</div>`;
+    if (meta) html += `<div class="mu-sel-album">${san(meta)}</div>`;
+    if (audios.length) {
+      const pickerHtml = audios.length > 1
+        ? `<div class="mu-audio-picker">${audios.map((a, i) =>
+            `<button data-ai="${i}" class="${a === _selectedAudio ? "active" : ""}">${san(a.date)} · ${san(a.venue)}</button>`
+          ).join("")}</div>`
+        : `<div class="mu-meta">do show ${san(audios[0].date)} · ${san(audios[0].venue)}</div>`;
+      html += pickerHtml;
+      html += `<audio controls preload="none" src="${san(audioUrl(_selectedAudio))}"></audio>`;
+    } else {
+      html += `<div class="mu-meta">sem áudio disponível, vai linkar só a referência</div>`;
+    }
+    selectedEl.innerHTML = html;
+    selectedEl.querySelectorAll(".mu-audio-picker button").forEach(b => {
+      b.addEventListener("click", () => {
+        _selectedAudio = audios[parseInt(b.dataset.ai)];
+        renderSelected();
+      });
+    });
+  }
 
   function close() { modal.style.display = "none"; cleanup(); }
 
   function insert() {
-    const titulo = tituloEl.value.trim();
-    const album  = albumEl.value.trim();
-    const url    = urlEl.value.trim();
-    if (!titulo) { tituloEl.focus(); return; }
-    if (url && !/^https:\/\//i.test(url)) { urlEl.focus(); return; }
+    let titulo, album, url;
+    if (_activeTab === "cat" && _selectedSong) {
+      titulo = _selectedSong.title;
+      album  = _selectedSong.album || "";
+      url    = _selectedAudio ? audioUrl(_selectedAudio) : "";
+    } else {
+      titulo = tituloEl.value.trim();
+      album  = albumEl.value.trim();
+      url    = urlEl.value.trim();
+      if (url && !/^https:\/\//i.test(url)) { urlEl.focus(); return; }
+    }
+    if (!titulo) {
+      if (_activeTab === "cat") return;
+      tituloEl.focus(); return;
+    }
     const parts = [titulo];
     if (album) parts.push(album);
     if (url)   parts.push(url);
@@ -1210,6 +1361,15 @@ function openMusicModal(targetTextarea) {
   muInsert.addEventListener("click", insert);
   muCancel.addEventListener("click", close);
   modal.addEventListener("click", e => { if (e.target === modal) close(); });
+  searchEl.addEventListener("input", () => renderList(searchEl.value));
+
+  setTab("cat");
+  loadSongsCatalog()
+    .then(() => renderList(""))
+    .catch(err => {
+      listEl.innerHTML = `<div class="mu-empty">erro ao carregar catálogo</div>`;
+      console.error(err);
+    });
 
   function cleanup() {
     muInsert.removeEventListener("click", insert);
