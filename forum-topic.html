@@ -321,6 +321,22 @@ function escapeHtml(str) {
   return (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+function tagColorClass(tag) {
+  // Hash deterministico (mesmo do forum.html): mesma tag sempre cai na mesma cor.
+  let h = 0;
+  const s = (tag || "").toLowerCase();
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return ["pj", "", "ev"][h % 3];
+}
+
+function extractTopicTags(body) {
+  // Composer adiciona '\n\n#tag1 #tag2 #tag3 #tag4' no final do body.
+  const m = (body || "").match(/\n\n((?:#[\wÀ-ɏ_-]+\s*)+)$/u);
+  if (!m) return { tags: [], cleanBody: body || "" };
+  const tags = m[1].trim().split(/\s+/).filter(t => t.startsWith("#")).map(t => t.slice(1));
+  return { tags, cleanBody: body.slice(0, -m[0].length) };
+}
+
 function renderBody(rawText) {
   // (;codecs=opus etc) pode aparecer entre o tipo e ;base64, no MediaRecorder
   const VALID_IMG   = /^data:image\/(jpeg|png|gif|webp)(;[\w=.-]+)*;base64,/i;
@@ -621,6 +637,12 @@ function renderTopic(data) {
   const totalTavaLa = allItems.reduce((s, x) => s + ((x.reactions?.tava_la) || 0), 0);
   const totalMata   = allItems.reduce((s, x) => s + ((x.reactions?.mata)    || 0), 0);
 
+  const { tags: topicTags, cleanBody } = extractTopicTags(t.body);
+  const tagChipsHtml = topicTags.map(tag => {
+    const variant = tagColorClass(tag);
+    return `<span class="tag${variant ? " " + variant : ""}">${san(tag)}</span>`;
+  }).join("");
+
   document.getElementById("pageContent").innerHTML = `
     <div class="thread-view">
       <div>
@@ -630,7 +652,7 @@ function renderTopic(data) {
           <span class="here">${san(t.title)}</span>
         </div>
         <div class="thread-head">
-          <div class="head-tags"><span class="tag">${san(t.category)}</span></div>
+          <div class="head-tags"><span class="tag pj">${san(t.category)}</span>${tagChipsHtml}</div>
           <h1>${san(t.title)}</h1>
           <div class="head-meta">
             <span>por <b>${san(t.display_name)}</b></span>
@@ -638,7 +660,7 @@ function renderTopic(data) {
             <span>${posts.length} resposta${posts.length !== 1 ? "s" : ""}</span>
           </div>
         </div>
-        ${renderPost({ id: t.id, user_id: t.user_id, body: t.body, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at, reactions: t.reactions, my_reactions: t.my_reactions }, true, t.user_id)}
+        ${renderPost({ id: t.id, user_id: t.user_id, body: cleanBody, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at, reactions: t.reactions, my_reactions: t.my_reactions }, true, t.user_id)}
         ${posts.map(p => renderPost(p, false, t.user_id)).join("")}
         ${replySection}
       </div>
