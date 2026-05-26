@@ -485,6 +485,17 @@ function initials(name) {
   return (name || "?").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
 }
 
+function extractTopicTags(body) {
+  // Bloco isolado de hashtags entre quebras de paragrafo ou fim de string.
+  const re = /\n\n((?:#[\wÀ-ɏ_-]+(?:[ \t]+|(?=\n\n|$)))+)(?=\n\n|$)/u;
+  const src = body || "";
+  const m = src.match(re);
+  if (!m) return { tags: [], cleanBody: src };
+  const tags = m[1].trim().split(/\s+/).filter(t => t.startsWith("#")).map(t => t.slice(1));
+  const cleanBody = src.slice(0, m.index) + src.slice(m.index + m[0].length);
+  return { tags, cleanBody };
+}
+
 function bodySnippet(body, max = 180) {
   let t = String(body || "");
   // Tira anexos pesados (base64 nao aparece no preview)
@@ -649,13 +660,18 @@ function renderThreads(data) {
   renderHighlights(data.items);
   list.innerHTML = data.items.map(t => {
     const avHtml = avatarHtml(t.avatar_url, t.display_name);
+    const { tags: userTags, cleanBody } = extractTopicTags(t.body);
+    const userTagChips = userTags.map(tag => {
+      const variant = tagColorClass(tag);
+      return `<span class="tag${variant ? " " + variant : ""}">${san(tag)}</span>`;
+    }).join("");
     return `
       <div class="thread-row${t.pinned ? " pinned" : ""}" data-id="${san(t.id)}">
         <div class="thread-avatar">${avHtml}</div>
         <div class="thread-main">
-          ${t.pinned ? `<div class="thread-tags"><span class="pinned-flag">★ Fixado</span><span class="tag pj">${san(t.category)}</span></div>` : `<div class="thread-tags"><span class="tag">${san(t.category)}</span></div>`}
+          <div class="thread-tags">${t.pinned ? '<span class="pinned-flag">★ Fixado</span>' : ''}<span class="tag pj">${san(t.category)}</span>${userTagChips}</div>
           <h3 class="thread-title">${san(t.title)}</h3>
-          <p class="thread-snippet">${san(bodySnippet(t.body))}</p>
+          <p class="thread-snippet">${san(bodySnippet(cleanBody))}</p>
           <div class="thread-author">por <span class="who">${san(t.display_name)}</span><span class="ago">· ${timeAgo(t.created_at)}</span></div>
         </div>
         <div class="thread-anchor pj">
