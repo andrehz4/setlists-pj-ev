@@ -226,6 +226,13 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .embed-setlist-eyebrow { font-family:var(--font-mono); font-size:9px; color:var(--ink-dim); letter-spacing:0.12em; text-transform:uppercase; }
 .embed-setlist-banda { font-family:var(--font-display); font-size:13px; color:var(--pj); margin-top:2px; }
 .embed-setlist-venue { font-family:var(--font-mono); font-size:10px; color:var(--ink-mute); margin-top:2px; }
+.embed-music { display:flex; border-radius:4px; overflow:hidden; margin:10px 0; text-decoration:none; color:inherit; }
+.embed-music .bar { width:4px; background:var(--ev); flex-shrink:0; }
+.embed-music .body { background:var(--bg-card-sunk); padding:10px 14px; flex:1; }
+.embed-music-eyebrow { font-family:var(--font-mono); font-size:9px; color:var(--ink-dim); letter-spacing:0.12em; text-transform:uppercase; }
+.embed-music-titulo { font-family:var(--font-editorial); font-style:italic; font-size:16px; color:var(--ink); margin-top:3px; line-height:1.2; }
+.embed-music-album { font-family:var(--font-mono); font-size:10px; color:var(--ev); margin-top:3px; letter-spacing:0.06em; }
+a.embed-music:hover .embed-music-titulo { color:var(--ev); }
 
 /* ── Audio player ──────────────────────────────────────────────── */
 .audio-attach { background:var(--bg-card-sunk); border:1px solid var(--divider); border-radius:4px; padding:10px 14px; margin:8px 0; }
@@ -296,6 +303,20 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
     <div class="tool-modal-actions">
       <button class="btn sm" id="audioCancel">Cancelar</button>
       <button class="btn sm primary" id="audioInsert" disabled>Inserir</button>
+    </div>
+  </div>
+</div>
+
+<!-- Music modal -->
+<div class="tool-modal" id="musicModal" style="display:none">
+  <div class="tool-modal-inner">
+    <div class="tool-modal-label">// Linkar música</div>
+    <input type="text" id="muTitulo" placeholder="Título da música">
+    <input type="text" id="muAlbum" placeholder="Álbum (opcional)">
+    <input type="url" id="muUrl" placeholder="URL da cifra/letra (opcional, https://)">
+    <div class="tool-modal-actions">
+      <button class="btn sm" id="muCancel">Cancelar</button>
+      <button class="btn sm primary" id="muInsert">Inserir</button>
     </div>
   </div>
 </div>
@@ -372,6 +393,7 @@ function renderBody(rawText) {
   const imgSlots     = [];
   const audioSlots   = [];
   const setlistSlots = [];
+  const musicSlots   = [];
 
   // 1. Extract special tags before any HTML processing
   let processed = rawText;
@@ -412,6 +434,14 @@ function renderBody(rawText) {
     }
   );
 
+  processed = processed.replace(
+    /\[musica\]([^\n]{1,300}?)\[\/musica\]/gi,
+    (_, content) => {
+      musicSlots.push(content.trim());
+      return `MUS${musicSlots.length - 1}`;
+    }
+  );
+
   // 2. Standard text transformations
   const escaped = escapeHtml(processed);
   const withSpoilers = escaped.replace(
@@ -438,7 +468,7 @@ function renderBody(rawText) {
     ALLOWED_ATTR: ["class"],
   });
 
-  const hasMedia = imgSlots.length || audioSlots.length || setlistSlots.length;
+  const hasMedia = imgSlots.length || audioSlots.length || setlistSlots.length || musicSlots.length;
   if (!hasMedia) return sanitized;
 
   // 3. Post-process: inject rich elements via DOM (never via innerHTML) to prevent XSS
@@ -450,7 +480,7 @@ function renderBody(rawText) {
     const hits = [];
     while (walker.nextNode()) {
       const node = walker.currentNode;
-      const m = node.nodeValue.match(/\x01(IMG|AUDIO|SET)(\d+)\x01/);
+      const m = node.nodeValue.match(/\x01(IMG|AUDIO|SET|MUS)(\d+)\x01/);
       if (m) hits.push({ node, full: m[0] });
     }
     for (const h of hits) callback(h.node, h.full);
@@ -512,6 +542,31 @@ function renderBody(rawText) {
       const venueEl = document.createElement("div"); venueEl.className = "embed-setlist-venue";
       venueEl.textContent = [data, venue].filter(Boolean).join(" · ");
       body.appendChild(eyebrow); body.appendChild(bandaEl); body.appendChild(venueEl);
+      card.appendChild(bar); card.appendChild(body);
+      el = card;
+    }
+
+    if (kind === "MUS") {
+      if (idx >= musicSlots.length) return;
+      const parts = musicSlots[idx].split(/\s*\|\s*/);
+      const titulo = parts[0] || "";
+      const album  = parts[1] || "";
+      const url    = parts[2] && /^https:\/\//i.test(parts[2]) ? parts[2] : "";
+      const card = document.createElement(url ? "a" : "div");
+      card.className = "embed-music";
+      if (url) { card.href = url; card.target = "_blank"; card.rel = "noopener nofollow"; }
+      const bar = document.createElement("div"); bar.className = "bar";
+      const body = document.createElement("div"); body.className = "body";
+      const eyebrow = document.createElement("div"); eyebrow.className = "embed-music-eyebrow";
+      eyebrow.textContent = url ? "Música · com cifra/letra" : "Música";
+      const tituloEl = document.createElement("div"); tituloEl.className = "embed-music-titulo";
+      tituloEl.textContent = titulo;
+      body.appendChild(eyebrow); body.appendChild(tituloEl);
+      if (album) {
+        const albumEl = document.createElement("div"); albumEl.className = "embed-music-album";
+        albumEl.textContent = album;
+        body.appendChild(albumEl);
+      }
       card.appendChild(bar); card.appendChild(body);
       el = card;
     }
@@ -814,7 +869,7 @@ function renderTopic(data) {
 
     const replyAttachActions = {
       setlist: () => openSetlistModal(replyBody),
-      music:   () => alert("Em breve: linkar música."),
+      music:   () => openMusicModal(replyBody),
       photo:   () => document.getElementById("replyPhotoInput").click(),
       audio:   () => openAudioModal(replyBody),
       spoiler: () => wrapSel("[spoiler]", "[/spoiler]", "texto spoiler"),
@@ -1082,6 +1137,48 @@ function openSetlistModal(targetTextarea) {
   function cleanup() {
     slInsert.removeEventListener("click", insert);
     slCancel.removeEventListener("click", close);
+  }
+}
+
+// ── Music modal ───────────────────────────────────────────────
+function openMusicModal(targetTextarea) {
+  const modal = document.getElementById("musicModal");
+  const tituloEl = document.getElementById("muTitulo");
+  const albumEl  = document.getElementById("muAlbum");
+  const urlEl    = document.getElementById("muUrl");
+  tituloEl.value = ""; albumEl.value = ""; urlEl.value = "";
+  modal.style.display = "flex";
+  setTimeout(() => tituloEl.focus(), 50);
+
+  function close() { modal.style.display = "none"; cleanup(); }
+
+  function insert() {
+    const titulo = tituloEl.value.trim();
+    const album  = albumEl.value.trim();
+    const url    = urlEl.value.trim();
+    if (!titulo) { tituloEl.focus(); return; }
+    if (url && !/^https:\/\//i.test(url)) { urlEl.focus(); return; }
+    const parts = [titulo];
+    if (album) parts.push(album);
+    if (url)   parts.push(url);
+    const tag = `[musica]${parts.join(" | ")}[/musica]`;
+    const start = targetTextarea.selectionStart;
+    const before = targetTextarea.value.substring(0, start);
+    const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
+    targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
+    targetTextarea.focus();
+    close();
+  }
+
+  const muInsert = document.getElementById("muInsert");
+  const muCancel = document.getElementById("muCancel");
+  muInsert.addEventListener("click", insert);
+  muCancel.addEventListener("click", close);
+  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+
+  function cleanup() {
+    muInsert.removeEventListener("click", insert);
+    muCancel.removeEventListener("click", close);
   }
 }
 
