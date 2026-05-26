@@ -897,6 +897,8 @@ function openSetlistModal(targetTextarea) {
 }
 
 // ── Audio modal ───────────────────────────────────────────────
+const MAX_AUDIO_DATAURL = 250000; // ~250KB base64 -> ~15s opus a 64kbps
+
 function openAudioModal(targetTextarea) {
   const modal     = document.getElementById("audioModal");
   const recBtn    = document.getElementById("audioRecBtn");
@@ -917,12 +919,22 @@ function openAudioModal(targetTextarea) {
   preview.src = "";
   insertBtn.disabled = true;
   recBtn.textContent = "Iniciar gravacao";
+  recBtn.disabled = false;
 
   let mediaRec = null, audioChunks = [], timerInterval = null, elapsed = 0;
   let pendingDataUrl = null;
   let activeTab = "rec";
 
-  // Tabs
+  // Pre-flight: APIs disponiveis?
+  if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== "function") {
+    errEl.textContent = "Este navegador nao suporta gravacao de audio (precisa de HTTPS e mediaDevices).";
+    recBtn.disabled = true;
+  } else if (typeof window.MediaRecorder === "undefined") {
+    errEl.textContent = "Este navegador nao suporta MediaRecorder.";
+    recBtn.disabled = true;
+  }
+
+  // Tabs (.onclick substitui handler anterior, nao empilha)
   document.querySelectorAll("[data-audiotab]").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.audiotab === "rec");
     btn.onclick = () => {
@@ -936,9 +948,9 @@ function openAudioModal(targetTextarea) {
   document.getElementById("audioTabRec").style.display = "";
   document.getElementById("audioTabUrl").style.display = "none";
 
-  urlInput.addEventListener("input", () => {
+  urlInput.oninput = () => {
     if (activeTab === "url") insertBtn.disabled = !urlInput.value.trim().startsWith("https://");
-  });
+  };
 
   function stopRecording() {
     if (mediaRec && mediaRec.state !== "inactive") mediaRec.stop();
@@ -947,7 +959,7 @@ function openAudioModal(targetTextarea) {
     recBtn.textContent = "Gravar novamente";
   }
 
-  recBtn.addEventListener("click", async () => {
+  recBtn.onclick = async () => {
     if (mediaRec && mediaRec.state === "recording") { stopRecording(); return; }
     try {
       errEl.textContent = "";
@@ -958,7 +970,9 @@ function openAudioModal(targetTextarea) {
 
       const mimeType = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/ogg"]
         .find(t => MediaRecorder.isTypeSupported(t)) || "";
-      mediaRec = new MediaRecorder(stream, mimeType ? { mimeType, audioBitsPerSecond: 16000 } : { audioBitsPerSecond: 16000 });
+      const recOpts = { audioBitsPerSecond: 64000 };
+      if (mimeType) recOpts.mimeType = mimeType;
+      mediaRec = new MediaRecorder(stream, recOpts);
 
       mediaRec.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
       mediaRec.onstop = () => {
@@ -967,7 +981,7 @@ function openAudioModal(targetTextarea) {
         const reader = new FileReader();
         reader.onload = ev => {
           const dataUrl = ev.target.result;
-          if (dataUrl.length > 44000) {
+          if (dataUrl.length > MAX_AUDIO_DATAURL) {
             errEl.textContent = "Gravacao muito longa. Tente novamente (max ~15s).";
             insertBtn.disabled = true;
             return;
@@ -991,9 +1005,19 @@ function openAudioModal(targetTextarea) {
         if (elapsed >= 15) stopRecording();
       }, 1000);
     } catch (err) {
-      errEl.textContent = "Sem acesso ao microfone. Verifique as permissoes do navegador.";
+      console.error("[audio] Falha ao gravar:", err);
+      const name = err && err.name ? err.name : "Erro";
+      const friendly = {
+        NotAllowedError:    "Permissao de microfone negada. Libere nas configuracoes do navegador.",
+        NotFoundError:      "Nenhum microfone detectado. Conecte um dispositivo de audio.",
+        NotReadableError:   "O microfone esta sendo usado por outro app.",
+        SecurityError:      "Gravacao bloqueada por politica de seguranca do site.",
+        AbortError:         "Acesso ao microfone interrompido. Tente novamente.",
+        OverconstrainedError:"Configuracao de audio nao suportada pelo dispositivo.",
+      }[name] || `Falha (${name}): ${err && err.message ? err.message : "erro desconhecido"}`;
+      errEl.textContent = friendly;
     }
-  });
+  };
 
   function close() {
     if (mediaRec && mediaRec.state !== "inactive") mediaRec.stop();
@@ -1001,7 +1025,7 @@ function openAudioModal(targetTextarea) {
     modal.style.display = "none";
   }
 
-  insertBtn.addEventListener("click", () => {
+  insertBtn.onclick = () => {
     let tag = "";
     if (activeTab === "rec" && pendingDataUrl) {
       tag = `[audio]${pendingDataUrl}[/audio]`;
@@ -1017,10 +1041,10 @@ function openAudioModal(targetTextarea) {
     targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
     targetTextarea.focus();
     close();
-  });
+  };
 
-  cancelBtn.addEventListener("click", close);
-  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+  cancelBtn.onclick = close;
+  modal.onclick = e => { if (e.target === modal) close(); };
 
   modal.style.display = "flex";
 }
