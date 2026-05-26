@@ -484,6 +484,26 @@ function timeAgo(iso) {
 function initials(name) {
   return (name || "?").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
 }
+
+function bodySnippet(body, max = 180) {
+  let t = String(body || "");
+  // Tira anexos pesados (base64 nao aparece no preview)
+  t = t.replace(/\[img\][\s\S]*?\[\/img\]/gi, " [foto] ");
+  t = t.replace(/\[audio\][\s\S]*?\[\/audio\]/gi, " [áudio] ");
+  t = t.replace(/\[audio-url\][\s\S]*?\[\/audio-url\]/gi, " [áudio] ");
+  t = t.replace(/\[setlist\][\s\S]*?\[\/setlist\]/gi, " [setlist] ");
+  t = t.replace(/\[spoiler\][\s\S]*?\[\/spoiler\]/gi, " [spoiler] ");
+  // Alinhamento e markdown ficam transparentes
+  t = t.replace(/\[(esq|centro|dir)\]([\s\S]*?)\[\/\1\]/gi, "$2");
+  t = t.replace(/\*\*([^*\n]+)\*\*/g, "$1");
+  t = t.replace(/_([^_\n]+)_/g, "$1");
+  t = t.replace(/~~([^~\n]+)~~/g, "$1");
+  // Tags hashtag trailing somem (ja aparecem como chips coloridas)
+  t = t.replace(/\n\n((?:#[\wÀ-ɏ_-]+\s*)+)$/u, "");
+  t = t.replace(/\s+/g, " ").trim();
+  if (t.length > max) t = t.slice(0, max - 1) + "…";
+  return t;
+}
 function avatarHtml(url, name) {
   const safe = sanUrl(url);
   return safe ? `<img src="${safe}" alt="${san(name)}">` : san(initials(name));
@@ -635,7 +655,7 @@ function renderThreads(data) {
         <div class="thread-main">
           ${t.pinned ? `<div class="thread-tags"><span class="pinned-flag">★ Fixado</span><span class="tag pj">${san(t.category)}</span></div>` : `<div class="thread-tags"><span class="tag">${san(t.category)}</span></div>`}
           <h3 class="thread-title">${san(t.title)}</h3>
-          <p class="thread-snippet">${san(t.body)}</p>
+          <p class="thread-snippet">${san(bodySnippet(t.body))}</p>
           <div class="thread-author">por <span class="who">${san(t.display_name)}</span><span class="ago">· ${timeAgo(t.created_at)}</span></div>
         </div>
         <div class="thread-anchor pj">
