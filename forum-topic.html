@@ -1558,7 +1558,7 @@ async function loadSongsCatalog() {
   return _songsLoading;
 }
 
-function _norm(s) {
+function _muNorm(s) {
   return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
 
@@ -1598,10 +1598,10 @@ function openMusicModal(onInsert) {
 
   function renderList(filter) {
     if (!_songsCatalog) return;
-    const q = _norm(filter).trim();
+    const q = _muNorm(filter).trim();
     const all = _songsCatalog.songs;
     const filtered = q
-      ? all.filter(s => _norm(s.title).includes(q) || _norm(s.album).includes(q))
+      ? all.filter(s => _muNorm(s.title).includes(q) || _muNorm(s.album).includes(q))
       : all.slice(0, 80); // sem busca, mostra primeiros 80
     if (!filtered.length) {
       listEl.innerHTML = `<div class="mu-empty">Nada encontrado</div>`;
