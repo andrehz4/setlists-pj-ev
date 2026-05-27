@@ -385,6 +385,23 @@ const MAX_BODY_CHARS = 200000;              // teto do backend (PostCreate.body)
 function san(str) {
   return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
 }
+// Substitui tags pesadas por placeholders amigáveis antes de citar/fazer snippet.
+function cleanForQuote(body) {
+  let t = String(body || "");
+  t = t.replace(/\[img(?::[a-z]+)?\][\s\S]*?\[\/img\]/gi, " [foto] ");
+  t = t.replace(/\[audio\][\s\S]*?\[\/audio\]/gi, " [áudio] ");
+  t = t.replace(/\[audio-url\][\s\S]*?\[\/audio-url\]/gi, " [áudio] ");
+  t = t.replace(/\[setlist\][\s\S]*?\[\/setlist\]/gi, " [setlist] ");
+  t = t.replace(/\[musica\]([^|\n]+?)(?:\s*\|[\s\S]*?)?\[\/musica\]/gi, " [música: $1] ");
+  t = t.replace(/\[spoiler\][\s\S]*?\[\/spoiler\]/gi, " [spoiler] ");
+  t = t.replace(/\[(esq|centro|dir)\]([\s\S]*?)\[\/\1\]/gi, "$2");
+  t = t.replace(/\*\*([^*\n]+)\*\*/g, "$1");
+  t = t.replace(/_([^_\n]+)_/g, "$1");
+  t = t.replace(/~~([^~\n]+)~~/g, "$1");
+  t = t.replace(/\n\n(?:#[\wÀ-ɏ_-]+(?:[ \t]+|(?=\n\n|$)))+(?=\n\n|$)/gu, "");
+  t = t.replace(/\s+/g, " ").trim();
+  return t;
+}
 // Só aceita URLs https; bloqueia javascript:, data:, etc. em src/href de terceiros.
 function sanUrl(url) {
   const u = (url || "").trim();
@@ -723,7 +740,7 @@ function renderPost(p, isRoot, opUserId) {
     }
   }
   const quoteBtn = _token
-    ? `<button class="quote-btn" data-name="${san(p.display_name)}" data-body="${san((postBody || "").slice(0, 200))}">❝ Citar</button>`
+    ? `<button class="quote-btn" data-name="${san(p.display_name)}" data-body="${san(cleanForQuote(postBody).slice(0, 200))}">❝ Citar</button>`
     : "";
   return `
     <div class="post${isRoot ? " root" : ""}" data-post-id="${san(p.id)}">
