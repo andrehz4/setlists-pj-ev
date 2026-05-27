@@ -288,7 +288,7 @@ a.embed-music:hover .embed-music-titulo { color:var(--ev); }
 .audio-attach .waveform { height:28px; position:relative; overflow:hidden; background-image:repeating-linear-gradient(to right, var(--ink-mute) 0 2px, transparent 2px 4px, var(--ink) 4px 7px, transparent 7px 10px, var(--ink-dim) 10px 13px, transparent 13px 16px, var(--ink-mute) 16px 19px, transparent 19px 22px); border-radius:2px; }
 .audio-attach .waveform-progress { position:absolute; inset:0 100% 0 0; background:rgba(193,39,45,0.18); transition:right .15s linear; pointer-events:none; }
 .audio-attach .audio-meta { font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; color:var(--ink-dim); text-transform:uppercase; white-space:nowrap; }
-.audio-attach audio.hidden { display:none; }
+.audio-attach audio.hidden { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; clip:rect(0 0 0 0); overflow:hidden; }
 </style>
 </head>
 <body>
@@ -630,7 +630,8 @@ function renderBody(rawText) {
       meta.textContent = slot.type === "url" ? "link" : "0:00";
       const audio = document.createElement("audio");
       audio.className = "hidden";
-      audio.preload = "metadata";
+      audio.preload = "auto";
+      audio.crossOrigin = "anonymous";
       audio.src = slot.src;
       function fmt(s) { if (!isFinite(s)) return "0:00"; const m = Math.floor(s/60), sec = Math.floor(s%60); return m + ":" + String(sec).padStart(2,"0"); }
       audio.addEventListener("loadedmetadata", () => { if (audio.duration) meta.textContent = fmt(audio.duration); });
@@ -643,7 +644,17 @@ function renderBody(rawText) {
       audio.addEventListener("ended", () => { play.textContent = "▶"; play.classList.remove("playing"); prog.style.right = "100%"; });
       audio.addEventListener("pause", () => { play.textContent = "▶"; play.classList.remove("playing"); });
       audio.addEventListener("play", () => { play.textContent = "❚❚"; play.classList.add("playing"); });
-      play.addEventListener("click", () => { if (audio.paused) audio.play(); else audio.pause(); });
+      play.addEventListener("click", () => {
+        if (audio.paused) {
+          const p = audio.play();
+          if (p && p.catch) p.catch(err => {
+            console.error("audio play failed:", err);
+            meta.textContent = "erro: " + (err.name || "play falhou");
+          });
+        } else {
+          audio.pause();
+        }
+      });
       wrap2.appendChild(play);
       wrap2.appendChild(wave);
       wrap2.appendChild(meta);

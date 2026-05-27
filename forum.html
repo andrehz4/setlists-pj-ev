@@ -539,13 +539,6 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
             <div class="id-sub" id="idUserMeta">conectado</div>
           </div>
         </div>
-        <div class="id-row disabled" title="Em breve">
-          <span class="id-radio"></span>
-          <div>
-            <div class="id-label">Anônimo</div>
-            <div class="id-sub">você vira "cipriano #429" nesta thread, não some no histórico, só esconde o nome</div>
-          </div>
-        </div>
       </div>
 
       <div class="rail-card">
@@ -1410,7 +1403,7 @@ function renderTagChips() {
   editor.querySelectorAll(".rm").forEach(btn => {
     btn.addEventListener("click", () => {
       _composerTags.splice(parseInt(btn.dataset.i), 1);
-      renderTagChips(); updateComposerMeta(); updateRailPreview();
+      renderTagChips(); updateComposerMeta(); updateRailPreview(); scheduleDraftSave();
     });
   });
 }
@@ -1456,6 +1449,57 @@ function openComposer() {
   updateRailPreview();
   updateComposerMeta();
   document.getElementById("composerOverlay").classList.add("open");
+  maybeOfferDraftRestore();
+}
+
+const DRAFT_KEY = "forum_draft";
+const DRAFT_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+let _draftTimer = null;
+
+function saveComposerDraft() {
+  const title = document.getElementById("topicTitle")?.value || "";
+  const body  = document.getElementById("topicBody")?.value || "";
+  const category = document.getElementById("topicCategory")?.value || "geral";
+  if (!title.trim() && !body.trim() && !_composerTags.length) {
+    localStorage.removeItem(DRAFT_KEY);
+    return;
+  }
+  const draft = { title, body, category, tags: _composerTags.slice(), ts: Date.now() };
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify(draft)); } catch (_) {}
+}
+
+function scheduleDraftSave() {
+  clearTimeout(_draftTimer);
+  _draftTimer = setTimeout(saveComposerDraft, 1000);
+}
+
+function clearComposerDraft() {
+  localStorage.removeItem(DRAFT_KEY);
+}
+
+function maybeOfferDraftRestore() {
+  let draft = null;
+  try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (_) {}
+  if (!draft || !draft.ts || Date.now() - draft.ts > DRAFT_TTL_MS) {
+    if (draft) clearComposerDraft();
+    return;
+  }
+  const hasContent = (draft.title && draft.title.trim()) || (draft.body && draft.body.trim());
+  if (!hasContent) return;
+  const ago = Math.round((Date.now() - draft.ts) / 60000);
+  const agoLabel = ago < 1 ? "agora" : ago < 60 ? ago + " min" : Math.round(ago / 60) + " h";
+  if (confirm(`Você tem um rascunho de ${agoLabel}: "${draft.title.slice(0, 60) || "(sem título)"}". Restaurar?`)) {
+    document.getElementById("topicTitle").value = draft.title || "";
+    document.getElementById("topicBody").value  = draft.body  || "";
+    document.getElementById("topicCategory").value = draft.category || "geral";
+    _composerTags = Array.isArray(draft.tags) ? draft.tags.slice(0, 4) : [];
+    buildCatPills(draft.category || "geral");
+    renderTagChips();
+    updateRailPreview();
+    updateComposerMeta();
+  } else {
+    clearComposerDraft();
+  }
 }
 
 function updateRailIdentity() {
@@ -1537,6 +1581,7 @@ async function submitTopic() {
       return;
     }
     if (data) {
+      clearComposerDraft();
       closeComposer();
       location.href = `forum-topic.html?id=${encodeURIComponent(data.id)}`;
     }
@@ -1980,12 +2025,14 @@ function initComposer() {
     if (bc) { bc.textContent = n + " / 50000"; bc.classList.toggle("warn", n > 48000); }
     updateComposerMeta();
     updateRailPreview();
+    scheduleDraftSave();
   });
 
   document.getElementById("topicTitle").addEventListener("input", e => {
     const el = document.getElementById("titleCount");
     if (el) { const n = e.target.value.length; el.textContent = n + " / 120"; el.classList.toggle("warn", n > 100); }
     updateRailPreview();
+    scheduleDraftSave();
   });
 
   document.getElementById("ctPreviewBtn").addEventListener("click", () => {
@@ -2008,7 +2055,7 @@ function initComposer() {
     const val = tagInput.value.trim().replace(/^#/, "").replace(/[^a-zA-Z0-9À-ɏ_-]/g, "");
     if (val && _composerTags.length < 4 && !_composerTags.includes(val)) {
       _composerTags.push(val);
-      renderTagChips(); updateComposerMeta(); updateRailPreview();
+      renderTagChips(); updateComposerMeta(); updateRailPreview(); scheduleDraftSave();
     }
     tagInput.value = "";
   }
@@ -2018,7 +2065,7 @@ function initComposer() {
     }
     if (e.key === "Backspace" && !tagInput.value && _composerTags.length) {
       _composerTags.pop();
-      renderTagChips(); updateComposerMeta(); updateRailPreview();
+      renderTagChips(); updateComposerMeta(); updateRailPreview(); scheduleDraftSave();
     }
   });
   tagInput.addEventListener("blur", () => {
