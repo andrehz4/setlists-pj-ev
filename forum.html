@@ -166,7 +166,15 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .empty-stamp-text small { display: block; font-family: var(--font-mono); font-size: 9px; color: var(--ev); letter-spacing: 0.25em; margin-top: 4px; }
 .empty-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pj); margin-bottom: 10px; }
 .empty-title { font-family: var(--font-editorial); font-style: italic; font-size: clamp(28px, 4vw, 38px); color: var(--ink); margin: 0 0 12px; line-height: 1.1; }
-.empty-sub { font-family: var(--font-body); font-size: 17px; color: var(--ink-mute); line-height: 1.55; margin: 0 auto 28px; max-width: 520px; }
+.empty-sub { font-family: var(--font-body); font-size: 17px; color: var(--ink-mute); line-height: 1.55; margin: 0 auto 28px; max-width: 560px; }
+.empty-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+.empty-suggestions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; margin: 0 auto 36px; text-align: left; }
+.empty-sugg { border: 1px dashed var(--divider-strong); padding: 16px 18px; background: var(--bg-card); }
+.empty-sugg .es-eyebrow { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pj); margin-bottom: 8px; }
+.empty-sugg .es-title { font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink); line-height: 1.35; margin: 0; }
+.empty-meta { display: inline-flex; gap: 18px; align-items: baseline; padding-top: 16px; border-top: 1px solid var(--divider); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); }
+.empty-meta b { font-family: var(--font-display); font-size: 16px; color: var(--ink); font-weight: normal; }
+@media (max-width: 700px) { .empty-suggestions { grid-template-columns: 1fr; } }
 .thread-activity { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-mute); text-align: right; line-height: 1.4; }
 .thread-activity .ago { display: block; color: var(--ink); font-size: 11.5px; margin-bottom: 2px; }
 .thread-activity .who { color: var(--ink-dim); letter-spacing: 0.08em; }
@@ -657,6 +665,66 @@ const CATS = [
 ];
 const COMPOSER_CATS = CATS.filter(c => c.id !== "");
 
+const EMPTY_TITLES = {
+  _default: '"Ainda não tocou nesse pedaço do arquivo."',
+  shows:    '"Nenhum show ainda virou conversa por aqui."',
+  setlist:  '"Nenhum palpite de setlist abriu fogo aqui."',
+  musicas:  '"Nenhuma música foi disseca­da nesta seção."',
+  albums:   '"Os álbuns ainda não foram debatidos por aqui."',
+  bootleg:  '"Nenhum bootleg foi compartilhado por aqui."',
+  cifras:   '"Nenhuma cifra ou tab foi postada ainda."',
+  eddie:    '"O Eddie solo ainda não foi conversado por aqui."',
+  geral:    '"Nada solto por aqui ainda."',
+};
+
+const EMPTY_SUGGESTIONS = {
+  _default: [
+    "Conte uma história sobre o primeiro show que você foi.",
+    "Compartilhe uma versão raríssima que você adora.",
+    "Abra uma pergunta solta — alguém responde."
+  ],
+  shows: [
+    "Curitiba 2024 — quem foi e qual o pico da noite?",
+    "Allianz 2024 — comparando setlist com o de 2018.",
+    "São Paulo 2011 — bootleg em FLAC, alguém tem?"
+  ],
+  setlist: [
+    "Wreckage de abertura no próximo show, palpite seguro?",
+    "Indifference só vem nas noites grandes — confere?",
+    "Setlist palpite pra Maracanã 2026 — comenta a sua."
+  ],
+  musicas: [
+    "Off He Goes ao vivo: a estrutura muda show a show?",
+    "Black em 2024 é o mesmo Black de 1992?",
+    "Letra de Light Years — leitura sua vs leitura oficial."
+  ],
+  albums: [
+    "Yield envelhece melhor que No Code? Defenda.",
+    "Riot Act é underrated? 30 anos depois.",
+    "Dark Matter no rank pessoal — onde entra?"
+  ],
+  bootleg: [
+    "Bootleg SP 2011-11-04 em FLAC — alguém tem soundboard?",
+    "Bootlegs do Acervo 2022/2023 — quais vale ouvir?",
+    "Soundboard vs plateia: qual lado você prefere?"
+  ],
+  cifras: [
+    "Off He Goes — afinação aberta sol ou padrão?",
+    "Tab de Yellow Ledbetter — a que circula tá certa?",
+    "Como o Mike afina pra Even Flow ao vivo?"
+  ],
+  eddie: [
+    "Into the Wild é o melhor trabalho solo do Eddie?",
+    "Ukulele Songs — disco ou demo gravada bonito?",
+    "Earthling 2022 ao vivo — comparado com Pearl Jam?"
+  ],
+  geral: [
+    "O que ouvir primeiro pra alguém que nunca ouviu Pearl Jam?",
+    "Qual show no Brasil você reviveria amanhã?",
+    "Qual a melhor versão de Black que já circulou?"
+  ],
+};
+
 // ── Estado ──────────────────────────────────────────────────
 let _state = {
   page: 1,
@@ -865,16 +933,41 @@ function renderThreads(data) {
   if (!data || !data.items || data.items.length === 0) {
     document.getElementById("highlightsArea").innerHTML = "";
     const cat = _state.category || "";
+    const fullLabel = (CATS.find(c => c.id === cat) || CATS[0]).fullLabel;
+    const suggestions = EMPTY_SUGGESTIONS[cat] || EMPTY_SUGGESTIONS._default;
+    const titleByCat = EMPTY_TITLES[cat] || EMPTY_TITLES._default;
     list.innerHTML = `
       <div class="empty-stamp-wrap">
         <div class="empty-stamp">
           <div class="empty-stamp-text">CATEGORIA<br>VAZIA<small>${cat ? san(cat.toUpperCase()) : "FÓRUM"}</small></div>
         </div>
-        <div class="empty-eyebrow">Sem tópicos aqui</div>
-        <h2 class="empty-title">Ninguém falou ainda</h2>
-        <p class="empty-sub">Seja o primeiro a abrir uma conversa nesta categoria.</p>
-        ${_state.token ? `<button class="btn primary" onclick="openComposer()"><span class="plus">+</span> Abrir thread</button>` : ""}
+        <div class="empty-eyebrow">// ${san(fullLabel.toUpperCase())}</div>
+        <h2 class="empty-title">${san(titleByCat)}</h2>
+        <p class="empty-sub">Ninguém abriu uma thread aqui ainda. Se você tem um palpite, relato ou só uma pergunta solta, abre a primeira. Os outros chegam atrás.</p>
+        <div class="empty-cta">
+          ${_state.token ? `<button class="btn primary" onclick="openComposer()"><span class="plus">+</span> Abrir a primeira thread</button>` : ""}
+          ${cat ? `<button class="btn" id="emptyBackBtn">↶ Voltar pra Tudo</button>` : ""}
+        </div>
+        <div class="empty-suggestions">
+          ${suggestions.map(s => `
+            <div class="empty-sugg">
+              <div class="es-eyebrow">// IDEIA</div>
+              <p class="es-title">${san(s)}</p>
+            </div>`).join("")}
+        </div>
+        <div class="empty-meta">
+          <span><b>0</b> threads</span>
+          <span><b>0</b> posts</span>
+          <span>tá esperando alguém abrir</span>
+        </div>
       </div>`;
+    const backBtn = document.getElementById("emptyBackBtn");
+    if (backBtn) backBtn.addEventListener("click", () => {
+      _state.category = "";
+      _state.page = 1;
+      renderSubnav();
+      loadTopics();
+    });
     return;
   }
   renderHighlights(data.items);
