@@ -374,6 +374,7 @@ let _token = localStorage.getItem("forum_token");
 let _user = (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })();
 let _topicId = null;
 let _replyPhotos = [];
+let _replyAudio = [];
 let _replyTags = [];
 
 // Limites alinhados ao backend (body max 200000 chars). Foto grande trava o browser.
@@ -847,6 +848,7 @@ function renderTopic(data) {
           <textarea class="reply-textarea" id="replyBody" maxlength="50000" placeholder="conta como foi pra você. credita a foto, tagueia spoiler se for review fresca."></textarea>
           <div class="reply-preview-pane" id="replyPreviewPane"></div>
           <div id="replyPhotoRow" style="display:none;gap:8px;flex-wrap:wrap;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
+          <div id="replyAudioRow" style="display:none;flex-direction:column;gap:6px;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
           <input type="file" id="replyPhotoInput" accept="image/jpeg,image/png,image/gif,image/webp" multiple style="display:none">
           <div class="reply-extras">
             <div class="reply-extras-section">
@@ -990,11 +992,40 @@ function renderTopic(data) {
     _replyPhotos = [];
     _replyTags = [];
 
+    function renderReplyAudioRow() {
+      const row = document.getElementById("replyAudioRow");
+      if (!row) return;
+      row.innerHTML = "";
+      if (!_replyAudio.length) { row.style.display = "none"; return; }
+      row.style.display = "flex";
+      _replyAudio.forEach((a, i) => {
+        const wrap = document.createElement("div");
+        wrap.style.cssText = "display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--bg-card);border:1px solid var(--divider-strong);border-radius:4px";
+        const label = document.createElement("span");
+        label.style.cssText = "font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--pj);flex-shrink:0";
+        label.textContent = a.type === "url" ? "URL" : "GRAV";
+        const audio = document.createElement("audio");
+        audio.controls = true; audio.preload = "metadata"; audio.src = a.src;
+        audio.style.cssText = "flex:1;height:32px;min-width:0";
+        const rm = document.createElement("button");
+        rm.type = "button"; rm.innerHTML = "&#215;"; rm.title = "Remover áudio";
+        rm.style.cssText = "width:22px;height:22px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:13px;line-height:1;padding:0;display:grid;place-items:center;flex-shrink:0";
+        rm.addEventListener("click", () => { _replyAudio.splice(i, 1); renderReplyAudioRow(); updateReplyAttachStatus(); });
+        wrap.appendChild(label); wrap.appendChild(audio); wrap.appendChild(rm);
+        row.appendChild(wrap);
+      });
+    }
+
     const replyAttachActions = {
       setlist: () => openSetlistModal(replyBody),
       music:   () => openMusicModal(replyBody),
       photo:   () => document.getElementById("replyPhotoInput").click(),
-      audio:   () => openAudioModal(replyBody),
+      audio:   () => openAudioModal((audioObj) => {
+        if (_replyAudio.length >= 2) { alert("Máximo de 2 áudios por resposta."); return; }
+        _replyAudio.push(audioObj);
+        renderReplyAudioRow();
+        updateReplyAttachStatus();
+      }),
       spoiler: () => wrapSel("[spoiler]", "[/spoiler]", "texto spoiler"),
     };
     document.getElementById("replyAttachments").addEventListener("click", e => {
@@ -1009,14 +1040,14 @@ function renderTopic(data) {
         setlist: /\[setlist\]/i.test(body),
         music:   /\[music(?:a|á)?\]/i.test(body),
         photo:   _replyPhotos.length > 0,
-        audio:   /\[audio(?:-url)?\]/i.test(body),
+        audio:   _replyAudio.length > 0,
         spoiler: /\[spoiler\]/i.test(body),
       };
       const addedLabel = {
         setlist: "setlist incorporado",
         music:   "música incorporada",
         photo:   `${_replyPhotos.length} foto${_replyPhotos.length === 1 ? "" : "s"} anexada${_replyPhotos.length === 1 ? "" : "s"}`,
-        audio:   "áudio anexado",
+        audio:   `${_replyAudio.length} áudio${_replyAudio.length === 1 ? "" : "s"} anexado${_replyAudio.length === 1 ? "" : "s"}`,
         spoiler: "spoiler ativo",
       };
       const baseLabel = {
@@ -1441,7 +1472,7 @@ function openMusicModal(targetTextarea) {
 // ── Audio modal ───────────────────────────────────────────────
 const MAX_AUDIO_DATAURL = 150000; // ~150KB base64, ~10s opus a 64kbps (deixa folga pro restante do body de 200000)
 
-function openAudioModal(targetTextarea) {
+function openAudioModal(onInsert) {
   const modal     = document.getElementById("audioModal");
   const recBtn    = document.getElementById("audioRecBtn");
   const timer     = document.getElementById("audioTimer");
@@ -1568,21 +1599,16 @@ function openAudioModal(targetTextarea) {
   }
 
   insertBtn.onclick = () => {
-    let tag = "";
+    let audioObj = null;
     if (activeTab === "rec" && pendingDataUrl) {
-      tag = `[audio]${pendingDataUrl}[/audio]`;
+      audioObj = { type: "data", src: pendingDataUrl };
     } else if (activeTab === "url") {
       const url = urlInput.value.trim();
       if (!url.startsWith("https://")) return;
-      tag = `[audio-url]${url}[/audio-url]`;
+      audioObj = { type: "url", src: url };
     }
-    if (!tag) return;
-    const start = targetTextarea.selectionStart;
-    const before = targetTextarea.value.substring(0, start);
-    const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
-    targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
-    targetTextarea.dispatchEvent(new Event("input", { bubbles: true }));
-    targetTextarea.focus();
+    if (!audioObj) return;
+    if (typeof onInsert === "function") onInsert(audioObj);
     close();
   };
 
@@ -1599,6 +1625,7 @@ async function submitReply(topicId) {
     errEl.textContent = "Mensagem muito curta."; errEl.classList.add("visible"); return;
   }
   if (_replyPhotos.length) body += "\n\n" + _replyPhotos.map(p => `[img:${p.align || "centro"}]${p.dataUrl}[/img]`).join("\n");
+  if (_replyAudio.length) body += "\n\n" + _replyAudio.map(a => a.type === "url" ? `[audio-url]${a.src}[/audio-url]` : `[audio]${a.src}[/audio]`).join("\n");
   if (typeof _replyTags !== "undefined" && _replyTags.length) body += "\n\n" + _replyTags.map(t => "#" + t).join(" ");
   if (body.length > MAX_BODY_CHARS) {
     errEl.textContent = `Resposta muito grande (${body.length.toLocaleString("pt-BR")} caracteres, máximo ${MAX_BODY_CHARS.toLocaleString("pt-BR")}). Reduza áudio gravado ou remova uma foto.`;
@@ -1620,6 +1647,8 @@ async function submitReply(topicId) {
       return;
     }
     _replyPhotos = [];
+    _replyAudio = [];
+    _replyTags = [];
     location.reload();
   } catch (err) {
     errEl.textContent = err.message || "Erro ao publicar.";
