@@ -474,6 +474,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
         </div>
         <div id="photoAttachRow" style="display:none;gap:8px;flex-wrap:wrap;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
         <div id="audioAttachRow" style="display:none;flex-direction:column;gap:6px;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
+        <div id="musicAttachRow" style="display:none;flex-direction:column;gap:6px;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
         <div class="composer-field-foot">
           <div class="char-count" id="bodyCount">0 / 50000</div>
           <button class="btn sm" id="ctPreviewBtn">Prévia</button>
@@ -909,6 +910,7 @@ async function loadTopics() {
 let _composerTags = [];
 let _composerPhotos = [];
 let _composerAudio = [];
+let _composerMusic = [];
 let _ctPreviewing = false;
 
 // Limites alinhados ao backend (body max 200000 chars). Foto grande trava o browser.
@@ -936,7 +938,8 @@ function _totalBodyChars() {
   const bodyLen = (document.getElementById("topicBody")?.value || "").length;
   const photoChars = _composerPhotos.reduce((s, p) => s + p.dataUrl.length + 11, 0);
   const audioChars = _composerAudio.reduce((s, a) => s + a.src.length + (a.type === "url" ? 23 : 15), 0);
-  return bodyLen + photoChars + audioChars;
+  const musicChars = _composerMusic.reduce((s, m) => s + m.titulo.length + (m.album?.length || 0) + (m.url?.length || 0) + 20, 0);
+  return bodyLen + photoChars + audioChars + musicChars;
 }
 function updateComposerMeta() {
   const total = _totalBodyChars();
@@ -956,14 +959,14 @@ function updateAttachmentStatus() {
   const body = document.getElementById("topicBody")?.value || "";
   const detected = {
     setlist: /\[setlist\]/i.test(body),
-    music:   /\[music(?:a|á)?\]/i.test(body),
+    music:   _composerMusic.length > 0,
     photo:   _composerPhotos.length > 0,
     audio:   _composerAudio.length > 0,
     spoiler: /\[spoiler\]/i.test(body),
   };
   const addedLabel = {
     setlist: "setlist incorporado",
-    music:   "música incorporada",
+    music:   `${_composerMusic.length} música${_composerMusic.length === 1 ? "" : "s"} anexada${_composerMusic.length === 1 ? "" : "s"}`,
     photo:   `${_composerPhotos.length} foto${_composerPhotos.length === 1 ? "" : "s"} anexada${_composerPhotos.length === 1 ? "" : "s"}`,
     audio:   `${_composerAudio.length} áudio${_composerAudio.length === 1 ? "" : "s"} anexado${_composerAudio.length === 1 ? "" : "s"}`,
     spoiler: "spoiler ativo",
@@ -1047,6 +1050,48 @@ function renderAudioRow() {
     rm.style.cssText = "width:22px;height:22px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:13px;line-height:1;padding:0;display:grid;place-items:center;flex-shrink:0";
     rm.addEventListener("click", () => { _composerAudio.splice(i, 1); renderAudioRow(); updateComposerMeta(); });
     wrap.appendChild(label); wrap.appendChild(audio); wrap.appendChild(rm);
+    row.appendChild(wrap);
+  });
+}
+
+function renderMusicRow() {
+  const row = document.getElementById("musicAttachRow");
+  if (!row) return;
+  row.innerHTML = "";
+  if (!_composerMusic.length) { row.style.display = "none"; return; }
+  row.style.display = "flex";
+  _composerMusic.forEach((m, i) => {
+    const wrap = document.createElement("div");
+    wrap.style.cssText = "display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg-card);border:1px solid var(--divider-strong);border-left:3px solid var(--ev);border-radius:0 4px 4px 0";
+    const info = document.createElement("div");
+    info.style.cssText = "flex:1;min-width:0;display:flex;flex-direction:column;gap:2px";
+    const title = document.createElement("div");
+    title.style.cssText = "font-family:var(--font-editorial);font-style:italic;font-size:14px;color:var(--ink);line-height:1.2";
+    title.textContent = m.titulo;
+    info.appendChild(title);
+    if (m.album) {
+      const album = document.createElement("div");
+      album.style.cssText = "font-family:var(--font-mono);font-size:9.5px;color:var(--ev);letter-spacing:0.06em";
+      album.textContent = m.album;
+      info.appendChild(album);
+    }
+    const hasAudioUrl = m.url && /\.(mp3|ogg|m4a|wav|opus)(\?|$)/i.test(m.url);
+    if (hasAudioUrl) {
+      const audio = document.createElement("audio");
+      audio.controls = true; audio.preload = "none"; audio.src = m.url;
+      audio.style.cssText = "width:100%;height:28px;margin-top:4px";
+      info.appendChild(audio);
+    } else if (m.url) {
+      const linkNote = document.createElement("div");
+      linkNote.style.cssText = "font-family:var(--font-mono);font-size:9px;color:var(--ink-dim);letter-spacing:0.08em";
+      linkNote.textContent = "com link externo";
+      info.appendChild(linkNote);
+    }
+    const rm = document.createElement("button");
+    rm.type = "button"; rm.innerHTML = "&#215;"; rm.title = "Remover música";
+    rm.style.cssText = "width:22px;height:22px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:13px;line-height:1;padding:0;display:grid;place-items:center;flex-shrink:0";
+    rm.addEventListener("click", () => { _composerMusic.splice(i, 1); renderMusicRow(); updateComposerMeta(); });
+    wrap.appendChild(info); wrap.appendChild(rm);
     row.appendChild(wrap);
   });
 }
@@ -1256,6 +1301,7 @@ function openComposer() {
   _composerTags = [];
   _composerPhotos = [];
   _composerAudio = [];
+  _composerMusic = [];
   _ctPreviewing = false;
   const ta = document.getElementById("topicBody");
   if (ta) { ta.style.display = ""; ta.value = ""; }
@@ -1270,6 +1316,8 @@ function openComposer() {
   if (photoRow) { photoRow.innerHTML = ""; photoRow.style.display = "none"; }
   const audioRow = document.getElementById("audioAttachRow");
   if (audioRow) { audioRow.innerHTML = ""; audioRow.style.display = "none"; }
+  const musicRow = document.getElementById("musicAttachRow");
+  if (musicRow) { musicRow.innerHTML = ""; musicRow.style.display = "none"; }
   buildCatPills("geral");
   renderTagChips();
   updateRailIdentity();
@@ -1316,6 +1364,7 @@ function closeComposer() {
   _composerTags = [];
   _composerPhotos = [];
   _composerAudio = [];
+  _composerMusic = [];
   _ctPreviewing = false;
 }
 
@@ -1329,6 +1378,12 @@ async function submitTopic() {
   if (_composerTags.length) body += "\n\n" + _composerTags.map(t => "#" + t).join(" ");
   if (_composerPhotos.length) body += "\n\n" + _composerPhotos.map(p => `[img:${p.align || "centro"}]${p.dataUrl}[/img]`).join("\n");
   if (_composerAudio.length) body += "\n\n" + _composerAudio.map(a => a.type === "url" ? `[audio-url]${a.src}[/audio-url]` : `[audio]${a.src}[/audio]`).join("\n");
+  if (_composerMusic.length) body += "\n\n" + _composerMusic.map(m => {
+    const parts = [m.titulo];
+    if (m.album) parts.push(m.album);
+    if (m.url)   parts.push(m.url);
+    return `[musica]${parts.join(" | ")}[/musica]`;
+  }).join("\n");
   if (body.length > MAX_BODY_CHARS) {
     errEl.textContent = "Conteúdo muito grande (fotos pesadas demais). Remova uma foto e tente de novo.";
     errEl.classList.add("visible");
@@ -1414,7 +1469,7 @@ function _muNorm(s) {
   return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
 
-function openMusicModal(targetTextarea) {
+function openMusicModal(onInsert) {
   const modal = document.getElementById("musicModal");
   const tabCat = document.getElementById("muTabCat");
   const tabMan = document.getElementById("muTabMan");
@@ -1535,16 +1590,7 @@ function openMusicModal(targetTextarea) {
       if (_activeTab === "cat") return;
       tituloEl.focus(); return;
     }
-    const parts = [titulo];
-    if (album) parts.push(album);
-    if (url)   parts.push(url);
-    const tag = `[musica]${parts.join(" | ")}[/musica]`;
-    const start = targetTextarea.selectionStart;
-    const before = targetTextarea.value.substring(0, start);
-    const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
-    targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
-    targetTextarea.focus();
-    updateComposerMeta();
+    if (typeof onInsert === "function") onInsert({ titulo, album, url });
     close();
   }
 
@@ -1618,7 +1664,12 @@ function initComposer() {
     undo: () => { ta.focus(); document.execCommand("undo"); },
     redo: () => { ta.focus(); document.execCommand("redo"); },
     setlist: () => openSetlistModal(document.getElementById("topicBody")),
-    music:   () => openMusicModal(document.getElementById("topicBody")),
+    music:   () => openMusicModal((musicObj) => {
+      if (_composerMusic.length >= 3) { alert("Máximo de 3 músicas por tópico."); return; }
+      _composerMusic.push(musicObj);
+      renderMusicRow();
+      updateComposerMeta();
+    }),
     photo:   () => document.getElementById("photoFileInput").click(),
     audio:   () => openAudioModal((audioObj) => {
       if (_composerAudio.length >= 2) { alert("Máximo de 2 áudios por tópico."); return; }
@@ -1644,7 +1695,14 @@ function initComposer() {
     btn.addEventListener("click", () => {
       const ta = document.getElementById("topicBody");
       if (btn.dataset.anchor === "show")  openSetlistModal(ta);
-      if (btn.dataset.anchor === "music") openMusicModal(ta);
+      if (btn.dataset.anchor === "music") {
+        openMusicModal((musicObj) => {
+          if (_composerMusic.length >= 3) { alert("Máximo de 3 músicas por tópico."); return; }
+          _composerMusic.push(musicObj);
+          renderMusicRow();
+          updateComposerMeta();
+        });
+      }
     });
   });
 
