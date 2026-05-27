@@ -165,9 +165,15 @@ async def create_topic(
 async def get_topic(
     topic_id: str,
     request: Request,
+    page: int = 1,
+    per_page: int = 30,
     user_id: str | None = Depends(optional_auth),
 ):
     site = resolve_site(request)
+    per_page = min(max(per_page, 1), 100)
+    page = max(page, 1)
+    offset = (page - 1) * per_page
+
     async with get_conn() as conn:
         row = await conn.fetchrow(
             """
@@ -206,13 +212,41 @@ async def get_topic(
             JOIN forum_users u ON u.id = p.user_id
             WHERE p.topic_id = $1::uuid AND p.site = $2
             ORDER BY p.created_at ASC
+            LIMIT $4 OFFSET $5
             """,
-            topic_id, site, user_id,
+            topic_id, site, user_id, per_page, offset,
         )
 
     topic = _topic_from_row(row)
     posts = [_post_from_row(p) for p in posts_rows]
-    return TopicDetailOut(topic=topic, posts=posts)
+    return TopicDetailOut(topic=topic, posts=posts, total_posts=topic.reply_count, page=page, per_page=per_page)
+
+
+@router.get("/users/{user_id}/badges", tags=["Forum"])
+async def get_user_badges(user_id: str, request: Request):
+    """Badges automáticos derivados de counts. Cacheável."""
+    site = resolve_site(request)
+    async with get_conn() as conn:
+        row = await conn.fetchrow(
+            """
+            SELECT
+              (SELECT COUNT(*) FROM forum_posts  WHERE user_id = $1::uuid AND site = $2)::int AS posts_count,
+              (SELECT COUNT(*) FROM forum_topics WHERE user_id = $1::uuid AND site = $2)::int AS topics_count,
+              (SELECT COUNT(*) FROM forum_reactions WHERE user_id = $1::uuid AND site = $2 AND type = 'tava_la')::int AS tava_la_count
+            """,
+            user_id, site,
+        )
+    if not row:
+        return {"veterano": False, "arquivista": False, "tava_la": 0}
+    p, t, tl = row["posts_count"], row["topics_count"], row["tava_la_count"]
+    return {
+        "posts_count": p,
+        "topics_count": t,
+        "tava_la_count": tl,
+        "veterano": p >= 100,
+        "arquivista": t >= 8,
+        "tava_la": tl,
+    }
 
 
 @router.post(

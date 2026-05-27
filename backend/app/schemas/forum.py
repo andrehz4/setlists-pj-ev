@@ -56,6 +56,9 @@ class PostOut(BaseModel):
 class TopicDetailOut(BaseModel):
     topic: TopicOut
     posts: list[PostOut]
+    total_posts: int = 0
+    page: int = 1
+    per_page: int = 30
 
 
 class TopicsPageOut(BaseModel):
