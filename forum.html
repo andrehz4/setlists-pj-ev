@@ -417,6 +417,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
     <button class="btn primary" id="newTopicBtn" style="display:none"><span class="plus">+</span> Nova thread</button>
     <button class="sort-chip active" data-sort="activity">Atividade</button>
     <button class="sort-chip" data-sort="newest">Mais novos</button>
+    <button class="sort-chip" data-sort="likes">Mais curtidos</button>
     <button class="sort-chip" data-sort="noreply">Sem resposta</button>
   </div>
   <div class="forum-toolbar-right">
@@ -987,9 +988,9 @@ function renderThreads(data) {
           <p class="thread-snippet">${san(bodySnippet(cleanBody))}</p>
           <div class="thread-author">por <span class="who">${san(t.display_name)}</span><span class="ago">· ${timeAgo(t.created_at)}</span></div>
         </div>
-        <div class="thread-anchor pj">
-          <span class="anchor-label">Categoria</span>
-          <span class="anchor-where">${san(t.category)}</span>
+        <div class="thread-anchor${t.anchor_show_id ? " pj" : ""}">
+          <span class="anchor-label">${t.anchor_show_id ? "Show" : "Discussão"}</span>
+          <span class="anchor-where"${t.anchor_show_id ? "" : ' style="color:var(--ink-dim)"'}>${t.anchor_show_id ? san(t.anchor_show_id) : "—"}</span>
         </div>
         <div class="thread-stats">
           <div class="stat-bit"><b>${t.reply_count}</b><em>resp.</em></div>
