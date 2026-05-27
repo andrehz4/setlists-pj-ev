@@ -49,7 +49,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .auth-btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
 
 /* Thread layout */
-.thread-view { padding: 28px 32px 60px; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 36px; max-width: 1180px; margin: 0 auto; }
+.thread-view { padding: 28px 32px 60px; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 36px; max-width: 1280px; margin: 0 auto; }
 .crumbs { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 18px; }
 .crumbs a { color: var(--pj); text-decoration: none; }
 .crumbs a:hover { text-decoration: underline; }
@@ -62,7 +62,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .thread-head .head-meta b { color: var(--ink); font-weight: normal; text-transform: uppercase; }
 
 /* Posts */
-.post { display: grid; grid-template-columns: 56px 1fr; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--divider); }
+.post { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--divider); }
 .post.root { background: rgba(193,39,45,0.04); border-left: 3px solid var(--pj); padding: 22px 22px 22px 18px; margin-bottom: 6px; }
 .post-avatar { width: 52px; height: 52px; background: var(--bg-card); border: 1px solid var(--divider-strong); border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-size: 17px; color: var(--ink-mute); overflow: hidden; flex-shrink: 0; }
 .post-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
@@ -73,7 +73,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .post-badge.op { color: var(--pj); border-color: var(--pj-soft); }
 .post-date { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.08em; }
 .post-date::before { content: "·"; margin-right: 8px; color: var(--divider-strong); }
-.post-body { font-family: var(--font-body); font-size: 16.5px; color: var(--ink); line-height: 1.6; }
+.post-body { font-family: var(--font-body); font-size: 16.5px; color: var(--ink); line-height: 1.6; overflow-wrap: anywhere; word-break: break-word; min-width: 0; }
 .post-body p { margin: 0 0 12px; }
 .post-body p:last-child { margin-bottom: 0; }
 .post-body .align-esq    { display: block; text-align: left;   margin: 6px 0; }
@@ -84,7 +84,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .post-tags { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 4px; }
 
 /* Quote block */
-.quote-block { border-left: 3px solid var(--ev); background: var(--bg-card); padding: 12px 16px; margin: 14px 0; font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); line-height: 1.5; }
+.quote-block { border-left: 3px solid var(--ev); background: var(--bg-card); padding: 12px 16px; margin: 14px 0; font-family: var(--font-editorial); font-style: italic; font-size: 15px; color: var(--ink-mute); line-height: 1.5; overflow-wrap: anywhere; word-break: break-word; }
 .quote-who { display: block; font-family: var(--font-mono); font-style: normal; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ev); margin-bottom: 6px; }
 
 /* Spoiler */
