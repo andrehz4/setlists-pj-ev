@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-27T03:08:52.282Z",
+  "updated": "2026-05-27T15:10:41.747Z",
   "items": [
+    {
+      "id": "cd-20260527",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-27T12:25:32.076Z",
+      "fetchedAt": "2026-05-27T15:10:41.524Z",
+      "img": "/media/news/img/cd-20260527.jpg",
+      "title_pt": "Jack Irons de volta ao estúdio e a guerra do PJ contra a Ticketmaster em pauta",
+      "intro_pt": "Depois de cirurgia cerebral, Jack Irons fala sobre novo disco e a comunidade revive a batalha histórica contra a Ticketmaster.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "Jack Irons está de volta com novo álbum",
+      "kind": "community-digest",
+      "community_posts_count": 8
+    },
     {
       "id": "cs-82683d2e88",
       "url": "https://www.reddit.com/r/pearljam/comments/1toewqe/new_ed_portrait_13x19_hope_you_enjoy_have_a_good/",
@@ -511,23 +530,6 @@
       "title_pt": "Pearl Jam apoia o Dia das Doenças Raras 2026",
       "intro_pt": "O Ten Club publicou mensagem de apoio ao Rare Disease Day, reafirmando o compromisso histórico da banda com a causa.",
       "tags": [
-        "tenclub"
-      ],
-      "kind": "pjcom-news"
-    },
-    {
-      "id": "3ae77150e0",
-      "url": "https://pearljam.com/news/montana-grind-and-paving-the-way",
-      "source": "pj-com-news",
-      "sourceLabel": "Pearl Jam Oficial",
-      "group": "tenclub",
-      "pubDate": "2026-05-14T12:04:05.057Z",
-      "fetchedAt": "2026-05-14T21:28:27.359Z",
-      "img": "/media/news/img/3ae77150e0.jpg",
-      "title_pt": "Jeff Ament assina trilha de dois filmes sobre skate e raízes em Montana",
-      "intro_pt": "Baixista do Pearl Jam compôs músicas para o documentário Montana Grind e o curta Paving the Way, ambos enraizados no estado do Montana.",
-      "tags": [
-        "jeff",
         "tenclub"
       ],
       "kind": "pjcom-news"
