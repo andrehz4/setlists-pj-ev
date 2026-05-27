@@ -583,7 +583,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-26T21:08:25.354Z",
+        "at": "2026-05-27T03:10:27.963Z",
         "msg": "IG API /17841414148425536/media_publish: Application request limit reached"
       }
     },
@@ -595,7 +595,7 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-26T21:08:44.283Z",
+        "at": "2026-05-27T03:10:59.517Z",
         "msg": "IG API /17841414148425536/media_publish: Application request limit reached"
       }
     },
@@ -606,7 +606,10 @@
       "publishAt": "2026-05-27T03:08:52.160Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-27T03:10:59.517Z",
+        "msg": "IG API /17841414148425536/media_publish: Application request limit reached"
+      }
     }
   ],
   "postCount": 35
