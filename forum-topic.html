@@ -636,8 +636,12 @@ function renderBody(rawText) {
       const audio = document.createElement("audio");
       audio.className = "hidden";
       audio.preload = "auto";
-      audio.crossOrigin = "anonymous";
       audio.src = slot.src;
+      audio.addEventListener("error", () => {
+        const code = audio.error ? audio.error.code : "?";
+        meta.textContent = "erro " + code;
+        console.error("[audio] load fail code=" + code, slot.src.slice(0, 80));
+      });
       function fmt(s) { if (!isFinite(s)) return "0:00"; const m = Math.floor(s/60), sec = Math.floor(s%60); return m + ":" + String(sec).padStart(2,"0"); }
       audio.addEventListener("loadedmetadata", () => { if (audio.duration) meta.textContent = fmt(audio.duration); });
       audio.addEventListener("timeupdate", () => {
