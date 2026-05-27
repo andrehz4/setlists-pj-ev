@@ -243,6 +243,13 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 let _token = localStorage.getItem("forum_token");
 let _user = (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })();
+let _currentProfileData = null;
+let _showsCatalogCache = null;
+async function loadShowsCatalog() {
+  if (_showsCatalogCache) return _showsCatalogCache;
+  try { const r = await fetch("/media/shows.json"); if (r.ok) _showsCatalogCache = await r.json(); } catch (_) {}
+  return _showsCatalogCache || { shows: [] };
+}
 
 function san(str) {
   return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
@@ -383,7 +390,8 @@ function renderProfile(data) {
       }).join("")
     : `<div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-dim);padding:20px 0">Sem atividade recente</div>`;
 
-  const isOwnProfile = _user && _user.id === data.id;
+  const isOwnProfile = _user && ((_user.user_id || _user.id) === data.id);
+  _currentProfileData = data;
 
   document.getElementById("pageContent").innerHTML = `
     <div class="profile-head">
@@ -400,7 +408,9 @@ function renderProfile(data) {
         </div>
       </div>
       <div class="profile-actions">
-        ${isOwnProfile ? "" : `<a href="forum.html" class="btn">← Ver fórum</a>`}
+        ${isOwnProfile
+          ? `<button class="btn primary" id="editProfileBtn">✎ Editar perfil</button>`
+          : `<a href="forum.html" class="btn">← Ver fórum</a>`}
       </div>
     </div>
 
@@ -471,6 +481,109 @@ function renderProfile(data) {
     el.addEventListener("mouseover", () => { el.style.color = "var(--pj)"; });
     el.addEventListener("mouseout", () => { el.style.color = "var(--ink)"; });
   });
+  const editBtn = document.getElementById("editProfileBtn");
+  if (editBtn) editBtn.addEventListener("click", openEditProfile);
+}
+
+async function openEditProfile() {
+  const data = _currentProfileData || {};
+  const cat = await loadShowsCatalog();
+  const allShows = cat.shows || [];
+  const attended = new Set(data.shows_attended || []);
+
+  const modal = document.createElement("div");
+  modal.id = "editProfileModal";
+  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:500;display:grid;place-items:center;padding:20px;overflow:auto";
+  modal.innerHTML = `
+    <div style="background:var(--bg-card);border:1px solid var(--divider-strong);width:100%;max-width:560px;padding:24px;display:flex;flex-direction:column;gap:14px;max-height:92vh;overflow-y:auto">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--pj)">// Editar perfil</div>
+      <div>
+        <label style="display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px">Nome</label>
+        <input id="ep_name" maxlength="80" value="${(data.display_name||'').replace(/"/g,'&quot;')}" style="width:100%;background:var(--bg-card-sunk);border:1px solid var(--divider);padding:10px;font-family:var(--font-body);font-size:15px;color:var(--ink);outline:none">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 110px;gap:10px">
+        <div>
+          <label style="display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px">Cidade</label>
+          <input id="ep_city" maxlength="80" placeholder="São Paulo · BR" value="${(data.city||'').replace(/"/g,'&quot;')}" style="width:100%;background:var(--bg-card-sunk);border:1px solid var(--divider);padding:10px;font-family:var(--font-body);font-size:14px;color:var(--ink);outline:none">
+        </div>
+        <div>
+          <label style="display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px">Nascimento</label>
+          <input id="ep_year" type="number" min="1900" max="2100" placeholder="1985" value="${data.birth_year||''}" style="width:100%;background:var(--bg-card-sunk);border:1px solid var(--divider);padding:10px;font-family:var(--font-mono);font-size:13px;color:var(--ink);outline:none">
+        </div>
+      </div>
+      <div>
+        <label style="display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px">Email (privado)</label>
+        <input id="ep_email" type="email" maxlength="200" placeholder="seu@email.com" value="${(data.email||'').replace(/"/g,'&quot;')}" style="width:100%;background:var(--bg-card-sunk);border:1px solid var(--divider);padding:10px;font-family:var(--font-mono);font-size:13px;color:var(--ink);outline:none">
+      </div>
+      <div>
+        <label style="display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px">Bio (até 500)</label>
+        <textarea id="ep_bio" maxlength="500" placeholder="Conta um pouco quem você é..." style="width:100%;min-height:80px;background:var(--bg-card-sunk);border:1px solid var(--divider);padding:10px;font-family:var(--font-body);font-size:14px;color:var(--ink);outline:none;resize:vertical">${san(data.bio||'')}</textarea>
+      </div>
+      <div>
+        <label style="display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px">Shows que você esteve · <b id="ep_shows_count" style="color:var(--pj)">${attended.size}</b></label>
+        <div id="ep_shows" style="max-height:200px;overflow-y:auto;border:1px solid var(--divider);background:var(--bg-card-sunk);padding:6px">
+          ${allShows.map(s => `
+            <label style="display:flex;align-items:center;gap:8px;padding:5px 6px;cursor:pointer;border-bottom:1px dotted var(--divider);font-family:var(--font-mono);font-size:11px">
+              <input type="checkbox" value="${s.id}" ${attended.has(s.id) ? "checked" : ""}>
+              <span style="flex:1">${(s.artist+' · '+_fmtDateBR(s.date)+' · '+s.venue+', '+s.city).replace(/[<>]/g,'')}</span>
+            </label>`).join("")}
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px">
+        <span id="ep_err" style="font-family:var(--font-mono);font-size:11px;color:var(--pj)"></span>
+        <div style="display:flex;gap:8px">
+          <button class="btn" id="ep_cancel">Cancelar</button>
+          <button class="btn primary" id="ep_save">Salvar →</button>
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const shows = modal.querySelector("#ep_shows");
+  const countEl = modal.querySelector("#ep_shows_count");
+  shows.addEventListener("change", () => {
+    const n = shows.querySelectorAll("input:checked").length;
+    countEl.textContent = n;
+  });
+
+  modal.querySelector("#ep_cancel").addEventListener("click", () => modal.remove());
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+
+  modal.querySelector("#ep_save").addEventListener("click", async () => {
+    const err = modal.querySelector("#ep_err");
+    err.textContent = "";
+    const payload = {
+      display_name: modal.querySelector("#ep_name").value.trim(),
+      city:         modal.querySelector("#ep_city").value.trim(),
+      birth_year:   modal.querySelector("#ep_year").value ? parseInt(modal.querySelector("#ep_year").value, 10) : null,
+      email:        modal.querySelector("#ep_email").value.trim(),
+      bio:          modal.querySelector("#ep_bio").value.trim(),
+      shows_attended: Array.from(shows.querySelectorAll("input:checked")).map(i => i.value),
+    };
+    if (payload.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+      err.textContent = "Email inválido"; return;
+    }
+    const saveBtn = modal.querySelector("#ep_save");
+    saveBtn.disabled = true; saveBtn.textContent = "Salvando…";
+    try {
+      const res = await apiFetch("/forum/users/me", { method: "PATCH", body: JSON.stringify(payload) });
+      if (res && res.updated) {
+        modal.remove();
+        location.reload();
+      } else {
+        err.textContent = "Nada pra atualizar";
+        saveBtn.disabled = false; saveBtn.textContent = "Salvar →";
+      }
+    } catch (e) {
+      err.textContent = e.message || "Erro ao salvar";
+      saveBtn.disabled = false; saveBtn.textContent = "Salvar →";
+    }
+  });
+}
+
+function _fmtDateBR(iso) {
+  if (!iso) return "";
+  return new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { day:"2-digit", month:"short", year:"numeric" });
 }
 
 function initTheme() {
@@ -509,6 +622,11 @@ async function init() {
       display_name: raw.display_name,
       avatar_url: raw.avatar_url,
       created_at: raw.created_at,
+      bio: raw.bio || "",
+      email: raw.email || "",
+      birth_year: raw.birth_year || null,
+      city: raw.city || "",
+      shows_attended: raw.shows_attended || [],
       post_count: raw.posts_count,
       topic_count: raw.topics_count,
       reactions_received: raw.likes_received,
