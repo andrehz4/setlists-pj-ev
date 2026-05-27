@@ -559,11 +559,23 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 <!-- Setlist (show) modal -->
 <div class="tool-modal" id="setlistModal" style="display:none">
-  <div class="tool-modal-inner">
-    <div class="tool-modal-label">// Linkar show</div>
-    <input type="text" id="slBanda" value="Pearl Jam" placeholder="Banda">
-    <input type="date" id="slData">
-    <input type="text" id="slLocal" placeholder="Local / Venue">
+  <div class="tool-modal-inner" style="width:460px">
+    <div class="tool-modal-label">// Linkar show / setlist</div>
+    <div class="audio-tabs">
+      <button class="tab-btn active" data-sltab="cat">Do catálogo</button>
+      <button class="tab-btn" data-sltab="man">Colar/manual</button>
+    </div>
+    <div id="slTabCat">
+      <input type="search" id="slSearch" placeholder="Buscar (Curitiba, 2024, Eddie…)">
+      <div id="slList" class="mu-list"></div>
+      <div id="slSelected" class="mu-selected" style="display:none"></div>
+    </div>
+    <div id="slTabMan" style="display:none">
+      <input type="text" id="slBanda" value="Pearl Jam" placeholder="Banda">
+      <input type="date" id="slData">
+      <input type="text" id="slLocal" placeholder="Local / Venue">
+      <textarea id="slSongs" placeholder="Músicas (uma por linha, opcional). Cole do setlist.fm ou similar." style="background:var(--bg-card-sunk);border:1px solid var(--divider);color:var(--ink);font-family:var(--font-mono);font-size:11px;padding:8px 10px;width:100%;min-height:90px;resize:vertical;outline:none" maxlength="3000"></textarea>
+    </div>
     <div class="tool-modal-actions">
       <button class="btn sm" id="slCancel">Cancelar</button>
       <button class="btn sm primary" id="slInsert">Inserir</button>
@@ -1419,23 +1431,128 @@ async function submitTopic() {
 }
 
 // ── Modais de show e música ──────────────────────────────────
+let _showsCatalog = null;
+let _showsLoading = null;
+async function loadShowsCatalog() {
+  if (_showsCatalog) return _showsCatalog;
+  if (_showsLoading) return _showsLoading;
+  _showsLoading = fetch("/media/shows.json")
+    .then(r => r.ok ? r.json() : Promise.reject(new Error("shows.json " + r.status)))
+    .then(j => { _showsCatalog = j; return j; })
+    .catch(err => { _showsLoading = null; throw err; });
+  return _showsLoading;
+}
+function _fmtShowDate(iso) {
+  if (!iso) return "";
+  return new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { day:"2-digit", month:"short", year:"numeric" });
+}
+
 function openSetlistModal(targetTextarea) {
   const modal = document.getElementById("setlistModal");
-  document.getElementById("slBanda").value = "Pearl Jam";
-  document.getElementById("slData").value = "";
-  document.getElementById("slLocal").value = "";
+  const tabCat = document.getElementById("slTabCat");
+  const tabMan = document.getElementById("slTabMan");
+  const searchEl = document.getElementById("slSearch");
+  const listEl = document.getElementById("slList");
+  const selectedEl = document.getElementById("slSelected");
+  const bandaEl = document.getElementById("slBanda");
+  const dataEl  = document.getElementById("slData");
+  const localEl = document.getElementById("slLocal");
+  const songsEl = document.getElementById("slSongs");
+
+  bandaEl.value = "Pearl Jam";
+  dataEl.value = "";
+  localEl.value = "";
+  songsEl.value = "";
+  searchEl.value = "";
+  selectedEl.style.display = "none";
+  listEl.innerHTML = `<div class="mu-empty">Carregando shows…</div>`;
   modal.style.display = "flex";
-  setTimeout(() => document.getElementById("slData").focus(), 50);
+  setTimeout(() => searchEl.focus(), 50);
+
+  let _activeTab = "cat";
+  let _selectedShow = null;
+
+  function setTab(name) {
+    _activeTab = name;
+    tabCat.style.display = name === "cat" ? "" : "none";
+    tabMan.style.display = name === "man" ? "" : "none";
+    document.querySelectorAll("#setlistModal .audio-tabs .tab-btn").forEach(b => {
+      b.classList.toggle("active", b.dataset.sltab === name);
+    });
+  }
+  modal.querySelectorAll(".audio-tabs .tab-btn").forEach(b => {
+    b.addEventListener("click", () => setTab(b.dataset.sltab));
+  });
+
+  function renderList(filter) {
+    if (!_showsCatalog) return;
+    const q = _muNorm(filter).trim();
+    const all = _showsCatalog.shows;
+    const filtered = q
+      ? all.filter(s => {
+          const hay = _muNorm([s.artist, s.venue, s.city, s.date, s.tour].filter(Boolean).join(" "));
+          return hay.includes(q);
+        })
+      : all;
+    if (!filtered.length) {
+      listEl.innerHTML = `<div class="mu-empty">Nada encontrado</div>`;
+      return;
+    }
+    listEl.innerHTML = filtered.slice(0, 100).map((s, i) => {
+      const hasAudio = s.has_audio;
+      const dt = _fmtShowDate(s.date);
+      const meta = [dt, s.songs.length + " músicas", s.tour].filter(Boolean).join(" · ");
+      return `<div class="mu-list-item${hasAudio ? " has-audio" : ""}" data-i="${i}">
+        <div><div class="mu-title">${san(s.venue)}, ${san(s.city)}</div><div class="mu-meta">${san(s.artist)} · ${san(meta)}</div></div>
+      </div>`;
+    }).join("");
+    listEl.querySelectorAll(".mu-list-item").forEach(el => {
+      el.addEventListener("click", () => {
+        const idx = parseInt(el.dataset.i);
+        listEl.querySelectorAll(".mu-list-item").forEach(x => x.classList.remove("selected"));
+        el.classList.add("selected");
+        _selectedShow = filtered[idx];
+        renderSelected();
+      });
+    });
+  }
+
+  function renderSelected() {
+    if (!_selectedShow) { selectedEl.style.display = "none"; return; }
+    selectedEl.style.display = "";
+    const s = _selectedShow;
+    const dt = _fmtShowDate(s.date);
+    const songsPreview = s.songs.slice(0, 8).join(" · ") + (s.songs.length > 8 ? ` … (+${s.songs.length - 8})` : "");
+    selectedEl.innerHTML = `
+      <div class="mu-sel-title">${san(s.venue)}, ${san(s.city)}</div>
+      <div class="mu-sel-album">${san(s.artist)} · ${san(dt)}${s.tour ? " · " + san(s.tour) : ""}</div>
+      <div class="mu-meta" style="line-height:1.5">${san(songsPreview)}</div>`;
+  }
 
   function close() { modal.style.display = "none"; cleanup(); }
 
   function insert() {
-    const banda = document.getElementById("slBanda").value.trim() || "Pearl Jam";
-    const data  = document.getElementById("slData").value;
-    const local = document.getElementById("slLocal").value.trim();
-    if (!data || !local) { document.getElementById("slLocal").focus(); return; }
-    const dateStr = new Date(data + "T12:00:00").toLocaleDateString("pt-BR", { day:"2-digit", month:"short", year:"numeric" });
-    const tag = `[setlist]${banda} | ${dateStr} | ${local}[/setlist]`;
+    let banda, dateStr, local, songs;
+    if (_activeTab === "cat" && _selectedShow) {
+      banda  = _selectedShow.artist;
+      dateStr = _fmtShowDate(_selectedShow.date);
+      local  = [_selectedShow.venue, _selectedShow.city].filter(Boolean).join(", ");
+      songs  = _selectedShow.songs.slice(0, 60);
+    } else {
+      banda = bandaEl.value.trim() || "Pearl Jam";
+      const d = dataEl.value;
+      local = localEl.value.trim();
+      if (!d || !local) { localEl.focus(); return; }
+      dateStr = _fmtShowDate(d);
+      songs = songsEl.value
+        .split(/\r?\n/)
+        .map(l => l.trim().replace(/^\d+[\.\)\-]\s*/, ""))
+        .filter(Boolean)
+        .slice(0, 60);
+    }
+    const parts = [banda, dateStr, local];
+    if (songs && songs.length) parts.push(songs.join(", "));
+    const tag = `[setlist]${parts.join(" | ")}[/setlist]`;
     const start = targetTextarea.selectionStart;
     const before = targetTextarea.value.substring(0, start);
     const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
@@ -1450,6 +1567,15 @@ function openSetlistModal(targetTextarea) {
   slInsert.addEventListener("click", insert);
   slCancel.addEventListener("click", close);
   modal.addEventListener("click", e => { if (e.target === modal) close(); });
+  searchEl.addEventListener("input", () => renderList(searchEl.value));
+
+  setTab("cat");
+  loadShowsCatalog()
+    .then(() => renderList(""))
+    .catch(err => {
+      listEl.innerHTML = `<div class="mu-empty">erro ao carregar catálogo</div>`;
+      console.error(err);
+    });
 
   function cleanup() {
     slInsert.removeEventListener("click", insert);
