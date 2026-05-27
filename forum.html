@@ -496,10 +496,13 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
       <div class="composer-field">
         <label>06 · Tags (opcional, até 4)</label>
         <div class="tag-editor" id="tagEditor">
-          <input type="text" class="tag-input-el" id="tagInput" placeholder="+ adicionar tag···" maxlength="30">
+          <input type="text" class="tag-input-el" id="tagInput" placeholder="ex: palpite, curitiba, dark-matter" maxlength="30" list="officialTagsList" autocomplete="off">
         </div>
-        <div style="font-family:var(--font-mono);font-size:9px;color:var(--ink-dim);margin-top:3px;letter-spacing:0.12em">ENTER para adicionar, ATÉ 4 TAGS</div>
+        <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--ink-dim);margin-top:5px;letter-spacing:0.08em;line-height:1.5">
+          Digite e aperte <b style="color:var(--pj)">ENTER</b>, <b style="color:var(--pj)">vírgula</b> ou <b style="color:var(--pj)">espaço</b> pra confirmar cada tag. Sugestões aparecem ao digitar.
+        </div>
       </div>
+      <datalist id="officialTagsList"></datalist>
 
       <div class="error-msg" id="composerError"></div>
       <div class="composer-actions">
@@ -1758,20 +1761,25 @@ function initComposer() {
   });
 
   const tagInput = document.getElementById("tagInput");
+  function commitTopicTag() {
+    const val = tagInput.value.trim().replace(/^#/, "").replace(/[^a-zA-Z0-9À-ɏ_-]/g, "");
+    if (val && _composerTags.length < 4 && !_composerTags.includes(val)) {
+      _composerTags.push(val);
+      renderTagChips(); updateComposerMeta(); updateRailPreview();
+    }
+    tagInput.value = "";
+  }
   tagInput.addEventListener("keydown", e => {
-    if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault();
-      const val = tagInput.value.trim().replace(/^#/, "").replace(/[^a-zA-Z0-9À-ɏ_-]/g, "");
-      if (val && _composerTags.length < 4 && !_composerTags.includes(val)) {
-        _composerTags.push(val);
-        renderTagChips(); updateComposerMeta(); updateRailPreview();
-      }
-      tagInput.value = "";
+    if (e.key === "Enter" || e.key === "," || e.key === " " || e.key === "Tab") {
+      if (tagInput.value.trim()) { e.preventDefault(); commitTopicTag(); }
     }
     if (e.key === "Backspace" && !tagInput.value && _composerTags.length) {
       _composerTags.pop();
       renderTagChips(); updateComposerMeta(); updateRailPreview();
     }
+  });
+  tagInput.addEventListener("blur", () => {
+    if (tagInput.value.trim()) commitTopicTag();
   });
 }
 
@@ -1788,9 +1796,21 @@ function initTheme() {
 }
 
 // ── Init ──────────────────────────────────────────────────────
+async function loadOfficialTags() {
+  try {
+    const r = await fetch("/media/forum-tags.json", { cache: "no-cache" });
+    if (!r.ok) return;
+    const j = await r.json();
+    const dl = document.getElementById("officialTagsList");
+    if (!dl || !Array.isArray(j.tags)) return;
+    dl.innerHTML = j.tags.map(t => `<option value="${san(t)}">`).join("");
+  } catch (_) { /* sem datalist, ok */ }
+}
+
 async function init() {
   initTheme();
   renderSubnav();
+  loadOfficialTags();
   if (_state.token && !_state.user) {
     try {
       const data = await apiFetch("/auth/me");
