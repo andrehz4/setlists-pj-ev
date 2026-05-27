@@ -70,6 +70,7 @@ async def list_topics(
     per_page: int = 20,
     category: str = "",
     sort: str = "activity",
+    show_id: str = "",
 ):
     site = resolve_site(request)
     per_page = min(max(per_page, 1), 50)
@@ -81,6 +82,7 @@ async def list_topics(
         SELECT t.id::text, t.user_id::text, t.title, t.body, t.category, t.site,
                u.display_name, u.avatar_url, t.pinned,
                t.created_at::text, t.last_post_at::text,
+               t.anchor_show_id,
                COALESCE(pc.reply_count, 0) AS reply_count,
                COALESCE(rc.reactions, '{}'::jsonb) AS reactions
         FROM forum_topics t
@@ -101,28 +103,28 @@ async def list_topics(
         ) rc ON rc.target_id = t.id
     """
 
+    where = ["t.site = $3"]
+    args = [per_page, offset, site]
+    if category:
+        args.append(category)
+        where.append(f"t.category = ${len(args)}")
+    if show_id:
+        args.append(show_id)
+        where.append(f"t.anchor_show_id = ${len(args)}")
+    where_sql = " WHERE " + " AND ".join(where)
+
     async with get_conn() as conn:
-        if category:
-            rows = await conn.fetch(  # noqa: S608 (order vem de _SORT_MAP, nunca do input)
-                base_select
-                + " WHERE t.site = $3 AND t.category = $4"
-                + f" ORDER BY t.pinned DESC, {order} LIMIT $1 OFFSET $2",
-                per_page, offset, site, category,
-            )
-            total = await conn.fetchval(
-                "SELECT COUNT(*) FROM forum_topics WHERE site = $1 AND category = $2",
-                site, category,
-            )
-        else:
-            rows = await conn.fetch(  # noqa: S608 (order vem de _SORT_MAP, nunca do input)
-                base_select
-                + " WHERE t.site = $3"
-                + f" ORDER BY t.pinned DESC, {order} LIMIT $1 OFFSET $2",
-                per_page, offset, site,
-            )
-            total = await conn.fetchval(
-                "SELECT COUNT(*) FROM forum_topics WHERE site = $1", site
-            )
+        rows = await conn.fetch(  # noqa: S608 (order vem de _SORT_MAP, args via placeholders)
+            base_select + where_sql + f" ORDER BY t.pinned DESC, {order} LIMIT $1 OFFSET $2",
+            *args,
+        )
+        # COUNT usa os mesmos filtros mas sem LIMIT/OFFSET (offset args 1 e 2)
+        count_args = args[2:]
+        count_where = where_sql.replace("$3", "$1").replace("$4", "$2").replace("$5", "$3")
+        total = await conn.fetchval(
+            f"SELECT COUNT(*) FROM forum_topics t {count_where}",
+            *count_args,
+        )
 
     items = [_topic_from_row(r) for r in rows]
     return TopicsPageOut(items=items, total=total or 0, page=page, per_page=per_page, site=site)
@@ -140,17 +142,17 @@ async def create_topic(
     async with get_conn() as conn:
         row = await conn.fetchrow(
             """
-            INSERT INTO forum_topics (id, title, body, category, site, user_id, last_post_at)
-            VALUES ($1::uuid, $2, $3, $4, $5, $6::uuid, now())
+            INSERT INTO forum_topics (id, title, body, category, site, user_id, last_post_at, anchor_show_id)
+            VALUES ($1::uuid, $2, $3, $4, $5, $6::uuid, now(), $7)
             RETURNING id::text, user_id::text, title, body, category, site, pinned,
-                      created_at::text, last_post_at::text
+                      created_at::text, last_post_at::text, anchor_show_id
             """,
-            topic_id, payload.title, payload.body, payload.category, site, user_id,
+            topic_id, payload.title, payload.body, payload.category, site, user_id, payload.anchor_show_id,
         )
         user = await conn.fetchrow(
             "SELECT display_name, avatar_url FROM forum_users WHERE id = $1::uuid", user_id
         )
-    logger.info("Novo tópico id=%s site=%s user=%s", topic_id, site, user_id)
+    logger.info("Novo tópico id=%s site=%s user=%s show=%s", topic_id, site, user_id, payload.anchor_show_id)
     return TopicOut(
         **dict(row),
         display_name=user["display_name"],
@@ -180,6 +182,7 @@ async def get_topic(
             SELECT t.id::text, t.user_id::text, t.title, t.body, t.category, t.site,
                    u.display_name, u.avatar_url, t.pinned,
                    t.created_at::text, t.last_post_at::text,
+                   t.anchor_show_id,
                    (SELECT COUNT(*) FROM forum_posts p WHERE p.topic_id = t.id)::int AS reply_count,
                    COALESCE((SELECT jsonb_object_agg(type, cnt) FROM (
                        SELECT type, COUNT(*)::int AS cnt FROM forum_reactions

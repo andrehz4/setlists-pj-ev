@@ -726,6 +726,7 @@ let _state = {
   category: "",
   sort: "activity",
   total: 0,
+  showId: "",
   token: localStorage.getItem("forum_token"),
   user: (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })(),
 };
@@ -1023,6 +1024,7 @@ async function loadTopics() {
     sort: _state.sort,
   });
   if (_state.category) params.set("category", _state.category);
+  if (_state.showId) params.set("show_id", _state.showId);
   try {
     const data = await apiFetch("/forum/topics?" + params);
     if (data) renderThreads(data);
@@ -1036,6 +1038,8 @@ let _composerTags = [];
 let _composerPhotos = [];
 let _composerAudio = [];
 let _composerMusic = [];
+let _composerAnchorShowId = null;
+let _composerAnchorShowLabel = "";
 let _ctPreviewing = false;
 
 // Limites alinhados ao backend (body max 200000 chars). Foto grande trava o browser.
@@ -1427,6 +1431,8 @@ function openComposer() {
   _composerPhotos = [];
   _composerAudio = [];
   _composerMusic = [];
+  _composerAnchorShowId = null;
+  _composerAnchorShowLabel = "";
   _ctPreviewing = false;
   const ta = document.getElementById("topicBody");
   if (ta) { ta.style.display = ""; ta.value = ""; }
@@ -1443,6 +1449,7 @@ function openComposer() {
   if (audioRow) { audioRow.innerHTML = ""; audioRow.style.display = "none"; }
   const musicRow = document.getElementById("musicAttachRow");
   if (musicRow) { musicRow.innerHTML = ""; musicRow.style.display = "none"; }
+  updateAnchorButton();
   buildCatPills("geral");
   renderTagChips();
   updateRailIdentity();
@@ -1499,6 +1506,24 @@ function maybeOfferDraftRestore() {
     updateComposerMeta();
   } else {
     clearComposerDraft();
+  }
+}
+
+function updateAnchorButton() {
+  const showBtn = document.querySelector('.composer-form [data-anchor="show"]');
+  if (!showBtn) return;
+  const lab = showBtn.querySelector(".label");
+  const ico = showBtn.querySelector(".ico");
+  if (_composerAnchorShowId) {
+    showBtn.classList.add("added");
+    if (ico) ico.textContent = "✓";
+    if (lab) lab.textContent = _composerAnchorShowLabel || "show ancorado";
+    showBtn.title = "Clique pra trocar de show ou cancele esvaziando o tópico";
+  } else {
+    showBtn.classList.remove("added");
+    if (ico) ico.textContent = "+";
+    if (lab) lab.textContent = "linkar show";
+    showBtn.title = "";
   }
 }
 
@@ -1571,7 +1596,7 @@ async function submitTopic() {
   try {
     const data = await apiFetch("/forum/topics", {
       method: "POST",
-      body: JSON.stringify({ title, body, category }),
+      body: JSON.stringify({ title, body, category, anchor_show_id: _composerAnchorShowId || null }),
     });
     if (data === null) {
       const loginUrl = API_BASE + "/auth/google/login";
@@ -1609,7 +1634,8 @@ function _fmtShowDate(iso) {
   return new Date(iso + "T12:00:00").toLocaleDateString("pt-BR", { day:"2-digit", month:"short", year:"numeric" });
 }
 
-function openSetlistModal(targetTextarea) {
+function openSetlistModal(targetTextarea, opts = {}) {
+  const asAnchor = !!opts.asAnchor;
   const modal = document.getElementById("setlistModal");
   const tabCat = document.getElementById("slTabCat");
   const tabMan = document.getElementById("slTabMan");
@@ -1694,6 +1720,14 @@ function openSetlistModal(targetTextarea) {
   function close() { modal.style.display = "none"; cleanup(); }
 
   function insert() {
+    if (asAnchor && _activeTab === "cat" && _selectedShow) {
+      _composerAnchorShowId = _selectedShow.id;
+      _composerAnchorShowLabel = `${_selectedShow.artist} · ${_fmtShowDate(_selectedShow.date)} · ${_selectedShow.venue}, ${_selectedShow.city}`;
+      updateAnchorButton();
+      updateComposerMeta();
+      close();
+      return;
+    }
     let banda, dateStr, local, songs;
     if (_activeTab === "cat" && _selectedShow) {
       banda  = _selectedShow.artist;
@@ -1985,7 +2019,7 @@ function initComposer() {
   document.querySelectorAll(".composer-form [data-anchor]").forEach(btn => {
     btn.addEventListener("click", () => {
       const ta = document.getElementById("topicBody");
-      if (btn.dataset.anchor === "show")  openSetlistModal(ta);
+      if (btn.dataset.anchor === "show")  openSetlistModal(ta, { asAnchor: true });
       if (btn.dataset.anchor === "music") {
         openMusicModal((musicObj) => {
           if (_composerMusic.length >= 3) { alert("Máximo de 3 músicas por tópico."); return; }
@@ -2173,7 +2207,15 @@ function bindTagSuggest(inputEl, getCurrent, onPick) {
 
 async function init() {
   initTheme();
+  // URL params: ?show_id=XXX filtra; ?new=1 abre composer; combinados pré-ancoram
+  const urlParams = new URLSearchParams(location.search);
+  const showId = urlParams.get("show_id") || "";
+  if (showId) _state.showId = showId;
   renderSubnav();
+  if (showId) {
+    document.getElementById("categoryTitle").textContent = "Conversa do show";
+    document.getElementById("categoryEyebrow").textContent = "Fórum · " + showId;
+  }
   loadOfficialTags();
   if (_state.token) {
     try {
@@ -2217,6 +2259,23 @@ async function init() {
   // Composer
   document.getElementById("newTopicBtn").addEventListener("click", openComposer);
   initComposer();
+
+  // Auto-open composer com âncora se ?new=1&show_id=
+  if (urlParams.get("new") === "1" && _state.token && showId) {
+    setTimeout(async () => {
+      openComposer();
+      try {
+        const cat = await loadShowsCatalog();
+        const s = (cat.shows || []).find(x => x.id === showId);
+        if (s) {
+          _composerAnchorShowId = s.id;
+          _composerAnchorShowLabel = `${s.artist} · ${_fmtShowDate(s.date)} · ${s.venue}, ${s.city}`;
+          updateAnchorButton();
+          updateComposerMeta();
+        }
+      } catch (_) {}
+    }, 200);
+  }
 
   // Busca
   let searchTimer;

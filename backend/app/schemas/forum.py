@@ -5,6 +5,7 @@ class TopicCreate(BaseModel):
     title: str = Field(min_length=3, max_length=120)
     body: str = Field(min_length=10, max_length=200000)
     category: str = Field(default="geral", max_length=40)
+    anchor_show_id: str | None = Field(default=None, max_length=80)
 
 
 class PostCreate(BaseModel):
@@ -38,6 +39,7 @@ class TopicOut(BaseModel):
     reply_count: int
     reactions: dict[str, int] = {}
     my_reactions: list[str] = []
+    anchor_show_id: str | None = None
 
 
 class PostOut(BaseModel):
