@@ -127,3 +127,30 @@ const out = {
 const outPath = path.join(ROOT, 'media', 'songs.json');
 fs.writeFileSync(outPath, JSON.stringify(out, null, 2), 'utf8');
 console.log(`songs.json: ${songs.length} músicas (${withAudio} com áudio) → ${outPath}`);
+
+// ============================================================
+// SHOWS.JSON: catálogo enxuto pra picker de setlist no fórum
+// ============================================================
+const showsOut = SHOWS
+  .filter(s => !s.extra)
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .map(s => ({
+    id: s.id,
+    artist: s.artist,
+    date: s.date,
+    venue: s.venue,
+    city: s.city,
+    tour: s.tour || '',
+    songs: s.songs || [],
+    has_audio: !!(mediaManifest[s.id] && mediaManifest[s.id].audio && mediaManifest[s.id].audio.length),
+  }));
+
+const showsOutObj = {
+  generated_at: new Date().toISOString(),
+  total: showsOut.length,
+  with_audio: showsOut.filter(s => s.has_audio).length,
+  shows: showsOut,
+};
+const showsPath = path.join(ROOT, 'media', 'shows.json');
+fs.writeFileSync(showsPath, JSON.stringify(showsOutObj, null, 2), 'utf8');
+console.log(`shows.json: ${showsOut.length} shows (${showsOutObj.with_audio} com áudio) → ${showsPath}`);
