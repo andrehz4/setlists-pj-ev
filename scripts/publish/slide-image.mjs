@@ -387,29 +387,32 @@ async function coverCrop(srcBuf, det, targetW, targetH) {
   return buf;
 }
 
-// Tratamento de foto por resolucao da fonte (decisao Andre: classico +
-// fallback contido, sem IA). SEMPRE devolve buffer exatamente targetW×H.
-//  - fonte folgada (>=1.25x do alvo): usa como esta (nitida).
-//  - fonte media (0.55x a 1.25x): cover crop + unsharp + grao editorial
-//    sutil (a moleza vira textura, nao borrao).
-//  - fonte pequena (<0.55x): NAO estica. Foto nativa nitida, contida e
-//    centralizada, sobre fundo desfocado/escurecido dela mesma.
+// Tratamento de foto por resolucao da fonte. SEMPRE devolve buffer exatamente
+// targetW×H. Classificacao via scale = quanto a foto precisa ser ampliada
+// pra cobrir o alvo (cover crop): max(targetW/srcW, targetH/srcH). Isso e
+// justo com fotos wide (ex: 640x363 num alvo 1080x1350): a metrica antiga
+// usava min/min e punia esses casos como se fossem quadradinhos pequenos.
+//  - scale <= 0.80 -> NITIDA: fonte folgada, cover crop direto.
+//  - scale <= 1.80 -> MEDIA: cover crop + sharpen + grao editorial.
+//  - scale  > 1.80 -> PEQUENA: cover crop + upscale Lanczos + sharpen forte
+//    + grao mais marcado. Aceita pixelizacao leve em troca de manter
+//    estetica full-bleed do Card 02 (o fallback antigo "foto contida +
+//    blur escuro" desmoronava o card e parecia bug de carregamento).
 async function renderPhoto(srcBuf, det, targetW, targetH, tag = "") {
   let meta;
   try { meta = await sharp(srcBuf, { failOn: "none" }).metadata(); } catch { meta = null; }
   if (!meta || !meta.width || !meta.height) {
     return coverCrop(srcBuf, det, targetW, targetH);
   }
-  const srcMin = Math.min(meta.width, meta.height);
-  const ratio = srcMin / Math.min(targetW, targetH);
+  const scale = Math.max(targetW / meta.width, targetH / meta.height);
 
-  if (ratio >= 1.25) {
-    console.log(`[slide] ${tag} foto nitida (fonte ${meta.width}x${meta.height}, ratio ${ratio.toFixed(2)})`);
+  if (scale <= 0.80) {
+    console.log(`[slide] ${tag} foto nitida (fonte ${meta.width}x${meta.height}, scale ${scale.toFixed(2)})`);
     return coverCrop(srcBuf, det, targetW, targetH);
   }
 
-  if (ratio >= 0.55) {
-    console.log(`[slide] ${tag} foto media -> realce (fonte ${meta.width}x${meta.height}, ratio ${ratio.toFixed(2)})`);
+  if (scale <= 1.80) {
+    console.log(`[slide] ${tag} foto media -> realce (fonte ${meta.width}x${meta.height}, scale ${scale.toFixed(2)})`);
     const base = await coverCrop(srcBuf, det, targetW, targetH);
     let grain = null;
     try {
@@ -423,22 +426,21 @@ async function renderPhoto(srcBuf, det, targetW, targetH, tag = "") {
     return pipe.toBuffer();
   }
 
-  console.log(`[slide] ${tag} foto pequena -> contida + fundo desfocado (fonte ${meta.width}x${meta.height}, ratio ${ratio.toFixed(2)})`);
-  const bg = await sharp(srcBuf, { failOn: "none" })
-    .resize(targetW, targetH, { fit: "cover", position: "attention" })
-    .blur(26)
-    .modulate({ brightness: 0.55 })
-    .toBuffer();
-  const maxFgW = Math.round(targetW * 0.84);
-  const maxFgH = Math.round(targetH * 0.84);
-  const fg = await sharp(srcBuf, { failOn: "none" })
-    .resize(Math.min(meta.width, maxFgW), Math.min(meta.height, maxFgH), {
-      fit: "inside", withoutEnlargement: true,
-    })
-    .toBuffer();
-  return await sharp(bg)
-    .composite([{ input: fg, gravity: "center" }])
-    .toBuffer();
+  console.log(`[slide] ${tag} foto pequena -> upscale agressivo (fonte ${meta.width}x${meta.height}, scale ${scale.toFixed(2)})`);
+  // coverCrop ja amplia pra targetW×H via libvips (kernel padrao bom).
+  // Em cima dele: sharpen forte pra recuperar borda do upscale, leve boost
+  // de saturacao, e grao gaussiano mais denso que disfarca o softness.
+  const base = await coverCrop(srcBuf, det, targetW, targetH);
+  let grain = null;
+  try {
+    grain = await sharp({
+      create: { width: targetW, height: targetH, channels: 3,
+        noise: { type: "gaussian", mean: 128, sigma: 12 } },
+    }).greyscale().png().toBuffer();
+  } catch {}
+  let pipe = sharp(base).sharpen({ sigma: 1.8, m1: 1.0, m2: 2.0 }).modulate({ saturation: 1.06 });
+  if (grain) pipe = pipe.composite([{ input: grain, blend: "soft-light" }]);
+  return pipe.toBuffer();
 }
 
 // Bloco de rodape compartilhado (tarja + manchete + credito), ancorado no
