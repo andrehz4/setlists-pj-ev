@@ -18,6 +18,15 @@ class ReportCreate(BaseModel):
     reason: str | None = Field(default=None, max_length=500)
 
 
+class UserProfileUpdate(BaseModel):
+    display_name: str | None = Field(default=None, min_length=2, max_length=80)
+    bio: str | None = Field(default=None, max_length=500)
+    email: str | None = Field(default=None, max_length=200)
+    birth_year: int | None = Field(default=None, ge=1900, le=2100)
+    city: str | None = Field(default=None, max_length=80)
+    shows_attended: list[str] | None = Field(default=None, max_length=200)
+
+
 class ReactionCreate(BaseModel):
     target_id: str
     target_type: str = Field(pattern="^(topic|post)$")

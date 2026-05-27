@@ -16,6 +16,7 @@ from app.schemas.forum import (
     TopicDetailOut,
     TopicOut,
     TopicsPageOut,
+    UserProfileUpdate,
 )
 from app.services.db import get_conn
 
@@ -231,7 +232,13 @@ async def get_user_profile(user_id: str, request: Request):
     site = resolve_site(request)
     async with get_conn() as conn:
         u = await conn.fetchrow(
-            "SELECT id::text, display_name, avatar_url, created_at::text FROM forum_users WHERE id = $1::uuid",
+            """
+            SELECT id::text, display_name, avatar_url, created_at::text,
+                   COALESCE(bio, '') AS bio, COALESCE(email, '') AS email,
+                   birth_year, COALESCE(city, '') AS city,
+                   COALESCE(shows_attended, '{}'::text[]) AS shows_attended
+            FROM forum_users WHERE id = $1::uuid
+            """,
             user_id,
         )
         if not u:
@@ -280,6 +287,11 @@ async def get_user_profile(user_id: str, request: Request):
         "display_name": u["display_name"],
         "avatar_url": u["avatar_url"],
         "created_at": u["created_at"],
+        "bio": u["bio"],
+        "email": u["email"],
+        "birth_year": u["birth_year"],
+        "city": u["city"],
+        "shows_attended": list(u["shows_attended"] or []),
         "posts_count": p,
         "topics_count": t,
         "tava_la_count": tl,
@@ -292,6 +304,37 @@ async def get_user_profile(user_id: str, request: Request):
             for r in recent
         ],
     }
+
+
+@router.patch("/users/me", tags=["Forum"])
+async def update_my_profile(
+    payload: UserProfileUpdate,
+    user_id: str = Depends(require_auth),
+):
+    """Permite ao usuário logado editar bio, email, ano de nascimento, cidade e shows que esteve."""
+    fields = []
+    values: list = []
+    idx = 1
+    for col, val in [
+        ("display_name", payload.display_name),
+        ("bio", payload.bio),
+        ("email", payload.email),
+        ("birth_year", payload.birth_year),
+        ("city", payload.city),
+        ("shows_attended", payload.shows_attended),
+    ]:
+        if val is not None:
+            fields.append(f"{col} = ${idx}")
+            values.append(val)
+            idx += 1
+    if not fields:
+        return {"updated": False, "reason": "nada pra atualizar"}
+    values.append(user_id)
+    sql = f"UPDATE forum_users SET {', '.join(fields)} WHERE id = ${idx}::uuid"  # noqa: S608 (col names whitelisted, values via placeholders)
+    async with get_conn() as conn:
+        await conn.execute(sql, *values)
+    logger.info("Perfil atualizado user_id=%s fields=%s", user_id, [f.split(" = ")[0] for f in fields])
+    return {"updated": True, "fields": len(fields)}
 
 
 @router.get("/users/{user_id}/badges", tags=["Forum"])
