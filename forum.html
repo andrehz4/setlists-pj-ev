@@ -395,8 +395,8 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 <div class="forum-header">
   <div>
-    <div class="eyebrow">Comunidade</div>
-    <h1>Fórum</h1>
+    <div class="eyebrow" id="categoryEyebrow">Comunidade</div>
+    <h1 id="categoryTitle">Fórum</h1>
   </div>
 </div>
 
@@ -645,15 +645,15 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 
 // ── Config ──────────────────────────────────────────────────
 const CATS = [
-  { id: "", label: "Tudo" },
-  { id: "shows", label: "Shows" },
-  { id: "setlist", label: "Setlists" },
-  { id: "musicas", label: "Músicas" },
-  { id: "albums", label: "Álbuns" },
-  { id: "bootleg", label: "Bootlegs" },
-  { id: "cifras", label: "Cifras" },
-  { id: "eddie", label: "Eddie" },
-  { id: "geral", label: "Geral" },
+  { id: "",        label: "Tudo",     fullLabel: "Todos os tópicos" },
+  { id: "shows",   label: "Shows",    fullLabel: "Shows & Relatos" },
+  { id: "setlist", label: "Setlists", fullLabel: "Setlists & Palpites" },
+  { id: "musicas", label: "Músicas",  fullLabel: "Músicas & Letras" },
+  { id: "albums",  label: "Álbuns",   fullLabel: "Álbuns & Discografia" },
+  { id: "bootleg", label: "Bootlegs", fullLabel: "Bootlegs & Áudios" },
+  { id: "cifras",  label: "Cifras",   fullLabel: "Cifras & Tabs" },
+  { id: "eddie",   label: "Eddie",    fullLabel: "Eddie Vedder solo" },
+  { id: "geral",   label: "Geral",    fullLabel: "Geral" },
 ];
 const COMPOSER_CATS = CATS.filter(c => c.id !== "");
 
@@ -842,6 +842,21 @@ function renderSubnav() {
     <button class="forum-cat${_state.category === c.id ? " active" : ""}" data-cat="${c.id}">
       ${san(c.label)}
     </button>`).join("");
+  renderCategoryHeader();
+}
+
+function renderCategoryHeader() {
+  const cat = CATS.find(c => c.id === _state.category) || CATS[0];
+  const eyebrow = document.getElementById("categoryEyebrow");
+  const title   = document.getElementById("categoryTitle");
+  if (!eyebrow || !title) return;
+  if (!_state.category) {
+    eyebrow.textContent = "Comunidade";
+    title.textContent = "Fórum";
+  } else {
+    eyebrow.textContent = "Fórum · Comunidade";
+    title.textContent = cat.fullLabel;
+  }
 }
 
 // ── Render threads ────────────────────────────────────────────
