@@ -36,3 +36,10 @@ def optional_auth(authorization: str | None = Header(default=None)) -> str | Non
         return verify_jwt(token)["user_id"]
     except HTTPException:
         return None
+
+
+def require_admin(user_id: str = None) -> str:
+    """Use junto com require_auth: depende dele primeiro."""
+    if not settings.is_admin(user_id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Apenas admin.")
+    return user_id

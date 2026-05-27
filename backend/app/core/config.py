@@ -29,6 +29,20 @@ class Settings(BaseSettings):
         description="Mapa de origens para site ID, separado por vírgula",
     )
 
+    # User IDs (Google sub) que recebem privilégios de admin no fórum.
+    # CSV, ex: "108281234567890123456,108289876543210987654".
+    ADMIN_USER_IDS: str = Field(
+        default="",
+        description="UUIDs/Google sub dos admins, separados por vírgula",
+    )
+
+    @property
+    def admin_user_ids(self) -> set[str]:
+        return {x.strip() for x in self.ADMIN_USER_IDS.split(",") if x.strip()}
+
+    def is_admin(self, user_id: str | None) -> bool:
+        return bool(user_id and user_id in self.admin_user_ids)
+
     @property
     def site_origin_map(self) -> dict[str, str]:
         cached = self.__dict__.get("_site_origin_map_cache")

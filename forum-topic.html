@@ -766,6 +766,9 @@ function renderPost(p, isRoot, opUserId) {
         <div class="post-tools">
           ${quoteBtn}
           <button class="report-btn" data-id="${san(p.id)}">⚑ Reportar</button>
+          ${(_user && (_user.is_admin || _user.user_id === p.user_id))
+            ? `<button class="delete-btn" data-id="${san(p.id)}" data-kind="${isRoot ? "topic" : "post"}" style="color:var(--pj)">🗑 Apagar</button>`
+            : ""}
         </div>
       </div>
     </div>`;
@@ -966,6 +969,28 @@ function renderTopic(data) {
   });
 
   // Report buttons
+  document.querySelectorAll(".delete-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const kind = btn.dataset.kind;
+      const id   = btn.dataset.id;
+      const label = kind === "topic" ? "tópico inteiro (e todas as respostas)" : "esta resposta";
+      if (!confirm(`Apagar ${label}? Não dá pra desfazer.`)) return;
+      btn.disabled = true; btn.textContent = "Apagando…";
+      try {
+        const path = kind === "topic" ? `/forum/topics/${encodeURIComponent(id)}` : `/forum/posts/${encodeURIComponent(id)}`;
+        const headers = { "Content-Type": "application/json" };
+        if (_token) headers["Authorization"] = "Bearer " + _token;
+        const res = await fetch(API_BASE + path, { method: "DELETE", headers });
+        if (!res.ok) throw new Error("Erro " + res.status);
+        if (kind === "topic") location.href = "forum.html";
+        else location.reload();
+      } catch (err) {
+        btn.disabled = false; btn.textContent = "🗑 Apagar";
+        alert("Falha ao apagar: " + (err.message || err));
+      }
+    });
+  });
+
   document.querySelectorAll(".report-btn").forEach(btn => {
     btn.addEventListener("click", () => openReport(btn.dataset.id));
   });
@@ -1788,14 +1813,13 @@ async function init() {
   initTheme();
   loadOfficialTags();
 
-  if (_token && !_user) {
+  if (_token) {
     try {
       const data = await apiFetch("/auth/me");
       _user = data;
       localStorage.setItem("forum_user", JSON.stringify(data));
     } catch (_) {
-      localStorage.removeItem("forum_token");
-      _token = null;
+      if (!_user) { localStorage.removeItem("forum_token"); _token = null; }
     }
   }
 
