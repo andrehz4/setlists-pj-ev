@@ -326,7 +326,7 @@ a.embed-music:hover .embed-music-titulo { color:var(--ev); }
       <button class="tab-btn" data-audiotab="url">Colar URL</button>
     </div>
     <div id="audioTabRec">
-      <div id="audioTimer">0:00 / 0:15</div>
+      <div id="audioTimer">0:00 / 0:10</div>
       <div id="audioPreviewWrap" style="display:none"><audio id="audioPreview" controls style="width:100%"></audio></div>
       <button class="btn sm" id="audioRecBtn">Iniciar gravacao</button>
       <div class="tool-modal-error" id="audioRecErr"></div>
@@ -1247,6 +1247,7 @@ function openSetlistModal(targetTextarea) {
     const before = targetTextarea.value.substring(0, start);
     const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
     targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
+    targetTextarea.dispatchEvent(new Event("input", { bubbles: true }));
     targetTextarea.focus();
     close();
   }
@@ -1411,6 +1412,7 @@ function openMusicModal(targetTextarea) {
     const before = targetTextarea.value.substring(0, start);
     const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
     targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
+    targetTextarea.dispatchEvent(new Event("input", { bubbles: true }));
     targetTextarea.focus();
     close();
   }
@@ -1437,7 +1439,7 @@ function openMusicModal(targetTextarea) {
 }
 
 // ── Audio modal ───────────────────────────────────────────────
-const MAX_AUDIO_DATAURL = 250000; // ~250KB base64 -> ~15s opus a 64kbps
+const MAX_AUDIO_DATAURL = 150000; // ~150KB base64, ~10s opus a 64kbps (deixa folga pro restante do body de 200000)
 
 function openAudioModal(targetTextarea) {
   const modal     = document.getElementById("audioModal");
@@ -1453,7 +1455,7 @@ function openAudioModal(targetTextarea) {
   // Reset state
   urlInput.value = "";
   errEl.textContent = "";
-  timer.textContent = "0:00 / 0:15";
+  timer.textContent = "0:00 / 0:10";
   timer.classList.remove("recording");
   prevWrap.style.display = "none";
   preview.src = "";
@@ -1522,7 +1524,7 @@ function openAudioModal(targetTextarea) {
         reader.onload = ev => {
           const dataUrl = ev.target.result;
           if (dataUrl.length > MAX_AUDIO_DATAURL) {
-            errEl.textContent = "Gravacao muito longa. Tente novamente (max ~15s).";
+            errEl.textContent = "Gravação muito longa. Tente novamente (max ~10s).";
             insertBtn.disabled = true;
             return;
           }
@@ -1541,8 +1543,8 @@ function openAudioModal(targetTextarea) {
       timerInterval = setInterval(() => {
         elapsed++;
         const m = Math.floor(elapsed / 60), s = elapsed % 60;
-        timer.textContent = `${m}:${String(s).padStart(2, "0")} / 0:15`;
-        if (elapsed >= 15) stopRecording();
+        timer.textContent = `${m}:${String(s).padStart(2, "0")} / 0:10`;
+        if (elapsed >= 10) stopRecording();
       }, 1000);
     } catch (err) {
       console.error("[audio] Falha ao gravar:", err);
@@ -1579,6 +1581,7 @@ function openAudioModal(targetTextarea) {
     const before = targetTextarea.value.substring(0, start);
     const after  = targetTextarea.value.substring(targetTextarea.selectionEnd);
     targetTextarea.value = (before ? before + "\n\n" : "") + tag + (after ? "\n\n" + after : "");
+    targetTextarea.dispatchEvent(new Event("input", { bubbles: true }));
     targetTextarea.focus();
     close();
   };
@@ -1598,7 +1601,7 @@ async function submitReply(topicId) {
   if (_replyPhotos.length) body += "\n\n" + _replyPhotos.map(p => `[img:${p.align || "centro"}]${p.dataUrl}[/img]`).join("\n");
   if (typeof _replyTags !== "undefined" && _replyTags.length) body += "\n\n" + _replyTags.map(t => "#" + t).join(" ");
   if (body.length > MAX_BODY_CHARS) {
-    errEl.textContent = "Conteúdo muito grande (fotos pesadas demais). Remova uma foto e tente de novo.";
+    errEl.textContent = `Resposta muito grande (${body.length.toLocaleString("pt-BR")} caracteres, máximo ${MAX_BODY_CHARS.toLocaleString("pt-BR")}). Reduza áudio gravado ou remova uma foto.`;
     errEl.classList.add("visible");
     return;
   }
