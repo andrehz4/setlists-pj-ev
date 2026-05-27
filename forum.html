@@ -473,6 +473,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
           <div class="composer-preview-pane" id="topicPreviewPane"></div>
         </div>
         <div id="photoAttachRow" style="display:none;gap:8px;flex-wrap:wrap;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
+        <div id="audioAttachRow" style="display:none;flex-direction:column;gap:6px;padding:8px 10px;border-top:1px solid var(--divider);background:var(--bg-card-sunk)"></div>
         <div class="composer-field-foot">
           <div class="char-count" id="bodyCount">0 / 50000</div>
           <button class="btn sm" id="ctPreviewBtn">Prévia</button>
@@ -587,6 +588,30 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
     <div class="tool-modal-actions">
       <button class="btn sm" id="muCancel">Cancelar</button>
       <button class="btn sm primary" id="muInsert">Inserir</button>
+    </div>
+  </div>
+</div>
+
+<!-- Audio modal -->
+<div class="tool-modal" id="audioModal" style="display:none">
+  <div class="tool-modal-inner">
+    <div class="tool-modal-label">// Gravar ou colar áudio</div>
+    <div class="audio-tabs">
+      <button class="tab-btn active" data-audiotab="rec">Gravar mic</button>
+      <button class="tab-btn" data-audiotab="url">Colar URL</button>
+    </div>
+    <div id="audioTabRec">
+      <div id="audioTimer">0:00 / 0:10</div>
+      <div id="audioPreviewWrap" style="display:none"><audio id="audioPreview" controls style="width:100%"></audio></div>
+      <button class="btn sm" id="audioRecBtn">Iniciar gravação</button>
+      <div class="tool-modal-error" id="audioRecErr" style="font-family:var(--font-mono);font-size:10px;color:var(--pj);min-height:14px"></div>
+    </div>
+    <div id="audioTabUrl" style="display:none">
+      <input type="url" id="audioUrlInput" placeholder="https://exemplo.com/audio.mp3">
+    </div>
+    <div class="tool-modal-actions">
+      <button class="btn sm" id="audioCancel">Cancelar</button>
+      <button class="btn sm primary" id="audioInsert" disabled>Inserir</button>
     </div>
   </div>
 </div>
@@ -883,6 +908,7 @@ async function loadTopics() {
 // ── Composer ──────────────────────────────────────────────────
 let _composerTags = [];
 let _composerPhotos = [];
+let _composerAudio = [];
 let _ctPreviewing = false;
 
 // Limites alinhados ao backend (body max 200000 chars). Foto grande trava o browser.
@@ -909,7 +935,8 @@ function renderPreview(raw) {
 function _totalBodyChars() {
   const bodyLen = (document.getElementById("topicBody")?.value || "").length;
   const photoChars = _composerPhotos.reduce((s, p) => s + p.dataUrl.length + 11, 0);
-  return bodyLen + photoChars;
+  const audioChars = _composerAudio.reduce((s, a) => s + a.src.length + (a.type === "url" ? 23 : 15), 0);
+  return bodyLen + photoChars + audioChars;
 }
 function updateComposerMeta() {
   const total = _totalBodyChars();
@@ -931,14 +958,14 @@ function updateAttachmentStatus() {
     setlist: /\[setlist\]/i.test(body),
     music:   /\[music(?:a|á)?\]/i.test(body),
     photo:   _composerPhotos.length > 0,
-    audio:   /\[audio(?:-url)?\]/i.test(body),
+    audio:   _composerAudio.length > 0,
     spoiler: /\[spoiler\]/i.test(body),
   };
   const addedLabel = {
     setlist: "setlist incorporado",
     music:   "música incorporada",
     photo:   `${_composerPhotos.length} foto${_composerPhotos.length === 1 ? "" : "s"} anexada${_composerPhotos.length === 1 ? "" : "s"}`,
-    audio:   "áudio anexado",
+    audio:   `${_composerAudio.length} áudio${_composerAudio.length === 1 ? "" : "s"} anexado${_composerAudio.length === 1 ? "" : "s"}`,
     spoiler: "spoiler ativo",
   };
   const baseLabel = {
@@ -996,6 +1023,166 @@ function renderPhotoRow() {
     wrap.appendChild(thumb); wrap.appendChild(alignRow);
     row.appendChild(wrap);
   });
+}
+
+const MAX_AUDIO_DATAURL = 150000; // ~150KB base64, ~10s opus a 64kbps
+
+function renderAudioRow() {
+  const row = document.getElementById("audioAttachRow");
+  if (!row) return;
+  row.innerHTML = "";
+  if (!_composerAudio.length) { row.style.display = "none"; return; }
+  row.style.display = "flex";
+  _composerAudio.forEach((a, i) => {
+    const wrap = document.createElement("div");
+    wrap.style.cssText = "display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--bg-card);border:1px solid var(--divider-strong);border-radius:4px";
+    const label = document.createElement("span");
+    label.style.cssText = "font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--pj);flex-shrink:0";
+    label.textContent = a.type === "url" ? "URL" : "GRAV";
+    const audio = document.createElement("audio");
+    audio.controls = true; audio.preload = "metadata"; audio.src = a.src;
+    audio.style.cssText = "flex:1;height:32px;min-width:0";
+    const rm = document.createElement("button");
+    rm.type = "button"; rm.innerHTML = "&#215;"; rm.title = "Remover áudio";
+    rm.style.cssText = "width:22px;height:22px;border-radius:50%;background:var(--ink-mute);color:#fff;border:none;cursor:pointer;font-size:13px;line-height:1;padding:0;display:grid;place-items:center;flex-shrink:0";
+    rm.addEventListener("click", () => { _composerAudio.splice(i, 1); renderAudioRow(); updateComposerMeta(); });
+    wrap.appendChild(label); wrap.appendChild(audio); wrap.appendChild(rm);
+    row.appendChild(wrap);
+  });
+}
+
+function openAudioModal(onInsert) {
+  const modal     = document.getElementById("audioModal");
+  const recBtn    = document.getElementById("audioRecBtn");
+  const timer     = document.getElementById("audioTimer");
+  const errEl     = document.getElementById("audioRecErr");
+  const preview   = document.getElementById("audioPreview");
+  const prevWrap  = document.getElementById("audioPreviewWrap");
+  const urlInput  = document.getElementById("audioUrlInput");
+  const insertBtn = document.getElementById("audioInsert");
+  const cancelBtn = document.getElementById("audioCancel");
+
+  urlInput.value = "";
+  errEl.textContent = "";
+  timer.textContent = "0:00 / 0:10";
+  timer.classList.remove("recording");
+  prevWrap.style.display = "none";
+  preview.src = "";
+  insertBtn.disabled = true;
+  recBtn.textContent = "Iniciar gravação";
+  recBtn.disabled = false;
+
+  let mediaRec = null, audioChunks = [], timerInterval = null, elapsed = 0;
+  let pendingDataUrl = null;
+  let activeTab = "rec";
+
+  if (!navigator.mediaDevices || typeof navigator.mediaDevices.getUserMedia !== "function") {
+    errEl.textContent = "Este navegador não suporta gravação (precisa de HTTPS).";
+    recBtn.disabled = true;
+  } else if (typeof window.MediaRecorder === "undefined") {
+    errEl.textContent = "Este navegador não suporta MediaRecorder.";
+    recBtn.disabled = true;
+  }
+
+  document.querySelectorAll("#audioModal [data-audiotab]").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.audiotab === "rec");
+    btn.onclick = () => {
+      activeTab = btn.dataset.audiotab;
+      document.querySelectorAll("#audioModal [data-audiotab]").forEach(b => b.classList.toggle("active", b === btn));
+      document.getElementById("audioTabRec").style.display = activeTab === "rec" ? "" : "none";
+      document.getElementById("audioTabUrl").style.display = activeTab === "url" ? "" : "none";
+      insertBtn.disabled = activeTab === "url" ? !urlInput.value.startsWith("https://") : !pendingDataUrl;
+    };
+  });
+  document.getElementById("audioTabRec").style.display = "";
+  document.getElementById("audioTabUrl").style.display = "none";
+
+  urlInput.oninput = () => {
+    if (activeTab === "url") insertBtn.disabled = !urlInput.value.trim().startsWith("https://");
+  };
+
+  function stopRecording() {
+    if (mediaRec && mediaRec.state !== "inactive") mediaRec.stop();
+    clearInterval(timerInterval);
+    timer.classList.remove("recording");
+    recBtn.textContent = "Gravar novamente";
+  }
+
+  recBtn.onclick = async () => {
+    if (mediaRec && mediaRec.state === "recording") { stopRecording(); return; }
+    try {
+      errEl.textContent = "";
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioChunks = []; pendingDataUrl = null; elapsed = 0;
+      prevWrap.style.display = "none"; preview.src = "";
+      insertBtn.disabled = true;
+
+      const mimeType = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/ogg"]
+        .find(t => MediaRecorder.isTypeSupported(t)) || "";
+      const recOpts = { audioBitsPerSecond: 64000 };
+      if (mimeType) recOpts.mimeType = mimeType;
+      mediaRec = new MediaRecorder(stream, recOpts);
+
+      mediaRec.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+      mediaRec.onstop = () => {
+        stream.getTracks().forEach(t => t.stop());
+        const blob = new Blob(audioChunks, { type: mediaRec.mimeType || "audio/webm" });
+        const reader = new FileReader();
+        reader.onload = ev => {
+          const dataUrl = ev.target.result;
+          if (dataUrl.length > MAX_AUDIO_DATAURL) {
+            errEl.textContent = "Gravação muito longa. Tente novamente (max ~10s).";
+            insertBtn.disabled = true;
+            return;
+          }
+          pendingDataUrl = dataUrl;
+          preview.src = dataUrl;
+          prevWrap.style.display = "";
+          if (activeTab === "rec") insertBtn.disabled = false;
+        };
+        reader.readAsDataURL(blob);
+      };
+
+      mediaRec.start(200);
+      recBtn.textContent = "Parar";
+      timer.classList.add("recording");
+
+      timerInterval = setInterval(() => {
+        elapsed++;
+        const m = Math.floor(elapsed / 60), s = elapsed % 60;
+        timer.textContent = `${m}:${String(s).padStart(2, "0")} / 0:10`;
+        if (elapsed >= 10) stopRecording();
+      }, 1000);
+    } catch (err) {
+      console.error("[audio] Falha ao gravar:", err);
+      const name = err && err.name ? err.name : "Erro";
+      errEl.textContent = name === "NotAllowedError" ? "Permissão de microfone negada." : `Falha: ${name}`;
+    }
+  };
+
+  function close() {
+    if (mediaRec && mediaRec.state !== "inactive") mediaRec.stop();
+    clearInterval(timerInterval);
+    modal.style.display = "none";
+  }
+
+  insertBtn.onclick = () => {
+    let audioObj = null;
+    if (activeTab === "rec" && pendingDataUrl) {
+      audioObj = { type: "data", src: pendingDataUrl };
+    } else if (activeTab === "url") {
+      const url = urlInput.value.trim();
+      if (!url.startsWith("https://")) return;
+      audioObj = { type: "url", src: url };
+    }
+    if (!audioObj) return;
+    if (typeof onInsert === "function") onInsert(audioObj);
+    close();
+  };
+
+  cancelBtn.onclick = close;
+  modal.onclick = e => { if (e.target === modal) close(); };
+  modal.style.display = "flex";
 }
 
 function compressImage(file) {
@@ -1068,6 +1255,7 @@ function buildCatPills(activeId) {
 function openComposer() {
   _composerTags = [];
   _composerPhotos = [];
+  _composerAudio = [];
   _ctPreviewing = false;
   const ta = document.getElementById("topicBody");
   if (ta) { ta.style.display = ""; ta.value = ""; }
@@ -1080,6 +1268,8 @@ function openComposer() {
   document.getElementById("composerError").classList.remove("visible");
   const photoRow = document.getElementById("photoAttachRow");
   if (photoRow) { photoRow.innerHTML = ""; photoRow.style.display = "none"; }
+  const audioRow = document.getElementById("audioAttachRow");
+  if (audioRow) { audioRow.innerHTML = ""; audioRow.style.display = "none"; }
   buildCatPills("geral");
   renderTagChips();
   updateRailIdentity();
@@ -1125,6 +1315,7 @@ function closeComposer() {
   document.getElementById("composerOverlay").classList.remove("open");
   _composerTags = [];
   _composerPhotos = [];
+  _composerAudio = [];
   _ctPreviewing = false;
 }
 
@@ -1137,6 +1328,7 @@ async function submitTopic() {
   if (!body || body.length < 10) { errEl.textContent = "Texto muito curto (mínimo 10 caracteres)."; errEl.classList.add("visible"); return; }
   if (_composerTags.length) body += "\n\n" + _composerTags.map(t => "#" + t).join(" ");
   if (_composerPhotos.length) body += "\n\n" + _composerPhotos.map(p => `[img:${p.align || "centro"}]${p.dataUrl}[/img]`).join("\n");
+  if (_composerAudio.length) body += "\n\n" + _composerAudio.map(a => a.type === "url" ? `[audio-url]${a.src}[/audio-url]` : `[audio]${a.src}[/audio]`).join("\n");
   if (body.length > MAX_BODY_CHARS) {
     errEl.textContent = "Conteúdo muito grande (fotos pesadas demais). Remova uma foto e tente de novo.";
     errEl.classList.add("visible");
@@ -1428,7 +1620,12 @@ function initComposer() {
     setlist: () => openSetlistModal(document.getElementById("topicBody")),
     music:   () => openMusicModal(document.getElementById("topicBody")),
     photo:   () => document.getElementById("photoFileInput").click(),
-    audio:   () => alert("Em breve: anexar áudio."),
+    audio:   () => openAudioModal((audioObj) => {
+      if (_composerAudio.length >= 2) { alert("Máximo de 2 áudios por tópico."); return; }
+      _composerAudio.push(audioObj);
+      renderAudioRow();
+      updateComposerMeta();
+    }),
   };
 
   document.querySelector(".ctoolbar").addEventListener("click", e => {
