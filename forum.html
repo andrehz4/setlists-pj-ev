@@ -193,24 +193,32 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .audio-tabs { display:flex; gap:0; border-bottom:1px solid var(--divider); }
 .audio-tabs .tab-btn { background:transparent; border:none; color:var(--ink-mute); font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; padding:8px 12px; cursor:pointer; border-bottom:2px solid transparent; }
 .audio-tabs .tab-btn.active { color:var(--pj); border-bottom-color:var(--pj); }
-.mu-list { max-height:240px; overflow-y:auto; border:1px solid var(--divider); background:var(--bg-card-sunk); margin-top:6px; }
-.mu-list-item { display:grid; grid-template-columns:1fr auto; gap:8px; padding:7px 10px; border-bottom:1px dotted var(--divider); cursor:pointer; align-items:baseline; }
+.mu-list { max-height:260px; overflow-y:auto; border-top:1px solid var(--divider-strong); border-bottom:1px solid var(--divider-strong); background:transparent; margin-top:10px; }
+.mu-list-item { display:grid; grid-template-columns:1fr auto; gap:10px; padding:11px 4px; border-bottom:1px dotted var(--divider); cursor:pointer; align-items:baseline; }
 .mu-list-item:last-child { border-bottom:none; }
-.mu-list-item:hover { background:var(--bg-card); }
+.mu-list-item:hover .mu-title { color:var(--pj); }
 .mu-list-item.has-audio .mu-title::after { content:" ♪"; color:var(--ev); }
-.mu-list-item.selected { background:rgba(193,39,45,0.08); border-left:2px solid var(--pj); padding-left:8px; }
-.mu-title { font-family:var(--font-body); font-size:13px; color:var(--ink); line-height:1.2; }
-.mu-meta { font-family:var(--font-mono); font-size:9.5px; color:var(--ink-dim); letter-spacing:0.06em; text-transform:uppercase; }
-.mu-empty { padding:18px 12px; text-align:center; font-family:var(--font-mono); font-size:10px; color:var(--ink-dim); letter-spacing:0.12em; text-transform:uppercase; }
-.mu-selected { margin-top:8px; padding:10px; background:var(--bg-card-sunk); border:1px solid var(--divider); display:flex; flex-direction:column; gap:6px; }
-.mu-selected .mu-sel-title { font-family:var(--font-editorial); font-style:italic; font-size:15px; color:var(--ink); }
-.mu-selected .mu-sel-album { font-family:var(--font-mono); font-size:10px; color:var(--ev); letter-spacing:0.08em; }
+.mu-list-item.selected { background:rgba(193,39,45,0.06); padding-left:10px; border-left:2px solid var(--pj); }
+.mu-list-item.selected .mu-title { color:var(--pj); }
+.mu-title { font-family:var(--font-editorial); font-style:italic; font-size:16px; color:var(--ink); line-height:1.25; }
+.mu-meta { font-family:var(--font-mono); font-size:10px; color:var(--ink-dim); letter-spacing:0.08em; text-transform:uppercase; margin-top:3px; }
+.mu-empty { padding:24px 12px; text-align:center; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-dim); letter-spacing:0.18em; text-transform:uppercase; }
+.mu-selected { margin-top:12px; padding:14px; background:var(--bg-card-sunk); border:1px solid var(--divider); border-left:3px solid var(--pj); display:flex; flex-direction:column; gap:8px; }
+.mu-selected .mu-sel-title { font-family:var(--font-editorial); font-style:italic; font-size:17px; color:var(--ink); line-height:1.25; }
+.mu-selected .mu-sel-album { font-family:var(--font-mono); font-size:10.5px; color:var(--ev); letter-spacing:0.1em; text-transform:uppercase; }
 .mu-selected audio { width:100%; height:32px; }
 .mu-audio-picker { display:flex; gap:6px; flex-wrap:wrap; font-family:var(--font-mono); font-size:10px; color:var(--ink-dim); }
-.mu-audio-picker button { background:transparent; border:1px solid var(--divider-strong); color:var(--ink-mute); padding:3px 7px; cursor:pointer; font-family:var(--font-mono); font-size:10px; }
+.mu-audio-picker button { background:transparent; border:1px solid var(--divider-strong); color:var(--ink-mute); padding:4px 8px; cursor:pointer; font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; }
 .mu-audio-picker button.active { border-color:var(--pj); color:var(--pj); }
-#muSearch { background:var(--bg-card-sunk); border:1px solid var(--divider); color:var(--ink); font-family:var(--font-mono); font-size:12px; padding:7px 10px; width:100%; outline:none; }
-#muSearch:focus { border-color:var(--pj); }
+#muSearch, #slSearch { background:transparent; border:none; border-bottom:1px solid var(--divider-strong); color:var(--ink); font-family:var(--font-mono); font-size:12px; letter-spacing:0.06em; padding:9px 4px; width:100%; outline:none; }
+#muSearch::placeholder, #slSearch::placeholder { color:var(--ink-dim); font-style:italic; font-family:var(--font-editorial); font-size:14px; letter-spacing:0; }
+#muSearch:focus, #slSearch:focus { border-bottom-color:var(--pj); }
+.tag-suggest { position:absolute; z-index:300; background:var(--bg-card); border:1px solid var(--divider-strong); border-top:none; max-height:200px; overflow-y:auto; box-shadow:0 6px 18px rgba(0,0,0,0.18); min-width:220px; }
+.tag-suggest-item { padding:8px 12px; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; color:var(--ink); cursor:pointer; border-bottom:1px dotted var(--divider); display:flex; align-items:center; gap:6px; }
+.tag-suggest-item:last-child { border-bottom:none; }
+.tag-suggest-item:hover, .tag-suggest-item.active { background:rgba(193,39,45,0.08); color:var(--pj); }
+.tag-suggest-item .hash { color:var(--ink-dim); font-size:10px; }
+.tag-suggest-empty { padding:10px 12px; font-family:var(--font-mono); font-size:10px; color:var(--ink-dim); letter-spacing:0.12em; text-transform:uppercase; }
 .composer-modal {
   background: var(--bg-card); border: 1px solid var(--divider-strong);
   width: 100%; max-width: 1180px; display: flex; flex-direction: column;
@@ -496,13 +504,12 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
       <div class="composer-field">
         <label>06 · Tags (opcional, até 4)</label>
         <div class="tag-editor" id="tagEditor">
-          <input type="text" class="tag-input-el" id="tagInput" placeholder="ex: palpite, curitiba, dark-matter" maxlength="30" list="officialTagsList" autocomplete="off">
+          <input type="text" class="tag-input-el" id="tagInput" placeholder="ex: palpite, curitiba, dark-matter" maxlength="30" autocomplete="off">
         </div>
         <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--ink-dim);margin-top:5px;letter-spacing:0.08em;line-height:1.5">
           Digite e aperte <b style="color:var(--pj)">ENTER</b>, <b style="color:var(--pj)">vírgula</b> ou <b style="color:var(--pj)">espaço</b> pra confirmar cada tag. Sugestões aparecem ao digitar.
         </div>
       </div>
-      <datalist id="officialTagsList"></datalist>
 
       <div class="error-msg" id="composerError"></div>
       <div class="composer-actions">
@@ -877,7 +884,7 @@ function renderThreads(data) {
         </div>
         <div class="thread-stats">
           <div class="stat-bit"><b>${t.reply_count}</b><em>resp.</em></div>
-          <div class="stat-bit"><b>${(t.reactions && t.reactions.mata) || 0}</b><em>🤘</em></div>
+          <div class="stat-bit"><b>${(t.reactions && t.reactions.mata) || 0}</b><em>👍</em></div>
         </div>
         <div class="thread-activity">
           <span class="ago">${timeAgo(t.last_post_at)}</span>
@@ -1907,6 +1914,7 @@ function initComposer() {
   tagInput.addEventListener("blur", () => {
     if (tagInput.value.trim()) commitTopicTag();
   });
+  bindTagSuggest(tagInput, () => _composerTags, () => { commitTopicTag(); tagInput.focus(); });
 }
 
 // ── Tema ──────────────────────────────────────────────────────
@@ -1922,15 +1930,88 @@ function initTheme() {
 }
 
 // ── Init ──────────────────────────────────────────────────────
+let _officialTags = [];
 async function loadOfficialTags() {
   try {
     const r = await fetch("/media/forum-tags.json", { cache: "no-cache" });
     if (!r.ok) return;
     const j = await r.json();
-    const dl = document.getElementById("officialTagsList");
-    if (!dl || !Array.isArray(j.tags)) return;
-    dl.innerHTML = j.tags.map(t => `<option value="${san(t)}">`).join("");
-  } catch (_) { /* sem datalist, ok */ }
+    if (Array.isArray(j.tags)) _officialTags = j.tags;
+  } catch (_) { /* sem sugestões, ok */ }
+}
+
+function bindTagSuggest(inputEl, getCurrent, onPick) {
+  if (!inputEl || inputEl.dataset.bound === "1") return;
+  inputEl.dataset.bound = "1";
+  let dropdown = null;
+  let activeIdx = -1;
+  let lastMatches = [];
+
+  function close() {
+    if (dropdown) { dropdown.remove(); dropdown = null; }
+    activeIdx = -1;
+  }
+
+  function place() {
+    if (!dropdown) return;
+    const r = inputEl.getBoundingClientRect();
+    dropdown.style.left = (r.left + window.scrollX) + "px";
+    dropdown.style.top  = (r.bottom + window.scrollY) + "px";
+    dropdown.style.minWidth = Math.max(r.width, 220) + "px";
+  }
+
+  function show(matches) {
+    lastMatches = matches;
+    activeIdx = matches.length ? 0 : -1;
+    if (!dropdown) {
+      dropdown = document.createElement("div");
+      dropdown.className = "tag-suggest";
+      document.body.appendChild(dropdown);
+    }
+    if (!matches.length) {
+      dropdown.innerHTML = `<div class="tag-suggest-empty">sem sugestão · enter pra criar</div>`;
+    } else {
+      dropdown.innerHTML = matches.map((t, i) =>
+        `<div class="tag-suggest-item${i === activeIdx ? " active" : ""}" data-i="${i}"><span class="hash">#</span>${san(t)}</div>`
+      ).join("");
+      dropdown.querySelectorAll(".tag-suggest-item").forEach(el => {
+        el.addEventListener("mousedown", (e) => { e.preventDefault(); pick(parseInt(el.dataset.i)); });
+      });
+    }
+    place();
+  }
+
+  function pick(i) {
+    if (i < 0 || i >= lastMatches.length) return;
+    inputEl.value = lastMatches[i];
+    onPick();
+    close();
+  }
+
+  function refresh() {
+    const q = inputEl.value.trim().replace(/^#/, "").toLowerCase();
+    const taken = new Set((getCurrent() || []).map(x => x.toLowerCase()));
+    const matches = _officialTags
+      .filter(t => !taken.has(t.toLowerCase()) && (q === "" || t.toLowerCase().includes(q)))
+      .slice(0, 8);
+    show(matches);
+  }
+
+  inputEl.addEventListener("focus", refresh);
+  inputEl.addEventListener("input", refresh);
+  inputEl.addEventListener("blur", () => setTimeout(close, 120));
+  inputEl.addEventListener("keydown", e => {
+    if (!dropdown || !lastMatches.length) return;
+    if (e.key === "ArrowDown") { e.preventDefault(); activeIdx = (activeIdx + 1) % lastMatches.length; show(lastMatches); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); activeIdx = (activeIdx - 1 + lastMatches.length) % lastMatches.length; show(lastMatches); }
+    else if (e.key === "Enter" || e.key === "Tab") {
+      if (activeIdx >= 0 && inputEl.value.trim() && lastMatches[activeIdx].toLowerCase().startsWith(inputEl.value.trim().toLowerCase().replace(/^#/, ""))) {
+        e.preventDefault(); pick(activeIdx);
+      }
+    } else if (e.key === "Escape") { close(); }
+  });
+  window.addEventListener("scroll", place, true);
+  window.addEventListener("resize", place);
 }
 
 async function init() {
