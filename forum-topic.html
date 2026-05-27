@@ -281,9 +281,14 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 a.embed-music:hover .embed-music-titulo { color:var(--ev); }
 
 /* ── Audio player ──────────────────────────────────────────────── */
-.audio-attach { background:var(--bg-card-sunk); border:1px solid var(--divider); border-radius:4px; padding:10px 14px; margin:8px 0; }
-.audio-attach audio { width:100%; max-width:320px; height:32px; display:block; }
-.audio-attach-label { font-family:var(--font-mono); font-size:9px; color:var(--ink-dim); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; }
+.audio-attach { border:1px solid var(--divider-strong); background:var(--bg-card); padding:10px 14px; margin:12px 0; display:grid; grid-template-columns:32px minmax(0,1fr) auto; align-items:center; gap:12px; border-radius:4px; }
+.audio-attach .play { width:32px; height:32px; background:var(--pj); color:#fff; border:none; display:grid; place-items:center; font-family:var(--font-display); font-size:13px; border-radius:50%; cursor:pointer; flex-shrink:0; line-height:1; }
+.audio-attach .play:hover { background:var(--pj-soft); }
+.audio-attach .play.playing { background:var(--ink); }
+.audio-attach .waveform { height:28px; position:relative; overflow:hidden; background-image:repeating-linear-gradient(to right, var(--ink-mute) 0 2px, transparent 2px 4px, var(--ink) 4px 7px, transparent 7px 10px, var(--ink-dim) 10px 13px, transparent 13px 16px, var(--ink-mute) 16px 19px, transparent 19px 22px); border-radius:2px; }
+.audio-attach .waveform-progress { position:absolute; inset:0 100% 0 0; background:rgba(193,39,45,0.18); transition:right .15s linear; pointer-events:none; }
+.audio-attach .audio-meta { font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; color:var(--ink-dim); text-transform:uppercase; white-space:nowrap; }
+.audio-attach audio.hidden { display:none; }
 </style>
 </head>
 <body>
@@ -610,13 +615,38 @@ function renderBody(rawText) {
       const slot = audioSlots[idx];
       const wrap2 = document.createElement("div");
       wrap2.className = "audio-attach";
-      const label = document.createElement("div");
-      label.className = "audio-attach-label";
-      label.textContent = "audio";
+      const play = document.createElement("button");
+      play.className = "play";
+      play.type = "button";
+      play.textContent = "▶";
+      play.setAttribute("aria-label", "Tocar áudio");
+      const wave = document.createElement("div");
+      wave.className = "waveform";
+      const prog = document.createElement("div");
+      prog.className = "waveform-progress";
+      wave.appendChild(prog);
+      const meta = document.createElement("div");
+      meta.className = "audio-meta";
+      meta.textContent = slot.type === "url" ? "link" : "0:00";
       const audio = document.createElement("audio");
-      audio.controls = true;
+      audio.className = "hidden";
+      audio.preload = "metadata";
       audio.src = slot.src;
-      wrap2.appendChild(label);
+      function fmt(s) { if (!isFinite(s)) return "0:00"; const m = Math.floor(s/60), sec = Math.floor(s%60); return m + ":" + String(sec).padStart(2,"0"); }
+      audio.addEventListener("loadedmetadata", () => { if (audio.duration) meta.textContent = fmt(audio.duration); });
+      audio.addEventListener("timeupdate", () => {
+        if (!audio.duration) return;
+        const pct = (audio.currentTime / audio.duration) * 100;
+        prog.style.right = (100 - pct) + "%";
+        meta.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
+      });
+      audio.addEventListener("ended", () => { play.textContent = "▶"; play.classList.remove("playing"); prog.style.right = "100%"; });
+      audio.addEventListener("pause", () => { play.textContent = "▶"; play.classList.remove("playing"); });
+      audio.addEventListener("play", () => { play.textContent = "❚❚"; play.classList.add("playing"); });
+      play.addEventListener("click", () => { if (audio.paused) audio.play(); else audio.pause(); });
+      wrap2.appendChild(play);
+      wrap2.appendChild(wave);
+      wrap2.appendChild(meta);
       wrap2.appendChild(audio);
       el = wrap2;
     }
