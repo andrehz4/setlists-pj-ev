@@ -222,6 +222,75 @@ async def get_topic(
     return TopicDetailOut(topic=topic, posts=posts, total_posts=topic.reply_count, page=page, per_page=per_page)
 
 
+@router.get("/users/{user_id}", tags=["Forum"])
+async def get_user_profile(user_id: str, request: Request):
+    """Perfil público com agregações pra montar a página de perfil."""
+    site = resolve_site(request)
+    async with get_conn() as conn:
+        u = await conn.fetchrow(
+            "SELECT id::text, display_name, avatar_url, created_at::text FROM forum_users WHERE id = $1::uuid",
+            user_id,
+        )
+        if not u:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Usuário não encontrado")
+
+        stats = await conn.fetchrow(
+            """
+            SELECT
+              (SELECT COUNT(*) FROM forum_posts  WHERE user_id = $1::uuid AND site = $2)::int AS posts_count,
+              (SELECT COUNT(*) FROM forum_topics WHERE user_id = $1::uuid AND site = $2)::int AS topics_count,
+              (SELECT COUNT(*) FROM forum_reactions WHERE user_id = $1::uuid AND site = $2 AND type = 'tava_la')::int AS tava_la_count,
+              (
+                SELECT COUNT(*) FROM forum_reactions r
+                WHERE r.type = 'mata' AND r.site = $2 AND (
+                  (r.target_type = 'post'  AND r.target_id IN (SELECT id FROM forum_posts  WHERE user_id = $1::uuid AND site = $2))
+                  OR
+                  (r.target_type = 'topic' AND r.target_id IN (SELECT id FROM forum_topics WHERE user_id = $1::uuid AND site = $2))
+                )
+              )::int AS likes_received,
+              (
+                SELECT COUNT(*) + 1 FROM (
+                  SELECT user_id, COUNT(*) c FROM forum_posts WHERE site = $2 GROUP BY user_id
+                ) x WHERE x.c > (SELECT COUNT(*) FROM forum_posts WHERE user_id = $1::uuid AND site = $2)
+              )::int AS rank_pos
+            """,
+            user_id, site,
+        )
+
+        recent = await conn.fetch(
+            """
+            SELECT 'post' AS kind, p.id::text, p.created_at::text, p.body, t.title AS target_title, t.id::text AS target_id
+            FROM forum_posts p JOIN forum_topics t ON t.id = p.topic_id
+            WHERE p.user_id = $1::uuid AND p.site = $2
+            UNION ALL
+            SELECT 'topic' AS kind, t.id::text, t.created_at::text, t.body, t.title AS target_title, t.id::text AS target_id
+            FROM forum_topics t WHERE t.user_id = $1::uuid AND t.site = $2
+            ORDER BY 3 DESC
+            LIMIT 10
+            """,
+            user_id, site,
+        )
+
+    p, t, tl = stats["posts_count"], stats["topics_count"], stats["tava_la_count"]
+    return {
+        "user_id": u["id"],
+        "display_name": u["display_name"],
+        "avatar_url": u["avatar_url"],
+        "created_at": u["created_at"],
+        "posts_count": p,
+        "topics_count": t,
+        "tava_la_count": tl,
+        "likes_received": stats["likes_received"],
+        "rank_pos": stats["rank_pos"],
+        "veterano": p >= 100,
+        "arquivista": t >= 8,
+        "recent_activity": [
+            {"kind": r["kind"], "id": r["id"], "created_at": r["created_at"], "snippet": (r["body"] or "")[:200], "target_title": r["target_title"], "target_id": r["target_id"]}
+            for r in recent
+        ],
+    }
+
+
 @router.get("/users/{user_id}/badges", tags=["Forum"])
 async def get_user_badges(user_id: str, request: Request):
     """Badges automáticos derivados de counts. Cacheável."""

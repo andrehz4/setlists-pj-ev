@@ -443,12 +443,20 @@ function renderProfile(data) {
       </div>
 
       <aside class="thread-rail">
-        <div class="rail-card">
-          <div class="rail-card-label pj">// Estatísticas</div>
-          <div class="rail-stat-row"><span class="k">Threads</span><span class="v">${data.topic_count}</span></div>
+        ${data.rank_pos ? `<div class="rail-card">
+          <div class="rail-card-label pj">// NA HIERARQUIA</div>
+          <div style="text-align:center;padding:8px 0 14px">
+            <div style="font-family:var(--font-display);font-size:44px;color:var(--pj);letter-spacing:-0.02em;line-height:1">#${data.rank_pos}</div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-top:6px">no ranking de posts</div>
+          </div>
           <div class="rail-stat-row"><span class="k">Posts</span><span class="v">${data.post_count}</span></div>
-          <div class="rail-stat-row"><span class="k">Reações recebidas</span><span class="v" style="color:var(--ev)">${data.reactions_received}</span></div>
-          <div class="rail-stat-row"><span class="k">Membro desde</span><span class="v" style="font-family:var(--font-mono);font-size:11px">${joinDate(data.created_at)}</span></div>
+          <div class="rail-stat-row"><span class="k">Threads</span><span class="v">${data.topic_count}</span></div>
+          <div class="rail-stat-row"><span class="k">🤧 Tava lá</span><span class="v" style="color:var(--heard)">${data.tava_la_count || 0}</span></div>
+          <div class="rail-stat-row"><span class="k">👍 Recebidos</span><span class="v" style="color:var(--ev)">${data.reactions_received}</span></div>
+        </div>` : ""}
+        <div class="rail-card">
+          <div class="rail-card-label">// MEMBRO</div>
+          <div class="rail-stat-row"><span class="k">Desde</span><span class="v" style="font-family:var(--font-mono);font-size:11px">${joinDate(data.created_at)}</span></div>
         </div>
         <a href="forum.html" class="btn" style="justify-content:center">← Voltar ao fórum</a>
       </aside>
@@ -492,7 +500,24 @@ async function init() {
     return;
   }
   try {
-    const data = await apiFetch(`/forum/users/${encodeURIComponent(profileId)}/profile`);
+    const raw = await apiFetch(`/forum/users/${encodeURIComponent(profileId)}`);
+    // Adapta payload do backend novo pro formato esperado pelo renderProfile
+    const data = raw ? {
+      id: raw.user_id,
+      display_name: raw.display_name,
+      avatar_url: raw.avatar_url,
+      created_at: raw.created_at,
+      post_count: raw.posts_count,
+      topic_count: raw.topics_count,
+      reactions_received: raw.likes_received,
+      tava_la_count: raw.tava_la_count,
+      rank_pos: raw.rank_pos,
+      veterano: raw.veterano,
+      arquivista: raw.arquivista,
+      recent_topics: (raw.recent_activity || []).filter(a => a.kind === "topic").map(a => ({
+        id: a.target_id, title: a.target_title, created_at: a.created_at, reply_count: 0, category: ""
+      })),
+    } : null;
     if (data) renderProfile(data);
   } catch (err) {
     const san2 = s => DOMPurify.sanitize(s || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
