@@ -402,6 +402,11 @@ let _reportTargetId = null;
 let _token = localStorage.getItem("forum_token");
 let _user = (() => { try { return JSON.parse(localStorage.getItem("forum_user")); } catch(e) { return null; } })();
 let _topicId = null;
+let _topicPage = 1;
+let _topicPerPage = 30;
+let _topicTotalPosts = 0;
+let _topicOpUserId = null;
+const _userBadges = new Map(); // user_id → badges
 let _replyPhotos = [];
 let _replyAudio = [];
 let _replyMusic = [];
@@ -827,7 +832,7 @@ function renderPost(p, isRoot, opUserId) {
     ? `<button class="quote-btn" data-name="${san(p.display_name)}" data-body="${san(cleanForQuote(postBody).slice(0, 200))}">❝ Citar</button>`
     : "";
   return `
-    <div class="post${isRoot ? " root" : ""}" data-post-id="${san(p.id)}">
+    <div class="post${isRoot ? " root" : ""}" data-post-id="${san(p.id)}" data-author-id="${san(p.user_id)}">
       <div class="post-avatar">${avatarHtml(p.avatar_url, p.display_name)}</div>
       <div>
         <div class="post-byline">
@@ -1024,7 +1029,8 @@ function renderTopic(data) {
           </div>
         </div>
         ${renderPost({ id: t.id, user_id: t.user_id, body: cleanBody, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at, reactions: t.reactions, my_reactions: t.my_reactions }, true, t.user_id)}
-        ${posts.map(p => renderPost(p, false, t.user_id)).join("")}
+        <div id="postsContainer">${posts.map(p => renderPost(p, false, t.user_id)).join("")}</div>
+        ${_topicTotalPosts > posts.length ? `<div style="text-align:center;padding:18px 0"><button class="btn" id="loadMorePostsBtn">Carregar mais ${_topicTotalPosts - posts.length} respostas</button></div>` : ""}
         ${replySection}
       </div>
       ${renderThreadRail(t, posts, allItems, totalTavaLa, totalMata)}
@@ -1034,8 +1040,16 @@ function renderTopic(data) {
 
   // Reactions
   document.querySelectorAll(".react-chip").forEach(btn => {
+    btn.dataset.bound = "1";
     btn.addEventListener("click", () => toggleReaction(btn));
   });
+
+  // Load more
+  const lmBtn = document.getElementById("loadMorePostsBtn");
+  if (lmBtn) lmBtn.addEventListener("click", loadMorePosts);
+
+  // Badges automáticos por user_id (assíncrono, não bloqueia render)
+  fetchBadgesForVisiblePosts();
 
   // Spoiler reveal
   document.addEventListener("click", e => {
@@ -1045,28 +1059,12 @@ function renderTopic(data) {
 
   // Report buttons
   document.querySelectorAll(".delete-btn").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const kind = btn.dataset.kind;
-      const id   = btn.dataset.id;
-      const label = kind === "topic" ? "tópico inteiro (e todas as respostas)" : "esta resposta";
-      if (!confirm(`Apagar ${label}? Não dá pra desfazer.`)) return;
-      btn.disabled = true; btn.textContent = "Apagando…";
-      try {
-        const path = kind === "topic" ? `/forum/topics/${encodeURIComponent(id)}` : `/forum/posts/${encodeURIComponent(id)}`;
-        const headers = { "Content-Type": "application/json" };
-        if (_token) headers["Authorization"] = "Bearer " + _token;
-        const res = await fetch(API_BASE + path, { method: "DELETE", headers });
-        if (!res.ok) throw new Error("Erro " + res.status);
-        if (kind === "topic") location.href = "forum.html";
-        else location.reload();
-      } catch (err) {
-        btn.disabled = false; btn.textContent = "🗑 Apagar";
-        alert("Falha ao apagar: " + (err.message || err));
-      }
-    });
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", () => handleDeleteClick(btn));
   });
 
   document.querySelectorAll(".report-btn").forEach(btn => {
+    btn.dataset.bound = "1";
     btn.addEventListener("click", () => openReport(btn.dataset.id));
   });
 
@@ -2103,11 +2101,109 @@ async function init() {
   }
 
   try {
-    const data = await apiFetch(`/forum/topics/${encodeURIComponent(_topicId)}`);
-    if (data) renderTopic(data);
+    _topicPage = 1;
+    const data = await apiFetch(`/forum/topics/${encodeURIComponent(_topicId)}?page=1&per_page=${_topicPerPage}`);
+    if (data) {
+      _topicTotalPosts = data.total_posts || data.posts.length;
+      _topicOpUserId = data.topic.user_id;
+      renderTopic(data);
+    }
   } catch (err) {
     document.getElementById("pageContent").innerHTML = `<div class="error-state">Erro ao carregar tópico: ${san(err.message)}. <a href="forum.html" style="color:var(--pj)">Voltar ao fórum</a></div>`;
   }
+}
+
+async function loadMorePosts() {
+  const btn = document.getElementById("loadMorePostsBtn");
+  if (!btn) return;
+  btn.disabled = true;
+  const oldText = btn.textContent;
+  btn.textContent = "Carregando…";
+  try {
+    _topicPage += 1;
+    const data = await apiFetch(`/forum/topics/${encodeURIComponent(_topicId)}?page=${_topicPage}&per_page=${_topicPerPage}`);
+    if (!data || !data.posts || !data.posts.length) {
+      btn.remove();
+      return;
+    }
+    const container = document.getElementById("postsContainer");
+    if (container) {
+      const tmp = document.createElement("div");
+      tmp.innerHTML = data.posts.map(p => renderPost(p, false, _topicOpUserId)).join("");
+      while (tmp.firstChild) container.appendChild(tmp.firstChild);
+    }
+    const loaded = (_topicPage - 1) * _topicPerPage + data.posts.length;
+    if (loaded >= _topicTotalPosts) {
+      btn.remove();
+    } else {
+      btn.disabled = false;
+      btn.textContent = `Carregar mais ${_topicTotalPosts - loaded} respostas`;
+    }
+    wireNewPostHandlers();
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = oldText;
+    alert("Erro: " + (err.message || err));
+  }
+}
+
+function wireNewPostHandlers() {
+  document.querySelectorAll(".react-chip:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => toggleReaction(b)); });
+  document.querySelectorAll(".report-btn:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => openReport(b.dataset.id)); });
+  document.querySelectorAll(".delete-btn:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => handleDeleteClick(b)); });
+  fetchBadgesForVisiblePosts();
+}
+
+async function fetchBadgesForVisiblePosts() {
+  const userIds = new Set();
+  document.querySelectorAll(".post[data-author-id]").forEach(el => {
+    const uid = el.dataset.authorId;
+    if (uid && !_userBadges.has(uid)) userIds.add(uid);
+  });
+  for (const uid of userIds) {
+    try {
+      const b = await apiFetch(`/forum/users/${encodeURIComponent(uid)}/badges`);
+      if (b) _userBadges.set(uid, b);
+      paintBadgesFor(uid);
+    } catch (_) {}
+  }
+}
+
+function paintBadgesFor(userId) {
+  const b = _userBadges.get(userId);
+  if (!b) return;
+  document.querySelectorAll(`.post[data-author-id="${CSS.escape(userId)}"]`).forEach(post => {
+    const byline = post.querySelector(".post-byline");
+    if (!byline || byline.querySelector(".badge-auto")) return;
+    const frag = document.createDocumentFragment();
+    if (b.veterano)   frag.appendChild(_mkBadge("Veterano", "gold"));
+    if (b.arquivista) frag.appendChild(_mkBadge("Arquivista", "heard"));
+    if (b.tava_la > 0) frag.appendChild(_mkBadge(`Tava lá · ${b.tava_la}`, "heard"));
+    const opBadge = byline.querySelector(".post-badge.op");
+    if (opBadge && opBadge.nextSibling) opBadge.parentNode.insertBefore(frag, opBadge.nextSibling);
+    else byline.appendChild(frag);
+  });
+}
+
+function _mkBadge(label, cls) {
+  const span = document.createElement("span");
+  span.className = "post-badge badge-auto " + cls;
+  span.textContent = label;
+  return span;
+}
+
+function handleDeleteClick(btn) {
+  const kind = btn.dataset.kind;
+  const id = btn.dataset.id;
+  const label = kind === "topic" ? "tópico inteiro (e todas as respostas)" : "esta resposta";
+  if (!confirm(`Apagar ${label}? Não dá pra desfazer.`)) return;
+  btn.disabled = true; btn.textContent = "Apagando…";
+  const path = kind === "topic" ? `/forum/topics/${encodeURIComponent(id)}` : `/forum/posts/${encodeURIComponent(id)}`;
+  const headers = { "Content-Type": "application/json" };
+  if (_token) headers["Authorization"] = "Bearer " + _token;
+  fetch(API_BASE + path, { method: "DELETE", headers })
+    .then(res => { if (!res.ok) throw new Error("Erro " + res.status); if (kind === "topic") location.href = "forum.html"; else location.reload(); })
+    .catch(err => { btn.disabled = false; btn.textContent = "🗑 Apagar"; alert("Falha: " + (err.message || err)); });
 }
 
 document.addEventListener("DOMContentLoaded", init);
