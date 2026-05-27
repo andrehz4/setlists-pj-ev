@@ -32,6 +32,7 @@ _SORT_MAP = {
     "activity": "t.last_post_at DESC",
     "newest": "t.created_at DESC",
     "noreply": "reply_count ASC, t.created_at DESC",
+    "likes": "COALESCE((rc.reactions->>'mata')::int, 0) DESC, t.last_post_at DESC",
 }
 
 
