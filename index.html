@@ -650,6 +650,17 @@ html[data-theme="light"] .show-card-special-badge {
   font-size: 16px;
 }
 .drawer-close:hover { border-color: var(--pj); color: var(--pj); }
+.drawer-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--divider-strong); margin-bottom: 22px; }
+.drawer-tab { background: transparent; border: none; color: var(--ink-mute); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px 18px; cursor: pointer; border-bottom: 2px solid transparent; display: inline-flex; align-items: baseline; gap: 8px; }
+.drawer-tab.active { color: var(--pj); border-bottom-color: var(--pj); }
+.drawer-tab .count { font-family: var(--font-display); font-size: 10px; color: var(--ink-dim); }
+.drawer-tab.active .count { color: var(--pj); }
+.conversa-row { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px dotted var(--divider); cursor: pointer; align-items: baseline; }
+.conversa-row:hover .conversa-title { color: var(--pj); }
+.conversa-title { font-family: var(--font-editorial); font-style: italic; font-size: 18px; color: var(--ink); line-height: 1.25; margin: 0; }
+.conversa-meta { font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+.conversa-stats { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); white-space: nowrap; }
+.conversa-empty { padding: 60px 20px; text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); }
 .drawer-artist {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -9509,6 +9520,60 @@ function renderSearch(query) {
 // ========================================================================
 // DRAWER (with lazy image loading + skeleton)
 // ========================================================================
+const FORUM_API_BASE = "https://perpetual-energy-production-1a69.up.railway.app";
+
+function wireDrawerTabs(showId) {
+  const tabs = document.querySelectorAll(".drawer-tab");
+  const panels = document.querySelectorAll("[data-tab-panel]");
+  let conversaLoaded = false;
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.drawerTab;
+      tabs.forEach(t => t.classList.toggle("active", t === tab));
+      panels.forEach(p => { p.hidden = p.dataset.tabPanel !== target; });
+      if (target === "conversa" && !conversaLoaded) {
+        conversaLoaded = true;
+        loadConversaForShow(showId);
+      }
+    });
+  });
+}
+
+async function loadConversaForShow(showId) {
+  const container = document.getElementById("conversa-content");
+  const countEl = document.getElementById("conversa-count");
+  try {
+    const res = await fetch(`${FORUM_API_BASE}/forum/topics?show_id=${encodeURIComponent(showId)}&per_page=50&sort=activity`);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    if (countEl) countEl.textContent = data.total > 0 ? `(${data.total})` : "";
+    if (!data.items || !data.items.length) {
+      container.innerHTML = `
+        <div class="conversa-empty">Nenhuma thread sobre este show ainda.</div>
+        <div style="text-align:center;padding:0 0 24px"><a class="btn primary" href="forum.html?new=1&show_id=${encodeURIComponent(showId)}">+ Abrir thread sobre este show</a></div>`;
+      return;
+    }
+    const html = data.items.map(t => {
+      const ago = new Date(t.last_post_at || t.created_at);
+      const days = Math.round((Date.now() - ago.getTime()) / 86400000);
+      const agoLabel = days < 1 ? "hoje" : (days === 1 ? "ontem" : days + "d");
+      return `<a class="conversa-row" href="forum-topic.html?id=${encodeURIComponent(t.id)}" style="text-decoration:none;color:inherit">
+        <div>
+          <div class="conversa-title">${(t.title||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}</div>
+          <div class="conversa-meta">por ${(t.display_name||'').replace(/[<>]/g,'')} · ${t.reply_count} resposta${t.reply_count !== 1 ? 's' : ''} · última ${agoLabel}</div>
+        </div>
+        <div class="conversa-stats">↳ ${t.reply_count}</div>
+      </a>`;
+    }).join("");
+    container.innerHTML = `${html}
+      <div style="text-align:center;padding:18px 0">
+        <a class="btn primary" href="forum.html?new=1&show_id=${encodeURIComponent(showId)}">+ Abrir nova thread sobre este show</a>
+      </div>`;
+  } catch (err) {
+    container.innerHTML = `<div class="conversa-empty">Erro ao carregar conversa.<br>Tente recarregar.</div>`;
+  }
+}
+
 function openDrawer(showId) {
   closeLyricsPanel();
   const show = SHOWS.find(s => s.id === showId);
@@ -9653,6 +9718,11 @@ function openDrawer(showId) {
   }
 
   content.innerHTML = `
+    <div class="drawer-tabs">
+      <button class="drawer-tab active" data-drawer-tab="setlist">Setlist</button>
+      <button class="drawer-tab" data-drawer-tab="conversa">Conversa <span class="count" id="conversa-count"></span></button>
+    </div>
+    <div data-tab-panel="setlist">
     <h2 class="drawer-artist" id="drawer-artist-h">${show.artist}</h2>
     <div class="drawer-date">${fmtDate(show.date)}</div>
     <div class="drawer-venue">${show.venue}</div>
@@ -9684,7 +9754,12 @@ function openDrawer(showId) {
       <strong>Confiança:</strong> ${confidenceLabel}<br>
       <strong>Fonte:</strong> ${show.source}
     </div>
+    </div>
+    <div data-tab-panel="conversa" hidden>
+      <div id="conversa-content" style="padding:24px 0"><div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-dim);text-align:center;padding:40px 0">Carregando conversa…</div></div>
+    </div>
   `;
+  wireDrawerTabs(showId);
 
   // Marcar músicas com áudio disponível e adicionar click handler
   if (media.audio && media.audio.length) {
