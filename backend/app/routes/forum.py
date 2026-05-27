@@ -4,6 +4,7 @@ import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
+from app.core.config import settings
 from app.core.limiter import limiter
 from app.dependencies import optional_auth, require_auth, resolve_site
 from app.schemas.forum import (
@@ -317,6 +318,54 @@ async def toggle_reaction(
         )
 
     return {"active": active, "count": int(count or 0)}
+
+
+@router.delete("/posts/{post_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["Forum"])
+async def delete_post(
+    post_id: str,
+    request: Request,
+    user_id: str = Depends(require_auth),
+):
+    """Apaga uma resposta. Autor ou admin podem apagar."""
+    site = resolve_site(request)
+    async with get_conn() as conn:
+        owner = await conn.fetchval(
+            "SELECT user_id::text FROM forum_posts WHERE id = $1::uuid AND site = $2",
+            post_id, site,
+        )
+        if not owner:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Resposta não encontrada")
+        if owner != user_id and not settings.is_admin(user_id):
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Sem permissão pra apagar.")
+        await conn.execute(
+            "DELETE FROM forum_posts WHERE id = $1::uuid AND site = $2",
+            post_id, site,
+        )
+    logger.info("Post apagado id=%s por user=%s admin=%s", post_id, user_id, settings.is_admin(user_id))
+
+
+@router.delete("/topics/{topic_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["Forum"])
+async def delete_topic(
+    topic_id: str,
+    request: Request,
+    user_id: str = Depends(require_auth),
+):
+    """Apaga um tópico inteiro (e respostas em cascata). Autor ou admin podem apagar."""
+    site = resolve_site(request)
+    async with get_conn() as conn:
+        owner = await conn.fetchval(
+            "SELECT user_id::text FROM forum_topics WHERE id = $1::uuid AND site = $2",
+            topic_id, site,
+        )
+        if not owner:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tópico não encontrado")
+        if owner != user_id and not settings.is_admin(user_id):
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Sem permissão pra apagar.")
+        await conn.execute(
+            "DELETE FROM forum_topics WHERE id = $1::uuid AND site = $2",
+            topic_id, site,
+        )
+    logger.info("Tópico apagado id=%s por user=%s admin=%s", topic_id, user_id, settings.is_admin(user_id))
 
 
 @router.post("/reports", status_code=status.HTTP_201_CREATED, tags=["Forum"])

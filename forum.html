@@ -1811,14 +1811,13 @@ async function init() {
   initTheme();
   renderSubnav();
   loadOfficialTags();
-  if (_state.token && !_state.user) {
+  if (_state.token) {
     try {
       const data = await apiFetch("/auth/me");
       _state.user = data;
       localStorage.setItem("forum_user", JSON.stringify(data));
     } catch (_) {
-      localStorage.removeItem("forum_token");
-      _state.token = null;
+      if (!_state.user) { localStorage.removeItem("forum_token"); _state.token = null; }
     }
   }
   renderAuthArea();
