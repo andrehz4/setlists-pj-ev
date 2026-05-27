@@ -598,6 +598,15 @@
         "at": "2026-05-26T21:08:44.283Z",
         "msg": "IG API /17841414148425536/media_publish: Application request limit reached"
       }
+    },
+    {
+      "id": "cs-82683d2e88",
+      "type": "spotlight",
+      "queuedAt": "2026-05-27T03:08:52.160Z",
+      "publishAt": "2026-05-27T03:08:52.160Z",
+      "postedAt": null,
+      "postId": null,
+      "error": null
     }
   ],
   "postCount": 35
