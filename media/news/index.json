@@ -1,6 +1,26 @@
 {
-  "updated": "2026-05-26T21:06:57.002Z",
+  "updated": "2026-05-27T03:08:52.282Z",
   "items": [
+    {
+      "id": "cs-82683d2e88",
+      "url": "https://www.reddit.com/r/pearljam/comments/1toewqe/new_ed_portrait_13x19_hope_you_enjoy_have_a_good/",
+      "source": "reddit-community-spotlight",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-26T18:02:41.000Z",
+      "fetchedAt": "2026-05-27T03:08:52.153Z",
+      "img": "/media/news/img/cs-82683d2e88.jpg",
+      "title_pt": "Fã cria retrato de Eddie Vedder em papel 13 por 19 polegadas",
+      "intro_pt": "Um fã artista compartilhou retrato de Eddie Vedder em formato 13 por 19 polegadas e o trabalho virou destaque imediato entre os fãs.",
+      "tags": [
+        "comunidade",
+        "eddie"
+      ],
+      "title_ig": "O retrato do Eddie que parou a comunidade",
+      "kind": "community-spotlight",
+      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1toewqe/new_ed_portrait_13x19_hope_you_enjoy_have_a_good/",
+      "community_post_score": 0
+    },
     {
       "id": "93347ce3bd",
       "url": "https://www.tenhomaisdiscosqueamigos.com/2026/05/26/pearl-jam-revelar-novo-baterista",
@@ -508,23 +528,6 @@
       "intro_pt": "Baixista do Pearl Jam compôs músicas para o documentário Montana Grind e o curta Paving the Way, ambos enraizados no estado do Montana.",
       "tags": [
         "jeff",
-        "tenclub"
-      ],
-      "kind": "pjcom-news"
-    },
-    {
-      "id": "7ffb597882",
-      "url": "https://pearljam.com/news/music-belongs-in-schools",
-      "source": "pj-com-news",
-      "sourceLabel": "Pearl Jam Oficial",
-      "group": "tenclub",
-      "pubDate": "2026-05-14T12:04:05.057Z",
-      "fetchedAt": "2026-05-14T21:28:27.359Z",
-      "img": "/media/news/img/7ffb597882.jpg",
-      "title_pt": "Mike McCready salva programa de música de escola de Seattle",
-      "intro_pt": "Guitarrista do Pearl Jam e Vitalogy Foundation ajudam a garantir os US$ 30 mil que mantiveram a aula de música na Washington Middle School.",
-      "tags": [
-        "mike",
         "tenclub"
       ],
       "kind": "pjcom-news"
