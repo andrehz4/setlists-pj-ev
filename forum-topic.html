@@ -49,7 +49,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .auth-btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
 
 /* Thread layout */
-.thread-view { padding: 28px 32px 60px; display: grid; grid-template-columns: 1fr 280px; gap: 36px; max-width: 1400px; margin: 0 auto; }
+.thread-view { padding: 28px 32px 60px; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 36px; max-width: 1180px; margin: 0 auto; }
 .crumbs { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 18px; }
 .crumbs a { color: var(--pj); text-decoration: none; }
 .crumbs a:hover { text-decoration: underline; }
@@ -71,7 +71,8 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .post-author:hover { color: var(--pj); }
 .post-badge { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 2px 6px; border: 1px solid var(--divider-strong); color: var(--ink-mute); line-height: 1.4; }
 .post-badge.op { color: var(--pj); border-color: var(--pj-soft); }
-.post-date { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.08em; margin-left: auto; }
+.post-date { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.08em; }
+.post-date::before { content: "·"; margin-right: 8px; color: var(--divider-strong); }
 .post-body { font-family: var(--font-body); font-size: 16.5px; color: var(--ink); line-height: 1.6; }
 .post-body p { margin: 0 0 12px; }
 .post-body p:last-child { margin-bottom: 0; }
