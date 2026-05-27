@@ -276,6 +276,7 @@ a.embed-music:hover .embed-music-titulo { color:var(--ev); }
 </head>
 <body>
 
+<datalist id="officialTagsList"></datalist>
 <script>const API_BASE = "https://perpetual-energy-production-1a69.up.railway.app";</script>
 
 <header class="site-header">
@@ -512,12 +513,20 @@ function renderBody(rawText) {
     /\[spoiler\]([\s\S]*?)\[\/spoiler\]/gi,
     (_, c) => `<span class="spoiler"><span class="spoiler-label">&#9888; spoiler — clique para revelar</span><span class="spoiler-content">${c.trim()}</span></span>`
   );
+  const _stripHeavy = (s) => s
+    .replace(/\[img(?::[a-z]+)?\][\s\S]*?\[\/img\]/gi, " [foto] ")
+    .replace(/\[audio\][\s\S]*?\[\/audio\]/gi, " [áudio] ")
+    .replace(/\[audio-url\][\s\S]*?\[\/audio-url\]/gi, " [áudio] ")
+    .replace(/\[setlist\][\s\S]*?\[\/setlist\]/gi, " [setlist] ")
+    .replace(/\[musica\]([^|\n]+?)(?:\s*\|[\s\S]*?)?\[\/musica\]/gi, " [música: $1] ")
+    .replace(/\s+/g, " ")
+    .trim();
   const withQuotes = withSpoilers.replace(
     /^&gt;([^:\n]+):([^\n]*)/gm,
-    (_, who, text) => `<div class="quote-block"><span class="quote-who">&#8627; ${who.trim()} escreveu</span>${text.trim()}</div>`
+    (_, who, text) => `<div class="quote-block"><span class="quote-who">&#8627; ${who.trim()} escreveu</span>${_stripHeavy(text)}</div>`
   ).replace(
     /^&gt;([^\n]*)/gm,
-    (_, c) => `<div class="quote-block">${c.trim()}</div>`
+    (_, c) => `<div class="quote-block">${_stripHeavy(c)}</div>`
   );
   const withBold   = withQuotes.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
   const withItalic = withBold.replace(/_([^_\n]+)_/g, "<em>$1</em>");
@@ -883,7 +892,10 @@ function renderTopic(data) {
             <div class="reply-extras-section">
               <div class="reply-extras-label">06 · Tags (opcional, até 4)</div>
               <div class="reply-tag-editor" id="replyTagEditor">
-                <input class="reply-tag-input" id="replyTagInput" placeholder="+ adicionar tag···" maxlength="30">
+                <input class="reply-tag-input" id="replyTagInput" placeholder="ex: palpite, curitiba, dark-matter" maxlength="30" list="officialTagsList" autocomplete="off">
+              </div>
+              <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--ink-dim);margin-top:5px;letter-spacing:0.08em;line-height:1.5">
+                Digite e aperte <b style="color:var(--pj)">ENTER</b>, <b style="color:var(--pj)">vírgula</b> ou <b style="color:var(--pj)">espaço</b> pra confirmar cada tag. Sugestões aparecem ao digitar.
               </div>
             </div>
           </div>
@@ -1156,20 +1168,25 @@ function renderTopic(data) {
 
     const replyTagInput = document.getElementById("replyTagInput");
     if (replyTagInput) {
+      function commitReplyTag() {
+        const val = replyTagInput.value.trim().replace(/^#/, "").replace(/[^a-zA-Z0-9À-ɏ_-]/g, "");
+        if (val && _replyTags.length < 4 && !_replyTags.includes(val)) {
+          _replyTags.push(val);
+          renderReplyTagChips();
+        }
+        replyTagInput.value = "";
+      }
       replyTagInput.addEventListener("keydown", e => {
-        if (e.key === "Enter" || e.key === ",") {
-          e.preventDefault();
-          const val = replyTagInput.value.trim().replace(/^#/, "").replace(/[^a-zA-Z0-9À-ɏ_-]/g, "");
-          if (val && _replyTags.length < 4 && !_replyTags.includes(val)) {
-            _replyTags.push(val);
-            renderReplyTagChips();
-          }
-          replyTagInput.value = "";
+        if (e.key === "Enter" || e.key === "," || e.key === " " || e.key === "Tab") {
+          if (replyTagInput.value.trim()) { e.preventDefault(); commitReplyTag(); }
         }
         if (e.key === "Backspace" && !replyTagInput.value && _replyTags.length) {
           _replyTags.pop();
           renderReplyTagChips();
         }
+      });
+      replyTagInput.addEventListener("blur", () => {
+        if (replyTagInput.value.trim()) commitReplyTag();
       });
     }
     updateReplyAttachStatus();
@@ -1756,8 +1773,20 @@ function initTheme() {
   });
 }
 
+async function loadOfficialTags() {
+  try {
+    const r = await fetch("/media/forum-tags.json", { cache: "no-cache" });
+    if (!r.ok) return;
+    const j = await r.json();
+    const dl = document.getElementById("officialTagsList");
+    if (!dl || !Array.isArray(j.tags)) return;
+    dl.innerHTML = j.tags.map(t => `<option value="${san(t)}">`).join("");
+  } catch (_) { /* sem datalist, ok */ }
+}
+
 async function init() {
   initTheme();
+  loadOfficialTags();
 
   if (_token && !_user) {
     try {
