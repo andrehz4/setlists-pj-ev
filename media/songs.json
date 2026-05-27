@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-26T23:33:10.839Z",
+  "generated_at": "2026-05-27T00:41:14.825Z",
   "r2_audio_base": "https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev",
   "total": 281,
-  "with_audio": 26,
+  "with_audio": 150,
   "songs": [
     {
       "title": "1/2 Full",
@@ -18,7 +18,14 @@
       "album_id": "",
       "year": null,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "13 1_2 Full.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "4th of July",
@@ -42,7 +49,14 @@
       "album_id": "",
       "year": null,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "18 Again Today.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Alive",
@@ -52,10 +66,124 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "32 Alive.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "24 Alive.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "15 Alive.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "24 Alive.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "22 Alive.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "29 Alive.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "26 Alive.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "35 Alive.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "32 Alive.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "33 Alive.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "29 Alive.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "36 Alive.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "34 Alive.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "28 Alive.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "25 Alive → Voodoo Child.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "26 Alive.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "23 Alive.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "31 Alive.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "24 Alive.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "20 Alive.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
         }
       ]
     },
@@ -65,7 +193,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "35 All Along the Watchtower.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "All Night",
@@ -73,7 +208,26 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "05 All Night.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "05 All Night.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "02 All Night.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "All or None",
@@ -105,7 +259,14 @@
       "album_id": "gigaton",
       "year": 2020,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "04 Alright.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Amongst the Waves",
@@ -113,7 +274,26 @@
       "album_id": "backspacer",
       "year": 2009,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "06 Amongst The Waves.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "10 Amongst The Waves.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "07 Amongst The Waves.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Animal",
@@ -123,10 +303,52 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "03 Animal.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "20 Animal.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "03 Animal.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "19 Animal.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "04 Animal.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "14 Animal.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "05 Animal.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "06 Animal.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
         }
       ]
     },
@@ -152,7 +374,14 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "02 Arms Aloft.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        }
+      ]
     },
     {
       "title": "Army Reserve",
@@ -184,7 +413,44 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "33 Baba O'Riley.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "27 Baba O'Riley.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "36 Baba O'Riley.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "30 Baba O'Riley.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "26 Baba O'Riley.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "24 Baba O'Riley.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Bad",
@@ -200,7 +466,14 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "20 Bee Girl.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "Better Days",
@@ -218,10 +491,100 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "28 Better Man.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "15 Better Man.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "14 Better Man (Modern Girl).mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "26 Better Man.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "27 Better Man.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "22 Better Man.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "32 Better Man.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "18 Better Man.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "25 Better Man.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "27 Better Man.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "33 Better Man.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "27 Better Man → Save It For Later.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "16 Better Man → Save It For Later.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "15 Better Man.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "28 Better Man.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "13 Better Man.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
         }
       ]
     },
@@ -241,10 +604,106 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "25 Black.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "22 Black.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "24 Black.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "22 Black.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "25 Black.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "28 Black.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "23 Black.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "31 Black.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "17 Spin The Black Circle.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "17 Black.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "34 Black.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "31 Spin The Black Circle.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "24 Black.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "18 Black → We Belong Together.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "16 Black.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "17 Black.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "17 Black.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
         }
       ]
     },
@@ -254,7 +713,14 @@
       "album_id": "",
       "year": null,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "14 Black Diamond.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Blackbird",
@@ -270,7 +736,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "22 Daughter → Blitzkrieg Bop → W.M.A..mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Blood",
@@ -278,7 +751,26 @@
       "album_id": "vs",
       "year": 1993,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "03 Blood.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "26 Blood.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "26 Blood.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Brain Damage",
@@ -294,7 +786,14 @@
       "album_id": "yield",
       "year": 1998,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "07 Brain Of J.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Breakerfall",
@@ -310,7 +809,20 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "20 Just Breathe.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "10 Breath.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Broken Heart",
@@ -358,7 +870,20 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "17 Can't Deny Me.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "07 Can't Deny Me.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Can't Keep",
@@ -382,7 +907,38 @@
       "album_id": "pj2006",
       "year": 2006,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "24 Comatose.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "05 Comatose.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "29 Comatose.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "16 Comatose.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "21 Comatose.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Come Back",
@@ -390,7 +946,32 @@
       "album_id": "pj2006",
       "year": 2006,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "20 Come Back.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "19 Come Back.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "14 Come Back.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "04 Come Back.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Come Then Goes",
@@ -406,7 +987,32 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "29 Comfortably Numb.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "32 Comfortably Numb.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "30 Comfortably Numb.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "24 Comfortably Numb.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Corduroy",
@@ -416,10 +1022,112 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "07 Corduroy.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "04 Corduroy.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "04 Green Disease + Corduroy.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "05 Corduroy.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "02 Corduroy.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "04 Corduroy.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "04 Corduroy.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "04 Corduroy.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "10 Corduroy.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "08 Corduroy.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "26 Corduroy.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "03 Corduroy.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "10 Corduroy.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "02 Corduroy.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "24 Corduroy.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "04 Corduroy.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "05 Corduroy.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "09 Corduroy.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
         }
       ]
     },
@@ -429,7 +1137,20 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "34 Crazy Mary.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "29 Crazy Mary.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Cropduster",
@@ -453,7 +1174,14 @@
       "album_id": "gigaton",
       "year": 2020,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "06 Dance Of The Clairvoyants.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Dark Matter",
@@ -461,7 +1189,20 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "15 Dark Matter.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "12 Dark Matter.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Daughter",
@@ -469,7 +1210,68 @@
       "album_id": "vs",
       "year": 1993,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "13 Daughter.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "14 Daughter.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "10 Daughter.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "09 Daughter.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "13 Daughter.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "15 Daughter.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "22 Daughter → Blitzkrieg Bop → W.M.A..mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "11 Daughter.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "12 Daughter.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "15 Daughter.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Dead Man",
@@ -485,7 +1287,26 @@
       "album_id": "ten",
       "year": 1991,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "07 Deep.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "09 Deep.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "16 Deep.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "Dirty Frank",
@@ -501,7 +1322,14 @@
       "album_id": "vs",
       "year": 1993,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "09 Dissident.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        }
+      ]
     },
     {
       "title": "Do the Evolution",
@@ -511,10 +1339,106 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2013-04-03",
+          "file": "19 Do The Evolution.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "13 Do The Evolution.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "04 Do The Evolution.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "15 Do The Evolution.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "23 Do The Evolution.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "07 Do The Evolution.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "33 Do The Evolution.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "04 Do The Evolution.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "06 Do The Evolution.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "02 Do The Evolution.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "24 Do The Evolution.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "06 Do The Evolution.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "23 Do The Evolution.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "03 Do The Evolution.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "17 Do The Evolution.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "02 Do The Evolution.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "18 Do The Evolution.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
         }
       ]
     },
@@ -547,7 +1471,26 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "12 Down.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "15 Down.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "12 Down.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Dream a Little Dream of Me",
@@ -579,7 +1522,104 @@
       "album_id": "vs",
       "year": 1993,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "06 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "16 Elderly Woman Behind the Counter in a Small Town.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "15 Elderly Woman Behind the Counter in a Small Town.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "18 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "14 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "01 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "31 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "12 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "03 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "06 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "03 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "21 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "03 Small Town.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "06 Small Town.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "03 Elderly Woman Behind the Counter in a Small Town.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "08 Elderly Woman Behind The Counter In A Small Town.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Eruption",
@@ -587,7 +1627,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "30 Eruption.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "Evacuation",
@@ -605,10 +1652,124 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "11 Even Flow.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "02 Even Flow.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "06 Even Flow.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "03 Even Flow.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "07 Even Flow.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "08 Even Flow.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "10 Even Flow.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "10 Even Flow.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "13 Even Flow.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "11 Even Flow.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "13 Even Flow.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "10 Even Flow.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "09 Even Flow.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "11 Even Flow.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "08 Even Flow → Happy Birthday Perry Farrell.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "13 Even Flow.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "10 Even Flow.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "09 Even Flow.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "12 Even Flow.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "07 Even Flow.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
         }
       ]
     },
@@ -624,6 +1785,18 @@
           "file": "07 Faithfull.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "07 Faithfull.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "10 Faithfull.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
         }
       ]
     },
@@ -633,7 +1806,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "19 Falling Slowly.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Fallout Today",
@@ -665,7 +1845,26 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "30 Footsteps.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "21 Footsteps.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "03 Footsteps.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Force of Nature",
@@ -689,7 +1888,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "34 Fuckin' Up.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Future Days",
@@ -705,7 +1911,26 @@
       "album_id": "ten",
       "year": 1991,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "31 Garden.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "16 Garden.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "01 Garden.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Get Right",
@@ -721,7 +1946,14 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "07 Getaway.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Ghost",
@@ -747,10 +1979,112 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "08 Given To Fly.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "11 Given To Fly.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "05 Given To Fly.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "20 Given To Fly.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "05 Given To Fly.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "20 Given To Fly.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "17 Given To Fly.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "16 Given To Fly.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "31 Given To Fly.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "07 Given To Fly.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "12 Given To Fly.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "14 Given To Fly.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "07 Given To Fly.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "06 Given To Fly.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "11 Given To Fly.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "07 Given To Fly.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "09 Given To Fly.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "15 Given To Fly.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
         }
       ]
     },
@@ -766,6 +2100,12 @@
           "file": "12 Glorified G.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "24 Glorified G.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
         }
       ]
     },
@@ -777,10 +2117,52 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "01 Go.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "01 Go.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "02 Go.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "25 Go.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "26 Go.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "01 Go.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "04 Go.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "04 Go.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
         }
       ]
     },
@@ -806,7 +2188,14 @@
       "album_id": "backspacer",
       "year": 2009,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "08 Gonna See My Friend.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Good and Evil",
@@ -838,7 +2227,62 @@
       "album_id": "backspacer",
       "year": 2009,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "16 Got Some.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "14 Got Some.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "10 Got Some.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "06 Got Some.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "13 Got Some.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "09 Got Some.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "05 Got Some.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "07 Got Some.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "05 Got Some.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Got to Give",
@@ -885,7 +2329,20 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "10 Habit.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "16 Habit.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Hail, Hail",
@@ -895,10 +2352,34 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2013-04-03",
+          "file": "10 Hail Hail.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "02 Hail Hail.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "05 Hail, Hail.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "04 Hail, Hail.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "04 Hail, Hail.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
         }
       ]
     },
@@ -916,7 +2397,20 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "21 Hard To Imagine.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "12 Hard To Imagine.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Help Help",
@@ -948,7 +2442,14 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "17 Hold On.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Hurt",
@@ -972,7 +2473,20 @@
       "album_id": "riotact",
       "year": 2002,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "25 I Am Mine.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "14 I Am Mine.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "I Believe in Miracles",
@@ -982,10 +2496,40 @@
       "artist": "Ambos",
       "audio": [
         {
+          "show_id": "pj-2013-04-03",
+          "file": "23 I Believe In Miracles.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "18 I Believe In Miracles.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "21 I Believe In Miracles.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "20 I Believe In Miracles.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "24 I Believe In Miracles.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "23 I Believe In Miracles.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
         }
       ]
     },
@@ -997,10 +2541,22 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2013-04-03",
+          "file": "12 I Got Id.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "10 I Got Id.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "12 I Got Id.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
         }
       ]
     },
@@ -1026,7 +2582,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "12 Down.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "I Won't Hold On",
@@ -1050,7 +2613,14 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "13 I'm Open.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "I'm So Tired",
@@ -1066,7 +2636,26 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "22 Imagine.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "22 Imagine.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "23 Imagine.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Immortality",
@@ -1074,7 +2663,26 @@
       "album_id": "vitalogy",
       "year": 1994,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "11 Immortality.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "12 Immortality.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "05 Immortality.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "In Hiding",
@@ -1082,7 +2690,32 @@
       "album_id": "yield",
       "year": 1998,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "12 In Hiding.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "05 In Hiding.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "08 In Hiding.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "13 In Hiding.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "In My Tree",
@@ -1090,7 +2723,14 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "09 In My Tree.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Indifference",
@@ -1098,7 +2738,32 @@
       "album_id": "vs",
       "year": 1993,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "31 Indifference.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "37 Indifference.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "33 Indifference.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "21 Indifference.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Infallible",
@@ -1106,7 +2771,14 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "11 Infallible.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "Inside Job",
@@ -1114,7 +2786,20 @@
       "album_id": "pj2006",
       "year": 2006,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "20 Inside Job.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "21 Inside Job.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Insignificance",
@@ -1122,7 +2807,14 @@
       "album_id": "binaural",
       "year": 2000,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "12 Insignificance.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Interstellar Overdrive",
@@ -1130,7 +2822,20 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "03 Interstellar Overdrive.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "07 Interstellar Overdrive.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Invincible",
@@ -1164,10 +2869,100 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "26 Jeremy.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "08 Jeremy.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "25 Jeremy.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "21 Jeremy.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "24 Jeremy.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "15 Jeremy.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "24 Jeremy.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "17 Jeremy.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "23 Jeremy.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "24 Jeremy.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "17 Jeremy.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "24 Jeremy.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "09 Jeremy.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "13 Jeremy.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "22 Jeremy.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "30 Jeremy.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
         }
       ]
     },
@@ -1185,7 +2980,62 @@
       "album_id": "backspacer",
       "year": 2009,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "20 Just Breathe.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "21 Just Breathe.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "11 Just Breathe.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "19 Just Breathe.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "18 Just Breathe.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "19 Just Breathe.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "22 Just Breathe.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "20 Just Breathe.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "19 Just Breathe.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Keep Me in Your Heart",
@@ -1201,7 +3051,26 @@
       "album_id": "vitalogy",
       "year": 1994,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "02 Last Exit.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "30 Last Exit.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "03 Last Exit.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Last Kiss",
@@ -1215,6 +3084,30 @@
           "file": "19 Last Kiss.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "20 Last Kiss.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "26 Last Kiss.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "29 Last Kiss.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "27 Last Kiss.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
         }
       ]
     },
@@ -1224,7 +3117,14 @@
       "album_id": "vs",
       "year": 1993,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "27 Leash.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Leaving Here",
@@ -1232,7 +3132,20 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "29 Leaving Here.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "25 Leaving Here.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Let the Records Play",
@@ -1240,7 +3153,14 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "16 Let The Records Play.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Life Wasted",
@@ -1248,7 +3168,14 @@
       "album_id": "pj2006",
       "year": 2006,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "23 Life Wasted.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Light Today",
@@ -1264,7 +3191,14 @@
       "album_id": "binaural",
       "year": 2000,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "22 Light Years.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Lightning Bolt",
@@ -1272,7 +3206,38 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "05 Lightning Bolt.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "11 Lightning Bolt.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "09 Lightning Bolt.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "33 Lightning Bolt.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "15 Lightning Bolt.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Little Wing",
@@ -1280,7 +3245,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "26 Little Wing.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Long Nights",
@@ -1296,7 +3268,14 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "01 Long Road.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Long Way",
@@ -1320,7 +3299,14 @@
       "album_id": "riotact",
       "year": 2002,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "03 Love Boat Captain.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Love Reign O'er Me",
@@ -1336,7 +3322,20 @@
       "album_id": "yield",
       "year": 1998,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "02 Low Light.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "06 Low Light.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Lukin",
@@ -1344,7 +3343,44 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "03 Lukin.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "18 Lukin.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "13 Lukin.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "17 Lukin.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "20 Lukin.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "04 Lukin.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Man of the Hour",
@@ -1367,7 +3403,20 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "27 Mankind.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "10 Mankind.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Marker in the Sand",
@@ -1407,7 +3456,50 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "06 Mind Your Manners.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "08 Mind Your Manners.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "04 Mind Your Manners.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "05 Mind Your Manners.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "05 Mind Your Manners.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "14 Mind Your Manners.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "05 Mind Your Manners.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Modern Girl",
@@ -1438,7 +3530,20 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "26 Mother.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "22 Mother.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Mountain Song",
@@ -1446,7 +3551,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "09 Mountain Song.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Mrs. Mills",
@@ -1462,7 +3574,14 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "13 My Father's Son.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Never Destination",
@@ -1494,7 +3613,56 @@
       "album_id": "vitalogy",
       "year": 1994,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "14 Not For You.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "09 Not For You.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "21 Not For You.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "14 Not For You.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "12 Not For You.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "12 Not For You.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "06 Not For You.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "11 Not For You.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Nothing as It Seems",
@@ -1502,7 +3670,14 @@
       "album_id": "binaural",
       "year": 2000,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "01 Nothing As It Seems.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Nothingman",
@@ -1510,7 +3685,26 @@
       "album_id": "vitalogy",
       "year": 1994,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "06 Nothingman.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "11 Nothingman.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "03 Nothingman.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Oceans",
@@ -1518,7 +3712,20 @@
       "album_id": "ten",
       "year": 1991,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "01 Oceans.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "20 Oceans.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Of the Earth",
@@ -1526,7 +3733,14 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "22 Of The Earth.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Of the Girl",
@@ -1534,7 +3748,20 @@
       "album_id": "binaural",
       "year": 2000,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "02 Of The Girl.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "02 Of The Girl.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Off He Goes",
@@ -1542,7 +3769,26 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "21 Off He Goes.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "04 Off He Goes.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "02 Off He Goes.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Olé",
@@ -1550,7 +3796,32 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "04 Ole.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "11 Ole.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "06 Ole .mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "22 Ole.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "On My Way",
@@ -1568,10 +3839,46 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "31 Once.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "11 Once.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "12 Once.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "16 Once.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "06 Once.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "19 Once.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "16 Once.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
         }
       ]
     },
@@ -1613,7 +3920,14 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "01 Pendulum.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Picture",
@@ -1637,7 +3951,20 @@
       "album_id": "yield",
       "year": 1998,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "09 Pilate.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "08 Pilate.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Porch",
@@ -1647,10 +3974,94 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "18 Porch.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "09 Porch.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "16 Porch.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "16 Porch.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "28 Porch.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "27 Porch.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "27 Porch.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "28 Porch.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "27 Porch.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "18 Porch.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "21 Porch.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "18 Porch.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "02 Porch.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "20 Porch.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "16 Porch.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
         }
       ]
     },
@@ -1668,7 +4079,26 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "18 Present Tense.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "02 Present Tense.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "11 Present Tense.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Pry, To",
@@ -1684,7 +4114,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "11 Pulled Up.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Purple Rain",
@@ -1692,7 +4129,14 @@
       "album_id": "",
       "year": null,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "19 Purple Rain.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Push Me, Pull Me",
@@ -1708,7 +4152,14 @@
       "album_id": "gigaton",
       "year": 2020,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "07 Quick Escape.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Rain",
@@ -1716,7 +4167,20 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "07 Brain Of J.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "01 Rain.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "Rats",
@@ -1724,7 +4188,14 @@
       "album_id": "vs",
       "year": 1993,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "15 Rats.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Reach Down",
@@ -1740,7 +4211,14 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "07 React Respond.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Rearviewmirror",
@@ -1750,10 +4228,76 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2013-04-03",
+          "file": "17 Rearviewmirror.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "21 Rearviewmirror.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "27 Rearviewmirror.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "16 Rearviewmirror.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "18 Rearviewmirror.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "19 Rearviewmirror.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "19 Rearviewmirror.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "18 Rearviewmirror.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "08 Rearviewmirror.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "18 Rearviewmirror.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "16 Rearviewmirror.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "25 Rearviewmirror.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
         }
       ]
     },
@@ -1763,7 +4307,14 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "15 Red Mosquito.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        }
+      ]
     },
     {
       "title": "Redemption Song",
@@ -1771,7 +4322,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "21 Redemption Song.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Release",
@@ -1779,7 +4337,50 @@
       "album_id": "ten",
       "year": 1991,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "01 Release.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "01 Release.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "01 Release.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "01 Release.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "02 Release.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "01 Release.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "01 Release.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Retrograde",
@@ -1819,7 +4420,80 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "25 Rockin' In The Free World.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "25 Rockin' In The Free World.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "28 Rockin' In The Free World.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "30 Rockin' In The Free World.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "33 Rockin' In The Free World.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "37 Rockin' In The Free World.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "35 Rockin' In The Free World.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "29 Rockin' In The Free World.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "27 Rockin' In The Free World.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "32 Rockin' In The Free World.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "25 Rockin' In The Free World.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "22 Rockin' In The Free World.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Rose of Jericho",
@@ -1835,7 +4509,14 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "08 Running.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Sad",
@@ -1851,7 +4532,14 @@
       "album_id": "vitalogy",
       "year": 1994,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "15 Satan's Bed.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "Satellite",
@@ -1867,7 +4555,20 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "27 Better Man → Save It For Later.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "16 Better Man → Save It For Later.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Save You",
@@ -1877,10 +4578,28 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2013-04-03",
+          "file": "06 Save You.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "23 Save You.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "13 Save You.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "08 Save You.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
         }
       ]
     },
@@ -1890,7 +4609,14 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "08 Scared Of Fear.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Setting Forth",
@@ -1898,7 +4624,26 @@
       "album_id": "intowild",
       "year": 2007,
       "artist": "Eddie Vedder",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "13 Setting Forth.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "11 Setting Forth.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "11 Setting Forth.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Setting Sun",
@@ -1906,7 +4651,20 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "25 Setting Sun.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "21 Setting Sun.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Seven O'Clock",
@@ -1922,7 +4680,26 @@
       "album_id": "pj2006",
       "year": 2006,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "08 Severed Hand.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "03 Severed Hand.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "03 Severed Hand.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Should I Stay or Should I Go",
@@ -1938,7 +4715,44 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "23 Sirens.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "23 Sirens.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "15 Sirens.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "23 Sirens.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "13 Sirens.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "14 Sirens.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Sleeping by Myself",
@@ -1946,7 +4760,20 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "21 Sleeping By Myself.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "20 Sleeping By Myself.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Sleepless Nights",
@@ -1970,7 +4797,26 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "23 Smile.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "20 Smile.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "19 Smile.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Society",
@@ -1994,7 +4840,14 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "02 Sometimes.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "Song of Good Hope",
@@ -2010,7 +4863,20 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "23 Sonic Reducer.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "35 Sonic Reducer.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        }
+      ]
     },
     {
       "title": "Soon Forget",
@@ -2034,7 +4900,26 @@
       "album_id": "vitalogy",
       "year": 1994,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "17 Spin The Black Circle.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "17 Black.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "31 Spin The Black Circle.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "State of Love and Trust",
@@ -2042,7 +4927,44 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "21 State Of Love And Trust.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "17 State Of Love And Trust.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "30 State Of Love And Trust.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "21 State Of Love And Trust.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "22 State Of Love And Trust.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "16 State Of Love And Trust.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "Strangest Tribe",
@@ -2058,7 +4980,14 @@
       "album_id": "gigaton",
       "year": 2020,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "01 Superblood Wolfmoon.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Supersonic",
@@ -2066,7 +4995,20 @@
       "album_id": "backspacer",
       "year": 2009,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "24 Supersonic.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "25 Supersonic.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Swallowed Whole",
@@ -2074,7 +5016,14 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "15 Swallowed Whole.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Take the Long Way",
@@ -2082,7 +5031,14 @@
       "album_id": "gigaton",
       "year": 2020,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "13 Take The Long Way.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "The Dark",
@@ -2106,7 +5062,44 @@
       "album_id": "backspacer",
       "year": 2009,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "10 The Fixer.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "14 The Fixer.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "12 The Fixer.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "15 The Fixer.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "26 The Fixer.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "24 The Fixer.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        }
+      ]
     },
     {
       "title": "The Haves",
@@ -2154,7 +5147,14 @@
       "album_id": "covers",
       "year": 0,
       "artist": "Ambos",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "18 Throw Your Arms Around Me.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Thumbing My Way",
@@ -2178,7 +5178,14 @@
       "album_id": "vitalogy",
       "year": 1994,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "08 Tremor Christ.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        }
+      ]
     },
     {
       "title": "Trouble",
@@ -2210,7 +5217,14 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "14 U.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Unemployable",
@@ -2226,7 +5240,68 @@
       "album_id": "backspacer",
       "year": 2009,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "22 Unthought Known.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "13 Unthought Known.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "08 Unthought Known.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "01 Unthought Known.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "16 Unthought Known.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "12 Unthought Known.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "14 Unthought Known.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "12 Unthought Known.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "10 Unthought Known.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "14 Unthought Known.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Untitled",
@@ -2249,7 +5324,14 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "14 Upper Hand.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "W.M.A.",
@@ -2257,7 +5339,14 @@
       "album_id": "vs",
       "year": 1993,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "22 Daughter → Blitzkrieg Bop → W.M.A..mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Waiting for Stevie",
@@ -2265,7 +5354,14 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "09 Waiting for Stevie.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Walking the Cow",
@@ -2281,7 +5377,20 @@
       "album_id": "lostdogs",
       "year": 0,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "02 Wash.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "01 Wash.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Wasted Reprise",
@@ -2289,7 +5398,14 @@
       "album_id": "pj2006",
       "year": 2006,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "22 Wasted Reprise.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        }
+      ]
     },
     {
       "title": "Waving Palms",
@@ -2313,7 +5429,20 @@
       "album_id": "vitalogy",
       "year": 1994,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "09 Whipping.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "24 Whipping.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Who Ever Said",
@@ -2329,7 +5458,14 @@
       "album_id": "nocode",
       "year": 1996,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "10 Who You Are.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "Why Go",
@@ -2337,7 +5473,98 @@
       "album_id": "ten",
       "year": 1991,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "05 Why Go.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "07 Why Go.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "03 Why Go.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "15 Why Go.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "02 Why Go.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-17",
+          "file": "26 Why Go.mp3",
+          "date": "2015-11-17",
+          "venue": "Estádio Mané Garrincha, Brasília, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "06 Why Go.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "30 Why Go.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "23 Why Go.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "18 Why Go.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "25 Why Go.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "04 Why Go.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "07 Why Go.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "01 Why Go.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "06 Why Go.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Wildflowers",
@@ -2353,7 +5580,62 @@
       "album_id": "yield",
       "year": 1998,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "09 Wishlist.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "08 Wishlist.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "22 Wishlist.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "09 Wishlist.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "13 Wishlist.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "03 Wishlist.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "14 Wishlist.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2021-10-02",
+          "file": "08 Wishlist.mp3",
+          "date": "2021-10-02",
+          "venue": "Doheny State Beach (Ohana Encore Festival), Dana Point, CA, US"
+        },
+        {
+          "show_id": "pj-2022-07-25",
+          "file": "11 Wishlist.mp3",
+          "date": "2022-07-25",
+          "venue": "Ziggo Dome, Amsterdã, NL"
+        }
+      ]
     },
     {
       "title": "Without You",
@@ -2369,7 +5651,14 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "23 Won't Tell.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "World Wide Suicide",
@@ -2377,7 +5666,26 @@
       "album_id": "pj2006",
       "year": 2006,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2011-11-09",
+          "file": "17 World Wide Suicide.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2011-11-03",
+          "file": "05 World Wide Suicide.mp3",
+          "date": "2011-11-03",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "14 World Wide Suicide.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        }
+      ]
     },
     {
       "title": "Wreckage",
@@ -2385,7 +5693,20 @@
       "album_id": "darkmatter",
       "year": 2024,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2024-08-29",
+          "file": "10 Wreckage.mp3",
+          "date": "2024-08-29",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "09 Wreckage.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        }
+      ]
     },
     {
       "title": "Yellow Ledbetter",
@@ -2395,10 +5716,94 @@
       "artist": "Pearl Jam",
       "audio": [
         {
+          "show_id": "pj-2011-11-09",
+          "file": "34 Yellow Ledbetter.mp3",
+          "date": "2011-11-09",
+          "venue": "Estádio Durival Britto e Silva (Vila Capanema), Curitiba, BR"
+        },
+        {
+          "show_id": "pj-2013-04-03",
+          "file": "26 Yellow Ledbetter.mp3",
+          "date": "2013-04-03",
+          "venue": "Costanera Sur (Lollapalooza Argentina), Buenos Aires, AR"
+        },
+        {
           "show_id": "pj-2005-12-02",
           "file": "26 Yellow Ledbetter.mp3",
           "date": "2005-12-02",
           "venue": "Estádio do Pacaembu, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2013-04-06",
+          "file": "26 Yellow Ledbetter.mp3",
+          "date": "2013-04-06",
+          "venue": "Parque O'Higgins (Lollapalooza Chile), Santiago, CL"
+        },
+        {
+          "show_id": "pj-2011-11-06",
+          "file": "32 Yellow Ledbetter.mp3",
+          "date": "2011-11-06",
+          "venue": "Praça da Apoteose, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2013-03-31",
+          "file": "28 Yellow Ledbetter.mp3",
+          "date": "2013-03-31",
+          "venue": "Jockey Club (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-14",
+          "file": "34 Yellow Ledbetter.mp3",
+          "date": "2015-11-14",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-11",
+          "file": "35 Yellow Ledbetter.mp3",
+          "date": "2015-11-11",
+          "venue": "Arena do Grêmio, Porto Alegre, BR"
+        },
+        {
+          "show_id": "pj-2011-11-04",
+          "file": "31 Yellow Ledbetter.mp3",
+          "date": "2011-11-04",
+          "venue": "Estádio do Morumbi, São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2015-11-20",
+          "file": "38 Yellow Ledbetter.mp3",
+          "date": "2015-11-20",
+          "venue": "Mineirão, Belo Horizonte, BR"
+        },
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "36 Yellow Ledbetter.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-21",
+          "file": "30 Yellow Ledbetter.mp3",
+          "date": "2018-03-21",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        },
+        {
+          "show_id": "pj-2018-03-24",
+          "file": "27 Yellow Ledbetter.mp3",
+          "date": "2018-03-24",
+          "venue": "Autódromo de Interlagos (Lollapalooza), São Paulo, BR"
+        },
+        {
+          "show_id": "pj-2024-08-31",
+          "file": "25 Yellow Ledbetter.mp3",
+          "date": "2024-08-31",
+          "venue": "Wrigley Field, Chicago, US"
+        },
+        {
+          "show_id": "pj-2011-11-11",
+          "file": "34 Yellow Ledbetter.mp3",
+          "date": "2011-11-11",
+          "venue": "Estádio Beira-Rio, Porto Alegre, BR"
         }
       ]
     },
@@ -2408,7 +5813,14 @@
       "album_id": "lightningbolt",
       "year": 2013,
       "artist": "Pearl Jam",
-      "audio": []
+      "audio": [
+        {
+          "show_id": "pj-2015-11-22",
+          "file": "20 Yellow Moon.mp3",
+          "date": "2015-11-22",
+          "venue": "Estádio do Maracanã, Rio de Janeiro, BR"
+        }
+      ]
     },
     {
       "title": "You Are",

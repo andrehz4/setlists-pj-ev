@@ -7,17 +7,19 @@ import path from 'node:path';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-const mediaManifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'media-manifest.json'), 'utf8'));
 
-function extractJsonArray(src, name) {
-  const re = new RegExp(`const ${name}\\s*=\\s*(\\[[\\s\\S]*?\\]);`);
+function extractJson(src, name, openChar) {
+  const closeChar = openChar === '[' ? ']' : '}';
+  const re = new RegExp(`const ${name}\\s*=\\s*(\\${openChar}[\\s\\S]*?\\${closeChar});`);
   const m = src.match(re);
   if (!m) throw new Error(`${name} not found`);
   return JSON.parse(m[1]);
 }
 
-const ALBUMS = extractJsonArray(indexHtml, 'ALBUMS');
-const SHOWS  = extractJsonArray(indexHtml, 'SHOWS');
+const ALBUMS = extractJson(indexHtml, 'ALBUMS', '[');
+const SHOWS  = extractJson(indexHtml, 'SHOWS', '[');
+// O MEDIA_MANIFEST inline do index.html é a fonte canônica (mais completo que media-manifest.json)
+const mediaManifest = extractJson(indexHtml, 'MEDIA_MANIFEST', '{');
 
 // Mapa song normalizado -> {title canônica, album, album_id, year, artist}
 function norm(s) {
