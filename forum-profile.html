@@ -283,7 +283,9 @@ function renderAuthArea() {
   const area = document.getElementById("authArea");
   if (_token && _user) {
     const av = _user.avatar_url ? `<img src="${san(_user.avatar_url)}" alt="">` : initials(_user.display_name);
-    area.innerHTML = `<div class="user-badge"><div class="av">${av}</div><span>${san(_user.display_name)}</span><button class="logout-btn" id="logoutBtn">Sair</button></div>`;
+    const uid = _user.user_id || _user.id || "";
+    const profileHref = uid ? `forum-profile.html?id=${encodeURIComponent(uid)}` : "#";
+    area.innerHTML = `<div class="user-badge"><a href="${profileHref}" class="av" title="Meu perfil" style="text-decoration:none">${av}</a><a href="${profileHref}" style="color:inherit;text-decoration:none" title="Meu perfil">${san(_user.display_name)}</a><button class="logout-btn" id="logoutBtn">Sair</button></div>`;
     document.getElementById("logoutBtn").addEventListener("click", logout);
   } else {
     area.innerHTML = `<button class="auth-btn primary" id="loginBtn">Entrar com Google</button>`;

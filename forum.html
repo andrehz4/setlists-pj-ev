@@ -829,10 +829,12 @@ function renderAuthArea() {
   if (_state.token && _state.user) {
     const u = _state.user;
     const avHtml = avatarHtml(u.avatar_url, u.display_name);
+    const uid = u.user_id || u.id || "";
+    const profileHref = uid ? `forum-profile.html?id=${encodeURIComponent(uid)}` : "#";
     area.innerHTML = `
       <div class="user-badge">
-        <div class="av">${avHtml}</div>
-        <span>${san(u.display_name)}</span>
+        <a href="${profileHref}" class="av" title="Meu perfil" style="text-decoration:none">${avHtml}</a>
+        <a href="${profileHref}" style="color:inherit;text-decoration:none" title="Meu perfil">${san(u.display_name)}</a>
         <button class="logout-btn" id="logoutBtn">Sair</button>
       </div>`;
     document.getElementById("logoutBtn").addEventListener("click", logout);

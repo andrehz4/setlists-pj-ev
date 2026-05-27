@@ -778,10 +778,12 @@ function logout() {
 function renderAuthArea() {
   const area = document.getElementById("authArea");
   if (_token && _user) {
+    const uid = _user.user_id || _user.id || "";
+    const profileHref = uid ? `forum-profile.html?id=${encodeURIComponent(uid)}` : "#";
     area.innerHTML = `
       <div class="user-badge">
-        <div class="av">${avatarHtml(_user.avatar_url, _user.display_name)}</div>
-        <span>${san(_user.display_name)}</span>
+        <a href="${profileHref}" class="av" title="Meu perfil" style="text-decoration:none">${avatarHtml(_user.avatar_url, _user.display_name)}</a>
+        <a href="${profileHref}" style="color:inherit;text-decoration:none" title="Meu perfil">${san(_user.display_name)}</a>
         <button class="logout-btn" id="logoutBtn">Sair</button>
       </div>`;
     document.getElementById("logoutBtn").addEventListener("click", logout);
