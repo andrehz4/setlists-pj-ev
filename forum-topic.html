@@ -618,12 +618,13 @@ function renderBody(rawText) {
     if (kind === "AUDIO") {
       if (idx >= audioSlots.length) return;
       const slot = audioSlots[idx];
+      // Constrói só a estrutura; listeners são anexados em wireAudioPlayers depois
+      // do innerHTML (que descarta listeners criados aqui).
       const wrap2 = document.createElement("div");
       wrap2.className = "audio-attach";
+      wrap2.dataset.audioPending = "1";
       const play = document.createElement("button");
-      play.className = "play";
-      play.type = "button";
-      play.textContent = "▶";
+      play.className = "play"; play.type = "button"; play.textContent = "▶";
       play.setAttribute("aria-label", "Tocar áudio");
       const wave = document.createElement("div");
       wave.className = "waveform";
@@ -635,35 +636,8 @@ function renderBody(rawText) {
       meta.textContent = slot.type === "url" ? "link" : "0:00";
       const audio = document.createElement("audio");
       audio.className = "hidden";
-      audio.preload = "auto";
+      audio.preload = "metadata";
       audio.src = slot.src;
-      audio.addEventListener("error", () => {
-        const code = audio.error ? audio.error.code : "?";
-        meta.textContent = "erro " + code;
-        console.error("[audio] load fail code=" + code, slot.src.slice(0, 80));
-      });
-      function fmt(s) { if (!isFinite(s)) return "0:00"; const m = Math.floor(s/60), sec = Math.floor(s%60); return m + ":" + String(sec).padStart(2,"0"); }
-      audio.addEventListener("loadedmetadata", () => { if (audio.duration) meta.textContent = fmt(audio.duration); });
-      audio.addEventListener("timeupdate", () => {
-        if (!audio.duration) return;
-        const pct = (audio.currentTime / audio.duration) * 100;
-        prog.style.right = (100 - pct) + "%";
-        meta.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
-      });
-      audio.addEventListener("ended", () => { play.textContent = "▶"; play.classList.remove("playing"); prog.style.right = "100%"; });
-      audio.addEventListener("pause", () => { play.textContent = "▶"; play.classList.remove("playing"); });
-      audio.addEventListener("play", () => { play.textContent = "❚❚"; play.classList.add("playing"); });
-      play.addEventListener("click", () => {
-        if (audio.paused) {
-          const p = audio.play();
-          if (p && p.catch) p.catch(err => {
-            console.error("audio play failed:", err);
-            meta.textContent = "erro: " + (err.name || "play falhou");
-          });
-        } else {
-          audio.pause();
-        }
-      });
       wrap2.appendChild(play);
       wrap2.appendChild(wave);
       wrap2.appendChild(meta);
@@ -1053,6 +1027,9 @@ function renderTopic(data) {
   // Load more
   const lmBtn = document.getElementById("loadMorePostsBtn");
   if (lmBtn) lmBtn.addEventListener("click", loadMorePosts);
+
+  // Players de áudio: anexa listeners pós-innerHTML (createElement+addEventListener seria perdido na serialização)
+  wireAudioPlayers();
 
   // Badges automáticos por user_id (assíncrono, não bloqueia render)
   fetchBadgesForVisiblePosts();
@@ -2153,10 +2130,40 @@ async function loadMorePosts() {
   }
 }
 
+function wireAudioPlayers() {
+  document.querySelectorAll('.audio-attach[data-audio-pending]').forEach(wrap => {
+    wrap.removeAttribute('data-audio-pending');
+    const play = wrap.querySelector(".play");
+    const audio = wrap.querySelector("audio");
+    const meta = wrap.querySelector(".audio-meta");
+    const prog = wrap.querySelector(".waveform-progress");
+    if (!play || !audio || !meta || !prog) return;
+    const fmt = (s) => { if (!isFinite(s)) return "0:00"; const m = Math.floor(s/60), sec = Math.floor(s%60); return m + ":" + String(sec).padStart(2,"0"); };
+    audio.addEventListener("loadedmetadata", () => { if (audio.duration) meta.textContent = fmt(audio.duration); });
+    audio.addEventListener("timeupdate", () => {
+      if (!audio.duration) return;
+      const pct = (audio.currentTime / audio.duration) * 100;
+      prog.style.right = (100 - pct) + "%";
+      meta.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
+    });
+    audio.addEventListener("ended",  () => { play.textContent = "▶"; play.classList.remove("playing"); prog.style.right = "100%"; });
+    audio.addEventListener("pause",  () => { play.textContent = "▶"; play.classList.remove("playing"); });
+    audio.addEventListener("play",   () => { play.textContent = "❚❚"; play.classList.add("playing"); });
+    audio.addEventListener("error",  () => { meta.textContent = "erro ao carregar"; console.error("[audio] load fail", audio.error); });
+    play.addEventListener("click", () => {
+      if (audio.paused) {
+        const p = audio.play();
+        if (p && p.catch) p.catch(err => { console.error("[audio] play fail", err); meta.textContent = "erro: " + (err.name || "play"); });
+      } else { audio.pause(); }
+    });
+  });
+}
+
 function wireNewPostHandlers() {
   document.querySelectorAll(".react-chip:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => toggleReaction(b)); });
   document.querySelectorAll(".report-btn:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => openReport(b.dataset.id)); });
   document.querySelectorAll(".delete-btn:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => handleDeleteClick(b)); });
+  wireAudioPlayers();
   fetchBadgesForVisiblePosts();
 }
 
