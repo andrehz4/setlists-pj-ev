@@ -105,6 +105,16 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 }
 .profile-locale .sep { opacity: 0.4; }
 .profile-actions { display: flex; flex-direction: column; gap: 10px; }
+/* Andre: bio editorial italica embaixo do nome (vinda do design bundle) */
+.profile-bio {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-mute);
+  margin: 4px 0 10px;
+  max-width: 600px;
+  line-height: 1.4;
+}
 .btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--divider-strong); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; line-height: 1; text-decoration: none; }
 .btn.primary { background: var(--pj); border-color: var(--pj); color: #fff; }
 .btn.sm { padding: 6px 11px; font-size: 10px; }
@@ -168,10 +178,60 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-b
 .badge .b-desc { font-family: var(--font-editorial); font-style: italic; font-size: 12.5px; color: var(--ink-mute); line-height: 1.3; }
 
 /* Activity */
-.activity-row { display: grid; grid-template-columns: 72px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px dotted var(--divider); }
+.activity-row { display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px dotted var(--divider); }
 .activity-row:last-child { border-bottom: none; }
-.activity-date { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim); border-right: 1px solid var(--divider); padding-right: 12px; line-height: 1.5; }
+.activity-date { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); border-right: 1px solid var(--divider); padding-right: 14px; line-height: 1.5; }
 .activity-body { font-family: var(--font-body); font-size: 14px; color: var(--ink-mute); line-height: 1.5; }
+.activity-body .a-verb { color: var(--ink-dim); }
+.activity-body .a-target { font-family: var(--font-editorial); font-style: italic; color: var(--ink); }
+.activity-body .a-snippet {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-mute);
+  margin-top: 4px;
+  border-left: 2px solid var(--divider);
+  padding-left: 10px;
+}
+/* Andre: mini-grid de shows confirmados (design bundle) */
+.shows-attended {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+.show-chip {
+  border: 1px solid var(--divider-strong);
+  background: var(--bg-card-sunk);
+  padding: 10px 12px;
+  position: relative;
+}
+.show-chip::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--pj);
+}
+.show-chip.ev::before { background: var(--ev); }
+.show-chip .sc-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pj);
+  margin-bottom: 4px;
+}
+.show-chip.ev .sc-eyebrow { color: var(--ev); }
+.show-chip .sc-date {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1;
+}
+.show-chip .sc-venue {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--ink-mute);
+  margin-top: 3px;
+  line-height: 1.2;
+}
 .a-verb { color: var(--ink-dim); }
 .a-target { font-family: var(--font-editorial); font-style: italic; color: var(--ink); }
 
@@ -402,12 +462,16 @@ function renderProfile(data, cat) {
       <div class="b-desc">${b.desc}</div>
     </div>`).join("");
 
+  // Atividade combinada: mistura recent_topics (abertas) e poderia
+  // incluir replies/badges no futuro. Por ora so threads do user.
   const activityHtml = data.recent_topics.length
     ? data.recent_topics.map(t => {
         const d = new Date(t.created_at);
-        const label = d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+        const dia = String(d.getDate()).padStart(2, "0");
+        const mes = d.toLocaleDateString("pt-BR", { month: "short" }).replace(".", "");
+        const hora = d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
         return `<div class="activity-row">
-          <div class="activity-date">${label}</div>
+          <div class="activity-date">${dia} ${mes}<br>${hora}</div>
           <div class="activity-body">
             <span class="a-verb">abriu thread</span>
             <a href="forum-topic.html?id=${encodeURIComponent(t.id)}" class="a-target"> ${san(t.title)}</a>
@@ -417,21 +481,48 @@ function renderProfile(data, cat) {
       }).join("")
     : `<div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-dim);padding:20px 0">Sem atividade recente</div>`;
 
+  // Show chips no formato DD MES YY (estilo design bundle).
+  const _ptMonths = ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+  const _fmtShowDate = (iso) => {
+    if (!iso) return "";
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return iso;
+    const dia = String(d.getDate()).padStart(2, "0");
+    const mes = _ptMonths[d.getMonth()];
+    const ano = String(d.getFullYear()).slice(-2);
+    return `${dia} ${mes} ${ano}`;
+  };
+  const showsHtml = attendedShows.map(s => {
+    const isEV = (s.artist || "").toLowerCase().includes("eddie");
+    return `<div class="show-chip${isEV ? " ev" : ""}">
+      <div class="sc-eyebrow">${san(s.artist)}</div>
+      <div class="sc-date">${_fmtShowDate(s.date)}</div>
+      <div class="sc-venue">${san(s.venue)}</div>
+    </div>`;
+  }).join("");
+
+  // Posts/mes e threads/mes: divide count total por meses ativos (clamp
+  // em 1 pra evitar divisao por zero quando user eh recem-criado).
+  const monthsActive = Math.max(1, Math.round(
+    (Date.now() - new Date(data.created_at).getTime()) / (1000 * 60 * 60 * 24 * 30)
+  ));
+  const postsPerMonth = (data.post_count / monthsActive).toFixed(1).replace(/\.0$/, "");
+  const threadsPerMonth = (data.topic_count / monthsActive).toFixed(1).replace(/\.0$/, "");
+
   const isOwnProfile = _user && ((_user.user_id || _user.id) === data.id);
   _currentProfileData = data;
 
   document.getElementById("pageContent").innerHTML = `
     <div class="profile-head">
       <div class="profile-avatar-sq">${avHtml}</div>
-      <div>
+      <div class="profile-id">
         <div class="profile-handle">Membro desde ${joinDate(data.created_at)}</div>
-        <div class="profile-name">${san(data.display_name)}</div>
+        <h1 class="profile-name">${san(data.display_name)}</h1>
+        ${data.bio ? `<p class="profile-bio">${san(data.bio)}</p>` : ""}
         <div class="profile-locale">
-          <span>SMUFDPJ</span>
-          <span class="sep">/</span>
-          <span>${data.topic_count} thread${data.topic_count !== 1 ? "s" : ""} abertas</span>
-          <span class="sep">/</span>
-          <span>${data.post_count} post${data.post_count !== 1 ? "s" : ""}</span>
+          ${data.city ? `<span>${san(data.city)}</span><span class="sep">/</span>` : ""}
+          <span>${(data.shows_attended || []).length} show${(data.shows_attended || []).length !== 1 ? "s" : ""} assistido${(data.shows_attended || []).length !== 1 ? "s" : ""}</span>
+          ${data.rank_pos ? `<span class="sep">/</span><span>#${data.rank_pos} no ranking</span>` : ""}
         </div>
       </div>
       <div class="profile-actions">
@@ -442,58 +533,33 @@ function renderProfile(data, cat) {
     </div>
 
     <div class="profile-stats-strip">
-      <div class="profile-stat"><div class="v pj">${data.topic_count}</div><div class="l">Threads abertas</div></div>
-      <div class="profile-stat"><div class="v">${data.post_count}</div><div class="l">Posts no fórum</div></div>
-      <div class="profile-stat"><div class="v ev">${data.reactions_received}</div><div class="l">Reações recebidas</div></div>
-      <div class="profile-stat"><div class="v heard">${(data.shows_attended || []).length}</div><div class="l">Shows confirmados</div></div>
-      <div class="profile-stat"><div class="v">—</div><div class="l">Bootlegs partilhados</div></div>
+      <div class="profile-stat"><div class="v pj">${data.post_count}</div><div class="l">Posts no fórum</div></div>
+      <div class="profile-stat"><div class="v">${data.topic_count}</div><div class="l">Threads abertas</div></div>
+      <div class="profile-stat"><div class="v heard">${(data.shows_attended || []).length}</div><div class="l">"Tava lá" — shows</div></div>
+      <div class="profile-stat"><div class="v ev">—</div><div class="l">Bootlegs partilhados</div></div>
+      <div class="profile-stat"><div class="v">${data.reactions_received}</div><div class="l">🤘 recebidos</div></div>
     </div>
 
     <div class="profile-body">
       <div>
         <div class="section-block">
           <h2 class="section-title">Badges</h2>
-          <div class="section-sub">// COLETADAS · ${badges.filter(b => b.unlocked).length} de ${badges.length}</div>
+          <div class="section-sub">// COLECIONADAS · ${badges.filter(b => b.unlocked).length} de ${badges.length}</div>
           <div class="badge-strip">${badgesHtml}</div>
         </div>
 
         <div class="section-block">
-          <h2 class="section-title">Threads recentes</h2>
-          <div class="section-sub">// ABERTAS POR ${san(data.display_name).toUpperCase()}</div>
-          ${data.recent_topics.length
-            ? data.recent_topics.map(t => `
-              <div class="topic-row">
-                <a href="forum-topic.html?id=${encodeURIComponent(t.id)}" class="topic-row-title">${san(t.title)}</a>
-                <div class="topic-row-meta">
-                  <span class="topic-tag">${san(t.category)}</span>
-                  <span>${timeAgo(t.created_at)}</span>
-                  <span>${t.reply_count} resposta${t.reply_count !== 1 ? "s" : ""}</span>
-                </div>
-              </div>`).join("")
-            : `<div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-dim);padding:20px 0">Nenhuma thread ainda</div>`
-          }
-        </div>
-
-        <div class="section-block">
           <h2 class="section-title">Atividade recente</h2>
-          <div class="section-sub">// ÚLTIMAS AÇÕES</div>
+          <div class="section-sub">// ÚLTIMOS 30 DIAS</div>
           ${activityHtml}
         </div>
 
         <div class="section-block">
-          <h2 class="section-title">Shows confirmados</h2>
-          <div class="section-sub">// ESTEVE EM ${attendedShows.length} SHOW${attendedShows.length !== 1 ? "S" : ""}</div>
+          <h2 class="section-title">Shows que esteve</h2>
+          <div class="section-sub">// ${attendedShows.length} PRESENCIADO${attendedShows.length !== 1 ? "S" : ""} · CRUZADO COM O ARQUIVO</div>
           ${attendedShows.length
-            ? `<div style="display:flex;flex-direction:column;gap:6px">
-                ${attendedShows.map(s => `
-                  <div class="topic-row" style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--divider)">
-                    <div style="flex:1;min-width:0">
-                      <div style="font-family:var(--font-editorial);font-size:14px;color:var(--ink)">${san(s.artist)} <span style="color:var(--ink-dim);font-style:italic">·</span> ${san(s.venue)}</div>
-                      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);margin-top:2px">${_fmtDateBR(s.date)} · ${san(s.city)}</div>
-                    </div>
-                  </div>`).join("")}
-              </div>`
-            : `<div class="empty-state" style="font-style:italic;color:var(--ink-dim);font-family:var(--font-editorial)">Ainda não marcou nenhum show. Clica em ✎ Editar perfil pra confirmar presença nos shows que esteve.</div>`}
+            ? `<div class="shows-attended">${showsHtml}</div>`
+            : `<div style="font-family:var(--font-editorial);font-style:italic;color:var(--ink-mute);padding:18px 0">Ainda não marcou nenhum show. ${isOwnProfile ? 'Clica em ✎ Editar perfil pra confirmar presença nos shows que esteve.' : ''}</div>`}
         </div>
       </div>
 
@@ -504,14 +570,16 @@ function renderProfile(data, cat) {
             <div style="font-family:var(--font-display);font-size:44px;color:var(--pj);letter-spacing:-0.02em;line-height:1">#${data.rank_pos}</div>
             <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-top:6px">no ranking de posts</div>
           </div>
-          <div class="rail-stat-row"><span class="k">Posts</span><span class="v">${data.post_count}</span></div>
-          <div class="rail-stat-row"><span class="k">Threads</span><span class="v">${data.topic_count}</span></div>
+          <div class="rail-stat-row"><span class="k">Posts/mês</span><span class="v">${postsPerMonth}</span></div>
+          <div class="rail-stat-row"><span class="k">Threads/mês</span><span class="v">${threadsPerMonth}</span></div>
           <div class="rail-stat-row"><span class="k">🤧 Tava lá</span><span class="v" style="color:var(--heard)">${data.tava_la_count || 0}</span></div>
           <div class="rail-stat-row"><span class="k">👍 Recebidos</span><span class="v" style="color:var(--ev)">${data.reactions_received}</span></div>
         </div>` : ""}
         <div class="rail-card">
           <div class="rail-card-label">// MEMBRO</div>
           <div class="rail-stat-row"><span class="k">Desde</span><span class="v" style="font-family:var(--font-mono);font-size:11px">${joinDate(data.created_at)}</span></div>
+          ${data.email ? `<div class="rail-stat-row"><span class="k">Email</span><span class="v" style="font-family:var(--font-mono);font-size:10px;color:var(--ink-mute)">${san(data.email)}</span></div>` : ""}
+          ${data.birth_year ? `<div class="rail-stat-row"><span class="k">Nascimento</span><span class="v" style="font-family:var(--font-mono);font-size:11px">${data.birth_year}</span></div>` : ""}
         </div>
         <a href="forum.html" class="btn" style="justify-content:center">← Voltar ao fórum</a>
       </aside>
