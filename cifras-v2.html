@@ -3525,6 +3525,13 @@ html[data-theme="dark"] .alphatab-surface {
 }
 .alphatab-surface .at-surface,
 .alphatab-surface .at-surface-svg { background: transparent !important; }
+/* AlphaTab renderiza ~83 placeholder divs no .at-surface mesmo sem tracks
+   carregadas, alongando o documento e contribuindo pra faixa vazia abaixo
+   do footer. Force max-height + overflow no pane oculto pra evitar reflow
+   fora da viewport. Andre flagou: tab-pane-tab[hidden] ja oculta visual
+   mas o render interno permanece custoso. */
+.tab-pane-tab[hidden] .at-surface,
+.tab-pane-tab[hidden] .alphatab-surface { display: none !important; }
 /* Cursor de playback do AlphaTab: realce vermelho PJ sobre o compasso ativo */
 .alphatab-surface .at-cursor-bar {
   background: rgba(193, 39, 45, 0.15) !important;
@@ -6690,7 +6697,7 @@ body {
     radial-gradient(circle at 88% 12%, rgba(26,22,17,0.02) 0 1px, transparent 2px),
     linear-gradient(0deg, rgba(26,22,17,0.015) 0 1px, transparent 1px 6px) !important;
   background-size: 31px 31px, 47px 47px, 59px 59px, 73px 73px, 100% 6px !important;
-  padding-bottom: 140px !important;
+  padding-bottom: 0 !important;
 }
 html[data-theme="dark"] body {
   background-image: radial-gradient(circle at 13% 28%, rgba(236,222,181,0.03) 0 1.2px, transparent 2px) !important;
@@ -10882,10 +10889,10 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
    =========================================================== */
 .site-footer {
   position: relative;
-  margin-top: 80px;
+  margin-top: 24px;
   background: var(--bg-card);
   border-top: 1px solid var(--divider);
-  padding: 56px 0 28px;
+  padding: 24px 0 20px;
   font-family: var(--font-body);
 }
 .site-footer::before {
@@ -11210,7 +11217,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.13</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.14</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
