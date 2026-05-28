@@ -15,6 +15,70 @@ const API_BASE = "https://graph.instagram.com/v21.0";
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 
+// Codes documentados de rate-limit do Graph API (Meta).
+// 4: API too many calls
+// 17: User request limit reached
+// 32: Page request limit reached
+// 613: Calls to this api have exceeded the rate limit
+// 80007: Content publishing limit (50 posts/24h da IG content publishing API)
+// 80004, 80008, 80003, 80014: outras variantes do Content Publishing BUC
+const RATE_LIMIT_CODES = new Set([4, 17, 32, 613, 80003, 80004, 80007, 80008, 80014]);
+const RATE_LIMIT_PATTERN = /application request limit|rate limit|too many requests|quota|content publishing limit/i;
+
+// Erro tipado pra qualquer falha que veio da IG API. Carrega o payload
+// completo de error.* (code, subcode, type, fbtrace_id) pra debug.
+// fbtrace_id e crucial pra abrir suporte com Meta se o problema persistir.
+export class IGAPIError extends Error {
+  constructor({ path, statusCode, code, subcode, type, fbtraceId, message }) {
+    super(`IG API ${path}: ${message || `HTTP ${statusCode}`}`);
+    this.name = "IGAPIError";
+    this.path = path;
+    this.statusCode = statusCode;
+    this.code = code;
+    this.subcode = subcode;
+    this.type = type;
+    this.fbtraceId = fbtraceId;
+    this.apiMessage = message;
+  }
+  toDetailString() {
+    const parts = [this.message];
+    const meta = [];
+    if (this.code != null) meta.push(`code=${this.code}`);
+    if (this.subcode != null) meta.push(`subcode=${this.subcode}`);
+    if (this.type) meta.push(`type=${this.type}`);
+    if (this.fbtraceId) meta.push(`fbtrace=${this.fbtraceId}`);
+    if (meta.length) parts.push(`[${meta.join(" ")}]`);
+    return parts.join(" ");
+  }
+}
+
+// Subclasse pra rate limit. Detectada por code conhecido OU mensagem
+// que bate o pattern. Permite o worker fazer backoff inteligente em vez
+// de tratar como erro generico.
+export class IGRateLimitError extends IGAPIError {
+  constructor(opts) {
+    super(opts);
+    this.name = "IGRateLimitError";
+    this.isRateLimit = true;
+  }
+}
+
+function classifyIGError({ path, statusCode, body }) {
+  const err = body?.error || {};
+  const opts = {
+    path,
+    statusCode,
+    code: err.code,
+    subcode: err.error_subcode,
+    type: err.type,
+    fbtraceId: err.fbtrace_id,
+    message: err.message || `HTTP ${statusCode}`,
+  };
+  const isRL = (err.code != null && RATE_LIMIT_CODES.has(err.code))
+    || (typeof err.message === "string" && RATE_LIMIT_PATTERN.test(err.message));
+  return isRL ? new IGRateLimitError(opts) : new IGAPIError(opts);
+}
+
 const HASHTAGS_FIXED = ["pearljam", "eddievedder", "pjbrasil", "grunge", "smufdpj"];
 const IG_CAPTION_MAX = 2200;
 const SITE_URL = "setlists-pj-ev.pages.dev";
@@ -127,8 +191,7 @@ async function postIG(path, body) {
     responseType: "json",
   });
   if (res.statusCode >= 400) {
-    const errMsg = res.body?.error?.message || `HTTP ${res.statusCode}`;
-    throw new Error(`IG API ${path}: ${errMsg}`);
+    throw classifyIGError({ path, statusCode: res.statusCode, body: res.body });
   }
   return res.body;
 }
@@ -261,7 +324,7 @@ async function getContainerStatus({ accessToken, containerId }) {
     responseType: "json",
   });
   if (res.statusCode >= 400) {
-    throw new Error(`getContainerStatus ${containerId}: HTTP ${res.statusCode} ${res.body?.error?.message || ""}`);
+    throw classifyIGError({ path: `/${containerId}`, statusCode: res.statusCode, body: res.body });
   }
   return res.body || {};
 }
