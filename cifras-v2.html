@@ -4129,6 +4129,33 @@ html[data-theme="dark"] .alphatab-version-select {
   -webkit-backdrop-filter: blur(8px);
 }
 .alphatab-fab.show { display: flex; }
+/* No modo cifra a pausa cumpre play/pause; o stop/recomecar fica
+   redundante e mostrava dois ▶ ao mesmo tempo. Esconde no cifra. */
+.alphatab-fab.cifra-mode .alphatab-fab-stop { display: none; }
+/* Botao × pra fechar o FAB. Position absolute fora do flex flow pra
+   nao empurrar os botoes principais (play/stop). */
+.alphatab-fab-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 0;
+  background: #1a1612;
+  color: #fff;
+  font: 700 15px/1 var(--font-mono, 'JetBrains Mono', monospace);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 100ms ease, background 120ms ease;
+  z-index: 1;
+  padding: 0;
+}
+.alphatab-fab-close:hover { background: var(--pj, #c1272d); transform: scale(1.1); }
+.alphatab-fab-close:active { transform: scale(0.95); }
 .alphatab-fab-btn {
   width: 48px;
   height: 48px;
@@ -10851,6 +10878,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 .footer-bottom-right { display: inline-flex; align-items: center; gap: 14px; }
 .footer-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--divider-strong); border-radius: 999px; color: var(--ink-mute); }
 .footer-pill .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--heard); box-shadow: 0 0 0 3px color-mix(in srgb, var(--heard) 25%, transparent); }
+.footer-build { font: 500 9px/1 var(--font-mono); letter-spacing: .12em; color: var(--ink-dim); opacity: .55; user-select: all; cursor: text; }
 .footer-credit em { font-family: var(--font-editorial); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; color: var(--ink-mute); }
 
 </style>
@@ -11119,6 +11147,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.01</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16766,6 +16795,27 @@ function _renderTabPanel(body, songKey, tabMeta) {
           `;
           document.body.appendChild(fab);
         }
+        // FAB no contexto TAB: stop volta a aparecer (cifra esconde via inline style).
+        fab.classList.remove('cifra-mode');
+        const stopVisFix = fab.querySelector('.alphatab-fab-stop');
+        if (stopVisFix) stopVisFix.style.display = '';
+        // Garante o botao × de fechar (criado uma unica vez por contexto).
+        let fabClose = fab.querySelector('.alphatab-fab-close');
+        if (!fabClose) {
+          fabClose = document.createElement('button');
+          fabClose.type = 'button';
+          fabClose.className = 'alphatab-fab-close';
+          fabClose.setAttribute('aria-label', 'Fechar');
+          fabClose.textContent = '×';
+          fab.appendChild(fabClose);
+        }
+        const fabCloseNew = fabClose.cloneNode(true);
+        fabClose.replaceWith(fabCloseNew);
+        fabCloseNew.addEventListener('click', (e) => {
+          e.stopPropagation();
+          try { api.stop(); } catch (_) {}
+          fab.classList.remove('show');
+        });
         const fabPause = fab.querySelector('.alphatab-fab-pause');
         const fabStop = fab.querySelector('.alphatab-fab-stop');
         const fabLoop = fab.querySelector('.alphatab-fab-loop');
@@ -18761,9 +18811,16 @@ function _populateMixer(mixerAside, tracks) {
       e.stopPropagation();
       const v = parseFloat(masterSlider.value);
       if (masterVal) masterVal.textContent = Math.round(v * 100) + '%';
+      // AlphaTab (TAB): masterVolume da api
       if (_activeAlphaTabApi) {
         try { _activeAlphaTabApi.masterVolume = v; } catch (err) {}
       }
+      // Cifra player: usa window._cifraVolume (lido por _playChordSound).
+      // Sincroniza tambem os sliders locais .cifra-mode-vol pra refletir.
+      window._cifraVolume = v;
+      document.querySelectorAll('.cifra-mode-vol').forEach(sl => {
+        if (sl !== masterSlider) sl.value = String(v);
+      });
       if (masterIcon) {
         masterIcon.classList.toggle('muted', v === 0);
         masterIcon.textContent = v === 0 ? '🔇' : '🔊';
@@ -19227,12 +19284,16 @@ function _ensureCifraFab() {
     `;
     document.body.appendChild(fab);
   }
+  // Modo cifra: pausa cumpre play/pause, esconde o stop (style.display='none'
+  // direto no botao pra nao depender de CSS class que pode nao ter carregado).
+  fab.classList.add('cifra-mode');
   // Clona os botoes pra apagar handlers anteriores (do AlphaTab eventualmente)
   const pauseOld = fab.querySelector('.alphatab-fab-pause');
   const stopOld = fab.querySelector('.alphatab-fab-stop');
   if (pauseOld) {
     const pauseNew = pauseOld.cloneNode(true);
     pauseOld.replaceWith(pauseNew);
+    pauseNew.style.display = '';
     pauseNew.addEventListener('click', (e) => {
       e.stopPropagation();
       if (!_activeCifraRoot) return;
@@ -19243,8 +19304,11 @@ function _ensureCifraFab() {
     });
   }
   if (stopOld) {
+    // Stop escondido no contexto cifra (style direto, robusto a cache de CSS).
+    // Handler mantido como no-op safety se alguem forcar display.
     const stopNew = stopOld.cloneNode(true);
     stopOld.replaceWith(stopNew);
+    stopNew.style.display = 'none';
     stopNew.addEventListener('click', (e) => {
       e.stopPropagation();
       if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
@@ -19253,6 +19317,24 @@ function _ensureCifraFab() {
   // Esconde o terceiro botao (loop) se existir, cifra nao tem loop ainda
   const loopBtn = fab.querySelector('.alphatab-fab-loop');
   if (loopBtn) loopBtn.style.display = 'none';
+  // Botao × de fechar: para o cifra player e esconde o FAB. Position absolute
+  // pra nao empurrar os outros botoes (canto superior direito do pill).
+  let fabClose = fab.querySelector('.alphatab-fab-close');
+  if (!fabClose) {
+    fabClose = document.createElement('button');
+    fabClose.type = 'button';
+    fabClose.className = 'alphatab-fab-close';
+    fabClose.setAttribute('aria-label', 'Fechar');
+    fabClose.textContent = '×';
+    fab.appendChild(fabClose);
+  }
+  const fabCloseNew = fabClose.cloneNode(true);
+  fabClose.replaceWith(fabCloseNew);
+  fabCloseNew.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
+    fab.classList.remove('show');
+  });
   return fab;
 }
 
@@ -19332,14 +19414,19 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
-  // Auto-scroll inicial: APENAS na view Cifras & Tabs. No setlist nao rola
-  // a window (Andre flagou que ficava ruim). Detecta contexto via
-  // .cifra-detail-wrap. Igual o tab que tambem so rola na view.
+  // Scroll inicial APENAS na view Cifras: traz a .alphatab-surface (chord-chips)
+  // pro topo da viewport com offset de 12vh. Resultado: chord-chips ficam
+  // visiveis no topo e o braco docked (que fica entre surface e transport-bottom)
+  // aparece logo abaixo, dentro do viewport. Espera 1 frame pro DOM estabilizar
+  // (insercao do braco via _updateCifraFretboard ocorre no primeiro chord).
   if (root.closest('.cifra-detail-wrap')) {
-    const scrollAnchor = root.querySelector('.alphatab-transport-top') || root;
-    if (scrollAnchor) {
-      const y = scrollAnchor.getBoundingClientRect().top + window.scrollY - 16;
-      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    const surfaceForScroll = root.querySelector('.alphatab-surface');
+    if (surfaceForScroll) {
+      requestAnimationFrame(() => {
+        const offset = Math.round(window.innerHeight * 0.12);
+        const y = surfaceForScroll.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      });
     }
   }
 
