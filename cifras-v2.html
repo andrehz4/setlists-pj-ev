@@ -11217,7 +11217,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.14</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.15</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16364,11 +16364,32 @@ function _renderTabPanel(body, songKey, tabMeta) {
         return MAP[k] || raw;
       };
       const _renderStrummingHeader = (multiObj) => {
-        if (!multiObj || !multiObj.instruments) return '';
-        const idata = multiObj.instruments[_activeCifraInstrument];
-        if (!idata || !idata.strumming || !idata.strumming.beats) return '';
-        const s = idata.strumming;
         const _esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+        // Zoom de texto: sempre presente, independente de strumming existir.
+        // Andre flagou que no Piano (sem strumming.beats) a barra inteira sumia
+        // e o controle de zoom ia junto.
+        const zoomCtrl = `<div class="cifra-text-zoom" role="group" aria-label="Tamanho do texto da cifra">
+                            <span class="cifra-text-zoom-label">Tamanho do texto da cifra</span>
+                            <div class="cifra-text-zoom-row">
+                              <button type="button" class="cifra-text-zoom-btn" data-act="down" aria-label="Diminuir tamanho do texto">A−</button>
+                              <input type="range" class="cifra-text-zoom-slider" min="0.7" max="1.6" step="0.05" value="1.2" aria-label="Tamanho da letra e cifra">
+                              <button type="button" class="cifra-text-zoom-btn" data-act="up" aria-label="Aumentar tamanho do texto">A+</button>
+                              <output class="cifra-text-zoom-val">120%</output>
+                            </div>
+                          </div>`;
+        const idata = multiObj && multiObj.instruments && multiObj.instruments[_activeCifraInstrument];
+        const hasStrumming = idata && idata.strumming && Array.isArray(idata.strumming.beats) && idata.strumming.beats.length;
+        if (!hasStrumming) {
+          // Instrumento sem strumming (ex: piano nao tem padrao de palhetada).
+          // Renderiza barra minimal: label do instrumento + zoom control.
+          const instLbl = (idata && idata.label) || _cifraInstrumentLabel(_activeCifraInstrument);
+          return `<div class="cifra-strumming-bar" aria-label="Controles da cifra">
+                    <span class="cifra-strumming-label">${_esc(instLbl)}</span>
+                    <div class="cifra-strumming-row" aria-hidden="true"></div>
+                    ${zoomCtrl}
+                  </div>`;
+        }
+        const s = idata.strumming;
         const cells = s.beats.map(b => {
           const arrow = b.stroke === 'down' ? '↓' : '↑';
           const mutedCls = b.muted ? ' cifra-strum-muted' : '';
@@ -16380,15 +16401,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
         return `<div class="cifra-strumming-bar" aria-label="Padrão de palhetada">
                   <span class="cifra-strumming-label">${_esc(_ptStrumLabel(s.label)) || 'PADRÃO'} <em>${_esc(s.bpm)} bpm</em></span>
                   <div class="cifra-strumming-row">${cells}</div>
-                  <div class="cifra-text-zoom" role="group" aria-label="Tamanho do texto da cifra">
-                    <span class="cifra-text-zoom-label">Tamanho do texto da cifra</span>
-                    <div class="cifra-text-zoom-row">
-                      <button type="button" class="cifra-text-zoom-btn" data-act="down" aria-label="Diminuir tamanho do texto">A−</button>
-                      <input type="range" class="cifra-text-zoom-slider" min="0.7" max="1.6" step="0.05" value="1.2" aria-label="Tamanho da letra e cifra">
-                      <button type="button" class="cifra-text-zoom-btn" data-act="up" aria-label="Aumentar tamanho do texto">A+</button>
-                      <output class="cifra-text-zoom-val">120%</output>
-                    </div>
-                  </div>
+                  ${zoomCtrl}
                 </div>`;
       };
       cifraPane.innerHTML = `
