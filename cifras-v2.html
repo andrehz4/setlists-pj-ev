@@ -11207,7 +11207,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.08</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.09</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16374,9 +16374,9 @@ function _renderTabPanel(body, songKey, tabMeta) {
                     <span class="cifra-text-zoom-label">Tamanho do texto da cifra</span>
                     <div class="cifra-text-zoom-row">
                       <button type="button" class="cifra-text-zoom-btn" data-act="down" aria-label="Diminuir tamanho do texto">A−</button>
-                      <input type="range" class="cifra-text-zoom-slider" min="0.7" max="1.6" step="0.05" value="1" aria-label="Tamanho da letra e cifra">
+                      <input type="range" class="cifra-text-zoom-slider" min="0.7" max="1.6" step="0.05" value="1.2" aria-label="Tamanho da letra e cifra">
                       <button type="button" class="cifra-text-zoom-btn" data-act="up" aria-label="Aumentar tamanho do texto">A+</button>
-                      <output class="cifra-text-zoom-val">100%</output>
+                      <output class="cifra-text-zoom-val">120%</output>
                     </div>
                   </div>
                 </div>`;
@@ -19402,9 +19402,9 @@ function _syncCifraTextZoomUI(v) {
 function _initCifraTextZoom() {
   if (window._cifraTextZoomReady) { _syncCifraTextZoomUI(); return; }
   window._cifraTextZoomReady = true;
-  // Restaura valor salvo no primeiro init.
+  // Restaura valor salvo no primeiro init. Default 1.2 (120%) pra novos usuarios.
   let saved = parseFloat(localStorage.getItem(_CIFRA_FONT_SCALE_KEY));
-  if (!Number.isFinite(saved)) saved = 1;
+  if (!Number.isFinite(saved)) saved = 1.2;
   _applyCifraTextZoom(saved);
   // Delegation no document pra sobreviver a re-renders do strumming-bar.
   document.addEventListener('input', (e) => {
