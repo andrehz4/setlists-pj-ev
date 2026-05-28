@@ -5185,6 +5185,66 @@ html[data-theme="dark"] .alphatab-version-select {
   gap: 28px 22px;
   padding: 4px;
 }
+/* Paginacao do grid de noticias. Aparece acima (entre chips e grid) e
+   abaixo (entre grid e lista compacta). Estilo discreto, monospace pra
+   bater com a estetica de jornal/recorte. */
+.news-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 14px 4px;
+  margin: 8px 0;
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+}
+.news-pagination[data-position="top"] { margin-top: 4px; margin-bottom: 18px; }
+.news-pagination[data-position="bottom"] { margin-top: 22px; margin-bottom: 14px; }
+.news-page-btn,
+.news-page-nav {
+  background: transparent;
+  border: 1px solid var(--divider-strong);
+  color: var(--ink-mute);
+  font: 700 11px/1 var(--font-mono, 'JetBrains Mono', monospace);
+  padding: 6px 10px;
+  min-width: 32px;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+  letter-spacing: 0.04em;
+}
+.news-page-btn:hover:not(.active):not(:disabled),
+.news-page-nav:hover:not(:disabled) {
+  background: var(--bg-card);
+  color: var(--ink);
+  border-color: var(--ink-mute);
+}
+.news-page-btn.active {
+  background: var(--pj, #c1272d);
+  color: #fff;
+  border-color: var(--pj, #c1272d);
+}
+.news-page-nav {
+  font-size: 14px;
+  padding: 4px 12px;
+}
+.news-page-nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.news-page-info {
+  font: 400 10px/1 var(--font-mono, 'JetBrains Mono', monospace);
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+  margin-left: 10px;
+  text-transform: lowercase;
+}
+@media (max-width: 600px) {
+  .news-pagination { padding: 10px 0; gap: 4px; }
+  .news-page-info { display: none; }
+  .news-page-btn { min-width: 28px; padding: 5px 7px; font-size: 10px; }
+}
 /* Tag pill plana pra lista compacta (sem rotacao) */
 .news-tag-pill {
   display: inline-block;
@@ -11301,7 +11361,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.05</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.06</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -20143,6 +20203,42 @@ const _NEWS_TAG_ORDER = [
   "tenclub", "comunidade", "memoria", "br", "bootleg",
 ];
 
+// Paginacao do grid de noticias. Mude essa variavel pra ajustar quantos
+// cards aparecem por pagina. Hero (items[0]) NAO conta - eh fixo.
+// Lista compacta (items 21+ no chunk atual) continua existindo abaixo
+// do grid como complemento; Andre flagou que paginacao eh essencial.
+const _NEWS_PER_PAGE = 22;
+
+// Estado da pagina atual (zero-indexed). Reseta pra 0 ao trocar filtro
+// de tag ou ao trocar de view (ver renderNewsView).
+window._newsCurrentPage = window._newsCurrentPage || 0;
+window._newsActiveTag = window._newsActiveTag || "all";
+
+// Renderiza barra de paginacao (acima ou abaixo do grid). Position eh
+// 'top' ou 'bottom' so pra data-attr (CSS pode diferenciar; hoje sao
+// iguais visualmente). Total <= 1 nao renderiza nada (so 1 pagina).
+function _renderNewsPagination(currentPage, totalPages, position) {
+  if (totalPages <= 1) return "";
+  const maxBtns = 5; // janela deslizante de botoes numericos
+  let start = Math.max(0, currentPage - Math.floor(maxBtns / 2));
+  let end = Math.min(totalPages, start + maxBtns);
+  start = Math.max(0, end - maxBtns);
+  const btns = [];
+  for (let i = start; i < end; i++) {
+    const active = i === currentPage ? " active" : "";
+    btns.push(`<button class="news-page-btn${active}" data-newspage="${i}" aria-label="Página ${i + 1}" aria-current="${i === currentPage ? 'page' : 'false'}">${i + 1}</button>`);
+  }
+  const prevDisabled = currentPage === 0 ? " disabled" : "";
+  const nextDisabled = currentPage === totalPages - 1 ? " disabled" : "";
+  return `
+    <nav class="news-pagination" data-position="${position}" aria-label="Paginação de notícias">
+      <button class="news-page-nav" data-newspage="${Math.max(0, currentPage - 1)}" ${prevDisabled} aria-label="Página anterior">‹</button>
+      ${btns.join("")}
+      <button class="news-page-nav" data-newspage="${Math.min(totalPages - 1, currentPage + 1)}" ${nextDisabled} aria-label="Próxima página">›</button>
+      <span class="news-page-info">pág ${currentPage + 1} de ${totalPages}</span>
+    </nav>`;
+}
+
 function _renderNewsTagStrip(tags, max = 2) {
   if (!Array.isArray(tags) || !tags.length) return "";
   return tags.slice(0, max).map(t => {
@@ -20169,11 +20265,22 @@ function _newsEditionNumber(count) {
 }
 
 function _renderNewsGrid(container, items, manifest) {
-  // Hero = primeiro item (mais recente). Grid recebe items[1..19] (19 cards,
-  // total 20 com hero). Itens 20+ vao para lista compacta abaixo do grid.
+  // Hero = primeiro item (mais recente, sempre items[0], nao pagina).
+  // Grid agora eh paginado em chunks de _NEWS_PER_PAGE. Lista compacta
+  // mantida pra mostrar items adicionais da pagina atual (>20 no chunk).
   const heroItem = items[0];
-  const gridItems = items.slice(1, 20);
-  const listItems = items.slice(20);
+  const tailItems = items.slice(1); // tudo exceto o hero
+  const totalPages = Math.max(1, Math.ceil(tailItems.length / _NEWS_PER_PAGE));
+  // Clamp do estado atual: pagina pode ter ficado fora do range apos
+  // troca de tag (filter reduz items).
+  if (window._newsCurrentPage >= totalPages) window._newsCurrentPage = 0;
+  const currentPage = window._newsCurrentPage;
+  const pageStart = currentPage * _NEWS_PER_PAGE;
+  const pageItems = tailItems.slice(pageStart, pageStart + _NEWS_PER_PAGE);
+  // Dentro da pagina atual: primeiros 19 viram cards do grid, resto vai
+  // pra lista compacta (raro mas possivel pra valores grandes de PER_PAGE).
+  const gridItems = pageItems.slice(0, 19);
+  const listItems = pageItems.slice(19);
 
   // Filtros por TAG (em vez de por fonte). Conta itens por tag.
   const tagCounts = new Map();
@@ -20254,9 +20361,11 @@ function _renderNewsGrid(container, items, manifest) {
       ${chips}
       <span class="news-updated">${updatedLabel}</span>
     </div>
+    ${_renderNewsPagination(currentPage, totalPages, 'top')}
     <div class="news-grid">
       ${cards}
     </div>
+    ${_renderNewsPagination(currentPage, totalPages, 'bottom')}
     ${listHtml}`;
 
   // Auto-scroll ate o hero na PRIMEIRA carga da view: usuario que abre o
@@ -20309,7 +20418,8 @@ function _renderNewsGrid(container, items, manifest) {
     });
   });
 
-  // filtros por TAG (afeta hero + grid)
+  // filtros por TAG (afeta hero + grid). Troca de tag reseta pagina pra 0
+  // pra evitar mostrar "pagina 5 de 1" com nada visivel.
   const hero = container.querySelector(".news-hero");
   container.querySelectorAll(".news-chip").forEach(chip => {
     chip.addEventListener("click", () => {
@@ -20320,12 +20430,31 @@ function _renderNewsGrid(container, items, manifest) {
       chip.classList.add("active");
       chip.setAttribute("aria-pressed", "true");
       const tag = chip.dataset.tag;
+      window._newsActiveTag = tag;
+      window._newsCurrentPage = 0; // sempre comeca na pagina 1 ao filtrar
       // hero so aparece em "Todas" (senao o filtro perde o ponto)
       if (hero) hero.style.display = (tag === "all") ? "" : "none";
       container.querySelectorAll(".news-card, .news-list-item").forEach(card => {
         const cardTags = (card.dataset.tags || "").split(",").filter(Boolean);
         card.hidden = (tag !== "all" && !cardTags.includes(tag));
       });
+    });
+  });
+
+  // Handlers dos botoes de paginacao (topo e fundo). Re-renderiza a view
+  // inteira no estado da pagina nova; scroll suave de volta pro topo do
+  // grid pra UX consistente (user vai pra "comeco da nova pagina").
+  container.querySelectorAll("[data-newspage]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (btn.disabled) return;
+      const newPage = parseInt(btn.dataset.newspage, 10);
+      if (Number.isNaN(newPage) || newPage === window._newsCurrentPage) return;
+      window._newsCurrentPage = newPage;
+      renderNewsView();
+      // scroll suave pro topo do grid pra mostrar "esta na pagina nova"
+      const grid = document.querySelector(".news-grid");
+      if (grid) grid.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 }
