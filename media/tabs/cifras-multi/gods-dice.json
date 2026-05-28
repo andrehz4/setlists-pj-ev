@@ -69,6 +69,17 @@
           "fingering": "x02230",
           "fingers": "x02340",
           "fundamental": null
+        },
+        "F5": {
+          "fingering": "133xxx",
+          "fingers": "134xxx",
+          "fundamental": "F",
+          "barre": 1
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": "A"
         }
       },
       "strumming": {
@@ -171,6 +182,16 @@
           "fingering": "2200",
           "fingers": "1200",
           "fundamental": null
+        },
+        "F5": {
+          "fingering": "10xx",
+          "fingers": "10xx",
+          "fundamental": "F"
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": "A"
         }
       },
       "strumming": {
@@ -296,6 +317,23 @@
             "E"
           ],
           "fundamental": null
+        },
+        "F5": {
+          "notes": [
+            "F",
+            "C"
+          ],
+          "fundamental": "F",
+          "inversion": null
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": "A",
+          "inversion": null
         }
       }
     }

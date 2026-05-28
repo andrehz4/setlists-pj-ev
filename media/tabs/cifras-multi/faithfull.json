@@ -72,6 +72,12 @@
           "fingering": "x20003",
           "fingers": "x20003",
           "fundamental": null
+        },
+        "F5": {
+          "fingering": "133xxx",
+          "fingers": "134xxx",
+          "fundamental": "F",
+          "barre": 1
         }
       },
       "strumming": {
@@ -175,6 +181,11 @@
           "fingering": "0232",
           "fingers": "0213",
           "fundamental": null
+        },
+        "F5": {
+          "fingering": "10xx",
+          "fingers": "10xx",
+          "fundamental": "F"
         }
       },
       "strumming": {
@@ -305,6 +316,14 @@
             "D"
           ],
           "fundamental": null
+        },
+        "F5": {
+          "notes": [
+            "F",
+            "C"
+          ],
+          "fundamental": "F",
+          "inversion": null
         }
       }
     }

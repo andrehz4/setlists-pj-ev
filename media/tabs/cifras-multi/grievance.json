@@ -88,6 +88,16 @@
           "fingering": "x32010",
           "fingers": "x32010",
           "fundamental": null
+        },
+        "A5": {
+          "fingering": "x022xx",
+          "fingers": "x023xx",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "x244xx",
+          "fingers": "x134xx",
+          "fundamental": null
         }
       },
       "strumming": {
@@ -209,6 +219,16 @@
         "C": {
           "fingering": "0003",
           "fingers": "0003",
+          "fundamental": null
+        },
+        "A5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
+        },
+        "B5": {
+          "fingering": "4200",
+          "fingers": "3100",
           "fundamental": null
         }
       },
@@ -369,6 +389,20 @@
             "C",
             "E",
             "G"
+          ],
+          "fundamental": null
+        },
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "B5": {
+          "notes": [
+            "B",
+            "F#"
           ],
           "fundamental": null
         }

@@ -15,27 +15,97 @@
       "label": "Violão",
       "tuning": "EADGBE",
       "chords": {
-        "G":    { "fingering": "320003", "fingers": "210003", "fundamental": "G" },
-        "C":    { "fingering": "x32010", "fingers": "x32010", "fundamental": "C" },
-        "G/B":  { "fingering": "x20003", "fingers": "x20003", "fundamental": "B" },
-        "Em":   { "fingering": "022000", "fingers": "023000", "fundamental": "E" },
-        "Em/B": { "fingering": "x22000", "fingers": "x23000", "fundamental": "B" },
-        "A":    { "fingering": "x02220", "fingers": "x01230", "fundamental": "A" },
-        "D":    { "fingering": "xx0232", "fingers": "xx0132", "fundamental": "D" },
-        "C#m":  { "fingering": "x46654", "fingers": "x13421", "fundamental": "C#", "barre": 4 }
+        "G": {
+          "fingering": "320003",
+          "fingers": "210003",
+          "fundamental": "G"
+        },
+        "C": {
+          "fingering": "x32010",
+          "fingers": "x32010",
+          "fundamental": "C"
+        },
+        "G/B": {
+          "fingering": "x20003",
+          "fingers": "x20003",
+          "fundamental": "B"
+        },
+        "Em": {
+          "fingering": "022000",
+          "fingers": "023000",
+          "fundamental": "E"
+        },
+        "Em/B": {
+          "fingering": "x22000",
+          "fingers": "x23000",
+          "fundamental": "B"
+        },
+        "A": {
+          "fingering": "x02220",
+          "fingers": "x01230",
+          "fundamental": "A"
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": "D"
+        },
+        "C#m": {
+          "fingering": "x46654",
+          "fingers": "x13421",
+          "fundamental": "C#",
+          "barre": 4
+        },
+        "E": {
+          "fingering": "022100",
+          "fingers": "023100",
+          "fundamental": "E"
+        }
       },
       "strumming": {
         "label": "WHOLE SONG",
         "bpm": 82,
         "beats": [
-          { "count": "1", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "rest", "muted": false },
-          { "count": "2", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "up",   "muted": false },
-          { "count": "3", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "rest", "muted": false },
-          { "count": "4", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "up",   "muted": false }
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "rest",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "rest",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
         ]
       }
     },
@@ -43,41 +113,183 @@
       "label": "Ukulele",
       "tuning": "GCEA",
       "chords": {
-        "G":    { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
-        "C":    { "fingering": "0003", "fingers": "0003", "fundamental": "C" },
-        "G/B":  { "fingering": "0230", "fingers": "0231", "fundamental": "B" },
-        "Em":   { "fingering": "0402", "fingers": "0401", "fundamental": "E" },
-        "Em/B": { "fingering": "0422", "fingers": "0411", "fundamental": "B" },
-        "A":    { "fingering": "2100", "fingers": "2100", "fundamental": "A" },
-        "D":    { "fingering": "2220", "fingers": "1230", "fundamental": "D" },
-        "C#m":  { "fingering": "1104", "fingers": "1103", "fundamental": "C#" }
+        "G": {
+          "fingering": "0232",
+          "fingers": "0231",
+          "fundamental": "G"
+        },
+        "C": {
+          "fingering": "0003",
+          "fingers": "0003",
+          "fundamental": "C"
+        },
+        "G/B": {
+          "fingering": "0230",
+          "fingers": "0231",
+          "fundamental": "B"
+        },
+        "Em": {
+          "fingering": "0402",
+          "fingers": "0401",
+          "fundamental": "E"
+        },
+        "Em/B": {
+          "fingering": "0422",
+          "fingers": "0411",
+          "fundamental": "B"
+        },
+        "A": {
+          "fingering": "2100",
+          "fingers": "2100",
+          "fundamental": "A"
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": "D"
+        },
+        "C#m": {
+          "fingering": "1104",
+          "fingers": "1103",
+          "fundamental": "C#"
+        },
+        "E": {
+          "fingering": "4442",
+          "fingers": "3331",
+          "fundamental": "E"
+        }
       },
       "strumming": {
         "label": "WHOLE SONG",
         "bpm": 82,
         "beats": [
-          { "count": "1", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "rest", "muted": false },
-          { "count": "2", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "up",   "muted": false },
-          { "count": "3", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "rest", "muted": false },
-          { "count": "4", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "up",   "muted": false }
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "rest",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "rest",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
         ]
       }
     },
     "piano": {
       "label": "Piano",
       "chords": {
-        "G":    { "notes": ["G", "B", "D"],    "fundamental": "G",  "inversion": null },
-        "C":    { "notes": ["C", "E", "G"],    "fundamental": "C",  "inversion": null },
-        "G/B":  { "notes": ["B", "D", "G"],    "fundamental": "B",  "inversion": "1a" },
-        "Em":   { "notes": ["E", "G", "B"],    "fundamental": "E",  "inversion": null },
-        "Em/B": { "notes": ["B", "E", "G"],    "fundamental": "B",  "inversion": "1a" },
-        "A":    { "notes": ["A", "C#", "E"],   "fundamental": "A",  "inversion": null },
-        "D":    { "notes": ["D", "F#", "A"],   "fundamental": "D",  "inversion": null },
-        "C#m":  { "notes": ["C#", "E", "G#"],  "fundamental": "C#", "inversion": null }
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": "G",
+          "inversion": null
+        },
+        "C": {
+          "notes": [
+            "C",
+            "E",
+            "G"
+          ],
+          "fundamental": "C",
+          "inversion": null
+        },
+        "G/B": {
+          "notes": [
+            "B",
+            "D",
+            "G"
+          ],
+          "fundamental": "B",
+          "inversion": "1a"
+        },
+        "Em": {
+          "notes": [
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": "E",
+          "inversion": null
+        },
+        "Em/B": {
+          "notes": [
+            "B",
+            "E",
+            "G"
+          ],
+          "fundamental": "B",
+          "inversion": "1a"
+        },
+        "A": {
+          "notes": [
+            "A",
+            "C#",
+            "E"
+          ],
+          "fundamental": "A",
+          "inversion": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": "D",
+          "inversion": null
+        },
+        "C#m": {
+          "notes": [
+            "C#",
+            "E",
+            "G#"
+          ],
+          "fundamental": "C#",
+          "inversion": null
+        },
+        "E": {
+          "notes": [
+            "E",
+            "G#",
+            "B"
+          ],
+          "fundamental": "E",
+          "inversion": null
+        }
       }
     }
   },

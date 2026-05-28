@@ -69,6 +69,11 @@
           "fingering": "x022xx",
           "fingers": "x023xx",
           "fundamental": null
+        },
+        "D": {
+          "fingering": "xx0232",
+          "fingers": "xx0132",
+          "fundamental": "D"
         }
       },
       "strumming": {
@@ -171,6 +176,11 @@
           "fingering": "2200",
           "fingers": "1200",
           "fundamental": null
+        },
+        "D": {
+          "fingering": "2220",
+          "fingers": "1230",
+          "fundamental": "D"
         }
       },
       "strumming": {
@@ -299,6 +309,15 @@
             "E"
           ],
           "fundamental": null
+        },
+        "D": {
+          "notes": [
+            "D",
+            "F#",
+            "A"
+          ],
+          "fundamental": "D",
+          "inversion": null
         }
       }
     }
