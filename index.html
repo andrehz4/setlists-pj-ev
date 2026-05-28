@@ -23,6 +23,54 @@
 <meta name="twitter:description" content="Pearl Jam e Eddie Vedder ao vivo. Setlists, interpretações e áudio.">
 <meta name="twitter:image" content="https://setlists-pj-ev.pages.dev/og.jpg">
 
+<!-- DOMPurify: defesa em profundidade contra XSS em qualquer conteudo externo
+     (RSS de news, posts do forum, etc) renderizado via innerHTML. Defer pra
+     nao bloquear render; window._safeHtml so estara disponivel apos o load. -->
+<script src="purify.min.js" defer></script>
+<script>
+  // Helper global: sanitiza HTML antes de injetar via innerHTML. Usar pra
+  // qualquer string que venha de fonte externa nao 100% confiavel. Pra
+  // templates 100% internos (sem interpolacao de string externa) usar
+  // innerHTML direto eh seguro e mais rapido.
+  window._safeHtml = function (s) {
+    if (typeof window.DOMPurify === 'undefined') {
+      // DOMPurify ainda nao carregou - fallback minimo (escape basico)
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    return window.DOMPurify.sanitize(String(s == null ? '' : s));
+  };
+  // Error reporting global: captura erros nao tratados e unhandled rejections
+  // em JSON estruturado no console. Substitui o silencio anterior. Em prod
+  // futura pode mandar pra Sentry/etc trocando o console.error por fetch.
+  window.addEventListener('error', function (ev) {
+    try {
+      console.error(JSON.stringify({
+        type: 'window.error',
+        msg: ev.message,
+        src: ev.filename,
+        line: ev.lineno,
+        col: ev.colno,
+        stack: ev.error && ev.error.stack ? String(ev.error.stack).slice(0, 800) : null,
+        ts: new Date().toISOString(),
+        url: location.pathname + location.hash,
+      }));
+    } catch (_) {}
+  });
+  window.addEventListener('unhandledrejection', function (ev) {
+    try {
+      console.error(JSON.stringify({
+        type: 'unhandledrejection',
+        reason: ev.reason && ev.reason.message ? ev.reason.message : String(ev.reason).slice(0, 300),
+        stack: ev.reason && ev.reason.stack ? String(ev.reason.stack).slice(0, 800) : null,
+        ts: new Date().toISOString(),
+        url: location.pathname + location.hash,
+      }));
+    } catch (_) {}
+  });
+</script>
+
 <!-- Google Analytics 4 (deferred para fora do critical path) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11225,7 +11273,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.01</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.02</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
