@@ -11225,7 +11225,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.19</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.20</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16169,14 +16169,64 @@ function _renderChordDiagramBraco({ chordName, fingering, fingers, barre, string
       }
     }
   }
-  // Barre (so renderiza se tiver no formato {fret, from, to})
-  if (barre && typeof barre === 'object' && barre.fret) {
-    const visFret = barre.fret - offset;
+  // Barre: aceita 2 formatos do JSON
+  //   (a) numero: traste N. Infere from/to via fingers=='1' nas cordas com
+  //       fret==N (formato usado em 484 cadastros do catalogo).
+  //   (b) objeto {fret, from, to}: usa direto.
+  // Tambem detecta IMPLICITO via fingers com digito repetido em casa unica
+  // (ex: ukulele E '4442'/'3331' tem 3 cordas com dedo 1 na casa 4).
+  let barreFret = null, barreFrom = null, barreTo = null;
+  if (typeof barre === 'number' && barre > 0) {
+    barreFret = barre;
+  } else if (barre && typeof barre === 'object' && barre.fret) {
+    barreFret = barre.fret;
+    if (typeof barre.from === 'number') barreFrom = strings - barre.from;
+    if (typeof barre.to === 'number') barreTo = strings - barre.to;
+  } else {
+    // Tenta inferir: dedo repetido (>=2 cordas) na mesma casa = barre.
+    const fingerOnFret = {}; // map digito -> [{idx, fret}]
+    for (let i = 0; i < strings; i++) {
+      const fg = fingerArr[i];
+      const fr = frets[i];
+      if (fg && fg !== '0' && fg !== 'x' && typeof fr === 'number' && fr >= 1) {
+        if (!fingerOnFret[fg]) fingerOnFret[fg] = [];
+        fingerOnFret[fg].push({ idx: i, fret: fr });
+      }
+    }
+    for (const fg of Object.keys(fingerOnFret)) {
+      const group = fingerOnFret[fg];
+      if (group.length < 2) continue;
+      // todos no mesmo fret?
+      const allSameFret = group.every(g => g.fret === group[0].fret);
+      if (!allSameFret) continue;
+      barreFret = group[0].fret;
+      barreFrom = group[0].idx;
+      barreTo = group[group.length - 1].idx;
+      break;
+    }
+  }
+  // Se temos fret mas nao from/to (caso 'a': barre = numero), infere.
+  if (barreFret && (barreFrom == null || barreTo == null)) {
+    const stringsAtBarre = [];
+    for (let i = 0; i < strings; i++) {
+      if (frets[i] === barreFret) stringsAtBarre.push(i);
+    }
+    if (stringsAtBarre.length >= 2) {
+      barreFrom = stringsAtBarre[0];
+      barreTo = stringsAtBarre[stringsAtBarre.length - 1];
+    } else {
+      barreFret = null; // sem from/to confiavel, skip
+    }
+  }
+  if (barreFret) {
+    const visFret = barreFret - offset;
     if (visFret >= 1 && visFret <= NUM_FRETS) {
       const y = padTop + (visFret - 0.5) * fretSpacing;
-      const xFrom = padX + (strings - barre.from) * stringSpacing;
-      const xTo = padX + (strings - barre.to) * stringSpacing;
-      svg += `<rect x="${Math.min(xFrom, xTo) - 6}" y="${y - 5}" width="${Math.abs(xTo - xFrom) + 12}" height="10" rx="5" fill="${stroke}"/>`;
+      const xFrom = padX + barreFrom * stringSpacing;
+      const xTo = padX + barreTo * stringSpacing;
+      // Desenhada por cima dos pontos individuais (eles ja foram renderizados
+      // no loop acima); barre visual une os dedos da mesma casa.
+      svg += `<rect x="${Math.min(xFrom, xTo) - 4}" y="${y - 4}" width="${Math.abs(xTo - xFrom) + 8}" height="8" rx="4" fill="${stroke}" opacity="0.75"/>`;
     }
   }
   // Nome do acorde embaixo
