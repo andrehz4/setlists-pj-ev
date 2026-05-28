@@ -4140,6 +4140,33 @@ html[data-theme="dark"] .alphatab-version-select {
   -webkit-backdrop-filter: blur(8px);
 }
 .alphatab-fab.show { display: flex; }
+/* No modo cifra a pausa cumpre play/pause; o stop/recomecar fica
+   redundante e mostrava dois ▶ ao mesmo tempo. Esconde no cifra. */
+.alphatab-fab.cifra-mode .alphatab-fab-stop { display: none; }
+/* Botao × pra fechar o FAB. Position absolute fora do flex flow pra
+   nao empurrar os botoes principais (play/stop). */
+.alphatab-fab-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 0;
+  background: #1a1612;
+  color: #fff;
+  font: 700 15px/1 var(--font-mono, 'JetBrains Mono', monospace);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 100ms ease, background 120ms ease;
+  z-index: 1;
+  padding: 0;
+}
+.alphatab-fab-close:hover { background: var(--pj, #c1272d); transform: scale(1.1); }
+.alphatab-fab-close:active { transform: scale(0.95); }
 .alphatab-fab-btn {
   width: 48px;
   height: 48px;
@@ -13773,6 +13800,26 @@ function _renderTabPanel(body, songKey, tabMeta) {
           `;
           document.body.appendChild(fab);
         }
+        // FAB no contexto TAB: stop volta a aparecer (cifra esconde via .cifra-mode).
+        fab.classList.remove('cifra-mode');
+        // Garante o botao × de fechar (criado uma unica vez por contexto).
+        let fabClose = fab.querySelector('.alphatab-fab-close');
+        if (!fabClose) {
+          fabClose = document.createElement('button');
+          fabClose.type = 'button';
+          fabClose.className = 'alphatab-fab-close';
+          fabClose.setAttribute('aria-label', 'Fechar');
+          fabClose.textContent = '×';
+          fab.appendChild(fabClose);
+        }
+        // Re-attach handler limpando handlers antigos (cifra pode ter setado outro).
+        const fabCloseNew = fabClose.cloneNode(true);
+        fabClose.replaceWith(fabCloseNew);
+        fabCloseNew.addEventListener('click', (e) => {
+          e.stopPropagation();
+          try { api.stop(); } catch (_) {}
+          fab.classList.remove('show');
+        });
         const fabPause = fab.querySelector('.alphatab-fab-pause');
         const fabStop = fab.querySelector('.alphatab-fab-stop');
         const fabLoop = fab.querySelector('.alphatab-fab-loop');
@@ -16102,6 +16149,9 @@ function _ensureCifraFab() {
     `;
     document.body.appendChild(fab);
   }
+  // Modo cifra: pausa cumpre play/pause, esconde o stop (CSS via .cifra-mode)
+  // pra nao mostrar dois ▶ ao mesmo tempo quando o cifra player esta pausado.
+  fab.classList.add('cifra-mode');
   // Clona os botoes pra apagar handlers anteriores (do AlphaTab eventualmente)
   const pauseOld = fab.querySelector('.alphatab-fab-pause');
   const stopOld = fab.querySelector('.alphatab-fab-stop');
@@ -16118,6 +16168,8 @@ function _ensureCifraFab() {
     });
   }
   if (stopOld) {
+    // Stop fica escondido via CSS .cifra-mode, mas mantemos handler caso
+    // alguem force display via DOM.
     const stopNew = stopOld.cloneNode(true);
     stopOld.replaceWith(stopNew);
     stopNew.addEventListener('click', (e) => {
@@ -16128,6 +16180,24 @@ function _ensureCifraFab() {
   // Esconde o terceiro botao (loop) se existir, cifra nao tem loop ainda
   const loopBtn = fab.querySelector('.alphatab-fab-loop');
   if (loopBtn) loopBtn.style.display = 'none';
+  // Botao × de fechar: para o cifra player e esconde o FAB. Position absolute
+  // pra nao empurrar os outros botoes (canto superior direito do pill).
+  let fabClose = fab.querySelector('.alphatab-fab-close');
+  if (!fabClose) {
+    fabClose = document.createElement('button');
+    fabClose.type = 'button';
+    fabClose.className = 'alphatab-fab-close';
+    fabClose.setAttribute('aria-label', 'Fechar');
+    fabClose.textContent = '×';
+    fab.appendChild(fabClose);
+  }
+  const fabCloseNew = fabClose.cloneNode(true);
+  fabClose.replaceWith(fabCloseNew);
+  fabCloseNew.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
+    fab.classList.remove('show');
+  });
   return fab;
 }
 
@@ -16205,16 +16275,10 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
-  // Auto-scroll inicial: APENAS na view Cifras & Tabs. No setlist nao rola
-  // a window (Andre flagou que ficava ruim). Detecta contexto via
-  // .cifra-detail-wrap. Igual o tab que tambem so rola na view.
-  if (root.closest('.cifra-detail-wrap')) {
-    const scrollAnchor = root.querySelector('.alphatab-transport-top') || root;
-    if (scrollAnchor) {
-      const y = scrollAnchor.getBoundingClientRect().top + window.scrollY - 16;
-      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-    }
-  }
+  // Nao mexer no scroll da window ao iniciar o cifra player. O braco fica
+  // docked inline no topo (regra do projeto) e o usuario quer continuar vendo
+  // a letra/chord-chips onde estava. O acompanhamento durante playback rola
+  // dentro da .cifra-surface / .alphatab-surface, nao da window.
 
   // Surface da cifra (mesma classe do TAB). Na view Cifras tem scroll
   // interno (overflow-y auto + max-height 56vh); no setlist scroll rola
