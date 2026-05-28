@@ -11147,7 +11147,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.03</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.04</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -19433,17 +19433,20 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
-  // Scroll inicial APENAS na view Cifras: traz a .alphatab-surface (chord-chips)
-  // pro topo da viewport com offset de 12vh. Resultado: chord-chips ficam
-  // visiveis no topo e o braco docked (que fica entre surface e transport-bottom)
-  // aparece logo abaixo, dentro do viewport. Espera 1 frame pro DOM estabilizar
-  // (insercao do braco via _updateCifraFretboard ocorre no primeiro chord).
+  // Scroll inicial APENAS na view Cifras: alinha .alphatab-surface (chord-chips)
+  // com o topo do viewport (offset 0). O transport-top sai do viewport pra
+  // cima, a surface fica colada no topo e o braco docked (entre surface e
+  // transport-bottom) aparece logo abaixo. Andre validou manualmente: scrollY
+  // ~1503 com surface.top ~0 e braco.top ~415 (entrando ~75% no viewport).
+  // Sem compensacao de header sticky global (nao existe).
+  // requestAnimationFrame: espera 1 frame pro DOM estabilizar antes de medir.
+  // Auto-scroll INTERNO da surface seguindo o cursor (loop dos chord-chips)
+  // continua intacto - mexe scrollTop da surface, nao da window.
   if (root.closest('.cifra-detail-wrap')) {
     const surfaceForScroll = root.querySelector('.alphatab-surface');
     if (surfaceForScroll) {
       requestAnimationFrame(() => {
-        const offset = Math.round(window.innerHeight * 0.12);
-        const y = surfaceForScroll.getBoundingClientRect().top + window.scrollY - offset;
+        const y = surfaceForScroll.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       });
     }
