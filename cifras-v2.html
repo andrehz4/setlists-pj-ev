@@ -11147,7 +11147,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.04</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.05</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16714,6 +16714,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
            </label>`
         : '';
       tabPane.innerHTML = `
+        <div class="voice-picker" role="group" aria-label="Filtrar m&uacute;sicos visiveis no fretboard" hidden></div>
         <div class="alphatab-transport alphatab-transport-top" role="toolbar" aria-label="Controles de reprodu&ccedil;&atilde;o (topo)">
           <button type="button" class="atc-btn-mini alphatab-play" data-state="idle" data-icon-only="false" aria-label="Tocar / pausar">▶ Play</button>
           <button type="button" class="atc-btn-mini alphatab-prev" aria-label="Voltar ao in&iacute;cio" title="In&iacute;cio">⏮</button>
@@ -18336,7 +18337,6 @@ function _renderCifraDetail(container, songKey, tabMeta) {
       </div>
     </header>
     <div class="cifra-context-pane" hidden></div>
-    <div class="voice-picker" role="group" aria-label="Filtrar m&uacute;sicos visiveis no fretboard" hidden></div>
     <div class="cifra-detail-body"></div>
   `;
 
@@ -18396,11 +18396,14 @@ function _renderCifraDetail(container, songKey, tabMeta) {
     });
   }
 
-  // Marca o voice-picker desta tela como ativo. Quando AlphaTab disparar
-  // scoreLoaded la dentro do _renderTabPanel, popula o picker aqui.
-  _activeVoicePicker = container.querySelector('.voice-picker');
+  // Renderiza painel cifra/tab. _renderTabPanel monta .tab-pane-tab que ja
+  // contem o .voice-picker (ficar DENTRO do pane-tab garante que voice-picker
+  // some quando user troca pra modo CIFRA, herdando o hidden do pane).
   const body = container.querySelector('.cifra-detail-body');
   _renderTabPanel(body, songKey, tabMeta);
+  // Marca o voice-picker desta tela como ativo. Quando AlphaTab disparar
+  // scoreLoaded la dentro do _renderTabPanel, popula o picker aqui.
+  _activeVoicePicker = body.querySelector('.tab-pane-tab .voice-picker');
 
   // Hidrata o placeholder do cover com a foto real do album (fallback p/
   // sigla se imagem 404). Mesmo loader usado pelos outros painéis do site.
