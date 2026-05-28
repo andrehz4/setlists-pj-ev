@@ -11117,6 +11117,16 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   #drawer-content { padding-bottom: 32px; }
   body:has(#audio-player.active) #drawer-content { padding-bottom: 160px; }
 }
+
+/* ── Sprint mobile M2: lightbox com mais area pra foto, sem setas (usa swipe), close maior ── */
+/* Escopo: somente <=600px. Setas continuam funcionando em desktop. */
+@media (max-width: 600px) {
+  .lightbox { padding: 8px; }
+  .lb-arrow { display: none; }
+  .lb-close { top: 10px; right: 10px; }
+  .lb-counter { bottom: 12px; font-size: 11px; padding: 4px 12px; }
+  .lb-story { max-height: 38%; padding: 24px 18px 16px; font-size: 13px; }
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21414,6 +21424,40 @@ async function init() {
     if (e.key === "ArrowLeft" && _lbIndex > 0) _lbLoad(--_lbIndex);
     if (e.key === "ArrowRight" && _lbIndex < _lbImages.length - 1) _lbLoad(++_lbIndex);
   });
+  // Sprint M2: swipe handlers no lightbox, somente <=600px. Desktop nao afetado.
+  (function _lbMobileSwipe() {
+    const lb = document.getElementById("lightbox");
+    if (!lb) return;
+    let _sx = 0, _sy = 0, _st = 0, _swiped = false;
+    lb.addEventListener("touchstart", (e) => {
+      if (!window.matchMedia("(max-width: 600px)").matches) return;
+      if (!lb.classList.contains("active")) return;
+      if (e.target.closest('.lb-story')) return;
+      const t = e.changedTouches[0];
+      _sx = t.clientX; _sy = t.clientY; _st = Date.now(); _swiped = false;
+    }, { passive: true });
+    lb.addEventListener("touchend", (e) => {
+      if (!window.matchMedia("(max-width: 600px)").matches) return;
+      if (!lb.classList.contains("active")) return;
+      if (e.target.closest('.lb-story')) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - _sx, dy = t.clientY - _sy, dt = Date.now() - _st;
+      if (dt > 600) return;
+      const absX = Math.abs(dx), absY = Math.abs(dy);
+      if (absX < 40 && absY < 40) return;
+      _swiped = true;
+      if (absX > absY) {
+        if (dx < 0 && _lbIndex < _lbImages.length - 1) _lbLoad(++_lbIndex);
+        else if (dx > 0 && _lbIndex > 0) _lbLoad(--_lbIndex);
+      } else if (dy > 60) {
+        closeLightbox();
+      }
+    }, { passive: true });
+    // bloqueia click sintetico que vem apos swipe (senao fecharia o lightbox)
+    lb.addEventListener("click", (e) => {
+      if (_swiped) { _swiped = false; e.stopImmediatePropagation(); e.preventDefault(); }
+    }, true);
+  })();
   // ESC fecha apenas o dialog topmost (padrão APG)
   document.addEventListener("keydown", e => {
     if (e.key !== "Escape") return;
