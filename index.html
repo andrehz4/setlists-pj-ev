@@ -11103,7 +11103,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <button class="tab" role="tab" id="tab-highlights" aria-selected="false" aria-controls="view-highlights" tabindex="-1" data-view="highlights">Destaques</button>
   <button class="tab" role="tab" id="tab-rarity" aria-selected="false" aria-controls="view-rarity" tabindex="-1" data-view="rarity">Raridades</button>
   <button class="tab" role="tab" id="tab-deep" aria-selected="false" aria-controls="view-deep" tabindex="-1" data-view="deep">Deep</button>
-  <button class="tab has-dot" role="tab" id="tab-forum" aria-selected="false" aria-controls="view-forum" tabindex="-1" data-view="forum">Fórum</button>
+  <a href="forum.html" class="tab has-dot" style="text-decoration:none">Fórum ↗</a>
 </div>
 
 <!-- FILTER BAR -->
@@ -11216,10 +11216,6 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div id="tabs-content"></div>
 </section>
 
-<section class="view" id="view-forum" role="tabpanel" aria-labelledby="tab-forum" tabindex="0" hidden>
-  <div id="forum-content"></div>
-</section>
-
 <section class="view" id="view-banda" role="tabpanel" aria-labelledby="tab-banda" tabindex="0" hidden>
   <div id="banda-content"></div>
 </section>
@@ -11305,7 +11301,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.04</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.05</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -13091,7 +13087,6 @@ function activateTab(viewName, opts) {
     setTimeout(() => stamp.classList.remove("active"), 380);
   }
   state.currentView = viewName;
-  document.body.classList.toggle("in-forum", viewName === "forum");
   document.querySelectorAll(".tab").forEach(t => {
     const on = t.dataset.view === viewName;
     t.classList.toggle("active", on);
@@ -13836,7 +13831,6 @@ function renderCurrent() {
     case "tabs": renderTabsView(); break;
     case "news": renderNewsView(); break;
     case "gallery": renderGallery(); break;
-    case "forum": renderForum(); break;
     case "banda": renderBanda(); break;
   }
   renderStats();
