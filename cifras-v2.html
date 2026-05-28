@@ -3226,7 +3226,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .cifra-stanza:last-child { margin-bottom: 4px; }
 .cifra-section {
-  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  font: 700 calc(9px * var(--cifra-font-scale, 1))/1 var(--font-ticket, 'Oswald', sans-serif);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #2e6b8a;
@@ -3249,7 +3249,7 @@ html[data-theme="light"] .drawer-section-label.my-media {
 }
 .chord-chip {
   display: inline-block;
-  font: 700 10px/1 var(--font-display, 'Big Shoulders Display', sans-serif);
+  font: 700 calc(10px * var(--cifra-font-scale, 1))/1 var(--font-display, 'Big Shoulders Display', sans-serif);
   letter-spacing: 0.04em;
   background: #2e6b8a;
   color: #fff;
@@ -3454,7 +3454,7 @@ html[data-theme="dark"] .cifra-fretboard {
   pointer-events: none;
 }
 .cifra-syl {
-  font: 400 14px/1.4 var(--font-mono, 'IBM Plex Mono', monospace);
+  font: 400 calc(14px * var(--cifra-font-scale, 1))/1.4 var(--font-mono, 'IBM Plex Mono', monospace);
   color: var(--ink, #1a1611);
   white-space: pre;
 }
@@ -3670,13 +3670,15 @@ html[data-theme="dark"] .alphatab-surface {
   background: rgba(46, 107, 138, 0.04);
   border-left: 3px solid #2e6b8a;
   border-radius: 4px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .cifra-strumming-label {
   font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-mute);
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 .cifra-strumming-label em {
   font-style: italic;
@@ -3688,6 +3690,64 @@ html[data-theme="dark"] .alphatab-surface {
 .cifra-strumming-row {
   display: inline-flex;
   gap: 6px;
+  flex: 0 0 auto;
+}
+/* Zoom de texto da cifra: vive na .cifra-strumming-bar, alinhado a direita.
+   Escala .cifra-syl/.cifra-line/.chord-chip/.cifra-section/.cifra-token via
+   CSS var --cifra-font-scale. Persiste em localStorage 'cifra.fontScale'. */
+.cifra-text-zoom {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+.cifra-text-zoom-label {
+  font: 700 9px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(46, 107, 138);
+  opacity: 0.85;
+}
+.cifra-text-zoom-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.cifra-text-zoom-slider {
+  width: 90px;
+  height: 4px;
+  cursor: pointer;
+  accent-color: rgb(46, 107, 138);
+}
+.cifra-text-zoom-val {
+  min-width: 32px;
+  text-align: right;
+  font: 700 10px/1 var(--font-ticket, 'Oswald', sans-serif);
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+  color: var(--pj, #c1272d);
+}
+.cifra-text-zoom-btn {
+  background: transparent;
+  border: 1px solid rgba(46, 107, 138, 0.35);
+  color: rgb(46, 107, 138);
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  font: 700 11px/1 sans-serif;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cifra-text-zoom-btn:hover { background: rgba(46, 107, 138, 0.08); }
+.cifra-text-zoom-btn:disabled { opacity: 0.35; cursor: default; }
+@media (max-width: 768px) {
+  .cifra-text-zoom-btn { display: none; }
+  .cifra-text-zoom-slider { width: 70px; }
 }
 .cifra-strum-cell {
   display: inline-flex;
@@ -9211,7 +9271,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   100% { transform: scale(1); }
 }
 #view-tabs .cifra-syl {
-  font: 500 16px/1.45 var(--font-editorial), serif !important;
+  font: 500 calc(16px * var(--cifra-font-scale, 1))/1.45 var(--font-editorial), serif !important;
   color: var(--cf-ink);
   white-space: pre;
   letter-spacing: 0;
@@ -10141,7 +10201,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 }
 #view-tabs .cifra-stanza { margin: 0 0 34px; }
 #view-tabs .cifra-section {
-  font-size: 11px;
+  font-size: calc(11px * var(--cifra-font-scale, 1));
   margin: 0 0 14px;
   padding-bottom: 7px;
 }
@@ -10151,18 +10211,18 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 }
 #view-tabs .cifra-token { gap: 4px; }
 #view-tabs .chord-chip {
-  font: 900 13px/1 var(--font-mono), monospace;
+  font: 900 calc(13px * var(--cifra-font-scale, 1))/1 var(--font-mono), monospace;
   letter-spacing: 0.02em;
   padding: 5px 8px 4px;
   border-width: 2px;
   margin-bottom: 2px;
 }
 #view-tabs .chord-chip.chord-chip-playing {
-  font-size: 14px;
+  font-size: calc(14px * var(--cifra-font-scale, 1));
   padding: 5px 9px 4px;
 }
 #view-tabs .cifra-syl {
-  font: 500 21px/1.55 var(--font-editorial), serif !important;
+  font: 500 calc(21px * var(--cifra-font-scale, 1))/1.55 var(--font-editorial), serif !important;
   color: var(--cf-ink);
   white-space: pre;
 }
@@ -10170,8 +10230,8 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   height: 25px;
 }
 @media (max-width: 720px) {
-  #view-tabs .cifra-syl { font-size: 18px !important; }
-  #view-tabs .chord-chip { font-size: 12px; padding: 4px 6px 3px; }
+  #view-tabs .cifra-syl { font-size: calc(18px * var(--cifra-font-scale, 1)) !important; }
+  #view-tabs .chord-chip { font-size: calc(12px * var(--cifra-font-scale, 1)); padding: 4px 6px 3px; }
 }
 
 /* ---------- H. STRUMMING + COVERAGE BARS ---------- */
@@ -11147,7 +11207,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.05</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.06</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16310,6 +16370,15 @@ function _renderTabPanel(body, songKey, tabMeta) {
         return `<div class="cifra-strumming-bar" aria-label="Padrão de palhetada">
                   <span class="cifra-strumming-label">${_esc(_ptStrumLabel(s.label)) || 'PADRÃO'} <em>${_esc(s.bpm)} bpm</em></span>
                   <div class="cifra-strumming-row">${cells}</div>
+                  <div class="cifra-text-zoom" role="group" aria-label="Tamanho do texto">
+                    <span class="cifra-text-zoom-label">Texto</span>
+                    <div class="cifra-text-zoom-row">
+                      <button type="button" class="cifra-text-zoom-btn" data-act="down" aria-label="Diminuir tamanho do texto">A−</button>
+                      <input type="range" class="cifra-text-zoom-slider" min="0.7" max="1.6" step="0.05" value="1" aria-label="Tamanho da letra e cifra">
+                      <button type="button" class="cifra-text-zoom-btn" data-act="up" aria-label="Aumentar tamanho do texto">A+</button>
+                      <output class="cifra-text-zoom-val">100%</output>
+                    </div>
+                  </div>
                 </div>`;
       };
       cifraPane.innerHTML = `
@@ -16360,6 +16429,9 @@ function _renderTabPanel(body, songKey, tabMeta) {
       cifraPane._multiData = activeMulti;
       cifraPane._fullMulti = multi;
       _attachChordChipHandlers(cifraPane, activeMulti);
+      // Zoom de texto da cifra: registra delegation no document (idempotente)
+      // e sincroniza UI do controle recem-criado na strumming-bar.
+      if (typeof _initCifraTextZoom === 'function') _initCifraTextZoom();
 
       // Seletor de versao: trocar dispara re-render completo do pane com
       // content/instruments/key/bpm da nova versao. Para o cifra player
@@ -16386,6 +16458,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
           if (covWrap2) covWrap2.innerHTML = _renderCoverageBadge(_computeChordCoverage(newActive));
           // Re-attach chord chip handlers (passa newActive como multiData)
           _attachChordChipHandlers(cifraPane, newActive);
+          // Strumming-bar foi re-renderizado: ressincroniza UI do zoom de texto
+          if (typeof _syncCifraTextZoomUI === 'function') _syncCifraTextZoomUI();
           // Atualiza display de BPM nos status
           const newBpm = (newActive && newActive.bpm) || tabMeta.bpm || 90;
           cifraPane.querySelectorAll('.alphatab-status').forEach(el => {
@@ -16426,6 +16500,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
           // Re-render strumming header com padrao do novo instrumento
           const wrap = cifraPane.querySelector('.cifra-strumming-wrap');
           if (wrap) wrap.innerHTML = _renderStrummingHeader(curMulti);
+          // Strumming-bar re-renderizado: ressincroniza UI do zoom de texto
+          if (typeof _syncCifraTextZoomUI === 'function') _syncCifraTextZoomUI();
           // Re-render overlay do braco/teclado IMEDIATAMENTE com o chord atual
           // (se player estiver tocando ou pausado num chord). Sem isso, user
           // troca pra piano mas continua vendo braco de violao ate o proximo
@@ -19290,6 +19366,60 @@ function _hideCifraFretboard() {
       fb.classList.remove('inline');
     }
   }
+}
+
+// Zoom de texto da cifra: escala fontes via CSS var --cifra-font-scale.
+// Inicializa uma unica vez (delegation no document), sincroniza UI a cada
+// re-render do strumming-bar via _syncCifraTextZoomUI(). Persiste em
+// localStorage 'cifra.fontScale'.
+const _CIFRA_FONT_SCALE_KEY = 'cifra.fontScale';
+const _CIFRA_FONT_SCALE_MIN = 0.7;
+const _CIFRA_FONT_SCALE_MAX = 1.6;
+const _CIFRA_FONT_SCALE_STEP = 0.1;
+function _applyCifraTextZoom(v) {
+  // Snap pro step 0.05 e clamp.
+  let val = Math.round(parseFloat(v) * 20) / 20;
+  if (!Number.isFinite(val)) val = 1;
+  val = Math.max(_CIFRA_FONT_SCALE_MIN, Math.min(_CIFRA_FONT_SCALE_MAX, val));
+  window._cifraFontScale = val;
+  document.documentElement.style.setProperty('--cifra-font-scale', String(val));
+  try { localStorage.setItem(_CIFRA_FONT_SCALE_KEY, String(val)); } catch (_) {}
+  _syncCifraTextZoomUI(val);
+}
+function _syncCifraTextZoomUI(v) {
+  const val = (typeof v === 'number') ? v : (window._cifraFontScale || 1);
+  document.querySelectorAll('.cifra-text-zoom-slider').forEach(sl => {
+    if (parseFloat(sl.value) !== val) sl.value = String(val);
+  });
+  document.querySelectorAll('.cifra-text-zoom-val').forEach(out => {
+    out.textContent = Math.round(val * 100) + '%';
+  });
+  const atMin = val <= _CIFRA_FONT_SCALE_MIN + 0.001;
+  const atMax = val >= _CIFRA_FONT_SCALE_MAX - 0.001;
+  document.querySelectorAll('.cifra-text-zoom-btn[data-act="down"]').forEach(b => { b.disabled = atMin; });
+  document.querySelectorAll('.cifra-text-zoom-btn[data-act="up"]').forEach(b => { b.disabled = atMax; });
+}
+function _initCifraTextZoom() {
+  if (window._cifraTextZoomReady) { _syncCifraTextZoomUI(); return; }
+  window._cifraTextZoomReady = true;
+  // Restaura valor salvo no primeiro init.
+  let saved = parseFloat(localStorage.getItem(_CIFRA_FONT_SCALE_KEY));
+  if (!Number.isFinite(saved)) saved = 1;
+  _applyCifraTextZoom(saved);
+  // Delegation no document pra sobreviver a re-renders do strumming-bar.
+  document.addEventListener('input', (e) => {
+    const sl = e.target.closest && e.target.closest('.cifra-text-zoom-slider');
+    if (!sl) return;
+    _applyCifraTextZoom(parseFloat(sl.value));
+  });
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest && e.target.closest('.cifra-text-zoom-btn');
+    if (!btn) return;
+    e.stopPropagation();
+    const cur = (typeof window._cifraFontScale === 'number') ? window._cifraFontScale : 1;
+    const delta = btn.dataset.act === 'up' ? _CIFRA_FONT_SCALE_STEP : -_CIFRA_FONT_SCALE_STEP;
+    _applyCifraTextZoom(cur + delta);
+  });
 }
 
 // FAB unificado com TAB: reusa o mesmo .alphatab-fab. Clonar os botoes pra
