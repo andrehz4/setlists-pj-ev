@@ -300,7 +300,26 @@ function renderAuthArea() {
   }
 }
 
-function computeBadges(data) {
+function computeBadges(data, cat) {
+  // Conta de shows confirmados (vem direto do shows_attended salvo no DB)
+  const showsAttended = data.shows_attended || [];
+  const showsCount = showsAttended.length;
+
+  // Decade: precisa do catalogo pra mapear show.id -> ano.
+  // Agrupa shows confirmados por ano; badge desbloca se algum ano >= 10.
+  let maxShowsInYear = 0;
+  if (cat && Array.isArray(cat.shows) && showsCount) {
+    const byYear = {};
+    const attendedSet = new Set(showsAttended);
+    for (const s of cat.shows) {
+      if (!attendedSet.has(s.id)) continue;
+      const year = (s.date || "").slice(0, 4); // 'YYYY-MM-DD' -> 'YYYY'
+      if (!year) continue;
+      byYear[year] = (byYear[year] || 0) + 1;
+      if (byYear[year] > maxShowsInYear) maxShowsInYear = byYear[year];
+    }
+  }
+
   const badges = [
     {
       icon: "★",
@@ -335,7 +354,7 @@ function computeBadges(data) {
       name: "Tava lá",
       desc: "Confirma presença em shows",
       cls: "heard",
-      unlocked: false,
+      unlocked: showsCount >= 1,
     },
     {
       icon: "8mm",
@@ -356,18 +375,26 @@ function computeBadges(data) {
       name: "Decade",
       desc: "Esteve em 10 shows do mesmo ano",
       cls: "locked",
-      unlocked: false,
+      unlocked: maxShowsInYear >= 10,
     },
   ];
   return badges;
 }
 
-function renderProfile(data) {
+function renderProfile(data, cat) {
   const avHtml = data.avatar_url
     ? `<img src="${san(data.avatar_url)}" alt="${san(data.display_name)}">`
     : initials(data.display_name);
 
-  const badges = computeBadges(data);
+  const badges = computeBadges(data, cat);
+  // Mapeia shows_attended (ids) -> objetos do catalogo pra render visual.
+  // Ordena por data desc (mais recente primeiro). Items sem match no
+  // catalogo (id legado/removido) sao silenciosamente ignorados.
+  const showsCatalog = (cat && Array.isArray(cat.shows)) ? cat.shows : [];
+  const attendedIds = new Set(data.shows_attended || []);
+  const attendedShows = showsCatalog
+    .filter(s => attendedIds.has(s.id))
+    .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   const badgesHtml = badges.map(b => `
     <div class="badge${!b.unlocked ? " locked" : ""}${b.cls && b.cls !== "locked" ? " " + b.cls : ""}">
       <div class="b-icon">${b.icon}</div>
@@ -418,7 +445,7 @@ function renderProfile(data) {
       <div class="profile-stat"><div class="v pj">${data.topic_count}</div><div class="l">Threads abertas</div></div>
       <div class="profile-stat"><div class="v">${data.post_count}</div><div class="l">Posts no fórum</div></div>
       <div class="profile-stat"><div class="v ev">${data.reactions_received}</div><div class="l">Reações recebidas</div></div>
-      <div class="profile-stat"><div class="v heard">—</div><div class="l">Shows confirmados</div></div>
+      <div class="profile-stat"><div class="v heard">${(data.shows_attended || []).length}</div><div class="l">Shows confirmados</div></div>
       <div class="profile-stat"><div class="v">—</div><div class="l">Bootlegs partilhados</div></div>
     </div>
 
@@ -451,6 +478,22 @@ function renderProfile(data) {
           <h2 class="section-title">Atividade recente</h2>
           <div class="section-sub">// ÚLTIMAS AÇÕES</div>
           ${activityHtml}
+        </div>
+
+        <div class="section-block">
+          <h2 class="section-title">Shows confirmados</h2>
+          <div class="section-sub">// ESTEVE EM ${attendedShows.length} SHOW${attendedShows.length !== 1 ? "S" : ""}</div>
+          ${attendedShows.length
+            ? `<div style="display:flex;flex-direction:column;gap:6px">
+                ${attendedShows.map(s => `
+                  <div class="topic-row" style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--divider)">
+                    <div style="flex:1;min-width:0">
+                      <div style="font-family:var(--font-editorial);font-size:14px;color:var(--ink)">${san(s.artist)} <span style="color:var(--ink-dim);font-style:italic">·</span> ${san(s.venue)}</div>
+                      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);margin-top:2px">${_fmtDateBR(s.date)} · ${san(s.city)}</div>
+                    </div>
+                  </div>`).join("")}
+              </div>`
+            : `<div class="empty-state" style="font-style:italic;color:var(--ink-dim);font-family:var(--font-editorial)">Ainda não marcou nenhum show. Clica em ✎ Editar perfil pra confirmar presença nos shows que esteve.</div>`}
         </div>
       </div>
 
@@ -615,7 +658,11 @@ async function init() {
     return;
   }
   try {
-    const raw = await apiFetch(`/forum/users/${encodeURIComponent(profileId)}`);
+    // Carrega perfil e catalogo em paralelo (cataolgo eh estatico ~50KB).
+    const [raw, cat] = await Promise.all([
+      apiFetch(`/forum/users/${encodeURIComponent(profileId)}`),
+      loadShowsCatalog(),
+    ]);
     // Adapta payload do backend novo pro formato esperado pelo renderProfile
     const data = raw ? {
       id: raw.user_id,
@@ -638,7 +685,7 @@ async function init() {
         id: a.target_id, title: a.target_title, created_at: a.created_at, reply_count: 0, category: ""
       })),
     } : null;
-    if (data) renderProfile(data);
+    if (data) renderProfile(data, cat);
   } catch (err) {
     const san2 = s => DOMPurify.sanitize(s || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
     document.getElementById("pageContent").innerHTML = `<div class="error-state">Erro ao carregar perfil: ${san2(err.message)}. <a href="forum.html" style="color:var(--pj)">Voltar ao fórum</a></div>`;
