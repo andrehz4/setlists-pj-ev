@@ -23,6 +23,38 @@
 <meta name="twitter:description" content="Pearl Jam e Eddie Vedder ao vivo. Setlists, interpretações e áudio.">
 <meta name="twitter:image" content="https://setlists-pj-ev.pages.dev/og.jpg">
 
+<!-- Vistoria: structured data Schema.org pra ricos snippets. WebSite + tipo
+     ItemPage pra catalogo de shows. Sem efeito visual; ajuda indexacao. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Só mais um fã de Pearl Jam",
+  "alternateName": "Setlists PJ + EV",
+  "url": "https://setlists-pj-ev.pages.dev/",
+  "description": "Arquivo pessoal de shows do Pearl Jam e Eddie Vedder presenciados ao vivo no Brasil e Chicago entre 2005 e 2024. Setlists, interpretações, áudio e galeria.",
+  "inLanguage": "pt-BR",
+  "publisher": {
+    "@type": "Person",
+    "name": "Andre",
+    "url": "https://setlists-pj-ev.pages.dev/"
+  },
+  "about": [
+    { "@type": "MusicGroup", "name": "Pearl Jam" },
+    { "@type": "Person", "name": "Eddie Vedder" }
+  ],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://setlists-pj-ev.pages.dev/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- Vistoria: politica de referrer pra preservar privacidade. Outbound links
+     so mandam origin (nao path/query). -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 <!-- DOMPurify: defesa em profundidade contra XSS em qualquer conteudo externo
      (RSS de news, posts do forum, etc) renderizado via innerHTML. Defer pra
      nao bloquear render; window._safeHtml so estara disponivel apos o load. -->
@@ -11273,7 +11305,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.03</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.04</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
