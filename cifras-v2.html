@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Só mais um fã de Pearl Jam · CIFRAS v2 (preview isolado)</title>
+<title>Só mais um fã de Pearl Jam</title>
 <meta name="description" content="Só mais um fã de Pearl Jam: arquivo pessoal de shows presenciados ao vivo, setlists completos, interpretações, áudio e galeria. Cobre Pearl Jam e Eddie Vedder solo.">
 <meta name="theme-color" content="#a8322b">
 <link rel="canonical" href="https://setlists-pj-ev.pages.dev/">
@@ -11225,7 +11225,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.21</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.01</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -21329,33 +21329,6 @@ document.addEventListener("DOMContentLoaded", init);
     stampCardDelays();
     armStatCounters();
   }
-})();
-</script>
-
-<script>
-/* cifras-v2: pagina dedicada de validacao — abre direto na aba Cifras & Tabs
-   (o site normal abre em Noticias; aqui o conteudo a validar e so o de cifras). */
-(function () {
-  var tries = 0;
-  function openCifras() {
-    if (typeof activateTab !== "function" || typeof state === "undefined") {
-      if (tries++ < 100) return window.setTimeout(openCifras, 80);
-      return;
-    }
-    try {
-      if (state.currentView !== "tabs") activateTab("tabs", { noScroll: true });
-      window.scrollTo({ top: 0 });
-    } catch (e) {
-      if (tries++ < 100) window.setTimeout(openCifras, 120);
-    }
-  }
-  // Perf: tenta JA (poll curto) em vez de esperar o 'load' (todos os assets).
-  // openCifras e idempotente, entao pode disparar varias vezes.
-  openCifras();
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", openCifras);
-  }
-  window.addEventListener("load", openCifras);
 })();
 </script>
 
