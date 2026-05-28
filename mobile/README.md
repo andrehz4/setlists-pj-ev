@@ -27,11 +27,11 @@ mobile/
 ├── mobile.css          entry-point (só @import)
 ├── mobile-core.css     BATCH 1 · nav, masthead, filter-bar, audio-player, footer
 ├── mobile-news.css     BATCH 1 · #view-news (fanzine)
+├── mobile-timeline.css BATCH 2 · #view-timeline + drawer de setlist
+├── mobile-gallery.css  BATCH 2 · #view-gallery + lightbox
+├── mobile-banda.css    BATCH 2 · #view-banda (roster fliperama)
 ├── README.md           este arquivo
 └── mockups/            telas de revisão (NÃO faz parte do bundle de produção)
-    ├── news-listing.html
-    ├── news-detail.html
-    └── _mock.css
 ```
 Os mockups usam o DOM real + `_source/desktop.css` (CSS real extraído do `index.html`)
 renderizados em viewport de telefone de verdade (375 / 414). Veja
@@ -110,8 +110,49 @@ renderizados em viewport de telefone de verdade (375 / 414). Veja
    `#audio-player.active` — provavelmente um seletor irmão no CSS já resolve, confirmo lá.
 3. *(Opcional, futuro)* `<meta name="theme-color">` por tema melhora a barra do iOS.
 
+---
+
+## Decisões — Batch 2
+
+### Timeline (`#view-timeline`) + drawer de setlist
+- **Timeline:** cards-ingresso em coluna única (o redesign ticket já tendia a isso);
+  o rótulo-ano marca-d'água cai de **96px → 60px** (48px em ≤480) pra não engolir o
+  primeiro card; alvo de toque ≥132px de altura no card.
+- **Drawer:** já era tela cheia (`min(640px,100vw)`). Refinamos botão fechar pra **44px**,
+  setlist em **16px/1.35** pra leitura, grade de fotos 2 col.
+- **Tags por música (letra/tradução · análise · tab):** cada música no setlist ganha chips
+  inline pequenos e discretos (8.5px, uppercase, ~15px de altura) que abrem painéis
+  expansíveis. **Cores semânticas:** LETRA / LETRA-TRADUÇÃO / TAB em vermelho PJ (família
+  "música/conteúdo"); **ANÁLISE em bege neutro** (`#8a7f6e`) por ser interpretação, não
+  conteúdo da música. Os chips ficam inline com o título sem quebrar a linha (título do
+  setlist a 15px pra dar folga). Os botões de idioma do painel (PT/EN/Tradutor) e a barra
+  Cifra/Tab ganham alvo de toque (36–46px); letras bilíngues EN/PT colapsam pra 1 coluna.
+- **Trade-off:** nenhum relevante; é refinamento sobre layout que já colapsava bem.
+
+### Galeria (`#view-gallery`) + **lightbox**
+- **Galeria:** thumbs viram **contact-sheet de 3 colunas** (antes colapsavam pra ~1 col
+  gigante); cabeçalho do show com `flex-wrap` + alvo 44px; playlists YT em 1 coluna 16:9.
+- **Lightbox — correção crítica (#)**: o CSS legado fazia `.lb-arrow{display:none}` em
+  ≤600px. Sem swipe (exigiria JS), o usuário ficava **preso na 1ª foto**. Reativamos as
+  setas como alvos de toque grandes (52px) nos cantos inferiores; fechar 48px; o painel
+  "História" não cobre mais os controles. **O JS já estava ligado nas setas** — só o CSS
+  as escondia, então é fix puramente de CSS.
+- **Trade-off:** as setas no rodapé ocupam um pouco do espaço do painel de história
+  (resolvido com `padding-bottom` e z-index).
+
+### BANDA (`#view-banda`)
+- **Decisão:** roster em 2 colunas (herdado). Ao abrir um membro (`.bm.is-open`), o card
+  passa a **ocupar a linha inteira** (`grid-column: 1 / -1`) pra bio + sprite respirarem,
+  em vez de espremer em meia largura; `max-height` da ficha ampliada pra não clipar.
+  Atalhos de teclado (`.kbd`) escondidos no toque.
+- **Trade-off:** ao abrir, os cards abaixo "pulam" pra reorganizar o grid — comportamento
+  esperado de um acordeão; o scroll-into-view do JS já compensa.
+
+**Nenhuma mudança de HTML foi necessária no Batch 2.**
+
+---
+
 ## Próximos batches (aguardando aprovação)
-- **2:** Timeline + Galeria (+ lightbox) + BANDA
-- **3:** Cifras & Tabs (catálogo drawer, mixer sheet, transport, FAB)
+- **3:** Cifras & Tabs (catálogo drawer, mixer sheet, transport, FAB — inclui o #9 do FAB)
 - **4:** Fórum (wrapper do iframe) + páginas standalone
-- **5:** Drawer de show + Deep reader + views auxiliares
+- **5:** Drawer de show + Deep reader + views auxiliares (ranking/highlights/rarity/gaps/search)

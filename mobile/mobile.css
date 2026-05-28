@@ -18,10 +18,12 @@
 @import url("mobile-core.css");     /* nav, masthead, filter-bar, audio-player, footer */
 @import url("mobile-news.css");     /* #view-news (fanzine) */
 
+/* --- BATCH 2 (entregue) ----------------------------------------------------- */
+@import url("mobile-timeline.css"); /* #view-timeline + drawer de setlist */
+@import url("mobile-gallery.css");  /* #view-gallery + lightbox (resgate das setas) */
+@import url("mobile-banda.css");    /* #view-banda (roster fliperama) */
+
 /* --- BATCHES SEGUINTES (placeholders — adicionar conforme aprovacao) -------- *
-   @import url("mobile-timeline.css");  // Batch 2 · #view-timeline
-   @import url("mobile-gallery.css");   // Batch 2 · #view-gallery + lightbox
-   @import url("mobile-banda.css");     // Batch 2 · #view-banda
    @import url("mobile-cifras.css");    // Batch 3 · #view-tabs (catalogo/mixer/transport)
    @import url("mobile-forum.css");     // Batch 4 · #view-forum (wrapper do iframe)
    @import url("mobile-aux.css");       // Batch 5 · ranking/highlights/rarity/deep/gaps/search

@@ -1,0 +1,153 @@
+/* ============================================================================
+   mobile-timeline.css  ·  Setlists PJ + EV  ·  view #view-timeline (<=768px)
+   ----------------------------------------------------------------------------
+   ESCOPO: a Linha do tempo + o DRAWER de setlist que ela (e a Galeria) abrem.
+   DOM real (renderTimeline + openDrawer):
+     #view-timeline > .view-title + .view-desc + #timeline-content
+       #timeline-content > .timeline-year > .timeline-year-label + .shows-grid
+         .shows-grid > .show-card (ticket stub) > artist/date/venue/city/meta
+       + .timeline-year.extras-block (acervo nao presenciado)
+     DRAWER (#drawer): .drawer-close + #drawer-content (setlist em <ul>/<li>)
+
+   O desktop "ticket" ja deixa os cards em 1 coluna no estreito (minmax 320px) e
+   o drawer ja e min(640px,100vw) = tela cheia. Aqui REFINAMOS:
+     - year-label watermark de 96px -> menor, pra nao engolir o primeiro card
+     - alvos de toque (card, fechar do drawer >=44px)
+     - respiro e legibilidade do setlist no drawer
+
+   Regras envoltas em @media(max-width:768px). !important vence o redesign ticket.
+   TAP: alvos de toque anotados com  [ TAP >=44 ]  (sem usar o fecha-comentario).
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+  /* --- cabecalho da view --------------------------------------------------- */
+  #view-timeline .view-desc { font-size: 12px !important; }
+
+  /* --- rotulo de ano (marca d'agua): 96px engole o 1o card -> reduz -------- */
+  .timeline-year { margin-top: 8px; }
+  .timeline-year-label {
+    font-size: 60px !important;
+    top: -12px !important;
+    letter-spacing: -0.03em;
+  }
+  .extras-label { font-size: 40px !important; }
+  .extras-note { font-size: 12px !important; }
+
+  /* --- grid de shows: 1 coluna limpa (sem travar em 320px) ----------------- */
+  .shows-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* --- ticket stub: alvo de toque confortavel + texto legivel -------------- */
+  .show-card {
+    min-height: 132px;                 /* [ TAP >=44 ] sobra de toque */
+    padding: 20px 40px 18px 22px !important;
+  }
+  .show-card:active { transform: translateY(1px) scale(0.995); }
+  .show-card-artist { font-size: 11px !important; }
+  .show-card-date   { font-size: 25px !important; }
+  .show-card-venue  { font-size: 15px !important; }
+  .show-card-meta   { font-size: 11px !important; }
+
+  /* ------------------------------------------------------------------ *
+   * DRAWER (setlist)  ·  ja e tela cheia; aqui refinamos toque + leitura
+   * ------------------------------------------------------------------ */
+  .drawer {
+    padding: 26px 20px 60px !important;
+  }
+  .drawer-close {
+    top: 14px !important; right: 14px !important;
+    width: 44px !important; height: 44px !important;   /* [ TAP >=44 ] */
+    font-size: 19px !important;
+    background: var(--bg-card) !important;
+    z-index: 2;
+  }
+  .drawer-date  { font-size: 32px !important; }
+  .drawer-venue { font-size: 19px !important; }
+
+  /* linhas do setlist: numero | musica | duracao — confortavel pra ler */
+  .setlist li {
+    padding: 9px 0 !important;
+    font-size: 15px !important;        /* 15px deixa folga pro titulo + chips na mesma linha */
+    line-height: 1.35 !important;
+  }
+
+  /* ------------------------------------------------------------------ *
+   * CHIPS POR MUSICA  ·  letra/traducao (PJ) · analise (EV) · tab (azul)
+   *   Chips pequenos e discretos, inline com o titulo da musica, SEM
+   *   quebrar a linha. Uppercase, letra fina. (Decisao do dono: compacto
+   *   tem prioridade sobre alvo de toque ampliado.)
+   * ------------------------------------------------------------------ */
+  .lyric-toggle,
+  .interp-toggle,
+  .tab-toggle {
+    display: inline-flex;
+    align-items: center;
+    height: 15px;                      /* compacto, alinhado ao texto */
+    padding: 1px 4px !important;
+    font-size: 8.5px !important;
+    font-weight: 500 !important;       /* letra fina, sem peso excessivo */
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    border-radius: 3px !important;     /* cantos discretos */
+    margin: 0 0 0 3px !important;      /* inline, colado ao titulo (sem quebra) */
+    vertical-align: middle !important;
+    white-space: nowrap;
+  }
+
+  /* CORES SEMANTICAS dos chips:
+     LETRA / LETRA-TRADUCAO / TAB = vermelho PJ (familia "musica")
+     ANALISE = neutro bege/cinza (e diferente: e interpretacao, nao conteudo) */
+  .lyric-toggle,
+  .tab-toggle {
+    color: var(--pj, #9c1f22) !important;
+    border-color: var(--pj, #9c1f22) !important;
+    background: transparent !important;
+  }
+  .interp-toggle {
+    color: #8a7f6e !important;
+    border-color: #8a7f6e !important;
+    background: transparent !important;
+  }
+  /* feedback de toque (sem hover no mobile) */
+  .lyric-toggle:active,
+  .tab-toggle:active { background: var(--pj, #9c1f22) !important; color: #fff !important; }
+  .interp-toggle:active { background: #8a7f6e !important; color: #fff !important; border-color: #8a7f6e !important; }
+
+  /* paineis expandidos (letra/traducao, analise, cifra) ----------------- */
+  .lyric-block,
+  .interp-block,
+  .tab-block {
+    padding: 14px 14px 12px 14px !important;
+    font-size: 14px !important;
+  }
+  /* letras bilingues EN/PT: ja colapsam pra 1 coluna @600; reforcamos <=768 */
+  .lyric-side { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* botoes de idioma do painel (PT / EN / Tradutor): alvo de toque ------ */
+  .lyric-lang-bar { flex-wrap: wrap; gap: 8px !important; }
+  .lyric-lang-btn {
+    min-height: 36px;                  /* [ TAP ~36 ] */
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+  }
+  /* barra Cifra/Tab (protagonista): mantem destaque, alvo confortavel --- */
+  .tab-lang-bar .lyric-lang-btn[data-tabtype] {
+    min-height: 46px;                  /* [ TAP >=44 ] */
+    padding: 11px 18px !important;
+    font-size: 13px !important;
+  }
+  .drawer-photos {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-year-label { font-size: 48px !important; top: -8px !important; }
+  .show-card-date { font-size: 23px !important; }
+}

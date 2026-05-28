@@ -1,0 +1,107 @@
+/* ============================================================================
+   mobile-gallery.css  ·  Setlists PJ + EV  ·  view #view-gallery (<=768px)
+   ----------------------------------------------------------------------------
+   ESCOPO: Galeria (fotos por show + playlists do YouTube) e o LIGHTBOX global.
+   DOM real (renderGalleryShows / _galleryPlaylistRowHtml / openLightbox):
+     #view-gallery > .view-title + .view-desc + #gallery-filters + #gallery-content
+       #gallery-content > .gallery-show-block
+         > .gallery-show-header (nome/meta/contagem) + .gallery-grid > .gallery-thumb > img
+       + .gallery-playlist-row > .gallery-playlists-grid > .playlist-card (iframe YT)
+     LIGHTBOX (#lightbox): img + .lb-close + .lb-arrow(.lb-prev/.lb-next) + .lb-counter + .lb-story
+
+   PROBLEMA CRITICO RESOLVIDO:
+     O CSS legado esconde as setas do lightbox em <=600px (`.lb-arrow{display:none}`).
+     Como NAO ha swipe (exigiria JS), isso DEIXA O USUARIO PRESO na 1a foto — sem
+     navegacao. Aqui reativamos as setas como alvos de toque grandes no rodape.
+     (As setas ja funcionam: o JS liga onclick nelas; so o CSS as escondia.)
+
+   Outras melhorias:
+     - thumbs viram contact-sheet de 3 colunas (em vez de ~1 col gigante)
+     - cabecalho do show com wrap e alvo de toque
+     - playlists 1 coluna (16:9 cheio)
+
+   Regras envoltas em @media(max-width:768px). !important onde o legado disputa.
+   TAP: alvos anotados com  [ TAP >=44 ]
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+  #view-gallery .view-desc { font-size: 12px !important; }
+  #gallery-filters { gap: 8px !important; margin-bottom: 16px !important; }
+  #gallery-filters .filter-chip,
+  #gallery-filters button { min-height: 38px; display: inline-flex; align-items: center; }
+
+  /* --- cabecalho de cada bloco de show: nome | meta | contagem ------------ */
+  .gallery-show-block { margin-bottom: 30px !important; }
+  .gallery-show-header {
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px !important;
+    min-height: 44px;                  /* [ TAP >=44 ] abre o drawer */
+    padding-bottom: 10px !important;
+  }
+  .gallery-show-name { font-size: 17px !important; }
+  .gallery-show-count { margin-left: auto; font-size: 12px !important; }
+  .gallery-show-header:active .gallery-show-name { color: var(--pj); }
+
+  /* --- contact sheet: 3 colunas densas (cada thumb continua tocavel) ------ */
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 5px !important;
+  }
+  .gallery-thumb:active { transform: scale(0.97); }
+
+  /* --- playlists do YouTube: 1 coluna, 16:9 cheio ------------------------- */
+  .gallery-playlists-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * LIGHTBOX  ·  reescreve o bloco legado @600 que matava a navegacao
+ *   (este arquivo carrega depois, entao vence; <=768 cobre 601-768 tb)
+ * ------------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .lightbox { padding: 8px !important; }
+
+  /* RE-EXIBE as setas como alvos de toque grandes (legado as escondia) */
+  .lb-arrow {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 52px !important; height: 52px !important;     /* [ TAP >=44 ] */
+    top: auto !important;
+    bottom: 14px !important;
+    transform: none !important;
+    background: rgba(0,0,0,0.55) !important;
+    border-radius: 50% !important;
+    font-size: 24px !important;
+    color: #fff !important;
+    z-index: 6;
+  }
+  .lb-prev { left: 14px !important; right: auto !important; }
+  .lb-next { right: 14px !important; left: auto !important; }
+  .lb-arrow.hidden { opacity: 0 !important; pointer-events: none !important; }
+
+  .lb-close {
+    top: 10px !important; right: 10px !important;
+    width: 48px !important; height: 48px !important;     /* [ TAP >=44 ] */
+    display: flex !important; align-items: center; justify-content: center;
+    font-size: 22px !important;
+    background: rgba(0,0,0,0.55) !important;
+    border-radius: 50% !important;
+    z-index: 6;
+  }
+  .lb-counter {
+    bottom: 22px !important;
+    font-size: 11px !important;
+    padding: 5px 14px !important;
+  }
+  /* historia da foto: nao ocupa a tela toda, deixa espaco pras setas */
+  .lb-story {
+    max-height: 34% !important;
+    padding: 22px 16px 64px !important;     /* fundo livre pras setas no rodape */
+    font-size: 13px !important;
+  }
+}
