@@ -11207,7 +11207,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.09</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.10</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -18547,14 +18547,12 @@ function _inferTrackMeta(name) {
 // Mike McCready e Jeff Ament tem foto dedicada; tracks de bateria/vocal/genericas
 // caem pra null (card sem foto, layout antigo continua funcional).
 function _inferMusicianPhoto(name) {
-  const n = String(name || '').toLowerCase();
-  if (/stone|gossard|rhythm|ritm/.test(n)) return 'media/band/stone.jpg';
-  if (/mike|mccready|lead|solo/.test(n)) return 'media/band/mike.jpg';
-  if (/jeff|ament|bass|baix/.test(n)) return 'media/band/jeff.jpg';
-  if (/eddie|vedder|vox|vocal|voice|sing|cant/.test(n)) return 'media/band/eddie.jpg';
-  if (/matt|cameron|drum|bater|percuss/.test(n)) return 'media/band/matt.jpg';
-  if (/boom|gaspar|piano|key|organ|hammond/.test(n)) return 'media/band/boom.jpg';
-  return null;
+  // Reusa _inferTrackMember (logica mais robusta: sabe Guitar 1 = Mike,
+  // Guitar 2 = Stone, alem dos heuristicos por kind quando o nome eh
+  // generico). Antes tinha regex propria e perdia tracks com nome "Guitar N".
+  if (typeof _inferTrackMember !== 'function' || typeof _inferTrackKind !== 'function') return null;
+  const m = _inferTrackMember(name, _inferTrackKind(name, null));
+  return (m && m.id) ? `media/band/${m.id}.jpg` : null;
 }
 
 // Sync state visual de um voice-tab (cards no topo) com um boolean.
