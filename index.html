@@ -13800,8 +13800,10 @@ function _renderTabPanel(body, songKey, tabMeta) {
           `;
           document.body.appendChild(fab);
         }
-        // FAB no contexto TAB: stop volta a aparecer (cifra esconde via .cifra-mode).
+        // FAB no contexto TAB: stop volta a aparecer (cifra esconde via inline style).
         fab.classList.remove('cifra-mode');
+        const stopVisFix = fab.querySelector('.alphatab-fab-stop');
+        if (stopVisFix) stopVisFix.style.display = '';
         // Garante o botao × de fechar (criado uma unica vez por contexto).
         let fabClose = fab.querySelector('.alphatab-fab-close');
         if (!fabClose) {
@@ -15689,9 +15691,16 @@ function _populateMixer(mixerAside, tracks) {
       e.stopPropagation();
       const v = parseFloat(masterSlider.value);
       if (masterVal) masterVal.textContent = Math.round(v * 100) + '%';
+      // AlphaTab (TAB): masterVolume da api
       if (_activeAlphaTabApi) {
         try { _activeAlphaTabApi.masterVolume = v; } catch (err) {}
       }
+      // Cifra player: usa window._cifraVolume (lido por _playChordSound).
+      // Sincroniza tambem os sliders locais .cifra-mode-vol pra refletir.
+      window._cifraVolume = v;
+      document.querySelectorAll('.cifra-mode-vol').forEach(sl => {
+        if (sl !== masterSlider) sl.value = String(v);
+      });
       if (masterIcon) {
         masterIcon.classList.toggle('muted', v === 0);
         masterIcon.textContent = v === 0 ? '🔇' : '🔊';
@@ -16149,8 +16158,8 @@ function _ensureCifraFab() {
     `;
     document.body.appendChild(fab);
   }
-  // Modo cifra: pausa cumpre play/pause, esconde o stop (CSS via .cifra-mode)
-  // pra nao mostrar dois ▶ ao mesmo tempo quando o cifra player esta pausado.
+  // Modo cifra: pausa cumpre play/pause, esconde o stop (style.display='none'
+  // direto no botao pra nao depender de CSS class que pode nao ter carregado).
   fab.classList.add('cifra-mode');
   // Clona os botoes pra apagar handlers anteriores (do AlphaTab eventualmente)
   const pauseOld = fab.querySelector('.alphatab-fab-pause');
@@ -16158,6 +16167,7 @@ function _ensureCifraFab() {
   if (pauseOld) {
     const pauseNew = pauseOld.cloneNode(true);
     pauseOld.replaceWith(pauseNew);
+    pauseNew.style.display = '';
     pauseNew.addEventListener('click', (e) => {
       e.stopPropagation();
       if (!_activeCifraRoot) return;
@@ -16168,10 +16178,11 @@ function _ensureCifraFab() {
     });
   }
   if (stopOld) {
-    // Stop fica escondido via CSS .cifra-mode, mas mantemos handler caso
-    // alguem force display via DOM.
+    // Stop escondido no contexto cifra (style direto, robusto a cache de CSS).
+    // Handler mantido como no-op safety se alguem forcar display.
     const stopNew = stopOld.cloneNode(true);
     stopOld.replaceWith(stopNew);
+    stopNew.style.display = 'none';
     stopNew.addEventListener('click', (e) => {
       e.stopPropagation();
       if (_activeCifraRoot) _stopCifraPlayer(_activeCifraRoot);
@@ -16275,10 +16286,21 @@ async function _startCifraPlayer(root, bpm) {
   _renderCifraPlayerBar(root, 'playing');
   _renderCifraFab('playing');
 
-  // Nao mexer no scroll da window ao iniciar o cifra player. O braco fica
-  // docked inline no topo (regra do projeto) e o usuario quer continuar vendo
-  // a letra/chord-chips onde estava. O acompanhamento durante playback rola
-  // dentro da .cifra-surface / .alphatab-surface, nao da window.
+  // Scroll inicial APENAS na view Cifras: traz a .alphatab-surface (chord-chips)
+  // pro topo da viewport com offset de 12vh. Resultado: chord-chips ficam
+  // visiveis no topo e o braco docked (que fica entre surface e transport-bottom)
+  // aparece logo abaixo, dentro do viewport. Espera 1 frame pro DOM estabilizar
+  // (insercao do braco via _updateCifraFretboard ocorre no primeiro chord).
+  if (root.closest('.cifra-detail-wrap')) {
+    const surface = root.querySelector('.alphatab-surface');
+    if (surface) {
+      requestAnimationFrame(() => {
+        const offset = Math.round(window.innerHeight * 0.12);
+        const y = surface.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      });
+    }
+  }
 
   // Surface da cifra (mesma classe do TAB). Na view Cifras tem scroll
   // interno (overflow-y auto + max-height 56vh); no setlist scroll rola
