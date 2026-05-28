@@ -11150,6 +11150,12 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
     scroll-snap-align: center;
   }
 }
+
+/* ── Sprint mobile M4: chord-diagram popover mais compacto em <=600px ── */
+/* Combina com flip-right via JS pra cobrir chips perto da borda direita. */
+@media (max-width: 600px) {
+  .chord-diagram { width: 88px; }
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19343,6 +19349,17 @@ function _attachChordChipHandlers(root, multiData) {
     pop.innerHTML = svg || `<div class="chord-diagram-empty">${chord}<small>digita&ccedil;&atilde;o n&atilde;o cadastrada</small></div>`;
     chip.appendChild(pop);
     openPopover = pop;
+    // Sprint M4: se popover overflow lateral (chip perto da borda direita),
+    // ancora pela direita do chip ao inves da esquerda. Universal: roda em
+    // desktop tambem, so flippa quando ha overflow real, nao muda nada caso contrario.
+    try {
+      const rect = pop.getBoundingClientRect();
+      const vw = window.innerWidth || document.documentElement.clientWidth;
+      if (rect.right > vw - 8) {
+        pop.style.left = 'auto';
+        pop.style.right = '0';
+      }
+    } catch(e) {}
     // Toca o acorde arpejado (lazy load no primeiro click; gesto do usuario
     // ja autoriza Web Audio em todos os navegadores modernos). Usa multiData
     // + instrumento ativo pra escolher sampler e notas corretas.
