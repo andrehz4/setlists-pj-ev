@@ -4387,11 +4387,19 @@ html[data-theme="dark"] .alphatab-version-select {
   border-radius: 999px;
   cursor: pointer;
   transition: all 120ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 .fretboard-tab:hover { background: rgba(46, 107, 138, 0.12); }
 .fretboard-tab.active {
   background: #2e6b8a;
   color: #fff;
+}
+.fretboard-tab-ico {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 /* Barra ABAIXO do braco. Aparece em AMBOS os modos. Contem grupo de
    instrumentos (.fretboard-instr-bottom) e slider de zoom (.fretboard-zoom).
@@ -11217,7 +11225,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.15</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.16</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16996,25 +17004,25 @@ function _renderTabPanel(body, songKey, tabMeta) {
             <button type="button" class="fretboard-close" aria-label="Fechar fretboard">×</button>
             <div class="fretboard-bar">
               <div class="fretboard-header">Braço</div>
-              <div class="fretboard-tabs" role="tablist">
-                <button type="button" class="fretboard-tab" data-inst="acoustic">Violão</button>
-                <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
-                <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
-                <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
-                <button type="button" class="fretboard-tab" data-inst="piano">Piano</button>
-                <button type="button" class="fretboard-tab" data-inst="drums">Bateria</button>
+              <div class="fretboard-tabs" role="tablist" aria-label="Instrumento do braço (TAB)">
+                <button type="button" class="fretboard-tab" data-inst="acoustic" aria-pressed="false">Violão</button>
+                <button type="button" class="fretboard-tab active" data-inst="guitar" aria-pressed="true">Guitarra</button>
+                <button type="button" class="fretboard-tab" data-inst="bass" aria-pressed="false">Baixo</button>
+                <button type="button" class="fretboard-tab" data-inst="ukulele" aria-pressed="false">Ukulele</button>
+                <button type="button" class="fretboard-tab" data-inst="piano" aria-pressed="false">Piano</button>
+                <button type="button" class="fretboard-tab" data-inst="drums" aria-pressed="false">Bateria</button>
               </div>
             </div>
             <div class="fretboard-players"></div>
             <svg class="fretboard-svg" viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet"></svg>
             <div class="fretboard-bar-bottom">
-              <div class="fretboard-instr-bottom" role="tablist" aria-label="Escolher instrumento">
-                <button type="button" class="fretboard-tab" data-inst="acoustic">Violão</button>
-                <button type="button" class="fretboard-tab active" data-inst="guitar">Guitarra</button>
-                <button type="button" class="fretboard-tab" data-inst="bass">Baixo</button>
-                <button type="button" class="fretboard-tab" data-inst="ukulele">Ukulele</button>
-                <button type="button" class="fretboard-tab" data-inst="piano">Piano</button>
-                <button type="button" class="fretboard-tab" data-inst="drums">Bateria</button>
+              <div class="fretboard-instr-bottom" role="tablist" aria-label="Instrumento do braço (TAB)">
+                <button type="button" class="fretboard-tab" data-inst="acoustic" aria-pressed="false">Violão</button>
+                <button type="button" class="fretboard-tab active" data-inst="guitar" aria-pressed="true">Guitarra</button>
+                <button type="button" class="fretboard-tab" data-inst="bass" aria-pressed="false">Baixo</button>
+                <button type="button" class="fretboard-tab" data-inst="ukulele" aria-pressed="false">Ukulele</button>
+                <button type="button" class="fretboard-tab" data-inst="piano" aria-pressed="false">Piano</button>
+                <button type="button" class="fretboard-tab" data-inst="drums" aria-pressed="false">Bateria</button>
               </div>
               <div class="fretboard-zoom" role="group" aria-label="Tamanho do braço">
                 <span class="fretboard-zoom-label">Tamanho</span>
@@ -17387,7 +17395,9 @@ function _renderTabPanel(body, songKey, tabMeta) {
         // qualquer um sincroniza active class nos 2 conjuntos.
         const _syncInstrumentTabs = () => {
           fretboard.querySelectorAll('.fretboard-tab').forEach(x => {
-            x.classList.toggle('active', x.dataset.inst === fbInstrument);
+            const active = x.dataset.inst === fbInstrument;
+            x.classList.toggle('active', active);
+            x.setAttribute('aria-pressed', active ? 'true' : 'false');
           });
         };
         _syncInstrumentTabs();
@@ -19241,10 +19251,19 @@ function _ensureCifraFretboard() {
     </div>
     <div class="cifra-fretboard-svg-wrap"></div>
     <div class="cifra-fretboard-bar">
-      <div class="cifra-fretboard-instr" role="tablist" aria-label="Instrumento da cifra">
-        <button type="button" class="fretboard-tab${initialInst === 'violao' ? ' active' : ''}" data-inst="violao" aria-pressed="${initialInst === 'violao'}">🎸 Violão</button>
-        <button type="button" class="fretboard-tab${initialInst === 'ukulele' ? ' active' : ''}" data-inst="ukulele" aria-pressed="${initialInst === 'ukulele'}">🪗 Ukulele</button>
-        <button type="button" class="fretboard-tab${initialInst === 'piano' ? ' active' : ''}" data-inst="piano" aria-pressed="${initialInst === 'piano'}">🎹 Piano</button>
+      <div class="cifra-fretboard-instr" role="tablist" aria-label="Instrumento ativo no braço">
+        <button type="button" class="fretboard-tab${initialInst === 'violao' ? ' active' : ''}" data-inst="violao" aria-pressed="${initialInst === 'violao'}">
+          <svg class="fretboard-tab-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="3.6" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="2.5" y1="2.5" x2="9" y2="9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="2.5" cy="2.5" r="1.1" fill="currentColor"/></svg>
+          <span>Violão</span>
+        </button>
+        <button type="button" class="fretboard-tab${initialInst === 'ukulele' ? ' active' : ''}" data-inst="ukulele" aria-pressed="${initialInst === 'ukulele'}">
+          <svg class="fretboard-tab-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><ellipse cx="10.5" cy="10.5" rx="3.2" ry="3.6" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="3" y1="3" x2="8.4" y2="8.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="3" cy="3" r="0.9" fill="currentColor"/></svg>
+          <span>Ukulele</span>
+        </button>
+        <button type="button" class="fretboard-tab${initialInst === 'piano' ? ' active' : ''}" data-inst="piano" aria-pressed="${initialInst === 'piano'}">
+          <svg class="fretboard-tab-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="2" y="4" width="12" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/><line x1="6" y1="4" x2="6" y2="12" stroke="currentColor" stroke-width="1"/><line x1="10" y1="4" x2="10" y2="12" stroke="currentColor" stroke-width="1"/><rect x="4.5" y="4" width="2" height="4.5" fill="currentColor"/><rect x="8.5" y="4" width="2" height="4.5" fill="currentColor"/></svg>
+          <span>Piano</span>
+        </button>
       </div>
       <div class="fretboard-zoom" role="group" aria-label="Tamanho do braço">
         <span class="fretboard-zoom-label">Tamanho</span>
