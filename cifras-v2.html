@@ -11207,7 +11207,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.10</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.11</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16396,7 +16396,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           </label>
           ${versionSelectHtml}
           <button type="button" class="atc-btn-mini alphatab-btn alphatab-loop cifra-mode-loop" data-state="off" aria-label="Loop de trecho" title="Loop">🔁 Loop</button>
-          <span class="alphatab-status alphatab-status-top" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico &middot; click Play</span>
+          <span class="alphatab-status alphatab-status-top" aria-live="polite">${bpm} BPM &middot; ${_cifraInstrumentLabel(_activeCifraInstrument)} &middot; click Play</span>
         </div>
         ${instrSelectHtml}
         <div class="cifra-strumming-wrap">${_renderStrummingHeader(activeMulti)}</div>
@@ -16419,7 +16419,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           <button type="button" class="atc-btn alphatab-btn alphatab-metronome cifra-mode-metronome" data-state="off" aria-pressed="false" aria-label="Metr&ocirc;nomo (tick por beat)" title="Metr&ocirc;nomo">𝅘𝅥 Metr&ocirc;nomo</button>
           <button type="button" class="atc-btn alphatab-btn alphatab-braco cifra-mode-braco" data-state="on" aria-pressed="true" aria-label="Mostrar/esconder bra&ccedil;o" title="Bra&ccedil;o">⌗ Bra&ccedil;o</button>
           <button type="button" class="atc-btn-ico alphatab-settings cifra-mode-settings" aria-label="Ajustes" title="Ajustes (em breve)">⚙</button>
-          <span class="alphatab-status" aria-live="polite">${bpm} BPM &middot; viol&atilde;o ac&uacute;stico</span>
+          <span class="alphatab-status" aria-live="polite">${bpm} BPM &middot; ${_cifraInstrumentLabel(_activeCifraInstrument)}</span>
         </div>
       `;
       // Armazena multiData no pane pra _startCifraPlayer + handlers acessarem
@@ -16463,7 +16463,7 @@ function _renderTabPanel(body, songKey, tabMeta) {
           // Atualiza display de BPM nos status
           const newBpm = (newActive && newActive.bpm) || tabMeta.bpm || 90;
           cifraPane.querySelectorAll('.alphatab-status').forEach(el => {
-            el.textContent = `${newBpm} BPM · violão acústico`;
+            el.textContent = `${newBpm} BPM · ${_cifraInstrumentLabel(_activeCifraInstrument)}`;
           });
         });
       }
@@ -16502,6 +16502,16 @@ function _renderTabPanel(body, songKey, tabMeta) {
           if (wrap) wrap.innerHTML = _renderStrummingHeader(curMulti);
           // Strumming-bar re-renderizado: ressincroniza UI do zoom de texto
           if (typeof _syncCifraTextZoomUI === 'function') _syncCifraTextZoomUI();
+          // Atualiza status text com o novo instrumento (apenas a parte do
+          // instrumento, preserva BPM corrente lendo do _multiData).
+          const _bpmStatus = (curMulti && curMulti.bpm) || tabMeta.bpm || 90;
+          const _instLabel = _cifraInstrumentLabel(inst);
+          cifraPane.querySelectorAll('.alphatab-status-top').forEach(el => {
+            el.textContent = `${_bpmStatus} BPM · ${_instLabel} · click Play`;
+          });
+          cifraPane.querySelectorAll('.alphatab-status:not(.alphatab-status-top)').forEach(el => {
+            el.textContent = `${_bpmStatus} BPM · ${_instLabel}`;
+          });
           // Re-render overlay do braco/teclado IMEDIATAMENTE com o chord atual
           // (se player estiver tocando ou pausado num chord). Sem isso, user
           // troca pra piano mas continua vendo braco de violao ate o proximo
@@ -16706,7 +16716,8 @@ function _renderTabPanel(body, songKey, tabMeta) {
           } else {
             cifraPane._loopRange = null;
             setLoopState('off');
-            setStatus(bpm + ' BPM · violão acústico');
+            const _curBpm = (cifraPane._multiData && cifraPane._multiData.bpm) || bpm;
+            setStatus(_curBpm + ' BPM · ' + _cifraInstrumentLabel(_activeCifraInstrument));
           }
         });
       });
@@ -19144,7 +19155,7 @@ function _renderCifraPlayerBar(root, state) {
   if (typeof root._cifraSetStatus === 'function') {
     if (state === 'playing') root._cifraSetStatus('tocando cifra…');
     else if (state === 'paused') root._cifraSetStatus('pausado · click Play');
-    else root._cifraSetStatus('violão acústico · click Play');
+    else root._cifraSetStatus(_cifraInstrumentLabel(_activeCifraInstrument) + ' · click Play');
   }
 }
 
@@ -19364,6 +19375,17 @@ function _hideCifraFretboard() {
       fb.classList.remove('inline');
     }
   }
+}
+
+// Label legivel do instrumento ativo, usado na barra de status do player
+// (ex: "144 BPM · violao acustico"). Mantem 'violao acustico' como antes;
+// adiciona ukulele e piano. Strings em PT-BR sem acentos pra evitar mojibake
+// em alguns soundfonts/clients antigos.
+function _cifraInstrumentLabel(inst) {
+  const k = String(inst || '').toLowerCase();
+  if (k === 'ukulele' || k === 'uke') return 'ukulele';
+  if (k === 'piano' || k === 'key' || k === 'keys') return 'piano';
+  return 'violão acústico';
 }
 
 // Zoom de texto da cifra: escala fontes via CSS var --cifra-font-scale.
