@@ -11225,7 +11225,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.18</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.19</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16098,45 +16098,99 @@ function _renderChordDiagram(chordName) {
 // Diagrama de acorde de UKULELE (4 cordas, GCEA na ordem visual aguda->grave A E C G).
 // fingering eh string de 4 chars (uma corda por char): "0", "1"..., "x" pra muted.
 // Ex: 'E' em ukulele = '4442' (corda 1 A na fret 4, corda 2 E fret 4, corda 3 C fret 4, corda 4 G fret 2).
-function _renderChordDiagramUkulele(chordName, fingering, fingers) {
+// Helper generico que renderiza diagrama de braço (violao/uke). Aceita
+// fingering (string ou array), fingers, opt barre. Suporta fret>4 mostrando
+// indicador 'Nfr' do lado esquerdo e mapeando frets relativos ao fretMin.
+// Antes: guard rigido f>=1 && f<=4 cortava acordes em posicao alta
+// (power chords, barre, etc) renderizando 'em branco'.
+function _renderChordDiagramBraco({ chordName, fingering, fingers, barre, strings, color }) {
   if (!fingering) return null;
-  const frets = String(fingering).split('').map(c => c === 'x' ? 'x' : parseInt(c, 10));
+  const frets = String(fingering).split('').map(c => c === 'x' || c === 'X' ? 'x' : parseInt(c, 10));
   const fingerArr = fingers ? String(fingers).split('') : [];
-  const W = 72, H = 100;
-  const padTop = 18, padBot = 14, padX = 14;
-  const stringSpacing = (W - padX * 2) / 3; // 4 cordas, 3 espacos
-  const fretSpacing = (H - padTop - padBot) / 4;
+  const W = strings === 6 ? 84 : 72;
+  const H = 110;
+  const padTop = 22, padBot = 14, padX = strings === 6 ? 12 : 14;
+  const stringSpacing = (W - padX * 2) / (strings - 1);
+  const NUM_FRETS = 4;
+  const fretSpacing = (H - padTop - padBot) / NUM_FRETS;
+  const stroke = color || '#2e6b8a';
+  // Calcula fret minimo das notas tocadas (excluindo x e 0).
+  const played = frets.filter(f => typeof f === 'number' && f > 0);
+  const fretMin = played.length ? Math.min(...played) : 1;
+  const fretMax = played.length ? Math.max(...played) : 1;
+  // Se algum fret > 4, renderiza com offset visual: 1a linha = fretMin.
+  const useOffset = fretMax > NUM_FRETS;
+  const offset = useOffset ? fretMin - 1 : 0;
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" class="chord-diagram-svg" aria-hidden="true">`;
-  svg += `<line x1="${padX}" y1="${padTop}" x2="${W - padX}" y2="${padTop}" stroke="#2e6b8a" stroke-width="3" stroke-linecap="square"/>`;
-  for (let i = 1; i <= 4; i++) {
+  // Nut (so quando offset==0; senao linha simples)
+  if (!useOffset) {
+    svg += `<line x1="${padX}" y1="${padTop}" x2="${W - padX}" y2="${padTop}" stroke="${stroke}" stroke-width="3" stroke-linecap="square"/>`;
+  } else {
+    svg += `<line x1="${padX}" y1="${padTop}" x2="${W - padX}" y2="${padTop}" stroke="${stroke}" stroke-width="1" opacity="0.7"/>`;
+    // Indicador "Nfr" a esquerda do diagrama
+    svg += `<text x="${padX - 4}" y="${padTop + fretSpacing * 0.5 + 2}" font-family="sans-serif" font-size="9" font-weight="700" fill="${stroke}" text-anchor="end">${fretMin}fr</text>`;
+  }
+  // Linhas dos trastes
+  for (let i = 1; i <= NUM_FRETS; i++) {
     const y = padTop + i * fretSpacing;
-    svg += `<line x1="${padX}" y1="${y}" x2="${W - padX}" y2="${y}" stroke="#2e6b8a" stroke-width="1" opacity="0.5"/>`;
+    svg += `<line x1="${padX}" y1="${y}" x2="${W - padX}" y2="${y}" stroke="${stroke}" stroke-width="1" opacity="0.5"/>`;
   }
-  // 4 cordas verticais; ordem visual: indice 0 = G grave (esquerda), 3 = A aguda (direita).
-  // Fingering "4442" lido da esquerda pra direita conforme ordem padrao GCEA.
-  for (let i = 0; i < 4; i++) {
+  // Cordas verticais
+  for (let i = 0; i < strings; i++) {
     const x = padX + i * stringSpacing;
-    svg += `<line x1="${x}" y1="${padTop}" x2="${x}" y2="${H - padBot}" stroke="#2e6b8a" stroke-width="1" opacity="0.7"/>`;
+    svg += `<line x1="${x}" y1="${padTop}" x2="${x}" y2="${H - padBot}" stroke="${stroke}" stroke-width="1" opacity="0.7"/>`;
   }
-  // Marcadores x/o e bolas dos dedos
-  for (let i = 0; i < 4; i++) {
+  // Marcadores x/o acima do nut (so quando offset==0; com offset o 0 nao
+  // aparece porque 0 < fretMin entao essa corda esta muted nessa janela)
+  for (let i = 0; i < strings; i++) {
     const x = padX + i * stringSpacing;
     const f = frets[i];
     if (f === 'x') {
-      svg += `<text x="${x}" y="${padTop - 5}" font-family="sans-serif" font-size="9" font-weight="700" fill="#2e6b8a" text-anchor="middle">x</text>`;
-    } else if (f === 0) {
-      svg += `<circle cx="${x}" cy="${padTop - 8}" r="3" fill="none" stroke="#2e6b8a" stroke-width="1.5"/>`;
-    } else if (typeof f === 'number' && f >= 1 && f <= 4) {
-      const y = padTop + (f - 0.5) * fretSpacing;
-      svg += `<circle cx="${x}" cy="${y}" r="6" fill="#2e6b8a"/>`;
-      if (fingerArr[i] && fingerArr[i] !== '0' && fingerArr[i] !== 'x') {
-        svg += `<text x="${x}" y="${y + 3.5}" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">${fingerArr[i]}</text>`;
+      svg += `<text x="${x}" y="${padTop - 6}" font-family="sans-serif" font-size="9" font-weight="700" fill="${stroke}" text-anchor="middle">x</text>`;
+    } else if (f === 0 && !useOffset) {
+      svg += `<circle cx="${x}" cy="${padTop - 8}" r="3" fill="none" stroke="${stroke}" stroke-width="1.5"/>`;
+    } else if (f === 0 && useOffset) {
+      // Com offset, corda solta nao cabe na janela do diagrama: marca como muted visualmente
+      svg += `<text x="${x}" y="${padTop - 6}" font-family="sans-serif" font-size="9" font-weight="700" fill="${stroke}" opacity="0.6" text-anchor="middle">o</text>`;
+    }
+  }
+  // Bolas dos dedos (mapeadas via offset quando fretMax>4)
+  for (let i = 0; i < strings; i++) {
+    const x = padX + i * stringSpacing;
+    const f = frets[i];
+    if (typeof f === 'number' && f >= 1) {
+      const visFret = f - offset; // posicao relativa na janela
+      if (visFret >= 1 && visFret <= NUM_FRETS) {
+        const y = padTop + (visFret - 0.5) * fretSpacing;
+        svg += `<circle cx="${x}" cy="${y}" r="6" fill="${stroke}"/>`;
+        if (fingerArr[i] && fingerArr[i] !== '0' && fingerArr[i] !== 'x' && fingerArr[i] !== 'X') {
+          svg += `<text x="${x}" y="${y + 3.5}" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">${fingerArr[i]}</text>`;
+        }
       }
     }
   }
-  svg += `<text x="${W / 2}" y="${H - 2}" font-family="sans-serif" font-size="11" font-weight="700" fill="#2e6b8a" text-anchor="middle">${chordName.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text>`;
+  // Barre (so renderiza se tiver no formato {fret, from, to})
+  if (barre && typeof barre === 'object' && barre.fret) {
+    const visFret = barre.fret - offset;
+    if (visFret >= 1 && visFret <= NUM_FRETS) {
+      const y = padTop + (visFret - 0.5) * fretSpacing;
+      const xFrom = padX + (strings - barre.from) * stringSpacing;
+      const xTo = padX + (strings - barre.to) * stringSpacing;
+      svg += `<rect x="${Math.min(xFrom, xTo) - 6}" y="${y - 5}" width="${Math.abs(xTo - xFrom) + 12}" height="10" rx="5" fill="${stroke}"/>`;
+    }
+  }
+  // Nome do acorde embaixo
+  svg += `<text x="${W / 2}" y="${H - 2}" font-family="sans-serif" font-size="11" font-weight="700" fill="${stroke}" text-anchor="middle">${chordName.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text>`;
   svg += `</svg>`;
   return svg;
+}
+
+function _renderChordDiagramUkulele(chordName, fingering, fingers, barre) {
+  return _renderChordDiagramBraco({ chordName, fingering, fingers, barre, strings: 4 });
+}
+
+function _renderChordDiagramViolao(chordName, fingering, fingers, barre) {
+  return _renderChordDiagramBraco({ chordName, fingering, fingers, barre, strings: 6 });
 }
 
 // Diagrama de acorde de PIANO: teclado de 1.5 oitavas (C3 a F4) com as
@@ -16181,9 +16235,12 @@ function _renderChordDiagramFor(chordName, multiData, instrument) {
     const idata = multiData.instruments[inst];
     const cdata = idata.chords && idata.chords[chordName];
     if (cdata) {
-      if (inst === 'ukulele') return _renderChordDiagramUkulele(chordName, cdata.fingering, cdata.fingers);
+      if (inst === 'ukulele') return _renderChordDiagramUkulele(chordName, cdata.fingering, cdata.fingers, cdata.barre);
       if (inst === 'piano')   return _renderChordDiagramPiano(chordName, cdata.notes, cdata.fundamental, cdata.inversion);
-      // 'violao' usa o diagrama padrao de violao
+      // Violao: usa o JSON do cifras-multi se cadastrado. Antes caia
+      // pro _CHORD_DB (banco antigo) que nao tinha D7/Bm7/etc -> falsos
+      // positivos 'digitacao nao cadastrada'.
+      if (cdata.fingering) return _renderChordDiagramViolao(chordName, cdata.fingering, cdata.fingers, cdata.barre);
     }
   }
   return _renderChordDiagram(chordName);
