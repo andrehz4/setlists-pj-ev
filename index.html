@@ -11163,7 +11163,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <button class="tab" role="tab" id="tab-highlights" aria-selected="false" aria-controls="view-highlights" tabindex="-1" data-view="highlights">Destaques</button>
   <button class="tab" role="tab" id="tab-rarity" aria-selected="false" aria-controls="view-rarity" tabindex="-1" data-view="rarity">Raridades</button>
   <button class="tab" role="tab" id="tab-deep" aria-selected="false" aria-controls="view-deep" tabindex="-1" data-view="deep">Deep</button>
-  <a href="forum.html" class="tab has-dot" style="text-decoration:none">Fórum ↗</a>
+  <button class="tab has-dot" role="tab" id="tab-forum" aria-selected="false" aria-controls="view-forum" tabindex="-1" data-view="forum">Fórum</button>
 </div>
 
 <!-- FILTER BAR -->
@@ -11276,6 +11276,12 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div id="tabs-content"></div>
 </section>
 
+<section class="view" id="view-forum" role="tabpanel" aria-labelledby="tab-forum" tabindex="0" hidden>
+  <iframe id="forum-iframe" src="about:blank" title="Fórum SMUFDPJ"
+          style="width:100%;border:0;display:block;min-height:600px;background:transparent"
+          loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</section>
+
 <section class="view" id="view-banda" role="tabpanel" aria-labelledby="tab-banda" tabindex="0" hidden>
   <div id="banda-content"></div>
 </section>
@@ -11361,7 +11367,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.06</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.07</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -13892,6 +13898,7 @@ function renderCurrent() {
     case "news": renderNewsView(); break;
     case "gallery": renderGallery(); break;
     case "banda": renderBanda(); break;
+    case "forum": renderForumIframe(); break;
   }
   renderStats();
 }
@@ -20202,6 +20209,61 @@ const _NEWS_TAG_ORDER = [
   "eddie", "mike", "stone", "jeff", "matt", "boom", "josh",
   "tenclub", "comunidade", "memoria", "br", "bootleg",
 ];
+
+// Forum embedado via iframe (approach A). forum.html eh standalone (com
+// backend FastAPI no Railway + OAuth + composer + music picker). Iframe
+// isola JS/CSS dele do site, evitando conflito. Altura ajusta dinamica
+// via postMessage que o proprio forum.html emite no scroll/resize/load.
+// Sub-paginas (forum-topic.html, forum-profile.html) abrem em nova aba
+// (link interno do forum.html ja tem target="_blank" ou abre tab nova
+// quando dentro do iframe).
+function renderForumIframe() {
+  const iframe = document.getElementById('forum-iframe');
+  if (!iframe) return;
+  // Carrega forum.html sob demanda (so na primeira visita a aba). Demais
+  // visitas reusam o iframe carregado (mantem state da sessao do user).
+  if (iframe.src === 'about:blank' || iframe.src.endsWith('about:blank')) {
+    iframe.src = 'forum.html';
+  }
+}
+
+// Listener global de postMessage do iframe do forum. Emisor (forum.html)
+// manda { type:'forum-height', height: N } quando body cresce/encolhe.
+// Origem checada pra evitar mensagens de terceiros: aceita mesma origem.
+window.addEventListener('message', function (ev) {
+  // Same-origin: forum.html eh servido do mesmo dominio que index.html.
+  if (ev.origin !== location.origin) return;
+  if (!ev.data || ev.data.type !== 'forum-height') return;
+  const iframe = document.getElementById('forum-iframe');
+  if (!iframe) return;
+  const h = Math.max(600, Number(ev.data.height) || 600);
+  iframe.style.height = h + 'px';
+});
+
+// Boot: le ?tab=X da URL e ativa a aba correspondente antes do default.
+// Usado pelo auth-callback.html que redireciona pra /?tab=forum apos OAuth.
+(function _bootTabFromQuery() {
+  try {
+    const params = new URLSearchParams(location.search);
+    const tab = params.get('tab');
+    if (!tab) return;
+    // Whitelist: aceita so abas conhecidas pra evitar XSS via ?tab=
+    const valid = new Set(['news', 'timeline', 'tabs', 'highlights', 'rarity', 'deep', 'gallery', 'banda', 'forum']);
+    if (!valid.has(tab)) return;
+    // Espera o DOM ficar pronto e ativa. activateTab pode nao existir ainda
+    // no momento do parse; usa setTimeout pra rodar depois do script principal.
+    const doActivate = () => {
+      if (typeof activateTab === 'function') {
+        try { activateTab(tab, { noScroll: false }); } catch (_) {}
+      }
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', doActivate);
+    } else {
+      setTimeout(doActivate, 50);
+    }
+  } catch (_) {}
+})();
 
 // Paginacao do grid de noticias. Mude essa variavel pra ajustar quantos
 // cards aparecem por pagina. Hero (items[0]) NAO conta - eh fixo.
