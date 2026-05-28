@@ -11099,6 +11099,24 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 .footer-build { font: 500 9px/1 var(--font-mono); letter-spacing: .12em; color: var(--ink-dim); opacity: .55; user-select: all; cursor: text; }
 .footer-credit em { font-family: var(--font-editorial); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; color: var(--ink-mute); }
 
+/* ── Sprint mobile M1: drawer fullscreen + folga pro audio-player nao tapar conteudo ── */
+/* Escopo: somente <=600px. Nao altera regras desktop. */
+@media (max-width: 600px) {
+  .drawer {
+    height: 100vh;
+    height: 100dvh;
+    border-right: none;
+    padding: 20px 16px;
+  }
+  .drawer-close {
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+  }
+  #drawer-content { padding-bottom: 32px; }
+  body:has(#audio-player.active) #drawer-content { padding-bottom: 160px; }
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
