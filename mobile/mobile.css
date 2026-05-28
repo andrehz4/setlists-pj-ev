@@ -1,0 +1,28 @@
+/* ============================================================================
+   mobile.css  ·  Setlists PJ + EV  ·  AGGREGATOR (mobile skin)
+   ----------------------------------------------------------------------------
+   PONTO DE ENTRADA UNICO do frontend mobile apartado. O index.html ganha
+   EXATAMENTE 1 linha no <head> (apos os <link> de fontes):
+
+       <link rel="stylesheet" href="mobile/mobile.css" media="(max-width: 768px)">
+
+   O atributo media="(max-width:768px)" garante que NADA disso baixa/aplica em
+   desktop. Cada parcial abaixo tambem re-envolve suas regras em
+   @media (max-width:768px) (cinto + suspensorio) — assim os mockups conseguem
+   carregar o arquivo direto e a media query dispara pela largura do iframe.
+
+   ORDEM importa: core primeiro (chrome/tokens compartilhados), depois as views.
+   ============================================================================ */
+
+/* --- BATCH 1 (entregue) ----------------------------------------------------- */
+@import url("mobile-core.css");     /* nav, masthead, filter-bar, audio-player, footer */
+@import url("mobile-news.css");     /* #view-news (fanzine) */
+
+/* --- BATCHES SEGUINTES (placeholders — adicionar conforme aprovacao) -------- *
+   @import url("mobile-timeline.css");  // Batch 2 · #view-timeline
+   @import url("mobile-gallery.css");   // Batch 2 · #view-gallery + lightbox
+   @import url("mobile-banda.css");     // Batch 2 · #view-banda
+   @import url("mobile-cifras.css");    // Batch 3 · #view-tabs (catalogo/mixer/transport)
+   @import url("mobile-forum.css");     // Batch 4 · #view-forum (wrapper do iframe)
+   @import url("mobile-aux.css");       // Batch 5 · ranking/highlights/rarity/deep/gaps/search
+ * --------------------------------------------------------------------------- */

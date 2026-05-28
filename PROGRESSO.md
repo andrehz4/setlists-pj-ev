@@ -1,15 +1,46 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil)
+2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil + Batch 1 mobile)
 
 ## Estado atual
-Em produção: `build 2026-05-29.09`. Fila de bugs zerada (#6 a #22 todos completed ou bloqueados por decisão UX já documentada). Cutover V2→V1 concluído, fórum integrado via iframe, paginação de notícias funcional, 100% cobertura de acordes, diagramas com fret>4 + barre, perfil reformulado pelo design bundle Anthropic, mock antigo do fórum removido (-735 linhas), bug E do tablist 3 corrigido.
+Em produção: `build 2026-05-29.10`. Batch 1 do mobile skin (Notícias + chrome global) aplicado: `mobile/mobile.css` carregando via `<link media="(max-width: 768px)">` no head. Fila de bugs anteriores zerada. Cutover V2→V1 concluído, fórum integrado via iframe, paginação de notícias funcional, 100% cobertura de acordes, perfil reformulado pelo design bundle Anthropic, mock antigo do fórum removido (-735 linhas).
 
 ## Próximo passo concreto
-1. Validar em produção (hard reload, confirmar build `2026-05-29.09` no rodapé)
-2. Levar o prompt mobile (entregue na sessão) pro Claude Design e iterar batches: Notícias → Timeline → Cifras&Tabs → Fórum → Auxiliares
-3. Quando bundle mobile vier, aplicar CSS apartado em `mobile/` com `<link media="(max-width: 768px)">`
+1. Validar Batch 1 em produção (DevTools 375px / 414px): nav sticky com scroll horizontal, chips de tag rolam, audio-player compacto, footer 1 coluna, sem scroll lateral, tema claro+escuro OK
+2. Confirmar build `2026-05-29.10` no rodapé
+3. Pedir Batch 2 ao Claude Design quando o 1 estiver aprovado: Timeline + Galeria (+ lightbox) + BANDA → `mobile-timeline/gallery/banda.css`
+4. Roadmap restante: Batch 3 (Cifras&Tabs + FAB #9) → Batch 4 (Fórum iframe) → Batch 5 (Drawer + Deep + auxiliares)
+
+## Sessão 2026-05-29 — Batch 1 mobile aplicado
+
+### Instalação
+Pasta `mobile/` criada com 4 arquivos do design bundle Anthropic (`mobile-pj`):
+- `mobile.css` (aggregator com `@import` dos 2 parciais ativos + 5 placeholders comentados pros próximos batches)
+- `mobile-core.css` (nav scroll-snap sticky, masthead compacto, filter-bar wrap, audio-player 1-linha, footer coluna única)
+- `mobile-news.css` (#view-news com chips roláveis, hero 1-coluna, cards full-width, paginação centralizada, detail editorial)
+- `README.md` (decisões e trade-offs)
+
+### Linha no `<head>`
+Inserida logo após os `<link>` das fontes Google:
+```html
+<link rel="stylesheet" href="mobile/mobile.css" media="(max-width: 768px)">
+```
+
+### Contrato
+- Zero JS novo, zero alteração no HTML existente, zero renomeação
+- Só aplica em ≤768px (media attr no link + `@media` em cada parcial = cinto+suspensório)
+- Usa só tokens existentes (`--bg`, `--ink`, `--pj`, `--np-*`, `--font-*`)
+- `!important` necessário pra vencer o redesign ticket archive + blocos legados `@600/@640/@760`
+
+### Problemas resolvidos no Batch 1
+- #1 Nav 12 abas (tira horizontal scroll-snap + mask fade + sticky)
+- #4 Chips de tag (scroll horizontal com `width:100%`+`min-width:0` pra evitar flexbox min-width trap)
+- #5 Audio player (1-linha compacta, play 44px, download some em ≤480px)
+- #6 Footer (coluna única, nav vertical, links 19px alvo ≥46px)
+
+### Pendência conhecida pro Batch 3
+FAB do cifra player (#9): subir `bottom` quando `#audio-player.active`. Provavelmente seletor irmão CSS.
 
 ## Sessão 2026-05-28/29 — fila de 22 tasks atacadas
 

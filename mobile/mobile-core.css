@@ -1,0 +1,241 @@
+/* ============================================================================
+   mobile-core.css  ·  Setlists PJ + EV  ·  mobile skin (<=768px)
+   ----------------------------------------------------------------------------
+   ESCOPO: chrome global compartilhado por todas as views.
+     · Nav superior (.tabs)  -> scroll-snap horizontal com fade nas bordas
+     · Masthead (ticket)      -> compactacao + perfuracoes preservadas
+     · Filter bar             -> wrap com alvos de toque maiores
+     · Audio player (#audio-player) -> linha compacta, controles >=44px
+     · Footer (.site-footer)  -> coluna unica com hierarquia editorial
+
+   PROBLEMAS ATACADOS (ver README): #1 nav, #5 audio-player, #6 footer.
+
+   REGRAS DO CONTRATO:
+     - Zero JS. Zero mudanca de HTML. Zero renome de classe/ID/localStorage.
+     - So entra em <=768px. Desktop fica 100% intocado.
+     - Usa SOMENTE tokens ja definidos no index.html (--bg, --ink, --pj, --ev,
+       --divider, --font-*, --pj-stamp, --rule-ticket...).
+     - !important e necessario aqui: o redesign "ticket archive" do desktop usa
+       !important e ha blocos mobile legados (600/640/760px) tambem !important.
+       Este arquivo carrega DEPOIS, entao vence empates de !important.
+   TOQUE: alvos interativos anotados com  [ TAP >=44 ]  onde aplicavel.
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+  /* ------------------------------------------------------------------ *
+   * 1 · NAV SUPERIOR  ·  scroll-snap horizontal (estilo arquivo/zine)
+   *    12 abas nao cabem em 375px. Em vez de quebrar em 3-4 linhas ou
+   *    esconder atras de hamburger (exigiria JS), viram uma tira rolavel
+   *    com snap + fade nas duas pontas (mask, sem elemento extra) que
+   *    sinaliza "tem mais pra rolar". Fica grudada no topo ao rolar.
+   * ------------------------------------------------------------------ */
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 40;                       /* abaixo do audio-player (100) e drawer */
+    margin: 0 !important;
+    padding: 2px 14px 0 !important;
+    background: var(--bg) !important;
+    border-bottom: 2px solid var(--ink) !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 2px !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    /* fade de borda: indica conteudo rolavel a esquerda/direita */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    display: inline-flex !important;
+    align-items: center;
+    min-height: 44px;                  /* TAP >=44 */
+    padding: 0 15px !important;
+    margin: 0 !important;
+    font-size: 11px !important;
+    letter-spacing: 0.1em !important;
+    color: var(--ink-mute) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 2px solid transparent !important;   /* trilho do indicador */
+    position: relative;
+  }
+  .tab.active {
+    color: var(--ink) !important;
+    background: transparent !important;
+    border-color: var(--pj) !important;                /* sublinhado vermelho */
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .tab:active { opacity: 0.7; }                        /* feedback de toque (sem hover) */
+  .tab.has-dot::after { margin-left: 5px; }
+
+  /* ------------------------------------------------------------------ *
+   * 2 · MASTHEAD (ticket)  ·  compacta, mantem perfuracoes + carimbos
+   *    Os blocos legados @760 ja fazem parte disso; aqui consolidamos
+   *    em 768 e damos respiro lateral consistente (16px).
+   * ------------------------------------------------------------------ */
+  .masthead {
+    margin: 14px 12px 0 !important;
+  }
+  .masthead-top {
+    padding: 10px 18px !important;
+  }
+  .masthead-meta {
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+    gap: 8px;
+  }
+  .masthead-meta::before { display: none !important; }  /* esconde "ADMIT ONE..." */
+  .theme-toggle {
+    width: 44px !important;            /* TAP >=44 */
+    height: 44px !important;
+    flex-shrink: 0;
+  }
+  .masthead h1 {
+    padding: 22px 18px 6px !important;
+    margin: 0 0 22px !important;
+    font-size: clamp(40px, 12vw, 72px) !important;
+    line-height: 0.9 !important;
+  }
+  .masthead-sub {
+    margin: 6px 18px 20px !important;
+    font-size: 13px !important;
+    padding: 12px 14px !important;
+  }
+  .stats-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .stat {
+    padding: 14px 16px !important;
+    border-bottom: 1px dashed var(--rule-ticket, var(--divider));
+  }
+  .stat:nth-last-child(-n+1) { border-bottom: none; }
+  .stat-value { font-size: 30px !important; }
+
+  /* ------------------------------------------------------------------ *
+   * 3 · FILTER BAR  ·  wrap fluido, chips com alvo de toque maior
+   * ------------------------------------------------------------------ */
+  .filter-bar {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 6px;
+    padding: 12px 16px !important;
+  }
+  .filter-label {
+    width: 100%;                       /* label em linha propria -> chips abaixo */
+    margin: 4px 0 0 !important;
+    font-size: 10px !important;
+  }
+  .filter-label:first-child { margin-top: 0 !important; }
+  .filter-chip {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px !important;
+    font-size: 11px !important;
+  }
+  .filter-chip:active { transform: translateY(1px); }
+
+  /* container interno do filtro de ano herdado (display:flex inline) */
+  #year-filters { gap: 6px !important; }
+
+  /* ------------------------------------------------------------------ *
+   * 4 · VIEW  ·  respiro lateral padrao mobile (16px)
+   * ------------------------------------------------------------------ */
+  .view {
+    padding: 22px 16px !important;
+  }
+  .view-title { font-size: clamp(30px, 9vw, 44px) !important; }
+
+  /* ------------------------------------------------------------------ *
+   * 5 · AUDIO PLAYER  ·  barra fixa rodape, compacta para 1 mao
+   *    Desktop: 3 colunas (musica | transporte | show+acoes).
+   *    Mobile: musica (flex) | transporte | fechar. O grupo secundario
+   *    (nome do show, separador, download <=480) some pra dar espaco.
+   *    Controles ampliados pra alvo de toque confortavel.
+   * ------------------------------------------------------------------ */
+  .ap-progress-row {
+    padding: 9px 14px 4px !important;
+    gap: 10px;
+  }
+  .ap-progress { height: 6px; }                        /* trilho um pouco mais grosso */
+  .ap-progress::-webkit-slider-thumb { width: 16px; height: 16px; margin-top: -5px; }
+  .ap-progress::-moz-range-thumb { width: 16px; height: 16px; }
+
+  .ap-info-row {
+    grid-template-columns: 1fr auto 1fr !important;   /* musica | CONTROLES (centro) | acoes */
+    padding: 2px 12px 10px !important;
+    gap: 10px !important;
+  }
+  .ap-song { font-size: 15px !important; }
+  .ap-controls { gap: 4px; }
+  .ap-btn {
+    width: 40px !important; height: 40px !important;    /* TAP ~40 (controle de midia) */
+    font-size: 16px !important;
+  }
+  .ap-play-pause {
+    width: 44px !important; height: 44px !important;    /* TAP >=44 */
+    font-size: 15px !important;
+  }
+  .ap-close {
+    width: 40px !important; height: 40px !important;    /* TAP ~40 */
+    font-size: 15px !important;
+  }
+  /* esconde grupo secundario do show (nome+separador) no rodape estreito */
+  .ap-show-wrap,
+  .ap-sep { display: none !important; }
+  .ap-right-group { gap: 2px !important; }
+
+  /* ------------------------------------------------------------------ *
+   * 6 · FOOTER  ·  coluna unica, links grandes verticais com divisores
+   * ------------------------------------------------------------------ */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    padding: 0 18px !important;
+  }
+  .footer-wordmark { font-size: 32px !important; }
+  .footer-nav {
+    grid-template-columns: 1fr !important;             /* era 2 colunas */
+    gap: 0 !important;
+  }
+  .footer-nav li { border-bottom: 1px dotted var(--divider); }
+  .footer-nav li:last-child { border-bottom: none; }
+  .footer-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 46px;                  /* TAP >=44 */
+    padding: 6px 0 !important;
+    font-size: 19px !important;
+  }
+  .footer-nav a:active { color: var(--pj); }
+  .social-card { padding: 14px !important; }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 7 · ALVOS DE TOQUE GLOBAIS + feedback de toque (sem hover no mobile)
+   * ------------------------------------------------------------------ */
+  .skip-link { font-size: 13px; }
+}
+
+/* ====================== refinamentos <=480px ============================= */
+@media (max-width: 480px) {
+  .ap-download { display: none !important; }           /* rodape ainda mais enxuto */
+  .stats-strip { grid-template-columns: repeat(2, 1fr) !important; }
+  .masthead h1 { font-size: clamp(38px, 12.5vw, 60px) !important; }
+}
