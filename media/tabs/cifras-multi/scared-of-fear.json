@@ -16,34 +16,137 @@
       "tuning": "DGDGBD",
       "tuning_note": "Open G — cordas abertas formam acorde de G maior. Shapes de verse sao em Open G; shapes do refrao sao pestanas padrao.",
       "chords": {
-        "Em/G":    { "fingering": "000020", "fingers": "000020", "fundamental": "G" },
-        "G":       { "fingering": "000000", "fingers": "000000", "fundamental": "G" },
-        "G6":      { "fingering": "000200", "fingers": "000200", "fundamental": "G" },
-        "G/D":     { "fingering": "xx0000", "fingers": "xx0000", "fundamental": "D" },
-        "Gm":      { "fingering": "000333", "fingers": "000111", "fundamental": "G", "barre": 3 },
-        "Dm/G":    { "fingering": "000021", "fingers": "000021", "fundamental": "G" },
-        "D#5/A#":  { "fingering": "x13343", "fingers": "x12334", "fundamental": "Bb", "barre": 1 },
-        "A#add11": { "fingering": "x13341", "fingers": "x12331", "fundamental": "Bb", "barre": 1 },
-        "Cm7/A#":  { "fingering": "x13342", "fingers": "x12332", "fundamental": "Bb", "barre": 1 },
-        "Gm/Bb":   { "fingering": "x13333", "fingers": "x12333", "fundamental": "Bb", "barre": 1 },
-        "A#5":     { "fingering": "x13300", "fingers": "x12300", "fundamental": "Bb", "barre": 1 },
-        "Cm7/Bb":  { "fingering": "x13353", "fingers": "x12341", "fundamental": "Bb", "barre": 1 },
-        "G5":      { "fingering": "000000", "fingers": "000000", "fundamental": "G" },
-        "F5":      { "fingering": "x93300", "fingers": "x11200", "fundamental": "F", "barre": 8 },
-        "E5":      { "fingering": "x73300", "fingers": "x11200", "fundamental": "E", "barre": 7 },
-        "D#5":     { "fingering": "x63300", "fingers": "x11200", "fundamental": "Eb", "barre": 6 },
-        "D5":      { "fingering": "x53300", "fingers": "x11200", "fundamental": "D", "barre": 5 }
+        "Em/G": {
+          "fingering": "000020",
+          "fingers": "000020",
+          "fundamental": "G"
+        },
+        "G": {
+          "fingering": "000000",
+          "fingers": "000000",
+          "fundamental": "G"
+        },
+        "G6": {
+          "fingering": "000200",
+          "fingers": "000200",
+          "fundamental": "G"
+        },
+        "G/D": {
+          "fingering": "xx0000",
+          "fingers": "xx0000",
+          "fundamental": "D"
+        },
+        "Gm": {
+          "fingering": "000333",
+          "fingers": "000111",
+          "fundamental": "G",
+          "barre": 3
+        },
+        "Dm/G": {
+          "fingering": "000021",
+          "fingers": "000021",
+          "fundamental": "G"
+        },
+        "D#5/A#": {
+          "fingering": "x13343",
+          "fingers": "x12334",
+          "fundamental": "Bb",
+          "barre": 1
+        },
+        "A#add11": {
+          "fingering": "x13341",
+          "fingers": "x12331",
+          "fundamental": "Bb",
+          "barre": 1
+        },
+        "Cm7/A#": {
+          "fingering": "x13342",
+          "fingers": "x12332",
+          "fundamental": "Bb",
+          "barre": 1
+        },
+        "Gm/Bb": {
+          "fingering": "x13333",
+          "fingers": "x12333",
+          "fundamental": "Bb",
+          "barre": 1
+        },
+        "A#5": {
+          "fingering": "x13300",
+          "fingers": "x12300",
+          "fundamental": "Bb",
+          "barre": 1
+        },
+        "Cm7/Bb": {
+          "fingering": "x13353",
+          "fingers": "x12341",
+          "fundamental": "Bb",
+          "barre": 1
+        },
+        "G5": {
+          "fingering": "000000",
+          "fingers": "000000",
+          "fundamental": "G"
+        },
+        "F5": {
+          "fingering": "x93300",
+          "fingers": "x11200",
+          "fundamental": "F",
+          "barre": 8
+        },
+        "E5": {
+          "fingering": "x73300",
+          "fingers": "x11200",
+          "fundamental": "E",
+          "barre": 7
+        },
+        "D#5": {
+          "fingering": "x63300",
+          "fingers": "x11200",
+          "fundamental": "Eb",
+          "barre": 6
+        },
+        "D5": {
+          "fingering": "x53300",
+          "fingers": "x11200",
+          "fundamental": "D",
+          "barre": 5
+        }
       },
       "strumming": {
         "label": "WHOLE SONG",
         "bpm": 169,
         "beats": [
-          { "count": "1", "stroke": "down",  "muted": false },
-          { "count": "2", "stroke": "down",  "muted": false },
-          { "count": "&", "stroke": "up",    "muted": false },
-          { "count": "3", "stroke": "down",  "muted": false },
-          { "count": "4", "stroke": "down",  "muted": false },
-          { "count": "&", "stroke": "up",    "muted": false }
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
         ]
       }
     },
@@ -51,58 +154,311 @@
       "label": "Ukulele",
       "tuning": "GCEA",
       "chords": {
-        "G":       { "fingering": "0232", "fingers": "0231", "fundamental": "G" },
-        "Gm":      { "fingering": "0231", "fingers": "0231", "fundamental": "G" },
-        "G6":      { "fingering": "0202", "fingers": "0201", "fundamental": "G" },
-        "Em":      { "fingering": "0402", "fingers": "0402", "fundamental": "E" },
-        "Am":      { "fingering": "2000", "fingers": "2000", "fundamental": "A" },
-        "Bb":      { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" },
-        "Cm":      { "fingering": "0333", "fingers": "0111", "fundamental": "C", "barre": 3 },
-        "D#5/A#":  { "fingering": "3211", "fingers": "3211", "fundamental": "Bb" },
-        "A#add11": { "fingering": "3213", "fingers": "3213", "fundamental": "Bb" },
-        "Cm7/A#":  { "fingering": "3233", "fingers": "3233", "fundamental": "Bb" },
-        "Gm/Bb":   { "fingering": "3231", "fingers": "3231", "fundamental": "Bb" },
-        "A#5":     { "fingering": "3200", "fingers": "3200", "fundamental": "Bb" },
-        "Cm7/Bb":  { "fingering": "3333", "fingers": "1111", "fundamental": "Bb", "barre": 3 },
-        "G5":      { "fingering": "0230", "fingers": "0230", "fundamental": "G" },
-        "F5":      { "fingering": "0010", "fingers": "0010", "fundamental": "F" },
-        "E5":      { "fingering": "4440", "fingers": "3330", "fundamental": "E" },
-        "D#5":     { "fingering": "3330", "fingers": "3330", "fundamental": "Eb" },
-        "D5":      { "fingering": "2220", "fingers": "1110", "fundamental": "D" }
+        "G": {
+          "fingering": "0232",
+          "fingers": "0231",
+          "fundamental": "G"
+        },
+        "Gm": {
+          "fingering": "0231",
+          "fingers": "0231",
+          "fundamental": "G"
+        },
+        "G6": {
+          "fingering": "0202",
+          "fingers": "0201",
+          "fundamental": "G"
+        },
+        "Em": {
+          "fingering": "0402",
+          "fingers": "0402",
+          "fundamental": "E"
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": "A"
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": "Bb"
+        },
+        "Cm": {
+          "fingering": "0333",
+          "fingers": "0111",
+          "fundamental": "C",
+          "barre": 3
+        },
+        "D#5/A#": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": "Bb"
+        },
+        "A#add11": {
+          "fingering": "3213",
+          "fingers": "3213",
+          "fundamental": "Bb"
+        },
+        "Cm7/A#": {
+          "fingering": "3233",
+          "fingers": "3233",
+          "fundamental": "Bb"
+        },
+        "Gm/Bb": {
+          "fingering": "3231",
+          "fingers": "3231",
+          "fundamental": "Bb"
+        },
+        "A#5": {
+          "fingering": "3200",
+          "fingers": "3200",
+          "fundamental": "Bb"
+        },
+        "Cm7/Bb": {
+          "fingering": "3333",
+          "fingers": "1111",
+          "fundamental": "Bb",
+          "barre": 3
+        },
+        "G5": {
+          "fingering": "0230",
+          "fingers": "0230",
+          "fundamental": "G"
+        },
+        "F5": {
+          "fingering": "0010",
+          "fingers": "0010",
+          "fundamental": "F"
+        },
+        "E5": {
+          "fingering": "4440",
+          "fingers": "3330",
+          "fundamental": "E"
+        },
+        "D#5": {
+          "fingering": "3330",
+          "fingers": "3330",
+          "fundamental": "Eb"
+        },
+        "D5": {
+          "fingering": "2220",
+          "fingers": "1110",
+          "fundamental": "D"
+        },
+        "Em/G": {
+          "fingering": "0432",
+          "fingers": "0321",
+          "fundamental": "E"
+        },
+        "G/D": {
+          "fingering": "0232",
+          "fingers": "0213",
+          "fundamental": "G",
+          "bass": "D",
+          "notes": "voicing igual G"
+        },
+        "Dm/G": {
+          "fingering": "0210",
+          "fingers": "0210",
+          "fundamental": "D"
+        }
       },
       "strumming": {
         "label": "WHOLE SONG",
         "bpm": 169,
         "beats": [
-          { "count": "1", "stroke": "down",  "muted": false },
-          { "count": "2", "stroke": "down",  "muted": false },
-          { "count": "&", "stroke": "up",    "muted": false },
-          { "count": "3", "stroke": "down",  "muted": false },
-          { "count": "4", "stroke": "down",  "muted": false },
-          { "count": "&", "stroke": "up",    "muted": false }
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
         ]
       }
     },
     "piano": {
       "label": "Piano",
       "chords": {
-        "G":       { "notes": ["G", "B", "D"],       "fundamental": "G",  "inversion": null },
-        "Gm":      { "notes": ["G", "Bb", "D"],      "fundamental": "G",  "inversion": null },
-        "G6":      { "notes": ["G", "B", "D", "E"],  "fundamental": "G",  "inversion": null },
-        "G/D":     { "notes": ["D", "G", "B"],       "fundamental": "D",  "inversion": "1st" },
-        "Em/G":    { "notes": ["G", "E", "G", "B"],  "fundamental": "G",  "inversion": null },
-        "Dm/G":    { "notes": ["G", "D", "F", "A"],  "fundamental": "G",  "inversion": null },
-        "D#5/A#":  { "notes": ["Bb", "D#", "A#"],    "fundamental": "Bb", "inversion": null },
-        "A#add11": { "notes": ["Bb", "D", "F", "Eb"],"fundamental": "Bb", "inversion": null },
-        "Cm7/A#":  { "notes": ["Bb", "C", "Eb", "G","Bb"], "fundamental": "Bb", "inversion": null },
-        "Gm/Bb":   { "notes": ["Bb", "G", "Bb", "D"],"fundamental": "Bb", "inversion": null },
-        "A#5":     { "notes": ["Bb", "F"],            "fundamental": "Bb", "inversion": null },
-        "Cm7/Bb":  { "notes": ["Bb", "C", "Eb", "G"],"fundamental": "Bb", "inversion": null },
-        "G5":      { "notes": ["G", "D"],             "fundamental": "G",  "inversion": null },
-        "F5":      { "notes": ["F", "C"],             "fundamental": "F",  "inversion": null },
-        "E5":      { "notes": ["E", "B"],             "fundamental": "E",  "inversion": null },
-        "D#5":     { "notes": ["Eb", "Bb"],           "fundamental": "Eb", "inversion": null },
-        "D5":      { "notes": ["D", "A"],             "fundamental": "D",  "inversion": null }
+        "G": {
+          "notes": [
+            "G",
+            "B",
+            "D"
+          ],
+          "fundamental": "G",
+          "inversion": null
+        },
+        "Gm": {
+          "notes": [
+            "G",
+            "Bb",
+            "D"
+          ],
+          "fundamental": "G",
+          "inversion": null
+        },
+        "G6": {
+          "notes": [
+            "G",
+            "B",
+            "D",
+            "E"
+          ],
+          "fundamental": "G",
+          "inversion": null
+        },
+        "G/D": {
+          "notes": [
+            "D",
+            "G",
+            "B"
+          ],
+          "fundamental": "D",
+          "inversion": "1st"
+        },
+        "Em/G": {
+          "notes": [
+            "G",
+            "E",
+            "G",
+            "B"
+          ],
+          "fundamental": "G",
+          "inversion": null
+        },
+        "Dm/G": {
+          "notes": [
+            "G",
+            "D",
+            "F",
+            "A"
+          ],
+          "fundamental": "G",
+          "inversion": null
+        },
+        "D#5/A#": {
+          "notes": [
+            "Bb",
+            "D#",
+            "A#"
+          ],
+          "fundamental": "Bb",
+          "inversion": null
+        },
+        "A#add11": {
+          "notes": [
+            "Bb",
+            "D",
+            "F",
+            "Eb"
+          ],
+          "fundamental": "Bb",
+          "inversion": null
+        },
+        "Cm7/A#": {
+          "notes": [
+            "Bb",
+            "C",
+            "Eb",
+            "G",
+            "Bb"
+          ],
+          "fundamental": "Bb",
+          "inversion": null
+        },
+        "Gm/Bb": {
+          "notes": [
+            "Bb",
+            "G",
+            "Bb",
+            "D"
+          ],
+          "fundamental": "Bb",
+          "inversion": null
+        },
+        "A#5": {
+          "notes": [
+            "Bb",
+            "F"
+          ],
+          "fundamental": "Bb",
+          "inversion": null
+        },
+        "Cm7/Bb": {
+          "notes": [
+            "Bb",
+            "C",
+            "Eb",
+            "G"
+          ],
+          "fundamental": "Bb",
+          "inversion": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": "G",
+          "inversion": null
+        },
+        "F5": {
+          "notes": [
+            "F",
+            "C"
+          ],
+          "fundamental": "F",
+          "inversion": null
+        },
+        "E5": {
+          "notes": [
+            "E",
+            "B"
+          ],
+          "fundamental": "E",
+          "inversion": null
+        },
+        "D#5": {
+          "notes": [
+            "Eb",
+            "Bb"
+          ],
+          "fundamental": "Eb",
+          "inversion": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": "D",
+          "inversion": null
+        }
       }
     }
   },

@@ -69,6 +69,12 @@
           "fingers": "x13341",
           "fundamental": null,
           "barre": 2
+        },
+        "Bb": {
+          "fingering": "x13331",
+          "fingers": "x13341",
+          "fundamental": null,
+          "barre": 1
         }
       },
       "strumming": {
@@ -171,6 +177,11 @@
         "B": {
           "fingering": "4322",
           "fingers": "4321",
+          "fundamental": null
+        },
+        "Bb": {
+          "fingering": "3211",
+          "fingers": "3211",
           "fundamental": null
         }
       },
@@ -301,6 +312,14 @@
             "B",
             "D#",
             "F#"
+          ],
+          "fundamental": null
+        },
+        "Bb": {
+          "notes": [
+            "Bb",
+            "D",
+            "F"
           ],
           "fundamental": null
         }

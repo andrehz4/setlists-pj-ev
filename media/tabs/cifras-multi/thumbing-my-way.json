@@ -77,6 +77,17 @@
           "fingering": "xx0232",
           "fingers": "xx0132",
           "fundamental": null
+        },
+        "Am": {
+          "fingering": "x02210",
+          "fingers": "x02310",
+          "fundamental": null
+        },
+        "A#": {
+          "fingering": "x13331",
+          "fingers": "x13331",
+          "fundamental": "A#",
+          "barre": 1
         }
       },
       "strumming": {
@@ -190,6 +201,16 @@
           "fingering": "2220",
           "fingers": "1230",
           "fundamental": null
+        },
+        "Am": {
+          "fingering": "2000",
+          "fingers": "2000",
+          "fundamental": null
+        },
+        "A#": {
+          "fingering": "3211",
+          "fingers": "3211",
+          "fundamental": "A#"
         }
       },
       "strumming": {
@@ -338,6 +359,23 @@
             "A"
           ],
           "fundamental": null
+        },
+        "Am": {
+          "notes": [
+            "A",
+            "C",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "A#": {
+          "notes": [
+            "A#",
+            "D",
+            "F"
+          ],
+          "fundamental": "A#",
+          "inversion": null
         }
       }
     }

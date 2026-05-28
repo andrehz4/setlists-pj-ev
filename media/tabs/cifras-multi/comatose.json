@@ -54,20 +54,57 @@
           "fingering": "355xxx",
           "fingers": "134xxx",
           "fundamental": null
+        },
+        "D5": {
+          "fingering": "xx023x",
+          "fingers": "xx023x",
+          "fundamental": null
         }
       },
       "strumming": {
         "label": "D-DU-UDU (proposto)",
         "bpm": 120,
         "beats": [
-          { "count": "1", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "down", "muted": false },
-          { "count": "2", "stroke": "up", "muted": false },
-          { "count": "&", "stroke": "up", "muted": false },
-          { "count": "3", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "up", "muted": false },
-          { "count": "4", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "up", "muted": false }
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
         ]
       }
     },
@@ -114,34 +151,126 @@
           "fingering": "0230",
           "fingers": "0230",
           "fundamental": null
+        },
+        "D5": {
+          "fingering": "2200",
+          "fingers": "1200",
+          "fundamental": null
         }
       },
       "strumming": {
         "label": "D-DU-UDU (proposto)",
         "bpm": 120,
         "beats": [
-          { "count": "1", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "down", "muted": false },
-          { "count": "2", "stroke": "up", "muted": false },
-          { "count": "&", "stroke": "up", "muted": false },
-          { "count": "3", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "up", "muted": false },
-          { "count": "4", "stroke": "down", "muted": false },
-          { "count": "&", "stroke": "up", "muted": false }
+          {
+            "count": "1",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "2",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "3",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          },
+          {
+            "count": "4",
+            "stroke": "down",
+            "muted": false
+          },
+          {
+            "count": "&",
+            "stroke": "up",
+            "muted": false
+          }
         ]
       }
     },
     "piano": {
       "label": "Piano",
       "chords": {
-        "Dsus2": { "notes": ["D", "A"], "fundamental": null },
-        "A5": { "notes": ["A", "E"], "fundamental": null },
-        "E5": { "notes": ["E", "B"], "fundamental": null },
-        "B5": { "notes": ["B", "F#"], "fundamental": null },
-        "D#5": { "notes": ["D#", "A#"], "fundamental": null },
-        "A#5": { "notes": ["A#", "F"], "fundamental": null },
-        "F#5": { "notes": ["F#", "C#"], "fundamental": null },
-        "G5": { "notes": ["G", "D"], "fundamental": null }
+        "Dsus2": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        },
+        "A5": {
+          "notes": [
+            "A",
+            "E"
+          ],
+          "fundamental": null
+        },
+        "E5": {
+          "notes": [
+            "E",
+            "B"
+          ],
+          "fundamental": null
+        },
+        "B5": {
+          "notes": [
+            "B",
+            "F#"
+          ],
+          "fundamental": null
+        },
+        "D#5": {
+          "notes": [
+            "D#",
+            "A#"
+          ],
+          "fundamental": null
+        },
+        "A#5": {
+          "notes": [
+            "A#",
+            "F"
+          ],
+          "fundamental": null
+        },
+        "F#5": {
+          "notes": [
+            "F#",
+            "C#"
+          ],
+          "fundamental": null
+        },
+        "G5": {
+          "notes": [
+            "G",
+            "D"
+          ],
+          "fundamental": null
+        },
+        "D5": {
+          "notes": [
+            "D",
+            "A"
+          ],
+          "fundamental": null
+        }
       }
     }
   },
