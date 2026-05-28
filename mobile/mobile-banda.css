@@ -1,0 +1,75 @@
+/* ============================================================================
+   mobile-banda.css  ·  Setlists PJ + EV  ·  view #view-banda (<=768px)
+   ----------------------------------------------------------------------------
+   ESCOPO: a roster "fliperama" da banda. Cada membro e um card (.bm) que abre
+   uma ficha de personagem (.bm-stage = .bm-bio + .bm-sprite-stage) ao tocar.
+   DOM real (renderBanda / _bmCardHtml):
+     #view-banda > #banda-content
+       > .banda-masthead (.banda-eyebrow + .banda-title + .banda-sub)
+       + .banda-hint
+       + .banda-stage > .banda-row > .bm* (.bm-photo-wrap + .bm-meta + .bm-stage)
+
+   O desktop ja faz .banda-row: 6 -> 3 (@1400) -> 2 colunas (@520). O problema no
+   mobile e a FICHA ABERTA: em meia-largura (2 col) a bio + sprite ficam espremidas.
+   DECISAO: ao abrir (.bm.is-open), o card OCUPA A LINHA INTEIRA (grid-column 1/-1)
+   e a ficha ganha altura livre. Os outros cards continuam no grid de 2 colunas.
+
+   Tambem: compacta paddings do palco e da dica; alvo de toque na foto/fechar.
+   Regras envoltas em @media(max-width:768px). TAP anotado com  [ TAP >=44 ]
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+  /* --- masthead + dica: compacta -------------------------------------- */
+  .banda-masthead { padding: 0 4px; }
+  .banda-sub { font-size: 14px !important; margin-top: 12px !important; }
+  .banda-stage { padding: 24px 6px 60px !important; }
+  .banda-hint {
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding: 12px 6px !important;
+    font-size: 11px !important;
+  }
+  .banda-hint .kbd { display: none; }       /* atalhos de teclado nao se aplicam no toque */
+
+  /* --- roster: 2 colunas (herdado @520, reforcado ate 768) ------------ */
+  .banda-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    align-items: start;
+  }
+
+  /* foto do card: alvo de toque (a foto inteira ja e clicavel) ---------- */
+  .bm-photo-wrap { aspect-ratio: 3 / 4; }   /* mantem proporcao do sprite */
+  .bm:active .bm-photo-wrap { border-color: var(--pj); }
+  .bm-name { font-size: 19px !important; }
+
+  /* ------------------------------------------------------------------ *
+   * FICHA ABERTA  ·  ocupa a linha inteira pra bio + sprite respirarem
+   * ------------------------------------------------------------------ */
+  .bm.is-open {
+    grid-column: 1 / -1;               /* sai do meio-grid -> largura total */
+  }
+  .bm.is-open .bm-stage {
+    max-height: 1600px !important;     /* bio + sprite empilhados cabem sem clipar */
+  }
+  .bm.is-open .bm-photo-wrap {
+    max-width: 280px;                  /* foto nao estica em largura total */
+    margin: 0 auto;
+  }
+  .bm-bio { padding: 18px 16px !important; }
+  .bm-text { font-size: 14px !important; line-height: 1.55 !important; }
+  .bm-stats dt { font-size: 10px !important; }
+  .bm-stats dd { font-size: 13px !important; }
+
+  /* botao fechar da ficha: alvo de toque maior ------------------------- */
+  .bm.is-open .bm-close {
+    width: 44px !important; height: 44px !important;   /* [ TAP >=44 ] */
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .banda-row { gap: 8px !important; }
+  .bm-name { font-size: 17px !important; }
+}
