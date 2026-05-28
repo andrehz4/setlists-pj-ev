@@ -11207,7 +11207,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.11</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.12</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -16475,6 +16475,13 @@ function _renderTabPanel(body, songKey, tabMeta) {
           e.stopPropagation();
           const inst = btn.dataset.cifraInst;
           if (!inst || inst === _activeCifraInstrument) return;
+          // Preserva scroll: re-render do strumming-bar (que pode encolher
+          // ou crescer dependendo de strumming.beats no novo instrumento)
+          // muda altura do conteudo e o navegador re-ancora -> pagina pula.
+          // Guarda window.scrollY e .cifra-surface scrollTop antes da troca.
+          const _scrollSurface = cifraPane.querySelector('.alphatab-surface, .cifra-surface');
+          const _preWinY = window.scrollY;
+          const _preSurfTop = _scrollSurface ? _scrollSurface.scrollTop : 0;
           _setActiveCifraInstrument(inst);
           // Atualiza visual do seletor (todos cifraPanes na pagina)
           document.querySelectorAll('.cifra-instr-btn').forEach(b => {
@@ -16511,6 +16518,12 @@ function _renderTabPanel(body, songKey, tabMeta) {
           });
           cifraPane.querySelectorAll('.alphatab-status:not(.alphatab-status-top)').forEach(el => {
             el.textContent = `${_bpmStatus} BPM · ${_instLabel}`;
+          });
+          // Restaura scroll preservado (window + surface) APOS o reflow do
+          // strumming-wrap. requestAnimationFrame garante DOM ja medido.
+          requestAnimationFrame(() => {
+            if (_scrollSurface) _scrollSurface.scrollTop = _preSurfTop;
+            window.scrollTo({ top: _preWinY, behavior: 'instant' });
           });
           // Re-render overlay do braco/teclado IMEDIATAMENTE com o chord atual
           // (se player estiver tocando ou pausado num chord). Sem isso, user
