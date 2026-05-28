@@ -10483,6 +10483,9 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   background: rgba(168,32,29,0.06) !important;
   color: var(--cf-stamp) !important;
 }
+/* Andre pediu: mixer sempre expandido. .pinned eh forced no JS,
+   entao botao 📌 (alterna pin) deixa de fazer sentido. Esconde. */
+#view-tabs .mixer-toggle { display: none !important; }
 #view-tabs .mixer-master {
   display: flex !important;
   align-items: center;
@@ -11207,7 +11210,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.12</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.13</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -18877,14 +18880,13 @@ function _populateMixer(mixerAside, tracks) {
     });
   });
 
-  // Persist + aplicar estado pinned salvo. Default: NAO pinned (minimalista).
-  // Pin trava expandido + reserva espaco no grid. Sem pin: overlay com hover.
-  try {
-    const pinned = localStorage.getItem('mixer_pinned') === '1';
-    mixerAside.classList.toggle('pinned', pinned);
-    const tabsLayout = mixerAside.closest('.tabs-layout');
-    if (tabsLayout) tabsLayout.classList.toggle('mixer-pinned', pinned);
-  } catch (_) {}
+  // Mixer SEMPRE expandido (andre flagou: hover trocava layout, reflow ruim).
+  // Aplica .pinned definitivo; localStorage 'mixer_pinned' ignorado.
+  // Todas as regras .mixer-aside.pinned (e :hover) ja existem; com pinned
+  // permanente, hover deixa de fazer diferenca visual.
+  mixerAside.classList.add('pinned');
+  const tabsLayout = mixerAside.closest('.tabs-layout');
+  if (tabsLayout) tabsLayout.classList.add('mixer-pinned');
 
   // Toggle pin (📌 quando solto, 📍 quando pinned)
   const toggleBtn = mixerAside.querySelector('.mixer-toggle');
