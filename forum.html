@@ -2290,6 +2290,51 @@ async function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+// Emissor de altura pro index.html quando forum.html eh embedado via iframe.
+// O parent (index.html) escuta postMessage com {type:'forum-height', height}
+// e ajusta iframe.style.height pra evitar scroll interno do iframe.
+// So executa quando dentro de iframe (window !== window.top).
+(function _forumHeightEmitter() {
+  if (window === window.top) return; // fora de iframe, nao precisa
+  let lastH = 0;
+  let pending = false;
+  function emit() {
+    pending = false;
+    // scrollHeight do html costuma ser mais confiavel que body (margin/padding)
+    const h = Math.max(
+      document.documentElement.scrollHeight,
+      document.body ? document.body.scrollHeight : 0
+    );
+    if (Math.abs(h - lastH) < 4) return; // ignora flutuacoes minusculas
+    lastH = h;
+    try {
+      window.parent.postMessage({ type: 'forum-height', height: h }, location.origin);
+    } catch (_) {}
+  }
+  function schedule() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(emit);
+  }
+  // Eventos que tipicamente mudam altura
+  window.addEventListener('load', schedule);
+  window.addEventListener('resize', schedule);
+  // ResizeObserver no body pega mudancas de conteudo dinamico (loadTopics,
+  // composer overlay, etc) sem precisar instrumentar cada call.
+  if (typeof ResizeObserver !== 'undefined' && document.body) {
+    const ro = new ResizeObserver(schedule);
+    ro.observe(document.body);
+  }
+  // Fallback pra browsers antigos: polling em 1s
+  setInterval(schedule, 1500);
+  // Emissao inicial
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', schedule);
+  } else {
+    schedule();
+  }
+})();
 </script>
 </body>
 </html>

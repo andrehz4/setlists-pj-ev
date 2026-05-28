@@ -65,7 +65,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-m
     const err = document.getElementById("err");
     err.style.display = "block";
     err.textContent = "Tente entrar novamente.";
-    setTimeout(() => { location.replace("forum.html"); }, 2500);
+    setTimeout(() => { location.replace("/?tab=forum"); }, 2500);
     return;
   }
 
@@ -79,7 +79,10 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-m
     }));
   }
   document.getElementById("msg").textContent = "Bem-vindo!";
-  location.replace("forum.html");
+  // Volta pro site principal com a aba Forum ja ativa. O index.html le
+  // ?tab=forum no boot e dispara activateTab('forum'); o iframe do forum
+  // entao carrega e ja tem o token no localStorage (compartilhado).
+  location.replace("/?tab=forum");
 })();
 </script>
 </body>
