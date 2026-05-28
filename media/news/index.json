@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-27T15:10:41.747Z",
+  "updated": "2026-05-28T15:12:27.844Z",
   "items": [
+    {
+      "id": "cd-20260528",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-28T12:25:29.611Z",
+      "fetchedAt": "2026-05-28T15:12:27.431Z",
+      "img": "/media/news/img/cd-20260528.jpg",
+      "title_pt": "Mistério do baterista domina o dia: Dave Abbruzzese nega ser o escolhido",
+      "intro_pt": "A comunidade global de fãs movimentou o dia com a negativa de Dave Abbruzzese, um lyric video do Pluralone e um achado improvável de Vitalogy.",
+      "tags": [
+        "comunidade",
+        "turne"
+      ],
+      "title_ig": "Dave Abbruzzese descarta voltar ao PJ",
+      "kind": "community-digest",
+      "community_posts_count": 10
+    },
     {
       "id": "cd-20260527",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -256,6 +275,23 @@
       "title_ig": "Três integrantes, três versões do mesmo mistério"
     },
     {
+      "id": "0b821ae173",
+      "url": "https://www.reddit.com/r/Music/comments/1tkumlj/pearl_jam_will_unveil_new_drummer_in_september",
+      "source": "reddit-search-pj",
+      "sourceLabel": "Reddit Search (Pearl Jam)",
+      "group": "comunidade",
+      "pubDate": "2026-05-22T20:17:02.000Z",
+      "fetchedAt": "2026-05-28T15:12:27.431Z",
+      "img": null,
+      "title_pt": "Pearl Jam vai revelar o novo baterista em setembro",
+      "intro_pt": "A banda confirmou que o substituto de Matt Cameron será apresentado publicamente em setembro, com o nome ainda preservado em sigilo total.",
+      "tags": [
+        "turne",
+        "matt"
+      ],
+      "title_ig": "Novo baterista do PJ sai do mistério em setembro"
+    },
+    {
       "id": "3859c08c22",
       "url": "https://www.rollingstone.com/music/music-news/pearl-jam-new-drummer-ohana-festival-reveal-1235567570",
       "source": "rollingstone-music",
@@ -499,38 +535,6 @@
       "tags": [
         "tenclub",
         "comunidade"
-      ],
-      "kind": "pjcom-news"
-    },
-    {
-      "id": "596e31f26c",
-      "url": "https://pearljam.com/news/farewell-to-seasons",
-      "source": "pj-com-news",
-      "sourceLabel": "Pearl Jam Oficial",
-      "group": "tenclub",
-      "pubDate": "2026-05-14T17:31:20.846Z",
-      "fetchedAt": "2026-05-14T21:15:19.487Z",
-      "img": "/media/news/img/596e31f26c.jpg",
-      "title_pt": "Farewell to Seasons: nova publicação no canal oficial",
-      "intro_pt": "O site oficial do Pearl Jam publicou novo conteúdo intitulado Farewell to Seasons, disponível agora em pearljam.com.",
-      "tags": [
-        "tenclub"
-      ],
-      "kind": "pjcom-news"
-    },
-    {
-      "id": "d83c1231b7",
-      "url": "https://pearljam.com/news/rare-disease-day-2026",
-      "source": "pj-com-news",
-      "sourceLabel": "Pearl Jam Oficial",
-      "group": "tenclub",
-      "pubDate": "2026-05-14T17:31:20.846Z",
-      "fetchedAt": "2026-05-14T21:15:19.487Z",
-      "img": "/media/news/img/d83c1231b7.jpg",
-      "title_pt": "Pearl Jam apoia o Dia das Doenças Raras 2026",
-      "intro_pt": "O Ten Club publicou mensagem de apoio ao Rare Disease Day, reafirmando o compromisso histórico da banda com a causa.",
-      "tags": [
-        "tenclub"
       ],
       "kind": "pjcom-news"
     }
