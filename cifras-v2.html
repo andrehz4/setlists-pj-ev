@@ -11225,7 +11225,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.16</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.17</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -19324,42 +19324,25 @@ function _ensureCifraFretboard() {
       e.stopPropagation();
       const inst = btn.dataset.inst;
       if (!inst || inst === _activeCifraInstrument) return;
+      // Delega pro tablist canonico (.cifra-instr-btn) que ja faz: sync
+      // visual nos 2 tablists + _setActiveCifraInstrument + scroll preserve
+      // + re-render do strumming-bar (com zoom control) + status update.
+      // Single source of truth pra evitar codigo duplicado divergir.
+      const canonicalBtn = document.querySelector(`.cifra-instr-btn[data-cifra-inst="${inst}"]`);
+      if (canonicalBtn) {
+        canonicalBtn.click();
+        return;
+      }
+      // Fallback: se nao achou o canonico (raro), faz o minimo.
       _setActiveCifraInstrument(inst);
       fb.dataset.inst = inst;
-      // Sincroniza visual do overlay (todos botoes do .cifra-fretboard-instr)
       fb.querySelectorAll('.cifra-fretboard-instr .fretboard-tab').forEach(x => {
         const a = x.dataset.inst === inst;
         x.classList.toggle('active', a);
         x.setAttribute('aria-pressed', a ? 'true' : 'false');
       });
-      // Sincroniza visual do seletor de cima na cifra pane (pode ter varios
-      // panes abertos no setlist; atualiza todos com data-cifra-inst).
-      document.querySelectorAll('.cifra-instr-btn').forEach(b => {
-        const a = b.dataset.cifraInst === inst;
-        b.classList.toggle('active', a);
-        b.setAttribute('aria-pressed', a ? 'true' : 'false');
-      });
-      // Re-renderiza strumming header dentro do pane ativo com padrao do
-      // novo instrumento (mesma logica do click no seletor de cima).
       const activeRoot = _activeCifraRoot;
       const multi = activeRoot && activeRoot._multiData;
-      if (activeRoot && multi) {
-        const wrap = activeRoot.querySelector('.cifra-strumming-wrap');
-        if (wrap) {
-          const idata = multi.instruments && multi.instruments[inst];
-          if (idata && idata.strumming && idata.strumming.beats) {
-            const s = idata.strumming;
-            const cells = s.beats.map(b => {
-              const arrow = b.stroke === 'down' ? '↓' : '↑';
-              const mutedCls = b.muted ? ' cifra-strum-muted' : '';
-              return `<span class="cifra-strum-cell${mutedCls}"><span class="cifra-strum-arrow">${arrow}</span><span class="cifra-strum-count">${b.count}</span></span>`;
-            }).join('');
-            wrap.innerHTML = `<div class="cifra-strumming-bar" aria-label="Padrão de palhetada"><span class="cifra-strumming-label">${s.label || 'PADRÃO'} <em>${s.bpm || ''} bpm</em></span><div class="cifra-strumming-row">${cells}</div></div>`;
-          } else {
-            wrap.innerHTML = '';
-          }
-        }
-      }
       // Re-render mini-braco com o acorde atual no novo instrumento
       const currentChord = fb.querySelector('.cifra-fretboard-chord-name');
       if (currentChord && currentChord.textContent && currentChord.textContent !== '—') {
