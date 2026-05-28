@@ -11127,6 +11127,29 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   .lb-counter { bottom: 12px; font-size: 11px; padding: 4px 12px; }
   .lb-story { max-height: 38%; padding: 24px 18px 16px; font-size: 13px; }
 }
+
+/* ── Sprint mobile M3: tabs nav em scroll horizontal com snap (10 tabs em <=600px) ── */
+/* O redesign Ticket forca flex-wrap: wrap em .tabs, que faz as 10 tabs quebrarem em 3-4 linhas no celular. */
+/* Em mobile voltamos pra nowrap + overflow-x: auto + scroll-snap. Desktop intocado. */
+@media (max-width: 600px) {
+  .tabs {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding: 0 12px !important;
+    gap: 2px !important;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 0 0 auto;
+    padding: 10px 12px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
+    scroll-snap-align: center;
+  }
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13192,6 +13215,13 @@ function activateTab(viewName, opts) {
     v.classList.toggle("active", on);
     if (on) v.removeAttribute("hidden"); else v.setAttribute("hidden", "");
   });
+  // Sprint M3: em mobile, traz a tab ativa pro centro da viewport do tablist
+  if (window.matchMedia && window.matchMedia("(max-width: 600px)").matches) {
+    const activeTabBtn = document.getElementById("tab-" + viewName);
+    if (activeTabBtn) {
+      activeTabBtn.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }
   renderCurrent();
   if (opts && opts.focus) {
     const t = document.getElementById("tab-" + viewName);
