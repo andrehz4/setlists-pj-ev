@@ -15,8 +15,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { writeStepSummary } from "./_summary.mjs";
-import { readQueue, writeQueue, enqueue } from "../publish/queue.mjs";
+import { readQueue, writeQueue, enqueue, readDenylist } from "../publish/queue.mjs";
 import { stripDashes } from "./curators/_shared.mjs";
+import { checkSimilarInHistory, recordSkipped, DEFAULT_HISTORY_DAYS, DEFAULT_THRESHOLD } from "./dedupe-history.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -182,10 +183,46 @@ async function main() {
   // publish-instagram.yml a cada 30min.
   try {
     const queue = await readQueue();
-    const added = enqueue(queue, newItems);
+    const denylist = await readDenylist();
+    // indexById passa pro dedupe-history pra hidratar title/intro de items
+    // antigos sem ler 50 arquivos. Pendentes/postados recentes que nao estao
+    // mais no index caem no fallback de ler items/<id>.json.
+    const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
+
+    // Dedupe contra historico postado/pendente. Bloqueia items com Jaccard
+    // >= 0.55 contra qualquer post dos ultimos 7d ou pendente na fila.
+    // Bloqueados vao pro _skipped-similar.json (tombstone visivel pra
+    // auditoria manual).
+    const { allowed, blocked: similarBlocked } = await checkSimilarInHistory(
+      newItems,
+      {
+        queue,
+        indexById,
+        historyDays: DEFAULT_HISTORY_DAYS,
+        threshold: DEFAULT_THRESHOLD,
+      },
+    );
+    let recordedSkipped = 0;
+    if (similarBlocked.length) {
+      recordedSkipped = await recordSkipped(similarBlocked);
+      for (const b of similarBlocked) {
+        console.log(`[merge] SIMILAR (skip): ${b.candidate.id} ~ ${b.matchedTo} sim=${b.similarity}`);
+      }
+      mergeWarnings.push(`${similarBlocked.length} item(s) bloqueado(s) por similaridade >= ${DEFAULT_THRESHOLD} com posts recentes`);
+    }
+
+    const added = enqueue(queue, allowed, Date.now(), denylist);
+    const denyBlocked = added.blocked || [];
     if (added.length) {
       await writeQueue(queue);
       console.log(`[merge] enfileirado pra IG: ${added.length} (publishAt = now, sem delay)`);
+    }
+    if (denyBlocked.length) {
+      console.log(`[merge] BLOQUEADOS pela denylist (apagados anteriormente no IG): ${denyBlocked.join(", ")}`);
+      mergeWarnings.push(`${denyBlocked.length} item(s) bloqueado(s) pela denylist do IG: ${denyBlocked.join(", ")}`);
+    }
+    if (recordedSkipped > 0) {
+      console.log(`[merge] _skipped-similar.json: +${recordedSkipped} entrada(s)`);
     }
   } catch (e) {
     console.warn(`[merge] falha ao enfileirar IG (segue mesmo assim): ${e.message}`);
