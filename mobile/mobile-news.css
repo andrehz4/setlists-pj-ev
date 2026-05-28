@@ -1,0 +1,155 @@
+/* ============================================================================
+   mobile-news.css  ·  Setlists PJ + EV  ·  view #view-news (<=768px)
+   ----------------------------------------------------------------------------
+   ESCOPO: a view de Noticias (fanzine/jornal). DOM gerado por renderNewsView():
+     .news-flag  ->  .news-wordmark  ->  .news-hero  ->  .news-header(.news-filters)
+     ->  .news-pagination  ->  .news-grid(.news-card*)  ->  .news-list  ->  detail.
+
+   A view ja tinha tratamento @600 razoavel (hero 1-col, tipografia do detail,
+   pagination). Aqui REFINAMOS o que ainda estoura ou fica pequeno demais:
+
+   PROBLEMAS ATACADOS:
+     #4  Chips de filtro (14 tags) estouram a linha -> scroll horizontal c/ snap.
+     +   Bandeira (.news-flag) com 4 blocos nao cabe -> empilha em 2 linhas.
+     +   Wordmark "NOTICIAS" gigante -> clamp pra nao vazar.
+     +   Cards/list/pagination -> alvos de toque >=44, leitura confortavel.
+
+   Paleta propria da view: --np-* (papel/tinta xerox), ja definida em #view-news.
+   Mantemos ela; so ajustamos layout/tamanho. Zero JS, zero mudanca de HTML.
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+  /* --- bandeira tracejada do topo: empilha esquerda/direita -------------- */
+  .news-flag {
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-size: 8.5px !important;
+    letter-spacing: 0.1em !important;
+    padding: 8px 2px !important;
+  }
+  .news-flag-left,
+  .news-flag-right { gap: 8px; }
+  .news-flag-right { margin-left: auto; }
+
+  /* --- wordmark "NOTICIAS" em stencil: escala pra largura ---------------- */
+  .news-wordmark {
+    font-size: clamp(52px, 19vw, 110px) !important;
+    line-height: 0.82 !important;
+  }
+
+  /* --- HERO: ja vira 1 coluna @600; reforcamos no range 601-768 e afinamos */
+  .news-hero {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .news-hero-content {
+    grid-column: 1 / -1;
+    border-left: 0;
+    padding-left: 0;
+  }
+  .news-hero-num { font-size: 60px !important; }
+  .news-hero-imgwrap { aspect-ratio: 16 / 10; }
+  .news-hero-title { font-size: clamp(26px, 7.5vw, 34px) !important; }
+  .news-hero-intro { font-size: 16px !important; padding-left: 24px !important; }
+  .news-hero-cta {
+    min-height: 44px;                  /* TAP >=44 */
+    display: inline-flex;
+    align-items: center;
+  }
+  .news-hero-imgwrap:active { transform: translate(-2px, -2px); }
+
+  /* --- HEADER + CHIPS: tira rolavel horizontal com snap (#4) ------------- */
+  .news-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .news-filters {
+    flex-wrap: nowrap !important;
+    width: 100% !important;            /* trava no container (~327px) em vez de crescer pro conteudo */
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8px, #000 calc(100% - 16px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 8px, #000 calc(100% - 16px), transparent 100%);
+  }
+  .news-filters::-webkit-scrollbar { display: none; }
+  .news-chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .news-chip:active { transform: translate(1px, 1px); box-shadow: none; }
+  .news-updated { font-size: 10px; opacity: 0.8; }
+
+  /* --- PAGINATION: centraliza, botoes maiores --------------------------- */
+  .news-pagination { justify-content: center; gap: 5px; padding: 12px 0; }
+  .news-page-btn,
+  .news-page-nav {
+    min-width: 40px;                   /* TAP ~40 */
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+  .news-page-info { display: none; }   /* "pag X de Y" some no estreito */
+
+  /* --- GRID: 1 coluna; cards full-width --------------------------------- */
+  .news-grid {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+  }
+  .news-card { box-shadow: 3px 3px 0 var(--np-ink); }
+  .news-card:active { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--np-stamp); }
+  .news-card-title { font-size: 21px !important; }
+  .news-card-thumb { aspect-ratio: 16 / 9; }
+  .news-card-cta { min-height: 36px; display: inline-flex; align-items: center; }
+
+  /* --- LISTA COMPACTA: itens com altura de toque, meta enxuta ----------- */
+  .news-list-item {
+    grid-template-columns: 30px 1fr !important;
+    min-height: 52px;                  /* TAP >=44 */
+    align-items: center;
+    padding: 12px 6px !important;
+  }
+  .news-list-meta { display: none !important; }
+  .news-list-title { font-size: 15px !important; }
+  .news-list-item:active { background: var(--bg-card); }
+
+  /* --- DETAIL: leitura editorial, nav que nao estoura ------------------- */
+  .news-detail { padding: 0 2px 48px !important; }
+  .news-detail-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .news-back {
+    min-height: 44px;                  /* TAP >=44 */
+    display: inline-flex;
+    align-items: center;
+  }
+  .news-detail-nav-arrows { gap: 6px; }
+  .news-nav-arrow { min-height: 40px; display: inline-flex; align-items: center; }
+  .news-detail-title { font-size: clamp(26px, 8vw, 32px) !important; }
+  .news-detail-intro { font-size: 17px !important; padding-left: 22px !important; }
+  .news-detail-hero { aspect-ratio: 16 / 10; }
+  .news-detail-body { font-size: 17px !important; line-height: 1.72 !important; }
+  .news-detail-more-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ====================== refinamentos <=480px ============================= */
+@media (max-width: 480px) {
+  .news-hero-num { font-size: 48px !important; }
+  .news-card-title { font-size: 20px !important; }
+  .news-detail-body { font-size: 16.5px !important; line-height: 1.7 !important; }
+  /* drop cap nao gigante demais em tela pequena */
+  .news-detail-body p:first-of-type::first-letter { font-size: 3.4em; }
+}
