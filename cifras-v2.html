@@ -11147,7 +11147,7 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.01</span>
+      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build v2 2026-05-28.02</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -18157,6 +18157,13 @@ function renderTabsView() {
   const count = container.querySelector('.catalog-count');
   const detail = container.querySelector('.cifra-detail-wrap');
 
+  // Master mixer (volume + mute): bind no init da view porque musicas
+  // sem tab nunca disparam scoreLoaded e o handler so era atachado la dentro.
+  const initialMixerAside = container.querySelector('.mixer-aside');
+  if (initialMixerAside && typeof _setupMasterMixer === 'function') {
+    _setupMasterMixer(initialMixerAside);
+  }
+
   // Index busca: strip diacritics + lower. "Cancao" casa "canção".
   const stripDiacritics = (s) => String(s || '')
     .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -18800,42 +18807,54 @@ function _populateMixer(mixerAside, tracks) {
     });
   }
 
-  // Master volume + mute master
+  // Master volume + mute master agora vivem em _setupMasterMixer (chamado
+  // tambem no renderTabsView pra musicas sem tab, onde scoreLoaded nunca dispara).
+  _setupMasterMixer(mixerAside);
+}
+
+// Bind do master slider + botao de mute. Idempotente via dataset.bound.
+// Precisa rodar tanto quando o AlphaTab carrega uma score (TAB) quanto quando
+// a view de Cifras renderiza (musicas so-cifra nunca disparam scoreLoaded).
+function _setupMasterMixer(mixerAside) {
+  if (!mixerAside) return;
   const masterSlider = mixerAside.querySelector('.mixer-master-slider');
   const masterVal = mixerAside.querySelector('.mixer-master-val');
   const masterIcon = mixerAside.querySelector('.mixer-master-icon');
-  if (masterSlider && !masterSlider.dataset.bound) {
-    masterSlider.dataset.bound = '1';
-    let preMute = 0.8;
-    masterSlider.addEventListener('input', (e) => {
-      e.stopPropagation();
-      const v = parseFloat(masterSlider.value);
-      if (masterVal) masterVal.textContent = Math.round(v * 100) + '%';
-      // AlphaTab (TAB): masterVolume da api
-      if (_activeAlphaTabApi) {
-        try { _activeAlphaTabApi.masterVolume = v; } catch (err) {}
-      }
-      // Cifra player: usa window._cifraVolume (lido por _playChordSound).
-      // Sincroniza tambem os sliders locais .cifra-mode-vol pra refletir.
-      window._cifraVolume = v;
-      document.querySelectorAll('.cifra-mode-vol').forEach(sl => {
-        if (sl !== masterSlider) sl.value = String(v);
-      });
-      if (masterIcon) {
-        masterIcon.classList.toggle('muted', v === 0);
-        masterIcon.textContent = v === 0 ? '🔇' : '🔊';
-      }
-      if (v > 0) preMute = v;
+  if (!masterSlider || masterSlider.dataset.bound) return;
+  masterSlider.dataset.bound = '1';
+  // Aplica volume inicial em window._cifraVolume pra cifra player ja
+  // respeitar o valor do slider antes do primeiro 'input'.
+  const initial = parseFloat(masterSlider.value);
+  if (!Number.isNaN(initial)) window._cifraVolume = initial;
+  let preMute = initial > 0 ? initial : 0.8;
+  masterSlider.addEventListener('input', (e) => {
+    e.stopPropagation();
+    const v = parseFloat(masterSlider.value);
+    if (masterVal) masterVal.textContent = Math.round(v * 100) + '%';
+    // AlphaTab (TAB): masterVolume da api
+    if (_activeAlphaTabApi) {
+      try { _activeAlphaTabApi.masterVolume = v; } catch (err) {}
+    }
+    // Cifra player: usa window._cifraVolume (lido por _playChordSound).
+    // Sincroniza tambem os sliders locais .cifra-mode-vol pra refletir.
+    window._cifraVolume = v;
+    document.querySelectorAll('.cifra-mode-vol').forEach(sl => {
+      if (sl !== masterSlider) sl.value = String(v);
     });
     if (masterIcon) {
-      masterIcon.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const cur = parseFloat(masterSlider.value);
-        const next = cur === 0 ? preMute : 0;
-        masterSlider.value = next;
-        masterSlider.dispatchEvent(new Event('input'));
-      });
+      masterIcon.classList.toggle('muted', v === 0);
+      masterIcon.textContent = v === 0 ? '🔇' : '🔊';
     }
+    if (v > 0) preMute = v;
+  });
+  if (masterIcon) {
+    masterIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const cur = parseFloat(masterSlider.value);
+      const next = cur === 0 ? preMute : 0;
+      masterSlider.value = next;
+      masterSlider.dispatchEvent(new Event('input'));
+    });
   }
 }
 
