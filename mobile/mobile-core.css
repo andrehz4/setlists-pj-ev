@@ -47,9 +47,9 @@
     scroll-snap-type: x proximity;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    /* fade de borda: indica conteudo rolavel a esquerda/direita */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
-            mask-image: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+    /* (mask-image removido em build .18: deixava o bg semi-transparente nas
+       pontas e o conteudo de baixo vazava pelo menu sticky no scroll. A
+       scrollbar nativa + tabs cortando na borda ja sinalizam 'tem mais') */
   }
   .tabs::-webkit-scrollbar { display: none; }
 
@@ -251,9 +251,10 @@
     overflow: visible !important;
     text-overflow: clip !important;
   }
-  /* fade menor nas pontas pra a ultima aba visivel nao parecer cortada */
+  /* (mask-image removido em build .18 — vinha vazando o conteudo de baixo
+     pelo menu sticky. Os tabs cortarem na borda ja sinalizam scroll.) */
   .tabs {
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%) !important;
-            mask-image: linear-gradient(90deg, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%) !important;
+    -webkit-mask-image: none !important;
+            mask-image: none !important;
   }
 }
