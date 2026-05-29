@@ -678,6 +678,15 @@
         "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
       },
       "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
+    },
+    {
+      "id": "8ea04d99af",
+      "type": "regular",
+      "queuedAt": "2026-05-29T15:09:30.709Z",
+      "publishAt": "2026-05-29T15:09:30.709Z",
+      "postedAt": null,
+      "postId": null,
+      "error": null
     }
   ],
   "postCount": 35
