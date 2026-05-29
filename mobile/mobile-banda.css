@@ -68,10 +68,24 @@
     max-width: 280px;                  /* foto nao estica em largura total */
     margin: 0 auto;
   }
-  .bm-bio { padding: 18px 16px !important; }
-  .bm-text { font-size: 14px !important; line-height: 1.55 !important; }
+  .bm-bio { padding: 18px 16px !important; min-width: 0; max-width: 100%; }
+  .bm-text { font-size: 14px !important; line-height: 1.55 !important; overflow-wrap: anywhere; }
+
+  /* corrige grid overflow trap: 'auto 1fr' nao deixava o dd wrappar e o
+     .bm-stage com overflow:hidden cortava texto na direita ("10 mar 1963 ·" cut) */
+  .bm-stats {
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) !important;
+  }
   .bm-stats dt { font-size: 10px !important; }
-  .bm-stats dd { font-size: 13px !important; }
+  .bm-stats dd {
+    font-size: 13px !important;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  /* tags: nao deixa uma tag longa ("#STICK BASS") estourar o card */
+  .bm-tags { max-width: 100%; }
+  .bm-tag { max-width: 100%; word-break: break-word; }
 
   /* botao fechar da ficha: alvo de toque maior ------------------------- */
   .bm.is-open .bm-close {
