@@ -843,7 +843,12 @@ function renderAuthArea() {
   } else {
     area.innerHTML = `<button class="auth-btn primary" id="loginBtn">Entrar com Google</button>`;
     document.getElementById("loginBtn").addEventListener("click", () => {
-      location.href = API_BASE + "/auth/google/login";
+      // forum.html roda dentro de iframe no index.html (#view-forum). O Google
+      // bloqueia OAuth em iframe (X-Frame-Options: DENY) e devolve 403. Forca
+      // a redirecao no top window quando estamos enquadrados.
+      const target = API_BASE + "/auth/google/login";
+      try { (window.top || window).location.href = target; }
+      catch (_) { location.href = target; }
     });
     if (btn) btn.style.display = "none";
   }
@@ -1603,7 +1608,7 @@ async function submitTopic() {
     });
     if (data === null) {
       const loginUrl = API_BASE + "/auth/google/login";
-      errEl.innerHTML = `Sua sessão expirou. <a href="${loginUrl}" style="color:var(--accent);text-decoration:underline;font-weight:600">Entre novamente com Google</a> para publicar a thread.`;
+      errEl.innerHTML = `Sua sessão expirou. <a href="${loginUrl}" target="_top" style="color:var(--accent);text-decoration:underline;font-weight:600">Entre novamente com Google</a> para publicar a thread.`;
       errEl.classList.add("visible");
       btn.disabled = false; btn.textContent = "Publicar thread →";
       return;
