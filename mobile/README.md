@@ -32,6 +32,7 @@ mobile/
 ├── mobile-banda.css    BATCH 2 · #view-banda (roster fliperama)
 ├── mobile-cifras.css   BATCH 3 · #view-tabs (catálogo/cifra/tab/transport) + FAB #9
 ├── mobile-forum.css    BATCH 4 · #view-forum (iframe) + páginas standalone do fórum
+├── mobile-aux.css      BATCH 5 · ranking · gaps · highlights · rarity · search · deep
 ├── README.md           este arquivo
 └── mockups/            telas de revisão (NÃO faz parte do bundle de produção)
 ```
@@ -210,6 +211,36 @@ somem, posts/composer empilham). O batch refina e conserta o que faltava:
 
 **Fora esse `<link>` nas 3 páginas do fórum, nenhuma mudança de HTML foi necessária.**
 
+---
+
+## Decisões — Batch 5 (último · views auxiliares)
+
+As 6 views menores — **ranking, álbuns (gaps), destaques, raridades, buscar, deep** — já
+eram bem responsivas no código original (ranking @600, álbuns @520, rarity @980+@600,
+deep @720). O `mobile-aux.css` é uma **camada de polimento**, não um redesenho:
+
+- **Ranking:** linhas com altura de toque (≥52px); o código já vira 3 colunas e esconde
+  a barra de frequência no estreito.
+- **Álbuns:** respiro mobile; o @520 do código já reduz a capa.
+- **Destaques:** grid auto-fill já vira 1 coluna; só ajuste de padding.
+- **Raridades:** hero/troféus já colapsam; a **tabela "todas as raridades"** fica enxuta
+  (esconde a coluna de show, compacta padding) pra não estourar; wanted vira 1 coluna em ≤480.
+- **Buscar:** header empilha (título + carimbo), input grande com alvo de toque e fonte
+  22px (**≥16px = sem zoom do iOS**), chips de sugestão/filtro tocáveis.
+- **Deep:** grade de capas 2→1 coluna; no leitor 3D fullscreen, setas ≥44px e thumbs
+  maiores — sem mexer na mecânica do flip.
+
+**Nenhuma mudança de HTML foi necessária no Batch 5.**
+
+---
+
+## ✅ Projeto completo — 5 de 5 batches
+
+Todas as 12 views + chrome global + 3 páginas standalone do fórum têm skin mobile.
+**Mudanças de HTML no total:** apenas o `<link>` do `mobile.css` no `index.html` e o
+`<link>` do `mobile-forum.css` nas 3 páginas do fórum. Tudo o mais é CSS apartado,
+`≤768px`, zero JS, desktop intocado.
+
 > **Correção pós-review do Batch 4** (CSS, ≤480): o botão **"Entrar com Google"** (~150px)
 > não encolhia e estourava o header pra fora da borda direita (375 e 414). Em ≤480 ele
 > vira um **botão-ícone compacto** (40px, silhueta de pessoa em SVG branco sobre o vermelho
@@ -231,5 +262,5 @@ somem, posts/composer empilham). O batch refina e conserta o que faltava:
 
 ---
 
-## Próximos batches (aguardando aprovação)
-- **5 (último):** views auxiliares — ranking, destaques, raridades, deep, álbuns, buscar
+## Próximos batches
+✅ **Todos os 5 batches entregues.** Projeto completo.

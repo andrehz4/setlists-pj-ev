@@ -29,6 +29,5 @@
 /* --- BATCH 4 (entregue) ----------------------------------------------------- */
 @import url("mobile-forum.css");    /* #view-forum (iframe) + paginas standalone do forum */
 
-/* --- BATCHES SEGUINTES (placeholders — adicionar conforme aprovacao) -------- *
-   @import url("mobile-aux.css");       // Batch 5 · ranking/highlights/rarity/deep/gaps/search
- * --------------------------------------------------------------------------- */
+/* --- BATCH 5 (entregue · projeto completo) ---------------------------------- */
+@import url("mobile-aux.css");      /* ranking · gaps · highlights · rarity · search · deep */
