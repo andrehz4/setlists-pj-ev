@@ -35,7 +35,9 @@
     padding: 10px 12px !important;
     font-size: 10.5px !important;
   }
-  .banda-hint .kbd { display: none; }       /* atalhos de teclado nao se aplicam no toque */
+  .banda-hint .kbd,
+  .banda-hint .kbd + .kbd,
+  .banda-hint span:has(.kbd) { display: none !important; }   /* esconde "ESC" e "clique fora": nao se aplica no toque */
 
   /* --- roster: 2 colunas (herdado @520, reforcado ate 768) ------------ */
   .banda-row {
