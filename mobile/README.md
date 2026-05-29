@@ -30,6 +30,7 @@ mobile/
 ├── mobile-timeline.css BATCH 2 · #view-timeline + drawer de setlist
 ├── mobile-gallery.css  BATCH 2 · #view-gallery + lightbox
 ├── mobile-banda.css    BATCH 2 · #view-banda (roster fliperama)
+├── mobile-cifras.css   BATCH 3 · #view-tabs (catálogo/cifra/tab/transport) + FAB #9
 ├── README.md           este arquivo
 └── mockups/            telas de revisão (NÃO faz parte do bundle de produção)
 ```
@@ -152,7 +153,46 @@ renderizados em viewport de telefone de verdade (375 / 414). Veja
 
 ---
 
+## Decisões — Batch 3
+
+### Cifras & Tabs (`#view-tabs`) — a view mais densa
+- **Base já pronta:** o CSS legado em `@880px` já vira `.tabs-layout` 1 coluna, deixa o
+  `.catalog-aside` static e **esconde o mixer** (hover não existe no toque). Mantivemos.
+- **Catálogo:** busca com `min-height:46px` e **fonte 16px** (evita o zoom automático do
+  iOS no foco); itens `.cat-item` ≥52px de toque; capa 40px; lista cresce pra 320px
+  (catálogo é a navegação principal, não fica presa em 240px).
+- **Cifra/tab:** partitura/cifra com scroll interno e altura útil (52vh/46vh, 48vh em
+  ≤480); chord-chips ≥26px e versos 14px pra leitura.
+- **Transport (top + bottom):** já usam `flex-wrap`; reforçamos quebra centralizada,
+  sliders mais grossos (thumb 16px), botões-ícone ≥40px, play redondo 54px, trackbar
+  (Lead/Rhythm/…) em largura total.
+- **#9 · FAB × audio-player (resolvido só com CSS):** o FAB flutuante da cifra
+  (`position:fixed; bottom:24px`) colidia com o `#audio-player` fixo no rodapé quando os
+  dois apareciam juntos. Como o FAB é `document.body.appendChild` **depois** do player no
+  DOM, o combinador irmão geral alcança ele: `#audio-player.active ~ .alphatab-fab`
+  sobe o FAB pra `bottom:112px` (104px em ≤480). O braço da cifra flutuante sobe junto.
+  **Zero JS.**
+- **Trade-off:** o valor de subida (112/104px) assume a altura típica do player (~96px);
+  se o player mudar muito de altura, ajustar a constante. (Ver "HTML que sugiro" abaixo.)
+
+**Nenhuma mudança de HTML foi necessária no Batch 3.**
+
+> **Correções pós-review do Batch 3** (tudo CSS, ≤768/≤480):
+> 1. Nav no iPhone SE (375): aba truncava com reticências — `text-overflow:clip` +
+>    `overflow:visible` + `max-width:none`, fonte 9.5px/pad 8px; abas rolam até o fim.
+> 2. Header da cifra: o pill `♩ = 86` aparecia como `♩ = 8`. **Causa real:** não era
+>    overflow — o **FAB flutuante (z-index 9999) pintava por cima** do header quando ele
+>    caía na faixa vertical do FAB no layout 1-coluna. Correção: pills com `flex-wrap` +
+>    `overflow:visible`, FAB mais compacto/encostado no canto, e **reserva da coluna
+>    direita do header só quando o FAB está visível** via `body:has(.alphatab-fab.show)
+>    #view-tabs .cifra-header { padding-right }` (CSS puro, sem JS).
+> 3. FAB: respiro interno (padding 12px, × em −10px) + **reserva de 96px no rodapé** do
+>    `.cifra-detail-wrap` pra o transport (loop/nota) nunca ficar sob o FAB flutuante.
+> 4. Item "em breve": a opacidade ia no item inteiro e sumia com o número — agora só o
+>    thumb + badge ficam a 0.4; número/título permanecem legíveis.
+
+---
+
 ## Próximos batches (aguardando aprovação)
-- **3:** Cifras & Tabs (catálogo drawer, mixer sheet, transport, FAB — inclui o #9 do FAB)
 - **4:** Fórum (wrapper do iframe) + páginas standalone
 - **5:** Drawer de show + Deep reader + views auxiliares (ranking/highlights/rarity/gaps/search)

@@ -1,0 +1,199 @@
+/* ============================================================================
+   mobile-cifras.css  ·  Setlists PJ + EV  ·  view #view-tabs (<=768px)
+   ----------------------------------------------------------------------------
+   ESCOPO: Cifras & Tablaturas. A view mais densa do projeto.
+   DOM real (renderTabsView):
+     #view-tabs > .view-title + .view-desc + #tabs-content
+       #tabs-content > .cifras-masthead
+         + .tabs-layout
+             > aside.catalog-aside (.catalog-search + .catalog-count + .catalog-list>.cat-item*)
+             > section.cifra-detail-wrap (.cifra-empty | cifra/tab carregada)
+         + aside.mixer-aside  (escondida em <=880 pelo CSS legado)
+     CONTROLES (dentro do detail quando toca):
+       .alphatab-transport-top (compacta) + .alphatab-surface/.cifra-surface (partitura)
+       + .alphatab-transport / .alphatab-transport-bottom (completa)
+     SINGLETONS no body: .alphatab-fab (FAB), .cifra-fretboard (braco, docka inline aqui)
+
+   O CSS legado ja faz bem o grosso em <=880px:
+     - .tabs-layout vira 1 coluna; .catalog-aside vira static; mixer some.
+     - surfaces tem max-height + scroll interno.
+   Aqui REFINAMOS pro toque e resolvemos o PROBLEMA #9 (FAB x audio-player):
+
+   PROBLEMAS ATACADOS:
+     #9  FAB do player (position:fixed bottom:24px) colide com o #audio-player
+         fixo no rodape quando os dois aparecem juntos. Como o FAB e
+         document.body.appendChild (DEPOIS do #audio-player no DOM), da pra
+         resolver SO com CSS via combinador irmao geral (~). Zero JS.
+     +   catalogo: busca + itens com alvo de toque >=44px.
+     +   transport: controles que quebram limpo e sao tocaveis (sliders, botoes).
+
+   Regras envoltas em @media(max-width:768px). !important onde o legado disputa.
+   TAP: alvos anotados com  [ TAP >=44 ]
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+  /* --- masthead + cabecalho da view -------------------------------------- */
+  #view-tabs .view-desc { font-size: 12px !important; }
+  .cifras-masthead { padding: 0 2px !important; }
+
+  /* BUG 2 · header da cifra: o ultimo pill (J = 86) cortava no 375. A coluna
+     do titulo precisa poder encolher (min-width:0) e os pills quebram pra
+     linha de baixo em vez de clipar. */
+  #view-tabs .cifra-titlebox { min-width: 0 !important; }
+  #view-tabs .cifra-pills,
+  .cifra-pills {
+    flex-wrap: wrap !important;
+    overflow: visible !important;
+    row-gap: 5px;
+  }
+
+  /* --- layout: 1 coluna (reforça o legado @880) -------------------------- */
+  .tabs-layout,
+  .tabs-layout.mixer-pinned {
+    display: block !important;
+    padding-right: 0 !important;
+  }
+
+  /* ------------------------------------------------------------------ *
+   * CATALOGO  ·  busca + lista de musicas com alvo de toque
+   * ------------------------------------------------------------------ */
+  #view-tabs .catalog-aside {
+    position: static !important;
+    max-height: none !important;
+    margin-bottom: 16px;
+  }
+  #view-tabs .catalog-search {
+    min-height: 46px;                  /* [ TAP >=44 ] */
+    padding: 12px 14px !important;
+    font-size: 16px !important;        /* 16px evita zoom automatico do iOS no focus */
+  }
+  #view-tabs .catalog-count { font-size: 9px !important; padding: 8px 2px 4px !important; }
+  /* lista nao trava em 240px no mobile: o catalogo e a navegacao principal */
+  #view-tabs .catalog-list {
+    max-height: 320px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  #view-tabs .cat-item {
+    min-height: 52px;                  /* [ TAP >=44 ] */
+    padding: 10px 10px !important;
+    gap: 10px !important;
+  }
+  #view-tabs .cat-item:active:not(.disabled) { background: var(--bg-card); }
+  #view-tabs .cat-item-cover { width: 40px !important; height: 40px !important; flex-shrink: 0; }
+  #view-tabs .cat-item-title { font-size: 15px !important; }
+  #view-tabs .cat-item-album { font-size: 11px !important; }
+  #view-tabs .cat-item-status { flex-shrink: 0; }
+
+  /* BUG 4 · item "em breve": o legado poe opacity no item INTEIRO, sumindo
+     com o numero (08). Tira a opacidade do item e aplica so no thumb + badge,
+     mantendo numero/titulo legiveis. */
+  #view-tabs .cat-item.disabled { opacity: 1 !important; }
+  #view-tabs .cat-item.disabled .cat-item-cover,
+  #view-tabs .cat-item.disabled .cat-item-status { opacity: 0.4 !important; }
+  #view-tabs .cat-item.disabled .cat-item-num { opacity: 1 !important; }
+
+  /* ------------------------------------------------------------------ *
+   * DETALHE DA CIFRA/TAB  ·  partitura + cifra com altura util
+   * ------------------------------------------------------------------ */
+  #view-tabs .cifra-detail-wrap { padding: 0 0 28px !important; }
+  .cifra-empty { padding: 32px 16px !important; }
+
+  /* partitura/cifra: scroll interno; deixa altura suficiente pra ler ---- */
+  .cifra-detail-wrap .alphatab-surface { max-height: 52vh !important; }
+  .cifra-detail-wrap .cifra-surface { max-height: 46vh !important; }
+  /* cifra em texto: chord-chips e versos legiveis ----------------------- */
+  .cifra-stanza { font-size: 14px !important; }
+  .chord-chip {
+    min-height: 26px;
+    padding: 2px 7px !important;
+    font-size: 12px !important;
+  }
+  .chord-chip:active { transform: translateY(1px); }
+
+  /* ------------------------------------------------------------------ *
+   * TRANSPORT  ·  controles de reproducao (top compacta + bottom completa)
+   *   Ja usam flex-wrap; aqui garantimos quebra limpa e alvo de toque.
+   * ------------------------------------------------------------------ */
+  .alphatab-transport-top,
+  .alphatab-transport,
+  .alphatab-transport-bottom {
+    flex-wrap: wrap !important;
+    gap: 8px 10px !important;
+    padding: 10px 12px !important;
+    justify-content: center;
+  }
+  .atc-group { gap: 8px; }
+  /* sliders ocupam a largura util em vez de medidas fixas estreitas */
+  .atc-vol-slider { width: 72px !important; height: 5px !important; }
+  .atc-speed-slider { width: 120px !important; height: 5px !important; }
+  .atc-vol-slider::-webkit-slider-thumb,
+  .atc-speed-slider::-webkit-slider-thumb { width: 16px !important; height: 16px !important; }
+  .atc-vol-slider::-moz-range-thumb,
+  .atc-speed-slider::-moz-range-thumb { width: 16px !important; height: 16px !important; }
+  /* botoes-icone do transport: alvo de toque confortavel */
+  .atc-btn-ico {
+    min-width: 40px; min-height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 20px !important;
+  }
+  .atc-btn-mini {
+    min-height: 38px;
+    display: inline-flex; align-items: center;
+    padding: 8px 12px !important;
+  }
+  /* play redondo ja e 52px (otimo alvo) — so garante que nao encolhe */
+  .atc-play-round { width: 54px !important; height: 54px !important; }
+  /* trackbar (Lead/Rhythm/...) full width abaixo dos controles ---------- */
+  .cifra-detail-wrap .alphatab-transport-bottom .alphatab-tracks {
+    flex-basis: 100% !important;
+    justify-content: center;
+  }
+
+  /* ------------------------------------------------------------------ *
+   * #9 + BUG 3 · FAB x AUDIO-PLAYER / TRANSPORT
+   *   - sobe o FAB quando o player esta ativo (irmao posterior no DOM);
+   *   - reserva espaco no rodape do detail pra a transport-bottom (loop +
+   *     nota) NUNCA ficar embaixo do FAB flutuante;
+   *   - da respiro interno ao FAB pra o botao × nao colar na borda.
+   * ------------------------------------------------------------------ */
+  /* respiro do FAB + botao fechar com folga */
+  .alphatab-fab {
+    padding: 12px !important;
+    gap: 10px !important;
+    z-index: 9999 !important;
+  }
+  .alphatab-fab-close {
+    top: -10px !important;
+    right: -10px !important;
+  }
+  /* reserva de rodape: transport-bottom sobe e o FAB flutua sobre area livre */
+  #view-tabs .cifra-detail-wrap,
+  #view-tabs .cifra-detail-body { padding-bottom: 96px !important; }
+
+  #audio-player.active ~ .alphatab-fab {
+    bottom: 112px !important;          /* acima da barra do player (~96px) + folga */
+  }
+  /* o braco da cifra, quando flutua no body, sobe junto */
+  #audio-player.active ~ .cifra-fretboard:not(.inline) {
+    bottom: 112px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* o legado ja poe o FAB em bottom:16px aqui; com player ativo, sobe */
+  #audio-player.active ~ .alphatab-fab { bottom: 104px !important; }
+  .atc-speed-slider { width: 100px !important; }
+  .cifra-detail-wrap .alphatab-surface { max-height: 48vh !important; }
+
+  /* BUG 2 (causa real) · o FAB flutuante (canto inf. direito) pintava POR CIMA
+     do header da cifra quando ele caia na faixa vertical do FAB, cobrindo o
+     ultimo digito do pill "J = 86". Correcao: FAB mais compacto e encostado no
+     canto + reserva da coluna direita do header SO quando o FAB esta visivel
+     (:has, sem JS). Assim os pills (tom/capo/BPM) nunca ficam sob o FAB. */
+  .alphatab-fab { right: 12px !important; }
+  .alphatab-fab-btn { width: 46px !important; height: 46px !important; }
+  body:has(.alphatab-fab.show) #view-tabs .cifra-header {
+    padding-right: 84px !important;
+  }
+}

@@ -23,8 +23,10 @@
 @import url("mobile-gallery.css");  /* #view-gallery + lightbox (resgate das setas) */
 @import url("mobile-banda.css");    /* #view-banda (roster fliperama) */
 
+/* --- BATCH 3 (entregue) ----------------------------------------------------- */
+@import url("mobile-cifras.css");   /* #view-tabs (catalogo/cifra/tab/transport) + FAB #9 */
+
 /* --- BATCHES SEGUINTES (placeholders — adicionar conforme aprovacao) -------- *
-   @import url("mobile-cifras.css");    // Batch 3 · #view-tabs (catalogo/mixer/transport)
    @import url("mobile-forum.css");     // Batch 4 · #view-forum (wrapper do iframe)
    @import url("mobile-aux.css");       // Batch 5 · ranking/highlights/rarity/deep/gaps/search
  * --------------------------------------------------------------------------- */
