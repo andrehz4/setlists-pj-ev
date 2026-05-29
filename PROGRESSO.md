@@ -1,19 +1,17 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil + Batches 1+2+3 mobile)
+2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil + Batches 1+2+3+4 mobile)
 
 ## Estado atual
-Em produção: `build 2026-05-29.12`. Batches 1, 2 e 3 do mobile skin aplicados (Notícias + chrome global + Timeline + drawer setlist + Galeria + lightbox + BANDA + Cifras & Tabs + FAB #9). Fila de bugs anteriores zerada.
+Em produção: `build 2026-05-29.13`. Batches 1, 2, 3 e 4 do mobile skin aplicados (Notícias + chrome global + Timeline + drawer setlist + Galeria + lightbox + BANDA + Cifras & Tabs + FAB #9 + Fórum iframe e páginas standalone). Fila de bugs anteriores zerada.
 
 ## Próximo passo concreto
-1. Validar Batches 1+2+3 em produção (DevTools 375px / 414px). Smoke test consolidado:
-   - **B1:** nav sticky com scroll horizontal (sem reticência "BUS..." em iPhone SE), chips de tag rolam, audio-player compacto, footer 1 coluna
-   - **B2:** Timeline 1-col com year-label menor; drawer tela cheia com setlist 16px; Galeria contact-sheet de 3 colunas; **lightbox com setas ‹ ›**; BANDA membro aberto ocupa linha inteira
-   - **B3:** Cifras & Tabs em 1 coluna, busca/itens tocáveis, transport quebra limpo, play 54px. **FAB #9: toque uma música, dê play e abra o player de áudio — o FAB sobe pra `bottom: 112px` (104 em ≤480) acima da barra do player**
-2. Confirmar build `2026-05-29.12` no rodapé
-3. Pedir Batch 4 ao Claude Design quando 1+2+3 aprovados: Fórum (wrapper do iframe + páginas standalone) → `mobile-forum.css`
-4. Roadmap restante: Batch 5 (Drawer + Deep + ranking/highlights/rarity/gaps/search)
+1. Validar Batches 1-4 em produção (DevTools 375px / 414px). Smoke test consolidado:
+   - **B1-B3:** ver entrada anterior
+   - **B4:** abrir tab Fórum no `index.html` → iframe full-bleed sem padding lateral duplicado. Abrir um tópico (vai pra `forum-topic.html`) → header/composer/posts com alvos de toque. Abrir perfil (`forum-profile.html`) → `.profile-body` colapsa em 1 coluna (antes a sidebar 320px espremia o conteúdo)
+2. Confirmar build `2026-05-29.13` no rodapé
+3. Pedir Batch 5 ao Claude Design (último): views auxiliares (ranking/highlights/rarity/deep/gaps/search + drawer de show) → `mobile-aux.css`
 
 ## Sessão 2026-05-29 — Batches 1, 2 e 3 mobile aplicados
 
@@ -26,7 +24,15 @@ Pasta `mobile/` com os arquivos do design bundle Anthropic (`mobile-pj`):
 - `mobile-gallery.css` **B2** (contact-sheet 3 colunas + **fix crítico lightbox**: setas ‹ › reativadas)
 - `mobile-banda.css` **B2** (membro aberto vira `grid-column: 1/-1`)
 - `mobile-cifras.css` **B3** (#view-tabs: busca ≥46px com fonte 16px anti-zoom iOS, itens ≥52px, transport com play 54px, partitura scroll interno, chord-chips legíveis; **FAB #9 resolvido CSS-only** via `#audio-player.active ~ .alphatab-fab` → `bottom: 112px` (104 em ≤480), zero JS)
-- `README.md` (decisões B1 + B2 + B3)
+- `mobile-forum.css` **B4** (#view-forum iframe edge-to-edge + páginas standalone: header/auth/btn ≥40px, busca 16px anti-zoom, **`.profile-body` colapsa em 1 coluna** — antes 1fr+320px espremia o conteúdo)
+- `README.md` (decisões B1 + B2 + B3 + B4)
+
+### Mudança de HTML do B4 (primeira do projeto além do index)
+Adicionada 1 linha no `<head>` de cada uma das 3 páginas standalone do fórum, logo após o `</style>` próprio:
+```html
+<link rel="stylesheet" href="mobile/mobile-forum.css" media="(max-width: 768px)">
+```
+Arquivos tocados: `forum.html`, `forum-topic.html`, `forum-profile.html`. O `mobile-forum.css` é auto-contido (não depende dos outros parciais) e só dispara em ≤768px.
 
 ### Linha no `<head>`
 Logo após os `<link>` das fontes Google:
