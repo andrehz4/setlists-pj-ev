@@ -1,30 +1,32 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil + Batches 1+2 mobile)
+2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil + Batches 1+2+3 mobile)
 
 ## Estado atual
-Em produção: `build 2026-05-29.11`. Batches 1 e 2 do mobile skin aplicados (Notícias + chrome global + Timeline + drawer setlist + Galeria + lightbox + BANDA). Fila de bugs anteriores zerada. Cutover V2→V1 concluído, fórum integrado via iframe, paginação de notícias funcional, 100% cobertura de acordes, perfil reformulado pelo design bundle Anthropic.
+Em produção: `build 2026-05-29.12`. Batches 1, 2 e 3 do mobile skin aplicados (Notícias + chrome global + Timeline + drawer setlist + Galeria + lightbox + BANDA + Cifras & Tabs + FAB #9). Fila de bugs anteriores zerada.
 
 ## Próximo passo concreto
-1. Validar Batches 1+2 em produção (DevTools 375px / 414px). Smoke test consolidado:
-   - **B1:** nav sticky com scroll horizontal, chips de tag rolam, audio-player compacto, footer 1 coluna, sem scroll lateral, tema claro+escuro OK
-   - **B2:** Timeline 1-col com year-label menor; tocar card abre drawer tela cheia com setlist 16px; Galeria contact-sheet de 3 colunas; **lightbox com setas ‹ › visíveis e navegáveis** (fix crítico, antes ficavam `display:none`); BANDA com membro aberto ocupa linha inteira
-2. Confirmar build `2026-05-29.11` no rodapé
-3. Pedir Batch 3 ao Claude Design quando 1+2 estiverem aprovados: Cifras & Tabs (catálogo, mixer, transport, **FAB #9**) → `mobile-cifras.css`
-4. Roadmap restante: Batch 4 (Fórum iframe) → Batch 5 (Drawer + Deep + auxiliares)
+1. Validar Batches 1+2+3 em produção (DevTools 375px / 414px). Smoke test consolidado:
+   - **B1:** nav sticky com scroll horizontal (sem reticência "BUS..." em iPhone SE), chips de tag rolam, audio-player compacto, footer 1 coluna
+   - **B2:** Timeline 1-col com year-label menor; drawer tela cheia com setlist 16px; Galeria contact-sheet de 3 colunas; **lightbox com setas ‹ ›**; BANDA membro aberto ocupa linha inteira
+   - **B3:** Cifras & Tabs em 1 coluna, busca/itens tocáveis, transport quebra limpo, play 54px. **FAB #9: toque uma música, dê play e abra o player de áudio — o FAB sobe pra `bottom: 112px` (104 em ≤480) acima da barra do player**
+2. Confirmar build `2026-05-29.12` no rodapé
+3. Pedir Batch 4 ao Claude Design quando 1+2+3 aprovados: Fórum (wrapper do iframe + páginas standalone) → `mobile-forum.css`
+4. Roadmap restante: Batch 5 (Drawer + Deep + ranking/highlights/rarity/gaps/search)
 
-## Sessão 2026-05-29 — Batches 1 e 2 mobile aplicados
+## Sessão 2026-05-29 — Batches 1, 2 e 3 mobile aplicados
 
 ### Instalação
 Pasta `mobile/` com os arquivos do design bundle Anthropic (`mobile-pj`):
-- `mobile.css` (aggregator com `@import` dos 5 parciais ativos + 3 placeholders comentados)
-- `mobile-core.css` **B1** (nav scroll-snap sticky, masthead compacto, filter-bar wrap, audio-player 1-linha, footer coluna única) + refinamento em B2 (gap/padding/fonte das tabs menores)
-- `mobile-news.css` **B1** (#view-news com chips roláveis, hero 1-coluna, cards full-width, paginação centralizada, detail editorial)
-- `mobile-timeline.css` **B2** (year-label 96→60px, cards 1-col com alvo ≥132px, drawer fechar 44px, setlist 16px/1.35, chips de tag por música LETRA/TAB/ANÁLISE)
-- `mobile-gallery.css` **B2** (contact-sheet 3 colunas, header com wrap, **fix crítico do lightbox**: setas ‹ › reativadas, antes `display:none` ≤600 prendia user na 1ª foto)
-- `mobile-banda.css` **B2** (roster 2 col, membro aberto vira `grid-column: 1/-1` pra bio+sprite respirarem)
-- `README.md` (decisões B1 + B2)
+- `mobile.css` (aggregator com `@import` dos 6 parciais ativos + 2 placeholders comentados B4/B5)
+- `mobile-core.css` **B1+B2+B3** (nav scroll-snap sticky, masthead compacto, filter-bar wrap, audio-player 1-linha, footer coluna única; B3 mata reticência da aba "BUS..." em iPhone SE)
+- `mobile-news.css` **B1** (#view-news fanzine)
+- `mobile-timeline.css` **B2** (year-label 96→60px, drawer setlist 16px, chips LETRA/TAB/ANÁLISE)
+- `mobile-gallery.css` **B2** (contact-sheet 3 colunas + **fix crítico lightbox**: setas ‹ › reativadas)
+- `mobile-banda.css` **B2** (membro aberto vira `grid-column: 1/-1`)
+- `mobile-cifras.css` **B3** (#view-tabs: busca ≥46px com fonte 16px anti-zoom iOS, itens ≥52px, transport com play 54px, partitura scroll interno, chord-chips legíveis; **FAB #9 resolvido CSS-only** via `#audio-player.active ~ .alphatab-fab` → `bottom: 112px` (104 em ≤480), zero JS)
+- `README.md` (decisões B1 + B2 + B3)
 
 ### Linha no `<head>`
 Logo após os `<link>` das fontes Google:

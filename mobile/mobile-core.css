@@ -240,4 +240,20 @@
   .ap-download { display: none !important; }           /* rodape ainda mais enxuto */
   .stats-strip { grid-template-columns: repeat(2, 1fr) !important; }
   .masthead h1 { font-size: clamp(38px, 12.5vw, 60px) !important; }
+
+  /* BUG 1 · nav: em telas estreitas (iPhone SE 375) uma aba truncava com
+     reticencias ("BUS..."). Mata qualquer ellipsis/clip e aperta um pouco
+     mais o tamanho; as abas continuam rolaveis (scroll-snap) ate o fim. */
+  .tab {
+    font-size: 9.5px !important;
+    padding: 0 8px !important;
+    max-width: none !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+  /* fade menor nas pontas pra a ultima aba visivel nao parecer cortada */
+  .tabs {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%) !important;
+            mask-image: linear-gradient(90deg, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%) !important;
+  }
 }
