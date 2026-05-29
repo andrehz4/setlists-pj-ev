@@ -596,9 +596,10 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-28T15:33:04.724Z",
-        "msg": "IG API /17841414148425536/media_publish: Application request limit reached"
-      }
+        "at": "2026-05-29T09:11:31.391Z",
+        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
+      },
+      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
     },
     {
       "id": "cs-82683d2e88",
@@ -608,9 +609,10 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-28T15:33:04.724Z",
-        "msg": "IG API /17841414148425536/media_publish: Application request limit reached"
-      }
+        "at": "2026-05-29T09:11:31.391Z",
+        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
+      },
+      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
     },
     {
       "id": "cd-20260527",
@@ -620,9 +622,10 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-28T15:33:04.724Z",
-        "msg": "IG API /17841414148425536/media_publish: Application request limit reached"
-      }
+        "at": "2026-05-29T09:11:31.391Z",
+        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
+      },
+      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
     },
     {
       "id": "0b821ae173",
@@ -645,9 +648,10 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-28T15:33:04.724Z",
-        "msg": "IG API /17841414148425536/media_publish: Application request limit reached"
-      }
+        "at": "2026-05-29T09:11:31.391Z",
+        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
+      },
+      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
     },
     {
       "id": "cs-adc51995f3",
@@ -656,7 +660,11 @@
       "publishAt": "2026-05-29T09:09:27.639Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-29T09:11:31.391Z",
+        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
+      },
+      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
     },
     {
       "id": "cs-5dd6e659dd",
@@ -665,7 +673,11 @@
       "publishAt": "2026-05-29T09:09:27.639Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-29T09:11:31.391Z",
+        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
+      },
+      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
     }
   ],
   "postCount": 35
