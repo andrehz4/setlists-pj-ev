@@ -19,12 +19,17 @@ Em produção: `build 2026-05-29.14`. **Mobile skin COMPLETA, 5/5 batches no ar*
 
 ## Backlog mobile (pós B1→B5)
 
-- [ ] **BANDA mobile: visual quebrado** (Andre reportou + screenshot `Captura de tela 2026-05-29 000152.png` em 2026-05-29). Observações específicas:
-  - **Masthead cramped:** o `.banda-eyebrow + .banda-title + .banda-sub` parece estar amontoado numa linha só, sem hierarquia tipográfica. O `mobile-banda.css` só seta `font-size: 14px` no `.banda-sub` e `padding: 0 4px` no masthead; pode estar faltando ajuste de title/eyebrow ou herança do desktop comendo o espaço
-  - **Cards apertados:** 2 col em 375px = cards ~165px de largura. Foto ocupa quase tudo, nome e função ("GUITARRA, RITMO" etc) ficam em fonte ~9px embaixo, difícil de ler
-  - **Sem personalidade "fliperama":** a estética de cards de personagem do desktop não traduz bem no grid apertado de 2 col
-  - **5ª linha corta** na borda sem indicação de scroll
-  - **Sugestão pra próxima sessão:** considerar 1-col em telas ≤480px (cards maiores com mais respiro), ou aumentar o footer dos cards com nome em 14-15px e função em 11-12px. Abrir DevTools 375px, comparar com desktop, decidir entre patch incremental do B2 ou refator do roster mobile
+- [x] **BANDA mobile: visual quebrado** (Andre reportou em 2026-05-29 com screenshot, patch aplicado em build .15)
+  - **Diagnóstico:** o `mobile-banda.css` original do B2 só tratava do estado ABERTO da ficha (`.bm.is-open`). O B2 nunca propôs ajuste do estado FECHADO dos cards, então `.bm-role` herdava 10px do desktop (microscópico) e `.banda-title` herdava `clamp(40px, 8vw, 84px)` que ficava desbalanceado no mobile
+  - **Fix aplicado:** estendi `mobile-banda.css` com regras pra estado fechado:
+    - `.banda-masthead` ganhou padding vertical (18px top, 14px bottom) + borda tracejada
+    - `.banda-title` virou `clamp(36px, 11vw, 56px)` (era 40-84px) → cabe na largura sem dominar
+    - `.banda-eyebrow` 9.5px com margin-bottom 8px (hierarquia visual)
+    - `.bm-meta` ganhou padding (10px 8px 12px) pra respiro
+    - `.bm-name` 18px (era 19) com margin-bottom 6px
+    - `.bm-role` 11.5px com letter-spacing 0.12em (era 10px sem override = microscópico)
+    - Em ≤480px: title encolhe pra 32-44px, name 16px, role 11px
+  - **Aguarda validação visual:** hard reload em `setlists-pj-ev.pages.dev`, confirmar build `.15`, abrir aba BANDA no DevTools 375 e 414 e ver se ficou apresentável. Se ainda quebrado, abrir nova sessão com screenshot atualizado
 - [ ] (futuro) Drawer de show no mobile (review independente — não foi visto nesta sprint, pode ter problemas próprios)
 - [ ] (futuro) Lighthouse mobile pós-skin (não rodado; pode revelar regressões de perf)
 - [ ] (futuro) Teste em device real (iPhone SE, Android comum) — só DevTools até agora

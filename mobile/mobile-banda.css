@@ -21,28 +21,37 @@
 @media (max-width: 768px) {
 
   /* --- masthead + dica: compacta -------------------------------------- */
-  .banda-masthead { padding: 0 4px; }
-  .banda-sub { font-size: 14px !important; margin-top: 12px !important; }
-  .banda-stage { padding: 24px 6px 60px !important; }
+  .banda-masthead {
+    padding: 18px 12px 14px !important;
+    border-bottom: 1px dashed var(--divider) !important;
+  }
+  .banda-eyebrow { font-size: 9.5px !important; margin-bottom: 8px !important; letter-spacing: 0.2em !important; }
+  .banda-title { font-size: clamp(36px, 11vw, 56px) !important; line-height: 0.9 !important; }
+  .banda-sub { font-size: 14px !important; margin-top: 10px !important; line-height: 1.4 !important; }
+  .banda-stage { padding: 20px 6px 60px !important; }
   .banda-hint {
     flex-wrap: wrap;
     gap: 6px 10px;
-    padding: 12px 6px !important;
-    font-size: 11px !important;
+    padding: 10px 12px !important;
+    font-size: 10.5px !important;
   }
   .banda-hint .kbd { display: none; }       /* atalhos de teclado nao se aplicam no toque */
 
   /* --- roster: 2 colunas (herdado @520, reforcado ate 768) ------------ */
   .banda-row {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 12px !important;
     align-items: start;
   }
 
   /* foto do card: alvo de toque (a foto inteira ja e clicavel) ---------- */
   .bm-photo-wrap { aspect-ratio: 3 / 4; }   /* mantem proporcao do sprite */
   .bm:active .bm-photo-wrap { border-color: var(--pj); }
-  .bm-name { font-size: 19px !important; }
+
+  /* nome + funcao do card FECHADO ------------------------------------ */
+  .bm-meta { padding: 10px 8px 12px !important; }
+  .bm-name { font-size: 18px !important; margin-bottom: 6px !important; line-height: 1 !important; }
+  .bm-role { font-size: 11.5px !important; letter-spacing: 0.12em !important; line-height: 1.3 !important; }
 
   /* ------------------------------------------------------------------ *
    * FICHA ABERTA  ·  ocupa a linha inteira pra bio + sprite respirarem
@@ -70,6 +79,9 @@
 }
 
 @media (max-width: 480px) {
-  .banda-row { gap: 8px !important; }
-  .bm-name { font-size: 17px !important; }
+  .banda-row { gap: 10px !important; }
+  .banda-title { font-size: clamp(32px, 11vw, 44px) !important; }
+  .bm-name { font-size: 16px !important; }
+  .bm-role { font-size: 11px !important; letter-spacing: 0.1em !important; }
+  .bm-meta { padding: 9px 7px 11px !important; }
 }
