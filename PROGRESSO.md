@@ -1,23 +1,34 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil + Batches 1+2+3+4 mobile)
+2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil + **mobile skin completa B1→B5**)
 
 ## Estado atual
-Em produção: `build 2026-05-29.13`. Batches 1, 2, 3 e 4 do mobile skin aplicados (Notícias + chrome global + Timeline + drawer setlist + Galeria + lightbox + BANDA + Cifras & Tabs + FAB #9 + Fórum iframe e páginas standalone). Fila de bugs anteriores zerada.
+Em produção: `build 2026-05-29.14`. **Mobile skin COMPLETA, 5/5 batches no ar**. Todas as views responsivas com alvos de toque ≥44px, busca anti-zoom iOS, contracto CSS-only respeitado em todo o projeto (zero JS novo, apenas 4 linhas de HTML adicionadas: 1 no index.html + 1 em cada uma das 3 páginas do fórum).
 
 ## Próximo passo concreto
-1. Validar Batches 1-4 em produção (DevTools 375px / 414px). Smoke test consolidado:
-   - **B1-B3:** ver entrada anterior
-   - **B4:** abrir tab Fórum no `index.html` → iframe full-bleed sem padding lateral duplicado. Abrir um tópico (vai pra `forum-topic.html`) → header/composer/posts com alvos de toque. Abrir perfil (`forum-profile.html`) → `.profile-body` colapsa em 1 coluna (antes a sidebar 320px espremia o conteúdo)
-2. Confirmar build `2026-05-29.13` no rodapé
-3. Pedir Batch 5 ao Claude Design (último): views auxiliares (ranking/highlights/rarity/deep/gaps/search + drawer de show) → `mobile-aux.css`
+1. Validar Batches 1-5 em produção (DevTools 375px / 414px + device real). Smoke test do B5:
+   - **#view-ranking:** linhas ≥52px de toque
+   - **#view-gaps:** álbuns 1-col, capas tocáveis
+   - **#view-highlights:** cards 1-col, leitura confortável
+   - **#view-rarity:** trophy-wall 1-col, tabela enxuta
+   - **#view-search:** busca 16px anti-zoom, resultados com alvo
+   - **#view-deep:** grid de capas 2→1 col, leitor 3D com setas/thumbs ≥44px
+2. Confirmar build `2026-05-29.14` no rodapé
+3. Atacar backlog mobile (ver seção abaixo)
 
-## Sessão 2026-05-29 — Batches 1, 2 e 3 mobile aplicados
+## Backlog mobile (pós B1→B5)
+
+- [ ] **BANDA mobile: visual quebrado** (reportado pelo Andre 2026-05-29 no fim do B5). O `mobile-banda.css` do B2 só ajusta a abertura da ficha (grid-column 1/-1) e padding, mas o visual da view não ficou bom em 375/414. Pode ser desktop overrides vazando, fotos cortadas, ou layout do roster (2 col) inadequado em tela estreita. Próxima sessão: abrir DevTools 375px, identificar o que está feio, decidir entre extensão do B2 ou novo bloco `@media` específico
+- [ ] (futuro) Drawer de show no mobile (review independente — não foi visto nesta sprint, pode ter problemas próprios)
+- [ ] (futuro) Lighthouse mobile pós-skin (não rodado; pode revelar regressões de perf)
+- [ ] (futuro) Teste em device real (iPhone SE, Android comum) — só DevTools até agora
+
+## Sessão 2026-05-29 — Batches 1, 2, 3, 4 e 5 mobile aplicados
 
 ### Instalação
-Pasta `mobile/` com os arquivos do design bundle Anthropic (`mobile-pj`):
-- `mobile.css` (aggregator com `@import` dos 6 parciais ativos + 2 placeholders comentados B4/B5)
+Pasta `mobile/` com os arquivos do design bundle Anthropic (`mobile-pj`), agora com **todos os 7 parciais ativos**:
+- `mobile.css` (aggregator com `@import` dos 7 parciais, zero placeholders)
 - `mobile-core.css` **B1+B2+B3** (nav scroll-snap sticky, masthead compacto, filter-bar wrap, audio-player 1-linha, footer coluna única; B3 mata reticência da aba "BUS..." em iPhone SE)
 - `mobile-news.css` **B1** (#view-news fanzine)
 - `mobile-timeline.css` **B2** (year-label 96→60px, drawer setlist 16px, chips LETRA/TAB/ANÁLISE)
@@ -25,7 +36,8 @@ Pasta `mobile/` com os arquivos do design bundle Anthropic (`mobile-pj`):
 - `mobile-banda.css` **B2** (membro aberto vira `grid-column: 1/-1`)
 - `mobile-cifras.css` **B3** (#view-tabs: busca ≥46px com fonte 16px anti-zoom iOS, itens ≥52px, transport com play 54px, partitura scroll interno, chord-chips legíveis; **FAB #9 resolvido CSS-only** via `#audio-player.active ~ .alphatab-fab` → `bottom: 112px` (104 em ≤480), zero JS)
 - `mobile-forum.css` **B4** (#view-forum iframe edge-to-edge + páginas standalone: header/auth/btn ≥40px, busca 16px anti-zoom, **`.profile-body` colapsa em 1 coluna** — antes 1fr+320px espremia o conteúdo)
-- `README.md` (decisões B1 + B2 + B3 + B4)
+- `mobile-aux.css` **B5** (polimento das 6 views auxiliares: #view-ranking linhas ≥52px, #view-gaps álbuns 1-col, #view-highlights cards 1-col, #view-rarity trophy-wall 1-col + tabela enxuta, #view-search busca 16px anti-zoom, #view-deep grid 2→1 col com setas/thumbs do leitor 3D ≥44px)
+- `README.md` (decisões B1 + B2 + B3 + B4 + B5)
 
 ### Mudança de HTML do B4 (primeira do projeto além do index)
 Adicionada 1 linha no `<head>` de cada uma das 3 páginas standalone do fórum, logo após o `</style>` próprio:
@@ -48,10 +60,16 @@ Logo após os `<link>` das fontes Google:
 
 ### Problemas resolvidos
 **B1:** #1 Nav 12 abas · #4 Chips de tag · #5 Audio player · #6 Footer
-**B2:** Timeline year-label engolindo cards · Drawer setlist legibilidade · Galeria contact-sheet · Lightbox sem navegação (CRÍTICO) · BANDA ficha espremida
+**B2:** Timeline year-label engolindo cards · Drawer setlist legibilidade · Galeria contact-sheet · Lightbox sem navegação (CRÍTICO) · BANDA ficha espremida (parcial — ver backlog)
+**B3:** Cifras catálogo/transport · FAB #9 (CRÍTICO, resolvido CSS-only via sibling selector)
+**B4:** Fórum iframe edge-to-edge · `.profile-body` colapso · alvos de toque nas 3 standalone
+**B5:** Polimento de 6 views auxiliares + leitor 3D do Deep
 
-### Pendência conhecida pro Batch 3
-FAB do cifra player (#9): subir `bottom` quando `#audio-player.active`. Provavelmente seletor irmão CSS.
+### Contrato final
+- Zero JS novo em todo o projeto mobile
+- Apenas 4 linhas de HTML adicionadas: 1 em `index.html` (+ 1 em cada `forum*.html`)
+- Skin não dispara em desktop (media attr no link + `@media` em cada parcial)
+- Desktop intocado (rollback de toda skin = remover 1 linha do `index.html` e 1 de cada `forum*.html`)
 
 ## Sessão 2026-05-28/29 — fila de 22 tasks atacadas
 

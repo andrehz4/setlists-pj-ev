@@ -1,0 +1,117 @@
+/* ============================================================================
+   mobile-aux.css  ·  Setlists PJ + EV  ·  views auxiliares (<=768px)
+   ----------------------------------------------------------------------------
+   ESCOPO: as 6 views menores, todas no index.html:
+     #view-ranking   (.ranking-list > .ranking-row)
+     #view-gaps      (cobertura por album: .album-main / .album-cover / barras)
+     #view-highlights(.highlight-grid > .highlight-card)
+     #view-rarity    (.rar-hero + .rar-trophy-wall + .rar-wanted-grid + .rarity-table)
+     #view-search    (.search-header + .search-stub + .search-quickrow + resultados)
+     #view-deep      (.deep-grid de capas + leitor 3D fullscreen .deep-reader-*)
+
+   IMPORTANTE: estas views JA SAO bem responsivas no CSS original:
+     ranking @600 (vira 30px 1fr 50px, esconde a barra), albuns @520, rarity @980
+     + @600 (hero 1-col, trophy-wall 1-col), deep @720 (setas 40px). Este arquivo e
+     uma CAMADA DE POLIMENTO: alvos de toque, anti-zoom no iOS, e os poucos
+     colapsos que faltavam. Nao reescreve o que ja funciona.
+
+   Tudo envolto em @media(max-width:768px). !important so onde o legado disputa.
+   TAP: alvos anotados com  [ TAP >=44 ]
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+  /* ------------------------------------------------------------------ *
+   * RANKING  ·  linhas com altura de toque (o @600 ja ajusta colunas)
+   * ------------------------------------------------------------------ */
+  #view-ranking .ranking-row {
+    min-height: 52px;                  /* [ TAP >=44 ] */
+    align-items: center;
+  }
+  #view-ranking .ranking-row:active { background: var(--bg-card-hover) !important; }
+  #view-ranking .ranking-song { min-width: 0; }
+
+  /* ------------------------------------------------------------------ *
+   * GAPS / COBERTURA POR ALBUM  ·  o @520 ja faz 72px+barras; reforco toque
+   * ------------------------------------------------------------------ */
+  #view-gaps .album-block { margin-bottom: 22px; }
+  #view-gaps .album-songs-grid { grid-template-columns: 1fr !important; }
+  #view-gaps .album-song { min-height: 36px; display: flex; align-items: center; }
+
+  /* ------------------------------------------------------------------ *
+   * HIGHLIGHTS  ·  grid auto-fill ja vira 1 coluna; so respiro
+   * ------------------------------------------------------------------ */
+  #view-highlights .highlight-grid { gap: 12px !important; }
+  #view-highlights .highlight-card { padding: 20px !important; }
+
+  /* ------------------------------------------------------------------ *
+   * RARITY  ·  hero/trophy/wanted ja colapsam (@980/@600); aqui afino o
+   *   wanted pra 1 coluna no estreito e deixo a TABELA legivel sem estourar
+   * ------------------------------------------------------------------ */
+  #view-rarity .rar-trophy { min-height: auto; }
+  #view-rarity .rar-section-head .kicker { font-size: 11px; }
+  /* tabela "todas as raridades": compacta, sem overflow horizontal ------ */
+  #view-rarity .rarity-table { display: block; overflow-x: hidden; }
+  #view-rarity .rarity-table th,
+  #view-rarity .rarity-table td { padding: 9px 8px !important; }
+  #view-rarity .rarity-table .rt-show { display: none; }   /* coluna menos util some */
+  #view-rarity .rarity-table .rt-plays { font-size: 16px !important; }
+  #view-rarity .rarity-table .rt-song { font-size: 13.5px !important; }
+
+  /* ------------------------------------------------------------------ *
+   * SEARCH  ·  header empilha, input grande tocavel, chips e resultados
+   * ------------------------------------------------------------------ */
+  #view-search .search-header {
+    grid-template-columns: 1fr !important;   /* titulo em cima, carimbo embaixo */
+    gap: 14px;
+  }
+  #view-search .search-stamp { justify-self: start; }
+  #view-search .search-title { font-size: clamp(30px, 9vw, 44px) !important; }
+  #view-search .search-stub { padding: 16px 16px !important; }
+  /* input grande: garante >=16px (anti-zoom iOS) e alvo de toque alto ----- */
+  #view-search .search-input-big {
+    font-size: 22px !important;        /* ja e grande/editorial; trava >=16 */
+    min-height: 44px;                  /* [ TAP >=44 ] */
+  }
+  #view-search .search-shuffle {
+    min-height: 38px; display: inline-flex; align-items: center;
+  }
+  /* chips de sugestao/filtro: alvo de toque -------------------------------- */
+  #view-search .chip {
+    min-height: 38px;
+    display: inline-flex; align-items: center;
+    padding: 7px 12px !important;
+  }
+  #view-search .chip:active { transform: translateY(1px); }
+  #view-search .chip-row { gap: 8px !important; }
+  /* cabecalho dos resultados empilha pra nao apertar ---------------------- */
+  #view-search .search-results-head { gap: 8px; }
+
+  /* ------------------------------------------------------------------ *
+   * DEEP  ·  grade de capas + leitor 3D. O @720 ja ajusta setas/barra.
+   *   Aqui: grade confortavel e alvos de toque no leitor (setas, thumbs,
+   *   voltar) >=40-44px, sem mexer na mecanica do flip 3D.
+   * ------------------------------------------------------------------ */
+  #view-deep .deep-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 18px !important;
+  }
+  /* leitor fullscreen (singleton no body, fora do #view-deep) ------------- */
+  .deep-reader-bar { padding: 12px 14px !important; gap: 10px !important; }
+  .deep-back { min-height: 40px; display: inline-flex; align-items: center; }
+  .deep-nav-arrow {
+    width: 44px !important; height: 44px !important;   /* [ TAP >=44 ] */
+  }
+  .deep-nav-arrow.left  { left: 10px !important; }
+  .deep-nav-arrow.right { right: 10px !important; }
+  .deep-thumb { width: 28px !important; height: 38px !important; }  /* alvo maior */
+  .deep-thumb-strip { bottom: 12px !important; max-width: 92vw; overflow-x: auto; }
+}
+
+@media (max-width: 480px) {
+  /* capas do deep em 1 coluna no telefone estreito */
+  #view-deep .deep-grid { grid-template-columns: 1fr !important; }
+  /* wanted (procura-se) em 1 coluna pra caber o carimbo */
+  #view-rarity .rar-wanted-grid { grid-template-columns: 1fr !important; }
+  #view-search .search-title { font-size: clamp(28px, 10vw, 38px) !important; }
+}
