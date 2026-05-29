@@ -19,7 +19,12 @@ Em produção: `build 2026-05-29.14`. **Mobile skin COMPLETA, 5/5 batches no ar*
 
 ## Backlog mobile (pós B1→B5)
 
-- [ ] **BANDA mobile: visual quebrado** (reportado pelo Andre 2026-05-29 no fim do B5). O `mobile-banda.css` do B2 só ajusta a abertura da ficha (grid-column 1/-1) e padding, mas o visual da view não ficou bom em 375/414. Pode ser desktop overrides vazando, fotos cortadas, ou layout do roster (2 col) inadequado em tela estreita. Próxima sessão: abrir DevTools 375px, identificar o que está feio, decidir entre extensão do B2 ou novo bloco `@media` específico
+- [ ] **BANDA mobile: visual quebrado** (Andre reportou + screenshot `Captura de tela 2026-05-29 000152.png` em 2026-05-29). Observações específicas:
+  - **Masthead cramped:** o `.banda-eyebrow + .banda-title + .banda-sub` parece estar amontoado numa linha só, sem hierarquia tipográfica. O `mobile-banda.css` só seta `font-size: 14px` no `.banda-sub` e `padding: 0 4px` no masthead; pode estar faltando ajuste de title/eyebrow ou herança do desktop comendo o espaço
+  - **Cards apertados:** 2 col em 375px = cards ~165px de largura. Foto ocupa quase tudo, nome e função ("GUITARRA, RITMO" etc) ficam em fonte ~9px embaixo, difícil de ler
+  - **Sem personalidade "fliperama":** a estética de cards de personagem do desktop não traduz bem no grid apertado de 2 col
+  - **5ª linha corta** na borda sem indicação de scroll
+  - **Sugestão pra próxima sessão:** considerar 1-col em telas ≤480px (cards maiores com mais respiro), ou aumentar o footer dos cards com nome em 14-15px e função em 11-12px. Abrir DevTools 375px, comparar com desktop, decidir entre patch incremental do B2 ou refator do roster mobile
 - [ ] (futuro) Drawer de show no mobile (review independente — não foi visto nesta sprint, pode ter problemas próprios)
 - [ ] (futuro) Lighthouse mobile pós-skin (não rodado; pode revelar regressões de perf)
 - [ ] (futuro) Teste em device real (iPhone SE, Android comum) — só DevTools até agora
