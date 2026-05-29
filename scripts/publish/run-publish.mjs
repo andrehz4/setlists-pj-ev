@@ -22,7 +22,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { readQueue, writeQueue, pickMatureByType, markPosted, markError, markRateLimited, pruneOldPosted, readDenylist, writeDenylist, addToDenylist } from "./queue.mjs";
+import { readQueue, writeQueue, pickMatureByType, markPosted, markError, markRateLimited, pruneOldPosted, readDenylist, writeDenylist, addToDenylist, readCooldown, isCoolingDown, setCooldown, clearCooldown } from "./queue.mjs";
 import { buildSlides, buildCoverSlide, SLIDES_DIR, LAYOUT } from "./slide-image.mjs";
 import { publishItems, slideUrlFor } from "./instagram.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
@@ -46,6 +46,17 @@ const TARJA_COLORS = [
   "#2a5b9e", // azul petroleo
 ];
 const POSTS_PER_COLOR = 3;
+
+// Duracao do cooldown global por classe de rate limit. App-level (code 4
+// "Application request limit reached", code 17/32 user/page) e um teto
+// coarse-grained da app inteira: backoff maior pra dar folga real. Content
+// publishing (codes 80xxx, cota de 50/24h) usa janela menor.
+const COOLDOWN_APP_LEVEL_MS = 3 * 60 * 60 * 1000;   // 3h
+const COOLDOWN_CONTENT_MS = 60 * 60 * 1000;          // 1h
+const APP_LEVEL_CODES = new Set([4, 17, 32, 613]);
+function cooldownMsForCode(code) {
+  return APP_LEVEL_CODES.has(code) ? COOLDOWN_APP_LEVEL_MS : COOLDOWN_CONTENT_MS;
+}
 
 function getCurrentTarjaColor(postCount) {
   const idx = Math.floor((postCount || 0) / POSTS_PER_COLOR) % TARJA_COLORS.length;
@@ -335,8 +346,15 @@ async function notifyTelegram(results) {
     const rateLimited = failed.some((r) => r.isRateLimit);
     const tokenError = failed.some((r) => /blocked|token|expired|oauth/i.test(r.error || ""));
     if (rateLimited) {
-      lines.push("⏱ <b>Rate limit IG.</b> Janela rolling de 24h satura ao chegar no teto de publishes.");
-      lines.push("Proximo cron ja faz pre-check de quota e pula a run se ainda saturado.");
+      const appLevel = failed.some((r) => APP_LEVEL_CODES.has(r.errorCode));
+      if (appLevel) {
+        lines.push("⏱ <b>Rate limit DA APP (code 4).</b> Limite de chamadas da aplicacao inteira no Graph API, independente da cota de 50/24h.");
+        lines.push(`Cooldown global armado por ${COOLDOWN_APP_LEVEL_MS / 3600000}h: proximos crons saem cedo sem tocar a API ate liberar.`);
+        lines.push("Se persistir, cheque restricao/tier da app no Meta Developer Portal.");
+      } else {
+        lines.push("⏱ <b>Rate limit IG (content publishing).</b> Cota de publishes na janela rolling de 24h saturou.");
+        lines.push(`Cooldown global armado por ${COOLDOWN_CONTENT_MS / 3600000}h: proximos crons saem cedo ate liberar.`);
+      }
     } else if (tokenError) {
       lines.push("⚠️ Provavel token expirado. Reautorize em Meta Developer Portal e atualize o secret:");
       lines.push("<code>gh secret set IG_ACCESS_TOKEN --repo andrehz4/setlists-pj-ev</code>");
@@ -353,6 +371,29 @@ async function main() {
     if (!process.env.IG_USER_ID || !process.env.IG_ACCESS_TOKEN) {
       console.error("IG_USER_ID e IG_ACCESS_TOKEN obrigatorios (env)");
       process.exit(2);
+    }
+  }
+
+  // Cooldown global: se a run anterior bateu no limite DA APP (code 4 etc),
+  // sai cedo SEM rodar deteccao de apagados, gerar slides, dar push nem
+  // tentar publicar. Para de martelar a API enquanto o throttle nao limpa
+  // e evita encher o repo de commits de slide que nao vao pro ar. Pula em
+  // DRY (DRY nao chama IG API).
+  if (!DRY) {
+    const cooldown = await readCooldown();
+    if (isCoolingDown(cooldown, nowIso)) {
+      const msg = `cooldown global ativo ate ${cooldown.until} (motivo: ${cooldown.reason || "rate limit"}${cooldown.code != null ? ` code=${cooldown.code}` : ""}). Aborta a run sem tocar a IG API.`;
+      console.warn(`[publish] ${msg}`);
+      await writeStepSummary({
+        title: "Publish Instagram",
+        meta: { dry: DRY, "max-batches": MAX_BATCHES, run: nowIso.slice(0, 16) + "Z" },
+        stats: { "batches": 0, "publicados": 0, "falhas": 0 },
+        extras: [{ heading: "Cooldown ativo", body: msg }],
+      });
+      // Sem telegram aqui: a falha que armou o cooldown ja notificou. Notificar
+      // a cada cron de 30min so geraria spam.
+      process.exitCode = 0; // backoff intencional, nao e erro de pipeline
+      return;
     }
   }
 
@@ -438,7 +479,7 @@ async function main() {
           }
         }
       }
-      console.log(`[publish] deteccao de apagados: ${det.checked} posts checados, ${det.deletedItems.length} apagados, ${det.indeterminate} indeterminados`);
+      console.log(`[publish] deteccao de apagados: ${det.checked} posts checados (${det.cachedSkipped ?? 0} pulados via cache de ${det.total ?? det.checked}), ${det.deletedItems.length} apagados, ${det.indeterminate} indeterminados`);
     } catch (e) {
       console.warn(`[publish] auto-deteccao de apagados falhou (segue): ${e.message}`);
     }
@@ -477,6 +518,22 @@ async function main() {
     }
   }
 
+  // Cooldown global: se qualquer batch bateu rate limit, arma o cooldown
+  // pros proximos crons sairem cedo (prioridade sobre sucesso parcial, ja
+  // que o throttle e da app inteira). Se nenhum bateu e algum publicou,
+  // limpa cooldown stale.
+  if (!DRY) {
+    const rl = results.find((r) => r.isRateLimit);
+    const anySuccess = results.some((r) => r.succeeded > 0 && r.postId);
+    if (rl) {
+      const ms = cooldownMsForCode(rl.errorCode);
+      const cd = await setCooldown({ ms, reason: rl.error, code: rl.errorCode, fbtraceId: rl.fbtraceId });
+      console.warn(`[publish] cooldown global armado ate ${cd.until} (code=${rl.errorCode ?? "?"})`);
+    } else if (anySuccess) {
+      await clearCooldown();
+    }
+  }
+
   // housekeeping: limpa postados muito antigos. Denylist preserva items
   // banidos (tombstone perpetuo) mesmo apos 30 dias.
   const pruned = pruneOldPosted(queue, nowIso, 30, denylist);
@@ -486,7 +543,13 @@ async function main() {
   // Denylist + cursor do telegram + queue commitados juntos pro proximo
   // cron ja ver bans manuais que entraram via /ban no Telegram.
   await commitAndPush(
-    ["media/news/_publish-queue.json", "media/news/_deleted-from-ig.json", "media/news/_telegram-cursor.json"],
+    [
+      "media/news/_publish-queue.json",
+      "media/news/_deleted-from-ig.json",
+      "media/news/_telegram-cursor.json",
+      "media/news/_ig-cooldown.json",
+      "media/news/_ig-exists-cache.json",
+    ],
     `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
   );
 

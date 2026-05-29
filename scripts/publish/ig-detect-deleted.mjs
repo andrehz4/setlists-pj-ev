@@ -13,10 +13,40 @@
 // baixo e simplicidade vence).
 
 import got from "got";
+import fs from "node:fs/promises";
+import path from "node:path";
 
 const API_BASE = "https://graph.instagram.com/v21.0";
 const LOOKBACK_DAYS_DEFAULT = 30;
 const CONCURRENCY = 5;
+
+// Cache de posts confirmados como existentes. Posts so somem quando Andre
+// apaga manualmente (raro), entao re-checar os mesmos ~33 postIds a cada
+// run de 30min era o maior gasto de chamadas da app (e o que ajudava a
+// estourar o limite code 4). Com o cache, so checamos postIds novos ou
+// cujo "exists=true" ja passou de CACHE_FRESH_DAYS. Persistido em arquivo
+// porque cada run do Actions e checkout limpo.
+const CACHE_PATH = path.resolve("media/news/_ig-exists-cache.json");
+const CACHE_FRESH_DAYS = 7;
+
+async function readExistsCache() {
+  try {
+    const doc = JSON.parse(await fs.readFile(CACHE_PATH, "utf8"));
+    return doc && typeof doc === "object" && doc.posts ? doc : { posts: {}, updatedAt: null };
+  } catch {
+    return { posts: {}, updatedAt: null };
+  }
+}
+
+async function writeExistsCache(cache) {
+  cache.updatedAt = new Date().toISOString();
+  await fs.writeFile(CACHE_PATH, JSON.stringify(cache, null, 2));
+}
+
+function isCacheFresh(isoAt, now) {
+  if (!isoAt) return false;
+  return now - new Date(isoAt).getTime() < CACHE_FRESH_DAYS * 24 * 60 * 60 * 1000;
+}
 
 // Checa se um postId ainda existe no IG. Retorna:
 //   { exists: true }                       — OK, ainda no feed
@@ -72,9 +102,16 @@ export async function detectDeletedPosts({ queue, accessToken, lookbackDays = LO
     byPostId.get(q.postId).push(q);
   }
 
-  const postIds = [...byPostId.keys()];
+  const allPostIds = [...byPostId.keys()];
   const deletedItems = [];
   let indeterminate = 0;
+
+  // So checa postIds novos ou com cache "exists=true" stale. O resto assume
+  // que continua existindo (posts so somem por apagamento manual, raro).
+  const cache = await readExistsCache();
+  const now = Date.now();
+  const postIds = allPostIds.filter((pid) => !isCacheFresh(cache.posts[pid], now));
+  const cachedSkipped = allPostIds.length - postIds.length;
 
   // Concurrencia limitada pra nao saturar a IG API
   for (let i = 0; i < postIds.length; i += CONCURRENCY) {
@@ -84,14 +121,26 @@ export async function detectDeletedPosts({ queue, accessToken, lookbackDays = LO
     ));
     for (const r of results) {
       if (r.exists === false) {
+        delete cache.posts[r.postId];
         for (const q of byPostId.get(r.postId)) {
           deletedItems.push({ itemId: q.id, postId: r.postId });
         }
       } else if (r.exists === null) {
         indeterminate++;
+      } else {
+        // exists === true: renova o cache
+        cache.posts[r.postId] = new Date(now).toISOString();
       }
     }
   }
 
-  return { deletedItems, checked: postIds.length, indeterminate };
+  // Poda do cache: remove postIds que sairam da janela de lookback (a
+  // queue ja nao os referencia, manter so incha o arquivo).
+  const liveSet = new Set(allPostIds);
+  for (const pid of Object.keys(cache.posts)) {
+    if (!liveSet.has(pid)) delete cache.posts[pid];
+  }
+  await writeExistsCache(cache);
+
+  return { deletedItems, checked: postIds.length, indeterminate, cachedSkipped, total: allPostIds.length };
 }
