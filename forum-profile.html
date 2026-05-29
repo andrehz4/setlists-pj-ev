@@ -357,7 +357,11 @@ function renderAuthArea() {
     document.getElementById("logoutBtn").addEventListener("click", logout);
   } else {
     area.innerHTML = `<button class="auth-btn primary" id="loginBtn">Entrar com Google</button>`;
-    document.getElementById("loginBtn").addEventListener("click", () => { location.href = API_BASE + "/auth/google/login"; });
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      const target = API_BASE + "/auth/google/login";
+      try { (window.top || window).location.href = target; }
+      catch (_) { location.href = target; }
+    });
   }
 }
 
