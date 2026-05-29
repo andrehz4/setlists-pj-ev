@@ -26,7 +26,9 @@
 /* --- BATCH 3 (entregue) ----------------------------------------------------- */
 @import url("mobile-cifras.css");   /* #view-tabs (catalogo/cifra/tab/transport) + FAB #9 */
 
+/* --- BATCH 4 (entregue) ----------------------------------------------------- */
+@import url("mobile-forum.css");    /* #view-forum (iframe) + paginas standalone do forum */
+
 /* --- BATCHES SEGUINTES (placeholders — adicionar conforme aprovacao) -------- *
-   @import url("mobile-forum.css");     // Batch 4 · #view-forum (wrapper do iframe)
    @import url("mobile-aux.css");       // Batch 5 · ranking/highlights/rarity/deep/gaps/search
  * --------------------------------------------------------------------------- */

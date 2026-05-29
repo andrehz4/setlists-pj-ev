@@ -31,6 +31,7 @@ mobile/
 ├── mobile-gallery.css  BATCH 2 · #view-gallery + lightbox
 ├── mobile-banda.css    BATCH 2 · #view-banda (roster fliperama)
 ├── mobile-cifras.css   BATCH 3 · #view-tabs (catálogo/cifra/tab/transport) + FAB #9
+├── mobile-forum.css    BATCH 4 · #view-forum (iframe) + páginas standalone do fórum
 ├── README.md           este arquivo
 └── mockups/            telas de revisão (NÃO faz parte do bundle de produção)
 ```
@@ -177,6 +178,43 @@ renderizados em viewport de telefone de verdade (375 / 414). Veja
 
 **Nenhuma mudança de HTML foi necessária no Batch 3.**
 
+---
+
+## Decisões — Batch 4
+
+### Fórum — `#view-forum` (iframe) + páginas standalone
+O fórum no `index.html` é só `<iframe id="forum-iframe">` carregando **`forum.html`** sob
+demanda. A UI de verdade vive em 3 **páginas standalone**: `forum.html`,
+`forum-topic.html`, `forum-profile.html` — documentos separados, com `<head>` e estilos
+próprios, e que **já eram bem responsivos** (subnav rola, thread-row colapsa, highlights
+somem, posts/composer empilham). O batch refina e conserta o que faltava:
+
+- **`#view-forum` (index.html):** iframe **full-bleed** (tira o padding lateral da
+  `.view`, já que o forum.html tem o próprio respiro) — entra pelo `mobile.css` principal.
+- **Perfil (bug real):** `.profile-body` era `1fr 320px` e **não colapsava** — a coluna
+  lateral de 320px espremia o conteúdo. Agora **1 coluna** (rail vai pro fim). As ações
+  (Seguir/Mensagem), escondidas em ≤900, voltam em largura total e tocáveis.
+- **Alvos de toque:** cats do subnav ≥46px, chips de ordenação, botões do header,
+  ferramentas de post e reações ≥38px, linha de thread ≥64px.
+- **Busca anti-zoom:** `.search-input` e textareas em **16px** (evitam o zoom automático
+  do iOS no foco).
+
+> ⚠️ **Única mudança de HTML do projeto até aqui:** as 3 páginas standalone do fórum
+> **não** carregam o `mobile.css`. Cada uma precisa de **1 linha** no `<head>` (depois do
+> `<style>` próprio):
+> ```html
+> <link rel="stylesheet" href="mobile/mobile-forum.css" media="(max-width: 768px)">
+> ```
+> O `mobile-forum.css` é **auto-contido** (não depende dos outros parciais), então pode
+> ser linkado direto nessas páginas. No `index.html` ele já entra via `mobile.css`.
+
+**Fora esse `<link>` nas 3 páginas do fórum, nenhuma mudança de HTML foi necessária.**
+
+> **Correção pós-review do Batch 4** (CSS, ≤480): o botão **"Entrar com Google"** (~150px)
+> não encolhia e estourava o header pra fora da borda direita (375 e 414). Em ≤480 ele
+> vira um **botão-ícone compacto** (40px, silhueta de pessoa em SVG branco sobre o vermelho
+> PJ; texto escondido com `font-size:0`). O botão completo volta acima de 480px.
+
 > **Correções pós-review do Batch 3** (tudo CSS, ≤768/≤480):
 > 1. Nav no iPhone SE (375): aba truncava com reticências — `text-overflow:clip` +
 >    `overflow:visible` + `max-width:none`, fonte 9.5px/pad 8px; abas rolam até o fim.
@@ -194,5 +232,4 @@ renderizados em viewport de telefone de verdade (375 / 414). Veja
 ---
 
 ## Próximos batches (aguardando aprovação)
-- **4:** Fórum (wrapper do iframe) + páginas standalone
-- **5:** Drawer de show + Deep reader + views auxiliares (ranking/highlights/rarity/gaps/search)
+- **5 (último):** views auxiliares — ranking, destaques, raridades, deep, álbuns, buscar

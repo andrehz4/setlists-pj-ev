@@ -1,0 +1,166 @@
+/* ============================================================================
+   mobile-forum.css  ·  Setlists PJ + EV  ·  Forum (<=768px)
+   ----------------------------------------------------------------------------
+   ESCOPO duplo:
+     (A) #view-forum no index.html — que e SO um <iframe id="forum-iframe">
+         carregando forum.html sob demanda. Aqui: deixa o iframe full-bleed.
+     (B) As PAGINAS STANDALONE do forum (documentos separados, com <head> e
+         estilos proprios): forum.html, forum-topic.html, forum-profile.html.
+         Elas ja tem bastante responsivo (subnav rola, thread-row colapsa,
+         highlights somem, posts/sidebar empilham). Aqui REFINAMOS toque +
+         consertamos o que falta.
+
+   COMO LIGAR:
+     - No index.html ja entra via o mobile.css principal (@import abaixo).
+     - Nas 3 paginas standalone, adicionar 1 linha no <head> (depois do <style>):
+         <link rel="stylesheet" href="mobile/mobile-forum.css" media="(max-width:768px)">
+       (mesmo padrao do index.html; o arquivo e auto-contido, nao depende dos
+        outros parciais.)
+
+   PROBLEMAS ATACADOS:
+     +  #view-forum: iframe sem padding lateral (forum.html ja tem o seu).
+     +  forum-profile: .profile-body (1fr 320px) NAO colapsava -> a coluna de
+        320px espremia o conteudo. Vira 1 coluna.
+     +  Alvos de toque: chips de ordenacao, botoes do header, cats do subnav,
+        ferramentas de post, reacoes -> >=44px.
+     +  Busca: font-size 16px (evita zoom automatico do iOS no focus).
+
+   Tudo envolto em @media(max-width:768px). !important onde o CSS proprio das
+   paginas (com @860/@900/@600) disputa.
+   TAP: alvos anotados com  [ TAP >=44 ]
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+  /* ------------------------------------------------------------------ *
+   * (A) index.html · #view-forum  ·  iframe edge-to-edge
+   *    A .view tem padding 22px 16px (mobile-core). O forum.html dentro do
+   *    iframe ja tem o proprio respiro, entao tiramos o padding lateral pra
+   *    nao dobrar a margem e desperdicar largura preciosa.
+   * ------------------------------------------------------------------ */
+  #view-forum {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+  }
+  #forum-iframe { min-height: 80vh !important; }
+
+  /* ------------------------------------------------------------------ *
+   * (B) Paginas standalone do forum
+   * ------------------------------------------------------------------ */
+
+  /* header: logo + voltar + tema + login. Alvos de toque ----------------- */
+  .header-inner { padding: 0 16px !important; gap: 12px !important; }
+  .header-back,
+  .auth-btn,
+  .btn {
+    min-height: 40px;                  /* [ TAP ~40 ] */
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .theme-toggle {
+    min-width: 40px; min-height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  /* o "Entrar com Google" e longo: nao deixa empurrar/quebrar o header */
+  .auth-btn.primary { font-size: 10.5px !important; padding: 9px 12px !important; }
+
+  /* forum-header (titulo da categoria) ----------------------------------- */
+  .forum-header { padding: 18px 16px 0 !important; }
+  .forum-header h1 { font-size: clamp(28px, 8vw, 40px) !important; }
+
+  /* subnav de categorias: ja rola; reforca alvo de toque ----------------- */
+  .forum-subnav { padding: 0 12px !important; }
+  .forum-cat {
+    min-height: 46px;                  /* [ TAP >=44 ] */
+    display: inline-flex; align-items: center;
+    min-width: auto !important;
+    padding: 10px 14px !important;
+    white-space: nowrap;
+  }
+
+  /* toolbar: busca em linha propria, fonte 16px anti-zoom ---------------- */
+  .forum-toolbar { padding: 14px 16px 10px !important; }
+  .search-input {
+    width: 100% !important; flex: none !important;
+    min-height: 44px;                  /* [ TAP >=44 ] */
+    font-size: 16px !important;        /* evita zoom do iOS no focus */
+  }
+  .sort-chip {
+    min-height: 38px;
+    display: inline-flex; align-items: center;
+    padding: 8px 12px !important;
+  }
+  .btn.primary { min-height: 44px; }   /* "Nova thread" */
+
+  /* lista de threads: linha tocavel; o proprio CSS ja colapsa as colunas -- */
+  .thread-list { padding: 0 16px 32px !important; }
+  .thread-row {
+    min-height: 64px;                  /* [ TAP >=44 ] */
+    padding: 16px 4px !important;
+  }
+  .thread-row:active { background: var(--bg-card); }
+  .thread-snippet { -webkit-line-clamp: 2; }
+
+  /* ---------- forum-topic.html: posts ---------- */
+  .thread-view { padding: 18px 16px 48px !important; gap: 22px !important; }
+  .thread-rail { position: static !important; }
+  .post-body { font-size: 16px !important; line-height: 1.6 !important; }
+  /* ferramentas do post (responder/citar/curtir) e reacoes: alvo de toque */
+  .post-tools { gap: 18px !important; }
+  .post-tools button {
+    min-height: 38px; display: inline-flex; align-items: center;
+  }
+  .react-chip {
+    min-height: 34px; display: inline-flex; align-items: center;
+    padding: 6px 10px !important;
+  }
+  .reply-box textarea,
+  .modal-box textarea { font-size: 16px !important; }   /* anti-zoom iOS */
+  .modal-box { max-width: 100% !important; }
+
+  /* ---------- forum-profile.html ---------- */
+  /* BUG: .profile-body (1fr 320px) nao colapsava -> rail espremia o conteudo */
+  .profile-body {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 24px 16px 60px !important;
+  }
+  .profile-rail { position: static !important; }
+  .profile-head { padding: 0 16px !important; }
+  .profile-stats-strip .profile-stat { min-height: 64px; }
+  /* acoes do perfil (editar/seguir): o CSS esconde em <=900; reexibe abaixo
+     do header em largura total pra continuarem acessiveis no toque */
+  .profile-head .profile-actions {
+    display: flex !important;
+    grid-column: 1 / -1;
+    gap: 8px; flex-wrap: wrap; margin-top: 4px;
+  }
+  .profile-head .profile-actions .btn { flex: 1 1 auto; min-height: 44px; }
+}
+
+@media (max-width: 480px) {
+  /* perfil: stats em 2 colunas ja vem do CSS proprio (@600); aqui so garante
+     que o avatar quadrado nao fique grande demais */
+  .profile-head { grid-template-columns: 72px 1fr !important; }
+  .profile-stats-strip { grid-template-columns: 1fr 1fr !important; }
+
+  /* BUG header · "Entrar com Google" (~150px) nao encolhia e estourava o
+     header pra fora da borda direita. Em <=480 vira um botao-icone compacto
+     (silhueta de pessoa em branco sobre o vermelho PJ); o texto some via
+     font-size:0. O botao completo volta acima de 480px. */
+  .auth-btn.primary {
+    font-size: 0 !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    flex-shrink: 0;
+    overflow: hidden;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 20px 20px !important;
+  }
+  /* garante que o header nao force largura: itens nao crescem alem do espaco */
+  .header-inner { flex-wrap: nowrap !important; overflow: hidden; }
+}
