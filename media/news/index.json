@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-29T21:08:49.036Z",
+  "updated": "2026-05-30T09:09:49.095Z",
   "items": [
+    {
+      "id": "cs-73815bf256",
+      "url": "https://www.reddit.com/r/pearljam/comments/1tr8xta/a_fellow_pj_lover_in_my_neighborhood/",
+      "source": "reddit-community-spotlight",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-29T17:22:26.000Z",
+      "fetchedAt": "2026-05-30T09:09:48.833Z",
+      "img": "/media/news/img/cs-73815bf256.jpg",
+      "title_pt": "Fã registra vizinho Pearl Jam flagrado duas vezes no mesmo semáforo",
+      "intro_pt": "Um fã encontrou o carro de um vizinho cheio de referências ao Pearl Jam e parou para fotografar o encontro.",
+      "tags": [
+        "comunidade"
+      ],
+      "title_ig": "Dois semáforos, um vizinho de PJ",
+      "kind": "community-spotlight",
+      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tr8xta/a_fellow_pj_lover_in_my_neighborhood/",
+      "community_post_score": 0
+    },
     {
       "id": "cd-20260529",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -527,23 +546,6 @@
       "title_ig": "Pearl Jam no Congresso e nos playoffs da NHL",
       "kind": "community-digest",
       "community_posts_count": 14
-    },
-    {
-      "id": "e35a77452f",
-      "url": "https://www.pearljamonline.it/dalle-strade-di-seattle-a-dark-matter-stone-gossard-e-la-storia-dei-pearl-jam",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-19T09:54:57.000Z",
-      "fetchedAt": "2026-05-19T15:15:13.907Z",
-      "img": "/media/news/img/e35a77452f.jpg",
-      "title_pt": "Stone Gossard reconstrói a história do Pearl Jam no podcast Lip Service",
-      "intro_pt": "Para o podcast Lip Service da Spin Magazine, Stone Gossard reconstrói a história inteira da banda com rara lucidez emocional.",
-      "tags": [
-        "stone",
-        "memoria"
-      ],
-      "title_ig": "Stone conta tudo: de Seattle ao Dark Matter"
     }
   ]
 }
