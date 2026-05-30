@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-30T09:09:49.095Z",
+  "updated": "2026-05-30T15:11:14.599Z",
   "items": [
+    {
+      "id": "cd-20260530",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-30T12:25:23.165Z",
+      "fetchedAt": "2026-05-30T15:11:14.126Z",
+      "img": "/media/news/img/cd-20260530.jpg",
+      "title_pt": "Yield em Montana, jazz do Even Flow e a busca pelos boots do Jack Irons",
+      "intro_pt": "Fã viajou até Montana pra fotografar o cenário da capa de Yield, enquanto a comunidade debateu jazz grunge e boots raros da era Jack Irons.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "O fã que cruzou Montana atrás do Yield",
+      "kind": "community-digest",
+      "community_posts_count": 12
+    },
     {
       "id": "cs-73815bf256",
       "url": "https://www.reddit.com/r/pearljam/comments/1tr8xta/a_fellow_pj_lover_in_my_neighborhood/",
@@ -527,25 +546,6 @@
       "title_ig": "Pearl Jam já tem novo baterista",
       "kind": "community-digest",
       "community_posts_count": 8
-    },
-    {
-      "id": "cd-20260519",
-      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
-      "source": "reddit-community-digest",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-05-19T12:25:25.693Z",
-      "fetchedAt": "2026-05-19T15:15:13.908Z",
-      "img": "/media/news/img/cd-20260519.jpg",
-      "title_pt": "Pearl Jam no Congresso americano, na NHL e a ressurreição do Mirror Ball",
-      "intro_pt": "Da audiência no Congresso dos EUA aos playoffs da NHL, o nome do Pearl Jam apareceu em lugares inesperados na comunidade de fãs.",
-      "tags": [
-        "comunidade",
-        "memoria"
-      ],
-      "title_ig": "Pearl Jam no Congresso e nos playoffs da NHL",
-      "kind": "community-digest",
-      "community_posts_count": 14
     }
   ]
 }
