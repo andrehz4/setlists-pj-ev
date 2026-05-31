@@ -1,7 +1,7 @@
 {
-  "until": "2026-05-30T18:12:51.560Z",
-  "reason": "IG API /17841414148425536/media_publish: Application request limit reached [code=4 subcode=2207051 type=OAuthException fbtrace=APCAYcEPpvNVuwmwlp7b9Vj]",
+  "until": "2026-05-31T03:40:26.180Z",
+  "reason": "IG API /17841414148425536/media_publish: Application request limit reached [code=4 subcode=2207051 type=OAuthException fbtrace=A1uTrM88sMwyw4O9f-jngsP]",
   "code": 4,
-  "fbtraceId": "APCAYcEPpvNVuwmwlp7b9Vj",
-  "setAt": "2026-05-30T15:12:51.560Z"
+  "fbtraceId": "A1uTrM88sMwyw4O9f-jngsP",
+  "setAt": "2026-05-31T00:40:26.180Z"
 }
