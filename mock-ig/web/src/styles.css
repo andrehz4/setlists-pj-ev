@@ -345,6 +345,32 @@ code { background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 5px; 
 .lab-spin { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(12,10,9,.82); font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--pj-glow); letter-spacing: .04em; }
 .lab-spin::before { content: ""; width: 15px; height: 15px; margin-right: 9px; border: 2px solid var(--pj-glow); border-top-color: transparent; border-radius: 50%; animation: spin .7s linear infinite; }
 
+/* ---------- aba Runs ---------- */
+.runs-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.run-row { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 18px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel); text-align: left; transition: border-color .2s, transform .1s var(--ease), box-shadow .2s; }
+.run-row:hover { border-color: var(--pj-deep); transform: translateX(3px); box-shadow: var(--glow-pj); }
+.run-row.on { border-color: var(--pj); background: var(--panel-2); }
+.run-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; background: var(--ink-dim); }
+.run-dot.st-success { background: var(--green); box-shadow: 0 0 8px var(--green); }
+.run-dot.st-failure { background: var(--pj-glow); box-shadow: 0 0 8px var(--pj-glow); }
+.run-dot.st-in_progress { background: var(--gold); box-shadow: 0 0 8px var(--gold); animation: pulse 1.2s infinite; }
+.run-when { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+.run-id { font-size: 12px; color: var(--ink-mut); }
+.run-status { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-mut); }
+.run-go { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--gold); opacity: 0; transition: opacity .2s; }
+.run-row:hover .run-go, .run-row.on .run-go { opacity: 1; }
+.run-detail { animation: rise .4s var(--ease) both; }
+.run-note { font-family: var(--mono); font-size: 12px; color: var(--gold); background: rgba(201,162,75,.1); border: 1px solid var(--line-2); border-radius: var(--r-sm); padding: 10px 14px; margin-bottom: 20px; }
+.run-batch { margin-bottom: 30px; }
+.run-batch-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.run-batch-head h3 { font-family: var(--display); font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; }
+.run-outcome { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; padding: 2px 9px; border-radius: 10px; font-weight: 700; }
+.run-outcome.o-publicado { background: rgba(63,178,127,.15); color: var(--green); }
+.run-outcome.o-rate-limit { background: rgba(216,36,43,.15); color: var(--pj-glow); }
+.run-outcome.o-pendente { background: rgba(255,255,255,.06); color: var(--ink-mut); }
+.run-warn { font-family: var(--mono); font-size: 10px; color: var(--ink-dim); }
+.err-card { display: flex; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+
 /* ---------- responsivo ---------- */
 @media (max-width: 1100px) {
   .ig-side { width: 76px; padding: 8px; }

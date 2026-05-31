@@ -22,6 +22,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { load, save, reset, nextId, STORE_PATH } from "./store.mjs";
 import { loadCandidates, previewSlide } from "./preview.mjs";
+import { listRuns, runDetail } from "./runs.mjs";
 
 const PORT = Number(process.env.MOCK_IG_PORT || 8788);
 const SERVE_ROOT = path.resolve(process.env.MOCK_SERVE_ROOT || process.cwd());
@@ -182,6 +183,30 @@ const server = http.createServer(async (req, res) => {
         const b = await readBody(req);
         if (!b.id) return sendJson(res, 400, { error: "id obrigatorio" });
         return sendJson(res, 200, await previewSlide(b.id));
+      } catch (e) { return sendJson(res, 500, { error: e.message }); }
+    }
+    // lista as ultimas runs do Action (gh CLI)
+    if (pathname === "/_mock/runs") {
+      try { return sendJson(res, 200, await listRuns(6)); }
+      catch (e) { return sendJson(res, 500, { error: "gh CLI: " + e.message }); }
+    }
+    // simula uma run: gera o slide+caption de cada id que ela tentou postar
+    if (pathname === "/_mock/run" && method === "POST") {
+      try {
+        const b = await readBody(req);
+        if (!b.id) return sendJson(res, 400, { error: "id da run obrigatorio" });
+        const idxDoc = JSON.parse(fs.readFileSync(path.join(SERVE_ROOT, "media/news/index.json"), "utf8"));
+        const indexById = new Map((idxDoc.items || []).map((x) => [x.id, x]));
+        const detail = await runDetail(b.id, indexById);
+        // gera o preview real (slide + caption) de cada id, por batch
+        for (const batch of detail.batches) {
+          batch.posts = [];
+          for (const id of batch.ids) {
+            try { batch.posts.push(await previewSlide(id)); }
+            catch (e) { batch.posts.push({ id, error: e.message }); }
+          }
+        }
+        return sendJson(res, 200, detail);
       } catch (e) { return sendJson(res, 500, { error: e.message }); }
     }
     if (pathname === "/_mock/fail" && method === "POST") {
