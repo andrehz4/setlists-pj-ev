@@ -1,21 +1,38 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-29 (sessão longa: cutover V2 + ~35 fixes + integração fórum + redesign perfil + **mobile skin completa B1→B5**)
+2026-05-31 (sessão longa: pipeline IG endurecido + mock-ig completo com simulador e contador de chamadas)
 
 ## Estado atual
-Em produção: `build 2026-05-29.14`. **Mobile skin COMPLETA, 5/5 batches no ar**. Todas as views responsivas com alvos de toque ≥44px, busca anti-zoom iOS, contracto CSS-only respeitado em todo o projeto (zero JS novo, apenas 4 linhas de HTML adicionadas: 1 no index.html + 1 em cada uma das 3 páginas do fórum).
+Foco da sessão foi o **pipeline de publicação no Instagram (@smufdpj)** e a criação de um **Instagram fake local (mock-ig)** pra testar tudo sem postar de verdade.
+
+**Diagnóstico do problema de fundo:** o feed estava preso postando (ou tentando) a notícia velha da saga do baterista. Três causas, duas já resolvidas:
+1. **Notícia errada (RESOLVIDO):** a fila é FIFO e o anti-stale só rodava no fim, então a run abortava no cooldown/rate-limit antes de expirar o item velho. Agora o anti-stale roda SEMPRE (commit `c6de669`). Prazo stale = 2 dias pra datada, 30 dias pra tag `memoria`. Provado no mock: o item de 5 dias é expirado antes de publicar.
+2. **Volume de chamadas estourando code 4 (REDUZIDO):** o feed fazia ~15-25 chamadas/run vs ~2 do story. Cortei o overhead (commit `ac63a07`): detecção de apagados de toda run pra 1x/dia (env `IG_DETECT_INTERVAL_H=20`); pre-check de quota desligado por padrão (mentia, env `IG_QUOTA_PRECHECK=1` reativa).
+3. **App throttled no Meta (PENDENTE, só Andre resolve):** o `code=4 Application request limit reached` é throttle da app no lado da Meta. Nenhum código nosso destrava, só o painel Meta (developers.facebook.com → app → tier/restrição).
+
+**Limites reais da Meta (pesquisados):** o que derruba o feed é ~200 chamadas/HORA (app inteira, janela rolling). Carrossel de 10 fotos = 12 chamadas. Content publishing = 50 posts/24h (carrossel conta como 1). O gargalo é o horário.
 
 ## Próximo passo concreto
-1. Validar Batches 1-5 em produção (DevTools 375px / 414px + device real). Smoke test do B5:
-   - **#view-ranking:** linhas ≥52px de toque
-   - **#view-gaps:** álbuns 1-col, capas tocáveis
-   - **#view-highlights:** cards 1-col, leitura confortável
-   - **#view-rarity:** trophy-wall 1-col, tabela enxuta
-   - **#view-search:** busca 16px anti-zoom, resultados com alvo
-   - **#view-deep:** grid de capas 2→1 col, leitor 3D com setas/thumbs ≥44px
-2. Confirmar build `2026-05-29.14` no rodapé
-3. Atacar backlog mobile (ver seção abaixo)
+1. **Andre: checar o painel do Meta** (developers.facebook.com → app @smufdpj → ver se a app está restrita/rebaixada de tier, pedir aumento de limite ou app review). É o gargalo real do feed.
+2. Usar o mock-ig pra continuar reduzindo o pipeline e ver o medidor horário ficar verde antes de mandar pra produção (ciclo: reduzir → rodar no mock → medir → deploy).
+3. Considerar reduzir slides por carrossel (hoje até 9+capa = ~12 chamadas) se o teto da app for baixo.
+
+## mock-ig: Instagram fake local (NOVO, completo)
+Pasta `mock-ig/` (genérica, serve qualquer app que publique no IG, inclusive Terra Gentil). Doc em `mock-ig/README.md`. Interceptação por env `IG_API_BASE` (default = Graph real, produção intocada).
+- **Fase 1:** mock Graph API (server.mjs) + run.mjs + reset.mjs + testes.
+- **Fase 2:** front React+Vite (`mock-ig/web/`), layout Instagram web desktop (sidebar + grid). Feed/carrossel/stories.
+- **Fase 3:** story ponta a ponta (createStory→poll→publish), `mock:story` / `mock:story:reuse`.
+- **Fase 4:** painel de injeção de erro (rate limit/quota/video) + reels.
+- **Simulador:** aba que lista o material REAL da fila (pendentes + postados, por tipo) e gera o preview do post (slide + caption reais). Read-only, slide vai pra `media/news/_preview/` (gitignored). Botão Atualizar.
+- **Contador de chamadas:** medidor horário global (chamadas última hora / ~200, alarme 80%=160) + custo por post (badge + breakdown). Envs `MOCK_HOURLY_LIMIT`, `MOCK_ALARM_PCT`.
+- Comandos: `mock:server`, `mock:seed`, `mock:publish`, `mock:story`, `mock:reset`, `test:mock`. Server roda local em http://127.0.0.1:8788.
+
+## Hardening anterior do pipeline (mesma sessão, commits antes do mock)
+- Cooldown global no rate limit code 4 (`_ig-cooldown.json`) + cache da detecção de apagados.
+- Dedupe-history: unigrama + stopwords de domínio + guard de título curto (MIN_TOKENS=5) pra saga reescrita não duplicar e título curto não dar falso positivo.
+- Diversidade por assunto no carrossel (topicCap=1) + item envenenado não trava slot (errorCount/MAX_ERRORS) + tombstones (_skipped-stale, _rejected-curated).
+- Suite de testes: 45/45 (`npm test`).
 
 ## Backlog mobile (pós B1→B5)
 
