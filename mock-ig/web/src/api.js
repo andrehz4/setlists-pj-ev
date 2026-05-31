@@ -58,6 +58,22 @@ export async function requestPreview(id) {
   return j;
 }
 
+// Runs do Action: lista as ultimas e simula uma (o que ela tentou postar).
+export async function fetchRuns() {
+  const r = await fetch("/_mock/runs");
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || ("runs " + r.status));
+  return j;
+}
+
+export async function simulateRun(id) {
+  const body = new URLSearchParams({ id });
+  const r = await fetch("/_mock/run", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || ("run " + r.status));
+  return j;
+}
+
 // Polling simples: chama fn a cada ms, retorna funcao de cleanup.
 export function poll(fn, ms = 3000) {
   fn();

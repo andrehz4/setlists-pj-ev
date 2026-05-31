@@ -9,6 +9,7 @@ import PostModal from "./components/PostModal.jsx";
 import Reels from "./components/Reels.jsx";
 import FailPanel from "./components/FailPanel.jsx";
 import PreviewLab from "./components/PreviewLab.jsx";
+import RunsLab from "./components/RunsLab.jsx";
 
 export default function App() {
   const [feed, setFeed] = useState([]);
@@ -75,6 +76,7 @@ export default function App() {
             onStory={(s) => setPreviewStory(s)}
           />
         )}
+        {tab === "runs" && <RunsLab onPreview={(p) => setPreviewPost(p)} />}
       </main>
 
       {openPost && <PostModal post={openPost} onClose={() => setOpenPost(null)} />}

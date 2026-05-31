@@ -13,6 +13,7 @@ const ICONS = {
   profile: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0",
   more: "M4 7h16M4 12h16M4 17h16",
   lab: "M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3",
+  runs: "M4 6h16M4 12h16M4 18h10M19 16v4M17 18h4",
 };
 
 function Icon({ d, active }) {
@@ -44,6 +45,7 @@ export default function Sidebar({ tab, onTab, reels, onFail, onReset, theme, onT
         <Item icon="home" label="Home" active={tab === "feed"} onClick={() => onTab("feed")} />
         <Item icon="reels" label="Reels" active={tab === "reels"} onClick={() => onTab("reels")} badge={reels > 0} />
         <Item icon="lab" label="Simulador" active={tab === "lab"} onClick={() => onTab("lab")} />
+        <Item icon="runs" label="Runs" active={tab === "runs"} onClick={() => onTab("runs")} />
 
         <span className="nav-group">ferramentas</span>
         <Item icon="more" label="Simular erro" onClick={onFail} />
