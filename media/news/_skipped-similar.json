@@ -1,4 +1,14 @@
 {
-  "skipped": [],
-  "updatedAt": "2026-05-28T00:00:00.000Z"
+  "skipped": [
+    {
+      "itemId": "0b821ae173",
+      "title_pt": "Pearl Jam vai revelar o novo baterista em setembro",
+      "matchedTo": "93347ce3bd",
+      "matchedPreview": "Stone Gossard confirma: novo baterista do Pearl Jam sera revelado no Ohana Festival em setembro",
+      "reason": "dedup manual: saga novo baterista, mantido 93347ce3bd como representante",
+      "similarity": null,
+      "skippedAt": "2026-05-31T00:48:07.834Z"
+    }
+  ],
+  "updatedAt": "2026-05-31T00:48:07.834Z"
 }
