@@ -11,7 +11,9 @@
 
 import got from "got";
 
-const API_BASE = "https://graph.instagram.com/v21.0";
+// IG_API_BASE permite apontar pra um mock local (ver mock-ig/) sem mudar
+// nada da logica. Sem a env, usa a Graph API real (producao intocada).
+const API_BASE = process.env.IG_API_BASE || "https://graph.instagram.com/v21.0";
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 

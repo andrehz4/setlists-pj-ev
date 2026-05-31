@@ -16,7 +16,7 @@ import got from "got";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const API_BASE = "https://graph.instagram.com/v21.0";
+const API_BASE = process.env.IG_API_BASE || "https://graph.instagram.com/v21.0";
 const LOOKBACK_DAYS_DEFAULT = 30;
 const CONCURRENCY = 5;
 

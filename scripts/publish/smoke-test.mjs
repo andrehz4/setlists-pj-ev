@@ -21,7 +21,7 @@
 
 import got from "got";
 
-const API_BASE = "https://graph.instagram.com/v21.0";
+const API_BASE = process.env.IG_API_BASE || "https://graph.instagram.com/v21.0";
 
 function mask(s, keep = 6) {
   if (!s) return "(vazio)";
