@@ -635,10 +635,10 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-31T09:01:02.474Z",
-        "msg": "IG rate limit, retry apos 2026-05-31T10:01:02.474Z"
+        "at": "2026-05-31T15:11:13.554Z",
+        "msg": "IG rate limit, retry apos 2026-05-31T16:11:13.554Z"
       },
-      "_rateLimitedUntil": "2026-05-31T10:01:02.474Z"
+      "_rateLimitedUntil": "2026-05-31T16:11:13.554Z"
     },
     {
       "id": "cd-20260529",
