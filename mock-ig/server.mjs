@@ -29,6 +29,15 @@ const MIME = {
   ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
   ".mp4": "video/mp4", ".webp": "image/webp", ".gif": "image/gif",
   ".json": "application/json; charset=utf-8", ".html": "text/html; charset=utf-8",
+  // o front buildado (dist/) referencia JS/CSS como modulos: precisam do MIME
+  // certo ou o navegador recusa (strict MIME pra module scripts).
+  ".js": "application/javascript; charset=utf-8",
+  ".mjs": "application/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".svg": "image/svg+xml",
+  ".ico": "image/x-icon",
+  ".woff": "font/woff", ".woff2": "font/woff2",
+  ".map": "application/json; charset=utf-8",
 };
 
 function send(res, status, body, headers = {}) {
