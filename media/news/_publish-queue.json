@@ -583,36 +583,10 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-29T09:11:31.391Z",
-        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
+        "at": "2026-05-31T17:37:55.316Z",
+        "msg": "IG rate limit, retry apos 2026-05-31T18:37:55.316Z"
       },
-      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
-    },
-    {
-      "id": "cd-20260528",
-      "type": "spotlight",
-      "queuedAt": "2026-05-28T15:12:27.440Z",
-      "publishAt": "2026-05-28T15:12:27.440Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-29T09:11:31.391Z",
-        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
-      },
-      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
-    },
-    {
-      "id": "cs-adc51995f3",
-      "type": "spotlight",
-      "queuedAt": "2026-05-29T09:09:27.639Z",
-      "publishAt": "2026-05-29T09:09:27.639Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-29T09:11:31.391Z",
-        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
-      },
-      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
+      "_rateLimitedUntil": "2026-05-31T18:37:55.316Z"
     },
     {
       "id": "cs-5dd6e659dd",
@@ -622,41 +596,10 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-05-29T09:11:31.391Z",
-        "msg": "IG rate limit, retry apos 2026-05-29T10:11:31.391Z"
+        "at": "2026-05-31T17:37:55.316Z",
+        "msg": "IG rate limit, retry apos 2026-05-31T18:37:55.316Z"
       },
-      "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
-    },
-    {
-      "id": "8ea04d99af",
-      "type": "regular",
-      "queuedAt": "2026-05-29T15:09:30.709Z",
-      "publishAt": "2026-05-29T15:09:30.709Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-31T15:11:13.554Z",
-        "msg": "IG rate limit, retry apos 2026-05-31T16:11:13.554Z"
-      },
-      "_rateLimitedUntil": "2026-05-31T16:11:13.554Z"
-    },
-    {
-      "id": "cd-20260529",
-      "type": "spotlight",
-      "queuedAt": "2026-05-29T21:08:49.030Z",
-      "publishAt": "2026-05-29T21:08:49.030Z",
-      "postedAt": null,
-      "postId": null,
-      "error": null
-    },
-    {
-      "id": "cs-73815bf256",
-      "type": "spotlight",
-      "queuedAt": "2026-05-30T09:09:49.089Z",
-      "publishAt": "2026-05-30T09:09:49.089Z",
-      "postedAt": null,
-      "postId": null,
-      "error": null
+      "_rateLimitedUntil": "2026-05-31T18:37:55.316Z"
     },
     {
       "id": "cd-20260530",
@@ -665,7 +608,11 @@
       "publishAt": "2026-05-30T15:11:14.594Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-31T17:37:55.316Z",
+        "msg": "IG rate limit, retry apos 2026-05-31T18:37:55.316Z"
+      },
+      "_rateLimitedUntil": "2026-05-31T18:37:55.316Z"
     },
     {
       "id": "cs-d9e9bf1438",
@@ -674,7 +621,11 @@
       "publishAt": "2026-05-31T03:10:46.971Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-31T17:37:55.316Z",
+        "msg": "IG rate limit, retry apos 2026-05-31T18:37:55.316Z"
+      },
+      "_rateLimitedUntil": "2026-05-31T18:37:55.316Z"
     },
     {
       "id": "cd-20260531",
@@ -683,7 +634,11 @@
       "publishAt": "2026-05-31T15:09:58.262Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-05-31T17:37:55.316Z",
+        "msg": "IG rate limit, retry apos 2026-05-31T18:37:55.316Z"
+      },
+      "_rateLimitedUntil": "2026-05-31T18:37:55.316Z"
     }
   ],
   "postCount": 35
