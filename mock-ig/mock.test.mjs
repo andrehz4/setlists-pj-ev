@@ -61,6 +61,17 @@ test("content_publishing_limit reporta uso", async () => {
   assert.equal(q.body.config.quota_total, 50);
 });
 
+test("story com polling: IN_PROGRESS ate FINISHED apos N polls", async () => {
+  await post("/_mock/reset", {});
+  await post("/_mock/fail", { storyPolls: "2" }); // video so fica pronto apos 2 polls
+  const c = await post("/u/media", { media_type: "STORIES", video_url: "http://x/v.mp4" });
+  const p1 = await get(`/${c.body.id}?fields=status_code,status`);
+  assert.equal(p1.body.status_code, "IN_PROGRESS");
+  const p2 = await get(`/${c.body.id}?fields=status_code,status`);
+  assert.equal(p2.body.status_code, "FINISHED");
+  await post("/_mock/fail", { storyPolls: "0" }); // limpa pros outros testes
+});
+
 test("injecao ratelimit retorna code 4", async () => {
   const c = await post("/u/media", { media_type: "IMAGE", image_url: "http://x/1.jpg" });
   const pub = await post("/u/media_publish?fail=ratelimit", { creation_id: c.body.id });
