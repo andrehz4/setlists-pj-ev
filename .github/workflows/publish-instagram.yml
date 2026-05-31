@@ -2,6 +2,11 @@ name: Publish Instagram
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'smoke = so valida token/escopo (nao publica); publish = roda normal'
+        type: choice
+        options: [publish, smoke]
+        default: publish
       dry-run:
         description: 'Gera slides e simula publish mas nao chama IG API'
         type: boolean
@@ -54,7 +59,15 @@ jobs:
       - name: Pull rebased main (auto-merge pode ter avancado)
         run: git pull --rebase --autostash || true
 
+      - name: Smoke test (valida token/escopo, nao publica)
+        if: ${{ inputs.mode == 'smoke' }}
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: node scripts/publish/smoke-test.mjs
+
       - name: Run publish
+        if: ${{ inputs.mode != 'smoke' }}
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
