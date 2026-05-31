@@ -21,6 +21,7 @@
     "mock:seed": "node scripts/publish/seed-queue.mjs --count=6",
     "mock:publish": "node mock-ig/run.mjs feed",
     "mock:story": "node mock-ig/run.mjs story",
+    "mock:story:reuse": "node mock-ig/story-mock.mjs",
     "test:cifras": "node --test scripts/cifras-coverage.test.mjs",
     "test:band": "node --test scripts/publish/band-fallback.test.mjs",
     "test:select": "node --test scripts/publish/queue-select.test.mjs",

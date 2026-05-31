@@ -73,7 +73,8 @@ npm run mock:seed            # = seed-queue --count=6
 
 # 4. roda o pipeline REAL contra o mock
 npm run mock:publish         # feed (carrossel/single)
-npm run mock:story           # story
+npm run mock:story           # story (gera MP4 novo com ffmpeg, das noticias de 24h)
+npm run mock:story:reuse     # story reusando um MP4 ja existente (sem ffmpeg)
 
 # 5. ve o resultado
 curl http://127.0.0.1:8788/_mock/feed
@@ -180,8 +181,9 @@ clique), barra de Stories (viewer fullscreen com progress bar), Reels (placehold
 
 - [x] Fase 1: env `IG_API_BASE` + mock server (caminho feliz) + run/reset + testes
 - [x] Fase 2: front React (feed grid + carrossel + stories bar/viewer + reels placeholder)
-- [ ] Fase 3: gerar story real (`run-publish-story`) contra o mock e validar no viewer
-- [ ] Fase 4: injecao de erro completa via `/_mock/fail` + reels de verdade
+- [x] Fase 3: story contra o mock (caminho real createStory->poll->publish), via
+      `mock:story` (gera MP4 com ffmpeg) ou `mock:story:reuse` (reusa MP4 existente)
+- [ ] Fase 4: injecao de erro completa via `/_mock/fail` na UI + reels de verdade
 
 ## Producao esta segura?
 
