@@ -60,26 +60,52 @@ export default function RunsLab({ onPreview }) {
 
       {detail && !loading && (
         <div className="run-detail">
+          {/* resumo da run: total de posts e custo Graph */}
+          <div className="run-summary">
+            <div className="run-stat">
+              <b>{detail.totalPosts}</b>
+              <span>{detail.totalPosts === 1 ? "post (carrossel)" : "posts (carrosseis)"} iriam pro feed</span>
+            </div>
+            <div className="run-stat">
+              <b>{detail.totalCalls}</b>
+              <span>chamadas Graph no total · limite 200/h</span>
+            </div>
+          </div>
+
           {detail.cooldownAbort && <p className="run-note">esta run abortou no cooldown (nao chegou a montar carrossel).</p>}
+
           {detail.batches.map((b, i) => (
             <div key={i} className="run-batch">
               <div className="run-batch-head">
-                <h3>{b.type === "regular" ? "Noticias" : "Comunidade / Spotlight"}</h3>
+                <h3>{b.type === "regular" ? "Carrossel · Noticias" : "Carrossel · Comunidade"}</h3>
                 <span className={"run-outcome o-" + b.outcome}>{b.outcome}</span>
+                {b.carousel && b.carousel.slideCount > 0 && (
+                  <span className="run-carousel-meta">
+                    {b.carousel.slideCount} slides{b.carousel.hasCover ? " (1 capa)" : ""} · {b.carousel.apiCalls} chamadas
+                  </span>
+                )}
                 {!b.exact && b.ids.length === 0 && <span className="run-warn">ids nao logados nesta run</span>}
                 {!b.exact && b.ids.length > 0 && <span className="run-warn">ids aproximados</span>}
               </div>
-              {b.posts && b.posts.length > 0 ? (
-                <div className="lab-row">
-                  {b.posts.map((p) => (
-                    p.error
-                      ? <div key={p.id} className="lab-card err-card"><span className="lab-title">{p.id}: {p.error}</span></div>
-                      : <button key={p.id} className="lab-card" onClick={() => onPreview(p)}>
-                          <span className="lab-thumb"><img src={p.slideUrl} alt="" loading="lazy" /><span className={"lab-kind k-" + p.kind}>{p.kind}</span></span>
-                          <span className="lab-title">{p.title}</span>
-                        </button>
-                  ))}
-                </div>
+
+              {b.posts && b.posts.filter((p) => !p.error).length > 0 ? (
+                <>
+                  {/* o CARROSSEL montado: tira de slides como iria pro IG */}
+                  <div className="carousel-strip">
+                    {b.carousel?.hasCover && (
+                      <div className="strip-slide cover" title="capa do carrossel (Card 11)">
+                        <span className="strip-cover-label">CAPA</span>
+                      </div>
+                    )}
+                    {b.posts.filter((p) => !p.error).map((p, k) => (
+                      <button key={p.id} className="strip-slide" onClick={() => onPreview(p)} title={p.title}>
+                        <img src={p.slideUrl} alt="" loading="lazy" />
+                        <span className="strip-num">{(b.carousel?.hasCover ? k + 2 : k + 1)}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <p className="strip-hint">clique num slide pra ver o post completo (imagem + legenda)</p>
+                </>
               ) : <p className="lab-empty">sem itens reconstruiveis neste batch.</p>}
             </div>
           ))}

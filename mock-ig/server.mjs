@@ -198,14 +198,33 @@ const server = http.createServer(async (req, res) => {
         const idxDoc = JSON.parse(fs.readFileSync(path.join(SERVE_ROOT, "media/news/index.json"), "utf8"));
         const indexById = new Map((idxDoc.items || []).map((x) => [x.id, x]));
         const detail = await runDetail(b.id, indexById);
-        // gera o preview real (slide + caption) de cada id, por batch
+        // gera o preview real (slide + caption) de cada id, por batch, e monta
+        // o CARROSSEL como iria pro IG, com o custo de chamadas Graph.
+        let runCalls = 0;
         for (const batch of detail.batches) {
           batch.posts = [];
           for (const id of batch.ids) {
             try { batch.posts.push(await previewSlide(id)); }
             catch (e) { batch.posts.push({ id, error: e.message }); }
           }
+          // o carrossel = capa (Card 11, se >=2 itens) + 1 slide por item.
+          const slides = batch.posts.filter((p) => !p.error);
+          const hasCover = slides.length >= 2;
+          const total = slides.length + (hasCover ? 1 : 0);
+          batch.carousel = {
+            slideCount: total,
+            hasCover,
+            // chamadas Graph: 1 POST /media por slide (incl. capa) + 1 do
+            // container do carrossel + 1 media_publish. So conta se houver slide.
+            apiCalls: total > 0 ? total + 2 : 0,
+            sampleCaption: slides[0]?.caption || "",
+          };
+          // 1 carrossel = 1 post no feed (conta 1 na cota de 50/24h)
+          batch.postsToIg = slides.length ? 1 : 0;
+          runCalls += batch.carousel.apiCalls;
         }
+        detail.totalCalls = runCalls;
+        detail.totalPosts = detail.batches.reduce((n, b2) => n + (b2.postsToIg || 0), 0);
         return sendJson(res, 200, detail);
       } catch (e) { return sendJson(res, 500, { error: e.message }); }
     }
