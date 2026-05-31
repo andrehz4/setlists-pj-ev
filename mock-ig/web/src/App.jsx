@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { fetchFeed, fetchStories, resetStore, poll } from "./api.js";
+import { fetchFeed, fetchStories, fetchReels, resetStore, poll } from "./api.js";
 import StoriesBar from "./components/StoriesBar.jsx";
 import StoryViewer from "./components/StoryViewer.jsx";
 import FeedGrid from "./components/FeedGrid.jsx";
 import PostModal from "./components/PostModal.jsx";
 import Reels from "./components/Reels.jsx";
+import FailPanel from "./components/FailPanel.jsx";
 
 export default function App() {
   const [feed, setFeed] = useState([]);
   const [stories, setStories] = useState([]);
+  const [reels, setReels] = useState([]);
   const [tab, setTab] = useState("feed");
   const [openPost, setOpenPost] = useState(null);
   const [openStory, setOpenStory] = useState(null);
@@ -17,9 +19,10 @@ export default function App() {
   useEffect(() => {
     const stop = poll(async () => {
       try {
-        const [f, s] = await Promise.all([fetchFeed(), fetchStories()]);
+        const [f, s, r] = await Promise.all([fetchFeed(), fetchStories(), fetchReels()]);
         setFeed(f);
         setStories(s);
+        setReels(r);
         setErr(null);
       } catch (e) {
         setErr(e.message);
@@ -47,11 +50,13 @@ export default function App() {
           <FeedGrid feed={feed} onOpen={(p) => setOpenPost(p)} />
         </>
       )}
-      {tab === "reels" && <Reels />}
+      {tab === "reels" && <Reels reels={reels} />}
+
+      <FailPanel />
 
       <nav className="tabbar">
         <button className={tab === "feed" ? "on" : ""} onClick={() => setTab("feed")}>Feed</button>
-        <button className={tab === "reels" ? "on" : ""} onClick={() => setTab("reels")}>Reels</button>
+        <button className={tab === "reels" ? "on" : ""} onClick={() => setTab("reels")}>Reels{reels.length ? ` (${reels.length})` : ""}</button>
       </nav>
 
       {openPost && <PostModal post={openPost} onClose={() => setOpenPost(null)} />}

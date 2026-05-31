@@ -66,3 +66,21 @@ body { background: #1a1a1a; font-family: -apple-system, system-ui, sans-serif; d
 /* reels */
 .reels-ph { padding: 60px 30px; text-align: center; color: #555; }
 .reels-ph h2 { margin-bottom: 12px; }
+.reels-feed { background: #000; }
+.reel { position: relative; height: 78vh; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
+.reels-feed { overflow-y: auto; scroll-snap-type: y mandatory; max-height: calc(100vh - 120px); }
+.reel video { height: 100%; width: 100%; object-fit: contain; }
+.reel-cap { position: absolute; bottom: 16px; left: 12px; right: 12px; color: #fff; font-size: 13px; text-shadow: 0 1px 4px rgba(0,0,0,.8); }
+
+/* fail panel */
+.failpanel { position: sticky; bottom: 52px; z-index: 20; }
+.fp-toggle { width: 100%; border: none; border-top: 1px solid #eee; background: #fafafa; padding: 8px; font-size: 12px; cursor: pointer; color: #555; }
+.failpanel.open .fp-toggle { background: #fff3cd; color: #856404; font-weight: 700; }
+.fp-body { background: #fff8e1; padding: 12px 16px; border-top: 1px solid #ffe082; font-size: 13px; }
+.fp-body > label { display: block; font-weight: 700; margin-bottom: 6px; font-size: 12px; }
+.fp-radio { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-weight: 400 !important; }
+.fp-polls { display: block; margin-top: 8px; }
+.fp-polls input { width: 100%; }
+.fp-saved { color: #2e7d32; font-size: 12px; }
+.fp-hint { color: #777; font-size: 11px; margin-top: 8px; line-height: 1.4; }
+.fp-hint code { background: #eee; padding: 1px 4px; border-radius: 3px; }

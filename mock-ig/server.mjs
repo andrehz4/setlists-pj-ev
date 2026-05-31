@@ -98,11 +98,17 @@ const server = http.createServer(async (req, res) => {
     // ---------- API do front ----------
     if (pathname === "/_mock/feed") { const s = load(); return sendJson(res, 200, s.feed); }
     if (pathname === "/_mock/stories") { const s = load(); return sendJson(res, 200, s.stories); }
+    if (pathname === "/_mock/reels") { const s = load(); return sendJson(res, 200, s.reels || []); }
     if (pathname === "/_mock/state") { return sendJson(res, 200, load()); }
+    if (pathname === "/_mock/control") { const s = load(); return sendJson(res, 200, s.control || { fail: null, storyPolls: 0 }); }
     if (pathname === "/_mock/reset" && method === "POST") { return sendJson(res, 200, reset()); }
     if (pathname === "/_mock/fail" && method === "POST") {
       const b = await readBody(req); const s = load();
-      s.control = { ...(s.control || {}), fail: b.fail || null, storyPolls: Number(b.storyPolls || 0) };
+      s.control = {
+        ...(s.control || {}),
+        fail: b.fail && b.fail !== "none" ? b.fail : null,
+        storyPolls: Number(b.storyPolls || 0),
+      };
       save(s); return sendJson(res, 200, s.control);
     }
 
@@ -125,6 +131,9 @@ const server = http.createServer(async (req, res) => {
       const postId = nextId(s, "p");
       if (c.type === "STORIES") {
         s.stories.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt: new Date().toISOString() });
+      } else if (c.type === "REELS") {
+        if (!s.reels) s.reels = [];
+        s.reels.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt: new Date().toISOString() });
       } else {
         const slides = c.type === "CAROUSEL"
           ? (c.children || []).map((cid) => s.containers[cid]?.image_url).filter(Boolean)
@@ -145,7 +154,8 @@ const server = http.createServer(async (req, res) => {
       }
       const body = await readBody(req);
       const id = nextId(s, "c");
-      const isStory = body.media_type === "STORIES";
+      // STORIES e REELS sao video: passam por processamento (polling de status).
+      const isVideo = body.media_type === "STORIES" || body.media_type === "REELS";
       s.containers[id] = {
         type: body.media_type || "IMAGE",
         image_url: body.image_url || null,
@@ -153,7 +163,7 @@ const server = http.createServer(async (req, res) => {
         children: body.children ? String(body.children).split(",") : null,
         caption: body.caption || null,
         // video so fica pronto apos storyPolls chamadas (caminho feliz = 0)
-        status_code: isStory && (s.control?.storyPolls > 0) ? "IN_PROGRESS" : "FINISHED",
+        status_code: isVideo && (s.control?.storyPolls > 0) ? "IN_PROGRESS" : "FINISHED",
         polls: 0,
         createdAt: new Date().toISOString(),
       };

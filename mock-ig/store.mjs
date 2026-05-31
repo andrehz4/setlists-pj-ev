@@ -13,6 +13,7 @@ const EMPTY = () => ({
   containers: {}, // id -> { type, image_url, video_url, children, caption, status_code, polls, createdAt }
   feed: [],       // { postId, type, caption, slides:[url], createdAt }
   stories: [],    // { postId, videoUrl, createdAt }
+  reels: [],      // { postId, videoUrl, caption, createdAt }
   quotaUsage: 0,
   deleted: [],    // postIds marcados como apagados (pra ig-detect-deleted)
 });
