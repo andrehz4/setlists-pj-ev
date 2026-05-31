@@ -49,7 +49,7 @@ export default function App() {
       />
 
       <main className="ig-main">
-        <div className="mock-ribbon">ambiente MOCK · nao e o Instagram real</div>
+        <div className="mock-ribbon">● control room · ambiente mock · nao toca o instagram real</div>
 
         {err && <div className="ig-err">sem conexao com o mock server. Rode <code>npm run mock:server</code> ({err})</div>}
 
