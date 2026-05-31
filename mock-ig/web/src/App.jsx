@@ -22,7 +22,7 @@ export default function App() {
   const [previewStory, setPreviewStory] = useState(null);
   const [usage, setUsage] = useState(null);
   const [err, setErr] = useState(null);
-  const [theme, setTheme] = useState(() => localStorage.getItem("mockig-theme") || "night");
+  const [theme, setTheme] = useState(() => localStorage.getItem("mockig-theme") || "day");
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);

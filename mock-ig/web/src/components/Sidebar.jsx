@@ -40,26 +40,24 @@ export default function Sidebar({ tab, onTab, reels, onFail, onReset, theme, onT
     <aside className="ig-side">
       <div className="logo">smufdpj</div>
       <nav className="nav">
-        <Item icon="home" label="Pagina inicial" active={tab === "feed"} onClick={() => onTab("feed")} />
-        <Item icon="search" label="Pesquisa" />
-        <Item icon="explore" label="Explorar" />
+        <span className="nav-group">navegar</span>
+        <Item icon="home" label="Home" active={tab === "feed"} onClick={() => onTab("feed")} />
         <Item icon="reels" label="Reels" active={tab === "reels"} onClick={() => onTab("reels")} badge={reels > 0} />
         <Item icon="lab" label="Simulador" active={tab === "lab"} onClick={() => onTab("lab")} />
-        <Item icon="msg" label="Mensagens" />
-        <Item icon="heart" label="Notificacoes" />
-        <Item icon="create" label="Criar" />
-        <Item icon="profile" label="Perfil" />
-      </nav>
-      <div className="nav-foot">
+
+        <span className="nav-group">ferramentas</span>
+        <Item icon="more" label="Simular erro" onClick={onFail} />
         <button className="nav-item" onClick={onToggleTheme}>
           <span className="nav-ico"><Icon d={theme === "night" ? SUN : MOON} /></span>
           <span className="nav-label">{theme === "night" ? "Tema dia" : "Tema noite"}</span>
         </button>
-        <Item icon="more" label="Simular erro" onClick={onFail} />
-        <button className="nav-item ghost" onClick={onReset}>
+        <button className="nav-item" onClick={onReset}>
           <span className="nav-ico"><Icon d="M4 4v6h6M20 20v-6h-6M20 9a8 8 0 0 0-15-1M4 15a8 8 0 0 0 15 1" /></span>
           <span className="nav-label">Limpar mock</span>
         </button>
+      </nav>
+      <div className="nav-foot">
+        <span className="nav-status"><i /> mock ativo · porta 8788</span>
       </div>
     </aside>
   );
