@@ -1,17 +1,17 @@
 import React from "react";
 
-// Medidor do limite REAL do Instagram: chamadas Graph nas ultimas 24h vs o teto
-// (4800 x impressoes/24h, doc Meta). O teto cresce com o alcance da conta; o
-// mock simula com MOCK_IMPRESSIONS. Vermelho ao passar do alarme (80%).
-// O numero verdadeiro da conta aparece no log do pipeline (header x-app-usage).
+// Medidor do limite que DERRUBA o feed (code 4 = limite da app): chamadas Graph
+// na ultima HORA vs ~200 x usuarios (doc Meta). E o limite ativo (o erro real e
+// code 4). Vermelho ao passar do alarme (80%). O numero verdadeiro da conta
+// aparece no log do pipeline (header X-App-Usage, call_count em %).
 export default function UsageMeter({ usage }) {
-  const { used, limit, alarmAt, over, pct, impressions } = usage;
+  const { used, limit, alarmAt, over, pct, users } = usage;
   return (
     <div className={"usage-meter" + (over ? " over" : "")}>
       <div className="usage-top">
         <span className="usage-label">
-          chamadas Graph nas ultimas 24h
-          <small>limite IG = 4800 × impressoes ({impressions} simuladas) = {limit.toLocaleString("pt-BR")} · alarme {alarmAt.toLocaleString("pt-BR")}</small>
+          chamadas Graph na ultima hora
+          <small>limite da app (code 4) = 200 × usuarios ({users}) = {limit.toLocaleString("pt-BR")}/h · alarme {alarmAt.toLocaleString("pt-BR")}</small>
         </span>
         <b>{used}<span>/{limit.toLocaleString("pt-BR")}</span></b>
       </div>
@@ -20,8 +20,8 @@ export default function UsageMeter({ usage }) {
         <span className="usage-alarm" style={{ left: (alarmAt / limit * 100) + "%" }} title={`alarme em ${alarmAt}`} />
       </div>
       {over
-        ? <p className="usage-msg over">acima do alarme. Nesse ritmo o feed estoura o limite do Instagram (code 4 / 80002).</p>
-        : <p className="usage-msg ok">dentro do orcamento. Teto cresce com as impressoes da conta. O numero real sai no log (x-app-usage).</p>}
+        ? <p className="usage-msg over">acima do alarme. Nesse ritmo o feed estoura o limite da app (code 4).</p>
+        : <p className="usage-msg ok">dentro do orcamento. O numero real da conta sai no log do pipeline (X-App-Usage).</p>}
     </div>
   );
 }
