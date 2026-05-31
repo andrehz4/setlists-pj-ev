@@ -9,10 +9,11 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
-import { readQueue } from "../scripts/publish/queue.mjs";
+import { readQueue, pickMatureByTypeDiverse, pruneStalePending } from "../scripts/publish/queue.mjs";
 import { buildSlide } from "../scripts/publish/slide-image.mjs";
 import { buildSingleCaption, buildCarouselCaption } from "../scripts/publish/instagram.mjs";
 import { getCurrentCycleColor } from "../scripts/publish/color-cycle.mjs";
+import { topicSignature, similarity } from "../scripts/news/dedupe-history.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -145,4 +146,54 @@ export async function previewSlide(id) {
 export function previewStoryExisting(name) {
   const safe = path.basename(name);
   return { videoUrl: `/media/news/instagram-stories/${safe}`, name: safe };
+}
+
+// PROXIMA RUN: reproduz EXATAMENTE o que o pipeline selecionaria agora da fila
+// real (mesma logica do run-publish.mjs): expira stale, depois pickMatureByType
+// Diverse (topicCap=1) por tipo regular/spotlight. Retorna os ids por batch,
+// no formato que runDetail usa, pra o front montar o carrossel do que VAI rodar.
+// READ-ONLY: trabalha numa copia da fila, nao toca a fila real.
+export async function nextRunDetail() {
+  const queueReal = await readQueue();
+  const indexDoc = await readJson(INDEX_PATH, { items: [] });
+  const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
+
+  // copia da fila pra nao mutar a real
+  const queue = { items: queueReal.items.map((q) => ({ ...q })), postCount: queueReal.postCount };
+
+  // 1. expira stale (2d datada, 30d memoria) - igual o pipeline
+  const STALE_DAYS = 2, EVERGREEN = 30;
+  const expired = pruneStalePending(queue, new Date().toISOString(), {
+    staleDays: STALE_DAYS, evergreenDays: EVERGREEN,
+    dateFor: (q) => indexById.get(q.id)?.pubDate || q.queuedAt,
+    isEvergreen: (q) => (indexById.get(q.id)?.tags || []).includes("memoria"),
+  });
+
+  // 2. seleciona por tipo com diversidade (topicCap=1), igual o pipeline
+  const nowIso = new Date().toISOString();
+  const matureLimit = 9; // card02: 9 itens + capa = 10
+  const sigCache = new Map();
+  const signatureFor = (q) => {
+    if (sigCache.has(q.id)) return sigCache.get(q.id);
+    const idx = indexById.get(q.id);
+    const text = idx ? `${idx.title_pt || idx.titulo_pt || ""} ${idx.intro_pt || ""}`.trim() : "";
+    const sig = text ? topicSignature(text) : null;
+    sigCache.set(q.id, sig);
+    return sig;
+  };
+  const batches = [];
+  const dropped = {};
+  for (const type of ["regular", "spotlight"]) {
+    const picked = pickMatureByTypeDiverse(queue, type, nowIso, {
+      limit: matureLimit, signatureFor, similarFn: similarity, topicCap: 1,
+      onDropped: (item) => { (dropped[type] = dropped[type] || []).push(item.id); },
+    });
+    batches.push({ type, ids: picked.map((p) => p.id), exact: true, outcome: "vai postar", adiados: dropped[type] || [] });
+  }
+
+  return {
+    isNext: true,
+    expired: expired.map((q) => q.id),
+    batches,
+  };
 }
