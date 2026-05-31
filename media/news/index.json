@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-30T15:11:14.599Z",
+  "updated": "2026-05-31T03:10:46.977Z",
   "items": [
     {
       "id": "cd-20260530",
@@ -19,6 +19,26 @@
       "title_ig": "O fã que cruzou Montana atrás do Yield",
       "kind": "community-digest",
       "community_posts_count": 12
+    },
+    {
+      "id": "cs-d9e9bf1438",
+      "url": "https://www.reddit.com/r/pearljam/comments/1trogip/finally_yielded_this_shot_at_the_yield_cover/",
+      "source": "reddit-community-spotlight",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-30T03:27:13.000Z",
+      "fetchedAt": "2026-05-31T03:10:46.419Z",
+      "img": "/media/news/img/cs-d9e9bf1438.jpg",
+      "title_pt": "Fã viaja até Montana para fotografar o local exato da capa de Yield",
+      "intro_pt": "Um fã percorreu mais de 20 horas de estrada para encontrar e fotografar o trecho de rodovia que Jeff Ament eternizou na capa de Yield.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "A foto que reviveu a capa de Yield",
+      "kind": "community-spotlight",
+      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1trogip/finally_yielded_this_shot_at_the_yield_cover/",
+      "community_post_score": 0
     },
     {
       "id": "cs-73815bf256",
@@ -528,24 +548,6 @@
       "kind": "community-spotlight",
       "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tjfkcu/time_to_give_this_one_a_blast_live_on_two_legs/",
       "community_post_score": 0
-    },
-    {
-      "id": "cd-20260520",
-      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
-      "source": "reddit-community-digest",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-05-20T12:25:25.352Z",
-      "fetchedAt": "2026-05-20T15:10:21.599Z",
-      "img": "/media/news/img/cd-20260520.jpg",
-      "title_pt": "Dave Krusen diz que Pearl Jam já tem novo baterista confirmado",
-      "intro_pt": "Dave Krusen, baterista original do Pearl Jam, disse no fórum oficial da banda que o substituto de Matt Cameron já foi definido.",
-      "tags": [
-        "comunidade"
-      ],
-      "title_ig": "Pearl Jam já tem novo baterista",
-      "kind": "community-digest",
-      "community_posts_count": 8
     }
   ]
 }
