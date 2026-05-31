@@ -73,6 +73,39 @@ function failMode(store, query) {
   return process.env.MOCK_IG_FAIL || null;
 }
 
+// Limites REAIS da Meta (pesquisados na doc oficial):
+//  - Limite DA APP (code 4 "Application request limit reached"): ~200 chamadas
+//    POR HORA, janela rolling de 1h, somando TODAS as chamadas Graph do app.
+//    Esse e o que derruba o feed. Carrossel de 10 fotos = 12 chamadas HTTP
+//    (1 por foto + 1 do carrossel + 1 publish), todas contam aqui.
+//  - Content publishing: 50 posts/24h (carrossel conta como 1). Bate bem depois.
+// O Meta nao garante piso minimo pra app pequena; ~200/h e a premissa
+// conservadora (200 x usuarios ativos, ~1 usuario). Alarme em 80% pra ter folga.
+const HOURLY_LIMIT = Number.isFinite(Number(process.env.MOCK_HOURLY_LIMIT)) && Number(process.env.MOCK_HOURLY_LIMIT) > 0
+  ? Number(process.env.MOCK_HOURLY_LIMIT) : 200;
+const ALARM_PCT = Number.isFinite(Number(process.env.MOCK_ALARM_PCT)) && Number(process.env.MOCK_ALARM_PCT) > 0
+  ? Number(process.env.MOCK_ALARM_PCT) : 80;
+const HOUR_MS = 60 * 60 * 1000;
+
+// Conta 1 chamada Graph: no ciclo atual (por post) E no log horario (limite real).
+// Recebe o store ja carregado, NAO salva (o caller salva). label ex: "POST /media".
+function bumpCall(s, label) {
+  s.callCount = (s.callCount || 0) + 1;
+  if (!s.callsByKind) s.callsByKind = {};
+  s.callsByKind[label] = (s.callsByKind[label] || 0) + 1;
+  if (!s.callLog) s.callLog = [];
+  s.callLog.push(Date.now());
+}
+
+// Chamadas na ultima hora (limite real do code 4). Poda o log fora da janela.
+function hourlyUsage(s) {
+  const cutoff = Date.now() - HOUR_MS;
+  s.callLog = (s.callLog || []).filter((t) => t >= cutoff);
+  const used = s.callLog.length;
+  const alarmAt = Math.round(HOURLY_LIMIT * ALARM_PCT / 100);
+  return { used, limit: HOURLY_LIMIT, alarmAt, over: used > alarmAt, pct: Math.round((used / HOURLY_LIMIT) * 100) };
+}
+
 async function readBody(req) {
   const chunks = [];
   for await (const c of req) chunks.push(c);
@@ -109,6 +142,10 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/_mock/feed") { const s = load(); return sendJson(res, 200, s.feed); }
     if (pathname === "/_mock/stories") { const s = load(); return sendJson(res, 200, s.stories); }
     if (pathname === "/_mock/reels") { const s = load(); return sendJson(res, 200, s.reels || []); }
+    if (pathname === "/_mock/usage") {
+      // medidor horario: chamadas na ultima hora vs ~200 (limite real do code 4)
+      const s = load(); const u = hourlyUsage(s); save(s); return sendJson(res, 200, u);
+    }
     if (pathname === "/_mock/state") { return sendJson(res, 200, load()); }
     if (pathname === "/_mock/control") { const s = load(); return sendJson(res, 200, s.control || { fail: null, storyPolls: 0 }); }
     if (pathname === "/_mock/reset" && method === "POST") { return sendJson(res, 200, reset()); }
@@ -146,24 +183,32 @@ const server = http.createServer(async (req, res) => {
       const s = load();
       const fail = failMode(s, query);
       if (fail === "ratelimit") {
+        bumpCall(s, "POST /media_publish"); save(s); // conta mesmo falhando (gastou chamada)
         return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" });
       }
       const body = await readBody(req);
       const c = s.containers[body.creation_id];
       if (!c) return graphError(res, 400, { code: 100, message: "container inexistente: " + body.creation_id });
+      bumpCall(s, "POST /media_publish");
       const postId = nextId(s, "p");
+      // fecha o ciclo de contagem: quantas chamadas custou ESTA postagem (por post).
+      // 'over' aqui e so referencia ao carrossel cheio (12); o estouro de verdade
+      // e o horario (rota /_mock/usage), nao o custo de 1 post.
+      const apiCalls = { total: s.callCount || 0, byKind: { ...(s.callsByKind || {}) }, carouselMax: 12, over: (s.callCount || 0) > 12 };
+      const createdAt = new Date().toISOString();
       if (c.type === "STORIES") {
-        s.stories.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt: new Date().toISOString() });
+        s.stories.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt, apiCalls });
       } else if (c.type === "REELS") {
         if (!s.reels) s.reels = [];
-        s.reels.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt: new Date().toISOString() });
+        s.reels.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt, apiCalls });
       } else {
         const slides = c.type === "CAROUSEL"
           ? (c.children || []).map((cid) => s.containers[cid]?.image_url).filter(Boolean)
           : [c.image_url];
-        s.feed.unshift({ postId, type: c.type, caption: c.caption || "", slides, createdAt: new Date().toISOString() });
+        s.feed.unshift({ postId, type: c.type, caption: c.caption || "", slides, createdAt, apiCalls });
       }
       s.quotaUsage += 1;
+      s.callCount = 0; s.callsByKind = {}; // zera pro proximo ciclo de postagem
       save(s);
       return sendJson(res, 200, { id: postId });
     }
@@ -173,9 +218,11 @@ const server = http.createServer(async (req, res) => {
       const s = load();
       const fail = failMode(s, query);
       if (fail === "ratelimit") {
+        bumpCall(s, "POST /media"); save(s);
         return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" });
       }
       const body = await readBody(req);
+      bumpCall(s, "POST /media");
       const id = nextId(s, "c");
       // STORIES e REELS sao video: passam por processamento (polling de status).
       const isVideo = body.media_type === "STORIES" || body.media_type === "REELS";
@@ -197,6 +244,7 @@ const server = http.createServer(async (req, res) => {
     // GET /:uid/content_publishing_limit
     if (method === "GET" && /\/content_publishing_limit$/.test(pathname)) {
       const s = load();
+      bumpCall(s, "GET /content_publishing_limit"); save(s);
       const fail = failMode(s, query);
       const usage = fail === "quota" ? 49 : (s.quotaUsage || 0);
       return sendJson(res, 200, { quota_usage: usage, config: { quota_total: 50, quota_duration: 86400 } });
@@ -204,6 +252,7 @@ const server = http.createServer(async (req, res) => {
 
     // GET /me
     if (method === "GET" && pathname === "/me") {
+      const s = load(); bumpCall(s, "GET /me"); save(s);
       return sendJson(res, 200, { id: process.env.IG_USER_ID || "mock_user", username: "mock_account", account_type: "BUSINESS" });
     }
 
@@ -214,8 +263,9 @@ const server = http.createServer(async (req, res) => {
       if (id.startsWith("c_")) {
         const c = s.containers[id];
         if (!c) return graphError(res, 400, { code: 100, message: "container inexistente" });
+        bumpCall(s, "GET /:container (status)");
         const fail = failMode(s, query);
-        if (fail === "videoerror") return sendJson(res, 200, { status_code: "ERROR", status: "mock forced error" });
+        if (fail === "videoerror") { save(s); return sendJson(res, 200, { status_code: "ERROR", status: "mock forced error" }); }
         c.polls = (c.polls || 0) + 1;
         const need = s.control?.storyPolls || 0;
         if (c.polls >= need) c.status_code = "FINISHED";
@@ -223,6 +273,7 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, { status_code: c.status_code, status: c.status_code });
       }
       if (id.startsWith("p_")) {
+        bumpCall(s, "GET /:post (exists)"); save(s);
         if (s.deleted.includes(id)) return graphError(res, 400, { code: 100, message: "Unknown object id (apagado)" });
         return sendJson(res, 200, { id });
       }

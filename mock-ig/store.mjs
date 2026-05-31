@@ -11,11 +11,19 @@ const STORE_PATH = process.env.MOCK_IG_STORE
 const EMPTY = () => ({
   seq: 0,
   containers: {}, // id -> { type, image_url, video_url, children, caption, status_code, polls, createdAt }
-  feed: [],       // { postId, type, caption, slides:[url], createdAt }
-  stories: [],    // { postId, videoUrl, createdAt }
-  reels: [],      // { postId, videoUrl, caption, createdAt }
+  feed: [],       // { postId, type, caption, slides:[url], createdAt, apiCalls }
+  stories: [],    // { postId, videoUrl, createdAt, apiCalls }
+  reels: [],      // { postId, videoUrl, caption, createdAt, apiCalls }
   quotaUsage: 0,
   deleted: [],    // postIds marcados como apagados (pra ig-detect-deleted)
+  // Contagem de chamadas Graph API em DUAS dimensoes:
+  //  - callCount/callsByKind: ciclo atual (desde o ultimo publish). Cada
+  //    postagem "fecha" e registra quantas chamadas custou (medida POR POST).
+  //  - callLog: timestamps (ms) de TODAS as chamadas Graph, pra calcular o
+  //    acumulado da ultima HORA contra ~200 (o limite real do code 4 da Meta).
+  callCount: 0,
+  callsByKind: {},
+  callLog: [],    // [ms, ms, ...] timestamps das chamadas Graph (janela 1h)
 });
 
 export function load() {

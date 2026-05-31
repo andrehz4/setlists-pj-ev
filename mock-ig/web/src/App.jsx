@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchFeed, fetchStories, fetchReels, resetStore, poll } from "./api.js";
+import { fetchFeed, fetchStories, fetchReels, fetchUsage, resetStore, poll } from "./api.js";
+import UsageMeter from "./components/UsageMeter.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import StoriesBar from "./components/StoriesBar.jsx";
 import StoryViewer from "./components/StoryViewer.jsx";
@@ -19,13 +20,14 @@ export default function App() {
   const [showFail, setShowFail] = useState(false);
   const [previewPost, setPreviewPost] = useState(null);
   const [previewStory, setPreviewStory] = useState(null);
+  const [usage, setUsage] = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
     const stop = poll(async () => {
       try {
-        const [f, s, r] = await Promise.all([fetchFeed(), fetchStories(), fetchReels()]);
-        setFeed(f); setStories(s); setReels(r); setErr(null);
+        const [f, s, r, u] = await Promise.all([fetchFeed(), fetchStories(), fetchReels(), fetchUsage()]);
+        setFeed(f); setStories(s); setReels(r); setUsage(u); setErr(null);
       } catch (e) { setErr(e.message); }
     }, 3000);
     return stop;
@@ -53,6 +55,7 @@ export default function App() {
 
         {tab === "feed" && (
           <div className="ig-col">
+            {usage && <UsageMeter usage={usage} />}
             <StoriesBar stories={stories} onOpen={(i) => setOpenStory(i)} />
             <FeedGrid feed={feed} onOpen={(p) => setOpenPost(p)} />
           </div>
