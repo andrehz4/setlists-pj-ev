@@ -34,6 +34,25 @@ export default function PostModal({ post, onClose }) {
             </span>
           </div>
           <div className="side-body">
+            {post.apiCalls && (
+              <div className="call-meter">
+                <div className="call-meter-top">
+                  <span>custo deste post</span>
+                  <b>{post.apiCalls.total} <small>chamadas</small></b>
+                </div>
+                {post.apiCalls.byKind && (
+                  <ul className="call-kinds">
+                    {Object.entries(post.apiCalls.byKind).map(([k, v]) => (
+                      <li key={k}><code>{k}</code><span>{v}</span></li>
+                    ))}
+                  </ul>
+                )}
+                <p className="call-foot">
+                  cada chamada pesa no limite de ~200/h da app (code 4).
+                  carrossel cheio (10) custa 12.
+                </p>
+              </div>
+            )}
             <pre>{post.caption}</pre>
           </div>
         </div>

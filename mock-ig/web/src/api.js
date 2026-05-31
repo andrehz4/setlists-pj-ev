@@ -19,6 +19,13 @@ export async function fetchReels() {
   return r.json();
 }
 
+// Medidor horario: chamadas Graph na ultima hora vs ~200 (limite real code 4).
+export async function fetchUsage() {
+  const r = await fetch("/_mock/usage");
+  if (!r.ok) throw new Error("usage " + r.status);
+  return r.json();
+}
+
 export async function resetStore() {
   await fetch("/_mock/reset", { method: "POST" });
 }

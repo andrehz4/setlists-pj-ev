@@ -107,6 +107,37 @@ code {
 .ig-cell .multi { position: absolute; top: 8px; right: 8px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.4)); }
 .ig-cell-hover { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; background: rgba(0,0,0,.32); opacity: 0; transition: opacity .18s var(--ease); }
 .ig-cell:hover .ig-cell-hover { opacity: 1; }
+/* medidor horario global (limite real code 4: ~200/h) */
+.usage-meter { border: 1px solid var(--ig-border-soft); border-radius: 12px; padding: 14px 16px; margin-bottom: 22px; background: var(--ig-surface); box-shadow: var(--ig-shadow); }
+.usage-meter.over { border-color: var(--ig-pj); background: #fff7f7; }
+.usage-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.usage-label { font-size: 13px; font-weight: 600; color: var(--ig-ink); display: flex; flex-direction: column; gap: 2px; }
+.usage-label small { font-weight: 400; font-size: 11px; color: var(--ig-mut); }
+.usage-top b { font-size: 26px; font-variant-numeric: tabular-nums; line-height: 1; }
+.usage-top b span { font-size: 15px; color: var(--ig-mut); font-weight: 600; }
+.usage-meter.over .usage-top b { color: var(--ig-pj); }
+.usage-bar { position: relative; height: 8px; background: #ececec; border-radius: 5px; overflow: visible; margin: 12px 0 8px; }
+.usage-bar i { display: block; height: 100%; background: var(--ig-blue); border-radius: 5px; transition: width .4s var(--ease); }
+.usage-meter.over .usage-bar i { background: var(--ig-pj); }
+.usage-alarm { position: absolute; top: -3px; width: 2px; height: 14px; background: #999; border-radius: 1px; }
+.usage-msg { font-size: 12px; margin-top: 2px; }
+.usage-msg.ok { color: var(--ig-mut); }
+.usage-msg.over { color: var(--ig-pj); font-weight: 600; }
+
+/* badge de custo por post na celula do grid */
+.call-badge { position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,.72); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 20px; letter-spacing: .02em; }
+.call-badge.over { background: var(--ig-pj); }
+/* custo por post no modal */
+.call-meter { border: 1px solid var(--ig-border-soft); border-radius: 10px; padding: 12px; margin-bottom: 16px; background: #fafafa; }
+.call-meter-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--ig-mut); margin-bottom: 8px; }
+.call-meter-top b { font-size: 20px; color: var(--ig-ink); font-variant-numeric: tabular-nums; }
+.call-meter-top b small { font-size: 12px; color: var(--ig-mut); font-weight: 400; }
+.call-kinds { list-style: none; font-size: 12px; }
+.call-kinds li { display: flex; justify-content: space-between; padding: 2px 0; color: #555; }
+.call-kinds code { background: none; padding: 0; color: #555; }
+.call-kinds span { font-weight: 700; font-variant-numeric: tabular-nums; }
+.call-foot { color: var(--ig-mut); font-size: 11px; margin-top: 8px; line-height: 1.4; }
+
 .ig-empty { padding: 80px 20px; text-align: center; color: var(--ig-mut); }
 .ig-empty-ico { font-size: 40px; margin-bottom: 12px; opacity: .5; }
 .ig-empty p { margin-bottom: 10px; }

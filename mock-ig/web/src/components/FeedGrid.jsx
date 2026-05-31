@@ -27,6 +27,12 @@ export default function FeedGrid({ feed, onOpen }) {
         <button key={p.postId} className="ig-cell" onClick={() => onOpen(p)} title={p.caption}>
           <img src={p.slides[0]} alt="" loading="lazy" />
           {p.slides.length > 1 && <MultiIcon />}
+          {p.apiCalls && (
+            <span className={"call-badge" + (p.apiCalls.over ? " over" : "")}
+              title={`${p.apiCalls.total} chamadas Graph API pra publicar este post`}>
+              {p.apiCalls.total} chamadas
+            </span>
+          )}
           <span className="ig-cell-hover">▦ {p.slides.length}</span>
         </button>
       ))}
