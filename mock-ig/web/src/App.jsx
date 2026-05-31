@@ -22,6 +22,12 @@ export default function App() {
   const [previewStory, setPreviewStory] = useState(null);
   const [usage, setUsage] = useState(null);
   const [err, setErr] = useState(null);
+  const [theme, setTheme] = useState(() => localStorage.getItem("mockig-theme") || "night");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("mockig-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     const stop = poll(async () => {
@@ -46,6 +52,8 @@ export default function App() {
         reels={reels.length}
         onFail={() => setShowFail(true)}
         onReset={reset}
+        theme={theme}
+        onToggleTheme={() => setTheme((t) => (t === "night" ? "day" : "night"))}
       />
 
       <main className="ig-main">

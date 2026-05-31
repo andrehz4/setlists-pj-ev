@@ -25,7 +25,10 @@ function Icon({ d, active }) {
   );
 }
 
-export default function Sidebar({ tab, onTab, reels, onFail, onReset }) {
+const SUN = "M12 4V2M12 22v-2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z";
+const MOON = "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z";
+
+export default function Sidebar({ tab, onTab, reels, onFail, onReset, theme, onToggleTheme }) {
   const Item = ({ icon, label, active, onClick, badge }) => (
     <button className={"nav-item" + (active ? " active" : "")} onClick={onClick}>
       <span className="nav-ico"><Icon d={ICONS[icon]} active={active} />{badge ? <i className="dot" /> : null}</span>
@@ -48,6 +51,10 @@ export default function Sidebar({ tab, onTab, reels, onFail, onReset }) {
         <Item icon="profile" label="Perfil" />
       </nav>
       <div className="nav-foot">
+        <button className="nav-item" onClick={onToggleTheme}>
+          <span className="nav-ico"><Icon d={theme === "night" ? SUN : MOON} /></span>
+          <span className="nav-label">{theme === "night" ? "Tema dia" : "Tema noite"}</span>
+        </button>
         <Item icon="more" label="Simular erro" onClick={onFail} />
         <button className="nav-item ghost" onClick={onReset}>
           <span className="nav-ico"><Icon d="M4 4v6h6M20 20v-6h-6M20 9a8 8 0 0 0-15-1M4 15a8 8 0 0 0 15 1" /></span>
