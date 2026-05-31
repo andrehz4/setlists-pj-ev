@@ -86,6 +86,32 @@ function jaccard(a, b) {
   return union > 0 ? inter / union : 0;
 }
 
+// Numero minimo de tokens distintivos pra confiar no Jaccard. Com unigrama,
+// titulos curtos (2-3 tokens) deixam o Jaccard instavel: 2 nomes proprios em
+// comum (ex: "Matt Cameron") ja dao 0.5 e bloqueariam noticia de assunto
+// diferente. Abaixo desse minimo, exigimos um corte mais alto (SHORT_THRESHOLD).
+export const MIN_TOKENS = 4;
+export const SHORT_THRESHOLD = 0.5;
+
+// Helpers publicos reusados pela selecao de fila (pickMatureByTypeDiverse):
+// assinatura de topico de um texto (Set de unigramas distintivos) e similaridade
+// entre duas assinaturas. Reusam normalize/shinglize/jaccard ja calibrados aqui,
+// pra nao duplicar o algoritmo nem a lista de stopwords.
+export function topicSignature(text) {
+  return shinglize(normalize(text));
+}
+
+export function similarity(sigA, sigB) {
+  return jaccard(sigA, sigB);
+}
+
+// Corte efetivo dado o tamanho dos dois conjuntos comparados. Se qualquer um
+// for curto demais, sobe o corte pra evitar falso positivo de Set pequeno.
+function effectiveThreshold(sizeA, sizeB, base) {
+  if (sizeA < MIN_TOKENS || sizeB < MIN_TOKENS) return Math.max(base, SHORT_THRESHOLD);
+  return base;
+}
+
 // Le title_pt + intro_pt de um item da fila. Le items/<id>.json se
 // existir (fonte de body completo); cai pro proprio item se nao achar.
 async function hydrateText(item, indexById) {
@@ -151,6 +177,11 @@ export async function checkSimilarInHistory(candidates, {
 
   const allowed = [];
   const blocked = [];
+  // Candidatos ja aprovados NESTE batch viram historico pros proximos, senao
+  // duas reescritas do mesmo fato no mesmo batch passariam ambas (cada uma so
+  // se compara com o estado anterior, nao com a outra). Espelha o formato de
+  // buildHistoryShingles pra entrar no mesmo loop de comparacao.
+  const batchHistory = [];
 
   for (const cand of candidates) {
     const candText = `${cand.title_pt || cand.titulo_pt || ""} ${cand.intro_pt || ""}`.trim();
@@ -160,14 +191,17 @@ export async function checkSimilarInHistory(candidates, {
     }
     const candShingles = shinglize(normalize(candText));
     let best = { itemId: null, similarity: 0, textPreview: "" };
-    for (const h of history) {
+    for (const h of [...history, ...batchHistory]) {
       if (h.itemId === cand.id) continue; // nao compara com si mesmo
       const sim = jaccard(candShingles, h.shingles);
       if (sim > best.similarity) {
-        best = { itemId: h.itemId, similarity: sim, textPreview: h.textPreview, postedAt: h.postedAt };
+        best = { itemId: h.itemId, similarity: sim, textPreview: h.textPreview, postedAt: h.postedAt, shingleSize: h.shingles.size };
       }
     }
-    if (best.similarity >= threshold) {
+    // Guard de titulo curto: corte sobe quando candidato ou match tem poucos
+    // tokens, pra Jaccard de Set pequeno nao gerar falso positivo.
+    const effThreshold = effectiveThreshold(candShingles.size, best.shingleSize || 0, threshold);
+    if (best.similarity >= effThreshold) {
       blocked.push({
         candidate: cand,
         matchedTo: best.itemId,
@@ -177,14 +211,28 @@ export async function checkSimilarInHistory(candidates, {
       });
     } else {
       allowed.push(cand);
+      // aprovado vira historico pros proximos candidatos do mesmo batch
+      batchHistory.push({
+        itemId: cand.id,
+        postedAt: null,
+        shingles: candShingles,
+        textPreview: candText.slice(0, 120),
+      });
     }
   }
 
   return { allowed, blocked };
 }
 
+// TTL do tombstone: este arquivo e SO auditoria (o bloqueio real vem de
+// checkSimilarInHistory contra a janela de historyDays + pendentes; o
+// _skipped-similar.json nao bloqueia reentrada por si). O TTL existe so pra
+// nao crescer pra sempre: entradas mais velhas que isso sao podadas na leitura.
+const SKIPPED_TTL_DAYS = 30;
+
 // Anexa os bloqueados ao tombstone _skipped-similar.json. Idempotente
-// por candidate.id (nao duplica se rodar varias vezes).
+// por candidate.id (nao duplica se rodar varias vezes). Poda entradas
+// expiradas (> SKIPPED_TTL_DAYS) ao carregar, mantendo o arquivo enxuto.
 export async function recordSkipped(blocked, nowIso = new Date().toISOString()) {
   if (!blocked || blocked.length === 0) return 0;
   let doc = { skipped: [], updatedAt: null };
@@ -193,6 +241,12 @@ export async function recordSkipped(blocked, nowIso = new Date().toISOString()) 
     const parsed = JSON.parse(raw);
     if (parsed && Array.isArray(parsed.skipped)) doc = parsed;
   } catch {}
+  // poda expirados antes de anexar
+  const ttlCutoff = new Date(nowIso).getTime() - SKIPPED_TTL_DAYS * 24 * 60 * 60 * 1000;
+  doc.skipped = doc.skipped.filter((s) => {
+    const t = new Date(s.skippedAt || 0).getTime();
+    return !Number.isFinite(t) || t >= ttlCutoff;
+  });
   const existing = new Set(doc.skipped.map((s) => s.itemId));
   let added = 0;
   for (const b of blocked) {

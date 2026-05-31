@@ -25,6 +25,7 @@ const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
 const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
+const REJECTED_PATH = path.join(NEWS_DIR, "_rejected-curated.json");
 
 // Campos pesados (body_pt principalmente) vao pra arquivo proprio
 // em items/<id>.json. O index.json fica leve (so metadata + intro)
@@ -130,11 +131,13 @@ async function main() {
   const newItems = [];
   const acceptedIds = new Set();
   const mergeWarnings = [];
+  const rejected = []; // tombstone de auditoria (validacao falhou)
   for (const c of curatedInput) {
     const validated = validateCurated(c);
     if (!validated) {
       console.warn(`[merge] invalido (skip): ${c?.id || "?"}`);
       mergeWarnings.push(`Item invalido ignorado: id="${c?.id || "?"}" (titulo ausente, muito longo ou corpo curto demais)`);
+      rejected.push({ id: c?.id || null, reason: "validacao falhou (titulo ausente/longo ou corpo < 100)", at: new Date().toISOString() });
       continue;
     }
     const p = pendingById.get(validated.id);
@@ -190,9 +193,9 @@ async function main() {
     const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
 
     // Dedupe contra historico postado/pendente. Bloqueia items com Jaccard
-    // >= 0.55 contra qualquer post dos ultimos 7d ou pendente na fila.
-    // Bloqueados vao pro _skipped-similar.json (tombstone visivel pra
-    // auditoria manual).
+    // >= DEFAULT_THRESHOLD (0.30) contra qualquer post dos ultimos 7d ou
+    // pendente na fila. Bloqueados vao pro _skipped-similar.json (tombstone
+    // visivel pra auditoria manual).
     const { allowed, blocked: similarBlocked } = await checkSimilarInHistory(
       newItems,
       {
@@ -279,6 +282,24 @@ async function main() {
 
   await fs.writeFile(INDEX_PATH, JSON.stringify({ updated: new Date().toISOString(), items: lightItems }, null, 2));
   await fs.writeFile(SEEN_PATH, JSON.stringify(seen, null, 2));
+
+  // Tombstone de rejeitados na validacao (auditoria: por que um item curado
+  // nao entrou). Idempotente por id, podado em 30d. So escreve se houve algum.
+  if (rejected.length > 0) {
+    const now = new Date().toISOString();
+    const ttl = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    let doc = await readJson(REJECTED_PATH, { rejected: [], updatedAt: null });
+    if (!Array.isArray(doc.rejected)) doc = { rejected: [], updatedAt: null };
+    doc.rejected = doc.rejected.filter((r) => {
+      const t = new Date(r.at || 0).getTime();
+      return !Number.isFinite(t) || t >= ttl;
+    });
+    const seenIds = new Set(doc.rejected.map((r) => r.id));
+    for (const r of rejected) if (!r.id || !seenIds.has(r.id)) doc.rejected.push(r);
+    doc.updatedAt = now;
+    await fs.writeFile(REJECTED_PATH, JSON.stringify(doc, null, 2));
+    console.log(`[merge] _rejected-curated.json: +${rejected.length} registrado(s)`);
+  }
   if (remainingPending.length === 0) {
     await fs.unlink(PENDING_PATH).catch(() => {});
     console.log(`[merge] _pending.json zerado (deletado).`);
