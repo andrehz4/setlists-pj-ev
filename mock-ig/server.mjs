@@ -21,7 +21,7 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { load, save, reset, nextId, STORE_PATH } from "./store.mjs";
-import { loadCandidates, previewSlide } from "./preview.mjs";
+import { loadCandidates, previewSlide, nextRunDetail } from "./preview.mjs";
 import { listRuns, runDetail } from "./runs.mjs";
 
 const PORT = Number(process.env.MOCK_IG_PORT || 8788);
@@ -185,19 +185,25 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, await previewSlide(b.id));
       } catch (e) { return sendJson(res, 500, { error: e.message }); }
     }
-    // lista as ultimas runs do Action (gh CLI)
+    // lista as ultimas runs do Action (gh CLI) + a PROXIMA (fila atual) no topo
     if (pathname === "/_mock/runs") {
-      try { return sendJson(res, 200, await listRuns(6)); }
-      catch (e) { return sendJson(res, 500, { error: "gh CLI: " + e.message }); }
+      try {
+        const past = await listRuns(6);
+        const next = { id: "next", status: "next", createdAt: null, event: "fila atual" };
+        return sendJson(res, 200, [next, ...past]);
+      } catch (e) {
+        // sem gh: ainda mostra a proxima (nao depende do gh)
+        return sendJson(res, 200, [{ id: "next", status: "next", createdAt: null, event: "fila atual" }]);
+      }
     }
     // simula uma run: gera o slide+caption de cada id que ela tentou postar
     if (pathname === "/_mock/run" && method === "POST") {
       try {
         const b = await readBody(req);
         if (!b.id) return sendJson(res, 400, { error: "id da run obrigatorio" });
-        const idxDoc = JSON.parse(fs.readFileSync(path.join(SERVE_ROOT, "media/news/index.json"), "utf8"));
-        const indexById = new Map((idxDoc.items || []).map((x) => [x.id, x]));
-        const detail = await runDetail(b.id, indexById);
+        // "next" = a PROXIMA run (o que vai rodar agora, da fila real).
+        const detail = b.id === "next" ? await nextRunDetail()
+          : await runDetail(b.id, new Map((JSON.parse(fs.readFileSync(path.join(SERVE_ROOT, "media/news/index.json"), "utf8")).items || []).map((x) => [x.id, x])));
         // gera o preview real (slide + caption) de cada id, por batch, e monta
         // o CARROSSEL como iria pro IG, com o custo de chamadas Graph.
         let runCalls = 0;

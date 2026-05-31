@@ -46,13 +46,23 @@ export default function RunsLab({ onPreview }) {
 
       <div className="runs-list">
         {runs.map((r) => (
-          <button key={r.id} className={"run-row st-" + r.status + (sel === r.id ? " on" : "")} onClick={() => pick(r.id)}>
-            <span className={"run-dot st-" + r.status} />
-            <span className="run-when">{brt(r.createdAt)}</span>
-            <span className="run-id mono">#{r.id.slice(-5)}</span>
-            <span className="run-status">{STATUS_LABEL[r.status] || r.status}</span>
-            <span className="run-go">simular →</span>
-          </button>
+          r.id === "next" ? (
+            <button key="next" className={"run-row is-next" + (sel === "next" ? " on" : "")} onClick={() => pick("next")}>
+              <span className="run-dot st-next" />
+              <span className="run-when">Proxima run</span>
+              <span className="run-id mono">fila atual</span>
+              <span className="run-status">vai rodar</span>
+              <span className="run-go">simular →</span>
+            </button>
+          ) : (
+            <button key={r.id} className={"run-row st-" + r.status + (sel === r.id ? " on" : "")} onClick={() => pick(r.id)}>
+              <span className={"run-dot st-" + r.status} />
+              <span className="run-when">{brt(r.createdAt)}</span>
+              <span className="run-id mono">#{r.id.slice(-5)}</span>
+              <span className="run-status">{STATUS_LABEL[r.status] || r.status}</span>
+              <span className="run-go">simular →</span>
+            </button>
+          )
         ))}
       </div>
 
