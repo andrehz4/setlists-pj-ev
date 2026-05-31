@@ -156,14 +156,32 @@ O mock e standalone. Pra testar qualquer app que publique no IG:
 | `mock.test.mjs` | testes do mock (`node --test mock-ig/mock.test.mjs`) |
 | `_control.json` | modo de falha persistente (commitado, default null) |
 | `_store.json` | estado runtime (gitignored) |
-| `web/` | front React+Vite (feed/stories/reels) — em construcao |
+| `web/` | front React+Vite (feed grid, carrossel, stories, reels placeholder) |
+
+## Front (ver a publicacao numa tela)
+
+O front React+Vite vive em `mock-ig/web/` (package.json proprio, isolado).
+
+```bash
+cd mock-ig/web && npm install     # 1a vez
+# dev (hot reload, proxy pro mock server):
+npm run dev                        # abre http://127.0.0.1:5273
+# ou build estatico servido pelo proprio mock server:
+npm run build                      # gera web/dist
+# entao acesse http://127.0.0.1:8788/ (o server.mjs serve o dist/)
+```
+
+Fluxo tipico: `mock:server` (terminal 1) + `mock:publish` (terminal 2) + abrir o
+front. O front faz polling de `/_mock/feed` e `/_mock/stories` a cada 3s, entao
+o post aparece sozinho apos publicar. Telas: Feed (grid 3 col + carrossel no
+clique), barra de Stories (viewer fullscreen com progress bar), Reels (placeholder).
 
 ## Status
 
 - [x] Fase 1: env `IG_API_BASE` + mock server (caminho feliz) + run/reset + testes
-- [ ] Fase 2: front React (feed grid + carrossel)
-- [ ] Fase 3: stories (barra + viewer de video)
-- [ ] Fase 4: injecao de erro completa + placeholder reels
+- [x] Fase 2: front React (feed grid + carrossel + stories bar/viewer + reels placeholder)
+- [ ] Fase 3: gerar story real (`run-publish-story`) contra o mock e validar no viewer
+- [ ] Fase 4: injecao de erro completa via `/_mock/fail` + reels de verdade
 
 ## Producao esta segura?
 
