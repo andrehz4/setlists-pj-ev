@@ -16,10 +16,16 @@
     "publish:smoke": "node scripts/publish/smoke-test.mjs",
     "publish:story:dry": "node scripts/publish/run-publish-story.mjs --dry-run --no-git",
     "publish:story": "node scripts/publish/run-publish-story.mjs",
+    "mock:server": "node mock-ig/server.mjs",
+    "mock:reset": "node mock-ig/reset.mjs",
+    "mock:seed": "node scripts/publish/seed-queue.mjs --count=6",
+    "mock:publish": "node mock-ig/run.mjs feed",
+    "mock:story": "node mock-ig/run.mjs story",
     "test:cifras": "node --test scripts/cifras-coverage.test.mjs",
     "test:band": "node --test scripts/publish/band-fallback.test.mjs",
     "test:select": "node --test scripts/publish/queue-select.test.mjs",
-    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs"
+    "test:mock": "node --test mock-ig/mock.test.mjs",
+    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs mock-ig/mock.test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",
