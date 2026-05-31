@@ -183,7 +183,8 @@ clique), barra de Stories (viewer fullscreen com progress bar), Reels (placehold
 - [x] Fase 2: front React (feed grid + carrossel + stories bar/viewer + reels placeholder)
 - [x] Fase 3: story contra o mock (caminho real createStory->poll->publish), via
       `mock:story` (gera MP4 com ffmpeg) ou `mock:story:reuse` (reusa MP4 existente)
-- [ ] Fase 4: injecao de erro completa via `/_mock/fail` na UI + reels de verdade
+- [x] Fase 4: painel de injecao de erro no front (rate limit, quota, video error,
+      polls) + reels (aba funcional, `mock:reel:reuse` publica reel reusando MP4)
 
 ## Producao esta segura?
 

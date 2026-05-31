@@ -80,6 +80,34 @@ test("injecao ratelimit retorna code 4", async () => {
   assert.equal(pub.body.error.error_subcode, 2207051);
 });
 
+test("reel: container REELS + publish vira reel", async () => {
+  await post("/_mock/reset", {});
+  const c = await post("/u/media", { media_type: "REELS", video_url: "http://x/r.mp4", caption: "meu reel" });
+  const pub = await post("/u/media_publish", { creation_id: c.body.id });
+  assert.match(pub.body.id, /^p_/);
+  const reels = await get("/_mock/reels");
+  assert.equal(reels.body.length, 1);
+  assert.equal(reels.body[0].videoUrl, "http://x/r.mp4");
+  assert.equal(reels.body[0].caption, "meu reel");
+});
+
+test("quota saturada via fail: usage volta 49", async () => {
+  await post("/_mock/reset", {});
+  await post("/_mock/fail", { fail: "quota" });
+  const q = await get("/u/content_publishing_limit?fields=quota_usage,config");
+  assert.equal(q.body.quota_usage, 49);
+  await post("/_mock/fail", { fail: "none" });
+});
+
+test("control reflete o fail setado", async () => {
+  await post("/_mock/fail", { fail: "videoerror" });
+  const c = await get("/_mock/control");
+  assert.equal(c.body.fail, "videoerror");
+  await post("/_mock/fail", { fail: "none" });
+  const c2 = await get("/_mock/control");
+  assert.equal(c2.body.fail, null);
+});
+
 test("post deletado retorna code 100 no exists", async () => {
   await post("/_mock/reset", {});
   const c = await post("/u/media", { media_type: "IMAGE", image_url: "http://x/1.jpg" });

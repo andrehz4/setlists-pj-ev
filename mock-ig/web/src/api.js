@@ -13,8 +13,27 @@ export async function fetchStories() {
   return r.json();
 }
 
+export async function fetchReels() {
+  const r = await fetch("/_mock/reels");
+  if (!r.ok) throw new Error("reels " + r.status);
+  return r.json();
+}
+
 export async function resetStore() {
   await fetch("/_mock/reset", { method: "POST" });
+}
+
+export async function fetchControl() {
+  const r = await fetch("/_mock/control");
+  if (!r.ok) throw new Error("control " + r.status);
+  return r.json();
+}
+
+// Liga/desliga modo de falha no mock (ratelimit, quota, videoerror) + storyPolls.
+export async function setFail(fail, storyPolls = 0) {
+  const body = new URLSearchParams({ fail: fail || "none", storyPolls: String(storyPolls) });
+  const r = await fetch("/_mock/fail", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body });
+  return r.json();
 }
 
 // Polling simples: chama fn a cada ms, retorna funcao de cleanup.
