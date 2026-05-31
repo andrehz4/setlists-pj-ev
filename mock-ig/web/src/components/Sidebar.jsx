@@ -60,6 +60,7 @@ export default function Sidebar({ tab, onTab, reels, onFail, onReset, theme, onT
       </nav>
       <div className="nav-foot">
         <span className="nav-status"><i /> mock ativo · porta 8788</span>
+        <span className="nav-build">build {typeof __BUILD__ !== "undefined" ? __BUILD__ : "dev"}</span>
       </div>
     </aside>
   );
