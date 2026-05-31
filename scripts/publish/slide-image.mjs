@@ -660,8 +660,12 @@ function buildCoverFrontSvg(leadItem, bg = "#0a0a0a") {
 }
 
 // Slide Card 02 (noticia/solo). Cache proprio (.card02.jpg).
-async function buildCard02Slide(item) {
-  const dest = path.join(SLIDES_DIR, `${item.id}.card02.jpg`);
+// outDir opcional (default SLIDES_DIR): o preview gera num dir separado sem
+// sujar a producao.
+async function buildCard02Slide(item, { outDir } = {}) {
+  const dir = outDir || SLIDES_DIR;
+  if (outDir) await fs.mkdir(dir, { recursive: true });
+  const dest = path.join(dir, `${item.id}.card02.jpg`);
   try {
     const st = await fs.stat(dest);
     if (st.size > 1024) return { path: dest, reused: true };
