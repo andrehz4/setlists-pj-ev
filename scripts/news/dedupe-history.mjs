@@ -10,10 +10,19 @@
 // Algoritmo:
 //   1. Pega items da queue: postados nos ultimos `historyDays` + pendentes
 //   2. Hidrata title_pt + intro_pt de cada um (le items/<id>.json se preciso)
-//   3. Normaliza texto (lowercase, sem acentos/stopwords) e gera shingles 4-grams
+//   3. Normaliza texto (lowercase, sem acentos/stopwords) e gera shingles
+//      de 1 palavra (unigramas). 4-grams nao pegavam saga reescrita por
+//      varios veiculos (cada versao mudava o suficiente pra cair < threshold).
 //   4. Pra cada candidato, calcula Jaccard contra todo o historico
-//   5. Se best match >= threshold (default 0.55), candidato e bloqueado
+//   5. Se best match >= threshold (default 0.30), candidato e bloqueado
 //   6. Bloqueados vao pra _skipped-similar.json (tombstone visivel)
+//
+// Calibragem (2026-05-31): rodado sobre o acervo real, TODOS os 18 pares
+// com Jaccard unigrama (sem stopwords de dominio) >= 0.20 eram da mesma
+// saga ("novo baterista do PJ"); nenhuma noticia nao-relacionada chegou a
+// 0.20. Threshold 0.30 pega as reescritas do mesmo fato sem falso positivo.
+// O segredo e remover tokens onipresentes do dominio (pearl, jam, eddie,
+// vedder...) que senao inflavam a similaridade de TUDO.
 
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -22,8 +31,8 @@ const ITEMS_DIR = path.resolve("media/news/items");
 const SKIPPED_PATH = path.resolve("media/news/_skipped-similar.json");
 
 export const DEFAULT_HISTORY_DAYS = 7;
-export const DEFAULT_THRESHOLD = 0.55;
-const SHINGLE_SIZE = 4;
+export const DEFAULT_THRESHOLD = 0.30;
+const SHINGLE_SIZE = 1; // unigramas: melhor pra texto curto reescrito
 
 const STOPWORDS_PT = new Set([
   "o", "a", "os", "as", "de", "do", "da", "dos", "das",
@@ -33,7 +42,16 @@ const STOPWORDS_PT = new Set([
   "com", "por", "para", "pelo", "pela", "pelos", "pelas",
   "mais", "menos", "ja", "já", "só", "so", "muito", "muita",
   "este", "esta", "esse", "essa", "isso", "isto", "aquele", "aquela",
+  "vai", "ser", "sera", "será", "seu", "sua", "dia", "sobre", "apos", "após", "ate", "até", "entre",
   "the", "of", "an", "and", "or", "to", "in", "on", "at", "for", "with",
+]);
+
+// Stopwords de DOMINIO: tokens onipresentes no corpus do PJ que aparecem em
+// quase toda noticia e por isso inflam a similaridade de qualquer par. Sem
+// remove-los, "pearl"/"jam" sozinhos ja davam falsa semelhanca. Removendo,
+// a comparacao foca nos tokens distintivos (baterista, ohana, krusen...).
+const STOPWORDS_DOMAIN = new Set([
+  "pearl", "jam", "pj", "eddie", "vedder", "banda", "grunge", "seattle",
 ]);
 
 function normalize(text) {
@@ -42,7 +60,7 @@ function normalize(text) {
     .normalize("NFD").replace(/[̀-ͯ]/g, "")
     .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
-    .filter((w) => w && w.length > 1 && !STOPWORDS_PT.has(w))
+    .filter((w) => w && w.length > 2 && !STOPWORDS_PT.has(w) && !STOPWORDS_DOMAIN.has(w))
     .join(" ");
 }
 
