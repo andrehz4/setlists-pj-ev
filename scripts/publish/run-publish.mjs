@@ -36,6 +36,17 @@ const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
+const DETECT_STAMP_PATH = path.join(NEWS_DIR, "_detect-deleted-stamp.json");
+
+// Reducao de volume de chamadas (o feed estourava o limite da app code 4 por
+// fazer ~15-25 chamadas/run vs ~2 do story). Dois cortes de overhead:
+//  - deteccao de apagados (~5-33 GETs) so 1x a cada DETECT_INTERVAL_H horas.
+//  - pre-check de quota pulado por padrao (reporta 0/50 mesmo com a app
+//    throttled, entao nao protege de nada e ainda gasta 1 chamada). Reativavel
+//    via IG_QUOTA_PRECHECK=1.
+const DETECT_INTERVAL_H = Number.isFinite(Number(process.env.IG_DETECT_INTERVAL_H)) && Number(process.env.IG_DETECT_INTERVAL_H) > 0
+  ? Number(process.env.IG_DETECT_INTERVAL_H) : 20;
+const QUOTA_PRECHECK = process.env.IG_QUOTA_PRECHECK === "1";
 
 // Ciclo de cores da tarja superior do slide. Muda a cada POSTS_PER_COLOR
 // posts publicados, dando dinamica visual no feed sem perder identidade.
@@ -508,11 +519,13 @@ async function main() {
     }
   }
 
-  // Pre-check de quota IG. Se saturado, aborta antes de gerar slides e
-  // queimar mais quota com retries. Margem de seguranca em ig-quota.mjs.
-  // Em DRY pula o check (DRY nao chama IG API entao nao queima quota).
+  // Pre-check de quota IG. DESLIGADO por padrao: o endpoint content_publishing
+  // _limit reporta a cota de publishes (50/24h), nao o limite DA APP (code 4)
+  // que e o que realmente derruba o feed. Com a app throttled ele devolve 0/50
+  // (livre) e a run segue pra estourar no publish mesmo assim. Ou seja: nao
+  // protege de nada e ainda gasta 1 chamada/run. Reativavel via IG_QUOTA_PRECHECK=1.
   let quotaInfo = null;
-  if (!DRY) {
+  if (!DRY && QUOTA_PRECHECK) {
     try {
       quotaInfo = await getContentPublishingLimit();
       console.log(`[publish] quota IG: ${quotaInfo.usage}/${quotaInfo.total} usados, ${quotaInfo.remaining} restantes (margem=${QUOTA_SAFETY_MARGIN})`);
@@ -561,11 +574,22 @@ async function main() {
 
   // Auto-deteccao: bate GET /<postId> nos posts recentes pra ver quais
   // sumiram do IG (Andre apagou no app). Adiciona a denylist + grava.
-  // So roda quando NAO e DRY (precisa de IG_ACCESS_TOKEN real e queima
-  // ~5-30 GETs por run, sob o limite de 200/hora).
+  // ~5-33 GETs por run: era o maior ofensor de volume de chamadas. Agora so
+  // roda 1x a cada DETECT_INTERVAL_H horas (default 20h, ~1x/dia), nao toda
+  // run. Apagar post e raro; checar de hora em hora nao agrega e estourava o
+  // limite da app. O timestamp da ultima checagem fica em _detect-deleted-stamp.json.
+  let detectRan = false;
   if (!DRY) {
+    const stamp = await readJson(DETECT_STAMP_PATH, { lastAt: null });
+    const lastMs = stamp.lastAt ? new Date(stamp.lastAt).getTime() : 0;
+    const dueMs = DETECT_INTERVAL_H * 60 * 60 * 1000;
+    if (Date.now() - lastMs < dueMs) {
+      const hLeft = ((dueMs - (Date.now() - lastMs)) / 3600000).toFixed(1);
+      console.log(`[publish] deteccao de apagados: pulada (proxima em ~${hLeft}h, intervalo ${DETECT_INTERVAL_H}h)`);
+    } else {
     try {
       const det = await detectDeletedPosts({ queue, lookbackDays: 30 });
+      detectRan = true;
       if (det.deletedItems.length > 0) {
         let addedCount = 0;
         for (const di of det.deletedItems) {
@@ -593,6 +617,11 @@ async function main() {
     } catch (e) {
       console.warn(`[publish] auto-deteccao de apagados falhou (segue): ${e.message}`);
     }
+    }
+  }
+  // marca o timestamp da deteccao (mesmo se falhou: nao re-tenta a cada run).
+  if (detectRan) {
+    await fs.writeFile(DETECT_STAMP_PATH, JSON.stringify({ lastAt: nowIso }, null, 2));
   }
 
   console.log(`[publish] queue: ${queue.items.length} items totais, ${queue.items.filter((q) => !q.postedAt).length} pendentes, postCount=${queue.postCount}, denylist=${denylist.deleted.length}`);
@@ -662,6 +691,7 @@ async function main() {
       "media/news/_ig-cooldown.json",
       "media/news/_ig-exists-cache.json",
       "media/news/_skipped-stale.json",
+      "media/news/_detect-deleted-stamp.json",
     ],
     `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
   );
