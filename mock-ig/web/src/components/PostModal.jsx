@@ -16,8 +16,8 @@ export default function PostModal({ post, onClose }) {
           <img src={post.slides[i]} alt="" />
           {n > 1 && (
             <>
-              {i > 0 && <button className="nav left" onClick={prev}>‹</button>}
-              {i < n - 1 && <button className="nav right" onClick={next}>›</button>}
+              {i > 0 && <button className="carousel-nav left" onClick={prev}>‹</button>}
+              {i < n - 1 && <button className="carousel-nav right" onClick={next}>›</button>}
               <div className="counter">{i + 1}/{n}</div>
               <div className="dots">
                 {post.slides.map((_, k) => <span key={k} className={k === i ? "on" : ""} />)}
