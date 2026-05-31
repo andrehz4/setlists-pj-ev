@@ -185,6 +185,10 @@ clique), barra de Stories (viewer fullscreen com progress bar), Reels (placehold
       `mock:story` (gera MP4 com ffmpeg) ou `mock:story:reuse` (reusa MP4 existente)
 - [x] Fase 4: painel de injecao de erro no front (rate limit, quota, video error,
       polls) + reels (aba funcional, `mock:reel:reuse` publica reel reusando MP4)
+- [x] Simulador (aba "Simulador"): lista o material real da fila (pendentes + postados,
+      por tipo) e os stories gerados; clica num item e ve como ficaria o post no IG
+      (slide + caption reais). READ-ONLY: nao publica, nao altera a fila; slide vai pra
+      media/news/_preview/ (gitignored). Rotas GET /_mock/candidates, POST /_mock/preview.
 
 ## Producao esta segura?
 

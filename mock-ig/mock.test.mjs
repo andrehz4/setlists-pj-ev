@@ -27,6 +27,41 @@ async function post(p, body) {
 }
 async function get(p) { const r = await fetch(base + p); return { status: r.status, body: await r.json() }; }
 
+test("simulador: candidates separa por tipo e status (read-only)", async () => {
+  const r = await get("/_mock/candidates");
+  assert.equal(r.status, 200);
+  // estrutura esperada (valores dependem do estado real do repo, so checa shape)
+  assert.ok(r.body.pending && r.body.posted && Array.isArray(r.body.stories));
+  for (const grp of [r.body.pending, r.body.posted]) {
+    assert.ok(Array.isArray(grp.regular) && Array.isArray(grp.spotlight) && Array.isArray(grp.digest));
+    // nenhum cd-/cs- classificado como regular
+    for (const it of grp.regular) {
+      assert.ok(!it.id.startsWith("cd-") && !it.id.startsWith("cs-"), `regular mal-classificado: ${it.id}`);
+    }
+    // max 3 por grupo
+    assert.ok(grp.regular.length <= 3 && grp.spotlight.length <= 3 && grp.digest.length <= 3);
+  }
+});
+
+test("simulador: preview gera slide + caption sem tocar a fila", async () => {
+  const cand = await get("/_mock/candidates");
+  const all = [
+    ...cand.body.pending.regular, ...cand.body.pending.spotlight, ...cand.body.pending.digest,
+    ...cand.body.posted.regular, ...cand.body.posted.spotlight, ...cand.body.posted.digest,
+  ];
+  if (all.length === 0) return; // repo sem itens: nada a testar
+  const r = await post("/_mock/preview", { id: all[0].id });
+  assert.equal(r.status, 200);
+  assert.ok(r.body.slideUrl.includes("_preview"), "slide deve ir pra _preview");
+  assert.ok(r.body.caption && r.body.caption.includes("#pearljam"), "caption deve ter hashtags");
+});
+
+test("simulador: preview de id inexistente retorna erro tratado", async () => {
+  const r = await post("/_mock/preview", { id: "id-que-nao-existe-xyz" });
+  assert.equal(r.status, 500);
+  assert.ok(r.body.error);
+});
+
 test("carrossel: 2 containers + carousel + publish vira post no feed", async () => {
   await post("/_mock/reset", {});
   const c1 = await post("/u/media", { media_type: "IMAGE", image_url: "http://x/1.jpg", is_carousel_item: "true" });

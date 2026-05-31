@@ -21,6 +21,7 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { load, save, reset, nextId, STORE_PATH } from "./store.mjs";
+import { loadCandidates, previewSlide } from "./preview.mjs";
 
 const PORT = Number(process.env.MOCK_IG_PORT || 8788);
 const SERVE_ROOT = path.resolve(process.env.MOCK_SERVE_ROOT || process.cwd());
@@ -111,6 +112,19 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/_mock/state") { return sendJson(res, 200, load()); }
     if (pathname === "/_mock/control") { const s = load(); return sendJson(res, 200, s.control || { fail: null, storyPolls: 0 }); }
     if (pathname === "/_mock/reset" && method === "POST") { return sendJson(res, 200, reset()); }
+
+    // ---------- simulador (preview sob demanda, read-only) ----------
+    if (pathname === "/_mock/candidates") {
+      try { return sendJson(res, 200, await loadCandidates()); }
+      catch (e) { return sendJson(res, 500, { error: e.message }); }
+    }
+    if (pathname === "/_mock/preview" && method === "POST") {
+      try {
+        const b = await readBody(req);
+        if (!b.id) return sendJson(res, 400, { error: "id obrigatorio" });
+        return sendJson(res, 200, await previewSlide(b.id));
+      } catch (e) { return sendJson(res, 500, { error: e.message }); }
+    }
     if (pathname === "/_mock/fail" && method === "POST") {
       const b = await readBody(req); const s = load();
       s.control = {

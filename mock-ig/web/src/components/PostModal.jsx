@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-// Abre o post: carrossel navegavel (setas + dots) + caption + contador.
+// Post aberto estilo IG desktop: imagem/carrossel a esquerda, painel com
+// autor + caption a direita.
 export default function PostModal({ post, onClose }) {
   const [i, setI] = useState(0);
   const n = post.slides.length;
@@ -9,6 +10,7 @@ export default function PostModal({ post, onClose }) {
 
   return (
     <div className="modal-bg" onClick={onClose}>
+      <button className="close" onClick={onClose}>×</button>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="carousel">
           <img src={post.slides[i]} alt="" />
@@ -23,11 +25,18 @@ export default function PostModal({ post, onClose }) {
             </>
           )}
         </div>
-        <div className="caption">
-          <span className="type">{post.type === "CAROUSEL" ? "carrossel" : "post"}</span>
-          <pre>{post.caption}</pre>
+        <div className="side">
+          <div className="side-head">
+            <span className="av" />
+            smufdpj
+            <span style={{ marginLeft: "auto", fontSize: 11, color: "var(--ig-pj)", fontWeight: 700 }}>
+              {post.type === "CAROUSEL" ? "CARROSSEL" : "POST"}
+            </span>
+          </div>
+          <div className="side-body">
+            <pre>{post.caption}</pre>
+          </div>
         </div>
-        <button className="close" onClick={onClose}>fechar</button>
       </div>
     </div>
   );

@@ -36,6 +36,21 @@ export async function setFail(fail, storyPolls = 0) {
   return r.json();
 }
 
+// Simulador: material disponivel (read-only) e geracao de previa sob demanda.
+export async function fetchCandidates() {
+  const r = await fetch("/_mock/candidates");
+  if (!r.ok) throw new Error("candidates " + r.status);
+  return r.json();
+}
+
+export async function requestPreview(id) {
+  const body = new URLSearchParams({ id });
+  const r = await fetch("/_mock/preview", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || ("preview " + r.status));
+  return j;
+}
+
 // Polling simples: chama fn a cada ms, retorna funcao de cleanup.
 export function poll(fn, ms = 3000) {
   fn();

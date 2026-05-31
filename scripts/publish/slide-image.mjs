@@ -722,15 +722,17 @@ export async function buildCoverSlide(leadItem, destId, bg = "#0a0a0a") {
   return { path: dest, id: destId, reused: false };
 }
 
-export async function buildSlide(item) {
+export async function buildSlide(item, { outDir } = {}) {
   await ensureSlidesDir();
 
   if (LAYOUT === "card02") {
-    return buildCard02Slide(item);
+    return buildCard02Slide(item, { outDir });
   }
 
   // ===== CAMINHO CADERNOB (layout em producao, intocado) =====
-  const dest = path.join(SLIDES_DIR, `${item.id}.jpg`);
+  const dir = outDir || SLIDES_DIR;
+  if (outDir) await fs.mkdir(dir, { recursive: true });
+  const dest = path.join(dir, `${item.id}.jpg`);
   try {
     const st = await fs.stat(dest);
     if (st.size > 1024) return { path: dest, reused: true };
@@ -836,11 +838,11 @@ export async function buildSlide(item) {
   return { path: dest, reused: false };
 }
 
-export async function buildSlides(items) {
+export async function buildSlides(items, opts = {}) {
   const out = [];
   for (const it of items) {
     try {
-      const r = await buildSlide(it);
+      const r = await buildSlide(it, opts);
       out.push({ id: it.id, path: r.path, reused: r.reused });
     } catch (e) {
       console.warn(`[slide] falha em ${it.id}: ${e.message}`);
