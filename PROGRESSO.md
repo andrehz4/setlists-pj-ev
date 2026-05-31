@@ -11,12 +11,14 @@ Foco da sessão foi o **pipeline de publicação no Instagram (@smufdpj)** e a c
 2. **Volume de chamadas estourando code 4 (REDUZIDO):** o feed fazia ~15-25 chamadas/run vs ~2 do story. Cortei o overhead (commit `ac63a07`): detecção de apagados de toda run pra 1x/dia (env `IG_DETECT_INTERVAL_H=20`); pre-check de quota desligado por padrão (mentia, env `IG_QUOTA_PRECHECK=1` reativa).
 3. **App throttled no Meta (PENDENTE, só Andre resolve):** o `code=4 Application request limit reached` é throttle da app no lado da Meta. Nenhum código nosso destrava, só o painel Meta (developers.facebook.com → app → tier/restrição).
 
-**Limites reais da Meta (pesquisados):** o que derruba o feed é ~200 chamadas/HORA (app inteira, janela rolling). Carrossel de 10 fotos = 12 chamadas. Content publishing = 50 posts/24h (carrossel conta como 1). O gargalo é o horário.
+**Limite real (confirmado na doc oficial):** o erro que derruba o feed é **code 4 = limite DA APP (Platform)**, fórmula `200 × usuários ativos`, janela de **1 HORA**. O `4800 × impressões/24h` é OUTRO limite (BUC Instagram, code 80002) que NÃO estamos batendo. O pipeline agora loga o header `X-App-Usage` (call_count em % da janela de 1h) em toda chamada (commit `0a048ce`), então a próxima run real mostra o número exato da conta. Mock modela o code 4 (200/h, env MOCK_USERS), commit `d66f447`.
+
+**PISTA FORTE (2026-05-31, fim da sessão):** o painel do Meta acusou **"URL da Política de Privacidade inválido. Você deve fornecer um URL válido para que seu app fique ativo. Configuração do app → Básico"**. Isso pode ser a CAUSA RAIZ: sem política de privacidade válida, o app **não fica Live** e roda em modo restrito (limite de chamadas muito menor). Provável que o code 4 venha disso, não de volume. **Próximo passo nº1 do Andre.**
 
 ## Próximo passo concreto
-1. **Andre: checar o painel do Meta** (developers.facebook.com → app @smufdpj → ver se a app está restrita/rebaixada de tier, pedir aumento de limite ou app review). É o gargalo real do feed.
-2. Usar o mock-ig pra continuar reduzindo o pipeline e ver o medidor horário ficar verde antes de mandar pra produção (ciclo: reduzir → rodar no mock → medir → deploy).
-3. Considerar reduzir slides por carrossel (hoje até 9+capa = ~12 chamadas) se o teto da app for baixo.
+1. **Andre: corrigir a URL da Política de Privacidade** no painel (developers.facebook.com → app @smufdpj → **Configurações → Básico** → campo "URL da Política de Privacidade"). O site tem `setlists-pj-ev.pages.dev`; criar/apontar uma página de política (ex: `/privacidade` ou `/politica-de-privacidade`). Sem isso o app não fica Live = limite restrito. Depois confirmar que o app virou **Live/Ativo** (toggle no topo do painel).
+2. Após virar Live, disparar um `gh workflow run publish-instagram.yml` manual e ler o log: o `[ig-usage] x-app-usage call_count=X%` mostra quão perto do limite a conta está agora.
+3. Usar o mock-ig pra continuar reduzindo o pipeline e ver o medidor ficar verde antes de mandar pra produção (ciclo: reduzir → rodar no mock → medir → deploy).
 
 ## mock-ig: Instagram fake local (NOVO, completo)
 Pasta `mock-ig/` (genérica, serve qualquer app que publique no IG, inclusive Terra Gentil). Doc em `mock-ig/README.md`. Interceptação por env `IG_API_BASE` (default = Graph real, produção intocada).
