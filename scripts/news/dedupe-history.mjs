@@ -90,7 +90,7 @@ function jaccard(a, b) {
 // titulos curtos (2-3 tokens) deixam o Jaccard instavel: 2 nomes proprios em
 // comum (ex: "Matt Cameron") ja dao 0.5 e bloqueariam noticia de assunto
 // diferente. Abaixo desse minimo, exigimos um corte mais alto (SHORT_THRESHOLD).
-export const MIN_TOKENS = 4;
+export const MIN_TOKENS = 5;
 export const SHORT_THRESHOLD = 0.5;
 
 // Helpers publicos reusados pela selecao de fila (pickMatureByTypeDiverse):
