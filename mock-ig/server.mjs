@@ -51,6 +51,14 @@ function sendJson(res, status, obj) {
   send(res, status, obj, { "Content-Type": "application/json; charset=utf-8" });
 }
 
+// Resposta Graph COM o header x-app-usage (como a Meta real manda). call_count
+// e o % do uso horario no mock. Assim o pipeline pode ler o header e logar.
+function sendGraph(res, status, obj, store) {
+  const u = hourlyUsage(store);
+  const appUsage = JSON.stringify({ call_count: u.pct, total_time: u.pct, total_cputime: Math.round(u.pct / 2) });
+  send(res, status, obj, { "Content-Type": "application/json; charset=utf-8", "x-app-usage": appUsage });
+}
+
 // Erro tipado da Graph API. code 4 = limite da app (rate limit), code 100 =
 // objeto inexistente, etc. Formato exato que o cliente (classifyIGError) le.
 function graphError(res, status, { code, subcode, message }) {
@@ -73,21 +81,23 @@ function failMode(store, query) {
   return process.env.MOCK_IG_FAIL || null;
 }
 
-// Limites REAIS da Meta (pesquisados na doc oficial):
-//  - Limite DA APP (code 4 "Application request limit reached"): ~200 chamadas
-//    POR HORA, janela rolling de 1h, somando TODAS as chamadas Graph do app.
-//    Esse e o que derruba o feed. Carrossel de 10 fotos = 12 chamadas HTTP
-//    (1 por foto + 1 do carrossel + 1 publish), todas contam aqui.
-//  - Content publishing: 50 posts/24h (carrossel conta como 1). Bate bem depois.
-// O Meta nao garante piso minimo pra app pequena; ~200/h e a premissa
-// conservadora (200 x usuarios ativos, ~1 usuario). Alarme em 80% pra ter folga.
-const HOURLY_LIMIT = Number.isFinite(Number(process.env.MOCK_HOURLY_LIMIT)) && Number(process.env.MOCK_HOURLY_LIMIT) > 0
-  ? Number(process.env.MOCK_HOURLY_LIMIT) : 200;
+// Limite REAL do Instagram (doc oficial da Meta):
+//   "Calls within 24 hours = 4800 * Number of Impressions"  (janela 24h)
+// O teto NAO e fixo: cresce com as IMPRESSOES da conta nas ultimas 24h. Conta
+// pequena/nova = poucas impressoes = teto baixo = nao posta = segue pequena
+// (circulo vicioso). O numero real so se sabe lendo o header x-app-usage
+// (call_count em % do limite) numa run real.
+// O mock SIMULA: MOCK_IMPRESSIONS (default 5, conta pequena) -> teto 24h =
+// 4800*impressoes. Ajuste quando souber o real, ou crave MOCK_DAILY_LIMIT.
+const IMPRESSIONS = Number.isFinite(Number(process.env.MOCK_IMPRESSIONS)) && Number(process.env.MOCK_IMPRESSIONS) >= 0
+  ? Number(process.env.MOCK_IMPRESSIONS) : 5;
+const DAILY_LIMIT = Number.isFinite(Number(process.env.MOCK_DAILY_LIMIT)) && Number(process.env.MOCK_DAILY_LIMIT) > 0
+  ? Number(process.env.MOCK_DAILY_LIMIT) : Math.max(1, 4800 * IMPRESSIONS);
 const ALARM_PCT = Number.isFinite(Number(process.env.MOCK_ALARM_PCT)) && Number(process.env.MOCK_ALARM_PCT) > 0
   ? Number(process.env.MOCK_ALARM_PCT) : 80;
-const HOUR_MS = 60 * 60 * 1000;
+const DAY_MS = 24 * 60 * 60 * 1000;
 
-// Conta 1 chamada Graph: no ciclo atual (por post) E no log horario (limite real).
+// Conta 1 chamada Graph: no ciclo atual (por post) E no log de 24h (limite real).
 // Recebe o store ja carregado, NAO salva (o caller salva). label ex: "POST /media".
 function bumpCall(s, label) {
   s.callCount = (s.callCount || 0) + 1;
@@ -97,13 +107,16 @@ function bumpCall(s, label) {
   s.callLog.push(Date.now());
 }
 
-// Chamadas na ultima hora (limite real do code 4). Poda o log fora da janela.
+// Chamadas nas ultimas 24h (janela real do limite do Instagram). Poda o log.
 function hourlyUsage(s) {
-  const cutoff = Date.now() - HOUR_MS;
+  const cutoff = Date.now() - DAY_MS;
   s.callLog = (s.callLog || []).filter((t) => t >= cutoff);
   const used = s.callLog.length;
-  const alarmAt = Math.round(HOURLY_LIMIT * ALARM_PCT / 100);
-  return { used, limit: HOURLY_LIMIT, alarmAt, over: used > alarmAt, pct: Math.round((used / HOURLY_LIMIT) * 100) };
+  const alarmAt = Math.round(DAILY_LIMIT * ALARM_PCT / 100);
+  return {
+    used, limit: DAILY_LIMIT, alarmAt, impressions: IMPRESSIONS,
+    over: used > alarmAt, pct: Math.min(100, Math.round((used / DAILY_LIMIT) * 100)),
+  };
 }
 
 async function readBody(req) {
@@ -210,7 +223,7 @@ const server = http.createServer(async (req, res) => {
       s.quotaUsage += 1;
       s.callCount = 0; s.callsByKind = {}; // zera pro proximo ciclo de postagem
       save(s);
-      return sendJson(res, 200, { id: postId });
+      return sendGraph(res, 200, { id: postId }, s);
     }
 
     // POST /:uid/media  (cria container)
@@ -238,7 +251,7 @@ const server = http.createServer(async (req, res) => {
         createdAt: new Date().toISOString(),
       };
       save(s);
-      return sendJson(res, 200, { id });
+      return sendGraph(res, 200, { id }, s);
     }
 
     // GET /:uid/content_publishing_limit
