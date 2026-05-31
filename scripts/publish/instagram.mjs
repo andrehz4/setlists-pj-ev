@@ -183,6 +183,40 @@ function buildCarouselCaption(items) {
   return caption;
 }
 
+// Le os headers de rate limit que a Meta manda em TODA resposta (apos chamadas
+// suficientes). x-app-usage = limite da app (code 4); x-business-use-case-usage
+// = limite BUC do Instagram (4800 x impressoes/24h, code 80002). call_count e
+// um % de 0-100 do limite. Logar isso mostra o numero REAL da conta em vez de
+// chutar. O ultimo valor visto fica em _ig-usage.json pro pipeline/telegram
+// alertar quando estiver perto de 100%.
+function logUsageHeaders(headers, path) {
+  if (!headers) return null;
+  let out = null;
+  try {
+    const app = headers["x-app-usage"];
+    if (app) {
+      const u = typeof app === "string" ? JSON.parse(app) : app;
+      console.log(`[ig-usage] x-app-usage em ${path}: call_count=${u.call_count}% total_time=${u.total_time}% cputime=${u.total_cputime}%`);
+      out = { ...(out || {}), app: u };
+    }
+    const buc = headers["x-business-use-case-usage"];
+    if (buc) {
+      const b = typeof buc === "string" ? JSON.parse(buc) : buc;
+      // pega o objeto do tipo "instagram" (pode ter varios business-ids)
+      for (const arr of Object.values(b)) {
+        const ig = Array.isArray(arr) ? arr.find((x) => x.type === "instagram") : null;
+        if (ig) {
+          console.log(`[ig-usage] x-business-use-case-usage (instagram): call_count=${ig.call_count}% regain=${ig.estimated_time_to_regain_access ?? "?"}min`);
+          out = { ...(out || {}), instagram: ig };
+        }
+      }
+    }
+  } catch (e) {
+    console.warn(`[ig-usage] falha ao ler headers: ${e.message}`);
+  }
+  return out;
+}
+
 async function postIG(path, body) {
   const url = `${API_BASE}${path}`;
   const res = await got.post(url, {
@@ -192,6 +226,7 @@ async function postIG(path, body) {
     throwHttpErrors: false,
     responseType: "json",
   });
+  logUsageHeaders(res.headers, path);
   if (res.statusCode >= 400) {
     throw classifyIGError({ path, statusCode: res.statusCode, body: res.body });
   }
@@ -325,6 +360,7 @@ async function getContainerStatus({ accessToken, containerId }) {
     throwHttpErrors: false,
     responseType: "json",
   });
+  logUsageHeaders(res.headers, `/${containerId}`);
   if (res.statusCode >= 400) {
     throw classifyIGError({ path: `/${containerId}`, statusCode: res.statusCode, body: res.body });
   }
@@ -368,4 +404,4 @@ export async function publishStory({ videoUrl, igUserId, accessToken } = {}) {
   return { postId, containerId };
 }
 
-export { buildSingleCaption, buildCarouselCaption, slideUrlFor };
+export { buildSingleCaption, buildCarouselCaption, slideUrlFor, logUsageHeaders };

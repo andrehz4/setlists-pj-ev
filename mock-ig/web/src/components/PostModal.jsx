@@ -48,8 +48,8 @@ export default function PostModal({ post, onClose }) {
                   </ul>
                 )}
                 <p className="call-foot">
-                  cada chamada pesa no limite de ~200/h da app (code 4).
-                  carrossel cheio (10) custa 12.
+                  cada chamada pesa no limite do IG (4800 × impressoes / 24h).
+                  carrossel cheio (10) custa 12; story custa ~2.
                 </p>
               </div>
             )}
