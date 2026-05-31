@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-31T03:10:46.977Z",
+  "updated": "2026-05-31T15:09:58.268Z",
   "items": [
+    {
+      "id": "cd-20260531",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-05-31T12:25:24.901Z",
+      "fetchedAt": "2026-05-31T15:09:57.620Z",
+      "img": "/media/news/img/cd-20260531.jpg",
+      "title_pt": "Retrograde em camadas, Oceans e o mistério de Beth no fórum dos fãs",
+      "intro_pt": "A comunidade mundial passou o dia vasculhando camadas sonoras de Retrograde e o velho mistério da dedicatória de Oceans.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "Retrograde esconde mais do que parece",
+      "kind": "community-digest",
+      "community_posts_count": 8
+    },
     {
       "id": "cd-20260530",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -528,26 +547,6 @@
       "title_ig": "Quem vai bater no próximo Pearl Jam?",
       "kind": "community-digest",
       "community_posts_count": 8
-    },
-    {
-      "id": "cs-adc51995f3",
-      "url": "https://www.reddit.com/r/pearljam/comments/1tjfkcu/time_to_give_this_one_a_blast_live_on_two_legs/",
-      "source": "reddit-community-spotlight",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-05-21T09:46:18.000Z",
-      "fetchedAt": "2026-05-29T09:09:27.491Z",
-      "img": "/media/news/img/cs-adc51995f3.jpg",
-      "title_pt": "Fã decide dar um blast no Live on Two Legs e a comunidade aprova",
-      "intro_pt": "Um fã decidiu tirar o Live on Two Legs da prateleira e dar uma viagem nesse clássico do ao vivo do Pearl Jam.",
-      "tags": [
-        "comunidade",
-        "memoria"
-      ],
-      "title_ig": "Live on Two Legs de volta às caixas de som",
-      "kind": "community-spotlight",
-      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tjfkcu/time_to_give_this_one_a_blast_live_on_two_legs/",
-      "community_post_score": 0
     }
   ]
 }
