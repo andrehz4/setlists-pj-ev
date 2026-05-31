@@ -143,6 +143,26 @@ test("pruneStalePending: evergreen so expira em 30d", () => {
   assert.deepEqual(removed.map((r) => r.id), ["mem40"]);
 });
 
+test("regressao saga baterista: noticia datada de 2+ dias expira, memoria fica", () => {
+  // o bug: noticia velha (ex: boato do baterista, 5 dias, tag turne) ficava
+  // presa no topo do FIFO. Com staleDays=2, ela sai; conteudo de acervo
+  // (tag memoria, prazo 30d) sobrevive mesmo mais velho.
+  const items = [
+    item({ id: "baterista", queuedAt: daysAgo(5) }),   // datada, nao-evergreen
+    item({ id: "acervo", queuedAt: daysAgo(10) }),     // memoria, evergreen
+    item({ id: "fresca", queuedAt: daysAgo(1) }),      // datada, dentro do prazo
+  ];
+  const q = { items, postCount: 0 };
+  const evergreen = new Set(["acervo"]);
+  const removed = pruneStalePending(q, NOW, {
+    staleDays: 2, evergreenDays: 30,
+    dateFor: (x) => x.queuedAt,
+    isEvergreen: (x) => evergreen.has(x.id),
+  });
+  assert.deepEqual(removed.map((r) => r.id), ["baterista"]);
+  assert.deepEqual(q.items.map((i) => i.id).sort(), ["acervo", "fresca"]);
+});
+
 test("pruneStalePending nunca toca postados nem denylist", () => {
   const items = [
     item({ id: "postedOld", queuedAt: daysAgo(40), postedAt: daysAgo(40) }),

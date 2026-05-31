@@ -68,7 +68,7 @@ function cooldownMsForCode(code) {
 const TOPIC_CAP = Number.isFinite(Number(process.env.IG_TOPIC_CAP)) && Number(process.env.IG_TOPIC_CAP) > 0
   ? Number(process.env.IG_TOPIC_CAP) : 1;
 const STALE_DAYS = Number.isFinite(Number(process.env.IG_STALE_DAYS)) && Number(process.env.IG_STALE_DAYS) > 0
-  ? Number(process.env.IG_STALE_DAYS) : 4;
+  ? Number(process.env.IG_STALE_DAYS) : 2;
 const STALE_DAYS_EVERGREEN = Number.isFinite(Number(process.env.IG_STALE_DAYS_EVERGREEN)) && Number(process.env.IG_STALE_DAYS_EVERGREEN) > 0
   ? Number(process.env.IG_STALE_DAYS_EVERGREEN) : 30;
 
@@ -436,6 +436,47 @@ async function main() {
     }
   }
 
+  // Le o estado da fila CEDO, antes dos guards de cooldown/quota, pra o
+  // housekeeping de stale (abaixo) rodar SEMPRE. Antes a leitura ficava depois
+  // dos early-returns e o anti-stale nunca era alcancado quando a run abortava
+  // por cooldown/rate-limit: noticia datada velha (ex: saga do baterista de 5
+  // dias) ficava presa no topo do FIFO pra sempre e atropelava o conteudo novo.
+  const queue = await readQueue();
+  const denylist = await readDenylist();
+  const indexDoc = await readJson(INDEX_PATH, { items: [] });
+  const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
+
+  // Expira pendentes datados velhos demais (default 2d, 30d evergreen/memoria),
+  // SEMPRE, mesmo que a run aborte cedo logo abaixo. Retorna se a fila ficou
+  // suja (precisa persistir). Os early-returns de cooldown/quota chamam
+  // persistStaleIfDirty() pra gravar a fila limpa antes de sair.
+  const staleRemoved = pruneStalePending(queue, nowIso, {
+    staleDays: STALE_DAYS,
+    evergreenDays: STALE_DAYS_EVERGREEN,
+    dateFor: (q) => indexById.get(q.id)?.pubDate || q.queuedAt,
+    isEvergreen: (q) => (indexById.get(q.id)?.tags || []).includes("memoria"),
+    denylist,
+  });
+  let queueDirty = false;
+  if (staleRemoved.length > 0) {
+    await recordStaleTombstone(staleRemoved, indexById, nowIso);
+    queueDirty = true;
+    console.log(`[publish] stale: ${staleRemoved.length} pendente(s) expirado(s): ${staleRemoved.map((q) => q.id).join(", ")}`);
+  }
+
+  // Persiste a fila limpa (so quando houve expiracao). Usado pelos early-returns
+  // pra nao perder o housekeeping quando a run aborta. NAO toca _ig-cooldown.json
+  // (pra nao reescrever o cooldown vigente).
+  async function persistStaleIfDirty() {
+    if (!queueDirty) return;
+    await writeQueue(queue);
+    await commitAndPush(
+      ["media/news/_publish-queue.json", "media/news/_skipped-stale.json"],
+      `publish-ig: expira ${staleRemoved.length} stale (housekeeping) ${nowIso.slice(0, 16)}Z`,
+    );
+    queueDirty = false; // ja persistido; evita commit duplo no fim da run
+  }
+
   // Cooldown global: se a run anterior bateu no limite DA APP (code 4 etc),
   // sai cedo SEM rodar deteccao de apagados, gerar slides, dar push nem
   // tentar publicar. Para de martelar a API enquanto o throttle nao limpa
@@ -454,6 +495,7 @@ async function main() {
       });
       // Sem telegram aqui: a falha que armou o cooldown ja notificou. Notificar
       // a cada cron de 30min so geraria spam.
+      await persistStaleIfDirty(); // grava a fila limpa mesmo abortando aqui
       process.exitCode = 0; // backoff intencional, nao e erro de pipeline
       return;
     }
@@ -489,6 +531,7 @@ async function main() {
           const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
           await sendTelegram(token, chatId, `⏸ <b>Publish IG pulado, ${brtNow} BRT</b>\n\nQuota saturada: <code>${quotaInfo.usage}/${quotaInfo.total}</code> usados.\nRestam <b>${quotaInfo.remaining}</b> (margem ${QUOTA_SAFETY_MARGIN}).\nAguardando janela rolling de 24h liberar.`);
         }
+        await persistStaleIfDirty(); // grava a fila limpa mesmo abortando aqui
         process.exitCode = 0; // nao e erro de pipeline, e backoff intencional
         return;
       }
@@ -513,10 +556,8 @@ async function main() {
     }
   }
 
-  const queue = await readQueue();
-  const denylist = await readDenylist();
-  const indexDoc = await readJson(INDEX_PATH, { items: [] });
-  const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
+  // (queue, denylist, indexById ja foram lidos no topo de main(), antes dos
+  // guards, pra o housekeeping de stale rodar sempre.)
 
   // Auto-deteccao: bate GET /<postId> nos posts recentes pra ver quais
   // sumiram do IG (Andre apagou no app). Adiciona a denylist + grava.
@@ -605,22 +646,10 @@ async function main() {
 
   // housekeeping: limpa postados muito antigos. Denylist preserva items
   // banidos (tombstone perpetuo) mesmo apos 30 dias.
+  // (a expiracao de PENDENTES stale ja rodou no topo de main(), antes dos
+  // guards, pra valer mesmo quando a run aborta cedo.)
   const pruned = pruneOldPosted(queue, nowIso, 30, denylist);
   if (pruned > 0) console.log(`[publish] prune: ${pruned} postados antigos removidos`);
-
-  // expira pendentes datados velhos demais (4d normal, 30d evergreen/memoria),
-  // pra backlog antigo nao atropelar conteudo novo apos pausa do publish.
-  const staleRemoved = pruneStalePending(queue, nowIso, {
-    staleDays: STALE_DAYS,
-    evergreenDays: STALE_DAYS_EVERGREEN,
-    dateFor: (q) => indexById.get(q.id)?.pubDate || q.queuedAt,
-    isEvergreen: (q) => (indexById.get(q.id)?.tags || []).includes("memoria"),
-    denylist,
-  });
-  if (staleRemoved.length > 0) {
-    await recordStaleTombstone(staleRemoved, indexById, nowIso);
-    console.log(`[publish] stale: ${staleRemoved.length} pendente(s) expirado(s): ${staleRemoved.map((q) => q.id).join(", ")}`);
-  }
 
   await writeQueue(queue);
   // Denylist + cursor do telegram + queue commitados juntos pro proximo
