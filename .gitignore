@@ -28,3 +28,7 @@ lighthouse-*
 
 # Artefatos locais do pipeline story IG (mockups intermediarios)
 tmp/
+
+# Previews gerados pelo simulador do mock-ig (regeneraveis, nao versionar)
+media/news/_preview/
+mock-ig/_store.json
