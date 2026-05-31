@@ -126,8 +126,12 @@ code { background: #efefef; padding: 1px 6px; border-radius: 4px; font-size: .9e
 /* ---------- simulador (lab) ---------- */
 .lab { width: 100%; max-width: 935px; padding: 28px 20px 80px; }
 .lab-loading { padding: 60px; text-align: center; color: var(--ig-mut); }
+.lab-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
 .lab-head h2 { font-size: 22px; margin-bottom: 4px; }
-.lab-head p { color: var(--ig-mut); font-size: 13px; margin-bottom: 24px; }
+.lab-head p { color: var(--ig-mut); font-size: 13px; }
+.lab-refresh { flex-shrink: 0; border: 1px solid var(--ig-border); background: #fff; border-radius: 8px; padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--ig-blue); }
+.lab-refresh:hover { background: #f2f8ff; }
+.lab-refresh:disabled { color: var(--ig-mut); cursor: wait; }
 .lab-sec { margin-bottom: 30px; }
 .lab-sec h3 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 .lab-tag-posted { font-size: 10px; font-weight: 600; color: var(--ig-mut); border: 1px solid var(--ig-border); border-radius: 10px; padding: 1px 8px; text-transform: uppercase; }
