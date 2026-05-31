@@ -22,7 +22,7 @@ const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
 // 613: Calls to this api have exceeded the rate limit
 // 80007: Content publishing limit (50 posts/24h da IG content publishing API)
 // 80004, 80008, 80003, 80014: outras variantes do Content Publishing BUC
-const RATE_LIMIT_CODES = new Set([4, 17, 32, 613, 80003, 80004, 80007, 80008, 80014]);
+export const RATE_LIMIT_CODES = new Set([4, 17, 32, 613, 80003, 80004, 80007, 80008, 80014]);
 const RATE_LIMIT_PATTERN = /application request limit|rate limit|too many requests|quota|content publishing limit/i;
 
 // Erro tipado pra qualquer falha que veio da IG API. Carrega o payload
@@ -203,7 +203,7 @@ export async function createSlideContainer({ igUserId, accessToken, imageUrl }) 
     is_carousel_item: "true",
     access_token: accessToken,
   });
-  if (!r.id) throw new Error("createSlideContainer: sem id na resposta");
+  if (!r.id) throw new IGAPIError({ path: `/${igUserId}/media`, message: "createSlideContainer: sem id na resposta da IG" });
   return r.id;
 }
 
@@ -214,7 +214,7 @@ export async function createCarouselContainer({ igUserId, accessToken, childrenI
     caption,
     access_token: accessToken,
   });
-  if (!r.id) throw new Error("createCarouselContainer: sem id na resposta");
+  if (!r.id) throw new IGAPIError({ path: `/${igUserId}/media`, message: "createCarouselContainer: sem id na resposta da IG" });
   return r.id;
 }
 
@@ -225,7 +225,7 @@ export async function createSingleImageContainer({ igUserId, accessToken, imageU
     caption,
     access_token: accessToken,
   });
-  if (!r.id) throw new Error("createSingleImageContainer: sem id na resposta");
+  if (!r.id) throw new IGAPIError({ path: `/${igUserId}/media`, message: "createSingleImageContainer: sem id na resposta da IG" });
   return r.id;
 }
 
@@ -234,7 +234,7 @@ export async function publishContainer({ igUserId, accessToken, creationId }) {
     creation_id: creationId,
     access_token: accessToken,
   });
-  if (!r.id) throw new Error("publishContainer: sem id na resposta");
+  if (!r.id) throw new IGAPIError({ path: `/${igUserId}/media_publish`, message: "publishContainer: sem id na resposta da IG" });
   return r.id;
 }
 

@@ -181,14 +181,71 @@ export function enqueue(queue, items, now = Date.now(), denylist = null) {
 // pos-erro de quota IG, evita queimar API call que vai falhar de novo).
 export function pickMatureByType(queue, type, nowIso, limit = MAX_PER_CAROUSEL, denylist = null) {
   const now = new Date(nowIso).getTime();
-  const mature = queue.items.filter((q) => {
-    if (q.postedAt) return false;
-    if (q.type !== type) return false;
-    if (denylist && isDenied(denylist, q.id)) return false;
-    if (q._rateLimitedUntil && new Date(q._rateLimitedUntil).getTime() > now) return false;
-    return new Date(q.publishAt).getTime() <= now;
-  });
+  const mature = queue.items.filter((q) => isMature(q, type, now, denylist));
   return mature.slice(0, limit);
+}
+
+// Predicado de maturidade compartilhado por pickMatureByType e
+// pickMatureByTypeDiverse: nao postado, do type certo, fora da denylist, sem
+// backoff de rate limit ativo, com publishAt no passado, e que nao estourou
+// MAX_ERRORS (item envenenado fica de fora ate o housekeeping aposenta-lo).
+function isMature(q, type, now, denylist) {
+  if (q.postedAt) return false;
+  if (q.type !== type) return false;
+  if (denylist && isDenied(denylist, q.id)) return false;
+  if (q._rateLimitedUntil && new Date(q._rateLimitedUntil).getTime() > now) return false;
+  if ((q.errorCount || 0) >= MAX_ERRORS) return false;
+  return new Date(q.publishAt).getTime() <= now;
+}
+
+// Como pickMatureByType, mas com cap de assunto por carrossel: no maximo
+// `topicCap` itens do mesmo cluster de similaridade entram juntos. Evita que
+// uma unica saga (ex: "novo baterista") domine um carrossel. A base continua
+// FIFO (queue ja vem ordenada por queuedAt em writeQueue); o cap so PULA o
+// excedente, que fica na fila pro proximo run (adiado, nao perdido).
+//
+// opts:
+//   limit          tamanho do carrossel (default MAX_PER_CAROUSEL)
+//   denylist       denylist pra filtrar apagados
+//   signatureFor   (item) => Set|null. Assinatura de topico injetada pelo
+//                  caller (mantem queue.mjs sem I/O). Item sem assinatura
+//                  (null/vazia) entra sem contar pra nenhum cluster.
+//   similarFn      (sigA, sigB) => number. Similaridade entre assinaturas.
+//   threshold      corte de cluster (default 0.30)
+//   topicCap       max itens do mesmo cluster por carrossel (default 1)
+//   onDropped      (item, reason) => void. Loga o adiamento (no silent caps).
+export function pickMatureByTypeDiverse(queue, type, nowIso, opts = {}) {
+  const {
+    limit = MAX_PER_CAROUSEL,
+    denylist = null,
+    signatureFor = () => null,
+    similarFn = () => 0,
+    threshold = 0.30,
+    topicCap = 1,
+    onDropped = () => {},
+  } = opts;
+  const now = new Date(nowIso).getTime();
+  const mature = queue.items.filter((q) => isMature(q, type, now, denylist));
+
+  const picked = [];
+  const clusters = []; // [{ sig, count }]
+  for (const item of mature) {
+    if (picked.length >= limit) break;
+    const sig = signatureFor(item);
+    if (!sig || sig.size === 0) { picked.push(item); continue; }
+    let bucket = null;
+    for (const c of clusters) {
+      if (similarFn(sig, c.sig) >= threshold) { bucket = c; break; }
+    }
+    if (bucket) {
+      if (bucket.count >= topicCap) { onDropped(item, `topic-cap(${topicCap})`); continue; }
+      bucket.count++;
+    } else {
+      clusters.push({ sig, count: 1 });
+    }
+    picked.push(item);
+  }
+  return picked;
 }
 
 // Marca items como rate-limited ate `untilIso`. Usado quando IGRateLimitError
@@ -213,6 +270,7 @@ export function markPosted(queue, ids, postId, nowIso) {
       q.postedAt = nowIso;
       q.postId = postId;
       q.error = null;
+      q.errorCount = 0;
     }
   }
 }
@@ -222,9 +280,19 @@ export function markError(queue, ids, errMsg, nowIso) {
   for (const q of queue.items) {
     if (set.has(q.id)) {
       q.error = { at: nowIso, msg: String(errMsg).slice(0, 500) };
+      // Contador de falhas pra nao retentar pra sempre um item envenenado
+      // (ex: imagem que nunca gera slide). pickMature exclui quem passou de
+      // MAX_ERRORS. markPosted/markRateLimited zeram (sucesso ou backoff
+      // temporal nao contam como falha permanente).
+      q.errorCount = (q.errorCount || 0) + 1;
     }
   }
 }
+
+// Teto de falhas permanentes antes de aposentar o item (override por env).
+export const MAX_ERRORS = Number.isFinite(Number(process.env.IG_MAX_ERRORS))
+  && Number(process.env.IG_MAX_ERRORS) > 0
+  ? Number(process.env.IG_MAX_ERRORS) : 5;
 
 // Limpa items postados ha mais de N dias (housekeeping). Mantem
 // historico recente pra debug, mas nao acumula infinito.
@@ -239,4 +307,40 @@ export function pruneOldPosted(queue, nowIso, keepDays = 30, denylist = null) {
     return new Date(q.postedAt).getTime() >= cutoff;
   });
   return before - queue.items.length;
+}
+
+// Expira PENDENTES (nunca postados) velhos demais, pra que apos uma pausa do
+// publish (ex: rate limit por dias) o backlog antigo nao drene primeiro e
+// atropele o conteudo novo. Notícia datada perde a janela; conteudo evergreen
+// (tag memoria) tem prazo bem maior. Espelha pruneOldPosted mas mira o oposto
+// (pendentes, nao postados). Retorna os itens REMOVIDOS (pro tombstone), nao a
+// contagem, pra o caller registrar o que descartou (no silent caps).
+//
+// opts:
+//   staleDays           prazo padrao em dias (default 4)
+//   evergreenDays       prazo pra evergreen (default 30)
+//   dateFor             (q) => isoString. Data de referencia (caller injeta
+//                       pubDate do index); fallback q.queuedAt.
+//   isEvergreen         (q) => bool. True pra conteudo atemporal (tag memoria).
+//   denylist            itens na denylist nunca expiram (tombstone perpetuo).
+export function pruneStalePending(queue, nowIso, opts = {}) {
+  const {
+    staleDays = 4,
+    evergreenDays = 30,
+    dateFor = (q) => q.queuedAt,
+    isEvergreen = () => false,
+    denylist = null,
+  } = opts;
+  const nowMs = new Date(nowIso).getTime();
+  const removed = [];
+  queue.items = queue.items.filter((q) => {
+    if (q.postedAt) return true;                                  // postado: pruneOldPosted cuida
+    if (denylist && isDenied(denylist, q.id)) return true;        // tombstone perpetuo fica
+    const days = isEvergreen(q) ? evergreenDays : staleDays;
+    const cutoff = nowMs - days * 24 * 60 * 60 * 1000;
+    const ref = new Date(dateFor(q) || q.queuedAt).getTime();
+    if (Number.isFinite(ref) && ref < cutoff) { removed.push(q); return false; }
+    return true;
+  });
+  return removed;
 }

@@ -18,7 +18,8 @@
     "publish:story": "node scripts/publish/run-publish-story.mjs",
     "test:cifras": "node --test scripts/cifras-coverage.test.mjs",
     "test:band": "node --test scripts/publish/band-fallback.test.mjs",
-    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs"
+    "test:select": "node --test scripts/publish/queue-select.test.mjs",
+    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",

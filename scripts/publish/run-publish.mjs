@@ -22,7 +22,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { readQueue, writeQueue, pickMatureByType, markPosted, markError, markRateLimited, pruneOldPosted, readDenylist, writeDenylist, addToDenylist, readCooldown, isCoolingDown, setCooldown, clearCooldown } from "./queue.mjs";
+import { readQueue, writeQueue, pickMatureByTypeDiverse, markPosted, markError, markRateLimited, pruneOldPosted, pruneStalePending, readDenylist, writeDenylist, addToDenylist, readCooldown, isCoolingDown, setCooldown, clearCooldown } from "./queue.mjs";
+import { topicSignature, similarity } from "../news/dedupe-history.mjs";
 import { buildSlides, buildCoverSlide, SLIDES_DIR, LAYOUT } from "./slide-image.mjs";
 import { publishItems, slideUrlFor } from "./instagram.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
@@ -58,6 +59,19 @@ function cooldownMsForCode(code) {
   return APP_LEVEL_CODES.has(code) ? COOLDOWN_APP_LEVEL_MS : COOLDOWN_CONTENT_MS;
 }
 
+// Defesa em profundidade no rate limit: markRateLimited (por item,
+// _rateLimitedUntil) cobre a cota de content publishing 50/24h; setCooldown
+// (global, _ig-cooldown.json) cobre o limite DA APP (code 4). Os dois coexistem
+// de proposito, nao sao redundancia a consolidar.
+
+// Diversidade e expiracao da fila (override por env).
+const TOPIC_CAP = Number.isFinite(Number(process.env.IG_TOPIC_CAP)) && Number(process.env.IG_TOPIC_CAP) > 0
+  ? Number(process.env.IG_TOPIC_CAP) : 1;
+const STALE_DAYS = Number.isFinite(Number(process.env.IG_STALE_DAYS)) && Number(process.env.IG_STALE_DAYS) > 0
+  ? Number(process.env.IG_STALE_DAYS) : 4;
+const STALE_DAYS_EVERGREEN = Number.isFinite(Number(process.env.IG_STALE_DAYS_EVERGREEN)) && Number(process.env.IG_STALE_DAYS_EVERGREEN) > 0
+  ? Number(process.env.IG_STALE_DAYS_EVERGREEN) : 30;
+
 function getCurrentTarjaColor(postCount) {
   const idx = Math.floor((postCount || 0) / POSTS_PER_COLOR) % TARJA_COLORS.length;
   return TARJA_COLORS[idx];
@@ -88,6 +102,36 @@ function git(args, opts = {}) {
 function gitTry(args) {
   const r = spawnSync("git", args, { encoding: "utf8" });
   return { ok: r.status === 0, out: r.stdout, err: r.stderr };
+}
+
+// Tombstone dos pendentes expirados por idade (no silent caps). Audit-only:
+// o conteudo segue vivo no index/archive do site, sair da fila so significa
+// "perdeu a janela de publicacao no IG". Idempotente por id, podado em 60d.
+async function recordStaleTombstone(removed, indexById, nowIso) {
+  const STALE_TOMBSTONE_TTL_DAYS = 60;
+  const p = path.join(NEWS_DIR, "_skipped-stale.json");
+  let doc = await readJson(p, { stale: [], updatedAt: null });
+  if (!Array.isArray(doc.stale)) doc = { stale: [], updatedAt: null };
+  const cutoff = new Date(nowIso).getTime() - STALE_TOMBSTONE_TTL_DAYS * 24 * 60 * 60 * 1000;
+  doc.stale = doc.stale.filter((s) => {
+    const t = new Date(s.prunedAt || 0).getTime();
+    return !Number.isFinite(t) || t >= cutoff;
+  });
+  const existing = new Set(doc.stale.map((s) => s.id));
+  for (const q of removed) {
+    if (existing.has(q.id)) continue;
+    const idx = indexById.get(q.id);
+    doc.stale.push({
+      id: q.id,
+      type: q.type,
+      title_pt: idx?.title_pt || "",
+      pubDate: idx?.pubDate || null,
+      queuedAt: q.queuedAt || null,
+      prunedAt: nowIso,
+    });
+  }
+  doc.updatedAt = nowIso;
+  await fs.writeFile(p, JSON.stringify(doc, null, 2));
 }
 
 async function hydrateItem(qEntry, indexById) {
@@ -155,7 +199,25 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleCol
   // No layout card02 o carrossel ganha 1 slide de capa (Card 11). A capa
   // conta no limite de 10 do IG, entao cap de 9 items + capa = 10.
   const matureLimit = LAYOUT === "card02" ? 9 : 10;
-  const mature = pickMatureByType(queue, type, nowIso, matureLimit, denylist);
+  // Assinatura de topico de cada item, pra diversidade por assunto no carrossel.
+  // Le do index (ja em memoria); item sem texto/index nao entra em cluster.
+  const sigCache = new Map();
+  const signatureFor = (q) => {
+    if (sigCache.has(q.id)) return sigCache.get(q.id);
+    const idx = indexById.get(q.id);
+    const text = idx ? `${idx.title_pt || idx.titulo_pt || ""} ${idx.intro_pt || ""}`.trim() : "";
+    const sig = text ? topicSignature(text) : null;
+    sigCache.set(q.id, sig);
+    return sig;
+  };
+  const mature = pickMatureByTypeDiverse(queue, type, nowIso, {
+    limit: matureLimit,
+    denylist,
+    signatureFor,
+    similarFn: similarity,
+    topicCap: TOPIC_CAP,
+    onDropped: (item, reason) => console.log(`[publish] adiado ${item.id} (${type}): ${reason}`),
+  });
   if (mature.length === 0) {
     console.log(`[publish] tipo=${type}: 0 maduros, skip`);
     return null;
@@ -395,6 +457,13 @@ async function main() {
       process.exitCode = 0; // backoff intencional, nao e erro de pipeline
       return;
     }
+    // cooldown expirou mas o arquivo ainda tem `until` no passado: normaliza
+    // pra nao deixar estado stale no repo (clearCooldown so roda em sucesso,
+    // que pode nao acontecer se nao ha item maduro quando a app destrava).
+    if (cooldown.until) {
+      await clearCooldown();
+      console.log("[publish] cooldown expirado, estado limpo");
+    }
   }
 
   // Pre-check de quota IG. Se saturado, aborta antes de gerar slides e
@@ -539,6 +608,20 @@ async function main() {
   const pruned = pruneOldPosted(queue, nowIso, 30, denylist);
   if (pruned > 0) console.log(`[publish] prune: ${pruned} postados antigos removidos`);
 
+  // expira pendentes datados velhos demais (4d normal, 30d evergreen/memoria),
+  // pra backlog antigo nao atropelar conteudo novo apos pausa do publish.
+  const staleRemoved = pruneStalePending(queue, nowIso, {
+    staleDays: STALE_DAYS,
+    evergreenDays: STALE_DAYS_EVERGREEN,
+    dateFor: (q) => indexById.get(q.id)?.pubDate || q.queuedAt,
+    isEvergreen: (q) => (indexById.get(q.id)?.tags || []).includes("memoria"),
+    denylist,
+  });
+  if (staleRemoved.length > 0) {
+    await recordStaleTombstone(staleRemoved, indexById, nowIso);
+    console.log(`[publish] stale: ${staleRemoved.length} pendente(s) expirado(s): ${staleRemoved.map((q) => q.id).join(", ")}`);
+  }
+
   await writeQueue(queue);
   // Denylist + cursor do telegram + queue commitados juntos pro proximo
   // cron ja ver bans manuais que entraram via /ban no Telegram.
@@ -549,6 +632,7 @@ async function main() {
       "media/news/_telegram-cursor.json",
       "media/news/_ig-cooldown.json",
       "media/news/_ig-exists-cache.json",
+      "media/news/_skipped-stale.json",
     ],
     `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
   );
