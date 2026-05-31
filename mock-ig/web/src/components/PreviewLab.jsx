@@ -9,11 +9,17 @@ const TYPE_LABEL = { regular: "Noticia", spotlight: "Spotlight", digest: "Comuni
 export default function PreviewLab({ onPreview, onStory }) {
   const [data, setData] = useState(null);
   const [err, setErr] = useState(null);
-  const [busy, setBusy] = useState(null); // id em processamento
+  const [busy, setBusy] = useState(null);     // id em processamento
+  const [loading, setLoading] = useState(false); // recarregando candidatos
 
-  useEffect(() => {
-    fetchCandidates().then(setData).catch((e) => setErr(e.message));
-  }, []);
+  async function reload() {
+    setLoading(true);
+    try { setData(await fetchCandidates()); setErr(null); }
+    catch (e) { setErr(e.message); }
+    finally { setLoading(false); }
+  }
+
+  useEffect(() => { reload(); }, []);
 
   async function open(id) {
     setBusy(id);
@@ -58,8 +64,13 @@ export default function PreviewLab({ onPreview, onStory }) {
   return (
     <div className="lab">
       <div className="lab-head">
-        <h2>Simulador de post</h2>
-        <p>Material real do pipeline. Clique pra ver como ficaria no Instagram. Nada e publicado.</p>
+        <div>
+          <h2>Simulador de post</h2>
+          <p>Material real do pipeline. Clique pra ver como ficaria no Instagram. Nada e publicado.</p>
+        </div>
+        <button className="lab-refresh" onClick={reload} disabled={loading}>
+          {loading ? "atualizando…" : "↻ Atualizar"}
+        </button>
       </div>
 
       {groups.map(([t, items, posted]) => <Section key={t} title={t} items={items} posted={posted} />)}
