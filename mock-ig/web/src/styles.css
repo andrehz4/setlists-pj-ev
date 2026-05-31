@@ -41,6 +41,46 @@
   --mono: "Space Mono", ui-monospace, Menlo, monospace;
   --display: "Big Shoulders Stencil Display", sans-serif;
   --body: "Newsreader", Georgia, serif;
+
+  --grain-op: .035;
+  --grain-blend: overlay;
+  --body-bg:
+    radial-gradient(1200px 700px at 78% -8%, rgba(216,36,43,.10), transparent 60%),
+    radial-gradient(900px 600px at -5% 110%, rgba(201,162,75,.06), transparent 55%),
+    var(--bg);
+}
+
+/* ===== TEMA DIA (claro): papel kraft, editorial, mesma alma PJ ===== */
+[data-theme="day"] {
+  --bg: #f4efe6;
+  --bg-2: #ece5d8;
+  --panel: #fffdf8;
+  --panel-2: #f7f2e9;
+  --line: #ddd3c2;
+  --line-2: #c9bda7;
+
+  --ink: #221d18;
+  --ink-2: #4a4137;
+  --ink-mut: #7a6f60;
+  --ink-dim: #a89c89;
+
+  --pj: #c1272d;
+  --pj-glow: #d8242b;
+  --pj-deep: #8a1418;
+  --gold: #9a7423;
+  --green: #2e8a5c;
+  --blue: #2f6aa8;
+
+  --shadow: 0 4px 18px rgba(80,60,30,.10);
+  --shadow-lg: 0 24px 50px rgba(80,60,30,.18);
+  --glow-pj: 0 0 0 1px rgba(193,39,45,.3), 0 0 18px rgba(193,39,45,.15);
+
+  --grain-op: .05;
+  --grain-blend: multiply;
+  --body-bg:
+    radial-gradient(1100px 640px at 80% -8%, rgba(193,39,45,.07), transparent 60%),
+    radial-gradient(820px 560px at -5% 110%, rgba(154,116,35,.06), transparent 55%),
+    var(--bg);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,18 +91,17 @@ body {
   font-family: var(--body);
   font-size: 17px; line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  background:
-    radial-gradient(1200px 700px at 78% -8%, rgba(216,36,43,.10), transparent 60%),
-    radial-gradient(900px 600px at -5% 110%, rgba(201,162,75,.06), transparent 55%),
-    var(--bg);
+  background: var(--body-bg);
   min-height: 100vh;
+  transition: background .4s var(--ease), color .3s;
 }
-/* grao de textura sutil por cima de tudo */
+/* grao de textura sutil por cima de tudo (atras do conteudo) */
 body::before {
-  content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
-  opacity: .035; mix-blend-mode: overlay;
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: var(--grain-op); mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+.ig { position: relative; z-index: 1; }
 button { font-family: inherit; cursor: pointer; color: inherit; }
 code, .mono { font-family: var(--mono); }
 code { background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 5px; font-size: .82em; color: var(--gold); }
@@ -80,25 +119,26 @@ code { background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 5px; 
 .ig-side {
   width: 252px; flex-shrink: 0; position: sticky; top: 0; height: 100vh;
   border-right: 1px solid var(--line); background: linear-gradient(180deg, var(--bg-2), var(--bg));
-  padding: 10px 14px 22px; display: flex; flex-direction: column;
-  position: sticky;
+  padding: 10px 14px 18px; display: flex; flex-direction: column;
+  overflow: hidden;
 }
 .logo {
-  font-family: var(--display); font-weight: 900; font-size: 30px;
+  font-family: var(--display); font-weight: 900; font-size: 28px;
   letter-spacing: .5px; text-transform: uppercase; color: var(--ink);
-  padding: 28px 12px 30px; display: flex; align-items: center; gap: 11px; line-height: .9;
+  padding: 22px 12px 22px; display: flex; align-items: center; gap: 11px; line-height: .9; flex-shrink: 0;
 }
 .logo::before {
-  content: ""; width: 30px; height: 30px; border-radius: 9px; flex-shrink: 0;
+  content: ""; width: 28px; height: 28px; border-radius: 9px; flex-shrink: 0;
   background: var(--grad-pj); box-shadow: var(--glow-pj);
 }
-.nav { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.nav { display: flex; flex-direction: column; gap: 2px; flex: 1; min-height: 0; overflow-y: auto; }
+.nav::-webkit-scrollbar { width: 0; }
 .nav-foot { display: flex; flex-direction: column; gap: 3px; margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
 .nav-item {
   display: flex; align-items: center; gap: 15px; width: 100%;
-  border: none; background: none; padding: 12px 13px; border-radius: 11px;
+  border: none; background: none; padding: 10px 13px; border-radius: 11px;
   color: var(--ink-2); font-family: var(--mono); font-size: 13px; letter-spacing: .02em;
-  text-align: left; position: relative;
+  text-align: left; position: relative; flex-shrink: 0;
   transition: background .18s var(--ease), color .18s, transform .08s var(--ease);
 }
 .nav-item:hover { background: rgba(255,255,255,.04); color: var(--ink); }
