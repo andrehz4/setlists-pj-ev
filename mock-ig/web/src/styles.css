@@ -133,7 +133,12 @@ code { background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 5px; 
 }
 .nav { display: flex; flex-direction: column; gap: 2px; flex: 1; min-height: 0; overflow-y: auto; }
 .nav::-webkit-scrollbar { width: 0; }
-.nav-foot { display: flex; flex-direction: column; gap: 3px; margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.nav-group { font-family: var(--mono); font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; color: var(--ink-dim); padding: 16px 14px 7px; }
+.nav-group:first-child { padding-top: 4px; }
+.nav-foot { margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.nav-status { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-mut); padding: 4px 13px; }
+.nav-status i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
 .nav-item {
   display: flex; align-items: center; gap: 15px; width: 100%;
   border: none; background: none; padding: 10px 13px; border-radius: 11px;
