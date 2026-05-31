@@ -628,19 +628,6 @@
       "_rateLimitedUntil": "2026-05-29T10:11:31.391Z"
     },
     {
-      "id": "0b821ae173",
-      "type": "regular",
-      "queuedAt": "2026-05-28T15:12:27.440Z",
-      "publishAt": "2026-05-28T15:12:27.440Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-05-31T00:40:26.179Z",
-        "msg": "IG rate limit, retry apos 2026-05-31T01:40:26.180Z"
-      },
-      "_rateLimitedUntil": "2026-05-31T01:40:26.180Z"
-    },
-    {
       "id": "cd-20260528",
       "type": "spotlight",
       "queuedAt": "2026-05-28T15:12:27.440Z",
