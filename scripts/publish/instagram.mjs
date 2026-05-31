@@ -196,20 +196,35 @@ function logUsageHeaders(headers, path) {
     const app = headers["x-app-usage"];
     if (app) {
       const u = typeof app === "string" ? JSON.parse(app) : app;
-      console.log(`[ig-usage] x-app-usage em ${path}: call_count=${u.call_count}% total_time=${u.total_time}% cputime=${u.total_cputime}%`);
+      // se o parse nao trouxe os numeros (header vazio {} ou formato diferente),
+      // loga o valor CRU pra a gente ver exatamente o que a Meta mandou.
+      if (u && u.call_count != null) {
+        console.log(`[ig-usage] x-app-usage em ${path}: call_count=${u.call_count}% total_time=${u.total_time}% cputime=${u.total_cputime}%`);
+      } else {
+        console.log(`[ig-usage] x-app-usage em ${path} (cru, parse vazio): ${typeof app === "string" ? app : JSON.stringify(app)}`);
+      }
       out = { ...(out || {}), app: u };
     }
     const buc = headers["x-business-use-case-usage"];
     if (buc) {
+      // o limite que pode estar batendo no Instagram e o BUC (code 80002).
+      // loga o objeto inteiro pra ver os business-ids e o call_count de cada tipo.
+      console.log(`[ig-usage] x-business-use-case-usage em ${path} (cru): ${typeof buc === "string" ? buc : JSON.stringify(buc)}`);
       const b = typeof buc === "string" ? JSON.parse(buc) : buc;
-      // pega o objeto do tipo "instagram" (pode ter varios business-ids)
       for (const arr of Object.values(b)) {
         const ig = Array.isArray(arr) ? arr.find((x) => x.type === "instagram") : null;
         if (ig) {
-          console.log(`[ig-usage] x-business-use-case-usage (instagram): call_count=${ig.call_count}% regain=${ig.estimated_time_to_regain_access ?? "?"}min`);
+          console.log(`[ig-usage] >> instagram BUC: call_count=${ig.call_count}% regain=${ig.estimated_time_to_regain_access ?? "?"}min`);
           out = { ...(out || {}), instagram: ig };
         }
       }
+    }
+    // se nenhum dos dois headers veio, lista quais headers x-* a Meta mandou
+    // (pode estar usando outro nome). So loga a 1a vez por run pra nao poluir.
+    if (!app && !buc && !logUsageHeaders._warned) {
+      const xHeaders = Object.keys(headers).filter((k) => /usage|rate|limit|throttle/i.test(k));
+      console.log(`[ig-usage] sem x-app-usage/x-business-use-case-usage. Headers relacionados: ${xHeaders.length ? xHeaders.join(", ") : "nenhum"}`);
+      logUsageHeaders._warned = true;
     }
   } catch (e) {
     console.warn(`[ig-usage] falha ao ler headers: ${e.message}`);
