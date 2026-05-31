@@ -33,6 +33,11 @@ function ReelItem({ reel }) {
   return (
     <div className="reel">
       <video ref={ref} src={reel.videoUrl} loop muted playsInline />
+      {reel.apiCalls && (
+        <span className={"call-badge reel-cost" + (reel.apiCalls.over ? " over" : "")}>
+          {reel.apiCalls.total} chamadas
+        </span>
+      )}
       {reel.caption && <div className="reel-cap">{reel.caption}</div>}
     </div>
   );

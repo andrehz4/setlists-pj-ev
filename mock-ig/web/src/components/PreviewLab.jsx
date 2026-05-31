@@ -35,10 +35,10 @@ export default function PreviewLab({ onPreview, onStory }) {
     if (!items.length) return null;
     return (
       <div className="lab-sec">
-        <h3>{title} {posted && <span className="lab-tag-posted">postados</span>}</h3>
+        <h3>{title}</h3>
         <div className="lab-row">
           {items.map((it) => (
-            <button key={it.id} className="lab-card" onClick={() => open(it.id)} disabled={busy === it.id}>
+            <button key={it.id} className={"lab-card" + (posted ? " is-posted" : "")} onClick={() => open(it.id)} disabled={busy === it.id}>
               <span className="lab-thumb">
                 {it.img ? <img src={it.img} alt="" loading="lazy" /> : <span className="lab-noimg">sem foto</span>}
                 <span className={"lab-kind k-" + it.kind}>{TYPE_LABEL[it.kind] || it.kind}</span>
@@ -52,14 +52,18 @@ export default function PreviewLab({ onPreview, onStory }) {
     );
   };
 
-  const groups = [
-    ["Noticias na fila", data.pending.regular, false],
-    ["Spotlight na fila", data.pending.spotlight, false],
-    ["Comunidade na fila", data.pending.digest, false],
-    ["Noticias", data.posted.regular, true],
-    ["Spotlight", data.posted.spotlight, true],
-    ["Comunidade", data.posted.digest, true],
+  const pendingGroups = [
+    ["Noticias", data.pending.regular],
+    ["Spotlight", data.pending.spotlight],
+    ["Comunidade", data.pending.digest],
   ];
+  const postedGroups = [
+    ["Noticias", data.posted.regular],
+    ["Spotlight", data.posted.spotlight],
+    ["Comunidade", data.posted.digest],
+  ];
+  const pendingCount = pendingGroups.reduce((n, [, items]) => n + items.length, 0);
+  const postedCount = postedGroups.reduce((n, [, items]) => n + items.length, 0);
 
   return (
     <div className="lab">
@@ -73,20 +77,45 @@ export default function PreviewLab({ onPreview, onStory }) {
         </button>
       </div>
 
-      {groups.map(([t, items, posted]) => <Section key={t} title={t} items={items} posted={posted} />)}
+      {/* separador: o que VAI ser postado */}
+      <div className="lab-divider fila">
+        <span className="lab-divider-dot" />
+        <h2>Na fila <em>vai postar</em></h2>
+        <span className="lab-divider-count">{pendingCount}</span>
+      </div>
+      {pendingCount === 0
+        ? <p className="lab-empty">Nada na fila no momento.</p>
+        : pendingGroups.map(([t, items]) => <Section key={"p-" + t} title={t} items={items} />)}
 
+      {/* separador: o que JA foi postado */}
+      <div className="lab-divider postados">
+        <span className="lab-divider-dot" />
+        <h2>Postados <em>ja foi pro feed</em></h2>
+        <span className="lab-divider-count">{postedCount}</span>
+      </div>
+      {postedCount === 0
+        ? <p className="lab-empty">Nenhum postado recente.</p>
+        : postedGroups.map(([t, items]) => <Section key={"o-" + t} title={t} items={items} posted />)}
+
+      {/* separador: stories */}
       {data.stories.length > 0 && (
-        <div className="lab-sec">
-          <h3>Stories <span className="lab-tag-posted">gerados</span></h3>
-          <div className="lab-row">
-            {data.stories.map((s) => (
-              <button key={s.name} className="lab-card story" onClick={() => onStory(s)}>
-                <span className="lab-thumb"><video src={s.videoUrl} muted preload="metadata" /><span className="lab-kind k-story">Story</span></span>
-                <span className="lab-title">{s.label}</span>
-              </button>
-            ))}
+        <>
+          <div className="lab-divider story">
+            <span className="lab-divider-dot" />
+            <h2>Stories <em>gerados</em></h2>
+            <span className="lab-divider-count">{data.stories.length}</span>
           </div>
-        </div>
+          <div className="lab-sec">
+            <div className="lab-row">
+              {data.stories.map((s) => (
+                <button key={s.name} className="lab-card story" onClick={() => onStory(s)}>
+                  <span className="lab-thumb"><video src={s.videoUrl} muted preload="metadata" /><span className="lab-kind k-story">Story</span></span>
+                  <span className="lab-title">{s.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
