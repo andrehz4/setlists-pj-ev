@@ -55,6 +55,15 @@ local, pasta `mock-ig/`, atalho "Mock Instagram" na area de trabalho do Andre)
 le isso na aba **Rodadas**, alem das abas Curadoria, Simulador e Runs. Ver
 memoria `project_mock_ig_abas`.
 
+**6. Poda do `_pending` (NOVO, 2026-06-01):** antes, o `merge-curated` removia do
+`_pending.json` so os APROVADOS; os SKIP editoriais nunca saiam, acumulavam (63
+itens, o mais antigo de 16 dias) e eram re-curados toda rodada. Conserto:
+`scripts/news/prune-curated.mjs` le os logs de rodada (`_curation-log/`), junta
+os ids ja julgados e remove do `_pending` + marca `seen[id]=curationSkip`.
+Chamado no `fetch-news.mjs` e no `community-fetch.mjs` (compartilham `_pending`
++ `seen`). Dirigido por log (nao TTL): so remove o que foi explicitamente
+julgado. Ver memoria `project_pending_accumulation_fix`.
+
 ---
 
 ## Arquitetura geral
