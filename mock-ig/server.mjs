@@ -24,6 +24,7 @@ import { execFileSync } from "node:child_process";
 import { load, save, reset, nextId, STORE_PATH } from "./store.mjs";
 import { loadCandidates, previewSlide, nextRunDetail } from "./preview.mjs";
 import { listRuns, runDetail } from "./runs.mjs";
+import { loadCuration } from "./curation.mjs";
 
 const PORT = Number(process.env.MOCK_IG_PORT || 8788);
 const SERVE_ROOT = path.resolve(process.env.MOCK_SERVE_ROOT || process.cwd());
@@ -204,6 +205,12 @@ const server = http.createServer(async (req, res) => {
         const detail = (e.stderr || e.message || String(e)).toString().trim();
         return sendJson(res, 200, { ok: false, error: detail });
       }
+    }
+
+    // ---------- curadoria (ponto onde se decide o feed, read-only) ----------
+    if (pathname === "/_mock/curation") {
+      try { return sendJson(res, 200, await loadCuration()); }
+      catch (e) { return sendJson(res, 500, { error: e.message }); }
     }
 
     // ---------- simulador (preview sob demanda, read-only) ----------
