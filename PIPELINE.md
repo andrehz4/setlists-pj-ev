@@ -25,7 +25,9 @@ de fato acontece hoje, com os achados da investigacao de 2026-05-31/06-01:
   "news: curadoria automatica via routine sonnet". O prompt dela vive em
   `scripts/news/routine-prompt.md` (mas a task usa um SNAPSHOT colado; editar o
   arquivo nao atualiza a task, tem que recolar).
-- **Publicacao (so manual):** `publish-instagram.yml` posta o carrossel no feed.
+- **Publicacao (ATIVA, disparada pelo TriggerAll):** `publish-instagram.yml`
+  posta o carrossel no feed. Quem dispara nao e cron do YAML (nem manual): e o
+  **TriggerAll** (ver secao dedicada abaixo).
 
 **2. O GARGALO real do feed vazio = o scraper, nao a curadoria nem o feed.**
 O `reddit-search` traz `article_text` VAZIO (so `"submitted by /u/x [link]
@@ -35,11 +37,12 @@ noticia real do novo baterista (`a7233f622d`) e descartada toda rodada por
 "texto vazio". **Pendente:** consertar o scraper pra seguir o link externo e
 extrair o texto do artigo-fonte. Ver memoria `project_news_scraper_gargalo`.
 
-**3. `publish-instagram.yml` NAO tem mais cron.** O schedule
-`12,32,52 3,9,15,21` foi REMOVIDO (commit b3a5636, "acionado apenas pelo
-TriggerAll", que nunca foi criado). Hoje o feed so posta via `workflow_dispatch`
-manual (`gh workflow run publish-instagram.yml`). A secao 4 e a agenda abaixo
-ainda descrevem o cron antigo.
+**3. `publish-instagram.yml` NAO tem cron no YAML, mas roda automatico mesmo
+assim** porque o **TriggerAll** dispara via `workflow_dispatch` da API GitHub.
+O commit `b3a5636` que removeu o cron `12,32,52 3,9,15,21` migrou o controle
+pro TriggerAll, que ja existe e esta em producao (Railway+Vercel). A frase
+antiga "TriggerAll nunca foi criado" era imprecisa, ja foi corrigida. Ver a
+secao **"7. Quem dispara cada workflow (TriggerAll)"** abaixo.
 
 **4. `news-merge.yml` esta morto.** So rodou 1x (13/05). A curadoria nao usa
 mais o caminho `repository_dispatch` -> `news-merge`; ela commita em branch
@@ -110,6 +113,99 @@ BRT     NEWS.YML    COMMUNITY.YML    ROTINA CLAUDE    PUBLISH IG    STORY IG
 
 ---
 
+## 7. Quem dispara cada workflow (TriggerAll)
+
+> Esta secao foi adicionada em 2026-06-01 depois de uma sessao em que confundimos
+> "publish-instagram.yml nao tem mais cron no YAML" com "o publish nao roda
+> automatico". Sao coisas diferentes. Esta secao existe pra nao cair nessa de novo.
+
+### O que e o TriggerAll
+**TriggerAll** e um sistema separado (fora do repo `setlists-pj-ev`) que serve
+como **central de cron e webhook** pros workflows deste projeto. Fica em:
+- **Codigo:** `C:\Gitlab_hz\triggerall\` localmente e repo `andrehz4/triggerall`
+- **Backend:** Fastify 5 + PostgreSQL no Railway (`triggerall-production.up.railway.app`)
+- **Frontend:** React 18 + Vite 5 no Vercel (dashboard de controle)
+- **Mecanismo:** tabela `triggers` no Postgres + `node-cron` em UTC + workers
+  que disparam via `POST /repos/.../actions/workflows/.../dispatches` na API
+  do GitHub, autenticando com **PAT do Andre** salvo nas env vars do Railway
+
+### Por que existe (motivacao do TriggerAll)
+- Permite **encadeamento** (`on_success_trigger_id`: trigger A conclui -> dispara B)
+- Permite **webhook GitHub** (recebe `push` e `workflow_run`, reage)
+- Centraliza a observabilidade num dashboard so (farol BRT, historico, retry)
+- Retry 3x com backoff 2s/4s/8s + jitter, timeout 15s, dedupe 3min em push duplicado
+- Watchdog: alerta no Telegram quando trigger fica >6h sem disparar
+- Tira do GitHub Cron a responsabilidade (mais flexivel, menos quirks)
+
+### Como identificar nos runs do Actions que veio do TriggerAll
+- `event: workflow_dispatch`
+- `triggering_actor: andrehz4` (o PAT e do Andre)
+- Hora cravada com `:01` segundos (cron node-cron + propagacao API GitHub)
+
+### Tabela de controle (estado em 2026-05-18, do PROGRESSO do TriggerAll)
+| Workflow daqui | Quem dispara no TriggerAll | Periodicidade declarada |
+|---|---|---|
+| `news.yml` | TriggerAll cron | 8x/dia em UTC |
+| `community.yml` digest | TriggerAll cron | 09:25 BRT diario |
+| `community.yml` spotlight | TriggerAll cron | 21:25 BRT diario |
+| `publish-story.yml` | TriggerAll cron | 13:00 BRT diario |
+| `publish-instagram.yml` | TriggerAll webhook (push da routine claude/news-routine-*) + (provavelmente um cron extra adicionado depois) | sob demanda + ~06:00 BRT diario observado |
+
+### Horarios mapeados do codigo do TriggerAll (2026-06-01)
+Os triggers NAO sao hardcoded no repo: ficam na tabela `triggers` do Postgres
+(Railway), criados via dashboard/API. Os crons abaixo vem do PROGRESSO do
+proprio TriggerAll + do scheduler (`backend/src/services/scheduler.js`) e dos
+webhooks (`backend/src/routes/webhooks.js`):
+
+| Workflow | Cron UTC | BRT | Como |
+|---|---|---|---|
+| news.yml | `0 2,4,8,11,14,16,20,22 * * *` | 23/01/05/08/11/13/17/19h | cron |
+| community.yml (digest) | `25 12 * * *` | 09:25 | cron |
+| community.yml (spotlight) | `25 0 * * *` | 21:25 | cron |
+| publish-story.yml | `0 16 * * *` | 13:00 | cron |
+| **publish-instagram.yml** | (sem cron proprio) | **toda vez que a routine pusha** + ~06h | **webhook push** `claude/news-routine-*` (webhooks.js:127-177, dedup 3min) + encadeia publish-story no sucesso |
+
+### ACHADO CRITICO (conecta com o bug de 2026-06-01) -- CAUSA REAL CORRIGIDA
+O publish e disparado por **webhook quando a routine Claude faz push** de um
+branch `claude/news-routine-*`. **Desde 2026-06-01 a routine commita um log POR
+RODADA mesmo em 100% SKIP** (mudanca do `routine-prompt.md` pra observabilidade),
+entao ela **pusha 4x/dia (00/06/12/18 BRT)** em vez de "so quando aprova algo".
+Resultado: o webhook dispara o **publish 4x/dia** (+ o cron ~06h). Cada disparo
+tenta postar os **community-spotlight maduros acumulados na fila** (porque
+notícia regular = 0, gargalo do scraper).
+
+**A causa do REPOST (corrigida 2026-06-01):** o `media_publish` devolve `code=4
+subcode=2207051` ("atividade restringida / potential spam", NAO volume:
+X-App-Usage 0%) **MESMO tendo publicado** o carrossel (falso-erro documentado
+pela Meta). O cliente tratava como rate limit, nunca gravava `postedAt`, e o
+item seguia maduro -> proxima janela re-postava. Por isso o historico da fila
+mostra sempre `spotlight:0/N`. **Conserto:** `recoverPublishedPost` em
+`instagram.mjs` confere `GET /<uid>/media` apos erro no publish e, se o post
+saiu, marca como postado. Ver memoria `project_bug_repost_feed` e teste
+`scripts/publish/recover-publish.test.mjs`.
+
+**Pendente (origem do flag, nao do repost):** conta MEDIA_CREATOR -> converter
+pra BUSINESS + reduzir frequencia de disparo (o log-por-rodada multiplicou os
+webhooks do publish) reduz o 2207051 na origem.
+
+### Onde olhar pra confirmar/editar um trigger
+1. Dashboard React em Vercel (URL no painel do Andre)
+2. Direto no Postgres do Railway:
+   ```sql
+   SELECT id, name, schedule, config->>'workflow_id' AS wf,
+          on_success_trigger_id, status, last_fired_at
+     FROM triggers
+    ORDER BY schedule NULLS LAST, name;
+   ```
+
+### Aviso de manutencao
+**O TriggerAll roda fora deste repo. Mudar workflows aqui pode quebrar
+disparos la (ex: renomear `publish-instagram.yml` quebra o trigger no banco
+do TriggerAll).** Sempre que tocar nome/inputs de workflow, conferir o
+dashboard ou consultar a tabela `triggers`.
+
+---
+
 ## Workflows
 
 ### 1. news.yml — News fetch
@@ -162,9 +258,14 @@ aplica regras de voz (sem travessao, sem mencionar Reddit, etc.), e faz push em 
 1. **Auto-merge:** detecta branches `claude/news-routine-*`, valida (committer whitelist + path), abre PR, mescla em main, notifica Telegram
 2. **Publish:** le fila `_publish-queue.json`, gera slides JPG, posta carrossel no IG via Graph API
 
-**Horario:** ⚠️ DESATUALIZADO. O cron `12,32,52 3,9,15,21` foi REMOVIDO (commit
-b3a5636). Hoje so roda via `workflow_dispatch` manual. Ver Estado real no topo.
-~~3 runs por janela, 12min apos cada rotina, BRT 00:12/32/52, etc.~~
+**Horario:** o cron `12,32,52 3,9,15,21` do YAML foi REMOVIDO (commit b3a5636)
+e migrado pro **TriggerAll** (ver secao 7 acima). Hoje quem dispara o publish e:
+- Webhook do TriggerAll quando a routine Claude empurra um branch `claude/news-routine-*`
+- (provavel) um trigger cron extra no banco do TriggerAll, observado ~06:00 BRT
+- `workflow_dispatch` manual (`gh workflow run publish-instagram.yml`)
+
+Pra ver o cron exato ou pausar disparo automatico: dashboard do TriggerAll, nao
+mexer aqui no YAML.
 
 **Observabilidade:** Telegram (sucesso e falha) + GitHub Step Summary
 

@@ -336,6 +336,14 @@ const server = http.createServer(async (req, res) => {
       s.quotaUsage += 1;
       s.callCount = 0; s.callsByKind = {}; // zera pro proximo ciclo de postagem
       save(s);
+      // Falso-erro: o post FOI criado (ja esta no feed acima) mas a API devolve
+      // code 4 subcode 2207051 ("atividade restringida"). Modela o bug real do
+      // @smufdpj, onde o IG publica mas retorna erro. Serve pra testar a
+      // recuperacao pos-erro (recoverPublishedPost): o cliente deve achar o
+      // post pelo GET /media e tratar como sucesso, sem re-postar.
+      if (fail === "ghostpublish") {
+        return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" });
+      }
       return sendGraph(res, 200, { id: postId }, s);
     }
 
@@ -374,6 +382,22 @@ const server = http.createServer(async (req, res) => {
       const fail = failMode(s, query);
       const usage = fail === "quota" ? 49 : (s.quotaUsage || 0);
       return sendJson(res, 200, { quota_usage: usage, config: { quota_total: 50, quota_duration: 86400 } });
+    }
+
+    // GET /:uid/media  (lista midias recentes da conta) -- usado pela
+    // recuperacao pos-erro do cliente (recoverPublishedPost). Devolve o feed
+    // no formato da Graph API: { data: [{ id, caption, timestamp, media_type }] }.
+    if (method === "GET" && /\/media$/.test(pathname)) {
+      const s = load();
+      bumpCall(s, "GET /:uid/media"); save(s);
+      const limit = Number(query.limit) > 0 ? Number(query.limit) : 25;
+      const data = (s.feed || []).slice(0, limit).map((f) => ({
+        id: f.postId,
+        caption: f.caption || "",
+        timestamp: f.createdAt,
+        media_type: f.type === "CAROUSEL" ? "CAROUSEL_ALBUM" : (f.type || "IMAGE"),
+      }));
+      return sendGraph(res, 200, { data }, s);
     }
 
     // GET /me

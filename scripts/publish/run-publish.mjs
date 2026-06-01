@@ -305,6 +305,9 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleCol
   const slideSuffix = LAYOUT === "card02" ? ".card02" : "";
   try {
     const r = await publishItems(itemsToPost, { coverImageUrl, slideSuffix });
+    if (r.recovered) {
+      console.warn(`[publish] RECUPERADO tipo=${type}: media_publish deu erro mas o post saiu (postId=${r.postId}). Marcando como postado pra NAO re-postar.`);
+    }
     console.log(`[publish] OK tipo=${type} postId=${r.postId} count=${r.count}`);
     markPosted(queue, itemsToPost.map((it) => it.id), r.postId, new Date().toISOString());
     return {

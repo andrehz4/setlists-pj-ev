@@ -1,7 +1,14 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-06-01 (sessão: feed IG destravado + diagnóstico do gargalo real do scraper + observabilidade de curadoria)
+2026-06-01 (sessão tarde: CAUSA REAL do repost achada e CONSERTADA, contraria o handoff anterior)
+
+## ⭐ Conserto do repost do feed (2026-06-01, FEITO e testado)
+**Causa real (o handoff anterior estava errado):** o `media_publish` do IG devolve `code 4 subcode 2207051` ("atividade restringida / potential spam", NÃO volume: X-App-Usage 0%) MESMO tendo publicado o carrossel. Falso-erro documentado pela Meta. O cliente tratava como rate limit, `markPosted` nunca rodava, o item ficava sem `postedAt` e seguia maduro, então a próxima janela re-postava. Por isso o histórico da fila mostra sempre `spotlight:0/N`. Evidência que fechou: o carrossel `DZCZhjaEeV0` está no Instagram com os 5 itens, mas a run das 09:00 registrou `FALHA code=4 subcode=2207051`.
+
+**Conserto aplicado:** `recoverPublishedPost` em `scripts/publish/instagram.mjs`. Após qualquer erro no `publishContainer` (single e carrossel), faz `GET /<uid>/media` e, se o post que tentamos já está lá (caption batendo + criado depois do início da tentativa), devolve o id real e trata como sucesso (`{ recovered: true }`). Aí o `markPosted` roda, o item sai do pool, não re-posta. Mock ganhou modo `ghostpublish` + endpoint `GET /<uid>/media`. Teste novo `scripts/publish/recover-publish.test.mjs`. Suíte 48/48.
+
+**Ainda pendente (origem do flag de spam, não do repost):** conta é MEDIA_CREATOR. Converter pra BUSINESS no Instagram + reduzir a frequência de disparo (a routine pusha 4x/dia mesmo em 100% SKIP, multiplicando os webhooks do publish) reduz o `2207051` na origem. Hardening opcional separado: persistir `postedAt` imediatamente após sucesso (protege contra falha de commit da fila por conflito; é risco latente, não foi a causa deste incidente).
 
 ## ⭐ Fluxo de notícias/postagem/schedule: ver PIPELINE.md
 **Para entender TODAS as etapas (coleta, curadoria, publicação, schedule), leia `PIPELINE.md`, seção "Estado real e diagnostico" no topo.** É a fonte da verdade do fluxo. Memórias: `project_news_scraper_gargalo`, `project_mock_ig_abas`.
@@ -13,7 +20,7 @@
 
 **Observabilidade montada:** a routine agora grava log por rodada em `media/news/_curation-log/<TS>.json` (aprovados + todos os SKIP com razão), inclusive rodadas 100% SKIP. Prompt atualizado em `scripts/news/routine-prompt.md` e **recolado na scheduled task do Andre** (a task usa snapshot, não lê o arquivo). O mock-ig ganhou abas **Curadoria** (pending vs pego) e **Rodadas** (lê os logs), além de Simulador e Runs. Atalho "Mock Instagram" na área de trabalho sobe tudo num clique.
 
-**`publish-instagram.yml` perdeu o cron** (commit b3a5636, "TriggerAll" nunca criado). O feed só posta via `workflow_dispatch` manual hoje.
+**Quem dispara o `publish-instagram.yml`:** TriggerAll (sistema separado, Railway+Vercel). O cron no YAML foi removido em `b3a5636` mas o TriggerAll JÁ EXISTE e está rodando: dispara via `workflow_dispatch` da API com PAT do Andre (actor: `andrehz4`, segundos `:01`). Webhook na rotina Claude + cron extra observado às 06:00 BRT. Detalhes em `PIPELINE.md` seção 7 e memória `reference_triggerall`.
 
 ## Próximo passo concreto
 1. **Consertar o scraper** (`scripts/news/` + `news.yml`): o `reddit-search` precisa SEGUIR o link externo e extrair o texto do artigo-fonte, em vez de só pegar o metadado do post. É o que vai dar matéria-prima pra curadoria aprovar (e a notícia do baterista finalmente chegar no feed). Também melhorar o filtro de relevância (deixa passar Grammy, Duff McKagan, food review).
