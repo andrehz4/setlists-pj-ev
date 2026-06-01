@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchRuns, simulateRun } from "../api.js";
+import { fetchRuns, simulateRun, syncFromOrigin } from "../api.js";
 
 // Aba Runs: lista as ultimas runs do Action e, ao clicar, reconstroi como
 // aquele post DEVERIA ter ido pro Instagram (slide + caption reais de cada id
@@ -17,12 +17,26 @@ export default function RunsLab({ onPreview }) {
   const [sel, setSel] = useState(null);     // run id selecionada
   const [detail, setDetail] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [syncing, setSyncing] = useState(false);
+  const [syncMsg, setSyncMsg] = useState(null);
 
   async function load() {
     try { setRuns(await fetchRuns()); setErr(null); }
     catch (e) { setErr(e.message); }
   }
   useEffect(() => { load(); }, []);
+
+  // Atualizar = puxa commits novos do Actions (sync) e entao recarrega a lista.
+  async function refresh() {
+    setSyncing(true); setSyncMsg(null); setDetail(null); setSel(null);
+    try {
+      const s = await syncFromOrigin();
+      if (s.ok) setSyncMsg(s.changed ? `+${s.newCommits} commit(s) novo(s) · ${s.head}` : "ja estava atualizado");
+      else setSyncMsg("sync falhou: " + (s.error || "").slice(0, 60));
+    } catch (e) { setSyncMsg("sync falhou: " + e.message); }
+    await load();
+    setSyncing(false);
+  }
 
   async function pick(id) {
     setSel(id); setDetail(null); setLoading(true);
@@ -41,7 +55,12 @@ export default function RunsLab({ onPreview }) {
           <h2>Runs do Action</h2>
           <p>Clique numa run pra ver como o post dela DEVERIA ter ido pro Instagram. Fiel ao historico, mesmo runs que falharam no rate limit.</p>
         </div>
-        <button className="lab-refresh" onClick={() => { setDetail(null); setSel(null); load(); }}>↻ Atualizar</button>
+        <div className="lab-refresh-wrap">
+          <button className="lab-refresh" onClick={refresh} disabled={syncing}>
+            {syncing ? "buscando…" : "↻ Atualizar"}
+          </button>
+          {syncMsg && <span className="lab-sync-msg">{syncMsg}</span>}
+        </div>
       </div>
 
       <div className="runs-list">

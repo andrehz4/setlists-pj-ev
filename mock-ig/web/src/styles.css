@@ -303,6 +303,8 @@ code { background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 5px; 
 .lab-refresh:hover { background: var(--panel-2); border-color: var(--gold); }
 .lab-refresh:active { transform: scale(.96); }
 .lab-refresh:disabled { color: var(--ink-dim); cursor: wait; }
+.lab-refresh-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.lab-sync-msg { font-family: var(--mono); font-size: 11px; color: var(--ink-mut); letter-spacing: .02em; text-align: right; max-width: 30ch; }
 .lab-sec { margin-bottom: 36px; }
 .lab-sec h3 { font-family: var(--mono); font-size: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-mut); }
 
