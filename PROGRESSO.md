@@ -3,6 +3,13 @@
 ## Data
 2026-06-01 (sessão tarde: CAUSA REAL do repost achada e CONSERTADA, contraria o handoff anterior)
 
+## ⭐ Throughput da curadoria: MAX_NEW_PER_RUN 3 -> 4 + alerta de backlog (2026-06-01, FEITO)
+**Por que o teto existia:** `MAX_NEW_PER_RUN` (`scripts/news/fetch-news.mjs`) limita itens novos coletados por rodada. Começou em 6, baixou pra 3 em 2026-05-12 (commit `829ee18`) porque a **routine de curadoria estourava o tempo** (5 itens/run = 3 mídia + digest + spotlight). NÃO é regra de feed nem anti-spam do IG, é orçamento de wall-clock da routine Sonnet que cura o `_pending`. O community-fetch tem cap próprio (1 digest + 1 spotlight), fora desse número.
+
+**O que mudou:** subido 3 -> 4 (experimento monitorado, agora que o feed está destravado). O risco de subir NÃO é o `news.yml` (só coleta, termina em ~40s, timeout de 12min). É a routine remota, que cura TODO o `_pending` por disparo: se a coleta entra mais rápido do que a curadoria drena, vira backlog e a routine demora/estoura.
+
+**Como sabemos se vai dar bug (detector):** novo step "Alerta backlog _pending" no `news.yml`. Estado normal do `_pending` é 0-3 itens (a routine drena a cada run; hoje está em 1). Se passar de `NEWS_PENDING_ALERT` (default 12, env override via `vars.NEWS_PENDING_ALERT`), dispara aviso no Telegram. Backlog baixo e estável = seguro subir mais (5, 6...). Backlog crescendo = baixar de volta pra 3. Rollback = trocar o número em `fetch-news.mjs`. Suíte 65/65.
+
 ## ⭐ Conserto do repost do feed (2026-06-01, FEITO e testado)
 **Causa real (o handoff anterior estava errado):** o `media_publish` do IG devolve `code 4 subcode 2207051` ("atividade restringida / potential spam", NÃO volume: X-App-Usage 0%) MESMO tendo publicado o carrossel. Falso-erro documentado pela Meta. O cliente tratava como rate limit, `markPosted` nunca rodava, o item ficava sem `postedAt` e seguia maduro, então a próxima janela re-postava. Por isso o histórico da fila mostra sempre `spotlight:0/N`. Evidência que fechou: o carrossel `DZCZhjaEeV0` está no Instagram com os 5 itens, mas a run das 09:00 registrou `FALHA code=4 subcode=2207051`.
 
