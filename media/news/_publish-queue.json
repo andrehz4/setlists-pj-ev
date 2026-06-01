@@ -580,65 +580,60 @@
       "type": "spotlight",
       "queuedAt": "2026-05-27T15:10:41.533Z",
       "publishAt": "2026-05-27T15:10:41.533Z",
-      "postedAt": null,
-      "postId": null,
+      "postedAt": "2026-06-01T14:35:12.866Z",
+      "postId": "DZCZhjaEeV0-manual",
       "error": {
         "at": "2026-06-01T09:01:15.486Z",
         "msg": "IG rate limit, retry apos 2026-06-01T10:01:15.486Z"
-      },
-      "_rateLimitedUntil": "2026-06-01T10:01:15.486Z"
+      }
     },
     {
       "id": "cs-5dd6e659dd",
       "type": "spotlight",
       "queuedAt": "2026-05-29T09:09:27.639Z",
       "publishAt": "2026-05-29T09:09:27.639Z",
-      "postedAt": null,
-      "postId": null,
+      "postedAt": "2026-06-01T14:35:12.866Z",
+      "postId": "DZCZhjaEeV0-manual",
       "error": {
         "at": "2026-06-01T09:01:15.486Z",
         "msg": "IG rate limit, retry apos 2026-06-01T10:01:15.486Z"
-      },
-      "_rateLimitedUntil": "2026-06-01T10:01:15.486Z"
+      }
     },
     {
       "id": "cd-20260530",
       "type": "spotlight",
       "queuedAt": "2026-05-30T15:11:14.594Z",
       "publishAt": "2026-05-30T15:11:14.594Z",
-      "postedAt": null,
-      "postId": null,
+      "postedAt": "2026-06-01T14:35:12.866Z",
+      "postId": "DZCZhjaEeV0-manual",
       "error": {
         "at": "2026-06-01T09:01:15.486Z",
         "msg": "IG rate limit, retry apos 2026-06-01T10:01:15.486Z"
-      },
-      "_rateLimitedUntil": "2026-06-01T10:01:15.486Z"
+      }
     },
     {
       "id": "cs-d9e9bf1438",
       "type": "spotlight",
       "queuedAt": "2026-05-31T03:10:46.971Z",
       "publishAt": "2026-05-31T03:10:46.971Z",
-      "postedAt": null,
-      "postId": null,
+      "postedAt": "2026-06-01T14:35:12.866Z",
+      "postId": "DZCZhjaEeV0-manual",
       "error": {
         "at": "2026-06-01T09:01:15.486Z",
         "msg": "IG rate limit, retry apos 2026-06-01T10:01:15.486Z"
-      },
-      "_rateLimitedUntil": "2026-06-01T10:01:15.486Z"
+      }
     },
     {
       "id": "cd-20260531",
       "type": "spotlight",
       "queuedAt": "2026-05-31T15:09:58.262Z",
       "publishAt": "2026-05-31T15:09:58.262Z",
-      "postedAt": null,
-      "postId": null,
+      "postedAt": "2026-06-01T14:35:12.866Z",
+      "postId": "DZCZhjaEeV0-manual",
       "error": {
         "at": "2026-06-01T09:01:15.486Z",
         "msg": "IG rate limit, retry apos 2026-06-01T10:01:15.486Z"
-      },
-      "_rateLimitedUntil": "2026-06-01T10:01:15.486Z"
+      }
     }
   ],
   "postCount": 35
