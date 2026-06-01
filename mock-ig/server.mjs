@@ -221,8 +221,9 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/_mock/curation-run" && method === "POST") {
       try {
         const b = await readBody(req);
-        if (!b.hash) return sendJson(res, 400, { error: "hash da rodada obrigatorio" });
-        return sendJson(res, 200, curationRunDetail(b.hash));
+        const ref = b.ref || b.hash;
+        if (!ref) return sendJson(res, 400, { error: "ref da rodada obrigatorio" });
+        return sendJson(res, 200, curationRunDetail(ref));
       } catch (e) { return sendJson(res, 500, { error: e.message }); }
     }
 

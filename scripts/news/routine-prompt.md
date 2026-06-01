@@ -81,45 +81,67 @@ Se for SKIP (irrelevante, hype, menor de idade no spotlight, dia fraco no digest
 
 **ESCREVA O ARRAY COMPLETO DE UMA VEZ SÓ** em `/tmp/curated.json` usando o tool Write. NÃO faça múltiplos appends.
 
-## 5. Cria branch + merge local + commit + push
+### 4d. Monte o LOG da rodada (SEMPRE, mesmo se tudo for SKIP)
 
-Ordem importa: cria a branch ANTES de rodar `merge-curated.mjs` (pra fugir de edge case onde branch ja existe local e o `checkout` conflita com WD modificado), depois aplica o merge, depois commita, depois pusha. Tudo em uma sequencia continua:
+Além do curated, monte um registro estruturado da rodada inteira pra ficar no histórico do repo. Isso é o que dá visibilidade do que o scraper trouxe e por que cada item virou ou não matéria (a aba Rodadas do mock lê isso, e sem ele as rodadas 100% SKIP não deixam rastro nenhum). Inclua TODOS os itens: os que passaram e os que foram SKIP, cada um com uma razão curta.
+
+Escreva em `/tmp/curation-log.json` com o tool Write, objeto único:
+```json
+{
+  "runAt": "<UTC ISO de agora, ex 2026-06-01T03:00Z>",
+  "marco": "<marco BRT desta rodada: 00:00, 06:00, 12:00 ou 18:00 BRT>",
+  "pendingTotal": <total de itens em _pending.json>,
+  "distribution": { "midia": <n>, "community-digest": <n>, "community-spotlight": <n>, "shop": <n> },
+  "approved": [
+    { "id": "<id>", "titulo": "<titulo_pt>", "kind": "<kind ou 'midia'>" }
+  ],
+  "skipped": [
+    { "id": "<id>", "title": "<title_orig curto>", "reason": "<razao curta: 'texto vazio', 'sem mencao a PJ', 'PJ tangencial', 'merch', 'spotlight sem selftext', etc>" }
+  ]
+}
+```
+
+`approved` pode ser vazio (rodada 100% SKIP). `skipped` deve listar TODOS os itens pulados com a razão de cada um, sem agrupar em "demais N ids": é exatamente esse detalhe item-por-item que precisa ficar registrado. Razões curtas e padronizadas ajudam a achar padrão (ex: muitos "texto vazio" seguidos = scraper trazendo só metadado).
+
+## 5. Cria branch + grava log + merge + commit + push (SEMPRE commita, nem que seja só o log)
+
+Ordem importa: cria a branch ANTES de mexer em arquivos, grava o log da rodada, e SÓ roda o `merge-curated.mjs` se houver curated válido. Mesmo numa rodada 100% SKIP, você commita e pusha o log (pra a rodada deixar rastro). Tudo em sequência contínua:
 
 ```bash
-# 5.1. Sanity check do curated.json
-if ! test -s /tmp/curated.json || ! jq -e 'type == "array" and length > 0' /tmp/curated.json >/dev/null; then
-  echo "Sem curated valido (todos SKIP ou nenhum pending). Encerrando sem commit."
-  exit 0
-fi
-
-# 5.2. Config autor (importante: email noreply@anthropic.com pra committer.login
-# resolver pra "claude" e passar na whitelist do auto-merge)
+# 5.1. Config autor (email noreply@anthropic.com pra committer.login virar "claude"
+# e passar na whitelist do auto-merge)
 git config user.name "Claude"
 git config user.email "noreply@anthropic.com"
 
-# 5.3. Cria branch FRESH a partir de main, ANTES de modificar arquivos.
-# Timestamp completo (YYYYMMDD-HHMM) evita colisao se 2 runs no mesmo dia.
-BRANCH="claude/news-routine-$(date -u +%Y%m%d-%H%M)"
+# 5.2. Cria branch FRESH a partir de main, ANTES de modificar arquivos.
+# Timestamp completo (YYYYMMDD-HHMM UTC) evita colisao se 2 runs no mesmo dia.
+TS="$(date -u +%Y%m%d-%H%M)"
+BRANCH="claude/news-routine-$TS"
 git checkout -B "$BRANCH"
 
-# 5.4. AGORA roda merge-curated. Ele valida cada item, atualiza index.json
-# (top 30), arquiva overflow em archive/YYYY-MM.json, atualiza seen.json e
-# limpa items aceitos de _pending.json.
-node scripts/news/merge-curated.mjs --file /tmp/curated.json
+# 5.3. Grava o log da rodada no repo (SEMPRE, mesmo se tudo SKIP).
+mkdir -p media/news/_curation-log
+cp /tmp/curation-log.json "media/news/_curation-log/$TS.json"
+
+# 5.4. Se houver curated valido, roda o merge (atualiza index top 30, items/<id>.json,
+# archive, seen.json, e limpa _pending.json). Se for tudo SKIP, pula o merge:
+# so o log vai no commit, e o _pending fica intacto pra proxima rodada.
+if test -s /tmp/curated.json && jq -e 'type == "array" and length > 0' /tmp/curated.json >/dev/null; then
+  node scripts/news/merge-curated.mjs --file /tmp/curated.json
+else
+  echo "Tudo SKIP nesta rodada: commitando apenas o log."
+fi
 
 # 5.5. Confere o que mudou
 git status --short
-# Espera ver alteracoes em media/news/index.json, items/<id>.json, seen.json
-# e _pending.json (ou deletado se zerou).
 
-# 5.6. Stage + commit com mensagem DETALHADA (vai virar body do PR automatico).
-# Substitua os placeholders pelos dados reais dos items que voce curou.
+# 5.6. Stage + commit com mensagem DETALHADA (vira body do PR automatico).
+# Substitua os placeholders pelos dados reais. Em tudo-SKIP use "nenhum (tudo SKIP)".
 git add media/news/
-git commit -m "news: curadoria automatica via routine sonnet ($(jq '.items | length' media/news/index.json) itens, $(date -u +%Y-%m-%dT%H:%MZ))
+git commit -m "news: curadoria automatica via routine sonnet ($(jq '.items | length' media/news/index.json) itens no index, $(date -u +%Y-%m-%dT%H:%MZ))
 
 Items curados:
-- <id>: <titulo curto> (kind, sourceLabel)
-- ...
+- <id>: <titulo curto> (kind, sourceLabel)   # ou: nenhum (tudo SKIP)
 
 SKIP:
 - <id>: <razao>
@@ -128,6 +150,8 @@ SKIP:
 # 5.7. Push em branch com -u pra setar upstream (proxy libera branches != main)
 git push -u origin "$BRANCH"
 ```
+
+Observação: como o log vive em `media/news/_curation-log/`, ele passa na validação do auto-merge (path `media/news/` + committer `claude`) e é mesclado em main normalmente. Toda rodada, com ou sem curadoria, deixa um arquivo de log.
 
 ## 6. O que acontece depois (automatico, voce nao faz nada)
 
@@ -157,6 +181,7 @@ Reporte:
 - Quantos foram SKIP e por que (resumo)
 - Nome do branch criado e SHA do commit pushed
 - Quantos itens no `media/news/index.json` final
+- Confirmacao que o log da rodada foi gravado em `media/news/_curation-log/<TS>.json`
 - Confirmacao que o auto-merge vai cuidar do resto em ate 30min
 
 # Resumo das REGRAS ABSOLUTAS (estão nos system prompts completos, mas reforço aqui):

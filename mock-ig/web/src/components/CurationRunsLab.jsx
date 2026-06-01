@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { fetchCurationRuns, simulateCurationRun, syncFromOrigin } from "../api.js";
 
 // Aba Rodadas: o historico das rodadas de curadoria do Claude schedule (a
-// routine sonnet que cura os pendentes e COMMITA direto na main, fora do
-// GitHub Actions). Cada commit "curadoria automatica via routine sonnet" e uma
-// rodada. Clicar mostra o que ELA salvou (os itens que entraram no index).
+// routine sonnet que cura os pendentes e commita direto na main). A partir de
+// 2026-06 cada rodada grava um log (aprovados + todos os SKIP com razao),
+// inclusive as 100% SKIP. Clicar numa rodada mostra o que entrou E o que foi
+// pulado e por que. Sem log ainda, cai nos commits (so o que entrou no index).
 const KIND_LABEL = { regular: "Noticia", spotlight: "Spotlight", digest: "Comunidade" };
 
 function brt(iso) {
@@ -39,9 +40,9 @@ export default function CurationRunsLab() {
     setSyncing(false);
   }
 
-  async function pick(hash) {
-    setSel(hash); setDetail(null); setLoading(true);
-    try { setDetail(await simulateCurationRun(hash)); }
+  async function pick(ref) {
+    setSel(ref); setDetail(null); setLoading(true);
+    try { setDetail(await simulateCurationRun(ref)); }
     catch (e) { setErr(e.message); }
     finally { setLoading(false); }
   }
@@ -49,15 +50,16 @@ export default function CurationRunsLab() {
   if (err) return <div className="ig-err">{err}</div>;
   if (!runs) return <div className="lab-loading">carregando rodadas…</div>;
 
-  const totalNew = runs.reduce((s, r) => s + (r.newCount || 0), 0);
-  const avg = runs.length ? (totalNew / runs.length).toFixed(1) : "0";
+  const hasLogs = runs.some((r) => r.source === "log");
+  const totalApproved = runs.reduce((s, r) => s + (r.approvedCount || 0), 0);
+  const avg = runs.length ? (totalApproved / runs.length).toFixed(1) : "0";
 
   return (
     <div className="lab runs">
       <div className="lab-head">
         <div>
           <h2>Rodadas de curadoria</h2>
-          <p>O Claude schedule (routine sonnet) cura os pendentes e commita direto na main, fora do Actions. Cada commit e uma rodada. Clique pra ver o que ela salvou.</p>
+          <p>O Claude schedule cura os pendentes 4x/dia e commita direto na main. Clique numa rodada pra ver o que entrou e, quando houver log, tudo que foi pulado e por que.</p>
         </div>
         <div className="lab-refresh-wrap">
           <button className="lab-refresh" onClick={refresh} disabled={syncing}>
@@ -67,39 +69,49 @@ export default function CurationRunsLab() {
         </div>
       </div>
 
-      {/* diagnostico: ritmo real de itens novos por rodada */}
       <div className="cr-diag">
         <span><b>{runs.length}</b> rodadas</span>
-        <span><b>{avg}</b> item novo por rodada (media)</span>
-        <span className="cr-diag-note">a mensagem diz "30 itens" mas isso e o tamanho do index; o que de fato ENTRA por rodada e o numero abaixo</span>
+        <span><b>{avg}</b> aprovado por rodada (media)</span>
+        <span className="cr-diag-note">
+          {hasLogs
+            ? "com log completo: cada rodada registra os aprovados e TODOS os SKIP com razao"
+            : "ainda sem log de rodada (mostrando os commits). Quando a routine atualizada rodar, aparece aqui o detalhe dos SKIP"}
+        </span>
       </div>
 
       <div className="runs-list">
         {runs.map((r) => (
-          <button key={r.hash} className={"run-row st-success" + (sel === r.hash ? " on" : "")} onClick={() => pick(r.hash)}>
+          <button key={r.ref} className={"run-row st-success" + (sel === r.ref ? " on" : "")} onClick={() => pick(r.ref)}>
             <span className="run-dot st-success" />
-            <span className="run-when">{brt(r.date)}</span>
-            <span className="run-id mono">{r.shortHash}</span>
-            <span className={"cr-badge" + (r.newCount === 0 ? " zero" : "")}>+{r.newCount} novo{r.newCount === 1 ? "" : "s"}</span>
+            <span className="run-when">{brt(r.date)}{r.marco ? ` · ${r.marco}` : ""}</span>
+            <span className={"cr-badge" + (r.approvedCount === 0 ? " zero" : "")}>+{r.approvedCount} aprov.</span>
+            {r.skippedCount != null && <span className="cr-badge skip">{r.skippedCount} skip</span>}
+            {r.pendingTotal != null && <span className="cr-pend mono">{r.pendingTotal} pend.</span>}
             <span className="run-go">ver →</span>
           </button>
         ))}
       </div>
 
-      {loading && <div className="lab-loading">lendo o que a rodada salvou…</div>}
+      {loading && <div className="lab-loading">lendo a rodada…</div>}
 
       {detail && !loading && (
         <div className="run-detail">
-          <p className="cr-subject mono">{detail.subject}</p>
-          {detail.items.length === 0
-            ? <p className="lab-empty">essa rodada nao adicionou item novo ao index (so reordenou/podou o TOP-30).</p>
+          {detail.source === "commit" && detail.subject && <p className="cr-subject mono">{detail.subject}</p>}
+          {detail.source === "log" && (
+            <p className="cr-subject mono">
+              {detail.marco || "rodada"} · {detail.pendingTotal != null ? `${detail.pendingTotal} pendentes` : ""} · {detail.approved.length} aprovado(s), {detail.skipped.length} skip
+            </p>
+          )}
+
+          {/* aprovados */}
+          <h4 className="cr-sec-h">Aprovados <span className="cur-count sm">{detail.approved.length}</span></h4>
+          {detail.approved.length === 0
+            ? <p className="lab-empty">nenhum item entrou nesta rodada.</p>
             : (
               <div className="cur-picked">
-                {detail.items.map((it) => (
+                {detail.approved.map((it) => (
                   <article key={it.id} className="cur-pick">
-                    {it.img
-                      ? <img className="cur-thumb" src={it.img} alt="" loading="lazy" />
-                      : <span className="cur-thumb ph" />}
+                    {it.img ? <img className="cur-thumb" src={it.img} alt="" loading="lazy" /> : <span className="cur-thumb ph" />}
                     <div className="cur-pick-body">
                       <div className="cur-pick-top">
                         <span className={"cur-kind k-" + it.kind}>{KIND_LABEL[it.kind] || it.kind}</span>
@@ -115,6 +127,26 @@ export default function CurationRunsLab() {
                 ))}
               </div>
             )}
+
+          {/* skip (so quando ha log) */}
+          {detail.source === "log" && (
+            <>
+              <h4 className="cr-sec-h skip">Pulados (SKIP) <span className="cur-count sm">{detail.skipped.length}</span></h4>
+              {detail.skipped.length === 0
+                ? <p className="lab-empty">nada foi pulado nesta rodada.</p>
+                : (
+                  <ul className="cr-skip-list">
+                    {detail.skipped.map((s, i) => (
+                      <li key={s.id + i}>
+                        <code>{s.id}</code>
+                        <span className="cr-skip-title">{s.title}</span>
+                        <em className="cr-skip-reason">{s.reason}</em>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+            </>
+          )}
         </div>
       )}
     </div>

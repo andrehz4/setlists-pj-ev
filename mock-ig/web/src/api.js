@@ -75,8 +75,8 @@ export async function fetchCurationRuns() {
   return j;
 }
 
-export async function simulateCurationRun(hash) {
-  const body = new URLSearchParams({ hash });
+export async function simulateCurationRun(ref) {
+  const body = new URLSearchParams({ ref });
   const r = await fetch("/_mock/curation-run", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body });
   const j = await r.json();
   if (!r.ok) throw new Error(j.error || ("curation-run " + r.status));
