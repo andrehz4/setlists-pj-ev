@@ -107,6 +107,26 @@ function slideUrlFor(itemId, suffix = "") {
   return `${REPO_PUBLIC_BASE}/media/news/instagram-slides/${encodeURIComponent(itemId)}${suffix}.jpg`;
 }
 
+// Normaliza caption pra comparacao (colapsa espacos/quebras). Usado na
+// recuperacao pos-erro do publish (recoverPublishedPost).
+function normalizeCaption(s) {
+  return String(s || "").replace(/\s+/g, " ").trim();
+}
+
+// Duas captions sao "a mesma postagem" se forem iguais normalizadas OU se
+// compartilham um prefixo longo (>=60 chars). O prefixo cobre o caso de o IG
+// devolver a caption levemente truncada/alterada, sem dar falso positivo (60
+// chars ja incluem o titulo do 1o item, que e unico por edicao; o cabecalho
+// "DESTAQUES DA EDICAO" sozinho nao bastaria).
+function captionsMatch(a, b) {
+  const na = normalizeCaption(a);
+  const nb = normalizeCaption(b);
+  if (!na || !nb) return false;
+  if (na === nb) return true;
+  const n = Math.min(200, na.length, nb.length);
+  return n >= 60 && na.slice(0, n) === nb.slice(0, n);
+}
+
 function dedupeTags(list) {
   const seen = new Set();
   const out = [];
@@ -290,6 +310,49 @@ export async function publishContainer({ igUserId, accessToken, creationId }) {
   return r.id;
 }
 
+// Lista as midias recentes da conta (GET /<uid>/media). Usado pra confirmar,
+// apos um erro no media_publish, se a postagem saiu mesmo assim.
+export async function getRecentMedia({ igUserId, accessToken, limit = 5 } = {}) {
+  if (!igUserId) igUserId = process.env.IG_USER_ID;
+  if (!accessToken) accessToken = process.env.IG_ACCESS_TOKEN;
+  const res = await got.get(`${API_BASE}/${igUserId}/media`, {
+    searchParams: { fields: "id,caption,timestamp,media_type", limit, access_token: accessToken },
+    timeout: { request: 15000 },
+    retry: { limit: 1 },
+    throwHttpErrors: false,
+    responseType: "json",
+  });
+  logUsageHeaders(res.headers, `/${igUserId}/media`);
+  if (res.statusCode >= 400) {
+    throw classifyIGError({ path: `/${igUserId}/media`, statusCode: res.statusCode, body: res.body });
+  }
+  return Array.isArray(res.body?.data) ? res.body.data : [];
+}
+
+// Falso-erro conhecido do IG: o media_publish as vezes devolve erro (classico
+// code 4 subcode 2207051, "atividade restringida / potential spam") MESMO
+// tendo publicado o post (comportamento documentado pela Meta: a recomendacao
+// e checar se publicou antes de retentar, senao duplica). Apos QUALQUER erro
+// no publish, olhamos as midias recentes: se a postagem que tentamos ja esta
+// la (caption batendo + criada depois que comecamos a tentativa), devolvemos o
+// id real e tratamos como sucesso, em vez de propagar o erro e re-postar na
+// proxima janela. Retorna o postId recuperado ou null.
+async function recoverPublishedPost({ igUserId, accessToken, caption, sinceMs }) {
+  try {
+    const media = await getRecentMedia({ igUserId, accessToken, limit: 5 });
+    const buffer = 120000; // 2min de folga pra divergencia de relogio cliente/IG
+    for (const m of media) {
+      const created = m.timestamp ? new Date(m.timestamp).getTime() : 0;
+      const recent = sinceMs ? (Number.isFinite(created) && created >= sinceMs - buffer) : true;
+      if (!recent) continue;
+      if (captionsMatch(m.caption, caption)) return m.id;
+    }
+  } catch (e) {
+    console.warn(`[ig] verificacao pos-erro falhou (nao da pra confirmar publicacao): ${e.message}`);
+  }
+  return null;
+}
+
 // Helper completo: dado um array de items (cada um com .id), pega URLs
 // dos slides (que assumimos ja terem sido pushados pro repo) e publica
 // como carrossel (ou single image se for 1 item).
@@ -303,6 +366,10 @@ export async function publishItems(items, { igUserId, accessToken, coverImageUrl
     throw new Error("publishItems: IG_USER_ID e IG_ACCESS_TOKEN obrigatorios");
   }
 
+  // Marca quando a tentativa comecou, pra recoverPublishedPost so considerar
+  // postagens criadas DEPOIS disso (nunca uma edicao antiga identica).
+  const attemptStartMs = Date.now();
+
   if (items.length === 1) {
     const it = items[0];
     const caption = buildSingleCaption(it);
@@ -313,8 +380,17 @@ export async function publishItems(items, { igUserId, accessToken, coverImageUrl
     });
     // pequena pausa pra IG processar a imagem antes do publish
     await new Promise((r) => setTimeout(r, 4000));
-    const postId = await publishContainer({ igUserId, accessToken, creationId: containerId });
-    return { postId, count: 1, captionLen: caption.length };
+    try {
+      const postId = await publishContainer({ igUserId, accessToken, creationId: containerId });
+      return { postId, count: 1, captionLen: caption.length };
+    } catch (e) {
+      const recovered = await recoverPublishedPost({ igUserId, accessToken, caption, sinceMs: attemptStartMs });
+      if (recovered) {
+        console.warn(`[ig] media_publish devolveu ${e.toDetailString ? e.toDetailString() : e.message} mas o post EXISTE (${recovered}). Tratando como sucesso (falso-erro IG).`);
+        return { postId: recovered, count: 1, captionLen: caption.length, recovered: true };
+      }
+      throw e;
+    }
   }
 
   const totalSlides = items.length + (coverImageUrl ? 1 : 0);
@@ -345,8 +421,17 @@ export async function publishItems(items, { igUserId, accessToken, coverImageUrl
     igUserId, accessToken, childrenIds, caption,
   });
   await new Promise((r) => setTimeout(r, 6000));
-  const postId = await publishContainer({ igUserId, accessToken, creationId: carouselId });
-  return { postId, count: items.length, captionLen: caption.length };
+  try {
+    const postId = await publishContainer({ igUserId, accessToken, creationId: carouselId });
+    return { postId, count: items.length, captionLen: caption.length };
+  } catch (e) {
+    const recovered = await recoverPublishedPost({ igUserId, accessToken, caption, sinceMs: attemptStartMs });
+    if (recovered) {
+      console.warn(`[ig] media_publish devolveu ${e.toDetailString ? e.toDetailString() : e.message} mas o carrossel EXISTE (${recovered}). Tratando como sucesso (falso-erro IG).`);
+      return { postId: recovered, count: items.length, captionLen: caption.length, recovered: true };
+    }
+    throw e;
+  }
 }
 
 // ============================================================
