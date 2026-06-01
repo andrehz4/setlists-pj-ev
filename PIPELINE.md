@@ -3,6 +3,55 @@
 Documentacao oficial do pipeline de noticias do site Pearl Jam fan-to-fan
 (setlists-pj-ev.pages.dev / Instagram @smufdpj).
 
+> **Para proximos chats:** este e o documento de referencia do fluxo de noticias,
+> postagem e do schedule de curadoria. Leia a secao de Estado real abaixo ANTES
+> de mexer em qualquer parte do pipeline. Memorias relacionadas:
+> `project_news_scraper_gargalo`, `project_mock_ig_abas`.
+
+---
+
+## ⚠️ Estado real e diagnostico (atualizado 2026-06-01) — LEIA PRIMEIRO
+
+O resto do documento descreve o desenho ORIGINAL. Estes pontos refletem o que
+de fato acontece hoje, com os achados da investigacao de 2026-05-31/06-01:
+
+**1. As tres etapas, e quem faz cada uma:**
+- **Coleta (ATIVA):** `news.yml` (autor de commit `pj-news-bot`) e `community.yml`
+  rodam no GitHub Actions e enchem `media/news/_pending.json` com candidatos crus.
+- **Curadoria (ATIVA, mas e o Claude schedule, NAO um Action):** a "Rotina Claude"
+  e uma **scheduled task no Anthropic Cloud** (Claude Sonnet), 4x/dia (00/06/12/18
+  BRT). Ela le `_pending.json`, cura, e commita em branch `claude/news-routine-*`,
+  que o auto-merge mescla na main. Nos commits aparece autor **"Claude"**, msg
+  "news: curadoria automatica via routine sonnet". O prompt dela vive em
+  `scripts/news/routine-prompt.md` (mas a task usa um SNAPSHOT colado; editar o
+  arquivo nao atualiza a task, tem que recolar).
+- **Publicacao (so manual):** `publish-instagram.yml` posta o carrossel no feed.
+
+**2. O GARGALO real do feed vazio = o scraper, nao a curadoria nem o feed.**
+O `reddit-search` traz `article_text` VAZIO (so `"submitted by /u/x [link]
+[comments]"`, <200 chars). Sem texto, a curadoria corretamente faz SKIP (regra
+anti-invencao). Resultado: 56-61 itens por rodada -> 0 ou 1 aprovado. Ate a
+noticia real do novo baterista (`a7233f622d`) e descartada toda rodada por
+"texto vazio". **Pendente:** consertar o scraper pra seguir o link externo e
+extrair o texto do artigo-fonte. Ver memoria `project_news_scraper_gargalo`.
+
+**3. `publish-instagram.yml` NAO tem mais cron.** O schedule
+`12,32,52 3,9,15,21` foi REMOVIDO (commit b3a5636, "acionado apenas pelo
+TriggerAll", que nunca foi criado). Hoje o feed so posta via `workflow_dispatch`
+manual (`gh workflow run publish-instagram.yml`). A secao 4 e a agenda abaixo
+ainda descrevem o cron antigo.
+
+**4. `news-merge.yml` esta morto.** So rodou 1x (13/05). A curadoria nao usa
+mais o caminho `repository_dispatch` -> `news-merge`; ela commita em branch
+direto (item 1). Ignore o news-merge na tabela de observabilidade.
+
+**5. Observabilidade de curadoria (NOVO, 2026-06-01):** a Rotina agora grava um
+log por rodada em `media/news/_curation-log/<TS>.json` com os aprovados E todos
+os SKIP com razao, inclusive rodadas 100% SKIP. O **mock-ig** (Instagram fake
+local, pasta `mock-ig/`, atalho "Mock Instagram" na area de trabalho do Andre)
+le isso na aba **Rodadas**, alem das abas Curadoria, Simulador e Runs. Ver
+memoria `project_mock_ig_abas`.
+
 ---
 
 ## Arquitetura geral
@@ -113,9 +162,9 @@ aplica regras de voz (sem travessao, sem mencionar Reddit, etc.), e faz push em 
 1. **Auto-merge:** detecta branches `claude/news-routine-*`, valida (committer whitelist + path), abre PR, mescla em main, notifica Telegram
 2. **Publish:** le fila `_publish-queue.json`, gera slides JPG, posta carrossel no IG via Graph API
 
-**Horario:** 3 runs por janela, 12min apos cada rotina
-(`12,32,52 3,9,15,21 * * *` UTC)
-- BRT: 00:12/32/52, 06:12/32/52, 12:12/32/52, 18:12/32/52
+**Horario:** ⚠️ DESATUALIZADO. O cron `12,32,52 3,9,15,21` foi REMOVIDO (commit
+b3a5636). Hoje so roda via `workflow_dispatch` manual. Ver Estado real no topo.
+~~3 runs por janela, 12min apos cada rotina, BRT 00:12/32/52, etc.~~
 
 **Observabilidade:** Telegram (sucesso e falha) + GitHub Step Summary
 
@@ -207,4 +256,7 @@ run-publish.mjs processa a fila:
 
 ---
 
-*Atualizado em 2026-05-15. Para mudancas no pipeline, atualizar este documento junto com o commit.*
+*Desenho original atualizado em 2026-05-15. Secao "Estado real" adicionada em
+2026-06-01 com o diagnostico do gargalo do scraper, o fim do cron do publish, o
+log de curadoria e o mock-ig. Para mudancas no pipeline, atualizar este documento
+junto com o commit, e manter a secao Estado real no topo como fonte da verdade.*

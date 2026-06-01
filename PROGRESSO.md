@@ -1,24 +1,24 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-05-31 (sessão longa: pipeline IG endurecido + mock-ig completo com simulador e contador de chamadas)
+2026-06-01 (sessão: feed IG destravado + diagnóstico do gargalo real do scraper + observabilidade de curadoria)
 
-## Estado atual
-Foco da sessão foi o **pipeline de publicação no Instagram (@smufdpj)** e a criação de um **Instagram fake local (mock-ig)** pra testar tudo sem postar de verdade.
+## ⭐ Fluxo de notícias/postagem/schedule: ver PIPELINE.md
+**Para entender TODAS as etapas (coleta, curadoria, publicação, schedule), leia `PIPELINE.md`, seção "Estado real e diagnostico" no topo.** É a fonte da verdade do fluxo. Memórias: `project_news_scraper_gargalo`, `project_mock_ig_abas`.
 
-**Diagnóstico do problema de fundo:** o feed estava preso postando (ou tentando) a notícia velha da saga do baterista. Três causas, duas já resolvidas:
-1. **Notícia errada (RESOLVIDO):** a fila é FIFO e o anti-stale só rodava no fim, então a run abortava no cooldown/rate-limit antes de expirar o item velho. Agora o anti-stale roda SEMPRE (commit `c6de669`). Prazo stale = 2 dias pra datada, 30 dias pra tag `memoria`. Provado no mock: o item de 5 dias é expirado antes de publicar.
-2. **Volume de chamadas estourando code 4 (REDUZIDO):** o feed fazia ~15-25 chamadas/run vs ~2 do story. Cortei o overhead (commit `ac63a07`): detecção de apagados de toda run pra 1x/dia (env `IG_DETECT_INTERVAL_H=20`); pre-check de quota desligado por padrão (mentia, env `IG_QUOTA_PRECHECK=1` reativa).
-3. **App throttled no Meta (PENDENTE, só Andre resolve):** o `code=4 Application request limit reached` é throttle da app no lado da Meta. Nenhum código nosso destrava, só o painel Meta (developers.facebook.com → app → tier/restrição).
+## Estado atual (2026-06-01)
+**Feed destravado:** o `code 4` que derrubava o publish NÃO era volume (o header `X-App-Usage` mostrou 0%). Era **token + IG_USER_ID errados + app em dev mode**. Andre virou o app Live, regenerou o `IG_ACCESS_TOKEN` e corrigiu o `IG_USER_ID` (era `17841414148425536`, certo é `27761714130083125`). Smoke test passa ("TUDO PASSOU"). Cooldown e rate-limit-backoff resíduo limpos.
 
-**Limite real (confirmado na doc oficial):** o erro que derruba o feed é **code 4 = limite DA APP (Platform)**, fórmula `200 × usuários ativos`, janela de **1 HORA**. O `4800 × impressões/24h` é OUTRO limite (BUC Instagram, code 80002) que NÃO estamos batendo. O pipeline agora loga o header `X-App-Usage` (call_count em % da janela de 1h) em toda chamada (commit `0a048ce`), então a próxima run real mostra o número exato da conta. Mock modela o code 4 (200/h, env MOCK_USERS), commit `d66f447`.
+**Achado principal (o gargalo de verdade):** o feed recebe pouca notícia nova **por causa do SCRAPER, não da curadoria nem do feed**. O `reddit-search` traz `article_text` vazio (só `"submitted by /u/x [link][comments]"`). Sem texto, a curadoria (Claude schedule, roda 4x/dia, commita direto na main como autor "Claude") corretamente faz SKIP de quase tudo: 56-61 itens/rodada → 0 ou 1 aprovado. Até a notícia do novo baterista (`a7233f622d`) morre toda rodada por "texto vazio". Detalhe completo em PIPELINE.md.
 
-**PISTA FORTE (2026-05-31, fim da sessão):** o painel do Meta acusou **"URL da Política de Privacidade inválido. Você deve fornecer um URL válido para que seu app fique ativo. Configuração do app → Básico"**. Isso pode ser a CAUSA RAIZ: sem política de privacidade válida, o app **não fica Live** e roda em modo restrito (limite de chamadas muito menor). Provável que o code 4 venha disso, não de volume. **Próximo passo nº1 do Andre.**
+**Observabilidade montada:** a routine agora grava log por rodada em `media/news/_curation-log/<TS>.json` (aprovados + todos os SKIP com razão), inclusive rodadas 100% SKIP. Prompt atualizado em `scripts/news/routine-prompt.md` e **recolado na scheduled task do Andre** (a task usa snapshot, não lê o arquivo). O mock-ig ganhou abas **Curadoria** (pending vs pego) e **Rodadas** (lê os logs), além de Simulador e Runs. Atalho "Mock Instagram" na área de trabalho sobe tudo num clique.
+
+**`publish-instagram.yml` perdeu o cron** (commit b3a5636, "TriggerAll" nunca criado). O feed só posta via `workflow_dispatch` manual hoje.
 
 ## Próximo passo concreto
-1. **Andre: corrigir a URL da Política de Privacidade** no painel (developers.facebook.com → app @smufdpj → **Configurações → Básico** → campo "URL da Política de Privacidade"). O site tem `setlists-pj-ev.pages.dev`; criar/apontar uma página de política (ex: `/privacidade` ou `/politica-de-privacidade`). Sem isso o app não fica Live = limite restrito. Depois confirmar que o app virou **Live/Ativo** (toggle no topo do painel).
-2. Após virar Live, disparar um `gh workflow run publish-instagram.yml` manual e ler o log: o `[ig-usage] x-app-usage call_count=X%` mostra quão perto do limite a conta está agora.
-3. Usar o mock-ig pra continuar reduzindo o pipeline e ver o medidor ficar verde antes de mandar pra produção (ciclo: reduzir → rodar no mock → medir → deploy).
+1. **Consertar o scraper** (`scripts/news/` + `news.yml`): o `reddit-search` precisa SEGUIR o link externo e extrair o texto do artigo-fonte, em vez de só pegar o metadado do post. É o que vai dar matéria-prima pra curadoria aprovar (e a notícia do baterista finalmente chegar no feed). Também melhorar o filtro de relevância (deixa passar Grammy, Duff McKagan, food review).
+2. Monitorar a aba Rodadas: a partir de 06:00 BRT de 2026-06-01 a routine começa a gravar logs reais. Vários SKIP "texto vazio" seguidos = confirmação contínua do gargalo.
+3. (opcional) Decidir se restaura um cron pro `publish-instagram.yml` (Andre mandou esquecer por ora).
 
 ## mock-ig: Instagram fake local (NOVO, completo)
 Pasta `mock-ig/` (genérica, serve qualquer app que publique no IG, inclusive Terra Gentil). Doc em `mock-ig/README.md`. Interceptação por env `IG_API_BASE` (default = Graph real, produção intocada).
