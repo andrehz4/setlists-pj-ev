@@ -6,8 +6,9 @@ import { fetchRuns, simulateRun, syncFromOrigin } from "../api.js";
 // que a run tentou postar). Da pra conferir se o conteudo daquela run estava
 // certo, mesmo que ela tenha falhado no rate limit.
 function brt(iso) {
-  const d = new Date(new Date(iso).getTime() - 3 * 3600 * 1000);
-  return d.toISOString().slice(5, 16).replace("T", " ") + " BRT";
+  if (!iso) return "?";
+  const s = new Date(new Date(iso).getTime() - 3 * 3600 * 1000).toISOString();
+  return `${s.slice(8, 10)}/${s.slice(5, 7)} ${s.slice(11, 16)} BRT`;
 }
 const STATUS_LABEL = { success: "ok", failure: "falhou", in_progress: "rodando" };
 
