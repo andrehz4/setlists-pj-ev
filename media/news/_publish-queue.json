@@ -640,14 +640,12 @@
       "type": "regular",
       "queuedAt": "2026-06-01T15:10:09.146Z",
       "publishAt": "2026-06-01T15:10:09.146Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-06-01T15:11:42.042Z",
-        "msg": "IG rate limit, retry apos 2026-06-01T16:11:42.042Z"
-      },
-      "_rateLimitedUntil": "2026-06-01T16:11:42.042Z"
+      "postedAt": "2026-06-01T21:08:16.196Z",
+      "postId": "18131119678580426",
+      "error": null,
+      "_rateLimitedUntil": "2026-06-01T16:11:42.042Z",
+      "errorCount": 0
     }
   ],
-  "postCount": 35
+  "postCount": 36
 }
