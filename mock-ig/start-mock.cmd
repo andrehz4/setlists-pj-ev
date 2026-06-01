@@ -16,7 +16,7 @@ echo [0/2] Sincronizando dados do Actions (git fetch + media/news)...
 git fetch origin main --quiet
 git checkout origin/main -- media/news 2>nul
 if errorlevel 1 (
-  echo [aviso] nao consegui sincronizar media/news (sem rede ou git?). Segue com o estado local.
+  echo [aviso] nao consegui sincronizar media/news. Sem rede ou git. Segue com o estado local.
 ) else (
   echo [ok] dados atualizados ate o ultimo commit do origin.
 )
@@ -25,7 +25,7 @@ echo.
 REM 1) Ja tem um mock rodando na 8788? Derruba pra subir o codigo mais novo
 REM (senao mudancas no server nunca pegariam, ficaria preso na versao velha).
 for /f "tokens=5" %%p in ('netstat -ano ^| findstr "127.0.0.1:8788" ^| findstr LISTENING') do (
-  echo [mock-ig] Derrubando instancia antiga (PID %%p) pra subir o codigo novo...
+  echo [mock-ig] Derrubando instancia antiga PID %%p pra subir o codigo novo...
   taskkill /F /PID %%p >nul 2>&1
   timeout /t 1 >nul
 )
