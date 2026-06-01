@@ -46,9 +46,18 @@ export async function setFail(fail, storyPolls = 0) {
 // Sync: puxa os commits novos do Actions (git fetch + checkout media/news no
 // server). Retorna { ok, changed, newCommits, head, lastMsg } ou { ok:false, error }.
 export async function syncFromOrigin() {
-  const r = await fetch("/_mock/sync", { method: "POST" });
-  try { return await r.json(); }
-  catch { return { ok: false, error: "sync " + r.status }; }
+  let r;
+  try { r = await fetch("/_mock/sync", { method: "POST" }); }
+  catch { return { ok: false, error: "sem conexao com o server do mock" }; }
+  // server antigo nao tem essa rota: responde 404. Avisa pra reabrir o mock.
+  if (r.status === 404) return { ok: false, error: "server desatualizado, feche e reabra o mock pelo atalho" };
+  let j;
+  try { j = await r.json(); } catch { return { ok: false, error: "resposta invalida (HTTP " + r.status + ")" }; }
+  if (j && j.ok) return j;
+  // normaliza error pra string (o server pode mandar objeto {message,code})
+  let err = j && j.error;
+  if (err && typeof err === "object") err = err.message || JSON.stringify(err);
+  return { ok: false, error: String(err || ("HTTP " + r.status)) };
 }
 
 // Simulador: material disponivel (read-only) e geracao de previa sob demanda.

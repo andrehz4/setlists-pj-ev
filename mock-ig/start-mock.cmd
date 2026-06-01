@@ -22,17 +22,15 @@ if errorlevel 1 (
 )
 echo.
 
-REM 1) Ja tem um mock rodando na 8788? Entao so abre o navegador e sai.
-netstat -ano | findstr "127.0.0.1:8788" | findstr LISTENING >nul
-if not errorlevel 1 (
-  echo [mock-ig] Ja esta rodando em http://127.0.0.1:8788
-  echo Abrindo o navegador...
-  start "" http://127.0.0.1:8788/
-  timeout /t 2 >nul
-  exit /b 0
+REM 1) Ja tem um mock rodando na 8788? Derruba pra subir o codigo mais novo
+REM (senao mudancas no server nunca pegariam, ficaria preso na versao velha).
+for /f "tokens=5" %%p in ('netstat -ano ^| findstr "127.0.0.1:8788" ^| findstr LISTENING') do (
+  echo [mock-ig] Derrubando instancia antiga (PID %%p) pra subir o codigo novo...
+  taskkill /F /PID %%p >nul 2>&1
+  timeout /t 1 >nul
 )
 
-REM 1) Atualiza o front com o codigo mais recente (vite build, ~10s)
+REM 2) Atualiza o front com o codigo mais recente (vite build, ~10s)
 echo [1/2] Atualizando o front (vite build)...
 pushd mock-ig\web
 call npm run build
