@@ -32,3 +32,6 @@ tmp/
 # Previews gerados pelo simulador do mock-ig (regeneraveis, nao versionar)
 media/news/_preview/
 mock-ig/_store.json
+
+# clipe de show pesado (insumo do reels, baixado pelo baixa-clipe)
+media/reel-clip/
