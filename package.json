@@ -28,8 +28,9 @@
     "test:select": "node --test scripts/publish/queue-select.test.mjs",
     "test:recover": "node --test scripts/publish/recover-publish.test.mjs",
     "test:subject": "node --test scripts/publish/subject-fallback.test.mjs",
+    "test:prune": "node --test scripts/news/prune-curated.test.mjs",
     "test:mock": "node --test mock-ig/mock.test.mjs",
-    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs scripts/publish/recover-publish.test.mjs scripts/publish/subject-fallback.test.mjs mock-ig/mock.test.mjs"
+    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs scripts/publish/recover-publish.test.mjs scripts/publish/subject-fallback.test.mjs scripts/news/prune-curated.test.mjs mock-ig/mock.test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",

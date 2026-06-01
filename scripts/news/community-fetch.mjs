@@ -29,6 +29,7 @@ import { sha10 } from "./relevance.mjs";
 import { cacheImage, gcOrphanImages, ensureImgDir } from "./image-cache.mjs";
 import { curate as curateDigest } from "./curators/community-digest.mjs";
 import { curate as curateSpotlight } from "./curators/community-spotlight.mjs";
+import { prunePendingByLogs } from "./prune-curated.mjs";
 import { writeStepSummary } from "./_summary.mjs";
 
 const args = process.argv.slice(2);
@@ -316,6 +317,20 @@ async function main() {
   const currentItems = Array.isArray(current.items) ? current.items : [];
   const pendingDoc = await readJson(PENDING_PATH, { items: [] });
 
+  // Poda do _pending: remove itens que a curadoria ja julgou (logs de rodada) e
+  // marca seen (ver prune-curated.mjs). So persiste em modo routine (e o que
+  // escreve _pending). Muta pendingDoc.items pra runDigest/runSpotlight ja verem
+  // a fila limpa.
+  let prunedCount = 0;
+  if (IS_ROUTINE) {
+    const pr = await prunePendingByLogs(pendingDoc.items || [], seen);
+    if (pr.removedIds.length) {
+      pendingDoc.items = pr.kept;
+      prunedCount = pr.removedIds.length;
+      console.log(`[community] prune: ${prunedCount} item(ns) ja-curado(s) removido(s) do _pending`);
+    }
+  }
+
   console.log(`[community] mode=${MODE} | curator=${CURATOR_NAME} | dry=${DRY} | current items: ${currentItems.length} | seen: ${Object.keys(seen).length} | pending: ${(pendingDoc.items||[]).length}`);
 
   const results = [];
@@ -375,7 +390,13 @@ async function main() {
     const pendingTotalAntes = (pendingDoc.items || []).length;
     if (newPending.length === 0) {
       console.log("[community] routine: nada novo pra pendurar.");
-      if (!DRY) await writeJson(SEEN_PATH, seen);
+      if (!DRY) {
+        // Se a poda removeu algo, persiste o _pending limpo mesmo sem item novo.
+        if (prunedCount > 0) {
+          await writeJson(PENDING_PATH, { generatedAt: pendingDoc.generatedAt || null, items: pendingDoc.items || [] });
+        }
+        await writeJson(SEEN_PATH, seen);
+      }
       await writeStepSummary({
         title: `Community fetch · routine (${MODE})`,
         meta: { modo: MODE, curator: CURATOR_NAME, dry: DRY },
