@@ -1,6 +1,22 @@
 {
-  "updated": "2026-05-31T15:09:58.268Z",
+  "updated": "2026-06-01T15:10:09.151Z",
   "items": [
+    {
+      "id": "41ff822d8e",
+      "url": "https://www.pearljamonline.it/iridescence-fuori-ora-il-nuovo-progetto-di-jack-irons-con-remcos-groove-lab",
+      "source": "pjonline-it",
+      "sourceLabel": "PJ Online IT",
+      "group": "fan",
+      "pubDate": "2026-06-01T08:59:54.000Z",
+      "fetchedAt": "2026-06-01T15:10:08.744Z",
+      "img": null,
+      "title_pt": "Jack Irons lança Iridescence, álbum totalmente analógico com Remco Hendriks",
+      "intro_pt": "Jack Irons lança Iridescence ao lado do baixista holandês Remco Hendriks, 10 faixas gravadas em presa direta, sem MIDI, sem edição digital.",
+      "tags": [
+        "lancamento"
+      ],
+      "title_ig": "Jack Irons tem álbum novo, tudo gravado ao vivo"
+    },
     {
       "id": "cd-20260531",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -528,25 +544,6 @@
         "memoria"
       ],
       "title_ig": "Jeremy não é ficção: a história real por trás da música"
-    },
-    {
-      "id": "cd-20260521",
-      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
-      "source": "reddit-community-digest",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-05-21T12:25:27.770Z",
-      "fetchedAt": "2026-05-21T15:14:12.898Z",
-      "img": "/media/news/img/cd-20260521.jpg",
-      "title_pt": "Novo baterista, Vitalogy em debate e sonho de setlist no fórum dos fãs",
-      "intro_pt": "A comunidade de fãs discute o futuro da bateria, enfrenta uma hot take sobre o Vitalogy e divide sonhos de setlist.",
-      "tags": [
-        "comunidade",
-        "matt"
-      ],
-      "title_ig": "Quem vai bater no próximo Pearl Jam?",
-      "kind": "community-digest",
-      "community_posts_count": 8
     }
   ]
 }
