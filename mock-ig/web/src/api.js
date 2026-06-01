@@ -60,6 +60,13 @@ export async function syncFromOrigin() {
   return { ok: false, error: String(err || ("HTTP " + r.status)) };
 }
 
+// Curadoria: os tres lados da esteira de decisao (aguardando / pego / rejeitado).
+export async function fetchCuration() {
+  const r = await fetch("/_mock/curation");
+  if (!r.ok) throw new Error("curation " + r.status);
+  return r.json();
+}
+
 // Simulador: material disponivel (read-only) e geracao de previa sob demanda.
 export async function fetchCandidates() {
   const r = await fetch("/_mock/candidates");
