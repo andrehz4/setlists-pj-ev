@@ -7,10 +7,42 @@ import { fetchCuration, syncFromOrigin } from "../api.js";
 // o que foi rejeitado por validacao). READ-ONLY, nao dispara curadoria.
 const KIND_LABEL = { regular: "Noticia", spotlight: "Spotlight", digest: "Comunidade" };
 
+// Horarios dos disparos (TriggerAll), em HORA UTC pra independer do fuso da
+// maquina. Ver PIPELINE.md secao 7.
+//  - News fetch (enche "Aguardando curadoria"): 8x/dia.
+//  - Curadoria (Claude schedule, gera "Ultima rodada"): 4x/dia = 00/06/12/18 BRT.
+const NEWS_UTC_HOURS = [2, 4, 8, 11, 14, 16, 20, 22];     // 23/01/05/08/11/13/17/19 BRT
+const CURATION_UTC_HOURS = [3, 9, 15, 21];                 // 00/06/12/18 BRT
+
 function brt(iso) {
   if (!iso) return "?";
   const s = new Date(new Date(iso).getTime() - 3 * 3600 * 1000).toISOString();
   return `${s.slice(8, 10)}/${s.slice(5, 7)} ${s.slice(11, 16)} BRT`;
+}
+
+// Proximo horario (Date) em que a hora UTC cai na lista, minuto 0.
+function nextRunUTC(hours, fromMs = Date.now()) {
+  const now = new Date(fromMs);
+  for (let i = 0; i <= 48; i++) {
+    const d = new Date(Date.UTC(
+      now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
+      now.getUTCHours() + i, 0, 0, 0,
+    ));
+    if (d.getTime() > fromMs && hours.includes(d.getUTCHours())) return d;
+  }
+  return null;
+}
+
+// Formata o tempo que falta de forma curta (2h 14min / 14min 03s / 42s).
+function fmtDelta(ms) {
+  if (ms < 0) ms = 0;
+  const totalM = Math.floor(ms / 60000);
+  const h = Math.floor(totalM / 60);
+  const m = totalM % 60;
+  const s = Math.floor((ms % 60000) / 1000);
+  if (h > 0) return `${h}h ${String(m).padStart(2, "0")}min`;
+  if (m > 0) return `${m}min ${String(s).padStart(2, "0")}s`;
+  return `${s}s`;
 }
 
 export default function CurationLab() {
@@ -18,12 +50,18 @@ export default function CurationLab() {
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(false);
   const [syncMsg, setSyncMsg] = useState(null);
+  const [now, setNow] = useState(Date.now());
 
   async function load() {
     try { setData(await fetchCuration()); setErr(null); }
     catch (e) { setErr(e.message); }
   }
   useEffect(() => { load(); }, []);
+  // Tick de 1s pros countdowns dos proximos disparos.
+  useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, []);
 
   // Atualizar = puxa commits novos do Actions (sync) e recarrega a curadoria.
   async function refresh() {
@@ -42,6 +80,9 @@ export default function CurationLab() {
 
   const { pending, picked, rejected, lastRoundAt, counts } = data;
 
+  const nextNews = nextRunUTC(NEWS_UTC_HOURS, now);
+  const nextCuration = nextRunUTC(CURATION_UTC_HOURS, now);
+
   return (
     <div className="lab curation">
       <div className="lab-head">
@@ -54,6 +95,23 @@ export default function CurationLab() {
             {loading ? "buscando…" : "↻ Atualizar"}
           </button>
           {syncMsg && <span className="lab-sync-msg">{syncMsg}</span>}
+        </div>
+      </div>
+
+      {/* Countdowns dos proximos disparos, pra saber quando a news coleta e
+          quando o schedule cura. Horarios em PIPELINE.md secao 7. */}
+      <div className="cur-timers">
+        <div className="cur-timer t-news">
+          <span className="cur-timer-label">Próxima coleta (News fetch)</span>
+          <strong className="cur-timer-eta">{nextNews ? fmtDelta(nextNews.getTime() - now) : "?"}</strong>
+          <span className="cur-timer-when">{nextNews ? brt(nextNews.toISOString()) : ""}</span>
+          <span className="cur-timer-sub">enche "Aguardando curadoria" · 8x/dia</span>
+        </div>
+        <div className="cur-timer t-cur">
+          <span className="cur-timer-label">Próxima curadoria (Claude schedule)</span>
+          <strong className="cur-timer-eta">{nextCuration ? fmtDelta(nextCuration.getTime() - now) : "?"}</strong>
+          <span className="cur-timer-when">{nextCuration ? brt(nextCuration.toISOString()) : ""}</span>
+          <span className="cur-timer-sub">gera "Última rodada" · 00/06/12/18 BRT</span>
         </div>
       </div>
 
