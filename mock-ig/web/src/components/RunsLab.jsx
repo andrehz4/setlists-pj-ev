@@ -32,7 +32,7 @@ export default function RunsLab({ onPreview }) {
     try {
       const s = await syncFromOrigin();
       if (s.ok) setSyncMsg(s.changed ? `+${s.newCommits} commit(s) novo(s) · ${s.head}` : "ja estava atualizado");
-      else setSyncMsg("sync falhou: " + (s.error || "").slice(0, 60));
+      else setSyncMsg("sync falhou: " + String(s.error || "").slice(0, 70));
     } catch (e) { setSyncMsg("sync falhou: " + e.message); }
     await load();
     setSyncing(false);
