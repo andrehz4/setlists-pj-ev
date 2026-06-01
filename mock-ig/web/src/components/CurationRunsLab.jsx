@@ -9,8 +9,8 @@ const KIND_LABEL = { regular: "Noticia", spotlight: "Spotlight", digest: "Comuni
 
 function brt(iso) {
   if (!iso) return "?";
-  const d = new Date(new Date(iso).getTime() - 3 * 3600 * 1000);
-  return d.toISOString().slice(5, 16).replace("T", " ") + " BRT";
+  const s = new Date(new Date(iso).getTime() - 3 * 3600 * 1000).toISOString();
+  return `${s.slice(8, 10)}/${s.slice(5, 7)} ${s.slice(11, 16)} BRT`;
 }
 
 export default function CurationRunsLab() {
