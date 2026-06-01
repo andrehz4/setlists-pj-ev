@@ -8,7 +8,21 @@ echo   mock-ig (Instagram fake local)
 echo ============================================
 echo.
 
-REM 0) Ja tem um mock rodando na 8788? Entao so abre o navegador e sai.
+REM 0) Sincroniza os dados do Actions (fila, posts, slides) com o origin.
+REM Atualiza so media/news (o que o mock le), sem mexer no HEAD nem arriscar
+REM travar num conflito de rebase. Assim o mock sempre reflete o ultimo commit
+REM do bot, mesmo com a janela ja aberta.
+echo [0/2] Sincronizando dados do Actions (git fetch + media/news)...
+git fetch origin main --quiet
+git checkout origin/main -- media/news 2>nul
+if errorlevel 1 (
+  echo [aviso] nao consegui sincronizar media/news (sem rede ou git?). Segue com o estado local.
+) else (
+  echo [ok] dados atualizados ate o ultimo commit do origin.
+)
+echo.
+
+REM 1) Ja tem um mock rodando na 8788? Entao so abre o navegador e sai.
 netstat -ano | findstr "127.0.0.1:8788" | findstr LISTENING >nul
 if not errorlevel 1 (
   echo [mock-ig] Ja esta rodando em http://127.0.0.1:8788
