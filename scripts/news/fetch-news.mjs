@@ -23,6 +23,7 @@ import { scrapeArticle } from "./extract.mjs";
 import { cacheImage, gcOrphanImages, ensureImgDir } from "./image-cache.mjs";
 import { loadCurator } from "./curators/_shared.mjs";
 import { dedupeByContent } from "./dedupe.mjs";
+import { prunePendingByLogs } from "./prune-curated.mjs";
 import { writeStepSummary } from "./_summary.mjs";
 
 // --- args ---
@@ -290,7 +291,17 @@ async function main() {
   const current = await readJson(INDEX_PATH, { updated: null, items: [] });
   const currentItems = Array.isArray(current.items) ? current.items : [];
   const pendingBefore = await readJson(PENDING_PATH, { items: [] });
-  const pendingBeforeItems = Array.isArray(pendingBefore.items) ? pendingBefore.items : [];
+  let pendingBeforeItems = Array.isArray(pendingBefore.items) ? pendingBefore.items : [];
+
+  // Poda do _pending: remove itens que a curadoria ja julgou (logs de rodada) e
+  // marca seen, pra nao acumularem nem serem re-curados (ver prune-curated.mjs).
+  if (isRoutineMode) {
+    const pr = await prunePendingByLogs(pendingBeforeItems, seen);
+    if (pr.removedIds.length) {
+      pendingBeforeItems = pr.kept;
+      console.log(`[news] prune: ${pr.removedIds.length} item(ns) ja-curado(s) removido(s) do _pending`);
+    }
+  }
 
   console.log(`[news] curator: ${curator.LABEL} | fontes: ${SOURCES.length} | seen: ${Object.keys(seen).length} | current: ${currentItems.length} | dry: ${DRY}`);
 
