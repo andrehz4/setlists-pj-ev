@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchCandidates, requestPreview } from "../api.js";
+import { fetchCandidates, requestPreview, syncFromOrigin } from "../api.js";
 
 // Simulador: lista o material real (fila de publicacao) e, ao clicar, gera a
 // previa de como o post ficaria no Instagram. READ-ONLY: nao publica, nao
@@ -11,12 +11,24 @@ export default function PreviewLab({ onPreview, onStory }) {
   const [err, setErr] = useState(null);
   const [busy, setBusy] = useState(null);     // id em processamento
   const [loading, setLoading] = useState(false); // recarregando candidatos
+  const [syncMsg, setSyncMsg] = useState(null);
 
   async function reload() {
     setLoading(true);
     try { setData(await fetchCandidates()); setErr(null); }
     catch (e) { setErr(e.message); }
     finally { setLoading(false); }
+  }
+
+  // Atualizar = puxa commits novos do Actions (sync) e entao recarrega a fila.
+  async function refresh() {
+    setLoading(true); setSyncMsg(null);
+    try {
+      const s = await syncFromOrigin();
+      if (s.ok) setSyncMsg(s.changed ? `+${s.newCommits} commit(s) novo(s) · ${s.head}` : "ja estava atualizado");
+      else setSyncMsg("sync falhou: " + (s.error || "").slice(0, 60));
+    } catch (e) { setSyncMsg("sync falhou: " + e.message); }
+    await reload();
   }
 
   useEffect(() => { reload(); }, []);
@@ -72,9 +84,12 @@ export default function PreviewLab({ onPreview, onStory }) {
           <h2>Simulador de post</h2>
           <p>Material real do pipeline. Clique pra ver como ficaria no Instagram. Nada e publicado.</p>
         </div>
-        <button className="lab-refresh" onClick={reload} disabled={loading}>
-          {loading ? "atualizando…" : "↻ Atualizar"}
-        </button>
+        <div className="lab-refresh-wrap">
+          <button className="lab-refresh" onClick={refresh} disabled={loading}>
+            {loading ? "buscando…" : "↻ Atualizar"}
+          </button>
+          {syncMsg && <span className="lab-sync-msg">{syncMsg}</span>}
+        </div>
       </div>
 
       {/* separador: o que VAI ser postado */}

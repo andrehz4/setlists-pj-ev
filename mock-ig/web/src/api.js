@@ -43,6 +43,14 @@ export async function setFail(fail, storyPolls = 0) {
   return r.json();
 }
 
+// Sync: puxa os commits novos do Actions (git fetch + checkout media/news no
+// server). Retorna { ok, changed, newCommits, head, lastMsg } ou { ok:false, error }.
+export async function syncFromOrigin() {
+  const r = await fetch("/_mock/sync", { method: "POST" });
+  try { return await r.json(); }
+  catch { return { ok: false, error: "sync " + r.status }; }
+}
+
 // Simulador: material disponivel (read-only) e geracao de previa sob demanda.
 export async function fetchCandidates() {
   const r = await fetch("/_mock/candidates");
