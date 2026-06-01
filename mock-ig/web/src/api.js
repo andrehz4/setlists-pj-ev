@@ -67,6 +67,22 @@ export async function fetchCuration() {
   return r.json();
 }
 
+// Rodadas de curadoria do Claude schedule (commits da routine sonnet).
+export async function fetchCurationRuns() {
+  const r = await fetch("/_mock/curation-runs");
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || ("curation-runs " + r.status));
+  return j;
+}
+
+export async function simulateCurationRun(hash) {
+  const body = new URLSearchParams({ hash });
+  const r = await fetch("/_mock/curation-run", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || ("curation-run " + r.status));
+  return j;
+}
+
 // Simulador: material disponivel (read-only) e geracao de previa sob demanda.
 export async function fetchCandidates() {
   const r = await fetch("/_mock/candidates");

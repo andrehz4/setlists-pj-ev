@@ -25,6 +25,7 @@ import { load, save, reset, nextId, STORE_PATH } from "./store.mjs";
 import { loadCandidates, previewSlide, nextRunDetail } from "./preview.mjs";
 import { listRuns, runDetail } from "./runs.mjs";
 import { loadCuration } from "./curation.mjs";
+import { listCurationRuns, curationRunDetail } from "./curation-runs.mjs";
 
 const PORT = Number(process.env.MOCK_IG_PORT || 8788);
 const SERVE_ROOT = path.resolve(process.env.MOCK_SERVE_ROOT || process.cwd());
@@ -211,6 +212,18 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/_mock/curation") {
       try { return sendJson(res, 200, await loadCuration()); }
       catch (e) { return sendJson(res, 500, { error: e.message }); }
+    }
+    // rodadas de curadoria do Claude schedule (commits da routine sonnet)
+    if (pathname === "/_mock/curation-runs") {
+      try { return sendJson(res, 200, listCurationRuns(10)); }
+      catch (e) { return sendJson(res, 500, { error: e.message }); }
+    }
+    if (pathname === "/_mock/curation-run" && method === "POST") {
+      try {
+        const b = await readBody(req);
+        if (!b.hash) return sendJson(res, 400, { error: "hash da rodada obrigatorio" });
+        return sendJson(res, 200, curationRunDetail(b.hash));
+      } catch (e) { return sendJson(res, 500, { error: e.message }); }
     }
 
     // ---------- simulador (preview sob demanda, read-only) ----------

@@ -11,6 +11,7 @@ import FailPanel from "./components/FailPanel.jsx";
 import PreviewLab from "./components/PreviewLab.jsx";
 import RunsLab from "./components/RunsLab.jsx";
 import CurationLab from "./components/CurationLab.jsx";
+import CurationRunsLab from "./components/CurationRunsLab.jsx";
 
 export default function App() {
   const [feed, setFeed] = useState([]);
@@ -79,6 +80,7 @@ export default function App() {
         )}
         {tab === "runs" && <RunsLab onPreview={(p) => setPreviewPost(p)} />}
         {tab === "curation" && <CurationLab />}
+        {tab === "curation-runs" && <CurationRunsLab />}
       </main>
 
       {openPost && <PostModal post={openPost} onClose={() => setOpenPost(null)} />}
