@@ -358,6 +358,16 @@ code { background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 5px; 
 .cur-rej-list li { font-size: 12px; color: var(--ink-2); display: flex; gap: 8px; align-items: baseline; }
 .cur-rej-list code { font-family: var(--mono); color: var(--pj); font-size: 11px; }
 .cur-rej-list em { color: var(--ink-dim); font-size: 10.5px; margin-left: auto; }
+
+/* ===== Aba Rodadas (curadoria do Claude schedule) ===== */
+.cr-diag { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; padding: 14px 18px; margin-bottom: 18px; background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: var(--r-sm); }
+.cr-diag span { font-size: 13px; color: var(--ink-2); }
+.cr-diag b { font-family: var(--display); font-size: 22px; font-weight: 800; color: var(--ink); margin-right: 5px; }
+.cr-diag-note { font-family: var(--mono); font-size: 10.5px; color: var(--ink-mut); flex: 1 1 220px; line-height: 1.4; }
+.cr-badge { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--green); background: rgba(63,178,127,.12); border: 1px solid rgba(63,178,127,.35); border-radius: 999px; padding: 2px 9px; }
+.cr-badge.zero { color: var(--ink-dim); background: var(--panel-2); border-color: var(--line-2); }
+.cr-subject { font-size: 12px; color: var(--ink-mut); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 9px 12px; margin-bottom: 14px; word-break: break-word; }
+.cr-src { font-family: var(--mono); font-size: 10.5px; color: var(--ink-mut); text-transform: uppercase; letter-spacing: .04em; }
 .lab-sec { margin-bottom: 36px; }
 .lab-sec h3 { font-family: var(--mono); font-size: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-mut); }
 

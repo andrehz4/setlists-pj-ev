@@ -15,6 +15,7 @@ const ICONS = {
   lab: "M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3",
   runs: "M4 6h16M4 12h16M4 18h10M19 16v4M17 18h4",
   curation: "M3 4h18l-7 8v6l-4 2v-8L3 4Z",
+  schedule: "M12 8v4l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z",
 };
 
 function Icon({ d, active }) {
@@ -46,6 +47,7 @@ export default function Sidebar({ tab, onTab, reels, onFail, onReset, theme, onT
         <Item icon="home" label="Home" active={tab === "feed"} onClick={() => onTab("feed")} />
         <Item icon="reels" label="Reels" active={tab === "reels"} onClick={() => onTab("reels")} badge={reels > 0} />
         <Item icon="curation" label="Curadoria" active={tab === "curation"} onClick={() => onTab("curation")} />
+        <Item icon="schedule" label="Rodadas" active={tab === "curation-runs"} onClick={() => onTab("curation-runs")} />
         <Item icon="lab" label="Simulador" active={tab === "lab"} onClick={() => onTab("lab")} />
         <Item icon="runs" label="Runs" active={tab === "runs"} onClick={() => onTab("runs")} />
 
