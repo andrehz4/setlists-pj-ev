@@ -43,6 +43,8 @@ const LAYOUT = (process.env.SLIDE_LAYOUT || "card02").toLowerCase();
 
 // Fallback: fotos oficiais da banda. Logica em band-fallback.mjs (testavel).
 import { loadBandFallbacks, pickFallback } from "./band-fallback.mjs";
+// Fallback por assunto: noticia que cita um integrante usa a foto dele.
+import { subjectFallbackPath } from "./subject-fallback.mjs";
 const BAND_FALLBACKS = await loadBandFallbacks();
 function bandFallbackPath(id) { return pickFallback(BAND_FALLBACKS, id); }
 
@@ -142,7 +144,21 @@ async function fetchBaseImageBuffer(item) {
     } catch {}
   }
 
-  // Fallback: foto da banda quando o item nao tem imagem propria
+  // Fallback por assunto: noticia que cita um integrante (ex: Jack Irons) usa
+  // a foto dele, antes da rotacao generica. So entra quando o item nao tem
+  // foto propria (chegou ate aqui).
+  try {
+    const subjectPath = await subjectFallbackPath(item);
+    if (subjectPath) {
+      const buf = await fs.readFile(subjectPath);
+      if (buf && buf.length > 1024) {
+        console.log(`[slide] ${item.id}: sem foto propria, usando foto do assunto (${path.basename(subjectPath)})`);
+        return buf;
+      }
+    }
+  } catch {}
+
+  // Fallback: foto da banda quando o item nao tem imagem propria nem assunto
   try {
     const fallback = bandFallbackPath(item.id);
     const buf = await fs.readFile(fallback);
