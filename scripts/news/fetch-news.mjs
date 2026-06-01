@@ -41,7 +41,18 @@ const LEGACY_NO_CLAUDE = args.includes("--no-claude");
 let CURATOR_NAME = argVal("curator") || process.env.NEWS_CURATOR || "anthropic";
 if (LEGACY_NO_CLAUDE) CURATOR_NAME = "routine"; // backward compat
 
-const MAX_NEW_PER_RUN = 3;
+// Teto de itens novos coletados por rodada (vao pro _pending; a routine Sonnet cura depois).
+// Historico: comecou em 6, baixou pra 3 em 2026-05-12 (commit 829ee18) porque a routine
+// de curadoria estourava o tempo curando _pending grande demais por disparo.
+// 2026-06-01: subido 3 -> 4 (experimento monitorado, feed ja destravado).
+//
+// Como saber se subir vai dar bug: o risco NAO e este job (news.yml so coleta, termina em
+// ~40s, bem dentro do timeout de 12min). O risco e a routine remota, que cura TODO o _pending
+// por disparo. Se a coleta passa a entrar mais rapido do que a curadoria drena, o _pending
+// vira backlog e a routine demora/estoura. Deteccao: o news.yml dispara um alerta no Telegram
+// se _pending.items passar de NEWS_PENDING_ALERT (estado normal e 0-3). Backlog baixo e estavel
+// = seguro subir mais (5, 6...). Backlog crescendo = baixar de volta. Rollback = trocar o numero.
+const MAX_NEW_PER_RUN = 4;
 const TOP_KEEP = 30;
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
