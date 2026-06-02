@@ -133,18 +133,18 @@ jobs:
           exit 0
 
       - name: Alerta backlog _pending (curadoria nao esta drenando)
-        # Rede de seguranca do MAX_NEW_PER_RUN. Subimos o teto de coleta (3 -> 4) em
-        # 2026-06-01. O risco de subir e a routine Sonnet nao dar conta de curar tudo
-        # que entra por disparo, deixando o _pending crescer (backlog -> timeout da
-        # routine). Estado normal do _pending e 0-3 itens (a routine drena a cada run).
-        # Se passar de NEWS_PENDING_ALERT (default 12), a curadoria parou de acompanhar:
-        # baixar o teto de volta em scripts/news/fetch-news.mjs ou disparar a routine
-        # mais vezes. Backlog baixo e estavel = seguro subir o teto mais um pouco.
+        # Rede de seguranca do MAX_NEW_PER_RUN. Teto de coleta subiu 3 -> 4 (2026-06-01)
+        # e 4 -> 10 (2026-06-02, apos dobrar as fontes pra 38). O risco de subir e a
+        # routine Sonnet nao dar conta de curar tudo que entra por disparo, deixando o
+        # _pending crescer (backlog -> timeout da routine). Com teto 10 o estado normal do
+        # _pending sobe (ate ~10-15 entre curadorias). Se passar de NEWS_PENDING_ALERT
+        # (default 25), a curadoria parou de acompanhar: baixar o teto em
+        # scripts/news/fetch-news.mjs ou disparar a routine mais vezes.
         if: ${{ inputs.dry-run != true && env.TELEGRAM_BOT_TOKEN != '' }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          NEWS_PENDING_ALERT: ${{ vars.NEWS_PENDING_ALERT || '12' }}
+          NEWS_PENDING_ALERT: ${{ vars.NEWS_PENDING_ALERT || '25' }}
         run: |
           set +e
           if [ ! -f media/news/_pending.json ]; then
@@ -152,13 +152,13 @@ jobs:
             exit 0
           fi
           TOTAL=$(jq '.items | length' media/news/_pending.json)
-          LIMIT="${NEWS_PENDING_ALERT:-12}"
+          LIMIT="${NEWS_PENDING_ALERT:-25}"
           if [ -z "$TOTAL" ] || [ "$TOTAL" -le "$LIMIT" ]; then
             echo "[backlog] _pending=$TOTAL <= limite=$LIMIT, ok"
             exit 0
           fi
           BRT_NOW=$(TZ=America/Sao_Paulo date +"%H:%M")
-          MSG=$(printf '⚠️ <b>Backlog de curadoria, %s BRT</b>\n\n_pending.json com <b>%s itens</b> (limite %s). A coleta esta entrando mais rapido do que a routine Sonnet consegue curar.\n\nProvavel causa: MAX_NEW_PER_RUN alto demais pro ritmo da curadoria. Acao: baixar o teto em scripts/news/fetch-news.mjs (esta em 4, voltar pra 3) ou disparar a routine mais vezes.' "$BRT_NOW" "$TOTAL" "$LIMIT")
+          MSG=$(printf '⚠️ <b>Backlog de curadoria, %s BRT</b>\n\n_pending.json com <b>%s itens</b> (limite %s). A coleta esta entrando mais rapido do que a routine Sonnet consegue curar.\n\nProvavel causa: MAX_NEW_PER_RUN alto demais pro ritmo da curadoria. Acao: baixar o teto em scripts/news/fetch-news.mjs (esta em 10, voltar pra 4) ou disparar a routine mais vezes.' "$BRT_NOW" "$TOTAL" "$LIMIT")
           HTTP_CODE=$(curl -s -o /tmp/tg-backlog.json -w "%{http_code}" \
             -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
