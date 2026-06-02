@@ -5,13 +5,19 @@
 // Fontes validadas em 2026-05-12. Removidos: pearljam.com/news/feed (XML invalido),
 // brooklynvegan (403), whiplash (404 no /rss/news.xml), tenebrarum (DNS), tenho+discos (DNS),
 // yt-pjvevo (channel_id errado). Tentar reativar quando achar URLs corretas.
+//
+// Revalidacao 2026-06-02: 4 URLs atualizadas pro destino canonico porque a antiga
+// so respondia via redirect (risco de feed vazio em silencio): stereogum (www ->
+// apex, sem barra final), pitchfork (/rss/news -> /feed/feed-news/rss), rolling-stone-br
+// (uol.com.br -> rollingstone.com.br, mudou de dominio), cnn-br (www -> admin.).
+// Removido oglobo-musica: feed praticamente morto (1 item, titulo vazio).
 
 export const SOURCES = [
   // Midia EUA (feeds dedicados quando existem)
-  { id: "stereogum-pj", label: "Stereogum", group: "us", url: "https://www.stereogum.com/tag/pearl-jam/feed/", alwaysRelevant: true },
+  { id: "stereogum-pj", label: "Stereogum", group: "us", url: "https://stereogum.com/tag/pearl-jam/feed", alwaysRelevant: true },
   { id: "consequence-pj", label: "Consequence", group: "us", url: "https://consequence.net/tag/pearl-jam/feed/", alwaysRelevant: true },
   { id: "nme-pj", label: "NME", group: "us", url: "https://www.nme.com/artists/pearl-jam/feed", alwaysRelevant: true },
-  { id: "pitchfork-news", label: "Pitchfork", group: "us", url: "https://pitchfork.com/rss/news/", alwaysRelevant: false },
+  { id: "pitchfork-news", label: "Pitchfork", group: "us", url: "https://pitchfork.com/feed/feed-news/rss", alwaysRelevant: false },
   { id: "rollingstone-music", label: "Rolling Stone", group: "us", url: "https://www.rollingstone.com/music/music-news/feed/", alwaysRelevant: false },
 
   // Midia BR. alwaysRelevant=false porque sao portais genericos: o filtro de
@@ -19,11 +25,10 @@ export const SOURCES = [
   // Replicas de wire (AP/Reuters/press release) entre esses sites sao dedupadas
   // por similaridade de conteudo em dedupe.mjs antes do MAX_NEW_PER_RUN.
   { id: "folha-ilustrada", label: "Folha", group: "br", url: "https://feeds.folha.uol.com.br/ilustrada/rss091.xml", alwaysRelevant: false },
-  { id: "rolling-stone-br", label: "Rolling Stone Brasil", group: "br", url: "https://rollingstone.uol.com.br/feed/", alwaysRelevant: false },
+  { id: "rolling-stone-br", label: "Rolling Stone Brasil", group: "br", url: "https://rollingstone.com.br/feed/", alwaysRelevant: false },
   { id: "billboard-br", label: "Billboard Brasil", group: "br", url: "https://billboard.com.br/feed/", alwaysRelevant: false },
-  { id: "cnn-br", label: "CNN Brasil", group: "br", url: "https://www.cnnbrasil.com.br/feed/", alwaysRelevant: false },
+  { id: "cnn-br", label: "CNN Brasil", group: "br", url: "https://admin.cnnbrasil.com.br/feed/", alwaysRelevant: false },
   { id: "terra-musica", label: "Terra", group: "br", url: "https://www.terra.com.br/diversao/musica/rss.xml", alwaysRelevant: false },
-  { id: "oglobo-musica", label: "O Globo", group: "br", url: "https://oglobo.globo.com/cultura/musica/rss.xml", alwaysRelevant: false },
   // Rock/musica dedicado (cobertura maior de PJ): mesmo assim filtro aplica
   // porque tambem cobrem outras bandas grandes
   { id: "igor-miranda", label: "Igor Miranda", group: "br", url: "https://igormiranda.com.br/feed/", alwaysRelevant: false },
