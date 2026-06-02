@@ -45,14 +45,17 @@ if (LEGACY_NO_CLAUDE) CURATOR_NAME = "routine"; // backward compat
 // Historico: comecou em 6, baixou pra 3 em 2026-05-12 (commit 829ee18) porque a routine
 // de curadoria estourava o tempo curando _pending grande demais por disparo.
 // 2026-06-01: subido 3 -> 4 (experimento monitorado, feed ja destravado).
+// 2026-06-02: subido 4 -> 10. Fontes dobradas (19 -> 38) e teste de dry-run confirmou
+// que o scrapeArticle extrai texto rico de todas as fontes novas (incl. alemao/espanhol),
+// entao ha muito mais materia-prima boa entrando e o teto de 4 passou a sufocar.
 //
 // Como saber se subir vai dar bug: o risco NAO e este job (news.yml so coleta, termina em
 // ~40s, bem dentro do timeout de 12min). O risco e a routine remota, que cura TODO o _pending
 // por disparo. Se a coleta passa a entrar mais rapido do que a curadoria drena, o _pending
 // vira backlog e a routine demora/estoura. Deteccao: o news.yml dispara um alerta no Telegram
-// se _pending.items passar de NEWS_PENDING_ALERT (estado normal e 0-3). Backlog baixo e estavel
-// = seguro subir mais (5, 6...). Backlog crescendo = baixar de volta. Rollback = trocar o numero.
-const MAX_NEW_PER_RUN = 4;
+// se _pending.items passar de NEWS_PENDING_ALERT (default subido pra 25 junto com o teto).
+// Backlog baixo e estavel = seguro. Backlog crescendo = baixar de volta. Rollback = trocar o numero.
+const MAX_NEW_PER_RUN = 10;
 const TOP_KEEP = 30;
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
