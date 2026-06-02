@@ -54,6 +54,16 @@ export const SOURCES = [
   { id: "ondarock-it", label: "OndaRock (IT)", group: "intl", url: "https://www.ondarock.it/feed", alwaysRelevant: false },
   { id: "sopitas-mx", label: "Sopitas (MX)", group: "intl", url: "https://www.sopitas.com/feed/", alwaysRelevant: false },
   { id: "jenesaispop-es", label: "Jenesaispop (ES)", group: "intl", url: "https://jenesaispop.com/feed/", alwaysRelevant: false },
+  // 2a passada 2026-06-02 (deep-research por mercado: turne setlist.fm + charts kworb).
+  // Cobre lacunas geograficas reais: Chile, Australia, Mexico(reforco), Canada, UK.
+  // Dedicadas PJ (tag-feed):
+  { id: "irock-cl-pj", label: "iRock.CL (CL, PJ)", group: "intl", url: "https://www.irock.cl/tag/pearl-jam/feed/", alwaysRelevant: true },
+  { id: "tonedeaf-au-pj", label: "Tone Deaf (AU, PJ)", group: "intl", url: "https://tonedeaf.thebrag.com/tag/pearl-jam/feed/", alwaysRelevant: true },
+  { id: "monterrey-rock-pj", label: "Monterrey Rock (MX, PJ)", group: "intl", url: "https://monterreyrock.com/tag/pearl-jam/feed/", alwaysRelevant: true },
+  // Genericas (texto/itens validados, filtro regex PJ):
+  { id: "exclaim-ca", label: "Exclaim (CA)", group: "intl", url: "https://feeds.feedburner.com/NewsExclaimca", alwaysRelevant: false },
+  { id: "loudersound-uk", label: "Louder (UK)", group: "intl", url: "https://www.loudersound.com/feeds.xml", alwaysRelevant: false },
+  { id: "lineofbestfit-uk", label: "The Line of Best Fit (UK)", group: "intl", url: "https://www.thelineofbestfit.com/feed", alwaysRelevant: false },
 
   // Fan archives
   { id: "pjonline-it", label: "PJ Online IT", group: "fan", url: "https://www.pearljamonline.it/news/feed/", alwaysRelevant: true },
