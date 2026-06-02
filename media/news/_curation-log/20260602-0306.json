@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-02T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "bc56ac6782",
+      "title": "From a Facebok group (Science Graphics that look like Shitposts)",
+      "reason": "texto vazio, post de r/Foofighters sem relação com Pearl Jam"
+    },
+    {
+      "id": "cs-56afe636d8",
+      "title": "I finally got this framed",
+      "reason": "selftext ambíguo, impossível determinar o que foi enquadrado, score 0"
+    }
+  ]
+}
