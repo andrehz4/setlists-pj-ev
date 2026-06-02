@@ -19,6 +19,12 @@ export const SOURCES = [
   { id: "nme-pj", label: "NME", group: "us", url: "https://www.nme.com/artists/pearl-jam/feed", alwaysRelevant: true },
   { id: "pitchfork-news", label: "Pitchfork", group: "us", url: "https://pitchfork.com/feed/feed-news/rss", alwaysRelevant: false },
   { id: "rollingstone-music", label: "Rolling Stone", group: "us", url: "https://www.rollingstone.com/music/music-news/feed/", alwaysRelevant: false },
+  // Adicionadas 2026-06-02 (validadas ao vivo, deep-research). Genericas: feed
+  // traz texto completo via content:encoded, filtro regex PJ aplica.
+  { id: "spin-music", label: "SPIN", group: "us", url: "https://spinmagazine.com/feed/", alwaysRelevant: false },
+  { id: "uproxx-music", label: "UPROXX Music", group: "us", url: "https://uproxx.com/music/feed/", alwaysRelevant: false },
+  // Dedicada PJ (tag-feed): so excerto no RSS, o scrapeArticle puxa o corpo da pagina (igual portais BR).
+  { id: "american-songwriter-pj", label: "American Songwriter (PJ)", group: "us", url: "https://americansongwriter.com/tag/pearl-jam/feed/", alwaysRelevant: true },
 
   // Midia BR. alwaysRelevant=false porque sao portais genericos: o filtro de
   // relevancia (regex PJ) corta o que nao for sobre a banda/integrantes/Ten Club.
@@ -35,8 +41,26 @@ export const SOURCES = [
   { id: "tenho-mais-discos", label: "Tenho Mais Discos Que Amigos", group: "br", url: "https://www.tenhomaisdiscosqueamigos.com/feed/", alwaysRelevant: false },
   { id: "wikimetal", label: "Wikimetal", group: "br", url: "https://www.wikimetal.com.br/feed/", alwaysRelevant: false },
 
+  // Internacional. Idioma nao-PT/EN nao e problema: a curadoria (Sonnet) traduz.
+  // Dedicadas PJ (tag-feed) trazem so excerto, o scrapeArticle puxa o corpo da pagina.
+  // Adicionadas 2026-06-02 (validadas ao vivo, deep-research).
+  { id: "rollingstone-de-pj", label: "Rolling Stone (DE, PJ)", group: "intl", url: "https://www.rollingstone.de/themen/pearl-jam/feed/", alwaysRelevant: true },
+  { id: "musikexpress-pj", label: "Musikexpress (DE, PJ)", group: "intl", url: "https://www.musikexpress.de/tag/pearl-jam/feed/", alwaysRelevant: true },
+  // America Latina + Espanha (base de fas gigante de PJ). Dedicadas via tag-feed.
+  { id: "indiehoy-ar-pj", label: "Indie Hoy (AR, PJ)", group: "intl", url: "https://indiehoy.com/tag/pearl-jam/feed/", alwaysRelevant: true },
+  { id: "mondosonoro-es-pj", label: "Mondo Sonoro (ES, PJ)", group: "intl", url: "https://www.mondosonoro.com/tag/pearl-jam/feed/", alwaysRelevant: true },
+  // Genericas intl: texto completo no feed, filtro regex PJ aplica.
+  { id: "visions-de", label: "Visions (DE)", group: "intl", url: "https://www.visions.de/feed/", alwaysRelevant: false },
+  { id: "ondarock-it", label: "OndaRock (IT)", group: "intl", url: "https://www.ondarock.it/feed", alwaysRelevant: false },
+  { id: "sopitas-mx", label: "Sopitas (MX)", group: "intl", url: "https://www.sopitas.com/feed/", alwaysRelevant: false },
+  { id: "jenesaispop-es", label: "Jenesaispop (ES)", group: "intl", url: "https://jenesaispop.com/feed/", alwaysRelevant: false },
+
   // Fan archives
   { id: "pjonline-it", label: "PJ Online IT", group: "fan", url: "https://www.pearljamonline.it/news/feed/", alwaysRelevant: true },
+  // Red Mosquito: fan site classico de PJ (Blogger). Feed traz texto completo.
+  { id: "red-mosquito", label: "Red Mosquito", group: "fan", url: "https://www.theskyiscrape.com/feeds/posts/default", alwaysRelevant: true },
+  // Podcast dedicado a PJ (Acast). Feed de audio: o texto vem da descricao rica do episodio.
+  { id: "solat-podcast", label: "State of Love & Trust (Podcast)", group: "fan", url: "https://feeds.acast.com/public/shows/5eb984087ddaae6f69daa3dc", alwaysRelevant: true },
 
   // Comunidade
   { id: "reddit-pj", label: "r/pearljam", group: "comunidade", url: "https://www.reddit.com/r/pearljam/hot.json?limit=25", alwaysRelevant: true, kind: "reddit" },
