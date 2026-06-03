@@ -1,0 +1,576 @@
+{
+  "year": "2026",
+  "shows": [
+    {
+      "artist": "Eddie Vedder",
+      "id": "3b4a8498",
+      "eventDate": "20-04-2026",
+      "year": "2026",
+      "lastUpdated": "2026-05-02T22:29:01.640+0000",
+      "tour": "An Evening With Eddie Vedder Japan Twenty-Twenty Six",
+      "venue": "TOKYO GARDEN THEATER",
+      "city": "Tokyo",
+      "state": "Tokyo",
+      "country": "Japan",
+      "coords": {
+        "lat": 35.69,
+        "long": 139.692
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2026/tokyo-garden-theater-tokyo-japan-3b4a8498.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Tuolumne",
+              "tape": true
+            },
+            {
+              "name": "Brain Damage",
+              "info": "(Partial) (>)",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Sometimes",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Keep Me in Your Heart",
+              "cover": "Warren Zevon"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "You've Got to Hide Your Love Away",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Parting Ways",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "I Am Mine",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "No Ceiling"
+            },
+            {
+              "name": "Far Behind"
+            },
+            {
+              "name": "Rise"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Save It for Later",
+              "cover": "The Beat"
+            },
+            {
+              "name": "Immortality",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Just Breathe",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Corduroy",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Song of Good Hope",
+              "info": "with Ed's guitar tech Simon Good on acoustic guitar",
+              "cover": "Glen Hansard"
+            },
+            {
+              "name": "Long Way",
+              "info": "with playback"
+            },
+            {
+              "name": "Lukin",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Won't Back Down",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Hard Sun",
+              "cover": "Indio"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Forever Young",
+              "info": "first time since 2018",
+              "cover": "Bob Dylan"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "334a8499",
+      "eventDate": "17-04-2026",
+      "year": "2026",
+      "lastUpdated": "2026-06-01T06:03:20.197+0000",
+      "tour": "An Evening With Eddie Vedder Japan Twenty-Twenty Six",
+      "venue": "ROHM Theatre Kyoto",
+      "city": "Kyoto",
+      "state": "Kyōto",
+      "country": "Japan",
+      "coords": {
+        "lat": 35.021,
+        "long": 135.754
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2026/rohm-theatre-kyoto-kyoto-japan-334a8499.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Tuolumne",
+              "tape": true
+            },
+            {
+              "name": "Don't Be Shy",
+              "cover": "Cat Stevens"
+            },
+            {
+              "name": "Long Road",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Hurt",
+              "info": "first time since 2018",
+              "cover": "Nine Inch Nails"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "I Am Mine",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Immortality",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Setting Forth"
+            },
+            {
+              "name": "Far Behind"
+            },
+            {
+              "name": "Guaranteed"
+            },
+            {
+              "name": "Society",
+              "cover": "Jerry Hannan"
+            },
+            {
+              "name": "I'm Open",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Without You",
+              "info": "first time since 2019"
+            },
+            {
+              "name": "Smile",
+              "info": "first time since 2019",
+              "cover": "Nat King Cole"
+            },
+            {
+              "name": "Just Breathe",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Unthought Known",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "I Won't Back Down",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Song of Good Hope",
+              "info": "with Ed's guitar tech Simon Good on acoustic guitar",
+              "cover": "Glen Hansard"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Imagine",
+              "info": "Audience request",
+              "cover": "John Lennon"
+            },
+            {
+              "name": "Corduroy",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Hard Sun",
+              "cover": "Indio"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Crazy Mary",
+              "info": "first time since 2018",
+              "cover": "Victoria Williams"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "2b4a849a",
+      "eventDate": "16-04-2026",
+      "year": "2026",
+      "lastUpdated": "2026-04-18T18:30:58.908+0000",
+      "tour": "An Evening With Eddie Vedder Japan Twenty-Twenty Six",
+      "venue": "Festival Hall",
+      "city": "Osaka",
+      "state": "Osaka",
+      "country": "Japan",
+      "coords": {
+        "lat": 34.694,
+        "long": 135.502
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2026/festival-hall-osaka-japan-2b4a849a.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Tuolumne",
+              "tape": true
+            },
+            {
+              "name": "Trouble",
+              "cover": "Cat Stevens"
+            },
+            {
+              "name": "Wildflowers",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Dead Man",
+              "info": "first time since 2019",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Picture in a Frame",
+              "cover": "Tom Waits"
+            },
+            {
+              "name": "Just Breathe",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "The Needle and the Damage Done",
+              "info": "first time since 2019",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Driftin'",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Far Behind"
+            },
+            {
+              "name": "Society",
+              "cover": "Jerry Hannan"
+            },
+            {
+              "name": "Guaranteed"
+            },
+            {
+              "name": "Rise"
+            },
+            {
+              "name": "Can't Keep",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Immortality",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Let My Love Open the Door",
+              "info": "first time since 2019",
+              "cover": "Pete Townshend"
+            },
+            {
+              "name": "I'm Open",
+              "info": "first time since 2019",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Corduroy",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Long Way",
+              "info": "with playback"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Masters of War",
+              "info": "first time since 2018",
+              "cover": "Bob Dylan"
+            },
+            {
+              "name": "Hard Sun",
+              "cover": "Indio"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Around the Bend",
+              "info": "first time since 2019",
+              "cover": "Pearl Jam"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "2b4a84a6",
+      "eventDate": "14-04-2026",
+      "year": "2026",
+      "lastUpdated": "2026-04-16T16:44:18.437+0000",
+      "tour": "An Evening With Eddie Vedder Japan Twenty-Twenty Six",
+      "venue": "Nippon Tokushu Tougyou Shimin Kaikan, Forest Hall",
+      "city": "Nagoya",
+      "state": "Aichi",
+      "country": "Japan",
+      "coords": {
+        "lat": 35.105,
+        "long": 136.542
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2026/nippon-tokushu-tougyou-shimin-kaikan-forest-hall-nagoya-japan-2b4a84a6.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Tuolumne",
+              "tape": true
+            },
+            {
+              "name": "Brain Damage",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Sometimes",
+              "info": "first time since 2020",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Keep Me in Your Heart",
+              "cover": "Warren Zevon"
+            },
+            {
+              "name": "Just Breathe",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "I Am Mine",
+              "info": "first time since 2019",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "You've Got to Hide Your Love Away",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "No Ceiling"
+            },
+            {
+              "name": "Far Behind"
+            },
+            {
+              "name": "Rise"
+            },
+            {
+              "name": "Society",
+              "cover": "Jerry Hannan"
+            },
+            {
+              "name": "Can't Keep",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Parting Ways",
+              "info": "first time since 2019",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Man of the Hour",
+              "info": "first time since 2019",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Immortality",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Corduroy",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The English Beat's 'Save It for Later' tag",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Long Way",
+              "info": "with playback; Ed goes into audience and sings"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Hard Sun",
+              "cover": "Indio"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "73486ed9",
+      "eventDate": "03-03-2026",
+      "year": "2026",
+      "lastUpdated": "2026-03-06T06:29:56.619+0000",
+      "tour": null,
+      "venue": "Howard Stern Radio Program",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2026/howard-stern-radio-program-new-york-ny-73486ed9.html",
+      "songCount": 1,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Song of Good Hope",
+              "cover": "Glen Hansard"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

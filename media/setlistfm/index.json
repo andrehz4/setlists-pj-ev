@@ -1,0 +1,308 @@
+{
+  "source": "setlist.fm",
+  "attribution": "Setlists via setlist.fm. Pearl Jam: https://www.setlist.fm/setlists/pearl-jam-23d6b80b.html | Eddie Vedder: https://www.setlist.fm/setlists/eddie-vedder-3bd6bd5b.html",
+  "artists": [
+    {
+      "name": "Pearl Jam",
+      "mbid": "83b9cbe7-9857-49e2-ab8e-b57b01038103",
+      "total": 1134
+    },
+    {
+      "name": "Eddie Vedder",
+      "mbid": "1a60d6dd-9d3e-40fc-a66d-3184f9ee0d61",
+      "total": 313
+    }
+  ],
+  "totalShows": 1447,
+  "years": [
+    {
+      "year": "2026",
+      "total": 5,
+      "porArtista": {
+        "Eddie Vedder": 5
+      }
+    },
+    {
+      "year": "2025",
+      "total": 19,
+      "porArtista": {
+        "Eddie Vedder": 8,
+        "Pearl Jam": 11
+      }
+    },
+    {
+      "year": "2024",
+      "total": 44,
+      "porArtista": {
+        "Eddie Vedder": 6,
+        "Pearl Jam": 38
+      }
+    },
+    {
+      "year": "2023",
+      "total": 14,
+      "porArtista": {
+        "Eddie Vedder": 6,
+        "Pearl Jam": 8
+      }
+    },
+    {
+      "year": "2022",
+      "total": 48,
+      "porArtista": {
+        "Eddie Vedder": 15,
+        "Pearl Jam": 33
+      }
+    },
+    {
+      "year": "2021",
+      "total": 9,
+      "porArtista": {
+        "Pearl Jam": 4,
+        "Eddie Vedder": 5
+      }
+    },
+    {
+      "year": "2020",
+      "total": 12,
+      "porArtista": {
+        "Eddie Vedder": 11,
+        "Pearl Jam": 1
+      }
+    },
+    {
+      "year": "2019",
+      "total": 22,
+      "porArtista": {
+        "Eddie Vedder": 22
+      }
+    },
+    {
+      "year": "2018",
+      "total": 35,
+      "porArtista": {
+        "Eddie Vedder": 9,
+        "Pearl Jam": 26
+      }
+    },
+    {
+      "year": "2017",
+      "total": 27,
+      "porArtista": {
+        "Eddie Vedder": 26,
+        "Pearl Jam": 1
+      }
+    },
+    {
+      "year": "2016",
+      "total": 34,
+      "porArtista": {
+        "Eddie Vedder": 9,
+        "Pearl Jam": 25
+      }
+    },
+    {
+      "year": "2015",
+      "total": 13,
+      "porArtista": {
+        "Pearl Jam": 11,
+        "Eddie Vedder": 2
+      }
+    },
+    {
+      "year": "2014",
+      "total": 52,
+      "porArtista": {
+        "Eddie Vedder": 20,
+        "Pearl Jam": 32
+      }
+    },
+    {
+      "year": "2013",
+      "total": 36,
+      "porArtista": {
+        "Eddie Vedder": 5,
+        "Pearl Jam": 31
+      }
+    },
+    {
+      "year": "2012",
+      "total": 49,
+      "porArtista": {
+        "Eddie Vedder": 31,
+        "Pearl Jam": 18
+      }
+    },
+    {
+      "year": "2011",
+      "total": 59,
+      "porArtista": {
+        "Pearl Jam": 23,
+        "Eddie Vedder": 36
+      }
+    },
+    {
+      "year": "2010",
+      "total": 30,
+      "porArtista": {
+        "Pearl Jam": 28,
+        "Eddie Vedder": 2
+      }
+    },
+    {
+      "year": "2009",
+      "total": 53,
+      "porArtista": {
+        "Eddie Vedder": 17,
+        "Pearl Jam": 36
+      }
+    },
+    {
+      "year": "2008",
+      "total": 44,
+      "porArtista": {
+        "Eddie Vedder": 29,
+        "Pearl Jam": 15
+      }
+    },
+    {
+      "year": "2007",
+      "total": 21,
+      "porArtista": {
+        "Eddie Vedder": 7,
+        "Pearl Jam": 14
+      }
+    },
+    {
+      "year": "2006",
+      "total": 86,
+      "porArtista": {
+        "Pearl Jam": 85,
+        "Eddie Vedder": 1
+      }
+    },
+    {
+      "year": "2005",
+      "total": 40,
+      "porArtista": {
+        "Pearl Jam": 37,
+        "Eddie Vedder": 3
+      }
+    },
+    {
+      "year": "2004",
+      "total": 19,
+      "porArtista": {
+        "Eddie Vedder": 7,
+        "Pearl Jam": 12
+      }
+    },
+    {
+      "year": "2003",
+      "total": 77,
+      "porArtista": {
+        "Pearl Jam": 77
+      }
+    },
+    {
+      "year": "2002",
+      "total": 13,
+      "porArtista": {
+        "Pearl Jam": 8,
+        "Eddie Vedder": 5
+      }
+    },
+    {
+      "year": "2001",
+      "total": 6,
+      "porArtista": {
+        "Pearl Jam": 3,
+        "Eddie Vedder": 3
+      }
+    },
+    {
+      "year": "2000",
+      "total": 80,
+      "porArtista": {
+        "Pearl Jam": 76,
+        "Eddie Vedder": 4
+      }
+    },
+    {
+      "year": "1999",
+      "total": 11,
+      "porArtista": {
+        "Eddie Vedder": 9,
+        "Pearl Jam": 2
+      }
+    },
+    {
+      "year": "1998",
+      "total": 68,
+      "porArtista": {
+        "Pearl Jam": 67,
+        "Eddie Vedder": 1
+      }
+    },
+    {
+      "year": "1997",
+      "total": 5,
+      "porArtista": {
+        "Pearl Jam": 5
+      }
+    },
+    {
+      "year": "1996",
+      "total": 39,
+      "porArtista": {
+        "Eddie Vedder": 4,
+        "Pearl Jam": 35
+      }
+    },
+    {
+      "year": "1995",
+      "total": 42,
+      "porArtista": {
+        "Pearl Jam": 42
+      }
+    },
+    {
+      "year": "1994",
+      "total": 31,
+      "porArtista": {
+        "Pearl Jam": 29,
+        "Eddie Vedder": 2
+      }
+    },
+    {
+      "year": "1993",
+      "total": 61,
+      "porArtista": {
+        "Pearl Jam": 60,
+        "Eddie Vedder": 1
+      }
+    },
+    {
+      "year": "1992",
+      "total": 132,
+      "porArtista": {
+        "Pearl Jam": 130,
+        "Eddie Vedder": 2
+      }
+    },
+    {
+      "year": "1991",
+      "total": 107,
+      "porArtista": {
+        "Pearl Jam": 107
+      }
+    },
+    {
+      "year": "1990",
+      "total": 4,
+      "porArtista": {
+        "Pearl Jam": 4
+      }
+    }
+  ]
+}
