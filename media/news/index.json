@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-01T15:10:09.151Z",
+  "updated": "2026-06-03T03:15:29.841Z",
   "items": [
     {
       "id": "41ff822d8e",
@@ -332,6 +332,22 @@
       "community_post_score": 0
     },
     {
+      "id": "bc613bb9a2",
+      "url": "https://indiehoy.com/historias/4-canciones-famosas-nacidas-de-noticias-reales",
+      "source": "indiehoy-ar-pj",
+      "sourceLabel": "Indie Hoy (AR, PJ)",
+      "group": "intl",
+      "pubDate": "2026-05-24T17:08:00.000Z",
+      "fetchedAt": "2026-06-03T03:15:29.259Z",
+      "img": "/media/news/img/bc613bb9a2.jpg",
+      "title_pt": "Quatro canções icônicas do rock inspiradas em notícias reais, incluindo Jeremy",
+      "intro_pt": "Em 1991, Eddie Vedder leu sobre Jeremy Wade Delle e transformou uma tragédia real na música mais marcante de Ten.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "A notícia de jornal que virou Jeremy"
+    },
+    {
       "id": "cd-20260524",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
       "source": "reddit-community-digest",
@@ -390,6 +406,22 @@
       "community_posts_count": 5
     },
     {
+      "id": "8dbfbd0282",
+      "url": "https://tonedeaf.thebrag.com/pearl-jam-will-reveal-their-new-drummer-in-september",
+      "source": "tonedeaf-au-pj",
+      "sourceLabel": "Tone Deaf (AU, PJ)",
+      "group": "intl",
+      "pubDate": "2026-05-23T00:17:30.000Z",
+      "fetchedAt": "2026-06-03T03:15:29.259Z",
+      "img": "/media/news/img/8dbfbd0282.jpg",
+      "title_pt": "Pearl Jam revela novo baterista só no Ohana, em 27 de setembro",
+      "intro_pt": "Stone Gossard confirmou que a identidade do substituto de Matt Cameron só será revelada quando a banda subir ao palco no Ohana Festival.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "Novo baterista do PJ revelado em setembro"
+    },
+    {
       "id": "02606c80b1",
       "url": "https://www.terra.com.br/diversao/musica/pearl-jam-so-deve-revelar-novo-baterista-em-setembro-nosso-misterio,fca1d6e884aba07d2ed417c455842cc0hnesab2e.html",
       "source": "terra-musica",
@@ -439,6 +471,22 @@
         "matt"
       ],
       "title_ig": "Novo baterista do PJ sai do mistério em setembro"
+    },
+    {
+      "id": "b891b5dff9",
+      "url": "https://www.rollingstone.de/pearl-jam-neuer-drummer-ohana-festival-enthuellung-3146215",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2026-05-22T19:19:25.000Z",
+      "fetchedAt": "2026-06-03T03:15:29.259Z",
+      "img": "/media/news/img/b891b5dff9.jpg",
+      "title_pt": "Stone celebra o mistério do baterista, mas falas de Eddie e Mike se contradizem",
+      "intro_pt": "Stone Gossard abraça o suspense do novo baterista, enquanto declarações de Eddie e Mike apontam em direções opostas sobre o estágio da decisão.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "O mistério do baterista que ninguém quer desvendar"
     },
     {
       "id": "3859c08c22",
@@ -491,59 +539,6 @@
       "title_ig": "Stone confirma: novo baterista escolhido",
       "kind": "community-digest",
       "community_posts_count": 8
-    },
-    {
-      "id": "cs-e1da80b054",
-      "url": "https://www.reddit.com/r/pearljam/comments/1tkhadn/matt_cameron_pic_that_makes_you_say_hell_yeah/",
-      "source": "reddit-community-spotlight",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-05-22T12:18:41.000Z",
-      "fetchedAt": "2026-05-26T21:06:56.847Z",
-      "img": "/media/news/img/cs-e1da80b054.jpg",
-      "title_pt": "Foto de Matt Cameron circula entre fãs e provoca onda de nostalgia",
-      "intro_pt": "Uma imagem do baterista circulou na comunidade global de fãs e virou ponto de encontro de memórias e reconhecimento.",
-      "tags": [
-        "comunidade",
-        "matt"
-      ],
-      "title_ig": "Matt Cameron, o eterno em uma foto só",
-      "kind": "community-spotlight",
-      "community_post_url": "https://www.reddit.com/r/pearljam/comments/1tkhadn/matt_cameron_pic_that_makes_you_say_hell_yeah/",
-      "community_post_score": 0
-    },
-    {
-      "id": "0ac63f3cc6",
-      "url": "https://www.pearljamonline.it/stone-gossard-sul-nuovo-batterista-dei-pearl-jam-adoro-il-mistero-e-tutto-cosi-eccitante",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-05-22T07:58:45.000Z",
-      "fetchedAt": "2026-05-22T09:09:40.617Z",
-      "img": "/media/news/img/0ac63f3cc6.jpg",
-      "title_pt": "Stone Gossard sobre o mistério do novo baterista: 'É tudo tão emocionante'",
-      "intro_pt": "Stone Gossard falou sobre a expectativa em torno do novo baterista do PJ e revelou que curte cada segundo do mistério antes do Ohana 2026.",
-      "tags": [
-        "stone",
-        "turne"
-      ],
-      "title_ig": "Stone Gossard abraça o mistério do novo baterista"
-    },
-    {
-      "id": "5608115c56",
-      "url": "https://rollingstone.com.br/musica/pearl-jam-jeremy-duas-tragedias",
-      "source": "rolling-stone-br",
-      "sourceLabel": "Rolling Stone Brasil",
-      "group": "br",
-      "pubDate": "2026-05-21T18:36:18.000Z",
-      "fetchedAt": "2026-05-21T21:06:30.949Z",
-      "img": "/media/news/img/5608115c56.jpg",
-      "title_pt": "As duas tragédias reais que inspiraram Jeremy, do Pearl Jam",
-      "intro_pt": "A letra de Jeremy não é ficção: Eddie Vedder a escreveu a partir de dois casos reais de violência juvenil que o marcaram.",
-      "tags": [
-        "memoria"
-      ],
-      "title_ig": "Jeremy não é ficção: a história real por trás da música"
     }
   ]
 }
