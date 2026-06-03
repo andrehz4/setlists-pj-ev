@@ -48,7 +48,11 @@ async function hydrateBody(it) {
   }
 }
 
-const TOP_KEEP = 30;
+// Sem teto por contagem: todo item curado fica visivel no index (a paginacao
+// de 23/pagina no site cuida da exibicao). O corpo vive em items/<id>.json,
+// entao o index carrega so metadata (~673 bytes/item). SAFETY_CAP e so rede de
+// seguranca contra growth patologico (anos no futuro), nao esconde materia.
+const SAFETY_CAP = 2000;
 const VALID_TAGS = new Set([
   "turne", "lancamento", "tenclub", "memoria", "br", "bootleg", "comunidade",
   "eddie", "mike", "stone", "jeff", "matt", "boom", "josh",
@@ -237,8 +241,22 @@ async function main() {
   for (const it of newItems) map.set(it.id, it);
   for (const it of indexDoc.items || []) if (!map.has(it.id)) map.set(it.id, it);
   const merged = [...map.values()].sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-  const finalItems = merged.slice(0, TOP_KEEP);
-  const overflow = merged.slice(TOP_KEEP);
+  // Arquiva so se passar do SAFETY_CAP (rede de seguranca, nao teto de exibicao).
+  // Garante que os itens curados nesta rodada nunca sejam arquivados: eles entram
+  // sempre, o overflow sai do resto mais antigo. Assim materia nova de assunto
+  // antigo (pubDate velho) nao nasce escondida como acontecia com o teto 30.
+  let finalItems, overflow;
+  if (merged.length <= SAFETY_CAP) {
+    finalItems = merged;
+    overflow = [];
+  } else {
+    const freshIds = new Set(newItems.map((i) => i.id));
+    const fresh = merged.filter((i) => freshIds.has(i.id));
+    const rest = merged.filter((i) => !freshIds.has(i.id));
+    const keepN = Math.max(0, SAFETY_CAP - fresh.length);
+    overflow = rest.slice(keepN);
+    finalItems = [...fresh, ...rest.slice(0, keepN)].sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+  }
 
   // arquiva overflow (hidrata body antes de arquivar pra preservar conteudo)
   if (overflow.length > 0) {
