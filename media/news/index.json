@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-03T15:16:24.590Z",
+  "updated": "2026-06-03T21:16:18.983Z",
   "items": [
     {
       "id": "e448f4ccd7",
@@ -1897,6 +1897,71 @@
       ]
     },
     {
+      "id": "4d598992f9",
+      "url": "https://shows.acast.com/state-of-love-and-trust/episodes/vitalogy-superlatives",
+      "source": "solat-podcast",
+      "sourceLabel": "State of Love & Trust (Podcast)",
+      "group": "fan",
+      "pubDate": "2025-12-02T10:00:00.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.800Z",
+      "img": "/media/news/img/4d598992f9.jpg",
+      "title_pt": "Podcast celebra Vitalogy com duas das maiores referências jornalísticas do PJ",
+      "intro_pt": "O State of Love & Trust convocou Jessica Letkemann e Jonathan Cohen para dissecar Vitalogy e entregar os melhores momentos do terceiro álbum do Pearl Jam.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Vitalogy revisitado pelos que mais entendem"
+    },
+    {
+      "id": "a19459a385",
+      "url": "https://monterreyrock.com/2024/11/el-ultimo-concierto-de-pearl-jam-en-mexico",
+      "source": "monterrey-rock-pj",
+      "sourceLabel": "Monterrey Rock (MX, PJ)",
+      "group": "intl",
+      "pubDate": "2025-11-28T12:39:00.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.800Z",
+      "img": "/media/news/img/a19459a385.jpg",
+      "title_pt": "O último show do Pearl Jam no México, em novembro de 2015",
+      "intro_pt": "Mais de 60 mil pessoas e um setlist que foi do intimismo melancólico ao rock de alta voltagem: assim foi o último show do Pearl Jam em solo mexicano.",
+      "tags": [
+        "turne",
+        "memoria"
+      ],
+      "title_ig": "A última vez que o PJ tocou no México"
+    },
+    {
+      "id": "8b919541fd",
+      "url": "https://shows.acast.com/state-of-love-and-trust/episodes/were-grateful-for-pearl-jams-riot-act",
+      "source": "solat-podcast",
+      "sourceLabel": "State of Love & Trust (Podcast)",
+      "group": "fan",
+      "pubDate": "2025-11-18T10:00:00.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.800Z",
+      "img": "/media/news/img/8b919541fd.jpg",
+      "title_pt": "23 anos de Riot Act: podcast celebra o disco mais divisivo do Pearl Jam",
+      "intro_pt": "Jason e Paul revisitam Riot Act ao estilo gratidão, reconhecendo o disco que dividiu opiniões mas que, com 23 anos de distância, mostra que envelheceu bem.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Riot Act faz 23 anos e o tempo fez justiça"
+    },
+    {
+      "id": "abfc22a179",
+      "url": "https://www.rollingstone.de/das-roskilde-unglueck-2000-eine-tragoedie-die-pearl-jam-und-die-musikwelt-praegte-2899957",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2025-11-10T09:13:56.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.800Z",
+      "img": "/media/news/img/abfc22a179.jpg",
+      "title_pt": "Roskilde 2000: a tragédia que mudou o Pearl Jam e a segurança em festivais",
+      "intro_pt": "Em 30 de junho de 2000, nove fãs morreram durante o show do Pearl Jam no Roskilde Festival. Uma ferida que a banda carrega até hoje.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Roskilde 2000: a noite que mudou tudo"
+    },
+    {
       "id": "da447e97bc",
       "url": "https://www.nme.com/news/music/jim-carrey-inducts-soundgarden-as-band-reunite-alongside-taylor-momsen-jerry-cantrell-mike-mccready-at-rock-roll-hall-of-fame-ceremony-3906712",
       "source": "nme-pj",
@@ -1911,6 +1976,55 @@
         "mike",
         "memoria"
       ]
+    },
+    {
+      "id": "1f83b8c9d6",
+      "url": "https://www.rollingstone.de/soundgarden-rock-hall-2025-ceremony-3074545",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2025-11-09T09:14:13.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.800Z",
+      "img": "/media/news/img/1f83b8c9d6.jpg",
+      "title_pt": "Soundgarden no Rock Hall com Mike McCready e uma noite de Seattle",
+      "intro_pt": "A cerimônia de entrada do Soundgarden no Rock & Roll Hall of Fame reuniu os sobreviventes, a filha de Chris Cornell e Mike McCready do Pearl Jam.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Soundgarden no Rock Hall com McCready no palco"
+    },
+    {
+      "id": "4de91deab1",
+      "url": "https://americansongwriter.com/on-this-day-in-1993-pearl-jam-debuted-at-no-1-with-an-album-that-set-a-massive-sales-record",
+      "source": "american-songwriter-pj",
+      "sourceLabel": "American Songwriter (PJ)",
+      "group": "us",
+      "pubDate": "2025-11-06T22:53:02.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.800Z",
+      "img": "/media/news/img/4de91deab1.jpg",
+      "title_pt": "Em novembro de 1993, Vs. estreou no #1 e quebrou o recorde de vendas da semana",
+      "intro_pt": "Em 6 de novembro de 1993, Vs. entrou direto no topo da Billboard 200 e estabeleceu um recorde de primeiras semanas que durou cinco anos.",
+      "tags": [
+        "lancamento",
+        "memoria"
+      ],
+      "title_ig": "Vs. foi o #1 que ninguém segurou"
+    },
+    {
+      "id": "a4485d63a8",
+      "url": "https://americansongwriter.com/pearl-jams-mike-mccready-would-not-have-picked-up-a-guitar-without-late-kiss-guitarist-ace-frehley",
+      "source": "american-songwriter-pj",
+      "sourceLabel": "American Songwriter (PJ)",
+      "group": "us",
+      "pubDate": "2025-10-17T16:37:09.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.800Z",
+      "img": "/media/news/img/a4485d63a8.jpg",
+      "title_pt": "McCready homenageia Ace Frehley: o homem que o fez pegar na guitarra",
+      "intro_pt": "Quando Ace Frehley morreu em outubro de 2025, Mike McCready foi um dos primeiros a se pronunciar, e revelou de onde vem o solo de 'Alive'.",
+      "tags": [
+        "mike"
+      ],
+      "title_ig": "O guitarrista que ensinou McCready a ser McCready"
     },
     {
       "id": "cb8eef5f20",
@@ -1959,6 +2073,54 @@
       ]
     },
     {
+      "id": "1f24eb5248",
+      "url": "https://indiehoy.com/historias/los-3-mejores-discos-de-pearl-jam",
+      "source": "indiehoy-ar-pj",
+      "sourceLabel": "Indie Hoy (AR, PJ)",
+      "group": "intl",
+      "pubDate": "2025-09-24T15:04:30.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.801Z",
+      "img": "/media/news/img/1f24eb5248.jpg",
+      "title_pt": "Os três melhores discos do Pearl Jam, na visão do Indie Hoy",
+      "intro_pt": "Vitalogy, Vs. e Ten, nessa ordem: a Indie Hoy Argentina seleciona os três discos fundamentais do Pearl Jam e explica por que cada um importa.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Os três álbuns do PJ que ninguém discute"
+    },
+    {
+      "id": "07d7bf2e97",
+      "url": "https://indiehoy.com/historias/5-mejores-canciones-pearl-jam",
+      "source": "indiehoy-ar-pj",
+      "sourceLabel": "Indie Hoy (AR, PJ)",
+      "group": "intl",
+      "pubDate": "2025-09-21T17:19:24.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.801Z",
+      "img": "/media/news/img/07d7bf2e97.jpg",
+      "title_pt": "As cinco melhores músicas do Pearl Jam, segundo a Indie Hoy Argentina",
+      "intro_pt": "Da denúncia social de 'Jeremy' ao desamparo de 'Black': a Indie Hoy Argentina escolhe as cinco músicas que definem o Pearl Jam.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "As cinco músicas do PJ que definem a banda"
+    },
+    {
+      "id": "5052d26671",
+      "url": "https://indiehoy.com/noticias/matt-cameron-explica-por-que-se-fue-de-pearl-jam",
+      "source": "indiehoy-ar-pj",
+      "sourceLabel": "Indie Hoy (AR, PJ)",
+      "group": "intl",
+      "pubDate": "2025-09-17T18:00:30.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.801Z",
+      "img": "/media/news/img/5052d26671.jpg",
+      "title_pt": "Matt Cameron explica a saída: turnês de três horas e um novo foco artístico",
+      "intro_pt": "Em entrevista à Billboard, Matt Cameron revelou que a rotina de shows de três horas e o touring constante pesaram na decisão de deixar o Pearl Jam após 27 anos.",
+      "tags": [
+        "matt"
+      ],
+      "title_ig": "Cameron fala pela primeira vez sobre a saída do PJ"
+    },
+    {
       "id": "c936249f77",
       "url": "https://www.nme.com/news/music/matt-cameron-explains-exit-from-pearl-jam-and-gives-update-on-new-soundgarden-album-with-posthumous-chris-cornell-vocals-3893103",
       "source": "nme-pj",
@@ -1975,6 +2137,54 @@
       ]
     },
     {
+      "id": "9f038ce999",
+      "url": "https://tonedeaf.thebrag.com/matt-cameron-cites-touring-and-show-runtimes-behind-pearl-jam-exit",
+      "source": "tonedeaf-au-pj",
+      "sourceLabel": "Tone Deaf (AU, PJ)",
+      "group": "intl",
+      "pubDate": "2025-09-17T00:15:34.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.801Z",
+      "img": "/media/news/img/9f038ce999.jpg",
+      "title_pt": "Tone Deaf (AU): Cameron confirma peso do touring constante na saída do PJ",
+      "intro_pt": "A perspectiva australiana sobre a partida de Matt Cameron confirma o desgaste com shows de três horas e revela os próximos passos em dois novos projetos.",
+      "tags": [
+        "matt"
+      ],
+      "title_ig": "Touring e shows longos: a explicação de Cameron"
+    },
+    {
+      "id": "160b4ab7d9",
+      "url": "https://www.rollingstone.de/pearl-jam-matt-cameron-ausstieg-touren-3058399",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2025-09-16T20:15:38.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.801Z",
+      "img": "/media/news/img/160b4ab7d9.jpg",
+      "title_pt": "Rolling Stone alemão: Matt Cameron revela os bastidores da saída do Pearl Jam",
+      "intro_pt": "A versão do Rolling Stone alemão sobre a entrevista de Cameron à Billboard, com os detalhes que explicam o fim de 27 anos na bateria do Pearl Jam.",
+      "tags": [
+        "matt"
+      ],
+      "title_ig": "Cameron: os bastidores de uma saída anunciada"
+    },
+    {
+      "id": "ab5f835f8a",
+      "url": "https://www.rollingstone.de/zoe-kravitz-erklaert-die-delikate-bedeutung-von-pearl-jam-sperma-3051447",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2025-08-24T09:07:59.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.801Z",
+      "img": "/media/news/img/ab5f835f8a.jpg",
+      "title_pt": "Zoë Kravitz explica o que 'Pearl Jam' significa, em jogo de beber dos anos 90",
+      "intro_pt": "Em vídeo pro Rolling Stone, Zoë Kravitz foi direta com Austin Butler sobre o significado obsceno do nome Pearl Jam, e a lenda da bisavó do Vedder voltou à tona.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "O que Pearl Jam significa, segundo Zoë Kravitz"
+    },
+    {
       "id": "5e8a803ee2",
       "url": "https://www.nme.com/features/music-interviews/mac-demarco-soundtrack-of-my-life-3886221",
       "source": "nme-pj",
@@ -1989,6 +2199,22 @@
         "memoria"
       ],
       "title_ig": "Jeremy confundiu Mac DeMarco ainda criança"
+    },
+    {
+      "id": "80be2b2e39",
+      "url": "https://americansongwriter.com/on-this-day-in-1991-pearl-jam-recorded-a-concert-music-video-and-refused-to-lip-sync",
+      "source": "american-songwriter-pj",
+      "sourceLabel": "American Songwriter (PJ)",
+      "group": "us",
+      "pubDate": "2025-08-03T17:09:15.000Z",
+      "fetchedAt": "2026-06-03T21:16:18.801Z",
+      "img": "/media/news/img/80be2b2e39.jpg",
+      "title_pt": "Pearl Jam gravou o clipe de 'Alive' ao vivo em 1991 e se recusou ao playback",
+      "intro_pt": "Em vez de playback no estúdio, o Pearl Jam gravou o clipe de 'Alive' num show de verdade no RKCNDY, Seattle, com áudio ao vivo e apenas duas tentativas.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "O clipe de Alive sem playback: a recusa que virou tradição"
     },
     {
       "id": "e33ddb848d",
