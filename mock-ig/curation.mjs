@@ -53,11 +53,20 @@ function pendingCard(p) {
 }
 
 // Card de um item ja curado e enfileirado (hidratado com o index).
+// A fila (_publish-queue.json) so guarda id/type/postedAt; titulo/foto/intro
+// vivem no index.json. Se o item ja esta na fila mas o index local ainda esta
+// um passo atras (dessincronia momentanea entre fila e index), nao da pra
+// hidratar: marca hydrated=false e usa placeholder em vez de cuspir o hash cru.
 function pickedCard(idx, q) {
+  const hydrated = !!idx;
+  const title = hydrated
+    ? (idx.title_ig || idx.title_pt || idx.titulo_pt || "(sem titulo)")
+    : "aguardando o indice sincronizar (clique Atualizar)";
   return {
     id: q.id,
+    hydrated,
     kind: kindOf(idx || q),
-    title: (idx && (idx.title_ig || idx.title_pt || idx.titulo_pt)) || q.id,
+    title,
     intro: (idx && idx.intro_pt) || "",
     tags: (idx && idx.tags) || [],
     img: (idx && idx.img) || null,
