@@ -43,6 +43,7 @@ jobs:
           REDDIT_PROXY_URL: ${{ secrets.REDDIT_PROXY_URL }}
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          SETLISTFM_API_KEY: ${{ secrets.SETLISTFM_API_KEY }}
           NEWS_CURATOR: ${{ inputs.curator || 'routine' }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
         run: |
