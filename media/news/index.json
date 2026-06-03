@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-03T09:12:47.388Z",
+  "updated": "2026-06-03T15:16:24.590Z",
   "items": [
     {
       "id": "e448f4ccd7",
@@ -1656,6 +1656,120 @@
       "title_ig": "Eddie Vedder escreve sobre The Who na Rolling Stone"
     },
     {
+      "id": "6a8fbc1c8e",
+      "url": "https://www.rollingstone.de/pearl-jam-buyers-guide-die-wichtigsten-alben-im-ranking-2009359",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2026-02-16T08:32:35.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/6a8fbc1c8e.jpg",
+      "title_pt": "A discografia do Pearl Jam ranqueada e analisada pelo Rolling Stone alemão",
+      "intro_pt": "Da estreia avassaladora de 'Ten' ao experimento espiritual de 'No Code', o RS alemão percorre álbum por álbum com olhar crítico e histórico.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Toda a discografia do PJ ranqueada e analisada"
+    },
+    {
+      "id": "09dff4debc",
+      "url": "https://tonedeaf.thebrag.com/eddie-vedder-opens-up-about-pearl-jam-future",
+      "source": "tonedeaf-au-pj",
+      "sourceLabel": "Tone Deaf (AU, PJ)",
+      "group": "intl",
+      "pubDate": "2026-02-11T19:26:44.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/09dff4debc.jpg",
+      "title_pt": "Eddie Vedder: 'Estamos no lab, animados com o futuro do Pearl Jam'",
+      "intro_pt": "Vedder confirma que a banda está tocando junta e animada com o que vem depois da saída de Matt Cameron.",
+      "tags": [
+        "eddie",
+        "lancamento"
+      ],
+      "title_ig": "Vedder abre o jogo sobre o futuro do PJ"
+    },
+    {
+      "id": "ce4affbcda",
+      "url": "https://www.rollingstone.de/eddie-vedder-pearl-jam-neues-album-ausstieg-cameron-3097501",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2026-02-11T15:38:39.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/ce4affbcda.jpg",
+      "title_pt": "Vedder fala do próximo PJ e Cameron revela projeto Soundgarden com Cornell",
+      "intro_pt": "Entrevista exclusiva ao Rolling Stone alemão detalha o futuro do Pearl Jam e revela que Cameron trabalha em novo Soundgarden com vocais póstumos de Cornell.",
+      "tags": [
+        "eddie",
+        "lancamento"
+      ],
+      "title_ig": "Vedder: PJ entre eras e Cameron revive o Soundgarden"
+    },
+    {
+      "id": "63cfccd1e1",
+      "url": "https://www.rollingstone.de/eddie-vedder-eb-stiftung-netflix-dokumentation-matter-of-time-3097349",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2026-02-11T07:20:56.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/63cfccd1e1.jpg",
+      "title_pt": "Vedder: 15 anos na batalha contra a EB e o doc 'Matter of Time' no Netflix",
+      "intro_pt": "O doc 'Matter of Time' no Netflix mostra como Vedder e Jill transformaram caridade em ciência real, com 80 milhões captados e três terapias aprovadas.",
+      "tags": [
+        "eddie"
+      ],
+      "title_ig": "O que Vedder construiu fora dos palcos em 15 anos"
+    },
+    {
+      "id": "2a854aa307",
+      "url": "https://shows.acast.com/state-of-love-and-trust/episodes/write-your-own-yield-song-grammys-reaction",
+      "source": "solat-podcast",
+      "sourceLabel": "State of Love & Trust (Podcast)",
+      "group": "fan",
+      "pubDate": "2026-02-10T12:00:00.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/2a854aa307.jpg",
+      "title_pt": "Podcast celebra Yield e debate o Grammy 2026 em novo episódio",
+      "intro_pt": "O podcast continua a celebração de 'Yield' com um exercício sobre as letras do álbum e três grandes observações sobre o Grammy 2026.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Yield, o Grammy 2026 e a indústria musical em debate"
+    },
+    {
+      "id": "d9cd615b16",
+      "url": "https://www.rollingstone.de/ranking-10-songs-von-pearl-jam-die-nur-insider-kennen-2937537",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2026-01-21T05:05:49.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/d9cd615b16.jpg",
+      "title_pt": "As 10 músicas do PJ que só os fãs de carteirinha conhecem",
+      "intro_pt": "Do dueto com Neil Young ao obscuro 'Tremor Christ', o RS alemão listou as pedras brutas que deixam o fã veterano sem controle.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "10 deep cuts do PJ para os fãs de verdade"
+    },
+    {
+      "id": "bde9fe71e1",
+      "url": "https://shows.acast.com/state-of-love-and-trust/episodes/ebrps-matter-of-time-w-matt-finlin-michael-hund",
+      "source": "solat-podcast",
+      "sourceLabel": "State of Love & Trust (Podcast)",
+      "group": "fan",
+      "pubDate": "2026-01-20T12:00:00.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/bde9fe71e1.jpg",
+      "title_pt": "Podcast recebe equipe de 'Matter of Time', o documentário do Vedder",
+      "intro_pt": "O podcast dedicado ao PJ recebeu o diretor de 'Matter of Time' e o CEO da EBRP para falar sobre o documentário e a busca pela cura da EB.",
+      "tags": [
+        "eddie"
+      ],
+      "title_ig": "'Matter of Time': os bastidores do doc do Vedder"
+    },
+    {
       "id": "f3229bd522",
       "url": "https://www.nme.com/news/music/it-looks-like-a-yungblud-and-eddie-vedder-collab-could-be-on-the-way-3922924",
       "source": "nme-pj",
@@ -1687,6 +1801,40 @@
       "title_ig": "O filho do casal que tocou com o Pearl Jam fala"
     },
     {
+      "id": "2d20d7c6b1",
+      "url": "https://www.rollingstone.de/rolling-stone-helden-eddie-vedder-von-pearl-jam-1525167",
+      "source": "rollingstone-de-pj",
+      "sourceLabel": "Rolling Stone (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2025-12-23T11:05:59.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/2d20d7c6b1.jpg",
+      "title_pt": "Eddie Vedder: o cantor dos perdidos que encontrou seu lugar",
+      "intro_pt": "Perfil do RS alemão traça o arco de Eddie Vedder, um homem que nunca pediu pra ser rockstar e encontrou seu lugar mesmo assim.",
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "title_ig": "Vedder: o homem que canta pelos perdidos"
+    },
+    {
+      "id": "3c14bfd016",
+      "url": "https://shows.acast.com/state-of-love-and-trust/episodes/pearl-jams-dark-matter-tour-apeman-selections",
+      "source": "solat-podcast",
+      "sourceLabel": "State of Love & Trust (Podcast)",
+      "group": "fan",
+      "pubDate": "2025-12-23T10:00:00.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/3c14bfd016.jpg",
+      "title_pt": "25 anos de bootlegs: podcast elege os melhores shows da Dark Matter Tour",
+      "intro_pt": "No episódio final de 2025, o podcast reuniu parte da equipe da Dark Matter Tour para eleger os shows mais marcantes dos bootlegs oficiais.",
+      "tags": [
+        "bootleg",
+        "turne"
+      ],
+      "title_ig": "Dark Matter em bootleg: os melhores shows do ano"
+    },
+    {
       "id": "82920cf3fe",
       "url": "https://www.nme.com/news/music/american-heart-association-says-that-this-90s-grunge-classic-is-perfect-tempo-for-cpr-3919826",
       "source": "nme-pj",
@@ -1700,6 +1848,23 @@
       "tags": [
         "memoria"
       ]
+    },
+    {
+      "id": "7a429ab323",
+      "url": "https://shows.acast.com/state-of-love-and-trust/episodes/the-playlist-pearl-jams-holiday-singles",
+      "source": "solat-podcast",
+      "sourceLabel": "State of Love & Trust (Podcast)",
+      "group": "fan",
+      "pubDate": "2025-12-16T10:00:00.000Z",
+      "fetchedAt": "2026-06-03T15:16:24.436Z",
+      "img": "/media/news/img/7a429ab323.jpg",
+      "title_pt": "Os 27 vinis de Natal do Ten Club viram tema de playlist no podcast do PJ",
+      "intro_pt": "O podcast resgatou os 27 singles em vinil do Ten Club e propõe o desafio: que playlist de fim de ano você montaria com essas faixas?",
+      "tags": [
+        "tenclub",
+        "memoria"
+      ],
+      "title_ig": "27 singles de Natal do PJ: qual seria sua playlist?"
     },
     {
       "id": "d8857630af",
