@@ -1,0 +1,30 @@
+{
+  "runAt": "2026-06-03T21:15Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 20,
+  "distribution": { "midia": 20, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "4d598992f9", "titulo": "Podcast celebra Vitalogy com duas das maiores referências jornalísticas do PJ", "kind": "midia" },
+    { "id": "a19459a385", "titulo": "O último show do Pearl Jam no México, em novembro de 2015", "kind": "midia" },
+    { "id": "8b919541fd", "titulo": "23 anos de Riot Act: podcast celebra o disco mais divisivo do Pearl Jam", "kind": "midia" },
+    { "id": "abfc22a179", "titulo": "Roskilde 2000: a tragédia que mudou o Pearl Jam e a segurança em festivais", "kind": "midia" },
+    { "id": "1f83b8c9d6", "titulo": "Soundgarden no Rock Hall com Mike McCready e uma noite de Seattle", "kind": "midia" },
+    { "id": "4de91deab1", "titulo": "Em novembro de 1993, Vs. estreou no #1 e quebrou o recorde de vendas da semana", "kind": "midia" },
+    { "id": "a4485d63a8", "titulo": "McCready homenageia Ace Frehley: o homem que o fez pegar na guitarra", "kind": "midia" },
+    { "id": "1f24eb5248", "titulo": "Os três melhores discos do Pearl Jam, na visão do Indie Hoy", "kind": "midia" },
+    { "id": "07d7bf2e97", "titulo": "As cinco melhores músicas do Pearl Jam, segundo a Indie Hoy Argentina", "kind": "midia" },
+    { "id": "5052d26671", "titulo": "Matt Cameron explica a saída: turnês de três horas e um novo foco artístico", "kind": "midia" },
+    { "id": "9f038ce999", "titulo": "Tone Deaf (AU): Cameron confirma peso do touring constante na saída do PJ", "kind": "midia" },
+    { "id": "160b4ab7d9", "titulo": "Rolling Stone alemão: Matt Cameron revela os bastidores da saída do Pearl Jam", "kind": "midia" },
+    { "id": "ab5f835f8a", "titulo": "Zoë Kravitz explica o que 'Pearl Jam' significa, em jogo de beber dos anos 90", "kind": "midia" },
+    { "id": "80be2b2e39", "titulo": "Pearl Jam gravou o clipe de 'Alive' ao vivo em 1991 e se recusou ao playback", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "b028d0ecd2", "title": "De Radiohead a Oasis: 10 bandas y el origen de sus nombres", "reason": "PJ tangencial: listicle de origens de nomes de bandas, PJ mencionado em apenas um parágrafo entre muitos outros" },
+    { "id": "cea4989f48", "title": "ROLLING-STONE-Helden: Neil Young – der Unfassbare", "reason": "PJ tangencial: perfil extenso de Neil Young, PJ citado de passagem em contexto do Mirror Ball" },
+    { "id": "3094f8692a", "title": "Soundgarden's Mount Rushmore Songs", "reason": "PJ tangencial: podcast sobre Soundgarden e Rock Hall induction, sem foco em Pearl Jam" },
+    { "id": "cc61015e2d", "title": "10 lados B que se volvieron hits", "reason": "PJ tangencial: listicle de lados B de múltiplas bandas, PJ mencionado apenas como um exemplo entre dez" },
+    { "id": "89ec230428", "title": "10 canciones de rock que mencionan el color verde", "reason": "sem mencao a PJ: listicle temático sobre cor verde, texto extraído não menciona Pearl Jam" },
+    { "id": "3f1a3a20db", "title": "Die 100 besten Alben der Neunziger", "reason": "sem mencao a PJ: texto extraído da lista de 100 melhores álbuns dos 90s não menciona Pearl Jam nos trechos disponíveis" }
+  ]
+}
