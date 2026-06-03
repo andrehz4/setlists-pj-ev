@@ -1,0 +1,31 @@
+{
+  "runAt": "2026-06-03T15:13Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 21,
+  "distribution": { "midia": 20, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "09dff4debc", "titulo": "Eddie Vedder: 'Estamos no lab, animados com o futuro do Pearl Jam'", "kind": "midia" },
+    { "id": "ce4affbcda", "titulo": "Vedder fala do próximo PJ e Cameron revela projeto Soundgarden com Cornell", "kind": "midia" },
+    { "id": "63cfccd1e1", "titulo": "Vedder: 15 anos na batalha contra a EB e o doc 'Matter of Time' no Netflix", "kind": "midia" },
+    { "id": "6a8fbc1c8e", "titulo": "A discografia do Pearl Jam ranqueada e analisada pelo Rolling Stone alemão", "kind": "midia" },
+    { "id": "d9cd615b16", "titulo": "As 10 músicas do PJ que só os fãs de carteirinha conhecem", "kind": "midia" },
+    { "id": "2d20d7c6b1", "titulo": "Eddie Vedder: o cantor dos perdidos que encontrou seu lugar", "kind": "midia" },
+    { "id": "bde9fe71e1", "titulo": "Podcast recebe equipe de 'Matter of Time', o documentário do Vedder", "kind": "midia" },
+    { "id": "3c14bfd016", "titulo": "25 anos de bootlegs: podcast elege os melhores shows da Dark Matter Tour", "kind": "midia" },
+    { "id": "7a429ab323", "titulo": "Os 27 vinis de Natal do Ten Club viram tema de playlist no podcast do PJ", "kind": "midia" },
+    { "id": "2a854aa307", "titulo": "Podcast celebra Yield e debate o Grammy 2026 em novo episódio", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "8f56fc7ffe", "title": "5 grandes discos de rock que se lanzaron en 1991", "reason": "PJ tangencial em lista de 5 bandas/álbuns" },
+    { "id": "e757c455be", "title": "10 baladas de rock alternativo que marcaron los años 90", "reason": "PJ tangencial em lista de 10 músicas de várias bandas" },
+    { "id": "d2cb5efc62", "title": "Soundtracking the Year: 2016", "reason": "sem foco no PJ, podcast genérico sobre álbuns de 2016" },
+    { "id": "0aae676156", "title": "Las 10 mejores bandas de grunge según especialistas", "reason": "PJ tangencial em lista de 10 bandas do gênero" },
+    { "id": "cd-20260603", "title": "Community Digest 2026-06-03", "reason": "todos os posts com score 0 e sem comentários, conteúdo sem substância para publicação" },
+    { "id": "28095c24b5", "title": "Michael Stipe Debuts 'Rooster' Theme On 'Kimmel'", "reason": "PJ tangencial: Josh Klinghoffer aparece como músico de apoio, matéria é sobre Michael Stipe" },
+    { "id": "d1beda1164", "title": "Klasse von '91: War 1991 das beste Musikjahr aller Zeiten?", "reason": "PJ tangencial em retrospectiva do ano 1991 com várias bandas" },
+    { "id": "b5580b9fd2", "title": "Los 10 mejores discos debut de rock", "reason": "PJ tangencial em lista de 10 melhores discos de estreia" },
+    { "id": "07adefac27", "title": "3 canciones de Navidad poco tradicionales", "reason": "PJ tangencial ou sem menção relevante, lista de músicas natalinas de várias bandas" },
+    { "id": "ed6077f3be", "title": "Jeff Buckley Is Eternal w/ Amy Berg", "reason": "não é sobre PJ nem integrantes, podcast sobre Jeff Buckley" },
+    { "id": "319bb2ae86", "title": "Retro Reviews: Pearl Jam - Yield", "reason": "texto extraído abaixo de 200 chars de conteúdo real, apenas descrição de episódio de podcast sem substância" }
+  ]
+}
