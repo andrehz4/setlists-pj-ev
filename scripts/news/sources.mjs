@@ -83,6 +83,12 @@ export const SOURCES = [
   // News oficial: RSS quebrado em 2026-05-12. Scraping do JSON inline no HTML.
   { id: "pj-com-news", label: "Pearl Jam Oficial", group: "tenclub", url: "https://pearljam.com/news/", alwaysRelevant: true, kind: "pjcom-news" },
 
+  // Turne: setlists dos shows via setlist.fm API (precisa do secret SETLISTFM_API_KEY).
+  // Cada show recente vira materia com o setlist completo (preText). Dormante fora de
+  // turne (filtra shows dos ultimos 45 dias); em turne, cada show novo vira candidato.
+  // O handler manda User-Agent de browser porque o setlist.fm bloqueia UA de bot (403).
+  { id: "setlistfm-pj", label: "Setlist.fm", group: "turne", url: "https://api.setlist.fm/rest/1.0/artist/83b9cbe7-9857-49e2-ab8e-b57b01038103/setlists?p=1", alwaysRelevant: true, kind: "setlistfm" },
+
   // Reddit Search: captura posts sobre Pearl Jam em qualquer subreddit (r/music, r/alternativerock, etc.)
   // Complementa r/pearljam: pega anuncios, releases e discussoes que aparecem fora da comunidade dedicada.
   // Posts de r/pearljam sao filtrados no handler pra evitar overlap com community-fetch.mjs.
