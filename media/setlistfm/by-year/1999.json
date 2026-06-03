@@ -1,0 +1,782 @@
+{
+  "year": "1999",
+  "shows": [
+    {
+      "artist": "Eddie Vedder",
+      "id": "7bc49a48",
+      "eventDate": "13-11-1999",
+      "year": "1999",
+      "lastUpdated": "2021-11-30T17:23:27.833+0000",
+      "tour": null,
+      "venue": "House of Blues",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/house-of-blues-chicago-il-7bc49a48.html",
+      "songCount": 11,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Improv"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": "w/ C Average",
+          "songs": [
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men"
+            },
+            {
+              "name": "Running Out of Time",
+              "cover": "Dead Moon"
+            },
+            {
+              "name": "Untitled",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Driven to Tears",
+              "cover": "The Police"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Love-> Building on Fire",
+              "cover": "Talking Heads"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "6bf6820a",
+      "eventDate": "12-11-1999",
+      "year": "1999",
+      "lastUpdated": "2021-11-30T17:23:27.797+0000",
+      "tour": null,
+      "venue": "House of Blues",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/house-of-blues-chicago-il-6bf6820a.html",
+      "songCount": 10,
+      "sets": [
+        {
+          "encore": null,
+          "name": "w/ C Average",
+          "songs": [
+            {
+              "name": "Soldier of Love",
+              "cover": "Arthur Alexander"
+            },
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men"
+            },
+            {
+              "name": "Diamonds in the Rough",
+              "cover": "Dead Moon"
+            },
+            {
+              "name": "Running Out of Time",
+              "cover": "Dead Moon"
+            },
+            {
+              "name": "Driven to Tears",
+              "cover": "The Police"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Love-> Building on Fire",
+              "cover": "Talking Heads"
+            },
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d6237b",
+      "eventDate": "31-10-1999",
+      "year": "1999",
+      "lastUpdated": "2021-08-16T13:31:43.915+0000",
+      "tour": null,
+      "venue": "Shoreline Amphitheatre",
+      "city": "Mountain View",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 37.3860517,
+        "long": -122.0838511
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1999/shoreline-amphitheatre-mountain-view-ca-43d6237b.html",
+      "songCount": 7,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Acoustic",
+          "songs": [
+            {
+              "name": "Nothing as It Seems",
+              "info": "Live Premiere"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd6237a",
+      "eventDate": "30-10-1999",
+      "year": "1999",
+      "lastUpdated": "2024-10-30T17:12:51.369+0000",
+      "tour": null,
+      "venue": "Shoreline Amphitheatre",
+      "city": "Mountain View",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 37.3860517,
+        "long": -122.0838511
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1999/shoreline-amphitheatre-mountain-view-ca-4bd6237a.html",
+      "songCount": 7,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Soldier of Love",
+              "cover": "Arthur Alexander"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Thin Air",
+              "info": "live debut"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "4b9d6736",
+      "eventDate": "14-07-1999",
+      "year": "1999",
+      "lastUpdated": "2022-02-10T02:11:24.085+0000",
+      "tour": null,
+      "venue": null,
+      "city": "Olympia",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.0378741,
+        "long": -122.9006951
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/unknown-venue-olympia-wa-4b9d6736.html",
+      "songCount": 9,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Heaven and Hell",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "I Can't Explain",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "Young Man Blues",
+              "cover": "Mose Allison",
+              "with": "C Average"
+            },
+            {
+              "name": "Fortune Teller",
+              "cover": "Benny Spellman",
+              "with": "C Average"
+            },
+            {
+              "name": "Tattoo",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "A Quick One, While He's Away",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "I'm a Boy",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "My Generation",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "See Me, Feel Me",
+              "cover": "The Who",
+              "with": "C Average"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "2bd40c8e",
+      "eventDate": "26-06-1999",
+      "year": "1999",
+      "lastUpdated": "2017-04-30T16:46:44.569+0000",
+      "tour": null,
+      "venue": "La Paloma Theatre",
+      "city": "Encinitas",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.0369867,
+        "long": -117.2919818
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/la-paloma-theatre-encinitas-ca-2bd40c8e.html",
+      "songCount": 15,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Throw Your Arms Around Me",
+              "cover": "Hunters & Collectors"
+            },
+            {
+              "name": "Trouble",
+              "cover": "Cat Stevens"
+            },
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men",
+              "with": "C Average"
+            },
+            {
+              "name": "Driven to Tears",
+              "cover": "The Police",
+              "with": "C Average"
+            },
+            {
+              "name": "Got the Time",
+              "cover": "Joe Jackson",
+              "with": "C Average"
+            },
+            {
+              "name": "Running Out of Time",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Diamonds in the Rough",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Love-> Building on Fire",
+              "cover": "Talking Heads",
+              "with": "C Average"
+            },
+            {
+              "name": "Corduroy",
+              "cover": "Pearl Jam",
+              "with": "C Average"
+            },
+            {
+              "name": "Naked Eye",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven",
+              "with": "C Average"
+            },
+            {
+              "name": "Soldier of Love",
+              "cover": "Arthur Alexander",
+              "with": "C Average"
+            },
+            {
+              "name": "I Can't Explain",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "That Feel",
+              "cover": "Tom Waits",
+              "with": "C Average"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "239b30ff",
+      "eventDate": "26-06-1999",
+      "year": "1999",
+      "lastUpdated": "2020-01-03T03:00:47.241+0000",
+      "tour": null,
+      "venue": "La Paloma Theatre",
+      "city": "Encinitas",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.0369867,
+        "long": -117.2919818
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/la-paloma-theatre-encinitas-ca-239b30ff.html",
+      "songCount": 18,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Bobby Jean",
+              "cover": "Bruce Springsteen"
+            },
+            {
+              "name": "So Sad About Us",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "Love-> Building on Fire",
+              "cover": "Talking Heads"
+            },
+            {
+              "name": "Driven to Tears",
+              "cover": "The Police"
+            },
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men"
+            },
+            {
+              "name": "Running Out of Time",
+              "cover": "Dead Moon"
+            },
+            {
+              "name": "Diamonds in the Rough",
+              "cover": "Dead Moon"
+            },
+            {
+              "name": "Naked Eye",
+              "cover": "The Who"
+            },
+            {
+              "name": "Got the Time",
+              "cover": "Joe Jackson"
+            },
+            {
+              "name": "Corduroy",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "The Good's Gone",
+              "cover": "The Who"
+            },
+            {
+              "name": "The Ship Song",
+              "cover": "Nick Cave & the Bad Seeds"
+            },
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Tattoo",
+              "cover": "The Who"
+            },
+            {
+              "name": "I Can't Explain",
+              "cover": "The Who"
+            },
+            {
+              "name": "Against the '70s",
+              "cover": "Mike Watt"
+            },
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "23d40cf7",
+      "eventDate": "25-06-1999",
+      "year": "1999",
+      "lastUpdated": "2014-05-18T14:39:52.000+0000",
+      "tour": null,
+      "venue": "Hollywood Palladium",
+      "city": "Los Angeles",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 34.052,
+        "long": -118.244
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/hollywood-palladium-los-angeles-ca-23d40cf7.html",
+      "songCount": 7,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran",
+              "with": "C Average"
+            },
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men",
+              "with": "C Average"
+            },
+            {
+              "name": "Driven to Tears",
+              "cover": "The Police",
+              "with": "C Average"
+            },
+            {
+              "name": "Running Out of Time",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Diamonds in the Rough",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Love-> Building on Fire",
+              "cover": "Talking Heads",
+              "with": "C Average"
+            },
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven",
+              "with": "C Average"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "3d40d0f",
+      "eventDate": "13-06-1999",
+      "year": "1999",
+      "lastUpdated": "2014-05-18T14:39:52.000+0000",
+      "tour": null,
+      "venue": "Alpine Valley Music Theatre",
+      "city": "East Troy",
+      "state": "Wisconsin",
+      "country": "United States",
+      "coords": {
+        "lat": 42.7852922,
+        "long": -88.405096
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/alpine-valley-music-theatre-east-troy-wi-3d40d0f.html",
+      "songCount": 8,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam",
+              "with": "C Average"
+            },
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men",
+              "with": "C Average"
+            },
+            {
+              "name": "Driven to Tears",
+              "cover": "The Police",
+              "with": "C Average"
+            },
+            {
+              "name": "Running Out of Time",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Diamonds in the Rough",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Love-> Building on Fire",
+              "cover": "Talking Heads",
+              "with": "C Average"
+            },
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven",
+              "with": "C Average"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "3bd40cf0",
+      "eventDate": "12-06-1999",
+      "year": "1999",
+      "lastUpdated": "2014-05-18T14:39:52.000+0000",
+      "tour": null,
+      "venue": "Wrigleyville",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/wrigleyville-chicago-il-3bd40cf0.html",
+      "songCount": 10,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran",
+              "with": "C Average"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam",
+              "with": "C Average"
+            },
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men",
+              "with": "C Average"
+            },
+            {
+              "name": "Naked Eye",
+              "cover": "The Who",
+              "with": "C Average"
+            },
+            {
+              "name": "Driven to Tears",
+              "cover": "The Police",
+              "with": "C Average"
+            },
+            {
+              "name": "Corduroy",
+              "cover": "Pearl Jam",
+              "with": "C Average"
+            },
+            {
+              "name": "Running Out of Time",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Diamonds in the Rough",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Love-> Building on Fire",
+              "cover": "Talking Heads",
+              "with": "C Average"
+            },
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven",
+              "with": "C Average"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "239348af",
+      "eventDate": "22-01-1999",
+      "year": "1999",
+      "lastUpdated": "2020-01-03T02:54:13.797+0000",
+      "tour": null,
+      "venue": "Hollywood Palladium",
+      "city": "Los Angeles",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 34.052,
+        "long": -118.244
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1999/hollywood-palladium-los-angeles-ca-239348af.html",
+      "songCount": 7,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran",
+              "with": "C Average"
+            },
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men",
+              "with": "C Average"
+            },
+            {
+              "name": "Driven to Tears",
+              "cover": "The Police",
+              "with": "C Average"
+            },
+            {
+              "name": "Running Out of Time",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Diamonds in the Rough",
+              "cover": "Dead Moon",
+              "with": "C Average"
+            },
+            {
+              "name": "Love-> Building on Fire",
+              "cover": "Talking Heads",
+              "with": "C Average"
+            },
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven",
+              "with": "C Average"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

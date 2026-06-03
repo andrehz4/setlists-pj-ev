@@ -1,0 +1,7150 @@
+{
+  "year": "1998",
+  "shows": [
+    {
+      "artist": "Pearl Jam",
+      "id": "43d6237f",
+      "eventDate": "10-10-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-07T06:00:21.148+0000",
+      "tour": null,
+      "venue": "The Crocodile Cafe",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/the-crocodile-cafe-seattle-wa-43d6237f.html",
+      "songCount": 10,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "All Those Yesterdays"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Soldier of Love",
+              "cover": "Arthur Alexander"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd6237e",
+      "eventDate": "23-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.408+0000",
+      "tour": "Yield",
+      "venue": "Coral Sky Amphitheatre",
+      "city": "West Palm Beach",
+      "state": "Florida",
+      "country": "United States",
+      "coords": {
+        "lat": 26.7153425,
+        "long": -80.0533746
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/coral-sky-amphitheatre-west-palm-beach-fl-4bd6237e.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Time Bomb\" and \"W.M.A.\" tags"
+            },
+            {
+              "name": "Life",
+              "info": "Improvisation"
+            },
+            {
+              "name": "Whipping"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Breath"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Rats"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d6237d",
+      "eventDate": "22-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.422+0000",
+      "tour": "Yield",
+      "venue": "Coral Sky Amphitheatre",
+      "city": "West Palm Beach",
+      "state": "Florida",
+      "country": "United States",
+      "coords": {
+        "lat": 26.7153425,
+        "long": -80.0533746
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/coral-sky-amphitheatre-west-palm-beach-fl-53d6237d.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Aye Davanita",
+              "tape": true
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Dropped Three Times",
+              "info": "Improv"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Hyena\" tag"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Porch",
+              "info": "with \"Last Dance\" tag"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "State of Love and Trust",
+              "info": "with \"Angie\" intro"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd6237c",
+      "eventDate": "19-09-1998",
+      "year": "1998",
+      "lastUpdated": "2026-01-23T14:48:10.091+0000",
+      "tour": "Yield",
+      "venue": "D.A.R. Constitution Hall",
+      "city": "Washington",
+      "state": "Washington, D.C.",
+      "country": "United States",
+      "coords": {
+        "lat": 38.895,
+        "long": -77.036
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/dar-constitution-hall-washington-dc-5bd6237c.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-set",
+          "songs": [
+            {
+              "name": "I Am a Patriot",
+              "info": "Eddie solo",
+              "cover": "Little Steven"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Act of Love",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "All Those Yesterdays"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Rockin' in the Free World\" and \"W.M.A.\" tags"
+            },
+            {
+              "name": "Whipping"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Push Me, Pull Me"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Alive",
+              "info": "with \"War Pigs\" snippet at the end"
+            },
+            {
+              "name": "Soldier of Love",
+              "cover": "Arthur Alexander"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d62373",
+      "eventDate": "18-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.447+0000",
+      "tour": "Yield",
+      "venue": "Merriweather Post Pavilion",
+      "city": "Columbia",
+      "state": "Maryland",
+      "country": "United States",
+      "coords": {
+        "lat": 39.2403841,
+        "long": -76.8394184
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/merriweather-post-pavilion-columbia-md-43d62373.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-Show",
+          "songs": [
+            {
+              "name": "I Am a Patriot",
+              "info": "Eddie solo",
+              "cover": "Little Steven"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": "Main Set",
+          "songs": [
+            {
+              "name": "Aye Davanita",
+              "tape": true
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"I Believe in Miracles\" and \"W.M.A.\" tags"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Untitled",
+              "info": "live debut"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Rearviewmirror",
+              "info": "with \"Crazy Mary\" intro"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d61ff7",
+      "eventDate": "16-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.461+0000",
+      "tour": "Yield",
+      "venue": "Great Woods Center for the Performing Arts",
+      "city": "Mansfield",
+      "state": "Massachusetts",
+      "country": "United States",
+      "coords": {
+        "lat": 42.0334326,
+        "long": -71.2189405
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/great-woods-center-for-the-performing-arts-mansfield-ma-43d61ff7.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Aye Davanita",
+              "tape": true
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Improvisation"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It For Later\" (The English Beat) tag"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd61ff6",
+      "eventDate": "15-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.472+0000",
+      "tour": "Yield",
+      "venue": "Great Woods Center for the Performing Arts",
+      "city": "Mansfield",
+      "state": "Massachusetts",
+      "country": "United States",
+      "coords": {
+        "lat": 42.0334326,
+        "long": -71.2189405
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/great-woods-center-for-the-performing-arts-mansfield-ma-4bd61ff6.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Rearviewmirror",
+              "info": "followed by \"Crazy Mary\" tease"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd62326",
+      "eventDate": "13-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.484+0000",
+      "tour": "Yield",
+      "venue": "Meadows Music Theater",
+      "city": "Hartford",
+      "state": "Connecticut",
+      "country": "United States",
+      "coords": {
+        "lat": 41.7637111,
+        "long": -72.6850932
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/meadows-music-theater-hartford-ct-4bd62326.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Tremor Christ"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Breath"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d61ff5",
+      "eventDate": "11-09-1998",
+      "year": "1998",
+      "lastUpdated": "2025-03-08T19:56:29.274+0000",
+      "tour": "Yield",
+      "venue": "Madison Square Garden",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/madison-square-garden-new-york-ny-53d61ff5.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Daughter",
+              "info": "with “Beginning to See the Light” and “W.M.A.” Tags"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Breath",
+              "info": "tour debut"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Better Man",
+              "info": "with “Save It For Later” tag"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Indifference",
+              "with": "Ben Harper"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd61ff4",
+      "eventDate": "10-09-1998",
+      "year": "1998",
+      "lastUpdated": "2025-02-23T23:53:42.990+0000",
+      "tour": "Yield",
+      "venue": "Madison Square Garden",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/madison-square-garden-new-york-ny-5bd61ff4.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "All Those Yesterdays"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Soldier of Love",
+              "info": "Preceded by Yellow Ledbetter intro.",
+              "cover": "Arthur Alexander"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d61feb",
+      "eventDate": "08-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.522+0000",
+      "tour": "Yield",
+      "venue": "Continental Airlines Arena",
+      "city": "East Rutherford",
+      "state": "New Jersey",
+      "country": "United States",
+      "coords": {
+        "lat": 40.833989,
+        "long": -74.0970865
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/continental-airlines-arena-east-rutherford-nj-43d61feb.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Oceans"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Jersey Girl\" and \"Androgynous Mind\" tags"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd61fea",
+      "eventDate": "07-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.560+0000",
+      "tour": "Yield",
+      "venue": "GTE Virginia Beach Amphitheater",
+      "city": "Virginia Beach",
+      "state": "Virginia",
+      "country": "United States",
+      "coords": {
+        "lat": 36.8529263,
+        "long": -75.977985
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/gte-virginia-beach-amphitheater-virginia-beach-va-4bd61fea.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Rats",
+              "info": "tour debut"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Improvisation"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save it for Later\" tag"
+            },
+            {
+              "name": "No Way"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Sonic Reducer",
+              "cover": "Dead Boys"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "63d61233",
+      "eventDate": "06-09-1998",
+      "year": "1998",
+      "lastUpdated": "2018-07-28T03:56:05.180+0000",
+      "tour": "Yield",
+      "venue": "Thompson-Boling Arena",
+      "city": "Knoxville",
+      "state": "Tennessee",
+      "country": "United States",
+      "coords": {
+        "lat": 35.9606384,
+        "long": -83.9207392
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/thompson-boling-arena-knoxville-tn-63d61233.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Whipping"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"My Heart Will Go On\" and \"Monkey Gone to Heaven\" tags"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Hard to Imagine"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "6bd61232",
+      "eventDate": "04-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.572+0000",
+      "tour": "Yield",
+      "venue": "BI-LO Center",
+      "city": "Greenville",
+      "state": "South Carolina",
+      "country": "United States",
+      "coords": {
+        "lat": 34.8526176,
+        "long": -82.3940105
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/bi-lo-center-greenville-sc-6bd61232.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Oceans"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "All Those Yesterdays"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"The Noise of Carpet\" and \"W.M.A.\" tags"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Indifference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73d61231",
+      "eventDate": "03-09-1998",
+      "year": "1998",
+      "lastUpdated": "2023-04-03T00:08:53.871+0000",
+      "tour": "Yield",
+      "venue": "Birmingham-Jefferson Civic Center Coliseum",
+      "city": "Birmingham",
+      "state": "Alabama",
+      "country": "United States",
+      "coords": {
+        "lat": 33.5206608,
+        "long": -86.80249
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/birmingham-jefferson-civic-center-coliseum-birmingham-al-73d61231.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly",
+              "info": "followed by Dueling Banjos"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Androgynous Mind\" and \"Stuff and Nonsense\" tags"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "7bd61230",
+      "eventDate": "01-09-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.605+0000",
+      "tour": "Yield",
+      "venue": "Coca-Cola Lakewood Amphitheatre",
+      "city": "Atlanta",
+      "state": "Georgia",
+      "country": "United States",
+      "coords": {
+        "lat": 33.7489954,
+        "long": -84.3879824
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/coca-cola-lakewood-amphitheatre-atlanta-ga-7bd61230.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Yeastie Girlz Rap"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "No Way"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Talk About the Passion\", \"All Those Yesterdays\", and \"The Wrong Child\" tags"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "63d61237",
+      "eventDate": "31-08-1998",
+      "year": "1998",
+      "lastUpdated": "2024-08-18T04:51:46.823+0000",
+      "tour": "Yield",
+      "venue": "Hardee's Walnut Creek Amphitheatre",
+      "city": "Raleigh",
+      "state": "North Carolina",
+      "country": "United States",
+      "coords": {
+        "lat": 35.772096,
+        "long": -78.6386145
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/hardees-walnut-creek-amphitheatre-raleigh-nc-63d61237.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Tremor Christ"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Beginning to See the Light\" tag"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Better Man"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Soldier of Love",
+              "cover": "Arthur Alexander"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "6bd61236",
+      "eventDate": "29-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.633+0000",
+      "tour": "Yield",
+      "venue": "Blockbuster-Sony Music Entertainment Centre",
+      "city": "Camden",
+      "state": "New Jersey",
+      "country": "United States",
+      "coords": {
+        "lat": 39.9259463,
+        "long": -75.1196199
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/blockbuster-sony-music-entertainment-centre-camden-nj-6bd61236.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save it for Later\" tag"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Push Me, Pull Me",
+              "info": "live debut"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73d61235",
+      "eventDate": "28-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.655+0000",
+      "tour": "Yield",
+      "venue": "Blockbuster-Sony Music Entertainment Centre",
+      "city": "Camden",
+      "state": "New Jersey",
+      "country": "United States",
+      "coords": {
+        "lat": 39.9259463,
+        "long": -75.1196199
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/blockbuster-sony-music-entertainment-centre-camden-nj-73d61235.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter",
+              "info": "'Suck You Dry' and 'W.M.A.' Tag"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sweet Home Alabama",
+              "info": "Intro",
+              "cover": "Lynyrd Skynyrd"
+            },
+            {
+              "name": "Philadelphia Freedom",
+              "info": "Snippet",
+              "cover": "Elton John"
+            },
+            {
+              "name": "Hard to Imagine"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Porch"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "7bd61234",
+      "eventDate": "26-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.672+0000",
+      "tour": "Yield",
+      "venue": "Blossom Music Center",
+      "city": "Cuyahoga Falls",
+      "state": "Ohio",
+      "country": "United States",
+      "coords": {
+        "lat": 41.1339449,
+        "long": -81.4845585
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/blossom-music-center-cuyahoga-falls-oh-7bd61234.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"My City Was Gone\" and \"W.M.A.\" tag"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd66718",
+      "eventDate": "25-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.686+0000",
+      "tour": "Yield",
+      "venue": "Coca-Cola Star Lake Amphitheater",
+      "city": "Burgettstown",
+      "state": "Pennsylvania",
+      "country": "United States",
+      "coords": {
+        "lat": 40.3820133,
+        "long": -80.3928423
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/coca-cola-star-lake-amphitheater-burgettstown-pa-5bd66718.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-set",
+          "songs": [
+            {
+              "name": "Throw Your Arms Around Me",
+              "info": "Ed solo",
+              "cover": "Hunters & Collectors"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Outshined\" and \"I Wanna Live\" tags"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "No Way",
+              "info": "live debut"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d6671f",
+      "eventDate": "23-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.763+0000",
+      "tour": "Yield",
+      "venue": "The Palace of Auburn Hills",
+      "city": "Auburn Hills",
+      "state": "Michigan",
+      "country": "United States",
+      "coords": {
+        "lat": 42.6875323,
+        "long": -83.2341028
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/the-palace-of-auburn-hills-auburn-hills-mi-43d6671f.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Tremor Christ"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"I Want You to Want Me\" tag"
+            },
+            {
+              "name": "All Those Yesterdays"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Crazy Mary\" tag"
+            },
+            {
+              "name": "Footsteps"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd6671e",
+      "eventDate": "22-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.777+0000",
+      "tour": "Yield",
+      "venue": "Molson Park",
+      "city": "Barrie",
+      "state": "Ontario",
+      "country": "Canada",
+      "coords": {
+        "lat": 44.883420505,
+        "long": -77.116136712
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/molson-park-barrie-on-canada-4bd6671e.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Surrender\" tag"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "I Got Id",
+              "info": "with \"Cinnamon Girl\" tag"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d6671d",
+      "eventDate": "20-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.796+0000",
+      "tour": "Yield",
+      "venue": "Centre Molson",
+      "city": "Montreal",
+      "state": "Quebec",
+      "country": "Canada",
+      "coords": {
+        "lat": 45.5088375,
+        "long": -73.587809
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/centre-molson-montreal-qc-canada-53d6671d.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Another Brick in the Wall Part 2\" tag"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Hard to Imagine",
+              "info": "tour debut; first time since 1994"
+            },
+            {
+              "name": "Better Man",
+              "info": "dedicated to Hillary Clinton; with \"Save It for Later\" tag"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd6671c",
+      "eventDate": "18-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.822+0000",
+      "tour": "Yield",
+      "venue": "Jack Breslin Student Events Center",
+      "city": "East Lansing",
+      "state": "Michigan",
+      "country": "United States",
+      "coords": {
+        "lat": 42.7369792,
+        "long": -84.4838654
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/jack-breslin-student-events-center-east-lansing-mi-5bd6671c.html",
+      "songCount": 20,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Soldier of Love",
+              "info": "live debut",
+              "cover": "Arthur Alexander"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d66713",
+      "eventDate": "17-08-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.839+0000",
+      "tour": "Yield",
+      "venue": "Deer Creek Music Center",
+      "city": "Noblesville",
+      "state": "Indiana",
+      "country": "United States",
+      "coords": {
+        "lat": 40.0455918,
+        "long": -86.0085955
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/deer-creek-music-center-noblesville-in-43d66713.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Jeremy",
+              "info": "Improv"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Go"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "info": "dedicated to Hillary Clinton; with \"Save It for Later\" tag"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "63d60a57",
+      "eventDate": "22-07-1998",
+      "year": "1998",
+      "lastUpdated": "2023-08-21T17:42:08.410+0000",
+      "tour": "Yield",
+      "venue": "Memorial Stadium",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/memorial-stadium-seattle-wa-63d60a57.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Beginning to See the Light\" snippet"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "Alive",
+              "info": "A fan climbed the scaffolding during this song"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter",
+              "info": "with \"The Star Spangled Banner\" tag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d66711",
+      "eventDate": "21-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.910+0000",
+      "tour": "Yield",
+      "venue": "Memorial Stadium",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/memorial-stadium-seattle-wa-53d66711.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Whipping"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Daughter",
+              "info": "With \"The Noise of Carpet\" tag"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Go"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "With \"Machine Gun\" riff outro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd66710",
+      "eventDate": "19-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.922+0000",
+      "tour": "Yield",
+      "venue": "Pacific Coliseum",
+      "city": "Vancouver",
+      "state": "British Columbia",
+      "country": "Canada",
+      "coords": {
+        "lat": 49.249657393,
+        "long": -123.119340403
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/pacific-coliseum-vancouver-bc-canada-5bd66710.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Hey Hey My My\" tag"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Last Exit"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d66717",
+      "eventDate": "18-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.933+0000",
+      "tour": "Yield",
+      "venue": "Rose Garden Arena",
+      "city": "Portland",
+      "state": "Oregon",
+      "country": "United States",
+      "coords": {
+        "lat": 45.5234515,
+        "long": -122.6762071
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/rose-garden-arena-portland-or-43d66717.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Come Together\" and \"I've Been Tired\" tags"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Go"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d66715",
+      "eventDate": "16-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.945+0000",
+      "tour": "Yield",
+      "venue": "ARCO Arena",
+      "city": "Sacramento",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 38.5815719,
+        "long": -121.4943996
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/arco-arena-sacramento-ca-53d66715.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"The Noise of Carpet\" tag"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Go"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "In My Tree",
+              "info": "Dedicated to Jack Irons"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd66714",
+      "eventDate": "14-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.957+0000",
+      "tour": "Yield",
+      "venue": "Great Western Forum",
+      "city": "Inglewood",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.9616801,
+        "long": -118.3531311
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/great-western-forum-inglewood-ca-5bd66714.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"The KKK Took My Baby Away\" and \"I Believe in Miracles\" tags"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "The KKK Took My Baby Away",
+              "cover": "Ramones",
+              "with": "Johnny Ramone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d6670b",
+      "eventDate": "13-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.978+0000",
+      "tour": "Yield",
+      "venue": "Great Western Forum",
+      "city": "Inglewood",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.9616801,
+        "long": -118.3531311
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/great-western-forum-inglewood-ca-43d6670b.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Go"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save it for Later\" tag"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"I Must Not Think Bad Thoughts\" tag"
+            },
+            {
+              "name": "Alive",
+              "info": "with \"Heaven and Hell\" tease"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd6670a",
+      "eventDate": "11-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.988+0000",
+      "tour": "Yield",
+      "venue": "Thomas & Mack Center",
+      "city": "Las Vegas",
+      "state": "Nevada",
+      "country": "United States",
+      "coords": {
+        "lat": 36.1749705,
+        "long": -115.137223
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/thomas-and-mack-center-las-vegas-nv-4bd6670a.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"W.M.A.\" and \"White Girl\" tags"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Last Exit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d66709",
+      "eventDate": "10-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:17.999+0000",
+      "tour": "Yield",
+      "venue": "Cox Arena",
+      "city": "San Diego",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 32.7153292,
+        "long": -117.1572551
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/cox-arena-san-diego-ca-53d66709.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Roam\" tag"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Hail, Hail"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd66708",
+      "eventDate": "08-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.008+0000",
+      "tour": "Yield",
+      "venue": "Arizona Veterans Memorial Coliseum",
+      "city": "Phoenix",
+      "state": "Arizona",
+      "country": "United States",
+      "coords": {
+        "lat": 33.4483771,
+        "long": -112.0740373
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/arizona-veterans-memorial-coliseum-phoenix-az-5bd66708.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Tremor Christ"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"W.M.A.\" and \"MLK\" tags"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It for Later\" tag"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d6670f",
+      "eventDate": "07-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.018+0000",
+      "tour": "Yield",
+      "venue": "Tingley Coliseum",
+      "city": "Albuquerque",
+      "state": "New Mexico",
+      "country": "United States",
+      "coords": {
+        "lat": 35.084,
+        "long": -106.651
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/tingley-coliseum-albuquerque-nm-43d6670f.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Improvisation",
+              "info": "with \"Crazy Mary\" jam"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Black"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd6670e",
+      "eventDate": "05-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.029+0000",
+      "tour": "Yield",
+      "venue": "Reunion Arena",
+      "city": "Dallas",
+      "state": "Texas",
+      "country": "United States",
+      "coords": {
+        "lat": 32.7830556,
+        "long": -96.8066667
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/reunion-arena-dallas-tx-4bd6670e.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Pilate"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Mother\" and \"Monkey Gone to Heaven\" tags"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save it for Later\" tag"
+            },
+            {
+              "name": "Sonic Reducer",
+              "cover": "Dead Boys",
+              "with": "The Murder City Devils"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd6670c",
+      "eventDate": "03-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.039+0000",
+      "tour": "Yield",
+      "venue": "Sandstone Amphitheater",
+      "city": "Bonner Springs",
+      "state": "Kansas",
+      "country": "United States",
+      "coords": {
+        "lat": 39.059726,
+        "long": -94.8835754
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/sandstone-amphitheater-bonner-springs-ks-5bd6670c.html",
+      "songCount": 21,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"The Whole of the Moon\" tag"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Go"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d66703",
+      "eventDate": "02-07-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.049+0000",
+      "tour": "Yield",
+      "venue": "Riverport Amphitheatre",
+      "city": "Maryland Heights",
+      "state": "Missouri",
+      "country": "United States",
+      "coords": {
+        "lat": 38.7131073,
+        "long": -90.4298401
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/riverport-amphitheatre-maryland-heights-mo-43d66703.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Oceans"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Tremor Christ"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Habit",
+              "info": "with improv intro"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Institutionalized\" tag"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It for Later\" tag"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d66707",
+      "eventDate": "30-06-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.060+0000",
+      "tour": "Yield",
+      "venue": "Target Center",
+      "city": "Minneapolis",
+      "state": "Minnesota",
+      "country": "United States",
+      "coords": {
+        "lat": 44.9799654,
+        "long": -93.2638361
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/target-center-minneapolis-mn-43d66707.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Pilate"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"The Noise of Carpet\" tag"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "All Those Yesterdays"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Porch",
+              "info": "with \"My Generation\" intro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd66706",
+      "eventDate": "29-06-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-09T02:24:47.730+0000",
+      "tour": "Yield",
+      "venue": "United Center",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/united-center-chicago-il-4bd66706.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter",
+              "info": "Ray of Light and Another Brick in the Wall Part 2 tags"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Wishlist",
+              "info": "preceded by a few lines of Walkin' on Sunshine"
+            },
+            {
+              "name": "Better Man",
+              "info": "Save It for Later tag"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Last Exit"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d66705",
+      "eventDate": "27-06-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.083+0000",
+      "tour": "Yield",
+      "venue": "Alpine Valley Music Theatre",
+      "city": "East Troy",
+      "state": "Wisconsin",
+      "country": "United States",
+      "coords": {
+        "lat": 42.7852922,
+        "long": -88.405096
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/alpine-valley-music-theatre-east-troy-wi-53d66705.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Tremor Christ"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Improvisation"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "All Those Yesterdays"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Immortality"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Better Man",
+              "info": "With Rearviewmirror tag"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Smile"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd66704",
+      "eventDate": "26-06-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.093+0000",
+      "tour": "Yield",
+      "venue": "Alpine Valley Music Theatre",
+      "city": "East Troy",
+      "state": "Wisconsin",
+      "country": "United States",
+      "coords": {
+        "lat": 42.7852922,
+        "long": -88.405096
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/alpine-valley-music-theatre-east-troy-wi-5bd66704.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Stuff and Nonsense\" tag"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Black"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "I Got Id",
+              "info": "with \"Cinnamon Girl\" tag"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter",
+              "info": "with \"Machine Gun\" tag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d667fb",
+      "eventDate": "24-06-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:18.104+0000",
+      "tour": "Yield",
+      "venue": "Rushmore Plaza Civic Center",
+      "city": "Rapid City",
+      "state": "South Dakota",
+      "country": "United States",
+      "coords": {
+        "lat": 44.0805434,
+        "long": -103.2310149
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/rushmore-plaza-civic-center-rapid-city-sd-43d667fb.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"I've Been Tired\" and \"Three Little Birds\" tags"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Improvisation"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd667fa",
+      "eventDate": "23-06-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.055+0000",
+      "tour": "Yield",
+      "venue": "Fiddler's Green Amphitheatre",
+      "city": "Greenwood Village",
+      "state": "Colorado",
+      "country": "United States",
+      "coords": {
+        "lat": 39.6172101,
+        "long": -104.9508141
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/fiddlers-green-amphitheatre-greenwood-village-co-4bd667fa.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Had a Dad\" and \"Monkey Gone to Heaven\" tags"
+            },
+            {
+              "name": "Pilate"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Black"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Am a Patriot",
+              "info": "Ed solo",
+              "cover": "Little Steven"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d667f9",
+      "eventDate": "21-06-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.087+0000",
+      "tour": "Yield",
+      "venue": "The Canyons",
+      "city": "Park City",
+      "state": "Utah",
+      "country": "United States",
+      "coords": {
+        "lat": 40.6460622,
+        "long": -111.4979729
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/the-canyons-park-city-ut-53d667f9.html",
+      "songCount": 21,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Tremor Christ",
+              "info": "tour debut"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "All Those Yesterdays",
+              "info": "live debut"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Go Away Little Girl\" tag"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It for Later\" tag"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd667f8",
+      "eventDate": "20-06-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.098+0000",
+      "tour": "Yield",
+      "venue": "Washington-Grizzly Stadium",
+      "city": "Missoula",
+      "state": "Montana",
+      "country": "United States",
+      "coords": {
+        "lat": 46.872146,
+        "long": -113.9939982
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/washington-grizzly-stadium-missoula-mt-5bd667f8.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Pilate"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Present Tense",
+              "info": "tour debut"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Once"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d667ff",
+      "eventDate": "14-06-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.102+0000",
+      "tour": "Yield",
+      "venue": "Robert F. Kennedy Memorial Stadium",
+      "city": "Washington",
+      "state": "Washington, D.C.",
+      "country": "United States",
+      "coords": {
+        "lat": 38.895,
+        "long": -77.036
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/robert-f-kennedy-memorial-stadium-washington-dc-43d667ff.html",
+      "songCount": 8,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Better Man",
+              "info": "Eddie dedicated the song to Bill Clinton."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd667fe",
+      "eventDate": "07-05-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.111+0000",
+      "tour": "Yield",
+      "venue": "ARO Space",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/aro-space-seattle-wa-4bd667fe.html",
+      "songCount": 17,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "Leatherman"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "info": "live debut by PJ",
+              "cover": "Wayne Cochran"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73c56e25",
+      "eventDate": "01-05-1998",
+      "year": "1998",
+      "lastUpdated": "2025-05-18T17:20:33.214+0000",
+      "tour": null,
+      "venue": "Late Show With David Letterman",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/late-show-with-david-letterman-new-york-ny-73c56e25.html",
+      "songCount": 1,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Wishlist"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "33ea7cf9",
+      "eventDate": "29-03-1998",
+      "year": "1998",
+      "lastUpdated": "2024-11-25T07:29:36.465+0000",
+      "tour": null,
+      "venue": "Shrine Auditorium",
+      "city": "Los Angeles",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 34.052,
+        "long": -118.244
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/1998/shrine-auditorium-los-angeles-ca-33ea7cf9.html",
+      "songCount": 4,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Trouble",
+              "cover": "Cat Stevens"
+            },
+            {
+              "name": "Dead Man",
+              "cover": "Pearl Jam",
+              "with": "Jeff Ament"
+            },
+            {
+              "name": "Long Road",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "The Face of Love",
+              "cover": "Nusrat Fateh Ali Khan",
+              "with": "Rahat Fateh Ali Khan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d667fd",
+      "eventDate": "20-03-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-09T02:20:04.764+0000",
+      "tour": "Yield",
+      "venue": "Perth Entertainment Centre",
+      "city": "Perth",
+      "state": "Western Australia",
+      "country": "Australia",
+      "coords": {
+        "lat": -31.9333333,
+        "long": 115.8333333
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/perth-entertainment-centre-perth-australia-53d667fd.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Pilate"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "In My Tree",
+              "info": "followed by \"Magic Bus\" (The Who) tease"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Pebbles\" tag"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Hunger Strike",
+              "cover": "Temple of the Dog"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Even Flow"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Am a Patriot",
+              "cover": "Little Steven"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd667fc",
+      "eventDate": "19-03-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-09T02:14:49.135+0000",
+      "tour": "Yield",
+      "venue": "Perth Entertainment Centre",
+      "city": "Perth",
+      "state": "Western Australia",
+      "country": "Australia",
+      "coords": {
+        "lat": -31.9333333,
+        "long": 115.8333333
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/perth-entertainment-centre-perth-australia-5bd667fc.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit",
+              "info": "with \"If You Want to Sing Out, Sing Out\" snippet"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Leatherman",
+              "info": "Live debut"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Wishlist"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "bd6a5b2",
+      "eventDate": "15-03-1998",
+      "year": "1998",
+      "lastUpdated": "2026-04-12T13:26:46.613+0000",
+      "tour": "Yield",
+      "venue": "Brisbane Entertainment Centre",
+      "city": "Brisbane",
+      "state": "Queensland",
+      "country": "Australia",
+      "coords": {
+        "lat": -27.4679357321901,
+        "long": 153.028092384338
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/brisbane-entertainment-centre-brisbane-australia-bd6a5b2.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Throw Your Arms Around Me",
+              "cover": "Hunters & Collectors"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Blood"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Indifference"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d667f3",
+      "eventDate": "14-03-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-09T02:09:04.944+0000",
+      "tour": "Yield",
+      "venue": "Brisbane Entertainment Centre",
+      "city": "Brisbane",
+      "state": "Queensland",
+      "country": "Australia",
+      "coords": {
+        "lat": -27.4679357321901,
+        "long": 153.028092384338
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/brisbane-entertainment-centre-brisbane-australia-43d667f3.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "I Got Id",
+              "info": "Preceded \"I'm Open\" snippet"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It for Later\" tag"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd667f2",
+      "eventDate": "12-03-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-09T02:05:23.139+0000",
+      "tour": "Yield",
+      "venue": "Sydney Entertainment Centre",
+      "city": "Sydney",
+      "state": "New South Wales",
+      "country": "Australia",
+      "coords": {
+        "lat": -33.8678499639382,
+        "long": 151.207323074341
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/sydney-entertainment-centre-sydney-australia-4bd667f2.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Whipping"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Better Man"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Throw Your Arms Around Me",
+              "cover": "Hunters & Collectors"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d667f1",
+      "eventDate": "11-03-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-09T02:03:40.357+0000",
+      "tour": "Yield",
+      "venue": "Sydney Entertainment Centre",
+      "city": "Sydney",
+      "state": "New South Wales",
+      "country": "Australia",
+      "coords": {
+        "lat": -33.8678499639382,
+        "long": 151.207323074341
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/sydney-entertainment-centre-sydney-australia-53d667f1.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Oceans"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Corduroy",
+              "info": "with \"Beds Are Burning\" intro"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Push Me, Pull Me\" tag"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Mankind"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd667f0",
+      "eventDate": "09-03-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-09T02:00:16.839+0000",
+      "tour": "Yield",
+      "venue": "Sydney Entertainment Centre",
+      "city": "Sydney",
+      "state": "New South Wales",
+      "country": "Australia",
+      "coords": {
+        "lat": -33.8678499639382,
+        "long": 151.207323074341
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/sydney-entertainment-centre-sydney-australia-5bd667f0.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "info": "live debut",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Another Brick in the Wall Part 2\" tag"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Dead Man"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Happy Birthday to You",
+              "info": "Jeff Ament",
+              "cover": "Mildred J. Hill & Patty Hill"
+            },
+            {
+              "name": "Who You Are"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Leaving Here",
+              "cover": "Eddie Holland"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d667f7",
+      "eventDate": "07-03-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.235+0000",
+      "tour": "Yield",
+      "venue": "Thebarton Oval",
+      "city": "Adelaide",
+      "state": "South Australia",
+      "country": "Australia",
+      "coords": {
+        "lat": -34.9333333,
+        "long": 138.6
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/thebarton-oval-adelaide-australia-43d667f7.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Last Exit"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd667f6",
+      "eventDate": "05-03-1998",
+      "year": "1998",
+      "lastUpdated": "2026-02-09T18:05:56.523+0000",
+      "tour": "Yield",
+      "venue": "Centre Court",
+      "city": "Melbourne",
+      "state": "Victoria",
+      "country": "Australia",
+      "coords": {
+        "lat": -37.8139965641595,
+        "long": 144.963322877884
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/centre-court-melbourne-australia-4bd667f6.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Corduroy",
+              "info": "with Midnight Oil's \"Beds Are Burning\" intro"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Shudder to Think's \"Pebbles\" tag"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "MFC",
+              "info": "followed by \"Crazy Mary\" tease"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "State of Love and Trust",
+              "info": "with Fugazi's \"Suggestion\" as a tag"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Immortality"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Indifference"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d667f5",
+      "eventDate": "03-03-1998",
+      "year": "1998",
+      "lastUpdated": "2025-06-09T03:05:03.693+0000",
+      "tour": "Yield",
+      "venue": "Centre Court",
+      "city": "Melbourne",
+      "state": "Victoria",
+      "country": "Australia",
+      "coords": {
+        "lat": -37.8139965641595,
+        "long": 144.963322877884
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/centre-court-melbourne-australia-53d667f5.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Trouble",
+              "cover": "Cat Stevens"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Do the Evolution"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd667f4",
+      "eventDate": "02-03-1998",
+      "year": "1998",
+      "lastUpdated": "2025-11-09T01:54:09.214+0000",
+      "tour": "Yield",
+      "venue": "Centre Court",
+      "city": "Melbourne",
+      "state": "Victoria",
+      "country": "Australia",
+      "coords": {
+        "lat": -37.8139965641595,
+        "long": 144.963322877884
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/centre-court-melbourne-australia-5bd667f4.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Smile"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d667eb",
+      "eventDate": "28-02-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.272+0000",
+      "tour": "Yield",
+      "venue": "Ericsson Stadium",
+      "city": "Auckland",
+      "state": "Auckland",
+      "country": "New Zealand",
+      "coords": {
+        "lat": -36.8666667,
+        "long": 174.7666667
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/ericsson-stadium-auckland-new-zealand-43d667eb.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Color Red",
+              "tape": true
+            },
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "I Got Id",
+              "info": "I Got You intro"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter",
+              "info": "I Hope I Never tag"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bd667ea",
+      "eventDate": "26-02-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.282+0000",
+      "tour": "Yield",
+      "venue": "Queens Wharf Event Centre",
+      "city": "Wellington",
+      "state": "Wellington",
+      "country": "New Zealand",
+      "coords": {
+        "lat": -41.2785361586459,
+        "long": 174.776639342308
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/queens-wharf-event-centre-wellington-new-zealand-4bd667ea.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Color Red",
+              "tape": true
+            },
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Who You Are"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53d667e9",
+      "eventDate": "21-02-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.292+0000",
+      "tour": null,
+      "venue": "Alexander & Baldwin Amphitheater",
+      "city": "Kahului",
+      "state": "Hawaii",
+      "country": "United States",
+      "coords": {
+        "lat": 20.8947222,
+        "long": -156.47
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/alexander-and-baldwin-amphitheater-kahului-hi-53d667e9.html",
+      "songCount": 21,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Around the Bend"
+            },
+            {
+              "name": "State of Love and Trust"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bd667e8",
+      "eventDate": "20-02-1998",
+      "year": "1998",
+      "lastUpdated": "2022-07-05T17:36:25.301+0000",
+      "tour": null,
+      "venue": "Alexander & Baldwin Amphitheater",
+      "city": "Kahului",
+      "state": "Hawaii",
+      "country": "United States",
+      "coords": {
+        "lat": 20.8947222,
+        "long": -156.47
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/alexander-and-baldwin-amphitheater-kahului-hi-5bd667e8.html",
+      "songCount": 20,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Faithfull",
+              "info": "live debut"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "MFC",
+              "info": "live debut"
+            },
+            {
+              "name": "Habit"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Last Exit"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43d667ef",
+      "eventDate": "31-01-1998",
+      "year": "1998",
+      "lastUpdated": "2013-03-02T21:25:14.000+0000",
+      "tour": null,
+      "venue": "Monkey Wrench Radio",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/1998/monkey-wrench-radio-seattle-wa-43d667ef.html",
+      "songCount": 8,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Pilate"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Nothingman"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

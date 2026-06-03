@@ -1,0 +1,4794 @@
+{
+  "year": "2024",
+  "shows": [
+    {
+      "artist": "Eddie Vedder",
+      "id": "235f4ce7",
+      "eventDate": "14-12-2024",
+      "year": "2024",
+      "lastUpdated": "2025-09-28T21:29:54.373+0000",
+      "tour": null,
+      "venue": "Freedom Boat Club",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2024/freedom-boat-club-chicago-il-235f4ce7.html",
+      "songCount": 2,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Rosalita (Come Out Tonight)",
+              "cover": "Bruce Springsteen",
+              "with": "Frank Orrall"
+            },
+            {
+              "name": "I Can't Explain",
+              "cover": "The Who",
+              "with": "Frank Orrall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53ab9311",
+      "eventDate": "23-11-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:26:24.101+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "ENGIE Stadium",
+      "city": "Sydney",
+      "state": "New South Wales",
+      "country": "Australia",
+      "coords": {
+        "lat": -33.8678499639382,
+        "long": 151.207323074341
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/engie-stadium-sydney-australia-53ab9311.html",
+      "songCount": 29,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Tremor Christ"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Save You"
+            },
+            {
+              "name": "Dissident",
+              "info": "Tour debut"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Hunger Strike",
+              "info": "Tour debut; first time since October 26, 2014",
+              "cover": "Temple of the Dog"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "No Surrender",
+              "info": "Tour debut; first time since June 3, 2006; Eddie Vedder solo on acoustic guitar",
+              "cover": "Bruce Springsteen"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The English Beat's \"Save It for Later\" tag"
+            },
+            {
+              "name": "Something Special"
+            },
+            {
+              "name": "Black",
+              "info": "with \"We Belong Together\" tag"
+            },
+            {
+              "name": "Alone"
+            },
+            {
+              "name": "Porch",
+              "info": "with The Stooges' \"T.V. Eye\" tag"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            },
+            {
+              "name": "Little Wing",
+              "cover": "The Jimi Hendrix Experience"
+            },
+            {
+              "name": "Spread a Little Happiness",
+              "tape": true,
+              "cover": "Sting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bab9312",
+      "eventDate": "21-11-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:25:29.971+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "ENGIE Stadium",
+      "city": "Sydney",
+      "state": "New South Wales",
+      "country": "Australia",
+      "coords": {
+        "lat": -33.8678499639382,
+        "long": 151.207323074341
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/engie-stadium-sydney-australia-4bab9312.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Dead Moon's \"It's O.K.\" tag"
+            },
+            {
+              "name": "Come Back"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "info": "Eddie solo on acoustic guitar",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Sonic Reducer",
+              "cover": "Dead Boys"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Indifference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bab931c",
+      "eventDate": "18-11-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:24:46.593+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Marvel Stadium",
+      "city": "Melbourne",
+      "state": "Victoria",
+      "country": "Australia",
+      "coords": {
+        "lat": -37.8139965641595,
+        "long": 144.963322877884
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/marvel-stadium-melbourne-australia-5bab931c.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Porch"
+            },
+            {
+              "name": "Wreckage",
+              "info": "Dedicated to Australian conservationists for their work “over the last twenty years”"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Dead Moon's \"It's O.K.\" tag"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Light Years"
+            },
+            {
+              "name": "Waiting for Stevie",
+              "info": "preceded by Eddie acknowledging Melbourne radio station, Triple M, for playing this song"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Deep"
+            },
+            {
+              "name": "Black",
+              "info": "with Nick Cave's “The Ship Song” tag"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Happy Birthday to You",
+              "info": "Sang for a pair of twins in the crowd",
+              "cover": "Mildred J. Hill & Patty Hill"
+            },
+            {
+              "name": "Throw Your Arms Around Me",
+              "cover": "Hunters & Collectors"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Unthought Known",
+              "info": "Eddie stopped the song after 30 seconds due to a medical incident in the crowd; restarted"
+            },
+            {
+              "name": "Alive",
+              "info": "House lights came on half way through the song"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "House lights remained on during this song",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "Eddie sang the first line of \"Porch\" before realising the band had already performed it"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bab931e",
+      "eventDate": "16-11-2024",
+      "year": "2024",
+      "lastUpdated": "2026-04-24T04:39:52.421+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Marvel Stadium",
+      "city": "Melbourne",
+      "state": "Victoria",
+      "country": "Australia",
+      "coords": {
+        "lat": -37.8139965641595,
+        "long": 144.963322877884
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/marvel-stadium-melbourne-australia-4bab931e.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Wreckage",
+              "info": "Mike McCready solo preceded the song"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Not for You",
+              "info": "with Sleater-Kinney's \"Modern Girl\" tag"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Breathe"
+            },
+            {
+              "name": "Inside Job"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The Beat's \"Save It for Later\" tag"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Alive",
+              "info": "House lights on during the song"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "House lights on during the song",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "House lights on during the song"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "43ab931f",
+      "eventDate": "13-11-2024",
+      "year": "2024",
+      "lastUpdated": "2025-11-14T04:32:57.384+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "People First Stadium",
+      "city": "Gold Coast",
+      "state": "Queensland",
+      "country": "Australia",
+      "coords": {
+        "lat": -28,
+        "long": 153.4333333
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/people-first-stadium-gold-coast-australia-43ab931f.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "I Am Mine"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pink Floyd's \"Another Brick in the Wall, Part 2\" tag"
+            },
+            {
+              "name": "Got to Give"
+            },
+            {
+              "name": "Severed Hand"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Man of the Hour",
+              "info": "Eddie solo"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Breath"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The Beat's \"Save It for Later\" tag"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "63ab862f",
+      "eventDate": "10-11-2024",
+      "year": "2024",
+      "lastUpdated": "2025-08-11T03:13:34.154+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Go Media Stadium",
+      "city": "Auckland",
+      "state": "Auckland",
+      "country": "New Zealand",
+      "coords": {
+        "lat": -36.8666667,
+        "long": 174.7666667
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/go-media-stadium-auckland-new-zealand-63ab862f.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "Wreckage",
+              "info": "Followed by 2 minute Mike McCready solo"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Better Man",
+              "info": "with Crowded House's \"Don't Dream It's Over\" and The English Beat's \"Save It for Later\" tags"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Amongst the Waves"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Unthought Known"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Throw Your Arms Around Me",
+              "cover": "Hunters & Collectors",
+              "with": "Neil Finn"
+            },
+            {
+              "name": "Smile",
+              "info": "with Jeff on guitar and Stone on bass"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Rearviewmirror"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "17 year old fan brought on stage to play Eddie's telecaster",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "6bab862a",
+      "eventDate": "08-11-2024",
+      "year": "2024",
+      "lastUpdated": "2025-08-11T03:12:57.796+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Go Media Stadium",
+      "city": "Auckland",
+      "state": "Auckland",
+      "country": "New Zealand",
+      "coords": {
+        "lat": -36.8666667,
+        "long": 174.7666667
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/go-media-stadium-auckland-new-zealand-6bab862a.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Eruption",
+              "cover": "Van Halen"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pixies' \"Monkey Gone to Heaven\" and Pink Floyd's \"Another Brick in the Wall, Part 2\" tags"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Not for You",
+              "info": "with Sleater Kinney's \"Modern Girl\" tag"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Breathe"
+            },
+            {
+              "name": "Habit",
+              "with": "Liam Finn"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Hard to Imagine"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "23a82403",
+      "eventDate": "29-09-2024",
+      "year": "2024",
+      "lastUpdated": "2025-08-25T08:05:51.672+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Doheny State Beach",
+      "city": "Dana Point",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.4669721,
+        "long": -117.6981075
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/doheny-state-beach-dana-point-ca-23a82403.html",
+      "songCount": 20,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Big Wave",
+              "info": "first time since 2016"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It for Later\" by The English Beat tag"
+            },
+            {
+              "name": "Rearviewmirror",
+              "with": "Andrew Watt"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss / The Best Day",
+              "info": "\"The Best Day\" is a Taylor Swift song; Harper sang the lyrics as a mashup while Eddie sang Last Kiss",
+              "with": "Harper Vedder"
+            },
+            {
+              "name": "Song of Good Hope",
+              "cover": "Glen Hansard",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Gremmie Out of Control",
+              "info": "live debut",
+              "cover": "The Silly Surfers",
+              "with": "Brendan O'Brien"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "with Glen Hansard, Eddie's family and others; Matt on guitar; followed by a snippet of \"Smile\"",
+              "cover": "Neil Young",
+              "with": "Stephen Perkins"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3ba8240c",
+      "eventDate": "27-09-2024",
+      "year": "2024",
+      "lastUpdated": "2025-08-24T19:22:17.101+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Doheny State Beach",
+      "city": "Dana Point",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.4669721,
+        "long": -117.6981075
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/doheny-state-beach-dana-point-ca-3ba8240c.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Got Some"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Beautiful World\" by Devo tag"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Who Ever Said",
+              "info": "with a tag of Devo’s version of \"(I Can’t Get No) Satisfaction\""
+            },
+            {
+              "name": "Amongst the Waves",
+              "info": "tour debut; followed by \"Modern Girl\" by Sleater-Kinney tease"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Habit",
+              "with": "Liam Finn"
+            },
+            {
+              "name": "Leaving Here",
+              "info": "tour debut",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Future Days",
+              "info": "Eddie solo; first time since 2016"
+            },
+            {
+              "name": "Whale Song",
+              "info": "live debut",
+              "with": "Zach Irons"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "2b537c32",
+      "eventDate": "27-09-2024",
+      "year": "2024",
+      "lastUpdated": "2024-09-27T21:07:36.016+0000",
+      "tour": null,
+      "venue": "Doheny State Beach",
+      "city": "Dana Point",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.4669721,
+        "long": -117.6981075
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2024/doheny-state-beach-dana-point-ca-2b537c32.html",
+      "songCount": 1,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Can't Keep",
+              "cover": "Pearl Jam"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "23aba427",
+      "eventDate": "17-09-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:14:24.394+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Fenway Park",
+      "city": "Boston",
+      "state": "Massachusetts",
+      "country": "United States",
+      "coords": {
+        "lat": 42.3584308,
+        "long": -71.0597732
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/fenway-park-boston-ma-23aba427.html",
+      "songCount": 30,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pixies' \"Monkey Gone to Heaven\" tag"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Save You"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Not for You",
+              "info": "with Sleater Kinney's \"Modern Girl\" tag"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Untitled"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Superblood Wolfmoon",
+              "info": "tour debut"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Am a Patriot",
+              "info": "Eddie solo",
+              "cover": "Little Steven"
+            },
+            {
+              "name": "Falling Slowly",
+              "cover": "The Swell Season",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Crazy Mary",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "Unthought Known"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "with Boston's \"More Than a Feeling\" tag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "23aba423",
+      "eventDate": "15-09-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:13:31.943+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Fenway Park",
+      "city": "Boston",
+      "state": "Massachusetts",
+      "country": "United States",
+      "coords": {
+        "lat": 42.3584308,
+        "long": -71.0597732
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/fenway-park-boston-ma-23aba423.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Down"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Glorified G"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Something Special"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Breathe"
+            },
+            {
+              "name": "Song of Good Hope",
+              "cover": "Glen Hansard",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Blood",
+              "info": "tour debut; first time since 2018"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The English Beat's \"Save It for Later\" tag"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young",
+              "with": "John Krasinski"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "with \"The Star-Spangled Banner\" tag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73aba6dd",
+      "eventDate": "12-09-2024",
+      "year": "2024",
+      "lastUpdated": "2024-09-16T07:30:24.460+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "CFG Bank Arena",
+      "city": "Baltimore",
+      "state": "Maryland",
+      "country": "United States",
+      "coords": {
+        "lat": 39.2903848,
+        "long": -76.6121893
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/cfg-bank-arena-baltimore-md-73aba6dd.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Can't Keep",
+              "info": "tour debut; first time since 2014"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Tremor Christ"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Unthought Known"
+            },
+            {
+              "name": "Stranglehold",
+              "info": "tour debut; snippet; instrumental only with \"I Don't Want a Gun\" rap by Eddie",
+              "cover": "Ted Nugent"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pink Floyd's \"Another Brick in the Wall, Pt. 2\" tag"
+            },
+            {
+              "name": "Deep"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Falling Slowly",
+              "cover": "The Swell Season",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Sonic Reducer",
+              "cover": "Dead Boys"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "7baba638",
+      "eventDate": "09-09-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:11:39.091+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Wells Fargo Center",
+      "city": "Philadelphia",
+      "state": "Pennsylvania",
+      "country": "United States",
+      "coords": {
+        "lat": 39.952335,
+        "long": -75.163789
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/wells-fargo-center-philadelphia-pa-7baba638.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Of the Girl"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "In My Tree",
+              "info": "dedicated to Pierre, Nick and Matt"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The English Beat's \"Save It for Later\" tag"
+            },
+            {
+              "name": "Wishlist",
+              "info": "with The Beatles' \"Norwegian Wood\" tag"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Alone"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Breathe",
+              "info": "Eddie, Boom and Josh only"
+            },
+            {
+              "name": "Song of Good Hope",
+              "info": "dedicated to West Memphis 3",
+              "cover": "Glen Hansard",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Crazy Mary",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Rats",
+              "info": "tour debut; crowd request"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "7baba640",
+      "eventDate": "07-09-2024",
+      "year": "2024",
+      "lastUpdated": "2025-12-18T22:24:13.198+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Wells Fargo Center",
+      "city": "Philadelphia",
+      "state": "Pennsylvania",
+      "country": "United States",
+      "coords": {
+        "lat": 39.952335,
+        "long": -75.163789
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/wells-fargo-center-philadelphia-pa-7baba640.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Brain of J.",
+              "info": "tour debut"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Given to Fly",
+              "info": "Dedicated to the late Gaudreau brothers"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Black",
+              "info": "with \"We Belong Together\" tag"
+            },
+            {
+              "name": "Breath"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Tom Petty's \"Free Fallin’\" tag"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Chloe Dancer/Crown of Thorns",
+              "cover": "Mother Love Bone"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "info": "stopped briefly due to an incident in the crowd",
+              "cover": "The Who"
+            },
+            {
+              "name": "Indifference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "63aba64b",
+      "eventDate": "04-09-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:07:17.479+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Madison Square Garden",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/madison-square-garden-new-york-ny-63aba64b.html",
+      "songCount": 28,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pink Floyd's \"Another Brick in the Wall (Part 2)\" tag"
+            },
+            {
+              "name": "Dark Matter",
+              "info": "with \"Scared of Fear\" intro"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Not for You",
+              "info": "with Sleater Kinney's “Modern Girl“ tag"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "I Am Mine"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Glorified G",
+              "info": "tour debut; requested by and with thanks to Howard Stern"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Waiting for Stevie",
+              "with": "Andrew Watt"
+            },
+            {
+              "name": "Rearviewmirror",
+              "with": "Andrew Watt"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Am a Patriot",
+              "info": "tour debut; Eddie solo",
+              "cover": "Little Steven"
+            },
+            {
+              "name": "Just Breathe",
+              "info": "Eddie and Josh"
+            },
+            {
+              "name": "Song of Good Hope",
+              "cover": "Glen Hansard",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Gimme Some Truth",
+              "cover": "John Lennon"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "Sonic Reducer",
+              "info": "tour debut",
+              "cover": "Dead Boys"
+            },
+            {
+              "name": "Leash"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "also with Glen Hansard and his band & Andrew Watt",
+              "cover": "Neil Young",
+              "with": "Little Steven"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "7baba65c",
+      "eventDate": "03-09-2024",
+      "year": "2024",
+      "lastUpdated": "2025-07-17T07:33:06.592+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Madison Square Garden",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/madison-square-garden-new-york-ny-7baba65c.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Pendulum"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The English Beat's \"Save It for Later\" tag"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Satan's Bed"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Out of My Mind"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Love Boat Captain",
+              "info": "with The Rolling Stones’ “Jumpin' Jack Flash” intro"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Given to Fly",
+              "info": "dedicated to a 13 year old fan named Adam"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Imagine",
+              "info": "Eddie solo",
+              "cover": "John Lennon"
+            },
+            {
+              "name": "Inside Job"
+            },
+            {
+              "name": "Unthought Known"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Indifference",
+              "info": "tour debut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53aa4335",
+      "eventDate": "31-08-2024",
+      "year": "2024",
+      "lastUpdated": "2025-07-17T07:29:15.657+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Wrigley Field",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/wrigley-field-chicago-il-53aa4335.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Porch"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Come Back",
+              "info": "Dedicated to Beth Murphy and Marian Robinson"
+            },
+            {
+              "name": "All Night"
+            },
+            {
+              "name": "Not for You",
+              "info": "with Sleater Kinney's \"Modern Girl\" tag"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Dark Matter",
+              "info": "with \"Scared of Fear\" intro"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Upper Hand",
+              "info": "false start"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The English Beat's \"Save It for Later\" tag"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Throw Your Arms Around Me",
+              "info": "tour debut; Eddie solo",
+              "cover": "Hunters & Collectors"
+            },
+            {
+              "name": "Falling Slowly",
+              "info": "live debut; Eddie and Glen",
+              "cover": "The Swell Season",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Smile",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "cut before the final solo"
+            },
+            {
+              "name": "Little Wing",
+              "info": "Tour Debut; first time since 2016",
+              "cover": "The Jimi Hendrix Experience"
+            },
+            {
+              "name": "I'm Your Late Night Evening Prostitute",
+              "tape": true,
+              "cover": "Tom Waits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5baa4330",
+      "eventDate": "29-08-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:28:28.345+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Wrigley Field",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/wrigley-field-chicago-il-5baa4330.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Of the Girl"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Why Go",
+              "info": "Stopped song after first verse due to situation in the crowd, restarted from first verse"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pink Floyd's \"Another Brick in the Wall, Pt. 2\" tag"
+            },
+            {
+              "name": "Down",
+              "info": "tour debut; dedicated to Phil Donahue and Howard Zinn"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "U",
+              "info": "first time since 2018"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Breathe",
+              "info": "Eddie, Boom and Josh"
+            },
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Won't Tell",
+              "info": "Eddie brought woman from the crowd, Abby, to sing duet"
+            },
+            {
+              "name": "Corduroy",
+              "info": "with \"Better Man\" intro"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "and Glen's band",
+              "cover": "Neil Young",
+              "with": "Glen Hansard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73aba665",
+      "eventDate": "26-08-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:29:25.628+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Ruoff Music Center",
+      "city": "Noblesville",
+      "state": "Indiana",
+      "country": "United States",
+      "coords": {
+        "lat": 40.0455918,
+        "long": -86.0085955
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/ruoff-music-center-noblesville-in-73aba665.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Wash"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Present Tense",
+              "info": "fan request"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Not for You",
+              "info": "with Sleater-Kinney’s “Modern Girl” tag"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Daughter",
+              "info": "Eddie asks the crowd to vote during the interlude; with Pink Floyd’s “Another Brick in the Wall” tag"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Black",
+              "info": "with the Police’s “Roxanne” tease; also with “We Belong Together” and “Improvisation” tags"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Song of Good Hope",
+              "info": "live debut by Pearl Jam; Eddie solo; dedicated to Michele Mintz Menke",
+              "cover": "Glen Hansard",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Lightning Bolt",
+              "info": "tour debut; fan request; dedicated to Erin, Joe and Caitlin Clark"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "info": "followed by band introductions",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73aba66d",
+      "eventDate": "22-08-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-06T18:35:00.602+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Washington-Grizzly Stadium",
+      "city": "Missoula",
+      "state": "Montana",
+      "country": "United States",
+      "coords": {
+        "lat": 46.872146,
+        "long": -113.9939982
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/washington-grizzly-stadium-missoula-mt-73aba66d.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Nothing as It Seems"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Hard to Imagine",
+              "info": "with “Setting Sun” tag"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Gimme Some Truth",
+              "info": "tour debut; first time since 2006",
+              "cover": "John Lennon"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Her Majesty",
+              "info": "tour debut; Eddie solo",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Just Breathe",
+              "with": "Lukas Nelson"
+            },
+            {
+              "name": "Smile",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Wasted Reprise"
+            },
+            {
+              "name": "Life Wasted"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "Alive",
+              "info": "with Alice in Chain’s “It Ain't Like That” tag"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "and Lukas Nelson; dedicated to Senator Jon Tester",
+              "cover": "Neil Young",
+              "with": "Glen Hansard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "b52a18a",
+      "eventDate": "18-08-2024",
+      "year": "2024",
+      "lastUpdated": "2025-04-17T13:15:38.111+0000",
+      "tour": null,
+      "venue": "Seattle Convention Center",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2024/seattle-convention-center-seattle-wa-b52a18a.html",
+      "songCount": 10,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Wildflowers",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Keep Me in Your Heart",
+              "cover": "Warren Zevon"
+            },
+            {
+              "name": "You've Got to Hide Your Love Away",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Just Breathe",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Far Behind"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Hard Sun",
+              "cover": "Indio"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73aba6e5",
+      "eventDate": "13-07-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T20:56:10.142+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Passeio Marítimo de Algés",
+      "city": "Oeiras",
+      "state": "Lisbon",
+      "country": "Portugal",
+      "coords": {
+        "lat": 38.6833333,
+        "long": -9.3166667
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/passeio-maritimo-de-alges-oeiras-portugal-73aba6e5.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Animal",
+              "info": "tour debut"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Imagine",
+              "info": "tour debut; Eddie solo",
+              "cover": "John Lennon"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "6baba616",
+      "eventDate": "11-07-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T20:57:33.728+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Iberdrola Music",
+      "city": "Madrid",
+      "state": "Autonomous Region of Madrid",
+      "country": "Spain",
+      "coords": {
+        "lat": 40.4165020941502,
+        "long": -3.70256423950195
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/iberdrola-music-madrid-spain-6baba616.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"W.M.A.\" tag"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Unthought Known",
+              "info": "tour debut; dedicated to Javier Bardem"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Happy Birthday to You",
+              "info": "Sung for two friends of Eddie's in California",
+              "cover": "Mildred J. Hill & Patty Hill"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "info": "Dedicated to Miguel Ríos and his daughter"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4baba78e",
+      "eventDate": "08-07-2024",
+      "year": "2024",
+      "lastUpdated": "2026-01-22T11:01:39.287+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Palau Sant Jordi",
+      "city": "Barcelona",
+      "state": "Catalonia",
+      "country": "Spain",
+      "coords": {
+        "lat": 41.3887868890716,
+        "long": 2.15898513793945
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/palau-sant-jordi-barcelona-spain-4baba78e.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Oceans"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Public Image Ltd’s “Rise” tag"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "1/2 Full",
+              "info": "tour debut"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Even Flow",
+              "info": "Riff singalong with crowd participation after the ending"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Who Ever Said",
+              "info": "tour debut; with the Rolling Stones’ “(Can’t Get No) Satisfaction” tag"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Something Special",
+              "info": "Dedicated to Meredith Harvey from Ottawa Canada; stopped then resumed after an issue in the crowd"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young",
+              "with": "The Murder Capital"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "with a fan named Carlos on guitar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5baba788",
+      "eventDate": "06-07-2024",
+      "year": "2024",
+      "lastUpdated": "2025-01-30T20:41:54.544+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Palau Sant Jordi",
+      "city": "Barcelona",
+      "state": "Catalonia",
+      "country": "Spain",
+      "coords": {
+        "lat": 41.3887868890716,
+        "long": 2.15898513793945
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/palau-sant-jordi-barcelona-spain-5baba788.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Habit",
+              "info": "tour debut"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Romanza\" intro and The English Beat's \"Save It for Later\" tag"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Breathe",
+              "info": "Eddie solo"
+            },
+            {
+              "name": "Wasted Reprise",
+              "info": "tour debut"
+            },
+            {
+              "name": "Life Wasted",
+              "info": "tour debut"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53aba79d",
+      "eventDate": "25-06-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:03:07.333+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Co-op Live",
+      "city": "Manchester",
+      "state": "England",
+      "country": "United Kingdom",
+      "coords": {
+        "lat": 53.4809464283615,
+        "long": -2.23743438720703
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/co-op-live-manchester-england-53aba79d.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Of the Girl"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "All Night",
+              "info": "tour debut"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"There She Goes\" by The La's tag"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "I Got Id",
+              "info": "tour debut"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Inside Job"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Black",
+              "info": "with Rickie Lee Jones’ “We Belong Together” and Mother Love Bone's \"Crown of Thorns\" tag"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Fuckin' Up",
+              "info": "tour debut",
+              "cover": "Neil Young & Crazy Horse"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5baba798",
+      "eventDate": "22-06-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:04:35.425+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Marlay Park",
+      "city": "Dublin",
+      "state": "Dublin",
+      "country": "Ireland",
+      "coords": {
+        "lat": 53.3330556,
+        "long": -6.2488889
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/marlay-park-dublin-ireland-5baba798.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "Eruption",
+              "info": "Mike McCready solo instrumental",
+              "cover": "Van Halen"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Daughter",
+              "info": "included snippets of \"Give Me the Cure\" and \"Suggestion\" by Fugazi"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Better Man",
+              "info": "included a snippet of \"Save It for Later\" by The English Beat"
+            },
+            {
+              "name": "Black",
+              "info": "dedicated to a young fan who passed away a few days earlier"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Keep Me in Your Heart",
+              "info": "Eddie solo; dedicated to Shane MacGowan and Sinéad O'Connor",
+              "cover": "Warren Zevon"
+            },
+            {
+              "name": "Not for You",
+              "info": "included a snippet of \"Modern Girl\" by Sleater-Kinney"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "23abb857",
+      "eventDate": "30-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:05:40.937+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Climate Pledge Arena",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/climate-pledge-arena-seattle-wa-23abb857.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Black",
+              "info": "with “We Belong Together” tag"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Come Back"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Pilate",
+              "info": "tour debut; dedicated to the Seattle Pilots"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Love Boat Captain",
+              "info": "tour debut"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Hurt",
+              "info": "Ed solo, acoustic; live Pearl Jam debut; \"crown of thorns\" lyric",
+              "cover": "Nine Inch Nails"
+            },
+            {
+              "name": "Inside Job"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Spin the Black Circle",
+              "info": "dedicated to Easy Street Records"
+            },
+            {
+              "name": "Something Special"
+            },
+            {
+              "name": "Alive",
+              "info": "with Black Sabbath's \"War Pigs\" tag"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young",
+              "with": "Deep Sea Diver"
+            },
+            {
+              "name": "Setting Sun"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "23abb863",
+      "eventDate": "28-05-2024",
+      "year": "2024",
+      "lastUpdated": "2025-05-19T04:27:14.845+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Climate Pledge Arena",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/climate-pledge-arena-seattle-wa-23abb863.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Thin Air",
+              "info": "tour debut"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "I Am Mine",
+              "info": "tour debut"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Bruce Springsteen's \"My City of Ruins\" tag"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Man of the Hour",
+              "info": "tour debut; dedicated to Bill Walton"
+            },
+            {
+              "name": "Satan's Bed",
+              "info": "tour debut"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Breathe",
+              "info": "Eddie solo"
+            },
+            {
+              "name": "River Cross",
+              "info": "tour debut"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Deep",
+              "info": "tour debut"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive",
+              "info": "with Black Sabbath's \"War Pigs\" tag"
+            },
+            {
+              "name": "All Along the Watchtower",
+              "info": "tour debut",
+              "cover": "Bob Dylan",
+              "with": "Deep Sea Diver"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "with Jimi Hendix's \"Little Wing\" tag"
+            },
+            {
+              "name": "Setting Sun"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "33abb869",
+      "eventDate": "25-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:07:32.444+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Napa Valley Expo",
+      "city": "Napa",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 38.2971367,
+        "long": -122.2855293
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/napa-valley-expo-napa-ca-33abb869.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pink Floyd's \"Another Brick in the Wall (Part 2)\" tag"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Black",
+              "info": "with “We Belong Together” tag"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "info": "tour debut; Eddie solo",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Maybe It's Time",
+              "info": "Eddie duet",
+              "cover": "Jason Isbell",
+              "with": "Bradley Cooper"
+            },
+            {
+              "name": "Crazy Mary",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive",
+              "info": "with Black Sabbath's \"War Pigs\" tag"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young",
+              "with": "Bradley Cooper"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "2babb87e",
+      "eventDate": "22-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:08:15.152+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Kia Forum",
+      "city": "Inglewood",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.9616801,
+        "long": -118.3531311
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/kia-forum-inglewood-ca-2babb87e.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Long Road",
+              "info": "dedicated to Eddie Vedder's Uncle John"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Go",
+              "info": "tour debut"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Untitled",
+              "info": "tour debut"
+            },
+            {
+              "name": "MFC",
+              "info": "tour debut"
+            },
+            {
+              "name": "All Those Yesterdays",
+              "info": "tour debut"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Black",
+              "info": "with Tom Petty's \"The Waiting\" tag"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Comatose",
+              "info": "tour debut"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo; dedicated to Tom Petty and played with his guitar",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "also with Deep Sea Diver & Chad Smith",
+              "cover": "Neil Young",
+              "with": "Andrew Watt"
+            },
+            {
+              "name": "Setting Sun"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "13abb985",
+      "eventDate": "21-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:10:34.602+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Kia Forum",
+      "city": "Inglewood",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.9616801,
+        "long": -118.3531311
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/kia-forum-inglewood-ca-13abb985.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Oceans",
+              "info": "tour debut"
+            },
+            {
+              "name": "Come Back",
+              "info": "tour debut"
+            },
+            {
+              "name": "Off He Goes",
+              "info": "tour debut"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Got Some",
+              "info": "tour debut"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pink Floyd's \"Another Brick in the Wall (Part 2)\" tag"
+            },
+            {
+              "name": "In My Tree",
+              "info": "tour debut; preceded by a tease of \"Wish You Were Here\" (Pink Floyd) during Eddie's story"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Save You",
+              "info": "tour debut"
+            },
+            {
+              "name": "Faithfull",
+              "info": "dedicated to Michele Castrellon"
+            },
+            {
+              "name": "Rearviewmirror",
+              "info": "tour debut",
+              "with": "Andrew Watt"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Breathe",
+              "info": "tour debut; Eddie & Boom"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "State of Love and Trust",
+              "info": "tour debut"
+            },
+            {
+              "name": "Something Special"
+            },
+            {
+              "name": "Leash",
+              "info": "tour debut"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Setting Sun"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "babb982",
+      "eventDate": "18-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:12:37.892+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "MGM Grand Garden Arena",
+      "city": "Las Vegas",
+      "state": "Nevada",
+      "country": "United States",
+      "coords": {
+        "lat": 36.1749705,
+        "long": -115.137223
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/mgm-grand-garden-arena-las-vegas-nv-babb982.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Of the Girl",
+              "info": "tour debut"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Severed Hand",
+              "info": "tour debut"
+            },
+            {
+              "name": "Won't Tell"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Out of My Mind",
+              "info": "tour debut"
+            },
+            {
+              "name": "Spin the Black Circle",
+              "info": "tour debut"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo; with Hunters & Collectors' \"Throw Your Arms Around Me\" tease",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "You Are",
+              "info": "tour debut; first performance since 2018"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Something Special"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "I'm Your Late Night Evening Prostitute",
+              "tape": true,
+              "cover": "Tom Waits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "1babb98c",
+      "eventDate": "16-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:14:40.437+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "MGM Grand Garden Arena",
+      "city": "Las Vegas",
+      "state": "Nevada",
+      "country": "United States",
+      "coords": {
+        "lat": 36.1749705,
+        "long": -115.137223
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/mgm-grand-garden-arena-las-vegas-nv-1babb98c.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Sometimes",
+              "info": "tour debut"
+            },
+            {
+              "name": "Hard to Imagine",
+              "info": "tour debut"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Hail, Hail",
+              "info": "tour debut"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Daughter",
+              "info": "with Pink Floyd's \"Another Brick in the Wall (Part 2)\" tag"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Breakerfall",
+              "info": "tour debut"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Tremor Christ",
+              "info": "tour debut"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Maybe It's Time",
+              "info": "live debut; Eddie solo",
+              "cover": "Jason Isbell"
+            },
+            {
+              "name": "Inside Job",
+              "info": "tour debut"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Corduroy",
+              "info": "with U2's \"Bad\" intro"
+            },
+            {
+              "name": "Breath",
+              "info": "tour debut"
+            },
+            {
+              "name": "Alive",
+              "with": "Andrew Watt"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            },
+            {
+              "name": "Setting Sun"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "13abb9b9",
+      "eventDate": "13-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:15:41.310+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Golden 1 Center",
+      "city": "Sacramento",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 38.5815719,
+        "long": -121.4943996
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/golden-1-center-sacramento-ca-13abb9b9.html",
+      "songCount": 27,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Pendulum",
+              "info": "tour debut"
+            },
+            {
+              "name": "I'm Open",
+              "info": "tour debut"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Faithfull",
+              "info": "tour debut"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Garden",
+              "info": "tour debut; with Alice in Chains' \"It Ain't Like That\" tease"
+            },
+            {
+              "name": "Lukin",
+              "info": "tour debut"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Dance of the Clairvoyants",
+              "info": "tour debut"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Waiting for Stevie"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Light Years",
+              "info": "tour debut"
+            },
+            {
+              "name": "Better Man",
+              "info": "with The Beat's \"Save It for Later\" tag"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Picture in a Frame",
+              "info": "tour debut; Eddie solo; first performance since 2016",
+              "cover": "Tom Waits"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Black",
+              "info": "with Rickie Lee Jones' \"We Belong Together\" tag"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Porch"
+            },
+            {
+              "name": "Setting Sun"
+            },
+            {
+              "name": "I'm Your Late Night Evening Prostitute",
+              "tape": true,
+              "cover": "Tom Waits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "13abb9c1",
+      "eventDate": "10-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:16:56.910+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Moda Center",
+      "city": "Portland",
+      "state": "Oregon",
+      "country": "United States",
+      "coords": {
+        "lat": 45.5234515,
+        "long": -122.6762071
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/moda-center-portland-or-13abb9c1.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Release",
+              "info": "tour debut"
+            },
+            {
+              "name": "Nothing as It Seems",
+              "info": "tour debut"
+            },
+            {
+              "name": "Present Tense",
+              "info": "tour debut"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"WMA\" tag"
+            },
+            {
+              "name": "Not for You",
+              "info": "tour debut; with \"Modern Girl\" by Sleater-Kinney tag"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Seven O'Clock",
+              "info": "tour debut"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Waiting for Stevie",
+              "info": "live debut"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Last Exit",
+              "info": "tour debut"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Mind Your Manners",
+              "info": "tour debut"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Crazy Mary",
+              "info": "tour debut",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "Once",
+              "info": "tour debut; Momma-Son #1"
+            },
+            {
+              "name": "Alive",
+              "info": "Momma-Son #2"
+            },
+            {
+              "name": "Footsteps",
+              "info": "tour debut; Momma-Son #3"
+            },
+            {
+              "name": "Setting Sun"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3abb9cb",
+      "eventDate": "06-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-05-07T06:48:17.017+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Rogers Arena",
+      "city": "Vancouver",
+      "state": "British Columbia",
+      "country": "Canada",
+      "coords": {
+        "lat": 49.249657393,
+        "long": -123.119340403
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/rogers-arena-vancouver-bc-canada-3abb9cb.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Long Road",
+              "info": "tour debut"
+            },
+            {
+              "name": "Nothingman",
+              "info": "tour debut"
+            },
+            {
+              "name": "Immortality",
+              "info": "tour debut"
+            },
+            {
+              "name": "In Hiding",
+              "info": "tour debut"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond"
+            },
+            {
+              "name": "Wreckage"
+            },
+            {
+              "name": "Dark Matter"
+            },
+            {
+              "name": "Wishlist",
+              "info": "tour debut"
+            },
+            {
+              "name": "Even Flow",
+              "info": "tour debut"
+            },
+            {
+              "name": "Quick Escape",
+              "info": "tour debut"
+            },
+            {
+              "name": "Upper Hand"
+            },
+            {
+              "name": "Got to Give",
+              "info": "live debut"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Jeremy",
+              "info": "tour debut"
+            },
+            {
+              "name": "Better Man",
+              "info": "tour debut"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Keep Me in Your Heart",
+              "cover": "Warren Zevon"
+            },
+            {
+              "name": "Why Go",
+              "info": "tour debut"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alone",
+              "info": "tour debut"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "info": "tour debut",
+              "cover": "The Who"
+            },
+            {
+              "name": "Smile",
+              "info": "tour debut"
+            },
+            {
+              "name": "Setting Sun"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3abb9d7",
+      "eventDate": "04-05-2024",
+      "year": "2024",
+      "lastUpdated": "2024-12-07T21:18:17.024+0000",
+      "tour": "Dark Matter World Tour",
+      "venue": "Rogers Arena",
+      "city": "Vancouver",
+      "state": "British Columbia",
+      "country": "Canada",
+      "coords": {
+        "lat": 49.249657393,
+        "long": -123.119340403
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/rogers-arena-vancouver-bc-canada-3abb9d7.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dark Entree",
+              "tape": true
+            },
+            {
+              "name": "Wash"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Scared of Fear"
+            },
+            {
+              "name": "React, Respond",
+              "info": "live debut"
+            },
+            {
+              "name": "Wreckage",
+              "info": "live debut"
+            },
+            {
+              "name": "Dark Matter",
+              "info": "live debut"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Bobcaygeon\" by the Tragically Hip tag"
+            },
+            {
+              "name": "Leatherman",
+              "info": "first time since 2016"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Red Mosquito",
+              "info": "with false start"
+            },
+            {
+              "name": "Upper Hand",
+              "info": "live debut"
+            },
+            {
+              "name": "Won't Tell",
+              "info": "live debut"
+            },
+            {
+              "name": "Running"
+            },
+            {
+              "name": "Chloe Dancer/Crown of Thorns",
+              "cover": "Mother Love Bone"
+            },
+            {
+              "name": "Porch",
+              "info": "guitarist Mike McCready fell off the stage briefly"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo; played with Tom Petty's guitar",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Black",
+              "info": "with \"We Belong Together\" by Rickie Lee Jones tag"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Something Special",
+              "info": "live debut"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            },
+            {
+              "name": "Setting Sun",
+              "info": "live debut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53ab7ff9",
+      "eventDate": "22-04-2024",
+      "year": "2024",
+      "lastUpdated": "2024-05-10T20:56:44.533+0000",
+      "tour": null,
+      "venue": "Pearl Jam HQ",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2024/pearl-jam-hq-seattle-wa-53ab7ff9.html",
+      "songCount": 4,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Scared of Fear",
+              "info": "Live debut"
+            },
+            {
+              "name": "Running",
+              "info": "Live debut"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "3aa754f",
+      "eventDate": "24-03-2024",
+      "year": "2024",
+      "lastUpdated": "2024-07-23T19:14:45.330+0000",
+      "tour": null,
+      "venue": "Royal Albert Hall",
+      "city": "London",
+      "state": "England",
+      "country": "United Kingdom",
+      "coords": {
+        "lat": 51.5084152563931,
+        "long": -0.125532746315002
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2024/royal-albert-hall-london-england-3aa754f.html",
+      "songCount": 7,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Far Behind"
+            },
+            {
+              "name": "She Asked Me",
+              "cover": "Simon Townshend",
+              "with": "Simon Townshend"
+            },
+            {
+              "name": "Society",
+              "cover": "Jerry Hannan",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "My Father's Daughter",
+              "info": "and Glen Hansard",
+              "cover": "Olivia Vedder, Eddie Vedder & Glen Hansard",
+              "with": "Olivia Vedder"
+            },
+            {
+              "name": "Falling Slowly",
+              "cover": "The Swell Season",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "bad7d8e",
+      "eventDate": "25-02-2024",
+      "year": "2024",
+      "lastUpdated": "2024-03-02T01:48:43.065+0000",
+      "tour": null,
+      "venue": "The United Center Atrium",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2024/the-united-center-atrium-chicago-il-bad7d8e.html",
+      "songCount": 8,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Watch Outside",
+              "cover": "The Mono Men"
+            },
+            {
+              "name": "Corduroy",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "The Waiting",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Present Tense",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "The Weight",
+              "cover": "The Band"
+            },
+            {
+              "name": "I Got You",
+              "cover": "Split Enz"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Baba O'Riley",
+              "info": "joined on stage by Chris Chelios and Chelios family memebrs",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "63ade6db",
+      "eventDate": "17-02-2024",
+      "year": "2024",
+      "lastUpdated": "2024-02-21T16:54:56.108+0000",
+      "tour": null,
+      "venue": "Humble Baron at the Nearest Green Whiskey Distillery",
+      "city": "Shelbyville",
+      "state": "Tennessee",
+      "country": "United States",
+      "coords": {
+        "lat": 35.483406,
+        "long": -86.4602717
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2024/humble-baron-at-the-nearest-green-whiskey-distillery-shelbyville-tn-63ade6db.html",
+      "songCount": 7,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Acoustic",
+          "songs": [
+            {
+              "name": "You've Got to Hide Your Love Away",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Far Behind"
+            },
+            {
+              "name": "Keep Me in Your Heart",
+              "cover": "Warren Zevon"
+            },
+            {
+              "name": "My Friend Rowan",
+              "info": "written that morning \"woke up this morning... that I'm gonna see my friend Ronan...  Shelbyville TN\""
+            },
+            {
+              "name": "The One Who Hideth Me",
+              "cover": "Leslie Jordan",
+              "with": "Danny Myrick"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

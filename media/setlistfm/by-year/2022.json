@@ -1,0 +1,5334 @@
+{
+  "year": "2022",
+  "shows": [
+    {
+      "artist": "Eddie Vedder",
+      "id": "7bbf62a0",
+      "eventDate": "04-12-2022",
+      "year": "2022",
+      "lastUpdated": "2022-12-29T02:57:39.822+0000",
+      "tour": null,
+      "venue": "John F. Kennedy Center for the Performing Arts",
+      "city": "Washington",
+      "state": "Washington, D.C.",
+      "country": "United States",
+      "coords": {
+        "lat": 38.895,
+        "long": -77.036
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/john-f-kennedy-center-for-the-performing-arts-washington-dc-7bbf62a0.html",
+      "songCount": 2,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elevation",
+              "cover": "U2"
+            },
+            {
+              "name": "One",
+              "cover": "U2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "2bb1cc22",
+      "eventDate": "07-10-2022",
+      "year": "2022",
+      "lastUpdated": "2022-10-08T16:39:03.007+0000",
+      "tour": null,
+      "venue": "Dolby Live at Park MGM",
+      "city": "Las Vegas",
+      "state": "Nevada",
+      "country": "United States",
+      "coords": {
+        "lat": 36.1749705,
+        "long": -115.137223
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/dolby-live-at-park-mgm-las-vegas-nv-2bb1cc22.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Here Comes the Sun",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "I Got Id",
+              "info": "with Neil Young's \"Cinnamon Girl\" tag",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "Try"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "Chad-O",
+              "info": "with Black Sabbath's \"War Pigs\" tag"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "Good and Evil"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Just Like Heaven",
+              "cover": "The Cure"
+            },
+            {
+              "name": "Dirty Frank",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Hunger Strike",
+              "cover": "Temple of the Dog"
+            },
+            {
+              "name": "Purple Rain",
+              "cover": "Prince"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "13b1d9ed",
+      "eventDate": "05-10-2022",
+      "year": "2022",
+      "lastUpdated": "2022-10-06T06:41:36.971+0000",
+      "tour": null,
+      "venue": "Vina Robles Amphitheatre",
+      "city": "Paso Robles",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 35.6266369,
+        "long": -120.6910043
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/vina-robles-amphitheatre-paso-robles-ca-13b1d9ed.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "With Pen in Hand",
+              "tape": true
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Here Comes the Sun",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "Power of Right"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "Wishlist",
+              "info": "with \"Waiting on a Friend\" tag",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "Timeless Melody",
+              "cover": "The La’s"
+            },
+            {
+              "name": "Try"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Precious",
+              "cover": "Pretenders"
+            },
+            {
+              "name": "Rearviewmirror",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Dirty Frank",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Hunger Strike",
+              "cover": "Temple of the Dog"
+            },
+            {
+              "name": "Purple Rain",
+              "cover": "Prince"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "4bb187fa",
+      "eventDate": "01-10-2022",
+      "year": "2022",
+      "lastUpdated": "2022-12-28T20:07:09.814+0000",
+      "tour": null,
+      "venue": "Doheny State Beach",
+      "city": "Dana Point",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.4669721,
+        "long": -117.6981075
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/doheny-state-beach-dana-point-ca-4bb187fa.html",
+      "songCount": 21,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Rearviewmirror",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers",
+              "with": "Mike Campbell"
+            },
+            {
+              "name": "The Waiting",
+              "cover": "Tom Petty and the Heartbreakers",
+              "with": "Mike Campbell"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "Try"
+            },
+            {
+              "name": "Timeless Melody",
+              "cover": "The La’s"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "I Got Id",
+              "info": "with Neil Young's \"Cinnamon Girl\" tag",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Dirty Frank",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Lukin",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Porch",
+              "info": "with Black Sabbath's \"Paranoid\" and Led Zeppelin's \"Dazed and Confused\" tags",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Hunger Strike",
+              "info": "duet with Andrew Watt",
+              "cover": "Temple of the Dog"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bb06f72",
+      "eventDate": "22-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-09-28T00:01:13.277+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Ball Arena",
+      "city": "Denver",
+      "state": "Colorado",
+      "country": "United States",
+      "coords": {
+        "lat": 39.7391536,
+        "long": -104.9847034
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/ball-arena-denver-co-4bb06f72.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Greatest",
+              "tape": true,
+              "cover": "Cat Power"
+            },
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Thin Air",
+              "info": "tour debut"
+            },
+            {
+              "name": "Just Breathe",
+              "info": "tour debut"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Throw Your Hatred Down",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Who Ever Said"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "River Cross"
+            },
+            {
+              "name": "Save You"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It for Later\" by The Beat tag"
+            },
+            {
+              "name": "Last Kiss",
+              "info": "played to crowd behind stage",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Faithfull"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo, Dedicated to Sandy Hook parents Jennifer Hensel and Jeremy Richman",
+              "cover": "Tom Petty"
+            },
+            {
+              "name": "Chloe Dancer/Crown of Thorns",
+              "cover": "Mother Love Bone"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who",
+              "with": "Thunderpussy"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "7bb00214",
+      "eventDate": "20-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-11-13T02:48:11.269+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Paycom Center",
+      "city": "Oklahoma City",
+      "state": "Oklahoma",
+      "country": "United States",
+      "coords": {
+        "lat": 35.4675602,
+        "long": -97.5164276
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/paycom-center-oklahoma-city-ok-7bb00214.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Alright"
+            },
+            {
+              "name": "Sleight of Hand"
+            },
+            {
+              "name": "Hard to Imagine"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Another Brick in the Wall\" by Pink Floyd tag"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Amongst the Waves"
+            },
+            {
+              "name": "Habit",
+              "info": "Tour debut"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "info": "played for people sitting behind stage"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Corduroy"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Alone",
+              "info": "Tour debut"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Porch"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Indifference"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "1bb011a0",
+      "eventDate": "18-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-12-28T10:46:04.968+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Enterprise Center",
+      "city": "St. Louis",
+      "state": "Missouri",
+      "country": "United States",
+      "coords": {
+        "lat": 38.6272733,
+        "long": -90.1978889
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/enterprise-center-st-louis-mo-1bb011a0.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Greatest",
+              "tape": true,
+              "cover": "Cat Power"
+            },
+            {
+              "name": "Of the Girl"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Sleeping by Myself",
+              "info": "tour debut",
+              "cover": "Eddie Vedder"
+            },
+            {
+              "name": "Retrograde"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Life Wasted",
+              "info": "tour debut"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Who Ever Said",
+              "info": "with “(I Can’t Get No) Satisfaction” by The Rolling Stones tag"
+            },
+            {
+              "name": "I Am Mine"
+            },
+            {
+              "name": "Corduroy",
+              "info": "E.V. alters lyrics \"Everything has chains, absolutely *everything has* changed\""
+            },
+            {
+              "name": "Glorified G",
+              "info": "tour debut"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "info": "preceded by \"Release\" false start - played to crowd behind stage"
+            },
+            {
+              "name": "Sad",
+              "info": "fan request"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Go"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Breath"
+            },
+            {
+              "name": "Black",
+              "info": "with \"We Belong Together\" tag"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "13b01da1",
+      "eventDate": "17-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-09-20T01:32:54.100+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Highland Festival Grounds at the Kentucky Expo Center",
+      "city": "Louisville",
+      "state": "Kentucky",
+      "country": "United States",
+      "coords": {
+        "lat": 38.2542376,
+        "long": -85.759407
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/highland-festival-grounds-at-the-kentucky-expo-center-louisville-ky-13b01da1.html",
+      "songCount": 20,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Daughter",
+              "info": "with \"Chaise Longue\" by Wet Leg tag"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Seven O'Clock",
+              "info": "briefly stopped due to a medical issue in the crowd"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Who Ever Said",
+              "info": "with “(I Can’t Get No) Satisfaction” by The Rolling Stones tag"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Not for You",
+              "info": "with “Modern Girl” by Sleater Kinney tag"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Purple Rain",
+              "info": "Josh Klinghoffer on lead guitar and lead vocals. Eddie sang the first verse, Josh sang the rest",
+              "cover": "Prince"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "6bb02a9e",
+      "eventDate": "16-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-11-09T22:48:31.271+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Bridgestone Arena",
+      "city": "Nashville",
+      "state": "Tennessee",
+      "country": "United States",
+      "coords": {
+        "lat": 36.1658899,
+        "long": -86.7844432
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/bridgestone-arena-nashville-tn-6bb02a9e.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Greatest",
+              "tape": true,
+              "cover": "Cat Power"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Buckle Up"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "All Night"
+            },
+            {
+              "name": "Who Ever Said",
+              "info": "with “(I Can’t Get No) Satisfaction” by The Rolling Stones tag; Josh Klinghoffer on backing vocals"
+            },
+            {
+              "name": "Corduroy",
+              "info": "with “Blitzkrieg Bop” by The Ramones tag"
+            },
+            {
+              "name": "Rats"
+            },
+            {
+              "name": "Wishlist",
+              "info": "with “Waiting on a Friend” by The Rolling Stones tag"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "River Cross"
+            },
+            {
+              "name": "Better Man",
+              "info": "with “Save It for Later” by The Beat tag"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Last Kiss",
+              "info": "played to crowd behind the stage",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Go"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bb03bb0",
+      "eventDate": "14-09-2022",
+      "year": "2022",
+      "lastUpdated": "2024-07-12T03:13:23.305+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Freedom Mortgage Pavilion",
+      "city": "Camden",
+      "state": "New Jersey",
+      "country": "United States",
+      "coords": {
+        "lat": 39.9259463,
+        "long": -75.1196199
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/freedom-mortgage-pavilion-camden-nj-5bb03bb0.html",
+      "songCount": 28,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Wash"
+            },
+            {
+              "name": "Oceans"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Hard to Imagine"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Deep"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Retrograde"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Untitled"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Not for You",
+              "info": "with \"Modern Girl\" tag"
+            },
+            {
+              "name": "Who Ever Said"
+            },
+            {
+              "name": "Eruption",
+              "cover": "Van Halen"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Inside Job"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Breath"
+            },
+            {
+              "name": "Crazy Mary",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "Leash"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "13b0d5fd",
+      "eventDate": "11-09-2022",
+      "year": "2022",
+      "lastUpdated": "2025-12-08T22:15:37.766+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Madison Square Garden",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/madison-square-garden-new-york-ny-13b0d5fd.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Greatest",
+              "tape": true,
+              "cover": "Cat Power"
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Come Back",
+              "info": "with false start"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Porch"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Who Ever Said"
+            },
+            {
+              "name": "Even Flow",
+              "info": "band congratulated Sue Bird and introduced Venus and Serena Williams"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Chaise Longue\" by Wet Leg tag"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "I'm Open"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It for Later\" by The Beat tag"
+            },
+            {
+              "name": "Chloe Dancer/Crown of Thorns",
+              "info": "with \"Tiny Dancer\" by Elton John intro; first time played since 2016",
+              "cover": "Mother Love Bone"
+            },
+            {
+              "name": "Sonic Reducer",
+              "info": "band thanked the first responders",
+              "cover": "Dead Boys"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Purple Rain",
+              "cover": "Prince"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young",
+              "with": "Chad Smith"
+            },
+            {
+              "name": "The Star-Spangled Banner",
+              "info": "Mike McCready solo, on the 21st anniversary of 9/11",
+              "cover": "John Stafford Smith & Francis Scott Key"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3bb0d410",
+      "eventDate": "10-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-09-13T15:36:41.927+0000",
+      "tour": null,
+      "venue": "Apollo Theater",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/apollo-theater-new-york-ny-3bb0d410.html",
+      "songCount": 21,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Pendulum"
+            },
+            {
+              "name": "Sleight of Hand",
+              "info": "First time played since 2016"
+            },
+            {
+              "name": "Parachutes",
+              "info": "First time played since 2016"
+            },
+            {
+              "name": "Hard to Imagine"
+            },
+            {
+              "name": "Keep Me in Your Heart",
+              "info": "Eddie solo acoustic while the house PA was reset",
+              "cover": "Warren Zevon"
+            },
+            {
+              "name": "Who Ever Said"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Spin the Black Circle"
+            },
+            {
+              "name": "Alright"
+            },
+            {
+              "name": "Retrograde"
+            },
+            {
+              "name": "Never Destination"
+            },
+            {
+              "name": "Take the Long Way"
+            },
+            {
+              "name": "Whipping",
+              "info": "False start"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Indifference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "1bb0f54c",
+      "eventDate": "08-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-09-21T20:23:11.721+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Scotiabank Arena",
+      "city": "Toronto",
+      "state": "Ontario",
+      "country": "Canada",
+      "coords": {
+        "lat": 43.700113788,
+        "long": -79.416304194
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/scotiabank-arena-toronto-on-canada-1bb0f54c.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Here, Here and Here",
+              "tape": true,
+              "cover": "Gord Downie"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Safe is Dead\" tag"
+            },
+            {
+              "name": "Come Back"
+            },
+            {
+              "name": "Sometimes"
+            },
+            {
+              "name": "Her Majesty",
+              "info": "Live debut by PJ; performed out of respect for Queen Elizabeth II, who passed away earlier that day",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "All Those Yesterdays",
+              "info": "Tour debut"
+            },
+            {
+              "name": "River Cross"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Deep"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Who Ever Said"
+            },
+            {
+              "name": "I Got Id",
+              "info": "with \"Cinnamon Girl\" tag"
+            },
+            {
+              "name": "Never Destination"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Light Years",
+              "info": "Dedicated to Gord Downie"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Last Kiss",
+              "info": "Tour debut",
+              "cover": "Wayne Cochran"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Alive",
+              "info": "Preceded by false start of \"Leash\""
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "13b08999",
+      "eventDate": "06-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-10-18T14:53:21.774+0000",
+      "tour": "2022 North American Tour",
+      "venue": "FirstOntario Centre",
+      "city": "Hamilton",
+      "state": "Ontario",
+      "country": "Canada",
+      "coords": {
+        "lat": 43.233408354,
+        "long": -79.949639869
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/firstontario-centre-hamilton-on-canada-13b08999.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The North",
+              "tape": true,
+              "cover": "Gord Downie"
+            },
+            {
+              "name": "Oceans"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Yellow Moon"
+            },
+            {
+              "name": "Man of the Hour"
+            },
+            {
+              "name": "Retrograde"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Who Ever Said",
+              "info": "with \"(I Can't Get No) Satisfaction\" tag"
+            },
+            {
+              "name": "Red Mosquito"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "I Am Mine"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Chaise Longue\" by Wet Leg tag"
+            },
+            {
+              "name": "I'm Open"
+            },
+            {
+              "name": "Sad",
+              "info": "first time since 2016"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Black",
+              "info": "with \"Androgynous Mind\" and \"We *Don’t* Belong Together\" tags"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Inside Job"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Wishlist",
+              "info": "played for the back of the crowd"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Indifference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "63b0aa87",
+      "eventDate": "03-09-2022",
+      "year": "2022",
+      "lastUpdated": "2022-09-19T15:33:00.075+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Canadian Tire Centre",
+      "city": "Ottawa",
+      "state": "Ontario",
+      "country": "Canada",
+      "coords": {
+        "lat": 45.4209405046496,
+        "long": -75.6902861595154
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/canadian-tire-centre-ottawa-on-canada-63b0aa87.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The North",
+              "tape": true,
+              "cover": "Gord Downie"
+            },
+            {
+              "name": "Of the Girl"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Alright"
+            },
+            {
+              "name": "Nothing as It Seems"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Throw Your Hatred Down",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Wishlist",
+              "info": "with \"Waiting on a Friend\" tag"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "info": "preceded by a Vedder-led tribute to Taylor Hawkins"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town",
+              "info": "played for crowd behind the stage"
+            },
+            {
+              "name": "Crazy Mary",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Fuckin' Up",
+              "cover": "Neil Young & Crazy Horse"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "63b0ba47",
+      "eventDate": "01-09-2022",
+      "year": "2022",
+      "lastUpdated": "2023-09-06T21:15:31.403+0000",
+      "tour": "2022 North American Tour",
+      "venue": "Centre Vidéotron",
+      "city": "Quebec City",
+      "state": "Quebec",
+      "country": "Canada",
+      "coords": {
+        "lat": 46.812,
+        "long": -71.215
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/centre-videotron-quebec-city-qc-canada-63b0ba47.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Greatest",
+              "tape": true,
+              "cover": "Cat Power"
+            },
+            {
+              "name": "Daughter",
+              "info": "first time as an opener since 2010"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Buckle Up"
+            },
+            {
+              "name": "Other Side"
+            },
+            {
+              "name": "Off He Goes"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Who Ever Said",
+              "info": "with “(I Can’t Get No) Satisfaction” by The Rolling Stones tag"
+            },
+            {
+              "name": "Take the Long Way"
+            },
+            {
+              "name": "I Got Id"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Alive",
+              "info": "Dedicated to Serena and Venus Williams"
+            },
+            {
+              "name": "Purple Rain",
+              "info": "Eddie and Josh on lead vocals",
+              "cover": "Prince"
+            },
+            {
+              "name": "Indifference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bb2cf9a",
+      "eventDate": "25-07-2022",
+      "year": "2022",
+      "lastUpdated": "2022-08-18T10:57:27.874+0000",
+      "tour": "European Tour 2022",
+      "venue": "Ziggo Dome",
+      "city": "Amsterdam",
+      "state": "North Holland",
+      "country": "Netherlands",
+      "coords": {
+        "lat": 52.373,
+        "long": 4.9
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/ziggo-dome-amsterdam-netherlands-4bb2cf9a.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Greatest",
+              "tape": true,
+              "cover": "Cat Power"
+            },
+            {
+              "name": "Nothing as It Seems",
+              "info": "tour debut, first time as opening song since 2000"
+            },
+            {
+              "name": "Off He Goes",
+              "info": "tour debut"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Alright"
+            },
+            {
+              "name": "W.M.A.",
+              "info": "First time in Europe since 1993"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Pilate",
+              "info": "tour debut"
+            },
+            {
+              "name": "Corduroy",
+              "info": "E.V. alters lyrics \"Everything has chains, absolutely *everything has* changed\" with emphasis"
+            },
+            {
+              "name": "Mankind",
+              "info": "tour debut"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Hard to Imagine"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save It for Later\" and \"Beast of Burden\" tags"
+            },
+            {
+              "name": "Black Diamond",
+              "info": "tour debut; Matt Cameron and Mike McCready on vocals",
+              "cover": "KISS"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Porch",
+              "info": "Mike McCready's phone goes off during the solo, Eddie shows him the phone while playing"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Purple Rain",
+              "info": "Josh Klinghoffer on vocals",
+              "cover": "Prince"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Indifference"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "Mike McCready smashes his guitar to pieces into his amp and pedals",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "6bb2a696",
+      "eventDate": "17-07-2022",
+      "year": "2022",
+      "lastUpdated": "2022-08-17T14:25:29.549+0000",
+      "tour": "European Tour 2022",
+      "venue": "Hippodrome de Longchamp",
+      "city": "Paris",
+      "state": "Île-de-France",
+      "country": "France",
+      "coords": {
+        "lat": 48.853,
+        "long": 2.349
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/hippodrome-de-longchamp-paris-france-6bb2a696.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Greatest",
+              "tape": true,
+              "cover": "Cat Power"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Satan's Bed",
+              "info": "tour debut"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Who Ever Said"
+            },
+            {
+              "name": "Wishlist",
+              "info": "with \"Waiting On A Friend\" by The Rolling Stones tag"
+            },
+            {
+              "name": "Not for You"
+            },
+            {
+              "name": "Given to Fly",
+              "info": "Song stopped to address an issue in the crowd, resumed afterwards"
+            },
+            {
+              "name": "Untitled"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Amongst the Waves"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Go",
+              "info": "tour debut"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3bb54438",
+      "eventDate": "14-07-2022",
+      "year": "2022",
+      "lastUpdated": "2023-09-27T02:26:20.069+0000",
+      "tour": "European Tour 2022",
+      "venue": "TAURON Arena Kraków",
+      "city": "Kraków",
+      "state": "Lesser Poland Voivodeship",
+      "country": "Poland",
+      "coords": {
+        "lat": 50.0833333,
+        "long": 19.9166667
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/tauron-arena-krakow-krakow-poland-3bb54438.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sometimes",
+              "info": "tour debut"
+            },
+            {
+              "name": "Porch"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Dissident",
+              "info": "European tour debut"
+            },
+            {
+              "name": "Buckle Up"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Unthought Known"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Who Ever Said",
+              "info": "European tour debut; with \"(I Can't Get No) Satisfaction\" by The Rolling Stones tag"
+            },
+            {
+              "name": "Hard to Imagine",
+              "info": "first time since June 9, 2016"
+            },
+            {
+              "name": "Rearviewmirror",
+              "info": "European tour debut"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "info": "with \"Save It For Later\" by English Beat tag"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "River Cross"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3bb55c6c",
+      "eventDate": "12-07-2022",
+      "year": "2022",
+      "lastUpdated": "2026-01-22T10:57:36.419+0000",
+      "tour": "European Tour 2022",
+      "venue": "Papp László Sportaréna",
+      "city": "Budapest",
+      "state": "Budapest",
+      "country": "Hungary",
+      "coords": {
+        "lat": 47.5,
+        "long": 19.08333
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/papp-laszlo-sportarena-budapest-hungary-3bb55c6c.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Wash",
+              "info": "European tour debut"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Brain of J.",
+              "info": "European tour debut"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "1/2 Full",
+              "info": "tour debut"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "I'm Open",
+              "info": "tour debut"
+            },
+            {
+              "name": "I Am Mine",
+              "info": "tour debut"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Black",
+              "info": "with \"We Belong Together\" and \"MacArthur Park\" tags"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Lukin",
+              "info": "Slow Lukin Intro"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "info": "with \"Save it for Later\" tag"
+            },
+            {
+              "name": "Crazy Mary",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Alive",
+              "info": "with \"Voodoo Child (Slight Return)\" tag"
+            },
+            {
+              "name": "All Along the Watchtower",
+              "cover": "Bob Dylan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73b50a09",
+      "eventDate": "09-07-2022",
+      "year": "2022",
+      "lastUpdated": "2022-08-17T14:23:43.671+0000",
+      "tour": "European Tour 2022",
+      "venue": "Hyde Park",
+      "city": "London",
+      "state": "England",
+      "country": "United Kingdom",
+      "coords": {
+        "lat": 51.5084152563931,
+        "long": -0.125532746315002
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/hyde-park-london-england-73b50a09.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "All You Need Is Love",
+              "tape": true,
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Deep"
+            },
+            {
+              "name": "Wishlist",
+              "info": "with vocal improv & \"Waiting on a Friend\" by The Rolling Stones tag"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Throw Your Hatred Down",
+              "cover": "Neil Young",
+              "with": "Johnny Marr"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Not for You",
+              "info": "audience voted between \"Not for You\" and \"Whipping\""
+            },
+            {
+              "name": "Rats",
+              "info": "tour debut"
+            },
+            {
+              "name": "Faithfull",
+              "info": "European tour debut"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Eruption",
+              "cover": "Van Halen"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "River Cross",
+              "info": "dedicated to the people of Ukraine"
+            },
+            {
+              "name": "Leash"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            },
+            {
+              "name": "Baba O'Riley",
+              "info": "Also with Andrew Watt",
+              "cover": "The Who",
+              "with": "Johnny Marr"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53b51701",
+      "eventDate": "08-07-2022",
+      "year": "2022",
+      "lastUpdated": "2022-08-17T14:26:22.668+0000",
+      "tour": "European Tour 2022",
+      "venue": "Hyde Park",
+      "city": "London",
+      "state": "England",
+      "country": "United Kingdom",
+      "coords": {
+        "lat": 51.5084152563931,
+        "long": -0.125532746315002
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/hyde-park-london-england-53b51701.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "You're So Cool",
+              "tape": true,
+              "cover": "Hans Zimmer"
+            },
+            {
+              "name": "All You Need Is Love",
+              "tape": true,
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Better Man",
+              "info": "first time as opener since October 26, 2014"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Breath",
+              "info": "tour debut"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Save You"
+            },
+            {
+              "name": "Quick Escape",
+              "info": "with “God Save the Queen” by Sex Pistols tag"
+            },
+            {
+              "name": "In Hiding",
+              "info": "fan request"
+            },
+            {
+              "name": "Retrograde"
+            },
+            {
+              "name": "Light Years",
+              "info": "tour debut. Played by request from the fan club for a fan who'd passed away recently."
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Unthought Known"
+            },
+            {
+              "name": "Daughter",
+              "info": "with “Good Woman” by Cat Power and “W.M.A” tags"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Public Image",
+              "info": "first time since 2014",
+              "cover": "Public Image Ltd"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I'm the Answer",
+              "info": "first time since 2014; Eddie and Simon only",
+              "cover": "Simon Townshend",
+              "with": "Simon Townshend"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Indifference"
+            },
+            {
+              "name": "Alive",
+              "info": "with “War Pigs” by Black Sabbath and “Fear of the Dark” by Iron Maiden tags"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young",
+              "with": "John McEnroe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "53b53781",
+      "eventDate": "05-07-2022",
+      "year": "2022",
+      "lastUpdated": "2022-08-17T14:22:20.459+0000",
+      "tour": "European Tour 2022",
+      "venue": "Royal Arena",
+      "city": "Copenhagen",
+      "state": "Capital Region",
+      "country": "Denmark",
+      "coords": {
+        "lat": 55.6776812020993,
+        "long": 12.5709342956543
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/royal-arena-copenhagen-denmark-53b53781.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Metamorphosis Two",
+              "tape": true,
+              "cover": "Philip Glass"
+            },
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Retrograde"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"W.M.A\" tag"
+            },
+            {
+              "name": "Never Destination"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Inside Job",
+              "info": "fan request"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Love Boat Captain",
+              "info": "tour debut"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "info": "\"People Have the Power\" by Patti Smith tag"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "2bb5c8e2",
+      "eventDate": "03-07-2022",
+      "year": "2022",
+      "lastUpdated": "2022-07-05T17:36:14.436+0000",
+      "tour": "European Tour 2022",
+      "venue": "Gärdet",
+      "city": "Stockholm",
+      "state": "Stockholm County",
+      "country": "Sweden",
+      "coords": {
+        "lat": 59.3325765361753,
+        "long": 18.0649030208588
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/gardet-stockholm-sweden-2bb5c8e2.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Glorified G"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Take the Long Way"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Not for You",
+              "info": "Played instead of “Seven O’ Clock”"
+            },
+            {
+              "name": "Eruption",
+              "cover": "Van Halen"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bb5ef02",
+      "eventDate": "30-06-2022",
+      "year": "2022",
+      "lastUpdated": "2026-01-21T11:27:43.320+0000",
+      "tour": "European Tour 2022",
+      "venue": "Main Stage",
+      "city": "Werchter",
+      "state": "Flemish Brabant",
+      "country": "Belgium",
+      "coords": {
+        "lat": 50.967,
+        "long": 4.7
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/main-stage-werchter-belgium-4bb5ef02.html",
+      "songCount": 21,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Il buono, il brutto, il cattivo",
+              "tape": true,
+              "cover": "Ennio Morricone"
+            },
+            {
+              "name": "Rain",
+              "info": "Tour debut",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "I Believe in Miracles",
+              "cover": "Ramones"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Whipping",
+              "info": "Tour debut"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"Another Brick in the Wall Part 2\" tag"
+            },
+            {
+              "name": "Unthought Known"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bb58324",
+      "eventDate": "28-06-2022",
+      "year": "2022",
+      "lastUpdated": "2022-12-05T19:10:52.471+0000",
+      "tour": "European Tour 2022",
+      "venue": "Festhalle",
+      "city": "Frankfurt",
+      "state": "Hesse",
+      "country": "Germany",
+      "coords": {
+        "lat": 50.1166667,
+        "long": 8.6833333
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/festhalle-frankfurt-germany-5bb58324.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Inside Job",
+              "info": "Tour debut, first time as opener since 2006"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Last Exit"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Fatal",
+              "info": "Tour debut"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "In My Tree"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Never Destination"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Buckle Up"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"Save it for Later\" tag"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "River Cross"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Indifference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3bb59ca4",
+      "eventDate": "25-06-2022",
+      "year": "2022",
+      "lastUpdated": "2024-03-18T03:26:38.784+0000",
+      "tour": "European Tour 2022",
+      "venue": "Autodromo Internazionale Enzo e Dino Ferrari",
+      "city": "Imola",
+      "state": "Emilia-Romagna",
+      "country": "Italy",
+      "coords": {
+        "lat": 44.352267,
+        "long": 11.715823
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/autodromo-internazionale-enzo-e-dino-ferrari-imola-italy-3bb59ca4.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Come Back",
+              "info": "Tour debut"
+            },
+            {
+              "name": "Save You",
+              "info": "Tour debut"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"People Have the Power\" by Patti Smith and \"W.M.A.\" tags"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"American Girl\", \"Beast of Burden\", and \"Save It for Later\" tags"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "4bb5b3a6",
+      "eventDate": "23-06-2022",
+      "year": "2022",
+      "lastUpdated": "2025-11-09T01:31:15.869+0000",
+      "tour": "European Tour 2022",
+      "venue": "Hallenstadion",
+      "city": "Zurich",
+      "state": "Zürich",
+      "country": "Switzerland",
+      "coords": {
+        "lat": 47.3666667,
+        "long": 8.55
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/hallenstadion-zurich-switzerland-4bb5b3a6.html",
+      "songCount": 20,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"W.M.A.\", \"Leash\", and \"Glorified G\" tags"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Animal",
+              "info": "paused briefly due to an incident in the crowd"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "In Hiding"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Crazy Mary",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3bb44048",
+      "eventDate": "21-06-2022",
+      "year": "2022",
+      "lastUpdated": "2022-07-05T17:36:14.474+0000",
+      "tour": "European Tour 2022",
+      "venue": "Waldbühne",
+      "city": "Berlin",
+      "state": "Berlin",
+      "country": "Germany",
+      "coords": {
+        "lat": 52.5166667,
+        "long": 13.4
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/waldbuhne-berlin-germany-3bb44048.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Hail, Hail"
+            },
+            {
+              "name": "Deep"
+            },
+            {
+              "name": "Untitled"
+            },
+            {
+              "name": "MFC"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Retrograde"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Amongst the Waves"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Not for You",
+              "info": "with \"Modern Girl\" by Sleater-Kinney outro"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "I Believe in Miracles",
+              "info": "Roland (who led a fan campaign for more accessibility at the venue) is brought on stage afterward",
+              "cover": "Ramones"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Street Fighting Man",
+              "cover": "The Rolling Stones"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "Partially played"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "63b46277",
+      "eventDate": "18-06-2022",
+      "year": "2022",
+      "lastUpdated": "2024-01-03T22:30:20.658+0000",
+      "tour": "European Tour 2022",
+      "venue": "Megaland",
+      "city": "Landgraaf",
+      "state": "Limburg",
+      "country": "Netherlands",
+      "coords": {
+        "lat": 50.9070922400953,
+        "long": 6.02715969085693
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/megaland-landgraaf-netherlands-63b46277.html",
+      "songCount": 20,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Even Flow",
+              "info": "First time played as opening song since 2000"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Throw Your Hatred Down",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Sleeping by Myself",
+              "cover": "Eddie Vedder"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Daughter",
+              "info": "With “Another Brick in The Wall” by Pink Floyd excerpt"
+            },
+            {
+              "name": "Jeremy",
+              "info": "Followed by “Don’t Dream it’s Over” by Crowded House excerpt"
+            },
+            {
+              "name": "Better Man",
+              "info": "With \"Save It For Later\" Tag"
+            },
+            {
+              "name": "Porch",
+              "info": "Dedicated to cameraman Rob van Rijn, who sat on the crane that Eddie jumped from during Pinkpop 1992"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Comfortably Numb",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Street Fighting Man",
+              "info": "first time since 1994",
+              "cover": "The Rolling Stones"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "3b7317f",
+      "eventDate": "16-05-2022",
+      "year": "2022",
+      "lastUpdated": "2022-05-17T07:45:51.339+0000",
+      "tour": "Gigaton",
+      "venue": "Save Mart Center",
+      "city": "Fresno",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 36.7477272,
+        "long": -119.7723661
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/save-mart-center-fresno-ca-3b7317f.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Don't Gimme No Lip",
+              "info": "Stone Gossard on vocals, first time live since 2016"
+            },
+            {
+              "name": "Once",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "Why Go",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "Even Flow",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "Garden",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "Black",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "Eruption",
+              "cover": "Van Halen"
+            },
+            {
+              "name": "Animal"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Throw Your Hatred Down",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Purple Rain",
+              "info": "Josh Klinghoffer on lead vocals, live debut",
+              "cover": "Prince"
+            },
+            {
+              "name": "Porch",
+              "with": "Dave Krusen"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Jeremy",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "Deep",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "State of Love and Trust",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "Alive",
+              "with": "Dave Krusen"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bb7d3dc",
+      "eventDate": "13-05-2022",
+      "year": "2022",
+      "lastUpdated": "2024-05-14T13:55:19.574+0000",
+      "tour": "Gigaton",
+      "venue": "Oakland Arena",
+      "city": "Oakland",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 37.8043722,
+        "long": -122.2708026
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/oakland-arena-oakland-ca-5bb7d3dc.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-set",
+          "songs": [
+            {
+              "name": "Throw Your Arms Around Me",
+              "info": "Eddie solo; first time since 2016",
+              "cover": "Hunters & Collectors"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": "Main Set",
+          "songs": [
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Interstellar Overdrive",
+              "cover": "Pink Floyd"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Throw Your Hatred Down",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Dissident"
+            },
+            {
+              "name": "W.M.A.",
+              "info": "first time since 2016"
+            },
+            {
+              "name": "Mind Your Manners",
+              "with": "Kai Neukermans"
+            },
+            {
+              "name": "Brain of J."
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Rearviewmirror"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Bee Girl"
+            },
+            {
+              "name": "Smile"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Crazy Mary",
+              "cover": "Victoria Williams"
+            },
+            {
+              "name": "Porch"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "cover": "The Who"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "73b7da75",
+      "eventDate": "12-05-2022",
+      "year": "2022",
+      "lastUpdated": "2022-05-14T01:59:29.645+0000",
+      "tour": "Gigaton",
+      "venue": "Oakland Arena",
+      "city": "Oakland",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 37.8043722,
+        "long": -122.2708026
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/oakland-arena-oakland-ca-73b7da75.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-set",
+          "songs": [
+            {
+              "name": "The Needle and the Damage Done",
+              "info": "Eddie solo; first performance since 2016",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo",
+              "cover": "Tom Petty"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": "Main Set",
+          "songs": [
+            {
+              "name": "Rockin' in the Free World",
+              "info": "Tour debut",
+              "cover": "Neil Young"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Daughter",
+              "info": "The Stills-Young Band’s Long May You Run tag"
+            },
+            {
+              "name": "Not for You",
+              "info": "Sleater-Kinney's Modern Girl as outro"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "You've Got to Hide Your Love Away",
+              "info": "first performance since 2016",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "Animal",
+              "info": "Tour debut"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Baba O'Riley",
+              "info": "Tour debut",
+              "cover": "The Who"
+            },
+            {
+              "name": "Yellow Ledbetter",
+              "info": "with a fan “Josh Arroyo” on drums"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "5bb7f758",
+      "eventDate": "09-05-2022",
+      "year": "2022",
+      "lastUpdated": "2022-05-11T19:52:28.167+0000",
+      "tour": "Gigaton",
+      "venue": "Gila River Arena",
+      "city": "Glendale",
+      "state": "Arizona",
+      "country": "United States",
+      "coords": {
+        "lat": 33.5386523,
+        "long": -112.1859866
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/gila-river-arena-glendale-az-5bb7f758.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-set",
+          "songs": [
+            {
+              "name": "Far Behind",
+              "info": "Eddie solo",
+              "cover": "Eddie Vedder"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": "Main Set",
+          "songs": [
+            {
+              "name": "Wash",
+              "info": "tour debut"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Why Go"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Alright",
+              "info": "tour debut"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Black",
+              "info": "with \"We Belong Together\" tag"
+            },
+            {
+              "name": "I Got Id",
+              "info": "tour debut"
+            },
+            {
+              "name": "Red Mosquito",
+              "info": "tour debut"
+            },
+            {
+              "name": "Sleeping by Myself",
+              "info": "tour debut",
+              "cover": "Eddie Vedder"
+            },
+            {
+              "name": "Daughter",
+              "info": "with \"W.M.A.\" tag"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Smile",
+              "info": "tour debut"
+            },
+            {
+              "name": "Eruption",
+              "info": "tour debut",
+              "cover": "Van Halen"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Better Man",
+              "info": "\"Save It For Later\" tease"
+            },
+            {
+              "name": "Leaving Here",
+              "info": "tour debut",
+              "cover": "Eddie Holland"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "2bb788a2",
+      "eventDate": "07-05-2022",
+      "year": "2022",
+      "lastUpdated": "2022-05-10T19:13:44.331+0000",
+      "tour": "Gigaton",
+      "venue": "Kia Forum",
+      "city": "Inglewood",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.9616801,
+        "long": -118.3531311
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/kia-forum-inglewood-ca-2bb788a2.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-Set",
+          "songs": [
+            {
+              "name": "Wildflowers",
+              "info": "Eddie solo",
+              "cover": "Tom Petty"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": "Main Set",
+          "songs": [
+            {
+              "name": "Release"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Low Light"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Take the Long Way"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Immortality"
+            },
+            {
+              "name": "Cold Day in the Sun",
+              "info": "Also with Mark Guiliana; Matt Cameron on vocals",
+              "cover": "Foo Fighters",
+              "with": "Chad Smith"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Unthought Known"
+            },
+            {
+              "name": "Glorified G"
+            },
+            {
+              "name": "Lukin"
+            },
+            {
+              "name": "I Believe in Miracles",
+              "cover": "Ramones"
+            },
+            {
+              "name": "Garden"
+            },
+            {
+              "name": "Mind Your Manners"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "info": "ended with snippet of Save It For Later by English Beat"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Leash"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Indifference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "1bb79154",
+      "eventDate": "06-05-2022",
+      "year": "2022",
+      "lastUpdated": "2023-06-01T15:22:46.156+0000",
+      "tour": "Gigaton",
+      "venue": "Kia Forum",
+      "city": "Inglewood",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.9616801,
+        "long": -118.3531311
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/kia-forum-inglewood-ca-1bb79154.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-set",
+          "songs": [
+            {
+              "name": "I Won't Back Down",
+              "info": "Eddie solo",
+              "cover": "Tom Petty"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": "Main Set",
+          "songs": [
+            {
+              "name": "Of the Girl"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Faithfull",
+              "info": "first time since 2016"
+            },
+            {
+              "name": "Not for You",
+              "info": "with Sleater-Kinney's \"Modern Girl\" intro"
+            },
+            {
+              "name": "Buckle Up"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Never Destination"
+            },
+            {
+              "name": "Down"
+            },
+            {
+              "name": "Nothingman"
+            },
+            {
+              "name": "Present Tense"
+            },
+            {
+              "name": "Who Ever Said"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "State of Love and Trust"
+            },
+            {
+              "name": "Wishlist"
+            },
+            {
+              "name": "Do the Evolution"
+            },
+            {
+              "name": "Black"
+            },
+            {
+              "name": "Alive"
+            },
+            {
+              "name": "Yellow Ledbetter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Pearl Jam",
+      "id": "2bb7ac42",
+      "eventDate": "03-05-2022",
+      "year": "2022",
+      "lastUpdated": "2022-05-07T13:23:22.817+0000",
+      "tour": "Gigaton",
+      "venue": "Viejas Arena",
+      "city": "San Diego",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 32.7153292,
+        "long": -117.1572551
+      },
+      "url": "https://www.setlist.fm/setlist/pearl-jam/2022/viejas-arena-san-diego-ca-2bb7ac42.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Pre-Set",
+          "songs": [
+            {
+              "name": "Keep Me in Your Heart",
+              "info": "Eddie solo before introducing tour opener Josh Klinghoffer",
+              "cover": "Warren Zevon"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": "Main Set",
+          "songs": [
+            {
+              "name": "Oceans"
+            },
+            {
+              "name": "Retrograde"
+            },
+            {
+              "name": "Never Destination"
+            },
+            {
+              "name": "Corduroy"
+            },
+            {
+              "name": "Dance of the Clairvoyants"
+            },
+            {
+              "name": "Amongst the Waves"
+            },
+            {
+              "name": "Even Flow"
+            },
+            {
+              "name": "Who Ever Said"
+            },
+            {
+              "name": "Quick Escape"
+            },
+            {
+              "name": "Long Road"
+            },
+            {
+              "name": "Given to Fly"
+            },
+            {
+              "name": "Superblood Wolfmoon"
+            },
+            {
+              "name": "Daughter"
+            },
+            {
+              "name": "Seven O'Clock"
+            },
+            {
+              "name": "Jeremy"
+            },
+            {
+              "name": "Porch"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Lightning Bolt"
+            },
+            {
+              "name": "Better Man"
+            },
+            {
+              "name": "Elderly Woman Behind the Counter in a Small Town"
+            },
+            {
+              "name": "River Cross"
+            },
+            {
+              "name": "Footsteps"
+            },
+            {
+              "name": "Once"
+            },
+            {
+              "name": "Alive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "5389bf89",
+      "eventDate": "27-02-2022",
+      "year": "2022",
+      "lastUpdated": "2022-03-10T05:52:13.867+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "The Magnolia",
+      "city": "El Cajon",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 32.7947731,
+        "long": -116.9625269
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/the-magnolia-el-cajon-ca-5389bf89.html",
+      "songCount": 26,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Society",
+              "info": "Lennon's \"Working Class Hero\" snippet and improvised lyrics",
+              "cover": "Jerry Hannan",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Drive",
+              "cover": "R.E.M."
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "I'll Be Waiting",
+              "info": "Glen & Ed duo"
+            },
+            {
+              "name": "Timeless Melody",
+              "cover": "The La’s"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Good and Evil",
+              "info": "Live debut"
+            },
+            {
+              "name": "Fallout Today",
+              "info": "long-time monitor engineer Karrie Keyes brought onstage"
+            },
+            {
+              "name": "Try"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "I Got Id",
+              "info": "Neil Young & Crazy Horse \"Cinnamon Girl\" snippet",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Lukin",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Porch",
+              "info": "Led Zeppelin’s Dazed and Confused breakdown snippet during mid-song instrumental break",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "The Waiting",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Give Blood",
+              "cover": "Pete Townshend"
+            },
+            {
+              "name": "Dirty Frank",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "on drums, Chad Smith on guitar",
+              "cover": "Neil Young",
+              "with": "Anthony LoGerfo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "5b884bbc",
+      "eventDate": "25-02-2022",
+      "year": "2022",
+      "lastUpdated": "2024-10-03T03:03:25.944+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "YouTube Theater",
+      "city": "Inglewood",
+      "state": "California",
+      "country": "United States",
+      "coords": {
+        "lat": 33.9616801,
+        "long": -118.3531311
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/youtube-theater-inglewood-ca-5b884bbc.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Drive",
+              "cover": "R.E.M."
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers",
+              "with": "Benmont Tench"
+            },
+            {
+              "name": "Long Way",
+              "with": "Benmont Tench"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Tender Mercies",
+              "cover": "Glen Hansard & Eddie Vedder"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "My Father's Daughter",
+              "cover": "Olivia Vedder, Eddie Vedder & Glen Hansard",
+              "with": "Olivia Vedder"
+            },
+            {
+              "name": "Try"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Fallout Today",
+              "with": "Benmont Tench"
+            },
+            {
+              "name": "Better Man",
+              "info": "English Beat \"Save It For Later\" snippet",
+              "cover": "Pearl Jam",
+              "with": "Benmont Tench"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Baby Don't You Do It",
+              "info": "+ horns: Nate Walcott, Sean Billings, Vikram Devasthali, James King",
+              "cover": "Marvin Gaye",
+              "with": "Benmont Tench"
+            },
+            {
+              "name": "The Waiting",
+              "cover": "Tom Petty and the Heartbreakers",
+              "with": "Benmont Tench"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison",
+              "with": "Benmont Tench"
+            },
+            {
+              "name": "Dirty Frank",
+              "info": "Red Hot Chili Peppers  \"Freaky Styley\" snippet",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Message in a Bottle",
+              "cover": "The Police",
+              "with": "Stewart Copeland"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young",
+              "with": "Stewart Copeland"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "5b885f08",
+      "eventDate": "22-02-2022",
+      "year": "2022",
+      "lastUpdated": "2024-10-03T03:03:25.986+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "S. Mark Taper Foundation Auditorium",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/s-mark-taper-foundation-auditorium-seattle-wa-5b885f08.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Drive",
+              "cover": "R.E.M."
+            },
+            {
+              "name": "Here Comes the Sun",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Tender Mercies",
+              "info": "dedicated to Mark Lanegan",
+              "cover": "Glen Hansard & Eddie Vedder"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "In My Tree",
+              "info": "partial",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "My Father's Daughter",
+              "cover": "Olivia Vedder, Eddie Vedder & Glen Hansard",
+              "with": "Olivia Vedder"
+            },
+            {
+              "name": "Try"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "I Got Id",
+              "info": "with \"Cinnamon Girl\" tag",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Lukin",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Give Blood",
+              "cover": "Pete Townshend"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "info": "with \"People Have the Power\" tag",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "info": "Chad Smith on guitar and Josh Klinghoffer on drums",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "1b886118",
+      "eventDate": "21-02-2022",
+      "year": "2022",
+      "lastUpdated": "2023-08-25T21:39:17.650+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "S. Mark Taper Foundation Auditorium",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "coords": {
+        "lat": 47.6062095,
+        "long": -122.3320708
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/s-mark-taper-foundation-auditorium-seattle-wa-1b886118.html",
+      "songCount": 25,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Society",
+              "info": "duo",
+              "cover": "Jerry Hannan",
+              "with": "Glen Hansard"
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "I'll Be Waiting"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "Long Way",
+              "info": "on background vocals",
+              "with": "Harper Vedder"
+            },
+            {
+              "name": "God Save the Queen",
+              "info": "Snippet; with covid-related lyrics",
+              "cover": "Sex Pistols"
+            },
+            {
+              "name": "Power of Right"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "My Father's Daughter",
+              "cover": "Olivia Vedder, Eddie Vedder & Glen Hansard",
+              "with": "Olivia Vedder"
+            },
+            {
+              "name": "Try",
+              "info": "singing the intro count",
+              "with": "Olivia Vedder"
+            },
+            {
+              "name": "Chad-O",
+              "info": "Chad Smith with tribute to “Moby Dick” by John Bonham of Led Zeppelin"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Sleepless Nights",
+              "info": "Ed & Glen",
+              "cover": "The Everly Brothers"
+            },
+            {
+              "name": "Corduroy",
+              "info": "punk version",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Precious",
+              "cover": "Pretenders",
+              "with": "Duff McKagan"
+            },
+            {
+              "name": "Dirty Frank",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "All Along the Watchtower",
+              "cover": "Bob Dylan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "4b885722",
+      "eventDate": "19-02-2022",
+      "year": "2022",
+      "lastUpdated": "2022-02-23T00:46:11.464+0000",
+      "tour": "Earthlings Promo",
+      "venue": "Rogue Theatre",
+      "city": "Grants Pass",
+      "state": "Oregon",
+      "country": "United States",
+      "coords": {
+        "lat": 42.439007,
+        "long": -123.3283925
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/rogue-theatre-grants-pass-or-4b885722.html",
+      "songCount": 1,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "63881a67",
+      "eventDate": "10-02-2022",
+      "year": "2022",
+      "lastUpdated": "2024-10-03T03:03:25.994+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "Auditorium Theatre",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/auditorium-theatre-chicago-il-63881a67.html",
+      "songCount": 23,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "I'll Be Waiting"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Power of Right"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "Wishlist",
+              "info": "abridged",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "Try"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Tender Mercies",
+              "cover": "Glen Hansard & Eddie Vedder"
+            },
+            {
+              "name": "Timeless Melody",
+              "cover": "The La’s"
+            },
+            {
+              "name": "Corduroy",
+              "info": "Alternate version",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Society",
+              "info": "Eddie and Glen acoustic",
+              "cover": "Jerry Hannan"
+            },
+            {
+              "name": "Falling Slowly",
+              "info": "Eddie and Glen acoustic",
+              "cover": "The Swell Season"
+            },
+            {
+              "name": "Smile",
+              "info": "Dedicated to Sean Sullivan",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Lukin",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "3b882468",
+      "eventDate": "09-02-2022",
+      "year": "2022",
+      "lastUpdated": "2022-03-10T23:05:18.169+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "Auditorium Theatre",
+      "city": "Chicago",
+      "state": "Illinois",
+      "country": "United States",
+      "coords": {
+        "lat": 41.850033,
+        "long": -87.6500523
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/auditorium-theatre-chicago-il-3b882468.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Drive",
+              "cover": "R.E.M."
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Here Comes the Sun",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "I'll Be Waiting"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "Not for You",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Try"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Precious",
+              "cover": "Pretenders"
+            },
+            {
+              "name": "Better Man",
+              "info": "with \"People Have the Power\" tag",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Give Blood",
+              "cover": "Pete Townshend"
+            },
+            {
+              "name": "Hard Sun",
+              "cover": "Indio"
+            },
+            {
+              "name": "Dirty Frank",
+              "info": "with \"Freaky Styley\" snippet",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "b883586",
+      "eventDate": "06-02-2022",
+      "year": "2022",
+      "lastUpdated": "2024-10-03T03:03:26.002+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "New Jersey Performing Arts Center",
+      "city": "Newark",
+      "state": "New Jersey",
+      "country": "United States",
+      "coords": {
+        "lat": 40.735657,
+        "long": -74.1723667
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/new-jersey-performing-arts-center-newark-nj-b883586.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Society",
+              "info": "Eddie and Glen Hansard acoustic",
+              "cover": "Jerry Hannan"
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Here Comes the Sun",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Timeless Melody",
+              "cover": "The La’s"
+            },
+            {
+              "name": "I'll Be Waiting"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Tender Mercies",
+              "cover": "Glen Hansard & Eddie Vedder"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "Try",
+              "with": "Danny Clinch"
+            },
+            {
+              "name": "Chad-O",
+              "info": "Chad Smith drum solo"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Precious",
+              "cover": "Pretenders"
+            },
+            {
+              "name": "Hard Sun",
+              "cover": "Indio"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "I Am a Patriot",
+              "info": "fast version",
+              "cover": "Little Steven"
+            },
+            {
+              "name": "Dirty Frank",
+              "info": "with \"Freaky Styley\" snippet",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "4388c37b",
+      "eventDate": "04-02-2022",
+      "year": "2022",
+      "lastUpdated": "2022-02-10T18:36:03.342+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "Beacon Theatre",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/beacon-theatre-new-york-ny-4388c37b.html",
+      "songCount": 22,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Drive",
+              "cover": "R.E.M."
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Timeless Melody",
+              "cover": "The La’s"
+            },
+            {
+              "name": "I'll Be Waiting"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Try",
+              "with": "Danny Clinch"
+            },
+            {
+              "name": "Dirty Frank",
+              "info": "with \"Freaky Styley\" tease; preceded by \"Black Summer\" tease",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Not for You",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        },
+        {
+          "encore": 2,
+          "name": null,
+          "songs": [
+            {
+              "name": "Purple Rain",
+              "info": "Josh Klinghoffer on lead vocals for 2nd & 3rd verses",
+              "cover": "Prince"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "2b88c4b6",
+      "eventDate": "03-02-2022",
+      "year": "2022",
+      "lastUpdated": "2024-10-03T03:03:26.010+0000",
+      "tour": "The Earthlings Tour 2022",
+      "venue": "Beacon Theatre",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 40.7142691,
+        "long": -74.0059729
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/beacon-theatre-new-york-ny-2b88c4b6.html",
+      "songCount": 24,
+      "sets": [
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "On My Way",
+              "tape": true
+            },
+            {
+              "name": "Drive",
+              "cover": "R.E.M."
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Here Comes the Sun",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "I'll Be Waiting"
+            },
+            {
+              "name": "Invincible"
+            },
+            {
+              "name": "The Dark"
+            },
+            {
+              "name": "Power of Right",
+              "info": "live debut"
+            },
+            {
+              "name": "Fallout Today"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "Tender Mercies",
+              "cover": "Glen Hansard & Eddie Vedder"
+            },
+            {
+              "name": "Wishlist",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "Brother the Cloud"
+            },
+            {
+              "name": "Mrs. Mills"
+            },
+            {
+              "name": "Try",
+              "with": "Danny Clinch"
+            },
+            {
+              "name": "Chad-O"
+            },
+            {
+              "name": "Rose of Jericho"
+            },
+            {
+              "name": "Porch",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Precious",
+              "cover": "Pretenders"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam"
+            },
+            {
+              "name": "People Have the Power",
+              "cover": "Patti Smith"
+            },
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "All Along the Watchtower",
+              "cover": "Bob Dylan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artist": "Eddie Vedder",
+      "id": "4b88c3a6",
+      "eventDate": "01-02-2022",
+      "year": "2022",
+      "lastUpdated": "2022-02-10T18:06:05.667+0000",
+      "tour": "Earthlings Promo",
+      "venue": "Capitol Theatre",
+      "city": "Port Chester",
+      "state": "New York",
+      "country": "United States",
+      "coords": {
+        "lat": 41.0017643,
+        "long": -73.6656834
+      },
+      "url": "https://www.setlist.fm/setlist/eddie-vedder/2022/capitol-theatre-port-chester-ny-4b88c3a6.html",
+      "songCount": 17,
+      "sets": [
+        {
+          "encore": null,
+          "name": "Acoustic Pre-Set",
+          "songs": [
+            {
+              "name": "Wildflowers",
+              "cover": "Tom Petty"
+            }
+          ]
+        },
+        {
+          "encore": null,
+          "name": null,
+          "songs": [
+            {
+              "name": "Drive",
+              "cover": "R.E.M."
+            },
+            {
+              "name": "Room at the Top",
+              "cover": "Tom Petty and the Heartbreakers"
+            },
+            {
+              "name": "Here Comes the Sun",
+              "cover": "The Beatles"
+            },
+            {
+              "name": "Invincible",
+              "info": "live debut"
+            },
+            {
+              "name": "The Dark",
+              "info": "live debut"
+            },
+            {
+              "name": "Fallout Today",
+              "info": "live debut"
+            },
+            {
+              "name": "The Haves"
+            },
+            {
+              "name": "Brother the Cloud",
+              "info": "live debut"
+            },
+            {
+              "name": "I'm One",
+              "cover": "The Who"
+            },
+            {
+              "name": "Long Way"
+            },
+            {
+              "name": "Mrs. Mills",
+              "info": "live debut"
+            },
+            {
+              "name": "Try",
+              "info": "live debut"
+            },
+            {
+              "name": "Rose of Jericho",
+              "info": "live debut"
+            },
+            {
+              "name": "Better Man",
+              "cover": "Pearl Jam"
+            }
+          ]
+        },
+        {
+          "encore": 1,
+          "name": null,
+          "songs": [
+            {
+              "name": "Isn't It a Pity",
+              "cover": "George Harrison"
+            },
+            {
+              "name": "Rockin' in the Free World",
+              "cover": "Neil Young"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
