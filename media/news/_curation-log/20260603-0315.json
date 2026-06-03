@@ -1,0 +1,31 @@
+{
+  "runAt": "2026-06-03T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 21,
+  "distribution": { "midia": 20, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "bc613bb9a2", "titulo": "Quatro canções icônicas do rock inspiradas em notícias reais, incluindo Jeremy", "kind": "midia" },
+    { "id": "8dbfbd0282", "titulo": "Pearl Jam revela novo baterista só no Ohana, em 27 de setembro", "kind": "midia" },
+    { "id": "b891b5dff9", "titulo": "Stone celebra o mistério do baterista, mas falas de Eddie e Mike se contradizem", "kind": "midia" },
+    { "id": "5144742e57", "titulo": "Lineup do Ohana 2026: Pearl Jam volta ao palco em setembro", "kind": "midia" },
+    { "id": "1acd911041", "titulo": "SoLaT celebra 20 anos do álbum self-titled do Pearl Jam", "kind": "midia" },
+    { "id": "c563756f87", "titulo": "Pearl Jam lança versão não-censurada do videoclipe de Jeremy", "kind": "midia" },
+    { "id": "718cad906c", "titulo": "No Code, 1996: o álbum do Pearl Jam que o mundo ainda não entendeu direito", "kind": "midia" },
+    { "id": "5b1e5c2661", "titulo": "A história trágica de Trevor Wilson, o garoto do videoclipe de Jeremy", "kind": "midia" },
+    { "id": "f92938cdb3", "titulo": "Andrew Watt: o produtor que trouxe Pearl Jam para os anos 2020", "kind": "midia" },
+    { "id": "4dc81e4959", "titulo": "Eddie Vedder e a holandesa do 1993: a história do reencontro que parece de filme", "kind": "midia" },
+    { "id": "b7737c8c53", "titulo": "SoLaT revisita Temple of the Dog nos 35 anos do álbum", "kind": "midia" },
+    { "id": "cc7665d835", "titulo": "Podcast SoLaT celebra dois anos de Dark Matter remontando a ordem das faixas", "kind": "midia" },
+    { "id": "552fe2f79c", "titulo": "Mike McCready: pronto pra voltar, mas o Pearl Jam ainda não tem baterista novo", "kind": "midia" },
+    { "id": "3a21f6025e", "titulo": "Fotógrafo Geoff Whitman lança livro com bastidores da Dark Matter World Tour", "kind": "midia" },
+    { "id": "a9b8af35a8", "titulo": "Roskilde 2000: os nove mortos no show do Pearl Jam e o peso que a banda carrega", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "b6434a44c1", "title": "Tigercub's Jamie Stephen Hall", "reason": "PJ tangencial: Stone Gossard mencionado como influência num podcast sobre outro artista, sem conteúdo substantivo sobre o PJ" },
+    { "id": "f5ce8cbd8e", "title": "Tickemaster & Live Nation Ruled a Monopoly...Now What??", "reason": "sem mencao a PJ: podcast sobre processo antitruste do Ticketmaster e Live Nation, tema geral do setor" },
+    { "id": "276e7f1b41", "title": "Smashing Pumpkins' Mount Rushmore Songs", "reason": "sem mencao a PJ: podcast exclusivamente sobre Smashing Pumpkins" },
+    { "id": "0d190b572e", "title": "Pearl Jam anuncia nuevo batería para el festival Ohana", "reason": "texto genérico sem citações diretas nem informações novas além do já coberto por Tone Deaf e Rolling Stone DE" },
+    { "id": "80ddd398ae", "title": "The Undisputed 3 Best Songs From Pearl Jam's 1991 LP Ten", "reason": "lista clickbait genérica de ranking de músicas, sem conteúdo editorial novo" },
+    { "id": "cs-19a09bf0cf", "title": "Bu$hleaguer", "reason": "community-spotlight sem substância: score 0, texto de uma linha apenas ('Wonder if they would ever play this song again')" }
+  ]
+}
