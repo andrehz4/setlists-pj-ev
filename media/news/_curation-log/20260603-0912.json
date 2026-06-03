@@ -1,0 +1,30 @@
+{
+  "runAt": "2026-06-03T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 20,
+  "distribution": { "midia": 20, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "6a7a5811aa", "titulo": "Mike McCready completa 60 anos: 'Sou grato por ainda estar aqui'", "kind": "midia" },
+    { "id": "7aceb3f437", "titulo": "Mike McCready lança romance gráfico e ópera rock sobre a cena grunge de Seattle", "kind": "midia" },
+    { "id": "c412289330", "titulo": "Podcast celebra seis anos de Gigaton com análise dos melhores momentos do álbum", "kind": "midia" },
+    { "id": "c7fa1b6cf4", "titulo": "34 anos do MTV Unplugged que mostrou o Pearl Jam além do distorcido", "kind": "midia" },
+    { "id": "6b3aeea75e", "titulo": "Rolling Stone alemão lista 50 melhores do grunge e destaca Mother Love Bone", "kind": "midia" },
+    { "id": "027a134873", "titulo": "McCready lança Farewell to Seasons em outubro com novidades do PJ", "kind": "midia" },
+    { "id": "e448f4ccd7", "titulo": "Mike McCready apoia Path with Art, projeto de arte-terapia em Seattle", "kind": "midia" },
+    { "id": "a837ed1b44", "titulo": "Rolling Stone detalha Farewell to Seasons e o PJ em transição", "kind": "midia" },
+    { "id": "de5a84f9f7", "titulo": "Podcast explora o London Bridge Studio, o estúdio onde nasceu o Ten", "kind": "midia" },
+    { "id": "a450996c33", "titulo": "Bu$hleaguer: a música que o Pearl Jam quase baniu do setlist para sempre", "kind": "midia" },
+    { "id": "f79e1efe8d", "titulo": "Eddie Vedder escreve ensaio sobre The Who para a Rolling Stone alemã", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "9a29627386", "title": "Los mejores discos del Grunge que influenciaron el rock regio", "reason": "PJ tangencial: lista de grunge mexicano, PJ mencionado en passant" },
+    { "id": "8b725cfc27", "title": "William DuVall & Mark Menghi: Louder Together", "reason": "sem menção a PJ: episódio sobre Alice In Chains e Metal Allegiance" },
+    { "id": "8b0bfb96ab", "title": "299th Episode Mailbag Spectacular!", "reason": "sem menção a PJ: episódio mailbag genérico do podcast" },
+    { "id": "14aca4982d", "title": "Alain Johannes: The Alchemist Behind the Sound", "reason": "sem menção a PJ: foco em Chris Cornell, QOTSA, Eleven" },
+    { "id": "566e77d249", "title": "Temple of the Dog Live Album?", "reason": "especulação de Reddit sem fonte, sem informação nova" },
+    { "id": "3c0aa321ba", "title": "Smells like 90s: Die 100 besten Platten der Neunziger", "reason": "PJ tangencial: mencionado brevemente em lista ampla dos 100 melhores dos 90s" },
+    { "id": "b49866e33b", "title": "Dean Delray's Long Way to the Top", "reason": "sem menção a PJ: foco em AC/DC e tributo ao Bon Scott" },
+    { "id": "d00e0f3dfe", "title": "Chris Pierce Lifts the Heavy Hearted", "reason": "sem menção a PJ: cantor Americana com Neil Young" },
+    { "id": "e7392a031a", "title": "Getting Loud with Zach Person", "reason": "sem menção a PJ: indie rocker de Atlanta, blues rock" }
+  ]
+}
