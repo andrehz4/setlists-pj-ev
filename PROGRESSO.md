@@ -1,7 +1,30 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-06-01 (sessão tarde: CAUSA REAL do repost achada e CONSERTADA, contraria o handoff anterior)
+2026-06-03 (sessão: fontes dobradas 19->38, teto 4->10, setlist.fm integrado + dump histórico de shows)
+
+## ⭐ Sessão 2026-06-03: expansão de fontes + setlist.fm (FEITO)
+
+**Diagnóstico do teto 3->4:** confirmado que NÃO quebrou nada (backlog do `_pending` ficou em 0-2, longe do alerta). Achados cosméticos pré-existentes, não regressão: mensagens de commit da curadoria às vezes saem com `$(jq ...)` literal (vem de `routine-prompt.md`, não expande na routine) e `billboard-br` volta XML malformado de forma intermitente.
+
+**Fontes: 19 -> 38 (depois 39 com setlist.fm).** Em `scripts/news/sources.mjs`:
+- 4 URLs corrigidas (só respondiam via redirect): stereogum (apex sem barra), pitchfork (`/feed/feed-news/rss`), rolling-stone-br (mudou pra `rollingstone.com.br`), cnn-br (`admin.cnnbrasil.com.br`). Removida `oglobo-musica` (morta).
+- +19 fontes novas via 2 passadas de deep-research + validação ao vivo (curl: HTTP 200 + itens + texto). Novo group `intl`. Cobre EN/PT/ES/DE/IT e ~12 países (US, BR, DE, IT, ES, AR, MX, CL, AU, CA, UK). Idioma não é barreira (curadoria Sonnet traduz). Dedicadas PJ (alwaysRelevant) usam tag-feed: só excerto no RSS, o `scrapeArticle` puxa o corpo (confirmado por teste: extrai 1300-4600 chars até em alemão/espanhol).
+- Mercados de PJ (ranking por proxy de turnê setlist.fm, já que Spotify/Last.fm por país não são públicos): fora dos EUA, Canadá > Austrália > UK > Alemanha > Holanda > Itália; LatAm Brasil > México > Chile > Argentina.
+
+**Teto MAX_NEW_PER_RUN 4 -> 10** (`fetch-news.mjs`), alerta de backlog `NEWS_PENDING_ALERT` 12 -> 25 (`news.yml`). Validado por dry-run: 36/38 fontes respondem (só billboard XML e reddit-pj 403 sem proxy local). DECISÃO PENDENTE: subir pra 15 na PRÓXIMA, depois de confirmar que a curadoria drena os 11 itens atuais sem estourar o tempo (Andre lembrou que a routine já avaliou 56-61/rodada; ressalva: aqueles eram texto vazio, baratos; agora é texto rico, scrape real por item). Risco real é wall-clock da routine, não capacidade da Sonnet.
+
+**setlist.fm integrado (fase 2):** handler novo `scripts/news/setlistfm.mjs` (módulo separado porque importar `fetch-news.mjs` auto-executa `main()`). Source `setlistfm-pj`, group novo `turne`, `kind: "setlistfm"`. Cada show recente vira matéria com o setlist completo (`preText`), filtro de 45 dias (dormante fora de turnê, dispara sozinho na próxima). MBID PJ `83b9cbe7-9857-49e2-ab8e-b57b01038103`. Descobertas validando ao vivo: setlist.fm dá 403 pra UA de bot (handler manda UA de browser), rate limit 2/s. Teste `setlistfm.test.mjs` (8 testes), suíte **65 -> 73**.
+
+**Dump histórico de shows:** `scripts/news/setlistfm-dump.mjs` (one-shot, fora do pipeline) baixou PJ 1134 + Eddie Vedder solo 313 = **1447 shows, 1990-2026**, versionado por ano em `media/setlistfm/by-year/<ano>.json` + `index.json`. Offline, commitado, redundante (disco + GitHub). Dados confiáveis (conferidos: 2019 só tem EV, zero PJ, bate com o PJ no estúdio do Gigaton). Eddie Vedder MBID `1a60d6dd-9d3e-40fc-a66d-3184f9ee0d61`. Material de trabalho pra timeline/stats/validação, uso a decidir.
+
+**PENDÊNCIAS desta sessão:**
+1. **Cadastrar secret `SETLISTFM_API_KEY` no GitHub** (Settings > Secrets > Actions). Sem ele o handler do setlist.fm faz skip gracioso (não quebra, mas fica dormente em produção). Andre vai fazer.
+2. **Cap de diversidade por fonte no slice** (recomendado): o dry-run mostrou o podcast SOLAT comendo vários dos slots (4 de 11). Limitar 1-2 por fonte deixaria imprensa real entrar junto. É o complemento do teto 10.
+3. Menores: fallback do `red-mosquito` (scrape Blogger dá 0 chars, mas tem texto no feed), parse do `billboard-br`.
+4. Decidir o uso do dataset de shows (`media/setlistfm/`). Andre vai ver isso depois.
+
+## ⭐ Throughput da curadoria: MAX_NEW_PER_RUN 3 -> 4 + alerta de backlog (2026-06-01, FEITO)
 
 ## ⭐ Throughput da curadoria: MAX_NEW_PER_RUN 3 -> 4 + alerta de backlog (2026-06-01, FEITO)
 **Por que o teto existia:** `MAX_NEW_PER_RUN` (`scripts/news/fetch-news.mjs`) limita itens novos coletados por rodada. Começou em 6, baixou pra 3 em 2026-05-12 (commit `829ee18`) porque a **routine de curadoria estourava o tempo** (5 itens/run = 3 mídia + digest + spotlight). NÃO é regra de feed nem anti-spam do IG, é orçamento de wall-clock da routine Sonnet que cura o `_pending`. O community-fetch tem cap próprio (1 digest + 1 spotlight), fora desse número.
