@@ -1,0 +1,31 @@
+{
+  "runAt": "2026-06-04T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 21,
+  "distribution": { "midia": 20, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "ffa0e83c3c", "titulo": "Rolling Stone elege os 10 melhores discos de grunge de todos os tempos", "kind": "midia" },
+    { "id": "0d35f2cb9c", "titulo": "Mike McCready e o rock mundial se despedem de Ozzy Osbourne", "kind": "midia" },
+    { "id": "653cfd6390", "titulo": "Matt Cameron garante que ainda é músico ativo após sair do Pearl Jam", "kind": "midia" },
+    { "id": "7ca3f0be74", "titulo": "Matt Cameron esclarece que não se aposentou após deixar o Pearl Jam", "kind": "midia" },
+    { "id": "864fbe4895", "titulo": "Future Days: como Eddie Vedder processou a morte de um amigo na música mais honesta do PJ", "kind": "midia" },
+    { "id": "3c643ca178", "titulo": "Dave Abbruzzese descarta retorno ao PJ e pede que fãs parem de cobrar reunião", "kind": "midia" },
+    { "id": "0649d86325", "titulo": "Matt Cameron anuncia saída do Pearl Jam após 27 anos: os statements de despedida", "kind": "midia" },
+    { "id": "371e77f39b", "titulo": "PJ era headliner do Rock in Rio 2026 mas saiu da grade, revela Ed Kowalczyk", "kind": "midia" },
+    { "id": "d6f1bd000c", "titulo": "Ten a 35 anos: a história de como o Pearl Jam gravou o melhor álbum debut do rock", "kind": "midia" },
+    { "id": "c7febb2ac4", "titulo": "Dave Abbruzzese responde ao clamor dos fãs: reunião com o PJ parece improvável", "kind": "midia" },
+    { "id": "267b5c6e44", "titulo": "Fim de era: Matt Cameron deixa o Pearl Jam após 27 anos com show na Austrália na memória", "kind": "midia" },
+    { "id": "ce83106ac6", "titulo": "Matt Cameron se despede do Pearl Jam com gratidão: de Binaural a Dark Matter em 27 anos", "kind": "midia" },
+    { "id": "cebc7e6686", "titulo": "Três músicas do Eddie Vedder fora do Pearl Jam que envelheceram muito bem", "kind": "midia" },
+    { "id": "0beaf1da1c", "titulo": "Roskilde 2000: a tragédia que matou 9 fãs num show do Pearl Jam e quase destruiu a banda", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "09c9b0e341", "title": "Pearl Jam: Schlagzeuger Matt Cameron steigt aus", "reason": "duplicado sem angulo unico, coberto por ce83106ac6 e outros" },
+    { "id": "cs-5e330149e0", "title": "Been Waiting Years For This", "reason": "nao e fan content artistico (compra de CD), score e comentarios zerados" },
+    { "id": "8891842b5e", "title": "Billboard 200 Albums chart from June 3, 2000", "reason": "sem mencao a PJ, sobre Britney Spears, irrelevante" },
+    { "id": "b9bcfd2f3a", "title": "Nach Ausstieg bei Pearl Jam: Matt Cameron gibt Update", "reason": "duplicado coberto por 653cfd6390 e 7ca3f0be74" },
+    { "id": "b8289689f1", "title": "Matt Cameron Confirms He Didn't Retire After Pearl Jam Departure", "reason": "duplicado coberto por 7ca3f0be74" },
+    { "id": "3d957f9e02", "title": "Matt Cameron deja Pearl Jam tras 27 anos", "reason": "texto muito raso (menos de 200 palavras uteis), coberto por ce83106ac6" },
+    { "id": "0ad3a1e96f", "title": "Pearl Jam: Dave Abbruzzese wird wohl nicht als Drummer zurueckkehren", "reason": "duplicado coberto por 3c643ca178 e c7febb2ac4" }
+  ]
+}
