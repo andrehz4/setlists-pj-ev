@@ -1,0 +1,15 @@
+{
+  "rejected": [
+    {
+      "id": "ca323d28fc",
+      "reason": "validacao falhou (titulo ausente/longo ou corpo < 100)",
+      "at": "2026-06-04T15:30:20.819Z"
+    },
+    {
+      "id": "f94ce707d7",
+      "reason": "validacao falhou (titulo ausente/longo ou corpo < 100)",
+      "at": "2026-06-04T15:30:20.819Z"
+    }
+  ],
+  "updatedAt": "2026-06-04T15:30:21.413Z"
+}
