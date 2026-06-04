@@ -1,0 +1,29 @@
+{
+  "runAt": "2026-06-04T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 19,
+  "distribution": { "midia": 19, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "eba6b40564", "titulo": "Stone Gossard: Pearl Jam via o metal dos anos 80 como praticamente uma piada", "kind": "midia" },
+    { "id": "9a4192d724", "titulo": "Josh Klinghoffer aceita acordo e evita prisão por morte de pedestre em 2024", "kind": "midia" },
+    { "id": "1c307257a8", "titulo": "Eddie Vedder interpreta 'My City of Ruins' do Springsteen em Pittsburgh", "kind": "midia" },
+    { "id": "c42f8144ab", "titulo": "Pearl Jam lança EP com músicas da série The Last of Us da HBO", "kind": "midia" },
+    { "id": "544d785690", "titulo": "Pearl Jam traz Peter Frampton ao palco em Nashville para tocar 'Black'", "kind": "midia" },
+    { "id": "9904ef22ed", "titulo": "Eddie Vedder gravou a fita do teste ainda molhado de surf e entrou pro Pearl Jam", "kind": "midia" },
+    { "id": "b05fe2bc9e", "titulo": "Como a sabedoria de Neil Young ajudou o Pearl Jam a não se desfazer", "kind": "midia" },
+    { "id": "f158aa3a56", "titulo": "A história real por trás de Jeremy, a canção mais pesada do repertório do PJ", "kind": "midia" },
+    { "id": "3d6ffbb5a6", "titulo": "Temple of the Dog, o álbum-homenagem que gestou o Pearl Jam, completou 35 anos", "kind": "midia" },
+    { "id": "7a6f50632f", "titulo": "Chris Barron dos Spin Doctors ainda não consegue ouvir Pearl Jam por causa da Epic Records", "kind": "midia" },
+    { "id": "c3085c5ae8", "titulo": "Pearl Jam no SNL em 1992: a camiseta com cabide e a estreia diante da América", "kind": "midia" },
+    { "id": "bf9bd11631", "titulo": "A ilustradora punk de Balcarce que criou o cartaz oficial do Pearl Jam em Madri", "kind": "midia" },
+    { "id": "ea5f6f1832", "titulo": "O casaco de brechó de doze dólares do Eddie que virou símbolo e gerou Corduroy", "kind": "midia" },
+    { "id": "2dca95e306", "titulo": "De The Doors a KISS ao Pearl Jam: como um solo viajou por três décadas de rock", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "16d6a9fb45", "title": "Teen Jesus and the Jean Teasers Crash Back in with 'Balcony'", "reason": "PJ tangencial: foco é na banda australiana, PJ mencionado apenas como apoio de turnê" },
+    { "id": "d8440312a2", "title": "Stone Gossard is the reason I picked up guitar...", "reason": "texto vazio: body_html contém apenas metadado Reddit (submitted by / link / comments), sem conteúdo utilizável" },
+    { "id": "40d49a45a8", "title": "Welche Musiker:innen denken wie 'My Voice, My Choice'?", "reason": "PJ tangencial: artigo sobre movimento europeu pró-aborto, PJ aparece em um único parágrafo de citação" },
+    { "id": "ef9018eaf2", "title": "3 canciones que tienen historias perturbadoras detrás", "reason": "PJ tangencial: listicle de 3 bandas (Nirvana, Blind Melon, PJ), história de Jeremy tratada de forma mais completa em f158aa3a56 desta mesma rodada" },
+    { "id": "7cd43e4ddc", "title": "5 bandas que surgieron de la ruptura de otras", "reason": "PJ tangencial: listicle de 5 bandas, PJ recebe apenas um parágrafo curto sobre origem no Mother Love Bone" }
+  ]
+}
