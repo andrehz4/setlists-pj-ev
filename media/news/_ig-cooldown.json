@@ -1,7 +1,7 @@
 {
-  "until": null,
-  "reason": null,
-  "code": null,
-  "fbtraceId": null,
-  "setAt": "2026-06-04T03:17:44.629Z"
+  "until": "2026-06-05T00:29:27.475Z",
+  "reason": "IG API /27761714130083125/media_publish: Application request limit reached [code=4 subcode=2207051 type=OAuthException fbtrace=AhUmpoyLpmeFd7_Lg-Z2ZJ3]",
+  "code": 4,
+  "fbtraceId": "AhUmpoyLpmeFd7_Lg-Z2ZJ3",
+  "setAt": "2026-06-04T21:29:27.475Z"
 }
