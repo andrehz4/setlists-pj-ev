@@ -1,6 +1,42 @@
 {
-  "updated": "2026-06-04T09:14:37.966Z",
+  "updated": "2026-06-04T21:28:00.262Z",
   "items": [
+    {
+      "id": "7bb4cb8a78",
+      "url": "https://www.wikimetal.com.br/pearl-jam-foi-cogitado-para-o-rock-in-rio-2026",
+      "source": "wikimetal",
+      "sourceLabel": "Wikimetal",
+      "group": "br",
+      "pubDate": "2026-06-04T15:48:50.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/7bb4cb8a78.jpg",
+      "title_pt": "Vocalista do Live confirma que Pearl Jam recusou convite para o Rock in Rio 2026",
+      "intro_pt": "Ed Kowalczyk revelou em comentário no Instagram que Pearl Jam e Live deveriam tocar juntos no festival, mas a banda de Vedder teria declinado a proposta.",
+      "tags": [
+        "turne",
+        "br"
+      ],
+      "title_ig": "PJ recusou Rock in Rio 2026, confirma vocalista do Live"
+    },
+    {
+      "id": "cd-20260604",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-06-04T12:25:30.885Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/cd-20260604.jpg",
+      "title_pt": "Mirrorball oficial, Satan's Bed e o SXM renovado: o dia na comunidade global",
+      "intro_pt": "Do lançamento oficial do Mirrorball ao debate sobre o novo formato do canal SXM Pearl Jam, a comunidade global teve um dia com conversas que valem o registro.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "Mirrorball chega às mãos dos fãs, comunidade ferve",
+      "kind": "community-digest",
+      "community_posts_count": 7
+    },
     {
       "id": "371e77f39b",
       "url": "https://igormiranda.com.br/2026/06/pearl-jam-e-live-iriam-tocar-no-rock-in-rio-2026-segundo-ed-kowalczyk",
@@ -2670,6 +2706,22 @@
       "title_ig": "O solo que passou dos Doors pro PJ via KISS"
     },
     {
+      "id": "28323c1355",
+      "url": "https://americansongwriter.com/why-pearl-jam-tried-and-failed-to-stop-black-from-becoming-a-hit",
+      "source": "american-songwriter-pj",
+      "sourceLabel": "American Songwriter (PJ)",
+      "group": "us",
+      "pubDate": "2025-02-21T22:57:39.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/28323c1355.jpg",
+      "title_pt": "A história de como 'Black' virou hit contra a vontade do Pearl Jam",
+      "intro_pt": "Em 1992, a Epic Records pressionou o Pearl Jam para lançar 'Black' como single. A banda vetou por ser pessoal demais, e o hit veio assim mesmo.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "PJ tentou impedir que Black fosse um hit"
+    },
+    {
       "id": "e33ddb848d",
       "url": "https://stereogum.com/2297172/snl-50-concert-nirvana-lady-gaga-miley-cyrus/news",
       "source": "stereogum-pj",
@@ -2686,6 +2738,38 @@
       ]
     },
     {
+      "id": "ca323d28fc",
+      "url": "https://americansongwriter.com/pearl-jam-metallica-slash-among-music-stars-contributing-items-and-experiences-to-fanaid-la-wildfire-relief-fundraiser",
+      "source": "american-songwriter-pj",
+      "sourceLabel": "American Songwriter (PJ)",
+      "group": "us",
+      "pubDate": "2025-02-11T17:34:05.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/ca323d28fc.jpg",
+      "title_pt": "Pearl Jam doa guitarra assinada ao FanAid LA para vítimas dos incêndios",
+      "intro_pt": "A banda contribuiu com uma Fender Stratocaster autografada por todos os cinco integrantes para arrecadar fundos às vítimas dos incêndios de Los Angeles.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "PJ doa guitarra assinada pelos 5 para vítimas de LA"
+    },
+    {
+      "id": "3ed1639dfb",
+      "url": "https://americansongwriter.com/3-songs-that-sound-like-pearl-jam-but-actually-arent",
+      "source": "american-songwriter-pj",
+      "sourceLabel": "American Songwriter (PJ)",
+      "group": "us",
+      "pubDate": "2025-01-16T11:45:00.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/3ed1639dfb.jpg",
+      "title_pt": "Três músicas que soam como Pearl Jam mas não são deles",
+      "intro_pt": "De Creed a Stone Temple Pilots, algumas músicas dos anos 90 carregam a digital do PJ de forma tão evidente que a comparação é inevitável.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Soa exatamente como PJ, mas não é"
+    },
+    {
       "id": "b4a058ca54",
       "url": "https://stereogum.com/2293208/nola-jazz-fest-announces-2025-lineup-with-pearl-jam-haim-lil-wayne-with-the-roots-more/news",
       "source": "stereogum-pj",
@@ -2699,6 +2783,71 @@
       "tags": [
         "turne"
       ]
+    },
+    {
+      "id": "91b46fb837",
+      "url": "https://monterreyrock.com/2024/12/datos-interesantes-sobre-eddie-vedder",
+      "source": "monterrey-rock-pj",
+      "sourceLabel": "Monterrey Rock (MX, PJ)",
+      "group": "intl",
+      "pubDate": "2024-12-23T07:03:00.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/91b46fb837.jpg",
+      "title_pt": "Cinco fatos sobre Eddie Vedder que você provavelmente não sabia",
+      "intro_pt": "Do nome original Edward Louis Severson à descoberta tardia do pai biológico, a vida de Eddie Vedder tem histórias que vão muito além do Pearl Jam.",
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "title_ig": "Cinco fatos sobre Eddie Vedder"
+    },
+    {
+      "id": "e5229974b6",
+      "url": "https://tonedeaf.thebrag.com/teen-jesus-and-the-jean-teasers-2025-us-tour-pearl-jam",
+      "source": "tonedeaf-au-pj",
+      "sourceLabel": "Tone Deaf (AU, PJ)",
+      "group": "intl",
+      "pubDate": "2024-12-16T10:17:20.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/e5229974b6.jpg",
+      "title_pt": "Teen Jesus conta como o apoio do Pearl Jam transformou a carreira delas",
+      "intro_pt": "A banda australiana Teen Jesus and the Jean Teasers fala sobre o impacto de abrir para o Pearl Jam na Dark Matter Tour e no Ohana Festival.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "Teen Jesus: Pearl Jam abriu nossas portas"
+    },
+    {
+      "id": "33f478fe51",
+      "url": "https://monterreyrock.com/2024/12/pearl-jam-anuncia-gira-por-estados-unidos-en-2025",
+      "source": "monterrey-rock-pj",
+      "sourceLabel": "Monterrey Rock (MX, PJ)",
+      "group": "intl",
+      "pubDate": "2024-12-08T18:13:16.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/33f478fe51.jpg",
+      "title_pt": "Pearl Jam anuncia extensão da Dark Matter Tour pelos Estados Unidos em 2025",
+      "intro_pt": "A banda anunciou 10 novas datas na América do Norte para 2025, passando por Flórida, Geórgia, Tennessee, Carolina do Norte e Pensilvânia.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "PJ anuncia mais 10 shows nos EUA para 2025"
+    },
+    {
+      "id": "24fbcc3601",
+      "url": "https://indiehoy.com/historias/cancion-pearl-jam-eddie-vedder-costaba-cantar",
+      "source": "indiehoy-ar-pj",
+      "sourceLabel": "Indie Hoy (AR, PJ)",
+      "group": "intl",
+      "pubDate": "2024-11-07T18:12:00.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/24fbcc3601.jpg",
+      "title_pt": "'Glorified G': a música de Vs. que Eddie Vedder disse odiar no palco",
+      "intro_pt": "Nascida de uma conversa sobre posse de armas com o baterista Dave Abbruzzese, 'Glorified G' tem uma história que Eddie Vedder não conseguiu esconder por muito tempo.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "A música do PJ que Eddie confessou odiar em show"
     },
     {
       "id": "25751af6cb",
@@ -2731,6 +2880,39 @@
       ]
     },
     {
+      "id": "4e3a951616",
+      "url": "https://www.musikexpress.de/josh-klinghoffer-steht-wegen-fahrlaessiger-toetung-vor-gericht-2762569",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-09-26T14:11:11.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/4e3a951616.jpg",
+      "title_pt": "Josh Klinghoffer é indiciado por homicídio culposo após atropelar pedestre em LA",
+      "intro_pt": "O guitarrista que toca ao vivo com o Pearl Jam compareceu ao tribunal de Alhambra, em Los Angeles, acusado de atropelar e matar um pedestre em março de 2024.",
+      "tags": [
+        "josh"
+      ],
+      "title_ig": "Josh Klinghoffer vai a tribunal por homicídio culposo"
+    },
+    {
+      "id": "046ce0f07c",
+      "url": "https://indiehoy.com/historias/mike-mccready-cancion-mas-representativa-pearl-jam",
+      "source": "indiehoy-ar-pj",
+      "sourceLabel": "Indie Hoy (AR, PJ)",
+      "group": "intl",
+      "pubDate": "2024-09-18T22:03:00.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/046ce0f07c.jpg",
+      "title_pt": "Mike McCready aponta 'Alive' como a música mais representativa do Pearl Jam",
+      "intro_pt": "O guitarrista considera o clássico de Ten o hino perfeito da banda, porque encapsula a lírica, a musicalidade e o sentimento do grupo.",
+      "tags": [
+        "mike",
+        "memoria"
+      ],
+      "title_ig": "Para McCready, Alive define tudo que o PJ é"
+    },
+    {
       "id": "69a923b280",
       "url": "https://stereogum.com/2280328/ted-nugent-responds-to-pearl-jam-turning-his-song-into-anti-gun-anthem/news",
       "source": "stereogum-pj",
@@ -2745,6 +2927,39 @@
         "turne",
         "eddie"
       ]
+    },
+    {
+      "id": "2d57727f04",
+      "url": "https://monterreyrock.com/2024/07/pearl-jam-cancela-conciertos-por-problemas-con-la-voz-de-eddie-vedder",
+      "source": "monterrey-rock-pj",
+      "sourceLabel": "Monterrey Rock (MX, PJ)",
+      "group": "intl",
+      "pubDate": "2024-07-01T13:02:52.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/2d57727f04.jpg",
+      "title_pt": "Pearl Jam cancela shows na Europa por problemas vocais de Eddie Vedder",
+      "intro_pt": "Após apresentar problemas vocais em Manchester, Eddie Vedder não conseguiu se recuperar e a banda cancelou shows em Londres e Berlim durante a turnê europeia.",
+      "tags": [
+        "turne",
+        "eddie"
+      ],
+      "title_ig": "Voz de Vedder derruba shows do PJ na Europa"
+    },
+    {
+      "id": "9909057b0c",
+      "url": "https://www.musikexpress.de/pearl-jam-sagen-beide-berlin-konzerte-ab-was-fans-jetzt-wissen-muessen-2721405",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-07-01T07:36:03.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/9909057b0c.jpg",
+      "title_pt": "Pearl Jam cancela os dois shows em Berlim por problemas de saúde da banda",
+      "intro_pt": "Os únicos dois shows da banda na Alemanha, marcados para 2 e 3 de julho de 2024 na Waldbühne, foram cancelados sem previsão de remarcação.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "PJ cancela Berlim: sem nova data prevista"
     },
     {
       "id": "e67831b05e",
@@ -2796,6 +3011,22 @@
       "title_ig": "Bill Walton: despedida de um Deadhead lendário"
     },
     {
+      "id": "4709832193",
+      "url": "https://www.musikexpress.de/eddie-vedder-teilt-bei-pearl-jam-konzert-gegen-harrison-butker-aus-video-2696771",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-05-21T14:36:12.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/4709832193.jpg",
+      "title_pt": "Eddie Vedder responde ao kicker Harrison Butker no palco em Las Vegas",
+      "intro_pt": "Durante show em Las Vegas, Eddie Vedder respondeu diretamente ao polêmico discurso antifeminista do jogador da NFL Harrison Butker com frases que arrancaram aplausos da plateia.",
+      "tags": [
+        "eddie"
+      ],
+      "title_ig": "Vedder na boca do microfone contra Butker"
+    },
+    {
       "id": "2d8b78dadb",
       "url": "https://stereogum.com/2264340/eddie-vedder-scoffs-at-chiefs-kicker-harrison-butkers-inflammatory-comments-about-gender-roles-he-looked-like-such-a-pussy/news",
       "source": "stereogum-pj",
@@ -2810,6 +3041,55 @@
         "eddie"
       ],
       "title_ig": "Vedder manda recado pro kicker da NFL"
+    },
+    {
+      "id": "ea251d9024",
+      "url": "https://www.musikexpress.de/was-pearl-jam-von-taylor-swift-lernen-2669691",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-05-08T10:38:15.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.232Z",
+      "img": "/media/news/img/ea251d9024.jpg",
+      "title_pt": "Eddie Vedder e Jeff Ament contam o que o Pearl Jam pode aprender com Taylor Swift",
+      "intro_pt": "Em podcast sobre o Dark Matter, os dois integrantes do Pearl Jam destacaram o que admiram na abordagem artística de Taylor Swift.",
+      "tags": [
+        "lancamento"
+      ],
+      "title_ig": "Vedder e Ament: o que o PJ aprende com Swift"
+    },
+    {
+      "id": "f94ce707d7",
+      "url": "https://www.musikexpress.de/pearl-jam-mike-mccready-stuerzt-bei-tourauftakt-von-der-buehne-2667473",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-05-06T13:59:14.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/f94ce707d7.jpg",
+      "title_pt": "Mike McCready cai do palco na estreia da Dark Matter Tour e segue o solo",
+      "intro_pt": "Durante 'Porch' no primeiro show da Dark Matter Tour, em Vancouver, McCready despencou da beira do palco e voltou ao solo sem perder a sequência.",
+      "tags": [
+        "turne",
+        "mike"
+      ],
+      "title_ig": "McCready cai do palco em Vancouver e continua tocando"
+    },
+    {
+      "id": "bbb1eae4a1",
+      "url": "https://www.musikexpress.de/pearl-jam-tourauftakt-videos-und-setlist-der-dark-matter-tour-2667405",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-05-06T11:01:46.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/bbb1eae4a1.jpg",
+      "title_pt": "Setlist e vídeos da abertura da Dark Matter Tour em Vancouver",
+      "intro_pt": "O PJ abriu a turnê mundial com 25 músicas em Vancouver, estreando 'Scared of Fear' e o título 'Dark Matter' ao vivo pela primeira vez.",
+      "tags": [
+        "turne"
+      ],
+      "title_ig": "Setlist completo do primeiro show da Dark Matter Tour"
     },
     {
       "id": "79abc97c5f",
@@ -2842,6 +3122,103 @@
         "memoria"
       ],
       "title_ig": "Os 100 takes de Even Flow, contados pela banda"
+    },
+    {
+      "id": "e94168d2d2",
+      "url": "https://www.musikexpress.de/reviews/pearl-jam-dark-matter",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-04-19T01:00:06.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/e94168d2d2.jpg",
+      "title_pt": "Dark Matter: o álbum onde o Pearl Jam se permite ser quem sempre foi",
+      "intro_pt": "A crítica alemã aponta o 12º álbum do Pearl Jam como o trabalho com as melodias mais marcantes desde Yield, produzido por Andrew Watt em três semanas.",
+      "tags": [
+        "lancamento"
+      ],
+      "title_ig": "Dark Matter: o PJ mais largo em décadas"
+    },
+    {
+      "id": "6cd3fb763b",
+      "url": "https://www.musikexpress.de/eddie-vedder-sieht-wiedergeburt-der-punk-szene-in-taylor-swift-gigs-2628973",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-03-18T11:14:59.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/6cd3fb763b.jpg",
+      "title_pt": "Eddie Vedder vê o espírito punk da sua juventude nos fãs de Taylor Swift",
+      "intro_pt": "Depois de ver um show da Eras Tour com a família, Vedder disse que a comunidade dos fãs de Swift o lembrou da solidariedade da cena punk da sua cidade natal.",
+      "tags": [
+        "eddie"
+      ],
+      "title_ig": "Vedder compara Swifties com a cena punk dos anos 80"
+    },
+    {
+      "id": "1de06cc476",
+      "url": "https://www.musikexpress.de/pearl-jam-in-berlin-hat-ticketmaster-sich-verzockt-2544825",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-02-24T08:51:20.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/1de06cc476.jpg",
+      "title_pt": "Fãs do PJ em Berlim se revoltam com os 300 euros cobrados pelo Ticketmaster",
+      "intro_pt": "Com preços chegando a 300 euros via Ticketmaster e até 800 na Viagogo, o pré-venda dos shows do PJ em Berlim gerou polêmica entre os fãs mais fiéis da banda.",
+      "tags": [
+        "turne",
+        "tenclub"
+      ],
+      "title_ig": "300 euros por ingresso: fãs do PJ em Berlim se revoltam"
+    },
+    {
+      "id": "6565b36902",
+      "url": "https://www.irock.cl/pearl-jam-anuncia-nuevo-album-dark-matter",
+      "source": "irock-cl-pj",
+      "sourceLabel": "iRock.CL (CL, PJ)",
+      "group": "intl",
+      "pubDate": "2024-02-20T14:27:10.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/6565b36902.jpg",
+      "title_pt": "Pearl Jam anuncia Dark Matter com data de lançamento e 35 datas de turnê mundial",
+      "intro_pt": "Gravado em três semanas no estúdio Shangri-La em Malibu, o 12º álbum do Pearl Jam chega em 19 de abril de 2024 com turnê mundial de 35 datas.",
+      "tags": [
+        "lancamento"
+      ],
+      "title_ig": "PJ anuncia Dark Matter para abril de 2024"
+    },
+    {
+      "id": "892d6c7db2",
+      "url": "https://www.musikexpress.de/eddie-vedder-gemeinsame-sache-mit-post-malone-2542641",
+      "source": "musikexpress-pj",
+      "sourceLabel": "Musikexpress (DE, PJ)",
+      "group": "intl",
+      "pubDate": "2024-02-19T09:22:05.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/892d6c7db2.jpg",
+      "title_pt": "Eddie Vedder e Post Malone dividem palco em show beneficente no Tennessee",
+      "intro_pt": "Em homenagem ao ator Leslie Jordan em Shelbyville, Tennessee, Eddie e Post Malone cantaram 'Better Man' e 'I Won't Back Down' de Tom Petty com violões.",
+      "tags": [
+        "eddie"
+      ],
+      "title_ig": "Vedder e Post Malone juntos num palco acústico"
+    },
+    {
+      "id": "7b05ff87d6",
+      "url": "https://www.mondosonoro.com/blog-musica/la-historia-oral-del-grunge-de-mark-yarm",
+      "source": "mondosonoro-es-pj",
+      "sourceLabel": "Mondo Sonoro (ES, PJ)",
+      "group": "intl",
+      "pubDate": "2016-01-28T10:46:57.000Z",
+      "fetchedAt": "2026-06-04T21:28:00.233Z",
+      "img": "/media/news/img/7b05ff87d6.jpg",
+      "title_pt": "A história oral do grunge: o livro que reuniu 300 vozes de Seattle",
+      "intro_pt": "Em entrevista ao Mondo Sonoro, o autor Mark Yarm fala sobre os bastidores de 'Everybody Loves Our Town', a obra mais completa já escrita sobre o movimento de Seattle.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "O livro que entrevistou 300 vozes do grunge"
     }
   ]
 }
