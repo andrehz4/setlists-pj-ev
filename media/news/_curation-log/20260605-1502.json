@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-06-05T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 0, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cd-20260605",
+      "title": "Community Digest 05/06",
+      "reason": "dia fraco: 6 posts todos com score 0 e 0 comentarios, selftext vazio na maioria, sem anuncio nem conteudo com substancia"
+    }
+  ]
+}
