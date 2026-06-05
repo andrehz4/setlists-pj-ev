@@ -761,23 +761,22 @@
       "type": "spotlight",
       "queuedAt": "2026-06-04T21:28:00.253Z",
       "publishAt": "2026-06-04T21:28:00.253Z",
-      "postedAt": null,
-      "postId": null,
-      "error": null
+      "postedAt": "2026-06-05T03:07:44.352Z",
+      "postId": "17952016332157781",
+      "error": null,
+      "errorCount": 0
     },
     {
       "id": "7bb4cb8a78",
       "type": "regular",
       "queuedAt": "2026-06-04T21:28:00.253Z",
       "publishAt": "2026-06-04T21:28:00.253Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-06-04T21:29:27.474Z",
-        "msg": "IG rate limit, retry apos 2026-06-04T22:29:27.474Z"
-      },
-      "_rateLimitedUntil": "2026-06-04T22:29:27.474Z"
+      "postedAt": "2026-06-05T03:07:25.621Z",
+      "postId": "18592206808028454",
+      "error": null,
+      "_rateLimitedUntil": "2026-06-04T22:29:27.474Z",
+      "errorCount": 0
     }
   ],
-  "postCount": 39
+  "postCount": 41
 }
