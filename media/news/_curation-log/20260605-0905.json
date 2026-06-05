@@ -1,0 +1,22 @@
+{
+  "runAt": "2026-06-05T08:05Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 12,
+  "distribution": { "midia": 12, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "c87c695975", "titulo": "Josh Klinghoffer entra no Pearl Jam como músico convidado da turnê do Gigaton", "kind": "midia" },
+    { "id": "6dddb0a6b0", "titulo": "Ten e No Code ganham remixes em Dolby Atmos nos aniversários de 30 e 25 anos", "kind": "midia" },
+    { "id": "a9c5d02320", "titulo": "Cameron e Hawkins lançam projeto conjunto Nighttime Boogie Association", "kind": "midia" },
+    { "id": "2ba735e62f", "titulo": "Pearl Jam lança inédita 'Get in Back' em compilado de defesa do direito ao voto", "kind": "midia" },
+    { "id": "b753a85b9a", "titulo": "Eddie Vedder lança 'Cartography', trilha para documentário sobre Robert F. Kennedy", "kind": "midia" },
+    { "id": "6bfbd33c74", "titulo": "Gigaton está disponível: décimo primeiro disco do Pearl Jam chega às plataformas", "kind": "midia" },
+    { "id": "99ab3bae23", "titulo": "Pearl Jam anuncia Gigaton com 'Dance of the Clairvoyants' e fala de Jeff Ament", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "a0d5c23ab6", "title": "Favorite song from the Judgment Night soundtrack?", "reason": "post de Reddit, PJ tangencial (uma menção de música)" },
+    { "id": "e812a125f3", "title": "Orlando 1994", "reason": "post de Reddit, PJ tangencial (menção de venue histórico)" },
+    { "id": "5ba1e9236b", "title": "La Tercera da por confirmado concierto de Pearl Jam en Chile", "reason": "notícia de 2022 sobre show em 2023 já realizado, conteúdo histórico superado" },
+    { "id": "ab8e7419b4", "title": "Pearl Jam realizará show en vivo en línea", "reason": "aviso de evento já ocorrido (junho 2020), texto muito curto, sem valor editorial atual" },
+    { "id": "4e05153c0b", "title": "Pearl Jam estrena nuevo video de 'Dance Of The Clairvoyants'", "reason": "conteúdo apenas de divulgação de terceiro vídeo do single, sem informação substantiva além do item 99ab3bae23" }
+  ]
+}
