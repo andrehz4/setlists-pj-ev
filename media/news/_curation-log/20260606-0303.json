@@ -1,0 +1,29 @@
+{
+  "runAt": "2026-06-06T03:02Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-4ae70aeaca",
+      "title": "Picking this up next week",
+      "reason": "spotlight ambíguo: selftext de 1 frase, sem descrição da obra, score 0 e zero comentários"
+    },
+    {
+      "id": "b96099beca",
+      "title": "Pearl Jam Ames 9/24/1996 and QOTSA",
+      "reason": "texto extraído com menos de 200 chars (mesmo evento do spotlight, via r/concertposterporn)"
+    },
+    {
+      "id": "42ff54748a",
+      "title": "let's make a list of every artist olivia has explicitly mentioned...",
+      "reason": "PJ tangencial: Pearl Jam é só um item numa lista de inspirações da Olivia Rodrigo"
+    },
+    {
+      "id": "44159f8934",
+      "title": "Retrospectiva do mês, mandem a de vocês",
+      "reason": "sem menção a PJ: retrospectiva mensal genérica de r/rockbrasil"
+    }
+  ]
+}
