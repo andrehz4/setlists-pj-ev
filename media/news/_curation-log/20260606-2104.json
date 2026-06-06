@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-06T20:05Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "57b404a4a9",
+      "title": "Pearl Jam - MTV Unplugged. The show that got me...",
+      "reason": "texto vazio: article_text é só metadado do Reddit (<200 chars), sem corpo de artigo"
+    },
+    {
+      "id": "38ead3c3fc",
+      "title": "not so emo, emo iceberg",
+      "reason": "sem mencao a PJ: post de r/MusicIceberg pedindo sugestoes de bandas, nenhuma referencia ao Pearl Jam"
+    }
+  ]
+}
