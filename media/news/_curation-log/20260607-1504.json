@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-06-07T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20260607", "titulo": "Da comunidade: canções para bebê, bootlegs e a memória do início do PJ", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "cb2edb87c0", "title": "Those with older siblings, did you get hooked on grunge?", "reason": "texto vazio: article_text só contém metadado de submissão, sem conteúdo extraído; item de r/Millennials sem foco em Pearl Jam" }
+  ]
+}
