@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-07T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-29eb0a609f",
+      "title": "Love my bootlegs",
+      "reason": "spotlight sem selftext substancial: 1 frase ambigua, score 0, comentarios 0, impossivel determinar com certeza o que o fa fez"
+    },
+    {
+      "id": "4c876d9d59",
+      "title": "This Soundgarden Song Based on a Movie Prop Gag",
+      "reason": "post Reddit (nao artigo de midia), texto minimo, foco e Soundgarden/reclamacao sobre plataforma, PJ tangencial"
+    }
+  ]
+}
