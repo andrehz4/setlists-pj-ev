@@ -802,23 +802,22 @@
       "type": "spotlight",
       "queuedAt": "2026-06-07T15:05:01.306Z",
       "publishAt": "2026-06-07T15:05:01.306Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-06-07T15:06:10.797Z",
-        "msg": "IG rate limit, retry apos 2026-06-07T16:06:10.797Z"
-      },
-      "_rateLimitedUntil": "2026-06-07T16:06:10.797Z"
+      "postedAt": "2026-06-07T21:06:44.126Z",
+      "postId": "18108874454474234",
+      "error": null,
+      "_rateLimitedUntil": "2026-06-07T16:06:10.797Z",
+      "errorCount": 0
     },
     {
       "id": "83bcc98aee",
       "type": "regular",
       "queuedAt": "2026-06-07T21:05:05.942Z",
       "publishAt": "2026-06-07T21:05:05.942Z",
-      "postedAt": null,
-      "postId": null,
-      "error": null
+      "postedAt": "2026-06-07T21:06:27.106Z",
+      "postId": "18079935053641804",
+      "error": null,
+      "errorCount": 0
     }
   ],
-  "postCount": 43
+  "postCount": 45
 }
