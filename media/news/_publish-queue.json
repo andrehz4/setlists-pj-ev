@@ -823,14 +823,12 @@
       "type": "spotlight",
       "queuedAt": "2026-06-08T03:04:43.753Z",
       "publishAt": "2026-06-08T03:04:43.753Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-06-08T03:05:53.613Z",
-        "msg": "IG rate limit, retry apos 2026-06-08T04:05:53.613Z"
-      },
-      "_rateLimitedUntil": "2026-06-08T04:05:53.613Z"
+      "postedAt": "2026-06-08T09:00:47.694Z",
+      "postId": "18105652390790789",
+      "error": null,
+      "_rateLimitedUntil": "2026-06-08T04:05:53.613Z",
+      "errorCount": 0
     }
   ],
-  "postCount": 45
+  "postCount": 46
 }
