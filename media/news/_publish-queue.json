@@ -834,23 +834,22 @@
       "type": "regular",
       "queuedAt": "2026-06-08T09:04:00.078Z",
       "publishAt": "2026-06-08T09:04:00.078Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-06-08T09:05:07.413Z",
-        "msg": "IG rate limit, retry apos 2026-06-08T10:05:07.413Z"
-      },
-      "_rateLimitedUntil": "2026-06-08T10:05:07.413Z"
+      "postedAt": "2026-06-08T15:09:09.464Z",
+      "postId": "17927080824345435",
+      "error": null,
+      "_rateLimitedUntil": "2026-06-08T10:05:07.413Z",
+      "errorCount": 0
     },
     {
       "id": "cd-20260608",
       "type": "spotlight",
       "queuedAt": "2026-06-08T15:07:58.286Z",
       "publishAt": "2026-06-08T15:07:58.286Z",
-      "postedAt": null,
-      "postId": null,
-      "error": null
+      "postedAt": "2026-06-08T15:09:27.290Z",
+      "postId": "18118679158825768",
+      "error": null,
+      "errorCount": 0
     }
   ],
-  "postCount": 46
+  "postCount": 48
 }
