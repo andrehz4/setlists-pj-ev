@@ -825,7 +825,11 @@
       "publishAt": "2026-06-08T03:04:43.753Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-06-08T03:05:53.613Z",
+        "msg": "IG rate limit, retry apos 2026-06-08T04:05:53.613Z"
+      },
+      "_rateLimitedUntil": "2026-06-08T04:05:53.613Z"
     }
   ],
   "postCount": 45
