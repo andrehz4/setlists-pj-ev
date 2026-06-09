@@ -13,7 +13,9 @@
 
 **Mock + testes:** mock ganhou `mediaHideCalls` (GET /media devolve vazio nas N primeiras chamadas, simula a indexação atrasada). 2 testes novos em `recover-publish.test.mjs` (visibilidade atrasada + guarda cross-run). Suíte 73 -> 75, tudo verde.
 
-**PENDÊNCIA pro Andre:** conferir o feed do @smufdpj e apagar as 4 duplicatas prováveis listadas acima (a detecção de apagados cuida da denylist depois). E segue a pendência antiga de ORIGEM do 2207051: converter a conta MEDIA_CREATOR -> BUSINESS (todo media_publish dos últimos 3 dias devolveu esse erro, até os que terminaram OK).
+**Limpeza das duplicatas (FEITO na mesma sessão):** Andre apagou as duplicatas no app (e também o 7bb4cb8a78, intencional, não era duplicata). Forcei a re-detecção de apagados via workflow_dispatch (zerei `_detect-deleted-stamp.json` e o `_ig-exists-cache.json`, que ia pular os posts recém-checados por 7 dias). Resultado: 48 posts checados, denylist 8 -> 11 itens (entraram d97b23a764, a65e2c5d02, 7bb4cb8a78; cd-20260607 e cs-0c2a325251 já tinham entrado sozinhos em 08/06). d443026bc2 segue com a cópia rastreada viva, a duplicata antiga dele nunca foi rastreada, nada a registrar.
+
+**PENDÊNCIA pro Andre (única restante):** ORIGEM do 2207051: converter a conta MEDIA_CREATOR -> BUSINESS (todo media_publish dos últimos 3 dias devolveu esse erro, até os que terminaram OK). Enquanto isso, o sistema depende da recuperação, que agora está robusta.
 
 **Housekeeping desta sessão:** repo local estava 6 dias atrás do origin com a curadoria local de 03/06 staged e obsoleta (já tinha entrado no remoto). Feito stash (guardado em `stash@{0}` como backup) + pull.
 
