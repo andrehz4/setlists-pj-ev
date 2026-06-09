@@ -26,12 +26,15 @@ process.env.IG_API_BASE = base;
 process.env.REPO_PUBLIC_BASE = base; // slideUrlFor; o mock nao baixa a imagem
 process.env.IG_USER_ID = "u";
 process.env.IG_ACCESS_TOKEN = "tok";
+// poll de recuperacao rapido nos testes (producao: 5 tentativas, 10s entre elas)
+process.env.IG_RECOVER_ATTEMPTS = "5";
+process.env.IG_RECOVER_DELAY_MS = "50";
 
 const { server, start } = await import("../../mock-ig/server.mjs");
 await start(PORT);
 
-const { publishItems } = await import("./instagram.mjs");
-const { markPosted, pickMatureByType } = await import("./queue.mjs");
+const { publishItems, recoverPublishedPost, buildCarouselCaption } = await import("./instagram.mjs");
+const { markPosted, markAttempt, pickMatureByType } = await import("./queue.mjs");
 
 const form = (obj) => new URLSearchParams(obj).toString();
 async function postMock(p, body) {
@@ -39,7 +42,7 @@ async function postMock(p, body) {
   return { status: r.status, body: await r.json() };
 }
 async function getMock(p) { const r = await fetch(base + p); return { status: r.status, body: await r.json() }; }
-const setFail = (mode) => postMock("/_mock/fail", { fail: mode || "none" });
+const setFail = (mode, extra = {}) => postMock("/_mock/fail", { fail: mode || "none", ...extra });
 
 const items = [
   { id: "a1", title_pt: "Jack Irons volta ao estudio", intro_pt: "Depois da cirurgia, novo disco a caminho." },
@@ -97,4 +100,58 @@ test("apos recuperar, o item sai do pool de maduros (nao re-posta na proxima jan
   assert.equal(pickMatureByType(queue, "spotlight", now).length, 2, "antes de marcar, ambos maduros");
   markPosted(queue, items.map((it) => it.id), r.postId, now);
   assert.equal(pickMatureByType(queue, "spotlight", now).length, 0, "depois de marcar, nenhum maduro: nao re-posta");
+});
+
+test("ghostpublish com visibilidade atrasada: poll insiste ate o post indexar no GET /media", async () => {
+  await postMock("/_mock/reset", {});
+  // post sai + erro 2207051, e o GET /media devolve vazio nas 2 primeiras
+  // chamadas (consistencia eventual, como no incidente de 2026-06-09 em que a
+  // checagem unica de 340ms nao viu o post e o feed duplicou).
+  await setFail("ghostpublish", { mediaHideCalls: 2 });
+
+  const r = await publishItems(items, {});
+  assert.equal(r.recovered, true, "poll deveria achar o post na 3a tentativa");
+
+  const feed = await getMock("/_mock/feed");
+  assert.equal(feed.body.length, 1, "deve haver exatamente 1 post no feed (sem duplicata)");
+  assert.equal(feed.body[0].postId, r.postId);
+});
+
+test("guarda cross-run: ghost que escapou de TODO o poll e detectado no run seguinte, sem republicar", async () => {
+  await postMock("/_mock/reset", {});
+  // esconde o feed por mais chamadas do que o poll tem tentativas: o run
+  // "anterior" falha de verdade (post existe, recuperacao nao enxergou).
+  await setFail("ghostpublish", { mediaHideCalls: 99 });
+
+  const attemptStartMs = Date.now();
+  const caption = buildCarouselCaption(items);
+  await assert.rejects(() => publishItems(items, {}), (e) => e && e.code === 4, "run anterior deve falhar");
+  const feed1 = await getMock("/_mock/feed");
+  assert.equal(feed1.body.length, 1, "o ghost esta no feed apesar do erro");
+
+  // o que o run-publish faz no catch: registra a tentativa na fila
+  const queue = {
+    items: items.map((it) => ({
+      id: it.id, type: "regular",
+      queuedAt: "2026-01-01T00:00:00.000Z",
+      publishAt: "2026-01-01T00:00:00.000Z",
+      postedAt: null, postId: null, error: null,
+    })),
+    postCount: 0,
+  };
+  markAttempt(queue, items.map((it) => it.id), caption, new Date(attemptStartMs).toISOString());
+  assert.ok(queue.items.every((q) => q._lastAttemptCaption === caption), "tentativa registrada na fila");
+
+  // run seguinte: feed ja indexou (limpa o hide). A guarda cross-run confere
+  // ANTES de republicar e acha o ghost pela caption da tentativa anterior.
+  await setFail("none");
+  const found = await recoverPublishedPost({ caption, sinceMs: attemptStartMs, attempts: 1 });
+  assert.match(found, /^p_/, "guarda deveria achar o ghost da tentativa anterior");
+
+  markPosted(queue, items.map((it) => it.id), found, new Date().toISOString());
+  assert.equal(pickMatureByType(queue, "regular", new Date().toISOString()).length, 0, "nenhum maduro: nao republica");
+  assert.ok(queue.items.every((q) => !q._lastAttemptCaption && !q._lastAttemptAt), "markPosted limpa os campos de tentativa");
+
+  const feed2 = await getMock("/_mock/feed");
+  assert.equal(feed2.body.length, 1, "feed segue com 1 post so (sem duplicata)");
 });

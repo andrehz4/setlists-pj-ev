@@ -337,18 +337,35 @@ export async function getRecentMedia({ igUserId, accessToken, limit = 5 } = {}) 
 // la (caption batendo + criada depois que comecamos a tentativa), devolvemos o
 // id real e tratamos como sucesso, em vez de propagar o erro e re-postar na
 // proxima janela. Retorna o postId recuperado ou null.
-async function recoverPublishedPost({ igUserId, accessToken, caption, sinceMs }) {
-  try {
-    const media = await getRecentMedia({ igUserId, accessToken, limit: 5 });
-    const buffer = 120000; // 2min de folga pra divergencia de relogio cliente/IG
-    for (const m of media) {
-      const created = m.timestamp ? new Date(m.timestamp).getTime() : 0;
-      const recent = sinceMs ? (Number.isFinite(created) && created >= sinceMs - buffer) : true;
-      if (!recent) continue;
-      if (captionsMatch(m.caption, caption)) return m.id;
+//
+// POLL COM RETRY: o GET /media tem consistencia eventual. No incidente de
+// 2026-06-09 a checagem rodou 340ms apos o erro e nao viu o post (que existia:
+// o run das 21:04 do MESMO conteudo achou o proprio ghost), entao o item voltou
+// pra fila e duplicou no feed. 1 checagem imediata + retries espacados cobrem
+// a janela de indexacao. Override por env: IG_RECOVER_ATTEMPTS / IG_RECOVER_DELAY_MS.
+const RECOVER_ATTEMPTS = Number.isFinite(Number(process.env.IG_RECOVER_ATTEMPTS)) && Number(process.env.IG_RECOVER_ATTEMPTS) > 0
+  ? Number(process.env.IG_RECOVER_ATTEMPTS) : 5;
+const RECOVER_DELAY_MS = Number.isFinite(Number(process.env.IG_RECOVER_DELAY_MS)) && Number(process.env.IG_RECOVER_DELAY_MS) >= 0
+  ? Number(process.env.IG_RECOVER_DELAY_MS) : 10000;
+
+export async function recoverPublishedPost({ igUserId, accessToken, caption, sinceMs, attempts = RECOVER_ATTEMPTS, delayMs = RECOVER_DELAY_MS }) {
+  if (!igUserId) igUserId = process.env.IG_USER_ID;
+  if (!accessToken) accessToken = process.env.IG_ACCESS_TOKEN;
+  const buffer = 120000; // 2min de folga pra divergencia de relogio cliente/IG
+  for (let i = 1; i <= attempts; i++) {
+    if (i > 1) await new Promise((r) => setTimeout(r, delayMs));
+    try {
+      const media = await getRecentMedia({ igUserId, accessToken, limit: 5 });
+      for (const m of media) {
+        const created = m.timestamp ? new Date(m.timestamp).getTime() : 0;
+        const recent = sinceMs ? (Number.isFinite(created) && created >= sinceMs - buffer) : true;
+        if (!recent) continue;
+        if (captionsMatch(m.caption, caption)) return m.id;
+      }
+      if (i < attempts) console.warn(`[ig] verificacao pos-erro ${i}/${attempts}: post nao visivel no GET /media ainda, retry em ${delayMs}ms`);
+    } catch (e) {
+      console.warn(`[ig] verificacao pos-erro ${i}/${attempts} falhou: ${e.message}`);
     }
-  } catch (e) {
-    console.warn(`[ig] verificacao pos-erro falhou (nao da pra confirmar publicacao): ${e.message}`);
   }
   return null;
 }

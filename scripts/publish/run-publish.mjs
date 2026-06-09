@@ -22,10 +22,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { readQueue, writeQueue, pickMatureByTypeDiverse, markPosted, markError, markRateLimited, pruneOldPosted, pruneStalePending, readDenylist, writeDenylist, addToDenylist, readCooldown, isCoolingDown, setCooldown, clearCooldown } from "./queue.mjs";
+import { readQueue, writeQueue, pickMatureByTypeDiverse, markPosted, markError, markRateLimited, markAttempt, pruneOldPosted, pruneStalePending, readDenylist, writeDenylist, addToDenylist, readCooldown, isCoolingDown, setCooldown, clearCooldown } from "./queue.mjs";
 import { topicSignature, similarity } from "../news/dedupe-history.mjs";
 import { buildSlides, buildCoverSlide, SLIDES_DIR, LAYOUT } from "./slide-image.mjs";
-import { publishItems, slideUrlFor } from "./instagram.mjs";
+import { publishItems, slideUrlFor, recoverPublishedPost, buildCarouselCaption } from "./instagram.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { getContentPublishingLimit, QUOTA_SAFETY_MARGIN, estimateUnsaturationDelayMs } from "./ig-quota.mjs";
 import { detectDeletedPosts } from "./ig-detect-deleted.mjs";
@@ -235,6 +235,57 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleCol
   }
   console.log(`[publish] tipo=${type}: ${mature.length} maduros`);
 
+  // Guarda cross-run contra repost: item maduro com tentativa anterior
+  // registrada (markAttempt) pode JA estar publicado, se o run anterior caiu
+  // no falso-erro 2207051 e nem o poll pos-erro enxergou o post. Antes de
+  // republicar, confere as midias recentes do IG com a caption da tentativa.
+  // Achou: marca como postado e tira do batch. 1 GET por caption pendente,
+  // so quando ha tentativa falha anterior.
+  // Trade-off aceito: o match e por prefixo de caption (>=60 chars). Se o
+  // batch retentado mudou de composicao e o lider coincide com um post
+  // legitimo posterior, um item pode ser marcado sem ter saido. Perder 1
+  // item raro custa menos que duplicar no feed.
+  if (!DRY) {
+    const byCaption = new Map();
+    for (const q of mature.filter((m) => m._lastAttemptCaption)) {
+      if (!byCaption.has(q._lastAttemptCaption)) byCaption.set(q._lastAttemptCaption, []);
+      byCaption.get(q._lastAttemptCaption).push(q);
+    }
+    const recoveredItems = [];
+    let recoveredPostId = null;
+    for (const [caption, group] of byCaption) {
+      const sinceMs = Math.min(...group.map((q) => {
+        const t = new Date(q._lastAttemptAt || 0).getTime();
+        return Number.isFinite(t) && t > 0 ? t : Date.now();
+      }));
+      const found = await recoverPublishedPost({ caption, sinceMs, attempts: 1 });
+      if (!found) continue;
+      console.warn(`[publish] guarda cross-run: tentativa anterior de ${group.map((q) => q.id).join(", ")} JA esta no IG (postId=${found}). Marcando como postado SEM republicar.`);
+      markPosted(queue, group.map((q) => q.id), found, nowIso);
+      recoveredPostId = found;
+      for (const q of group) {
+        recoveredItems.push(q);
+        const i = mature.indexOf(q);
+        if (i >= 0) mature.splice(i, 1);
+      }
+    }
+    if (mature.length === 0) {
+      // batch inteiro ja estava publicado: devolve como sucesso (conta no
+      // postCount e notifica), sem nenhum publish novo.
+      return {
+        type,
+        attempted: recoveredItems.length,
+        succeeded: recoveredItems.length,
+        postId: recoveredPostId,
+        recoveredCrossRun: true,
+        items: recoveredItems.map((q) => {
+          const idx = indexById.get(q.id);
+          return { id: q.id, title_pt: idx?.title_pt || "(recuperado de tentativa anterior)", tags: idx?.tags || [] };
+        }),
+      };
+    }
+  }
+
   const hydrated = [];
   for (const m of mature) {
     let h = await hydrateItem(m, indexById);
@@ -301,8 +352,13 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleCol
     return { type, attempted: hydrated.length, succeeded: 0, dry: true };
   }
 
-  // 5. publica via API
+  // 5. publica via API. Antes, registra a tentativa (caption + instante) na
+  //    fila: se o publish falhar E o post sair mesmo assim (falso-erro 2207051),
+  //    a guarda cross-run do proximo run acha o post por essa caption e nao
+  //    republica. buildCarouselCaption delega pra single quando ha 1 item, e a
+  //    mesma caption que publishItems vai montar.
   const slideSuffix = LAYOUT === "card02" ? ".card02" : "";
+  markAttempt(queue, itemsToPost.map((it) => it.id), buildCarouselCaption(itemsToPost), nowIso);
   try {
     const r = await publishItems(itemsToPost, { coverImageUrl, slideSuffix });
     if (r.recovered) {
