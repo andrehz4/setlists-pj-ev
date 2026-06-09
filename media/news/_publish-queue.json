@@ -857,7 +857,11 @@
       "publishAt": "2026-06-09T15:06:03.688Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-06-09T15:08:07.981Z",
+        "msg": "IG rate limit, retry apos 2026-06-09T16:08:07.981Z"
+      },
+      "_rateLimitedUntil": "2026-06-09T16:08:07.981Z"
     },
     {
       "id": "a65e2c5d02",
@@ -866,7 +870,11 @@
       "publishAt": "2026-06-09T15:06:03.688Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": {
+        "at": "2026-06-09T15:08:07.981Z",
+        "msg": "IG rate limit, retry apos 2026-06-09T16:08:07.981Z"
+      },
+      "_rateLimitedUntil": "2026-06-09T16:08:07.981Z"
     }
   ],
   "postCount": 48
