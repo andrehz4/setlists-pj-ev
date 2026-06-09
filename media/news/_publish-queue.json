@@ -855,27 +855,23 @@
       "type": "regular",
       "queuedAt": "2026-06-09T15:06:03.688Z",
       "publishAt": "2026-06-09T15:06:03.688Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-06-09T15:08:07.981Z",
-        "msg": "IG rate limit, retry apos 2026-06-09T16:08:07.981Z"
-      },
-      "_rateLimitedUntil": "2026-06-09T16:08:07.981Z"
+      "postedAt": "2026-06-09T21:04:41.058Z",
+      "postId": "18082703564554275",
+      "error": null,
+      "_rateLimitedUntil": "2026-06-09T16:08:07.981Z",
+      "errorCount": 0
     },
     {
       "id": "a65e2c5d02",
       "type": "regular",
       "queuedAt": "2026-06-09T15:06:03.688Z",
       "publishAt": "2026-06-09T15:06:03.688Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-06-09T15:08:07.981Z",
-        "msg": "IG rate limit, retry apos 2026-06-09T16:08:07.981Z"
-      },
-      "_rateLimitedUntil": "2026-06-09T16:08:07.981Z"
+      "postedAt": "2026-06-09T21:04:41.058Z",
+      "postId": "18082703564554275",
+      "error": null,
+      "_rateLimitedUntil": "2026-06-09T16:08:07.981Z",
+      "errorCount": 0
     }
   ],
-  "postCount": 48
+  "postCount": 49
 }
