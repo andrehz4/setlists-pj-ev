@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-09T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-462180769d",
+      "title": "Ament on new drummer",
+      "reason": "spotlight sem selftext: post_selftext contém apenas 'submitted by /u/joostone', sem conteúdo curável"
+    },
+    {
+      "id": "4dccf0e55b",
+      "title": "Pearl Jam - Off He Goes (Official Audio)",
+      "reason": "texto vazio: article_text é só cabeçalho de link Reddit ('submitted by /u/... to r/grunge [link] [comments]'), sem corpo de artigo"
+    }
+  ]
+}
