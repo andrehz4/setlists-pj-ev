@@ -294,6 +294,11 @@ const server = http.createServer(async (req, res) => {
         ...(s.control || {}),
         fail: b.fail && b.fail !== "none" ? b.fail : null,
         storyPolls: Number(b.storyPolls || 0),
+        // consistencia eventual do GET /:uid/media: as primeiras N chamadas
+        // devolvem lista vazia (post existe mas ainda nao "indexou"). Modela
+        // o incidente 2026-06-09, em que a verificacao pos-erro rodou 340ms
+        // depois do publish e nao viu o post.
+        mediaHideCalls: Number(b.mediaHideCalls || 0),
       };
       save(s); return sendJson(res, 200, s.control);
     }
@@ -389,7 +394,15 @@ const server = http.createServer(async (req, res) => {
     // no formato da Graph API: { data: [{ id, caption, timestamp, media_type }] }.
     if (method === "GET" && /\/media$/.test(pathname)) {
       const s = load();
-      bumpCall(s, "GET /:uid/media"); save(s);
+      bumpCall(s, "GET /:uid/media");
+      // consistencia eventual simulada: enquanto mediaHideCalls > 0, o feed
+      // "ainda nao indexou" e a lista volta vazia. Decrementa por chamada.
+      if (s.control && Number(s.control.mediaHideCalls) > 0) {
+        s.control.mediaHideCalls = Number(s.control.mediaHideCalls) - 1;
+        save(s);
+        return sendGraph(res, 200, { data: [] }, s);
+      }
+      save(s);
       const limit = Number(query.limit) > 0 ? Number(query.limit) : 25;
       const data = (s.feed || []).slice(0, limit).map((f) => ({
         id: f.postId,

@@ -1,7 +1,21 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-06-03 (sessão: fontes dobradas 19->38, teto 4->10, setlist.fm integrado + dump histórico de shows)
+2026-06-09 (sessão: conserto da duplicação de posts no IG, poll de recuperação + guarda cross-run)
+
+## ⭐ Sessão 2026-06-09: conserto da DUPLICAÇÃO de posts no IG (FEITO, 75/75 testes)
+
+**O bug:** 4 prováveis duplicações entre 07/06 e 09/06 (cd-20260607, cs-0c2a325251, d443026bc2, carrossel d97b23a764+a65e2c5d02). O falso-erro `code 4 subcode 2207051` do media_publish voltou (post sai MAS a API devolve erro). O `recoverPublishedPost` de 01/06 existia, mas checava o `GET /media` UMA vez, ~340ms após o erro, e o IG ainda não tinha indexado o post (consistência eventual). Resultado: item voltava pra fila (`_rateLimitedUntil` +1h) e o cron seguinte republicava. Prova nos logs do Actions: run 27215627593 (09/06 15:07) falhou sem recuperar; run 27235696930 (21:04, MESMO conteúdo) deu o mesmo erro e dessa vez recuperou o próprio ghost, ou seja, o mecanismo funciona, só checava cedo demais.
+
+**Conserto (2 camadas):**
+1. **Poll com retry** em `recoverPublishedPost` (`instagram.mjs`): 5 tentativas com 10s de intervalo (~40s de janela) em vez de 1 checagem imediata. Override por env `IG_RECOVER_ATTEMPTS` / `IG_RECOVER_DELAY_MS`. Agora exportado.
+2. **Guarda cross-run** (`run-publish.mjs` + `queue.mjs`): antes de TODO publish, `markAttempt` grava na fila `_lastAttemptAt` + `_lastAttemptCaption`. No run seguinte, item maduro com tentativa anterior dispara 1 `GET /media`: se o post da caption tentada já existe, `markPosted` direto, sem republicar. `markPosted` limpa os campos. Trade-off documentado: match por prefixo de caption pode, em caso raro de batch recomposto, marcar item sem ter saído (perder 1 item < duplicar).
+
+**Mock + testes:** mock ganhou `mediaHideCalls` (GET /media devolve vazio nas N primeiras chamadas, simula a indexação atrasada). 2 testes novos em `recover-publish.test.mjs` (visibilidade atrasada + guarda cross-run). Suíte 73 -> 75, tudo verde.
+
+**PENDÊNCIA pro Andre:** conferir o feed do @smufdpj e apagar as 4 duplicatas prováveis listadas acima (a detecção de apagados cuida da denylist depois). E segue a pendência antiga de ORIGEM do 2207051: converter a conta MEDIA_CREATOR -> BUSINESS (todo media_publish dos últimos 3 dias devolveu esse erro, até os que terminaram OK).
+
+**Housekeeping desta sessão:** repo local estava 6 dias atrás do origin com a curadoria local de 03/06 staged e obsoleta (já tinha entrado no remoto). Feito stash (guardado em `stash@{0}` como backup) + pull.
 
 ## ⭐ Sessão 2026-06-03: expansão de fontes + setlist.fm (FEITO)
 

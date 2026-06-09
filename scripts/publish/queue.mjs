@@ -271,6 +271,23 @@ export function markPosted(queue, ids, postId, nowIso) {
       q.postId = postId;
       q.error = null;
       q.errorCount = 0;
+      delete q._lastAttemptAt;
+      delete q._lastAttemptCaption;
+    }
+  }
+}
+
+// Registra que um publish foi TENTADO (caption + instante), antes de saber o
+// resultado. Se o run falhar, o run seguinte usa isso pra conferir no IG se o
+// post saiu apesar do erro (falso-erro 2207051) ANTES de republicar, cobrindo
+// o caso em que nem o poll pos-erro enxergou o post (consistencia eventual do
+// GET /media). markPosted limpa os campos.
+export function markAttempt(queue, ids, caption, nowIso) {
+  const set = new Set(ids);
+  for (const q of queue.items) {
+    if (set.has(q.id)) {
+      q._lastAttemptAt = nowIso;
+      q._lastAttemptCaption = caption;
     }
   }
 }
