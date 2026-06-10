@@ -31,6 +31,7 @@ import { getContentPublishingLimit, QUOTA_SAFETY_MARGIN, estimateUnsaturationDel
 import { detectDeletedPosts } from "./ig-detect-deleted.mjs";
 import { pollTelegramCommands } from "./telegram-bot.mjs";
 import { buildNewsStubs } from "../news/build-news-stubs.mjs";
+import { pruneOldMedia } from "./prune-media.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
@@ -848,6 +849,19 @@ async function main() {
   const pruned = pruneOldPosted(queue, nowIso, 30, denylist);
   if (pruned > 0) console.log(`[publish] prune: ${pruned} postados antigos removidos`);
 
+  // Poda de binarios IG-only (slides/stories ja publicados ha >14d). Segura
+  // o tamanho do checkout; as delecoes entram no commit final de estado.
+  if (!DRY) {
+    try {
+      const pm = await pruneOldMedia(queue);
+      if (pm.slides + pm.stories > 0) {
+        console.log(`[publish] prune media: ${pm.slides} slide(s) e ${pm.stories} storie(s) antigos apagados`);
+      }
+    } catch (e) {
+      console.warn(`[publish] prune media falhou (segue): ${e.message}`);
+    }
+  }
+
   // Detector de feed parado: cron verde + 0 publicados por dias passava
   // despercebido (coleta morta, cooldown em loop, fila drenada). Se nada
   // foi postado ha mais de IG_FEED_STALL_H horas, alerta no Telegram no
@@ -885,9 +899,10 @@ async function main() {
 
   await writeQueue(queue);
   // Denylist + cursor do telegram + queue commitados juntos pro proximo
-  // cron ja ver bans manuais que entraram via /ban no Telegram.
+  // cron ja ver bans manuais que entraram via /ban no Telegram. Os dirs de
+  // slides/stories entram pra carregar as DELECOES do prune de media.
   await commitAndPush(
-    STATE_PATHS,
+    [...STATE_PATHS, "media/news/instagram-slides/", "media/news/instagram-stories/"],
     `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
     { onRebaseConflict: reconcileWithRemote },
   );

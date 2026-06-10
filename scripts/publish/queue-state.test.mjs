@@ -15,6 +15,7 @@ import path from "node:path";
 import os from "node:os";
 
 import { mergeQueueStates } from "./queue.mjs";
+import { shouldPruneStory, shouldPruneSlide } from "./prune-media.mjs";
 
 const item = (id, extra = {}) => ({
   id, type: "regular",
@@ -88,4 +89,29 @@ test("readQueue: arquivo ausente (primeira run) devolve fila vazia sem erro", ()
   assert.equal(r.status, 0);
   assert.match(r.stdout, /OK 0/);
   fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+// ---- prune de binarios IG-only (slides/stories) ----
+
+const NOW = Date.UTC(2026, 5, 10); // 10 jun 2026
+
+test("shouldPruneStory: mp4 antigo apaga, recente e nome fora do padrao preservam", () => {
+  assert.equal(shouldPruneStory("2026-05-01.mp4", NOW), true, "story de 40d atras apaga");
+  assert.equal(shouldPruneStory("2026-06-08.mp4", NOW), false, "story de 2d atras fica");
+  assert.equal(shouldPruneStory("trilha-extra.mp4", NOW), false, "nome fora do padrao preserva");
+  assert.equal(shouldPruneStory("_story-log.json", NOW), false, "log nunca apaga");
+});
+
+test("shouldPruneSlide: cover e pendente preservam; postado velho ou fora da fila apagam", () => {
+  const qById = new Map([
+    ["pend1", { id: "pend1", postedAt: null }],
+    ["novo1", { id: "novo1", postedAt: "2026-06-09T12:00:00.000Z" }],
+    ["velho1", { id: "velho1", postedAt: "2026-05-01T12:00:00.000Z" }],
+  ]);
+  assert.equal(shouldPruneSlide("_cover-regular.jpg", qById, NOW), false, "cover nunca apaga");
+  assert.equal(shouldPruneSlide("pend1.card02.jpg", qById, NOW), false, "pendente preserva (slide reusavel)");
+  assert.equal(shouldPruneSlide("novo1.card02.jpg", qById, NOW), false, "postado ha 1d preserva");
+  assert.equal(shouldPruneSlide("velho1.card02.jpg", qById, NOW), true, "postado ha 40d apaga");
+  assert.equal(shouldPruneSlide("sumido9.card02.jpg", qById, NOW), true, "fora da fila (postado >30d) apaga");
+  assert.equal(shouldPruneSlide("sumido9.jpg", qById, NOW), true, "layout antigo sem .card02 tambem resolve id");
 });
