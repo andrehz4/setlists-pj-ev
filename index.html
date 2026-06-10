@@ -10,6 +10,8 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev">
+<link rel="dns-prefetch" href="https://i.ytimg.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Special+Elite&display=swap">
 <link rel="stylesheet" href="mobile/mobile.css" media="(max-width: 768px)">
@@ -12223,7 +12225,7 @@ function openDrawer(showId) {
         return `
         <div class="video-wrapper video-thumb-card" data-src="${src}" role="button" tabindex="0" aria-label="Reproduzir vídeo ${i+1} de ${show.venue}" style="cursor:pointer">
           <div class="video-thumb-wrap">
-            <img src="${thumb}" alt="" aria-hidden="true" style="width:100%;display:block;">
+            <img src="${thumb}" alt="" aria-hidden="true" loading="lazy" decoding="async" style="width:100%;display:block;">
             <div class="video-play-btn" aria-hidden="true">▶</div>
           </div>
           <div class="video-label">Vídeo ${i + 1}</div>
@@ -14958,6 +14960,26 @@ async function _loadInterpretations() {
   } catch(e) { /* offline / 404 / aborted: ignorado */ }
 }
 window.addEventListener('beforeunload', () => { if (_interpretationsAbort) _interpretationsAbort.abort(); });
+// Adia o download do interpretations.json (~354KB gzip) pra fora do caminho
+// critico do primeiro paint: carrega no idle do browser OU na primeira
+// interacao (pointer/tecla), o que vier antes. Visitante que so olha e sai
+// nao baixa nada; quem navega tem o dado carregado bem antes de abrir um
+// drawer. _getInterpretation ja degrada pra null se a corrida perder (mesmo
+// comportamento de hoje com rede lenta).
+let _interpKicked = false;
+function _scheduleInterpretationsLoad() {
+  const kick = () => {
+    if (_interpKicked) return;
+    _interpKicked = true;
+    window.removeEventListener('pointerdown', kick);
+    window.removeEventListener('keydown', kick);
+    _loadInterpretations();
+  };
+  window.addEventListener('pointerdown', kick, { once: true, passive: true });
+  window.addEventListener('keydown', kick, { once: true });
+  if ('requestIdleCallback' in window) requestIdleCallback(kick, { timeout: 4000 });
+  else setTimeout(kick, 2500);
+}
 function _resolveInterpEntry(entry, showId, lang) {
   if (!entry) return null;
   if (typeof entry === 'string') return lang === 'pt' ? null : entry;
@@ -20620,7 +20642,7 @@ function closeAlbumDoc() {
 async function init() {
   updateBootText("Aplicando preferências");
   applyTheme(getInitialTheme());
-  _loadInterpretations(); // non-blocking
+  _scheduleInterpretationsLoad(); // 354KB gzip fora do caminho do primeiro paint
   _loadLyricsNotes(); // non-blocking
   _loadTabsManifest(); // non-blocking
   await new Promise(r => setTimeout(r, 80));
