@@ -324,8 +324,31 @@ async function main() {
   const all = [];
   const sourceResults = [];
   const allWarnings = [];
-  for (const src of SOURCES) {
-    const { items, error } = await fetchFeedItems(src);
+  // Fetch em pool de 4 (era sequencial com sleep(400) entre as ~38 fontes,
+  // ~15s mortos por run). Cada worker mantem 150ms de cortesia entre os
+  // PROPRIOS fetches; fontes sao quase todas de hosts distintos. Os
+  // resultados sao processados abaixo NA ORDEM de SOURCES, entao o conteudo
+  // de `all` (e o dedupe que depende dele) sai identico ao do loop antigo.
+  const FETCH_POOL = 4;
+  const fetchResults = new Array(SOURCES.length);
+  let fetchCursor = 0;
+  async function fetchWorker() {
+    for (;;) {
+      const i = fetchCursor++;
+      if (i >= SOURCES.length) break;
+      try {
+        fetchResults[i] = await fetchFeedItems(SOURCES[i]);
+      } catch (e) {
+        fetchResults[i] = { items: [], error: e.message };
+      }
+      await sleep(150);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(FETCH_POOL, SOURCES.length) }, fetchWorker));
+
+  for (let i = 0; i < SOURCES.length; i++) {
+    const src = SOURCES[i];
+    const { items, error } = fetchResults[i] || { items: [], error: "sem resultado" };
     sourceResults.push({ label: src.label, count: items.length, error });
     if (error) allWarnings.push(`${src.label}: ${error}`);
     for (const it of items) {
@@ -338,7 +361,6 @@ async function main() {
       if (pendingBeforeItems.some((p) => p.id === h)) continue;
       all.push({ ...it, url, hash: h });
     }
-    await sleep(400);
   }
 
   console.log(`[news] candidatos novos pos-filtros: ${all.length}`);
