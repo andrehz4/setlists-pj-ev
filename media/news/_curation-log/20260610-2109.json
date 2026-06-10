@@ -1,0 +1,16 @@
+{
+  "runAt": "2026-06-10T21:08Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 6,
+  "distribution": { "midia": 0, "community-digest": 1, "community-spotlight": 0, "shop": 5 },
+  "approved": [
+    { "id": "cd-20260610", "titulo": "Matt Cameron ouve Bad Omens e Eddie relembrado no Hall da Fama", "kind": "community-digest" },
+    { "id": "8f8398edc8", "titulo": "Montana Grind: o doc de skate com trilha de Jeff Ament está no Channel 10c", "kind": "shop" },
+    { "id": "7fecb16ead", "titulo": "Jeff Ament lança trilha de Montana Grind em vinil com bundle do P.E.S.T.", "kind": "shop" }
+  ],
+  "skipped": [
+    { "id": "8051341182", "title": "Ferry Shirt", "reason": "merch/apparel" },
+    { "id": "97ecb18a25", "title": "Easy Street Shirt", "reason": "merch/apparel" },
+    { "id": "80af3310f7", "title": "Record Shop Shirt", "reason": "merch/apparel" }
+  ]
+}

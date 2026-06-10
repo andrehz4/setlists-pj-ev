@@ -1,6 +1,61 @@
 {
-  "updated": "2026-06-09T15:06:03.692Z",
+  "updated": "2026-06-10T21:09:16.941Z",
   "items": [
+    {
+      "id": "8f8398edc8",
+      "url": "https://shop.pearljam.com/products/montana-grind",
+      "source": "pj-shop-featured",
+      "sourceLabel": "Loja Pearl Jam",
+      "group": "tenclub",
+      "pubDate": "2026-06-10T17:00:07Z",
+      "fetchedAt": "2026-06-10T21:09:16.521Z",
+      "img": "/media/news/img/8f8398edc8.jpg",
+      "title_pt": "Montana Grind: o doc de skate com trilha de Jeff Ament está no Channel 10c",
+      "intro_pt": "O documentário sobre comunidades de skate no Montana, com trilha sonora criada por Jeff Ament, está disponivel para aluguel no Channel 10c.",
+      "tags": [
+        "jeff",
+        "lancamento"
+      ],
+      "title_ig": "Montana Grind: Jeff Ament assina a trilha",
+      "kind": "shop"
+    },
+    {
+      "id": "7fecb16ead",
+      "url": "https://shop.pearljam.com/products/montana-grind-soundtrack-vinyl-bundle",
+      "source": "pj-shop-featured",
+      "sourceLabel": "Loja Pearl Jam",
+      "group": "tenclub",
+      "pubDate": "2026-06-10T17:00:05Z",
+      "fetchedAt": "2026-06-10T21:09:16.521Z",
+      "img": "/media/news/img/7fecb16ead.jpg",
+      "title_pt": "Jeff Ament lança trilha de Montana Grind em vinil com bundle do P.E.S.T.",
+      "intro_pt": "A trilha sonora do documentário Montana Grind e um EP inédito do P.E.S.T. chegam juntos em vinil limitado no dia 19 de junho.",
+      "tags": [
+        "jeff",
+        "lancamento"
+      ],
+      "title_ig": "Montana Grind chega em vinil em junho",
+      "kind": "shop"
+    },
+    {
+      "id": "cd-20260610",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-06-10T12:25:36.467Z",
+      "fetchedAt": "2026-06-10T21:09:16.521Z",
+      "img": "/media/news/img/cd-20260610.jpg",
+      "title_pt": "Matt Cameron ouve Bad Omens e Eddie relembrado no Hall da Fama",
+      "intro_pt": "Matt Cameron ouvindo Bad Omens e os discursos memoráveis do Eddie no Hall da Fama dominaram as conversas da comunidade global.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "Matt Cameron se rende aos Bad Omens",
+      "kind": "community-digest",
+      "community_posts_count": 8
+    },
     {
       "id": "a65e2c5d02",
       "url": "https://shows.acast.com/state-of-love-and-trust/episodes/kim-thayils-a-screaming-life",
