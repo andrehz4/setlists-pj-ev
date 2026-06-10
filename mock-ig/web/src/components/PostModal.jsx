@@ -1,12 +1,23 @@
 import React, { useState } from "react";
+import { deletePost } from "../api.js";
 
 // Post aberto estilo IG desktop: imagem/carrossel a esquerda, painel com
 // autor + caption a direita.
 export default function PostModal({ post, onClose }) {
   const [i, setI] = useState(0);
+  const [busy, setBusy] = useState(false);
   const n = post.slides.length;
   const prev = () => setI((x) => Math.max(0, x - 1));
   const next = () => setI((x) => Math.min(n - 1, x + 1));
+
+  // simula o Andre apagando o post no app (testa ig-detect-deleted + denylist)
+  async function onDelete() {
+    if (!post.postId || busy) return;
+    if (!window.confirm(`Apagar ${post.postId} do "Instagram"? (vira code 100 no exists)`)) return;
+    setBusy(true);
+    try { await deletePost(post.postId); onClose(); }
+    catch (e) { alert("falha ao apagar: " + e.message); setBusy(false); }
+  }
 
   return (
     <div className="modal-bg" onClick={onClose}>
@@ -54,6 +65,15 @@ export default function PostModal({ post, onClose }) {
               </div>
             )}
             <pre>{post.caption}</pre>
+            {post.postId && (
+              <button
+                onClick={onDelete}
+                disabled={busy}
+                style={{ marginTop: 12, padding: "6px 12px", border: "1px solid #d33", borderRadius: 6, background: "transparent", color: "#d33", cursor: "pointer", fontSize: 12 }}
+              >
+                {busy ? "apagando..." : "apagar do IG (simula delete no app)"}
+              </button>
+            )}
           </div>
         </div>
       </div>

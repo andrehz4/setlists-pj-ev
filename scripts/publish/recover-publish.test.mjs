@@ -23,7 +23,9 @@ const PORT = Number(process.env.MOCK_RECOVER_PORT || 8793);
 const base = `http://127.0.0.1:${PORT}`;
 process.env.MOCK_IG_PORT = String(PORT);
 process.env.IG_API_BASE = base;
-process.env.REPO_PUBLIC_BASE = base; // slideUrlFor; o mock nao baixa a imagem
+// host NAO-local de proposito: os items deste teste nao tem slide no disco, e
+// o mock valida (HEAD) midia de URL local. URL de host fake passa sem checagem.
+process.env.REPO_PUBLIC_BASE = "http://mock-assets.invalid";
 process.env.IG_USER_ID = "u";
 process.env.IG_ACCESS_TOKEN = "tok";
 // poll de recuperacao rapido nos testes (producao: 5 tentativas, 10s entre elas)

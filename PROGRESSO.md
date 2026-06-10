@@ -1,7 +1,19 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-06-10 (sessão: vistoria geral 11 eixos + execução das 6 fases de correção)
+2026-06-10 (sessões: vistoria geral 11 eixos + 6 fases; parte 3: vistoria do mock-ig + correções)
+
+## ⭐ Sessão 2026-06-10 (parte 3): vistoria do mock-ig + correções (FEITO, 92/92 testes)
+
+Vistoria completa do mock do Instagram (mock-ig/), endpoint a endpoint contra o cliente real. Veredicto: sólido, mas com 1 suspeita de bug de produção e lacunas de cobertura. Tudo corrigido na mesma sessão:
+
+1. **Shape da quota (POSSÍVEL BUG DE PRODUÇÃO)**: a doc oficial da Meta devolve `content_publishing_limit` embrulhado em `data[]` (`{"data":[{"quota_usage":N,"config":{...}}]}`), mas `ig-quota.mjs` e `smoke-test.mjs` liam o campo plano. Se a API real for data-wrapped, o pre-check de quota era no-op silencioso (sempre via usage=0, nunca saturava). Conserto: cliente aceita os DOIS shapes (`data[0] ?? body`); mock passou a servir o shape oficial. **PENDENTE confirmar**: rodar `npm run publish:smoke` com token real e ver se imprime número (de toda forma o cliente agora cobre ambos).
+2. **Fluxo de post apagado**: nova rota `POST /_mock/delete` (post some do feed/stories/reels + exists devolve code 100), botão "apagar do IG" no PostModal do front, e novo `detect-deleted.test.mjs` (checkPostExists contra o mock). Antes o array `deleted` do store era órfão (nada o populava) e o fluxo denylist era intestável no mock.
+3. **Validações fiéis ao IG real no mock**: mídia local inacessível recusada com code 9004 (HEAD na criação do container; URL de host fake passa, pros testes unitários), publish de container `IN_PROGRESS` recusado com code 9007 (pega regressão que pule o waitContainerReady), caption >2200 e carrossel fora de 2..10 children recusados, quota dura 50/24h com code 80007, `ratelimit` também nos GETs, header `x-app-usage` em TODO erro Graph.
+4. **Menores**: `_control.json` removido (arquivo morto, nada o lia; modo de falha vive no store via /_mock/fail), guarda anti path-traversal do serveFile/dist com `path.sep`, body lido antes do load do store nos POSTs (encurta janela de race), README atualizado (rotas + shape + validações).
+5. **Validação**: suíte 84 -> 92 testes, tudo verde; e2e real `mock:publish` contra server novo na :8799 (slide gerado, validação de mídia passou, publish OK, quota data-wrapped, delete -> code 100, recusas 9007/9004 via curl). Estado de media/news restaurado byte a byte após o e2e. `recover-publish.test.mjs` passou a usar `REPO_PUBLIC_BASE` de host fake pros slides inexistentes não caírem na validação nova.
+
+**Atenção**: o `npm run mock:server` que estiver rodando precisa ser REINICIADO pra carregar o server novo. Front rebuildado (web/dist, gitignored).
 
 ## ⭐ Sessão 2026-06-10: vistoria geral + correções (FEITO, 84/84 testes)
 

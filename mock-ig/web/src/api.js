@@ -30,6 +30,16 @@ export async function resetStore() {
   await fetch("/_mock/reset", { method: "POST" });
 }
 
+// Apaga um post "no app" (some do feed e o GET /:postId passa a dar code 100),
+// pra testar o fluxo do ig-detect-deleted + denylist.
+export async function deletePost(postId) {
+  const body = new URLSearchParams({ postId });
+  const r = await fetch("/_mock/delete", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || ("delete " + r.status));
+  return j;
+}
+
 export async function fetchControl() {
   const r = await fetch("/_mock/control");
   if (!r.ok) throw new Error("control " + r.status);

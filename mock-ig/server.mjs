@@ -9,7 +9,7 @@
 //      GET /:id (status de container OU exists de post), GET /me
 //   2. Servidor de media do disco: GET /media/... (substitui raw.githubusercontent,
 //      pra o "IG" buscar os JPG/MP4 que o app gerou localmente)
-//   3. API do front: GET /_mock/feed|stories|state, POST /_mock/reset|fail
+//   3. API do front: GET /_mock/feed|stories|state, POST /_mock/reset|fail|delete
 //
 // Config por env (todas opcionais, defaults sensatos):
 //   MOCK_IG_PORT       porta (default 8788)
@@ -65,8 +65,15 @@ function sendGraph(res, status, obj, store) {
 
 // Erro tipado da Graph API. code 4 = limite da app (rate limit), code 100 =
 // objeto inexistente, etc. Formato exato que o cliente (classifyIGError) le.
-function graphError(res, status, { code, subcode, message }) {
-  sendJson(res, status, {
+// Com store, manda tambem o x-app-usage (a Meta real manda header de uso
+// inclusive em respostas de erro).
+function graphError(res, status, { code, subcode, message }, store) {
+  const headers = { "Content-Type": "application/json; charset=utf-8" };
+  if (store) {
+    const u = hourlyUsage(store);
+    headers["x-app-usage"] = JSON.stringify({ call_count: u.pct, total_time: u.pct, total_cputime: Math.round(u.pct / 2) });
+  }
+  send(res, status, {
     error: {
       message: message || "Mock Graph API error",
       type: "OAuthException",
@@ -74,11 +81,12 @@ function graphError(res, status, { code, subcode, message }) {
       error_subcode: subcode,
       fbtrace_id: "mock-trace",
     },
-  });
+  }, headers);
 }
 
-// Modo de falha: query ?fail= (por request) > _control.json/store.control >
-// env MOCK_IG_FAIL. Permite testar cooldown, quota, erro de video.
+// Modo de falha: query ?fail= (por request) > store.control (setado via
+// POST /_mock/fail) > env MOCK_IG_FAIL. Permite testar cooldown, quota,
+// erro de video.
 function failMode(store, query) {
   if (query.fail) return query.fail;
   if (store.control && store.control.fail) return store.control.fail;
@@ -147,12 +155,36 @@ async function readBody(req) {
 function serveFile(res, urlPath) {
   const rel = decodeURIComponent(urlPath.replace(/^\/+/, ""));
   const filePath = path.join(SERVE_ROOT, rel);
-  if (!filePath.startsWith(SERVE_ROOT)) return send(res, 403, "forbidden");
+  // path.sep no sufixo evita o bypass de prefixo irmao (/repo vs /repo-x)
+  if (!filePath.startsWith(SERVE_ROOT + path.sep)) return send(res, 403, "forbidden");
   fs.stat(filePath, (err, st) => {
     if (err || !st.isFile()) return send(res, 404, "not found: " + urlPath);
     const ext = path.extname(filePath).toLowerCase();
     send(res, 200, fs.readFileSync(filePath), { "Content-Type": MIME[ext] || "application/octet-stream" });
   });
+}
+
+// Valida que a midia do container e alcancavel, como o IG real faz (ele baixa
+// a image_url/video_url na criacao do container; URL quebrada = erro 9004).
+// So checa URLs locais (o proprio mock servindo do disco): URL externa ou de
+// host fake (http://x/...) passa sem checagem, pra nao bater na internet nem
+// quebrar testes unitarios que usam URLs de mentira de hosts nao-locais.
+// Retorna null se OK/pulado, ou a string de erro.
+async function checkLocalMedia(mediaUrl) {
+  if (!mediaUrl) return null;
+  let u;
+  try { u = new URL(mediaUrl); } catch { return `URL invalida: ${mediaUrl}`; }
+  if (u.hostname !== "127.0.0.1" && u.hostname !== "localhost") return null;
+  try {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 3000);
+    const r = await fetch(mediaUrl, { method: "HEAD", signal: ctl.signal });
+    clearTimeout(timer);
+    if (r.status >= 400) return `HTTP ${r.status} ao buscar ${mediaUrl}`;
+    return null;
+  } catch (e) {
+    return `falha ao buscar ${mediaUrl}: ${e.message}`;
+  }
 }
 
 const server = http.createServer(async (req, res) => {
@@ -175,6 +207,27 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/_mock/state") { return sendJson(res, 200, load()); }
     if (pathname === "/_mock/control") { const s = load(); return sendJson(res, 200, s.control || { fail: null, storyPolls: 0 }); }
     if (pathname === "/_mock/reset" && method === "POST") { return sendJson(res, 200, reset()); }
+
+    // simula o Andre apagando um post no app do IG: o post some do feed/
+    // stories/reels e o GET /:postId passa a devolver code 100, exatamente o
+    // sinal que o ig-detect-deleted usa pra alimentar a denylist.
+    if (pathname === "/_mock/delete" && method === "POST") {
+      const b = await readBody(req); const s = load();
+      const postId = b.postId;
+      if (!postId) return sendJson(res, 400, { error: "postId obrigatorio" });
+      const inFeed = (s.feed || []).some((f) => f.postId === postId);
+      const inStories = (s.stories || []).some((f) => f.postId === postId);
+      const inReels = (s.reels || []).some((f) => f.postId === postId);
+      if (!inFeed && !inStories && !inReels && !s.deleted.includes(postId)) {
+        return sendJson(res, 404, { error: "postId desconhecido: " + postId });
+      }
+      if (!s.deleted.includes(postId)) s.deleted.push(postId);
+      s.feed = (s.feed || []).filter((f) => f.postId !== postId);
+      s.stories = (s.stories || []).filter((f) => f.postId !== postId);
+      s.reels = (s.reels || []).filter((f) => f.postId !== postId);
+      save(s);
+      return sendJson(res, 200, { ok: true, deleted: s.deleted });
+    }
 
     // ---------- sync: puxa os commits novos do Actions (botao Atualizar) ----------
     // Faz git fetch + checkout origin/main -- media/news (mesma logica do
@@ -311,15 +364,28 @@ const server = http.createServer(async (req, res) => {
     // ---------- Graph API ----------
     // POST /:uid/media_publish  (testar ANTES de /media: prefixo compartilhado)
     if (method === "POST" && /\/media_publish$/.test(pathname)) {
+      // body ANTES do load: encurta a janela de read-modify-write do store
+      // entre o load e o save (requests concorrentes podiam se sobrescrever)
+      const body = await readBody(req);
       const s = load();
       const fail = failMode(s, query);
       if (fail === "ratelimit") {
         bumpCall(s, "POST /media_publish"); save(s); // conta mesmo falhando (gastou chamada)
-        return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" });
+        return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" }, s);
       }
-      const body = await readBody(req);
       const c = s.containers[body.creation_id];
-      if (!c) return graphError(res, 400, { code: 100, message: "container inexistente: " + body.creation_id });
+      if (!c) return graphError(res, 400, { code: 100, message: "container inexistente: " + body.creation_id }, s);
+      // IG real recusa publicar container de video ainda em processamento.
+      // Pega regressao que pule o waitContainerReady (publicar sem poll).
+      if (c.status_code !== "FINISHED") {
+        return graphError(res, 400, { code: 9007, subcode: 2207027, message: `Media is not ready to be published (status_code=${c.status_code})` }, s);
+      }
+      // quota dura dos 50 posts/24h (code 80007): o pre-check do pipeline
+      // deveria abortar antes, mas se estourar no meio da run o IG recusa.
+      if ((s.quotaUsage || 0) >= 50) {
+        bumpCall(s, "POST /media_publish"); save(s);
+        return graphError(res, 400, { code: 80007, message: "Content publishing limit reached (50/24h)" }, s);
+      }
       bumpCall(s, "POST /media_publish");
       const postId = nextId(s, "p");
       // fecha o ciclo de contagem: quantas chamadas custou ESTA postagem (por post).
@@ -354,13 +420,27 @@ const server = http.createServer(async (req, res) => {
 
     // POST /:uid/media  (cria container)
     if (method === "POST" && /\/media$/.test(pathname)) {
+      const body = await readBody(req);
       const s = load();
       const fail = failMode(s, query);
       if (fail === "ratelimit") {
         bumpCall(s, "POST /media"); save(s);
-        return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" });
+        return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" }, s);
       }
-      const body = await readBody(req);
+      // validacoes que o IG real faz na criacao do container
+      if (body.caption && body.caption.length > 2200) {
+        return graphError(res, 400, { code: 100, message: `Caption too long (${body.caption.length} > 2200)` }, s);
+      }
+      if (body.media_type === "CAROUSEL") {
+        const kids = String(body.children || "").split(",").filter(Boolean);
+        if (kids.length < 2 || kids.length > 10) {
+          return graphError(res, 400, { code: 100, message: `carrossel exige 2 a 10 children, recebido ${kids.length}` }, s);
+        }
+      }
+      const mediaErr = await checkLocalMedia(body.image_url || body.video_url);
+      if (mediaErr) {
+        return graphError(res, 400, { code: 9004, message: `Media could not be fetched: ${mediaErr}` }, s);
+      }
       bumpCall(s, "POST /media");
       const id = nextId(s, "c");
       // STORIES e REELS sao video: passam por processamento (polling de status).
@@ -385,8 +465,13 @@ const server = http.createServer(async (req, res) => {
       const s = load();
       bumpCall(s, "GET /content_publishing_limit"); save(s);
       const fail = failMode(s, query);
+      if (fail === "ratelimit") {
+        return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" }, s);
+      }
       const usage = fail === "quota" ? 49 : (s.quotaUsage || 0);
-      return sendJson(res, 200, { quota_usage: usage, config: { quota_total: 50, quota_duration: 86400 } });
+      // shape OFICIAL da Meta: embrulhado em data[] (a doc do endpoint mostra
+      // {"data":[{"quota_usage":N,"config":{...}}]}). O cliente aceita os dois.
+      return sendGraph(res, 200, { data: [{ quota_usage: usage, config: { quota_total: 50, quota_duration: 86400 } }] }, s);
     }
 
     // GET /:uid/media  (lista midias recentes da conta) -- usado pela
@@ -395,6 +480,10 @@ const server = http.createServer(async (req, res) => {
     if (method === "GET" && /\/media$/.test(pathname)) {
       const s = load();
       bumpCall(s, "GET /:uid/media");
+      if (failMode(s, query) === "ratelimit") {
+        save(s);
+        return graphError(res, 429, { code: 4, subcode: 2207051, message: "Application request limit reached" }, s);
+      }
       // consistencia eventual simulada: enquanto mediaHideCalls > 0, o feed
       // "ainda nao indexou" e a lista volta vazia. Decrementa por chamada.
       if (s.control && Number(s.control.mediaHideCalls) > 0) {
@@ -425,7 +514,7 @@ const server = http.createServer(async (req, res) => {
       const s = load();
       if (id.startsWith("c_")) {
         const c = s.containers[id];
-        if (!c) return graphError(res, 400, { code: 100, message: "container inexistente" });
+        if (!c) return graphError(res, 400, { code: 100, message: "container inexistente" }, s);
         bumpCall(s, "GET /:container (status)");
         const fail = failMode(s, query);
         if (fail === "videoerror") { save(s); return sendJson(res, 200, { status_code: "ERROR", status: "mock forced error" }); }
@@ -437,7 +526,7 @@ const server = http.createServer(async (req, res) => {
       }
       if (id.startsWith("p_")) {
         bumpCall(s, "GET /:post (exists)"); save(s);
-        if (s.deleted.includes(id)) return graphError(res, 400, { code: 100, message: "Unknown object id (apagado)" });
+        if (s.deleted.includes(id)) return graphError(res, 400, { code: 100, message: "Unknown object id (apagado)" }, s);
         return sendJson(res, 200, { id });
       }
     }
@@ -449,7 +538,7 @@ const server = http.createServer(async (req, res) => {
       const webDist = path.join(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "web", "dist");
       const rel = pathname === "/" ? "index.html" : pathname.replace(/^\/+/, "");
       const candidate = path.join(webDist, rel);
-      if (candidate.startsWith(webDist) && fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+      if (candidate.startsWith(webDist + path.sep) && fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
         const ext = path.extname(candidate).toLowerCase();
         return send(res, 200, fs.readFileSync(candidate), { "Content-Type": MIME[ext] || "application/octet-stream" });
       }
