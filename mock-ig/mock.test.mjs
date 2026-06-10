@@ -87,13 +87,14 @@ test("story: container STORIES + status FINISHED + publish vira story", async ()
   assert.equal(stories.body[0].videoUrl, "http://x/v.mp4");
 });
 
-test("content_publishing_limit reporta uso", async () => {
+test("content_publishing_limit reporta uso no shape oficial (data[])", async () => {
   await post("/_mock/reset", {});
   const c = await post("/u/media", { media_type: "IMAGE", image_url: "http://x/1.jpg" });
   await post("/u/media_publish", { creation_id: c.body.id });
   const q = await get("/u/content_publishing_limit?fields=quota_usage,config");
-  assert.equal(q.body.quota_usage, 1);
-  assert.equal(q.body.config.quota_total, 50);
+  assert.ok(Array.isArray(q.body.data), "resposta deve vir embrulhada em data[]");
+  assert.equal(q.body.data[0].quota_usage, 1);
+  assert.equal(q.body.data[0].config.quota_total, 50);
 });
 
 test("story com polling: IN_PROGRESS ate FINISHED apos N polls", async () => {
@@ -130,7 +131,7 @@ test("quota saturada via fail: usage volta 49", async () => {
   await post("/_mock/reset", {});
   await post("/_mock/fail", { fail: "quota" });
   const q = await get("/u/content_publishing_limit?fields=quota_usage,config");
-  assert.equal(q.body.quota_usage, 49);
+  assert.equal(q.body.data[0].quota_usage, 49);
   await post("/_mock/fail", { fail: "none" });
 });
 
@@ -143,10 +144,67 @@ test("control reflete o fail setado", async () => {
   assert.equal(c2.body.fail, null);
 });
 
-test("post deletado retorna code 100 no exists", async () => {
+test("post deletado via /_mock/delete some do feed e retorna code 100 no exists", async () => {
   await post("/_mock/reset", {});
   const c = await post("/u/media", { media_type: "IMAGE", image_url: "http://x/1.jpg" });
   const pub = await post("/u/media_publish", { creation_id: c.body.id });
+  // antes de apagar: exists OK e post no feed
   const ok = await get(`/${pub.body.id}?fields=id`);
   assert.equal(ok.body.id, pub.body.id);
+  assert.equal((await get("/_mock/feed")).body.length, 1);
+  // apaga (como o Andre faria no app) e confere o sinal do ig-detect-deleted
+  const del = await post("/_mock/delete", { postId: pub.body.id });
+  assert.equal(del.status, 200);
+  const gone = await get(`/${pub.body.id}?fields=id`);
+  assert.equal(gone.status, 400);
+  assert.equal(gone.body.error.code, 100);
+  assert.equal((await get("/_mock/feed")).body.length, 0, "post apagado some do feed");
+});
+
+test("delete de postId desconhecido retorna 404", async () => {
+  const r = await post("/_mock/delete", { postId: "p_nao_existe" });
+  assert.equal(r.status, 404);
+});
+
+test("publish de container de video ainda IN_PROGRESS e recusado (code 9007)", async () => {
+  await post("/_mock/reset", {});
+  await post("/_mock/fail", { storyPolls: "2" }); // video nasce IN_PROGRESS
+  const c = await post("/u/media", { media_type: "STORIES", video_url: "http://x/v.mp4" });
+  const pub = await post("/u/media_publish", { creation_id: c.body.id });
+  assert.equal(pub.status, 400);
+  assert.equal(pub.body.error.code, 9007);
+  await post("/_mock/fail", { storyPolls: "0" });
+});
+
+test("carrossel com menos de 2 children e recusado", async () => {
+  await post("/_mock/reset", {});
+  const c1 = await post("/u/media", { media_type: "IMAGE", image_url: "http://x/1.jpg", is_carousel_item: "true" });
+  const car = await post("/u/media", { media_type: "CAROUSEL", children: c1.body.id, caption: "so um" });
+  assert.equal(car.status, 400);
+  assert.equal(car.body.error.code, 100);
+});
+
+test("caption acima de 2200 chars e recusada na criacao do container", async () => {
+  const r = await post("/u/media", { media_type: "IMAGE", image_url: "http://x/1.jpg", caption: "x".repeat(2201) });
+  assert.equal(r.status, 400);
+  assert.match(r.body.error.message, /caption too long/i);
+});
+
+test("media local inacessivel (404) e recusada com code 9004; local existente passa", async () => {
+  await post("/_mock/reset", {});
+  const bad = await post("/u/media", { media_type: "IMAGE", image_url: `${base}/media/nao-existe-xyz.jpg` });
+  assert.equal(bad.status, 400);
+  assert.equal(bad.body.error.code, 9004);
+  // arquivo que existe no repo, servido pelo proprio mock
+  const good = await post("/u/media", { media_type: "IMAGE", image_url: `${base}/media/news/index.json` });
+  assert.match(good.body.id, /^c_/);
+});
+
+test("erro Graph tambem carrega o header x-app-usage", async () => {
+  const r = await fetch(base + "/u/media_publish?fail=ratelimit", {
+    method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: form({ creation_id: "c_x" }),
+  });
+  assert.equal(r.status, 429);
+  const usage = JSON.parse(r.headers.get("x-app-usage"));
+  assert.ok(usage.call_count != null);
 });

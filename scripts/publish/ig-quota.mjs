@@ -43,8 +43,11 @@ export async function getContentPublishingLimit({ igUserId, accessToken } = {}) 
     throw new Error(`content_publishing_limit falhou: ${msg} (code=${code} fbtrace=${fbtrace})`);
   }
 
-  const cfg = res.body?.config || {};
-  const usage = Number.isFinite(res.body?.quota_usage) ? res.body.quota_usage : 0;
+  // A doc oficial da Meta embrulha a resposta em data[]: {"data":[{"quota_usage":N,"config":{...}}]}.
+  // Aceita os dois shapes (embrulhado e plano) pra nao depender da variante do endpoint.
+  const row = (Array.isArray(res.body?.data) && res.body.data[0]) || res.body || {};
+  const cfg = row.config || {};
+  const usage = Number.isFinite(row.quota_usage) ? row.quota_usage : 0;
   const total = Number.isFinite(cfg.quota_total) ? cfg.quota_total : 50;
   const remaining = Math.max(0, total - usage);
   const saturated = remaining <= QUOTA_SAFETY_MARGIN;

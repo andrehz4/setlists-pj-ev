@@ -42,7 +42,7 @@ producao** (nenhum workflow seta `IG_API_BASE`).
 | `POST /:uid/media` (IMAGE/CAROUSEL/STORIES) | `{ id: "c_N" }` (container) |
 | `POST /:uid/media_publish` | `{ id: "p_N" }` (postId; vai pro feed/stories) |
 | `GET /:containerId?fields=status_code,status` | `{ status_code: "FINISHED" }` (story) |
-| `GET /:uid/content_publishing_limit` | `{ quota_usage, config: { quota_total: 50 } }` |
+| `GET /:uid/content_publishing_limit` | `{ data: [{ quota_usage, config: { quota_total: 50 } }] }` (shape oficial da Meta) |
 | `GET /:postId?fields=id` | `{ id }` ou erro code 100 se apagado |
 | `GET /me` | `{ id, username, account_type: "BUSINESS" }` |
 | `GET /media/...` | serve o arquivo do disco (substitui o raw.githubusercontent) |
@@ -55,7 +55,21 @@ producao** (nenhum workflow seta `IG_API_BASE`).
 | `GET /_mock/stories` | stories (pro front) |
 | `GET /_mock/state` | store inteiro |
 | `POST /_mock/reset` | zera o store |
-| `POST /_mock/fail` (`fail=ratelimit\|quota\|videoerror`, `storyPolls=N`) | liga modo de falha sticky |
+| `POST /_mock/delete` (`postId=p_N`) | "apaga o post no app": some do feed/stories/reels e o exists passa a dar code 100 (testa o ig-detect-deleted + denylist) |
+| `POST /_mock/fail` (`fail=ratelimit\|quota\|videoerror`, `storyPolls=N`, `mediaHideCalls=N`) | liga modo de falha sticky |
+
+### Validacoes fieis ao IG real (pegam regressao no pipeline)
+
+- **Midia inacessivel**: na criacao do container, se `image_url`/`video_url` aponta
+  pro proprio mock (host local) e o arquivo nao existe, devolve erro code 9004,
+  como o IG real (que baixa a midia na hora). URL de host externo/fake passa sem
+  checagem (testes unitarios usam `http://x/...`).
+- **Publish de video nao processado**: `media_publish` de container com
+  `status_code != FINISHED` devolve code 9007 (pega quem pular o poll de status).
+- **Caption > 2200** e **carrossel fora de 2..10 children**: erro na criacao.
+- **Quota dura**: a partir de 50 posts/24h o `media_publish` devolve code 80007.
+- **`fail=ratelimit`** tambem se aplica aos GETs (`/:uid/media`, quota), e TODO
+  erro Graph sai com o header `x-app-usage`, como a Meta real.
 
 ---
 
@@ -155,8 +169,7 @@ O mock e standalone. Pra testar qualquer app que publique no IG:
 | `run.mjs` | roda o pipeline real com as envs do mock (`node mock-ig/run.mjs feed\|story`) |
 | `reset.mjs` | zera o store |
 | `mock.test.mjs` | testes do mock (`node --test mock-ig/mock.test.mjs`) |
-| `_control.json` | modo de falha persistente (commitado, default null) |
-| `_store.json` | estado runtime (gitignored) |
+| `_store.json` | estado runtime (gitignored; o modo de falha sticky vive aqui, setado via `/_mock/fail`) |
 | `web/` | front React+Vite (feed grid, carrossel, stories, reels placeholder) |
 
 ## Front (ver a publicacao numa tela)

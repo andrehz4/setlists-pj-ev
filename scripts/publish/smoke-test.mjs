@@ -104,8 +104,10 @@ async function main() {
     process.exit(1);
   }
 
-  const cfg = r2.body.config || {};
-  const usage = (r2.body.quota_usage != null) ? r2.body.quota_usage : "?";
+  // resposta oficial vem embrulhada em data[]; aceita tambem o shape plano
+  const row = (Array.isArray(r2.body.data) && r2.body.data[0]) || r2.body || {};
+  const cfg = row.config || {};
+  const usage = (row.quota_usage != null) ? row.quota_usage : "?";
   const cap = cfg.quota_total || 50;
   console.log(`  ✓ OK: usado ${usage}/${cap} posts nas ultimas 24h.`);
   console.log("");
