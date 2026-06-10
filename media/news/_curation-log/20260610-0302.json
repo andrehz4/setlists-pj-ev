@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-10T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-558c126556",
+      "title": "Makes landing at 3am worth it",
+      "reason": "spotlight sem selftext real (apenas boilerplate 'submitted by'), score 0, conteudo ambiguo, impossivel determinar o que o fa fez"
+    },
+    {
+      "id": "665e66bdb1",
+      "title": "What Pearl Jam song is she singing?",
+      "reason": "texto extraido vazio (so boilerplate Reddit), PJ tangencial em subreddit de jogo (r/NightInTheWoods), nao e noticia sobre a banda"
+    }
+  ]
+}
