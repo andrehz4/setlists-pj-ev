@@ -14,7 +14,16 @@ Vistoria completa (nota média 6.1/10, relatório na conversa) seguida de plano 
 5. **Higiene do repo**: `prune-media.mjs` apaga slides/stories já publicados >14d do working tree (delecões no commit de estado do publish). Limitação honesta: não encolhe o .git (645MB), só segura o checkout. Solução de raiz = R2, pendente de token (abaixo).
 6. **IA-friendly**: `CLAUDE.md` (mapa do projeto pra agentes: comandos, arquivos de estado, fluxo dos crons, gotchas), `HUB.md` (integração hub-hz), banners de defasagem no HANDOFF.md e PIPELINE.md.
 
+## ⭐ Sessão 2026-06-10 (parte 2): melhorias sem-risco-de-quebra (FEITO)
+
+Pacote aprovado pelo Andre ("faz tudo, mas garante que não quebra"), 4 commits:
+1. **Perf site** (`93e96fd`): interpretations.json (354KB gzip) saiu do caminho do primeiro paint, carrega no idle/1ª interação (o `_getInterpretation` já degradava pra null, comportamento preservado); dns-prefetch R2/ytimg + preconnect Railway no fórum; loading=lazy no thumb que faltava. Facade de YouTube DESCARTADA com justificativa: iframes já tinham loading=lazy e clipes usam lightbox. Imagens de notícia são background-image renderizadas só quando a aba abre (já lazy de fato).
+2. **Coleta em pool** (`77a9c6f`): 4 fontes em paralelo (era sequencial + sleep 400ms, ~15s mortos/run); resultados processados na ordem de SOURCES, saída idêntica (validado com news:dry real: 39 fontes, 25 candidatos, mesmas falhas pré-existentes).
+3. **Seeder semanal do fórum** (`4a0dc49`): endpoint aditivo `POST /forum/bot/topics` (FORUM_BOT_KEY via X-Bot-Key, compare_digest, sem env = desligado), usuário-bot UUID determinístico "SMUFDPJ", `forum-seed.mjs` monta tópico com as notícias dos últimos 7d, idempotente por semana ISO (`_forum-seed-stamp.json`), workflow sexta 12:00 BRT. Sem o secret, skip gracioso. Motivo: fórum tecnicamente pronto mas com 1 tópico "Teste" só (última atividade 18/05).
+4. Validações: py_compile no backend, backend-ci (pytest) e test.yml no push, news:dry real, vm.Script nos 4 blocos inline do index.html.
+
 **PENDÊNCIAS pro Andre:**
+0. **Ativar o seeder do fórum**: gerar uma chave (ex: `openssl rand -hex 32`), setar `FORUM_BOT_KEY` no Railway (env do backend) e em GitHub Secrets, e redeploy do backend (o mesmo redeploy ativa o token via fragment da fase 3). Depois testar com `gh workflow run forum-seed.yml`.
 1. **Token R2** (Settings do Cloudflare > R2 > API token com write no bucket) + cadastrar como secrets `R2_*` pra fase final: slides/stories param de ser commitados e o repo para de crescer ~48MB/mês. Pedir numa próxima sessão: "implementa o upload R2 dos slides".
 2. **Redeploy do backend no Railway** (se não for automático no push): ativa o redirect com #token= (até lá o formato antigo ?token= segue funcionando, nada quebra).
 3. **Conferir no celular**: site navegando normal (CSP nova), login do fórum, abrir 1 link /n/ antigo do Telegram.
