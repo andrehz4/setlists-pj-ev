@@ -1,2 +1,20 @@
+# Headers do Cloudflare Pages.
+#
+# CSP: 'unsafe-inline' em script/style e obrigatorio (o app e single-file com
+# JS/CSS inline); mesmo assim a CSP bloqueia script de QUALQUER dominio
+# externo nao listado, object/embed, e form-action fora do site.
+# Dominios na connect-src: backend do forum (Railway), GA4 e audio (R2).
+# Se um embed novo quebrar, o console do browser mostra a diretiva violada;
+# rollback = git revert deste arquivo.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data: blob:; media-src 'self' blob: https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev; connect-src 'self' https://perpetual-energy-production-1a69.up.railway.app https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev; frame-src 'self' https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'
+
+# Imagens de noticia sao content-addressed (1 arquivo novo por item, nunca
+# reescritas): cache longo e seguro e poupa origem.
+/media/news/img/*
+  Cache-Control: public, max-age=604800
+
 /forum-topic.html
   Permissions-Policy: microphone=(self)

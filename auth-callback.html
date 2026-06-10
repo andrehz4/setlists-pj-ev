@@ -56,8 +56,18 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-m
 
 <script>
 (function () {
+  // O token chega preferencialmente no FRAGMENT (#token=...): fragment nao
+  // vai pro servidor, nao fica em log de CDN nem em Referer. A query string
+  // (?token=) segue aceita por compatibilidade durante a transicao do
+  // backend; assim qualquer ordem de deploy (Pages x Railway) funciona.
   const params = new URLSearchParams(location.search);
-  const token = params.get("token");
+  const hashParams = new URLSearchParams((location.hash || "").replace(/^#/, ""));
+  const pick = (k) => hashParams.get(k) || params.get(k);
+  const token = pick("token");
+
+  // Tira token/name/avatar da barra de endereco e do historico do browser
+  // imediatamente, antes de qualquer processamento.
+  history.replaceState(null, "", location.pathname);
 
   if (!token) {
     document.getElementById("spinner").style.display = "none";
@@ -70,12 +80,15 @@ html, body { background: var(--bg); color: var(--ink); font-family: var(--font-m
   }
 
   localStorage.setItem("forum_token", token);
-  const name = params.get("name");
-  const avatar = params.get("avatar");
+  const name = pick("name");
+  const avatar = pick("avatar");
   if (name) {
+    let avatarUrl = avatar ? decodeURIComponent(avatar) : null;
+    // So aceita avatar https (bloqueia javascript:, data: e http misto).
+    if (avatarUrl && !/^https:\/\//i.test(avatarUrl)) avatarUrl = null;
     localStorage.setItem("forum_user", JSON.stringify({
       display_name: decodeURIComponent(name),
-      avatar_url: avatar ? decodeURIComponent(avatar) : null,
+      avatar_url: avatarUrl,
     }));
   }
   document.getElementById("msg").textContent = "Bem-vindo!";
