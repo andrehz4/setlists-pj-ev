@@ -29,13 +29,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
-          fetch-depth: 0
+          # 50 commits cobrem o range origin/main..origin/<branch> que o
+          # auto-merge-routine consulta; 0 baixava o historico inteiro
+          # (~650MB) a cada run sem necessidade.
+          fetch-depth: 50
           # token padrao do workflow ja basta pra push (permissions: contents: write)
           persist-credentials: true
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '20'
           cache: 'npm'
