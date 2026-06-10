@@ -39,7 +39,10 @@ async def google_callback(request: Request):
     profile = token.get("userinfo") or await oauth.google.userinfo(token=token)
     user_id = await upsert_user(dict(profile))
     jwt_token = create_jwt(user_id)
-    redirect_url = f"{settings.FORUM_CORS_ORIGIN}/auth-callback.html?token={jwt_token}"
+    # Token no FRAGMENT (#token=): nao vai pro servidor de destino, nao fica
+    # em log de CDN nem vaza via Referer. O auth-callback.html le fragment e
+    # query (compat), entao qualquer ordem de deploy funciona.
+    redirect_url = f"{settings.FORUM_CORS_ORIGIN}/auth-callback.html#token={jwt_token}"
     logger.info("OAuth callback OK, redirecionando user_id=%s", user_id)
     return RedirectResponse(url=redirect_url)
 
