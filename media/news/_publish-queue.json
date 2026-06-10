@@ -871,6 +871,24 @@
       "error": null,
       "_rateLimitedUntil": "2026-06-09T16:08:07.981Z",
       "errorCount": 0
+    },
+    {
+      "id": "cd-20260610",
+      "type": "spotlight",
+      "queuedAt": "2026-06-10T21:09:16.936Z",
+      "publishAt": "2026-06-10T21:09:16.936Z",
+      "postedAt": null,
+      "postId": null,
+      "error": null
+    },
+    {
+      "id": "8f8398edc8",
+      "type": "regular",
+      "queuedAt": "2026-06-10T21:09:16.936Z",
+      "publishAt": "2026-06-10T21:09:16.936Z",
+      "postedAt": null,
+      "postId": null,
+      "error": null
     }
   ],
   "postCount": 49
