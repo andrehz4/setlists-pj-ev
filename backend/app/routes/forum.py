@@ -1,5 +1,6 @@
 import json
 import logging
+import secrets
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
@@ -158,6 +159,51 @@ async def create_topic(
         **dict(row),
         display_name=user["display_name"],
         avatar_url=user["avatar_url"],
+        reply_count=0,
+        reactions={},
+        my_reactions=[],
+    )
+
+
+# UUID fixo e deterministico do usuario-bot do seeder semanal.
+_BOT_USER_ID = str(uuid.uuid5(uuid.NAMESPACE_DNS, "bot.smufdpj"))
+_BOT_DISPLAY_NAME = "SMUFDPJ"
+
+
+@router.post("/bot/topics", response_model=TopicOut, status_code=status.HTTP_201_CREATED, tags=["Forum"])
+@limiter.limit("5/hour")
+async def create_bot_topic(request: Request, payload: TopicCreate):
+    """Cria tópico como o usuário-bot do site. Uso exclusivo do seeder
+    semanal (GitHub Actions), guardado por FORUM_BOT_KEY no header
+    X-Bot-Key. Sem a env configurada, o endpoint fica desligado (403).
+    Endpoint aditivo: não toca nenhum fluxo de usuário existente."""
+    key = request.headers.get("x-bot-key", "")
+    if not settings.FORUM_BOT_KEY or not secrets.compare_digest(key, settings.FORUM_BOT_KEY):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="bot key inválida")
+    site = resolve_site(request)
+    async with get_conn() as conn:
+        await conn.execute(
+            """
+            INSERT INTO forum_users (id, display_name, avatar_url, provider)
+            VALUES ($1::uuid, $2, NULL, 'google')
+            ON CONFLICT (id) DO NOTHING
+            """,
+            _BOT_USER_ID, _BOT_DISPLAY_NAME,
+        )
+        row = await conn.fetchrow(
+            """
+            INSERT INTO forum_topics (id, title, body, category, site, user_id, last_post_at, anchor_show_id)
+            VALUES ($1::uuid, $2, $3, $4, $5, $6::uuid, now(), $7)
+            RETURNING id::text, user_id::text, title, body, category, site, pinned,
+                      created_at::text, last_post_at::text, anchor_show_id
+            """,
+            str(uuid.uuid4()), payload.title, payload.body, payload.category, site, _BOT_USER_ID, payload.anchor_show_id,
+        )
+    logger.info("Tópico do bot criado id=%s site=%s", row["id"], site)
+    return TopicOut(
+        **dict(row),
+        display_name=_BOT_DISPLAY_NAME,
+        avatar_url=None,
         reply_count=0,
         reactions={},
         my_reactions=[],

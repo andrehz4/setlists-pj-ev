@@ -1,0 +1,46 @@
+# Seeder semanal do forum: 1 topico de discussao com a pauta da semana,
+# postado pelo usuario-bot (endpoint /forum/bot/topics, guardado por
+# FORUM_BOT_KEY). Sem o secret cadastrado, o script faz skip gracioso.
+name: Forum seed semanal
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 15 * * 5" # sexta 12:00 BRT
+
+permissions:
+  contents: write
+
+concurrency:
+  group: forum-seed
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Postar topico da semana
+        env:
+          FORUM_BOT_KEY: ${{ secrets.FORUM_BOT_KEY }}
+        run: node scripts/news/forum-seed.mjs
+
+      - name: Commit do stamp (idempotencia semanal)
+        run: |
+          git config user.name "pj-news-bot"
+          git config user.email "bot@setlists-pj.local"
+          git add media/news/_forum-seed-stamp.json
+          if git diff --cached --quiet; then
+            echo "Sem stamp novo, nada a commitar"
+          else
+            git commit -m "forum-seed: topico da semana postado $(date -u +%Y-%m-%dT%H:%MZ)"
+            for i in 1 2 3; do git pull --rebase --autostash && git push && break || sleep 2; done
+          fi
