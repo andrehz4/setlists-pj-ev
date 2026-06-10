@@ -30,6 +30,7 @@ import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { getContentPublishingLimit, QUOTA_SAFETY_MARGIN, estimateUnsaturationDelayMs } from "./ig-quota.mjs";
 import { detectDeletedPosts } from "./ig-detect-deleted.mjs";
 import { pollTelegramCommands } from "./telegram-bot.mjs";
+import { buildNewsStubs } from "../news/build-news-stubs.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
@@ -690,6 +691,21 @@ async function main() {
       // permissao faltando. Loga e segue (o publish em si vai expor o erro
       // real com mais detalhe na proxima etapa).
       console.warn(`[publish] pre-check quota falhou (segue mesmo assim): ${e.message}`);
+    }
+  }
+
+  // Stubs de noticia (n/<id>.html + sitemap): gera o que falta e commita
+  // ANTES de publicar, pra os links /n/<id> do Telegram/IG ja abrirem o
+  // artigo com preview social correto. Idempotente; 0 escritos = sem commit.
+  if (!DRY) {
+    try {
+      const wrote = await buildNewsStubs();
+      if (wrote > 0) {
+        await commitAndPush(["n/", "sitemap.xml"], `publish-ig: gera ${wrote} stub(s) de noticia (n/ + sitemap) ${nowIso.slice(0, 16)}Z`);
+        console.log(`[publish] stubs de noticia: ${wrote} gerado(s)`);
+      }
+    } catch (e) {
+      console.warn(`[publish] stubs de noticia falharam (segue sem): ${e.message}`);
     }
   }
 

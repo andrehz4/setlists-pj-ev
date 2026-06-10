@@ -289,6 +289,13 @@ a.embed-music:hover .embed-music-titulo { color:var(--ev); }
 .audio-attach .waveform-progress { position:absolute; inset:0 100% 0 0; background:rgba(193,39,45,0.18); transition:right .15s linear; pointer-events:none; }
 .audio-attach .audio-meta { font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; color:var(--ink-dim); text-transform:uppercase; white-space:nowrap; }
 .audio-attach audio.hidden { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; clip:rect(0 0 0 0); overflow:hidden; }
+
+/* Foco visivel (a11y): varios campos custom usam outline:none no estilo
+   base; esta regra garante anel de foco por teclado em todos. */
+input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--pj);
+  outline-offset: 1px;
+}
 </style>
 <link rel="stylesheet" href="mobile/mobile-forum.css" media="(max-width: 768px)">
 </head>
@@ -313,7 +320,7 @@ a.embed-music:hover .embed-music-titulo { color:var(--ev); }
 <div class="modal-overlay" id="reportModal" role="dialog" aria-modal="true" aria-label="Reportar post">
   <div class="modal-box">
     <h2>Reportar post</h2>
-    <textarea id="reportReason" placeholder="Descreva o motivo (opcional)…" maxlength="500"></textarea>
+    <textarea id="reportReason" aria-label="Motivo do report" placeholder="Descreva o motivo (opcional)…" maxlength="500"></textarea>
     <div class="modal-actions">
       <button class="btn sm ghost" id="reportCancel">Cancelar</button>
       <button class="btn sm primary" id="reportSubmit">Enviar report</button>
@@ -330,15 +337,15 @@ a.embed-music:hover .embed-music-titulo { color:var(--ev); }
       <button class="tab-btn" data-sltab="man">Colar/manual</button>
     </div>
     <div id="slTabCat">
-      <input type="search" id="slSearch" placeholder="Buscar (Curitiba, 2024, Eddie…)">
+      <input type="search" id="slSearch" aria-label="Buscar show" placeholder="Buscar (Curitiba, 2024, Eddie…)">
       <div id="slList" class="mu-list"></div>
       <div id="slSelected" class="mu-selected" style="display:none"></div>
     </div>
     <div id="slTabMan" style="display:none">
-      <input type="text" id="slBanda" value="Pearl Jam" placeholder="Banda">
-      <input type="date" id="slData">
-      <input type="text" id="slLocal" placeholder="Local / Venue">
-      <textarea id="slSongs" placeholder="Músicas (uma por linha, opcional). Cole do setlist.fm ou similar." style="background:var(--bg-card-sunk);border:1px solid var(--divider);color:var(--ink);font-family:var(--font-mono);font-size:11px;padding:8px 10px;width:100%;min-height:90px;resize:vertical;outline:none" maxlength="3000"></textarea>
+      <input type="text" id="slBanda" aria-label="Banda" value="Pearl Jam" placeholder="Banda">
+      <input type="date" id="slData" aria-label="Data do show">
+      <input type="text" id="slLocal" aria-label="Local ou venue" placeholder="Local / Venue">
+      <textarea id="slSongs" aria-label="Músicas do setlist, uma por linha" placeholder="Músicas (uma por linha, opcional). Cole do setlist.fm ou similar." style="background:var(--bg-card-sunk);border:1px solid var(--divider);color:var(--ink);font-family:var(--font-mono);font-size:11px;padding:8px 10px;width:100%;min-height:90px;resize:vertical;outline:none" maxlength="3000"></textarea>
     </div>
     <div class="tool-modal-actions">
       <button class="btn sm" id="slCancel">Cancelar</button>
@@ -380,14 +387,14 @@ a.embed-music:hover .embed-music-titulo { color:var(--ev); }
       <button class="tab-btn" data-mutab="man">Manual</button>
     </div>
     <div id="muTabCat">
-      <input type="search" id="muSearch" placeholder="Buscar (Alive, Black, Just Breathe…)">
+      <input type="search" id="muSearch" aria-label="Buscar música" placeholder="Buscar (Alive, Black, Just Breathe…)">
       <div id="muList" class="mu-list"></div>
       <div id="muSelected" class="mu-selected" style="display:none"></div>
     </div>
     <div id="muTabMan" style="display:none">
-      <input type="text" id="muTitulo" placeholder="Título da música">
-      <input type="text" id="muAlbum" placeholder="Álbum (opcional)">
-      <input type="url" id="muUrl" placeholder="URL da cifra/letra (opcional, https://)">
+      <input type="text" id="muTitulo" aria-label="Título da música" placeholder="Título da música">
+      <input type="text" id="muAlbum" aria-label="Álbum" placeholder="Álbum (opcional)">
+      <input type="url" id="muUrl" aria-label="URL da cifra ou letra" placeholder="URL da cifra/letra (opcional, https://)">
     </div>
     <div class="tool-modal-actions">
       <button class="btn sm" id="muCancel">Cancelar</button>
@@ -962,7 +969,7 @@ function renderTopic(data) {
             <div class="reply-extras-section">
               <div class="reply-extras-label">06 · Tags (opcional, até 4)</div>
               <div class="reply-tag-editor" id="replyTagEditor">
-                <input class="reply-tag-input" id="replyTagInput" placeholder="ex: palpite, curitiba, dark-matter" maxlength="30" autocomplete="off">
+                <input class="reply-tag-input" id="replyTagInput" aria-label="Adicionar tag na resposta" placeholder="ex: palpite, curitiba, dark-matter" maxlength="30" autocomplete="off">
               </div>
               <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--ink-dim);margin-top:5px;letter-spacing:0.08em;line-height:1.5">
                 Digite e aperte <b style="color:var(--pj)">ENTER</b>, <b style="color:var(--pj)">vírgula</b> ou <b style="color:var(--pj)">espaço</b> pra confirmar cada tag. Sugestões aparecem ao digitar.
