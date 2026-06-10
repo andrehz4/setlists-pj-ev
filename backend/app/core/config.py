@@ -29,6 +29,10 @@ class Settings(BaseSettings):
         description="Mapa de origens para site ID, separado por vírgula",
     )
 
+    # Chave de serviço do seeder semanal de tópicos (GitHub Actions manda
+    # no header X-Bot-Key). Vazia = endpoint /forum/bot/topics desligado.
+    FORUM_BOT_KEY: str = Field(default="", description="Chave do bot seeder semanal")
+
     # User IDs (Google sub) que recebem privilégios de admin no fórum.
     # CSV, ex: "108281234567890123456,108289876543210987654".
     ADMIN_USER_IDS: str = Field(
