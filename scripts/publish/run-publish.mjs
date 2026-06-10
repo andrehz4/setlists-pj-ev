@@ -22,7 +22,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { readQueue, writeQueue, pickMatureByTypeDiverse, markPosted, markError, markRateLimited, markAttempt, pruneOldPosted, pruneStalePending, readDenylist, writeDenylist, addToDenylist, readCooldown, isCoolingDown, setCooldown, clearCooldown } from "./queue.mjs";
+import { readQueue, writeQueue, mergeQueueStates, pickMatureByTypeDiverse, markPosted, markError, markRateLimited, markAttempt, pruneOldPosted, pruneStalePending, readDenylist, writeDenylist, addToDenylist, readCooldown, isCoolingDown, setCooldown, clearCooldown } from "./queue.mjs";
 import { topicSignature, similarity } from "../news/dedupe-history.mjs";
 import { buildSlides, buildCoverSlide, SLIDES_DIR, LAYOUT } from "./slide-image.mjs";
 import { publishItems, slideUrlFor, recoverPublishedPost, buildCarouselCaption } from "./instagram.mjs";
@@ -171,7 +171,7 @@ async function findInArchive(id) {
   return null;
 }
 
-async function commitAndPush(paths, message, retries = 3) {
+async function commitAndPush(paths, message, { retries = 3, onRebaseConflict = null } = {}) {
   if (NO_GIT || DRY) {
     console.log(`[git] skip (dry/no-git): ${message}`);
     return;
@@ -182,9 +182,12 @@ async function commitAndPush(paths, message, retries = 3) {
   spawnSync("git", ["config", "user.name", name], { encoding: "utf8" });
   spawnSync("git", ["config", "user.email", email], { encoding: "utf8" });
 
-  for (const p of paths) {
-    spawnSync("git", ["add", p], { encoding: "utf8" });
-  }
+  const stage = () => {
+    for (const p of paths) {
+      spawnSync("git", ["add", p], { encoding: "utf8" });
+    }
+  };
+  stage();
   const diff = spawnSync("git", ["diff", "--cached", "--quiet"], { encoding: "utf8" });
   if (diff.status === 0) {
     console.log(`[git] nada pra commitar: ${message}`);
@@ -194,7 +197,27 @@ async function commitAndPush(paths, message, retries = 3) {
 
   for (let i = 0; i < retries; i++) {
     const pull = gitTry(["pull", "--rebase", "--autostash"]);
-    if (!pull.ok) console.warn(`[git] pull rebase warn: ${pull.err}`);
+    if (!pull.ok) {
+      console.warn(`[git] pull rebase falhou: ${pull.err}`);
+      // Rebase pendurado deixa o repo inoperante (todo pull/push seguinte
+      // falha). Aborta SEMPRE antes de decidir o que fazer.
+      gitTry(["rebase", "--abort"]);
+      if (onRebaseConflict) {
+        // Conflito real de conteudo (outro workflow commitou os mesmos
+        // arquivos de estado). O caller sabe reconciliar: re-escreve os
+        // arquivos a partir de origin/main + estado em memoria, e a gente
+        // re-commita. Sem isso o estado desta run (postedAt!) se perdia.
+        console.warn(`[git] reconciliando estado com origin/main (try ${i + 1})`);
+        const ok = await onRebaseConflict();
+        if (ok) {
+          stage();
+          const d2 = spawnSync("git", ["diff", "--cached", "--quiet"], { encoding: "utf8" });
+          if (d2.status !== 0) git(["commit", "-m", `${message} (reconciliado)`]);
+          continue; // proxima iteracao: pull deve passar limpo e push segue
+        }
+        console.warn(`[git] reconciliacao falhou, tentando push direto`);
+      }
+    }
     const push = gitTry(["push"]);
     if (push.ok) {
       console.log(`[git] push OK (try ${i + 1}): ${message}`);
@@ -513,8 +536,62 @@ async function main() {
   // dias) ficava presa no topo do FIFO pra sempre e atropelava o conteudo novo.
   const queue = await readQueue();
   const denylist = await readDenylist();
-  const indexDoc = await readJson(INDEX_PATH, { items: [] });
+  // index.json corrompido NAO pode virar fallback vazio: com index vazio,
+  // todo item maduro cai em "nao achado em index/archive" e e marcado como
+  // erro permanente. Melhor falhar a run inteira, visivel no Actions.
+  let indexDoc;
+  try {
+    const rawIndex = await fs.readFile(INDEX_PATH, "utf8");
+    indexDoc = JSON.parse(rawIndex);
+    if (!indexDoc || !Array.isArray(indexDoc.items)) throw new Error("sem .items[]");
+  } catch (e) {
+    if (e.code === "ENOENT") {
+      indexDoc = { items: [] };
+    } else {
+      throw new Error(`index.json ilegivel (${e.message}). Abortando pra nao marcar erro em itens validos.`);
+    }
+  }
   const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
+
+  // Arquivos de estado que ESTA run escreve e commita. Usado pela
+  // reconciliacao pos-conflito (snapshot local + reset pra origin/main).
+  const STATE_PATHS = [
+    "media/news/_publish-queue.json",
+    "media/news/_deleted-from-ig.json",
+    "media/news/_telegram-cursor.json",
+    "media/news/_ig-cooldown.json",
+    "media/news/_ig-exists-cache.json",
+    "media/news/_skipped-stale.json",
+    "media/news/_detect-deleted-stamp.json",
+    "media/news/_health-stamp.json",
+  ];
+
+  // Reconcilia com origin/main apos conflito de rebase no commit de estado.
+  // A fila e mesclada por id (news-merge enfileira em paralelo); os demais
+  // arquivos de estado sao exclusivos deste workflow (concurrency group
+  // impede outra run igual), entao a versao local desta run e autoritativa.
+  async function reconcileWithRemote() {
+    const snapshot = new Map();
+    for (const p of STATE_PATHS) {
+      try { snapshot.set(p, await fs.readFile(p, "utf8")); } catch {}
+    }
+    const f = gitTry(["fetch", "origin"]);
+    if (!f.ok) { console.warn(`[git] fetch falhou na reconciliacao: ${f.err}`); return false; }
+    const r = gitTry(["reset", "--hard", "origin/main"]);
+    if (!r.ok) { console.warn(`[git] reset falhou na reconciliacao: ${r.err}`); return false; }
+    let remoteQueue;
+    try { remoteQueue = await readQueue(); } catch { remoteQueue = { items: [], postCount: 0 }; }
+    const merged = mergeQueueStates(remoteQueue, queue);
+    queue.items = merged.items;
+    queue.postCount = merged.postCount;
+    await writeQueue(queue);
+    for (const [p, content] of snapshot) {
+      if (p.endsWith("_publish-queue.json")) continue;
+      await fs.writeFile(p, content);
+    }
+    console.log(`[git] reconciliado: fila mesclada por id (${queue.items.length} itens), demais estados restaurados da run`);
+    return true;
+  }
 
   // Expira pendentes datados velhos demais (default 2d, 30d evergreen/memoria),
   // SEMPRE, mesmo que a run aborte cedo logo abaixo. Retorna se a fila ficou
@@ -543,6 +620,7 @@ async function main() {
     await commitAndPush(
       ["media/news/_publish-queue.json", "media/news/_skipped-stale.json"],
       `publish-ig: expira ${staleRemoved.length} stale (housekeeping) ${nowIso.slice(0, 16)}Z`,
+      { onRebaseConflict: reconcileWithRemote },
     );
     queueDirty = false; // ja persistido; evita commit duplo no fim da run
   }
@@ -711,6 +789,21 @@ async function main() {
       // 1 batch sucesso = 1 post real no IG = incrementa postCount
       if (r.succeeded > 0 && r.postId) {
         queue.postCount = (queue.postCount || 0) + 1;
+        // Persiste o postedAt IMEDIATAMENTE apos o publish. Antes a fila so
+        // era commitada no fim da run: se a run morresse no meio (timeout,
+        // crash, push conflitado), o postedAt se perdia e o proximo cron
+        // re-postava o mesmo conteudo. Falha aqui nao derruba a run, o
+        // commit final tenta de novo.
+        try {
+          await writeQueue(queue);
+          await commitAndPush(
+            ["media/news/_publish-queue.json"],
+            `publish-ig: marca postado ${r.type} (${r.succeeded} item/s) ${nowIso.slice(0, 16)}Z`,
+            { onRebaseConflict: reconcileWithRemote },
+          );
+        } catch (e) {
+          console.warn(`[publish] persistencia imediata falhou (estado segue pro commit final): ${e.message}`);
+        }
       }
       if (r.isRateLimit) rateLimitedHit = true;
     }
@@ -739,20 +832,48 @@ async function main() {
   const pruned = pruneOldPosted(queue, nowIso, 30, denylist);
   if (pruned > 0) console.log(`[publish] prune: ${pruned} postados antigos removidos`);
 
+  // Detector de feed parado: cron verde + 0 publicados por dias passava
+  // despercebido (coleta morta, cooldown em loop, fila drenada). Se nada
+  // foi postado ha mais de IG_FEED_STALL_H horas, alerta no Telegram no
+  // maximo 1x/24h (stamp em _health-stamp.json).
+  if (!DRY) {
+    const STALL_H = Number.isFinite(Number(process.env.IG_FEED_STALL_H)) && Number(process.env.IG_FEED_STALL_H) > 0
+      ? Number(process.env.IG_FEED_STALL_H) : 48;
+    const HEALTH_STAMP_PATH = path.join(NEWS_DIR, "_health-stamp.json");
+    const lastPostedMs = queue.items.reduce((max, q) => {
+      const t = q.postedAt ? new Date(q.postedAt).getTime() : 0;
+      return Number.isFinite(t) && t > max ? t : max;
+    }, 0);
+    const stalledMs = Date.now() - lastPostedMs;
+    if (lastPostedMs > 0 && stalledMs > STALL_H * 3600 * 1000) {
+      const stamp = await readJson(HEALTH_STAMP_PATH, { lastAlertAt: null });
+      const lastAlertMs = stamp.lastAlertAt ? new Date(stamp.lastAlertAt).getTime() : 0;
+      if (Date.now() - lastAlertMs > 24 * 3600 * 1000) {
+        const hStalled = Math.round(stalledMs / 3600000);
+        const token = process.env.TELEGRAM_BOT_TOKEN;
+        const chatId = process.env.TELEGRAM_CHAT_ID;
+        console.warn(`[publish] FEED PARADO: ultimo post ha ${hStalled}h (limite ${STALL_H}h)`);
+        if (token && chatId) {
+          await sendTelegram(token, chatId, [
+            `⚠️ <b>Feed parado ha ${hStalled}h</b>`,
+            "",
+            `Nenhum post no @smufdpj desde ${new Date(lastPostedMs).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })} BRT.`,
+            `Pendentes na fila agora: ${queue.items.filter((q) => !q.postedAt).length}.`,
+            "Cheque: coleta (news.yml), curadoria (routine), cooldown (_ig-cooldown.json).",
+          ].join("\n"));
+        }
+        await fs.writeFile(HEALTH_STAMP_PATH, JSON.stringify({ lastAlertAt: nowIso }, null, 2));
+      }
+    }
+  }
+
   await writeQueue(queue);
   // Denylist + cursor do telegram + queue commitados juntos pro proximo
   // cron ja ver bans manuais que entraram via /ban no Telegram.
   await commitAndPush(
-    [
-      "media/news/_publish-queue.json",
-      "media/news/_deleted-from-ig.json",
-      "media/news/_telegram-cursor.json",
-      "media/news/_ig-cooldown.json",
-      "media/news/_ig-exists-cache.json",
-      "media/news/_skipped-stale.json",
-      "media/news/_detect-deleted-stamp.json",
-    ],
+    STATE_PATHS,
     `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
+    { onRebaseConflict: reconcileWithRemote },
   );
 
   if (!DRY) await notifyTelegram(results);
