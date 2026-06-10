@@ -1,7 +1,25 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-06-09 (sessão: conserto da duplicação de posts no IG, poll de recuperação + guarda cross-run)
+2026-06-10 (sessão: vistoria geral 11 eixos + execução das 6 fases de correção)
+
+## ⭐ Sessão 2026-06-10: vistoria geral + correções (FEITO, 84/84 testes)
+
+Vistoria completa (nota média 6.1/10, relatório na conversa) seguida de plano aprovado e executado em 6 fases, cada uma validada (suíte + mock e2e + dispatch de workflows + curl no site live):
+
+1. **CI/CD**: workflow `test.yml` novo (npm test em push/PR de scripts/mock-ig); actions checkout/setup-node v4 -> v5 nos 8 workflows (deprecação Node20 forçada em 16/06); `fetch-depth: 0 -> 50` no publish (não baixa mais ~650MB de histórico a cada run); permissions read no test-reddit-rss. Validado: dispatch verde sem warnings.
+2. **Confiabilidade da fila**: `mergeQueueStates` (reconciliação por id em conflito de rebase, postado > backoff > pendente); `commitAndPush` com rebase --abort + reconcile + re-commit (antes: warn + push cego que perdia markPosted = repost); persistência imediata da fila após cada batch; `readQueue`/index estritos (JSON corrompido = run vermelha, não fallback vazio); alerta Telegram de feed parado >48h (`_health-stamp.json`). 7 testes novos.
+3. **Segurança web**: token de auth via fragment (#token=) com callback compatível com query (qualquer ordem de deploy Pages x Railway funciona) + replaceState limpando a URL + avatar https-only; `_headers` com CSP completa (GA4/fonts/R2/Railway/youtube-nocookie), nosniff, referrer-policy, cache 7d em media/news/img; parágrafo anti-prompt-injection no routine-prompt.md e system-curator-fa.txt. Validado live: headers no ar, site 200. XSS no fórum NÃO existe (verificado: DOMPurify + escape corretos).
+4. **SEO/social + a11y**: stubs estáticos `n/<id>.html` (211 backfill + geração contínua pelo publish via `build-news-stubs.mjs`) com og:/twitter:/NewsArticle + redirect pra `/#news/<id>`; links /n/ do Telegram passam a abrir o artigo com preview correto (antes caíam na home); sitemap.xml com seção de notícias auto-gerada; fórum com 21 aria-labels + foco visível global. Validado live: stub servindo com OG.
+5. **Higiene do repo**: `prune-media.mjs` apaga slides/stories já publicados >14d do working tree (delecões no commit de estado do publish). Limitação honesta: não encolhe o .git (645MB), só segura o checkout. Solução de raiz = R2, pendente de token (abaixo).
+6. **IA-friendly**: `CLAUDE.md` (mapa do projeto pra agentes: comandos, arquivos de estado, fluxo dos crons, gotchas), `HUB.md` (integração hub-hz), banners de defasagem no HANDOFF.md e PIPELINE.md.
+
+**PENDÊNCIAS pro Andre:**
+1. **Token R2** (Settings do Cloudflare > R2 > API token com write no bucket) + cadastrar como secrets `R2_*` pra fase final: slides/stories param de ser commitados e o repo para de crescer ~48MB/mês. Pedir numa próxima sessão: "implementa o upload R2 dos slides".
+2. **Redeploy do backend no Railway** (se não for automático no push): ativa o redirect com #token= (até lá o formato antigo ?token= segue funcionando, nada quebra).
+3. **Conferir no celular**: site navegando normal (CSP nova), login do fórum, abrir 1 link /n/ antigo do Telegram.
+4. **Monitorar 1 ciclo da routine**: próximo PR `claude/news-routine-*` deve ser auto-merged normalmente (valida o fetch-depth 50). Se falhar, rollback = voltar pra `fetch-depth: 0`.
+5. Antigas: conta IG MEDIA_CREATOR -> BUSINESS (origem do 2207051); decidir uso do dataset setlist.fm.
 
 ## ⭐ Sessão 2026-06-09: conserto da DUPLICAÇÃO de posts no IG (FEITO, 75/75 testes)
 

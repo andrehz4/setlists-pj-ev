@@ -1,5 +1,9 @@
 # HANDOFF · Setlists PJ + EV.
 
+> **DEFASADO (snapshot de 2026-05-09).** Pasta local citada abaixo (Windows) e status nao valem mais.
+> Fontes da verdade: `CLAUDE.md` (estrutura e comandos) + `PROGRESSO.md` (estado atual) + `PIPELINE.md` (fluxo de noticias).
+
+
 Atualizado em **2026-05-09**. Snapshot completo do projeto. Tudo aqui é versionado com o código. Ao abrir num novo chat, leia este arquivo primeiro.
 
 ---

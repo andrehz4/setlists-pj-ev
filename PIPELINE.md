@@ -1,5 +1,9 @@
 # Pipeline PJ News
 
+> Complementos mais novos que este doc: `CLAUDE.md` (mapa pra agentes) e `PROGRESSO.md`
+> (mudancas por sessao: recuperacao do falso-erro 2207051, mergeQueueStates, stubs n/<id>, poda de media).
+
+
 Documentacao oficial do pipeline de noticias do site Pearl Jam fan-to-fan
 (setlists-pj-ev.pages.dev / Instagram @smufdpj).
 
