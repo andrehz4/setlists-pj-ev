@@ -124,7 +124,7 @@ async def list_topics(
         count_args = args[2:]
         count_where = where_sql.replace("$3", "$1").replace("$4", "$2").replace("$5", "$3")
         total = await conn.fetchval(
-            f"SELECT COUNT(*) FROM forum_topics t {count_where}",
+            f"SELECT COUNT(*) FROM forum_topics t {count_where}",  # noqa: S608 (where de fragmentos fixos, valores via placeholders)
             *count_args,
         )
 
