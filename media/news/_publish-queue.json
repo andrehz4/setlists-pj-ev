@@ -897,9 +897,10 @@
       "type": "regular",
       "queuedAt": "2026-06-11T15:06:20.561Z",
       "publishAt": "2026-06-11T15:06:20.561Z",
-      "postedAt": null,
-      "postId": null,
-      "error": null
+      "postedAt": "2026-06-11T15:07:42.361Z",
+      "postId": "18326410231282893",
+      "error": null,
+      "errorCount": 0
     },
     {
       "id": "cd-20260611",
@@ -911,5 +912,5 @@
       "error": null
     }
   ],
-  "postCount": 51
+  "postCount": 52
 }
