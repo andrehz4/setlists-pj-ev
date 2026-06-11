@@ -891,6 +891,24 @@
       "postId": "18342915955175400",
       "error": null,
       "errorCount": 0
+    },
+    {
+      "id": "5e2cffd783",
+      "type": "regular",
+      "queuedAt": "2026-06-11T15:06:20.561Z",
+      "publishAt": "2026-06-11T15:06:20.561Z",
+      "postedAt": null,
+      "postId": null,
+      "error": null
+    },
+    {
+      "id": "cd-20260611",
+      "type": "spotlight",
+      "queuedAt": "2026-06-11T15:06:20.561Z",
+      "publishAt": "2026-06-11T15:06:20.561Z",
+      "postedAt": null,
+      "postId": null,
+      "error": null
     }
   ],
   "postCount": 51
