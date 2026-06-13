@@ -89,6 +89,8 @@ npm run mock:seed            # = seed-queue --count=6
 npm run mock:publish         # feed (carrossel/single)
 npm run mock:story           # story (gera MP4 novo com ffmpeg, das noticias de 24h)
 npm run mock:story:reuse     # story reusando um MP4 ja existente (sem ffmpeg)
+npm run mock:reel            # reel semanal (gera MP4 41.5s com ffmpeg, resumao dos 7 dias)
+npm run mock:reel:reuse      # reel reusando um MP4 ja existente (sem ffmpeg)
 
 # 5. ve o resultado
 curl http://127.0.0.1:8788/_mock/feed
@@ -166,7 +168,7 @@ O mock e standalone. Pra testar qualquer app que publique no IG:
 |---|---|
 | `server.mjs` | a Graph API fake + serve media + API do front |
 | `store.mjs` | load/save/reset do estado (`_store.json`) |
-| `run.mjs` | roda o pipeline real com as envs do mock (`node mock-ig/run.mjs feed\|story`) |
+| `run.mjs` | roda o pipeline real com as envs do mock (`node mock-ig/run.mjs feed\|story\|reel`) |
 | `reset.mjs` | zera o store |
 | `mock.test.mjs` | testes do mock (`node --test mock-ig/mock.test.mjs`) |
 | `_store.json` | estado runtime (gitignored; o modo de falha sticky vive aqui, setado via `/_mock/fail`) |

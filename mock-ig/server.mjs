@@ -493,13 +493,23 @@ const server = http.createServer(async (req, res) => {
       }
       save(s);
       const limit = Number(query.limit) > 0 ? Number(query.limit) : 25;
-      const data = (s.feed || []).slice(0, limit).map((f) => ({
-        id: f.postId,
-        caption: f.caption || "",
-        timestamp: f.createdAt,
-        media_type: f.type === "CAROUSEL" ? "CAROUSEL_ALBUM" : (f.type || "IMAGE"),
-      }));
-      return sendGraph(res, 200, { data }, s);
+      // IG real lista feed E reels no GET /media (stories nao). Mescla por
+      // createdAt desc pra recuperacao pos-erro enxergar reels tambem.
+      const all = [
+        ...(s.feed || []).map((f) => ({
+          id: f.postId,
+          caption: f.caption || "",
+          timestamp: f.createdAt,
+          media_type: f.type === "CAROUSEL" ? "CAROUSEL_ALBUM" : (f.type || "IMAGE"),
+        })),
+        ...(s.reels || []).map((r) => ({
+          id: r.postId,
+          caption: r.caption || "",
+          timestamp: r.createdAt,
+          media_type: "VIDEO",
+        })),
+      ].sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)));
+      return sendGraph(res, 200, { data: all.slice(0, limit) }, s);
     }
 
     // GET /me

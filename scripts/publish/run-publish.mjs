@@ -854,8 +854,8 @@ async function main() {
   if (!DRY) {
     try {
       const pm = await pruneOldMedia(queue);
-      if (pm.slides + pm.stories > 0) {
-        console.log(`[publish] prune media: ${pm.slides} slide(s) e ${pm.stories} storie(s) antigos apagados`);
+      if (pm.slides + pm.stories + (pm.reels || 0) > 0) {
+        console.log(`[publish] prune media: ${pm.slides} slide(s), ${pm.stories} storie(s) e ${pm.reels || 0} reel(s) antigos apagados`);
       }
     } catch (e) {
       console.warn(`[publish] prune media falhou (segue): ${e.message}`);

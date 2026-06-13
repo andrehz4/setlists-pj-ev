@@ -1,7 +1,29 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-06-10 (sessões: vistoria geral 11 eixos + 6 fases; parte 3: vistoria do mock-ig + correções)
+2026-06-13 (reel semanal cinematográfico: design no Claude Design + implementação no pipeline)
+
+## ⭐ Sessão 2026-06-12/13: REEL SEMANAL (motion design ponta a ponta, FEITO, 105/105 testes)
+
+Conta @smufdpj ganhou um terceiro formato além de carrossel diário e story diário: **reel semanal** (resumão dos 7 dias), projetado primeiro no Claude Design e depois implementado no pipeline.
+
+**Design (Claude Design):** brief + pacote (`design-handoff/`, gitignored) com 8 manchetes reais, fotos, fontes e referências. Retorno em `design-handoff/retorno/movie/` (bundle baixado da API). O `MOTION-SPEC.md` aprovado virou a fonte de verdade da timeline: cold open 3s + 8 blocos de 4.5s + outro 2.5s = **41.5s, 1080x1920, 30fps, cortes secos**. 3 formatos de bloco alternados: **cinético** (manchete palavra a palavra sobre clipe/foto), **card** (foto da notícia, evolução do card02), **papel** (digesto da comunidade em xerox creme com snapshot inclinado).
+
+**Implementação (mock-first):**
+1. **Cliente IG** (`instagram.mjs`): `publishReel` (caption + `share_to_feed` + `thumb_offset`, poll 300s), `buildReelCaption` (cabeçalho + índice numerado + CTA + hashtags), `createReelContainer`. Recuperação do falso-erro 2207051 reusada (reel tem caption).
+2. **Acervo de clipe** (`reel-clips.mjs` + `media/reels-clips/`): contrato versionado (`clips.json`), validação, casamento clipe-notícia por tag com **rotação determinística por semana ISO** (sem Math.random). Andre adiciona trechos 2-6s mudos; sem acervo o reel degrada sozinho (foto Ken Burns ou fundo fantasma).
+3. **Seleção** (`reel-select.mjs`): top 5-8 dos 7 dias, cap de 2 papéis, item sem foto vira cinético, abertura é a manchete mais forte, formatos intercalados.
+4. **Renderer** (`reel-video.mjs`): SVG frame a frame por SEGMENTO (cada cena = 1 MP4, ffmpeg concatena). Cenas com clipe = overlay PNG alpha sobre o vídeo; sem clipe = foto com zoom ou fantasma. **Larguras de texto medidas REAL via `sharp.trim`** (estimar por char sobrepunha as palavras do Anton, corrigido após inspecionar frames).
+5. **Orquestração**: `run-publish-reel.mjs` (idempotência por semana ISO em `_reel-log.json`, commit do MP4, Telegram, `--dry-run/--no-git/--force`) + `publish-reel.yml` (domingo 12 UTC = 09:00 BRT + dispatch). `reel-week.mjs` (chave ISO + rótulo do intervalo). `prune-media.mjs` agora poda reels >30d.
+6. **Validação**: 92 -> **105 testes** (13 novos: select, clips, plano de cenas, SVGs, semana, caption, publishReel no mock incl. ghostpublish e poll de processamento, poda). Render real de 41.5s gerado e 6 frames-chave inspecionados visualmente (cold open, cinético, card, papel, outro: todos corretos). E2e real contra o mock (postId p_2, caption certa). Mock `GET /media` passou a mesclar feed+reels.
+
+**Direitos autorais (decisão registrada):** clipes SEMPRE mudos (trilha royalty-free própria por cima), trechos curtos. Áudio original = mute/bloqueio quase certo pelo rights manager do IG.
+
+**PENDÊNCIAS pro Andre:**
+1. **Cortar os primeiros trechos de clipe** (2-6s, H.264 1080p+, sujeito centralizado) e jogar em `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/media/reels-clips/` (instruções no README de lá). Sem isso o reel já sai, mas com fundo de foto em vez de vídeo.
+2. **Conferir o MP4 gerado** antes do 1º post real: `npm run publish:reel:dry` gera em `media/news/instagram-reels/<semana>.mp4`.
+3. **1º ciclo monitorado**: domingo 09:00 BRT dispara sozinho; ou `gh workflow run publish-reel.yml -f dry-run=true` pra testar no Actions sem postar.
+4. R2 segue pendente (reel adiciona ~10MB/semana ao repo, `prune-media` segura o checkout mas não o `.git`).
 
 ## ⭐ Sessão 2026-06-10 (parte 3): vistoria do mock-ig + correções (FEITO, 92/92 testes)
 
