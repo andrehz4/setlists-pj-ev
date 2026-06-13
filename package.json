@@ -16,11 +16,14 @@
     "publish:smoke": "node scripts/publish/smoke-test.mjs",
     "publish:story:dry": "node scripts/publish/run-publish-story.mjs --dry-run --no-git",
     "publish:story": "node scripts/publish/run-publish-story.mjs",
+    "publish:reel:dry": "node scripts/publish/run-publish-reel.mjs --dry-run --no-git",
+    "publish:reel": "node scripts/publish/run-publish-reel.mjs",
     "mock:server": "node mock-ig/server.mjs",
     "mock:reset": "node mock-ig/reset.mjs",
     "mock:seed": "node scripts/publish/seed-queue.mjs --count=6",
     "mock:publish": "node mock-ig/run.mjs feed",
     "mock:story": "node mock-ig/run.mjs story",
+    "mock:reel": "node mock-ig/run.mjs reel",
     "mock:story:reuse": "node mock-ig/story-mock.mjs",
     "mock:reel:reuse": "node mock-ig/reel-mock.mjs",
     "test:cifras": "node --test scripts/cifras-coverage.test.mjs",
@@ -33,7 +36,8 @@
     "test:prune": "node --test scripts/news/prune-curated.test.mjs",
     "test:setlistfm": "node --test scripts/news/setlistfm.test.mjs",
     "test:mock": "node --test mock-ig/mock.test.mjs",
-    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs scripts/publish/queue-state.test.mjs scripts/publish/recover-publish.test.mjs scripts/publish/detect-deleted.test.mjs scripts/publish/subject-fallback.test.mjs scripts/news/prune-curated.test.mjs scripts/news/setlistfm.test.mjs mock-ig/mock.test.mjs"
+    "test:reel": "node --test scripts/publish/reel.test.mjs",
+    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs scripts/publish/queue-state.test.mjs scripts/publish/recover-publish.test.mjs scripts/publish/detect-deleted.test.mjs scripts/publish/subject-fallback.test.mjs scripts/publish/reel.test.mjs scripts/news/prune-curated.test.mjs scripts/news/setlistfm.test.mjs mock-ig/mock.test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",

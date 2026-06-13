@@ -13,7 +13,9 @@ npm test                 # suite completa (node --test), SEMPRE rodar antes de p
 npm run mock:server      # IG fake local na :8788 (deixar rodando)
 npm run mock:reset       # zera o store do mock
 node mock-ig/run.mjs feed   # roda o run-publish REAL contra o mock (--no-git automático)
+node mock-ig/run.mjs reel   # roda o run-publish-reel REAL contra o mock (precisa ffmpeg)
 npm run publish:dry      # dry-run do publish (não chama IG, não commita)
+npm run publish:reel:dry # dry-run do reel semanal (gera o MP4, não chama IG)
 node scripts/news/build-news-stubs.mjs  # regenera stubs n/<id>.html + sitemap
 ```
 
@@ -32,6 +34,9 @@ Validar mudança no pipeline = `npm test` + `node mock-ig/run.mjs feed` com iten
 | `_skipped-stale.json` | tombstone de pendentes expirados | publish |
 | `_health-stamp.json` | stamp do alerta de feed parado | publish |
 | `archive/AAAA-MM.json` | overflow do index | news.yml |
+| `instagram-reels/<AAAA-Www>.mp4` | reel semanal renderizado (1 por semana ISO) | publish-reel.yml |
+| `instagram-reels/_reel-log.json` | idempotência do reel (1 por semana ISO) | publish-reel.yml |
+| `media/reels-clips/clips.json` + `*.mp4` | acervo manual de trechos de clipe (fundo dos blocos cinéticos, sempre mudos) | Andre |
 
 Regras: NUNCA editar a fila sem entender `markPosted`/`mergeQueueStates` (`scripts/publish/queue.mjs`). JSON de estado corrompido derruba a run de propósito (não silenciar). A routine de curadoria só pode tocar `media/news/` (validador do auto-merge rejeita o resto).
 
@@ -39,8 +44,12 @@ Regras: NUNCA editar a fila sem entender `markPosted`/`mergeQueueStates` (`scrip
 
 1. `news.yml` coleta de ~38 fontes pra `_pending.json` (teto `MAX_NEW_PER_RUN`).
 2. Routine Claude remota cura `_pending` -> `index.json` + `items/<id>.json` + enfileira na `_publish-queue` (commita em branch `claude/news-routine-*`, PR auto-merged pelo passo `auto-merge-routine.mjs` do publish).
-3. `publish-instagram.yml` publica carrossel/single via Graph API, marca `postedAt`, notifica Telegram. `publish-story.yml` gera story diário em vídeo.
+3. `publish-instagram.yml` publica carrossel/single via Graph API, marca `postedAt`, notifica Telegram. `publish-story.yml` gera story diário em vídeo. `publish-reel.yml` gera o reel semanal (domingo 09:00 BRT, resumão dos 7 dias).
 4. `test.yml` roda a suíte em todo push/PR de `scripts/`/`mock-ig/`.
+
+### Reel semanal (motion design, MOTION-SPEC do Claude Design)
+
+`run-publish-reel.mjs` -> `reel-select.mjs` (top 5-8 da semana + formato por cena: cinético/card/papel) -> `reel-clips.mjs` (casa trecho de clipe do acervo com a cena, por tag, rotação determinística por semana ISO) -> `reel-video.mjs` (renderer SVG frame a frame + ffmpeg, cold open 3s + 8 blocos de 4.5s + outro 2.5s = 41.5s, 1080x1920). Publica via `publishReel` (caption com índice + `share_to_feed` + `thumb_offset`). Larguras de texto medidas REAL via `sharp.trim` (estimar por char sobrepõe as palavras do Anton). Sem acervo de clipe, degrada pra foto com Ken Burns ou fundo fantasma "CLIPE". Spec versionado em `design-handoff/retorno/movie/project/entrega/MOTION-SPEC.md` (gitignored, é referência).
 
 ## Gotchas conhecidos (não redescobrir)
 
@@ -49,7 +58,8 @@ Regras: NUNCA editar a fila sem entender `markPosted`/`mergeQueueStates` (`scrip
 - `GET /<uid>/media` tem consistência eventual (post recém-criado demora a aparecer).
 - `billboard-br` devolve XML malformado intermitente; `reddit-pj` dá 403 sem proxy.
 - Site é SPA com deep-link `#news/<id>`; os stubs estáticos `n/<id>.html` (gerados pelo publish) existem só pra OG/social e redirecionam pro hash.
-- Mock IG (`mock-ig/`) cobre feed, story, falhas injetáveis (`ghostpublish`, `ratelimit`, `mediaHideCalls`). Sempre validar nele antes de produção.
+- Mock IG (`mock-ig/`) cobre feed, story, reel, falhas injetáveis (`ghostpublish`, `ratelimit`, `mediaHideCalls`). Sempre validar nele antes de produção. `GET /<uid>/media` agora mescla feed + reels (o IG real lista reel no /media; story não), pra a recuperação pós-erro enxergar reel.
+- **Reel: direitos autorais**: trecho de clipe oficial é detectado pelo IG principalmente via ÁUDIO. Mitigação: clipes entram SEMPRE mudos (trilha royalty-free própria por cima), trechos curtos 2-6s. Áudio original = mute/bloqueio quase certo.
 
 ## Convenções
 

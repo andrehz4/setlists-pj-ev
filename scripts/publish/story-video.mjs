@@ -132,7 +132,7 @@ function ffprobeGif(file) {
 // Carrega badge animado: extrai TODOS os frames do GIF via ffmpeg,
 // converte cada um pra PNG base64 (resize 800x800 max pra leveza).
 // Se for PNG estatico, retorna { frames: [b64], fps: 0, totalFrames: 1 }.
-async function loadBadgeAnimated() {
+export async function loadBadgeAnimated() {
   const gifPath = path.join(process.cwd(), "scripts/publish/assets/intro-badge.gif");
   const pngPath = path.join(process.cwd(), "scripts/publish/assets/intro-badge.png");
 

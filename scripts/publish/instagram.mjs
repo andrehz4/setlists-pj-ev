@@ -521,4 +521,80 @@ export async function publishStory({ videoUrl, igUserId, accessToken } = {}) {
   return { postId, containerId };
 }
 
+// ============================================================
+// Reel (media_type=REELS) - video vertical 1080x1920. Igual ao
+// story no fluxo (container + poll + publish), mas com caption,
+// share_to_feed (aparece no grid do perfil) e thumb_offset (frame
+// da capa). Reels processam mais devagar que story: timeout do
+// poll padrao 300s (override por opts).
+// ============================================================
+
+export async function createReelContainer({ igUserId, accessToken, videoUrl, caption, shareToFeed = true, thumbOffsetMs }) {
+  const form = {
+    media_type: "REELS",
+    video_url: videoUrl,
+    share_to_feed: shareToFeed ? "true" : "false",
+    access_token: accessToken,
+  };
+  if (caption) form.caption = caption;
+  if (Number.isFinite(thumbOffsetMs) && thumbOffsetMs >= 0) form.thumb_offset = String(Math.round(thumbOffsetMs));
+  const r = await postIG(`/${igUserId}/media`, form);
+  if (!r.id) throw new IGAPIError({ path: `/${igUserId}/media`, message: "createReelContainer: sem id na resposta" });
+  return r.id;
+}
+
+// Caption do reel semanal: cabecalho + indice numerado das manchetes +
+// CTA + hashtags. Mesmo orcamento IG_CAPTION_MAX do carrossel.
+export function buildReelCaption(items, { weekLabel = "" } = {}) {
+  const hashtags = dedupeTags([
+    ...HASHTAGS_FIXED,
+    ...items.flatMap((it) => Array.isArray(it.tags) ? it.tags : []),
+  ]).map((t) => `#${t}`).join(" ");
+  const cta = `leia completo em ${SITE_URL}`;
+  const tail = `\n\n${cta}\n\n${hashtags}`;
+  const header = `RESUMÃO DA SEMANA${weekLabel ? ` · ${weekLabel}` : ""}\n\n`;
+  const budget = IG_CAPTION_MAX - tail.length - header.length - 16;
+
+  let body = "";
+  const perItem = Math.floor(budget / items.length);
+  items.forEach((it, i) => {
+    let line = `${i + 1}. ${it.title_pt || ""}`;
+    if (line.length > perItem && perItem > 30) line = truncateBody(line, perItem);
+    body += line + "\n";
+  });
+
+  let caption = header + body.trim() + tail;
+  if (caption.length > IG_CAPTION_MAX) caption = caption.slice(0, IG_CAPTION_MAX - 3) + "...";
+  return caption;
+}
+
+// Helper completo do reel: container REELS -> poll ate FINISHED -> publish.
+// Com a mesma recuperacao de falso-erro do feed (reel TEM caption, entao o
+// recoverPublishedPost funciona aqui sem adaptacao).
+export async function publishReel({ videoUrl, caption, shareToFeed = true, thumbOffsetMs, igUserId, accessToken, timeoutMs = 300000 } = {}) {
+  if (!igUserId) igUserId = process.env.IG_USER_ID;
+  if (!accessToken) accessToken = process.env.IG_ACCESS_TOKEN;
+  if (!igUserId || !accessToken) {
+    throw new Error("publishReel: IG_USER_ID e IG_ACCESS_TOKEN obrigatorios");
+  }
+  if (!videoUrl) throw new Error("publishReel: videoUrl obrigatorio");
+
+  const attemptStartMs = Date.now();
+  const containerId = await createReelContainer({ igUserId, accessToken, videoUrl, caption, shareToFeed, thumbOffsetMs });
+  await waitContainerReady({ accessToken, containerId, timeoutMs });
+  try {
+    const postId = await publishContainer({ igUserId, accessToken, creationId: containerId });
+    return { postId, containerId };
+  } catch (e) {
+    if (caption) {
+      const recovered = await recoverPublishedPost({ igUserId, accessToken, caption, sinceMs: attemptStartMs });
+      if (recovered) {
+        console.warn(`[ig] media_publish devolveu ${e.toDetailString ? e.toDetailString() : e.message} mas o reel EXISTE (${recovered}). Tratando como sucesso (falso-erro IG).`);
+        return { postId: recovered, containerId, recovered: true };
+      }
+    }
+    throw e;
+  }
+}
+
 export { buildSingleCaption, buildCarouselCaption, slideUrlFor, logUsageHeaders };
