@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-06-13T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 5, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "87982e1e1e", "title": "Thoughts on Everybody Loves Our Town by Mark Yarm?", "reason": "sem mencao a PJ (post sobre livro de grunge em r/grunge, PJ nao citado)" },
+    { "id": "bc73446759", "title": "Anyone else hoping TMV releases each full show...", "reason": "PJ tangencial (PJ mencionado so como referencia pra The Mars Volta)" },
+    { "id": "a3b2d56114", "title": "Pearl Jam 2016 Throwback", "reason": "texto insuficiente (menos de 200 chars, sem conteudo editorial)" },
+    { "id": "2c6f21ee6e", "title": "Bridge School Benefit Concert 1992 - Neil Young, Pearl Jam, Elton John", "reason": "texto insuficiente (menos de 200 chars, sem conteudo editorial)" },
+    { "id": "fcc4815b62", "title": "Last month's haul", "reason": "sem mencao a PJ (post sobre coleta de CDs em brechó, PJ nao citado)" }
+  ]
+}
