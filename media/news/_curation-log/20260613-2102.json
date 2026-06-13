@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-06-13T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "8fdc37dbe5",
+      "title": "Despite being a biopic about a musician, Better Man (2024) does not contain the song Better Man by Pearl Jam",
+      "reason": "texto vazio (article_text com menos de 200 chars, so metadado de post Reddit) + PJ tangencial (post de humor sobre filme do Robbie Williams)"
+    }
+  ]
+}
