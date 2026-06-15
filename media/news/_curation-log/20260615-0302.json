@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-06-15T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "89ffdd64d8", "title": "my top 25 albums OAT, give me recommendations similar please I need more!!", "reason": "texto vazio (artigo extraido: 'thanks gents.') - post de sugestao de musicas sem conteudo sobre PJ" },
+    { "id": "b45d6a7a58", "title": "Excited to give it a spin", "reason": "sem mencao a PJ - post do r/ofMontreal escapou do filtro, subreddit de outra banda" },
+    { "id": "5eb69ecb12", "title": "Jeremy by Pearl Jam", "reason": "post de hobbyista no r/edrums cobrindo Jeremy no EzDrummer 3 - nao e noticia sobre a banda, texto < 200 chars" }
+  ]
+}
