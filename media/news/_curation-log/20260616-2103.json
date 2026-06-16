@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-06-16T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 1 },
+  "approved": [
+    { "id": "b180d5fe0a", "titulo": "Jeff Ament lança trilha do documentário Montana Grind em vinil", "kind": "shop" }
+  ],
+  "skipped": [
+    { "id": "e35faa82fc", "title": "No green cassettes", "reason": "sem mencao a PJ (post sobre cassetes Duran Duran, escapou do filtro)" },
+    { "id": "83574d533c", "title": "Recs? Top 25", "reason": "texto vazio, sem mencao a PJ (post generico de recomendacoes)" }
+  ]
+}
