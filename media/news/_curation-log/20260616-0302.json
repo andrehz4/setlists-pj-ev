@@ -1,0 +1,29 @@
+{
+  "runAt": "2026-06-16T03:02Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "35b9077be3",
+      "title": "Record Collection So Far",
+      "reason": "sem mencao a PJ, coleção genérica de vinil em r/vinyl"
+    },
+    {
+      "id": "2198daba08",
+      "title": "Concert review",
+      "reason": "texto vazio, post de r/stonetemplepilots sem relacao com PJ"
+    },
+    {
+      "id": "0ef6b79511",
+      "title": "Excellent new album and influence thoughts",
+      "reason": "PJ tangencial, matéria sobre banda DesRocs em r/DesRocs"
+    },
+    {
+      "id": "3a1c8c4346",
+      "title": "Pearl Jam Live show CD 10-16-14 @ JLA",
+      "reason": "texto vazio/quebrado, menos de 200 chars uteis, nenhuma info substantiva"
+    }
+  ]
+}
