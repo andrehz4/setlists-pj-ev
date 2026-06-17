@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-17T21:03Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "5bf9cc5d25",
+      "title": "Pearl Jam Alive guitar solo!!",
+      "reason": "texto vazio (so metadado Reddit), menor de idade identificavel"
+    },
+    {
+      "id": "c4476a1bdb",
+      "title": "Guess my #1 artist!",
+      "reason": "texto vazio, PJ ausente (post de r/statsfm sem conteudo)"
+    }
+  ]
+}
