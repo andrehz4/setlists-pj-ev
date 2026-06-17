@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-06-17T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "pjcom-news": 1 },
+  "approved": [
+    { "id": "15c07d0a94", "titulo": "Eddie Vedder se apresenta na cerimônia de inauguração do Obama Center", "kind": "pjcom-news" }
+  ],
+  "skipped": [
+    { "id": "fb37085918", "title": "Pearl Jam by Emek along with a couple of his other prints", "reason": "texto vazio (só metadado Reddit: submitted by + [link] [comments])" },
+    { "id": "1f94c8bdac", "title": "Update: AIO or is my boyfriend cheating?", "reason": "sem mencao a PJ (post de r/AmIOverreacting sobre relacionamento, sem conexão com Pearl Jam)" },
+    { "id": "8b97c9cd0b", "title": "I don't think Dave Matthews Band will ever lose a step", "reason": "PJ tangencial (post de r/DMB que menciona PJ de passagem como exceção; foco é DMB)" }
+  ]
+}
