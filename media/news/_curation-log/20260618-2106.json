@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-06-18T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "pjcom-news": 1 },
+  "approved": [
+    { "id": "d90f9f6be4", "titulo": "Vedder estreia nova música em Chicago com Springsteen, Bono e Stevie Wonder", "kind": "midia" },
+    { "id": "224d8fc9a8", "titulo": "Vedder e jovens de Chicago lançam 'Better Believe' nas plataformas de streaming", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "1f9862221f", "title": "Eddie Vedder and Guitars Over Guns Collaborate on New Song", "reason": "texto extraído quebrado: scraper retornou apenas formulário SMS de cadastro (Ten Club newsletter), sem conteúdo editorial da matéria" }
+  ]
+}
