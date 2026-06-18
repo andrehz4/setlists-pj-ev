@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-18T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-4992ba93cb",
+      "title": "Found a few of my things while browsing my dad's vinyl/CD collection",
+      "reason": "nao e fan art/criacao artistica; compartilhamento de CD cases da colecao do pai; score zero, zero comentarios"
+    },
+    {
+      "id": "4c2670162f",
+      "title": "Been scrobbling since Nov 2007. I really liked Foo Fighters when I was a kid",
+      "reason": "texto extraido vazio (so metadado de submissao, <50 chars de conteudo); origem r/lastfm sem mencao real a PJ"
+    }
+  ]
+}
