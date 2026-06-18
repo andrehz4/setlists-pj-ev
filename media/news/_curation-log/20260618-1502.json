@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-06-18T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20260618", "titulo": "Eddie Vedder se apresenta na inauguração do Obama Presidential Center", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "4756788b69", "title": "Pearl Jam (r/Cd_collectors)", "reason": "post de r/Cd_collectors sobre compra de CDs por cupom, zero valor editorial, sem noticia" }
+  ]
+}
