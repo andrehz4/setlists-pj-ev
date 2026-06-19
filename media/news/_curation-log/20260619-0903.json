@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-06-19T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "28e566d4c6", "titulo": "Eddie Vedder estreia 'Better Believe' na abertura do Obama Presidential Center", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "e123707fc6", "title": "I want my ex to have a miserable life", "reason": "post de r/BreakUps sem relacao com PJ; Pearl Jam apenas mencionado tangencialmente (letra de 'Black')" }
+  ]
+}
