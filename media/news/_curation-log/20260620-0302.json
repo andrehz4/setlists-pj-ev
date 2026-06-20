@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-20T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "6b84d6b2e7",
+      "title": "20 Year last.fm Anniversary and…",
+      "reason": "PJ tangencial: usuario menciona PJ como artista favorito no scrobble, sem conteudo editorial sobre a banda. Texto de 35 palavras."
+    },
+    {
+      "id": "6baa73663b",
+      "title": "Wolf Alice Show on Ellie's Birthday ... also Worldcup Final",
+      "reason": "sem mencao a PJ: post sobre show do Wolf Alice em Viena e final da Copa do Mundo, nada relacionado ao Pearl Jam."
+    }
+  ]
+}
