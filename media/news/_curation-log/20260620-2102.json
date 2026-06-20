@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-06-20T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "b1e5e3afce", "titulo": "Eddie Vedder lança 'Better Believe' com jovens músicos do Guitars Over Guns", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "2ff21187ea", "title": "[Amazon] Pearl Jam - Riot Act [2xLP] - $19.56", "reason": "deal de preço em loja terceira, texto vazio (metadado apenas)" },
+    { "id": "acc38839c0", "title": "Each song has more words in its title than the previous song", "reason": "texto vazio, sem mencao relevante a PJ, subreddit nao relacionado" }
+  ]
+}
