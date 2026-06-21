@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-06-21T03:02Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "cs-94cec63e0d", "titulo": "Fã desenha Eddie cantando Nothingman no Ohana 2021", "kind": "community-spotlight" }
+  ],
+  "skipped": [
+    { "id": "9ed528685b", "title": "[Live Setlist Thread]GOOSE THE BAND | Saturday, June 20th, 2026 | MSG", "reason": "PJ tangencial: mencionado apenas como musica de pre-show de show de outra banda (Goose the Band)" }
+  ]
+}
