@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-06-23T08:05Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "f1ed42303f", "titulo": "Dave Abbruzzese grava 'Hail, Hail' e imagina o No Code que não existiu", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "1034cf16b5", "title": "Pearl Jam - Jeremy MTV unplugged 1992 [Grunge]", "reason": "texto extraído vazio (menos de 200 chars, só metadado de link Reddit sem conteúdo editorial)" }
+  ]
+}
