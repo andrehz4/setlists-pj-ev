@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-06-23T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0, "pjcom-news": 1 },
+  "approved": [
+    { "id": "feb79d0168", "titulo": "Dave Krusen se junta a Lzzy Hale em tributo ao Chris Cornell", "kind": "midia" },
+    { "id": "3a699e3b16", "titulo": "Mike McCready confirmado no San Diego Comic-Con", "kind": "pjcom-news" }
+  ],
+  "skipped": [
+    { "id": "410d1651e9", "title": "Legacy act headliners (r/bonnaroo)", "reason": "PJ tangencial: post de outro subreddit especulando headliners pra 2027, sem substância sobre a banda" }
+  ]
+}
