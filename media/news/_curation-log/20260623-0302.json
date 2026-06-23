@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-06-23T03:02Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "0a7440309a",
+      "title": "I don't have the money for the real thing. Is this \"iPod\" enough?",
+      "reason": "sem mencao a PJ (r/ipod, post sobre iPod generico)"
+    },
+    {
+      "id": "acff42ab58",
+      "title": "Beck - (1997)-02-14 [Full Set] + Olivia Tremor Control - 1997-02-14",
+      "reason": "PJ tangencial (mencionado apenas como origem do lote de eBay; foco e show do Beck)"
+    },
+    {
+      "id": "757b4da54b",
+      "title": "Pearl Jam - Corduroy (Music Video - Studio Cut) [Grunge] (1994)",
+      "reason": "texto vazio (so metadado do Reddit, sem conteudo editorial)"
+    }
+  ]
+}
