@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-06-25T03:02Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-92610cafe0",
+      "title": "If I asked Stone Gossard to autograph this image would he do it",
+      "reason": "spotlight sem selftext: texto ambíguo, imagem não identificável, score 0, 0 comentários"
+    },
+    {
+      "id": "57eecd9f5f",
+      "title": "I spent the last 8 days turning fan-filmed phone footage of the Rhapsody...",
+      "reason": "PJ tangencial: conteúdo sobre Rhapsody of Fire, Pearl Jam mencionado apenas como referência de passagem"
+    }
+  ]
+}
