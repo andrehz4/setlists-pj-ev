@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-06-26T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "pjcom-news": 1 },
+  "approved": [
+    { "id": "3b8dbf738f", "titulo": "Eddie Vedder confirmado como headliner do Best of Blues and Rock 2026", "kind": "pjcom-news" }
+  ],
+  "skipped": [
+    { "id": "cd-20260626", "title": "Community digest 2026-06-26", "reason": "todos os 9 posts com score=0 e num_comments=0, sem anuncio, sem fan content com engajamento, criterio nao atendido (minimo 2 posts score>=50)" },
+    { "id": "e375621c8e", "title": "kim interviewed on sirius xm lithium", "reason": "sobre Kim Thayil/Soundgarden, PJ apenas tangencial (mencionado como parte da playlist do radio), nao e sobre Pearl Jam ou integrante" }
+  ]
+}
