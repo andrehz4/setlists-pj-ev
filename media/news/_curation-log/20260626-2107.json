@@ -1,0 +1,20 @@
+{
+  "runAt": "2026-06-26T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 10,
+  "distribution": { "midia": 9, "community-digest": 0, "community-spotlight": 0, "shop": 0, "pjcom-news": 1 },
+  "approved": [
+    { "id": "02c624ac60", "titulo": "Eddie Vedder e Roger Daltrey fecham o Best of Blues and Rock 2026 em São Paulo", "kind": "midia" },
+    { "id": "54f417c0eb", "titulo": "Eddie Vedder no Brasil: únicos shows na América Latina, com Rock in Rio fora do caminho", "kind": "midia" },
+    { "id": "cb4f378e1c", "titulo": "Rolling Stone detalha o Best of Blues 2026: lineup completo, endereço e horários", "kind": "midia" },
+    { "id": "b5dfc9bb5f", "titulo": "Vedder retorna ao Brasil em 2026: quase uma década de ausência na América do Sul", "kind": "midia" },
+    { "id": "316e8822c8", "titulo": "Best of Blues 2026: ingressos de R$ 406 a R$ 1.232 para ver Eddie Vedder e Daltrey", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "7f01a7d4ef", "title": "Best of Blues and Rock 2026 anuncia Eddie Vedder e Roger Daltrey", "reason": "sem ângulo proprio: dados do lineup ja cobertos com mais detalhe pelas outras fontes" },
+    { "id": "c8367a5990", "title": "Best of Blues and Rock 2026 tera shows de Eddie Vedder e Roger Daltrey em Sao Paulo", "reason": "conteudo redundante, sem informacao nova alem das outras coberturas aprovadas" },
+    { "id": "297d40bc9e", "title": "Best of Blues and Rock anuncia lineup com Eddie Vedder, Roger Daltrey e mais", "reason": "dados praticos (portoes, bilheteria) ja cobertos pelo item cb4f378e1c da Rolling Stone" },
+    { "id": "582748bf8d", "title": "Live Stream the Big Sandy Pig Roast", "reason": "texto vazio: article_text e apenas formulario de SMS, sem conteudo editorial sobre o evento" },
+    { "id": "27f4b0c20b", "title": "NIIn tear out photo book", "reason": "nao e Pearl Jam: post sobre Nine Inch Nails captado por engano no scraper" }
+  ]
+}
