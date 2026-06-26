@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-06-26T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "be2b552186",
+      "title": "SOUNDGARDEN's KIM THAYIL: MATT CAMERON Was The 'Perfect' Drummer For PEARL JAM",
+      "reason": "texto vazio: article_text contem apenas metadado do post (submitted by / link / comments), sem conteudo real"
+    },
+    {
+      "id": "cs-ba21bfc8f9",
+      "title": "Legoten",
+      "reason": "conteudo ambiguo: selftext e so URL de imagem + 'I found it here', sem descricao da obra; score e comentarios zerados"
+    },
+    {
+      "id": "fd3b9f8ddf",
+      "title": "Nirvana is now underrated",
+      "reason": "PJ tangencial: materia sobre Nirvana em r/grunge, Pearl Jam mencionado apenas de passagem como comparacao"
+    }
+  ]
+}
