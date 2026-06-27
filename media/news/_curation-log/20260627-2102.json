@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-06-27T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "3e145f63d6",
+      "title": "I need a copy of this issue.",
+      "reason": "sem mencao a PJ: post de r/conan sobre reissue de Rolling Stone, texto com menos de 200 chars e sem conexao com Pearl Jam"
+    }
+  ]
+}
