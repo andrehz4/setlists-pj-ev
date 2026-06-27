@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-06-27T09:02Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "eb72ce21d8",
+      "title": "Rejuvenation, A Playlist Inspired By Each Of The 38 Deadlock Heroes",
+      "reason": "sem mencao a PJ: trata de playlist do jogo Valve Deadlock, capturado por falso positivo no reddit-search-pj"
+    }
+  ]
+}
