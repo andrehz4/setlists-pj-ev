@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-06-28T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "f6e682ce69",
+      "title": "Things to do in Denver this weekend - June 25th - 28th, 2026",
+      "reason": "falso-positivo do scraper: lista generica de eventos em Denver, sem mencao a Pearl Jam no texto extraido"
+    }
+  ]
+}
