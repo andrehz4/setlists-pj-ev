@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-06-29T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "d1035d8a61",
+      "title": "River's contribution to the LGBTQ+ community",
+      "reason": "sem mencao a PJ: post de r/RiverPhoenix sobre atuacao de River Phoenix em My Own Private Idaho, capturado pelo scraper por engano"
+    }
+  ]
+}
