@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-06-30T03:03Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "cs-b82f803443", "titulo": "Fã guardou o comprovante do saque da noite de lançamento do Vs. em 1993", "kind": "community-spotlight" }
+  ],
+  "skipped": [
+    { "id": "376d19f01c", "title": "Is My Topster Titillating?...", "reason": "texto vazio / PJ tangencial (r/Topster, sem artigo, apenas metadado de submissao)" },
+    { "id": "4058f90f4d", "title": "Remade my taste profile", "reason": "texto vazio / PJ tangencial (r/Topster, sem artigo, apenas metadado de submissao)" }
+  ]
+}
