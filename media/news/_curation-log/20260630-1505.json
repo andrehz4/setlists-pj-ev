@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-06-30T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "0e668a9ecd", "titulo": "Dave Krusen toca Loud Love do Soundgarden em tributo a Chris Cornell", "kind": "midia" },
+    { "id": "cd-20260630", "titulo": "Ten Club em xeque e compilacao imaginaria dominam o dia na comunidade PJ", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "7a520491cb", "title": "Grungefest 2026 - Who's Going (Tribute Nights)", "reason": "PJ tangencial: festival tributo ao grunge em Perth sem mencao direta ao Pearl Jam" }
+  ]
+}
