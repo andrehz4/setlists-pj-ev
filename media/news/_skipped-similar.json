@@ -1,15 +1,6 @@
 {
   "skipped": [
     {
-      "itemId": "0b821ae173",
-      "title_pt": "Pearl Jam vai revelar o novo baterista em setembro",
-      "matchedTo": "93347ce3bd",
-      "matchedPreview": "Stone Gossard confirma: novo baterista do Pearl Jam sera revelado no Ohana Festival em setembro",
-      "reason": "dedup manual: saga novo baterista, mantido 93347ce3bd como representante",
-      "similarity": null,
-      "skippedAt": "2026-05-31T00:48:07.834Z"
-    },
-    {
       "itemId": "4bcb9b254b",
       "title_pt": "Rock in Rio teria Pearl Jam, mas virou besteira pop, diz vocalista do Live",
       "matchedTo": "371e77f39b",
@@ -89,7 +80,16 @@
       "matchedPreview": "Eddie Vedder estreia 'Better Believe' na abertura do Obama Presidential Center Eddie Vedder estreou 'Better Believe' na ",
       "similarity": 0.435,
       "skippedAt": "2026-06-22T15:03:18.375Z"
+    },
+    {
+      "itemId": "990d7b3714",
+      "title_pt": "Eddie presenteia jovem da Guitars Over Guns com violão pessoal no Centro Obama",
+      "matchedTo": "f662499f3e",
+      "matchedPostedAt": null,
+      "matchedPreview": "Eddie presenteia adolescente com violão pessoal na inauguração do Centro Obama Eddie Vedder presenteou jovem da Guitars ",
+      "similarity": 0.385,
+      "skippedAt": "2026-06-30T09:04:08.522Z"
     }
   ],
-  "updatedAt": "2026-06-22T15:03:18.375Z"
+  "updatedAt": "2026-06-30T09:04:08.522Z"
 }
