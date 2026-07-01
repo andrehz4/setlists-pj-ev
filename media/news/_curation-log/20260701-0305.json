@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-01T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "2d0da5ebcd",
+      "title": "Radioen er din - Alle sangene",
+      "reason": "sem menção a PJ: post em norueguês sobre programa de rádio norueguês (Radioresepsjonen), sem relação com Pearl Jam"
+    },
+    {
+      "id": "db0e6c0f1c",
+      "title": "Is there a song by a Grunge band that makes you emotional?",
+      "reason": "PJ tangencial: thread geral do r/grunge onde o OP menciona Last Kiss de passagem; texto extraído mínimo, sem substância editorial"
+    }
+  ]
+}
