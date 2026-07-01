@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-07-01T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20260701", "titulo": "Eddie, o Harvest imaginado, e 34 anos do Singles na comunidade", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "609d661074", "title": "My Reflections on Switchfoot, as a Christian Millennial...", "reason": "conteudo sobre outra banda (Switchfoot), sem mencao a Pearl Jam" }
+  ]
+}
