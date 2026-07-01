@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-07-01T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "ee09ad6066", "titulo": "Jeff Ament no Track Star: de Bob Marley ao punk de Bristol e a filosofia do PJ", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "63207952ef", "title": "But first, Pearl Jam", "reason": "texto vazio / apenas metadado de link Reddit, sem conteudo editorial" }
+  ]
+}
