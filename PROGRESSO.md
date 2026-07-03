@@ -1,7 +1,27 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-06-13 (reel semanal cinematográfico: design no Claude Design + implementação no pipeline)
+2026-07-03 (vistoria geral Fable + correções de front e pipeline; fórum caiu no Railway)
+
+## ⭐ Sessão 2026-07-03: VISTORIA GERAL + CORREÇÕES (front e pipeline FEITO, 106/106 testes)
+
+Vistoria completa nos 11 eixos (5 agentes em paralelo, suítes rodadas: 106/106 pipeline, 84/84 backend). Nota média 6,0/10. Relatório completo na conversa. Correções aplicadas e no ar em 2 commits:
+
+**P0 (só o Andre resolve, painel Railway):** o backend do fórum está FORA DO AR. O serviço Railway `perpetual-energy-production-1a69` teve a Source trocada e está servindo a "Terra Gentil API" em vez da "SMUFDPJ Forum API". Código do fórum intacto (testes passam). Diagnóstico e passo a passo de conserto documentados em `backend/DEPLOY-RAILWAY.md` (novo) + banner no `CLAUDE.md`. Redeploy correto também ativa o token via fragment e o `FORUM_BOT_KEY` (pendências antigas).
+
+**Commit 1 (front, seguro, deploy automático Pages):**
+- XSS por atributo corrigido: `san()` (3 HTMLs do fórum) e `_newsEscape` (index.html) passaram a escapar `"` e `'` além de `< > &`. `display_name`/título com aspas não quebram mais atributos data-*/alt/aria-label (era stored XSS cross-user com CSP unsafe-inline). Os 2 `document.title` que usavam `san()` passaram a usar valor cru (propriedade de texto, mostrava entidades literais).
+- a11y: lightbox de clipes ganha `hidden` ao fechar; sem isso o dialog fechado (0 focáveis) seguia no focus trap global e prendia o Tab da página inteira.
+
+**Commit 2 (pipeline, validado com npm test + mock e2e real):**
+- `news.yml`/`community.yml`/`news-merge.yml`: loop de push aborta rebase em conflito e faz `exit 1` ao esgotar, em vez de sair verde perdendo o commit (curadoria do news-merge evaporava em silêncio).
+- `run-publish.mjs`: persiste `_lastAttemptCaption` via git ANTES do `publishItems` (guarda anti-duplicata funciona mesmo se a run morrer durante o publish com o post já criado no IG). `processBatch` recebe o reconciliador.
+- `auto-merge-routine.mjs`: apply direto pós-conflito dá push pra main ANTES de fechar PR/deletar branch; se o push falha, preserva branch+PR pra retry (antes o commit ficava só local e sumia).
+
+**PENDÊNCIAS desta vistoria (não aplicadas, esperando o Andre):**
+1. **P0 Railway** acima (destrava o fórum). Tudo mais do fórum depende disso.
+2. **Backend (P1/P2, só valem após redeploy):** email exposto em `GET /forum/users/{id}` sem auth (`forum.py:284,337`); `JWT_SECRET`/`DATABASE_URL` sem validação de boot (assina JWT com string vazia se sumir); pool asyncpg sem timeout/lifespan (`db.py`); rate limit contornável por `X-Forwarded-For` forjado (`limiter.py`); `feed.py:36` sem clamp de `page>=1` (500 com page=0); python-jose 3.3.0 com CVE; container roda como root.
+3. **P2/P3 front/pipeline restantes:** cache HTTP fraco no `_headers`; index.html 1,28MB single-file; leitor Deep baixa 9-11MB ao abrir; `forum-seed.yml` vermelho toda sexta (commita stamp que o script não gera quando dá skip); robots.txt bloqueia as imagens de OG; steps de Telegram com `env` no `if` nunca disparam; `npm test` é lista hardcoded; validador de segurança do auto-merge sem teste. Lista completa com arquivo:linha na conversa.
 
 ## ⭐ Sessão 2026-06-12/13: REEL SEMANAL (motion design ponta a ponta, FEITO, 105/105 testes)
 
