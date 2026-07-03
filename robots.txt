@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /media/news/img/
 Disallow: /media/
 
 Sitemap: https://setlists-pj-ev.pages.dev/sitemap.xml
