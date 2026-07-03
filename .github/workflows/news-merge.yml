@@ -64,12 +64,22 @@ jobs:
           git config user.email "bot@setlists-pj.local"
           git add "$ARCHIVE_FILE"
           git commit -m "news: archive bruto do payload da routine ${STAMP}"
+          pushed=""
           for i in 1 2 3; do
-            git pull origin main --rebase --autostash || true
-            if git push origin main 2>&1; then break; fi
+            if ! git pull origin main --rebase --autostash; then
+              git rebase --abort 2>/dev/null || true
+              echo "rebase falhou (tentativa $i), abortado; retry..."
+              sleep 2
+              continue
+            fi
+            if git push origin main 2>&1; then pushed=1; break; fi
             echo "push tentativa $i falhou, retry..."
             sleep 2
           done
+          if [ -z "$pushed" ]; then
+            echo "::error::push do archive falhou apos 3 tentativas"
+            exit 1
+          fi
 
       - name: Merge curated
         run: node scripts/news/merge-curated.mjs --file /tmp/curated.json
@@ -85,12 +95,22 @@ jobs:
             N=$(jq '.items | length' media/news/index.json)
             COMMIT_MSG="news: curadoria automatica via routine sonnet (repository_dispatch, $N itens) $(date -u +%Y-%m-%dT%H:%MZ)"
             git commit -m "$COMMIT_MSG"
+            pushed=""
             for i in 1 2 3; do
-              git pull origin main --rebase --autostash || true
-              if git push origin main 2>&1; then break; fi
+              if ! git pull origin main --rebase --autostash; then
+                git rebase --abort 2>/dev/null || true
+                echo "rebase falhou (tentativa $i), abortado; retry..."
+                sleep 2
+                continue
+              fi
+              if git push origin main 2>&1; then pushed=1; break; fi
               echo "push tentativa $i falhou, retry..."
               sleep 2
             done
+            if [ -z "$pushed" ]; then
+              echo "::error::push da curadoria falhou apos 3 tentativas"
+              exit 1
+            fi
           fi
 
       - name: Notifica Telegram (preview do que vai pro feed)

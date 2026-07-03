@@ -231,7 +231,7 @@ async function commitAndPush(paths, message, { retries = 3, onRebaseConflict = n
   throw new Error(`git push falhou apos ${retries} tentativas`);
 }
 
-async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleColor, denylist) {
+async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleColor, denylist, reconcile = null) {
   // No layout card02 o carrossel ganha 1 slide de capa (Card 11). A capa
   // conta no limite de 10 do IG, entao cap de 9 items + capa = 10.
   const matureLimit = LAYOUT === "card02" ? 9 : 10;
@@ -384,6 +384,23 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleCol
   //    mesma caption que publishItems vai montar.
   const slideSuffix = LAYOUT === "card02" ? ".card02" : "";
   markAttempt(queue, itemsToPost.map((it) => it.id), buildCarouselCaption(itemsToPost), nowIso);
+  // Persiste a caption da tentativa (via git) ANTES do publish. Se a run morrer
+  // DURANTE o publishItems (timeout de 10min do runner, SIGKILL) depois do post
+  // ja ter saido no IG, markPosted e o commit imediato nunca rodam; sem esta
+  // gravacao previa, o proximo cron nao acha _lastAttemptCaption e re-posta.
+  // Com ela, a guarda cross-run casa a caption e evita o duplicado. 1 commit
+  // extra por batch, barato. Falha aqui nao derruba a run (segue pro publish,
+  // == comportamento anterior, sem regressao).
+  try {
+    await writeQueue(queue);
+    await commitAndPush(
+      ["media/news/_publish-queue.json"],
+      `publish-ig: registra tentativa ${type} (${itemsToPost.length} item/s) ${nowIso.slice(0, 16)}Z`,
+      { onRebaseConflict: reconcile },
+    );
+  } catch (e) {
+    console.warn(`[publish] pre-commit da tentativa falhou (segue pro publish): ${e.message}`);
+  }
   try {
     const r = await publishItems(itemsToPost, { coverImageUrl, slideSuffix });
     if (r.recovered) {
@@ -799,7 +816,7 @@ async function main() {
       console.warn(`[publish] abort early: tipo=${t} pulado porque batch anterior bateu rate limit`);
       break;
     }
-    const r = await processBatch(t, queue, indexById, nowIso, tarjaColor, cycleColor, denylist);
+    const r = await processBatch(t, queue, indexById, nowIso, tarjaColor, cycleColor, denylist, reconcileWithRemote);
     if (r) {
       results.push(r);
       batchCount++;

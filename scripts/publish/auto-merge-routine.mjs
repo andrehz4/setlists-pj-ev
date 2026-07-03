@@ -325,10 +325,27 @@ async function processBranch(branch) {
       if (!applied) {
         return { branch, prNum, error: "apply direto sem mudancas" };
       }
-      // fecha PR (conflito foi resolvido via commit direto em main)
+      // Empurra o commit do apply direto pra main ANTES de fechar PR e deletar
+      // branch. Sem isso o commit ficava so local e morria com o runner se o
+      // run-publish seguinte saisse cedo (cooldown/dry-run/crash), perdendo a
+      // curadoria de vez (branch ja deletado). Com push conflitado, aborta o
+      // rebase e re-tenta; se esgotar, PRESERVA o branch e o PR pra proxima run.
+      let pushed = false;
+      for (let i = 0; i < 3; i++) {
+        const pull = shTry(`git pull origin main --rebase --autostash`);
+        if (!pull.ok) shTry(`git rebase --abort`);
+        const push = shTry(`git push origin HEAD:main`);
+        if (push.ok) { pushed = true; break; }
+        console.warn(`  push do apply direto falhou (try ${i + 1}/3): ${push.err}`);
+      }
+      if (!pushed) {
+        console.error(`  ERRO: push do apply direto de ${branch} falhou; branch e PR preservados pra retry`);
+        return { branch, prNum, error: "push do apply direto falhou" };
+      }
+      // So agora, com o commit ja em main, fecha PR e deleta o branch
       shTry(`gh pr close ${prNum} --comment "Mesclado via apply direto (conflito de JSON resolvido). Commit em main." -R ${REPO}`);
       shTry(`git push origin --delete ${branch}`);
-      console.log(`  PR #${prNum} fechado, branch deletado, apply OK`);
+      console.log(`  PR #${prNum} fechado, branch deletado, apply pusheado OK`);
     } else {
       console.error(`  ERRO mesclando PR #${prNum}: ${merge.err}`);
       return { branch, prNum, error: merge.err };
