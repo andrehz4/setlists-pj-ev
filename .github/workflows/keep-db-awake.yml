@@ -1,0 +1,62 @@
+# Mantem o banco Supabase (free tier) acordado. O free tier pausa o projeto
+# apos ~7 dias sem atividade no banco, o que derruba o forum (e o app Terra
+# Gentil, que compartilha o mesmo banco). Uma query por dia zera o contador de
+# inatividade e mantem tudo vivo de graca, sem migrar nada.
+#
+# O teste bate em /forum/topics com o Origin do site (rota que faz SELECT no
+# banco). 200 = forum + banco OK. 5xx = banco provavelmente pausado -> alerta
+# no Telegram e run vermelha pra o Andre ver.
+#
+# Detalhes e alternativas (migrar pro Neon) em backend/DEPLOY-RAILWAY.md.
+name: Keep DB awake
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 11 * * *" # todo dia 08:17 BRT (horario arbitrario off-peak)
+
+permissions:
+  contents: read
+
+concurrency:
+  group: keep-db-awake
+  cancel-in-progress: false
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      BACKEND: https://perpetual-energy-production-1a69.up.railway.app
+      ORIGIN: https://setlists-pj-ev.pages.dev
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - name: Ping no banco via /forum/topics
+        run: |
+          # 1 retry apos 20s: cobre cold start do Railway/Supabase sem alarme falso.
+          ok=""
+          for i in 1 2; do
+            CODE=$(curl -s -o /tmp/resp.json -w "%{http_code}" -m 40 \
+              -H "Origin: ${ORIGIN}" "${BACKEND}/forum/topics" || echo "000")
+            echo "tentativa $i: HTTP $CODE"
+            if [ "$CODE" = "200" ]; then ok=1; break; fi
+            sleep 20
+          done
+
+          if [ -n "$ok" ]; then
+            echo "banco acordado (forum respondeu 200)"
+            exit 0
+          fi
+
+          echo "::warning::forum/banco nao respondeu 200 (ultimo HTTP $CODE)"
+          if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+            MSG=$(printf '⚠️ <b>Banco do forum sem resposta</b>\n\n/forum/topics devolveu HTTP %s (nao 200). O Supabase pode ter pausado. Ver backend/DEPLOY-RAILWAY.md (Restore no painel do Supabase).' "$CODE")
+            curl -s -o /dev/null -X POST \
+              "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+              --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+              --data-urlencode "parse_mode=HTML" \
+              --data-urlencode "disable_web_page_preview=true" \
+              --data-urlencode "text=${MSG}" || true
+          fi
+          exit 1
