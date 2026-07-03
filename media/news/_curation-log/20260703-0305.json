@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-07-03T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "6db409f61d", "title": "Alexandria the Satyr Hero by Pearl-Jam-Bud", "reason": "sem relação com Pearl Jam: 'Pearl-Jam-Bud' é username de artista de D&D, não a banda" },
+    { "id": "eca5daec9f", "title": "Alexandria the Satyr Hero by Pearl-Jam-Bud (r/PrancingPretties)", "reason": "duplicata do anterior, mesmo conteúdo em subreddit diferente" },
+    { "id": "a13242228a", "title": "Flea markets haul!", "reason": "PJ tangencial: haul genérico de CDs, Pearl Jam citado de passagem como segundo favorito atrás de Mamma Mia" }
+  ]
+}
