@@ -78,10 +78,20 @@ jobs:
               COMMIT_MSG="community: $MODE ($CURATOR) $(date -u +%Y-%m-%dT%H:%MZ)"
             fi
             git commit -m "$COMMIT_MSG"
+            pushed=""
             for i in 1 2 3; do
-              git pull origin main --rebase --autostash || true
-              if git push origin main 2>&1; then break; fi
+              if ! git pull origin main --rebase --autostash; then
+                git rebase --abort 2>/dev/null || true
+                echo "rebase falhou (tentativa $i), abortado; retry..."
+                sleep 2
+                continue
+              fi
+              if git push origin main 2>&1; then pushed=1; break; fi
               echo "push tentativa $i falhou, retry..."
               sleep 2
             done
+            if [ -z "$pushed" ]; then
+              echo "::error::push falhou apos 3 tentativas, commit local perdido"
+              exit 1
+            fi
           fi
