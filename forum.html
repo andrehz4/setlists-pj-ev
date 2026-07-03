@@ -742,7 +742,12 @@ let _state = {
 
 // ── Helpers ──────────────────────────────────────────────────
 function san(str) {
-  return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+  // ALLOWED_TAGS:[] remove tags e escapa < > &. Falta escapar aspas pra ser seguro
+  // dentro de atributo (data-*, alt, src): sem isso um nome tipo x" onmouseover=...
+  // quebra o atributo. NAO usar em document.title (propriedade de texto, nao HTML).
+  return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 // Só aceita URLs https; bloqueia javascript:, data:, etc. em src/href de terceiros.
 function sanUrl(url) {

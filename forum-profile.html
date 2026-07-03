@@ -314,7 +314,12 @@ async function loadShowsCatalog() {
 }
 
 function san(str) {
-  return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+  // ALLOWED_TAGS:[] remove tags e escapa < > &. Falta escapar aspas pra ser seguro
+  // dentro de atributo (data-*, alt, src): sem isso um nome tipo x" onmouseover=...
+  // quebra o atributo. NAO usar em document.title (propriedade de texto, nao HTML).
+  return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 function timeAgo(iso) {
   const d = new Date(iso);
@@ -591,7 +596,9 @@ function renderProfile(data, cat) {
       </aside>
     </div>`;
 
-  document.title = san(data.display_name) + " — SMUFDPJ Fórum";
+  // document.title e propriedade de texto (sem parse de HTML), entao usa o valor cru:
+  // san() aqui mostraria entidades tipo &#39; literais na aba do navegador.
+  document.title = (data.display_name || "") + " — SMUFDPJ Fórum";
 
   document.querySelectorAll(".a-target[href]").forEach(el => {
     el.style.cssText = "font-family:var(--font-editorial);font-style:italic;color:var(--ink);text-decoration:none";
