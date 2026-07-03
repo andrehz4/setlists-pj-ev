@@ -116,12 +116,15 @@ jobs:
       - name: Notifica Telegram (preview do que vai pro feed)
         # Step pos-merge. Avisa Andre sobre o que vai pro feed. Falha aqui NAO derruba
         # o workflow porque notificacao e nice-to-have.
-        if: success() && env.TELEGRAM_BOT_TOKEN != ''
+        # env de step NAO e visivel no if do proprio step; a guarda do token vai
+        # pro shell, senao este preview nunca dispara (if sempre falso).
+        if: success()
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           set +e
+          if [ -z "$TELEGRAM_BOT_TOKEN" ]; then echo "[telegram] sem token, skip"; exit 0; fi
           # estima horario do proximo cron de publish em BRT
           NOW_UTC=$(date -u +%s)
           MIN_UTC=$(date -u +%M)

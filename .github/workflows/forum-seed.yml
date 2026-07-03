@@ -37,10 +37,31 @@ jobs:
         run: |
           git config user.name "pj-news-bot"
           git config user.email "bot@setlists-pj.local"
+          # O seed faz skip gracioso (sem FORUM_BOT_KEY ou sem noticia na janela)
+          # e NAO gera o stamp. Sem esta guarda, `git add <arquivo inexistente>`
+          # aborta o step com exit 128 (shell roda com -e), deixando a run
+          # vermelha toda sexta mesmo quando o skip foi o comportamento correto.
+          if [ ! -f media/news/_forum-seed-stamp.json ]; then
+            echo "Sem stamp (seed fez skip), nada a commitar"
+            exit 0
+          fi
           git add media/news/_forum-seed-stamp.json
           if git diff --cached --quiet; then
             echo "Sem stamp novo, nada a commitar"
           else
             git commit -m "forum-seed: topico da semana postado $(date -u +%Y-%m-%dT%H:%MZ)"
-            for i in 1 2 3; do git pull --rebase --autostash && git push && break || sleep 2; done
+            pushed=""
+            for i in 1 2 3; do
+              if ! git pull origin main --rebase --autostash; then
+                git rebase --abort 2>/dev/null || true
+                sleep 2
+                continue
+              fi
+              if git push origin main 2>&1; then pushed=1; break; fi
+              sleep 2
+            done
+            if [ -z "$pushed" ]; then
+              echo "::error::push do stamp do forum-seed falhou apos 3 tentativas"
+              exit 1
+            fi
           fi

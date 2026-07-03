@@ -86,12 +86,15 @@ jobs:
           fi
 
       - name: Notifica Telegram (scrape, resumo agregado)
-        if: ${{ inputs.dry-run != true && env.TELEGRAM_BOT_TOKEN != '' }}
+        # env de step NAO e visivel no if do proprio step; guarda do token vai
+        # pro shell, senao este resumo de scrape nunca dispara.
+        if: ${{ inputs.dry-run != true }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           set +e
+          if [ -z "$TELEGRAM_BOT_TOKEN" ]; then echo "[telegram] sem token, skip"; exit 0; fi
           if [ ! -f media/news/_pending.json ]; then
             echo "[telegram] sem _pending.json, skip"
             exit 0
@@ -151,13 +154,17 @@ jobs:
         # _pending sobe (ate ~10-15 entre curadorias). Se passar de NEWS_PENDING_ALERT
         # (default 25), a curadoria parou de acompanhar: baixar o teto em
         # scripts/news/fetch-news.mjs ou disparar a routine mais vezes.
-        if: ${{ inputs.dry-run != true && env.TELEGRAM_BOT_TOKEN != '' }}
+        # env de step NAO e visivel no if do proprio step, so job/workflow env.
+        # A guarda do token vai pro shell (que enxerga o env), senao este alerta
+        # nunca dispara (env.TELEGRAM_BOT_TOKEN sempre vazio no if).
+        if: ${{ inputs.dry-run != true }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NEWS_PENDING_ALERT: ${{ vars.NEWS_PENDING_ALERT || '25' }}
         run: |
           set +e
+          if [ -z "$TELEGRAM_BOT_TOKEN" ]; then echo "[backlog] sem token telegram, skip"; exit 0; fi
           if [ ! -f media/news/_pending.json ]; then
             echo "[backlog] sem _pending.json, skip"
             exit 0
