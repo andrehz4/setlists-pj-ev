@@ -1,6 +1,8 @@
 # CLAUDE.md, setlists-pj-ev
 
-Mapa do projeto pra agentes (Claude Code, routines). Fontes da verdade: este arquivo (estrutura) + `PROGRESSO.md` (estado/sessões) + `PIPELINE.md` (fluxo detalhado de notícias). `HANDOFF.md` está defasado, não confiar.
+Mapa do projeto pra agentes (Claude Code, routines). Fontes da verdade: este arquivo (estrutura) + `PROGRESSO.md` (estado/sessões) + `PIPELINE.md` (fluxo detalhado de notícias) + `backend/DEPLOY-RAILWAY.md` (deploy/infra do fórum). `HANDOFF.md` está defasado, não confiar.
+
+> **Fórum caiu?** Ver `backend/DEPLOY-RAILWAY.md`. Causa recorrente: o serviço Railway do fórum teve a Source trocada e passou a servir OUTRO app (ex: Terra Gentil). Diagnóstico rápido: `curl -s https://perpetual-energy-production-1a69.up.railway.app/` deve devolver `SMUFDPJ Forum API`; se devolver `Terra Gentil API`, a Source do serviço está no repo errado. Conserto é no painel do Railway (Andre logado), o código do fórum está intacto no repo.
 
 ## O que é
 

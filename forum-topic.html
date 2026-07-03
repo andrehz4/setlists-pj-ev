@@ -426,7 +426,12 @@ const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;   // 8 MB por arquivo de entrada
 const MAX_BODY_CHARS = 200000;              // teto do backend (PostCreate.body)
 
 function san(str) {
-  return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+  // ALLOWED_TAGS:[] remove tags e escapa < > &. Falta escapar aspas pra ser seguro
+  // dentro de atributo (data-*, alt, src): sem isso um nome tipo x" onmouseover=...
+  // quebra o atributo. NAO usar em document.title (propriedade de texto, nao HTML).
+  return DOMPurify.sanitize(str || "", { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 // Substitui tags pesadas por placeholders amigáveis antes de citar/fazer snippet.
 function cleanForQuote(body) {
@@ -1031,7 +1036,9 @@ function renderTopic(data) {
       ${renderThreadRail(t, posts, allItems, totalTavaLa, totalMata)}
     </div>`;
 
-  document.title = san(t.title) + " — SMUFDPJ Fórum";
+  // document.title e propriedade de texto (sem parse de HTML), entao usa o valor cru:
+  // san() aqui mostraria entidades tipo &#39; literais na aba do navegador.
+  document.title = (t.title || "") + " — SMUFDPJ Fórum";
 
   // Reactions
   document.querySelectorAll(".react-chip").forEach(btn => {

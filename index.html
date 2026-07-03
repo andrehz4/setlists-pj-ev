@@ -19487,7 +19487,10 @@ function _newsRelTime(iso) {
 }
 
 function _newsEscape(s) {
-  return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  // Escapa < > & e tambem aspas: o retorno vai pra atributos (aria-label, data-*,
+  // style url()) alem de texto. Sem escapar aspas, um titulo com " quebra o atributo.
+  return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
 // converte body com _via Fonte_ em <em>via Fonte</em>, mantem paragrafos por \n\n
@@ -20093,6 +20096,7 @@ function _clipesOpenLightbox(item) {
         <p class="clipes-lightbox-sub">${_clipesEsc(item.album || "")}${item.year ? " · " + item.year : ""}${item.director ? " · dir. " + _clipesEsc(item.director) : ""}</p>
       </div>
     </div>`;
+  _clipesLightbox.removeAttribute("hidden"); // reentra no seletor do focus trap global
   _clipesLightbox.classList.add("open");
   document.body.style.overflow = "hidden";
   _clipesLightbox.querySelector(".clipes-lightbox-close")?.addEventListener("click", _clipesCloseLightbox);
@@ -20103,6 +20107,9 @@ function _clipesCloseLightbox() {
   if (!_clipesLightbox) return;
   _clipesLightbox.classList.remove("open");
   _clipesLightbox.innerHTML = ""; // descarrega iframe pra parar audio
+  // hidden tira o dialog fechado (0 focaveis) do focus trap global, senao o Tab
+  // da pagina inteira fica preso preventDefault-ando neste modal invisivel.
+  _clipesLightbox.setAttribute("hidden", "");
   document.body.style.overflow = "";
   document.removeEventListener("keydown", _clipesEscHandler);
 }
