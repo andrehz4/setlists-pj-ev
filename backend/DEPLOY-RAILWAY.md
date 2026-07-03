@@ -1,94 +1,99 @@
-# Deploy do backend do fórum (Railway)
+# Deploy do backend do fórum (Railway + Supabase)
 
-Doc de referência pro fluxo de deploy do backend FastAPI do fórum. Fonte da verdade
-sobre onde e como o fórum roda. Ler isto antes de mexer em qualquer coisa de infra do
-fórum ou diagnosticar "fórum caiu".
+Doc de referência pro backend FastAPI do fórum. Fonte da verdade sobre onde e como o
+fórum roda e como diagnosticar "fórum caiu". Ler isto antes de mexer em infra do fórum.
 
-## Onde o fórum roda
+## Arquitetura real (IMPORTANTE, não é óbvia)
 
-- **Plataforma:** Railway (conta/assinatura paga do Andre, eng.andrehz@gmail.com).
-- **Repo conectado:** `github.com/andrehz4/setlists-pj-ev`
-- **Root directory do serviço:** `backend/`
-- **Build:** Dockerfile (ver `backend/railway.json` + `backend/Dockerfile`).
-- **Healthcheck:** `GET /health` (liveness leve, não toca o banco).
+O fórum do PJ e o app **Terra Gentil** compartilham a MESMA base de código de backend e
+o MESMO banco Supabase. O deploy no Railway que atende o fórum PJ roda, na prática, o
+backend do Terra Gentil (que é um superset: tem `/v1/diagnostico` + todas as rotas de
+fórum `/forum`, `/auth`, `/feed`). Os dois "apps" são o mesmo servidor, multi-tenant
+pela coluna `site` do banco (`pj` vs `terra-gentil`), resolvida pelo header `Origin`
+da request (`resolve_site` em `dependencies.py` / `SITE_ORIGINS`).
+
+Consequência prática:
+- `GET /` responde `{"app":"Terra Gentil API"}` mesmo servindo o fórum PJ. Isso é
+  ESPERADO, não é bug. Não confiar no título do `/` pra dizer se o fórum está no ar.
+- `GET /health/db` pode dar 404 (a variante Terra Gentil pode não expor essa rota).
+- O teste de vida REAL do fórum é `GET /forum/topics` com o Origin do site (abaixo).
+- Como o banco é compartilhado, se ele cair, os DOIS apps caem juntos; se for
+  mantido vivo, os dois ficam vivos.
+
+## Onde roda
+
+- **Plataforma app:** Railway (conta do Andre, eng.andrehz@gmail.com).
 - **URL de produção:** `https://perpetual-energy-production-1a69.up.railway.app`
-  (a mesma referenciada em `forum.html`, `forum-topic.html`, `forum-profile.html`,
+  (referenciada em `forum.html`, `forum-topic.html`, `forum-profile.html`,
   `scripts/news/forum-seed.mjs`).
-- **Banco:** Postgres no Supabase, via `DATABASE_URL` (asyncpg).
+- **Código:** repo `github.com/andrehz4/setlists-pj-ev` (`backend/`) OU o repo do
+  Terra Gentil (`terra-gentil/terra-gentil-app`, `backend/`) - são equivalentes nas
+  rotas de fórum. O deploy vigente roda o do Terra Gentil.
+- **Banco:** Postgres no **Supabase (free tier)**, via `DATABASE_URL` (asyncpg),
+  compartilhado com o Terra Gentil.
 
-## Conta vs Projeto vs Serviço (a confusão que derruba o fórum)
+## Incidente conhecido: fórum "cai" = Supabase pausou (causa mais comum)
 
-No Railway a hierarquia é:
+**Sintoma:** o front do fórum trava em "Carregando..." ou dá erro; `GET /forum/topics`
+com Origin devolve **500 InternalServerError** (falha de conexão com o banco), enquanto
+`GET /` e `/health` seguem 200 (o app está de pé, o banco é que não responde).
 
-- **Conta** = a assinatura. Uma só (o que o Andre paga).
-- **Projeto** = uma caixa que agrupa serviços dentro da conta.
-- **Serviço** = UM app rodando. Cada serviço roda um único app.
+**Causa raiz:** o **free tier do Supabase pausa o projeto após ~7 dias sem atividade**
+no banco. Pausado, toda query falha e o fórum morre. Ao despausar (manual no painel do
+Supabase, ou por atividade), volta sozinho. Foi o que aconteceu em 2026-07-03.
 
-Regra que importa: **vários serviços na mesma conta NÃO custam a mais por serviço.**
-O Railway cobra por uso de recurso (CPU/RAM/rede), não por número de serviços. Então
-dá pra ter o fórum e outros apps (ex: Terra Gentil) na mesma conta/assinatura, cada um
-no SEU serviço, sem sacrificar nenhum. O que NÃO funciona é um serviço servir dois
-apps: cada `main.py`/repo precisa do seu serviço.
+**Conserto imediato:** entrar no painel do Supabase e dar "Restore/Resume" no projeto.
+Em ~1 min o fórum volta. Confirmar com o curl de `/forum/topics` abaixo (200 com dados).
 
-## Incidente conhecido: fórum servindo o app errado
+**Solução definitiva grátis:** ver seção "Manter o Supabase acordado" abaixo.
 
-**Sintoma:** o fórum some do ar; o front mostra "Carregando..." eterno ou erro de rede.
+### (Histórico) confusão de repo no Railway
+Já houve suspeita de que o serviço Railway estava com a Source no repo errado. Na
+verdade, por causa da arquitetura compartilhada acima, o `/` dizer "Terra Gentil API"
+é NORMAL. Só tratar como troca-de-repo se `/forum/topics` (com Origin) parar de existir
+(404 na rota inteira), o que é diferente de 500 (banco fora).
 
-**Causa raiz (ocorreu em ~2026-06/07):** o serviço do fórum
-(`perpetual-energy-production-1a69`) teve a FONTE (Source / repo GitHub) trocada, e
-passou a buildar o repo do Terra Gentil (`github.com/terra-gentil/terra-gentil-app`)
-em vez do `andrehz4/setlists-pj-ev`. Resultado: a URL do fórum passou a responder a
-"Terra Gentil API". O backend do fórum ficou sem serviço rodando. Acontece fácil na
-UI do Railway ao conectar um repo novo reusando um serviço existente em vez de criar
-um novo.
-
-## Como diagnosticar (sem acesso ao painel)
-
-O vínculo serviço-repo NÃO está em nenhum arquivo do código (mora no banco do Railway).
-Então lendo o repo não dá pra saber pra onde o serviço aponta. Diagnostica por fora,
-batendo na URL:
+## Diagnóstico (por fora, sem painel)
 
 ```
-curl -s https://perpetual-energy-production-1a69.up.railway.app/
-# ESPERADO (fórum ok):   {"app":"SMUFDPJ Forum API","version":"1.0.0","docs":"/docs"}
-# PROBLEMA (app errado): {"app":"Terra Gentil API","version":"0.1.0","docs":"/docs"}
+B=https://perpetual-energy-production-1a69.up.railway.app
 
-curl -s https://perpetual-energy-production-1a69.up.railway.app/openapi.json | head -c 300
-# ok = rotas /forum, /auth, /feed. Errado = /v1/diagnostico (Terra Gentil).
+curl -s "$B/health"
+# 200 {"status":"ok",...} = app de pé. (Não diz nada sobre o banco.)
 
-# 403 em /forum/topics SEM header Origin é NORMAL (resolve_site exige Origin conhecida).
-# Testar com o Origin real do site:
-curl -s -H "Origin: https://setlists-pj-ev.pages.dev" \
-  https://perpetual-energy-production-1a69.up.railway.app/forum/topics
-# ok = JSON de tópicos. 500 "InternalServerError" = app do fórum não está rodando ali.
+curl -s -H "Origin: https://setlists-pj-ev.pages.dev" "$B/forum/topics"
+# 200 com {"items":[...]}  = fórum OK (app + banco).
+# 500 "InternalServerError" = banco fora -> Supabase provavelmente pausou.
+# 403 "Origem não autorizada" = faltou o header Origin (normal via curl sem ele).
+# 404 na rota = aí sim o deploy não tem o código de fórum (raro).
 ```
 
-## Como consertar (só no painel do Railway, precisa do Andre logado)
+## Manter o Supabase acordado (solução grátis, sem migração)
 
-1. Abrir `railway.com` -> projeto do fórum.
-2. Achar o serviço com a URL `perpetual-energy-production-1a69` (ou o que estiver com a
-   URL do fórum).
-3. Settings -> **Source**: garantir que o repo é `andrehz4/setlists-pj-ev` e o
-   **Root Directory** é `backend/`. Se estiver no repo do Terra Gentil, trocar de volta.
-   - Alternativa limpa: criar um serviço NOVO no mesmo projeto apontando pro repo/root
-     certo (sem custo extra) e atualizar a URL no front se o domínio mudar.
-4. Conferir as **Variables** (envs) do serviço, todas obrigatórias em produção:
-   - `ENVIRONMENT=production`
-   - `DATABASE_URL` (Postgres do Supabase)
-   - `JWT_SECRET` (se vazio, o app assina JWT com string vazia = tokens forjáveis; ver
-     finding de segurança da vistoria)
-   - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
-   - `SITE_ORIGINS=https://setlists-pj-ev.pages.dev=pj`
-   - `FORUM_CORS_ORIGIN=https://setlists-pj-ev.pages.dev`
-   - `FORUM_BOT_KEY` (pro seeder semanal `forum-seed.yml`; sem ela o endpoint fica off)
-   - `ADMIN_USER_IDS` (Google sub dos admins)
-5. Redeploy. Validar com os curls acima ("SMUFDPJ Forum API" no `/`).
+Qualquer query no banco zera o contador de inatividade do Supabase. Um cron simples que
+bate no banco 1x por dia mantém o projeto (e os dois apps) vivos de graça, sem tocar em
+nada de infra. Implementado como workflow `keep-db-awake.yml` (GitHub Actions):
+`curl` diário em `/forum/topics` com o Origin do site. Ver esse workflow.
+
+Alternativa robusta (se o pause voltar a incomodar): migrar o banco pro **Neon** (free
+tier que auto-resume na conexão, não precisa despausar na mão). `pg_dump` do Supabase ->
+restore no Neon -> trocar `DATABASE_URL`. Com o pooler do Neon (PgBouncer transaction
+mode), passar `statement_cache_size=0` no asyncpg (`db.py`). Decidir antes se migra os
+dois apps (banco compartilhado) ou separa.
+
+## Envs do serviço (Railway) - obrigatórias em produção
+
+- `ENVIRONMENT=production`
+- `DATABASE_URL` (Postgres do Supabase)
+- `JWT_SECRET` (se vazio, o app assina JWT com string vazia = tokens forjáveis)
+- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+- `SITE_ORIGINS=https://setlists-pj-ev.pages.dev=pj` (+ a origem do Terra Gentil)
+- `FORUM_CORS_ORIGIN=https://setlists-pj-ev.pages.dev`
+- `FORUM_BOT_KEY` (pro seeder semanal `forum-seed.yml`; sem ela o endpoint fica off)
+- `ADMIN_USER_IDS` (Google sub dos admins)
 
 ## Observações
 
 - O código do fórum está 100% no repo (`backend/`), testes passam (`pytest`, 84+).
-  Nunca foi perda de código, sempre foi configuração de infra.
-- O deploy é automático no push que o Railway detecta no repo conectado (branch
-  padrão), desde que a Source esteja apontando pro repo certo.
-- Terra Gentil tem o serviço PRÓPRIO dele (`terra-gentil-app-production`), repo
-  `terra-gentil/terra-gentil-app`. Não confundir os dois.
+  Nunca foi perda de código; as quedas foram sempre banco (Supabase pause) ou infra.
+- Deploy do app é automático no push do repo conectado no Railway.
