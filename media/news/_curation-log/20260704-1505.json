@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-04T15:05Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "4b2793334f",
+      "title": "grunge people where ya at!!!",
+      "reason": "PJ tangencial: post de r/IndianMetalheads menciona PJ de passagem junto a Alice in Chains e Nirvana, sem foco na banda"
+    },
+    {
+      "id": "ccb251ce5d",
+      "title": "Got lucky at value village",
+      "reason": "sem mencao a PJ: post de r/Cd_collectors sobre achado de CDs em brechó, PJ nao aparece no texto"
+    }
+  ]
+}
