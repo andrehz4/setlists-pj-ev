@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-07-04T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "f6b15cb148", "title": "Back to a Bagger! Decal / Vinyl options", "reason": "sem mencao a PJ (post sobre motos Indian)" },
+    { "id": "067bb16d07", "title": "Alice in Chains - Dirt", "reason": "PJ tangencial (mencionado de passagem em post sobre Alice in Chains)" },
+    { "id": "4eef78376e", "title": "need some hot, sweaty, downright MISERABLE recommendations", "reason": "texto vazio (apenas metadado de submit, sem corpo)" },
+    { "id": "6f33ad1ab6", "title": "Are the 1990s like the 1960s were to us?", "reason": "PJ tangencial (mencionado junto ao Nirvana em discussao generica sobre anos 90)" }
+  ]
+}
