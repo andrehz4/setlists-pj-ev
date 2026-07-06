@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-06T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "7895b84aa9",
+      "title": "In Asheville Tonight - Super Excited!",
+      "reason": "band errada (Spoon, r/SpoonTheBand) - falso positivo do scraper, sem mencao a PJ"
+    }
+  ]
+}
