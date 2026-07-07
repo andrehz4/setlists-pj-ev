@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-07T15:05Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "40e2c0248b",
+      "title": "[Loved Trope] Harmful Healing",
+      "reason": "sem mencao a PJ: conteudo sobre comics Marvel (Frank Castle, Daken, Bloodstone), escapou do filtro de busca"
+    },
+    {
+      "id": "96ebc553f4",
+      "title": "Soundtracking the Year: 1976",
+      "reason": "PJ tangencial: episodio de podcast PJ sobre albums de 1976 em geral, texto vago e generico sem nenhum conteudo ou angulo editorial sobre a banda"
+    }
+  ]
+}
