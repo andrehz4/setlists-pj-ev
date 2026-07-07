@@ -92,16 +92,6 @@
       "errorCount": 0
     },
     {
-      "id": "83bcc98aee",
-      "type": "regular",
-      "queuedAt": "2026-06-07T21:05:05.942Z",
-      "publishAt": "2026-06-07T21:05:05.942Z",
-      "postedAt": "2026-06-07T21:06:27.106Z",
-      "postId": "18079935053641804",
-      "error": null,
-      "errorCount": 0
-    },
-    {
       "id": "cs-0c2a325251",
       "type": "spotlight",
       "queuedAt": "2026-06-08T03:04:43.753Z",
@@ -512,9 +502,13 @@
       "publishAt": "2026-07-07T21:07:59.448Z",
       "postedAt": null,
       "postId": null,
-      "error": null,
+      "error": {
+        "at": "2026-07-07T21:10:22.754Z",
+        "msg": "IG API /27761714130083125/media_publish: Media ID is not available [code=9007 subcode=2207027 type=OAuthException fbtrace=AdUcfYqj-GDUIv5O3VmZ8l-]"
+      },
       "_lastAttemptAt": "2026-07-07T21:09:04.031Z",
-      "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Eddie Vedder bebe cerveja belga enquanto os EUA tombam na Copa do Mundo\nCameras encontraram Vedder no camarote com champanhe e cerveja belga durante a pausa de 'Alive', e o que veio depois entrou pra história do Mundial.\n\n2. Eddie Vedder toma cerveja belga ao vivo na Copa e vem ao Brasil em novembro\nNo Seattle Stadium, Vedder virou o personagem do torneio, e os fãs brasileiros têm mais uma razão pra comemorar: ele volta ao Brasil em novembro.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #eddie #br #turne"
+      "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Eddie Vedder bebe cerveja belga enquanto os EUA tombam na Copa do Mundo\nCameras encontraram Vedder no camarote com champanhe e cerveja belga durante a pausa de 'Alive', e o que veio depois entrou pra história do Mundial.\n\n2. Eddie Vedder toma cerveja belga ao vivo na Copa e vem ao Brasil em novembro\nNo Seattle Stadium, Vedder virou o personagem do torneio, e os fãs brasileiros têm mais uma razão pra comemorar: ele volta ao Brasil em novembro.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #eddie #br #turne",
+      "errorCount": 1
     },
     {
       "id": "94dbf035b0",
@@ -523,9 +517,13 @@
       "publishAt": "2026-07-07T21:07:59.448Z",
       "postedAt": null,
       "postId": null,
-      "error": null,
+      "error": {
+        "at": "2026-07-07T21:10:22.754Z",
+        "msg": "IG API /27761714130083125/media_publish: Media ID is not available [code=9007 subcode=2207027 type=OAuthException fbtrace=AdUcfYqj-GDUIv5O3VmZ8l-]"
+      },
       "_lastAttemptAt": "2026-07-07T21:09:04.031Z",
-      "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Eddie Vedder bebe cerveja belga enquanto os EUA tombam na Copa do Mundo\nCameras encontraram Vedder no camarote com champanhe e cerveja belga durante a pausa de 'Alive', e o que veio depois entrou pra história do Mundial.\n\n2. Eddie Vedder toma cerveja belga ao vivo na Copa e vem ao Brasil em novembro\nNo Seattle Stadium, Vedder virou o personagem do torneio, e os fãs brasileiros têm mais uma razão pra comemorar: ele volta ao Brasil em novembro.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #eddie #br #turne"
+      "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Eddie Vedder bebe cerveja belga enquanto os EUA tombam na Copa do Mundo\nCameras encontraram Vedder no camarote com champanhe e cerveja belga durante a pausa de 'Alive', e o que veio depois entrou pra história do Mundial.\n\n2. Eddie Vedder toma cerveja belga ao vivo na Copa e vem ao Brasil em novembro\nNo Seattle Stadium, Vedder virou o personagem do torneio, e os fãs brasileiros têm mais uma razão pra comemorar: ele volta ao Brasil em novembro.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #eddie #br #turne",
+      "errorCount": 1
     }
   ],
   "postCount": 79
