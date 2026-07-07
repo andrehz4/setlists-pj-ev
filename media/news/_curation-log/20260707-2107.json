@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-07T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "f88ad99fd9", "titulo": "Eddie Vedder bebe cerveja belga enquanto os EUA tombam na Copa do Mundo", "kind": "midia" },
+    { "id": "94dbf035b0", "titulo": "Eddie Vedder toma cerveja belga ao vivo na Copa e vem ao Brasil em novembro", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "40e2c0248b", "title": "[Loved Trope] Harmful Healing", "reason": "sem mencao a PJ: conteudo e sobre Marvel Comics (Franken-Castle, Daken), escapou do filtro de busca" },
+    { "id": "96ebc553f4", "title": "Soundtracking the Year: 1976", "reason": "PJ tangencial: podcast fala de albuns de 1976, Pearl Jam nao existia, nenhuma mencao a banda ou integrantes" }
+  ]
+}
