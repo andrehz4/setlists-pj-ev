@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-08T03:07Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "92626d5751", "titulo": "Eddie Vedder lidera coro de Alive e vira cerveja belga durante a Copa", "kind": "midia" },
+    { "id": "4ad4d3511c", "titulo": "Eddie transforma intervalo da Copa em coro de Alive com a torcida de Seattle", "kind": "midia" },
+    { "id": "90e3d61291", "titulo": "Vedder comanda coro de Alive na Copa e lança single com estudantes de Chicago", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cs-9f8daf37f0", "title": "Eddie and Harper in Football", "reason": "spotlight sem selftext descritivo: texto é só 'submitted by /u/KDMonkey', score 0, 0 comentários, conteúdo da imagem indeterminável" }
+  ]
+}
