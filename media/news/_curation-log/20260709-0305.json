@@ -1,0 +1,44 @@
+{
+  "runAt": "2026-07-09T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 7,
+  "distribution": { "midia": 7, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "0c519e6f76",
+      "title": "I just saw Chevelle live (Amsterdam) for the first and probably only time in my life",
+      "reason": "PJ tangencial: post sobre show do Chevelle, PJ mencionado apenas como banda favorita de 20 anos do autor"
+    },
+    {
+      "id": "64b5408c04",
+      "title": "Guess my #3 Artist",
+      "reason": "sem mencao a PJ: resposta foi Evanescence, PJ nao citado no texto"
+    },
+    {
+      "id": "8531663a3f",
+      "title": "What big 4 grunge bands each of the characters would listen to",
+      "reason": "texto vazio: post de r/Classof09Game sem corpo, apenas metadado de submissao"
+    },
+    {
+      "id": "cdbe86d13b",
+      "title": "On This Day 4th July (Smashing Pumpkins)",
+      "reason": "PJ tangencial: post sobre historia do Smashing Pumpkins, PJ mencionado uma vez como banda que SP substituiu em 1992"
+    },
+    {
+      "id": "9d3935c19b",
+      "title": "and the stand is pearl jam",
+      "reason": "texto vazio: post de r/umamusume3 (jogo de corrida de cavalos) sem corpo de texto"
+    },
+    {
+      "id": "674734294b",
+      "title": "But first, Pearl Jam",
+      "reason": "texto vazio: post de r/heat sem corpo de texto alem do titulo"
+    },
+    {
+      "id": "fcd762c28a",
+      "title": "What music, songs, or bands would be on Leon and Claire's roadtrip playlist?",
+      "reason": "PJ tangencial: post de r/residentevil mencionando PJ numa lista com Nirvana, RATM, Linkin Park etc."
+    }
+  ]
+}
