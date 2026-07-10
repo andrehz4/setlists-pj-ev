@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-10T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 0, "pjcom-news": 1, "community-digest": 0, "community-spotlight": 0, "shop": 2, "reddit-search": 1 },
+  "approved": [
+    { "id": "6bd1c86412", "titulo": "Mike McCready assina print da capa do seu romance gráfico 'Farewell to Seasons'", "kind": "shop" },
+    { "id": "46d5efb927", "titulo": "Show do Pearl Jam em Roma de 2018 disponível para streaming no Channel 10c", "kind": "shop" }
+  ],
+  "skipped": [
+    { "id": "158bb19a96", "title": "Farewell to Seasons Gallery and Print Sale", "reason": "texto extraído vazio (apenas boilerplate de formulário SMS/newsletter, sem conteúdo editorial)" },
+    { "id": "e784602dd2", "title": "What band did you see in a smaller venue before they got huge?", "reason": "PJ tangencial (mencionado uma vez em lista junto com RHCP e Jane's Addiction, em subreddit não relacionado r/fantanoforever)" }
+  ]
+}
