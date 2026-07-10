@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-10T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "612d720a63",
+      "title": "Thursday night Goodwill haul. Excited for The Temper Trap...",
+      "reason": "sem mencao a PJ; texto vazio (so boilerplate Reddit)"
+    },
+    {
+      "id": "0e229a9fd7",
+      "title": "Grunge and Stoner Rock picked up where heavy metal left off...",
+      "reason": "PJ tangencial (mencao de passagem em discussao de doom metal, foco e genero e Jack Endino)"
+    }
+  ]
+}
