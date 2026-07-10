@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-10T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cd-20260710",
+      "title": "Community Digest 2026-07-10",
+      "reason": "dia fraco: 7 posts todos com score 0, sem anuncio, sem fan content forte, sem discussao historica relevante, nenhum post com score >= 50"
+    },
+    {
+      "id": "2cb582a412",
+      "title": "Me watching Aaron Wiggins with hawks",
+      "reason": "sem mencao a PJ: post de basquete (r/Thunder, OKC Thunder) sem nenhuma relacao com Pearl Jam"
+    }
+  ]
+}
