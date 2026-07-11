@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-11T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "733df72658",
+      "title": "Recommendations based off my favourite albums",
+      "reason": "sem mencao a PJ (post de r/musicsuggestions pedindo recomendacoes genericas)"
+    },
+    {
+      "id": "ed186b14aa",
+      "title": "Let's make it to another 250 years of evil",
+      "reason": "PJ tangencial (post politico de r/TrueAnon, PJ mencionado so de passagem em parentese)"
+    }
+  ]
+}
