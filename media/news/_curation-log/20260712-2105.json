@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-12T20:05Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "b98b50c470",
+      "title": "Pearl Jam Black 1992 Live",
+      "reason": "texto vazio: article_text menor que 200 chars uteis, sem conteudo fatual (apenas brincadeira de 1 frase + boilerplate Reddit)"
+    },
+    {
+      "id": "25411d7548",
+      "title": "Rate my Teen Collection",
+      "reason": "sem mencao a PJ: texto fala em colecao de Dad Rock sem citar Pearl Jam, capturado por falso-positivo do scraper"
+    }
+  ]
+}
