@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-07-13T14:05Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "d4eb1ad3ed", "titulo": "Eddie Vedder no Mundial de Seattle: Alive no estádio e cerveja no colo", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cd757e7552", "title": "The Story of General Tso's Chicken, But First, Pearl Jam", "reason": "texto vazio (só metadado de Reddit: submitted by, link, comments)" }
+  ]
+}
