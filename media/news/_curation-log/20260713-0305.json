@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-07-13T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-7063028cb8",
+      "title": "I'm sure there is no shortage of misheard lyrics for PJ but…",
+      "reason": "community-spotlight sem engajamento (0 upvotes, 0 comentarios) e conteudo trivial (discussion post sobre letra mal ouvida, sem fan art/musica/obra)"
+    },
+    {
+      "id": "a8bf25c98c",
+      "title": "Artists With The Dumbest Backlash/Detractors?",
+      "reason": "PJ tangencial: post de r/fantanoforever sobre artistas com criticas injustas, PJ aparece apenas na foto de capa sem conteudo substancial sobre a banda"
+    },
+    {
+      "id": "d6c8bab8e9",
+      "title": "When I see TW!S merch I think of this Pearl Jam album…",
+      "reason": "PJ tangencial: post do r/Muse comparando estetica de merch de Muse com Lightning Bolt, sem conteudo sobre PJ em si"
+    }
+  ]
+}
