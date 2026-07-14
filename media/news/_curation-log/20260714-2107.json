@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-14T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 0, "community-digest": 0, "community-spotlight": 0, "shop": 4 },
+  "approved": [
+    { "id": "3118d86001", "titulo": "Relançamento: Pearl Jam ao vivo no Budokan em 2003 volta em edição especial", "kind": "shop" },
+    { "id": "d07a7ce2ce", "titulo": "Earthling Japan Tour Edition: Vedder lança 2CDs com oito faixas inéditas em disco", "kind": "shop" }
+  ],
+  "skipped": [
+    { "id": "3118d86001", "title": "Pearl Jam Live From Budokan (pj-shop-music)", "reason": "id duplicado: mesmo item já curado via pj-shop-featured" },
+    { "id": "d07a7ce2ce", "title": "Eddie Vedder Earthling Japan Tour Edition (pj-shop-music)", "reason": "id duplicado: mesmo item já curado via pj-shop-featured" }
+  ]
+}
