@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-07-14T14:05Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "ca2e41439a", "titulo": "Montana Grind: o documentário dos skateparks que Jeff Ament inspirou", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cd-20260714", "title": "Community Digest 2026-07-14", "reason": "dia fraco no digest: todos os 5 posts com score 0 e sem conteúdo substancial; nenhum atinge o mínimo de score >= 50 nem há assunto com substância (anúncio, fan content forte, discussão histórica relevante)" }
+  ]
+}
