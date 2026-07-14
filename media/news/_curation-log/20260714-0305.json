@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-07-14T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "06df9a11a1",
+      "title": "Giving new Dub names to a couple Stands (they probably don't follow copyright)",
+      "reason": "nao e sobre Pearl Jam: post do r/StardustCrusaders sobre nomes de stands de JoJo; PJ aparece so como referencia de nome de personagem"
+    },
+    {
+      "id": "cs-174ba65566",
+      "title": "I think I'm in love...",
+      "reason": "spotlight ambiguo sem descricao de fan content: selftext e apenas uma frase vaga, sem imagem descrita nem obra identificavel"
+    },
+    {
+      "id": "c2c9361f5c",
+      "title": "One of my 5 cases. Cops got my original collection years ago",
+      "reason": "texto vazio e nao e sobre Pearl Jam: post do r/cassetteculture sobre colecao de cassetes, sem mencao a PJ"
+    }
+  ]
+}
