@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-07-15T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20260715", "titulo": "Gorge 2006 às vésperas dos 20 anos, Deep Dives e covers dos sonhos", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "cb1cf62887", "title": "Flea donated one thousand dollars to the GoFundMe of the L7 bassist.", "reason": "PJ tangencial: artigo do r/RHCP sobre Flea, com PJ citado apenas como menção periférica (o baixista do PJ também doou)" }
+  ]
+}
