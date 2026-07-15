@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-15T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 0, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "1cd6f44ce6",
+      "title": "In 1994, why did Rancid AND Epitaph prematurely announce...",
+      "reason": "sem mencao a PJ - trata de Rancid/Epitaph Records em 1994, capturado por engano pelo reddit-search-pj"
+    },
+    {
+      "id": "fccea0dead",
+      "title": "Who is aware of George Shinn's son?",
+      "reason": "sem mencao a PJ - trata de George Shinn (Charlotte Hornets) e Chris Shinn (banda Live/Unified Theory), postado em r/CharlotteHornets"
+    }
+  ]
+}
