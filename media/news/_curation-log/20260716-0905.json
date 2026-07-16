@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-16T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "927053b218",
+      "title": "Eddie Vedder climbs scaffolding at Pinkpop 1992 (r/Music)",
+      "reason": "texto vazio - Reddit link post sem article_text (apenas metadado de submissao, <200 chars)"
+    },
+    {
+      "id": "25c5496cbc",
+      "title": "Eddie Vedder climbs scaffolding at Pinkpop 1992 (r/HistoryPorn)",
+      "reason": "texto vazio - Reddit link post sem article_text (apenas metadado de submissao, <200 chars)"
+    }
+  ]
+}
