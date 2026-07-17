@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-17T09:05Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "f9255625cc",
+      "title": "Gonna spin this black circle!",
+      "reason": "texto vazio - post de r/vinyl com menos de 100 chars de conteudo real, sem substancia jornalistica"
+    },
+    {
+      "id": "7612596621",
+      "title": "Quem acha Black do Pearl Jam a musica mais triste da historia, tem zero problemas na vida.",
+      "reason": "conteudo de reclamacoes futeis sem valor jornalistico - capturado de subreddit off-topic (r/reclamacoesfuteis), apenas opiniao/rant sem fato novo sobre Pearl Jam"
+    }
+  ]
+}
