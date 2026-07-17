@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-17T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 0, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cd-20260717",
+      "title": "Community digest 2026-07-17",
+      "reason": "todos 12 posts com score 0 e 0 comentarios, sem criterio de publicacao atingido (threshold: 2 posts score>=50 ou anuncio/fan content forte). Conteudo: perguntas casuais sobre Jeff Ament, compartilhamento de discos/merch, especulacao sobre Rick Rubin, nenhum assunto com substancia publicavel"
+    }
+  ]
+}
