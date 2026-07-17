@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-17T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "9d0d7696ff",
+      "title": "Members of Tool, Pearl Jam, Korn, Garbage, Fugazi, Bikini Kill among artists donating to fundraiser for L7 bassist Jennifer Finch",
+      "reason": "texto vazio (article_text so tem metadado Reddit, menos de 200 chars uteis)"
+    }
+  ]
+}
