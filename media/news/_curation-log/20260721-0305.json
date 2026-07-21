@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-21T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "a96b15818c",
+      "title": "You Can Choose Only One",
+      "reason": "sem mencao a PJ; texto vazio (r/cassetteculture, 'An occasional series: M - P', menos de 200 chars uteis)"
+    }
+  ]
+}
