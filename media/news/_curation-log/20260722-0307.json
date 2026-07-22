@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-07-22T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "5e6a503e13", "titulo": "Chelsea Wolfe lança The Dark com Matt Chamberlain, do Pearl Jam", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "c959dc21b9", "title": "Pokémon Diamond and Pearl Jam", "reason": "meme de Pokemon sem relacao com Pearl Jam a banda, capturado por busca de keyword" },
+    { "id": "7e0481a1d1", "title": "Framing & Jumping", "reason": "post sobre a serie The OA (r/TheOA), sem relacao com Pearl Jam" }
+  ]
+}
