@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-24T03:07Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "cs-12f0561956", "titulo": "Lukin: o cachorro que carregou um nome de Pearl Jam pela vida toda", "kind": "community-spotlight" }
+  ],
+  "skipped": [
+    { "id": "c099a9655c", "title": "Ten vs Nevermind: 90s Albums that deserve more credit than they get.", "reason": "post de Reddit de subReddit nao-PJ (r/Xennials), sem artigo editorial, opiniao de usuario" },
+    { "id": "5cc026c06a", "title": "Pearl Jam - Black - Rockville, MD, 1991", "reason": "texto vazio (apenas metadado do Reddit, sem conteudo editorial)" },
+    { "id": "8f56b53f57", "title": "Pearl Jam - Black - Rockville, MD, 1991 (Ten Tour)", "reason": "texto vazio (apenas metadado do Reddit, sem conteudo editorial)" }
+  ]
+}
