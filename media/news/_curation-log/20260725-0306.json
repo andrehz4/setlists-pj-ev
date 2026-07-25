@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-25T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "024474396f", "titulo": "P.E.S.T. de Jeff Ament abre para Dead Pioneers em turnê pelo Canadá", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cs-808ab14028", "title": "Blu-ray Audio releases", "reason": "community-spotlight sem fan content criativo: é compartilhamento de notícia de produto (Blu-ray Atmos), score 0 e 0 comentários, não se enquadra no critério de obra de fã" },
+    { "id": "7143e3ca0b", "title": "I've counted how many dialogues and balloons every Jojo character has", "reason": "sem menção a Pearl Jam: artigo sobre contagem de diálogos em mangá JoJo's Bizarre Adventure, captado por falso-positivo no scraper" },
+    { "id": "774eeafca1", "title": "release number for non-debut self-titled albums", "reason": "PJ tangencial: Pearl Jam aparece apenas como item #8 em lista sobre álbuns auto-intitulados, sem conteúdo específico da banda" }
+  ]
+}
