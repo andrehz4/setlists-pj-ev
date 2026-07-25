@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-07-25T14:01Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "9a43e3bb8e", "title": "Albums I want to own physical copies of", "reason": "texto vazio (so metadado de subreddit nao relacionado a PJ)" },
+    { "id": "e2fe26eff3", "title": "Why do most radio stations rarely play any Alice in Chains?", "reason": "PJ tangencial (mencionado de passagem em texto sobre Alice in Chains)" },
+    { "id": "1d3ced2d7a", "title": "How did Van Halen remain popular during the grunge era?", "reason": "PJ tangencial (mencionado de passagem em texto sobre Van Halen na era grunge)" }
+  ]
+}
