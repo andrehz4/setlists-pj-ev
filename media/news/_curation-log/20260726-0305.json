@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-26T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "27f7a34d8d",
+      "title": "Concerts in London",
+      "reason": "post de Reddit sobre venue de London (Ontario/CA) sem relacao com PJ; PJ mencionado apenas de passagem como artista historico do local. Fonte reddit-search-pj, conteudo nao e sobre Pearl Jam"
+    }
+  ]
+}
