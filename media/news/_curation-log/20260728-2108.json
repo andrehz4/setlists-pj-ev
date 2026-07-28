@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-28T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 1, "pjcom-news": 1 },
+  "approved": [
+    { "id": "e72a6bfb24", "titulo": "Jeff Ament lança livro fotográfico 'Since Forever' com 250 fotos dos anos 90", "kind": "midia" },
+    { "id": "4428f03b8a", "titulo": "Since Forever: o livro de Jeff Ament que abre o bastidor do Pearl Jam", "kind": "shop" },
+    { "id": "017d385aff", "titulo": "Como Jeff Ament digitalizou 10.000 fotos para construir o 'Since Forever'", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "ab78b7b5c7", "title": "Announcing Since Forever (pjcom-news)", "reason": "texto vazio/quebrado: scraper capturou formulário de cadastro SMS em vez do conteúdo editorial da notícia" }
+  ]
+}
