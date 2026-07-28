@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-07-28T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "ad0c3c6fe6", "title": "Opinion: It shouldn't be the Big 4 of Grunge...", "reason": "PJ tangencial: post de r/grunge sobre STP entrar no Big 5, Pearl Jam só citado de passagem sem ser o foco" },
+    { "id": "ec6a7560f1", "title": "Why go - Pearl Jam", "reason": "texto vazio: article_text contém apenas metadado de submissão Reddit, sem conteúdo real" },
+    { "id": "0ac1ccf3ed", "title": "Was Badmotorfinger the pinnacle of Soundgarden's sonic aspirations...", "reason": "sem menção a PJ: post inteiramente sobre Soundgarden/Badmotorfinger, Pearl Jam não aparece no texto" }
+  ]
+}
