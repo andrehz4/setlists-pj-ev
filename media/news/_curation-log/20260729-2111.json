@@ -1,0 +1,17 @@
+{
+  "runAt": "2026-07-29T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 7,
+  "distribution": { "midia": 7, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "10b0050bbe", "titulo": "Glen Hansard, guitarrista das Earthlings de Eddie Vedder, morre aos 56 anos", "kind": "midia" },
+    { "id": "2e5174a7fd", "titulo": "Jeff Ament lança fotobuch com imagens inéditas dos primeiros anos do Pearl Jam", "kind": "midia" },
+    { "id": "9b72f5c33f", "titulo": "Álbum final do Soundgarden está na fase de mixagem, confirma Matt Cameron", "kind": "midia" },
+    { "id": "0559d3cd31", "titulo": "Como o Soundgarden construiu o álbum final a partir de demos com Chris Cornell", "kind": "midia" },
+    { "id": "e1dd154744", "titulo": "Matt Cameron revela oito faixas com Cornell no álbum final do Soundgarden", "kind": "midia" },
+    { "id": "845b8a692e", "titulo": "Eddie ligou por cinco dias para Glen Hansard após tragédia no palco", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "9ce1190204", "title": "Not Grunge but RIP Glen Hansard", "reason": "texto vazio - post Reddit com artigo de 2 linhas sem informação relevante" }
+  ]
+}
