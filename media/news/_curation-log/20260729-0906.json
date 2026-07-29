@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-07-29T08:05:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "a02211cb66", "titulo": "Jeff Ament lança livro com fotos inéditas dos primeiros anos do Pearl Jam", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "c8966ce1c3", "title": "First Collection post in a while", "reason": "post generico de colecao de CDs, Pearl Jam e mencionado apenas tangencialmente, nao e noticia sobre a banda" },
+    { "id": "b647236f8a", "title": "Intime Einblicke in Pearl Jams frühe Jahre", "reason": "duplicata do artigo Rolling Stone US (a02211cb66), mesma publicacao em versao alemã, sem angulo ou informacao distinta" }
+  ]
+}
