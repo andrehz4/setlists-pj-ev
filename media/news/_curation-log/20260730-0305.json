@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-07-30T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 1 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "fc3b786833",
+      "title": "2026 Ten Club Mystery Poster",
+      "reason": "merch sem angulo editorial: pacote misterio de 3 posteres aleatórios, impossível contextualizar historicamente sem saber quais posteres são"
+    },
+    {
+      "id": "101869d3c0",
+      "title": "Favorite CD booklets?",
+      "reason": "PJ tangencial: post de subreddit externo sobre booklets em geral, Pearl Jam citado como exemplo menor"
+    }
+  ]
+}
