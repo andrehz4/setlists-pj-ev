@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-07-31T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 0, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-3a51cc04e5",
+      "title": "What's your favorite Pearl Jam Album and Song?",
+      "reason": "post e pergunta/discussion (nao fan content), selftext vazio, score 0 e comentarios 0"
+    }
+  ]
+}
