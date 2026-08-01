@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-08-01T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-aa0941f41f",
+      "title": "34 years ago today my first time seeing the guys",
+      "reason": "spotlight sem fan content (post de memoria pessoal, sem obra criativa, score 0)"
+    },
+    {
+      "id": "096f1e71e0",
+      "title": "Pearl Jam - Jeremy [Grunge]",
+      "reason": "texto vazio (so metadado de link reddit, sem artigo)"
+    },
+    {
+      "id": "c9ed1471e6",
+      "title": "What's your favorite Pearl Jam album and song?",
+      "reason": "pergunta de engajamento no Reddit, sem conteudo editorial"
+    }
+  ]
+}
