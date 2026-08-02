@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-08-02T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-80715d098d",
+      "title": "Giving this album a spin...Gigaton",
+      "reason": "spotlight sem selftext - post_selftext e apenas credito de submissao, sem descricao da obra"
+    },
+    {
+      "id": "a5f21f71cc",
+      "title": "Punk enough for here?",
+      "reason": "PJ tangencial - post do r/punk sobre L7, Pearl Jam citado de passagem em lista de bandas de show de 1992"
+    },
+    {
+      "id": "df5bf6acef",
+      "title": "Ep 868 : Matt Cameron, Drummer - Soundgarden, Temple Of The Dog, Pearl Jam",
+      "reason": "texto vazio/menos de 200 chars - conteudo real e apenas 'MC interview. Might be the first pod I've ever heard him on'"
+    }
+  ]
+}
