@@ -487,12 +487,12 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-08-04T15:12:01.679Z",
-        "msg": "IG API /27761714130083125/media: Error validating access token: Session has expired on Thursday, 30-Jul-26 12:06:45 PDT. The current time is Tuesday, 04-Aug-26 08:12:01 PDT. [code=190 subcode=0 type=OAuthException fbtrace=AeaMrCgmXC2yh1DfXNSop-t]"
+        "at": "2026-08-04T18:57:31.692Z",
+        "msg": "IG API /27761714130083125/media: Invalid OAuth access token - Cannot parse access token [code=190 type=OAuthException fbtrace=A3oHjAvdQZNK7pxGs0WmIsQ]"
       },
       "_lastAttemptAt": "2026-08-04T18:57:17.738Z",
       "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Glen Hansard, o Blood Brother de Eddie, nos deixou\nGlen Hansard, cantor irlandês e parceiro de longa data de Eddie Vedder, morreu e deixou o mundo da música em luto.\n\n2. Eddie Vedder canta no funeral de Glen Hansard em Dublin\nVedder e Markéta Irglová subiram ao altar de St. Patrick's Cathedral para cantar ao lado dos Frames no último adeus ao amigo.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #eddie #memoria",
-      "errorCount": 2
+      "errorCount": 3
     },
     {
       "id": "0bb83f13b9",
@@ -502,12 +502,12 @@
       "postedAt": null,
       "postId": null,
       "error": {
-        "at": "2026-08-04T15:12:01.679Z",
-        "msg": "IG API /27761714130083125/media: Error validating access token: Session has expired on Thursday, 30-Jul-26 12:06:45 PDT. The current time is Tuesday, 04-Aug-26 08:12:01 PDT. [code=190 subcode=0 type=OAuthException fbtrace=AeaMrCgmXC2yh1DfXNSop-t]"
+        "at": "2026-08-04T18:57:31.692Z",
+        "msg": "IG API /27761714130083125/media: Invalid OAuth access token - Cannot parse access token [code=190 type=OAuthException fbtrace=A3oHjAvdQZNK7pxGs0WmIsQ]"
       },
       "_lastAttemptAt": "2026-08-04T18:57:17.738Z",
       "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Glen Hansard, o Blood Brother de Eddie, nos deixou\nGlen Hansard, cantor irlandês e parceiro de longa data de Eddie Vedder, morreu e deixou o mundo da música em luto.\n\n2. Eddie Vedder canta no funeral de Glen Hansard em Dublin\nVedder e Markéta Irglová subiram ao altar de St. Patrick's Cathedral para cantar ao lado dos Frames no último adeus ao amigo.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #eddie #memoria",
-      "errorCount": 1
+      "errorCount": 2
     },
     {
       "id": "cd-20260804",
@@ -520,7 +520,7 @@
         "at": "2026-08-04T15:12:10.495Z",
         "msg": "IG API /27761714130083125/media: Error validating access token: Session has expired on Thursday, 30-Jul-26 12:06:45 PDT. The current time is Tuesday, 04-Aug-26 08:12:10 PDT. [code=190 subcode=0 type=OAuthException fbtrace=A36V_0QFDGHFX8U5VdBhLZv]"
       },
-      "_lastAttemptAt": "2026-08-04T15:11:48.742Z",
+      "_lastAttemptAt": "2026-08-04T18:57:17.738Z",
       "_lastAttemptCaption": "A comunidade se despede de Glen Hansard: vigílias, relatos e lembranças\n\nA perda do cantor irlandês dominou as conversas na comunidade global de fãs, com relatos pessoais e convites para vigílias virtuais.\n\nO dia 4 de agosto foi de luto na comunidade mundial de fãs do Pearl Jam. A morte de Glen Hansard, o cantor e compositor irlandês que tinha laços profundos com Eddie Vedder, puxou uma série de posts carregados de emoção e memória. Quem acompanhou sabe: Hansard não era só um amigo do Eddie, era um artista que a base de fãs do PJ adotou ao longo de anos de shows compartilhados, gravações e aparições conjuntas.\n\nUm fã compartilhou um texto de despedida ao músico, lembrando que uma letra de Hansard literalmente o ajudou num momento crítico, quando se viu em apuros num barco e foi resgatado pela Guarda Costeira americana. A história viralizou na comunidade como prova do alcance silencioso de uma boa música. Outros posts organizaram vigílias virtuais para acompanhar o funeral em Dublin juntos, com a mesma solidariedade de quem sente que perdeu alguém do bairro.\n\nParalelo a isso, a galera aproveitou a semana para uma daquelas discussões que só a comunidade de fãs do Pearl Jam sabe fazer bem: músicas que você não aguentava ouvir e que, com o tempo, virou obsessão. \"All Night\" apareceu em destaque como a faixa mais revisitada, junto com \"Sleight of Hand\" e \"Green Disease\". Essas conversas sobre redescoberta de repertório são o sal da comunidade, o jeito que a banda vai passando de fase em fase pra cada ouvinte.\n\nA semana também trouxe uma nota sobre Dave Krusen, o baterista original do Pearl Jam, que vai aparecer em destaque no Drumeo, plataforma dedicada a bateristas. Pequena, mas o tipo de notícia que a galera que acompanha a história completa da banda curte receber.\n\n_André, só mais um fã idiota de Pearl Jam._\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #comunidade #memoria",
       "errorCount": 1
     }
