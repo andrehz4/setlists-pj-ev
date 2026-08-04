@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-04T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "0bb83f13b9", "titulo": "Eddie Vedder canta no funeral de Glen Hansard em Dublin", "kind": "midia" },
+    { "id": "cd-20260804", "titulo": "A comunidade se despede de Glen Hansard: vigílias, relatos e lembranças", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "1b749a4782", "title": "Reece Gonzales of Identity Crisis Talks New EP, Grunge Revival & More", "reason": "podcast sobre banda Identity Crisis (grunge revival), sem mencao direta a PJ ou integrantes" },
+    { "id": "e749b35b7b", "title": "How did the 1980s blues renaissance happen?", "reason": "post de r/blues sobre blues nos anos 80, sem relacao com PJ - escapou do filtro" }
+  ]
+}
