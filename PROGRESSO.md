@@ -1,7 +1,22 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-07-03 (vistoria geral Fable + correções de front e pipeline; fórum caiu no Railway)
+2026-08-04 (apagão do IG resolvido: token expirado renovado, secrets consertados, alerta no refresh)
+
+## ⭐ Sessão 2026-08-04: TOKEN IG EXPIRADO, PUBLISH PARADO 5 DIAS (RESOLVIDO)
+
+**Causa raiz em cadeia:** `IG_ACCESS_TOKEN` gerado em 31/mai expirou em 30/jul (long-lived dura 60 dias). O refresh mensal automático (`refresh-ig-token.yml`) falhava desde 1º/jun porque o secret `GH_PAT_SECRETS` sumiu na arrumação de secrets de 31/mai, e falhava EM SILÊNCIO (sem Telegram). Resultado: feed, story e reel parados de 30/jul a 04/ago.
+
+**Conserto (com Andre no painel Meta + Terminal):**
+- Token novo gerado no painel Meta (Instagram > Configuração da API com Login do Instagram > Gerar token, login @smufdpj). Pegadinhas: 1ª tentativa salvou secret VAZIO (`gh secret set` interativo não funciona via `!` do Claude Code, rodar no Terminal); 2ª salvou a App Secret por engano (32 chars); 3ª OK (token `IGAA...`, ~180 chars).
+- `IG_USER_ID` atualizado pra `17841414148425536` (ID mostrado ao lado do token no painel; o antigo dava code 100 subcode 33 "Object does not exist").
+- `GH_PAT_SECRETS` recriado (PAT classic, escopo repo, sem expiração) pro refresh mensal voltar a funcionar.
+- Fila colocada em dia: carrossel regular (2 notícias Glen Hansard) + spotlight + story do dia publicados 04/ago.
+- Reel W31 NÃO republicado (decisão): o MP4 está no repo mas o script calcula a semana pela data corrente; rodar agora criaria reel W32 com 2 dias de notícia e queimaria o slot do domingo. Se quiser recuperar semana perdida no futuro: adicionar flag `--week` no `run-publish-reel.mjs`.
+- `refresh-ig-token.yml`: ganhou step de alerta Telegram em falha (nunca mais 3 meses de falha silenciosa).
+- `PIPELINE.md`: troubleshooting corrigido (refresh NÃO recupera token já expirado; procedimento completo documentado).
+
+**Validação pendente:** refresh só funciona com token com 24h+ de vida; o cron de 1º/set valida o ciclo completo (e agora alerta se falhar).
 
 ## ⭐ Sessão 2026-07-03: VISTORIA GERAL + CORREÇÕES (front e pipeline FEITO, 106/106 testes)
 

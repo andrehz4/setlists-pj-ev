@@ -344,7 +344,7 @@ run-publish.mjs processa a fila:
 | news-merge.yml | sim | parcial (bash) |
 | publish-instagram.yml | sim | sim |
 | publish-story.yml | sim | sim |
-| refresh-ig-token.yml | nao | nao |
+| refresh-ig-token.yml | sim (alerta de falha) | nao |
 
 ---
 
@@ -356,7 +356,7 @@ run-publish.mjs processa a fila:
 | Publish nao posta | Telegram erro + Actions publish-instagram.yml | Token IG expirado ou fila vazia |
 | Story cancelado | Actions publish-story.yml logs | 0 noticias nas ultimas 24h no index.json |
 | Branch da rotina nao mergeado | Actions publish-instagram.yml step auto-merge | Validacao de committer falhou ou PR em conflito |
-| Token IG expirado | Telegram erro de publish | Rodar refresh-ig-token.yml manualmente |
+| Token IG expirado | Telegram erro de publish | Refresh so recupera token AINDA VALIDO. Token ja expirado: gerar token novo no painel Meta (Instagram > Configuracao da API com Login do Instagram > Gerar token, login com @smufdpj), `gh secret set IG_ACCESS_TOKEN`, e conferir se o ID mostrado ao lado do token bate com o secret IG_USER_ID (se mudou, atualizar). Checar tambem se GH_PAT_SECRETS existe (sem ele o refresh mensal falha e o token expira de novo). Historico: aconteceu em 30/jul/2026, IG parado 5 dias |
 
 ---
 
