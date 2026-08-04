@@ -55,3 +55,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT_SECRETS }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: node scripts/publish/refresh-token.mjs
+
+      - name: Alerta Telegram em falha
+        # Falha silenciosa aqui ja causou 5 dias de IG parado (jun-ago/2026):
+        # o refresh mensal falhou 3x sem ninguem ver e o token expirou em 30/jul.
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          set +e
+          if [ -z "$TELEGRAM_BOT_TOKEN" ]; then echo "[telegram] sem token, skip"; exit 0; fi
+          MSG="ALERTA: refresh do token IG FALHOU (refresh-ig-token.yml).
+          Se nao corrigir, o token expira 60 dias apos a ultima renovacao e TODO o publish IG para.
+          Ver run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="$MSG" >/dev/null
+          echo "[telegram] alerta de falha enviado"
