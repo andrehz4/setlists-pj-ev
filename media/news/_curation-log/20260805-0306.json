@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-05T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-16c95c6911",
+      "title": "It's loved now, but did people love 'Vs.' when it initially came out?",
+      "reason": "community-spotlight deve ser fan content (arte, tatuagem, cover); este é pergunta/discussão, score 0, sem comentários"
+    },
+    {
+      "id": "6c9618442a",
+      "title": "Top 50+ Alternative Rock Albums of All Time (According to Me)",
+      "reason": "lista generica de alt rock em r/Alternativerock; texto extraido nao menciona Pearl Jam; conteudo tangencial que escapou do filtro"
+    }
+  ]
+}
