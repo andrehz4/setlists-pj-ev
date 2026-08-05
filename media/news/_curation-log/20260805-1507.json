@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-08-05T15:07Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "24b36f4a43", "titulo": "Eddie Vedder canta com Markéta Irglová no funeral de Glen Hansard", "kind": "midia" },
+    { "id": "d69b8fcb3b", "titulo": "Eddie Vedder, Bono e amigos celebram Glen Hansard em Dublin", "kind": "midia" },
+    { "id": "8a13d24ba8", "titulo": "Eddie Vedder lidera o coro final por Glen Hansard no Vicar Street", "kind": "midia" },
+    { "id": "cd-20260805", "titulo": "A despedida de Hansard dominou as conversas da comunidade global", "kind": "community-digest" }
+  ],
+  "skipped": []
+}
