@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-05T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "abc39adebb",
+      "title": "Min mand har fået en midtlivskrise",
+      "reason": "PJ tangencial: post dinamarques sobre crise de meia-idade onde PJ aparece de passagem ao lado de Korn e Slipknot. Foco nao e o PJ."
+    },
+    {
+      "id": "ec138623af",
+      "title": "Eddie Vedder - Pearl Jam - 1992",
+      "reason": "texto vazio: conteudo real e so 'August 5. Lollapalooza 92' mais metadata do Reddit, menos de 200 chars uteis."
+    }
+  ]
+}
