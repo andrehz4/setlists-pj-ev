@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-06T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "a41e0dca91",
+      "title": "Eddie Vedder - Pearl Jam - 1992 - Lollapalooza '92",
+      "reason": "texto vazio (apenas metadado de submissao Reddit, sem conteudo real)"
+    },
+    {
+      "id": "c61a6aae67",
+      "title": "Pearl Jam - Just Breathe",
+      "reason": "texto vazio (apenas metadado de submissao Reddit, sem conteudo real)"
+    }
+  ]
+}
