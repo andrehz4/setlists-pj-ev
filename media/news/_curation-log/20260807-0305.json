@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-07T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "51057097a9", "title": "Being at the forefront of musical and cultural change in the early 90s", "reason": "PJ tangencial: post de nostalgia de r/Xennials sobre grunge em geral, Pearl Jam mencionado de passagem ao lado de Nirvana" },
+    { "id": "cs-750f3fbbc5", "title": "Working on a flowchart. Looking for suggestions.", "reason": "score zero, zero comentarios, obra em andamento (nao finalizada), nao ha engajamento suficiente pra spotlight" },
+    { "id": "2ad921d3c8", "title": "I found space on the Favorite Song wall at the Rock Hall of Fame today", "reason": "texto vazio: post de r/rem sem corpo de texto extraido, sem relevancia para Pearl Jam" },
+    { "id": "9dfda22997", "title": "Cd, cassette", "reason": "sem mencao a PJ: post generico de r/90s sobre nostalgia de CDs e fitas cassete" },
+    { "id": "593623cbcb", "title": "Anyone else a fan?", "reason": "anti-mencao PJ: texto explicito 'Not of Pearl Jam', escapou do filtro de coleta" }
+  ]
+}
