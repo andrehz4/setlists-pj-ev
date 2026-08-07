@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-07T21:06Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "6d608fa9e6",
+      "title": "My little collection. Nearly at 100 CDs.",
+      "reason": "sem mencao a PJ - post generico sobre colecao de CDs da r/Cd_collectors, falso positivo do scraper"
+    }
+  ]
+}
