@@ -152,6 +152,26 @@
       "track": "05-alexgrohl-no-filter-garage.mp3",
       "accent": "#a87f2c",
       "error": "IG API /27761714130083125/media: Error validating access token: Session has expired on Thursday, 30-Jul-26 12:06:45 PDT. The current time is Sunday, 02-Aug-26 06:02:48 PDT."
+    },
+    {
+      "weekKey": "2026-W32",
+      "runAt": "2026-08-09T12:29:22.910Z",
+      "items": [
+        "495f44f3d6",
+        "8c9d5b9ed4",
+        "cd-20260807",
+        "d69b8fcb3b",
+        "cd-20260806",
+        "8a13d24ba8",
+        "24b36f4a43",
+        "a8d0bd8228"
+      ],
+      "track": "02-nightcast-grunge-diner.mp3",
+      "accent": "#E10600",
+      "postId": "17875578069688923",
+      "containerId": "18148818169471615",
+      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-reels/2026-W32.mp4",
+      "clipsUsed": []
     }
   ]
 }
