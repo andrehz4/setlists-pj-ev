@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-09T15:06Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "eb6b399397",
+      "title": "Singles Soundtrack write-up from High Times (1992)",
+      "reason": "texto vazio: article_text contém apenas metadado de submissão do Reddit, sem conteúdo real extraído"
+    },
+    {
+      "id": "d92a0c5762",
+      "title": "My Neighbor Gave Me This Old Newsweek Magazine Last Week",
+      "reason": "sem menção a Pearl Jam: post do r/gratefuldead sobre revista Newsweek sem conexão com PJ ou integrantes"
+    }
+  ]
+}
