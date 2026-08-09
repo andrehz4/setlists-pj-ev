@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-09T21:05Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "8062f5c1f8",
+      "title": "Indiehead's top 104 songs of the 90's - 2026",
+      "reason": "lista generica de musicas dos anos 90 do r/indieheads sem foco em Pearl Jam; PJ nao aparece no trecho extraido e o conteudo e de ranking geral de indie"
+    },
+    {
+      "id": "d5e49f611b",
+      "title": "UPDATE on my previous post: the jacket is complete!",
+      "reason": "post do r/buildabear sobre jaqueta artesanal, sem mencao a Pearl Jam; capturado erroneamente pelo filtro de busca"
+    }
+  ]
+}
