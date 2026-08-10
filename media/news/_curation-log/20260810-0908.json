@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-10T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "c943095961", "titulo": "Eddie Vedder toca nas ruas de Dublin em tributo a Glen Hansard", "kind": "midia" },
+    { "id": "bbe6ae11eb", "titulo": "Com o violão do amigo, Vedder faz homenagem a Hansard em Dublin", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "4c3bc042b7", "title": "Se você pudesse escolher APENAS UMA década para ouvir rock...", "reason": "PJ tangencial: mencionado como uma banda entre muitas num post genérico sobre décadas do rock, não é sobre Pearl Jam" },
+    { "id": "0cfff3b06a", "title": "Pearl Jam - Daughter [Grunge] (1993)", "reason": "texto vazio: article_text contém apenas metadado de link (submitted by /u/... [link] [comments]), sem conteúdo real" }
+  ]
+}
