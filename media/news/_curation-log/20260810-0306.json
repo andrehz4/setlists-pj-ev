@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-10T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-3847ab78ae",
+      "title": "Was Mother Love Bone actually that popular/influential...",
+      "reason": "community-spotlight nao e fan content (e pergunta/discussao, nao arte/tatuagem/cover); score 0, sem comentarios"
+    },
+    {
+      "id": "664281436e",
+      "title": "Jeff Ament (Pearl Jam) shared this picture he took of when Nirvana met Rupaul",
+      "reason": "texto extraido vazio - article_text tem menos de 200 chars reais (so 'MTV Awards 1993' + metadado Reddit); fonte e r/Nirvana via busca"
+    }
+  ]
+}
