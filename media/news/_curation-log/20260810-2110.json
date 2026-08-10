@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-10T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 2 },
+  "approved": [
+    { "id": "86554b29b6", "titulo": "The Ten Show: show pró-filmado celebra 35 anos de Ten com 32 músicas", "kind": "shop" },
+    { "id": "aa7f953eca", "titulo": "The No Code Show: streaming celebra 30 anos do disco mais ousado do PJ", "kind": "shop" }
+  ],
+  "skipped": [
+    { "id": "10f7df9a85", "title": "Attention Tame Impala fans over 40", "reason": "PJ tangencial: mencionado de passagem entre várias bandas em post do r/TameImpala sem relação direta com PJ" },
+    { "id": "451b7e3d6c", "title": "Pearl Jam - Bronco Bowl, Dallas 1992", "reason": "texto vazio: post de foto de camiseta vintage no r/VintageTees sem conteúdo editorial para curar" }
+  ]
+}
