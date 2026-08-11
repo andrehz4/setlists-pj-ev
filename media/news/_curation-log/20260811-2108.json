@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-11T21:08Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "46bc89b1fa", "titulo": "Jeff Ament abre o arquivo do Pearl Jam em livro fotográfico", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "14c22e2539", "title": "How the US modern rock chart looked 30 years ago this week", "reason": "texto vazio (so metadado Reddit)" },
+    { "id": "1e6f4f3f5f", "title": "The US modern rock chart 30 years ago", "reason": "texto vazio (so metadado Reddit)" },
+    { "id": "82c7de50f3", "title": "These were all released within 44 days of one another in 1991.", "reason": "texto vazio (so metadado Reddit)" }
+  ]
+}
