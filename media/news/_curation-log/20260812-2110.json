@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-08-12T21:09Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "2726b81712", "titulo": "Dave Krusen, baterista original do Pearl Jam, analisa Even Flow no Drumeo", "kind": "midia" },
+    { "id": "5219c44187", "titulo": "Dave Krusen volta ao Drumeo enquanto PJ esconde o substituto de Matt Cameron", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "0cd2f0d9bb", "title": "Just started collecting this weekend. Here's my total haul", "reason": "sem mencao a Pearl Jam; post de r/Cd_collectors sobre colecao generica de CDs" }
+  ]
+}
