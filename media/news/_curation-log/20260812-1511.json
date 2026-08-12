@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-08-12T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20260812", "titulo": "Dark Matter em debate e 30 anos de memória no fórum dos fãs", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "a3407b9507", "title": "The Billboard Modern Rock Chart, this week in 1996", "reason": "PJ tangencial, texto vazio: post de outra comunidade (r/ToddintheShadow) sem mencao direta ao Pearl Jam no texto extraido" }
+  ]
+}
