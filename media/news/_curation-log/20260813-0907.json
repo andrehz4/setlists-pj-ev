@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-13T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "d49867193e",
+      "title": "New Uploads from Dead bands?",
+      "reason": "sem mencao a PJ: post de r/Music sobre The Magic Band e 13th Floor Elevators, escapou do filtro"
+    },
+    {
+      "id": "b4d0fc835e",
+      "title": "Quote from a new interview Travis did with Vulture",
+      "reason": "texto vazio: so metadado do Reddit, sem conteudo extraido; e sobre Alkaline Trio, nao Pearl Jam"
+    }
+  ]
+}
