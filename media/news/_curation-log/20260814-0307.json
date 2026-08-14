@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-14T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-1403a7ea10",
+      "title": "Low Light",
+      "reason": "spotlight sem selftext (apenas metadado de submissao, score 0, comentarios 0)"
+    },
+    {
+      "id": "d70f038425",
+      "title": "Realmente intuicao de mulher nunca falha",
+      "reason": "PJ tangencial: post de subreddit de meme (antimemeBR) mencionando 'Once' como referencia secundaria, sem conteudo jornalistico sobre PJ"
+    }
+  ]
+}
