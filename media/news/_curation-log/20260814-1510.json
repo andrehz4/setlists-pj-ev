@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-14T15:10Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "0d1a179051",
+      "title": "These were all released within 57 days of one another in 1991.",
+      "reason": "texto vazio (article_text e apenas metadado de submissao Reddit, menos de 200 chars)"
+    }
+  ]
+}
