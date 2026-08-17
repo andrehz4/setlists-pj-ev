@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-17T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 5, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "4631ed158f", "title": "Who is your FAVORITE band of all time??", "reason": "PJ tangencial (mencionado como foto de ilustração, pergunta genérica sobre bandas favoritas)" },
+    { "id": "b3ee8ba2fb", "title": "Will CDs ever be as collectible and valuable as Vinyl records?", "reason": "PJ tangencial (mencionado como exemplo de CD comprado, assunto é debate geral CDs vs vinil)" },
+    { "id": "db44e03a15", "title": "What 70s- (early) 90s band is still touring that puts on a great show worth traveling to see?", "reason": "PJ tangencial (mencionado como exemplo de show assistido, pergunta genérica sobre bandas em turnê)" },
+    { "id": "a307a00023", "title": "Today we're gonna talk about environmentalism, social justice... but first Pearl Jam", "reason": "texto vazio (article_text é só metadado de submissão, sem conteúdo)" },
+    { "id": "9af5e6175f", "title": "Anyone wanna start an all-female Pearl Jam cover band named Clam Jam?", "reason": "texto insuficiente (conteúdo: apenas '(Actually serious though.)'; sem substância para matéria)" }
+  ]
+}
