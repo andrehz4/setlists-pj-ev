@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-18T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "c2f5d1542f",
+      "title": "clam jam",
+      "reason": "texto vazio e sem relacao com PJ (r/Clamworks, article_text < 200 chars)"
+    }
+  ]
+}
