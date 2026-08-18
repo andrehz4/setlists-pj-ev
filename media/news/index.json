@@ -1,6 +1,74 @@
 {
-  "updated": "2026-08-16T15:07:29.397Z",
+  "updated": "2026-08-18T15:09:44.299Z",
   "items": [
+    {
+      "id": "9c35b5cab2",
+      "url": "https://www.pearljamonline.it/soldier-of-love-dopo-quasi-trentanni-la-cover-dimenticata-dei-pearl-jam-diventa-virale",
+      "source": "pjonline-it",
+      "sourceLabel": "PJ Online IT",
+      "group": "fan",
+      "pubDate": "2026-08-18T11:01:27.000Z",
+      "fetchedAt": "2026-08-18T15:09:43.851Z",
+      "img": "/media/news/img/9c35b5cab2.jpg",
+      "title_pt": "Soldier of Love: a cover do Ten Club de 1998 que ressurgiu 30 anos depois",
+      "intro_pt": "Gravada pra o Christmas Single de 1998, a versão de Soldier of Love dormiu por quase três décadas antes de ressurgir nas redes sociais.",
+      "tags": [
+        "memoria",
+        "tenclub"
+      ],
+      "title_ig": "A cover esquecida do Ten Club virou febre em 2026"
+    },
+    {
+      "id": "2a919fe2a3",
+      "url": "https://shows.acast.com/state-of-love-and-trust/episodes/lp2ep-pearl-jam-ten",
+      "source": "solat-podcast",
+      "sourceLabel": "State of Love & Trust (Podcast)",
+      "group": "fan",
+      "pubDate": "2026-08-18T11:00:00.000Z",
+      "fetchedAt": "2026-08-18T15:09:43.851Z",
+      "img": "/media/news/img/2a919fe2a3.jpg",
+      "title_pt": "Podcast revisita o Ten aos 35 anos: e se o álbum fosse um EP?",
+      "intro_pt": "O State of Love & Trust propõe um exercício difícil: condensar o icônico Ten, com 11 faixas, em menos de 30 minutos de EP.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Ten faz 35 anos e vira desafio de podcast"
+    },
+    {
+      "id": "cd-20260817",
+      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
+      "source": "reddit-community-digest",
+      "sourceLabel": "Comunidade r/pearljam",
+      "group": "comunidade",
+      "pubDate": "2026-08-17T12:25:47.890Z",
+      "fetchedAt": "2026-08-17T15:10:04.653Z",
+      "img": "/media/news/img/cd-20260817.jpg",
+      "title_pt": "Herança em vinil, Usenet e os sites que o tempo apagou: a comunidade hoje",
+      "intro_pt": "A comunidade mundial de fãs misturou emoção geracional e saudade da tribo pré-algoritmo num dia de humor nostálgico.",
+      "tags": [
+        "comunidade",
+        "memoria"
+      ],
+      "title_ig": "O Ten passou de pai pra filho, a comunidade lembrou",
+      "kind": "community-digest",
+      "community_posts_count": 7
+    },
+    {
+      "id": "7ed297f778",
+      "url": "https://www.pearljamonline.it/dave-krusen-torna-a-suonare-ten-35-anni-dopo-il-batterista-originale-dei-pearl-jam-racconta-la-nascita-di-un-disco-leggendario",
+      "source": "pjonline-it",
+      "sourceLabel": "PJ Online IT",
+      "group": "fan",
+      "pubDate": "2026-08-17T08:32:35.000Z",
+      "fetchedAt": "2026-08-17T15:10:04.652Z",
+      "img": "/media/news/img/7ed297f778.jpg",
+      "title_pt": "Dave Krusen toca o Ten inteiro no Drumeo, 35 anos depois do disco que gravou",
+      "intro_pt": "O baterista original do Pearl Jam relembrou nota a nota o álbum que ajudou a criar, incluindo outtakes nunca esquecidos.",
+      "tags": [
+        "memoria"
+      ],
+      "title_ig": "Krusen de volta ao Ten, 35 anos depois"
+    },
     {
       "id": "cd-20260816",
       "url": "https://www.reddit.com/r/pearljam/top/?t=day",
@@ -5559,41 +5627,6 @@
         "memoria"
       ],
       "title_ig": "O livro que entrevistou 300 vozes do grunge"
-    },
-    {
-      "id": "cd-20260817",
-      "url": "https://www.reddit.com/r/pearljam/top/?t=day",
-      "source": "reddit-community-digest",
-      "sourceLabel": "Comunidade r/pearljam",
-      "group": "comunidade",
-      "pubDate": "2026-08-17T12:25:47.890Z",
-      "fetchedAt": "2026-08-17T15:10:04.653Z",
-      "img": "/media/news/img/cd-20260817.jpg",
-      "title_pt": "Herança em vinil, Usenet e os sites que o tempo apagou: a comunidade hoje",
-      "intro_pt": "A comunidade mundial de fãs misturou emoção geracional e saudade da tribo pré-algoritmo num dia de humor nostálgico.",
-      "tags": [
-        "comunidade",
-        "memoria"
-      ],
-      "title_ig": "O Ten passou de pai pra filho, a comunidade lembrou",
-      "kind": "community-digest",
-      "community_posts_count": 7
-    },
-    {
-      "id": "7ed297f778",
-      "url": "https://www.pearljamonline.it/dave-krusen-torna-a-suonare-ten-35-anni-dopo-il-batterista-originale-dei-pearl-jam-racconta-la-nascita-di-un-disco-leggendario",
-      "source": "pjonline-it",
-      "sourceLabel": "PJ Online IT",
-      "group": "fan",
-      "pubDate": "2026-08-17T08:32:35.000Z",
-      "fetchedAt": "2026-08-17T15:10:04.652Z",
-      "img": "/media/news/img/7ed297f778.jpg",
-      "title_pt": "Dave Krusen toca o Ten inteiro no Drumeo, 35 anos depois do disco que gravou",
-      "intro_pt": "O baterista original do Pearl Jam relembrou nota a nota o álbum que ajudou a criar, incluindo outtakes nunca esquecidos.",
-      "tags": [
-        "memoria"
-      ],
-      "title_ig": "Krusen de volta ao Ten, 35 anos depois"
     }
   ]
 }
