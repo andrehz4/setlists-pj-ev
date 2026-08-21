@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-08-21T15:09Z",
+  "marco": "12:00",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "b47a74942b", "titulo": "Pearl Jam não revela o novo baterista antes do Ohana", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cd-20260821", "title": "Community Digest 21/08/2026", "reason": "todos os 6 posts com score 0 e 0 comentários, nenhum atinge critério de publicação (score >= 50 em pelo menos 2 posts)" }
+  ]
+}
