@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-21T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "92a18d7b77",
+      "title": "Pearl Jam hate",
+      "reason": "post de Reddit com especulacao sem fonte, conteudo raso, sem valor jornalistico"
+    },
+    {
+      "id": "19c06db19c",
+      "title": "does anyone know what these two posters in vera's room are?",
+      "reason": "PJ tangencial: mencionado de passagem em post sobre anime holandes nao relacionado"
+    }
+  ]
+}
