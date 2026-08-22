@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-22T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-b0633b1c78", "title": "Jack irons announces on instagram that he isn't the new pearl jam drummer", "reason": "spotlight sem conteúdo de fã (notícia/discussão, não obra criativa; score 0, 0 comentários)" },
+    { "id": "88b2aa41d2", "title": "bands who've had loads of different drummers", "reason": "PJ tangencial (citado de passagem em lista de bandas; post de r/drums sobre quiz)" },
+    { "id": "db3facac43", "title": "It's actually pretty chill starting the day off with some rdo and pearl jam in the background", "reason": "sem mencao relevante a PJ (ouve PJ de fundo ao jogar Red Dead Online; texto vazio de conteúdo)" },
+    { "id": "8980d90e0d", "title": "My random collection of things", "reason": "sem mencao a PJ (texto extraído não menciona Pearl Jam em nenhum momento)" },
+    { "id": "b24006cedb", "title": "Nirvana is overrated, I said what I said", "reason": "PJ tangencial (mencionado em lista junto a Queen, RHCP, SOAD; matéria é sobre Nirvana)" }
+  ]
+}
