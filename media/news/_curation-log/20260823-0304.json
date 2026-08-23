@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-08-23T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-31ef970e62", "title": "Nice try, Spotify", "reason": "shitpost/meme (piada sobre Spotify mostrar letra errada, score 0, comentarios 0)" },
+    { "id": "120049cbcd", "title": "Favorite Grunge Release Past 2010?", "reason": "PJ tangencial, discussao geral de grunge no Reddit sem foco na banda" },
+    { "id": "7983d66588", "title": "My budding collection", "reason": "texto vazio, colecao de cassetes sem mencao especifica a PJ" }
+  ]
+}
