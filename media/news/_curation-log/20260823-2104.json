@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-23T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "a754b06e0b",
+      "title": "Pearl Jam with Chris Cornell - Hunger Strike",
+      "reason": "texto vazio: article_text contém apenas metadado de link do Reddit, sem body real (menos de 200 chars de conteúdo)"
+    }
+  ]
+}
