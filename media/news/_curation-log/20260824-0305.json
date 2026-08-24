@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-08-24T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-e09b16265f", "title": "No more pillows made of concrete", "reason": "spotlight sem selftext - conteudo vazio, apenas username no campo selftext" },
+    { "id": "d5c2787ca3", "title": "38/F #CLEVELAND - Today is for a Child's Play marathon!", "reason": "PJ tangencial - perfil de encontros menciona PJ numa lista de bandas, nao e sobre PJ" },
+    { "id": "6a3937026a", "title": "Nao consumir culturalmente nada de origem nacional...", "reason": "PJ tangencial - opiniao sobre consumo cultural, PJ citado como exemplo em lista de bandas" }
+  ]
+}
