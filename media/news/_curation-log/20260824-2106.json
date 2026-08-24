@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-08-24T21:05Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "6ea7710ad4",
+      "title": "Feels like im cheating... but i love it",
+      "reason": "sem mencao a PJ, post do r/Ibanez sobre guitarra Les Paul vs Ibanez"
+    },
+    {
+      "id": "038ed316ad",
+      "title": "September DLC Delists",
+      "reason": "sem mencao a PJ, lista de DLC do Rock Band (AIC, Anthrax, etc)"
+    },
+    {
+      "id": "6cccf20ec4",
+      "title": "eddie vedder in 1992 during a pearl jam concert climbing up...",
+      "reason": "texto extraido vazio, article_text so tem metadado Reddit (50 chars)"
+    }
+  ]
+}
