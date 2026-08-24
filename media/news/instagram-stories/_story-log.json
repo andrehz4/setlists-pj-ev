@@ -1,19 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-05-31",
-      "runAt": "2026-05-31T16:00:47.246Z",
-      "items": [
-        "cd-20260531",
-        "cs-d9e9bf1438"
-      ],
-      "track": "02-nightcast-grunge-diner.mp3",
-      "tarjaColor": "#2a5b9e",
-      "postId": "17888913441386184",
-      "containerId": "18141178771471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-05-31.mp4"
-    },
-    {
       "dateKey": "2026-06-01",
       "runAt": "2026-06-01T16:01:00.142Z",
       "items": [
@@ -799,6 +786,19 @@
       "postId": "18104029486937017",
       "containerId": "18150236866471615",
       "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-08-22.mp4"
+    },
+    {
+      "dateKey": "2026-08-24",
+      "runAt": "2026-08-24T16:02:03.540Z",
+      "items": [
+        "cd-20260824",
+        "8a3a97a48e"
+      ],
+      "track": "02-nightcast-grunge-diner.mp3",
+      "tarjaColor": "#a87f2c",
+      "postId": "18162229072471574",
+      "containerId": "18150439054471615",
+      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-08-24.mp4"
     }
   ]
 }
