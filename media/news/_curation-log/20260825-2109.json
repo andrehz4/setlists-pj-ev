@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-25T21:08Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "e736975c71", "titulo": "Mike McCready e Soundgarden na abertura da temporada NFL 2026", "kind": "midia" },
+    { "id": "c4325b5c67", "titulo": "Jeff e Barry Ament levam Since Forever a nove cidades dos EUA e do Reino Unido", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "c73742fb35", "title": "Seahawks to have country singer Luke Bryan kick off Week One...", "reason": "texto vazio (apenas metadado Reddit, sem body do artigo)" },
+    { "id": "2e52553633", "title": "Os 4 grandes pioneiros do grunge, segundo Kim Thayil", "reason": "PJ tangencial (foco em Kim Thayil/Soundgarden, integrantes PJ nao sao o foco)" }
+  ]
+}
