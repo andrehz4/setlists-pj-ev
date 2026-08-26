@@ -245,21 +245,6 @@
       "errorCount": 0
     },
     {
-      "id": "106ca5fccd",
-      "type": "regular",
-      "queuedAt": "2026-08-03T15:09:05.108Z",
-      "publishAt": "2026-08-03T15:09:05.108Z",
-      "postedAt": null,
-      "postId": null,
-      "error": {
-        "at": "2026-08-04T15:12:01.679Z",
-        "msg": "IG API /27761714130083125/media: Error validating access token: Session has expired on Thursday, 30-Jul-26 12:06:45 PDT. The current time is Tuesday, 04-Aug-26 08:12:01 PDT. [code=190 subcode=0 type=OAuthException fbtrace=AeaMrCgmXC2yh1DfXNSop-t]"
-      },
-      "_lastAttemptAt": "2026-08-04T15:11:48.742Z",
-      "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Eddie Vedder homenageia Ozzy e visita espaço de Springsteen no New Jersey\nEddie Vedder passou dois dias no New Jersey prestando homenagem a Ozzy Osbourne e visitando o centro dedicado a Bruce Springsteen.\n\n2. Glen Hansard, o Blood Brother de Eddie, nos deixou\nGlen Hansard, cantor irlandês e parceiro de longa data de Eddie Vedder, morreu e deixou o mundo da música em luto.\n\n3. Eddie Vedder canta no funeral de Glen Hansard em Dublin\nVedder e Markéta Irglová subiram ao altar de St. Patrick's Cathedral para cantar ao lado dos Frames no último adeus ao amigo.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #eddie #memoria",
-      "errorCount": 5
-    },
-    {
       "id": "8dfd314407",
       "type": "regular",
       "queuedAt": "2026-08-04T09:09:15.664Z",
@@ -625,7 +610,9 @@
       "publishAt": "2026-08-26T21:11:07.230Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": null,
+      "_lastAttemptAt": "2026-08-26T21:12:35.679Z",
+      "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Soundgarden volta ao palco com Momsen e McCready no intervalo da NFL em setembro\nKim Thayil, Ben Shepherd e Matt Cameron retornam ao palco em 9 de setembro com Taylor Momsen e Mike McCready no Lumen Field em Seattle.\n\n2. Soundgarden confirma quinto show pós-Cornell com McCready e Momsen na abertura da NFL\nO Soundgarden chega ao quinto show desde a morte de Chris Cornell, com McCready e Momsen, no intervalo da abertura da NFL em Seattle.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #mike #matt"
     },
     {
       "id": "2a75db1f14",
@@ -634,7 +621,9 @@
       "publishAt": "2026-08-26T21:11:07.230Z",
       "postedAt": null,
       "postId": null,
-      "error": null
+      "error": null,
+      "_lastAttemptAt": "2026-08-26T21:12:35.679Z",
+      "_lastAttemptCaption": "DESTAQUES DA EDIÇÃO\n\n1. Soundgarden volta ao palco com Momsen e McCready no intervalo da NFL em setembro\nKim Thayil, Ben Shepherd e Matt Cameron retornam ao palco em 9 de setembro com Taylor Momsen e Mike McCready no Lumen Field em Seattle.\n\n2. Soundgarden confirma quinto show pós-Cornell com McCready e Momsen na abertura da NFL\nO Soundgarden chega ao quinto show desde a morte de Chris Cornell, com McCready e Momsen, no intervalo da abertura da NFL em Seattle.\n\nleia completo em setlists-pj-ev.pages.dev\n\n#pearljam #eddievedder #pjbrasil #grunge #smufdpj #mike #matt"
     }
   ],
   "postCount": 132
