@@ -1,0 +1,17 @@
+{
+  "runAt": "2026-08-26T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 7,
+  "distribution": { "midia": 6, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "3c0fef04a6", "titulo": "Mike McCready toca com Soundgarden na abertura da temporada da NFL em setembro", "kind": "midia" },
+    { "id": "cd-20260826", "titulo": "Jeff no Ohana, suspense do novo baterista no domingo e a raridade oculta do Ten japones", "kind": "community-digest" },
+    { "id": "435be2cca2", "titulo": "Soundgarden volta ao palco com Momsen e McCready no intervalo da NFL em setembro", "kind": "midia" },
+    { "id": "abe45fb50f", "titulo": "Soundgarden retorna com McCready e Momsen enquanto album póstumo entra na reta final com Terry Date", "kind": "midia" },
+    { "id": "2a75db1f14", "titulo": "Soundgarden confirma quinto show pós-Cornell com McCready e Momsen na abertura da NFL", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "5e31e2e806", "title": "5 canciones que los miembros de una banda intentaron sabotear", "reason": "PJ tangencial (Eddie mencionado brevemente em listicle de 5 bandas); artigo de 2024 reindexado em 2026" },
+    { "id": "c64e4aff1d", "title": "5 bandas que nacieron tras la ruptura de otras", "reason": "PJ tangencial (um exemplo entre 5 em listicle genérico sobre bandas surgidas de outras bandas)" }
+  ]
+}
