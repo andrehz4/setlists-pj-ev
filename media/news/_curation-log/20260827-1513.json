@@ -1,0 +1,16 @@
+{
+  "runAt": "2026-08-27T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 6,
+  "distribution": { "midia": 5, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "b50231dc26", "titulo": "Como uma fita cassete enviada de Seattle para San Diego criou o Pearl Jam", "kind": "midia" },
+    { "id": "def52ecda3", "titulo": "Os bastidores de Ten: a demo de 'Alive' que foi parar direto no disco", "kind": "midia" },
+    { "id": "63d6338bd1", "titulo": "Mike McCready homenageia Tim Curry: Don't dream it, be it", "kind": "midia" },
+    { "id": "cd-20260827", "titulo": "Ten Live 35th Anniversary chega em novembro: comunidade celebra o disco fundador", "kind": "community-digest" },
+    { "id": "cf22dfdf7e", "titulo": "35 anos de Ten: de estreia ignorada a obra-prima que redefiniu o rock", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "bb10b501ce", "title": "10 curiosidades sobre 'Ten', o álbum de estreia do Pearl Jam", "reason": "mesma matéria Dan Epstein da Rolling Stone EUA já curada via Terra (def52ecda3), sem ângulo adicional" }
+  ]
+}
