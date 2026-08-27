@@ -1,0 +1,16 @@
+{
+  "runAt": "2026-08-27T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 8,
+  "distribution": { "midia": 3, "pjcom-news": 1, "community-digest": 0, "community-spotlight": 0, "shop": 4 },
+  "approved": [
+    { "id": "c13230a33e", "titulo": "Ten Live em vinil: pré-venda aberta com edição exclusiva para o Ten Club", "kind": "shop" },
+    { "id": "c6685eb8cb", "titulo": "Pearl Jam lança vinil de Ten ao vivo: a noite histórica de 2016 em Filadélfia", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "faa0ec5c9a", "title": "Announcing Ten Live (pjcom-news)", "reason": "texto vazio: artigo_text contém apenas formulário de SMS signup, sem conteúdo editorial" },
+    { "id": "294cf239de", "title": "Los 15 mejores discos de grunge segun Indie Hoy", "reason": "lista clickbait genérica de grunge: PJ mencionado tangencialmente (um parágrafo sobre Vs.)" },
+    { "id": "b5f6af076f", "title": "Pearl Jam Ten Live Vinyl (vinil preto padrão)", "reason": "duplicata de conteúdo: mesmo show/gravação coberto por c13230a33e (shop) e c6685eb8cb (SPIN)" },
+    { "id": "3cb010d6a8", "title": "Josuke!", "reason": "PJ tangencial: postado em r/JJBA (JoJo's Bizarre Adventure), Pearl Jam citado sem contexto" }
+  ]
+}
