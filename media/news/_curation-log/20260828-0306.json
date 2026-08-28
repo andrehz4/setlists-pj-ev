@@ -1,0 +1,15 @@
+{
+  "runAt": "2026-08-28T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "bf60e87cb2", "titulo": "Ten Live: a noite de Philadelphia 2016 chega ao vinil pela primeira vez", "kind": "midia" },
+    { "id": "41ee981000", "titulo": "Ten completa 35 anos e Pearl Jam lança performance integral ao vivo em vinil", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cs-41240a7aa4", "title": "Happy 35th and 30th birthdays to two legendary albums!", "reason": "spotlight sem selftext (post vazio, 0 comentarios, score 0)" },
+    { "id": "cbc65b599d", "title": "Today is the 35th anniversary of Pearl Jam's Ten...", "reason": "texto vazio (so metadado do Reddit, sem article_text)" },
+    { "id": "6ade6c17a8", "title": "RB4/Legacy Delisting DLC Discussion: August", "reason": "sem mencao a PJ (Rock Band DLC, nao relacionado a Pearl Jam)" }
+  ]
+}
