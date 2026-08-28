@@ -1,22 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-06-05",
-      "runAt": "2026-06-05T16:00:56.913Z",
-      "items": [
-        "cd-20260604",
-        "c87c695975",
-        "6dddb0a6b0",
-        "a9c5d02320",
-        "2ba735e62f"
-      ],
-      "track": "02-nightcast-grunge-diner.mp3",
-      "tarjaColor": "#E10600",
-      "postId": "18085835468571495",
-      "containerId": "18141748477471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-06-05.mp4"
-    },
-    {
       "dateKey": "2026-06-06",
       "runAt": "2026-06-06T16:00:50.341Z",
       "items": [
@@ -800,6 +784,22 @@
       "postId": "18107279263891292",
       "containerId": "18150748219471615",
       "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-08-27.mp4"
+    },
+    {
+      "dateKey": "2026-08-28",
+      "runAt": "2026-08-28T16:00:53.064Z",
+      "items": [
+        "cd-20260828",
+        "d59099fb2a",
+        "41ee981000",
+        "bf60e87cb2",
+        "c13230a33e"
+      ],
+      "track": "01-sigmamusicart-grunge-rock.mp3",
+      "tarjaColor": "#2a5b9e",
+      "postId": "18122952841846466",
+      "containerId": "18150872032471615",
+      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-08-28.mp4"
     }
   ]
 }
