@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-08-28T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "d59099fb2a", "titulo": "Como o Pearl Jam gravou Ten: 'Eddie estava em busca de perfeição'", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "e4823170c7", "title": "Black", "reason": "texto vazio - Reddit r/Xennials, apenas pergunta de opiniao sem artigo" },
+    { "id": "eca3f1b1b4", "title": "Pearl Jam Ten at 35: The Gospel According to Grunge", "reason": "texto vazio - Reddit r/Music, apenas post de usuario sem artigo completo" }
+  ]
+}
