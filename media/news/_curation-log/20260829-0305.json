@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-29T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "aa5b64b0f7",
+      "title": "Every song on Pearl Jam's Ten ranked from worst to best",
+      "reason": "lista clickbait de ranking de musicas (worst to best), formato explicitamente excluido pelo guia"
+    },
+    {
+      "id": "4767cf4f52",
+      "title": "2016 Poster I've kept",
+      "reason": "texto extraido vazio (menos de 200 chars), post de r/bonnaroo sem conteudo util"
+    }
+  ]
+}
