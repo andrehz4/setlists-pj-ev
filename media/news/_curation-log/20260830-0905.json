@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-08-30T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "80b5615653",
+      "title": "Qual GUITARRISTA, BANDA, ÁLBUM, MÚSICA TE INSPIROU A TOCAR GUITARRA",
+      "reason": "sem mencao a PJ - post do r/guitarras sobre influencias de guitarristas em geral, Pearl Jam nao aparece no texto extraido"
+    },
+    {
+      "id": "4d760c3b5d",
+      "title": "Pearl Jam - Spin the Black Circle",
+      "reason": "texto vazio - link post para r/90sAlternative com menos de 200 chars, sem conteudo editorial"
+    }
+  ]
+}
