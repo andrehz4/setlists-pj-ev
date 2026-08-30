@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-08-30T03:06Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "f326a55954", "titulo": "Os três melhores discos do Pearl Jam segundo o Indie Hoy", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "6df2e7520d", "title": "Just \"found\" Alice In Chains...", "reason": "PJ tangencial: post sobre Alice in Chains, Pearl Jam citado apenas de passagem como comparativo" },
+    { "id": "9f1842d82d", "title": "Músicas que te deixam assim", "reason": "PJ tangencial: lista de músicas pessoais onde 'Alive' aparece ao lado de outros artistas, sem foco em Pearl Jam" }
+  ]
+}
