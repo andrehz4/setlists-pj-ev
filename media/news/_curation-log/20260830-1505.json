@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-30T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 0, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cd-20260830",
+      "title": "Community Digest 2026-08-30",
+      "reason": "dia fraco: todos os 8 posts com score 0 e 0 comentarios, sem anuncio, sem fan content relevante, sem historico de peso. Criterio minimo (2 posts score>=50 ou 1 topico substancial) nao atingido"
+    }
+  ]
+}
