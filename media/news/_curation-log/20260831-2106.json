@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-08-31T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "c21086fb5b",
+      "title": "Travis Barker: 'I don't think Matt Cameron left Pearl Jam...'",
+      "reason": "texto vazio (article_text é só metadado Reddit sem conteúdo real)"
+    }
+  ]
+}
