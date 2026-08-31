@@ -1,21 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-06-08",
-      "runAt": "2026-06-08T16:00:59.268Z",
-      "items": [
-        "cd-20260608",
-        "cs-0c2a325251",
-        "d443026bc2",
-        "83bcc98aee"
-      ],
-      "track": "05-alexgrohl-no-filter-garage.mp3",
-      "tarjaColor": "#0a0a0a",
-      "postId": "17993878886971961",
-      "containerId": "18142088941471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-06-08.mp4"
-    },
-    {
       "dateKey": "2026-06-09",
       "runAt": "2026-06-09T16:00:57.611Z",
       "items": [
@@ -799,6 +784,18 @@
       "postId": "18005254523967535",
       "containerId": "18151097242471615",
       "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-08-30.mp4"
+    },
+    {
+      "dateKey": "2026-08-31",
+      "runAt": "2026-08-31T16:00:58.097Z",
+      "items": [
+        "cd-20260831"
+      ],
+      "track": "04-sound-for-you-powerful-stoner.mp3",
+      "tarjaColor": "#0a0a0a",
+      "postId": "17970122207946099",
+      "containerId": "18151202533471615",
+      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-08-31.mp4"
     }
   ]
 }
