@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-01T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-ae167fbbfd",
+      "title": "all i have to say",
+      "reason": "spotlight sem selftext: post_selftext contém só metadado de submissão, score 0, sem conteúdo real para matéria"
+    },
+    {
+      "id": "3e9f6e9d5e",
+      "title": "Rumor: Abe Laboriel, Jr. leaving Paul's band",
+      "reason": "sem relação com PJ: post é do r/beatles sobre baterista do Paul McCartney, escapou do filtro de busca reddit-search-pj"
+    }
+  ]
+}
