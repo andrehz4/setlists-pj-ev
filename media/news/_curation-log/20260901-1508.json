@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-09-01T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20260901", "titulo": "Rumor de novo baterista e os rankings de Dark Matter na comunidade", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "43b235d8e7", "title": "Pearl Jam Ten Live Vinyl - Clear. Members only", "reason": "texto vazio (article_text so metadado sem corpo)" }
+  ]
+}
