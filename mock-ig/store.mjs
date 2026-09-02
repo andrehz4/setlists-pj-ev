@@ -14,6 +14,8 @@ const EMPTY = () => ({
   feed: [],       // { postId, type, caption, slides:[url], createdAt, apiCalls }
   stories: [],    // { postId, videoUrl, createdAt, apiCalls }
   reels: [],      // { postId, videoUrl, caption, createdAt, apiCalls }
+  fbPhotos: {},   // Facebook Pages: id -> { url, published, createdAt } (fotos unpublished do album)
+  fbfeed: [],     // Facebook Pages: { postId, message, photos:[url], createdAt } (posts do feed)
   quotaUsage: 0,
   deleted: [],    // postIds marcados como apagados (pra ig-detect-deleted)
   // Contagem de chamadas Graph API em DUAS dimensoes:

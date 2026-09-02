@@ -1,6 +1,28 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
+2026-09-02 (Facebook Pages: token permanente + cliente de FEED pronto e testado; story/reel pendentes)
+
+## ⭐ Sessão 2026-09-02: PUBLICAÇÃO NO FACEBOOK PAGES (feed FEITO, 114/114 testes)
+
+Objetivo do Andre: replicar as publicações no Facebook Pages (Página "Só mais um Fã de PJ") além do IG, os três formatos (feed + story + reel). Abordagem incremental: feed primeiro.
+
+**Autenticação (resolvida):** o fluxo do IG ("Instagram with Instagram Login", `graph.instagram.com`) NÃO serve pro FB. Gerado um Page Access Token via `graph.facebook.com` (fb_exchange_token: user curto -> user longo -> page token permanente do /me/accounts). Secrets salvos: `FB_PAGE_TOKEN` (type PAGE, **expira NUNCA**, não precisa refresh mensal) e `FB_PAGE_ID` (1119493787910103). App ID 1679039826640945. Detalhes e pegadinhas em memory/facebook-page-smufdpj.md. Pegadinha: o ID da URL do FB (61589667122253) NÃO é o Page ID da API.
+
+**Feed (FEITO, escolha do Andre = álbum com todos os slides):**
+- `scripts/publish/facebook.mjs`: cliente espelho do instagram.mjs. `publishFeedAlbum` sobe cada slide como foto unpublished (`POST /<page>/photos`, published=false) e cria o post com `POST /<page>/feed` + attached_media[]. Reusa `buildCarouselCaption` e `slideUrlFor` do IG (legenda e URLs idênticas, zero duplicação). Erros tipados FBAPIError/FBRateLimitError.
+- Mock estendido: `mock-ig/server.mjs` (rotas POST /photos e /feed + GET /_mock/fbfeed), `mock-ig/store.mjs` (fbPhotos/fbfeed), `mock-ig/run.mjs` (liga FB no e2e).
+- `scripts/publish/facebook.test.mjs`: 8 testes (ordem das fotos, capa primeiro, slideSuffix, legenda single vs carrossel, rate limit tipado). Somados à suíte = 114/114.
+- Integrado em `run-publish.mjs`: publica no FB em paralelo ao IG, BEST-EFFORT (falha do FB não derruba a run nem devolve item pra fila). Ligado só com flag `PUBLISH_FB=1` + secrets presentes.
+- Validado e2e real contra o mock (`node mock-ig/run.mjs feed`): álbum com capa + slides na ordem certa, legenda reusada. OK.
+
+**PENDÊNCIAS (próximos passos):**
+1. **Ativar o feed FB em produção:** adicionar `PUBLISH_FB: "1"` no env do job em `.github/workflows/publish-instagram.yml`. Recomendado: 1 teste controlado primeiro (disparar manual, Andre confere o visual do álbum na Página) antes de deixar no cron.
+2. **Story no FB** (Fase 2): mesmo MP4 vira `video_story` (upload em fases: start/upload/finish). Integrar em run-publish-story.mjs.
+3. **Reel no FB** (Fase 3): mesmo MP4 semanal vira `video_reel` (upload em fases). Integrar em run-publish-reel.mjs.
+4. Observabilidade: incluir fbPostId no resumo do Telegram do publish (hoje só loga no console).
+
+## Data anterior
 2026-08-04 (apagão do IG resolvido: token expirado renovado, secrets consertados, alerta no refresh)
 
 ## ⭐ Sessão 2026-08-04: TOKEN IG EXPIRADO, PUBLISH PARADO 5 DIAS (RESOLVIDO)
