@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-02T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "4919c86e44", "title": "The Big Change: Channel Guide Changes 9-1-26", "reason": "sem mencao a PJ (post sobre mudancas de canais SiriusXM, menciona Octane/Lithium mas nao Pearl Jam)" },
+    { "id": "cs-834225b33b", "title": "Can't Deny Me (Dump Trump)", "reason": "spotlight sem fan art criativa: post politico de desejo (quer que PJ toque musica no Ohana), score 0, 0 comentarios, conteudo ambiguo" },
+    { "id": "cfa3d0b5ca", "title": "The Hilarious Results of a Communication Device Ban", "reason": "sem mencao a PJ (post sobre proibicao de celular em escola, nenhuma relacao com Pearl Jam)" },
+    { "id": "ce982d785d", "title": "Easiest beginner songs", "reason": "PJ tangencial (post sobre guitarra iniciante em r/metalguitar, menciona Last Kiss do PJ apenas de passagem)" },
+    { "id": "41f5b409de", "title": "For those who saw ARLINGTON RD 1999...please be honest", "reason": "sem mencao a PJ (post sobre filme Arlington Road 1999, nenhuma relacao com Pearl Jam)" }
+  ]
+}
