@@ -15,6 +15,10 @@ on:
         description: 'Maximo de batches (regular+spotlight) por run'
         type: string
         default: '2'
+      publish_fb:
+        description: 'Tambem publica no Facebook Pages (album). Off por padrao ate validar em prod'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -76,6 +80,11 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # Facebook Pages: so publica quando publish_fb=true no disparo manual.
+          # Disparo automatico (sem input) mantem PUBLISH_FB=0 = feed FB desligado.
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          PUBLISH_FB: ${{ inputs.publish_fb && '1' || '0' }}
           GIT_AUTHOR_NAME: pj-news-bot
           GIT_AUTHOR_EMAIL: bot@setlists-pj.local
         run: |
