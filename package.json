@@ -37,7 +37,7 @@
     "test:setlistfm": "node --test scripts/news/setlistfm.test.mjs",
     "test:mock": "node --test mock-ig/mock.test.mjs",
     "test:reel": "node --test scripts/publish/reel.test.mjs",
-    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs scripts/publish/queue-state.test.mjs scripts/publish/recover-publish.test.mjs scripts/publish/detect-deleted.test.mjs scripts/publish/subject-fallback.test.mjs scripts/publish/reel.test.mjs scripts/news/prune-curated.test.mjs scripts/news/setlistfm.test.mjs mock-ig/mock.test.mjs"
+    "test": "node --test scripts/cifras-coverage.test.mjs scripts/publish/band-fallback.test.mjs scripts/publish/queue-select.test.mjs scripts/publish/queue-state.test.mjs scripts/publish/recover-publish.test.mjs scripts/publish/detect-deleted.test.mjs scripts/publish/subject-fallback.test.mjs scripts/publish/reel.test.mjs scripts/publish/facebook.test.mjs scripts/news/prune-curated.test.mjs scripts/news/setlistfm.test.mjs mock-ig/mock.test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",

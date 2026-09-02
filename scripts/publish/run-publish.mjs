@@ -26,6 +26,7 @@ import { readQueue, writeQueue, mergeQueueStates, pickMatureByTypeDiverse, markP
 import { topicSignature, similarity } from "../news/dedupe-history.mjs";
 import { buildSlides, buildCoverSlide, SLIDES_DIR, LAYOUT } from "./slide-image.mjs";
 import { publishItems, slideUrlFor, recoverPublishedPost, buildCarouselCaption } from "./instagram.mjs";
+import { publishFeedAlbum } from "./facebook.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { getContentPublishingLimit, QUOTA_SAFETY_MARGIN, estimateUnsaturationDelayMs } from "./ig-quota.mjs";
 import { detectDeletedPosts } from "./ig-detect-deleted.mjs";
@@ -408,11 +409,32 @@ async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleCol
     }
     console.log(`[publish] OK tipo=${type} postId=${r.postId} count=${r.count}`);
     markPosted(queue, itemsToPost.map((it) => it.id), r.postId, new Date().toISOString());
+
+    // Publicacao paralela no Facebook Pages (mesmo conteudo, album de fotos).
+    // BEST-EFFORT: o IG ja publicou e marcou postado; uma falha no FB apenas
+    // loga e segue, NAO derruba a run nem devolve o item pra fila (senao o IG
+    // duplicaria). So liga com a flag PUBLISH_FB=1 + secrets presentes, pra o
+    // FB nao entrar em producao sem validacao consciente.
+    let fbPostId = null;
+    if (process.env.PUBLISH_FB === "1" && process.env.FB_PAGE_ID && process.env.FB_PAGE_TOKEN) {
+      try {
+        const fb = await publishFeedAlbum(itemsToPost, { coverImageUrl, slideSuffix });
+        fbPostId = fb.postId;
+        console.log(`[publish] FB OK tipo=${type} fbPostId=${fb.postId} count=${fb.count}`);
+      } catch (e) {
+        const d = typeof e.toDetailString === "function" ? e.toDetailString() : e.message;
+        console.error(`[publish] FB FALHA tipo=${type} (IG ja publicou, seguindo): ${d}`);
+      }
+    } else if (process.env.FB_PAGE_ID && process.env.FB_PAGE_TOKEN) {
+      console.log(`[publish] FB desligado (PUBLISH_FB!=1); IG publicado normalmente`);
+    }
+
     return {
       type,
       attempted: itemsToPost.length,
       succeeded: itemsToPost.length,
       postId: r.postId,
+      fbPostId,
       items: itemsToPost.map((it) => ({ id: it.id, title_pt: it.title_pt, tags: it.tags || [] })),
     };
   } catch (e) {

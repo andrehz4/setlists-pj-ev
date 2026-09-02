@@ -200,6 +200,7 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/_mock/feed") { const s = load(); return sendJson(res, 200, s.feed); }
     if (pathname === "/_mock/stories") { const s = load(); return sendJson(res, 200, s.stories); }
     if (pathname === "/_mock/reels") { const s = load(); return sendJson(res, 200, s.reels || []); }
+    if (pathname === "/_mock/fbfeed") { const s = load(); return sendJson(res, 200, s.fbfeed || []); }
     if (pathname === "/_mock/usage") {
       // medidor horario: chamadas na ultima hora vs ~200 (limite real do code 4)
       const s = load(); const u = hourlyUsage(s); save(s); return sendJson(res, 200, u);
@@ -458,6 +459,57 @@ const server = http.createServer(async (req, res) => {
       };
       save(s);
       return sendGraph(res, 200, { id }, s);
+    }
+
+    // ---------- Facebook Pages (mock) ----------
+    // POST /:pageId/photos  (sobe foto, published=false) -> retorna media_fbid.
+    // Espelha graph.facebook.com/<PAGE_ID>/photos usado pelo facebook.mjs.
+    if (method === "POST" && /\/photos$/.test(pathname)) {
+      const body = await readBody(req);
+      const s = load();
+      const fail = failMode(s, query);
+      if (fail === "ratelimit") {
+        bumpCall(s, "POST /photos"); save(s);
+        return graphError(res, 429, { code: 4, message: "Application request limit reached" }, s);
+      }
+      const mediaErr = await checkLocalMedia(body.url);
+      if (mediaErr) {
+        return graphError(res, 400, { code: 9004, message: `Media could not be fetched: ${mediaErr}` }, s);
+      }
+      bumpCall(s, "POST /photos");
+      const id = nextId(s, "ph");
+      if (!s.fbPhotos) s.fbPhotos = {};
+      s.fbPhotos[id] = { url: body.url, published: body.published === "true", createdAt: new Date().toISOString() };
+      save(s);
+      return sendGraph(res, 200, { id }, s);
+    }
+
+    // POST /:pageId/feed  (cria post do feed com attached_media[]) -> retorna post id
+    if (method === "POST" && /\/feed$/.test(pathname)) {
+      const body = await readBody(req);
+      const s = load();
+      const fail = failMode(s, query);
+      if (fail === "ratelimit") {
+        bumpCall(s, "POST /feed"); save(s);
+        return graphError(res, 429, { code: 4, message: "Application request limit reached" }, s);
+      }
+      // reconstroi a ordem das fotos a partir de attached_media[N]={"media_fbid":id}
+      const fbids = [];
+      for (const [k, v] of Object.entries(body)) {
+        const m = /^attached_media\[(\d+)\]$/.exec(k);
+        if (!m) continue;
+        try { fbids[Number(m[1])] = JSON.parse(v).media_fbid; } catch { /* ignora entry malformada */ }
+      }
+      const photos = fbids.filter(Boolean).map((fid) => s.fbPhotos?.[fid]?.url).filter(Boolean);
+      if (photos.length === 0) {
+        return graphError(res, 400, { code: 100, message: "feed: nenhuma foto anexada valida (attached_media vazio)" }, s);
+      }
+      bumpCall(s, "POST /feed");
+      const postId = nextId(s, "fb");
+      if (!s.fbfeed) s.fbfeed = [];
+      s.fbfeed.unshift({ postId, message: body.message || "", photos, createdAt: new Date().toISOString() });
+      save(s);
+      return sendGraph(res, 200, { id: postId }, s);
     }
 
     // GET /:uid/content_publishing_limit

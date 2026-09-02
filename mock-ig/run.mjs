@@ -14,6 +14,11 @@ process.env.IG_API_BASE ||= base;
 process.env.REPO_PUBLIC_BASE ||= base; // o "IG" busca os slides/MP4 do mock
 process.env.IG_USER_ID ||= "mock_user";
 process.env.IG_ACCESS_TOKEN ||= "mock_token";
+// Facebook Pages tambem apontado pro mock: o e2e do feed exercita os 2 canais.
+process.env.FB_API_BASE ||= base;
+process.env.FB_PAGE_ID ||= "mock_page";
+process.env.FB_PAGE_TOKEN ||= "mock_token";
+process.env.PUBLISH_FB ||= "1";
 
 const mode = ["story", "reel"].includes(process.argv[2]) ? process.argv[2] : "feed";
 // passa o resto dos args (ex: --max-batches=2) pro pipeline; --no-git sempre
