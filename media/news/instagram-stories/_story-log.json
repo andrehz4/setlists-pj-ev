@@ -1,22 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-06-11",
-      "runAt": "2026-06-11T16:00:55.486Z",
-      "items": [
-        "cd-20260611",
-        "cd-20260610",
-        "5e2cffd783",
-        "8f8398edc8",
-        "7fecb16ead"
-      ],
-      "track": "03-the-mountain-action-rock.mp3",
-      "tarjaColor": "#E10600",
-      "postId": "18085553990410739",
-      "containerId": "18142413442471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-06-11.mp4"
-    },
-    {
       "dateKey": "2026-06-13",
       "runAt": "2026-06-13T16:00:43.429Z",
       "items": [
@@ -795,6 +779,18 @@
       "postId": "18617071951055008",
       "containerId": "18151308274471615",
       "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-09-01.mp4"
+    },
+    {
+      "dateKey": "2026-09-02",
+      "runAt": "2026-09-02T16:02:44.561Z",
+      "items": [
+        "cd-20260902"
+      ],
+      "track": "01-sigmamusicart-grunge-rock.mp3",
+      "tarjaColor": "#0a0a0a",
+      "postId": "18075557735449931",
+      "containerId": "18151401523471615",
+      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-09-02.mp4"
     }
   ]
 }
