@@ -16,11 +16,15 @@ Objetivo do Andre: replicar as publicações no Facebook Pages (Página "Só mai
 - Integrado em `run-publish.mjs`: publica no FB em paralelo ao IG, BEST-EFFORT (falha do FB não derruba a run nem devolve item pra fila). Ligado só com flag `PUBLISH_FB=1` + secrets presentes.
 - Validado e2e real contra o mock (`node mock-ig/run.mjs feed`): álbum com capa + slides na ordem certa, legenda reusada. OK.
 
+**Smoke test em produção real (OK):** `scripts/publish/fb-smoke.mjs` + workflow `fb-smoke.yml` (dispatch, input delete_post_id). Postou um álbum de teste (3 band-fallback) na Página e apagou (status=200 success:true). Token/permissões/formato álbum validados ao vivo. Manter o smoke pra debug futuro.
+
+**Feed FB LIGADO EM PRODUÇÃO (2026-09-03):** `publish-instagram.yml` agora tem `PUBLISH_FB: ${{ inputs.skip_fb && '0' || '1' }}` (ligado por padrão em todo disparo; input `skip_fb` publica só no IG numa run específica). Todo post de notícia passa a sair no FB junto com o IG. O primeiro post real com slides de notícia sai no próximo item maduro (acompanhar via Telegram/Página).
+
 **PENDÊNCIAS (próximos passos):**
-1. **Ativar o feed FB em produção:** adicionar `PUBLISH_FB: "1"` no env do job em `.github/workflows/publish-instagram.yml`. Recomendado: 1 teste controlado primeiro (disparar manual, Andre confere o visual do álbum na Página) antes de deixar no cron.
-2. **Story no FB** (Fase 2): mesmo MP4 vira `video_story` (upload em fases: start/upload/finish). Integrar em run-publish-story.mjs.
-3. **Reel no FB** (Fase 3): mesmo MP4 semanal vira `video_reel` (upload em fases). Integrar em run-publish-reel.mjs.
-4. Observabilidade: incluir fbPostId no resumo do Telegram do publish (hoje só loga no console).
+1. **Story no FB** (Fase 2): mesmo MP4 vira `video_story` (upload em fases: start/upload/finish). Integrar em run-publish-story.mjs.
+2. **Reel no FB** (Fase 3): mesmo MP4 semanal vira `video_reel` (upload em fases). Integrar em run-publish-reel.mjs.
+3. Observabilidade: incluir fbPostId no resumo do Telegram do publish (hoje só loga no console).
+4. Acompanhar o PRIMEIRO post real de notícia no FB (slides de verdade), conferir visual do álbum com cards de texto.
 
 ## Data anterior
 2026-08-04 (apagão do IG resolvido: token expirado renovado, secrets consertados, alerta no refresh)
