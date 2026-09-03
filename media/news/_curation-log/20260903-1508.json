@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-03T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 0, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cd-20260903",
+      "title": "Community Digest 2026-09-03",
+      "reason": "dia fraco: todos os 5 posts com score 0 e 0 comentarios; posts sao merch/resale (camisa, pulseiras Ohana, vault eBay), discussao diaria de musica (serie recorrente) e pergunta tecnica de pedal sem engajamento. Nenhum atinge criterio minimo (score >= 50 ou anuncio/conteudo forte)"
+    }
+  ]
+}
