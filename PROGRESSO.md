@@ -24,6 +24,8 @@ Objetivo do Andre: replicar as publicações no Facebook Pages (Página "Só mai
 
 **Os TRÊS formatos (feed + story + reel) estão no ar nos dois canais (IG + FB).**
 
+**Divulgação/repostagem (2026-09-03):** legendas (single/carousel/reel em instagram.mjs, const SOCIAL_LINE) ganharam a linha "siga @smufdpj no Instagram e no Facebook" abaixo do "leia completo em SITE", pra os links viajarem quando o post é repostado em grupos de fã. Corrigido o link do Facebook no rodapé do site (index.html: era facebook.com/smufdpj quebrado, agora facebook.com/profile.php?id=61589667122253, a Página não tem vanity URL). Pendente opcional: @ na marca d'água dos slides (mexe no design, deixado pra depois).
+
 **PENDÊNCIAS (menores):**
 1. Observabilidade: incluir fbPostId no resumo do Telegram do publish/story/reel (hoje só loga no console).
 2. Conferir o 1o post/story/reel REAL de notícia no FB (o smoke usou mídia de teste; conteúdo real sai no próximo ciclo de cada formato).

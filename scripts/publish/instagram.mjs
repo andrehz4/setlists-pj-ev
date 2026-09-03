@@ -84,6 +84,10 @@ function classifyIGError({ path, statusCode, body }) {
 const HASHTAGS_FIXED = ["pearljam", "eddievedder", "pjbrasil", "grunge", "smufdpj"];
 const IG_CAPTION_MAX = 2200;
 const SITE_URL = "setlists-pj-ev.pages.dev";
+// Assinatura de redes no rodape da legenda: viaja junto quando o post e
+// repostado em grupos de fa. @smufdpj resolve no Instagram; no Facebook a
+// Pagina "So mais um Fa de PJ" e achada pela busca (nao tem vanity URL).
+const SOCIAL_LINE = "siga @smufdpj no Instagram e no Facebook";
 
 // Trunca body preservando o ultimo paragrafo/frase completa antes do
 // limite. Evita cortar palavra no meio.
@@ -147,7 +151,7 @@ function buildSingleCaption(item) {
   const hashtags = dedupeTags([...HASHTAGS_FIXED, ...(item.tags || [])])
     .map((t) => `#${t}`).join(" ");
   const cta = `leia completo em ${SITE_URL}`;
-  const tail = `\n\n${cta}\n\n${hashtags}`;
+  const tail = `\n\n${cta}\n${SOCIAL_LINE}\n\n${hashtags}`;
   const budget = IG_CAPTION_MAX - tail.length - 8;
 
   let head = item.title_pt || "";
@@ -176,7 +180,7 @@ function buildCarouselCaption(items) {
     ...items.flatMap((it) => Array.isArray(it.tags) ? it.tags : []),
   ]).map((t) => `#${t}`).join(" ");
   const cta = `leia completo em ${SITE_URL}`;
-  const tail = `\n\n${cta}\n\n${hashtags}`;
+  const tail = `\n\n${cta}\n${SOCIAL_LINE}\n\n${hashtags}`;
   const budget = IG_CAPTION_MAX - tail.length - 30;
 
   const header = `DESTAQUES DA EDIÇÃO\n\n`;
@@ -551,7 +555,7 @@ export function buildReelCaption(items, { weekLabel = "" } = {}) {
     ...items.flatMap((it) => Array.isArray(it.tags) ? it.tags : []),
   ]).map((t) => `#${t}`).join(" ");
   const cta = `leia completo em ${SITE_URL}`;
-  const tail = `\n\n${cta}\n\n${hashtags}`;
+  const tail = `\n\n${cta}\n${SOCIAL_LINE}\n\n${hashtags}`;
   const header = `RESUMÃO DA SEMANA${weekLabel ? ` · ${weekLabel}` : ""}\n\n`;
   const budget = IG_CAPTION_MAX - tail.length - header.length - 16;
 
