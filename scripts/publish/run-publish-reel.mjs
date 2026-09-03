@@ -19,6 +19,7 @@ import { pickTrackForDate } from "./story-track.mjs";
 import { buildReelVideo, buildScenePlan, thumbOffsetMsFor } from "./reel-video.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishReel, buildReelCaption } from "./instagram.mjs";
+import { publishVideoReel } from "./facebook.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { isoWeekKey, weekRangeLabel } from "./reel-week.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
@@ -173,10 +174,24 @@ async function main() {
     process.exit(1);
   }
 
+  // 6b. Facebook Pages (reel de video, com a mesma legenda), best-effort: o IG
+  //     ja publicou; falha no FB so loga. So com a flag PUBLISH_FB=1 + secrets.
+  let fbPostId = null;
+  if (process.env.PUBLISH_FB === "1" && process.env.FB_PAGE_ID && process.env.FB_PAGE_TOKEN) {
+    try {
+      const fb = await publishVideoReel({ videoUrl, description: caption });
+      fbPostId = fb.postId;
+      console.log(`[reel] FB OK fbPostId=${fbPostId}`);
+    } catch (e) {
+      const d = typeof e.toDetailString === "function" ? e.toDetailString() : e.message;
+      console.error(`[reel] FB FALHA (IG ja publicou, seguindo): ${d}`);
+    }
+  }
+
   // 7. log + telegram + summary
   log.entries.push({
     weekKey, runAt: now.toISOString(), items: items.map((it) => it.id),
-    track: track.name, accent, postId, containerId, videoUrl,
+    track: track.name, accent, postId, containerId, videoUrl, fbPostId,
     clipsUsed: [...clipForScene.values()].map((p) => path.basename(p)),
   });
   if (log.entries.length > 60) log.entries = log.entries.slice(-60);

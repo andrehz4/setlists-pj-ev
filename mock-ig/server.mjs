@@ -201,6 +201,8 @@ const server = http.createServer(async (req, res) => {
     if (pathname === "/_mock/stories") { const s = load(); return sendJson(res, 200, s.stories); }
     if (pathname === "/_mock/reels") { const s = load(); return sendJson(res, 200, s.reels || []); }
     if (pathname === "/_mock/fbfeed") { const s = load(); return sendJson(res, 200, s.fbfeed || []); }
+    if (pathname === "/_mock/fbstories") { const s = load(); return sendJson(res, 200, s.fbStories || []); }
+    if (pathname === "/_mock/fbreels") { const s = load(); return sendJson(res, 200, s.fbReels || []); }
     if (pathname === "/_mock/usage") {
       // medidor horario: chamadas na ultima hora vs ~200 (limite real do code 4)
       const s = load(); const u = hourlyUsage(s); save(s); return sendJson(res, 200, u);
@@ -510,6 +512,63 @@ const server = http.createServer(async (req, res) => {
       s.fbfeed.unshift({ postId, message: body.message || "", photos, createdAt: new Date().toISOString() });
       save(s);
       return sendGraph(res, 200, { id: postId }, s);
+    }
+
+    // POST /:pageId/video_stories | /:pageId/video_reels  (upload em 3 fases)
+    //   upload_phase=start  -> { video_id, upload_url }
+    //   upload_phase=finish -> { success, post_id }
+    if (method === "POST" && /\/(video_stories|video_reels)$/.test(pathname)) {
+      const edge = /video_reels$/.test(pathname) ? "video_reels" : "video_stories";
+      const body = await readBody(req);
+      const s = load();
+      const fail = failMode(s, query);
+      if (fail === "ratelimit") {
+        bumpCall(s, `POST /${edge}`); save(s);
+        return graphError(res, 429, { code: 4, message: "Application request limit reached" }, s);
+      }
+      if (body.upload_phase === "start") {
+        bumpCall(s, `POST /${edge} start`);
+        const videoId = nextId(s, "vid");
+        if (!s.fbVideos) s.fbVideos = {};
+        s.fbVideos[videoId] = { edge, uploaded: false, fileUrl: null };
+        save(s);
+        return sendGraph(res, 200, { video_id: videoId, upload_url: `http://127.0.0.1:${PORT}/_fbupload/${videoId}` }, s);
+      }
+      if (body.upload_phase === "finish") {
+        const vid = s.fbVideos?.[body.video_id];
+        if (!vid) return graphError(res, 400, { code: 100, message: "video_id inexistente: " + body.video_id }, s);
+        if (!vid.uploaded) return graphError(res, 400, { code: 100, message: "finish antes do upload do video" }, s);
+        bumpCall(s, `POST /${edge} finish`);
+        const postId = nextId(s, edge === "video_reels" ? "fbreel" : "fbstory");
+        const createdAt = new Date().toISOString();
+        if (edge === "video_reels") {
+          if (!s.fbReels) s.fbReels = [];
+          s.fbReels.unshift({ postId, videoUrl: vid.fileUrl, description: body.description || "", createdAt });
+        } else {
+          if (!s.fbStories) s.fbStories = [];
+          s.fbStories.unshift({ postId, videoUrl: vid.fileUrl, createdAt });
+        }
+        save(s);
+        return sendGraph(res, 200, { success: true, post_id: postId }, s);
+      }
+      return graphError(res, 400, { code: 100, message: "upload_phase invalido: " + body.upload_phase }, s);
+    }
+
+    // POST /_fbupload/:videoId  (upload hospedado: le o MP4 do header file_url)
+    if (method === "POST" && pathname.startsWith("/_fbupload/")) {
+      await readBody(req); // drena o corpo (vazio; o que importa e o header)
+      const videoId = pathname.replace("/_fbupload/", "");
+      const s = load();
+      const fileUrl = req.headers["file_url"];
+      const vid = s.fbVideos?.[videoId];
+      if (!vid) return sendJson(res, 400, { success: false, error: "video_id inexistente" });
+      if (!fileUrl) return sendJson(res, 400, { success: false, error: "header file_url ausente" });
+      const mediaErr = await checkLocalMedia(fileUrl);
+      if (mediaErr) return sendJson(res, 400, { success: false, error: mediaErr });
+      vid.uploaded = true; vid.fileUrl = fileUrl;
+      s.fbVideos[videoId] = vid;
+      save(s);
+      return sendJson(res, 200, { success: true });
     }
 
     // GET /:uid/content_publishing_limit
