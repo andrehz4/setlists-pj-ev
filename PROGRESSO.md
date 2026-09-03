@@ -20,11 +20,14 @@ Objetivo do Andre: replicar as publicações no Facebook Pages (Página "Só mai
 
 **Feed FB LIGADO EM PRODUÇÃO (2026-09-03):** `publish-instagram.yml` agora tem `PUBLISH_FB: ${{ inputs.skip_fb && '0' || '1' }}` (ligado por padrão em todo disparo; input `skip_fb` publica só no IG numa run específica). Todo post de notícia passa a sair no FB junto com o IG. O primeiro post real com slides de notícia sai no próximo item maduro (acompanhar via Telegram/Página).
 
-**PENDÊNCIAS (próximos passos):**
-1. **Story no FB** (Fase 2): mesmo MP4 vira `video_story` (upload em fases: start/upload/finish). Integrar em run-publish-story.mjs.
-2. **Reel no FB** (Fase 3): mesmo MP4 semanal vira `video_reel` (upload em fases). Integrar em run-publish-reel.mjs.
-3. Observabilidade: incluir fbPostId no resumo do Telegram do publish (hoje só loga no console).
-4. Acompanhar o PRIMEIRO post real de notícia no FB (slides de verdade), conferir visual do álbum com cards de texto.
+**Story e Reel no FB (FEITO e LIGADO EM PROD, 2026-09-03):** `facebook.mjs` ganhou `publishVideoStory` e `publishVideoReel` (Resumable Upload API em 3 fases: start -> upload hospedado via header file_url, o FB baixa o MP4 do raw -> finish; reel com description=legenda e video_state=PUBLISHED). Mock estendido (rotas video_stories/video_reels/_fbupload, store fbVideos/fbStories/fbReels, GET /_mock/fbstories e /_mock/fbreels). +5 testes (119/119). Integrados best-effort em run-publish-story.mjs e run-publish-reel.mjs (flag PUBLISH_FB=1). Validado e2e no mock (story fbstory_4, reel fbreel_8) E smoke real na Página (story postId=1622306542756313, reel postId=122116915443322237, ambos publicaram ao vivo). `publish-story.yml` e `publish-reel.yml` agora têm FB_PAGE_ID/FB_PAGE_TOKEN/PUBLISH_FB=1. fb-smoke.mjs ganhou modos --story/--reel; fb-smoke.yml input mode.
+
+**Os TRÊS formatos (feed + story + reel) estão no ar nos dois canais (IG + FB).**
+
+**PENDÊNCIAS (menores):**
+1. Observabilidade: incluir fbPostId no resumo do Telegram do publish/story/reel (hoje só loga no console).
+2. Conferir o 1o post/story/reel REAL de notícia no FB (o smoke usou mídia de teste; conteúdo real sai no próximo ciclo de cada formato).
+3. Apagar o reel de teste da Página se quiser (postId=122116915443322237; story expira sozinho).
 
 ## Data anterior
 2026-08-04 (apagão do IG resolvido: token expirado renovado, secrets consertados, alerta no refresh)
