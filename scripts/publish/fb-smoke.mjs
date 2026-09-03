@@ -1,26 +1,32 @@
-// Smoke test do Facebook Pages: valida o Page Token e publica UM album de
-// TESTE na Pagina (3 fotos estaveis do repo), pra conferir permissoes e o
-// visual do album antes de ligar o feed em producao. Usa o MESMO codigo de
-// producao (facebook.mjs). Imprime o post id + URL pra conferencia.
+// Smoke test do Facebook Pages: valida o Page Token e publica UM item de TESTE
+// na Pagina, pra conferir permissoes e o visual antes de ligar em producao.
+// Usa o MESMO codigo de producao (facebook.mjs) e midia estavel do repo.
 //
-// Uso (precisa dos secrets no env, roda no CI via fb-smoke.yml):
-//   FB_PAGE_ID=... FB_PAGE_TOKEN=... node scripts/publish/fb-smoke.mjs
-//   node scripts/publish/fb-smoke.mjs --delete <postId>   (apaga o post de teste)
+// Modos:
+//   node scripts/publish/fb-smoke.mjs            -> feed (album de 3 fotos)
+//   node scripts/publish/fb-smoke.mjs --story    -> video story
+//   node scripts/publish/fb-smoke.mjs --reel     -> video reel
+//   node scripts/publish/fb-smoke.mjs --delete <postId>  -> apaga um post de teste
+//
+// Precisa dos secrets no env (roda no CI via fb-smoke.yml).
 
 import got from "got";
-import { uploadUnpublishedPhoto, createFeedPost } from "./facebook.mjs";
+import {
+  uploadUnpublishedPhoto, createFeedPost, publishVideoStory, publishVideoReel,
+} from "./facebook.mjs";
 
 const FB_API_BASE = process.env.FB_API_BASE || "https://graph.facebook.com/v21.0";
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 
-// Imagens estaveis, versionadas no repo (fallback da banda). Escolhidas por
-// existirem sempre no raw.githubusercontent (os slides reais sao podados).
+// Midia estavel, versionada no repo (existe sempre no raw.githubusercontent).
 const TEST_IMAGES = [
   `${REPO_PUBLIC_BASE}/media/news/img/_band-fallback-1.jpg`,
   `${REPO_PUBLIC_BASE}/media/news/img/_band-fallback-2.jpg`,
   `${REPO_PUBLIC_BASE}/media/news/img/_band-fallback-3.jpg`,
 ];
+const TEST_STORY_MP4 = `${REPO_PUBLIC_BASE}/media/news/instagram-stories/2026-09-02.mp4`;
+const TEST_REEL_MP4 = `${REPO_PUBLIC_BASE}/media/news/instagram-reels/2026-W35.mp4`;
 
 async function validateToken(pageToken) {
   const res = await got(`${FB_API_BASE}/me`, {
@@ -49,7 +55,7 @@ async function main() {
     process.exit(2);
   }
 
-  // modo delete: apaga um post de teste anterior
+  // modo delete
   const delIdx = process.argv.indexOf("--delete");
   if (delIdx >= 0) {
     const postId = process.argv[delIdx + 1];
@@ -59,7 +65,9 @@ async function main() {
     process.exit(r.status < 400 ? 0 : 1);
   }
 
-  console.log(`[fb-smoke] FB_PAGE_ID = ${pageId}`);
+  const mode = process.argv.includes("--reel") ? "reel"
+    : process.argv.includes("--story") ? "story" : "feed";
+  console.log(`[fb-smoke] FB_PAGE_ID = ${pageId} | modo = ${mode}`);
 
   // 1. valida o Page Token e a identidade da Pagina
   console.log("[teste 1/2] GET /me (valida Page Token)...");
@@ -70,21 +78,42 @@ async function main() {
   }
   console.log("");
 
-  // 2. publica um album de teste (mesmo caminho de codigo do feed de producao)
-  console.log("[teste 2/2] publicando album de TESTE (3 fotos)...");
-  const fbids = [];
-  for (const url of TEST_IMAGES) {
-    const id = await uploadUnpublishedPhoto({ pageId, pageToken, imageUrl: url });
-    fbids.push(id);
+  // 2. publica o item de teste (mesmo caminho de codigo de producao)
+  let postId;
+  if (mode === "feed") {
+    console.log("[teste 2/2] publicando album de TESTE (3 fotos)...");
+    const fbids = [];
+    for (const url of TEST_IMAGES) {
+      fbids.push(await uploadUnpublishedPhoto({ pageId, pageToken, imageUrl: url }));
+    }
+    postId = await createFeedPost({
+      pageId, pageToken,
+      message: "[TESTE] Publicacao de teste do @smufdpj no Facebook (album). Pode apagar.",
+      mediaFbids: fbids,
+    });
+  } else if (mode === "story") {
+    console.log("[teste 2/2] publicando STORY de TESTE (video)...");
+    const r = await publishVideoStory({ videoUrl: TEST_STORY_MP4, pageId, pageToken });
+    postId = r.postId;
+  } else {
+    console.log("[teste 2/2] publicando REEL de TESTE (video)...");
+    const r = await publishVideoReel({
+      videoUrl: TEST_REEL_MP4,
+      description: "[TESTE] Reel de teste do @smufdpj no Facebook. Pode apagar. #pearljam",
+      pageId, pageToken,
+    });
+    postId = r.postId;
   }
-  const message = "[TESTE] Publicacao de teste do @smufdpj no Facebook. Validando o formato de album. Pode apagar.";
-  const postId = await createFeedPost({ pageId, pageToken, message, mediaFbids: fbids });
+
   console.log(`  ✓ OK: postId=${postId}`);
   console.log(`  URL: https://www.facebook.com/${postId}`);
   console.log("");
-  console.log("[fb-smoke] TUDO PASSOU. Confira o album na Pagina. Pra apagar depois, dispare");
-  console.log(`  o workflow fb-smoke com delete_post_id=${postId}, ou rode localmente:`);
-  console.log(`  node scripts/publish/fb-smoke.mjs --delete ${postId}`);
+  console.log(`[fb-smoke] TUDO PASSOU (${mode}). Confira na Pagina.`);
+  if (mode === "story") {
+    console.log("  (story expira sozinho em 24h; nao precisa apagar)");
+  } else {
+    console.log(`  Pra apagar: dispare o workflow fb-smoke com delete_post_id=${postId}`);
+  }
 }
 
 main().catch((e) => {

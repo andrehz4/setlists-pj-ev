@@ -21,6 +21,7 @@ import { pickTrackForDate } from "./story-track.mjs";
 import { buildStoryVideo } from "./story-video.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishStory } from "./instagram.mjs";
+import { publishVideoStory } from "./facebook.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
 
@@ -178,12 +179,26 @@ async function main() {
     process.exit(1);
   }
 
+  // 6b. Facebook Pages (story de video), best-effort: o IG ja publicou; falha
+  //     no FB so loga. So com a flag PUBLISH_FB=1 + secrets presentes.
+  let fbPostId = null;
+  if (process.env.PUBLISH_FB === "1" && process.env.FB_PAGE_ID && process.env.FB_PAGE_TOKEN) {
+    try {
+      const fb = await publishVideoStory({ videoUrl });
+      fbPostId = fb.postId;
+      console.log(`[story] FB OK fbPostId=${fbPostId}`);
+    } catch (e) {
+      const d = typeof e.toDetailString === "function" ? e.toDetailString() : e.message;
+      console.error(`[story] FB FALHA (IG ja publicou, seguindo): ${d}`);
+    }
+  }
+
   // 7. registra log + push
   log.entries.push({
     dateKey, runAt: now.toISOString(),
     items: items.map((it) => it.id),
     track: track.name, tarjaColor,
-    postId, containerId, videoUrl,
+    postId, containerId, videoUrl, fbPostId,
   });
   // mantem so ultimos 60 entries
   if (log.entries.length > 60) log.entries = log.entries.slice(-60);

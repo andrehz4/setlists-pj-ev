@@ -6,6 +6,11 @@ name: FB smoke test
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'O que postar de teste'
+        type: choice
+        options: [feed, story, reel]
+        default: feed
       delete_post_id:
         description: 'Se preenchido, APAGA esse post de teste em vez de publicar um novo'
         type: string
@@ -39,5 +44,5 @@ jobs:
           if [ -n "${{ inputs.delete_post_id }}" ]; then
             node scripts/publish/fb-smoke.mjs --delete "${{ inputs.delete_post_id }}"
           else
-            node scripts/publish/fb-smoke.mjs
+            node scripts/publish/fb-smoke.mjs --${{ inputs.mode || 'feed' }}
           fi

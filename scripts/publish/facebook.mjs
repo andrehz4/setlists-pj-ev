@@ -154,3 +154,83 @@ export async function publishFeedAlbum(items, { pageId, pageToken, coverImageUrl
   const postId = await createFeedPost({ pageId, pageToken, message, mediaFbids });
   return { postId, count: items.length, captionLen: message.length };
 }
+
+// ============================================================
+// Video (Story e Reel) - Resumable Upload API do FB, em 3 fases:
+//   1. START  : POST /<page>/<edge> upload_phase=start -> { video_id, upload_url }
+//   2. UPLOAD : POST <upload_url> com header file_url=<mp4>. Upload HOSPEDADO:
+//               o FB baixa o MP4 do raw.githubusercontent sozinho (nao mandamos
+//               bytes), igual o IG faz com video_url. Nada de multipart.
+//   3. FINISH : POST /<page>/<edge> upload_phase=finish video_id=<id> -> { post_id }
+// edge = "video_stories" (story, sem legenda) ou "video_reels" (reel, com
+// description). O video processa assincrono no FB apos o finish.
+// ============================================================
+
+async function startVideoUpload({ pageId, pageToken, edge }) {
+  const r = await postFB(`/${pageId}/${edge}`, { upload_phase: "start", access_token: pageToken });
+  if (!r.video_id || !r.upload_url) {
+    throw new FBAPIError({ path: `/${pageId}/${edge}`, message: `start ${edge}: resposta sem video_id/upload_url (${JSON.stringify(r)})` });
+  }
+  return { videoId: r.video_id, uploadUrl: r.upload_url };
+}
+
+// Upload por URL hospedada: manda file_url no header e o FB busca o MP4. O
+// upload_url e de outro host (rupload.facebook.com), entao chama direto, nao
+// via postFB (que prefixa FB_API_BASE).
+async function uploadHostedVideo({ uploadUrl, pageToken, videoUrl }) {
+  const res = await got.post(uploadUrl, {
+    headers: {
+      Authorization: `OAuth ${pageToken}`,
+      file_url: videoUrl,
+    },
+    timeout: { request: 120000 },
+    retry: { limit: 1 },
+    throwHttpErrors: false,
+    responseType: "json",
+  });
+  if (res.statusCode >= 400 || (res.body && res.body.success === false)) {
+    throw new FBAPIError({ path: uploadUrl, statusCode: res.statusCode, message: `upload de video falhou: ${JSON.stringify(res.body)}` });
+  }
+  return res.body;
+}
+
+function extractPostId(r, edge) {
+  const postId = r.post_id || r.postId || null;
+  if (!postId && r.success !== true) {
+    throw new FBAPIError({ path: `/${edge}`, message: `finish ${edge}: resposta sem post_id (${JSON.stringify(r)})` });
+  }
+  return postId;
+}
+
+// Story da Pagina: video vertical, sem legenda (a API de story nao aceita
+// caption, igual ao IG). Retorna { postId, videoId }.
+export async function publishVideoStory({ videoUrl, pageId, pageToken } = {}) {
+  if (!pageId) pageId = process.env.FB_PAGE_ID;
+  if (!pageToken) pageToken = process.env.FB_PAGE_TOKEN;
+  if (!pageId || !pageToken) throw new Error("publishVideoStory: FB_PAGE_ID e FB_PAGE_TOKEN obrigatorios");
+  if (!videoUrl) throw new Error("publishVideoStory: videoUrl obrigatorio");
+
+  const { videoId, uploadUrl } = await startVideoUpload({ pageId, pageToken, edge: "video_stories" });
+  await uploadHostedVideo({ uploadUrl, pageToken, videoUrl });
+  const r = await postFB(`/${pageId}/video_stories`, {
+    upload_phase: "finish", video_id: videoId, access_token: pageToken,
+  });
+  return { postId: extractPostId(r, "video_stories"), videoId };
+}
+
+// Reel da Pagina: video vertical COM legenda (description). video_state=PUBLISHED
+// publica direto (sem isso fica rascunho). Retorna { postId, videoId }.
+export async function publishVideoReel({ videoUrl, description, pageId, pageToken } = {}) {
+  if (!pageId) pageId = process.env.FB_PAGE_ID;
+  if (!pageToken) pageToken = process.env.FB_PAGE_TOKEN;
+  if (!pageId || !pageToken) throw new Error("publishVideoReel: FB_PAGE_ID e FB_PAGE_TOKEN obrigatorios");
+  if (!videoUrl) throw new Error("publishVideoReel: videoUrl obrigatorio");
+
+  const { videoId, uploadUrl } = await startVideoUpload({ pageId, pageToken, edge: "video_reels" });
+  await uploadHostedVideo({ uploadUrl, pageToken, videoUrl });
+  const r = await postFB(`/${pageId}/video_reels`, {
+    upload_phase: "finish", video_id: videoId, video_state: "PUBLISHED",
+    description: description || "", access_token: pageToken,
+  });
+  return { postId: extractPostId(r, "video_reels"), videoId };
+}
