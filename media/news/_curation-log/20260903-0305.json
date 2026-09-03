@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-03T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-76866be4da",
+      "title": "looking for PJ shirt",
+      "reason": "nao e fan content: post pedindo pra comprar camiseta, nao obra criativa de fa"
+    },
+    {
+      "id": "2a630d998a",
+      "title": "1989 SHO to a 1983 280zx",
+      "reason": "sem mencao a PJ: post sobre projeto de carro (motor Ford Taurus SHO), falso positivo do scraper"
+    }
+  ]
+}
