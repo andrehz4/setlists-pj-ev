@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-04T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "fd8e4728e1",
+      "title": "In an alleged leak of next year's Mad Cool lineup...",
+      "reason": "texto vazio (apenas metadado Reddit, < 200 chars), rumor sem fonte, sem mencao a PJ"
+    },
+    {
+      "id": "1b01be74ac",
+      "title": "Charli at Mad Cool?",
+      "reason": "sem mencao a PJ (post de r/charlixcx sobre Charli XCX)"
+    }
+  ]
+}
