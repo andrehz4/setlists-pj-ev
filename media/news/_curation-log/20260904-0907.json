@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-09-04T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "6bb13fdc2f", "titulo": "Gloria Steinem e o Pearl Jam: o ativismo que os uniu por décadas", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "4eba4417c0", "title": "Saved a few cassettes from the trash...including these. Did I just find gold or?", "reason": "r/cassette (nao r/pearljam), texto vazio (~100 chars), sem conteudo sobre Pearl Jam" }
+  ]
+}
