@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-05T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "fca4a65b40",
+      "title": "Even flow… thoughts arrive like butterflies in Pink {Pearl Jam}",
+      "reason": "PJ tangencial: post de r/Lulufanatics sobre roupas de yoga, PJ mencionado apenas como musica de fundo"
+    },
+    {
+      "id": "8a42afe3b2",
+      "title": "Mad Cool lineup leak",
+      "reason": "texto vazio: article_text so tem 'submitted by /u/scoop813 to r/primaverasound', sem conteudo curavel"
+    }
+  ]
+}
