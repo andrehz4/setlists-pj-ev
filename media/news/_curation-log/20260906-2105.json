@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-06T21:05Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "08e8640bcb",
+      "title": "In defence of Civil War by GNR",
+      "reason": "sem mencao a PJ - post de r/TheDollop sobre GNR, sem relacao com Pearl Jam ou integrantes"
+    },
+    {
+      "id": "a587566540",
+      "title": "Tenha um bom domingo",
+      "reason": "texto vazio e sem mencao a PJ - post de r/Futebola (futebol), nao relacionado a Pearl Jam"
+    }
+  ]
+}
