@@ -1,18 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-06-15",
-      "runAt": "2026-06-15T16:01:12.190Z",
-      "items": [
-        "dab53e1e05"
-      ],
-      "track": "02-nightcast-grunge-diner.mp3",
-      "tarjaColor": "#a87f2c",
-      "postId": "18104714347999591",
-      "containerId": "18142866088471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-06-15.mp4"
-    },
-    {
       "dateKey": "2026-06-16",
       "runAt": "2026-06-16T16:01:06.332Z",
       "items": [
@@ -792,6 +780,19 @@
       "containerId": "18151606528471615",
       "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-09-04.mp4",
       "fbPostId": "2237110130415472"
+    },
+    {
+      "dateKey": "2026-09-06",
+      "runAt": "2026-09-06T16:00:55.157Z",
+      "items": [
+        "cd-20260906"
+      ],
+      "track": "05-alexgrohl-no-filter-garage.mp3",
+      "tarjaColor": "#E10600",
+      "postId": "18196301335380870",
+      "containerId": "18151809484471615",
+      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-09-06.mp4",
+      "fbPostId": "3178590689006820"
     }
   ]
 }
