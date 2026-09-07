@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-09-07T15:08Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20260907", "titulo": "Mike McCready na Gorge com Dave Matthews Band e o debate do Dark Matter", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "04a4720840", "title": "Lineup leak", "reason": "texto vazio: article_text e apenas metadado de submissao sem conteudo sobre Pearl Jam" }
+  ]
+}
