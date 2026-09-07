@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-09-07T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "6e01951104", "titulo": "Mike McCready toca Fool in the Rain com a Dave Matthews Band no Gorge", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "69108ecdbf", "title": "instinto Fatal", "reason": "PJ tangencial: artigo sobre Sharon Stone no SNL 1992, PJ apenas como atração musical do episódio" },
+    { "id": "7ce51416a5", "title": "REPORT FROM THE PIT", "reason": "PJ tangencial: relato de show do Iron Maiden, Roskilde mencionado de passagem em contexto de segurança em shows" }
+  ]
+}
