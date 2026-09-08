@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-08T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "7a66c5a0e5",
+      "title": "RB4/Legacy Delisting DLC Discussion: September 13-September 19, 2026",
+      "reason": "conteudo sobre jogo de videogame (Rock Band DLC), sem mencao a Pearl Jam"
+    },
+    {
+      "id": "831b4bcea8",
+      "title": "Excluding supergroups, what band has had the most members famous for other projects?",
+      "reason": "PJ tangencial, discussao geral no Reddit sobre bandas com membros famosos"
+    }
+  ]
+}
