@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-09T14:10:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "f94e0270f9", "titulo": "Mike McCready celebra 35 anos de Ten e revela a ansiedade de voltar ao palco", "kind": "midia" },
+    { "id": "cd-20260909", "titulo": "Ohana à vista: fãs imaginam o setlist e escrevem ficção sobre o novo baterista", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "6b1b61f951", "title": "OMG THEY ACTUALLY PUT THE SONG IN", "reason": "post de usuário de r/Skate4 sem fonte oficial; texto extraído insuficiente (~270 chars); menção a PJ tangencial (jogo de skate com 'Even Flow')" },
+    { "id": "c0500720af", "title": "DID YALL KNOW ABOUT THIS ?!?", "reason": "duplicata do mesmo tópico (Even Flow no Skate4) via r/Skate4; texto insuficiente; sem fonte verificável" }
+  ]
+}
