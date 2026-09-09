@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-09-09T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "pjcom-news": 1 },
+  "approved": [
+    { "id": "b3ab2acb88", "titulo": "McCready toca hino e se junta ao Soundgarden na abertura dos Seahawks", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "193f502d9b", "title": "Mike McCready and Soundgarden to play Seahawks Season Opener", "reason": "texto vazio - article_text e apenas formulario de cadastro SMS, sem conteudo editorial" }
+  ]
+}
