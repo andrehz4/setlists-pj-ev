@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-09-09T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "8b7ef1dbb1", "titulo": "Mike McCready vai dividir o palco com o Soundgarden na abertura dos Seahawks", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "386af326a4", "title": "Crazy haul from my local record shop just now!", "reason": "texto vazio (so metadado Reddit, sem corpo de noticia sobre PJ)" },
+    { "id": "be3560fe87", "title": "Which artist do you think is the most anti-RYMcore?", "reason": "PJ tangencial (thread de ranking geral, mencao minima e sem relevancia editorial)" }
+  ]
+}
