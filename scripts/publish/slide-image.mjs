@@ -744,6 +744,55 @@ export async function buildCoverSlide(leadItem, destId, bg = "#0a0a0a") {
   return { path: dest, id: destId, reused: false };
 }
 
+// Quebra uma citação em linhas (mantendo o caso original, ao contrário do
+// fitHeadline que é UPPERCASE pra manchete). Reduz a fonte até caber em maxLines.
+function wrapQuote(text, boxW, maxLines, startSize, minSize) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
+  for (let fs = startSize; fs >= minSize; fs -= 2) {
+    const maxChars = Math.max(8, Math.floor(boxW / (fs * 0.50)));
+    const lines = []; let cur = "";
+    for (const w of words) {
+      if (!cur) cur = w;
+      else if ((cur + " " + w).length <= maxChars) cur += " " + w;
+      else { lines.push(cur); cur = w; }
+    }
+    if (cur) lines.push(cur);
+    if (lines.length <= maxLines) return { fs, lines, lh: Math.round(fs * 1.24) };
+  }
+  return null;
+}
+
+// Slide de CITAÇÃO pro carrossel das cápsulas: fundo escuro + aspa decorativa +
+// a frase forte + autor + CTA pra legenda/site. Só tipografia (sem foto), pra a
+// citação respirar. Combina com a capa (mesmo bg, wordmark, fontes).
+export async function buildQuoteSlide({ id, quote, author = "Eddie Vedder", cta = "matéria completa na legenda" }, destId, bg = "#141821") {
+  await ensureSlidesDir();
+  const dest = path.join(SLIDES_DIR, `${destId}.jpg`);
+  const ACCENT = "#e04b53";
+  const PAD = 80;
+  const boxW = SLIDE_W - PAD * 2;
+
+  const fit = wrapQuote(quote, boxW, 7, 68, 40) || wrapQuote(quote, boxW, 9, 40, 30);
+  const blockH = fit.lines.length * fit.lh;
+  const startY = Math.round((SLIDE_H - blockH) / 2) + 40; // centrado, leve deslocamento pra baixo da aspa
+  const spans = fit.lines.map((l, i) => `<tspan x="${PAD}" y="${startY + i * fit.lh}">${escapeXml(l)}</tspan>`).join("");
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${SLIDE_W}" height="${SLIDE_H}" viewBox="0 0 ${SLIDE_W} ${SLIDE_H}">
+  <rect x="0" y="0" width="${SLIDE_W}" height="${SLIDE_H}" fill="${bg}"/>
+  <text x="${SLIDE_W / 2}" y="62" text-anchor="middle" font-family="${F_PLAYFAIR}" font-style="italic" font-weight="900" font-size="28" fill="#ffffff" opacity="0.85" letter-spacing="-0.5">Só Mais um Fã de PEARL JAM</text>
+  <text x="${PAD - 6}" y="${startY - 30}" font-family="${F_PLAYFAIR}" font-weight="900" font-size="200" fill="${ACCENT}" opacity="0.9">&#8220;</text>
+  <text font-family="${F_PLAYFAIR}" font-weight="700" font-size="${fit.fs}" fill="#ffffff" letter-spacing="-0.3">${spans}</text>
+  <text x="${PAD}" y="${startY + blockH + 46}" font-family="${F_INTER_XB}" font-weight="800" font-size="26" fill="${ACCENT}" letter-spacing="1.5">${escapeXml(author.toUpperCase())}</text>
+  <rect x="${PAD}" y="${SLIDE_H - 150}" width="${boxW}" height="2" fill="#ffffff" opacity="0.15"/>
+  <text x="${PAD}" y="${SLIDE_H - 104}" font-family="${F_INTER_XB}" font-weight="800" font-size="24" fill="#ffffff">→ ${escapeXml(cta)}</text>
+  <text x="${PAD}" y="${SLIDE_H - 68}" font-family="${F_INTER_SB}" font-size="21" fill="#ffffff" opacity="0.55" letter-spacing="0.5">setlists-pj-ev.pages.dev</text>
+</svg>`;
+
+  const base = await sharp({ create: { width: SLIDE_W, height: SLIDE_H, channels: 3, background: hexToRgb(bg) } }).png().toBuffer();
+  await sharp(base).composite([{ input: Buffer.from(svg), blend: "over" }]).jpeg({ quality: 88, mozjpeg: true }).toFile(dest);
+  return { path: dest, id: destId, reused: false };
+}
+
 export async function buildSlide(item, { outDir } = {}) {
   await ensureSlidesDir();
 
