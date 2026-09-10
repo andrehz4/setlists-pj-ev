@@ -1,6 +1,27 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
+2026-09-10 (cápsulas do YouTube: base pronta, piloto de 2 matérias APROVADO pelo Andre; falta carrossel + 9 matérias + agendamento)
+
+## ⭐ Sessão 2026-09-10: CÁPSULAS DO YOUTUBE (feature nova, em andamento)
+
+Ideia do Andre: transformar vídeos de PJ do YouTube (entrevistas/docs em outras línguas) em matérias ORIGINAIS PT-BR, publicadas 1/dia às 20h BRT (23:00 UTC, horário livre) no IG+FB. Ver memory [[youtube-capsulas-plano]] pra régua editorial e detalhes.
+
+**FEITO nesta sessão:**
+- Ferramentas em `scripts/news/youtube/`: `descobre.mjs` (busca yt-dlp multi-língua, sem API key), `galeria.mjs` (baixa thumbs + HTML de curadoria com botão descartar), `extrair.mjs` (legenda no idioma original -> acervo local `media/news/youtube-acervo/`, GITIGNORED: transcrição de terceiro NÃO vai pro repo), `rascunhos-preview.mjs` (capa+matéria lado a lado), `_selecao.json`, README.
+- Andre curou 53 candidatos -> **15 aprovados**. Extração: **11 com legenda utilizável**; 4 sem legenda no YouTube (Steve Gleason, Judd Apatow, David Lynch, Conflito) fora por agora (recuperáveis com Whisper depois).
+- Decisões: foto = acervo próprio variando por item (34 fotos, media/band + subjects); publicação começa em rascunho; NUNCA IA fotorrealista de pessoa (imagem se apresenta como arte).
+- `slide-image.mjs`: fetchBaseImageBuffer aceita foto de `/media/` geral (era só /media/news/img/) pra cápsula variar foto. Testes 23/23.
+- **PILOTO APROVADO** ("ficou muito bom"): 2 matérias (Cobain gn5B6N0-U_g, Maracanã iW5l8QIRe8I) em `media/news/youtube-acervo/_rascunhos.json` (gitignored) + capas. Régua funcionou (Cobain: removida toda narração de youtuber, só falas reais do Eddie).
+
+**PRÓXIMO PASSO (retomar aqui):**
+1. **Carrossel** (aprimoramento pedido pelo Andre): além da capa, 2-3 slides de CITAÇÃO (frases fortes do Eddie) + slide CTA ("matéria na legenda + site"). O pipeline JÁ publica carrossel (publishItems). Falta desenhar o slide de citação com a cara do projeto (SVG, reusar tipografia do slide-image/story-styles). Validar 1 slide com o Andre antes de aplicar aos 11.
+2. Escrever as **9 matérias restantes** (ler transcrições em media/news/youtube-acervo/*.json, aplicar régua). IDs: 8HWV4CegsNs(Hype!), YfDVF33wlIw(Earthling), 91sXNMa2XGE(Rock Hall), _sZ2JBcUmcg(Eddie+Stone 1991), K3rWjEEnowI(PJ20), S6mC3Vj7M1o(3sat alemão), kkSZhx7g6_s(Harper/Ohana), 0Y_B_Yh8H0Y(Cornell), xGJfUa_r08Q(MTV 1994).
+3. Tarja da capa: "PEARL JAM · NOTÍCIA" -> "· CÁPSULA" (buildCoverFrontSvg em slide-image.mjs).
+4. **Workflow publish-capsula.yml**: cron 23:00 UTC (20h BRT), pega próxima cápsula pendente, publica IG+FB (reusa publishItems + publishFeedAlbum). Enfileirar as 11, 1/dia.
+5. Integrar matérias aprovadas no fluxo (item kind=youtube).
+
+## Data anterior
 2026-09-02 (Facebook Pages: token permanente + cliente de FEED pronto e testado; story/reel pendentes)
 
 ## ⭐ Sessão 2026-09-02: PUBLICAÇÃO NO FACEBOOK PAGES (feed FEITO, 114/114 testes)
