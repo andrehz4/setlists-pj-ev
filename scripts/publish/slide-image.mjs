@@ -130,7 +130,9 @@ async function fetchBaseImageBuffer(item) {
     console.warn(`[slide] override de ${item.id} falhou (${e.message}), seguindo com fonte normal`);
   }
 
-  if (item.img && item.img.startsWith("/media/news/img/")) {
+  // Foto local do repo: imagens scraped (/media/news/img/) ou foto escolhida do
+  // acervo (/media/band/...), usada pelas cápsulas pra variar a foto por item.
+  if (item.img && item.img.startsWith("/media/")) {
     const local = path.join(process.cwd(), item.img.replace(/^\//, ""));
     try {
       const buf = await fs.readFile(local);
