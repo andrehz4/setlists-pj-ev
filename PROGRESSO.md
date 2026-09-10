@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas: 34 matérias escritas em 5 levas, fila até 13/10; painel de conferência + contador de tokens)
+2026-09-10 (cápsulas: 40 matérias em 6 levas, fila até 19/10; acervo de fotos ampliado pra 87; painel + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -54,7 +54,25 @@ Painel: seções dobráveis (clicar no título da leva) e a tira de slides do mo
 mouse (pointer events) e aceita roda vertical; o scroll-snap foi removido porque puxava o slide de
 volta e dava sensação de arraste invertido.
 
-**Estado:** 34 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 13/10/2026. As duas grandes
+**Leva 6 (6 matérias, ao ar 14/10 a 19/10):** o galpão/HQ como clubhouse (letras do letreiro
+cortadas à mão, o E e o J 20 anos numa garagem em Montana), a turnê abrindo pro Chili Peppers com
+30 min de set e a noite em Cincinnati que mudou tudo, o Vs. ("não consigo cantar no deserto" tirou
+a gravação do Arizona; 1 milhão na 1ª semana), Given to Fly escrita num dia de neve em DADGAD,
+os jeitos opostos de gravar do Mike e do Jeff, e as únicas 4 músicas obrigatórias no setlist.
+
+**Acervo de fotos ampliado (2026-09-10):** fotos-commons.mjs agora busca por INTEGRANTE (7 alvos)
+e salva na pasta de cada um com crédito/licença. 43 fotos novas aprovadas pelo Andre. Acervo foi de
+28 (só Eddie) pra 87 válidas, 68 em alta. Três bugs corrigidos no script: não checava status HTTP
+(Commons devolvia página de erro 429 salva como .jpg, 19 arquivos), slug truncava em 50 chars
+comendo a extensão, e não respeitava limite de taxa. Fotos redimensionadas pra máx 2000px
+(139MB -> 24MB), porque o slide usa 1080px e o .git já está em ~900MB.
+
+**media/band/thumbs-yt/:** 12 thumbnails do YouTube curadas pelo Andre, com _fontes.json (vídeo,
+canal, URL). DECISÃO DELE, com a ressalva registrada: são quadros de transmissão/arte de terceiro,
+várias com logo do canal cravado, e 4 só existem em 640x480. Usar só como último recurso e
+preferindo as de 1280x720, recortando fora o canto com marca.
+
+**Estado:** 40 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 19/10/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
 pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
 guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre
