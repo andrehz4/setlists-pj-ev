@@ -115,7 +115,7 @@ for (const [leva, itens] of [...levas.entries()].sort((a, b) => a[0] - b[0])) {
   const escritaEm = itens[0]?.criadoEm ? new Date(itens[0].criadoEm + "T12:00:00").toLocaleDateString("pt-BR") : "sem data";
   const postadas = itens.filter((c) => naFila.get(c.id)?.postedAt).length;
   blocos.push(`<section>
-    <h2>Leva ${leva || "sem leva"} <small>escrita em ${escritaEm} · ${itens.length} matérias · ${postadas} no ar</small></h2>
+    <h2 class="dobra" tabindex="0" role="button" aria-expanded="true"><span class="seta">▾</span> Leva ${leva || "sem leva"} <small>escrita em ${escritaEm} · ${itens.length} matérias · ${postadas} no ar</small></h2>
     <div class="grid">${cards.join("")}</div>
   </section>`);
 }
@@ -132,6 +132,12 @@ h1{font-size:22px;margin:0 0 4px}
 .resumo{color:#8b93a0;font-size:13px;margin-bottom:32px}
 h2{font-size:15px;color:#e8e6e0;margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid #262b35;text-transform:uppercase;letter-spacing:.06em}
 h2 small{text-transform:none;letter-spacing:0;color:#8b93a0;font-weight:400;margin-left:8px}
+h2.dobra{cursor:pointer;user-select:none;transition:color .15s}
+h2.dobra:hover,h2.dobra:focus{color:#63c295;outline:none}
+.seta{display:inline-block;width:14px;color:#6f7784;transition:transform .18s}
+h2.dobra:hover .seta{color:#63c295}
+section.fechada .seta{transform:rotate(-90deg)}
+section.fechada .grid{display:none}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
 article{background:#161a21;border:1px solid #262b35;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:border-color .15s,transform .15s}
 article:hover,article:focus{border-color:#63c295;transform:translateY(-2px);outline:none}
@@ -176,7 +182,7 @@ h3{font-size:13px;line-height:1.4;margin:8px 12px 6px;font-weight:600}
 </style>
 <h1>Cápsulas do YouTube, por leva</h1>
 <p class="resumo">${total} matérias escritas · ${noAr} já no ar · fila agendada até ${dataBR(ultima)} (1 por dia, 20h BRT)</p>
-<p class="dica">Clique em qualquer cápsula pra conferir as frases do carrossel e a matéria inteira. Setas ← → navegam, Esc fecha.</p>
+<p class="dica">Clique no título de uma leva pra recolher ou expandir. Clique numa cápsula pra conferir o carrossel e a matéria inteira: setas ← → navegam, Esc fecha.</p>
 ${blocos.join("")}
 <div id="fundo"></div>
 <div id="modal"><div class="caixa"><button class="fechar" aria-label="fechar">×</button><div id="conteudo"></div>
@@ -221,6 +227,18 @@ function fechar() {
   document.body.style.overflow = "";
   atual = -1;
 }
+// clique no título da leva recolhe e expande a seção inteira
+document.querySelectorAll("h2.dobra").forEach((h) => {
+  const alterna = () => {
+    const sec = h.closest("section");
+    const fechada = sec.classList.toggle("fechada");
+    h.setAttribute("aria-expanded", String(!fechada));
+  };
+  h.addEventListener("click", alterna);
+  h.addEventListener("keydown", (ev) => {
+    if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); alterna(); }
+  });
+});
 document.querySelectorAll("article[data-id]").forEach((el) => {
   const ir = () => abrir(ORDEM.indexOf(el.dataset.id));
   el.addEventListener("click", ir);
