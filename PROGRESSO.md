@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas: 40 matérias em 6 levas, fila até 19/10; acervo de fotos ampliado pra 87; painel + contador de tokens)
+2026-09-10 (cápsulas: 52 matérias em 8 levas, fila até 31/10; acervo de fotos ampliado pra 87; painel + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -60,6 +60,21 @@ cortadas à mão, o E e o J 20 anos numa garagem em Montana), a turnê abrindo p
 a gravação do Arizona; 1 milhão na 1ª semana), Given to Fly escrita num dia de neve em DADGAD,
 os jeitos opostos de gravar do Mike e do Jeff, e as únicas 4 músicas obrigatórias no setlist.
 
+**Leva 7 (6 matérias, ao ar 20/10 a 25/10), do podcast do Bill Simmons:** "o grupo é mais forte que
+a pessoa" (Jeff e a turma de infância em Montana), dizer não aos próprios heróis (Neil Young e Keith
+Richards ligando; 10 dias pra escrever o Vs.), o dia em que Jeff quis sair (No Code, durou 2 dias) e
+o crédito do Eddie ao público por ter forjado a irmandade, o que Eddie rouba do esporte (foco sob
+pressão; Joe Maddon e a escalação colorida igual ao setlist), o verso "amado por todos e ainda assim
+não sentir que foi amado", e o jogo de uma palavra por disco (Ten = balanço de corda, Vs = softbol,
+Vitalogy = acordeão, No Code = polaroids).
+
+**Leva 8 (6 matérias, ao ar 26/10 a 31/10), da entrevista do Dark Matter:** A CARTA QUE NUNCA FOI
+ABERTA (duas cartas lacradas do Vance Hotel, 1990, escritas 1h antes do 1º show no Off Ramp; a do
+irmão Chris foi aberta, a de Stone e Jeff continua fechada e será aberta pelos três juntos), o
+gravador de 400 dólares comprado de uma estudante que reprovou na aula de gravação, Something
+Special ser sobre as filhas saindo de casa, ativismo sem somar ao barulho (sacolas com meias e US$20),
+Stone e o "aos sessenta ainda tem muito sonho", e a música que cada integrante quer ressuscitar.
+
 **Acervo de fotos ampliado (2026-09-10):** fotos-commons.mjs agora busca por INTEGRANTE (7 alvos)
 e salva na pasta de cada um com crédito/licença. 43 fotos novas aprovadas pelo Andre. Acervo foi de
 28 (só Eddie) pra 87 válidas, 68 em alta. Três bugs corrigidos no script: não checava status HTTP
@@ -72,7 +87,7 @@ canal, URL). DECISÃO DELE, com a ressalva registrada: são quadros de transmiss
 várias com logo do canal cravado, e 4 só existem em 640x480. Usar só como último recurso e
 preferindo as de 1280x720, recortando fora o canto com marca.
 
-**Estado:** 40 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 19/10/2026. As duas grandes
+**Estado:** 52 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 31/10/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
 pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
 guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre
