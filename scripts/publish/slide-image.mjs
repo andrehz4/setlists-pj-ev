@@ -793,6 +793,39 @@ export async function buildQuoteSlide({ id, quote, author = "Eddie Vedder", cta 
   return { path: dest, id: destId, reused: false };
 }
 
+// Slide final do carrossel: CTA forte pra a matéria completa (legenda) + gancho
+// do site (curiosidade "que lugar é esse?"). Fecha a sequência puxando pra ler.
+export async function buildCtaSlide({ hook = "o maior acervo de Pearl Jam do Brasil" } = {}, destId, bg = "#c1272d") {
+  await ensureSlidesDir();
+  const dest = path.join(SLIDES_DIR, `${destId}.jpg`);
+  const cx = SLIDE_W / 2;
+  const DARK = "#141821";
+
+  const hookFit = fitHeadline(hook, SLIDE_W - 140, 2, 60, 42);
+  const hookSpans = hookFit.lines.map((l, i) => `<tspan x="${cx}" y="${872 + i * hookFit.lh}">${escapeXml(l)}</tspan>`).join("");
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${SLIDE_W}" height="${SLIDE_H}" viewBox="0 0 ${SLIDE_W} ${SLIDE_H}">
+  <rect x="0" y="0" width="${SLIDE_W}" height="${SLIDE_H}" fill="${DARK}"/>
+  <text x="${cx}" y="64" text-anchor="middle" font-family="${F_PLAYFAIR}" font-style="italic" font-weight="900" font-size="28" fill="#ffffff" opacity="0.85" letter-spacing="-0.5">Só Mais um Fã de PEARL JAM</text>
+
+  <text x="${cx}" y="430" text-anchor="middle" font-family="${F_ANTON}" font-size="128" fill="#ffffff" letter-spacing="0.5">A MATÉRIA</text>
+  <text x="${cx}" y="558" text-anchor="middle" font-family="${F_ANTON}" font-size="128" fill="${bg}" letter-spacing="0.5">COMPLETA</text>
+  <text x="${cx}" y="632" text-anchor="middle" font-family="${F_INTER_XB}" font-weight="800" font-size="30" fill="#ffffff" letter-spacing="1">está aqui na legenda deste post  &#8595;</text>
+
+  <rect x="${cx - 90}" y="712" width="180" height="3" fill="#ffffff" opacity="0.2"/>
+
+  <text x="${cx}" y="794" text-anchor="middle" font-family="${F_INTER_SB}" font-size="26" fill="#ffffff" opacity="0.65">explore também</text>
+  <text text-anchor="middle" font-family="${F_ANTON}" font-size="${hookFit.fs}" fill="#ffffff" letter-spacing="0.3">${hookSpans}</text>
+
+  <text x="${cx}" y="${SLIDE_H - 150}" text-anchor="middle" font-family="${F_INTER_XB}" font-weight="800" font-size="30" fill="${bg}" letter-spacing="1">link no nosso perfil  &#8599;</text>
+  <text x="${cx}" y="${SLIDE_H - 96}" text-anchor="middle" font-family="${F_INTER_SB}" font-size="24" fill="#ffffff" opacity="0.7" letter-spacing="0.5">setlists-pj-ev.pages.dev</text>
+</svg>`;
+
+  const base = await sharp({ create: { width: SLIDE_W, height: SLIDE_H, channels: 3, background: hexToRgb(DARK) } }).png().toBuffer();
+  await sharp(base).composite([{ input: Buffer.from(svg), blend: "over" }]).jpeg({ quality: 88, mozjpeg: true }).toFile(dest);
+  return { path: dest, id: destId, reused: false };
+}
+
 export async function buildSlide(item, { outDir } = {}) {
   await ensureSlidesDir();
 
