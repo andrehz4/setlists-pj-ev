@@ -127,9 +127,11 @@ async function extrai(v) {
 }
 
 const only = (() => { const i = process.argv.indexOf("--only"); return i >= 0 ? process.argv[i + 1] : null; })();
+const FORCE = process.argv.includes("--force");
 const sel = JSON.parse(fs.readFileSync(SEL, "utf8")).filter((v) => !only || v.id === only);
 console.log(`extraindo ${sel.length} video(s)...\n`);
 for (const v of sel) {
+  if (!FORCE && fs.existsSync(path.join(ACERVO, `${v.id}.json`))) { console.log(`  · ${v.id} já no acervo, pulando`); continue; }
   const out = await extrai(v);
   if (out.erro) { console.log(`  x ${v.id}  ${out.erro}  (${v.title.slice(0, 40)})`); continue; }
   fs.writeFileSync(path.join(ACERVO, `${out.id}.json`), JSON.stringify(out, null, 2));

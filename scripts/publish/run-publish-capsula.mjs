@@ -78,15 +78,24 @@ function buildCaption(cap) {
 }
 
 function loadQueue(rasc) {
-  if (fs.existsSync(QUEUE)) return JSON.parse(fs.readFileSync(QUEUE, "utf8"));
-  // primeira vez: agenda 1/dia às 23:00 UTC (20h BRT), a 1ª no dia da estreia
-  const base = new Date(); base.setUTCHours(23, 0, 0, 0);
-  const q = rasc.map((c, i) => {
-    const d = new Date(base); d.setUTCDate(d.getUTCDate() + i);
-    return { id: c.id, publishAt: d.toISOString(), postedAt: null };
-  });
-  fs.writeFileSync(QUEUE, JSON.stringify(q, null, 2));
-  console.log(`[capsula] fila criada: ${q.length} cápsulas, 1/dia a partir de ${q[0].publishAt}`);
+  const base = new Date(); base.setUTCHours(23, 0, 0, 0); // 20h BRT
+  if (!fs.existsSync(QUEUE)) {
+    // primeira vez: agenda 1/dia, a 1ª no dia da estreia
+    const q = rasc.map((c, i) => { const d = new Date(base); d.setUTCDate(d.getUTCDate() + i); return { id: c.id, publishAt: d.toISOString(), postedAt: null }; });
+    fs.writeFileSync(QUEUE, JSON.stringify(q, null, 2));
+    console.log(`[capsula] fila criada: ${q.length} cápsulas, 1/dia a partir de ${q[0].publishAt}`);
+    return q;
+  }
+  const q = JSON.parse(fs.readFileSync(QUEUE, "utf8"));
+  // sincroniza: rascunhos novos (não na fila) entram 1/dia depois da última data
+  const naFila = new Set(q.map((e) => e.id));
+  const ausentes = rasc.filter((c) => !naFila.has(c.id));
+  if (ausentes.length) {
+    let ultima = q.reduce((m, e) => (new Date(e.publishAt) > new Date(m) ? e.publishAt : m), q[0].publishAt);
+    for (const c of ausentes) { const d = new Date(ultima); d.setUTCDate(d.getUTCDate() + 1); ultima = d.toISOString(); q.push({ id: c.id, publishAt: ultima, postedAt: null }); }
+    fs.writeFileSync(QUEUE, JSON.stringify(q, null, 2));
+    console.log(`[capsula] fila sincronizada: +${ausentes.length} cápsulas novas`);
+  }
   return q;
 }
 
