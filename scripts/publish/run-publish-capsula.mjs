@@ -93,16 +93,16 @@ function loadQueue(rasc) {
 async function gerarSlides(cap, cor, urlBase) {
   fs.mkdirSync(SLIDES_DIR, { recursive: true });
   const urls = [];
-  const capaId = `cap-${cap.id}-00`;
+  const capaId = `${cap.id}-00`;
   await buildCoverSlide({ id: capaId, title_pt: cap.title_capa || cap.title_pt, img: cap.img, tags: cap.tags, kind: "youtube", url: "" }, capaId, cor);
   urls.push(`${urlBase}/${capaId}.jpg`);
   const cs = Array.isArray(cap.carrossel) ? cap.carrossel : [];
   for (let i = 0; i < cs.length; i++) {
-    const qId = `cap-${cap.id}-${String(i + 1).padStart(2, "0")}`;
+    const qId = `${cap.id}-${String(i + 1).padStart(2, "0")}`;
     await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, cor);
     urls.push(`${urlBase}/${qId}.jpg`);
   }
-  const ctaId = `cap-${cap.id}-99`;
+  const ctaId = `${cap.id}-99`;
   await buildCtaSlide({ hook: "o maior acervo de Pearl Jam do Brasil" }, ctaId, cor);
   urls.push(`${urlBase}/${ctaId}.jpg`);
   // capa também vira a imagem do site
@@ -123,6 +123,19 @@ function entrarNoSite(cap, nowIso) {
   fs.writeFileSync(INDEX, JSON.stringify(idx, null, 2));
   fs.mkdirSync(ITEMS_DIR, { recursive: true });
   fs.writeFileSync(path.join(ITEMS_DIR, `${cap.id}.json`), JSON.stringify({ id: cap.id, body_pt: cap.body_pt }, null, 2));
+}
+
+// Espera o raw.githubusercontent propagar o slide antes de publicar (arquivo
+// novo pode levar 15-40s; sem isso o IG baixa 404 e recusa com "Only photo or
+// video can be accepted"). Faz HEAD na 1a URL até 200.
+async function waitForRaw(url, timeoutMs = 90000) {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    try { const r = await fetch(url, { method: "HEAD" }); if (r.ok) return true; } catch { /* retry */ }
+    await new Promise((r) => setTimeout(r, 3000));
+  }
+  console.warn(`[capsula] raw não propagou em ${timeoutMs}ms: ${url}`);
+  return false;
 }
 
 async function telegram(msg) {
@@ -161,7 +174,7 @@ async function main() {
   const caption = buildCaption(cap);
 
   await commitAndPush(["media/news/instagram-slides/", "media/news/img/"], `publish-capsula: slides ${cap.id}`);
-  if (!DRY) await new Promise((r) => setTimeout(r, 5000)); // raw indexar
+  if (!DRY) await waitForRaw(urls[0]); // espera o raw propagar (poll até 200)
 
   if (DRY) { console.log(`[capsula] DRY: ${urls.length} slides, caption ${caption.length} chars, pulando publish`); return; }
 
