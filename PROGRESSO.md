@@ -1,7 +1,40 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas do YouTube: base pronta, piloto de 2 matérias APROVADO pelo Andre; falta carrossel + 9 matérias + agendamento)
+2026-09-10 (cápsulas: 22 matérias escritas em 3 levas, fila até 01/10; painel de conferência + contador de tokens)
+
+## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
+
+**Leva 2 (6 matérias, ao ar 20/09 a 25/09):** Into the Wild com Sean Penn (c5xeDNQFCFY), como Eddie
+começou a cantar (mMqVdpPjwgc), infância no Howard Stern (1vYM8JraHsY), MTV Brasil 2005
+(EvLCx26pTjM), Jeremy e a recusa a videoclipe em 1992 (GtKXcekE2BI), composição no CBS Sunday
+Morning (-1GpIxyVEF8).
+
+**Leva 3 (6 matérias, ao ar 26/09 a 01/10):** Black recusada como single (VZ4oszCKomY, fonte
+documental: Rolling Stone 1993 + Everybody Loves Our Town + PJ20, NUNCA o canal de reupload), trato
+sobre as letras em 1991 (ntiSvEu_Ruo), SNL 1993 + Martin Short (_qMPlKG1-mA), e TRÊS da entrevista
+do Rick Beato com Mike e Jeff (_diG9PZ3CKI): Seattle esquecida, o retorno do Jeff pós Andrew Wood,
+e a semana que criou a banda (essa com material do CBS, id cap-1GpIxyVb).
+
+Rascunhos ganharam campos `leva` e `criadoEm`. Mais de uma cápsula por vídeo é permitido (o id é
+livre, não derivado do videoId): cap-diG9PZ3 / cap-diG9PZ3b, cap-1GpIxyV / cap-1GpIxyVb.
+
+**Painel de conferência (novo):** `scripts/news/youtube/capsulas-grid.mjs` gera /tmp/capsulas-grid.html
+com grid agrupado por leva. Clicar numa cápsula abre modal com o CARROSSEL RENDERIZADO (capa,
+citações e CTA, na cor real do ciclo), as frases em texto com contagem de caracteres, e a matéria
+inteira. Setas navegam, Esc fecha. Os JPGs temporários são apagados do disco após embutir.
+
+**Contador de tokens (novo, global):** a skill `token-monitor` era só documentação, sem script.
+Agora tem `/Users/andrehz/.claude/skills/token-monitor/monitor.mjs`, que lê os transcripts em
+~/.claude/projects/*/*.jsonl e soma o `usage` real de cada resposta. Modos: sessão atual, --sessao
+todas, --projeto todos, --dias N, --turnos, --csv, --json. Separa token novo / cache escrito (1,25x
+em 5min, 2x em 1h) / cache lido (0,1x). Custo é EQUIVALENTE de API (assinatura não cobra por token).
+Achado: o cache economiza ~85% do custo equivalente.
+
+**Estado:** 22 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 01/10/2026. Restam ~25
+vídeos no acervo, mas só 6 a 9 rendem cápsula boa (o resto é documentário narrado por youtuber ou
+compilação, sobra pouca fala original depois da régua). Próximo passo: leva 4 com ZpuuIpsgaPQ
+(Dark Matter/Apple Music) e 84bhhu32PII (Bill Simmons), os dois ainda não lidos.
 
 ## ⭐ Sessão 2026-09-10: CÁPSULAS DO YOUTUBE (feature nova, em andamento)
 
