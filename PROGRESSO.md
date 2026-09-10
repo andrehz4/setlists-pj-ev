@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas: 22 matérias escritas em 3 levas, fila até 01/10; painel de conferência + contador de tokens)
+2026-09-10 (cápsulas: 28 matérias escritas em 4 levas, fila até 07/10; painel de conferência + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -31,10 +31,21 @@ todas, --projeto todos, --dias N, --turnos, --csv, --json. Separa token novo / c
 em 5min, 2x em 1h) / cache lido (0,1x). Custo é EQUIVALENTE de API (assinatura não cobra por token).
 Achado: o cache economiza ~85% do custo equivalente.
 
-**Estado:** 22 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 01/10/2026. Restam ~25
-vídeos no acervo, mas só 6 a 9 rendem cápsula boa (o resto é documentário narrado por youtuber ou
-compilação, sobra pouca fala original depois da régua). Próximo passo: leva 4 com ZpuuIpsgaPQ
-(Dark Matter/Apple Music) e 84bhhu32PII (Bill Simmons), os dois ainda não lidos.
+**Leva 4 (6 matérias, ao ar 02/10 a 07/10):** TRÊS da entrevista do Dark Matter no Apple Music
+(ZpuuIpsgaPQ): a entrada do Andrew Watt, o jeito novo de compor de Won't Tell (Jeff manda a letra,
+Ed não ouve a música) e a noite do Stevie Wonder. TRÊS do podcast do Bill Simmons (84bhhu32PII):
+a jogada de uma mão só por causa do walkman, a biblioteca de beisebol que Johnny Ramone deixou, e
+a origem da presença de palco (salva-vidas) com o "eu não vou ficar olhando ele morrer" do Jeff.
+
+Painel ganhou seções dobráveis: clicar no título da leva recolhe e expande.
+
+**Estado:** 28 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 07/10/2026. As duas grandes
+entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
+pra leva 5: o galpão/HQ como clubhouse, o porão alagado + Rick Rubin de paraquedas + Shangri-La e
+o ônibus do Dylan, a música Wreckage e a noite em que Eddie brigou por 8h de folga, como a banda
+lida com crítica e elogio, e a segunda metade da entrevista do Rick Beato (ainda não lida). No
+acervo bruto sobram sobretudo documentários narrados por youtuber e compilações, que rendem pouco
+depois da régua.
 
 ## ⭐ Sessão 2026-09-10: CÁPSULAS DO YOUTUBE (feature nova, em andamento)
 
