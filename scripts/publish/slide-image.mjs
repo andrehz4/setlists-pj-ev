@@ -744,6 +744,24 @@ export async function buildCoverSlide(leadItem, destId, bg = "#0a0a0a") {
   return { path: dest, id: destId, reused: false };
 }
 
+// Deriva as cores de um slide de cápsula a partir da cor do ciclo do @smufdpj
+// (CYCLE_COLORS): fundo em tom ESCURO da cor (legível pra texto branco) + accent
+// na cor viva. O preto do ciclo cai no grafite + vermelho de marca.
+function mixHex(a, b, t) {
+  const pa = hexToRgb(a), pb = hexToRgb(b);
+  const c = (k) => Math.round(pa[k] + (pb[k] - pa[k]) * t);
+  return `#${[c("r"), c("g"), c("b")].map((n) => n.toString(16).padStart(2, "0")).join("")}`;
+}
+function capsuleColors(cycleColor = "#0a0a0a") {
+  const p = hexToRgb(cycleColor);
+  const lum = 0.299 * p.r + 0.587 * p.g + 0.114 * p.b;
+  const veryDark = lum < 40;
+  return {
+    accent: veryDark ? "#e04b53" : cycleColor,
+    bg: veryDark ? "#141821" : mixHex(cycleColor, "#050608", 0.84),
+  };
+}
+
 // Quebra uma citação em linhas (mantendo o caso original, ao contrário do
 // fitHeadline que é UPPERCASE pra manchete). Reduz a fonte até caber em maxLines.
 function wrapQuote(text, boxW, maxLines, startSize, minSize) {
@@ -765,10 +783,10 @@ function wrapQuote(text, boxW, maxLines, startSize, minSize) {
 // Slide de CITAÇÃO pro carrossel das cápsulas: fundo escuro + aspa decorativa +
 // a frase forte + autor + CTA pra legenda/site. Só tipografia (sem foto), pra a
 // citação respirar. Combina com a capa (mesmo bg, wordmark, fontes).
-export async function buildQuoteSlide({ id, quote, author = "Eddie Vedder", cta = "matéria completa na legenda" }, destId, bg = "#141821") {
+export async function buildQuoteSlide({ id, quote, author = "Eddie Vedder", cta = "matéria completa na legenda" }, destId, cycleColor = "#0a0a0a") {
   await ensureSlidesDir();
   const dest = path.join(SLIDES_DIR, `${destId}.jpg`);
-  const ACCENT = "#e04b53";
+  const { bg, accent: ACCENT } = capsuleColors(cycleColor);
   const PAD = 80;
   const boxW = SLIDE_W - PAD * 2;
 
@@ -795,11 +813,11 @@ export async function buildQuoteSlide({ id, quote, author = "Eddie Vedder", cta 
 
 // Slide final do carrossel: CTA forte pra a matéria completa (legenda) + gancho
 // do site (curiosidade "que lugar é esse?"). Fecha a sequência puxando pra ler.
-export async function buildCtaSlide({ hook = "o maior acervo de Pearl Jam do Brasil" } = {}, destId, bg = "#c1272d") {
+export async function buildCtaSlide({ hook = "o maior acervo de Pearl Jam do Brasil" } = {}, destId, cycleColor = "#E10600") {
   await ensureSlidesDir();
   const dest = path.join(SLIDES_DIR, `${destId}.jpg`);
   const cx = SLIDE_W / 2;
-  const DARK = "#141821";
+  const { bg: DARK, accent: bg } = capsuleColors(cycleColor);
 
   const hookFit = fitHeadline(hook, SLIDE_W - 140, 2, 60, 42);
   const hookSpans = hookFit.lines.map((l, i) => `<tspan x="${cx}" y="${872 + i * hookFit.lh}">${escapeXml(l)}</tspan>`).join("");

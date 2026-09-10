@@ -10,6 +10,7 @@ import { spawnSync } from "node:child_process";
 const ROOT = new URL("../../..", import.meta.url).pathname;
 const sharp = (await import(`${ROOT}node_modules/sharp/lib/index.js`)).default;
 const { buildCoverSlide, buildQuoteSlide, buildCtaSlide } = await import(`${ROOT}scripts/publish/slide-image.mjs`);
+const { CYCLE_COLORS } = await import(`${ROOT}scripts/publish/color-cycle.mjs`);
 
 const rasc = JSON.parse(fs.readFileSync(path.join(ROOT, "media/news/youtube-acervo/_rascunhos.json"), "utf8"));
 const SLIDES = path.join(ROOT, "media/news/instagram-slides");
@@ -20,24 +21,27 @@ async function uri(p) {
 }
 
 const blocks = [];
-for (const r of rasc) {
+for (let ci = 0; ci < rasc.length; ci++) {
+  const r = rasc[ci];
+  // cor do ciclo por cápsula (na demo, roda a paleta começando no vermelho pra mostrar cor)
+  const cor = CYCLE_COLORS[(ci + 1) % CYCLE_COLORS.length];
   const slides = [];
   // 1. capa
   const capaId = `_cx-${r.id}-capa`;
-  await buildCoverSlide({ id: capaId, title_pt: r.title_capa || r.title_pt, img: r.img, tags: r.tags, url: "" }, capaId, "#141821");
+  await buildCoverSlide({ id: capaId, title_pt: r.title_capa || r.title_pt, img: r.img, tags: r.tags, url: "" }, capaId, cor);
   slides.push({ tipo: "capa", uri: await uri(path.join(SLIDES, `${capaId}.jpg`)) });
   fs.rmSync(path.join(SLIDES, `${capaId}.jpg`), { force: true });
   // 2. citações
   const cs = Array.isArray(r.carrossel) ? r.carrossel : [];
   for (let i = 0; i < cs.length; i++) {
     const qId = `_cx-${r.id}-q${i}`;
-    await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, "#141821");
+    await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, cor);
     slides.push({ tipo: "citação", uri: await uri(path.join(SLIDES, `${qId}.jpg`)) });
     fs.rmSync(path.join(SLIDES, `${qId}.jpg`), { force: true });
   }
   // 3. CTA
   const ctaId = `_cx-${r.id}-cta`;
-  await buildCtaSlide({ hook: "o maior acervo de Pearl Jam do Brasil" }, ctaId);
+  await buildCtaSlide({ hook: "o maior acervo de Pearl Jam do Brasil" }, ctaId, cor);
   slides.push({ tipo: "CTA", uri: await uri(path.join(SLIDES, `${ctaId}.jpg`)) });
   fs.rmSync(path.join(SLIDES, `${ctaId}.jpg`), { force: true });
 
