@@ -39,4 +39,8 @@ media/reel-clip/
 # pacote temporario pro Claude Design
 design-handoff/
 design-handoff.zip
-media/news/youtube-acervo/
+# Acervo de cápsulas: transcrições de terceiros NÃO vão pro repo, mas as
+# matérias ORIGINAIS (nossas) e a fila SIM (o workflow precisa delas).
+media/news/youtube-acervo/*
+!media/news/youtube-acervo/_rascunhos.json
+!media/news/youtube-acervo/_capsula-queue.json
