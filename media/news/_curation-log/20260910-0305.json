@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-10T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "b67613bd9b",
+      "title": "Favorite Instrumental Tracks?",
+      "reason": "PJ tangencial: post de r/MetalForTheMasses sobre instrumentais de metal, PJ mencionado de passagem como um dos exemplos"
+    },
+    {
+      "id": "04a0473593",
+      "title": "The 2026 NFL season, but first PEARL JAM!",
+      "reason": "texto vazio: article_text e apenas metadado de submissao, sem conteudo real sobre PJ"
+    }
+  ]
+}
