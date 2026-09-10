@@ -455,6 +455,38 @@ export async function publishItems(items, { igUserId, accessToken, coverImageUrl
   }
 }
 
+// Publica um CARROSSEL a partir de URLs de imagem já prontas (usado pelas
+// cápsulas do YouTube, cujos slides não vêm de slideUrlFor). Mesma recuperação
+// do falso-erro 2207051 do publishItems. Retorna { postId, count }.
+export async function publishCarouselFromUrls(imageUrls, caption, { igUserId, accessToken } = {}) {
+  if (!igUserId) igUserId = process.env.IG_USER_ID;
+  if (!accessToken) accessToken = process.env.IG_ACCESS_TOKEN;
+  if (!igUserId || !accessToken) throw new Error("publishCarouselFromUrls: IG_USER_ID e IG_ACCESS_TOKEN obrigatorios");
+  if (!imageUrls || imageUrls.length < 2) throw new Error("publishCarouselFromUrls: carrossel precisa de >=2 imagens");
+  if (imageUrls.length > 10) throw new Error(`publishCarouselFromUrls: max 10 slides, recebido ${imageUrls.length}`);
+
+  const attemptStartMs = Date.now();
+  const childrenIds = [];
+  for (const url of imageUrls) {
+    const id = await createSlideContainer({ igUserId, accessToken, imageUrl: url });
+    childrenIds.push(id);
+    await new Promise((r) => setTimeout(r, 500));
+  }
+  const carouselId = await createCarouselContainer({ igUserId, accessToken, childrenIds, caption });
+  await new Promise((r) => setTimeout(r, 6000));
+  try {
+    const postId = await publishContainer({ igUserId, accessToken, creationId: carouselId });
+    return { postId, count: imageUrls.length, captionLen: caption.length };
+  } catch (e) {
+    const recovered = await recoverPublishedPost({ igUserId, accessToken, caption, sinceMs: attemptStartMs });
+    if (recovered) {
+      console.warn(`[ig] media_publish deu erro mas o carrossel EXISTE (${recovered}). Tratando como sucesso (falso-erro IG).`);
+      return { postId: recovered, count: imageUrls.length, captionLen: caption.length, recovered: true };
+    }
+    throw e;
+  }
+}
+
 // ============================================================
 // Story (media_type=STORIES) - video vertical 1080x1920, max 60s.
 // Diferente de imagem: video precisa de processamento server-side

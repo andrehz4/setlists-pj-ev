@@ -28,7 +28,7 @@ for (let ci = 0; ci < rasc.length; ci++) {
   const slides = [];
   // 1. capa
   const capaId = `_cx-${r.id}-capa`;
-  await buildCoverSlide({ id: capaId, title_pt: r.title_capa || r.title_pt, img: r.img, tags: r.tags, url: "" }, capaId, cor);
+  await buildCoverSlide({ id: capaId, title_pt: r.title_capa || r.title_pt, img: r.img, tags: r.tags, kind: "youtube", url: "" }, capaId, cor);
   slides.push({ tipo: "capa", uri: await uri(path.join(SLIDES, `${capaId}.jpg`)) });
   fs.rmSync(path.join(SLIDES, `${capaId}.jpg`), { force: true });
   // 2. citações

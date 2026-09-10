@@ -155,6 +155,25 @@ export async function publishFeedAlbum(items, { pageId, pageToken, coverImageUrl
   return { postId, count: items.length, captionLen: message.length };
 }
 
+// Publica um ÁLBUM no feed a partir de URLs de imagem já prontas (cápsulas do
+// YouTube). Espelho do publishFeedAlbum, mas recebe as URLs direto em vez dos
+// items. Retorna { postId, count }.
+export async function publishAlbumFromUrls(imageUrls, message, { pageId, pageToken } = {}) {
+  if (!pageId) pageId = process.env.FB_PAGE_ID;
+  if (!pageToken) pageToken = process.env.FB_PAGE_TOKEN;
+  if (!pageId || !pageToken) throw new Error("publishAlbumFromUrls: FB_PAGE_ID e FB_PAGE_TOKEN obrigatorios");
+  if (!imageUrls || !imageUrls.length) throw new Error("publishAlbumFromUrls: sem imagens");
+
+  const mediaFbids = [];
+  for (const url of imageUrls) {
+    const fbid = await uploadUnpublishedPhoto({ pageId, pageToken, imageUrl: url });
+    mediaFbids.push(fbid);
+    await new Promise((r) => setTimeout(r, 500));
+  }
+  const postId = await createFeedPost({ pageId, pageToken, message, mediaFbids });
+  return { postId, count: imageUrls.length, captionLen: message.length };
+}
+
 // ============================================================
 // Video (Story e Reel) - Resumable Upload API do FB, em 3 fases:
 //   1. START  : POST /<page>/<edge> upload_phase=start -> { video_id, upload_url }

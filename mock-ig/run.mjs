@@ -20,7 +20,7 @@ process.env.FB_PAGE_ID ||= "mock_page";
 process.env.FB_PAGE_TOKEN ||= "mock_token";
 process.env.PUBLISH_FB ||= "1";
 
-const mode = ["story", "reel"].includes(process.argv[2]) ? process.argv[2] : "feed";
+const mode = ["story", "reel", "capsula"].includes(process.argv[2]) ? process.argv[2] : "feed";
 // passa o resto dos args (ex: --max-batches=2) pro pipeline; --no-git sempre
 // (os slides ficam no disco e o mock serve de la, nada vai pro github).
 const passthrough = process.argv.slice(3);
@@ -32,6 +32,8 @@ if (mode === "story") {
   await import("../scripts/publish/run-publish-story.mjs");
 } else if (mode === "reel") {
   await import("../scripts/publish/run-publish-reel.mjs");
+} else if (mode === "capsula") {
+  await import("../scripts/publish/run-publish-capsula.mjs");
 } else {
   await import("../scripts/publish/run-publish.mjs");
 }
