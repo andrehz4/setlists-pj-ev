@@ -1,0 +1,18 @@
+{
+  "runAt": "2026-09-10T21:00:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 8,
+  "distribution": { "midia": 7, "community-digest": 0, "community-spotlight": 0, "pjcom-news": 1 },
+  "approved": [
+    { "id": "2b282dde27", "titulo": "Soundgarden reúne sobreviventes no intervalo da NFL com McCready e Taylor Momsen", "kind": "midia" },
+    { "id": "b8ab7084fe", "titulo": "Soundgarden toca na NFL com McCready e Momsen, e confirma novo disco com Cornell", "kind": "midia" },
+    { "id": "c4b5a55e5b", "titulo": "McCready toca hino ao estilo Hendrix e se junta ao Soundgarden na NFL", "kind": "midia" },
+    { "id": "f680cedcae", "titulo": "Jeff Ament lança primeiro clipe dos P.E.S.T., psicodélico e visceral", "kind": "midia" },
+    { "id": "91591b7ac0", "titulo": "McCready e Dierks Bentley fazem o Justice Jam para combater condenações injustas", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "ac0e86702a", "title": "Songs that feel like it'll all be over soon", "reason": "thread de recomendacoes generica, PJ citado so incidentalmente sem foco na banda" },
+    { "id": "2d1b07ad7a", "title": "*Pearl Jam fades out*", "reason": "texto vazio, apenas metadado de submissao sem conteudo" },
+    { "id": "714ec994b7", "title": "Mike McCready to co-headline Justice Jam with Dierks Bentley", "reason": "texto extraido e apenas boilerplate de opt-in SMS, sem conteudo editorial; evento coberto por 91591b7ac0" }
+  ]
+}
