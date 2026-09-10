@@ -18,10 +18,22 @@ import fs from "node:fs";
 // Buscas focadas em ENTREVISTA/DOC/CONVERSA, multi-língua (o diferencial é o
 // conteúdo que só existe em outras línguas). Edite à vontade pra ampliar.
 const QUERIES = [
+  // multi-língua (o diferencial: conteúdo que só existe em outra língua)
   "pearl jam intervista", "eddie vedder intervista",
   "pearl jam entrevista", "eddie vedder entrevista", "pearl jam entrevista legendado",
   "pearl jam interview deutsch", "pearl jam interview sous-titres",
   "eddie vedder interview", "pearl jam documentario", "pearl jam entrevista subtitulada",
+  // conversas LONGAS: é onde está o material denso (uma entrevista dessas rende
+  // 4 a 6 cápsulas; clipe curto rende meia)
+  "pearl jam podcast interview", "eddie vedder podcast full episode",
+  "eddie vedder long interview", "pearl jam full interview",
+  "eddie vedder in conversation", "pearl jam career retrospective interview",
+  // os outros integrantes, pouco explorados até agora
+  "jeff ament interview", "stone gossard interview", "matt cameron interview",
+  "mike mccready interview", "boom gaspar interview",
+  // temas que já provaram render matéria
+  "eddie vedder songwriting interview", "pearl jam behind the songs",
+  "eddie vedder radio interview archive", "pearl jam 1992 interview",
 ];
 
 function arg(nome, def) {
@@ -50,7 +62,21 @@ function busca(q) {
 const all = (await Promise.all(QUERIES.map(busca))).flat();
 const seen = new Map();
 for (const r of all) if (r.id && !seen.has(r.id)) seen.set(r.id, r);
-const cand = [...seen.values()].filter((r) => r.duration >= MIN).sort((a, b) => b.duration - a.duration);
+// tira o que já foi curado antes (seleção) ou já virou matéria
+const conhecidos = new Set();
+try {
+  const sel = JSON.parse(fs.readFileSync(new URL("_selecao.json", import.meta.url), "utf8"));
+  for (const x of sel) conhecidos.add(x.id);
+} catch { /* primeira rodada */ }
+try {
+  const rasc = JSON.parse(fs.readFileSync(new URL("../../../media/news/youtube-acervo/_rascunhos.json", import.meta.url), "utf8"));
+  for (const x of rasc) conhecidos.add(x.videoId);
+} catch { /* sem rascunhos ainda */ }
+
+const cand = [...seen.values()]
+  .filter((r) => r.duration >= MIN && !conhecidos.has(r.id))
+  .sort((a, b) => b.duration - a.duration);
+console.log(`${conhecidos.size} vídeos já conhecidos foram ignorados`);
 
 fs.writeFileSync(OUT, JSON.stringify(cand, null, 2));
 console.log(`${cand.length} candidatos (>=${MIN}s), de ${all.length} brutos -> ${OUT}`);
