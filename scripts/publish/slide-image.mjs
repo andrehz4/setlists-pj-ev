@@ -630,7 +630,7 @@ function buildCoverFrontSvg(leadItem, bg = "#0a0a0a") {
   const PAD = 56;
   const boxW = SLIDE_W - PAD * 2; // 968
   const tags = Array.isArray(leadItem.tags) ? leadItem.tags : [];
-  const cat = (CAT_LABELS[tags[0]] || "Notícia").toUpperCase();
+  const cat = (leadItem.kind === "youtube" ? "Cápsula" : (CAT_LABELS[tags[0]] || "Notícia")).toUpperCase();
   const label = `PEARL JAM · ${cat}`;
 
   // Rodape ancorado no fundo (design: bottom 0, padding 0 56 64).
