@@ -14,8 +14,9 @@ Ideia do Andre: transformar vídeos de PJ do YouTube (entrevistas/docs em outras
 - `slide-image.mjs`: fetchBaseImageBuffer aceita foto de `/media/` geral (era só /media/news/img/) pra cápsula variar foto. Testes 23/23.
 - **PILOTO APROVADO** ("ficou muito bom"): 2 matérias (Cobain gn5B6N0-U_g, Maracanã iW5l8QIRe8I) em `media/news/youtube-acervo/_rascunhos.json` (gitignored) + capas. Régua funcionou (Cobain: removida toda narração de youtuber, só falas reais do Eddie).
 
+**CARROSSEL FEITO E APROVADO** ("ficou sensacional"): slide-image.mjs ganhou `buildQuoteSlide` (citação: aspa + fala + autor + CTA) e `buildCtaSlide` (CTA final: "matéria na legenda" + gancho "o maior acervo de PJ do Brasil" + link no perfil). Ambos ciclam cor via `capsuleColors(cycleColor)` (color-cycle.mjs): fundo em tom escuro da cor + accent vivo, texto legível. Campo `carrossel:[{tipo:quote,texto,autor}]` nos rascunhos. Preview em `scripts/news/youtube/carrossel-preview.mjs` (capa->citações->CTA, com cores). Sequência = capa + 2-4 citações (progressão narrativa) + CTA.
+
 **PRÓXIMO PASSO (retomar aqui):**
-1. **Carrossel** (aprimoramento pedido pelo Andre): além da capa, 2-3 slides de CITAÇÃO (frases fortes do Eddie) + slide CTA ("matéria na legenda + site"). O pipeline JÁ publica carrossel (publishItems). Falta desenhar o slide de citação com a cara do projeto (SVG, reusar tipografia do slide-image/story-styles). Validar 1 slide com o Andre antes de aplicar aos 11.
 2. Escrever as **9 matérias restantes** (ler transcrições em media/news/youtube-acervo/*.json, aplicar régua). IDs: 8HWV4CegsNs(Hype!), YfDVF33wlIw(Earthling), 91sXNMa2XGE(Rock Hall), _sZ2JBcUmcg(Eddie+Stone 1991), K3rWjEEnowI(PJ20), S6mC3Vj7M1o(3sat alemão), kkSZhx7g6_s(Harper/Ohana), 0Y_B_Yh8H0Y(Cornell), xGJfUa_r08Q(MTV 1994).
 3. Tarja da capa: "PEARL JAM · NOTÍCIA" -> "· CÁPSULA" (buildCoverFrontSvg em slide-image.mjs).
 4. **Workflow publish-capsula.yml**: cron 23:00 UTC (20h BRT), pega próxima cápsula pendente, publica IG+FB (reusa publishItems + publishFeedAlbum). Enfileirar as 11, 1/dia.
