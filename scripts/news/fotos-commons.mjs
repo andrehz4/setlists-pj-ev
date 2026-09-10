@@ -16,14 +16,24 @@ import { spawnSync } from "node:child_process";
 const ROOT = new URL("../..", import.meta.url).pathname;
 const META = "/tmp/commons-fotos.json";
 const APROV = "/tmp/commons-aprovadas.json";
-const DEST = path.join(ROOT, "media/band/subjects/eddie-vedder");
+const SUBJECTS = path.join(ROOT, "media/band/subjects");
 
-const TERMOS = ["Eddie Vedder", "Eddie Vedder live", "Pearl Jam concert", "Pearl Jam live", "Eddie Vedder guitar"];
+// Cada integrante tem seus termos de busca e sua pasta de destino. O prefixo
+// entra no nome do arquivo pra deixar claro de onde a foto veio.
+const ALVOS = [
+  { subject: "eddie-vedder", prefixo: "ev", termos: ["Eddie Vedder", "Eddie Vedder live", "Eddie Vedder guitar", "Eddie Vedder concert"] },
+  { subject: "mike-mccready", prefixo: "mm", termos: ["Mike McCready", "Mike McCready guitar", "Mike McCready Pearl Jam"] },
+  { subject: "jeff-ament", prefixo: "ja", termos: ["Jeff Ament", "Jeff Ament bass", "Jeff Ament Pearl Jam"] },
+  { subject: "stone-gossard", prefixo: "sg", termos: ["Stone Gossard", "Stone Gossard guitar"] },
+  { subject: "matt-cameron", prefixo: "mc", termos: ["Matt Cameron", "Matt Cameron drums", "Matt Cameron Soundgarden"] },
+  { subject: "boom-gaspar", prefixo: "bg", termos: ["Boom Gaspar"] },
+  { subject: "banda", prefixo: "pj", termos: ["Pearl Jam concert", "Pearl Jam live", "Pearl Jam band"] },
+];
 const UA = { "User-Agent": "smufdpj-acervo/1.0 (fan project; contato eng.andrehz@gmail.com)" };
 
 async function buscar() {
   const vistos = new Map();
-  for (const q of TERMOS) {
+  for (const alvo of ALVOS) for (const q of alvo.termos) {
     const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${encodeURIComponent(q)}&gsrnamespace=6&gsrlimit=50&prop=imageinfo&iiprop=url%7Csize%7Cextmetadata&iiurlwidth=440`;
     try {
       const j = await (await fetch(url, { headers: UA })).json();
@@ -32,6 +42,7 @@ async function buscar() {
         if (ii.width < 1500) continue; // alta resolução
         const em = ii.extmetadata || {};
         vistos.set(p.title, {
+          subject: alvo.subject, prefixo: alvo.prefixo,
           title: p.title.replace(/^File:/, ""),
           w: ii.width, h: ii.height,
           lic: (em.LicenseShortName?.value || "?"),
@@ -40,12 +51,38 @@ async function buscar() {
         });
       }
     } catch (e) { console.warn(`busca "${q}": ${e.message}`); }
+    await new Promise((r) => setTimeout(r, 250)); // educado com a API do Commons
   }
   return [...vistos.values()].sort((a, b) => b.w - a.w);
 }
 
 function slug(s) {
-  return s.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^\w.-]/g, "-").replace(/-+/g, "-").slice(0, 50);
+  const ext = (s.match(/\.[a-z0-9]+$/i) || [""])[0];
+  const base = s.slice(0, s.length - ext.length)
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\w.-]/g, "-").replace(/-+/g, "-").slice(0, 50 - ext.length);
+  return base + ext; // truncar sem comer a extensao
+}
+
+// O Commons devolve HTML de erro com status 429/5xx quando aperta o passo.
+// Sem checar isso, a pagina de erro era salva como se fosse a foto.
+async function baixarArquivo(url, tentativas = 4) {
+  for (let i = 0; i < tentativas; i++) {
+    try {
+      const r = await fetch(url, { headers: UA });
+      if (r.ok) {
+        const buf = Buffer.from(await r.arrayBuffer());
+        const assinatura = buf.subarray(0, 4).toString("hex");
+        const imagem = assinatura.startsWith("ffd8") || assinatura.startsWith("89504e47") || assinatura.startsWith("52494646");
+        if (imagem && buf.length > 20000) return buf;
+        throw new Error(`resposta nao e imagem (${buf.length} bytes)`);
+      }
+      throw new Error(`HTTP ${r.status}`);
+    } catch (e) {
+      if (i === tentativas - 1) throw e;
+      await new Promise((r) => setTimeout(r, 1500 * (i + 1)));
+    }
+  }
 }
 
 async function baixar() {
@@ -53,24 +90,31 @@ async function baixar() {
   const idx = JSON.parse(fs.readFileSync(APROV, "utf8"));       // [3,7,12,...] indices aprovados
   const todas = JSON.parse(fs.readFileSync(META, "utf8"));       // metadados de todas
   const aprov = idx.map((i) => todas[i]).filter(Boolean);
-  fs.mkdirSync(DEST, { recursive: true });
-  const creditos = [];
+  const porSubject = new Map();
   let n = 0;
   for (const f of aprov) {
+    const subject = f.subject || "eddie-vedder";
+    const dest = path.join(SUBJECTS, subject);
+    fs.mkdirSync(dest, { recursive: true });
+    const nome = `${f.prefixo || "ev"}-commons-${slug(f.title)}`;
+    if (fs.existsSync(path.join(dest, nome))) { console.log(`  = ${subject}/${nome} (já existe)`); continue; }
     try {
-      const buf = Buffer.from(await (await fetch(f.full, { headers: UA })).arrayBuffer());
-      const nome = `ev-commons-${slug(f.title)}`;
-      fs.writeFileSync(path.join(DEST, nome), buf);
-      creditos.push({ arquivo: nome, autor: f.author, licenca: f.lic, fonte: `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(f.title)}` });
+      const buf = await baixarArquivo(f.full);
+      fs.writeFileSync(path.join(dest, nome), buf);
+      await new Promise((r) => setTimeout(r, 400)); // nao aperta o passo com o Commons
+      if (!porSubject.has(subject)) porSubject.set(subject, []);
+      porSubject.get(subject).push({ arquivo: nome, autor: f.author, licenca: f.lic, fonte: `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(f.title)}` });
       n++;
-      console.log(`  ok ${nome} (${(buf.length / 1024 / 1024).toFixed(1)}MB)`);
+      console.log(`  ok ${subject}/${nome} (${(buf.length / 1024 / 1024).toFixed(1)}MB)`);
     } catch (e) { console.warn(`  x ${f.title}: ${e.message}`); }
   }
-  // registra créditos (obrigação das licenças CC)
-  const credPath = path.join(DEST, "_creditos.json");
-  const prev = fs.existsSync(credPath) ? JSON.parse(fs.readFileSync(credPath, "utf8")) : [];
-  fs.writeFileSync(credPath, JSON.stringify([...prev, ...creditos], null, 2));
-  console.log(`\n${n} fotos baixadas pra ${DEST}\ncréditos em ${credPath}`);
+  // registra créditos por integrante (obrigação das licenças CC)
+  for (const [subject, creditos] of porSubject) {
+    const credPath = path.join(SUBJECTS, subject, "_creditos.json");
+    const prev = fs.existsSync(credPath) ? JSON.parse(fs.readFileSync(credPath, "utf8")) : [];
+    fs.writeFileSync(credPath, JSON.stringify([...prev, ...creditos], null, 2));
+  }
+  console.log(`\n${n} fotos baixadas em ${porSubject.size} pastas de ${SUBJECTS}`);
 }
 
 if (process.argv.includes("--baixar")) { await baixar(); process.exit(0); }
@@ -85,7 +129,7 @@ for (let i = 0; i < fotos.length; i++) {
   const f = fotos[i];
   let uri = "";
   try { uri = `data:image/jpeg;base64,${Buffer.from(await (await fetch(f.thumb, { headers: UA })).arrayBuffer()).toString("base64")}`; } catch {}
-  cards.push(`<div class="c" data-n="${i}"><div class="n">${i}</div><button class="del" onclick="descarta(${i})">✕</button>${uri ? `<img src="${uri}">` : "<div class=noimg>?</div>"}<div class="meta"><div class="s">${f.w}×${f.h} · ${f.lic}</div><div class="a">${f.author.replace(/</g, "&lt;")}</div></div></div>`);
+  cards.push(`<div class="c" data-n="${i}"><div class="n">${i}</div><button class="del" onclick="descarta(${i})">✕</button>${uri ? `<img src="${uri}">` : "<div class=noimg>?</div>"}<div class="meta"><div class="s">${f.w}×${f.h} · ${f.lic}</div><div class="s" style="color:#63c295">${f.subject}</div><div class="a">${f.author.replace(/</g, "&lt;")}</div></div></div>`);
 }
 const html = `<!doctype html><meta charset="utf8"><title>Fotos do acervo · Commons</title>
 <style>body{background:#0f1115;color:#e8e6e0;font-family:system-ui;margin:0;padding:0 20px 40px}
@@ -99,12 +143,12 @@ textarea{width:100%;height:90px;margin-top:10px;background:#111;color:#9fe0a0;bo
 .n{position:absolute;top:6px;left:6px;background:#000a;padding:1px 7px;border-radius:5px;font-size:12px;font-weight:700}
 .del{position:absolute;top:6px;right:6px;background:#000a;color:#fff;border:1px solid #fff3;border-radius:5px;padding:3px 8px;cursor:pointer}.del:hover{background:#c1272d}
 .meta{padding:8px 10px}.s{font-size:11px;color:#8b93a0}.a{font-size:10px;color:#6b7480;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}</style>
-<div class="bar"><h1 style="font-size:18px;margin:0 0 8px">Fotos do Eddie/PJ · Wikimedia Commons (licença livre)</h1>
+<div class="bar"><h1 style="font-size:18px;margin:0 0 8px">Fotos do Pearl Jam · Wikimedia Commons (licença livre)</h1>
 <button class="act" onclick="lista()">📋 Lista das aprovadas</button><button class="act ghost" onclick="reset()">↺ Restaurar</button><span id="count"></span>
 <textarea id="out" readonly onclick="this.select()"></textarea></div>
 <div class="grid">${cards.join("")}</div>
 <script>
-const DATA=${JSON.stringify(fotos.map((f, i) => ({ i, title: f.title, full: f.full, author: f.author, lic: f.lic })))};
+const DATA=${JSON.stringify(fotos.map((f, i) => ({ i, title: f.title, full: f.full, author: f.author, lic: f.lic, subject: f.subject })))};
 const KEY="pj-fotos-descartadas";let fora=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
 function render(){DATA.forEach(d=>{const e=document.querySelector('.c[data-n="'+d.i+'"]');if(e)e.classList.toggle("gone",fora.has(d.i))});document.getElementById("count").textContent=(DATA.length-fora.size)+" de "+DATA.length+" mantidas";localStorage.setItem(KEY,JSON.stringify([...fora]))}
 function descarta(n){fora.add(n);render()}function reset(){fora.clear();document.getElementById("out").style.display="none";render()}
