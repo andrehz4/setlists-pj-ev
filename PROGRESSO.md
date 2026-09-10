@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas: 28 matérias escritas em 4 levas, fila até 07/10; painel de conferência + contador de tokens)
+2026-09-10 (cápsulas: 34 matérias escritas em 5 levas, fila até 13/10; painel de conferência + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -39,11 +39,26 @@ a origem da presença de palco (salva-vidas) com o "eu não vou ficar olhando el
 
 Painel ganhou seções dobráveis: clicar no título da leva recolhe e expande.
 
-**Estado:** 28 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 07/10/2026. As duas grandes
+**Leva 5 (6 matérias, ao ar 08/10 a 13/10):** QUATRO da segunda metade do Rick Beato
+(_diG9PZ3CKI): Yellow Ledbetter fora do Ten (mágoa do Mike por anos), a noite do Stevie Ray Vaughan
+no Gorge que devolveu a guitarra ao Mike, Jeremy escrita num violão Harmony imaginando um baixo de
+12 cordas, e a fita que Chris Cornell mandou (com o desconforto do Mike no Temple of the Dog). DUAS
+do Dark Matter (ZpuuIpsgaPQ): o porão que alagou + Rick Rubin de paraquedas + o ônibus velho do
+Bob Dylan no Shangri-La, e as 8 horas de folga que o Eddie pediu no 15º dia.
+
+ATENÇÃO, fotos: o acervo de fotos do Eddie em 1600px ACABOU na leva 5. As próximas levas vão puxar
+fotos de 1024-1200px (o slide-image avisa "foto media -> realce" e faz upscale, resultado ainda
+aceitável, conferido no olho) ou precisam de nova rodada do scripts/news/fotos-commons.mjs.
+
+Painel: seções dobráveis (clicar no título da leva) e a tira de slides do modal agora arrasta com o
+mouse (pointer events) e aceita roda vertical; o scroll-snap foi removido porque puxava o slide de
+volta e dava sensação de arraste invertido.
+
+**Estado:** 34 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 13/10/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
-pra leva 5: o galpão/HQ como clubhouse, o porão alagado + Rick Rubin de paraquedas + Shangri-La e
-o ônibus do Dylan, a música Wreckage e a noite em que Eddie brigou por 8h de folga, como a banda
-lida com crítica e elogio, e a segunda metade da entrevista do Rick Beato (ainda não lida). No
+pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
+guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre
+solos ("é metafísico", o Andrew exigiu solo em toda faixa, Upper Hand escrito à la Gilmour). No
 acervo bruto sobram sobretudo documentários narrados por youtuber e compilações, que rendem pouco
 depois da régua.
 
