@@ -79,8 +79,8 @@ function buildCaption(cap) {
 
 function loadQueue(rasc) {
   if (fs.existsSync(QUEUE)) return JSON.parse(fs.readFileSync(QUEUE, "utf8"));
-  // primeira vez: agenda 1/dia às 23:00 UTC (20h BRT), começando amanhã
-  const base = new Date(); base.setUTCHours(23, 0, 0, 0); base.setUTCDate(base.getUTCDate() + 1);
+  // primeira vez: agenda 1/dia às 23:00 UTC (20h BRT), a 1ª no dia da estreia
+  const base = new Date(); base.setUTCHours(23, 0, 0, 0);
   const q = rasc.map((c, i) => {
     const d = new Date(base); d.setUTCDate(d.getUTCDate() + i);
     return { id: c.id, publishAt: d.toISOString(), postedAt: null };
