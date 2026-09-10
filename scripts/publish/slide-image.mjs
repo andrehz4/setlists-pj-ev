@@ -767,7 +767,9 @@ function capsuleColors(cycleColor = "#0a0a0a") {
 function wrapQuote(text, boxW, maxLines, startSize, minSize) {
   const words = String(text || "").split(/\s+/).filter(Boolean);
   for (let fs = startSize; fs >= minSize; fs -= 2) {
-    const maxChars = Math.max(8, Math.floor(boxW / (fs * 0.50)));
+    // 0.58 por char: Playfair (serif) é largo; estimar baixo faz a linha caber
+    // na contagem mas estourar a largura real (texto saía da imagem).
+    const maxChars = Math.max(8, Math.floor(boxW / (fs * 0.58)));
     const lines = []; let cur = "";
     for (const w of words) {
       if (!cur) cur = w;
