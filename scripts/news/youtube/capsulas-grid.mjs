@@ -30,8 +30,8 @@ function corDe(id) {
   return CYCLE_COLORS[(i < 0 ? 0 : i) % CYCLE_COLORS.length];
 }
 
-async function uri(arquivo, largura) {
-  const buf = await sharp(arquivo).resize(largura, null).jpeg({ quality: 78 }).toBuffer();
+async function uri(arquivo, largura, qualidade = 72) {
+  const buf = await sharp(arquivo).resize(largura, null).jpeg({ quality: qualidade, mozjpeg: true }).toBuffer();
   return `data:image/jpeg;base64,${buf.toString("base64")}`;
 }
 
@@ -54,7 +54,9 @@ async function carrosselDe(cap) {
     capa = path.join(SLIDES, `${tid}.jpg`);
     temporarios.push(capa);
   }
-  slides.push({ rotulo: "capa", src: await uri(capa, 400) });
+  slides.push({ rotulo: "capa", src: await uri(capa, 320) });
+  // gerada agora, antes de os temporários saírem do disco
+  const miniatura = await uri(capa, 230, 66);
 
   const cs = Array.isArray(cap.carrossel) ? cap.carrossel : [];
   for (let i = 0; i < cs.length; i++) {
@@ -62,17 +64,17 @@ async function carrosselDe(cap) {
     await buildQuoteSlide({ id: tid, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, tid, cor);
     const arq = path.join(SLIDES, `${tid}.jpg`);
     temporarios.push(arq);
-    slides.push({ rotulo: `citação ${i + 1}`, src: await uri(arq, 400) });
+    slides.push({ rotulo: `citação ${i + 1}`, src: await uri(arq, 320) });
   }
 
   const tidCta = `_grid-${cap.id}-cta`;
   await buildCtaSlide({ hook: "o maior acervo de Pearl Jam do Brasil" }, tidCta, cor);
   const arqCta = path.join(SLIDES, `${tidCta}.jpg`);
   temporarios.push(arqCta);
-  slides.push({ rotulo: "CTA", src: await uri(arqCta, 400) });
+  slides.push({ rotulo: "CTA", src: await uri(arqCta, 320) });
 
   for (const t of temporarios) fs.rmSync(t, { force: true });
-  return { slides, miniatura: slides[0].src };
+  return { slides, miniatura };
 }
 
 const levas = new Map();
@@ -102,7 +104,7 @@ for (const [leva, itens] of [...levas.entries()].sort((a, b) => a[0] - b[0])) {
       status, postada, leva,
     };
     cards.push(`<article class="${postada ? "postada" : "pendente"}" data-id="${c.id}" tabindex="0">
-      <img src="${miniatura}" alt="">
+      <img src="${miniatura}" alt="" loading="lazy">
       <div class="meta">
         <span class="tag">${postada ? "PUBLICADA" : "NA FILA"}</span>
         <span class="quando">${status}</span>
