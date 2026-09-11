@@ -1,5 +1,28 @@
 # PROGRESSO, setlists-pj-ev
 
+
+## COMO CONTINUAR (handoff de 2026-09-11, contexto em 93%)
+
+Estado: 116 matérias em 19 levas, fila 1/dia às 20h BRT até 03/01/2027. 1 publicada (Cobain).
+Acervo: 139 vídeos com legenda, ~112 sem usar. Fotos: 122, quase todas em uso.
+
+Próximo passo concreto: LEVA 20 com `nwtb6c3a9Bw` (Stone Gossard, entrevista de arquivo de
+fevereiro de 1995, 11.535 palavras, ainda NÃO lida). Depois dela, os outros intactos são
+`QvuLTJrf_4Y` (Chad Smith com Stone, 67min) e `96x49K17W30` (Mike sobre Dark Matter, 35min).
+
+Receita de uma leva (o que eu fiz 18 vezes hoje):
+1. Ler a transcrição em media/news/youtube-acervo/<videoId>.json (campo `paragrafos`)
+2. Escrever 6 matérias num script em /tmp, aplicar em _rascunhos.json (campos: id, videoId, kind,
+   subject, img, title_capa, title_pt, intro_pt, body_pt, tags, carrossel, leva, criadoEm)
+3. `npm test` + `node scripts/publish/run-publish-capsula.mjs --dry-run --no-git` (sincroniza a fila)
+4. `node scripts/news/youtube/reordenar-fila.mjs --aplicar` (SEMPRE, espalha assunto no calendário)
+5. `node scripts/news/youtube/capsulas-grid.mjs` e RENDERIZAR AS CAPAS PRA OLHAR (regra dura: nome
+   de arquivo NÃO diz quem está na foto; já deu errado 3 vezes)
+6. Commit pelo pipeline padrão
+
+Pendências do Andre: revisar as 116 no painel (/tmp/capsulas-grid.html), decidir sobre a matéria
+opinativa do Dave Abbruzzese (leva 14), e curar fotos de JEFF, STONE e BANDA, que esgotaram.
+
 ## Data
 2026-09-11 (cápsulas: 116 matérias em 19 levas, fila até 03/01/2027; 10 entrevistas longas novas extraídas; painel + contador de tokens)
 
