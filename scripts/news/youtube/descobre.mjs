@@ -19,21 +19,42 @@ import fs from "node:fs";
 // conteúdo que só existe em outras línguas). Edite à vontade pra ampliar.
 const QUERIES = [
   // multi-língua (o diferencial: conteúdo que só existe em outra língua)
-  "pearl jam intervista", "eddie vedder intervista",
+  "pearl jam intervista", "eddie vedder intervista", "pearl jam intervista italiana",
   "pearl jam entrevista", "eddie vedder entrevista", "pearl jam entrevista legendado",
+  "pearl jam entrevista subtitulada", "eddie vedder entrevista subtitulada",
   "pearl jam interview deutsch", "pearl jam interview sous-titres",
-  "eddie vedder interview", "pearl jam documentario", "pearl jam entrevista subtitulada",
-  // conversas LONGAS: é onde está o material denso (uma entrevista dessas rende
-  // 4 a 6 cápsulas; clipe curto rende meia)
+  "pearl jam interview francais", "pearl jam interview espanol",
+  "pearl jam intervju", "pearl jam wywiad", "pearl jam interview nederlands",
+  "パール・ジャム インタビュー",
+  // conversas LONGAS: onde está o material denso
   "pearl jam podcast interview", "eddie vedder podcast full episode",
   "eddie vedder long interview", "pearl jam full interview",
   "eddie vedder in conversation", "pearl jam career retrospective interview",
-  // os outros integrantes, pouco explorados até agora
+  "pearl jam sit down interview", "eddie vedder talks about",
+  // integrantes, individualmente
   "jeff ament interview", "stone gossard interview", "matt cameron interview",
-  "mike mccready interview", "boom gaspar interview",
+  "mike mccready interview", "boom gaspar interview", "josh klinghoffer pearl jam",
+  "dave abbruzzese interview", "dave krusen interview", "jack irons interview",
+  // projetos paralelos e árvore genealógica
+  "mad season interview", "temple of the dog interview", "brad stone gossard band",
+  "rndm jeff ament", "three fish band", "mother love bone interview",
+  "green river band interview", "mookie blaylock pearl jam",
+  // por disco e por época
+  "pearl jam ten anniversary interview", "pearl jam vitalogy interview",
+  "pearl jam no code interview", "pearl jam yield interview",
+  "pearl jam binaural interview", "pearl jam riot act interview",
+  "pearl jam backspacer interview", "pearl jam lightning bolt interview",
+  "pearl jam gigaton interview", "pearl jam dark matter interview",
+  "pearl jam 1991 interview", "pearl jam 1992 interview", "pearl jam 1994 interview",
+  "pearl jam 1996 interview", "pearl jam 1998 interview", "pearl jam 2000 interview",
+  // rádio e TV, onde há muito arquivo
+  "pearl jam rockline radio", "eddie vedder radio interview archive",
+  "pearl jam mtv interview archive", "pearl jam tv interview 90s",
+  "eddie vedder acoustic radio session",
   // temas que já provaram render matéria
   "eddie vedder songwriting interview", "pearl jam behind the songs",
-  "eddie vedder radio interview archive", "pearl jam 1992 interview",
+  "pearl jam ticketmaster", "eddie vedder surfing interview",
+  "eddie vedder activism interview", "pearl jam vinyl record store day interview",
 ];
 
 function arg(nome, def) {
