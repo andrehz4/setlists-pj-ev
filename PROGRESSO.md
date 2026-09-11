@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-11 (cápsulas: 110 matérias em 18 levas, fila até 28/12; 10 entrevistas longas novas extraídas; painel + contador de tokens)
+2026-09-11 (cápsulas: 116 matérias em 19 levas, fila até 03/01/2027; 10 entrevistas longas novas extraídas; painel + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -132,6 +132,18 @@ ensaio), o método de escrever por escrever e garimpar uma linha, por que Black 
 o preço disso no Vs.), o fato de nunca pensar no legado, e a palavra taillights que ele pediu
 emprestada e descobriu ser emprestada do Keith Richards.
 
+**Leva 19 (Matt Cameron no Dean Delray):** a bateria na vitrine da loja de penhores, o cânion a
+duas quadras de casa e pilotar como modo zen igual a tocar, a mudança pra Seattle em 83 com a
+picape do irmão e um colchão (quando todo mundo ia pra LA), o que o impressionou na cena (todo
+mundo obsessivamente tentando ser original), a estratégia do Soundgarden de NÃO tocar em Seattle
+pra não queimar o público e a escolha de assinar com a SST recusando as grandes, e o público que as
+gravadoras não sabiam que existia.
+
+**GARGALO DE FOTOS (2026-09-11):** as pastas de banda, Jeff e Stone esgotaram. As levas 17 a 19 já
+reusam fotos dentro do mesmo integrante, escolhendo as que saem mais longe na fila (o script de cada
+leva faz isso sozinho). Funciona, mas a próxima curadoria deve priorizar JEFF e STONE, que são os
+mais escassos, e fotos de BANDA, que servem pra matéria coletiva.
+
 **ARMADILHA DE FOTO (aprendida na marra):** nome de arquivo NÃO diz quem está na foto.
 `ja-commons-PearlJam-Leeds2014.JPG` estava na pasta do Jeff e mostrava o EDDIE; já tinha ido parar
 em 2 cápsulas. Foi movido pra pasta do Eddie. Regra: sempre renderizar a capa e OLHAR antes de
@@ -200,7 +212,7 @@ canal, URL). DECISÃO DELE, com a ressalva registrada: são quadros de transmiss
 várias com logo do canal cravado, e 4 só existem em 640x480. Usar só como último recurso e
 preferindo as de 1280x720, recortando fora o canto com marca.
 
-**Estado:** 110 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 28/11/2026. As duas grandes
+**Estado:** 116 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 28/11/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
 pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
 guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre
