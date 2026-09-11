@@ -90,6 +90,7 @@ for (const c of rasc) {
 const detalhes = {};
 
 const blocos = [];
+const indice = [];
 for (const [leva, itens] of [...levas.entries()].sort((a, b) => a[0] - b[0])) {
   const cards = [];
   for (const c of itens) {
@@ -118,7 +119,8 @@ for (const [leva, itens] of [...levas.entries()].sort((a, b) => a[0] - b[0])) {
   }
   const escritaEm = itens[0]?.criadoEm ? new Date(itens[0].criadoEm + "T12:00:00").toLocaleDateString("pt-BR") : "sem data";
   const postadas = itens.filter((c) => naFila.get(c.id)?.postedAt).length;
-  blocos.push(`<section>
+  indice.push({ leva, n: itens.length });
+  blocos.push(`<section id="leva-${leva}" data-leva="${leva}">
     <h2 class="dobra" tabindex="0" role="button" aria-expanded="true"><span class="seta">▾</span> Leva ${leva || "sem leva"} <small>escrita em ${escritaEm} · ${itens.length} matérias · ${postadas} no ar</small></h2>
     <div class="grid">${cards.join("")}</div>
   </section>`);
@@ -153,7 +155,17 @@ article img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover}
 .quando{color:#8b93a0;text-transform:uppercase}
 h3{font-size:13px;line-height:1.4;margin:8px 12px 6px;font-weight:600}
 .sub{margin:0 12px 12px;font-size:11px;color:#6f7784}
-.dica{color:#6f7784;font-size:12px;margin:-24px 0 30px}
+.dica{color:#6f7784;font-size:12px;margin:-24px 0 18px}
+/* barra fixa: retrair/expandir tudo + índice das levas */
+.barra{position:sticky;top:0;z-index:5;background:rgba(15,17,21,.94);backdrop-filter:blur(6px);border-bottom:1px solid #262b35;margin:0 -24px 26px;padding:12px 24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.acoes{display:flex;gap:8px;flex:0 0 auto}
+.barra button{background:#1d222b;border:1px solid #333c4a;color:#c9cdd4;border-radius:8px;padding:7px 14px;font-size:12px;cursor:pointer}
+.barra button:hover{border-color:#63c295;color:#fff}
+.indice{display:flex;flex-wrap:wrap;gap:6px}
+.chip-leva{display:inline-flex;align-items:baseline;gap:5px;font-size:12px;color:#c9cdd4;background:#161a21;border:1px solid #262b35;border-radius:20px;padding:5px 11px;text-decoration:none}
+.chip-leva small{color:#6f7784;font-size:10px}
+.chip-leva:hover{border-color:#63c295;color:#fff}
+section{scroll-margin-top:78px}
 /* modal de conferência */
 #fundo{position:fixed;inset:0;background:rgba(8,10,14,.86);display:none;z-index:9;backdrop-filter:blur(3px)}
 #fundo.on{display:block}
@@ -188,6 +200,10 @@ h3{font-size:13px;line-height:1.4;margin:8px 12px 6px;font-weight:600}
 <h1>Cápsulas do YouTube, por leva</h1>
 <p class="resumo">${total} matérias escritas · ${noAr} já no ar · fila agendada até ${dataBR(ultima)} (1 por dia, 20h BRT)</p>
 <p class="dica">Clique no título de uma leva pra recolher ou expandir. Clique numa cápsula pra conferir o carrossel e a matéria inteira: setas ← → navegam, Esc fecha.</p>
+<div class="barra">
+  <div class="acoes"><button id="retrair">retrair todas</button><button id="expandir">expandir todas</button></div>
+  <nav class="indice">${indice.map(({ leva, n }) => `<a class="chip-leva" href="#leva-${leva}" data-leva="${leva}">Leva ${leva || "?"} <small>${n}</small></a>`).join("")}</nav>
+</div>
 ${blocos.join("")}
 <div id="fundo"></div>
 <div id="modal"><div class="caixa"><button class="fechar" aria-label="fechar">×</button><div id="conteudo"></div>
@@ -280,6 +296,28 @@ document.querySelectorAll("h2.dobra").forEach((h) => {
   h.addEventListener("click", alterna);
   h.addEventListener("keydown", (ev) => {
     if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); alterna(); }
+  });
+});
+// barra do topo: retrair e expandir todas as levas de uma vez
+function dobraTodas(fechar) {
+  document.querySelectorAll("section[data-leva]").forEach((sec) => {
+    sec.classList.toggle("fechada", fechar);
+    const h = sec.querySelector("h2.dobra");
+    if (h) h.setAttribute("aria-expanded", String(!fechar));
+  });
+}
+document.getElementById("retrair").addEventListener("click", () => dobraTodas(true));
+document.getElementById("expandir").addEventListener("click", () => dobraTodas(false));
+// índice: abre a leva (se estiver recolhida) e rola até ela
+document.querySelectorAll(".chip-leva").forEach((a) => {
+  a.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    const sec = document.getElementById("leva-" + a.dataset.leva);
+    if (!sec) return;
+    sec.classList.remove("fechada");
+    const h = sec.querySelector("h2.dobra");
+    if (h) h.setAttribute("aria-expanded", "true");
+    sec.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 document.querySelectorAll("article[data-id]").forEach((el) => {
