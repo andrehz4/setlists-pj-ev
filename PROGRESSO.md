@@ -3,12 +3,18 @@
 
 ## COMO CONTINUAR (handoff de 2026-09-11, contexto em 93%)
 
-Estado: 116 matérias em 19 levas, fila 1/dia às 20h BRT até 03/01/2027. 1 publicada (Cobain).
-Acervo: 139 vídeos com legenda, ~112 sem usar. Fotos: 122, quase todas em uso.
+Estado: 122 matérias em 20 levas, fila 1/dia às 20h BRT até 09/01/2027. 1 publicada (Cobain).
+Acervo: 139 vídeos com legenda, ~111 sem usar. Fotos: 122, quase todas em uso.
 
-Próximo passo concreto: LEVA 20 com `nwtb6c3a9Bw` (Stone Gossard, entrevista de arquivo de
-fevereiro de 1995, 11.535 palavras, ainda NÃO lida). Depois dela, os outros intactos são
-`QvuLTJrf_4Y` (Chad Smith com Stone, 67min) e `96x49K17W30` (Mike sobre Dark Matter, 35min).
+Leva 20 FEITA (2026-09-11, sessão nova): Stone Gossard na Rockin' On, fev/1995 (`nwtb6c3a9Bw`),
+ids cap-nwtb6c3 a cap-nwtb6c3f: a colagem do Eddie no avião, Jack Irons (recusou em 1990, entrou
+em 1995), banda como time de basquete sem técnico, gravação do Vitalogy, Loose Groove (adiantamento
+é empréstimo), sessões do Mirror Ball com Neil Young. Trecho sobre Kurt Cobain deixado de fora
+(assunto suicídio). Usou stone-gossard-1/2/3.jpg (sem crédito, mesmo padrão dos outros -N.jpg).
+Mais uma pegadinha de nome: `banda/pj-commons-PearlJam-9-14-06-3.jpg` é só o Mike, não a banda.
+
+Próximo passo concreto: LEVA 21 com `QvuLTJrf_4Y` (Chad Smith com Stone, 67min), depois
+`96x49K17W30` (Mike sobre Dark Matter, 35min). Fotos do Stone agora esgotaram de vez (6 usadas).
 
 Receita de uma leva (o que eu fiz 18 vezes hoje):
 1. Ler a transcrição em media/news/youtube-acervo/<videoId>.json (campo `paragrafos`)
