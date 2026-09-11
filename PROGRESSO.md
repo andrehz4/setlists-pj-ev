@@ -3,7 +3,7 @@
 
 ## COMO CONTINUAR (handoff de 2026-09-11, contexto em 93%)
 
-Estado: 152 matérias em 25 levas, fila 1/dia às 20h BRT até 08/02/2027. 1 publicada (Cobain). Levas 20-25 aguardam curadoria do Andre.
+Estado: 182 matérias em 30 levas, fila 1/dia às 20h BRT até 10/03/2027. 1 publicada (Cobain). Levas 20-30 (66 matérias) aguardam curadoria do Andre.
 Acervo: 139 vídeos com legenda, ~111 sem usar. Fotos: 122, quase todas em uso.
 
 Leva 20 FEITA (2026-09-11, sessão nova): Stone Gossard na Rockin' On, fev/1995 (`nwtb6c3a9Bw`),
@@ -38,9 +38,33 @@ LEVAS 22 a 25 FEITAS (mesma sessão, pedido do Andre: ir até a 25 e parar pra c
 Descartados por repetição: solos do Mike (diG9PZ3e/k), Jeremy (GtKXcek), Mookie (mSlDBfXc), skate do Jeff.
 Deixados de fora por sensibilidade: Kurt Cobain na leva 20, especulação sobre o Eddie na leva 20.
 
-Estado: 152 matérias em 25 levas, fila até 08/02/2027. Levas 20-25 (36 matérias) travadas a partir de
-26/09 pra curadoria. PRÓXIMO PASSO: Andre revisa as 20-25 no painel (/tmp/capsulas-grid.html). Depois
-disso, próximas levas sobem a trava pra --leva-min 26.
+LEVAS 26 a 30 FEITAS (mesma sessão, Andre pediu pra ir até a 30):
+- 26 Stone no podcast do Tigercub, fim de 2025 (`SR-zx4Ih5HU`, cap-SRzx4Ih*): método do Mirror Ball (uma
+  tomada só), sobriedade e recado ao Stone jovem, Queens of the Stone Age no Loose Groove ("20 dólares por
+  disco"), Iggy Pop (All the Way Down, Every Loser 2023) e Fun House, IA e "qual o próximo punk", "compor
+  ainda é roleta".
+- 27 Eddie conduz o lançamento de High Magick com Damien Echols, Seattle, nov/2018 (`jB0mEciwNSU`,
+  cap-jB0mEci*): o dia seguinte à soltura (White Lion), objetos que o Eddie guarda, Jason Baldwin e os
+  frutos do mar, o que a solitária levou, Alford plea ("a esperança morre por último"), confissões falsas.
+- 28 Dave Krusen em 2026 (`wTy2ztPIccw` + `YoPIldylbrs`, cap-wTy2ztP*): camiseta "Gene e Paul" ao lado do
+  Gene Simmons, Alive no rádio (versão da demo), primeiro show no Off Ramp, recuperação, Hall da Fama,
+  Fresno 2022 (checado: 16/05/2022, Matt com covid).
+- 29 especial de rádio do Yield, 1998, Dave Marsh (`Qq5GByxVFm8`, cap-Qq5GByx*): cem tomadas de Even Flow,
+  período de experiência do Jack Irons, Jeff e os Globetrotters, a culpa de vender demais, Ishmael, a turnê.
+- 30 Eddie e Matt Finlin no Q (CBC), 2026, sobre Matter of Time e a EB (`WjvKgMXm2uI`, cap-WjvKgMX*):
+  Come Say Hi (Eli), cura ao alcance, "o Bono vê raiva em você", Deanna, fibra na dieta intelectual, o
+  Vitalogy em vinil.
+Fotos: pasta `jack-irons/` NÃO confirmada (as 3 parecem outro baterista), não usar sem checar. Fotos do
+Stone (6) e do Jeff (7) estão gastas em 3 a 4 usos cada. `media/musicians/stone.png` é miniatura da
+stone-gossard-3.jpg. Banda confirmada: Oakland-2013, p-a-h-35, p-a-h-39, MSG-2010-04, NY-2016-02,
+Hamilton2011-02, O2-World-Berlin, Berlin1-2012, Lollapalooza2007.
+
+Estado: 182 matérias em 30 levas, fila até 10/03/2027. Levas 20-30 (66 matérias) travadas a partir de
+26/09 pra curadoria. PRÓXIMO PASSO: Andre revisa as 20-30 no painel (/tmp/capsulas-grid.html). Depois
+disso, próximas levas sobem a trava pra --leva-min 31. Candidatos restantes com cara de leva boa: Mark
+Richards com a banda (`QxhCQuq_yTo`), Kyle Meredith com Jeff (`8eah6yJxNmQ`) e com Stone (`vViJNtGbG9c`),
+Stone com Matt Pinfield (`Uc_Y3WplS0g`), Matt sobre Melvins (`RV3z6W0GlYo`), Mark Arm (`FVsAKyNeDs0`),
+Steve Turner (`002ayBPLNlo`), Dave Abbruzzese (`hJH63OLD0Z0`, `l2z9-Q2cA3E`).
 Pegadinhas de foto novas: `mike-mccready/mm-commons-AiC10.jpg` é o ALICE IN CHAINS (Jerry Cantrell), não o
 Mike, nunca usar. `banda/pj-commons-PearlJam-Oslo-2012.jpg` e `banda/pj-commons-PearlJam02London2018.jpg`
 são integrante sozinho (Mike), não banda. Fotos do Eddie: só restava 1 livre, agora 0.
