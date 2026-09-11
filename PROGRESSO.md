@@ -111,7 +111,30 @@ SÓ 4 e não 6 porque acabaram as fotos que casam com o assunto. Uma foto de ban
 (cap-1p5-oikf e cap-iwuAYRNb, 40 dias de distância na fila); foi decisão consciente, porque a
 alternativa era pôr rosto do Mike numa matéria do Stone.
 
-**BUSCA NOVA DE VÍDEOS (2026-09-10):** descobre.mjs ampliado pra 25 queries (conversas longas +
+**3ª BUSCA, AMPLIADA (2026-09-10, a pedido do Andre):** descobre.mjs foi de 25 pra 68 queries
+(multi-língua incluindo japonês e polonês, por disco, por época, rádio/TV de arquivo, projetos
+paralelos, e cada integrante incluindo os EX-BATERISTAS). 1.088 resultados brutos -> 151 candidatos
+com 10min+. 16 selecionados, 12 EXTRAÍDOS. Galeria: /tmp/yt-galeria-3.html
+
+Perspectivas que o acervo NÃO tinha e agora tem:
+- ypplQbADz4g Dave Abbruzzese, 158min (ex-baterista, nunca ouvido aqui)
+- MG-OZw5g-qY Dave Krusen, 74min (o PRIMEIRO baterista)
+- AD4WAlGYyBw e OxNZA7pVZs0 Jack Irons (o homem que passou a fita ao Eddie)
+- mSlDBfXiSls Eddie + Jeff no Bill Simmons de 2020, 137min (o do Gigaton; já tínhamos o de 2024)
+- nwtb6c3a9Bw Stone Gossard em fevereiro de 1995, 59min (arquivo)
+- 9gFfSoHIge4 Eddie + Stone na KLOL em 1991 / bfUK_-9_hNY Eddie + Stone 1991
+- Qq5GByxVFm8 especial de rádio do Yield (1998)
+- 9NUzAH-Zl78 Matt Cameron, 88min / XCbazaDbZ5A Jeff Ament, 70min
+- jB0mEciwNSU Eddie em conversa com Damien Echols, 70min
+
+Sem legenda utilizável (fora por enquanto, recuperáveis com Whisper): Self Pollution Radio 1995,
+Yield Interview Radio Special, os dois Lightning Bolt do canal oficial.
+
+**PROJEÇÃO ATUALIZADA:** 234 mil palavras de entrevista real sem usar =~ 138 matérias. Somando à
+fila atual, dá conteúdo diário até ~22/04/2027. NÃO É PRECISO PROCURAR MAIS VÍDEO.
+O gargalo real é FOTO (ver abaixo) e, depois, o ritmo de 1/dia.
+
+**BUSCA ANTERIOR DE VÍDEOS (2026-09-10):** descobre.mjs ampliado pra 25 queries (conversas longas +
 outros integrantes) e passa a ignorar já conhecidos. 59 candidatos novos com 15min+, 14 entraram na
 seleção, 10 EXTRAÍDOS com sucesso (~130 mil palavras). Ainda NÃO usados, cada um vale uma leva:
 SR-zx4Ih5HU (Stone no Tigercub, 91min), s1Ur5FFo9j0 (Jeff no Mike Powell, 87min), 6KO-_WtpfCU (Matt
