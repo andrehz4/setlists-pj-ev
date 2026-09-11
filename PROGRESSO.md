@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-11 (cápsulas: 92 matérias em 15 levas, fila até 10/12; 10 entrevistas longas novas extraídas; painel + contador de tokens)
+2026-09-11 (cápsulas: 104 matérias em 17 levas, fila até 22/12; 10 entrevistas longas novas extraídas; painel + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -119,6 +119,19 @@ rock e que eles nunca quiseram isso (MATÉRIA OPINATIVA, vale revisão do Andre)
 querer entrar, a audição de duas horas no porão de uma galeria, o dia em que Eddie chegou sem aviso,
 e ele nomeando a própria queda sem culpar ninguém.
 
+**Levas 16 e 17:** Eddie e Jeff no Bill Simmons de 2020 (Gigaton): o basquete secreto às 8h com o
+walkman na mão esquerda e o desfecho com o Chili Peppers passando o som, os seis dias entre a banda
+nascer e subir no palco, a figurinha que virou nome de banda, o estúdio como laboratório, o Jeff
+fugindo pra Montana. E Jeff no podcast do Mike Powell: o lixo da cidade aos 14 anos, a pressa que
+irritava as bandas, o restaurante que o educou, as bolsas de futebol recusadas por causa das
+concussões, e as pistas de skate que ele constrói em reservas indígenas.
+
+**ARMADILHA DE FOTO (aprendida na marra):** nome de arquivo NÃO diz quem está na foto.
+`ja-commons-PearlJam-Leeds2014.JPG` estava na pasta do Jeff e mostrava o EDDIE; já tinha ido parar
+em 2 cápsulas. Foi movido pra pasta do Eddie. Regra: sempre renderizar a capa e OLHAR antes de
+aceitar. O _creditos.json de cada pasta tem o campo `evitarCapa: true` nas fotos escuras, com gente
+indistinguível ou vetadas pelo Andre.
+
 **REORDENADOR DE FILA (2026-09-11):** `scripts/news/youtube/reordenar-fila.mjs`. Problema que
 resolve: as matérias são escritas em levas (uma leva por entrevista) e a fila era preenchida na
 ordem de escrita, então saíam SEIS DIAS SEGUIDOS da mesma entrevista, com as mesmas pessoas e temas.
@@ -181,7 +194,7 @@ canal, URL). DECISÃO DELE, com a ressalva registrada: são quadros de transmiss
 várias com logo do canal cravado, e 4 só existem em 640x480. Usar só como último recurso e
 preferindo as de 1280x720, recortando fora o canto com marca.
 
-**Estado:** 92 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 28/11/2026. As duas grandes
+**Estado:** 104 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 28/11/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
 pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
 guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre
