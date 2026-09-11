@@ -1,0 +1,11 @@
+{
+  "runAt": "2026-09-11T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "141b71a005", "title": "Pearl Jam - \"Rats\"", "reason": "texto vazio (so metadado Reddit, sem body real)" },
+    { "id": "4b92394fd3", "title": "The flyer from the one and only time I got to see Nirvana.", "reason": "sem mencao a PJ (post sobre Nirvana)" }
+  ]
+}
