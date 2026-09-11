@@ -59,6 +59,9 @@ Stone (6) e do Jeff (7) estão gastas em 3 a 4 usos cada. `media/musicians/stone
 stone-gossard-3.jpg. Banda confirmada: Oakland-2013, p-a-h-35, p-a-h-39, MSG-2010-04, NY-2016-02,
 Hamilton2011-02, O2-World-Berlin, Berlin1-2012, Lollapalooza2007.
 
+Painel (`capsulas-grid.mjs`) ganhou barra fixa no topo com "retrair todas" / "expandir todas" e índice
+clicável das levas (rola até a leva e abre se estiver recolhida). Com 30 levas a rolagem ficou longa.
+
 Estado: 182 matérias em 30 levas, fila até 10/03/2027. Levas 20-30 (66 matérias) travadas a partir de
 26/09 pra curadoria. PRÓXIMO PASSO: Andre revisa as 20-30 no painel (/tmp/capsulas-grid.html). Depois
 disso, próximas levas sobem a trava pra --leva-min 31. Candidatos restantes com cara de leva boa: Mark
