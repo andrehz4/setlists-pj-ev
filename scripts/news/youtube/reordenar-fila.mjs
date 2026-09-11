@@ -21,6 +21,15 @@ const RASC = path.join(ACERVO, "_rascunhos.json");
 const QUEUE = path.join(ACERVO, "_capsula-queue.json");
 const APLICAR = process.argv.includes("--aplicar");
 
+// TRAVA DE CURADORIA: levas ainda não revisadas pelo Andre só entram a partir de
+// uma data, pra não irem ao ar antes da revisão.
+//   --leva-min 20 --nao-antes 2026-09-25
+const arg = (nome) => { const i = process.argv.indexOf(nome); return i > -1 ? process.argv[i + 1] : null; };
+const LEVA_MIN = arg("--leva-min") ? Number(arg("--leva-min")) : null;
+const NAO_ANTES = arg("--nao-antes");
+if ((LEVA_MIN === null) !== (NAO_ANTES === null)) throw new Error("--leva-min e --nao-antes vão juntos");
+const bloqueada = (cap, data) => LEVA_MIN !== null && (cap.leva || 0) >= LEVA_MIN && data.slice(0, 10) < NAO_ANTES;
+
 // REGRAS DURAS: distância mínima garantida, não é só preferência
 const MIN_DIAS_MESMO_VIDEO = 6;    // teto real: o maior grupo tem 12 matérias em ~79 vagas
 const MIN_DIAS_MESMO_SUBJECT = 3;  // duas matérias sobre a mesma pessoa
@@ -107,12 +116,15 @@ let forcados = 0;
 const pendentesOrdenadas = marcados.map((m) => m.cap);
 for (let i = 0; i < datasLivres.length && pendentesOrdenadas.length; i++) {
   const data = datasLivres[i];
+  // levas travadas não disputam datas antes da trava
+  const livres = pendentesOrdenadas.filter((cap) => !bloqueada(cap, data));
+  if (!livres.length) throw new Error(`nenhuma cápsula liberada para ${data.slice(0, 10)}: trava longa demais`);
   // olha só as 4 próximas da ordem proporcional, pra não desmanchar o espalhamento
-  const janelaCurta = pendentesOrdenadas.slice(0, 4);
+  const janelaCurta = livres.slice(0, 4);
   let validas = janelaCurta.filter((cap) => respeitaMinimos(cap, data, recentes));
   // se a janela curta não tem nenhuma aceitável, procura na lista inteira antes
   // de aceitar uma ruim: espalhamento perfeito vale menos que não repetir fonte
-  if (!validas.length) validas = pendentesOrdenadas.slice(0, 12).filter((cap) => respeitaMinimos(cap, data, recentes));
+  if (!validas.length) validas = livres.slice(0, 12).filter((cap) => respeitaMinimos(cap, data, recentes));
   const pool = validas.length ? validas : janelaCurta;
   if (!validas.length) forcados++;
 
