@@ -3,7 +3,7 @@
 
 ## COMO CONTINUAR (handoff de 2026-09-11, contexto em 93%)
 
-Estado: 122 matérias em 20 levas, fila 1/dia às 20h BRT até 09/01/2027. 1 publicada (Cobain).
+Estado: 152 matérias em 25 levas, fila 1/dia às 20h BRT até 08/02/2027. 1 publicada (Cobain). Levas 20-25 aguardam curadoria do Andre.
 Acervo: 139 vídeos com legenda, ~111 sem usar. Fotos: 122, quase todas em uso.
 
 Leva 20 FEITA (2026-09-11, sessão nova): Stone Gossard na Rockin' On, fev/1995 (`nwtb6c3a9Bw`),
@@ -22,10 +22,30 @@ ambígua virou narração neutra. Datas e pulso checados na web (MusicRadar, Lou
 Fotos da pasta banda conferidas: SÓ `Hamilton2011-02` (banda inteira) e `Lollapalooza2007` (palco e
 multidão) são o que dizem; `p-a-h-30/31/32`, `London2022-01` e `Padova2018` são integrante sozinho.
 
-Pedido do Andre (2026-09-11): fazer até a LEVA 25 com calma e parar; ele faz a curadoria das 20 a 25.
-Plano: 22 `96x49K17W30` (Mike, Dark Matter), 23 `9NUzAH-Zl78` (Matt, Seattle Today), 24 `XCbazaDbZ5A`
-(Jeff, both laugh), 25 Eddie + Stone 1991 (`9gFfSoHIge4` / `bfUK_-9_hNY`, checar repetição com cap-sZ2JBcU).
-Ferramentas da sessão no scratchpad (dump/aplica/capas/mosaico.mjs), recriáveis a partir da receita.
+LEVAS 22 a 25 FEITAS (mesma sessão, pedido do Andre: ir até a 25 e parar pra curadoria dele):
+- 22 Mike na rádio The Rock, NZ, nov/2024 (`96x49K17W30`, cap-96x49K1*): solo de Reach Down com o cigarro
+  do Cornell, Tom Petty (Rickenbacker 12 cordas, bateria na jam), Johnny Ramone "legais demais", ópera-rock
+  sobre Seattle, dia de show (setlist às 4 da tarde), a ponte de Dark Matter.
+- 23 Matt no Seattle Today, maio/2021 (`9NUzAH-Zl78`, cap-9NUzAH*): corda do Kurt no OK Hotel, o telefonema
+  de 1998 atendido pelo Eddie, Geddy Lee e Neil Peart, Jimmy Page, Attack of the Killer Tomatoes (Puberty
+  Love, "Foo Cameron", 14 anos), anos até emplacar música no Soundgarden e no PJ.
+- 24 Jeff no both laugh, jul/2021 (`XCbazaDbZ5A`, cap-XCbazaD*): uma música por dia na pandemia, o disco
+  como luto (mortes de fev a abr/2020), "faço doze dessas que vocês fizeram duas" (No Code -> Yield),
+  músicas estranhas (Pendulum, Help Help, Push Me Pull Me), Tunnel of Love e Steve Turner, punk + PiL.
+- 25 Eddie e Stone em 1991: KLOL Houston 7/12/1991 (`9gFfSoHIge4`, cap-9gFfSoH a e) com Why Go, Alive,
+  "sou uma esponja", o nado na plateia, as lições do Stone; e o Magic Johnson (cap-9gFfSoHf, videoId
+  `bfUK_-9_hNY`, subject banda). O resto da MuchMusic `bfUK_-9_hNY` é o MESMO material de cap-sZ2JBcU.
+Descartados por repetição: solos do Mike (diG9PZ3e/k), Jeremy (GtKXcek), Mookie (mSlDBfXc), skate do Jeff.
+Deixados de fora por sensibilidade: Kurt Cobain na leva 20, especulação sobre o Eddie na leva 20.
+
+Estado: 152 matérias em 25 levas, fila até 08/02/2027. Levas 20-25 (36 matérias) travadas a partir de
+26/09 pra curadoria. PRÓXIMO PASSO: Andre revisa as 20-25 no painel (/tmp/capsulas-grid.html). Depois
+disso, próximas levas sobem a trava pra --leva-min 26.
+Pegadinhas de foto novas: `mike-mccready/mm-commons-AiC10.jpg` é o ALICE IN CHAINS (Jerry Cantrell), não o
+Mike, nunca usar. `banda/pj-commons-PearlJam-Oslo-2012.jpg` e `banda/pj-commons-PearlJam02London2018.jpg`
+são integrante sozinho (Mike), não banda. Fotos do Eddie: só restava 1 livre, agora 0.
+Ferramentas da sessão no scratchpad (dump/aplica/capas/mosaico.mjs), recriáveis a partir da receita. A
+`aplica.mjs` aceita videoId e subject por matéria (leva com duas entrevistas).
 
 Receita de uma leva (o que eu fiz 18 vezes hoje):
 1. Ler a transcrição em media/news/youtube-acervo/<videoId>.json (campo `paragrafos`)
