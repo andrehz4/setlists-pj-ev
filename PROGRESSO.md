@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas: 80 matérias em 13 levas, fila até 28/11; 10 entrevistas longas novas extraídas; painel + contador de tokens)
+2026-09-11 (cápsulas: 92 matérias em 15 levas, fila até 10/12; 10 entrevistas longas novas extraídas; painel + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -111,6 +111,14 @@ SÓ 4 e não 6 porque acabaram as fotos que casam com o assunto. Uma foto de ban
 (cap-1p5-oikf e cap-iwuAYRNb, 40 dias de distância na fila); foi decisão consciente, porque a
 alternativa era pôr rosto do Mike numa matéria do Stone.
 
+**Leva 14 (Dave Abbruzzese, baterista do Vs./Vitalogy) e Leva 15 (Dave Krusen, o PRIMEIRO
+baterista, o do Ten):** duas vozes inéditas no acervo. Abbruzzese: a cadeia de acasos que o levou à
+banda, ter quase recusado, os anos sem ouvir o Ten, a tese de que dirigia a banda como baterista de
+rock e que eles nunca quiseram isso (MATÉRIA OPINATIVA, vale revisão do Andre), a van sem ar e o
+ônibus com motorista bêbado, e a vitrolinha dos Beatles. Krusen: a foto na Rolling Stone que o fez
+querer entrar, a audição de duas horas no porão de uma galeria, o dia em que Eddie chegou sem aviso,
+e ele nomeando a própria queda sem culpar ninguém.
+
 **REORDENADOR DE FILA (2026-09-11):** `scripts/news/youtube/reordenar-fila.mjs`. Problema que
 resolve: as matérias são escritas em levas (uma leva por entrevista) e a fila era preenchida na
 ordem de escrita, então saíam SEIS DIAS SEGUIDOS da mesma entrevista, com as mesmas pessoas e temas.
@@ -173,7 +181,7 @@ canal, URL). DECISÃO DELE, com a ressalva registrada: são quadros de transmiss
 várias com logo do canal cravado, e 4 só existem em 640x480. Usar só como último recurso e
 preferindo as de 1280x720, recortando fora o canto com marca.
 
-**Estado:** 80 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 28/11/2026. As duas grandes
+**Estado:** 92 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 28/11/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
 pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
 guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre

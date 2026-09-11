@@ -13,6 +13,8 @@ const sharp = (await import(`${ROOT}node_modules/sharp/lib/index.js`)).default;
 const { buildCoverSlide, buildQuoteSlide, buildCtaSlide } = await import(`${ROOT}scripts/publish/slide-image.mjs`);
 const { CYCLE_COLORS } = await import(`${ROOT}scripts/publish/color-cycle.mjs`);
 
+// --leve gera uma versão enxuta (imagens menores) pra publicar como página web
+const LEVE = process.argv.includes("--leve");
 const ACERVO = path.join(ROOT, "media/news/youtube-acervo");
 const SLIDES = path.join(ROOT, "media/news/instagram-slides");
 const rasc = JSON.parse(fs.readFileSync(path.join(ACERVO, "_rascunhos.json"), "utf8"));
@@ -54,9 +56,9 @@ async function carrosselDe(cap) {
     capa = path.join(SLIDES, `${tid}.jpg`);
     temporarios.push(capa);
   }
-  slides.push({ rotulo: "capa", src: await uri(capa, 320) });
+  slides.push({ rotulo: "capa", src: await uri(capa, LEVE ? 150 : 320, LEVE ? 46 : 72) });
   // gerada agora, antes de os temporários saírem do disco
-  const miniatura = await uri(capa, 230, 66);
+  const miniatura = await uri(capa, LEVE ? 150 : 230, LEVE ? 48 : 66);
 
   const cs = Array.isArray(cap.carrossel) ? cap.carrossel : [];
   for (let i = 0; i < cs.length; i++) {
@@ -64,14 +66,14 @@ async function carrosselDe(cap) {
     await buildQuoteSlide({ id: tid, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, tid, cor);
     const arq = path.join(SLIDES, `${tid}.jpg`);
     temporarios.push(arq);
-    slides.push({ rotulo: `citação ${i + 1}`, src: await uri(arq, 320) });
+    slides.push({ rotulo: `citação ${i + 1}`, src: await uri(arq, LEVE ? 150 : 320, LEVE ? 46 : 72) });
   }
 
   const tidCta = `_grid-${cap.id}-cta`;
   await buildCtaSlide({ hook: "o maior acervo de Pearl Jam do Brasil" }, tidCta, cor);
   const arqCta = path.join(SLIDES, `${tidCta}.jpg`);
   temporarios.push(arqCta);
-  slides.push({ rotulo: "CTA", src: await uri(arqCta, 320) });
+  slides.push({ rotulo: "CTA", src: await uri(arqCta, LEVE ? 150 : 320, LEVE ? 46 : 72) });
 
   for (const t of temporarios) fs.rmSync(t, { force: true });
   return { slides, miniatura };
@@ -297,6 +299,7 @@ document.addEventListener("keydown", (ev) => {
 });
 </script>`;
 
-fs.writeFileSync("/tmp/capsulas-grid.html", html);
-console.log(`\npainel: /tmp/capsulas-grid.html`);
-try { spawnSync("open", ["/tmp/capsulas-grid.html"]); } catch { /* sem GUI */ }
+const destino = LEVE ? "/tmp/capsulas-grid-leve.html" : "/tmp/capsulas-grid.html";
+fs.writeFileSync(destino, html);
+console.log(`\npainel: ${destino}`);
+if (!LEVE) try { spawnSync("open", [destino]); } catch { /* sem GUI */ }
