@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas: 76 matérias em 12 levas, fila até 24/11; 10 entrevistas longas novas extraídas; painel + contador de tokens)
+2026-09-10 (cápsulas: 80 matérias em 13 levas, fila até 28/11; 10 entrevistas longas novas extraídas; painel + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -101,11 +101,21 @@ Minneapolis, o forasteiro de blues numa cena isolada ("todo mundo sabia as mesma
 Layne Staley gravando as vozes sozinho de madrugada, November Hotel ser o indicativo de chamada do
 caça do pai dele no Vietnã, e a decisão de dividir os direitos em quatro partes iguais.
 
+**Leva 13 (só 4 matérias, ao ar 25/11 a 28/11), Stone Gossard no Lipps Service:** "você não quer
+ser bom" (a frase do Steve Turner que reorganizou a cabeça dele aos 16), entrou na primeira banda
+porque tinha amplificador e virou compositor por ter boa memória ("quem lembra menos chama de
+solo"), abriram pro Dead Kennedys e saíram no jornal quando ele tocava guitarra havia 6 meses, e
+ver o Mudhoney pela primeira vez ("era isso que o Green River deveria ter sido").
+
+SÓ 4 e não 6 porque acabaram as fotos que casam com o assunto. Uma foto de banda ficou repetida
+(cap-1p5-oikf e cap-iwuAYRNb, 40 dias de distância na fila); foi decisão consciente, porque a
+alternativa era pôr rosto do Mike numa matéria do Stone.
+
 **BUSCA NOVA DE VÍDEOS (2026-09-10):** descobre.mjs ampliado pra 25 queries (conversas longas +
 outros integrantes) e passa a ignorar já conhecidos. 59 candidatos novos com 15min+, 14 entraram na
 seleção, 10 EXTRAÍDOS com sucesso (~130 mil palavras). Ainda NÃO usados, cada um vale uma leva:
 SR-zx4Ih5HU (Stone no Tigercub, 91min), s1Ur5FFo9j0 (Jeff no Mike Powell, 87min), 6KO-_WtpfCU (Matt
-no Dean Delray, 94min), iwuAYRNb_74 (Stone no Lipps Service, 69min), AecYalbsOqU (Eddie no SmartLess,
+no Dean Delray, 94min), AecYalbsOqU (Eddie no SmartLess,
 71min), QvuLTJrf_4Y (Chad Smith com Stone, 67min), 96x49K17W30 (Mike sobre Dark Matter, 35min).
 Galeria de curadoria dos 59: /tmp/yt-galeria-2.html
 
@@ -126,7 +136,7 @@ canal, URL). DECISÃO DELE, com a ressalva registrada: são quadros de transmiss
 várias com logo do canal cravado, e 4 só existem em 640x480. Usar só como último recurso e
 preferindo as de 1280x720, recortando fora o canto com marca.
 
-**Estado:** 76 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 24/11/2026. As duas grandes
+**Estado:** 80 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 28/11/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
 pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
 guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre
