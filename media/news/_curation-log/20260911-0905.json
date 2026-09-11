@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-11T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "0b541c1cc2",
+      "title": "Billboard Modern Rock 9/10/94",
+      "reason": "texto vazio (uma frase genérica), subreddit r/Xennials sem relação com Pearl Jam"
+    },
+    {
+      "id": "49343de776",
+      "title": "Soundgarden 2027 tour",
+      "reason": "rumor especulativo sobre Soundgarden (Matt Cameron saiu do PJ em 2023), texto truncado, conexão com PJ periférica"
+    }
+  ]
+}
