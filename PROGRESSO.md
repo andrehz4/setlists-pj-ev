@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas: 52 matérias em 8 levas, fila até 31/10; acervo de fotos ampliado pra 87; painel + contador de tokens)
+2026-09-10 (cápsulas: 64 matérias em 10 levas, fila até 12/11; 10 entrevistas longas novas extraídas; painel + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -75,6 +75,33 @@ gravador de 400 dólares comprado de uma estudante que reprovou na aula de grava
 Special ser sobre as filhas saindo de casa, ativismo sem somar ao barulho (sacolas com meias e US$20),
 Stone e o "aos sessenta ainda tem muito sonho", e a música que cada integrante quer ressuscitar.
 
+**Leva 9 (6 matérias, ao ar 01/11 a 06/11), do Broken Record (podcast do Rick Rubin) com Stone e
+Jeff:** a força de cada integrante descrita por eles ("o Stone toca guitarra como baterista"), a
+faixa-título nascida do Matt esquentando na bateria, o SONHO COM JONI MITCHELL que virou Won't Tell
+(ela aparece no sonho dizendo que a música é dela com o Neil), o que aprenderam vendo Chili Peppers
+e Neil Young (espaço, "cores primárias"), a regra de nunca brigar pela própria parte, e a tacada de
+sinuca real que abre o disco (possivelmente do Sean Penn).
+
+**Leva 10 (6 matérias, ao ar 07/11 a 12/11), da entrevista do Jeff a Jonathan Evison, era PRÉ-PJ:**
+chegou em Seattle com 40 dólares em abril de 1983, o Green River como colisão de cinco discotecas
+(Black Flag x Iron Maiden x gótico), o show do Jane's Addiction que rachou a banda, Andrew Wood
+atravessando o balcão do bar com microfone sem fio ("o baixo dele era a coisa mais hardcore daquela
+banda"), a van da Sub Pop que chegou tarde demais, e banda como casamento de cinco pessoas.
+
+**BUSCA NOVA DE VÍDEOS (2026-09-10):** descobre.mjs ampliado pra 25 queries (conversas longas +
+outros integrantes) e passa a ignorar já conhecidos. 59 candidatos novos com 15min+, 14 entraram na
+seleção, 10 EXTRAÍDOS com sucesso (~130 mil palavras). Ainda NÃO usados, cada um vale uma leva:
+SR-zx4Ih5HU (Stone no Tigercub, 91min), s1Ur5FFo9j0 (Jeff no Mike Powell, 87min), 6KO-_WtpfCU (Matt
+no Dean Delray, 94min), iwuAYRNb_74 (Stone no Lipps Service, 69min), AecYalbsOqU (Eddie no SmartLess,
+71min), QvuLTJrf_4Y (Chad Smith com Stone, 67min), 1p5-oikCHpk (Matt no Rick Beato, 56min),
+-92YnMMrV90 (Mike e os 30 anos do Mad Season, 66min), 96x49K17W30 (Mike sobre Dark Matter, 35min).
+Galeria de curadoria dos 59: /tmp/yt-galeria-2.html
+
+**ATENÇÃO, GARGALO DE FOTOS:** o acervo de fotos de Eddie, Jeff e Stone em alta esgotou de novo.
+Sobram ~9 do Mike e algumas da banda (11 baixadas na 2ª rodada). Antes da leva 11, rodar
+`node scripts/news/fotos-commons.mjs` e curar, ou reaproveitar da lista de 315 já encontrada
+(/tmp/commons-fotos.json, o Andre aprovou só 43).
+
 **Acervo de fotos ampliado (2026-09-10):** fotos-commons.mjs agora busca por INTEGRANTE (7 alvos)
 e salva na pasta de cada um com crédito/licença. 43 fotos novas aprovadas pelo Andre. Acervo foi de
 28 (só Eddie) pra 87 válidas, 68 em alta. Três bugs corrigidos no script: não checava status HTTP
@@ -87,7 +114,7 @@ canal, URL). DECISÃO DELE, com a ressalva registrada: são quadros de transmiss
 várias com logo do canal cravado, e 4 só existem em 640x480. Usar só como último recurso e
 preferindo as de 1280x720, recortando fora o canto com marca.
 
-**Estado:** 52 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 31/10/2026. As duas grandes
+**Estado:** 64 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 12/11/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
 pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
 guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre
