@@ -13,15 +13,29 @@ em 1995), banda como time de basquete sem técnico, gravação do Vitalogy, Loos
 (assunto suicídio). Usou stone-gossard-1/2/3.jpg (sem crédito, mesmo padrão dos outros -N.jpg).
 Mais uma pegadinha de nome: `banda/pj-commons-PearlJam-9-14-06-3.jpg` é só o Mike, não a banda.
 
-Próximo passo concreto: LEVA 21 com `QvuLTJrf_4Y` (Chad Smith com Stone, 67min), depois
-`96x49K17W30` (Mike sobre Dark Matter, 35min). Fotos do Stone agora esgotaram de vez (6 usadas).
+Leva 21 FEITA: Chad Smith conversa com Stone (MusicRadar, gravado out/2013 no Brooklyn, `QvuLTJrf_4Y`),
+ids cap-QvuLTJr a cap-QvuLTJrf: a fita que o Flea ouviu 30s no estacionamento (turnê 1991), a banda
+de improviso Cease and Desist (acabou com o pulso quebrado do Chad), Brendan O'Brien ("hits pensados em
+dez minutos"), 40 a 50 riffs por ano no celular (Moonlander), 2.200 toneladas de carbono por turnê
+(Forterra), o Brad em 1992 (5 dias compondo, 5 gravando). Legenda sem marcação de quem fala: citação
+ambígua virou narração neutra. Datas e pulso checados na web (MusicRadar, Loudwire, Wikipedia).
+Fotos da pasta banda conferidas: SÓ `Hamilton2011-02` (banda inteira) e `Lollapalooza2007` (palco e
+multidão) são o que dizem; `p-a-h-30/31/32`, `London2022-01` e `Padova2018` são integrante sozinho.
+
+Pedido do Andre (2026-09-11): fazer até a LEVA 25 com calma e parar; ele faz a curadoria das 20 a 25.
+Plano: 22 `96x49K17W30` (Mike, Dark Matter), 23 `9NUzAH-Zl78` (Matt, Seattle Today), 24 `XCbazaDbZ5A`
+(Jeff, both laugh), 25 Eddie + Stone 1991 (`9gFfSoHIge4` / `bfUK_-9_hNY`, checar repetição com cap-sZ2JBcU).
+Ferramentas da sessão no scratchpad (dump/aplica/capas/mosaico.mjs), recriáveis a partir da receita.
 
 Receita de uma leva (o que eu fiz 18 vezes hoje):
 1. Ler a transcrição em media/news/youtube-acervo/<videoId>.json (campo `paragrafos`)
 2. Escrever 6 matérias num script em /tmp, aplicar em _rascunhos.json (campos: id, videoId, kind,
    subject, img, title_capa, title_pt, intro_pt, body_pt, tags, carrossel, leva, criadoEm)
 3. `npm test` + `node scripts/publish/run-publish-capsula.mjs --dry-run --no-git` (sincroniza a fila)
-4. `node scripts/news/youtube/reordenar-fila.mjs --aplicar` (SEMPRE, espalha assunto no calendário)
+4. `node scripts/news/youtube/reordenar-fila.mjs --aplicar --leva-min 20 --nao-antes 2026-09-25`
+   (SEMPRE, espalha assunto no calendário). A TRAVA impede leva ainda não revisada pelo Andre de
+   cair nas próximas datas: sem ela, o guloso pôs a leva 21 pra ir ao ar no dia seguinte. Depois
+   que o Andre aprovar as levas 20 a 25, subir o --leva-min pra 26 (e a data junto)
 5. `node scripts/news/youtube/capsulas-grid.mjs` e RENDERIZAR AS CAPAS PRA OLHAR (regra dura: nome
    de arquivo NÃO diz quem está na foto; já deu errado 3 vezes)
 6. Commit pelo pipeline padrão
