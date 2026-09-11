@@ -111,6 +111,20 @@ SÓ 4 e não 6 porque acabaram as fotos que casam com o assunto. Uma foto de ban
 (cap-1p5-oikf e cap-iwuAYRNb, 40 dias de distância na fila); foi decisão consciente, porque a
 alternativa era pôr rosto do Mike numa matéria do Stone.
 
+**REORDENADOR DE FILA (2026-09-11):** `scripts/news/youtube/reordenar-fila.mjs`. Problema que
+resolve: as matérias são escritas em levas (uma leva por entrevista) e a fila era preenchida na
+ordem de escrita, então saíam SEIS DIAS SEGUIDOS da mesma entrevista, com as mesmas pessoas e temas.
+Medido antes: 140 pares de cápsulas parecidas a menos de 7 dias. Depois: 25.
+
+Como funciona: espalhamento proporcional (cada entrevista tem suas matérias distribuídas em
+intervalos iguais por todo o calendário, que é o máximo matematicamente possível) + guloso numa
+janela curta pra desempatar, com distâncias mínimas (6 dias mesma entrevista, 3 dias mesma pessoa,
+7 dias pra 2+ tags específicas em comum). Tags genéricas são ignoradas no cálculo.
+
+Preserva postadas e as DATAS (só troca a ordem). Rodar `--aplicar` DEPOIS DE CADA LEVA NOVA, porque
+loadQueue só acrescenta no fim. As 6 emendas ruins que sobram estão todas na cauda da fila, onde o
+material acaba, e somem quando entra leva nova.
+
 **3ª BUSCA, AMPLIADA (2026-09-10, a pedido do Andre):** descobre.mjs foi de 25 pra 68 queries
 (multi-língua incluindo japonês e polonês, por disco, por época, rádio/TV de arquivo, projetos
 paralelos, e cada integrante incluindo os EX-BATERISTAS). 1.088 resultados brutos -> 151 candidatos
