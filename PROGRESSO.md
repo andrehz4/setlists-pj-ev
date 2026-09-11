@@ -1,7 +1,7 @@
 # PROGRESSO, setlists-pj-ev
 
 ## Data
-2026-09-10 (cápsulas: 70 matérias em 11 levas, fila até 18/11; 10 entrevistas longas novas extraídas; painel + contador de tokens)
+2026-09-10 (cápsulas: 76 matérias em 12 levas, fila até 24/11; 10 entrevistas longas novas extraídas; painel + contador de tokens)
 
 ## ⭐ Sessão 2026-09-10 (noite): LEVAS 2 e 3 DE CÁPSULAS + PAINEL + TOKEN MONITOR
 
@@ -94,12 +94,19 @@ foi bom), o nó na garganta na turnê de 2016 ("aquela voz enchia o Madison Squa
 professor de sinfônica que o levou a Coltrane aos 17, o disco cuja mixagem ele odiou e engoliu
 ("o bem maior é o mais importante"), e o fato de que ele não planeja as viradas.
 
+**Leva 12 (6 matérias, ao ar 19/11 a 24/11), Mike McCready e os 30 anos do Mad Season:** de onde
+veio o nome (uma caminhada em Surrey durante a mixagem do Ten; "Mad Season" é a época em que nascem
+os cogumelos por lá), o adesivo de para-choque que o fez conhecer o baixista numa clínica em
+Minneapolis, o forasteiro de blues numa cena isolada ("todo mundo sabia as mesmas piadas idiotas"),
+Layne Staley gravando as vozes sozinho de madrugada, November Hotel ser o indicativo de chamada do
+caça do pai dele no Vietnã, e a decisão de dividir os direitos em quatro partes iguais.
+
 **BUSCA NOVA DE VÍDEOS (2026-09-10):** descobre.mjs ampliado pra 25 queries (conversas longas +
 outros integrantes) e passa a ignorar já conhecidos. 59 candidatos novos com 15min+, 14 entraram na
 seleção, 10 EXTRAÍDOS com sucesso (~130 mil palavras). Ainda NÃO usados, cada um vale uma leva:
 SR-zx4Ih5HU (Stone no Tigercub, 91min), s1Ur5FFo9j0 (Jeff no Mike Powell, 87min), 6KO-_WtpfCU (Matt
 no Dean Delray, 94min), iwuAYRNb_74 (Stone no Lipps Service, 69min), AecYalbsOqU (Eddie no SmartLess,
-71min), QvuLTJrf_4Y (Chad Smith com Stone, 67min), -92YnMMrV90 (Mike e os 30 anos do Mad Season, 66min), 96x49K17W30 (Mike sobre Dark Matter, 35min).
+71min), QvuLTJrf_4Y (Chad Smith com Stone, 67min), 96x49K17W30 (Mike sobre Dark Matter, 35min).
 Galeria de curadoria dos 59: /tmp/yt-galeria-2.html
 
 **ATENÇÃO, GARGALO DE FOTOS:** o acervo de fotos de Eddie, Jeff e Stone em alta esgotou de novo.
@@ -119,7 +126,7 @@ canal, URL). DECISÃO DELE, com a ressalva registrada: são quadros de transmiss
 várias com logo do canal cravado, e 4 só existem em 640x480. Usar só como último recurso e
 preferindo as de 1280x720, recortando fora o canto com marca.
 
-**Estado:** 70 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 18/11/2026. As duas grandes
+**Estado:** 76 matérias, 1 publicada (Cobain), fila 1/dia às 20h BRT até 24/11/2026. As duas grandes
 entrevistas (Dark Matter e Bill Simmons) foram lidas e ainda sobrou material NÃO usado, guardado
 pra leva 6: o galpão/HQ como clubhouse (letras do letreiro cortadas por Jeff e Stone, a "E" e a "J"
 guardadas 20 anos em garagens em Montana), como a banda lida com crítica e elogio, e o Mike sobre
