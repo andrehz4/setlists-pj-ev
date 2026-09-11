@@ -1,15 +1,6 @@
 {
   "skipped": [
     {
-      "itemId": "aa7f953eca",
-      "title_pt": "The No Code Show: streaming celebra 30 anos do disco mais ousado do PJ",
-      "matchedTo": "86554b29b6",
-      "matchedPostedAt": null,
-      "matchedPreview": "The Ten Show: show pró-filmado celebra 35 anos de Ten com 32 músicas Mais de três horas de show pró-filmado com 32 músic",
-      "similarity": 0.409,
-      "skippedAt": "2026-08-10T21:10:51.450Z"
-    },
-    {
       "itemId": "5219c44187",
       "title_pt": "Dave Krusen volta ao Drumeo enquanto PJ esconde o substituto de Matt Cameron",
       "matchedTo": "2726b81712",
@@ -98,7 +89,16 @@
       "matchedPreview": "Mike McCready vai dividir o palco com o Soundgarden na abertura dos Seahawks Mike McCready toca com o Soundgarden na abe",
       "similarity": 0.368,
       "skippedAt": "2026-09-09T21:05:48.188Z"
+    },
+    {
+      "itemId": "0dfb3777eb",
+      "title_pt": "Mike McCready toca com Soundgarden em abertura da temporada da NFL em Seattle",
+      "matchedTo": "8b7ef1dbb1",
+      "matchedPostedAt": "2026-09-09T03:08:01.245Z",
+      "matchedPreview": "Mike McCready vai dividir o palco com o Soundgarden na abertura dos Seahawks Mike McCready toca com o Soundgarden na abe",
+      "similarity": 0.467,
+      "skippedAt": "2026-09-11T15:08:54.574Z"
     }
   ],
-  "updatedAt": "2026-09-09T21:05:48.188Z"
+  "updatedAt": "2026-09-11T15:08:54.574Z"
 }
