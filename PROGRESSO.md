@@ -1,7 +1,58 @@
 # PROGRESSO, setlists-pj-ev
 
 
-## COMO CONTINUAR (handoff de 2026-09-11, contexto em 93%)
+## COMO CONTINUAR (handoff de 2026-09-11, noite: levas 31 a 36)
+
+Estado: **216 matérias em 36 levas**, fila 1/dia às 20h BRT até **13/04/2027**. 1 publicada.
+Levas 20 a 36 (100 matérias) seguem TRAVADAS aguardando a curadoria do Andre.
+Acervo: 52 vídeos usados, ~94 ainda não usados (só ~40 deles com 2.500+ palavras).
+
+**Próximo passo: faltam as levas 37 a 40** (o Andre pediu ir até a 40). Candidatos já
+triados, todos entrevista direta (evitar documentário de terceiros e canal de reupload):
+- Matt Cameron no Lyndsanity, set/2025 (`KCR_npO6uzU`): último disco do Soundgarden + Hall da Fama
+- Mark Arm, mar/2024 (`FVsAKyNeDs0`) e Steve Turner, jun/2023 (`002ayBPLNlo`): Mudhoney e Green River
+- Jack Irons (`OxNZA7pVZs0` e `AD4WAlGYyBw`): CUIDADO, a pasta `jack-irons/` nunca foi conferida
+- Jeff no Track Star, 2026 (`FkLb71QgP0Q`) e com Kyle Meredith, 2021 (`8eah6yJxNmQ`)
+- Dave Abbruzzese parte 2 (`l2z9-Q2cA3E`) e o que sobrou da parte 1: Vs. no estúdio e Lollapalooza 92
+
+**GARGALO REAL, fotos.** É o que limita o tamanho das levas, mais do que o material:
+Eddie 43 fotos, banda 27, Mike 15, Matt 11, Jeff 7, **Stone só 5 distintas**
+(`sg-2014` e `sg-2014-cropped` são a MESMA foto), **Dave Abbruzzese só 2**.
+Por isso a leva 35 saiu com 4 matérias em vez de 6. Curar fotos de Stone, Jeff e Dave
+destrava levas maiores.
+
+### O que foi feito nestas levas (31 a 36)
+- **31** Pearl Jam com o surfista Mark Richards, out/2013, véspera do Lightning Bolt (`QxhCQuq_yTo`)
+- **32** Matt Cameron no The Vinyl Guide, sobre os Melvins e o EP Gory Scorch Cretins (`RV3z6W0GlYo`)
+- **33** Mike McCready destrinchando o solo de Alive no Shred with Shifty (`rdEFuWoRJfo`)
+- **34** Stone Gossard com Matt Pinfield, véspera do Dark Matter (`Uc_Y3WplS0g`)
+- **35** Dave Abbruzzese no Rock N Roll & Coffee Show, só 4 matérias por falta de foto (`hJH63OLD0Z0`)
+- **36** Eddie Vedder no Record Store Day, com Easy Street Records e KEXP (`KEfatOkhSN0`)
+
+### Pegadinhas novas descobertas (não redescobrir)
+- **Datar pelo conteúdo, nunca pelo campo `publicado`**: o podcast do Matt Cameron foi ao ar em
+  2025, mas a conversa é do fim de 2023 (EP na Black Friday de 2023, Dark Matter ainda na lata,
+  turnê do livro do Geddy Lee).
+- **A legenda automática inventa nome próprio**: ela deu sobrenome ao amigo de escola do Mike
+  ("Rick Frehley"). Nome que aparece uma vez só na legenda deve ser tratado como suspeito.
+- **Quem fala não é quem você acha**: no Record Store Day, a história dos Pretenders e do
+  encontro com Pete Townshend é do DJ Kevin Cole, não do Eddie. Na entrevista do Mark Richards,
+  a comparação da música com a prancha de surfe é do entrevistador, não da banda.
+- **Assuntos saturados, conferir antes de escrever**: Andrew Watt já tem 8 matérias e Dark Matter
+  tem 11. Jeff Ament está em 25. Reach Down com o cigarro do Cornell já está na leva 22.
+- **Descartado por conteúdo**: `qOrlejCNvks` (Let's Talk, 2020) é inteiro sobre a eleição
+  americana de 2020, partidário e datado. Não usar.
+- **Limites de tamanho** (medidos no acervo): title_capa até ~40 chars, senão a capa encosta na
+  margem; title_pt até 158; body até ~2.700.
+
+### Linha editorial do Dave Abbruzzese (decisão do Andre segue em aberto)
+As entrevistas dele são ótimas, mas ele acusa Eddie e Jeff nominalmente. Nas matérias da leva 35
+a demissão de 1994 entra só como fato datado, e as acusações pessoais ficaram de fora: é uma
+versão só de uma briga de trinta anos. A pendência da matéria opinativa da leva 14 continua.
+
+---
+
+## COMO CONTINUAR (handoff anterior de 2026-09-11, contexto em 93%)
 
 Estado: 182 matérias em 30 levas, fila 1/dia às 20h BRT até 10/03/2027. 1 publicada (Cobain). Levas 20-30 (66 matérias) aguardam curadoria do Andre.
 Acervo: 139 vídeos com legenda, ~111 sem usar. Fotos: 122, quase todas em uso.
