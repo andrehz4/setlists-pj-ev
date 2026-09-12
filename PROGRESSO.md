@@ -1,11 +1,13 @@
 # PROGRESSO, setlists-pj-ev
 
 
-## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 40 concluídas)
+## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 45 concluídas)
 
-Estado: **237 matérias em 40 levas**, fila 1/dia às 20h BRT até **04/05/2027**. 2 publicadas.
-Levas 20 a 40 (**121 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
-Acervo: 56 vídeos usados, ~90 não usados (cerca de 35 deles com 2.500+ palavras).
+Estado: **258 matérias em 45 levas**, fila 1/dia às 20h BRT até **25/05/2027**. 2 publicadas.
+Levas 20 a 45 (**142 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
+Acervo: 60 vídeos usados. **As entrevistas diretas com material inédito acabaram**: o que
+sobra no acervo é documentário de terceiros, canal de reupload, ou entrevista cujo assunto
+já está coberto. Para seguir além da leva 45, é preciso extrair vídeos novos.
 
 **Próximo passo: curadoria do Andre** nas levas 20 a 40, pelo painel (`/tmp/capsulas-grid.html`,
 regerar com `node scripts/news/youtube/capsulas-grid.mjs`). Depois de aprovado, subir a trava
@@ -28,14 +30,20 @@ Curar fotos de Stone, Jeff, Dave e banda é o que destrava levas cheias de novo.
 - **39** Eddie Vedder e os Cosmic Psychos, 5 matérias (`zH0vhfOCu2k`)
 - **40** Steve Turner (Mudhoney), o Pearl Jam visto de fora, 5 matérias (`002ayBPLNlo`)
 
-### Candidatos para a leva 41 em diante
-- Mark Arm, mar/2024 (`FVsAKyNeDs0`), 6.515 palavras: Mudhoney e Green River, dupla da leva 40
-- Jeff no Track Star, 2026 (`FkLb71QgP0Q`) e com Kyle Meredith, 2021 (`8eah6yJxNmQ`)
-- Dave Abbruzzese parte 2 (`l2z9-Q2cA3E`) mais o que sobrou da parte 1: o Vs. no estúdio
-  (madrugar com o Stone tocando riffs, músicas deixadas inacabadas de propósito) e o
-  Lollapalooza de 1992 (35 minutos às 2 da tarde, o resto do dia livre)
-- Jack Irons (`OxNZA7pVZs0`, `AD4WAlGYyBw`): CUIDADO, a pasta `jack-irons/` nunca foi conferida
-- Stone com Kyle Meredith (`vViJNtGbG9c`, `_l3Y3VSpzMQ`) e no BJ Shea (`RIlnTaKmwBw`)
+### Levas 41 a 45 (feitas na sequencia da sessao)
+- **41** Stone Gossard na KISW com BJ Shea, tres filhos pequenos em casa (`RIlnTaKmwBw`)
+- **42** Jeff Ament no Track Star, do basquete ao baixo (`FkLb71QgP0Q`)
+- **43** Soundgarden nos bastidores do Hall da Fama, 4 materias (`Mm2HtZ_Sc9k`)
+- **44** Stone Gossard sobre o Brad, com Kyle Meredith, 4 materias (`HKm1aUX4Ys8`)
+- **45** Dave Abbruzzese, o que sobrou da leva 35, 3 materias (`hJH63OLD0Z0`)
+
+### Para ir alem da leva 45, o acervo precisa crescer
+Sobraram no disco apenas: documentarios de terceiros e canais de reupload (que o projeto nao
+usa), entrevistas ja cobertas (Jeff/Kyle Meredith 2021 repete a leva 24; Stone/Kyle Meredith
+2024 e Dark Matter, saturado), Mark Arm (`FVsAKyNeDs0`, quase nao fala de Green River nem do
+PJ e puxa para drogas e criticas a preco de ingresso) e Jack Irons (`OxNZA7pVZs0`,
+`AD4WAlGYyBw`), que esbarra na pasta `jack-irons/` nunca conferida.
+O caminho e rodar a extracao (yt-dlp) atras de entrevistas novas.
 
 ### Pegadinhas de foto (pasta banda), confirmadas VISUALMENTE
 - **Servem como banda**: `p-a-h-2`, `p-a-h-31`, `p-a-h-36`, `p-a-h-35`, `p-a-h-39`,
