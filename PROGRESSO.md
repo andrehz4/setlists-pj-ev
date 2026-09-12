@@ -1,86 +1,100 @@
 # PROGRESSO, setlists-pj-ev
 
 
-## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 45 concluídas)
+## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 46 + acervo reabastecido)
 
-Estado: **258 matérias em 45 levas**, fila 1/dia às 20h BRT até **25/05/2027**. 2 publicadas.
-Levas 20 a 45 (**142 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
-Acervo: 60 vídeos usados. **As entrevistas diretas com material inédito acabaram**: o que
-sobra no acervo é documentário de terceiros, canal de reupload, ou entrevista cujo assunto
-já está coberto. Para seguir além da leva 45, é preciso extrair vídeos novos.
+Estado: **262 matérias em 46 levas**, fila 1/dia às 20h BRT até **29/05/2027**. 2 publicadas.
+Levas 20 a 46 (**146 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
 
-**Próximo passo: curadoria do Andre** nas levas 20 a 40, pelo painel (`/tmp/capsulas-grid.html`,
-regerar com `node scripts/news/youtube/capsulas-grid.mjs`). Depois de aprovado, subir a trava
-para `--leva-min 41` e a data junto.
+**PRÓXIMO PASSO IMEDIATO: as levas 47 a 50 estão prontas para escrever.** O acervo foi
+reabastecido nesta sessão e as legendas já estão extraídas no disco. É só ler e escrever,
+seguindo a receita de sempre. Ordem sugerida, já pensada por foto disponível:
 
-**GARGALO: fotos.** Limita mais que o material. Contagem de imagens DISTINTAS por pasta:
-Eddie 43 (folgado), banda ~12 úteis, Mike 15, Matt 11, Jeff 7, **Stone 5**, **Dave Abbruzzese 2**.
-Foi por isso que as levas 35, 38, 39 e 40 saíram com 4 ou 5 matérias em vez de 6.
-Curar fotos de Stone, Jeff, Dave e banda é o que destrava levas cheias de novo.
+| Leva | Vídeo | Quem | Palavras | Por que |
+|---|---|---|---|---|
+| 47 | `pgEpKbET5jo` | Stone no Revolver Fan First | 9.295 | Motley Crue, Jane's Addiction; Stone tem 6 fotos |
+| 48 | `15XglhRqRs0` | Stone no A Fresh Face in Hell | 12.449 | conversa longa e pessoal |
+| 49 | `-kD-RPbDQYg` | Matt Cameron na Drumeo | 7.488 | aula de bateria do Soundgarden; Matt tem 11 fotos |
+| 50 | `UHr_82pS4nw` | Mike sobre a reedição do Ten | 11.639 | com Josh Evans e Eric Lilavois; Mike tem 15 fotos |
 
-### Levas feitas nesta sessão (55 matérias)
-- **31** Pearl Jam com o surfista Mark Richards, out/2013 (`QxhCQuq_yTo`)
-- **32** Matt Cameron no The Vinyl Guide, Melvins e Gory Scorch Cretins (`RV3z6W0GlYo`)
+Sobram ainda, já extraídos: `QNJElc1OuZg` (Jeff, 4.310), `d6TkGxyRYNk` (Stone com Kyle
+Meredith, 5.833), `5bTf09aQYA4` (Dave Krusen, 4.107) e `pEuEnhMZ0sA` (**Jack Irons, 10.888**).
+
+**Atenção com o Jack Irons**: a entrevista é ótima e longa, mas as 3 fotos da pasta
+`jack-irons/` continuam BLOQUEADAS. Conferi as três nesta sessão: são a mesma pessoa, um
+baterista careca e tatuado, mas NÃO consegui confirmar que seja o Jack Irons. Sem confirmar,
+não usar. Sem foto, não há leva dele.
+
+### Como o acervo foi reabastecido (repetir quando acabar de novo)
+```bash
+node scripts/news/youtube/descobre.mjs --out /tmp/cand.json --per 10 --min 1200
+# curar a lista (só entrevista direta com integrante, em canal legítimo)
+# acrescentar os aprovados a scripts/news/youtube/_selecao.json com status "pendente"
+node scripts/news/youtube/extrair.mjs --only <videoId>
+```
+Rendeu 29 candidatos, 10 aprovados, 9 extraídos (~76 mil palavras). Descartados: podcasts de
+fãs analisando discos, bootlegs de show, playlists, vídeos sobre Ticketmaster.
+Sem legenda no YouTube: `TByyg48uXbA` (Eddie e Laird Hamilton no Iconoclasts), pena.
+**As transcrições NÃO vão para o git** (`.gitignore` ignora `media/news/youtube-acervo/*`),
+elas vivem no disco local. O que é versionado é o `_selecao.json`.
+No macOS não existe `timeout`: rodar os scripts direto, em background.
+
+**GARGALO: fotos.** Contagem de imagens DISTINTAS: Eddie 43, Mike 15, Matt 11, banda ~12,
+Jeff 7, **Stone 5** (`sg-2014` e `sg-2014-cropped` são a MESMA foto), **Dave Abbruzzese 2**,
+**Jack Irons 3 não confirmadas**. Repetir a mesma foto em levas diferentes é aceitável (o
+reordenador separa as datas em meses); o que não pode é repetir dentro da mesma leva.
+
+### Levas desta sessão (80 matérias)
+- **31** Pearl Jam com o surfista Mark Richards (`QxhCQuq_yTo`)
+- **32** Matt Cameron no The Vinyl Guide, Melvins (`RV3z6W0GlYo`)
 - **33** Mike McCready no Shred with Shifty, o solo de Alive (`rdEFuWoRJfo`)
-- **34** Stone Gossard com Matt Pinfield, véspera do Dark Matter (`Uc_Y3WplS0g`)
-- **35** Dave Abbruzzese, Rock N Roll & Coffee Show, 4 matérias (`hJH63OLD0Z0`)
-- **36** Eddie Vedder no Record Store Day, Easy Street e KEXP (`KEfatOkhSN0`)
-- **37** Matt Cameron no Gold Derby, Hall da Fama do Soundgarden (`KCR_npO6uzU`)
-- **38** Eddie Vedder no IN THE COOP, John Entwistle e 2020, 5 matérias (`Uu3srG1iIjU`)
+- **34** Stone Gossard com Matt Pinfield (`Uc_Y3WplS0g`)
+- **35** Dave Abbruzzese, 4 matérias (`hJH63OLD0Z0`)
+- **36** Eddie Vedder no Record Store Day (`KEfatOkhSN0`)
+- **37** Matt Cameron antes do Hall da Fama (`KCR_npO6uzU`)
+- **38** Eddie Vedder no IN THE COOP, 5 matérias (`Uu3srG1iIjU`)
 - **39** Eddie Vedder e os Cosmic Psychos, 5 matérias (`zH0vhfOCu2k`)
-- **40** Steve Turner (Mudhoney), o Pearl Jam visto de fora, 5 matérias (`002ayBPLNlo`)
-
-### Levas 41 a 45 (feitas na sequencia da sessao)
-- **41** Stone Gossard na KISW com BJ Shea, tres filhos pequenos em casa (`RIlnTaKmwBw`)
-- **42** Jeff Ament no Track Star, do basquete ao baixo (`FkLb71QgP0Q`)
-- **43** Soundgarden nos bastidores do Hall da Fama, 4 materias (`Mm2HtZ_Sc9k`)
-- **44** Stone Gossard sobre o Brad, com Kyle Meredith, 4 materias (`HKm1aUX4Ys8`)
-- **45** Dave Abbruzzese, o que sobrou da leva 35, 3 materias (`hJH63OLD0Z0`)
-
-### Para ir alem da leva 45, o acervo precisa crescer
-Sobraram no disco apenas: documentarios de terceiros e canais de reupload (que o projeto nao
-usa), entrevistas ja cobertas (Jeff/Kyle Meredith 2021 repete a leva 24; Stone/Kyle Meredith
-2024 e Dark Matter, saturado), Mark Arm (`FVsAKyNeDs0`, quase nao fala de Green River nem do
-PJ e puxa para drogas e criticas a preco de ingresso) e Jack Irons (`OxNZA7pVZs0`,
-`AD4WAlGYyBw`), que esbarra na pasta `jack-irons/` nunca conferida.
-O caminho e rodar a extracao (yt-dlp) atras de entrevistas novas.
+- **40** Steve Turner do Mudhoney, 5 matérias (`002ayBPLNlo`)
+- **41** Stone Gossard na KISW, 2015 (`RIlnTaKmwBw`)
+- **42** Jeff Ament no Track Star (`FkLb71QgP0Q`)
+- **43** Soundgarden nos bastidores do Hall da Fama, 4 matérias (`Mm2HtZ_Sc9k`)
+- **44** Stone Gossard sobre o Brad, 4 matérias (`HKm1aUX4Ys8`)
+- **45** Dave Abbruzzese, o que sobrou da leva 35, 3 matérias (`hJH63OLD0Z0`)
+- **46** Mike McCready, Flight to Mars e Mad Season, 4 matérias (`cvQ60MDxq_c`)
 
 ### Pegadinhas de foto (pasta banda), confirmadas VISUALMENTE
 - **Servem como banda**: `p-a-h-2`, `p-a-h-31`, `p-a-h-36`, `p-a-h-35`, `p-a-h-39`,
   `Oakland-2013`, `MSG-2010-04`, `NY-2016-02`, `Hamilton2011-02`, `O2-World-Berlin`,
   `Berlin1-2012`, `Lollapalooza2007`
 - **NÃO servem** (integrante sozinho): `Philadelphia-2016-01` é o JEFF, `p-a-h-7` é o EDDIE,
-  `p-a-h-30` é o MIKE, `9-14-06-3` é o Mike, `London2022-01` e `Padova2018` são o Mike,
-  `Oslo-2012` e `02London2018` são o Mike, `Jeff-Ament-Pearl-Jam` é o Jeff
-- Pastas com foto duplicada em cortes diferentes: Stone (`sg-2014` e `sg-2014-cropped`),
-  Matt (`Matt-Cameron` e `Matt-Cameron-Pearl-Jam` são quase idênticas; as três
-  `OK-Hotel-Reunion-01` são variações da mesma imagem)
+  `p-a-h-30` é o MIKE, `9-14-06-3`, `London2022-01`, `Padova2018`, `Oslo-2012` e
+  `02London2018` são o Mike, `Jeff-Ament-Pearl-Jam` é o Jeff
+- `mike-mccready/mm-commons-AiC10.jpg` é ALICE IN CHAINS, nunca usar
 
 ### Outras pegadinhas (não redescobrir)
 - **Datar pelo conteúdo, nunca pelo campo `publicado`**: o podcast do Matt Cameron foi ao ar
-  em 2025 e a conversa é do fim de 2023. O vídeo dos Cosmic Psychos é de 2017 mas o material
-  é do documentário Blokes You Can Trust.
-- **A legenda inventa nome próprio** ("Rick Frehley" para o amigo de escola do Mike) e
-  **erra nome real** ("Hero" era Hiro Yamamoto). Nome que aparece uma vez só é suspeito.
+  em 2025 e a conversa é de 2023. O episódio do Mike (leva 46) junta duas entrevistas, de
+  2012 e 2013, republicadas em 2024.
+- **A legenda inventa nome próprio** ("Rick Frehley") e **erra nome real** ("Hero" era Hiro
+  Yamamoto). Nome que aparece uma vez só é suspeito.
 - **Quem fala não é quem você acha**, já aconteceu quatro vezes: a história dos Pretenders e
   do Pete Townshend é do DJ Kevin Cole; a analogia da prancha de surfe é do entrevistador
-  Mark Richards; as farras com John Entwistle (cadeia em Toronto, Vegas) são do maestro
-  Keith Levenson; no Mudhoney, cuidado com Matt Lukin na conversa dos Cosmic Psychos.
+  Mark Richards; as farras com John Entwistle são do maestro Keith Levenson.
 - **Assuntos saturados**: Andrew Watt 8 matérias, Dark Matter 11, Jeff Ament 25.
-  Reach Down com o cigarro do Cornell já está na leva 22, a entrada do Dave na leva 14.
-- **Descartado por conteúdo**: `qOrlejCNvks` (Let's Talk, 2020) é inteiro sobre a eleição
-  americana, partidário e datado. Nos Cosmic Psychos ficaram de fora a piada sobre o divórcio
-  do Eddie e o trecho da piscina em Sydney (sexualmente explícito).
-- **Limites**: title_capa até ~40 chars (senão encosta na margem), title_pt até 158,
-  body até ~2.700. O validador não checa isso, é conferência manual.
-- **O cron publica enquanto você trabalha**: em 12/09 o push foi rejeitado porque a routine
-  e o publish-capsula commitaram. `git pull --rebase` resolveu sem conflito, mas SEMPRE
-  conferir depois se as entradas `postedAt` sobreviveram na fila.
+  Reach Down com o cigarro do Cornell está na leva 22; a entrada do Dave, na leva 14;
+  o disco solo do Jeff de 2021, na leva 24.
+- **Descartado por conteúdo**: `qOrlejCNvks` (Let's Talk, 2020) é sobre a eleição americana,
+  partidário e datado. `FVsAKyNeDs0` (Mark Arm) quase não fala de Green River nem do PJ e
+  puxa para drogas e crítica a preço de ingresso. Nos Cosmic Psychos ficaram de fora a piada
+  sobre o divórcio do Eddie e o trecho da piscina em Sydney.
+- **Limites**: title_capa até ~40 chars, title_pt até 158, body até ~2.700. Conferência manual.
+- **O cron publica enquanto você trabalha**: aconteceu três vezes em 12/09. `git pull --rebase`
+  resolveu sem conflito, mas SEMPRE conferir depois se os `postedAt` sobreviveram na fila.
 
 ### Linha editorial do Dave Abbruzzese (decisão do Andre segue em aberto)
-As entrevistas dele são ótimas, mas ele acusa Eddie e Jeff nominalmente. Na leva 35 a demissão
-de 1994 entra só como fato datado e as acusações pessoais ficaram de fora: é uma versão só de
-uma briga de trinta anos. A pendência da matéria opinativa da leva 14 continua.
+As entrevistas dele são ótimas, mas ele acusa Eddie e Jeff nominalmente. Nas levas 35 e 45 a
+demissão de 1994 entra só como fato datado e as acusações pessoais ficaram de fora: é uma
+versão só de uma briga de trinta anos. A pendência da matéria opinativa da leva 14 continua.
 
 ---
 
