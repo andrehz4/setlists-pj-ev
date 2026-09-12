@@ -1,21 +1,23 @@
 # PROGRESSO, setlists-pj-ev
 
 
-## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 46 + acervo reabastecido)
+## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 50 + acervo reabastecido)
 
-Estado: **262 matérias em 46 levas**, fila 1/dia às 20h BRT até **29/05/2027**. 2 publicadas.
-Levas 20 a 46 (**146 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
+Estado: **280 matérias em 50 levas**, fila 1/dia às 20h BRT até **16/06/2027**. 2 publicadas.
+Levas 20 a 50 (**164 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
 
-**PRÓXIMO PASSO IMEDIATO: as levas 47 a 50 estão prontas para escrever.** O acervo foi
-reabastecido nesta sessão e as legendas já estão extraídas no disco. É só ler e escrever,
-seguindo a receita de sempre. Ordem sugerida, já pensada por foto disponível:
+**PRÓXIMO PASSO: curadoria do Andre.** O acervo foi reabastecido duas vezes nesta sessão e
+ainda sobram entrevistas extraídas no disco, prontas para virar leva 51 em diante:
 
-| Leva | Vídeo | Quem | Palavras | Por que |
-|---|---|---|---|---|
-| 47 | `pgEpKbET5jo` | Stone no Revolver Fan First | 9.295 | Motley Crue, Jane's Addiction; Stone tem 6 fotos |
-| 48 | `15XglhRqRs0` | Stone no A Fresh Face in Hell | 12.449 | conversa longa e pessoal |
-| 49 | `-kD-RPbDQYg` | Matt Cameron na Drumeo | 7.488 | aula de bateria do Soundgarden; Matt tem 11 fotos |
-| 50 | `UHr_82pS4nw` | Mike sobre a reedição do Ten | 11.639 | com Josh Evans e Eric Lilavois; Mike tem 15 fotos |
+| Vídeo | Quem | Palavras |
+|---|---|---|
+| `bws3XhMPh_0` | Mark Lanegan (Screaming Trees, Mad Season) | falhou a extração, tentar de novo |
+| `exWpZrU9shY` | Jeremy Toback, do Brad, sobre Stone e Shawn Smith | 22.868 |
+| `d6TkGxyRYNk` | Stone com Kyle Meredith | 5.833 |
+| `QNJElc1OuZg` | Jeff no Back Together with The Band | 4.310 |
+| `5bTf09aQYA4` | Dave Krusen sobre o King Ultramega | 4.107 |
+| `15XglhRqRs0` | Stone no A Fresh Face in Hell | 12.449 |
+| `pEuEnhMZ0sA` | **Jack Irons** no Vinyl Guide | 10.888, mas BLOQUEADO por foto |
 
 Sobram ainda, já extraídos: `QNJElc1OuZg` (Jeff, 4.310), `d6TkGxyRYNk` (Stone com Kyle
 Meredith, 5.833), `5bTf09aQYA4` (Dave Krusen, 4.107) e `pEuEnhMZ0sA` (**Jack Irons, 10.888**).
@@ -61,6 +63,16 @@ reordenador separa as datas em meses); o que não pode é repetir dentro da mesm
 - **44** Stone Gossard sobre o Brad, 4 matérias (`HKm1aUX4Ys8`)
 - **45** Dave Abbruzzese, o que sobrou da leva 35, 3 matérias (`hJH63OLD0Z0`)
 - **46** Mike McCready, Flight to Mars e Mad Season, 4 matérias (`cvQ60MDxq_c`)
+- **47** Stone Gossard no Revolver Fan First, a historia dele como fa (`pgEpKbET5jo`)
+- **48** Matt Cameron na Drumeo, duas bandas ao mesmo tempo (`-kD-RPbDQYg`)
+- **49** Jeff Ament no Talkin Schmit, a vida antes da musica (`FAi1sRLWH84`)
+- **50** Mike McCready no London Bridge, onde o Ten foi gravado (`UHr_82pS4nw`)
+
+### Pegadinhas de foto NOVAS (pasta mike-mccready)
+- `mm-commons-Pearl-Jam-2016.jpg` e a BANDA inteira, nao o Mike sozinho
+- `mm-commons-PearlJam-Trieste-2014.JPG` mostra Eddie e Mike juntos
+- `mm-commons-AiC10.jpg` e ALICE IN CHAINS (ja sabido)
+
 
 ### Pegadinhas de foto (pasta banda), confirmadas VISUALMENTE
 - **Servem como banda**: `p-a-h-2`, `p-a-h-31`, `p-a-h-36`, `p-a-h-35`, `p-a-h-39`,
