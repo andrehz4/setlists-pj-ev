@@ -1,0 +1,11 @@
+{
+  "runAt": "2026-09-13T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "1b6a1dcbd9", "title": "Pearl Jam - Rockin' In The Free World - 1992", "reason": "texto vazio (article_text < 200 chars, apenas metadado Reddit)" },
+    { "id": "77a7c0d3a6", "title": "August and September 1991, everybody...", "reason": "texto vazio (article_text sem conteudo, apenas linha de submissao Reddit)" }
+  ]
+}
