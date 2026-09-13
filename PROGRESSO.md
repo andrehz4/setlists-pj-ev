@@ -1,13 +1,21 @@
 # PROGRESSO, setlists-pj-ev
 
 
-## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 60 + acervo reabastecido 4x)
+## COMO CONTINUAR (handoff de 2026-09-13: levas 31 a 65 + acervo reabastecido 5x)
 
-Estado: **315 matérias em 60 levas**, fila 1/dia às 20h BRT até **21/07/2027**. 3 publicadas.
-Levas 20 a 60 (**199 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
+Estado: **330 matérias em 65 levas**, fila 1/dia às 20h BRT até **05/08/2027**. 3 publicadas.
+Levas 20 a 65 (**214 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
+
+Levas 61 a 65 desta rodada: **61** Eddie no SmartLess (`2vch_5OYDTQ`), **62** Mike McCready
+sobre o Crohn (`64poMm6YzGY`), **63** o Above do Mad Season pelo produtor Brett Eliason
+(`Fat7QTtXW_Y`), **64 e 65** Dave Hillis (engenheiro do Ten) e Dave Krusen no Sonic Road
+Podcast (`ub3enWLXZJQ`), a gravação do disco e a polêmica da remixagem do Brendan O Brien.
+
+Descarte editorial novo: `6GZDzIWFkVY` (Self Pollution Radio, 1995) tem letras impublicáveis
+no meio da transmissão. Não usar.
 
 **PRÓXIMO PASSO: curadoria do Andre.** O acervo foi reabastecido duas vezes nesta sessão e
-ainda sobram entrevistas extraídas no disco, prontas para virar leva 51 em diante:
+ainda sobram entrevistas extraídas no disco, prontas para virar leva 66 em diante:
 
 | Vídeo | Quem | Palavras |
 |---|---|---|
