@@ -1,10 +1,16 @@
 # PROGRESSO, setlists-pj-ev
 
 
-## COMO CONTINUAR (handoff de 2026-09-13: levas 31 a 65 + acervo reabastecido 5x)
+## COMO CONTINUAR (handoff de 2026-09-13: levas 31 a 70 + acervo reabastecido 5x)
 
-Estado: **330 matérias em 65 levas**, fila 1/dia às 20h BRT até **05/08/2027**. 3 publicadas.
-Levas 20 a 65 (**214 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
+Estado: **345 matérias em 70 levas**, fila 1/dia às 20h BRT até **20/08/2027**. 3 publicadas.
+Levas 20 a 70 (**229 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
+
+Levas 66 a 70: **66 e 67** Jeff Ament com Kyle Meredith, 2021 (`8eah6yJxNmQ`), disco solo,
+pinturas, No Code, Jeremy no baixo de 12 cordas e os buracos nas fitas do Vault; **68**
+Stone Gossard com Kyle Meredith, 2024 (`vViJNtGbG9c`), o método do Dark Matter; **69**
+Eddie no CBS Sunday Morning (`VCjoMvLqTf4`); **70** Eddie no Mind Wide Open, a série de
+saúde mental de Lily Cornell Silver (`OV4JFlgxiLk`).
 
 Levas 61 a 65 desta rodada: **61** Eddie no SmartLess (`2vch_5OYDTQ`), **62** Mike McCready
 sobre o Crohn (`64poMm6YzGY`), **63** o Above do Mad Season pelo produtor Brett Eliason
@@ -12,10 +18,33 @@ sobre o Crohn (`64poMm6YzGY`), **63** o Above do Mad Season pelo produtor Brett 
 Podcast (`ub3enWLXZJQ`), a gravação do disco e a polêmica da remixagem do Brendan O Brien.
 
 Descarte editorial novo: `6GZDzIWFkVY` (Self Pollution Radio, 1995) tem letras impublicáveis
-no meio da transmissão. Não usar.
+no meio da transmissão. Não usar. `FVsAKyNeDs0` (Mark Arm, do Mudhoney) quase não fala do
+Pearl Jam, e o pouco que fala é reclamação de preço de ingresso: descartado.
+
+### PENDÊNCIA QUE PRECISA DE DECISÃO DO ANDRE
+
+Na entrevista do Eddie a Lily Cornell Silver (`OV4JFlgxiLk`, usada na leva 70) existe um
+relato longo e inédito sobre **Roskilde**: ele em posição fetal dizendo "não aguento isso",
+e Pete Townshend respondendo "aguenta sim, foi por isso que aconteceu com vocês". Tem também
+o detalhe de que a banda parava Even Flow no meio se visse alguém cair na pista. É material
+histórico de primeira grandeza, mas envolve a morte de fãs e eu **não** transformei em
+cápsula por conta própria. Precisa da tua decisão editorial.
+
+Material já lido e NÃO usado, pronto para virar leva 71 em diante:
+- `vViJNtGbG9c` (Stone): o bloco sobre o The Cure como referência do Dark Matter e o filho
+  de 16 anos dele tocando em casa ("isso aí já é uma música"; "eu vivo pelos tropeços no
+  sublime"). Sobra material para 1 matéria boa.
+- `l2z9-Q2cA3E`: **Dave Abbruzzese**, parte 2, 9.440 palavras, de abril de 2026. Ele fala
+  da demissão. BLOQUEADO POR FOTO: só existem 2 fotos dele, não dá 3 matérias distintas.
+- `xtlqafKWdkc`: Alexandr Gnezdilov, o artista de light painting do Dark Matter, 5.585
+  palavras. Sem foto no acervo, seria com foto de banda.
+- `OxNZA7pVZs0`, `AD4WAlGYyBw`, `pEuEnhMZ0sA`: três entrevistas do **Jack Irons**,
+  somando 16 mil palavras. Continuam bloqueadas: as 3 fotos da pasta `jack-irons/` não
+  foram confirmadas como sendo ele.
 
 **PRÓXIMO PASSO: curadoria do Andre.** O acervo foi reabastecido duas vezes nesta sessão e
-ainda sobram entrevistas extraídas no disco, prontas para virar leva 66 em diante:
+ainda sobram entrevistas extraídas no disco (a tabela abaixo é de sessões anteriores e está
+parcialmente consumida; a lista confiável do que sobra é a de cima):
 
 | Vídeo | Quem | Palavras |
 |---|---|---|
