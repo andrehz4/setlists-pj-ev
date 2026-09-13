@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-13T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "41e4a43a34",
+      "title": "Finally found one of my grails. If you get a random feeling...",
+      "reason": "sem mencao a PJ, texto vazio (r/dvdcollection, apenas metadado de submissao)"
+    },
+    {
+      "id": "65ca6b38ec",
+      "title": "\"The Sound of Fury\" - Metal Forces: Feb 1993",
+      "reason": "sem mencao a PJ, texto vazio (r/RATM, sobre Rage Against The Machine)"
+    }
+  ]
+}
