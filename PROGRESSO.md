@@ -1,10 +1,10 @@
 # PROGRESSO, setlists-pj-ev
 
 
-## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 50 + acervo reabastecido)
+## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 55 + acervo reabastecido 3x)
 
-Estado: **280 matérias em 50 levas**, fila 1/dia às 20h BRT até **16/06/2027**. 2 publicadas.
-Levas 20 a 50 (**164 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
+Estado: **301 matérias em 55 levas**, fila 1/dia às 20h BRT até **07/07/2027**. 3 publicadas.
+Levas 20 a 55 (**185 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
 
 **PRÓXIMO PASSO: curadoria do Andre.** O acervo foi reabastecido duas vezes nesta sessão e
 ainda sobram entrevistas extraídas no disco, prontas para virar leva 51 em diante:
@@ -67,6 +67,21 @@ reordenador separa as datas em meses); o que não pode é repetir dentro da mesm
 - **48** Matt Cameron na Drumeo, duas bandas ao mesmo tempo (`-kD-RPbDQYg`)
 - **49** Jeff Ament no Talkin Schmit, a vida antes da musica (`FAi1sRLWH84`)
 - **50** Mike McCready no London Bridge, onde o Ten foi gravado (`UHr_82pS4nw`)
+- **51** Stone Gossard com Jonathan Evison, amigo desde 1983 (`15XglhRqRs0`)
+- **52** Matt Cameron no Sarah Hagan Backstage (`tkWcllclekA`)
+- **53** Jeff Ament no Back Together with The Band (`QNJElc1OuZg`)
+- **54** Jeremy Toback conta como o Brad nasceu, 3 materias (`exWpZrU9shY`)
+- **55** Stone Gossard com Kyle Meredith, Painted Shield 2, 3 materias (`d6TkGxyRYNk`)
+
+### Ainda no disco, prontos para a leva 56
+- `pEuEnhMZ0sA` Jack Irons no Vinyl Guide, 10.888 palavras: BLOQUEADO por foto
+- `5bTf09aQYA4` Dave Krusen, 4.107 palavras: so 1 foto na pasta dele, no maximo 2 materias
+- `bws3XhMPh_0` Mark Lanegan: a extracao falhou, tentar de novo
+- `fFq-aD3dJ1E` Pearl Jam no Howard Stern, 121 min: e canal de reupload, mas a fonte
+  original e jornalistica. Se usar, atribuir ao Howard Stern, nunca ao canal.
+- Sem legenda no YouTube: `PhqKCQXI8s0` (Eddie com Bruce Springsteen) e `TByyg48uXbA`
+  (Eddie com Laird Hamilton no Iconoclasts). Os dois seriam otimos.
+
 
 ### Pegadinhas de foto NOVAS (pasta mike-mccready)
 - `mm-commons-Pearl-Jam-2016.jpg` e a BANDA inteira, nao o Mike sozinho
