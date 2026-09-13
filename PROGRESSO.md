@@ -1,10 +1,10 @@
 # PROGRESSO, setlists-pj-ev
 
 
-## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 55 + acervo reabastecido 3x)
+## COMO CONTINUAR (handoff de 2026-09-12: levas 31 a 60 + acervo reabastecido 4x)
 
-Estado: **301 matérias em 55 levas**, fila 1/dia às 20h BRT até **07/07/2027**. 3 publicadas.
-Levas 20 a 55 (**185 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
+Estado: **315 matérias em 60 levas**, fila 1/dia às 20h BRT até **21/07/2027**. 3 publicadas.
+Levas 20 a 60 (**199 matérias**) seguem TRAVADAS aguardando a curadoria do Andre.
 
 **PRÓXIMO PASSO: curadoria do Andre.** O acervo foi reabastecido duas vezes nesta sessão e
 ainda sobram entrevistas extraídas no disco, prontas para virar leva 51 em diante:
@@ -72,6 +72,23 @@ reordenador separa as datas em meses); o que não pode é repetir dentro da mesm
 - **53** Jeff Ament no Back Together with The Band (`QNJElc1OuZg`)
 - **54** Jeremy Toback conta como o Brad nasceu, 3 materias (`exWpZrU9shY`)
 - **55** Stone Gossard com Kyle Meredith, Painted Shield 2, 3 materias (`d6TkGxyRYNk`)
+- **56** Jeff Ament no podcast do ex-senador Jon Tester, 3 materias (`UxABz-BoNxc`)
+- **57** Mike McCready e o medo de encostar num pincel, 3 materias (`3_Yquzkk3ts`)
+- **58** Matt Cameron com Matt Pinfield, do sofa ao Prodigy, 3 materias (`LveEoEQyGHM`)
+- **59** Brendan O Brien e a mixagem do Superunknown, 3 materias (`FfoOvO6Xguw`)
+- **60** Dave Krusen, tributo a Chris Cornell e MusiCares, 2 materias (`5bTf09aQYA4`)
+
+### DESCARTADOS na 4a rodada (nao repetir o trabalho)
+- `fFq-aD3dJ1E` NAO e a entrevista do Howard Stern: e um podcast de comentaristas
+  debochando dela, com trechos soltos. Removido do acervo.
+- `HekVntig5Dw` Josh Klinghoffer: cita o Pearl Jam UMA vez, de passagem. A entrevista e
+  sobre Pluralone e Chili Peppers.
+- `FfoOvO6Xguw` Brendan O Brien: 3 horas, mas quase nao fala do Pearl Jam. O que rendeu
+  foi a mixagem do Superunknown. Ainda ha material dele sobre STP e Rage, nao sobre o PJ.
+- Sem legenda no YouTube: `PhqKCQXI8s0` (Eddie com Springsteen), `TByyg48uXbA` (Eddie com
+  Laird Hamilton), `hjvRQED7tjk` (Richard Stuverud) e `bws3XhMPh_0` (Mark Lanegan, falhou
+  duas vezes). Os dois do Eddie seriam otimos: se um dia aparecer legenda, priorizar.
+
 
 ### Ainda no disco, prontos para a leva 56
 - `pEuEnhMZ0sA` Jack Irons no Vinyl Guide, 10.888 palavras: BLOQUEADO por foto
