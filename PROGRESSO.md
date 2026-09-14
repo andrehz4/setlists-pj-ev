@@ -1,5 +1,28 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-14: humanizer aplicado nas 342 cápsulas não publicadas
+
+- Skill `humanizer` (blader, MIT) instalada em /Users/andrehz/.claude/skills/humanizer e camada
+  própria `humanizer-ptbr` em /Users/andrehz/.claude/skills/humanizer-ptbr (vícios do português,
+  travessão proibido, citação nunca se reescreve). Guia de voz das cápsulas em
+  `scripts/news/youtube/VOZ-CAPSULAS.md`.
+- Diagnóstico: as levas foram virando roteiro de vídeo curto (17 parágrafos por cápsula e 4 de
+  uma linha só nas levas 51 a 70, contra 5 e 0 nas levas 1 a 10 aprovadas).
+- Duas passadas por subagentes em 18 lotes (a 2ª conferindo fatos nas transcrições) + passada
+  manual nos fechos (15 cortes). Resultado: 11,4 -> 5,5 parágrafos por cápsula, 0 parágrafo de
+  uma linha, 0 vício na narração, citações intactas (conferido por script contra o backup).
+- A 2ª revisão achou ~15 cápsulas com fala do entrevistador creditada ao integrante e alguns
+  fatos errados; corrigidos no texto e em 10 carrosséis (slides removidos ou autor ajustado).
+- 3 publicadas (cap-gn5B6N0, cap-s1Ur5FF, cap-ypplQbA) não foram tocadas.
+
+**Pendências do Andre:**
+1. `cap-y9usZ9ef` ("Banda é um casamento de cinco"): boa parte das falas é do entrevistador
+   (Jonathan Evison), mas texto e 3 slides ainda soam como Jeff. Refazer ou descartar.
+2. 103 dúvidas de fato abertas em 85 cápsulas (quase sempre transcrição sem marcação de
+   falante). Lista gerada a partir das notas dos revisores; os arquivos de trabalho ficaram no
+   scratchpad da sessão (não versionados).
+3. `cap-MG-OZw5d`: saiu "mais de treze milhões de cópias", que não está no vídeo.
+
 
 ## COMO CONTINUAR (handoff de 2026-09-13: levas 31 a 70 + acervo reabastecido 5x)
 
