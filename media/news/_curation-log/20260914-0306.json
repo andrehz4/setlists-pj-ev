@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-14T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-5d2e7384bf",
+      "title": "Picture of the demo tape that helped Eddie Vedder get hired",
+      "reason": "spotlight sem selftext: post_selftext contem apenas atribuicao do submissor, sem conteudo para construir materia; score 0, sem comentarios"
+    },
+    {
+      "id": "6982bcdcca",
+      "title": "Albums That Were Very Popular in Their Time But Feel Underrated Now?",
+      "reason": "PJ tangencial: post de r/fantanoforever sobre albuns genericos, PJ aparece apenas como imagem ilustrativa; texto real abaixo de 200 chars; fonte fora do escopo PJ"
+    }
+  ]
+}
