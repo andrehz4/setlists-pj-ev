@@ -19,8 +19,8 @@
 1. `cap-y9usZ9ef` ("Banda é um casamento de cinco"): boa parte das falas é do entrevistador
    (Jonathan Evison), mas texto e 3 slides ainda soam como Jeff. Refazer ou descartar.
 2. 103 dúvidas de fato abertas em 85 cápsulas (quase sempre transcrição sem marcação de
-   falante). Lista gerada a partir das notas dos revisores; os arquivos de trabalho ficaram no
-   scratchpad da sessão (não versionados).
+   falante). Lista versionada em `scripts/news/youtube/_duvidas-abertas.json` (id, leva, capa,
+   dúvidas); o videoId de cada uma está no próprio `_rascunhos.json`.
 3. `cap-MG-OZw5d`: saiu "mais de treze milhões de cópias", que não está no vídeo.
 
 
