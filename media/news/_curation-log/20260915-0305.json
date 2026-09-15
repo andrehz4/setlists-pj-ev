@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-15T03:05Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 0, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-a0526eda21",
+      "title": "Top 5 favoritas pearl jam",
+      "reason": "spotlight sem selftext: post_selftext contém apenas metadado Reddit, sem conteudo real; tipo discussao/lista, nao fan-created content"
+    }
+  ]
+}
