@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-16T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "691ad11989",
+      "title": "Estos son (en mi opinion) los mejores debuts de todos los tiempos",
+      "reason": "texto vazio + sem mencao a PJ (r/albums, post de Reddit sem conteudo)"
+    },
+    {
+      "id": "bff7be215c",
+      "title": "Pearl Jam - Black (Official Audio)",
+      "reason": "texto vazio (post de Reddit r/okbuddyblacklight sem conteudo editorial)"
+    }
+  ]
+}
