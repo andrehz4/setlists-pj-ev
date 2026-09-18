@@ -1,0 +1,39 @@
+{
+  "runAt": "2026-09-18T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 6,
+  "distribution": { "midia": 5, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-60d4821c94",
+      "title": "I got your next beer at Tradewinds if you are in here.",
+      "reason": "nao e fan content criativo: oferta casual de cerveja num bar, score 0, sem comentarios"
+    },
+    {
+      "id": "10d91c49d4",
+      "title": "Pearl Jam, Sabbath, CSNY Members Join Power To The People",
+      "reason": "texto vazio: article_text e apenas metadado Reddit (submitted by... [link] [comments]), menos de 200 chars de conteudo"
+    },
+    {
+      "id": "f8e850aaf0",
+      "title": "Grunge rivalry",
+      "reason": "texto vazio: article_text e apenas metadado Reddit sem conteudo"
+    },
+    {
+      "id": "ad3c20185b",
+      "title": "Who should I deep dive?",
+      "reason": "PJ tangencial: pergunta generica sobre bandas para deep dive, Pearl Jam e apenas um de 10 artistas listados"
+    },
+    {
+      "id": "32dd9ac0b7",
+      "title": "RB4/Legacy Delisting DLC Discussion: September 20-September 26, 2026",
+      "reason": "PJ tangencial: discussao de DLC do Rock Band, Pearl Jam e um entre varios artistas sendo deletados"
+    },
+    {
+      "id": "838f84ba19",
+      "title": "Hanging with Mike McCready of Pearl Jam - and another cool jam at home",
+      "reason": "texto vazio: article_text e apenas 'Love this for him' sem nenhum conteudo jornalistico"
+    }
+  ]
+}
