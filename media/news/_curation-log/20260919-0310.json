@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-09-19T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "7d3f9ad440",
+      "title": "ARCHIVE LIVE REVIEW: Manhattan Centre, NYC, 22 Jul 1993",
+      "reason": "sem mencao a PJ (review de show do Dream Theater em r/Dreamtheater)"
+    },
+    {
+      "id": "d7618adaa6",
+      "title": "Ultimate yearner song",
+      "reason": "PJ tangencial (mencao breve a Black num post generico sobre musicas melancolicas em subreddit nao-PJ)"
+    },
+    {
+      "id": "c520c803b0",
+      "title": "Woods of Terror was absolutely T(error)errible",
+      "reason": "sem mencao a PJ (relato de experiencia de Halloween sem relacao com Pearl Jam)"
+    }
+  ]
+}
