@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-20T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "ce7a1706c2",
+      "title": "Pearl Jam – Black (1991 rough mix, without the fade-out)",
+      "reason": "texto vazio (menos de 200 chars de conteudo real; link post do Reddit com apenas 2 frases de descricao)"
+    }
+  ]
+}
