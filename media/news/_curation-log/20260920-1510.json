@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-20T15:10Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 1,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "3ac0b00cdf",
+      "title": "Top 50 Biggest Billboard Artists of the 1990s Decade",
+      "reason": "PJ tangencial: post de r/rnb sem mencao a PJ, texto extraido vazio (<200 chars)"
+    }
+  ]
+}
