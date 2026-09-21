@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-21T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-113644fb2b",
+      "title": "Update 2: Two weeks ago I had no idea who Pearl Jam were",
+      "reason": "jornada pessoal de descoberta, sem obra criativa de fã; community-spotlight é para trabalhos criativos (arte, tattoo, cover); engajamento zero (score 0, 0 comentários)"
+    },
+    {
+      "id": "70002a30c5",
+      "title": "Rapid fire Q&A with Zach Hill from 2009",
+      "reason": "sem relação com Pearl Jam; Q&A com Zach Hill do Death Grips, escapou do filtro de busca reddit-search-pj"
+    }
+  ]
+}
