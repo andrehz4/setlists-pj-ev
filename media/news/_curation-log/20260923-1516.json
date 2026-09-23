@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-09-23T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "00522800b8", "titulo": "Os 13 álbuns favoritos de Eddie Vedder, do Jackson 5 aos Pixies", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cd-20260923", "title": "Comunidade 23/09 - Ohana tickets, Krusen hint, diorama", "reason": "todos os 6 posts com score 0 e sem selftext substancial; dia fraco, sem assunto com substância mínima para publicar" },
+    { "id": "e770f41ac1", "title": "Os 13 álbuns favoritos de Eddie Vedder, do Pearl Jam (Terra)", "reason": "duplicata quase idêntica da matéria Rolling Stone Brasil (mesmo conteúdo, mesma fonte original Discogs); sem ângulo diferente para justificar segunda matéria" }
+  ]
+}
