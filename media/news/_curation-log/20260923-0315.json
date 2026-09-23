@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-09-23T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-a4adce5964",
+      "title": "Krusen Instagram Story - Ohana?",
+      "reason": "spotlight sem fan content: especulacao/rumor (score 0, 0 comentarios, texto ambiguo)"
+    },
+    {
+      "id": "6b6112e2f8",
+      "title": "In Utero: la vera storia dell'ultimo album dei Nirvana",
+      "reason": "sem mencao a PJ: artigo sobre Nirvana escapou do filtro"
+    },
+    {
+      "id": "1ea0e087a9",
+      "title": "Top 10 songs of all time?",
+      "reason": "sem mencao a PJ: lista generica de musicas sem relacao com Pearl Jam"
+    }
+  ]
+}
