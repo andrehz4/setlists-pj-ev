@@ -1,22 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-07-08",
-      "runAt": "2026-07-08T16:00:59.664Z",
-      "items": [
-        "aae16d2ff7",
-        "92626d5751",
-        "4ad4d3511c",
-        "90e3d61291",
-        "94dbf035b0"
-      ],
-      "track": "05-alexgrohl-no-filter-garage.mp3",
-      "tarjaColor": "#2a5b9e",
-      "postId": "18142028383539561",
-      "containerId": "18145382746471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-07-08.mp4"
-    },
-    {
       "dateKey": "2026-07-09",
       "runAt": "2026-07-09T16:00:59.210Z",
       "items": [
@@ -811,6 +795,22 @@
       "containerId": "18153566173471615",
       "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-09-23.mp4",
       "fbPostId": "1112280867945184"
+    },
+    {
+      "dateKey": "2026-09-24",
+      "runAt": "2026-09-24T16:01:09.276Z",
+      "items": [
+        "5b04b696df",
+        "7fc1a69ea7",
+        "cap-VZ4oszC",
+        "f716757743"
+      ],
+      "track": "03-the-mountain-action-rock.mp3",
+      "tarjaColor": "#0a0a0a",
+      "postId": "17872257798637844",
+      "containerId": "18153664792471615",
+      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-09-24.mp4",
+      "fbPostId": "1143003568398198"
     }
   ]
 }
