@@ -1,0 +1,15 @@
+{
+  "runAt": "2026-09-24T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 5, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "5b04b696df", "titulo": "O mestre de McCready: David Gilmour, delay, sutileza e a nota certa", "kind": "midia" },
+    { "id": "7fc1a69ea7", "titulo": "McCready explica: 'Sirens' nasceu tentando canalizar David Gilmour", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "e0f7854bdc", "title": "I created a page in control center...", "reason": "PJ tangencial: post sobre configuracao de iOS, Pearl Jam nao mencionado como tema central" },
+    { "id": "108223e8ff", "title": "Pearly Blue Sky", "reason": "sem mencao a PJ (banda): trata de esmalte com a cor 'pearl jam', nao da banda" },
+    { "id": "652cb9ebeb", "title": "Examples of Songs with an Electric Guitar Played Fingerstyle", "reason": "PJ tangencial: post do r/Guitar com Given to Fly como um exemplo entre varios outros artistas/bandas" }
+  ]
+}
