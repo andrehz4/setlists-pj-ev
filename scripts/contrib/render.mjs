@@ -7,7 +7,7 @@ import { writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { promisify } from "node:util";
 import { gerarAss } from "./legenda-ass.mjs";
-import { credito } from "./post.mjs";
+import { creditoAutor } from "./post.mjs";
 
 const run = promisify(execFile);
 const FONTES = resolve("media/fonts");
@@ -37,7 +37,7 @@ export async function renderizar(envio, arquivoEntrada, pasta) {
   const dur = Math.max(1, fim - ini);
 
   const ass = join(pasta, "legenda.ass");
-  await writeFile(ass, gerarAss({ estilo: v.estilo || "nenhuma", legendas: v.legendas || [], trimStart: ini, trimEnd: fim, credito: credito(envio.autor?.nome) }));
+  await writeFile(ass, gerarAss({ estilo: v.estilo || "nenhuma", legendas: v.legendas || [], trimStart: ini, trimEnd: fim, credito: creditoAutor(envio.autor) }));
 
   const audio = await temAudio(arquivoEntrada);
   const saida = join(pasta, "reel.mp4");

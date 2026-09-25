@@ -40,6 +40,7 @@ const rotas = {
   "POST /contrib/legenda": () => ({ trechos: legendaFalsa() }),
   "POST /contrib/uploads": (b) => ({ key: `contrib/x/${Date.now()}.${b.mime.split("/")[1]}`, upload_url: `http://127.0.0.1:${PORTA}/put`, headers: { "Content-Type": b.mime }, expires_in: 900 }),
   "POST /contrib/submissions": (b) => { const s = slot(); const e = { id: "n" + Date.now(), status: "enviado", title: b.title, body: b.body, media: b.media_keys.map((key) => ({ key, url: null })), scheduled_at: s.toISOString(), scheduled_label: rotulo(s), reason: null, created_at: agora(), video: b.video || null }; envios.unshift(e); console.log("ENVIO", JSON.stringify(b).slice(0, 400)); return e; },
+  "POST /contrib/perfil": (b) => ({ instagram: String(b.instagram || "").replace(/^@/, "").toLowerCase() || null }),
   "GET /contrib/submissions/mine": () => envios,
   "GET /contrib/admin/membros": () => membros,
   "POST /contrib/admin/membros": (b) => { const m = membros.find((x) => x.email === b.email); if (m) m.status = b.status; else membros.push({ id: "m" + Date.now(), email: b.email, nome: null, status: b.status, pedido_em: agora(), entrou: false }); return b; },

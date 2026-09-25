@@ -10,7 +10,7 @@
 import { avaliar } from "./gemini-curador.mjs";
 import { prepararMidia } from "./midia.mjs";
 import { decidir, resumoTelegram } from "./veredito.mjs";
-import { bot, telegram } from "./api.mjs";
+import { bot, falhou, telegram } from "./api.mjs";
 
 const CHAVE = process.env.CONTRIB_BOT_KEY;
 const DRY = process.argv.includes("--dry");
@@ -52,7 +52,7 @@ async function main() {
     } catch (e) {
       falhas++;
       console.error(`${envio.id} falhou:`, e.message);
-      if (e.status !== 409) await telegram(`⚠️ Curadoria de colaborador falhou (${envio.title}): ${e.message}. Tento de novo na próxima rodada.`);
+      if (e.status !== 409) await falhou(envio, "curadoria", e);
     }
   }
   if (falhas) process.exitCode = 1;

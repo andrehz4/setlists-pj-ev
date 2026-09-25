@@ -27,3 +27,18 @@ export async function telegram(texto) {
     body: JSON.stringify({ chat_id: chat, text: texto, disable_web_page_preview: true }),
   }).catch((e) => console.warn("[telegram] falhou:", e.message));
 }
+
+// Registra a falha no backend e decide o aviso: só na 1ª falha e na desistência (sem spam).
+export async function falhou(envio, etapa, erro) {
+  const msg = String(erro?.message || erro).slice(0, 500);
+  let r = { tentativas: 1, desistiu: false };
+  try { r = await bot(`/falha/${envio.id}`, { etapa, erro: msg }); }
+  catch (e) { console.warn("[falha] backend não registrou:", e.message); }
+  const titulo = `"${envio.title}"`;
+  if (r.desistiu) {
+    await telegram(`⛔ Desisti de ${etapa === "curadoria" ? "curar" : "publicar"} ${titulo} depois de ${r.tentativas} tentativas. A pessoa foi avisada pra reenviar.\nÚltimo erro: ${msg}`);
+  } else if (r.tentativas === 1) {
+    await telegram(`⚠️ Falha na ${etapa} de ${titulo}: ${msg}\nTento de novo sozinho (até ${r.limite || "algumas"} vezes) e só aviso de novo se desistir.`);
+  }
+  return r;
+}

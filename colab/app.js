@@ -57,7 +57,7 @@ async function iniciar() {
   if (s?.token) {
     try {
       const r = await api("/contrib/eu");
-      sessao.gravar({ ...s, status: r.status, admin: r.admin });
+      sessao.gravar({ ...s, status: r.status, admin: r.admin, instagram: r.instagram });
     } catch (_) { /* 401 já limpou a sessão; sem rede segue com o que tem */ }
   }
   irPara("postar");

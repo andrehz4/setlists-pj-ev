@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS contrib_membros (
   google_sub  text UNIQUE,
   nome        text,
   avatar      text,
+  instagram   text,
   status      text NOT NULL DEFAULT 'pendente',
   pedido_em   timestamptz NOT NULL DEFAULT now(),
   decidido_em timestamptz,

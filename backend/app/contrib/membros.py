@@ -6,7 +6,7 @@ Fluxos:
 - "bloqueado" corta o acesso sem apagar o histórico.
 """
 STATUS = ("pendente", "aprovado", "bloqueado")
-_COLS = "id::text, email, nome, avatar, status, pedido_em, decidido_em, (google_sub IS NOT NULL) AS entrou"
+_COLS = "id::text, email, nome, avatar, instagram, status, pedido_em, decidido_em, (google_sub IS NOT NULL) AS entrou"
 
 
 async def entrar(conn, *, id: str, email: str, sub: str, nome: str | None, avatar: str | None) -> str:
@@ -33,8 +33,9 @@ async def entrar(conn, *, id: str, email: str, sub: str, nome: str | None, avata
     return "pendente"
 
 
-async def status_de(conn, id: str) -> str | None:
-    return await conn.fetchval("SELECT status FROM contrib_membros WHERE id = $1::uuid", id)
+async def perfil_de(conn, id: str):
+    """(status, instagram) do membro, ou None se não existe."""
+    return await conn.fetchrow("SELECT status, instagram FROM contrib_membros WHERE id = $1::uuid", id)
 
 
 async def definir(conn, *, email: str, status: str, novo_id: str) -> None:

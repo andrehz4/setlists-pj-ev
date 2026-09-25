@@ -19,8 +19,8 @@ import { publishAlbumFromUrls } from "../publish/facebook.mjs";
 import { isCoolingDown, readCooldown } from "../publish/queue.mjs";
 import { CYCLE_COLORS } from "../publish/color-cycle.mjs";
 import { commitAndPush, esperarRaw } from "./git.mjs";
-import { credito, idSite, itemSite, legendaIG } from "./post.mjs";
-import { bot, telegram } from "./api.mjs";
+import { creditoAutor, idSite, itemSite, legendaIG } from "./post.mjs";
+import { bot, falhou, telegram } from "./api.mjs";
 import { publicarVideo } from "./publicar-video.mjs";
 
 const DRY = process.argv.includes("--dry");
@@ -107,7 +107,7 @@ async function publicar(envio) {
   entrarNoSite(envio, new Date().toISOString());
   await commitAndPush([INDEX, IMG, "media/news/items/", "n/", "sitemap.xml"], `contrib: ${id} publicado (IG ${r.postId})`, { dry: NO_GIT });
   await bot(`/publicado/${envio.id}`, { site_id: id, ig_post_id: r.postId, fb_post_id: r.fbPostId });
-  await telegram(`📣 ${video ? "Reel" : "Post"} de colaborador no ar: "${envio.title}"\npor ${credito(envio.autor?.nome)}${r.recuperado ? " (recuperado)" : ""}\nhttps://setlists-pj-ev.pages.dev/#news/${id}`);
+  await telegram(`📣 ${video ? "Reel" : "Post"} de colaborador no ar: "${envio.title}"\npor ${creditoAutor(envio.autor)}${r.recuperado ? " (recuperado)" : ""}\nhttps://setlists-pj-ev.pages.dev/#news/${id}`);
 }
 
 async function main() {
@@ -121,7 +121,7 @@ async function main() {
     catch (e) {
       falhas++;
       console.error(`${envio.id} falhou:`, e.message);
-      await telegram(`⚠️ Publicação de colaborador falhou ("${envio.title}"): ${e.message}. Tento de novo na próxima rodada.`);
+      if (e.status !== 409) await falhou(envio, "publicacao", e);
     }
   }
   if (falhas) process.exitCode = 1;

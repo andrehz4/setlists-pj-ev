@@ -13,7 +13,7 @@ def jsonb(value, padrao):
 async def fila(conn, limite: int = 10):
     return await conn.fetch(
         """
-        SELECT s.id::text, s.title, s.body, s.media, s.video_opts, s.scheduled_at, m.nome, m.email
+        SELECT s.id::text, s.title, s.body, s.media, s.video_opts, s.scheduled_at, m.nome, m.email, m.instagram
         FROM contrib_submissions s JOIN contrib_membros m ON m.id = s.user_id
         WHERE s.status = 'enviado'
         ORDER BY s.scheduled_at ASC LIMIT $1
@@ -72,7 +72,7 @@ _PRONTO = "status IN ('aprovado', 'ajustado')"
 async def prontos(conn, limite: int = 5):
     return await conn.fetch(
         f"""
-        SELECT s.id::text, s.status, s.title, s.body, s.media, s.video_opts, s.scheduled_at, s.ai_verdict, m.nome
+        SELECT s.id::text, s.status, s.title, s.body, s.media, s.video_opts, s.scheduled_at, s.ai_verdict, m.nome, m.instagram
         FROM contrib_submissions s JOIN contrib_membros m ON m.id = s.user_id
         WHERE s.{_PRONTO} AND s.scheduled_at <= now() + interval '2 minutes'
         ORDER BY s.scheduled_at ASC LIMIT $1

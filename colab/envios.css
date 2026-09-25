@@ -19,6 +19,7 @@
 .item .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); }
 .item .why { margin: 8px 0 0; font-size: 14px; color: var(--ink-soft); border-left: 2px solid var(--no); padding-left: 9px; }
 .item .why.adj { border-color: var(--adj); }
+.perfil-card .nota b { color: var(--ev); font-weight: 600; }
 .quota { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); display: flex; align-items: center; gap: 6px; }
 .quota i { display: inline-block; width: 24px; height: 6px; border-radius: 3px; background: var(--line); }
 .quota i.on { background: var(--ev); }

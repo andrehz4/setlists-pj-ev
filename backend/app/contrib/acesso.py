@@ -57,8 +57,8 @@ async def entrar(request: Request, payload: EntrarIn):
 @router.get("/eu")
 async def eu(claims: dict = Depends(auth.ler_token)):
     async with get_conn() as conn:
-        status = await membros.status_de(conn, claims["sub"])
-    return _perfil(status or "pendente", claims)
+        row = await membros.perfil_de(conn, claims["sub"])
+    return {**_perfil(row["status"] if row else "pendente", claims), "instagram": row["instagram"] if row else None}
 
 
 @router.get("/admin/membros")

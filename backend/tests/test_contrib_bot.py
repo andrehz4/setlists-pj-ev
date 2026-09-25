@@ -61,10 +61,10 @@ def test_fila_traz_midia_video_e_autor(client, conn):
     conn.fetch.return_value = [{
         "id": ID, "title": "t", "body": "b", "media": '[{"key": "contrib/x/a.mp4"}]',
         "video_opts": '{"estilo": "palavra", "legendas": []}', "scheduled_at": datetime(2026, 9, 25, 18, 30, tzinfo=UTC),
-        "nome": "Marina", "email": "m@gmail.com",
+        "nome": "Marina", "email": "m@gmail.com", "instagram": "marina.pj",
     }]
     item = client.get("/contrib/bot/fila", headers=CHAVE).json()[0]
-    assert item["video"]["estilo"] == "palavra" and item["autor"]["nome"] == "Marina"
+    assert item["video"]["estilo"] == "palavra" and item["autor"] == {"nome": "Marina", "email": "m@gmail.com", "instagram": "marina.pj"}
     assert item["media"][0]["key"] == "contrib/x/a.mp4"
 
 
@@ -109,7 +109,7 @@ def test_contagem_sem_efeito_colateral(client, conn):
 def _pronto(key="contrib/x/a.jpg", verdict=None):
     return {"id": ID, "status": "aprovado", "title": "t", "body": "b", "media": json.dumps([{"key": key}]),
             "video_opts": '{"estilo": "faixa"}' if key.endswith(".mp4") else None,
-            "scheduled_at": datetime(2026, 9, 25, 18, 30, tzinfo=UTC), "ai_verdict": verdict, "nome": "Marina"}
+            "scheduled_at": datetime(2026, 9, 25, 18, 30, tzinfo=UTC), "ai_verdict": verdict, "nome": "Marina", "instagram": None}
 
 
 def test_prontos_traz_foto_e_video_com_a_receita(client, conn):

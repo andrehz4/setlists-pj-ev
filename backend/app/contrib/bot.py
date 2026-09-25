@@ -62,7 +62,7 @@ async def fila():
         "media": [{"key": m["key"], "url": _url(m["key"])} for m in repo_bot.jsonb(r["media"], [])],
         "video": repo_bot.jsonb(r["video_opts"], None),
         "scheduled_at": r["scheduled_at"].isoformat(),
-        "autor": {"nome": r["nome"], "email": r["email"]},
+        "autor": {"nome": r["nome"], "email": r["email"], "instagram": r["instagram"]},
     } for r in rows]
 
 

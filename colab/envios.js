@@ -1,6 +1,7 @@
 // Depois de enviar e "Meus envios": status, horário, motivo de ajuste ou recusa, cancelar.
 
 import { api, aviso, h, rotuloDia, rotuloHora } from "./api.js";
+import { cartaoPerfil } from "./perfil.js";
 
 const STATUS = {
   enviado: ["Na curadoria", "p-wait"],
@@ -57,6 +58,7 @@ export async function telaMeus(cfg, irPara) {
     ` ${Math.min(hoje, cfg.daily_limit)} de ${cfg.daily_limit}`);
   corpo.replaceChildren(
     h("div", { class: "topo" }, h("h2", { class: "title" }, "Meus envios"), cota),
+    cartaoPerfil(),
     lista.length ? h("div", { class: "list" }, lista.map(item)) : h("p", { class: "muted" }, "Você ainda não enviou nada. Bora pro primeiro post?"),
   );
   return corpo;
@@ -67,7 +69,9 @@ function item(e) {
   const capa = e.media[0]?.url;
   const ehVideo = /\.(mp4|mov)$/.test(e.media[0]?.key || "");
   return h("div", { class: "card item" },
-    capa && !ehVideo ? h("img", { class: "thumb", src: capa, alt: "", loading: "lazy" }) : h("div", { class: "thumb" + (ehVideo ? " is-video" : "") }),
+    capa && !ehVideo
+      ? h("img", { class: "thumb", src: capa, alt: "", loading: "lazy", onerror: (ev) => ev.target.replaceWith(h("div", { class: "thumb" })) })
+      : h("div", { class: "thumb" + (ehVideo ? " is-video" : "") }),
     h("div", {},
       h("h4", {}, e.title),
       h("div", { class: "meta" }, h("span", { class: "pill " + classe }, nome), `${rotuloDia(e.scheduled_at)} às ${e.scheduled_label}`),
