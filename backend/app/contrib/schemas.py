@@ -18,11 +18,29 @@ class UploadOut(BaseModel):
     expires_in: int
 
 
+ESTILOS = "^(palavra|faixa|cinema|nenhuma)$"
+
+
+class Trecho(BaseModel):
+    start: float = Field(ge=0)
+    end: float = Field(ge=0)
+    text: str = Field(max_length=300)
+
+
+class VideoOpts(BaseModel):
+    """Receita do vídeo: o corte e a legenda queimada saem no render (fase 5)."""
+    trim_start: float = Field(ge=0)
+    trim_end: float = Field(gt=0)
+    estilo: str = Field(pattern=ESTILOS)
+    legendas: list[Trecho] = Field(default_factory=list, max_length=300)
+
+
 class SubmissionCreate(BaseModel):
     title: str = Field(min_length=3, max_length=120)
     body: str = Field(min_length=20, max_length=5000)
     media_keys: list[str] = Field(default_factory=list, min_length=1, max_length=10)
     agreed_rules: bool
+    video: VideoOpts | None = None
 
 
 class MediaOut(BaseModel):
@@ -40,6 +58,7 @@ class SubmissionOut(BaseModel):
     scheduled_label: str
     reason: str | None = None
     created_at: str
+    video: dict | None = None
 
 
 class ConfigOut(BaseModel):
@@ -48,3 +67,6 @@ class ConfigOut(BaseModel):
     daily_limit: int
     max_fotos: int
     mimes: list[str]
+    max_video_seg: int
+    google_client_id: str
+    legenda_auto: bool

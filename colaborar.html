@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Colaboradores · Só mais um fã de Pearl Jam</title>
+<meta name="description" content="Painel fechado pra colaboradores convidados postarem no Só mais um fã de Pearl Jam.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0908">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Big+Shoulders+Stencil+Display:wght@700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
+<link rel="stylesheet" href="/colab/base.css">
+<link rel="stylesheet" href="/colab/editor.css">
+<link rel="stylesheet" href="/colab/legendas.css">
+<link rel="stylesheet" href="/colab/envios.css">
+</head>
+<body>
+<!-- Painel de colaboradores. Página APARTADA do site (regra 0): nada do index.html é usado aqui.
+     Código em /colab (um módulo por tela), backend em backend/app/contrib. -->
+<div class="app">
+  <header class="bar">
+    <a class="logo" href="/">SMUFDPJ<small>colaboradores</small></a>
+    <div class="quem" id="quem"></div>
+  </header>
+  <main id="tela"><div class="body"><p class="muted">Carregando...</p></div></main>
+  <nav class="abas" id="abas" aria-label="Seções" hidden></nav>
+</div>
+<script type="module" src="/colab/app.js"></script>
+</body>
+</html>

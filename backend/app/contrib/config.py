@@ -22,6 +22,11 @@ class ContribSettings(BaseSettings):
     MAX_FOTOS: int = Field(default=10, ge=1, le=10)
     MAX_FOTO_BYTES: int = 15 * 1024 * 1024
     MAX_VIDEO_BYTES: int = 200 * 1024 * 1024
+    MAX_VIDEO_SEG: int = 90
+    # Gmails com poder de admin no painel (CSV).
+    ADMIN_EMAILS: str = "eng.andrehz@gmail.com"
+    # Token da API da Cloudflare com permissão "Workers AI" (legenda automática).
+    CF_AI_TOKEN: str = ""
 
     # Cloudflare R2 (API compatível com S3). Bucket privado.
     R2_ACCOUNT_ID: str = ""
@@ -32,6 +37,10 @@ class ContribSettings(BaseSettings):
     @property
     def r2_ready(self) -> bool:
         return bool(self.R2_ACCOUNT_ID and self.R2_ACCESS_KEY_ID and self.R2_SECRET_ACCESS_KEY)
+
+    @property
+    def admin_emails(self) -> set[str]:
+        return {e.strip().lower() for e in self.ADMIN_EMAILS.split(",") if e.strip()}
 
     @property
     def mimes(self) -> dict[str, str]:

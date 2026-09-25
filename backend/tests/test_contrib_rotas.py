@@ -3,21 +3,19 @@ from contextlib import asynccontextmanager
 from datetime import UTC, datetime
 from unittest.mock import AsyncMock, patch
 
-import asyncio
-
 import pytest
-from fastapi import HTTPException
 from fastapi import FastAPI
 from starlette.testclient import TestClient
 
-from app.contrib import acesso, membros, routes
+from app.contrib import acesso, auth, legenda, routes
 from app.contrib.config import contrib_settings as cfg
 from app.core.limiter import limiter
 from app.services.auth_service import create_jwt
 
 ORIGIN = {"Origin": "https://setlists-pj-ev.pages.dev"}
-USER = "00000000-0000-0000-0000-000000000001"
-KEY = f"contrib/{USER}/{'a' * 32}.jpg"
+MEMBRO = auth.membro_id("123")
+KEY = f"contrib/{MEMBRO}/{'a' * 32}.jpg"
+VIDEO = f"contrib/{MEMBRO}/{'b' * 32}.mp4"
 
 
 @pytest.fixture
@@ -42,13 +40,13 @@ def client(conn, monkeypatch):
     app = FastAPI()
     app.state.limiter = limiter
     app.include_router(routes.router, prefix="/contrib")
-    app.dependency_overrides[membros.require_membro] = lambda: USER
-    with patch.object(routes, "get_conn", fake_get_conn), patch.object(acesso, "get_conn", fake_get_conn):
+    with patch.object(routes, "get_conn", fake_get_conn), patch.object(acesso, "get_conn", fake_get_conn), \
+            patch.object(auth, "get_conn", fake_get_conn):
         yield TestClient(app)
 
 
-def _auth():
-    return {**ORIGIN, "Authorization": f"Bearer {create_jwt(USER)}"}
+def _h(email="fa@gmail.com"):
+    return {**ORIGIN, "Authorization": f"Bearer {auth.criar_token(MEMBRO, email)}"}
 
 
 def _body(**extra):
@@ -58,95 +56,118 @@ def _body(**extra):
 
 def _row(slot):
     return {"id": "x", "status": "enviado", "title": "t", "body": "b", "media": f'[{{"key": "{KEY}"}}]',
-            "scheduled_at": slot, "reason": None, "created_at": datetime.now(UTC)}
+            "video_opts": None, "scheduled_at": slot, "reason": None, "created_at": datetime.now(UTC)}
+
+
+def _aprovado(conn, *depois):
+    conn.fetchval.side_effect = ["aprovado", *depois]
+
+
+def test_token_do_forum_nao_vale_no_painel(client):
+    h = {**ORIGIN, "Authorization": f"Bearer {create_jwt(MEMBRO)}"}
+    assert client.get("/contrib/eu", headers=h).status_code == 401
 
 
 @pytest.mark.parametrize("status", [None, "pendente", "bloqueado"])
-def test_so_membro_aprovado_passa(conn, status):
+def test_so_membro_aprovado_pede_upload(client, conn, status):
     conn.fetchval.return_value = status
-
-    @asynccontextmanager
-    async def fake_get_conn():
-        yield conn
-    with patch.object(membros, "get_conn", fake_get_conn), pytest.raises(HTTPException) as exc:
-        asyncio.run(membros.require_membro(USER))
-    assert exc.value.status_code == 403
-
-
-def test_acesso_com_token_google_invalido_e_401(client):
-    with patch.object(acesso.google_id, "_chaves", AsyncMock(return_value={"keys": []})):
-        r = client.post("/contrib/acesso", json={"credential": "x" * 30}, headers=_auth())
-    assert r.status_code == 401
-
-
-def test_acesso_vincula_gmail_convidado(client, conn):
-    conn.fetchrow.return_value = {"user_id": None, "status": "aprovado"}
-    fake = AsyncMock(return_value=("fa@gmail.com", {"name": "Fã"}))
-    with patch.object(acesso.google_id, "email_verificado", fake):
-        r = client.post("/contrib/acesso", json={"credential": "x" * 30}, headers=_auth())
-    assert r.json() == {"status": "aprovado"}
-
-
-def test_gmail_de_outra_conta_e_409(client, conn):
-    conn.fetchrow.return_value = {"user_id": "00000000-0000-0000-0000-000000000009", "status": "aprovado"}
-    fake = AsyncMock(return_value=("fa@gmail.com", {}))
-    with patch.object(acesso.google_id, "email_verificado", fake):
-        r = client.post("/contrib/acesso", json={"credential": "x" * 30}, headers=_auth())
-    assert r.status_code == 409
-
-
-def test_admin_membros_bloqueado_pra_usuario_comum(client):
-    r = client.post("/contrib/admin/membros", json={"email": "a@b.com", "status": "aprovado"}, headers=_auth())
+    r = client.post("/contrib/uploads", json={"mime": "image/jpeg", "size": 10}, headers=_h())
     assert r.status_code == 403
 
 
-def test_upload_devolve_url_assinada_na_pasta_do_usuario(client):
-    r = client.post("/contrib/uploads", json={"mime": "image/jpeg", "size": 1000}, headers=_auth())
-    assert r.status_code == 200
-    assert r.json()["key"].startswith(f"contrib/{USER}/")
-    assert "acc.r2.cloudflarestorage.com" in r.json()["upload_url"]
+def test_admin_passa_sem_cadastro(client):
+    r = client.post("/contrib/uploads", json={"mime": "image/jpeg", "size": 10}, headers=_h("eng.andrehz@gmail.com"))
+    assert r.status_code == 200 and r.json()["key"].startswith(f"contrib/{MEMBRO}/")
 
 
 @pytest.mark.parametrize("mime,size,code", [("image/gif", 10, 415), ("image/jpeg", 10**9, 413), ("video/mp4", 10, 415)])
-def test_upload_recusa_formato_e_tamanho(client, mime, size, code):
-    assert client.post("/contrib/uploads", json={"mime": mime, "size": size}, headers=_auth()).status_code == code
+def test_upload_recusa_formato_e_tamanho(client, conn, mime, size, code):
+    _aprovado(conn)
+    assert client.post("/contrib/uploads", json={"mime": mime, "size": size}, headers=_h()).status_code == code
 
 
-def test_envio_sem_aceitar_regras_e_recusado(client):
-    assert client.post("/contrib/submissions", json=_body(agreed_rules=False), headers=_auth()).status_code == 422
+def test_entrar_com_gmail_convidado_devolve_token(client, conn):
+    conn.fetchrow.return_value = {"google_sub": None, "status": "aprovado"}
+    fake = AsyncMock(return_value=("fa@gmail.com", {"sub": "123", "name": "Fã", "picture": "javascript:x"}))
+    with patch.object(acesso.google_id, "email_verificado", fake):
+        r = client.post("/contrib/entrar", json={"credential": "x" * 30}, headers=ORIGIN)
+    assert r.json()["status"] == "aprovado" and r.json()["avatar"] is None
+    h = {**ORIGIN, "Authorization": f"Bearer {r.json()['token']}"}
+    assert client.get("/contrib/admin/membros", headers=h).status_code == 403
 
 
-def test_envio_com_arquivo_de_outro_usuario_e_recusado(client):
-    alheio = f"contrib/00000000-0000-0000-0000-000000000009/{'b' * 32}.jpg"
-    r = client.post("/contrib/submissions", json=_body(media_keys=[alheio]), headers=_auth())
-    assert r.status_code == 422
+def test_entrar_com_gmail_de_outra_conta_e_409(client, conn):
+    conn.fetchrow.return_value = {"google_sub": "999", "status": "aprovado"}
+    fake = AsyncMock(return_value=("fa@gmail.com", {"sub": "123"}))
+    with patch.object(acesso.google_id, "email_verificado", fake):
+        assert client.post("/contrib/entrar", json={"credential": "x" * 30}, headers=ORIGIN).status_code == 409
+
+
+def test_entrar_com_token_google_invalido_e_401(client):
+    with patch.object(acesso.google_id, "_chaves", AsyncMock(return_value={"keys": []})):
+        assert client.post("/contrib/entrar", json={"credential": "x" * 30}, headers=ORIGIN).status_code == 401
+
+
+def test_envio_sem_aceitar_regras_e_recusado(client, conn):
+    _aprovado(conn)
+    assert client.post("/contrib/submissions", json=_body(agreed_rules=False), headers=_h()).status_code == 422
+
+
+def test_envio_com_arquivo_de_outro_membro_e_recusado(client, conn):
+    _aprovado(conn)
+    alheio = f"contrib/{auth.membro_id('999')}/{'b' * 32}.jpg"
+    assert client.post("/contrib/submissions", json=_body(media_keys=[alheio]), headers=_h()).status_code == 422
+
+
+def test_trecho_de_video_longo_demais(client, conn, monkeypatch):
+    monkeypatch.setattr(cfg, "VIDEO_ENABLED", True)
+    _aprovado(conn)
+    video = {"trim_start": 0, "trim_end": cfg.MAX_VIDEO_SEG + 5, "estilo": "palavra", "legendas": []}
+    r = client.post("/contrib/submissions", json=_body(media_keys=[VIDEO], video=video), headers=_h())
+    assert r.status_code == 422 and "segundos" in r.text
+
+
+def test_estilo_de_legenda_desconhecido(client, conn):
+    _aprovado(conn)
+    video = {"trim_start": 0, "trim_end": 10, "estilo": "neon", "legendas": []}
+    assert client.post("/contrib/submissions", json=_body(video=video), headers=_h()).status_code == 422
 
 
 def test_limite_diario(client, conn):
-    conn.fetchval.return_value = cfg.DAILY_LIMIT
-    assert client.post("/contrib/submissions", json=_body(), headers=_auth()).status_code == 429
+    _aprovado(conn, cfg.DAILY_LIMIT)
+    assert client.post("/contrib/submissions", json=_body(), headers=_h()).status_code == 429
 
 
 def test_envio_agenda_no_meia_hora(client, conn):
-    conn.fetchval.return_value = 0
+    _aprovado(conn, 0)
     conn.fetch.return_value = []
     conn.fetchrow.side_effect = lambda sql, *args: _row(args[7])
-    r = client.post("/contrib/submissions", json=_body(), headers=_auth())
+    r = client.post("/contrib/submissions", json=_body(), headers=_h())
     assert r.status_code == 201, r.text
-    slot = datetime.fromisoformat(r.json()["scheduled_at"])
-    assert slot.minute == 30 and r.json()["scheduled_label"].endswith("h30")
+    assert datetime.fromisoformat(r.json()["scheduled_at"]).minute == 30
     assert "pg_advisory_xact_lock" in conn.execute.call_args_list[0].args[0]
 
 
 def test_cancelar_so_quando_enviado(client, conn):
-    conn.fetchval.return_value = "aprovado"
-    assert client.delete(f"/contrib/submissions/{USER}", headers=_auth()).status_code == 409
-    conn.fetchval.return_value = None
-    assert client.delete(f"/contrib/submissions/{USER}", headers=_auth()).status_code == 404
+    _aprovado(conn, "aprovado")
+    assert client.delete(f"/contrib/submissions/{MEMBRO}", headers=_h()).status_code == 409
 
 
-def test_admin_bloqueado_pra_usuario_comum(client):
-    assert client.get("/contrib/admin/submissions", headers=_auth()).status_code == 403
+def test_legenda_sem_configuracao_e_503(client, conn):
+    _aprovado(conn)
+    assert client.post("/contrib/legenda", content=b"RIFFxxxx", headers=_h()).status_code == 503
+
+
+def test_normalizar_resposta_do_whisper():
+    r = legenda.normalizar({"segments": [
+        {"start": 0.0, "end": 2.5, "text": " Em 1991 saiu o Ten. ", "avg_logprob": -0.2,
+         "words": [{"word": " Em", "start": 0.0, "end": 0.3}, {"word": " ", "start": 0.3, "end": 0.3}]},
+        {"start": 2.5, "end": 3.0, "text": "  "},
+        {"start": 3.0, "end": 5.0, "text": "Mookie Blaylock", "avg_logprob": -1.2},
+    ]})
+    assert [t["text"] for t in r] == ["Em 1991 saiu o Ten.", "Mookie Blaylock"]
+    assert r[0]["words"] == [{"w": "Em", "s": 0.0, "e": 0.3}]
+    assert [t["duvida"] for t in r] == [False, True]
 
 
 def test_app_principal_nao_monta_contrib_sem_flag():

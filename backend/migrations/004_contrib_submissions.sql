@@ -1,15 +1,30 @@
 -- Migração 004: envios de colaboradores (módulo backend/app/contrib).
--- Só cria tabela e índices NOVOS; não altera nenhuma tabela do fórum.
+-- Só cria tabelas e índices NOVOS; não altera nem referencia tabela do fórum.
 -- Rodar no Supabase SQL Editor. Idempotente.
+
+-- Quem pode postar (acesso só por convite, aprovado pelo Andre).
+-- Identidade própria do painel (login Google direto), independente do fórum.
+CREATE TABLE IF NOT EXISTS contrib_membros (
+  id          uuid PRIMARY KEY,
+  email       text NOT NULL UNIQUE,
+  google_sub  text UNIQUE,
+  nome        text,
+  avatar      text,
+  status      text NOT NULL DEFAULT 'pendente',
+  pedido_em   timestamptz NOT NULL DEFAULT now(),
+  decidido_em timestamptz,
+  CONSTRAINT contrib_membros_status_chk CHECK (status IN ('pendente', 'aprovado', 'bloqueado'))
+);
 
 CREATE TABLE IF NOT EXISTS contrib_submissions (
   id              uuid PRIMARY KEY,
   site            text NOT NULL,
-  user_id         uuid NOT NULL REFERENCES forum_users(id) ON DELETE CASCADE,
+  user_id         uuid NOT NULL REFERENCES contrib_membros(id) ON UPDATE CASCADE ON DELETE CASCADE,
   status          text NOT NULL DEFAULT 'enviado',
   title           text NOT NULL,
   body            text NOT NULL,
   media           jsonb NOT NULL DEFAULT '[]'::jsonb,
+  video_opts      jsonb,
   agreed_rules_at timestamptz NOT NULL,
   scheduled_at    timestamptz NOT NULL,
   reason          text,
@@ -35,14 +50,3 @@ CREATE INDEX IF NOT EXISTS contrib_user_created
 -- Fila da curadoria (fase 3).
 CREATE INDEX IF NOT EXISTS contrib_status_scheduled
   ON contrib_submissions (status, scheduled_at);
-
--- Quem pode postar (acesso só por convite, aprovado pelo Andre).
-CREATE TABLE IF NOT EXISTS contrib_membros (
-  email       text PRIMARY KEY,
-  user_id     uuid UNIQUE REFERENCES forum_users(id) ON DELETE SET NULL,
-  nome        text,
-  status      text NOT NULL DEFAULT 'pendente',
-  pedido_em   timestamptz NOT NULL DEFAULT now(),
-  decidido_em timestamptz,
-  CONSTRAINT contrib_membros_status_chk CHECK (status IN ('pendente', 'aprovado', 'bloqueado'))
-);

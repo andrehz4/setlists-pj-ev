@@ -6,21 +6,22 @@ from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
-from app.contrib import acesso, agenda, repo
+from app.contrib import acesso, agenda, legenda, repo
+from app.contrib.auth import require_admin, require_membro
 from app.contrib.config import contrib_settings as cfg
-from app.contrib.membros import require_membro
 from app.contrib.r2 import r2_url
 from app.contrib.schemas import (
     ConfigOut, MediaOut, SubmissionCreate, SubmissionOut, UploadOut, UploadRequest,
 )
 from app.core.config import settings
 from app.core.limiter import limiter
-from app.dependencies import require_auth, resolve_site
+from app.dependencies import resolve_site
 from app.services.db import get_conn
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 router.include_router(acesso.router)
+router.include_router(legenda.router)
 
 UPLOAD_TTL = 900
 KEY_RE = re.compile(r"^contrib/[0-9a-f-]{36}/[0-9a-f]{32}\.(jpg|png|webp|mp4|mov)$")
@@ -38,7 +39,7 @@ def _out(row) -> SubmissionOut:
     return SubmissionOut(
         id=row["id"], status=row["status"], title=row["title"], body=row["body"], media=media,
         scheduled_at=row["scheduled_at"].isoformat(), scheduled_label=agenda.hora_brt(row["scheduled_at"]),
-        reason=row["reason"], created_at=row["created_at"].isoformat(),
+        reason=row["reason"], created_at=row["created_at"].isoformat(), video=repo.video_of(row),
     )
 
 
@@ -46,7 +47,8 @@ def _out(row) -> SubmissionOut:
 async def config():
     return ConfigOut(
         enabled=cfg.ENABLED, video_enabled=cfg.VIDEO_ENABLED, daily_limit=cfg.DAILY_LIMIT,
-        max_fotos=cfg.MAX_FOTOS, mimes=sorted(cfg.mimes),
+        max_fotos=cfg.MAX_FOTOS, mimes=sorted(cfg.mimes), max_video_seg=cfg.MAX_VIDEO_SEG,
+        google_client_id=settings.GOOGLE_CLIENT_ID, legenda_auto=bool(cfg.CF_AI_TOKEN and cfg.R2_ACCOUNT_ID),
     )
 
 
@@ -84,6 +86,10 @@ async def create_submission(request: Request, payload: SubmissionCreate, user_id
         raise _erro(422, "Vídeo vai sozinho no post.")
     if len(payload.media_keys) > cfg.MAX_FOTOS:
         raise _erro(422, f"No máximo {cfg.MAX_FOTOS} fotos.")
+    if payload.video and not videos:
+        raise _erro(422, "Opções de vídeo sem vídeo no post.")
+    if payload.video and payload.video.trim_end - payload.video.trim_start > cfg.MAX_VIDEO_SEG:
+        raise _erro(422, f"O trecho escolhido passa de {cfg.MAX_VIDEO_SEG} segundos.")
 
     now = datetime.now(UTC)
     async with get_conn() as conn, conn.transaction():
@@ -98,14 +104,14 @@ async def create_submission(request: Request, payload: SubmissionCreate, user_id
         row = await repo.insert(
             conn, id=str(uuid.uuid4()), site=site, user_id=user_id, title=payload.title.strip(),
             body=payload.body.strip(), media=[{"key": k} for k in payload.media_keys],
-            scheduled_at=slot, now=now,
+            scheduled_at=slot, now=now, video=payload.video.model_dump() if payload.video else None,
         )
     logger.info("Contrib enviado id=%s user=%s slot=%s", row["id"], user_id, slot.isoformat())
     return _out(row)
 
 
 @router.get("/submissions/mine", response_model=list[SubmissionOut])
-async def my_submissions(request: Request, user_id: str = Depends(require_auth)):
+async def my_submissions(request: Request, user_id: str = Depends(require_membro)):
     site = resolve_site(request)
     async with get_conn() as conn:
         rows = await repo.list_mine(conn, user_id, site)
@@ -113,7 +119,7 @@ async def my_submissions(request: Request, user_id: str = Depends(require_auth))
 
 
 @router.delete("/submissions/{submission_id}")
-async def cancel_submission(submission_id: uuid.UUID, user_id: str = Depends(require_auth)):
+async def cancel_submission(submission_id: uuid.UUID, user_id: str = Depends(require_membro)):
     async with get_conn() as conn:
         result = await repo.cancel(conn, str(submission_id), user_id)
     if result is None:
@@ -124,10 +130,8 @@ async def cancel_submission(submission_id: uuid.UUID, user_id: str = Depends(req
 
 
 @router.get("/admin/submissions")
-async def admin_submissions(request: Request, user_id: str = Depends(require_auth)):
-    if not settings.is_admin(user_id):
-        raise _erro(403, "Apenas admin.")
+async def admin_submissions(request: Request, _: str = Depends(require_admin)):
     site = resolve_site(request)
     async with get_conn() as conn:
         rows = await repo.list_all(conn, site)
-    return [{**_out(r).model_dump(), "display_name": r["display_name"]} for r in rows]
+    return [{**_out(r).model_dump(), "nome": r["nome"], "email": r["email"]} for r in rows]

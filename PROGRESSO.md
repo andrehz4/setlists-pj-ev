@@ -1,5 +1,24 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-25: painel de colaboradores, fase 2 (página + legenda automática com 3 estilos)
+
+- Página nova `colaborar.html` + módulos em `colab/` (um por tela, todos até 160 linhas, teste trava).
+  Postar é a tela principal; regras de ouro fixas no topo; aceite junto do enviar; abas Postar,
+  Meus envios e Pessoas (só admin). CSP própria só dessa página no `_headers`.
+- **Login próprio** do painel (botão do Google -> token do colaborador). Motivo: o fórum não guarda
+  Gmail e tem 1 tópico só (do robô); não dava pra confiar nele. Token de um não vale no outro.
+- **Vídeo**: corte (até 90s), legenda automática logo após escolher o vídeo (áudio extraído no
+  navegador, WAV 16 kHz, Whisper no Cloudflare Workers AI), lista pra corrigir (linhas com pouca
+  confiança em destaque) e **3 estilos + sem legenda**: Palavra (acende palavra por palavra),
+  Faixa (tarja creme) e Cinema (serifa itálica). `colab/legendas.css` é a referência do render final.
+- Testado no Chrome com API falsa (`colab/dev/mock-api.mjs`): fotos, envio, confirmação, meus envios,
+  convidar/aprovar, estilos de legenda e extração de áudio. **Não testado**: tocar o vídeo com a
+  legenda andando (a janela do Chrome estava escondida, o navegador não carrega vídeo assim),
+  botão do Google e Whisper de verdade (dependem das chaves).
+
+**Próximo passo**: Andre liga as chaves (passos no README do módulo) e testa com um vídeo real no
+celular. Depois fase 3 (curadoria IA).
+
 ## 2026-09-24: painel de colaboradores, fase 1 (backend) + protótipo das telas
 
 Ideia do Andre: fãs convidados (gente que grava vídeo falando curiosidades ou recitando letras)
