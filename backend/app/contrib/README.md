@@ -31,6 +31,7 @@ aprova sem revisão humana, e o post sai no site e no IG sempre às :30 da próx
 | `membros.py` | SQL de `contrib_membros`: convite, pendente, aprovado, bloqueado |
 | `google_id.py` | confere o ID token do botão do Google |
 | `acesso.py` | rotas de entrar e painel de membros do admin |
+| `bot.py` + `repo_bot.py` | rotas do robô de curadoria (`X-Bot-Key` = `CONTRIB_BOT_KEY`): contagem, fila, veredito, pedidos de acesso |
 | `legenda.py` | legenda automática: WAV do navegador -> Whisper (Cloudflare Workers AI) -> trechos com tempo por palavra |
 
 ## Rotas
@@ -55,6 +56,24 @@ legenda são queimados no render (fase 5), que deve seguir `colab/legendas.css`.
 Status do envio: `enviado` -> `aprovado` / `ajustado` / `recusado` (curadoria IA, fase 3) -> `publicado` (fase 4).
 `cancelado` e `recusado` liberam o slot.
 
+## Curadoria por IA (fase 3)
+
+Cron `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/.github/workflows/contrib-curadoria.yml` a cada 10 min,
+código em `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/scripts/contrib/`:
+
+| Arquivo | Papel |
+|---|---|
+| `curar.mjs` | orquestra: avisa pedidos de acesso no Telegram, pega a fila, avalia, grava o veredito |
+| `midia.mjs` | fotos em 1280px; vídeo cortado no trecho escolhido, 480p, COM áudio |
+| `gemini-curador.mjs` | Gemini 2.5 Flash assiste e ouve a mídia, devolve JSON estruturado |
+| `prompt-curadoria.md` | o critério: regras de ouro, fatos, mexer o mínimo no texto, mensagem pra pessoa |
+| `veredito.mjs` | travas por cima da IA: regra violada ou incerta recusa, sem travessão, "ajustado" só se mudou |
+| `smoke.mjs` | teste real do Gemini (só voz x voz com música), `workflow_dispatch` com `smoke=true` |
+
+Por que Gemini: ele OUVE o áudio (regra 1, música de fundo). A chave `GEMINI_API_KEY` já existe.
+Falha num envio mantém ele `enviado` e ele volta na próxima rodada; o Andre recebe aviso no Telegram.
+O original da pessoa fica guardado em `ai_verdict.original` quando a IA ajusta.
+
 ## Pra ligar em produção (passos manuais do Andre)
 
 1. Rodar `004_contrib_submissions.sql` no SQL Editor do Supabase.
@@ -65,7 +84,9 @@ Status do envio: `enviado` -> `aprovado` / `ajustado` / `recusado` (curadoria IA
 4. Cloudflare: token de API com permissão "Workers AI" (legenda automática).
 5. Railway, variáveis: `CONTRIB_R2_ACCOUNT_ID`, `CONTRIB_R2_ACCESS_KEY_ID`, `CONTRIB_R2_SECRET_ACCESS_KEY`,
    `CONTRIB_CF_AI_TOKEN`, `CONTRIB_VIDEO_ENABLED=true` (quando quiser liberar vídeo) e por último
-   `CONTRIB_ENABLED=true`. Admin do painel: `CONTRIB_ADMIN_EMAILS` (padrão eng.andrehz@gmail.com).
+   `CONTRIB_BOT_KEY` (qualquer segredo longo) e por último `CONTRIB_ENABLED=true`.
+   Admin do painel: `CONTRIB_ADMIN_EMAILS` (padrão eng.andrehz@gmail.com).
+6. GitHub, secret `CONTRIB_BOT_KEY` com o MESMO valor do Railway (liga o cron da curadoria).
 
 ## Testes e prévia local
 

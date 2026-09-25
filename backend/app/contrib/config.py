@@ -27,6 +27,8 @@ class ContribSettings(BaseSettings):
     ADMIN_EMAILS: str = "eng.andrehz@gmail.com"
     # Token da API da Cloudflare com permissão "Workers AI" (legenda automática).
     CF_AI_TOKEN: str = ""
+    # Chave do robô de curadoria (GitHub Actions manda no header X-Bot-Key).
+    BOT_KEY: str = ""
 
     # Cloudflare R2 (API compatível com S3). Bucket privado.
     R2_ACCOUNT_ID: str = ""

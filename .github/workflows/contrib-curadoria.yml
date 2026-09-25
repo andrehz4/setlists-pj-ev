@@ -1,0 +1,87 @@
+# Curadoria por IA dos posts de colaboradores (painel colaborar.html).
+# Módulo apartado: não toca media/news nem os outros crons. Sem o secret
+# CONTRIB_BOT_KEY, ou com o painel desligado no backend, termina em segundos sem fazer nada.
+#
+# Os posts saem sempre às :30 da próxima hora, então há de 30 a 90 min pra curar.
+# O cron do GitHub pode atrasar; rodar a cada 10 min dá folga.
+name: contrib-curadoria
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: "dry = mostra o veredito e não grava"
+        type: boolean
+        default: false
+      smoke:
+        description: "smoke = testa o Gemini com 2 vídeos gerados (só voz x voz com música), sem tocar no backend"
+        type: boolean
+        default: false
+
+concurrency:
+  group: contrib-curadoria
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    if: inputs.smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: |
+          npm ci --no-audit --no-fund
+          sudo apt-get update && sudo apt-get install -y ffmpeg espeak-ng
+      - name: Gemini ouve a regra 1
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CONTRIB_GEMINI_MODEL: ${{ vars.CONTRIB_GEMINI_MODEL || 'gemini-2.5-flash' }}
+        run: node scripts/contrib/smoke.mjs
+
+  curar:
+    if: ${{ !inputs.smoke }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Tem algo na fila?
+        id: fila
+        env:
+          CONTRIB_BOT_KEY: ${{ secrets.CONTRIB_BOT_KEY }}
+        run: |
+          if [ -z "$CONTRIB_BOT_KEY" ]; then echo "sem CONTRIB_BOT_KEY"; echo "n=0" >> "$GITHUB_OUTPUT"; exit 0; fi
+          resp=$(curl -s -m 30 -H "X-Bot-Key: $CONTRIB_BOT_KEY" -H "Origin: https://setlists-pj-ev.pages.dev" \
+            https://perpetual-energy-production-1a69.up.railway.app/contrib/bot/contagem || echo '{}')
+          n=$(echo "$resp" | jq -r '((.fila // 0) + (.pedidos // 0))' 2>/dev/null || echo 0)
+          echo "contagem: $resp"
+          echo "n=$n" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        if: steps.fila.outputs.n != '0'
+
+      - uses: actions/setup-node@v4
+        if: steps.fila.outputs.n != '0'
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Dependências
+        if: steps.fila.outputs.n != '0'
+        run: |
+          npm ci --no-audit --no-fund
+          which ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+
+      - name: Curadoria
+        if: steps.fila.outputs.n != '0'
+        env:
+          CONTRIB_BOT_KEY: ${{ secrets.CONTRIB_BOT_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CONTRIB_GEMINI_MODEL: ${{ vars.CONTRIB_GEMINI_MODEL || 'gemini-2.5-flash' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/contrib/curar.mjs ${{ inputs.dry && '--dry' || '' }}
