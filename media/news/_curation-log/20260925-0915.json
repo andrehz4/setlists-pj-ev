@@ -1,0 +1,21 @@
+{
+  "runAt": "2026-09-25T09:14Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 11,
+  "distribution": { "midia": 11, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "78a0af1bb6", "titulo": "A longa história dos bateristas do Pearl Jam, às vésperas de mais um capítulo", "kind": "midia" },
+    { "id": "daa897b843", "titulo": "Soundgarden reúne sobreviventes com Mike McCready no show de abertura do Seahawks", "kind": "midia" },
+    { "id": "ffde6e9848", "titulo": "Pearl Jam lança em vinil o show histórico de Ten ao vivo em Filadélfia 2016", "kind": "midia" },
+    { "id": "945c264342", "titulo": "Olivia Vedder anuncia primeiro single solo para outubro", "kind": "midia" },
+    { "id": "d3797fa871", "titulo": "Since Forever: o livro de fotos de Jeff Ament com 250 registros da carreira", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "5d71474bd5", "title": "Went to a record fair in Amsterdam this weekend.", "reason": "sem mencao a PJ (post de r/Cd_collectors sem relacao com a banda)" },
+    { "id": "f4ce6bb7d2", "title": "Mike McCready and Matt Cameron Joining Morello's Power to the People Concert", "reason": "especulacao pura ('Honestly, who knows...'), sem confirmacao" },
+    { "id": "a5427a0810", "title": "Backspacer Turns 17", "reason": "texto vazio (so hashtag #pearljam)" },
+    { "id": "9e01a9e721", "title": "Ten Turns 35", "reason": "texto vazio (so hashtag #pearljam)" },
+    { "id": "07797b23c6", "title": "No Code Turns 30", "reason": "texto vazio (so hashtag #pearljam)" },
+    { "id": "19c81e43ef", "title": "Happy Birthday, Stone Gossard!", "reason": "texto vazio (so credito de foto e hashtag)" }
+  ]
+}
