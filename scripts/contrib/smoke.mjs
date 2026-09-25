@@ -13,7 +13,8 @@ import { decidir } from "./veredito.mjs";
 
 const run = promisify(execFile);
 const FALA = "Em agosto de mil novecentos e noventa e um saiu o Ten. Pouca gente lembra, mas a banda se chamava Mookie Blaylock, nome de um jogador de basquete.";
-const MELODIA = "0.25*sin(2*PI*(220*pow(2,floor(mod(t*3,8))/12))*t)+0.15*sin(2*PI*110*t)*(mod(t,0.5)<0.1)";
+// Vírgulas escapadas: dentro do -i lavfi a vírgula separa filtros.
+const MELODIA = "0.25*sin(2*PI*(220*pow(2\\,floor(mod(t*3\\,8))/12))*t)+0.15*sin(2*PI*110*t)*lt(mod(t\\,0.5)\\,0.1)";
 
 async function montar(pasta, nome, comMusica) {
   const voz = join(pasta, "voz.wav");
