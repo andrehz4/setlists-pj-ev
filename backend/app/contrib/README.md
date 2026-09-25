@@ -11,7 +11,11 @@ aprova sem revisão humana, e o post sai no site e no IG sempre às :30 da próx
 - Migração só com tabela nova (`backend/migrations/004_contrib_submissions.sql`).
 - Código IA friendly: cada `.py` desta pasta tem no máximo **160 linhas**, travado por
   `backend/tests/test_contrib_puro.py::test_regra_zero_arquivos_curtos`. Passou disso, quebrar em módulo.
-- Front vai em página nova (`colaborar.html`), sem mexer no `index.html`.
+- Front em página nova: `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/colaborar.html` + um módulo
+  por tela em `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/colab/` (mesmo limite de 160 linhas,
+  travado por `colab/colab.test.mjs` no `npm test`). CSP própria da página no `_headers`.
+- Login PRÓPRIO do painel (botão do Google -> token do colaborador, chave derivada). Não usa nem
+  altera o login do fórum; token de um não vale no outro (tem teste).
 
 ## Mapa
 
@@ -23,26 +27,30 @@ aprova sem revisão humana, e o post sai no site e no IG sempre às :30 da próx
 | `repo.py` | todo o SQL, só em `contrib_submissions` |
 | `schemas.py` | contratos de entrada e saída, lista de status |
 | `routes.py` | rotas de envio `/contrib/*` |
-| `membros.py` | acesso só por convite: pendente, aprovado, bloqueado; dependência `require_membro` |
-| `google_id.py` | confere o ID token do botão do Google (prova o Gmail sem mexer no login do fórum) |
-| `acesso.py` | rotas de pedir acesso e painel de membros do admin |
+| `auth.py` | token do painel, `require_membro`, `require_admin` (admin = `CONTRIB_ADMIN_EMAILS`) |
+| `membros.py` | SQL de `contrib_membros`: convite, pendente, aprovado, bloqueado |
+| `google_id.py` | confere o ID token do botão do Google |
+| `acesso.py` | rotas de entrar e painel de membros do admin |
+| `legenda.py` | legenda automática: WAV do navegador -> Whisper (Cloudflare Workers AI) -> trechos com tempo por palavra |
 
 ## Rotas
 
 | Rota | O que faz |
 |---|---|
 | `GET /contrib/config` | limites e formatos pro front |
-| `GET /contrib/acesso` | status do acesso de quem está logado (`nenhum`, `pendente`, `aprovado`, `bloqueado`) |
-| `POST /contrib/acesso` | confirma o Gmail (ID token do Google). Gmail convidado entra aprovado, o resto fica pendente |
+| `POST /contrib/entrar` | ID token do Google -> token do painel. Gmail convidado entra aprovado, o resto fica pendente |
+| `GET /contrib/eu` | status de quem está logado (`pendente`, `aprovado`, `bloqueado`) e se é admin |
 | `GET/POST /contrib/admin/membros` | admin convida um Gmail, aprova ou bloqueia |
+| `POST /contrib/legenda` | corpo = WAV 16 kHz mono (até 6 MB), devolve trechos pra pessoa corrigir |
 | `POST /contrib/uploads` | URL assinada pra subir 1 arquivo direto no R2 (15 min; tipo e tamanho travados na assinatura) |
 | `POST /contrib/submissions` | cria o envio: exige aceite das regras de ouro, arquivos da pasta do próprio usuário, limite diário, agenda o slot |
 | `GET /contrib/submissions/mine` | "Meus envios", com status e horário |
 | `DELETE /contrib/submissions/{id}` | cancela enquanto ainda está `enviado` |
 | `GET /contrib/admin/submissions` | lista geral, só admin |
 
-Só membro `aprovado` pede upload e envia. O Gmail precisa ser confirmado uma vez, porque o login
-do fórum não guarda e-mail e a regra 0 não deixa mexer nele.
+Só membro `aprovado` pede upload, legenda e envia. Vídeo leva a "receita" em `video_opts`
+(corte, estilo da legenda `palavra`/`faixa`/`cinema`/`nenhuma`, linhas corrigidas). O corte e a
+legenda são queimados no render (fase 5), que deve seguir `colab/legendas.css`.
 
 Status do envio: `enviado` -> `aprovado` / `ajustado` / `recusado` (curadoria IA, fase 3) -> `publicado` (fase 4).
 `cancelado` e `recusado` liberam o slot.
@@ -54,11 +62,18 @@ Status do envio: `enviado` -> `aprovado` / `ajustado` / `recusado` (curadoria IA
    só nesse bucket, e CORS do bucket liberando `PUT` e `GET` pra `https://setlists-pj-ev.pages.dev`.
 3. Google Cloud, no mesmo OAuth client do fórum: incluir `https://setlists-pj-ev.pages.dev` em
    "Origens JavaScript autorizadas" (o botão do Google exige).
-4. Railway, variáveis: `CONTRIB_R2_ACCOUNT_ID`, `CONTRIB_R2_ACCESS_KEY_ID`, `CONTRIB_R2_SECRET_ACCESS_KEY`
-   e por último `CONTRIB_ENABLED=true`.
+4. Cloudflare: token de API com permissão "Workers AI" (legenda automática).
+5. Railway, variáveis: `CONTRIB_R2_ACCOUNT_ID`, `CONTRIB_R2_ACCESS_KEY_ID`, `CONTRIB_R2_SECRET_ACCESS_KEY`,
+   `CONTRIB_CF_AI_TOKEN`, `CONTRIB_VIDEO_ENABLED=true` (quando quiser liberar vídeo) e por último
+   `CONTRIB_ENABLED=true`. Admin do painel: `CONTRIB_ADMIN_EMAILS` (padrão eng.andrehz@gmail.com).
 
-## Testes
+## Testes e prévia local
 
 ```
 cd /Users/andrehz/Documents/Githubhz/setlists-pj-ev/backend && .venv/bin/python -m pytest -q
+cd /Users/andrehz/Documents/Githubhz/setlists-pj-ev && node --test colab/colab.test.mjs
 ```
+
+Ver as telas sem backend: `node colab/dev/mock-api.mjs` (API falsa na 8799) + servir a raiz do repo
+(`python3 -m http.server 8798`) e abrir `http://127.0.0.1:8798/colaborar.html`. Sessão de dev no
+comentário do topo de `colab/dev/mock-api.mjs`.

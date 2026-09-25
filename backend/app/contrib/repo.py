@@ -1,11 +1,11 @@
-"""SQL do módulo. Só toca contrib_submissions (e lê forum_users no admin)."""
+"""SQL dos envios. Só toca contrib_submissions (e lê contrib_membros no admin)."""
 import json
 from datetime import datetime
 
 # Trava de transação que serializa a escolha de slot e o limite diário.
 LOCK_SQL = "SELECT pg_advisory_xact_lock(hashtext('contrib_submissions'))"
 
-_COLS = """id::text, status, title, body, media, scheduled_at, reason, created_at"""
+_COLS = """id::text, status, title, body, media, video_opts, scheduled_at, reason, created_at"""
 
 
 async def count_since(conn, user_id: str, since: datetime) -> int:
@@ -26,15 +26,16 @@ async def taken_slots(conn, site: str, since: datetime) -> set[datetime]:
     return {r["scheduled_at"] for r in rows}
 
 
-async def insert(conn, *, id, site, user_id, title, body, media, scheduled_at, now):
+async def insert(conn, *, id, site, user_id, title, body, media, scheduled_at, now, video=None):
     return await conn.fetchrow(
         f"""
         INSERT INTO contrib_submissions
-          (id, site, user_id, title, body, media, agreed_rules_at, scheduled_at)
-        VALUES ($1::uuid, $2, $3::uuid, $4, $5, $6::jsonb, $7, $8)
+          (id, site, user_id, title, body, media, agreed_rules_at, scheduled_at, video_opts)
+        VALUES ($1::uuid, $2, $3::uuid, $4, $5, $6::jsonb, $7, $8, $9::jsonb)
         RETURNING {_COLS}
         """,
         id, site, user_id, title, body, json.dumps(media), now, scheduled_at,
+        json.dumps(video) if video is not None else None,
     )
 
 
@@ -67,9 +68,9 @@ async def cancel(conn, submission_id: str, user_id: str) -> str | None:
 async def list_all(conn, site: str, limit: int = 100):
     return await conn.fetch(
         """
-        SELECT s.id::text, s.status, s.title, s.body, s.media, s.scheduled_at,
-               s.reason, s.created_at, u.display_name
-        FROM contrib_submissions s JOIN forum_users u ON u.id = s.user_id
+        SELECT s.id::text, s.status, s.title, s.body, s.media, s.video_opts, s.scheduled_at,
+               s.reason, s.created_at, m.nome, m.email
+        FROM contrib_submissions s JOIN contrib_membros m ON m.id = s.user_id
         WHERE s.site = $1 ORDER BY s.created_at DESC LIMIT $2
         """,
         site, limit,
@@ -80,3 +81,8 @@ def media_of(row) -> list[dict]:
     """asyncpg devolve jsonb como str; normaliza pra lista."""
     value = row["media"]
     return json.loads(value) if isinstance(value, str) else list(value or [])
+
+
+def video_of(row) -> dict | None:
+    value = row["video_opts"]
+    return json.loads(value) if isinstance(value, str) else (dict(value) if value else None)

@@ -1,60 +1,52 @@
 """Quem pode postar: acesso só por convite, aprovado pelo Andre.
 
 Fluxos:
-- Andre cadastra o Gmail antes (admin) -> a pessoa confirma o Gmail -> já entra aprovada.
-- A pessoa pede sozinha -> fica "pendente" até o Andre aprovar.
+- Andre convida o Gmail antes (admin) -> no primeiro login a pessoa já entra aprovada.
+- A pessoa entra sozinha -> fica "pendente" até o Andre aprovar.
 - "bloqueado" corta o acesso sem apagar o histórico.
 """
-from fastapi import Depends, HTTPException
-
-from app.dependencies import require_auth
-from app.services.db import get_conn
-
 STATUS = ("pendente", "aprovado", "bloqueado")
-_COLS = "email, user_id::text, nome, status, pedido_em, decidido_em"
+_COLS = "id::text, email, nome, avatar, status, pedido_em, decidido_em, (google_sub IS NOT NULL) AS entrou"
 
 
-async def status_do_usuario(conn, user_id: str) -> str | None:
-    return await conn.fetchval("SELECT status FROM contrib_membros WHERE user_id = $1::uuid", user_id)
-
-
-async def vincular(conn, *, email: str, user_id: str, nome: str | None) -> str:
-    """Liga o Gmail confirmado ao usuário do fórum. Devolve o status resultante."""
-    row = await conn.fetchrow("SELECT user_id::text, status FROM contrib_membros WHERE email = $1", email)
-    if row and row["user_id"] and row["user_id"] != user_id:
-        raise HTTPException(409, "Esse Gmail já está ligado a outra conta.")
+async def entrar(conn, *, id: str, email: str, sub: str, nome: str | None, avatar: str | None) -> str:
+    """Login pelo Google. Casa com convite pendente pelo e-mail. Devolve o status."""
+    row = await conn.fetchrow("SELECT google_sub, status FROM contrib_membros WHERE email = $1", email)
+    if row and row["google_sub"] and row["google_sub"] != sub:
+        raise ValueError("Gmail ligado a outra conta Google")
     if row:
         await conn.execute(
-            "UPDATE contrib_membros SET user_id = $2::uuid, nome = COALESCE(nome, $3) WHERE email = $1",
-            email, user_id, nome,
+            """
+            UPDATE contrib_membros SET id = $2::uuid, google_sub = $3, nome = $4, avatar = $5
+            WHERE email = $1
+            """,
+            email, id, sub, nome, avatar,
         )
         return row["status"]
     await conn.execute(
-        "INSERT INTO contrib_membros (email, user_id, nome, status) VALUES ($1, $2::uuid, $3, 'pendente')",
-        email, user_id, nome,
+        """
+        INSERT INTO contrib_membros (id, email, google_sub, nome, avatar, status)
+        VALUES ($1::uuid, $2, $3, $4, $5, 'pendente')
+        """,
+        id, email, sub, nome, avatar,
     )
     return "pendente"
 
 
-async def definir(conn, *, email: str, status: str) -> None:
+async def status_de(conn, id: str) -> str | None:
+    return await conn.fetchval("SELECT status FROM contrib_membros WHERE id = $1::uuid", id)
+
+
+async def definir(conn, *, email: str, status: str, novo_id: str) -> None:
     """Admin: convida (cria já aprovado), aprova ou bloqueia."""
     await conn.execute(
         """
-        INSERT INTO contrib_membros (email, status, decidido_em) VALUES ($1, $2, now())
+        INSERT INTO contrib_membros (id, email, status, decidido_em) VALUES ($3::uuid, $1, $2, now())
         ON CONFLICT (email) DO UPDATE SET status = EXCLUDED.status, decidido_em = now()
         """,
-        email, status,
+        email, status, novo_id,
     )
 
 
 async def listar(conn):
     return await conn.fetch(f"SELECT {_COLS} FROM contrib_membros ORDER BY pedido_em DESC LIMIT 200")
-
-
-async def require_membro(user_id: str = Depends(require_auth)) -> str:
-    """Dependência das rotas de envio: só membro aprovado passa."""
-    async with get_conn() as conn:
-        status = await status_do_usuario(conn, user_id)
-    if status != "aprovado":
-        raise HTTPException(403, "Acesso de colaborador ainda não aprovado.")
-    return user_id

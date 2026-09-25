@@ -1,0 +1,37 @@
+/* Estilos de legenda. REFERÊNCIA do render final (fase 5): o vídeo publicado tem que
+   sair igual a esta prévia. Tamanhos em cqw (% da largura do vídeo) pra valer em qualquer tela.
+
+   palavra  Archivo Black caixa-alta, contorno preto, 3 palavras por vez, a falada acende em âmbar
+   faixa    frase em tarja creme com texto preto, cantos retos, leve inclinação
+   cinema   Instrument Serif itálico, branco com sombra, mais baixo e discreto
+   nenhuma  sem legenda */
+.palco { position: relative; border-radius: 12px; overflow: hidden; background: #000; container-type: inline-size; }
+.palco video { display: block; width: 100%; max-height: 64vh; background: #000; }
+.cap { position: absolute; left: 6%; right: 6%; bottom: 17%; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 3cqw; text-align: center; pointer-events: none; }
+
+.cap-palavra span { font-family: var(--font-display); font-size: 8.4cqw; line-height: 1.08; text-transform: uppercase; color: #f5f1e8; -webkit-text-stroke: .11em #0a0908; paint-order: stroke fill; text-shadow: 0 .07em 0 #0a0908; display: inline-block; }
+.cap-palavra span.on { color: var(--ev); transform: scale(1.12) rotate(-2deg); margin-inline: .14em; }
+@media (prefers-reduced-motion: no-preference) {
+  .cap-palavra span { transition: transform .12s ease-out, color .12s; }
+}
+
+.cap-faixa { display: block; transform: rotate(-1.2deg); }
+.cap-faixa span { font-family: var(--font-display); font-size: 5.4cqw; line-height: 1.9; color: #0a0908; background: #f5f1e8; padding: .12em .42em; -webkit-box-decoration-break: clone; box-decoration-break: clone; box-shadow: .18em .18em 0 var(--pj); }
+
+.cap-cinema { bottom: 8%; }
+.cap-cinema span { font-family: var(--font-editorial); font-style: italic; font-size: 7.2cqw; line-height: 1.12; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .95), 0 0 22px rgba(0, 0, 0, .7); }
+
+/* Escolha do estilo: 4 cartões com amostra */
+.estilos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.estilos button { all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 3px; padding: 6px 6px 9px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg-sunk); text-align: center; min-width: 0; }
+.estilos button[aria-checked="true"] { border-color: var(--ev); background: #1c160d; }
+.estilos b { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+.estilos small { font-size: 11.5px; color: var(--ink-mute); line-height: 1.25; }
+.amostra { height: 46px; border-radius: 7px; display: grid; place-items: center; overflow: hidden; background: radial-gradient(120% 90% at 30% 10%, #4a3a26, #1d1712 60%, #0a0908); }
+.amostra-palavra span { font-family: var(--font-display); font-size: 15px; color: var(--ev); -webkit-text-stroke: 3px #0a0908; paint-order: stroke fill; }
+.amostra-faixa span { font-family: var(--font-display); font-size: 12px; color: #0a0908; background: #f5f1e8; padding: 2px 6px; transform: rotate(-2deg); box-shadow: 2px 2px 0 var(--pj); }
+.amostra-cinema span { font-family: var(--font-editorial); font-style: italic; font-size: 19px; color: #fff; text-shadow: 0 1px 2px #000; }
+.amostra-nenhuma s { font-family: var(--font-mono); font-size: 13px; color: var(--ink-dim); }
+@media (max-width: 380px) {
+  .estilos { grid-template-columns: repeat(2, 1fr); }
+}
