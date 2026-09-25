@@ -61,6 +61,14 @@ app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(forum.router, prefix="/forum", tags=["Forum"])
 app.include_router(feed.router, prefix="/feed", tags=["Feed"])
 
+# Colaboradores: módulo apartado (backend/app/contrib), fora do ar sem a flag.
+from app.contrib.config import contrib_settings  # noqa: E402
+
+if contrib_settings.ENABLED:
+    from app.contrib.routes import router as contrib_router  # noqa: E402
+
+    app.include_router(contrib_router, prefix="/contrib", tags=["Colaboradores"])
+
 
 @app.get("/health", tags=["Health"])
 async def health() -> JSONResponse:
