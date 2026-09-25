@@ -1,0 +1,28 @@
+{
+  "runAt": "2026-09-25T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 18,
+  "distribution": { "midia": 17, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "055ecf5756", "titulo": "Eddie Vedder confirma duas noites em São Paulo em novembro de 2026", "kind": "midia" },
+    { "id": "f0fa1c32f3", "titulo": "Eddie Vedder grava com ONG de Chicago para abertura do Obama Presidential Center", "kind": "midia" },
+    { "id": "5679106d7c", "titulo": "Animal vence o March Madness 2026 e consagra Dave Abbruzzese", "kind": "midia" },
+    { "id": "94168dece7", "titulo": "P.E.S.T., projeto punk do Jeff Ament, anuncia datas em junho e setembro", "kind": "midia" },
+    { "id": "dd0f1ac0f8", "titulo": "Mirror Ball, o álbum do Neil Young com Pearl Jam, ganha reedição solo", "kind": "midia" },
+    { "id": "5bfc54d5ac", "titulo": "Pearl Jam, Eddie Vedder e P.E.S.T. confirmados no Ohana Fest de setembro", "kind": "midia" },
+    { "id": "09ff968928", "titulo": "Pearl Jam posta placa 'Dead End' no X e pode estar abandonando a rede", "kind": "midia" },
+    { "id": "604a487cb5", "titulo": "Jack Irons lança single 'Under Alien Water' do álbum Iridescence", "kind": "midia" },
+    { "id": "325c3bba1d", "titulo": "Mike McCready finalmente lança álbum solo: 'Farewell to Seasons' é uma ópera rock", "kind": "midia" },
+    { "id": "cd-20260925", "titulo": "Ohana 2026: comunidade ferve com Josh Freese, sound checks e previsões", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "5ee0d2a1a4", "title": "Binaural Turns 26", "reason": "texto vazio (só hashtag #pearljam)" },
+    { "id": "ae2998ec6b", "title": "Pearl Jam March Madness: The Finals", "reason": "etapa anterior do mesmo torneio; resultado final já coberto por 5679106d7c" },
+    { "id": "c5d96717c2", "title": "Pearl Jam March Madness: FINAL FOUR", "reason": "etapa anterior do mesmo torneio; resultado final já coberto por 5679106d7c" },
+    { "id": "592a91f1d1", "title": "Rolling Stone odds that Meg White to be named Pearl Jam drummer", "reason": "texto vazio + post de r/jackwhite sem conteúdo; rumor sem fonte" },
+    { "id": "74849e67d9", "title": "Pearl Jam (The Album) Turns 20!", "reason": "texto vazio (só hashtag #pearljam)" },
+    { "id": "97d6cee7d1", "title": "Dark Matter Turns 2", "reason": "texto vazio (só hashtag #pearljam)" },
+    { "id": "a1fb3ab27e", "title": "Happy Birthday, Mike McCready!", "reason": "texto vazio (só crédito de foto e hashtag)" },
+    { "id": "6cf29ed352", "title": "Gigaton Turns 6", "reason": "texto vazio (só hashtag #pearljam)" }
+  ]
+}
