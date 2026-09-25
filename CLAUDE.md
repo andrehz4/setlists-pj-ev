@@ -48,6 +48,7 @@ Regras: NUNCA editar a fila sem entender `markPosted`/`mergeQueueStates` (`scrip
 2. Routine Claude remota cura `_pending` -> `index.json` + `items/<id>.json` + enfileira na `_publish-queue` (commita em branch `claude/news-routine-*`, PR auto-merged pelo passo `auto-merge-routine.mjs` do publish).
 3. `publish-instagram.yml` publica carrossel/single via Graph API, marca `postedAt`, notifica Telegram. `publish-story.yml` gera story diário em vídeo. `publish-reel.yml` gera o reel semanal (domingo 09:00 BRT, resumão dos 7 dias).
 4. `test.yml` roda a suíte em todo push/PR de `scripts/`/`mock-ig/`.
+5. `contrib-curadoria.yml` (a cada 10 min): painel de colaboradores (`colaborar.html` + `colab/`, backend `backend/app/contrib/`, scripts `scripts/contrib/`). Cura por IA (Gemini ouve o áudio) e publica os aprovados às :30 no IG/FB/site. Módulo apartado, desligado sem o secret `CONTRIB_BOT_KEY`. Mapa completo em `backend/app/contrib/README.md`.
 
 ### Reel semanal (motion design, MOTION-SPEC do Claude Design)
 

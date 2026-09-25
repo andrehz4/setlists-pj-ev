@@ -8,7 +8,7 @@ import pytest
 from fastapi import FastAPI
 from starlette.testclient import TestClient
 
-from app.contrib import bot, routes
+from app.contrib import bot, bot_publicar, routes
 from app.contrib.config import contrib_settings as cfg
 from app.core.limiter import limiter
 
@@ -37,7 +37,7 @@ def client(conn, monkeypatch):
     app = FastAPI()
     app.state.limiter = limiter
     app.include_router(routes.router, prefix="/contrib")
-    with patch.object(bot, "get_conn", fake_get_conn):
+    with patch.object(bot, "get_conn", fake_get_conn), patch.object(bot_publicar, "get_conn", fake_get_conn):
         yield TestClient(app)
 
 
@@ -104,3 +104,37 @@ def test_contagem_sem_efeito_colateral(client, conn):
     conn.fetchrow.return_value = {"fila": 2, "pedidos": 1}
     assert client.get("/contrib/bot/contagem", headers=CHAVE).json() == {"fila": 2, "pedidos": 1}
     conn.execute.assert_not_called()
+
+
+def _pronto(key="contrib/x/a.jpg", verdict=None):
+    return {"id": ID, "status": "aprovado", "title": "t", "body": "b", "media": json.dumps([{"key": key}]),
+            "scheduled_at": datetime(2026, 9, 25, 18, 30, tzinfo=UTC), "ai_verdict": verdict, "nome": "Marina"}
+
+
+def test_prontos_deixa_video_de_fora_ate_o_render(client, conn):
+    conn.fetch.return_value = [_pronto(), _pronto(key="contrib/x/b.mp4")]
+    r = client.get("/contrib/bot/prontos", headers=CHAVE).json()
+    assert len(r) == 1 and r[0]["media"][0]["key"].endswith(".jpg")
+
+
+def test_prontos_traz_tentativa_anterior(client, conn):
+    conn.fetch.return_value = [_pronto(verdict='{"publicacao": {"caption": "c", "tentativa_em": "x"}}')]
+    assert client.get("/contrib/bot/prontos", headers=CHAVE).json()[0]["publicacao"]["caption"] == "c"
+
+
+def test_tentativa_e_publicado_so_em_envio_aprovado(client, conn):
+    conn.execute.return_value = "UPDATE 0"
+    assert client.post(f"/contrib/bot/publicando/{ID}", json={"caption": "c"}, headers=CHAVE).status_code == 409
+    conn.execute.return_value = "UPDATE 1"
+    assert client.post(f"/contrib/bot/publicando/{ID}", json={"caption": "c"}, headers=CHAVE).status_code == 200
+    r = client.post(f"/contrib/bot/publicado/{ID}", json={"site_id": "colab-0000000a", "ig_post_id": "1"}, headers=CHAVE)
+    assert r.json()["status"] == "publicado"
+
+
+def test_publicado_exige_id_de_site_valido(client):
+    r = client.post(f"/contrib/bot/publicado/{ID}", json={"site_id": "../../index"}, headers=CHAVE)
+    assert r.status_code == 422
+
+
+def test_rotas_de_publicacao_exigem_chave(client):
+    assert client.get("/contrib/bot/prontos").status_code == 403
