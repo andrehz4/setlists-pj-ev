@@ -72,7 +72,7 @@ _PRONTO = "status IN ('aprovado', 'ajustado')"
 async def prontos(conn, limite: int = 5):
     return await conn.fetch(
         f"""
-        SELECT s.id::text, s.status, s.title, s.body, s.media, s.scheduled_at, s.ai_verdict, m.nome
+        SELECT s.id::text, s.status, s.title, s.body, s.media, s.video_opts, s.scheduled_at, s.ai_verdict, m.nome
         FROM contrib_submissions s JOIN contrib_membros m ON m.id = s.user_id
         WHERE s.{_PRONTO} AND s.scheduled_at <= now() + interval '2 minutes'
         ORDER BY s.scheduled_at ASC LIMIT $1

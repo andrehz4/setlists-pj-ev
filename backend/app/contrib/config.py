@@ -16,8 +16,8 @@ class ContribSettings(BaseSettings):
     )
 
     ENABLED: bool = False
-    # Vídeo só liga na fase 5, quando o render tirar o áudio (regra de ouro 1).
-    VIDEO_ENABLED: bool = False
+    # Vídeo vira Reel com corte e legenda queimada (scripts/contrib/render.mjs).
+    VIDEO_ENABLED: bool = True
     DAILY_LIMIT: int = Field(default=2, ge=1, le=20)
     MAX_FOTOS: int = Field(default=10, ge=1, le=10)
     MAX_FOTO_BYTES: int = 15 * 1024 * 1024

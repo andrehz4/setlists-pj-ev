@@ -37,12 +37,14 @@ export function intro(body) {
 
 export function itemSite(envio, nowIso) {
   const id = idSite(envio);
+  const video = !!envio.video && /\.(mp4|mov)$/i.test(envio.media?.[0]?.key || "");
+  const corpoTexto = envio.body.trim() + (video ? "\n\nO vídeo com a fala completa está no Instagram @smufdpj." : "");
   return {
     item: {
       id, url: "", source: "colaborador", sourceLabel: `Colaborador · ${credito(envio.autor?.nome)}`,
       group: "colaborador", pubDate: nowIso, fetchedAt: nowIso, img: `/media/news/img/${id}.jpg`,
       title_pt: envio.title.trim(), intro_pt: intro(envio.body), tags: ["comunidade"], title_ig: envio.title.trim(),
     },
-    corpo: { id, body_pt: envio.body.trim() },
+    corpo: { id, body_pt: corpoTexto },
   };
 }

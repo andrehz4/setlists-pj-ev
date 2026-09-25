@@ -81,7 +81,8 @@ def test_admin_passa_sem_cadastro(client):
 
 
 @pytest.mark.parametrize("mime,size,code", [("image/gif", 10, 415), ("image/jpeg", 10**9, 413), ("video/mp4", 10, 415)])
-def test_upload_recusa_formato_e_tamanho(client, conn, mime, size, code):
+def test_upload_recusa_formato_e_tamanho(client, conn, mime, size, code, monkeypatch):
+    monkeypatch.setattr(cfg, "VIDEO_ENABLED", False)
     _aprovado(conn)
     assert client.post("/contrib/uploads", json={"mime": mime, "size": size}, headers=_h()).status_code == code
 
@@ -173,3 +174,9 @@ def test_normalizar_resposta_do_whisper():
 def test_app_principal_nao_monta_contrib_sem_flag():
     from app.main import app
     assert not any(getattr(r, "path", "").startswith("/contrib") for r in app.routes)
+
+
+def test_video_ligado_aceita_mp4(client, conn):
+    _aprovado(conn)
+    r = client.post("/contrib/uploads", json={"mime": "video/mp4", "size": 50_000_000}, headers=_h())
+    assert r.status_code == 200 and r.json()["key"].endswith(".mp4")
