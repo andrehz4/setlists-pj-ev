@@ -45,7 +45,7 @@ async def prontos():
             "media": [{"key": m["key"], "url": _url(m["key"])} for m in media],
             "video": repo_bot.jsonb(r["video_opts"], None),
             "scheduled_at": r["scheduled_at"].isoformat(),
-            "autor": {"nome": r["nome"]},
+            "autor": {"nome": r["nome"], "instagram": r["instagram"]},
             "publicacao": verdict.get("publicacao"),
         })
     return saida

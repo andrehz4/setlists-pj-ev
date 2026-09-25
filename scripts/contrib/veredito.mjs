@@ -65,7 +65,7 @@ export function decidir(envio, ia) {
 // Linha curta pro Telegram do Andre.
 export function resumoTelegram(envio, v, horario) {
   const icone = { aprovado: "✅", ajustado: "✏️", recusado: "⛔" }[v.decisao];
-  const quem = envio.autor?.nome || envio.autor?.email || "colaborador";
+  const quem = envio.autor?.instagram ? `@${envio.autor.instagram}` : envio.autor?.nome || envio.autor?.email || "colaborador";
   const linhas = [`${icone} Colaborador ${v.decisao}: "${v.titulo}"`, `por ${quem} · vai ao ar às ${horario}`];
   if (v.decisao === "recusado") linhas[1] = `por ${quem} · não vai ao ar`;
   if (v.motivo) linhas.push(v.motivo);

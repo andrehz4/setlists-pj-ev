@@ -15,6 +15,9 @@ export function credito(nome) {
   return `${partes[0]} ${partes.at(-1)[0].toUpperCase()}.`;
 }
 
+// Crédito do post: @ do Instagram quando a pessoa cadastrou (o IG marca ela), senão o nome curto.
+export const creditoAutor = (autor) => (autor?.instagram ? `@${autor.instagram}` : credito(autor?.nome));
+
 function truncar(txt, max) {
   if (txt.length <= max) return txt;
   const corte = txt.slice(0, max);
@@ -23,7 +26,7 @@ function truncar(txt, max) {
 }
 
 export function legendaIG(envio) {
-  const rodape = `\n\n📸 Enviado por ${credito(envio.autor?.nome)}, colaborador do SMUFDPJ.\nPost completo em ${SITE}\n\n${HASHTAGS}`;
+  const rodape = `\n\n📸 Enviado por ${creditoAutor(envio.autor)}, colaborador do SMUFDPJ.\nPost completo em ${SITE}\n\n${HASHTAGS}`;
   const cabeca = envio.title.trim();
   const espaco = IG_MAX - cabeca.length - rodape.length - 2;
   return `${cabeca}\n\n${truncar(envio.body.trim(), espaco)}${rodape}`;
@@ -41,7 +44,7 @@ export function itemSite(envio, nowIso) {
   const corpoTexto = envio.body.trim() + (video ? "\n\nO vídeo com a fala completa está no Instagram @smufdpj." : "");
   return {
     item: {
-      id, url: "", source: "colaborador", sourceLabel: `Colaborador · ${credito(envio.autor?.nome)}`,
+      id, url: "", source: "colaborador", sourceLabel: `Colaborador · ${creditoAutor(envio.autor)}`,
       group: "colaborador", pubDate: nowIso, fetchedAt: nowIso, img: `/media/news/img/${id}.jpg`,
       title_pt: envio.title.trim(), intro_pt: intro(envio.body), tags: ["comunidade"], title_ig: envio.title.trim(),
     },

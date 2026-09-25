@@ -180,3 +180,30 @@ def test_video_ligado_aceita_mp4(client, conn):
     _aprovado(conn)
     r = client.post("/contrib/uploads", json={"mime": "video/mp4", "size": 50_000_000}, headers=_h())
     assert r.status_code == 200 and r.json()["key"].endswith(".mp4")
+
+
+@pytest.mark.parametrize("entrada,saida", [
+    ("@Fulano.PJ ", "fulano.pj"), ("https://instagram.com/eddie_fa/", "eddie_fa"), ("", None), (None, None),
+])
+def test_normaliza_instagram(entrada, saida):
+    from app.contrib.perfil import normalizar_instagram
+    assert normalizar_instagram(entrada) == saida
+
+
+@pytest.mark.parametrize("ruim", ["fulano..pj", ".fulano", "fulano.", "nome com espaço", "a" * 31, "@x<script>"])
+def test_instagram_invalido(ruim):
+    from app.contrib.perfil import normalizar_instagram
+    with pytest.raises(ValueError):
+        normalizar_instagram(ruim)
+
+
+def test_salvar_perfil(client, conn):
+    from app.contrib import perfil
+    _aprovado(conn, "aprovado")
+
+    @asynccontextmanager
+    async def fake_get_conn():
+        yield conn
+    with patch.object(perfil, "get_conn", fake_get_conn):
+        assert client.post("/contrib/perfil", json={"instagram": "@Marina.PJ"}, headers=_h()).json() == {"instagram": "marina.pj"}
+        assert client.post("/contrib/perfil", json={"instagram": "x..y"}, headers=_h()).status_code == 422

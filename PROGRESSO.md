@@ -1,5 +1,14 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-25: colaboradores, melhorias antes de abrir
+
+- Falhas sem spam: `/contrib/bot/falha/{id}` conta por etapa; curadoria desiste em 3, publicação em 5;
+  envio vira recusado com motivo técnico. Telegram só na 1ª falha e na desistência (`falhou()`).
+- @ do Instagram no crédito: campo opcional em Meus envios (`colab/perfil.js`, `POST /contrib/perfil`);
+  legenda sai "Enviado por @fulano" e o IG marca a pessoa. Sem @, segue "Marina S.".
+- Limpeza do R2: regra de 30 dias é configuração manual (README do módulo); miniatura expirada tratada.
+- 166 testes backend, 149 npm.
+
 ## 2026-09-25: painel de colaboradores, fase 5 (vídeo vira Reel)
 
 - `scripts/contrib/render.mjs` + `legenda-ass.mjs`: corte escolhido, 1080x1920 (horizontal ganha fundo

@@ -32,6 +32,8 @@ aprova sem revisão humana, e o post sai no site e no IG sempre às :30 da próx
 | `google_id.py` | confere o ID token do botão do Google |
 | `acesso.py` | rotas de entrar e painel de membros do admin |
 | `bot.py` + `repo_bot.py` | rotas do robô de curadoria (`X-Bot-Key` = `CONTRIB_BOT_KEY`): contagem, fila, veredito, pedidos de acesso |
+| `bot_falhas.py` | contador de falhas: curadoria desiste em 3, publicação em 5; envio vira recusado com motivo técnico |
+| `perfil.py` | @ do Instagram opcional (`POST /contrib/perfil`), vai no crédito e marca a pessoa |
 | `legenda.py` | legenda automática: WAV do navegador -> Whisper (Cloudflare Workers AI) -> trechos com tempo por palavra |
 
 ## Rotas
@@ -95,6 +97,18 @@ Instrument Serif em `media/fonts/`), sobe o MP4 pro R2 (não vai pro git) e publ
 em container Debian igual ao CI contra o mock do IG. Pra ver os estilos renderizados sem publicar,
 rodar `renderizar()` de `scripts/contrib/render.mjs` num Linux com ffmpeg + libass (o ffmpeg do
 Homebrew no Mac vem SEM libass).
+
+## Falhas e avisos (sem spam)
+
+Toda falha do robô passa por `falhou()` em `scripts/contrib/api.mjs`, que registra em `/bot/falha/{id}`.
+Telegram só na 1ª falha e na desistência. Ao desistir, o envio vira `recusado` com um motivo técnico
+pra pessoa reenviar, e o horário fica livre.
+
+## Limpeza do R2 (30 dias)
+
+Regra de ciclo de vida no bucket (Cloudflare > R2 > smufdpj-contrib > Settings > Object lifecycle rules):
+prefixo `contrib/`, apagar objetos após 30 dias. Os posts publicados não dependem do R2 (site usa
+`media/news/img/`, IG e FB já baixaram). Em Meus envios, miniatura expirada vira o quadrado padrão.
 
 ## Pra ligar em produção (passos manuais do Andre)
 
