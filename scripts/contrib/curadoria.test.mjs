@@ -87,3 +87,30 @@ test("resumo do Telegram diz o horário ou que não vai ao ar", () => {
   const recusa = decidir(video, ia({ regras: { ...OK, tema: { status: "violada" } } }));
   assert.match(resumoTelegram(video, recusa, "15h30"), /não vai ao ar/);
 });
+
+test("crédito: nome e inicial do último sobrenome, nunca o Gmail", async () => {
+  const { credito } = await import("./post.mjs");
+  assert.equal(credito("Marina Tavares Souza"), "Marina S.");
+  assert.equal(credito("Juliana"), "Juliana");
+  assert.equal(credito(""), "um colaborador");
+});
+
+test("legenda do IG: título, texto, crédito e hashtags, até 2200 caracteres", async () => {
+  const { legendaIG } = await import("./post.mjs");
+  const cap = legendaIG({ ...foto, body: "Frase longa. ".repeat(400), autor: { nome: "Marina Tavares" } });
+  assert.ok(cap.length <= 2200, `legenda com ${cap.length}`);
+  assert.match(cap, /^Minha fita de 2005\n\n/);
+  assert.match(cap, /Enviado por Marina T\., colaborador do SMUFDPJ/);
+  assert.match(cap, /#smufdpj$/);
+});
+
+test("item do site: id estável, sem link externo, corpo separado", async () => {
+  const { idSite, itemSite } = await import("./post.mjs");
+  const e = { ...foto, id: "7c1e9a2b-4d5f-4a3b-9c8d-112233445566", body: "Primeiro parágrafo.\n\nSegundo parágrafo." };
+  assert.equal(idSite(e), "colab-7c1e9a2b");
+  const { item, corpo } = itemSite(e, "2026-09-25T18:30:00Z");
+  assert.equal(item.url, "");
+  assert.equal(item.intro_pt, "Primeiro parágrafo.");
+  assert.equal(item.img, "/media/news/img/colab-7c1e9a2b.jpg");
+  assert.equal(corpo.body_pt, e.body);
+});

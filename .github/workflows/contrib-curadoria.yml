@@ -1,4 +1,6 @@
-# Curadoria por IA dos posts de colaboradores (painel colaborar.html).
+# Curadoria por IA E publicação dos posts de colaboradores (painel colaborar.html).
+# Curadoria: scripts/contrib/curar.mjs. Publicação (fase 4, fotos): scripts/contrib/publicar.mjs,
+# que posta no IG/FB e entra no site quando chega o horário (:30) do envio aprovado.
 # Módulo apartado: não toca media/news nem os outros crons. Sem o secret
 # CONTRIB_BOT_KEY, ou com o painel desligado no backend, termina em segundos sem fazer nada.
 #
@@ -19,6 +21,9 @@ on:
         description: "smoke = testa o Gemini com 2 vídeos gerados (só voz x voz com música), sem tocar no backend"
         type: boolean
         default: false
+
+permissions:
+  contents: write
 
 concurrency:
   group: contrib-curadoria
@@ -57,12 +62,15 @@ jobs:
           if [ -z "$CONTRIB_BOT_KEY" ]; then echo "sem CONTRIB_BOT_KEY"; echo "n=0" >> "$GITHUB_OUTPUT"; exit 0; fi
           resp=$(curl -s -m 30 -H "X-Bot-Key: $CONTRIB_BOT_KEY" -H "Origin: https://setlists-pj-ev.pages.dev" \
             https://perpetual-energy-production-1a69.up.railway.app/contrib/bot/contagem || echo '{}')
-          n=$(echo "$resp" | jq -r '((.fila // 0) + (.pedidos // 0))' 2>/dev/null || echo 0)
+          n=$(echo "$resp" | jq -r '((.fila // 0) + (.pedidos // 0) + (.prontos // 0))' 2>/dev/null || echo 0)
           echo "contagem: $resp"
           echo "n=$n" >> "$GITHUB_OUTPUT"
 
       - uses: actions/checkout@v4
         if: steps.fila.outputs.n != '0'
+        with:
+          fetch-depth: 5
+          persist-credentials: true
 
       - uses: actions/setup-node@v4
         if: steps.fila.outputs.n != '0'
@@ -85,3 +93,18 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: node scripts/contrib/curar.mjs ${{ inputs.dry && '--dry' || '' }}
+
+      - name: Publicação (horário chegou)
+        if: steps.fila.outputs.n != '0' && !cancelled()
+        env:
+          CONTRIB_BOT_KEY: ${{ secrets.CONTRIB_BOT_KEY }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          PUBLISH_FB: '1'
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GIT_AUTHOR_NAME: pj-news-bot
+          GIT_AUTHOR_EMAIL: bot@setlists-pj.local
+        run: node scripts/contrib/publicar.mjs ${{ inputs.dry && '--dry' || '' }}

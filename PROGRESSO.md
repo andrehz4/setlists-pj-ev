@@ -1,5 +1,18 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-25: painel de colaboradores, fase 4 (publicação de fotos)
+
+- `scripts/contrib/publicar.mjs` no mesmo cron da curadoria: aprovado com horário vencido vira
+  carrossel no IG (capa SMUFDPJ "Pearl Jam · Comunidade" + fotos da pessoa em 4:5), álbum no FB e
+  item no site (`colab-<id>`, crédito "Colaborador · Marina S."). Reaproveita `publishCarouselFromUrls`
+  (com a recuperação do falso-erro 2207051), `buildCoverSlide` e o cooldown global, sem alterar eles.
+- Contra post duplicado: tentativa gravada no backend antes do IG; run seguinte procura pela legenda.
+- Motivo de um publicador próprio: o publish-instagram roda só ~4x/dia (TriggerAll), não cumpriria o :30.
+- Validado no mock IG (`node mock-ig/run.mjs contrib`): IG + FB + site + stub + Telegram + backend.
+  Capa conferida (corrigi corte duplo da foto e ordem do fontconfig). Fonte Anton não renderiza no Mac
+  nem com o código antigo; no Actions renderiza (ver `_cover-regular.jpg`).
+- **Vídeo ainda não publica**: fica aprovado e esperando a fase 5 (render com corte + legenda queimada).
+
 ## 2026-09-25: painel de colaboradores, fase 3 (curadoria por IA)
 
 - Cron novo `.github/workflows/contrib-curadoria.yml` (a cada 10 min) + `scripts/contrib/`. Gemini 2.5
