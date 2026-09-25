@@ -1,5 +1,25 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-24: painel de colaboradores, fase 1 (backend) + protótipo das telas
+
+Ideia do Andre: fãs convidados (gente que grava vídeo falando curiosidades ou recitando letras)
+postam pelo site; a curadoria IA aprova sem revisão humana; sai no site e no IG sempre às :30 da
+próxima hora. **Regra 0**: módulo apartado, desligado por flag, arquivos de no máximo 160 linhas
+(teste trava), nada do site/fórum alterado.
+
+- Backend em `backend/app/contrib/` (mapa e passos de ativação em `backend/app/contrib/README.md`).
+  Acesso só por convite (Gmail confirmado pelo botão do Google, pendente/aprovado/bloqueado),
+  upload direto pro Cloudflare R2 por URL assinada, agenda :30 com 1 post por horário, limite de
+  2 envios por dia. Migração `backend/migrations/004_contrib_submissions.sql` (só tabelas novas).
+- Único encaixe: 6 linhas no fim de `backend/app/main.py`, só montam `/contrib` com `CONTRIB_ENABLED=true`.
+- 122 testes do backend passando (antigos + novos).
+- Protótipo das 6 telas: https://claude.ai/artifact/R5NeoYH5npCB1adXvK49JW
+
+**Próximo passo**: Andre aprova as telas. Depois: fase 2 (`colaborar.html`) e legenda automática
+de vídeo (Whisper no Cloudflare Workers AI) logo após o upload, pra chegar pronta na curadoria.
+**Pendências manuais pra ligar** (README do módulo): rodar a migração no Supabase, criar bucket R2
++ token + CORS, origem JS no OAuth do Google, variáveis `CONTRIB_*` no Railway.
+
 ## 2026-09-14: humanizer aplicado nas 342 cápsulas não publicadas
 
 - Skill `humanizer` (blader, MIT) instalada em /Users/andrehz/.claude/skills/humanizer e camada
