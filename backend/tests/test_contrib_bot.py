@@ -108,13 +108,22 @@ def test_contagem_sem_efeito_colateral(client, conn):
 
 def _pronto(key="contrib/x/a.jpg", verdict=None):
     return {"id": ID, "status": "aprovado", "title": "t", "body": "b", "media": json.dumps([{"key": key}]),
+            "video_opts": '{"estilo": "faixa"}' if key.endswith(".mp4") else None,
             "scheduled_at": datetime(2026, 9, 25, 18, 30, tzinfo=UTC), "ai_verdict": verdict, "nome": "Marina"}
 
 
-def test_prontos_deixa_video_de_fora_ate_o_render(client, conn):
+def test_prontos_traz_foto_e_video_com_a_receita(client, conn):
     conn.fetch.return_value = [_pronto(), _pronto(key="contrib/x/b.mp4")]
     r = client.get("/contrib/bot/prontos", headers=CHAVE).json()
-    assert len(r) == 1 and r[0]["media"][0]["key"].endswith(".jpg")
+    assert len(r) == 2 and r[0]["video"] is None and r[1]["video"] == {"estilo": "faixa"}
+
+
+def test_render_devolve_put_e_get_do_mp4(client, monkeypatch):
+    for nome, valor in {"R2_ACCOUNT_ID": "acc", "R2_ACCESS_KEY_ID": "ak", "R2_SECRET_ACCESS_KEY": "sk"}.items():
+        monkeypatch.setattr(cfg, nome, valor)
+    r = client.post(f"/contrib/bot/render/{'0' * 8}-0000-0000-0000-{'0' * 12}", headers=CHAVE).json()
+    assert r["key"].endswith(".mp4") and "X-Amz-Expires=7200" in r["get_url"]
+    assert "content-type" in r["put_url"].lower()
 
 
 def test_prontos_traz_tentativa_anterior(client, conn):
@@ -138,3 +147,8 @@ def test_publicado_exige_id_de_site_valido(client):
 
 def test_rotas_de_publicacao_exigem_chave(client):
     assert client.get("/contrib/bot/prontos").status_code == 403
+
+
+def test_render_recusa_id_que_nao_e_uuid(client):
+    assert client.post("/contrib/bot/render/..%2F..%2Findex", headers=CHAVE).status_code in (404, 422)
+    assert client.post("/contrib/bot/render/nao-e-uuid", headers=CHAVE).status_code == 422

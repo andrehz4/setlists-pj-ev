@@ -82,7 +82,9 @@ jobs:
         if: steps.fila.outputs.n != '0'
         run: |
           npm ci --no-audit --no-fund
-          which ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+          # ffmpeg do Ubuntu SEMPRE (tem libass, que queima a legenda do Reel)
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          ffmpeg -hide_banner -buildconf | grep -q libass
 
       - name: Curadoria
         if: steps.fila.outputs.n != '0'

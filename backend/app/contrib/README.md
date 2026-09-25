@@ -69,6 +69,9 @@ código em `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/scripts/contrib/`:
 | `prompt-curadoria.md` | o critério: regras de ouro, fatos, mexer o mínimo no texto, mensagem pra pessoa |
 | `veredito.mjs` | travas por cima da IA: regra violada ou incerta recusa, sem travessão, "ajustado" só se mudou |
 | `publicar.mjs` | fase 4: aprovados cujo horário chegou -> IG (capa SMUFDPJ "Comunidade" + fotos 4:5), FB e site |
+| `publicar-video.mjs` | fase 5: vídeo vira Reel (render, MP4 no R2 via `/bot/render/{id}`, IG Reel com share_to_feed, FB Reel) |
+| `render.mjs` | ffmpeg: corte, 1080x1920 (fundo desfocado se não for vertical), legenda queimada, voz a -14 LUFS, miniatura |
+| `legenda-ass.mjs` | gera o .ass (libass) dos estilos palavra/faixa/cinema, ESPELHO de `colab/legendas.css` |
 | `post.mjs` | crédito ("Marina S."), legenda do IG, item do site `colab-<8 hex>` (funções puras) |
 | `api.mjs`, `git.mjs` | rotas do robô + Telegram; commit/push com retry e espera do raw do GitHub |
 | `smoke.mjs` | teste real do Gemini (só voz x voz com música), `workflow_dispatch` com `smoke=true` |
@@ -80,12 +83,18 @@ O original da pessoa fica guardado em `ai_verdict.original` quando a IA ajusta.
 ## Publicação (fase 4)
 
 Mesmo cron da curadoria, passo "Publicação". Pega `/contrib/bot/prontos` (aprovado/ajustado com
-horário vencido; **vídeo fica de fora até a fase 5**), gera os slides, commita, espera o raw do
+horário vencido). Foto: gera os slides, commita, espera o raw do
 GitHub, grava a tentativa (`/bot/publicando`) e publica o carrossel. Se uma run morrer entre o IG e
 o `/bot/publicado`, a próxima procura o post pela legenda no IG antes de postar de novo. Respeita o
 cooldown global do IG (`media/news/_ig-cooldown.json`). No site entra como item `group: colaborador`,
 tag `comunidade`, sem link externo. Testar: `npm run mock:server` + `node mock-ig/run.mjs contrib`
 com `CONTRIB_BOT_KEY` e `CONTRIB_API` apontando pra um backend falso.
+
+Vídeo (fase 5): renderiza no próprio runner (ffmpeg do Ubuntu, com libass; fontes Archivo Black e
+Instrument Serif em `media/fonts/`), sobe o MP4 pro R2 (não vai pro git) e publica como Reel. Testado
+em container Debian igual ao CI contra o mock do IG. Pra ver os estilos renderizados sem publicar,
+rodar `renderizar()` de `scripts/contrib/render.mjs` num Linux com ffmpeg + libass (o ffmpeg do
+Homebrew no Mac vem SEM libass).
 
 ## Pra ligar em produção (passos manuais do Andre)
 
@@ -96,7 +105,7 @@ com `CONTRIB_BOT_KEY` e `CONTRIB_API` apontando pra um backend falso.
    "Origens JavaScript autorizadas" (o botão do Google exige).
 4. Cloudflare: token de API com permissão "Workers AI" (legenda automática).
 5. Railway, variáveis: `CONTRIB_R2_ACCOUNT_ID`, `CONTRIB_R2_ACCESS_KEY_ID`, `CONTRIB_R2_SECRET_ACCESS_KEY`,
-   `CONTRIB_CF_AI_TOKEN`, `CONTRIB_VIDEO_ENABLED=true` (quando quiser liberar vídeo) e por último
+   `CONTRIB_CF_AI_TOKEN` (vídeo já vem ligado; `CONTRIB_VIDEO_ENABLED=false` desliga) e por último
    `CONTRIB_BOT_KEY` (qualquer segredo longo) e por último `CONTRIB_ENABLED=true`.
    Admin do painel: `CONTRIB_ADMIN_EMAILS` (padrão eng.andrehz@gmail.com).
 6. GitHub, secret `CONTRIB_BOT_KEY` com o MESMO valor do Railway (liga o cron da curadoria).

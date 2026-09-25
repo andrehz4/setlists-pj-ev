@@ -1,5 +1,20 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-25: painel de colaboradores, fase 5 (vídeo vira Reel)
+
+- `scripts/contrib/render.mjs` + `legenda-ass.mjs`: corte escolhido, 1080x1920 (horizontal ganha fundo
+  desfocado), legenda queimada via libass nos 3 estilos (espelho de `colab/legendas.css`), marca
+  "SÓ MAIS UM FÃ DE PEARL JAM" no topo, crédito "por Rafael C." nos 4 primeiros segundos, voz a -14 LUFS.
+- `publicar-video.mjs`: MP4 vai pro R2 (rota `/contrib/bot/render/{id}`, sem inchar o git), publica
+  como Reel no IG (share_to_feed) e no FB; miniatura vira a imagem do post no site.
+- Fontes novas (OFL): Archivo Black e Instrument Serif Italic em `media/fonts/` + `LICENCAS.md`.
+- Testado em container Debian (mesmo ffmpeg do CI): 4 estilos renderizados e conferidos quadro a quadro;
+  e2e contra o mock do IG publicou o Reel, subiu o MP4, entrou no site e marcou o backend.
+- Vídeo agora vem LIGADO por padrão (o painel todo continua desligado por `CONTRIB_ENABLED`).
+
+**Estado**: as 5 fases do painel estão prontas. **Falta ligar** (passos no README do módulo) e
+cadastrar `contrib-curadoria.yml` no TriggerAll (:05, :20, :31), porque o cron do GitHub atrasa horas.
+
 ## 2026-09-25: painel de colaboradores, fase 4 (publicação de fotos)
 
 - `scripts/contrib/publicar.mjs` no mesmo cron da curadoria: aprovado com horário vencido vira

@@ -114,3 +114,36 @@ test("item do site: id estável, sem link externo, corpo separado", async () => 
   assert.equal(item.img, "/media/news/img/colab-7c1e9a2b.jpg");
   assert.equal(corpo.body_pt, e.body);
 });
+
+test("ASS: tempo no formato do libass e legenda no relógio do corte", async () => {
+  const { gerarAss, tempoAss } = await import("./legenda-ass.mjs");
+  assert.equal(tempoAss(3723.456), "1:02:03.46");
+  const ass = gerarAss({ estilo: "faixa", trimStart: 10, trimEnd: 20, credito: "Marina S.",
+    legendas: [{ start: 5, end: 9, text: "antes do corte" }, { start: 12, end: 14, text: "dentro {do} corte" }, { start: 25, end: 26, text: "depois" }] });
+  assert.match(ass, /PlayResX: 1080\nPlayResY: 1920/);
+  assert.match(ass, /Dialogue: 0,0:00:02\.00,0:00:04\.15,faixa,,0,0,0,,dentro do corte/);
+  assert.ok(!ass.includes("antes do corte") && !ass.includes("depois"));
+  assert.match(ass, /,credito,,.*por Marina S\./);
+});
+
+test("ASS palavra: 1 evento por palavra, grupo de 3, a falada acesa em âmbar", async () => {
+  const { gerarAss } = await import("./legenda-ass.mjs");
+  const ass = gerarAss({ estilo: "palavra", trimStart: 0, trimEnd: 10,
+    legendas: [{ start: 0, end: 4, text: "um dois tres quatro", words: [] }] });
+  const eventos = ass.split("\n").filter((l) => l.includes(",palavra,,"));
+  assert.equal(eventos.length, 4);
+  assert.match(eventos[1], /UM \{\\c&H003AA1E8\\fscx112\\fscy112\\frz2\}DOIS\{\\r\} TRES$/);
+  assert.match(eventos[3], /\}QUATRO\{\\r\}$/);
+});
+
+test("ASS sem legenda: só a marca e o crédito", async () => {
+  const { gerarAss } = await import("./legenda-ass.mjs");
+  const ass = gerarAss({ estilo: "nenhuma", trimStart: 0, trimEnd: 5, credito: "Ju", legendas: [{ start: 0, end: 2, text: "oi" }] });
+  assert.equal(ass.split("\n").filter((l) => l.startsWith("Dialogue")).length, 2);
+});
+
+test("site: post de vídeo avisa que o vídeo está no Instagram", async () => {
+  const { itemSite } = await import("./post.mjs");
+  const e = { ...video, id: "7c1e9a2b-4d5f-4a3b-9c8d-112233445566" };
+  assert.match(itemSite(e, "2026-09-25T18:30:00Z").corpo.body_pt, /Instagram @smufdpj\.$/);
+});

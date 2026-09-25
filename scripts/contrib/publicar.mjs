@@ -1,6 +1,6 @@
 // Publica os posts de colaborador aprovados quando chega o horário (:30): Instagram
 // (capa SMUFDPJ + fotos da pessoa), Facebook (se PUBLISH_FB=1) e site (index + item + stub).
-// Roda no mesmo cron da curadoria (contrib-curadoria.yml). Vídeo fica pra fase 5 (render).
+// Roda no mesmo cron da curadoria (contrib-curadoria.yml). Vídeo vira Reel (publicar-video.mjs).
 //
 // Contra post duplicado: grava a tentativa no backend ANTES do IG; se uma run anterior
 // morreu no meio, procura o post pela legenda no IG antes de postar de novo.
@@ -21,6 +21,7 @@ import { CYCLE_COLORS } from "../publish/color-cycle.mjs";
 import { commitAndPush, esperarRaw } from "./git.mjs";
 import { credito, idSite, itemSite, legendaIG } from "./post.mjs";
 import { bot, telegram } from "./api.mjs";
+import { publicarVideo } from "./publicar-video.mjs";
 
 const DRY = process.argv.includes("--dry");
 const NO_GIT = DRY || process.argv.includes("--no-git"); // --no-git: publica (mock) sem commitar
@@ -62,39 +63,51 @@ function entrarNoSite(envio, nowIso) {
   spawnSync("node", ["scripts/news/build-news-stubs.mjs"], { encoding: "utf8" });
 }
 
-async function publicarNoIG(envio, id, caption) {
+const ehVideo = (envio) => !!envio.video && /\.(mp4|mov)$/i.test(envio.media[0]?.key || "");
+
+// Run anterior morreu depois do IG? Procura o post pela legenda antes de postar de novo.
+async function jaPublicado(envio, caption) {
   const antes = envio.publicacao;
-  if (antes?.tentativa_em && antes.caption === caption) {
-    const achado = await recoverPublishedPost({
-      igUserId: process.env.IG_USER_ID, accessToken: process.env.IG_ACCESS_TOKEN,
-      caption, sinceMs: new Date(antes.tentativa_em).getTime() - 60000,
-    });
-    if (achado) return { postId: achado, recuperado: true, urls: null };
-  }
+  if (!antes?.tentativa_em || antes.caption !== caption) return null;
+  return recoverPublishedPost({
+    igUserId: process.env.IG_USER_ID, accessToken: process.env.IG_ACCESS_TOKEN,
+    caption, sinceMs: new Date(antes.tentativa_em).getTime() - 60000,
+  });
+}
+
+async function publicarFotos(envio, id, caption) {
   const urls = await montarSlides(envio, id);
   await commitAndPush([SLIDES, IMG], `contrib: slides ${id}`, { dry: NO_GIT });
-  if (DRY) return { postId: null, urls };
+  if (DRY) return { postId: null, fbPostId: null };
   if (!(await esperarRaw(urls[0]))) throw new Error("slides não apareceram no raw do GitHub a tempo");
   await bot(`/publicando/${envio.id}`, { caption });
   const r = await publishCarouselFromUrls(urls, caption);
-  return { postId: r.postId, recuperado: !!r.recovered, urls };
+  let fbPostId = null;
+  if (process.env.PUBLISH_FB === "1" && process.env.FB_PAGE_ID) {
+    try { fbPostId = (await publishAlbumFromUrls(urls, caption)).postId; }
+    catch (e) { console.error(`[contrib] FB falhou (IG ok, seguindo): ${e.message}`); }
+  }
+  return { postId: r.postId, fbPostId, recuperado: !!r.recovered };
 }
 
 async function publicar(envio) {
   const id = idSite(envio);
   const caption = legendaIG(envio);
-  const ig = await publicarNoIG(envio, id, caption);
-  if (DRY) return console.log(`[dry] ${id}: ${ig.urls.length} slides\n${caption}`);
-
-  let fbPostId = null;
-  if (process.env.PUBLISH_FB === "1" && ig.urls && process.env.FB_PAGE_ID) {
-    try { fbPostId = (await publishAlbumFromUrls(ig.urls, caption)).postId; }
-    catch (e) { console.error(`[contrib] FB falhou (IG ok, seguindo): ${e.message}`); }
+  const video = ehVideo(envio);
+  let r;
+  const achado = await jaPublicado(envio, caption);
+  if (achado) {
+    if (video) await publicarVideo(envio, id, caption, { dry: true }); // só refaz a miniatura do site
+    r = { postId: achado, fbPostId: null, recuperado: true };
+  } else {
+    r = video ? await publicarVideo(envio, id, caption, { dry: DRY }) : await publicarFotos(envio, id, caption);
   }
+  if (DRY) return console.log(`[dry] ${id} (${video ? "reel" : "carrossel"})\n${caption}`);
+
   entrarNoSite(envio, new Date().toISOString());
-  await commitAndPush([INDEX, "media/news/items/", "n/", "sitemap.xml"], `contrib: ${id} publicado (IG ${ig.postId})`, { dry: NO_GIT });
-  await bot(`/publicado/${envio.id}`, { site_id: id, ig_post_id: ig.postId, fb_post_id: fbPostId });
-  await telegram(`📣 Post de colaborador no ar: "${envio.title}"\npor ${credito(envio.autor?.nome)}${ig.recuperado ? " (recuperado)" : ""}\nhttps://setlists-pj-ev.pages.dev/#news/${id}`);
+  await commitAndPush([INDEX, IMG, "media/news/items/", "n/", "sitemap.xml"], `contrib: ${id} publicado (IG ${r.postId})`, { dry: NO_GIT });
+  await bot(`/publicado/${envio.id}`, { site_id: id, ig_post_id: r.postId, fb_post_id: r.fbPostId });
+  await telegram(`📣 ${video ? "Reel" : "Post"} de colaborador no ar: "${envio.title}"\npor ${credito(envio.autor?.nome)}${r.recuperado ? " (recuperado)" : ""}\nhttps://setlists-pj-ev.pages.dev/#news/${id}`);
 }
 
 async function main() {
