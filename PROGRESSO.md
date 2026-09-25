@@ -1,5 +1,21 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-25: painel de colaboradores, fase 3 (curadoria por IA)
+
+- Cron novo `.github/workflows/contrib-curadoria.yml` (a cada 10 min) + `scripts/contrib/`. Gemini 2.5
+  Flash ASSISTE o vídeo cortado e OUVE o áudio (regra 1), olha as fotos, confere fatos e revisa o texto
+  mexendo o mínimo. Travas determinísticas em `veredito.mjs`: regra violada ou incerta recusa, sem
+  travessão, "ajustado" só se mudou algo. Original da pessoa guardado em `ai_verdict.original`.
+- Telegram: resumo de cada veredito + aviso de pedido de acesso novo.
+- Backend: rotas do robô `/contrib/bot/*` (contagem, fila, veredito, pedidos) com `CONTRIB_BOT_KEY`.
+- **Teste real no Actions** (smoke, run 36103021755): vídeo só com voz passou na regra 1; o mesmo
+  vídeo com melodia de fundo foi recusado ("trilha instrumental de fundo"). 139 testes backend, 137 npm.
+- Sem o secret `CONTRIB_BOT_KEY` o cron termina no primeiro passo (sem npm ci), custo zero.
+
+**Próximo passo**: fase 4, publicar os aprovados no site e no IG às :30 (entrar na `_publish-queue`
+com crédito). Vídeo depende da fase 5 (render com corte + legenda queimada no estilo escolhido).
+**Pendências do Andre**: ligar as chaves (README do módulo, agora com o passo 6 do secret no GitHub).
+
 ## 2026-09-25: painel de colaboradores, fase 2 (página + legenda automática com 3 estilos)
 
 - Página nova `colaborar.html` + módulos em `colab/` (um por tela, todos até 160 linhas, teste trava).
