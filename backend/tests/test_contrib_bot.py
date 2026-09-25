@@ -1,0 +1,106 @@
+"""Colaboradores: rotas do robô de curadoria (/contrib/bot/*)."""
+import json
+from contextlib import asynccontextmanager
+from datetime import UTC, datetime
+from unittest.mock import AsyncMock, patch
+
+import pytest
+from fastapi import FastAPI
+from starlette.testclient import TestClient
+
+from app.contrib import bot, routes
+from app.contrib.config import contrib_settings as cfg
+from app.core.limiter import limiter
+
+CHAVE = {"X-Bot-Key": "segredo-do-robo"}
+ID = "00000000-0000-0000-0000-00000000000a"
+
+
+@pytest.fixture
+def conn():
+    c = AsyncMock()
+
+    @asynccontextmanager
+    async def _txn():
+        yield c
+    c.transaction = lambda *a, **k: _txn()
+    return c
+
+
+@pytest.fixture
+def client(conn, monkeypatch):
+    monkeypatch.setattr(cfg, "BOT_KEY", "segredo-do-robo")
+
+    @asynccontextmanager
+    async def fake_get_conn():
+        yield conn
+    app = FastAPI()
+    app.state.limiter = limiter
+    app.include_router(routes.router, prefix="/contrib")
+    with patch.object(bot, "get_conn", fake_get_conn):
+        yield TestClient(app)
+
+
+def _veredito(**extra):
+    return {"decisao": "ajustado", "titulo": "O Ten em 1991", "texto": "Texto corrigido com mais de vinte letras.",
+            "legendas": [{"start": 0, "end": 2, "text": "Em 1991 saiu o Ten."}], "motivo": "Corrigimos o ano.",
+            "analise": {"regras": {}}, **extra}
+
+
+@pytest.mark.parametrize("headers", [{}, {"X-Bot-Key": "errada"}])
+def test_sem_chave_certa_e_403(client, headers):
+    assert client.get("/contrib/bot/fila", headers=headers).status_code == 403
+
+
+def test_sem_chave_configurada_tudo_fechado(client, monkeypatch):
+    monkeypatch.setattr(cfg, "BOT_KEY", "")
+    assert client.get("/contrib/bot/fila", headers={"X-Bot-Key": ""}).status_code == 403
+
+
+def test_fila_traz_midia_video_e_autor(client, conn):
+    conn.fetch.return_value = [{
+        "id": ID, "title": "t", "body": "b", "media": '[{"key": "contrib/x/a.mp4"}]',
+        "video_opts": '{"estilo": "palavra", "legendas": []}', "scheduled_at": datetime(2026, 9, 25, 18, 30, tzinfo=UTC),
+        "nome": "Marina", "email": "m@gmail.com",
+    }]
+    item = client.get("/contrib/bot/fila", headers=CHAVE).json()[0]
+    assert item["video"]["estilo"] == "palavra" and item["autor"]["nome"] == "Marina"
+    assert item["media"][0]["key"] == "contrib/x/a.mp4"
+
+
+def test_veredito_ajustado_guarda_original_e_troca_legenda(client, conn):
+    conn.fetchrow.return_value = {"status": "enviado", "title": "O Ten em 1992", "body": "orig",
+                                  "video_opts": '{"estilo": "faixa", "legendas": [{"start": 0, "end": 2, "text": "em 92"}]}'}
+    r = client.post(f"/contrib/bot/veredito/{ID}", json=_veredito(), headers=CHAVE)
+    assert r.status_code == 200, r.text
+    args = conn.execute.call_args.args
+    video, analise = json.loads(args[5]), json.loads(args[7])
+    assert args[2] == "ajustado" and args[3] == "O Ten em 1991"
+    assert video == {"estilo": "faixa", "legendas": [{"start": 0.0, "end": 2.0, "text": "Em 1991 saiu o Ten."}]}
+    assert analise["original"] == {"title": "O Ten em 1992", "body": "orig", "legendas": [{"start": 0, "end": 2, "text": "em 92"}]}
+
+
+def test_veredito_em_envio_ja_decidido_e_409(client, conn):
+    conn.fetchrow.return_value = {"status": "cancelado", "title": "t", "body": "b", "video_opts": None}
+    assert client.post(f"/contrib/bot/veredito/{ID}", json=_veredito(), headers=CHAVE).status_code == 409
+    conn.execute.assert_not_called()
+
+
+def test_veredito_de_envio_inexistente_e_404(client, conn):
+    conn.fetchrow.return_value = None
+    assert client.post(f"/contrib/bot/veredito/{ID}", json=_veredito(), headers=CHAVE).status_code == 404
+
+
+def test_decisao_invalida_e_422(client):
+    assert client.post(f"/contrib/bot/veredito/{ID}", json=_veredito(decisao="publicado"), headers=CHAVE).status_code == 422
+
+
+def test_pedidos_novos(client, conn):
+    conn.fetch.return_value = [{"email": "m@gmail.com", "nome": "Marina", "pedido_em": datetime(2026, 9, 25, tzinfo=UTC)}]
+    assert client.get("/contrib/bot/pedidos", headers=CHAVE).json()[0]["email"] == "m@gmail.com"
+
+
+def test_contagem_sem_efeito_colateral(client, conn):
+    conn.fetchrow.return_value = {"fila": 2, "pedidos": 1}
+    assert client.get("/contrib/bot/contagem", headers=CHAVE).json() == {"fila": 2, "pedidos": 1}
+    conn.execute.assert_not_called()

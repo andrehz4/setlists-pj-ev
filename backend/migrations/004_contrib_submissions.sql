@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS contrib_membros (
   status      text NOT NULL DEFAULT 'pendente',
   pedido_em   timestamptz NOT NULL DEFAULT now(),
   decidido_em timestamptz,
+  avisado_em  timestamptz,
   CONSTRAINT contrib_membros_status_chk CHECK (status IN ('pendente', 'aprovado', 'bloqueado'))
 );
 

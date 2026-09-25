@@ -6,7 +6,7 @@ from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
-from app.contrib import acesso, agenda, legenda, repo
+from app.contrib import acesso, agenda, bot, legenda, repo
 from app.contrib.auth import require_admin, require_membro
 from app.contrib.config import contrib_settings as cfg
 from app.contrib.r2 import r2_url
@@ -22,6 +22,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 router.include_router(acesso.router)
 router.include_router(legenda.router)
+router.include_router(bot.router)
 
 UPLOAD_TTL = 900
 KEY_RE = re.compile(r"^contrib/[0-9a-f-]{36}/[0-9a-f]{32}\.(jpg|png|webp|mp4|mov)$")
