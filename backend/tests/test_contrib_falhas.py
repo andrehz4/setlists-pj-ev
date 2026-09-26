@@ -9,7 +9,7 @@ from starlette.testclient import TestClient
 
 from app.contrib import bot_falhas, routes
 from app.contrib.config import contrib_settings as cfg
-from app.core.limiter import limiter
+from app.contrib.limite import limiter
 
 CHAVE = {"X-Bot-Key": "segredo"}
 ID = "00000000-0000-0000-0000-00000000000b"

@@ -9,7 +9,7 @@ from starlette.testclient import TestClient
 
 from app.contrib import acesso, auth, legenda, routes
 from app.contrib.config import contrib_settings as cfg
-from app.core.limiter import limiter
+from app.contrib.limite import limiter
 from app.services.auth_service import create_jwt
 
 ORIGIN = {"Origin": "https://setlists-pj-ev.pages.dev"}

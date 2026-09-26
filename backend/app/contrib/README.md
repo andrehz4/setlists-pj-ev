@@ -9,8 +9,14 @@ aprova sem revisão humana, e o post sai no site e no IG sempre às :30 da próx
 - Único ponto de encaixe: 6 linhas no fim de `backend/app/main.py`, que só montam `/contrib`
   com `CONTRIB_ENABLED=true`. Sem a flag, o app é idêntico ao de antes (tem teste disso).
 - Migração só com tabela nova (`backend/migrations/004_contrib_submissions.sql`).
-- Código IA friendly: cada `.py` desta pasta tem no máximo **160 linhas**, travado por
-  `backend/tests/test_contrib_puro.py::test_regra_zero_arquivos_curtos`. Passou disso, quebrar em módulo.
+- Código IA friendly: cada `.py` desta pasta tem no máximo **160 linhas** e **130 caracteres por linha**,
+  travado por `backend/tests/test_contrib_puro.py` (`test_regra_zero_arquivos_curtos` e
+  `test_regra_zero_linhas_estreitas`). Passou disso, quebrar em módulo.
+- **Portável**: em produção o módulo roda DENTRO do backend do Terra Gentil (serviço Railway
+  `perpetual-energy`, repo `terra-gentil/terra-gentil-app`, que atende o app da Google Play, o fórum e
+  este painel). Do host só usa `app.core.config` e `app.services.db`; o resto é da própria pasta
+  (trava: `test_portavel_so_importa_do_host_o_que_o_terra_gentil_tem`). Fonte da verdade é ESTE repo;
+  levar pra lá com `scripts/contrib/sync-terra-gentil.sh`.
 - Front em página nova: `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/colaborar.html` + um módulo
   por tela em `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/colab/` (mesmo limite de 160 linhas,
   travado por `colab/colab.test.mjs` no `npm test`). CSP própria da página no `_headers`.
@@ -27,6 +33,8 @@ aprova sem revisão humana, e o post sai no site e no IG sempre às :30 da próx
 | `repo.py` | todo o SQL, só em `contrib_submissions` |
 | `schemas.py` | contratos de entrada e saída, lista de status |
 | `routes.py` | rotas de envio `/contrib/*` |
+| `limite.py` | rate limit próprio, por IP real (X-Forwarded-For), independente do limiter do host |
+| `site.py` | site pelo Origin (`SITE_ORIGINS`), independente do `app.dependencies` do host |
 | `auth.py` | token do painel, `require_membro`, `require_admin` (admin = `CONTRIB_ADMIN_EMAILS`) |
 | `membros.py` | SQL de `contrib_membros`: convite, pendente, aprovado, bloqueado |
 | `google_id.py` | confere o ID token do botão do Google |
