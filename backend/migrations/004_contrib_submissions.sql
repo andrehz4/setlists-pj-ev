@@ -52,3 +52,8 @@ CREATE INDEX IF NOT EXISTS contrib_user_created
 -- Fila da curadoria (fase 3).
 CREATE INDEX IF NOT EXISTS contrib_status_scheduled
   ON contrib_submissions (status, scheduled_at);
+
+-- Fecha as tabelas pra API pública do Supabase (anon/authenticated). O backend conecta
+-- como dono das tabelas via DATABASE_URL, então o RLS sem política não afeta ele.
+ALTER TABLE contrib_membros ENABLE ROW LEVEL SECURITY;
+ALTER TABLE contrib_submissions ENABLE ROW LEVEL SECURITY;
