@@ -139,6 +139,13 @@ def test_limite_diario(client, conn):
     assert client.post("/contrib/submissions", json=_body(), headers=_h()).status_code == 429
 
 
+def test_limite_diario_nao_conta_cancelado(client, conn):
+    _aprovado(conn, cfg.DAILY_LIMIT)
+    client.post("/contrib/submissions", json=_body(), headers=_h())
+    sql = conn.fetchval.call_args_list[-1].args[0]
+    assert "status <> 'cancelado'" in sql
+
+
 def test_envio_agenda_no_meia_hora(client, conn):
     _aprovado(conn, 0)
     conn.fetch.return_value = []

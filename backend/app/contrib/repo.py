@@ -10,7 +10,9 @@ _COLS = """id::text, status, title, body, media, video_opts, scheduled_at, reaso
 
 async def count_since(conn, user_id: str, since: datetime) -> int:
     return await conn.fetchval(
-        "SELECT COUNT(*) FROM contrib_submissions WHERE user_id = $1::uuid AND created_at >= $2",
+        # Cancelado pela própria pessoa devolve a vaga do dia; recusado continua contando (anti-spam).
+        "SELECT COUNT(*) FROM contrib_submissions"
+        " WHERE user_id = $1::uuid AND created_at >= $2 AND status <> 'cancelado'",
         user_id, since,
     ) or 0
 
