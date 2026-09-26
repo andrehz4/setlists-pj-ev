@@ -25,23 +25,37 @@ function pintarAbas(atual) {
     h("button", { type: "button", "aria-current": id === atual ? "page" : false, onclick: () => irPara(id) }, nome)));
 }
 
+// Ordem das telas pra saber o lado da transição (vai = da direita, volta = da esquerda).
+const ORDEM = ["entrar", "pendente", "postar", "enviado", "meus", "admin"];
+let atual = null;
+
+// Troca a tela com View Transition quando dá; sem suporte ou com menos movimento, troca seco.
+function mostrar(id, no) {
+  document.documentElement.dataset.dir = ORDEM.indexOf(id) < ORDEM.indexOf(atual) ? "volta" : "vai";
+  const primeira = atual === null;
+  atual = id;
+  const trocar = () => { tela.replaceChildren(no); scrollTo(0, 0); };
+  const calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (primeira || calmo || !document.startViewTransition) return trocar();
+  document.startViewTransition(trocar);
+}
+
 async function irPara(id, dado) {
   const s = sessao.ler();
   pintarTopo();
   if (!s?.token) {
     abas.hidden = true;
-    return tela.replaceChildren(telaEntrar(cfg, () => irPara("postar")));
+    return mostrar("entrar", telaEntrar(cfg, () => irPara("postar")));
   }
   if (s.status !== "aprovado") {
     abas.hidden = true;
-    return tela.replaceChildren(telaPendente(() => irPara("postar")));
+    return mostrar("pendente", telaPendente(() => irPara("postar")));
   }
   pintarAbas(id === "enviado" ? "postar" : id);
-  scrollTo(0, 0);
-  if (id === "enviado") return tela.replaceChildren(telaEnviado(dado, irPara));
-  if (id === "meus") return tela.replaceChildren(await telaMeus(cfg, irPara));
-  if (id === "admin") return tela.replaceChildren(await telaAdmin());
-  tela.replaceChildren(telaEditor(cfg, (envio) => irPara("enviado", envio)));
+  if (id === "enviado") return mostrar(id, telaEnviado(dado, irPara));
+  if (id === "meus") return mostrar(id, await telaMeus(cfg, irPara));
+  if (id === "admin") return mostrar(id, await telaAdmin());
+  mostrar("postar", telaEditor(cfg, (envio) => irPara("enviado", envio)));
 }
 
 async function iniciar() {

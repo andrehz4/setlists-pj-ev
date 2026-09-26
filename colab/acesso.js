@@ -32,16 +32,31 @@ export function telaEntrar(cfg, aoEntrar) {
         }
       },
     });
-    window.google.accounts.id.renderButton(alvo, { theme: "filled_black", size: "large", shape: "pill", text: "continue_with", locale: "pt-BR", width: 300 });
+    window.google.accounts.id.renderButton(alvo, { theme: "filled_black", size: "large", shape: "pill", text: "continue_with", locale: "pt-BR", width: Math.min(300, innerWidth - 72) });
   }).catch((e) => { erro.textContent = e.message; erro.hidden = false; });
 
-  return h("div", { class: "body" },
-    h("div", { class: "kicker" }, "Acesso por convite"),
-    h("h2", { class: "title" }, "Poste com a ", h("em", {}, "gente")),
-    h("p", { class: "muted" }, "O painel é fechado. Entre com o seu Gmail e o Andre libera o acesso. Se você já foi convidado, entra direto."),
-    alvo,
-    erro,
+  return h("div", { class: "body entrar" },
+    h("div", { class: "cartaz" },
+      h("div", { class: "kicker" }, "Acesso por convite"),
+      h("h2", { class: "title show" },
+        h("span", { class: "linha" }, "Poste"), " ",
+        h("span", { class: "linha" }, "com a"), " ",
+        h("span", { class: "linha" }, h("em", {}, "gente"))),
+      h("p", { class: "muted" }, "O painel é fechado. Entre com o seu Gmail e o Andre libera o acesso. Se você já foi convidado, entra direto.")),
+    h("div", { class: "ingresso" },
+      h("div", { class: "ingresso-topo" }, h("span", {}, "Ingresso ", h("b", {}, "pista")), h("span", {}, "Colaborador")),
+      h("p", { class: "ingresso-frase" }, "Seu lugar é no gargarejo."),
+      alvo,
+      erro,
+      h("div", { class: "canhoto", "aria-hidden": "true" }, h("i", {}), h("span", {}, "SMUFDPJ"))),
+    letreiro(),
     h("p", { class: "muted pe" }, "O Gmail serve só pra liberar o acesso. Ele não aparece em nenhum post."));
+}
+
+// Faixa que corre embaixo do ingresso. Texto duplicado pro laço não ter emenda.
+function letreiro() {
+  const frase = "Vídeo  ✶  Fotos  ✶  Curiosidade  ✶  Bastidor  ✶  No ar às :30  ✶  Com o seu crédito  ✶  ";
+  return h("div", { class: "letreiro", "aria-hidden": "true" }, h("div", {}, h("span", {}, frase), h("span", {}, frase)));
 }
 
 export function telaPendente(aoAprovar) {
@@ -57,9 +72,12 @@ export function telaPendente(aoAprovar) {
     } catch (e) { aviso(e.message, "erro"); }
   };
   const sair = h("button", { type: "button", class: "link", onclick: () => { sessao.sair(); location.reload(); } }, "Entrar com outra conta");
-  return h("div", { class: "body" },
-    h("div", { class: "card" },
-      h("div", { class: "perfil" }, avatar(s, 40), h("div", {}, h("b", {}, s.nome || "Você"))),
+  return h("div", { class: "body espera" },
+    h("div", { class: "kicker" }, bloqueado ? "Acesso" : "Passando o som"),
+    h("h2", { class: "title" }, bloqueado ? "Porta " : "Quase no ", h("em", {}, bloqueado ? "fechada" : "palco")),
+    h("div", { class: "card passe" },
+      h("div", { class: "perfil" }, avatar(s, 40), h("div", {}, h("small", {}, "Passe de colaborador"), h("b", {}, s.nome || "Você")),
+        bloqueado ? null : h("span", { class: "equalizador", "aria-hidden": "true" }, h("i"), h("i"), h("i"), h("i"), h("i"))),
       h("span", { class: "pill " + (bloqueado ? "p-no" : "p-wait") }, bloqueado ? "Acesso bloqueado" : "Aguardando aprovação"),
       h("p", { class: "muted" }, bloqueado
         ? "Esse acesso foi bloqueado. Se acha que foi engano, fale com o Andre no Instagram @smufdpj."

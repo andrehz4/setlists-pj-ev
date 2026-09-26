@@ -8,7 +8,7 @@ const STATUS = {
   aprovado: ["Aprovado", "p-ok"],
   ajustado: ["Ajustado", "p-adj"],
   recusado: ["Recusado", "p-no"],
-  publicado: ["No ar", "p-ok"],
+  publicado: ["No ar", "p-ok ao-vivo"],
   cancelado: ["Cancelado", "p-off"],
 };
 
@@ -26,9 +26,10 @@ export function telaEnviado(envio, irPara) {
       irPara("meus");
     } catch (e) { aviso(e.message, "erro"); }
   };
-  return h("div", { class: "body" },
+  return h("div", { class: "body recebido" },
     h("div", { class: "kicker" }, "Recebido"),
-    h("h2", { class: "title" }, "Vai ao ar às ", h("em", {}, envio.scheduled_label)),
+    h("h2", { class: "title" }, "Você tá no ", h("em", {}, "line-up")),
+    h("div", { class: "bilhete-palco" }, bilhete(envio), festa()),
     h("p", { class: "muted" }, "A curadoria confere as regras, revisa o português e pode ajustar o texto. Se mudar alguma coisa, você vê em Meus envios."),
     h("ol", { class: "tl" },
       passo("done", "Enviado", "arquivo e texto recebidos", rotuloHora(envio.created_at)),
@@ -37,6 +38,22 @@ export function telaEnviado(envio, irPara) {
     h("div", { class: "pilha" },
       h("button", { type: "button", class: "btn", onclick: () => irPara("postar") }, "Fazer outro post"),
       cancelar));
+}
+
+// Ingresso com o horário em destaque. O número é o fim do id, só de enfeite.
+function bilhete(envio) {
+  return h("div", { class: "bilhete" },
+    h("div", { class: "bilhete-corpo" },
+      h("span", { class: "bilhete-rot" }, "Vai ao ar às"),
+      h("strong", { class: "bilhete-hora" }, envio.scheduled_label),
+      h("span", { class: "bilhete-onde" }, `${rotuloDia(envio.scheduled_at || envio.created_at)} · site e @smufdpj`)),
+    h("div", { class: "bilhete-canhoto", "aria-hidden": "true" },
+      h("span", {}, "Nº"), h("b", {}, String(envio.id || "").slice(-4).toUpperCase()), h("i")));
+}
+
+// Palhetas que estouram do ingresso (posições em recebido.css).
+function festa() {
+  return h("span", { class: "festa", "aria-hidden": "true" }, Array.from({ length: 12 }, () => h("i")));
 }
 
 function passo(classe, titulo, desc, quando) {

@@ -21,13 +21,18 @@
 .cap-cinema { bottom: 8%; }
 .cap-cinema span { font-family: var(--font-editorial); font-style: italic; font-size: 7.2cqw; line-height: 1.12; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .95), 0 0 22px rgba(0, 0, 0, .7); }
 
-/* Escolha do estilo: 4 cartões com amostra */
+/* Escolha do estilo: 4 cartões com amostra. Só o entorno anima; a legenda sobre o
+   vídeo (acima) fica exatamente como sai no Reel. */
 .estilos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.estilos button { all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 3px; padding: 6px 6px 9px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg-sunk); text-align: center; min-width: 0; }
-.estilos button[aria-checked="true"] { border-color: var(--ev); background: #1c160d; }
+.estilos button { all: unset; cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 3px; padding: 6px 6px 9px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-sunk); text-align: center; min-width: 0; transition: transform .25s var(--mola), border-color .2s, background-color .2s, box-shadow .25s; }
+.estilos button:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+.estilos button:active { transform: scale(.95); }
+.estilos button[aria-checked="true"] { border-color: var(--ev); background: #1f180e; transform: translateY(-3px); box-shadow: 0 10px 22px -12px rgba(232, 161, 58, .7), 0 0 0 1px var(--ev); }
+.estilos button[aria-checked="true"]::after { position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; border-radius: 50%; background: var(--ev); content: "✓"; font: 700 11px/18px var(--font-mono); color: var(--bg); text-align: center; box-shadow: 0 0 0 2px var(--bg); animation: pop .35s var(--mola) backwards; }
 .estilos b { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
 .estilos small { font-size: 11.5px; color: var(--ink-mute); line-height: 1.25; }
-.amostra { height: 46px; border-radius: 7px; display: grid; place-items: center; overflow: hidden; background: radial-gradient(120% 90% at 30% 10%, #4a3a26, #1d1712 60%, #0a0908); }
+.amostra { height: 46px; border-radius: 8px; display: grid; place-items: center; overflow: hidden; background: radial-gradient(120% 90% at 30% 10%, #4a3a26, #1d1712 60%, #0a0908); }
+.estilos button[aria-checked="true"] .amostra > * { animation: pop .45s var(--mola) backwards; }
 .amostra-palavra span { font-family: var(--font-display); font-size: 15px; color: var(--ev); -webkit-text-stroke: 3px #0a0908; paint-order: stroke fill; }
 .amostra-faixa span { font-family: var(--font-display); font-size: 12px; color: #0a0908; background: #f5f1e8; padding: 2px 6px; transform: rotate(-2deg); box-shadow: 2px 2px 0 var(--pj); }
 .amostra-cinema span { font-family: var(--font-editorial); font-style: italic; font-size: 19px; color: #fff; text-shadow: 0 1px 2px #000; }

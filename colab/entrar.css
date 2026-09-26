@@ -1,0 +1,50 @@
+/* Painel de colaboradores: tela de entrar (cartaz + ingresso + letreiro) e
+   tela de espera (passe de backstage). Movimento só em transform e opacity. */
+
+/* Cartaz: título grande em três linhas, "gente" em serifa itálica riscada de vermelho */
+.entrar { gap: 22px; padding-top: 28px; overflow: hidden; }
+.cartaz { position: relative; display: flex; flex-direction: column; gap: 14px; }
+.cartaz::before { content: ""; position: absolute; inset: -30px -16px auto auto; width: 70%; height: 240px; z-index: -1; pointer-events: none; background: radial-gradient(circle, rgba(232, 161, 58, .22) 1.2px, transparent 1.6px) 0 0 / 7px 7px; -webkit-mask-image: radial-gradient(closest-side, #000, transparent); mask-image: radial-gradient(closest-side, #000, transparent); }
+.title.show { font-size: clamp(54px, 17vw, 78px); line-height: .9; letter-spacing: -.02em; text-transform: uppercase; display: flex; flex-direction: column; }
+.show .linha { display: block; animation: linha-entra .8s var(--suave) backwards; }
+.show .linha:nth-child(2) { animation-delay: .12s; color: var(--ink-soft); }
+.show .linha:nth-child(3) { animation-delay: .26s; position: relative; align-self: flex-start; margin-top: -.02em; }
+.show em { display: inline-block; text-transform: none; font-size: 1.32em; line-height: .9; transform: rotate(-4deg); text-shadow: 0 0 34px rgba(232, 161, 58, .45); }
+.show .linha:nth-child(3)::after { content: ""; position: absolute; left: 4%; right: -6%; bottom: .02em; height: .1em; border-radius: 99px; background: var(--pj); transform-origin: left; transform: rotate(-3deg); animation: risca-torta .6s .9s var(--suave) backwards; }
+@keyframes linha-entra { from { opacity: 0; transform: translateY(55%) skewY(5deg); } to { opacity: 1; transform: none; } }
+@keyframes risca-torta { from { transform: rotate(-3deg) scaleX(0); } to { transform: rotate(-3deg) scaleX(1); } }
+.cartaz .muted { max-width: 34ch; font-size: 16px; color: var(--ink-soft); }
+
+/* Ingresso: papel creme, picote com recortes laterais, botão do Google no meio */
+.ingresso { --canhoto: 46px; position: relative; background: var(--papel); color: var(--bg); border-radius: 14px; padding: 16px 16px calc(var(--canhoto) + 14px); display: flex; flex-direction: column; gap: 14px; transform: rotate(-1.2deg); box-shadow: 0 24px 40px -18px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .06);
+  -webkit-mask: radial-gradient(circle 11px at 0 calc(100% - var(--canhoto)), transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 11px at 100% calc(100% - var(--canhoto)), transparent 98%, #000) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle 11px at 0 calc(100% - var(--canhoto)), transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 11px at 100% calc(100% - var(--canhoto)), transparent 98%, #000) right / 51% 100% no-repeat;
+  animation: ingresso-entra .9s .45s var(--mola) backwards; transition: transform .35s var(--mola); }
+.ingresso:hover { transform: rotate(0deg) translateY(-2px); }
+@keyframes ingresso-entra { from { opacity: 0; transform: translateY(46px) rotate(5deg); } to { opacity: 1; transform: rotate(-1.2deg); } }
+.ingresso-topo { display: flex; justify-content: space-between; gap: 10px; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--papel-tinta); }
+.ingresso-topo b { color: var(--pj-fundo); }
+.ingresso-frase { margin: 0; font-family: var(--font-editorial); font-style: italic; font-size: 25px; line-height: 1.08; color: var(--bg); text-align: center; }
+.ingresso .muted.erro { color: var(--pj-fundo); text-align: center; }
+.canhoto { position: absolute; left: 0; right: 0; bottom: 0; height: var(--canhoto); border-top: 2px dashed rgba(10, 9, 8, .28); display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 18px; font-family: var(--font-stencil); font-weight: 900; font-size: 17px; letter-spacing: .06em; text-transform: uppercase; color: var(--pj-fundo); }
+.canhoto i { flex: 1; max-width: 150px; height: 22px; background: repeating-linear-gradient(90deg, var(--bg) 0 2px, transparent 2px 4px, var(--bg) 4px 5px, transparent 5px 8px, var(--bg) 8px 11px, transparent 11px 13px); opacity: .85; }
+
+/* Letreiro que corre de ponta a ponta */
+.letreiro { margin: 6px -16px 0; overflow: hidden; background: var(--pj); color: var(--ink); transform: rotate(-2.5deg); box-shadow: 0 10px 30px -10px rgba(193, 39, 45, .8); }
+.letreiro div { display: flex; width: max-content; animation: letreiro 18s linear infinite; }
+.letreiro span { flex: none; padding: 9px 0; font-family: var(--font-display); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; white-space: pre; }
+
+/* Espera: passe de backstage com furo do cordão e equalizador "passando o som" */
+.passe { position: relative; padding-top: 34px; overflow: hidden; }
+.passe::before { content: ""; position: absolute; top: 12px; left: 50%; width: 46px; height: 10px; margin-left: -23px; border-radius: 99px; background: var(--bg); box-shadow: inset 0 1px 3px rgba(0, 0, 0, .8); }
+.passe::after { content: "BACKSTAGE"; position: absolute; right: -8px; bottom: -14px; font-family: var(--font-stencil); font-weight: 900; font-size: 64px; line-height: 1; color: rgba(232, 161, 58, .06); pointer-events: none; }
+.passe .muted { margin-top: 12px; }
+.equalizador { display: flex; align-items: flex-end; gap: 3px; height: 18px; margin-left: auto; }
+.equalizador i { width: 4px; height: 100%; border-radius: 2px; background: var(--ev); transform-origin: bottom; animation: eq 1s ease-in-out infinite alternate; }
+.equalizador i:nth-child(2) { animation-delay: -.3s; animation-duration: .8s; }
+.equalizador i:nth-child(3) { animation-delay: -.6s; animation-duration: 1.2s; }
+.equalizador i:nth-child(4) { animation-delay: -.15s; animation-duration: .9s; }
+.equalizador i:nth-child(5) { animation-delay: -.45s; animation-duration: 1.1s; }
+@keyframes eq { from { transform: scaleY(.2); } to { transform: scaleY(1); } }
+.passe .perfil b { font-family: var(--font-display); font-size: 17px; font-weight: 400; }
+.passe .perfil small { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim); }
