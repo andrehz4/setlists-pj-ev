@@ -3,7 +3,7 @@
 import { api, aviso, h, rotuloDia } from "./api.js";
 
 const STATUS = { pendente: ["Aguardando", "p-wait"], aprovado: ["Aprovado", "p-ok"], bloqueado: ["Bloqueado", "p-no"] };
-const ENVIO = { enviado: ["Na curadoria", "p-wait"], aprovado: ["Aprovado", "p-ok"], ajustado: ["Ajustado", "p-adj"], recusado: ["Recusado", "p-no"], publicado: ["No ar", "p-ok"], cancelado: ["Cancelado", "p-off"] };
+const ENVIO = { enviado: ["Na curadoria", "p-wait"], aprovado: ["Aprovado", "p-ok"], ajustado: ["Ajustado", "p-adj"], recusado: ["Recusado", "p-no"], publicado: ["No ar", "p-ok ao-vivo"], cancelado: ["Cancelado", "p-off"] };
 
 export async function telaAdmin() {
   const corpo = h("div", { class: "body" });

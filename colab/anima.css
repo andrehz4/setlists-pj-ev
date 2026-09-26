@@ -1,0 +1,73 @@
+/* Painel de colaboradores: luz de palco, keyframes comuns, entrada das telas e
+   transição entre telas (View Transitions, com fallback). Só transform e opacity.
+   No fim: prefers-reduced-motion desliga tudo e o painel funciona parado. */
+
+/* Dois canhões de luz (vermelho PJ e âmbar) varrendo o fundo. Leves: gradiente
+   parado, só o transform anima, sem blur. Na tela de entrar ficam mais fortes. */
+body::before, body::after {
+  content: ""; position: fixed; top: -6vh; z-index: 0; pointer-events: none;
+  width: 120vh; height: 118vh; margin-left: -60vh; transform-origin: 50% 0;
+  -webkit-mask-image: linear-gradient(#000 5%, transparent 88%); mask-image: linear-gradient(#000 5%, transparent 88%);
+  opacity: .38; will-change: transform;
+}
+body::before { left: 14%; background: conic-gradient(from 163deg at 50% 0, transparent 0deg, rgba(193, 39, 45, .5) 17deg, transparent 34deg); animation: canhao-a 11s ease-in-out infinite alternate; }
+body::after { left: 86%; background: conic-gradient(from 165deg at 50% 0, transparent 0deg, rgba(232, 161, 58, .34) 15deg, transparent 30deg); animation: canhao-b 13s ease-in-out infinite alternate; }
+body:has(.entrar)::before, body:has(.entrar)::after, body:has(.recebido)::before, body:has(.recebido)::after { opacity: 1; }
+@keyframes canhao-a { from { transform: rotate(-22deg); } to { transform: rotate(14deg); } }
+@keyframes canhao-b { from { transform: rotate(20deg); } to { transform: rotate(-16deg); } }
+
+/* Entrada em cascata dos blocos de cada tela */
+.body > * { animation: sobe .5s var(--suave) backwards; }
+.body > :nth-child(2) { animation-delay: .05s; }
+.body > :nth-child(3) { animation-delay: .1s; }
+.body > :nth-child(4) { animation-delay: .15s; }
+.body > :nth-child(5) { animation-delay: .2s; }
+.body > :nth-child(6) { animation-delay: .25s; }
+.body > :nth-child(7) { animation-delay: .3s; }
+.body > :nth-child(n+8) { animation-delay: .35s; }
+.video-box > * { animation: sobe .45s var(--suave) backwards; }
+.video-box > :nth-child(2) { animation-delay: .06s; }
+.video-box > :nth-child(3) { animation-delay: .12s; }
+.video-box > :nth-child(n+4) { animation-delay: .18s; }
+
+/* Aviso sobe com mola */
+.aviso { animation: aviso-entra .45s var(--mola) both; }
+@keyframes aviso-entra { from { opacity: 0; transform: translate(-50%, 18px) scale(.94); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+
+/* Luz de "no ar" do logo pisca como lâmpada de estúdio */
+.logo::before { animation: lampada 2.4s ease-in-out infinite; }
+@keyframes lampada { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+
+/* Keyframes comuns */
+@keyframes sobe { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { opacity: 0; transform: scale(.6); } 70% { opacity: 1; transform: scale(1.06); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes onda { from { opacity: .75; transform: scale(1); } to { opacity: 0; transform: scale(2.6); } }
+@keyframes varre { 0%, 55% { transform: translateX(-110%); } 85%, 100% { transform: translateX(110%); } }
+@keyframes gira { to { transform: rotate(360deg); } }
+@keyframes letreiro { to { transform: translateX(-50%); } }
+@keyframes risca { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes desce { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes neon { 0%, 18%, 22%, 62%, 64%, 100% { opacity: 1; } 20%, 63% { opacity: .35; } }
+@keyframes carimbo { 0% { opacity: 0; transform: scale(2.2) rotate(-18deg); } 60% { opacity: 1; transform: scale(.94) rotate(-7deg); } 100% { opacity: 1; transform: scale(1) rotate(-8deg); } }
+@keyframes balanca { 0%, 100% { transform: rotate(-1deg); } 50% { transform: rotate(1deg); } }
+
+/* Transição entre telas e abas. O JS marca html[data-dir] = "vai" ou "volta". */
+::view-transition-old(tela) { animation: vt-sai .26s var(--suave) both; }
+::view-transition-new(tela) { animation: vt-entra .42s var(--suave) both; }
+html[data-dir="volta"]::view-transition-old(tela) { animation-name: vt-sai-volta; }
+html[data-dir="volta"]::view-transition-new(tela) { animation-name: vt-entra-volta; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .2s; }
+@keyframes vt-sai { to { opacity: 0; transform: translateX(-28px); } }
+@keyframes vt-entra { from { opacity: 0; transform: translateX(36px); } }
+@keyframes vt-sai-volta { to { opacity: 0; transform: translateX(28px); } }
+@keyframes vt-entra-volta { from { opacity: 0; transform: translateX(-36px); } }
+
+/* Tudo parado pra quem pediu menos movimento: estados finais, sem loop. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-delay: 0s !important;
+    animation-iteration-count: 1 !important; transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

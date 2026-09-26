@@ -1,30 +1,57 @@
-/* Painel de colaboradores: depois de enviar, meus envios e painel do admin. */
+/* Painel de colaboradores: linha do tempo, meus envios (cota, lista, status) e
+   painel do admin. A celebração da tela "Recebido" está em recebido.css. */
+
+/* Linha do tempo: Enviado, Curadoria, No ar */
 .tl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.tl li { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; padding-bottom: 18px; position: relative; }
-.tl li::before { content: ""; position: absolute; left: 10px; top: 22px; bottom: 0; width: 2px; background: var(--line); }
+.tl li { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; padding-bottom: 20px; position: relative; }
+.tl li::before { content: ""; position: absolute; left: 10px; top: 24px; bottom: 2px; width: 2px; border-radius: 2px; background: var(--line-strong); }
+.tl li.done::before { background: linear-gradient(var(--ok), var(--ev)); }
 .tl li:last-child::before { display: none; }
-.tl .dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line-strong); background: var(--bg); }
+.tl .dot { position: relative; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line-strong); background: var(--bg); display: grid; place-items: center; }
 .tl .done .dot { background: #5a8a52; border-color: #5a8a52; }
-.tl .now .dot { border-color: var(--ev); box-shadow: 0 0 0 4px rgba(232, 161, 58, .18); }
+.tl .done .dot::before { content: ""; width: 8px; height: 4px; margin-top: -2px; border: solid var(--ink); border-width: 0 0 2px 2px; transform: rotate(-45deg); }
+.tl .now .dot { border-color: var(--ev); background: radial-gradient(circle, var(--ev) 0 4px, var(--bg) 4.5px); }
+.tl .now .dot::after { content: ""; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid var(--ev); animation: onda 1.6s ease-out infinite; }
+.tl li:last-child .dot { border-style: dashed; }
 .tl b { display: block; font-size: 15px; }
+.tl .now b { color: var(--ev); }
 .tl small { color: var(--ink-mute); font-size: 13px; }
-.tl time { font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); white-space: nowrap; }
+.tl time { font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tl li:last-child time { color: var(--ev); font-weight: 700; }
+
+/* Status com vida: "Na curadoria" pulsa, "No ar" brilha */
+.pill.p-wait::after { content: ""; position: absolute; left: 9px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: currentColor; animation: onda 1.5s ease-out infinite; }
+.pill.ao-vivo { overflow: hidden; }
+.pill.ao-vivo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .55) 50%, transparent 70%); transform: translateX(-110%); animation: varre 2.8s ease-in-out infinite; }
+.pill.ao-vivo::before { animation: lampada 1s ease-in-out infinite; }
+
+/* Meus envios: cota do dia como luzes de VU */
+.quota { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); display: flex; align-items: center; gap: 6px; }
+.quota i { display: inline-block; width: 24px; height: 7px; border-radius: 3px; background: var(--line); position: relative; overflow: hidden; }
+.quota i.on { background: var(--line); }
+.quota i.on::after { content: ""; position: absolute; inset: 0; background: var(--ev); box-shadow: 0 0 8px var(--ev); transform-origin: left; animation: risca .5s .35s var(--suave) backwards; }
+.quota i.on + i.on::after { animation-delay: .55s; }
 
 .list { display: flex; flex-direction: column; gap: 10px; }
-.item { display: grid; grid-template-columns: 54px 1fr; gap: 12px; align-items: start; }
-.thumb { width: 54px; aspect-ratio: 4 / 5; border-radius: 6px; object-fit: cover; background: linear-gradient(160deg, #5a4630, #1b1712); display: block; }
-.thumb.is-video { background: linear-gradient(160deg, #6b1518, #1b1712); position: relative; }
+.list > * { animation: sobe .45s var(--suave) backwards; }
+.list > :nth-child(2) { animation-delay: .07s; }
+.list > :nth-child(3) { animation-delay: .14s; }
+.list > :nth-child(4) { animation-delay: .21s; }
+.list > :nth-child(n+5) { animation-delay: .28s; }
+.item { display: grid; grid-template-columns: 58px 1fr; gap: 12px; align-items: start; transition: transform .25s var(--mola), border-color .2s; }
+.item:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+.thumb { width: 58px; aspect-ratio: 4 / 5; border-radius: 6px; object-fit: cover; background: linear-gradient(160deg, #5a4630, #1b1712); display: block; box-shadow: 0 6px 14px -6px #000; }
+.thumb.is-video { background: linear-gradient(160deg, #7a181c, #1b1712); position: relative; overflow: hidden; }
+.thumb.is-video::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 6px; background: repeating-linear-gradient(#0a0908 0 4px, transparent 4px 8px) 1px 0 / 4px 100% no-repeat; opacity: .7; }
 .thumb.is-video::after { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-35%, -50%); border-left: 12px solid var(--ink); border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
-.item h4 { margin: 0 0 5px; font-size: 15.5px; line-height: 1.25; }
+.item h4 { margin: 0 0 6px; font-size: 16px; line-height: 1.25; }
 .item .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); }
-.item .why { margin: 8px 0 0; font-size: 14px; color: var(--ink-soft); border-left: 2px solid var(--no); padding-left: 9px; }
-.item .why.adj { border-color: var(--adj); }
+.item .why { margin: 10px 0 0; font-size: 14px; color: var(--ink-soft); background: rgba(226, 88, 93, .07); border-left: 2px solid var(--no); border-radius: 0 8px 8px 0; padding: 8px 10px; }
+.item .why.adj { border-color: var(--adj); background: rgba(143, 176, 216, .07); }
 .perfil-card .nota b { color: var(--ev); font-weight: 600; }
-.quota { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); display: flex; align-items: center; gap: 6px; }
-.quota i { display: inline-block; width: 24px; height: 6px; border-radius: 3px; background: var(--line); }
-.quota i.on { background: var(--ev); }
 
-.mem { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); }
+/* Admin: membros */
+.mem { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); animation: sobe .4s var(--suave) backwards; }
 .mem:first-child { border-top: 0; padding-top: 0; }
 .mem b { display: block; font-size: 15px; }
 .mem small { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); overflow-wrap: anywhere; }

@@ -36,6 +36,7 @@ export function seletorVideo(estado, cfg, aoMudar) {
   const input = h("input", { type: "file", accept: "video/mp4,video/quicktime", hidden: true, id: "f-video" });
   let parar = () => {};
   const vazio = () => h("button", { type: "button", class: "drop", onclick: () => input.click() },
+    fita(),
     h("b", {}, "Escolher vídeo"), h("small", {}, `MP4 ou MOV, até ${cfg.max_video_seg} segundos no corte final. A legenda sai sozinha.`));
 
   input.onchange = async () => {
@@ -91,6 +92,14 @@ export function seletorVideo(estado, cfg, aoMudar) {
 
   caixa.replaceChildren(vazio());
   return h("div", {}, caixa, input);
+}
+
+// Desenho da fita cassete do "Escolher vídeo" (decorativo; estilo em fita.css).
+function fita() {
+  return h("span", { class: "fita", "aria-hidden": "true" },
+    h("span", { class: "fita-rotulo" }, h("em", {}, "Lado A"), h("span", {}, "PJ")),
+    h("span", { class: "fita-janela" }, h("span", { class: "carretel" }), h("span", { class: "carretel" })),
+    h("span", { class: "fita-parafusos" }));
 }
 
 function corte(estado, video, cfg, aoMudar) {

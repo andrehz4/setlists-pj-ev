@@ -1,0 +1,52 @@
+/* Painel de colaboradores: tela "Recebido". Um ingresso com o horário de ida ao ar
+   cai no palco, um carimbo bate, palhetas voam e a linha do tempo se desenha. */
+.recebido { gap: 20px; }
+.recebido .title { font-size: 34px; }
+.bilhete-palco { position: relative; }
+
+/* Ingresso horizontal: corpo creme + canhoto vermelho, recortes no picote */
+.bilhete { --corte: 86px; position: relative; display: grid; grid-template-columns: 1fr var(--corte); min-height: 150px; border-radius: 14px; background: linear-gradient(90deg, var(--papel) calc(100% - var(--corte)), var(--pj) 0); color: var(--bg); transform: rotate(-2deg); box-shadow: 0 26px 44px -20px rgba(0, 0, 0, .95), 0 0 60px -20px rgba(232, 161, 58, .35);
+  -webkit-mask: radial-gradient(circle 11px at calc(100% - var(--corte)) 0, transparent 98%, #000) top / 100% 51% no-repeat, radial-gradient(circle 11px at calc(100% - var(--corte)) 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+  mask: radial-gradient(circle 11px at calc(100% - var(--corte)) 0, transparent 98%, #000) top / 100% 51% no-repeat, radial-gradient(circle 11px at calc(100% - var(--corte)) 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+  animation: bilhete-cai .9s .15s var(--mola) backwards; }
+@keyframes bilhete-cai { 0% { opacity: 0; transform: translateY(-60px) rotate(8deg) scale(.9); } 100% { opacity: 1; transform: rotate(-2deg); } }
+.bilhete-corpo { position: relative; padding: 16px 16px 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 2px; border-right: 2px dashed rgba(10, 9, 8, .3); }
+.bilhete-rot, .bilhete-onde { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--papel-tinta); }
+.bilhete-hora { font-family: var(--font-display); font-weight: 400; font-size: 60px; line-height: .95; letter-spacing: -.03em; color: var(--bg); font-variant-numeric: tabular-nums; animation: hora-bate .6s .7s var(--mola) backwards; }
+@keyframes hora-bate { from { opacity: 0; transform: scale(1.6); } }
+.bilhete-corpo::after { content: "RECEBIDO"; position: absolute; right: 8px; top: 12px; padding: 2px 7px; border: 2.5px solid var(--pj-fundo); border-radius: 4px; font-family: var(--font-stencil); font-weight: 900; font-size: 17px; letter-spacing: .08em; color: var(--pj-fundo); opacity: .9; transform: rotate(-8deg); animation: carimbo .55s 1.05s var(--mola) backwards; }
+.bilhete-canhoto { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--ink); font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.bilhete-canhoto b { font-family: var(--font-stencil); font-weight: 900; font-size: 26px; letter-spacing: .04em; line-height: 1; }
+.bilhete-canhoto i { width: 52px; height: 30px; margin-top: 6px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 7px, transparent 7px 9px); opacity: .8; }
+
+/* Palhetas que estouram do ingresso (decorativas) */
+.festa { position: absolute; left: 38%; top: 50%; width: 0; height: 0; pointer-events: none; z-index: 2; }
+.festa i { position: absolute; left: -7px; top: -8px; width: 14px; height: 16px; background: var(--ev); border-radius: 50% 50% 50% 50% / 38% 38% 62% 62%; opacity: 0; animation: palheta 1.3s .85s cubic-bezier(.2, .7, .3, 1) both; }
+.festa i:nth-child(3n) { background: var(--pj); }
+.festa i:nth-child(3n+1) { background: var(--papel); }
+@keyframes palheta { 0% { opacity: 1; transform: translate(0, 0) rotate(0) scale(.3); } 75% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1); } }
+.festa i:nth-child(1) { --x: -150px; --y: -90px; --r: -220deg; }
+.festa i:nth-child(2) { --x: -90px; --y: -140px; --r: 160deg; }
+.festa i:nth-child(3) { --x: -20px; --y: -150px; --r: -300deg; }
+.festa i:nth-child(4) { --x: 60px; --y: -135px; --r: 240deg; }
+.festa i:nth-child(5) { --x: 140px; --y: -100px; --r: -180deg; }
+.festa i:nth-child(6) { --x: 185px; --y: -30px; --r: 320deg; }
+.festa i:nth-child(7) { --x: -175px; --y: -20px; --r: 200deg; }
+.festa i:nth-child(8) { --x: -130px; --y: 70px; --r: -260deg; }
+.festa i:nth-child(9) { --x: 120px; --y: 80px; --r: 190deg; }
+.festa i:nth-child(10) { --x: 40px; --y: 120px; --r: -140deg; }
+.festa i:nth-child(11) { --x: -50px; --y: 110px; --r: 280deg; }
+.festa i:nth-child(12) { --x: 200px; --y: 40px; --r: -210deg; }
+
+/* Linha do tempo que se desenha: bolinha estala, traço desce até a próxima */
+.recebido .tl li::before { transform-origin: top; animation: desce .45s var(--suave) backwards; }
+.recebido .tl li:nth-child(1)::before { animation-delay: 1.35s; }
+.recebido .tl li:nth-child(2)::before { animation-delay: 1.85s; }
+.recebido .tl .dot { animation: pop .45s var(--mola) backwards; }
+.recebido .tl li:nth-child(1) .dot { animation-delay: 1.2s; }
+.recebido .tl li:nth-child(2) .dot { animation-delay: 1.7s; }
+.recebido .tl li:nth-child(3) .dot { animation-delay: 2.2s; }
+.recebido .tl li > div, .recebido .tl time { animation: sobe .45s var(--suave) backwards; }
+.recebido .tl li:nth-child(1) > div, .recebido .tl li:nth-child(1) time { animation-delay: 1.25s; }
+.recebido .tl li:nth-child(2) > div, .recebido .tl li:nth-child(2) time { animation-delay: 1.75s; }
+.recebido .tl li:nth-child(3) > div, .recebido .tl li:nth-child(3) time { animation-delay: 2.25s; }
