@@ -20,7 +20,14 @@
   TriggerAll (`parseCronSlots`) não desenha hora `*`; o agendador (node-cron) funciona normal.
 - Nota local com as chaves apagada.
 
-**Próximo passo**: primeiro envio real pelo celular em /colaborar (valida as chaves do R2 e o Whisper).
+- Testado no ar: envio de foto (R2 ok, cancelado em seguida) e legenda automática (Whisper ok).
+- Limite diário não conta mais envio cancelado (backend + contador da tela), já no Terra Gentil.
+- Redesign pedido ao Claude Design (projeto "Pearl Jam fan site redesign"): pacote em
+  `design-handoff/colaboradores/` (brief com ids/classes intocáveis, legendas espelho do render, sem libs).
+
+**Próximo passo**: trazer o retorno do Claude Design pra `design-handoff/colaboradores/retorno/`,
+conferir ids/classes do brief, aplicar, `npm test`, olhar no navegador e, se mexer em `colab/`, só front
+(não precisa sync com o Terra Gentil).
 
 ## 2026-09-25: colaboradores, melhorias antes de abrir
 
