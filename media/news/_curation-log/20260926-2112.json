@@ -1,0 +1,16 @@
+{
+  "runAt": "2026-09-26T21:12Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 6,
+  "distribution": { "midia": 6, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "7e2d37fd80", "titulo": "Abe Laboriel Jr. estreia com o Pearl Jam no Ohana Festival", "kind": "midia" },
+    { "id": "51c46397ce", "titulo": "Pearl Jam surpreende o Ohana Festival com Laboriel Jr. na bateria", "kind": "midia" },
+    { "id": "05d1778bfe", "titulo": "Pearl Jam confirma Laboriel Jr. no Ohana: a previsao da Rolling Stone virou fato", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "49be28fb88", "title": "Abe Laboriel Jr., longtime drummer for Paul McCartney...", "reason": "texto vazio (Reddit, so metadado de submissao, sem artigo)" },
+    { "id": "126fdcfbe7", "title": "Pearl Jam Debuts Paul McCartney Drummer Abe Laboriel Jr. At Surprise Ohana Set", "reason": "texto vazio (Reddit r/drums, so metadado de submissao, sem artigo)" },
+    { "id": "5ce0ce46ee", "title": "Drummer Abe Laboriel Jr. Joins Pearl Jam at Ohana Festival", "reason": "texto vazio (Reddit r/PaulMcCartney, so metadado de submissao, sem artigo)" }
+  ]
+}
