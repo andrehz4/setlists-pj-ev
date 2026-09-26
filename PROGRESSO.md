@@ -15,8 +15,12 @@
   Supabase (org terra-gentil) com RLS; 6 variáveis `CONTRIB_*` no Railway; secret `CONTRIB_BOT_KEY` no
   GitHub (confere com o Railway). Conferido no ar: fórum 200, diagnóstico ok, 20 rotas `/contrib`.
 
-**Falta**: cadastrar `contrib-curadoria.yml` no TriggerAll (:05, :20, :31); primeiro envio real pelo
-celular (valida as chaves do R2); apagar `/Users/andrehz/Desktop/chaves-colaboradores.txt`.
+- TriggerAll: trigger #006 "Contrib Curadoria" (`5,20,31 * * * *` UTC, token `GITHUB_ACTION`); 1º disparo
+  02:05 BRT ok (dispatch + run success). O card mostra "—" no próximo horário: o parser do front do
+  TriggerAll (`parseCronSlots`) não desenha hora `*`; o agendador (node-cron) funciona normal.
+- Nota local com as chaves apagada.
+
+**Próximo passo**: primeiro envio real pelo celular em /colaborar (valida as chaves do R2 e o Whisper).
 
 ## 2026-09-25: colaboradores, melhorias antes de abrir
 
