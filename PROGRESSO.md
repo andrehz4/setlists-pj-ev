@@ -1,5 +1,23 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-26: painel de colaboradores LIGADO em produção
+
+- **Descoberta**: o Railway (`perpetual-energy`, projeto zippy-consideration) roda o repo
+  `terra-gentil/terra-gentil-app`, que atende o app da Google Play, o fórum PJ e agora o painel.
+  Serviço novo foi descartado (custo). O painel vive LÁ como cópia: fonte da verdade continua aqui,
+  levar com `scripts/contrib/sync-terra-gentil.sh` (depois rodar testes de lá e dar push no main).
+- Painel ficou portável: `contrib/limite.py` (rate limit por IP real) e `contrib/site.py`; trava de
+  imports do host + 130 colunas + 160 linhas em `backend/tests/test_contrib_puro.py`.
+- Terra Gentil: 233 testes passam; 2 falhas ANTIGAS em `tests/test_forum_routes.py` (mocks
+  desatualizados), anteriores a esta sessão.
+- Feito: bucket R2 + CORS + regra de 30 dias; tokens R2 e Workers AI; Google Cloud já tinha a origem
+  (cliente OAuth está na conta canalterragentil, projeto potent-density-483113-s1); SQL 004 rodado no
+  Supabase (org terra-gentil) com RLS; 6 variáveis `CONTRIB_*` no Railway; secret `CONTRIB_BOT_KEY` no
+  GitHub (confere com o Railway). Conferido no ar: fórum 200, diagnóstico ok, 20 rotas `/contrib`.
+
+**Falta**: cadastrar `contrib-curadoria.yml` no TriggerAll (:05, :20, :31); primeiro envio real pelo
+celular (valida as chaves do R2); apagar `/Users/andrehz/Desktop/chaves-colaboradores.txt`.
+
 ## 2026-09-25: colaboradores, melhorias antes de abrir
 
 - Falhas sem spam: `/contrib/bot/falha/{id}` conta por etapa; curadoria desiste em 3, publicação em 5;
