@@ -1,0 +1,15 @@
+{
+  "runAt": "2026-09-26T09:11Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 5, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "b66b7a2f9c", "titulo": "Pearl Jam apresenta Abe Laboriel Jr. como novo baterista no Ohana Festival", "kind": "midia" },
+    { "id": "3b2d3ec896", "titulo": "Pearl Jam estreia Abe Laboriel Jr. com surprise set de 16 músicas no Ohana", "kind": "midia" },
+    { "id": "8967de2cfd", "titulo": "Pearl Jam revela Abe Laboriel Jr. como novo baterista no Ohana", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "df66531ebf", "title": "Todd Rundgren targets Taylor Swift in a new Variety interview", "reason": "texto vazio (apenas metadado Reddit), sem mencao a Pearl Jam" },
+    { "id": "24f54be1c6", "title": "Wer wird Pearl Jams neuer Schlagzeuger? Unsere Vorschläge", "reason": "especulacao pre-reveal com texto truncado: lista 18 candidatos mas exibe apenas 2" }
+  ]
+}
