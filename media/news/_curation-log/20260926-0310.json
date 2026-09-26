@@ -1,0 +1,24 @@
+{
+  "runAt": "2026-09-26T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "cs-b71f36350b",
+      "title": "Josh Freese in Dana Point!!!!",
+      "reason": "texto ambíguo e selftext vazio - impossível determinar o que o fã fez; score 0, 0 comentários"
+    },
+    {
+      "id": "343107a82c",
+      "title": "Izzy Stradlin of Guns N Roses circa 1987 on MTV",
+      "reason": "sem menção a PJ - Pearl Jam citado apenas como exemplo do que o poster NÃO está postando"
+    },
+    {
+      "id": "e0da8b9e82",
+      "title": "Collection Favourites - 1993! (Part 1)",
+      "reason": "PJ tangencial - Pearl Jam VS aparece como 1 de 9 CDs numa lista de coleção genérica de r/Cd_collectors"
+    }
+  ]
+}
