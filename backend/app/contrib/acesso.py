@@ -6,8 +6,8 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from app.contrib import auth, google_id, membros
+from app.contrib.limite import limiter
 from app.core.config import settings
-from app.core.limiter import limiter
 from app.services.db import get_conn
 
 logger = logging.getLogger(__name__)

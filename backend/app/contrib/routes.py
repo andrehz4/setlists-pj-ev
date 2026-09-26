@@ -9,13 +9,13 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from app.contrib import acesso, agenda, bot, bot_falhas, bot_publicar, legenda, perfil, repo
 from app.contrib.auth import require_admin, require_membro
 from app.contrib.config import contrib_settings as cfg
+from app.contrib.limite import limiter
 from app.contrib.r2 import r2_url
 from app.contrib.schemas import (
     ConfigOut, MediaOut, SubmissionCreate, SubmissionOut, UploadOut, UploadRequest,
 )
+from app.contrib.site import resolve_site
 from app.core.config import settings
-from app.core.limiter import limiter
-from app.dependencies import resolve_site
 from app.services.db import get_conn
 
 logger = logging.getLogger(__name__)

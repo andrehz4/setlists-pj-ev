@@ -20,11 +20,15 @@ os.environ.setdefault("ENVIRONMENT", "test")
 def disable_rate_limit():
     """Desliga o rate limit nos testes via API publica do SlowAPI (limiter.enabled).
     Evita 429 falso entre testes sem depender de atributos internos como _storage."""
+    from app.contrib.limite import limiter as contrib_limiter
     from app.core.limiter import limiter
-    previous = limiter.enabled
-    limiter.enabled = False
+    limiters = (limiter, contrib_limiter)
+    previous = [lim.enabled for lim in limiters]
+    for lim in limiters:
+        lim.enabled = False
     yield
-    limiter.enabled = previous
+    for lim, valor in zip(limiters, previous):
+        lim.enabled = valor
 
 
 @pytest.fixture

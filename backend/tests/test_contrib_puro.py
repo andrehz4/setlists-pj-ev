@@ -1,4 +1,5 @@
 """Colaboradores: agenda, assinatura R2 e limite de tamanho dos arquivos (regra 0)."""
+import re
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -8,6 +9,7 @@ from app.contrib import agenda
 from app.contrib.r2 import presign
 
 MAX_LINHAS = 160
+MAX_COLUNAS = 130  # largura máxima de linha, pra leitura fácil (gente e IA)
 PASTA = Path(__file__).resolve().parents[1] / "app" / "contrib"
 
 
@@ -67,3 +69,22 @@ def test_presign_assina_tamanho_e_tipo():
 def test_regra_zero_arquivos_curtos(arquivo):
     linhas = len(arquivo.read_text(encoding="utf-8").splitlines())
     assert linhas <= MAX_LINHAS, f"{arquivo.name} tem {linhas} linhas (máx {MAX_LINHAS}); quebrar em módulos"
+
+
+@pytest.mark.parametrize("arquivo", sorted(PASTA.glob("*.py")), ids=lambda p: p.name)
+def test_regra_zero_linhas_estreitas(arquivo):
+    largas = [n for n, linha in enumerate(arquivo.read_text(encoding="utf-8").splitlines(), 1)
+              if len(linha) > MAX_COLUNAS]
+    assert not largas, f"{arquivo.name}: linhas {largas} passam de {MAX_COLUNAS} caracteres"
+
+
+# O módulo também roda no backend do Terra Gentil (scripts/contrib/sync-terra-gentil.sh).
+# Do host ele só pode usar o que existe igual nos dois: settings e get_conn.
+IMPORTS_DO_HOST = {"app.core.config", "app.services.db"}
+
+
+@pytest.mark.parametrize("arquivo", sorted(PASTA.glob("*.py")), ids=lambda p: p.name)
+def test_portavel_so_importa_do_host_o_que_o_terra_gentil_tem(arquivo):
+    usados = set(re.findall(r"^from (app\.[\w.]+) import", arquivo.read_text(encoding="utf-8"), re.M))
+    extras = {m for m in usados if not m.startswith("app.contrib")} - IMPORTS_DO_HOST
+    assert not extras, f"{arquivo.name} importa {extras}, que não existe no Terra Gentil"

@@ -12,7 +12,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 
 from app.contrib.auth import require_membro
 from app.contrib.config import contrib_settings as cfg
-from app.core.limiter import limiter
+from app.contrib.limite import limiter
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
