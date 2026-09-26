@@ -25,9 +25,13 @@
 - Redesign pedido ao Claude Design (projeto "Pearl Jam fan site redesign"): pacote em
   `design-handoff/colaboradores/` (brief com ids/classes intocáveis, legendas espelho do render, sem libs).
 
-**Próximo passo**: trazer o retorno do Claude Design pra `design-handoff/colaboradores/retorno/`,
-conferir ids/classes do brief, aplicar, `npm test`, olhar no navegador e, se mexer em `colab/`, só front
-(não precisa sync com o Terra Gentil).
+- Redesign do Claude Design APLICADO e no ar (`8d11fae8`): ingresso no login, letreiro, canhões de luz,
+  fita cassete no "Escolher vídeo", carimbo no aceite, "Você tá no line-up" com palhetas, View Transitions.
+  4 CSS novos (anima, entrar, fita, recebido). Conferido: JS só decorativo, `.palco/.cap-*` idênticos,
+  máx 137 linhas, sem lib externa; 149 testes; sem erro de CSP no ar. Pacote/retorno em `design-handoff/colaboradores/`.
+
+**Próximo passo**: Andre convidar os primeiros colaboradores (aba Pessoas) e acompanhar o 1º post real.
+Pendência técnica (sem pressa): limiter do fórum/app no Terra Gentil conta todos pelo IP do Railway.
 
 ## 2026-09-25: colaboradores, melhorias antes de abrir
 
