@@ -52,7 +52,8 @@ export async function telaMeus(cfg, irPara) {
     corpo.replaceChildren(h("p", { class: "muted" }, e.message));
     return corpo;
   }
-  const hoje = lista.filter((e) => rotuloDia(e.created_at) === "hoje").length;
+  // Mesma regra do backend (repo.count_since): cancelado não gasta a vaga do dia.
+  const hoje = lista.filter((e) => e.status !== "cancelado" && rotuloDia(e.created_at) === "hoje").length;
   const cota = h("div", { class: "quota" }, "hoje ",
     Array.from({ length: cfg.daily_limit }, (_, i) => h("i", { class: i < hoje ? "on" : "" })),
     ` ${Math.min(hoje, cfg.daily_limit)} de ${cfg.daily_limit}`);
