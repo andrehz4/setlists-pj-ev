@@ -10,7 +10,8 @@ from app.contrib.r2 import presign
 
 MAX_LINHAS = 160
 MAX_COLUNAS = 130  # largura máxima de linha, pra leitura fácil (gente e IA)
-PASTA = Path(__file__).resolve().parents[1] / "app" / "contrib"
+# Sobe até achar app/contrib: aqui os testes ficam em tests/, no Terra Gentil em tests/contrib/.
+PASTA = next(p / "app" / "contrib" for p in Path(__file__).resolve().parents if (p / "app" / "contrib").is_dir())
 
 
 def _utc(h, m):
