@@ -558,7 +558,7 @@ function renderBody(rawText) {
   const escaped = escapeHtml(processed);
   const withSpoilers = escaped.replace(
     /\[spoiler\]([\s\S]*?)\[\/spoiler\]/gi,
-    (_, c) => `<span class="spoiler"><span class="spoiler-label">&#9888; spoiler — clique para revelar</span><span class="spoiler-content">${c.trim()}</span></span>`
+    (_, c) => `<span class="spoiler"><span class="spoiler-label">&#9888; spoiler: clique para revelar</span><span class="spoiler-content">${c.trim()}</span></span>`
   );
   const _stripHeavy = (s) => s
     .replace(/\[img(?::[a-z]+)?\][\s\S]*?\[\/img\]/gi, " [foto] ")
