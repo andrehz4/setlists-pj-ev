@@ -7,6 +7,7 @@ import path from "node:path";
 import { SITE_BASE, esc } from "../news/news-page.mjs";
 import { lerDadosSite } from "./dados-site.mjs";
 import { paginaShow, tituloShow } from "./show-page.mjs";
+import { GA_SNIPPET } from "./analytics.mjs";
 
 const NOME = "Só mais um fã de Pearl Jam";
 
@@ -38,6 +39,7 @@ h1{font-size:clamp(26px,5vw,38px);line-height:1.15}
 h2{font:700 15px system-ui,sans-serif;letter-spacing:.08em;color:#6d655b;margin-top:28px}
 li{margin:6px 0}a{color:#1d1a16}
 </style>
+${GA_SNIPPET}
 </head>
 <body>
 <div class="wrap">

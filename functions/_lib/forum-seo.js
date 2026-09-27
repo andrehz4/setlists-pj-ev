@@ -92,6 +92,12 @@ a{color:#c1272d} h1{line-height:1.2} .meta,time{color:#6b6259;font-size:14px}
 .resp{border-top:1px solid #d8cfc0;padding-top:12px;margin-top:16px} .resp h3{font-size:15px;margin:0 0 6px}
 .cta{display:inline-block;margin:20px 0;padding:10px 18px;background:#c1272d;color:#fff;text-decoration:none;border-radius:4px}
 </style>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-234ZL5MF0T');
+addEventListener('load',function(){setTimeout(function(){var s=document.createElement('script');s.async=true;
+s.src='https://www.googletagmanager.com/gtag/js?id=G-234ZL5MF0T';document.head.appendChild(s);},1000);},{once:true});
+</script>
 </head>
 <body>
 <nav><a href="${SITE}/forum.html">Fórum</a> › ${esc(topic.category)}</nav>
