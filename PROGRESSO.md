@@ -29,9 +29,8 @@
 - **Lote 3 publicado**: fórum com 15 tópicos. **Home abre no topo** (removida a rolagem automática até a notícia).
 - **Velocidade resolvida**: fontes do topo declaradas no head + pré-carregadas. Lighthouse mobile em produção: nota 82
   (era 68), CLS 0,002 (era 0,411).
-- **Decisão pendente do Andre (visual)**: `--font-body` pede "IBM Plex Mono", "Courier Prime", e NENHUMA carrega (URL do
-  Google Fonts usa `300..600`, inválido pra fonte não variável; Courier Prime nem é pedida). O texto sai na mono do
-  aparelho (Menlo no Mac, Courier New no Windows). Corrigir a URL faz o texto passar a usar a IBM Plex (muda o visual).
+- **Fonte do texto corrigida** (Andre escolheu): IBM Plex Mono passa a carregar em todos os aparelhos (URL pedia
+  `300..600`, inválido). Lighthouse mobile depois: velocidade 83, SEO 100, acessibilidade 98, boas práticas 100, CLS 0,002.
 
 **Próximo passo**: amanhã, no Search Console, "Solicitar indexação" da home e dos índices (/musica/, /noticias/,
 /show/, /disco/); acompanhar Páginas indexadas em 1 a 2 semanas. Responder quem postar no fórum.
