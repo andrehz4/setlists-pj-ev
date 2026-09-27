@@ -69,3 +69,11 @@ test("módulo curto: até 160 linhas e 130 colunas", () => {
     linhas.forEach((l, i) => assert.ok(l.length <= 130, `${f}:${i + 1}`));
   }
 });
+
+test("índice /noticias/ agrupa por mês e linka todas", async () => {
+  const { paginaIndiceNoticias } = await import("./news-page.mjs");
+  const h = paginaIndiceNoticias([ITEM, { id: "b", title_pt: "Outra", pubDate: "2026-08-02T10:00:00Z" }]);
+  assert.ok(h.includes("<h2>setembro de 2026</h2>") && h.includes("<h2>agosto de 2026</h2>"));
+  assert.ok(h.includes('<a href="/n/abc123">') && h.includes('<a href="/n/b">'));
+  assert.match(h, /<link rel="canonical" href="https:\/\/setlists-pj-ev\.pages\.dev\/noticias\/">/);
+});

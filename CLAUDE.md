@@ -59,11 +59,15 @@ Retry-After (nunca cacheado). `forum-topic.html` aponta o canonical pra `/t/<id>
 
 ### SEO: páginas estáticas pro Google
 
-O SPA (`index.html`) usa `#` e o Google não indexa o que vem depois dele. Por isso o conteúdo tem páginas estáticas:
-- `n/<id>.html`: notícia completa (modelo `scripts/news/news-page.mjs`), regenerada pelo publish via `build-news-stubs.mjs`.
-- `show/<id>.html` + `show/index.html`: setlist de cada show, geradas de `SHOWS`/`MEDIA_MANIFEST` do index.html por
-  `node scripts/seo/build-show-pages.mjs`. **Mexeu em show no index.html? Rode o gerador**, senão o teste de sincronia falha.
-- `sitemap.xml` tem seções marcadas (`news:start/end`, `shows:start/end`); cada gerador só reescreve a sua.
+O SPA (`index.html`) usa `#` e o Google não indexa o que vem depois dele. Por isso cada conteúdo tem página estática,
+todas no mesmo molde (`scripts/seo/layout.mjs`: menu de seções, breadcrumb, JSON-LD, GA):
+- `n/<id>.html` + `noticias/index.html`: gerados pelo publish via `scripts/news/build-news-stubs.mjs` (`news-page.mjs`).
+- `show/`, `musica/`, `disco/`, `banda/`: gerados de `index.html` (SHOWS, ALBUMS, SONGS_DB, PJ_MEMBERS) +
+  `media/interpretations.json`, `media/lyrics-notes.json` e `media/albums/*.md` por `node scripts/seo/build-seo-pages.mjs`.
+  **Mexeu nesses dados? Rode o gerador**, senão o teste de sincronia (`scripts/seo/seo.test.mjs`) falha.
+- Música sem texto em PT não ganha página (conteúdo fino). Letra e cifra nunca vão pras páginas estáticas (direito autoral).
+- `sitemap.xml` tem seções marcadas (`news:start/end`, `seo:start/end`); cada gerador só reescreve a sua.
+- O rodapé da home tem a coluna "Pra ler" com links reais pros índices: é por ela que o Google entra.
 
 ### Reel semanal (motion design, MOTION-SPEC do Claude Design)
 
