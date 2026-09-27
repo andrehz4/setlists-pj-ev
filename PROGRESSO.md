@@ -22,6 +22,11 @@
 - **Lote 2 publicado** (SQL no Supabase): fórum com 10 tópicos pela conta principal do Andre.
 - **Home 35% mais leve** (333 KB -> 215 KB transferidos): letras saíram do index.html pra `media/letras/`, carregam
   em segundo plano; show, busca e letra se refazem quando chegam. Google não lê mais letra na home.
+- **Velocidade (Lighthouse mobile)**: 68 -> 73; CLS 0,411 -> 0,223. Fontes do Google não travam mais o início, fontes
+  do topo pré-carregadas, faixa de números pré-preenchida, barra de abas rola só na horizontal. SEO 100, boas práticas
+  100, acessibilidade 98. O CLS que sobra vem da rolagem automática até a notícia em destaque (decisão de design,
+  perguntar ao Andre) e da troca de fontes. Separar JS/CSS em arquivos NÃO compensa: revisita já volta 304 com 0 bytes.
+- **Lote 3 de tópicos** em `forum-sementes/LOTE-3.md` (bateristas, primeiro show, setlist dos sonhos, fila, cantava errado).
 
 **Próximo passo**: amanhã, no Search Console, "Solicitar indexação" da home e dos índices (/musica/, /noticias/,
 /show/, /disco/); acompanhar Páginas indexadas em 1 a 2 semanas. Responder quem postar no fórum.
