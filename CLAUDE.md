@@ -68,6 +68,8 @@ todas no mesmo molde (`scripts/seo/layout.mjs`: menu de seções, breadcrumb, JS
 - Música sem texto em PT não ganha página (conteúdo fino). Letra e cifra nunca vão pras páginas estáticas (direito autoral).
 - `sitemap.xml` tem seções marcadas (`news:start/end`, `seo:start/end`); cada gerador só reescreve a sua.
 - O rodapé da home tem a coluna "Pra ler" com links reais pros índices: é por ela que o Google entra.
+- Letras (`LYRICS`/`LYRICS_PT`) ficam em `media/letras/en.json` e `pt.json`, carregadas em segundo plano pelo index.html
+  (`_letrasPromise`). Não voltar a embutir no HTML: pesa 316 KB e o Google indexaria letra com direito autoral.
 
 ### Reel semanal (motion design, MOTION-SPEC do Claude Design)
 
