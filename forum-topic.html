@@ -907,7 +907,7 @@ function renderThreadRail(t, posts, allItems, totalTavaLa, totalMata) {
   return `
     <aside class="thread-rail">
       <div class="rail-card">
-        <div class="rail-card-label pj">// SOBRE ESTA THREAD</div>
+        <div class="rail-card-label pj">// SOBRE ESTE TÓPICO</div>
         <div class="rail-stat-row"><span class="k">Aberta</span><span class="v">${timeAgo(t.created_at)}</span></div>
         <div class="rail-stat-row"><span class="k">Última resposta</span><span class="v">${timeAgo(t.last_post_at || t.created_at)}</span></div>
         <div class="rail-stat-row"><span class="k">Respostas</span><span class="v">${posts.length}</span></div>
@@ -922,7 +922,7 @@ function renderThreadRail(t, posts, allItems, totalTavaLa, totalMata) {
       ${showCardHtml}
 
       <div class="rail-card">
-        <div class="rail-card-label">// VOZES NA THREAD</div>
+        <div class="rail-card-label">// VOZES NO TÓPICO</div>
         <div class="rail-users">
           ${voicesHtml || '<div class="mu-meta">ninguém respondeu ainda</div>'}
         </div>
@@ -939,7 +939,7 @@ function renderTopic(data) {
     ? `<div class="reply-section">
         <div class="reply-composer">
           <div class="reply-composer-head">
-            <span>Responder a esta thread</span>
+            <span>Responder a este tópico</span>
             <span style="margin-left:auto;color:var(--ink-dim)">&#8627; resposta direta</span>
           </div>
           <div class="reply-composer-toolbar">

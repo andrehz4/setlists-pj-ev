@@ -423,7 +423,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
 
 <div class="forum-toolbar">
   <div class="forum-toolbar-left" id="sortBar">
-    <button class="btn primary" id="newTopicBtn" style="display:none"><span class="plus">+</span> Nova thread</button>
+    <button class="btn primary" id="newTopicBtn" style="display:none"><span class="plus">+</span> Novo tópico</button>
     <button class="sort-chip active" data-sort="activity">Atividade</button>
     <button class="sort-chip" data-sort="newest">Mais novos</button>
     <button class="sort-chip" data-sort="likes">Mais curtidos</button>
@@ -444,7 +444,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
 <div class="composer-overlay" id="composerOverlay" role="dialog" aria-modal="true" aria-label="Novo tópico">
   <div class="composer-modal">
     <div class="composer-modal-head">
-      <span>// Nova thread</span>
+      <span>// Novo tópico</span>
       <span style="color:var(--ink-dim);font-size:10px;margin-left:4px">rascunho salvo automaticamente</span>
       <div style="display:flex;gap:8px;margin-left:auto">
         <button class="btn sm ghost" id="composerCancel">Cancelar</button>
@@ -533,7 +533,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
       <div class="error-msg" id="composerError"></div>
       <div class="composer-actions">
         <span id="composerMeta" style="font-family:var(--font-mono);font-size:10px;color:var(--ink-dim);letter-spacing:0.1em"></span>
-        <button class="btn primary" id="composerSubmit">Publicar thread &#8594;</button>
+        <button class="btn primary" id="composerSubmit">Publicar tópico &#8594;</button>
       </div>
 
     </div>
@@ -564,7 +564,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
       <div class="rail-card rail-preview">
         <div class="rail-card-label">// PRÉVIA RÁPIDA</div>
         <div class="preview-tags" id="previewTags"></div>
-        <h3 class="preview-title" id="previewTitle">Sua thread aparece aqui</h3>
+        <h3 class="preview-title" id="previewTitle">Seu tópico aparece aqui</h3>
         <p class="preview-snippet" id="previewSnippet">Comece a escrever pra ver a prévia.</p>
         <div class="preview-author">
           <span class="who" id="previewWho">@você</span>
@@ -959,9 +959,9 @@ function renderThreads(data) {
         </div>
         <div class="empty-eyebrow">// ${san(fullLabel.toUpperCase())}</div>
         <h2 class="empty-title">${san(titleByCat)}</h2>
-        <p class="empty-sub">Ninguém abriu uma thread aqui ainda. Se você tem um palpite, relato ou só uma pergunta solta, abre a primeira. Os outros chegam atrás.</p>
+        <p class="empty-sub">Ninguém abriu um tópico aqui ainda. Se você tem um palpite, relato ou só uma pergunta solta, abre a primeira. Os outros chegam atrás.</p>
         <div class="empty-cta">
-          ${_state.token ? `<button class="btn primary" onclick="openComposer()"><span class="plus">+</span> Abrir a primeira thread</button>` : ""}
+          ${_state.token ? `<button class="btn primary" onclick="openComposer()"><span class="plus">+</span> Abrir o primeiro tópico</button>` : ""}
           ${cat ? `<button class="btn" id="emptyBackBtn">↶ Voltar pra Tudo</button>` : ""}
         </div>
         <div class="empty-suggestions">
@@ -972,7 +972,7 @@ function renderThreads(data) {
             </div>`).join("")}
         </div>
         <div class="empty-meta">
-          <span><b>0</b> threads</span>
+          <span><b>0</b> tópicos</span>
           <span><b>0</b> posts</span>
           <span>tá esperando alguém abrir</span>
         </div>
@@ -1572,7 +1572,7 @@ function updateRailPreview() {
     }).join("");
   }
   if (titleEl) {
-    titleEl.textContent = title || "Sua thread aparece aqui";
+    titleEl.textContent = title || "Seu tópico aparece aqui";
     titleEl.style.color = title ? "var(--ink)" : "var(--ink-dim)";
   }
   if (snipEl) {
@@ -1621,9 +1621,9 @@ async function submitTopic() {
     });
     if (data === null) {
       const loginUrl = API_BASE + "/auth/google/login";
-      errEl.innerHTML = `Sua sessão expirou. <a href="${loginUrl}" target="_top" style="color:var(--accent);text-decoration:underline;font-weight:600">Entre novamente com Google</a> para publicar a thread.`;
+      errEl.innerHTML = `Sua sessão expirou. <a href="${loginUrl}" target="_top" style="color:var(--accent);text-decoration:underline;font-weight:600">Entre novamente com Google</a> para publicar o tópico.`;
       errEl.classList.add("visible");
-      btn.disabled = false; btn.textContent = "Publicar thread →";
+      btn.disabled = false; btn.textContent = "Publicar tópico →";
       return;
     }
     if (data) {
@@ -1634,7 +1634,7 @@ async function submitTopic() {
   } catch (err) {
     errEl.textContent = err.message || "Erro ao publicar. Tente novamente.";
     errEl.classList.add("visible");
-    btn.disabled = false; btn.textContent = "Publicar thread →";
+    btn.disabled = false; btn.textContent = "Publicar tópico →";
   }
 }
 
