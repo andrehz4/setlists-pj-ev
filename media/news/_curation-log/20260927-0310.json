@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-09-27T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "ec79092c37", "titulo": "Abe Laboriel Jr. toca com Pearl Jam no Ohana: novo baterista se apresenta", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "5ea5d78ebb", "title": "Longtime Paul McCartney drummer Abe Laboriel Jr. joins Pearl Jam at Ohana Festival", "reason": "texto vazio (post Reddit sem body, apenas link/comments)" },
+    { "id": "3a81b4cc17", "title": "Pearl Jam Debuts New Drummer During Surprise Performance One Year After Matt Cameron's Exit", "reason": "texto vazio (post Reddit sem body, apenas link/comments)" }
+  ]
+}
