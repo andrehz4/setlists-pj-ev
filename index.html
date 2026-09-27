@@ -13,6 +13,17 @@
 <!-- Fontes do topo (título e manchete) baixam primeiro: evita o pulo de layout quando trocam -->
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bigshouldersdisplay/v24/fC1_PZJEZG-e9gHhdI4-NBbfd2ys3SjJCx1czNDuDJAM2w.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/oswald/v57/TK3iWkUHHAIjg752GT8Gl-1PKw.woff2">
+<!-- As folhas do Google Fonts carregam sem travar; estas 3 fontes do topo são declaradas aqui pra valer
+     já na primeira pintura (senão o título troca de fonte depois e empurra a página) -->
+<style>
+@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:400 900;font-display:swap;
+  src:url(https://fonts.gstatic.com/s/bigshouldersdisplay/v24/fC1_PZJEZG-e9gHhdI4-NBbfd2ys3SjJCx1czNDuDJAM2w.woff2) format("woff2")}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:300 700;font-display:swap;
+  src:url(https://fonts.gstatic.com/s/oswald/v57/TK3iWkUHHAIjg752GT8Gl-1PKw.woff2) format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;
+  src:url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2) format("woff2")}
+</style>
 <link rel="dns-prefetch" href="https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev">
 <link rel="dns-prefetch" href="https://i.ytimg.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" onload="this.onload=null;this.rel='stylesheet'">
