@@ -19844,25 +19844,9 @@ function _renderNewsGrid(container, items, manifest) {
     ${_renderNewsPagination(currentPage, totalPages, 'bottom')}
     ${listHtml}`;
 
-  // Auto-scroll ate o hero na PRIMEIRA carga da view: usuario que abre o
-  // site cai direto na materia em destaque, sem ter que rolar pelo wordmark
-  // ele mesmo. So roda 1x por sessao da pagina (flag global). Respeita
-  // prefers-reduced-motion: se desativado, behavior 'auto' (jump) em vez
-  // de smooth, e se algum motivo o usuario tiver scrollado antes do
-  // setTimeout, nao interrompe.
-  if (!window._newsInitialScrollDone && heroItem) {
-    window._newsInitialScrollDone = true;
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // pequeno delay pras imagens do hero terem chance de carregar e
-    // o layout estabilizar
-    setTimeout(() => {
-      // se usuario ja scrollou manualmente, nao interrompe
-      if (window.scrollY > 80) return;
-      const hero = container.querySelector(".news-hero");
-      if (!hero) return;
-      hero.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    }, 280);
-  }
+  // (Removido em 2026-09-27) A home rolava sozinha até a matéria em destaque na primeira carga.
+  // No celular o visitante caía no meio da página sem ver o título do site, e a rolagem
+  // pesava no pulo de layout medido pelo Google. Agora a página abre no topo.
 
   // hero: click no thumb OU no titulo OU no CTA abre o detail
   const openHero = () => {
