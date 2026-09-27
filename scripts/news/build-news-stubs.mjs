@@ -1,81 +1,35 @@
 // Gera paginas estaticas n/<id>.html pra cada noticia do index.json.
 //
-// Por que existem: o site e SPA com deep-link por hash (/#news/<id>), que
-// crawler de rede social nao executa. Os links compartilhados (Telegram,
-// bio do IG) apontam pra /n/<id>, que antes caia na home com preview
-// generico. O stub e um HTML minimo com og:/twitter:/JSON-LD proprios do
-// item + redirect imediato pra /#news/<id> (leitor humano nem percebe).
+// Cada pagina tem o texto completo da noticia (modelo em news-page.mjs), sem
+// redirect: e ela que o Google indexa. Os links compartilhados (Telegram, bio
+// do IG) tambem apontam pra /n/<id>; o botao "Abrir no site" leva pro SPA.
 //
 // Tambem regenera a secao de noticias do sitemap.xml (entre os marcadores
 // <!-- news:start --> e <!-- news:end -->; cria os marcadores se faltarem).
 //
-// Quem chama: run-publish.mjs no inicio de cada run (gera so o que falta,
+// Quem chama: run-publish.mjs no inicio de cada run (so reescreve o que mudou,
 // idempotente) e o proprio publish commita n/ + sitemap.xml. Fica fora do
 // caminho da routine de curadoria de proposito: o validador do auto-merge
-// so aceita paths media/news/, e stubs ficam na raiz (n/).
+// so aceita paths media/news/, e as paginas ficam na raiz (n/).
 //
 // CLI (backfill manual): node scripts/news/build-news-stubs.mjs
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { SITE_BASE, esc, paginaNoticia, relacionadas } from "./news-page.mjs";
 
-const SITE_BASE = process.env.SITE_BASE || "https://setlists-pj-ev.pages.dev";
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
+const ITEMS_DIR = path.join(NEWS_DIR, "items");
 const STUBS_DIR = path.resolve("n");
 const SITEMAP_PATH = path.resolve("sitemap.xml");
 
-function esc(s) {
-  return String(s || "")
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-}
-
-function stubHtml(item) {
-  const url = `${SITE_BASE}/n/${encodeURIComponent(item.id)}`;
-  const target = `/#news/${encodeURIComponent(item.id)}`;
-  const title = item.title_pt || "Notícia";
-  const desc = (item.intro_pt || "").slice(0, 300);
-  const img = item.img ? `${SITE_BASE}${item.img}` : `${SITE_BASE}/og.jpg`;
-  const ld = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    headline: title,
-    description: desc,
-    image: [img],
-    datePublished: item.pubDate || undefined,
-    inLanguage: "pt-BR",
-    mainEntityOfPage: url,
-    publisher: { "@type": "Organization", name: "Só mais um fã de Pearl Jam", logo: { "@type": "ImageObject", url: `${SITE_BASE}/og.jpg` } },
-  };
-  return `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${esc(title)} — Só mais um fã de Pearl Jam</title>
-<meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="${esc(url)}">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Só mais um fã de Pearl Jam">
-<meta property="og:title" content="${esc(title)}">
-<meta property="og:description" content="${esc(desc)}">
-<meta property="og:url" content="${esc(url)}">
-<meta property="og:image" content="${esc(img)}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${esc(title)}">
-<meta name="twitter:description" content="${esc(desc)}">
-<meta name="twitter:image" content="${esc(img)}">
-${item.pubDate ? `<meta property="article:published_time" content="${esc(item.pubDate)}">` : ""}
-<script type="application/ld+json">${JSON.stringify(ld)}</script>
-<script>location.replace(${JSON.stringify(target)});</script>
-<noscript><meta http-equiv="refresh" content="0;url=${esc(target)}"></noscript>
-</head>
-<body>
-<p>Redirecionando pra <a href="${esc(target)}">${esc(title)}</a>…</p>
-</body>
-</html>
-`;
+async function lerCorpo(id) {
+  try {
+    return JSON.parse(await fs.readFile(path.join(ITEMS_DIR, `${id}.json`), "utf8")).body_pt || "";
+  } catch {
+    return ""; // sem corpo, a pagina sai so com titulo e resumo
+  }
 }
 
 function buildSitemapNewsSection(items) {
@@ -119,7 +73,7 @@ export async function buildNewsStubs({ force = false } = {}) {
   let written = 0;
   for (const it of items) {
     const p = path.join(STUBS_DIR, `${it.id}.html`);
-    const html = stubHtml(it);
+    const html = paginaNoticia(it, await lerCorpo(it.id), relacionadas(it, items));
     if (!force) {
       try {
         const cur = await fs.readFile(p, "utf8");
