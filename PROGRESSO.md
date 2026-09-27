@@ -19,8 +19,9 @@
 - **Pendências técnicas (mesmo dia)**: editar tópico/resposta no fórum (PATCH no backend + botão Editar no site,
   testado no ar); `ADMIN_USER_IDS` criado no Railway com as 2 contas André (antes não existia: ninguém era admin
   no fórum); lote 2 de tópicos em `forum-sementes/LOTE-2.md` (Abe, covers, Oceans, tatuagens, filmes) aguardando aprovação.
-- **Velocidade da home (diagnóstico)**: index.html 1.250 KB (321 KB gzip); LYRICS + LYRICS_PT = 316 KB embutidos,
-  carregados por todos e lidos pelo Google (letra com direito autoral na home). Plano de carregar sob demanda aguardando ok.
+- **Lote 2 publicado** (SQL no Supabase): fórum com 10 tópicos pela conta principal do Andre.
+- **Home 35% mais leve** (333 KB -> 215 KB transferidos): letras saíram do index.html pra `media/letras/`, carregam
+  em segundo plano; show, busca e letra se refazem quando chegam. Google não lê mais letra na home.
 
 **Próximo passo**: amanhã, no Search Console, "Solicitar indexação" da home e dos índices (/musica/, /noticias/,
 /show/, /disco/); acompanhar Páginas indexadas em 1 a 2 semanas. Responder quem postar no fórum.
