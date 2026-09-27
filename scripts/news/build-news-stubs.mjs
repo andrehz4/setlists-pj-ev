@@ -16,13 +16,14 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
-import { SITE_BASE, esc, paginaNoticia, relacionadas } from "./news-page.mjs";
+import { SITE_BASE, esc, paginaNoticia, paginaIndiceNoticias, relacionadas } from "./news-page.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
 const STUBS_DIR = path.resolve("n");
 const SITEMAP_PATH = path.resolve("sitemap.xml");
+const INDICE_PATH = path.resolve("noticias/index.html");
 
 async function lerCorpo(id) {
   try {
@@ -33,7 +34,8 @@ async function lerCorpo(id) {
 }
 
 function buildSitemapNewsSection(items) {
-  const lines = [];
+  const lines = [`  <url>\n    <loc>${SITE_BASE}/noticias/</loc>\n    <changefreq>daily</changefreq>\n`
+    + "    <priority>0.8</priority>\n  </url>"];
   for (const it of items) {
     lines.push("  <url>");
     lines.push(`    <loc>${esc(`${SITE_BASE}/n/${encodeURIComponent(it.id)}`)}</loc>`);
@@ -81,6 +83,15 @@ export async function buildNewsStubs({ force = false } = {}) {
       } catch {}
     }
     await fs.writeFile(p, html);
+    written++;
+  }
+  // Índice /noticias/ (todas as notícias por mês): conta como escrita se mudou.
+  const indice = paginaIndiceNoticias(items);
+  let indiceAtual = null;
+  try { indiceAtual = await fs.readFile(INDICE_PATH, "utf8"); } catch {}
+  if (indiceAtual !== indice) {
+    await fs.mkdir(path.dirname(INDICE_PATH), { recursive: true });
+    await fs.writeFile(INDICE_PATH, indice);
     written++;
   }
   if (written > 0) await updateSitemap(items);

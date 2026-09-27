@@ -741,7 +741,7 @@ async function main() {
     try {
       const wrote = await buildNewsStubs();
       if (wrote > 0) {
-        await commitAndPush(["n/", "sitemap.xml"], `publish-ig: gera ${wrote} stub(s) de noticia (n/ + sitemap) ${nowIso.slice(0, 16)}Z`);
+        await commitAndPush(["n/", "noticias/", "sitemap.xml"], `publish-ig: gera ${wrote} pagina(s) de noticia (n/ + noticias/ + sitemap) ${nowIso.slice(0, 16)}Z`);
         console.log(`[publish] stubs de noticia: ${wrote} gerado(s)`);
       }
     } catch (e) {
