@@ -409,7 +409,7 @@ function computeBadges(data, cat) {
     {
       icon: "TH",
       name: "Criador",
-      desc: "Abriu 10+ threads",
+      desc: "Abriu 10+ tópicos",
       cls: "",
       unlocked: data.topic_count >= 10,
     },
@@ -484,7 +484,7 @@ function renderProfile(data, cat) {
         return `<div class="activity-row">
           <div class="activity-date">${dia} ${mes}<br>${hora}</div>
           <div class="activity-body">
-            <span class="a-verb">abriu thread</span>
+            <span class="a-verb">abriu tópico</span>
             <a href="forum-topic.html?id=${encodeURIComponent(t.id)}" class="a-target"> ${san(t.title)}</a>
             ${t.reply_count > 0 ? `<div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-dim);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px">${t.reply_count} ${t.reply_count === 1 ? "resposta" : "respostas"}</div>` : ""}
           </div>
@@ -545,7 +545,7 @@ function renderProfile(data, cat) {
 
     <div class="profile-stats-strip">
       <div class="profile-stat"><div class="v pj">${data.post_count}</div><div class="l">Posts no fórum</div></div>
-      <div class="profile-stat"><div class="v">${data.topic_count}</div><div class="l">Threads abertas</div></div>
+      <div class="profile-stat"><div class="v">${data.topic_count}</div><div class="l">Tópicos abertos</div></div>
       <div class="profile-stat"><div class="v heard">${(data.shows_attended || []).length}</div><div class="l">"Tava lá" — shows</div></div>
       <div class="profile-stat"><div class="v ev">—</div><div class="l">Bootlegs partilhados</div></div>
       <div class="profile-stat"><div class="v">${data.reactions_received}</div><div class="l">🤘 recebidos</div></div>
@@ -582,7 +582,7 @@ function renderProfile(data, cat) {
             <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-top:6px">no ranking de posts</div>
           </div>
           <div class="rail-stat-row"><span class="k">Posts/mês</span><span class="v">${postsPerMonth}</span></div>
-          <div class="rail-stat-row"><span class="k">Threads/mês</span><span class="v">${threadsPerMonth}</span></div>
+          <div class="rail-stat-row"><span class="k">Tópicos/mês</span><span class="v">${threadsPerMonth}</span></div>
           <div class="rail-stat-row"><span class="k">🤧 Tava lá</span><span class="v" style="color:var(--heard)">${data.tava_la_count || 0}</span></div>
           <div class="rail-stat-row"><span class="k">👍 Recebidos</span><span class="v" style="color:var(--ev)">${data.reactions_received}</span></div>
         </div>` : ""}
