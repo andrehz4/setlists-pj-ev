@@ -50,6 +50,13 @@ Regras: NUNCA editar a fila sem entender `markPosted`/`mergeQueueStates` (`scrip
 4. `test.yml` roda a suíte em todo push/PR de `scripts/`/`mock-ig/`.
 5. `contrib-curadoria.yml` (a cada 10 min): painel de colaboradores (`colaborar.html` + `colab/`, backend `backend/app/contrib/`, scripts `scripts/contrib/`). Cura por IA (Gemini ouve o áudio) e publica os aprovados às :30 no IG/FB/site. Módulo apartado, desligado sem o secret `CONTRIB_BOT_KEY`. Mapa completo em `backend/app/contrib/README.md`.
 
+### Páginas de tópico pro Google (`functions/`)
+
+Cloudflare Pages Functions, módulo apartado ligado por `FORUM_SEO=1` (variável do projeto no painel do Cloudflare Pages).
+`/t/<id>` renderiza o tópico do fórum no servidor (título, corpo, respostas, JSON-LD `DiscussionForumPosting`) a partir
+da API do Railway; `/sitemap-forum.xml` lista todos (está no `robots.txt`). Cache de borda 1h/6h; API fora = 503 +
+Retry-After (nunca cacheado). `forum-topic.html` aponta o canonical pra `/t/<id>`. Testes em `scripts/forum-seo/`.
+
 ### Reel semanal (motion design, MOTION-SPEC do Claude Design)
 
 `run-publish-reel.mjs` -> `reel-select.mjs` (top 5-8 da semana + formato por cena: cinético/card/papel) -> `reel-clips.mjs` (casa trecho de clipe do acervo com a cena, por tag, rotação determinística por semana ISO) -> `reel-video.mjs` (renderer SVG frame a frame + ffmpeg, cold open 3s + 8 blocos de 4.5s + outro 2.5s = 41.5s, 1080x1920). Publica via `publishReel` (caption com índice + `share_to_feed` + `thumb_offset`). Larguras de texto medidas REAL via `sharp.trim` (estimar por char sobrepõe as palavras do Anton). Sem acervo de clipe, degrada pra foto com Ken Burns ou fundo fantasma "CLIPE". Spec versionado em `design-handoff/retorno/movie/project/entrega/MOTION-SPEC.md` (gitignored, é referência).

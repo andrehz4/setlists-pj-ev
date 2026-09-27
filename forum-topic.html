@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tópico — SMUFDPJ Fórum</title>
+<title>Tópico | SMUFDPJ Fórum</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1038,7 +1038,12 @@ function renderTopic(data) {
 
   // document.title e propriedade de texto (sem parse de HTML), entao usa o valor cru:
   // san() aqui mostraria entidades tipo &#39; literais na aba do navegador.
-  document.title = (t.title || "") + " — SMUFDPJ Fórum";
+  document.title = (t.title || "") + " | SMUFDPJ Fórum";
+
+  // Canonical aponta pra página legível pelo Google (/t/<id>, functions/t/[id].js)
+  let canon = document.querySelector('link[rel="canonical"]');
+  if (!canon) { canon = document.createElement("link"); canon.rel = "canonical"; document.head.appendChild(canon); }
+  canon.href = `https://setlists-pj-ev.pages.dev/t/${encodeURIComponent(t.id)}`;
 
   // Reactions
   document.querySelectorAll(".react-chip").forEach(btn => {
