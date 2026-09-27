@@ -27,9 +27,11 @@
   100, acessibilidade 98. O CLS que sobra vem da rolagem automática até a notícia em destaque (decisão de design,
   perguntar ao Andre) e da troca de fontes. Separar JS/CSS em arquivos NÃO compensa: revisita já volta 304 com 0 bytes.
 - **Lote 3 publicado**: fórum com 15 tópicos. **Home abre no topo** (removida a rolagem automática até a notícia).
-- **Pendente (velocidade)**: a faixa de números ainda pula (CLS ~0,2) por troca de fonte. Achado: a IBM Plex Mono NUNCA
-  carrega (URL do Google Fonts usa `300..600`, inválido pra fonte não variável, e o Google descarta a família). Decidir
-  com o Andre se corrige a URL (muda o visual do texto) ou pré-carrega a fonte que aparece hoje (JetBrains Mono).
+- **Velocidade resolvida**: fontes do topo declaradas no head + pré-carregadas. Lighthouse mobile em produção: nota 82
+  (era 68), CLS 0,002 (era 0,411).
+- **Decisão pendente do Andre (visual)**: `--font-body` pede "IBM Plex Mono", "Courier Prime", e NENHUMA carrega (URL do
+  Google Fonts usa `300..600`, inválido pra fonte não variável; Courier Prime nem é pedida). O texto sai na mono do
+  aparelho (Menlo no Mac, Courier New no Windows). Corrigir a URL faz o texto passar a usar a IBM Plex (muda o visual).
 
 **Próximo passo**: amanhã, no Search Console, "Solicitar indexação" da home e dos índices (/musica/, /noticias/,
 /show/, /disco/); acompanhar Páginas indexadas em 1 a 2 semanas. Responder quem postar no fórum.
