@@ -5,6 +5,8 @@
 // indexava nenhuma. Agora a página tem o texto inteiro, sem redirect, e o link
 // "Abrir no site" leva pra versão interativa.
 
+import { GA_SNIPPET } from "../seo/analytics.mjs";
+
 export const SITE_BASE = process.env.SITE_BASE || "https://setlists-pj-ev.pages.dev";
 const NOME = "Só mais um fã de Pearl Jam";
 
@@ -115,6 +117,7 @@ aside h2{font:700 15px system-ui,sans-serif;text-transform:uppercase;letter-spac
 aside li{margin:8px 0}aside a{color:#1d1a16}
 footer{margin-top:40px;border-top:1px solid #d9cfbf;padding-top:14px}
 </style>
+${GA_SNIPPET}
 </head>
 <body>
 <div class="wrap">

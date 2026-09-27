@@ -1,6 +1,7 @@
 // Página estática de um show (/show/<id>): setlist completo, local, turnê e notas.
 // Pensada pra busca "setlist <banda> <cidade> <ano>", que hoje não tem onde cair.
 import { SITE_BASE, esc } from "../news/news-page.mjs";
+import { GA_SNIPPET } from "./analytics.mjs";
 
 const NOME = "Só mais um fã de Pearl Jam";
 
@@ -86,6 +87,7 @@ text-decoration:none;font:600 15px system-ui,sans-serif}
 aside li{margin:6px 0}aside a{color:#1d1a16}
 footer{margin-top:40px;border-top:1px solid #d9cfbf;padding-top:14px}
 </style>
+${GA_SNIPPET}
 </head>
 <body>
 <div class="wrap">

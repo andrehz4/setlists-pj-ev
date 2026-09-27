@@ -128,6 +128,8 @@
       loadGA();
     }
     events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
+    // Sem esperar interação: quem entra e sai sem rolar também conta como visita
+    window.addEventListener('load', function () { setTimeout(trigger, 1500); }, { once: true });
   })();
 </script>
 
@@ -13205,6 +13207,8 @@ function activateTab(viewName, opts) {
     _stopAllTabAudio();
   }
   if (window.track) track('tab_change', { view: viewName });
+  // Seção vira "página vista" no Analytics (o SPA não muda a URL ao trocar de aba)
+  if (window.gtag) gtag('event', 'page_view', { page_title: 'Seção: ' + viewName, page_location: location.origin + '/secao/' + viewName });
   const stamp = document.getElementById("loading-stamp");
   const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (stamp && !reduced) {
