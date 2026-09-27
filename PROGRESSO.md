@@ -1,5 +1,25 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-27: SEO completo, métricas, fórum semeado e segurança
+
+- **Diagnóstico**: o Google não indexava nada. SPA com `#` + notícias redirecionando pra home. GA desde 08/05:
+  101 pessoas (~25-30 reais), 0 visita do Google, Instagram = 23% das sessões.
+- **Páginas estáticas** (molde `scripts/seo/layout.mjs`, menu de seções em todas): 446 notícias completas (`n/`),
+  28 shows (`show/`), 276 músicas com interpretação PT e notas (`musica/`), 15 discos com ensaio (`disco/`),
+  `banda/`, índices `noticias/ musica/ disco/ show/`. Sitemap com 774 URLs. Rodapé da home com links reais.
+  Gerador: `node scripts/seo/build-seo-pages.mjs` (teste de sincronia falha se esquecer). Sem letra/cifra.
+- **Fórum**: páginas `/t/<id>` via Pages Functions (`FORUM_SEO=1` ligado no Cloudflare), "thread" virou "tópico",
+  5 tópicos iniciais pela conta do Andre (SQL no Supabase), com citações creditadas do fórum oficial.
+- **Search Console** verificado (via GA), sitemaps enviados. Pedido de indexação da home estourou a cota do dia.
+- **Métricas**: GA em todas as páginas públicas (menos colaborar, CSP), seção do SPA conta como página vista,
+  GA carrega sem exigir clique. Cloudflare Web Analytics ligado.
+- **Terra Gentil (backend)**: limiter por IP real, 2 testes do fórum corrigidos, login mobile só volta pro app
+  (antes aceitava redirect externo = roubo de token), perfil público sem email/nascimento, diagnóstico com rate limit.
+
+**Próximo passo**: amanhã, no Search Console, "Solicitar indexação" da home e dos índices (/musica/, /noticias/,
+/show/, /disco/); acompanhar Páginas indexadas em 1 a 2 semanas. Responder quem postar no fórum.
+Pendente: 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
+
 ## 2026-09-26: painel de colaboradores LIGADO em produção
 
 - **Descoberta**: o Railway (`perpetual-energy`, projeto zippy-consideration) roda o repo
