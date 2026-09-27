@@ -814,7 +814,12 @@ function renderChips(reactions, myReactions, postId, targetType) {
   }).join("");
 }
 
+// Texto original de cada post/tópico, pra caixa de edição (evita guardar base64 em atributo HTML)
+const _textoOriginal = new Map();
+
 function renderPost(p, isRoot, opUserId) {
+  // rawBody: texto do tópico com a linha de #tags (cleanBody tira); editar sem ela apagaria as tags
+  _textoOriginal.set(p.id, { body: p.rawBody ?? p.body ?? "", title: isRoot ? (p.title || "") : null });
   const targetType = isRoot ? "topic" : "post";
   const isOp = p.user_id === opUserId;
   const chips = renderChips(p.reactions, p.my_reactions, p.id, targetType);
@@ -854,7 +859,8 @@ function renderPost(p, isRoot, opUserId) {
           ${quoteBtn}
           <button class="report-btn" data-id="${san(p.id)}">⚑ Reportar</button>
           ${(_user && (_user.is_admin || _user.user_id === p.user_id))
-            ? `<button class="delete-btn" data-id="${san(p.id)}" data-kind="${isRoot ? "topic" : "post"}" style="color:var(--pj)">🗑 Apagar</button>`
+            ? `<button class="edit-btn" data-id="${san(p.id)}" data-kind="${isRoot ? "topic" : "post"}">✎ Editar</button>`
+              + `<button class="delete-btn" data-id="${san(p.id)}" data-kind="${isRoot ? "topic" : "post"}" style="color:var(--pj)">🗑 Apagar</button>`
             : ""}
         </div>
       </div>
@@ -1035,7 +1041,7 @@ function renderTopic(data) {
             <span>${posts.length} resposta${posts.length !== 1 ? "s" : ""}</span>
           </div>
         </div>
-        ${renderPost({ id: t.id, user_id: t.user_id, body: cleanBody, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at, reactions: t.reactions, my_reactions: t.my_reactions }, true, t.user_id)}
+        ${renderPost({ id: t.id, user_id: t.user_id, body: cleanBody, rawBody: t.body, title: t.title, display_name: t.display_name, avatar_url: t.avatar_url, created_at: t.created_at, reactions: t.reactions, my_reactions: t.my_reactions }, true, t.user_id)}
         <div id="postsContainer">${posts.map(p => renderPost(p, false, t.user_id)).join("")}</div>
         ${_topicTotalPosts > posts.length ? `<div style="text-align:center;padding:18px 0"><button class="btn" id="loadMorePostsBtn">Carregar mais ${_topicTotalPosts - posts.length} respostas</button></div>` : ""}
         ${replySection}
@@ -1078,6 +1084,10 @@ function renderTopic(data) {
   document.querySelectorAll(".delete-btn").forEach(btn => {
     btn.dataset.bound = "1";
     btn.addEventListener("click", () => handleDeleteClick(btn));
+  });
+  document.querySelectorAll(".edit-btn").forEach(btn => {
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", () => handleEditClick(btn));
   });
 
   document.querySelectorAll(".report-btn").forEach(btn => {
@@ -2206,6 +2216,7 @@ function wireNewPostHandlers() {
   document.querySelectorAll(".react-chip:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => toggleReaction(b)); });
   document.querySelectorAll(".report-btn:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => openReport(b.dataset.id)); });
   document.querySelectorAll(".delete-btn:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => handleDeleteClick(b)); });
+  document.querySelectorAll(".edit-btn:not([data-bound])").forEach(b => { b.dataset.bound = "1"; b.addEventListener("click", () => handleEditClick(b)); });
   wireAudioPlayers();
   fetchBadgesForVisiblePosts();
 }
@@ -2260,6 +2271,65 @@ function handleDeleteClick(btn) {
   fetch(API_BASE + path, { method: "DELETE", headers })
     .then(res => { if (!res.ok) throw new Error("Erro " + res.status); if (kind === "topic") location.href = "forum.html"; else location.reload(); })
     .catch(err => { btn.disabled = false; btn.textContent = "🗑 Apagar"; alert("Falha: " + (err.message || err)); });
+}
+
+// Edição no lugar: troca o texto do post por uma caixa editável (e o título, se for o tópico).
+function handleEditClick(btn) {
+  const kind = btn.dataset.kind;
+  const id = btn.dataset.id;
+  const post = btn.closest(".post");
+  const bodyEl = post && post.querySelector(".post-body");
+  const orig = _textoOriginal.get(id);
+  if (!bodyEl || !orig || post.querySelector(".edit-form")) return;
+  const form = document.createElement("div");
+  form.className = "edit-form";
+  form.style.cssText = "display:flex;flex-direction:column;gap:8px;margin:8px 0";
+  const campo = "width:100%;box-sizing:border-box;padding:10px;border:1px solid var(--divider);background:var(--bg-card-sunk,#fff);"
+    + "color:var(--ink);font:inherit";
+  let tituloEl = null;
+  if (kind === "topic") {
+    tituloEl = document.createElement("input");
+    tituloEl.maxLength = 120;
+    tituloEl.value = orig.title;
+    tituloEl.style.cssText = campo;
+    form.appendChild(tituloEl);
+  }
+  const texto = document.createElement("textarea");
+  texto.value = orig.body;
+  texto.rows = Math.min(20, Math.max(5, orig.body.split("\n").length + 1));
+  texto.style.cssText = campo;
+  const linha = document.createElement("div");
+  linha.style.cssText = "display:flex;gap:8px;align-items:center";
+  const salvar = document.createElement("button");
+  salvar.textContent = "Salvar";
+  salvar.className = "btn primary";
+  const cancelar = document.createElement("button");
+  cancelar.textContent = "Cancelar";
+  cancelar.className = "btn";
+  const aviso = document.createElement("span");
+  aviso.style.cssText = "font-size:13px;color:var(--pj)";
+  linha.append(salvar, cancelar, aviso);
+  form.append(texto, linha);
+  bodyEl.style.display = "none";
+  bodyEl.after(form);
+  texto.focus();
+  cancelar.addEventListener("click", () => { form.remove(); bodyEl.style.display = ""; });
+  salvar.addEventListener("click", () => {
+    const payload = { body: texto.value };
+    if (tituloEl) payload.title = tituloEl.value.trim();
+    salvar.disabled = true; salvar.textContent = "Salvando…"; aviso.textContent = "";
+    const path = kind === "topic" ? `/forum/topics/${encodeURIComponent(id)}` : `/forum/posts/${encodeURIComponent(id)}`;
+    const headers = { "Content-Type": "application/json" };
+    if (_token) headers["Authorization"] = "Bearer " + _token;
+    fetch(API_BASE + path, { method: "PATCH", headers, body: JSON.stringify(payload) })
+      .then(async res => {
+        if (res.ok) return location.reload();
+        const d = await res.json().catch(() => ({}));
+        const msg = Array.isArray(d.detail) ? "Texto curto ou longo demais." : (d.detail || "Erro " + res.status);
+        throw new Error(msg);
+      })
+      .catch(err => { salvar.disabled = false; salvar.textContent = "Salvar"; aviso.textContent = err.message || String(err); });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", init);
