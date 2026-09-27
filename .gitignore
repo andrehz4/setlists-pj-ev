@@ -48,3 +48,4 @@ media/news/youtube-acervo/*
 # venv local do backend
 backend/.venv/
 forum-sementes/
+.wrangler/
