@@ -10,10 +10,15 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0908'/><text x='16' y='23' font-family='Arial Black,Arial,sans-serif' font-size='17' font-weight='900' fill='%23c1272d' text-anchor='middle'>PJ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fontes do topo (título e manchete) baixam primeiro: evita o pulo de layout quando trocam -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bigshouldersdisplay/v24/fC1_PZJEZG-e9gHhdI4-NBbfd2ys3SjJCx1czNDuDJAM2w.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2">
 <link rel="dns-prefetch" href="https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev">
 <link rel="dns-prefetch" href="https://i.ytimg.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Special+Elite&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Special+Elite&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500;700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Special+Elite&display=swap"></noscript>
 <link rel="stylesheet" href="mobile/mobile.css" media="(max-width: 768px)">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Só mais um fã de Pearl Jam">
@@ -11163,8 +11168,10 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Oswald:wght@300..700&family=IBM+Plex+Mono:ital,wght@0,300..600;1,300..500&family=Caveat:wght@400..700&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Oswald:wght@300..700&family=IBM+Plex+Mono:ital,wght@0,300..600;1,300..500&family=Caveat:wght@400..700&family=Stardos+Stencil:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Oswald:wght@300..700&family=IBM+Plex+Mono:ital,wght@0,300..600;1,300..500&family=Caveat:wght@400..700&family=Stardos+Stencil:wght@400;700&display=swap"></noscript>
 </head>
 <body>
 <a href="#main" class="skip-link">Pular para o conteúdo</a>
@@ -11197,7 +11204,8 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
     Todos os shows que assisti, cruzados com as músicas tocadas em cada noite.
     Ranking, gaps e trilha histórica. O que já pintou no palco e o que ainda falta.
   </p>
-  <div class="stats-strip" id="stats-strip" role="group" aria-label="Resumo do arquivo"></div>
+  <!-- Pré-preenchida com o que renderStats() gera: evita o pulo de layout; o JS reescreve com o valor atual -->
+  <div class="stats-strip" id="stats-strip" role="group" aria-label="Resumo do arquivo"><div class="stat"><div class="stat-value">25</div><div class="stat-label">Shows</div></div><div class="stat"><div class="stat-value">208</div><div class="stat-label">Músicas únicas</div></div><div class="stat"><div class="stat-value">757</div><div class="stat-label">Total cantado</div></div><div class="stat"><div class="stat-value">7</div><div class="stat-label">Anos</div></div><div class="stat"><div class="stat-value">9</div><div class="stat-label">Cidades</div></div></div>
 </header>
 
 <!-- LOADING STAMP (overlay durante troca de tab) -->
@@ -13256,7 +13264,14 @@ function activateTab(viewName, opts) {
   if (window.matchMedia && window.matchMedia("(max-width: 600px)").matches) {
     const activeTabBtn = document.getElementById("tab-" + viewName);
     if (activeTabBtn) {
-      activeTabBtn.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
+      // Só na horizontal, dentro da barra de abas. scrollIntoView rolava a página inteira
+      // até as abas ao abrir o site no celular (pulo de layout e visitante caindo no meio da tela).
+      let barra = activeTabBtn.parentElement;
+      while (barra && barra !== document.body && barra.scrollWidth <= barra.clientWidth) barra = barra.parentElement;
+      if (barra && barra !== document.body) {
+        const alvo = activeTabBtn.offsetLeft - (barra.clientWidth - activeTabBtn.clientWidth) / 2;
+        barra.scrollTo({ left: Math.max(0, alvo), behavior: reduced ? 'auto' : 'smooth' });
+      }
     }
   }
   renderCurrent();
