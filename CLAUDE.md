@@ -57,6 +57,14 @@ Cloudflare Pages Functions, módulo apartado ligado por `FORUM_SEO=1` (variável
 da API do Railway; `/sitemap-forum.xml` lista todos (está no `robots.txt`). Cache de borda 1h/6h; API fora = 503 +
 Retry-After (nunca cacheado). `forum-topic.html` aponta o canonical pra `/t/<id>`. Testes em `scripts/forum-seo/`.
 
+### SEO: páginas estáticas pro Google
+
+O SPA (`index.html`) usa `#` e o Google não indexa o que vem depois dele. Por isso o conteúdo tem páginas estáticas:
+- `n/<id>.html`: notícia completa (modelo `scripts/news/news-page.mjs`), regenerada pelo publish via `build-news-stubs.mjs`.
+- `show/<id>.html` + `show/index.html`: setlist de cada show, geradas de `SHOWS`/`MEDIA_MANIFEST` do index.html por
+  `node scripts/seo/build-show-pages.mjs`. **Mexeu em show no index.html? Rode o gerador**, senão o teste de sincronia falha.
+- `sitemap.xml` tem seções marcadas (`news:start/end`, `shows:start/end`); cada gerador só reescreve a sua.
+
 ### Reel semanal (motion design, MOTION-SPEC do Claude Design)
 
 `run-publish-reel.mjs` -> `reel-select.mjs` (top 5-8 da semana + formato por cena: cinético/card/papel) -> `reel-clips.mjs` (casa trecho de clipe do acervo com a cena, por tag, rotação determinística por semana ISO) -> `reel-video.mjs` (renderer SVG frame a frame + ffmpeg, cold open 3s + 8 blocos de 4.5s + outro 2.5s = 41.5s, 1080x1920). Publica via `publishReel` (caption com índice + `share_to_feed` + `thumb_offset`). Larguras de texto medidas REAL via `sharp.trim` (estimar por char sobrepõe as palavras do Anton). Sem acervo de clipe, degrada pra foto com Ken Burns ou fundo fantasma "CLIPE". Spec versionado em `design-handoff/retorno/movie/project/entrega/MOTION-SPEC.md` (gitignored, é referência).
