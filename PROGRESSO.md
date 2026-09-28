@@ -1,5 +1,19 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-28: domínio próprio somaisumfadepearljam.com.br no ar
+
+- Registrado no Registro.br (5 anos, até 2031), DNS no Cloudflare (eleanor/marty), site ligado com e sem www, HTTPS ok.
+- Código trocado pro domínio novo (canonicals, sitemaps, 774 páginas, links IG/Telegram, rodapé das imagens do IG).
+- Backend: `SITE_ORIGINS` com os dois endereços, `FORUM_CORS_ORIGIN` no novo; R2 CORS e origens do Google OAuth liberados.
+- Redirect 301 do pages.dev (Bulk Redirects), testado com links de notícia, show e tópico.
+- Search Console: propriedade nova verificada, sitemaps enviados, "Mudança de endereço" confirmada.
+- `contato@somaisumfadepearljam.com.br` -> Gmail (Email Routing; MX/SPF do Cloudflare no lugar do bloqueio do Registro.br).
+- Hub HZ: site cadastrado no catálogo (não estava).
+- Fórum: perfil mike2006 (curadoria do site, bio explica) postou 15 respostas creditadas do fórum oficial em 11 tópicos.
+
+**Próximo passo**: 10h04 de hoje, pedido de indexação no Search Console (agendado). Andre: trocar link da bio do IG/FB
+pro domínio novo; logar de novo no fórum (login é por endereço); testar um e-mail pro contato@.
+
 ## 2026-09-27: SEO completo, métricas, fórum semeado e segurança
 
 - **Diagnóstico**: o Google não indexava nada. SPA com `#` + notícias redirecionando pra home. GA desde 08/05:
