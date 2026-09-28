@@ -1,24 +1,33 @@
 # PROGRESSO, setlists-pj-ev
 
-## 2026-09-28 (tarde): conferências do domínio + carrossel sem slide repetido
+## 2026-09-28 (tarde): capas novas, carrossel sem repetição, topo da home limpo, playbook de SEO
 
-- Conferido no navegador: contato@ com Email Routing "Enabled" e DNS "Locked"; home já indexada no Google;
-  indexação solicitada pra /musica/, /noticias/, /show/, /disco/, /banda/; login Google no fórum ok no domínio novo.
-- **Carrossel (pedido A)**: a capa (Card 11) agora SUBSTITUI o slide da notícia líder. Antes: capa A + A + B.
-  Agora: capa A + B (+ C...) no layout normal. Notícia única continua imagem única sem capa. Vale pro IG e o álbum
-  do FB. Limite passou pra 10 notícias por carrossel. Validado no mock (IG e FB) e 178 testes ok.
+**Feito**
+- Conferências do handoff no navegador: contato@ com Email Routing "Enabled"; home já indexada no Google; indexação
+  solicitada pra /musica/, /noticias/, /show/, /disco/, /banda/; login Google no fórum ok no domínio novo.
+- **Carrossel (pedido A)**: a capa (Card 11) SUBSTITUI o slide da notícia líder. Antes: capa A + A + B; agora: capa A + B
+  (+ C...) no layout normal. Notícia única segue imagem única sem capa. Vale pro IG e o álbum do FB. Limite: 10 notícias.
+- **Capas novas (pedido B)**: Claude Design (projeto "Pearl Jam carousel cover layouts") fez pôster de show, zine recortado
+  e ingresso; Andre aprovou. Rodízio diário (BRT) com a capa atual em `scripts/publish/cover-styles.mjs` +
+  `cover-styles-svg.mjs`; foto embutida no SVG, largura de texto medida de verdade. `COVER_STYLE=<estilo>` força um estilo.
+  Export do Design em `design-handoff/retorno/capas/` (gitignored).
+- **og.jpg** (prévia de link no WhatsApp/redes) refeito com o bilhete do topo do site via Chrome headless.
+- **Link #forum** (e #banda, #timeline etc.) abre direto na aba; `#news/<id>` intacto.
+- **Topo da home** (Andre aprovou): sem a faixa "ADMIT ONE / PERSONAL ARCHIVE" e sem o parágrafo de apresentação;
+  Instagram, Facebook e dia/noite no canto do bilhete (coluna no celular, título com a direita livre).
+- **E-mail público** (rodapé e privacidade) passou pra contato@somaisumfadepearljam.com.br.
+- **Fonte no Mac** consertada: sharp do macOS usa CoreText e ignora o fonts.conf; `npm run fontes:mac`.
+- **Playbook de SEO/Google** reaproveitável em `docs/PLAYBOOK-SEO-GOOGLE.md`, com ponteiro no CLAUDE.md global.
 
-- **Capas novas (pedido B)**: Claude Design fez 3 layouts (pôster de show, zine recortado, ingresso), Andre aprovou.
-  Implementados em rodízio diário com a capa atual (`cover-styles.mjs`), foto embutida no SVG, largura de texto medida.
-  7 testes novos (185 no total), conferido nas 4 cores e no mock com `COVER_STYLE=zine`.
-- **Prévia de link (og.jpg)** refeita com o bilhete do topo do site (a de maio tinha fonte genérica e endereço antigo).
-- **Link #forum** (e #banda, #timeline etc.) abre direto na aba; antes caía em Notícias. `#news/<id>` intacto.
-- **Topo da home mais limpo** (Andre aprovou): saíram a faixa "ADMIT ONE / PERSONAL ARCHIVE" e o parágrafo de apresentação;
-  no canto do bilhete ficam Instagram, Facebook e dia/noite (coluna no celular, título com a direita livre).
-- **Fonte no Mac** consertada (`npm run fontes:mac`; CoreText ignora o fonts.conf).
+**Estado**: tudo no ar, 185 testes ok. Hoje (28/09) a capa do rodízio é a atual (card11).
 
-**Próximo passo**: acompanhar no feed real os 4 dias do rodízio (29/09 pôster, 30/09 zine, 01/10 ingresso).
-Andre: trocar link da bio do IG/FB pro domínio novo.
+**Próximo passo**: conferir no feed real as capas novas com fotos de verdade: 29/09 pôster, 30/09 zine, 01/10 ingresso.
+Se alguma sair ruim, ajustar em `cover-styles-svg.mjs` e validar com `COVER_STYLE=<estilo> node mock-ig/run.mjs feed`.
+
+**Pendências / blockers**
+- Andre: trocar o link da bio do Instagram e do Facebook pro domínio novo.
+- Search Console: acompanhar Indexação > Páginas em 1 a 2 semanas.
+- 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia), herdado.
 
 ## 2026-09-28: domínio próprio somaisumfadepearljam.com.br no ar
 
