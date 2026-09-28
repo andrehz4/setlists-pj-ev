@@ -19665,16 +19665,25 @@ window.addEventListener('message', function (ev) {
   iframe.style.height = h + 'px';
 });
 
-// Boot: le ?tab=X da URL e ativa a aba correspondente antes do default.
-// Usado pelo auth-callback.html que redireciona pra /?tab=forum apos OAuth.
+// Boot: le ?tab=X ou #X da URL e ativa a aba correspondente antes do default.
+// ?tab= e usado pelo auth-callback.html (/?tab=forum apos OAuth); #forum e o
+// link curto de divulgacao. #news/<id> segue no deep-link de noticia.
+const _TAB_VIEWS = new Set(['news', 'timeline', 'tabs', 'highlights', 'rarity', 'deep', 'gallery', 'banda', 'forum',
+  'gaps', 'ranking', 'search']);
+function _tabFromHash() {
+  const h = (location.hash || '').slice(1);
+  return _TAB_VIEWS.has(h) ? h : null;
+}
+window.addEventListener('hashchange', () => {
+  const tab = _tabFromHash();
+  if (tab && typeof activateTab === 'function') { try { activateTab(tab, { noScroll: false }); } catch (_) {} }
+});
 (function _bootTabFromQuery() {
   try {
     const params = new URLSearchParams(location.search);
-    const tab = params.get('tab');
+    // Whitelist: aceita so abas conhecidas pra evitar XSS via ?tab= / #
+    const tab = _TAB_VIEWS.has(params.get('tab')) ? params.get('tab') : _tabFromHash();
     if (!tab) return;
-    // Whitelist: aceita so abas conhecidas pra evitar XSS via ?tab=
-    const valid = new Set(['news', 'timeline', 'tabs', 'highlights', 'rarity', 'deep', 'gallery', 'banda', 'forum']);
-    if (!valid.has(tab)) return;
     // Espera o DOM ficar pronto e ativa. activateTab pode nao existir ainda
     // no momento do parse; usa setTimeout pra rodar depois do script principal.
     const doActivate = () => {
