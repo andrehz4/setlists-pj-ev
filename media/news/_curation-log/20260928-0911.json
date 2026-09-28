@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-09-28T09:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cf2702f7e8", "titulo": "McCready sobre Van Halen: o guitarrista que soava de outro planeta", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "605a66f17d", "title": "Billy rippin a solo on the Neil Young song...", "reason": "texto vazio: apenas metadado do Reddit, sem conteudo extraido" },
+    { "id": "6b5acb376d", "title": "Layne and Kurt", "reason": "PJ tangencial: texto sobre Layne Staley e Kurt Cobain, Pearl Jam so mencionado de passagem entre outras bandas de grunge" }
+  ]
+}
