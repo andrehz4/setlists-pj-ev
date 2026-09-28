@@ -61,6 +61,9 @@ Retry-After (nunca cacheado). `forum-topic.html` aponta o canonical pra `/t/<id>
 
 ### SEO: páginas estáticas pro Google
 
+Playbook completo e reaproveitável (diagnóstico, Search Console, migração de domínio, velocidade, og.jpg):
+`docs/PLAYBOOK-SEO-GOOGLE.md`.
+
 O SPA (`index.html`) usa `#` e o Google não indexa o que vem depois dele. Por isso cada conteúdo tem página estática,
 todas no mesmo molde (`scripts/seo/layout.mjs`: menu de seções, breadcrumb, JSON-LD, GA):
 - `n/<id>.html` + `noticias/index.html`: gerados pelo publish via `scripts/news/build-news-stubs.mjs` (`news-page.mjs`).
