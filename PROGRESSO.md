@@ -9,7 +9,13 @@
   do FB. Limite passou pra 10 notícias por carrossel. Validado no mock (IG e FB) e 178 testes ok.
 - Detalhe achado: `somaisumfadepearljam.com.br/#forum` abre em Notícias, não no Fórum (baixa prioridade).
 
-**Próximo passo**: pedido B (mais layouts de capa alternando por dia, via Claude Design com print da capa atual).
+- **Capas novas (pedido B)**: Claude Design fez 3 layouts (pôster de show, zine recortado, ingresso), Andre aprovou.
+  Implementados em rodízio diário com a capa atual (`cover-styles.mjs`), foto embutida no SVG, largura de texto medida.
+  7 testes novos (185 no total), conferido nas 4 cores e no mock com `COVER_STYLE=zine`.
+- **Prévia de link (og.jpg)** refeita com o bilhete do topo do site (a de maio tinha fonte genérica e endereço antigo).
+- **Fonte no Mac** consertada (`npm run fontes:mac`; CoreText ignora o fonts.conf).
+
+**Próximo passo**: acompanhar no feed real os 4 dias do rodízio (29/09 pôster, 30/09 zine, 01/10 ingresso).
 Andre: trocar link da bio do IG/FB pro domínio novo.
 
 ## 2026-09-28: domínio próprio somaisumfadepearljam.com.br no ar

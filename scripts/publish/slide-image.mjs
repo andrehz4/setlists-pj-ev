@@ -23,6 +23,8 @@ import { getEditionNumber } from "./edition.mjs";
 import { detectFaces, cropFromFaces } from "./face-crop.mjs";
 import { findBetterImage } from "./find-better-image.mjs";
 import { getImageOverrideUrl } from "./image-overrides.mjs";
+import { coverStyleFor, planCover } from "./cover-styles.mjs";
+import { coverSvg } from "./cover-styles-svg.mjs";
 
 // sharp importado dinamicamente DEPOIS do import de fontconfig-boot
 // (cujo side-effect ja setou o env antes do primeiro uso de libvips).
@@ -595,6 +597,56 @@ function hexToRgb(hex) {
   return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
 }
 
+function coverLabel(item) {
+  const tags = Array.isArray(item.tags) ? item.tags : [];
+  const cat = (item.kind === "youtube" ? "Cápsula" : (CAT_LABELS[tags[0]] || "Notícia")).toUpperCase();
+  return `PEARL JAM · ${cat}`;
+}
+
+// Largura REAL de texto (renderiza e mede o ink via trim), com cache. Usada
+// pelas capas alternativas (cover-styles.mjs); estimar por char erra no Anton.
+const _measureCache = new Map();
+async function measureText(text, { size, family = F_ANTON, letterSpacing = 0 } = {}) {
+  const key = [text, size, family, letterSpacing].join("|");
+  if (_measureCache.has(key)) return _measureCache.get(key);
+  const pad = Math.ceil(size);
+  const w = Math.ceil(String(text).length * size * 1.4) + pad * 2;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${Math.ceil(size * 2.2)}">`
+    + `<text x="${pad}" y="${Math.round(size * 1.3)}" font-family="${family}" font-size="${size}"`
+    + ` letter-spacing="${letterSpacing}" fill="#fff">${escapeXml(text)}</text></svg>`;
+  let width;
+  try {
+    const { info } = await sharp(Buffer.from(svg)).trim({ threshold: 5 }).toBuffer({ resolveWithObject: true });
+    width = info.width;
+  } catch {
+    width = Math.ceil(String(text).length * size * 0.55);
+  }
+  _measureCache.set(key, width);
+  return width;
+}
+
+// Capa alternativa (poster/zine/ingresso). A foto vai recortada no tamanho do
+// plano e embutida no SVG; P&B quando o layout pede.
+async function buildStyledCover(item, destId, bg, style) {
+  await ensureSlidesDir();
+  const dest = path.join(SLIDES_DIR, `${destId}.jpg`);
+  const plan = await planCover(style, { headline: headlineOf(item), label: coverLabel(item) }, measureText);
+  let uri = null;
+  const { srcBuf, det } = await prepareSource(item);
+  if (srcBuf) {
+    try {
+      const { w, h, bw } = plan.photo;
+      let ph = await renderPhoto(srcBuf, det, w, h, `${item.id} (capa ${style})`);
+      ph = await (bw ? sharp(ph).greyscale().linear(1.1, -12.8) : sharp(ph)).jpeg({ quality: 90 }).toBuffer();
+      uri = `data:image/jpeg;base64,${ph.toString("base64")}`;
+    } catch (e) {
+      console.warn(`[slide] capa ${style}: foto falhou (${e.message})`);
+    }
+  }
+  await sharp(Buffer.from(coverSvg(plan, bg, uri))).jpeg({ quality: 88, mozjpeg: true }).toFile(dest);
+  return { path: dest, id: destId, reused: false, style };
+}
+
 // Camada de tras: fundo + tipo gigante (a foto cobre o meio depois).
 function buildCoverBackSvg(bg = "#0a0a0a") {
   const cx = SLIDE_W / 2;             // box do design -20..1100, centro = 540
@@ -629,9 +681,7 @@ function buildCoverShadowSvg(x, y, w, h) {
 function buildCoverFrontSvg(leadItem, bg = "#0a0a0a") {
   const PAD = 56;
   const boxW = SLIDE_W - PAD * 2; // 968
-  const tags = Array.isArray(leadItem.tags) ? leadItem.tags : [];
-  const cat = (leadItem.kind === "youtube" ? "Cápsula" : (CAT_LABELS[tags[0]] || "Notícia")).toUpperCase();
-  const label = `PEARL JAM · ${cat}`;
+  const label = coverLabel(leadItem);
 
   // Rodape ancorado no fundo (design: bottom 0, padding 0 56 64).
   const bottomPad = 64;
@@ -709,10 +759,11 @@ async function buildCard02Slide(item, { outDir } = {}) {
   return { path: dest, reused: false };
 }
 
-// Slide capa do carrossel (Card 11). destId define o nome do arquivo
-// (sintetico, ex: _cover-regular-2026-05-16). Sempre regenera (a edicao /
-// item lider muda a cada run).
-export async function buildCoverSlide(leadItem, destId, bg = "#0a0a0a") {
+// Slide capa do carrossel. destId define o nome do arquivo (sintetico, ex:
+// _cover-regular). Sempre regenera (a edicao / item lider muda a cada run).
+// style: card11 (original) ou poster/zine/ingresso, em rodizio diario.
+export async function buildCoverSlide(leadItem, destId, bg = "#0a0a0a", { style = coverStyleFor() } = {}) {
+  if (style !== "card11") return buildStyledCover(leadItem, destId, bg, style);
   await ensureSlidesDir();
   const dest = path.join(SLIDES_DIR, `${destId}.jpg`);
 
