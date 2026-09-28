@@ -170,7 +170,7 @@ test("reel-video: SVGs das 5 cenas renderizam conteudo esperado", () => {
   assert.ok(ghost.includes("CLIPE") && ghost.includes("#0d0c0b"));
 
   const card = cardSvg(2.0, { item, n: 2, total: 8, accent: "#E10600" });
-  assert.ok(card.includes("LEIA MAIS") && card.includes("setlists-pj-ev.pages.dev") && card.includes("card-grad"));
+  assert.ok(card.includes("LEIA MAIS") && card.includes("somaisumfadepearljam.com.br") && card.includes("card-grad"));
 
   const paper = paperSvg(2.0, { item: { ...item, tags: ["comunidade"] }, n: 3, total: 8, accent: "#E10600" });
   assert.ok(paper.includes("#ede4cc") && paper.includes("comunidade global"));
@@ -216,7 +216,7 @@ test("buildReelCaption: indice numerado + CTA + hashtags, sob o limite", () => {
   const cap = buildReelCaption(items, { weekLabel: "06 A 12 JUN" });
   assert.ok(cap.startsWith("RESUMÃO DA SEMANA · 06 A 12 JUN"));
   assert.ok(cap.includes("1. Primeira manchete") && cap.includes("3. Terceira manchete"));
-  assert.ok(cap.includes("leia completo em setlists-pj-ev.pages.dev"));
+  assert.ok(cap.includes("leia completo em somaisumfadepearljam.com.br"));
   assert.ok(cap.includes("#pearljam") && cap.includes("#eddie") && cap.includes("#turne"));
   assert.ok(cap.length <= 2200);
 });

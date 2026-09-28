@@ -3,7 +3,7 @@
 
 const IG_MAX = 2200;
 const HASHTAGS = "#pearljam #eddievedder #pjbrasil #grunge #smufdpj";
-const SITE = "setlists-pj-ev.pages.dev";
+const SITE = "somaisumfadepearljam.com.br";
 
 export const idSite = (envio) => `colab-${envio.id.replace(/-/g, "").slice(0, 8)}`;
 

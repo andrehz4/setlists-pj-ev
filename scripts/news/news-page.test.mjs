@@ -14,7 +14,7 @@ const CORPO = "Primeiro parágrafo com _itálico_.\n\nSegundo <script>alert(1)</
 test("página sem redirect, com canonical e título sem travessão", () => {
   const h = paginaNoticia(ITEM, CORPO, []);
   assert.ok(!h.includes("location.replace") && !h.includes("http-equiv=\"refresh\""));
-  assert.match(h, /<link rel="canonical" href="https:\/\/setlists-pj-ev\.pages\.dev\/n\/abc123">/);
+  assert.match(h, /<link rel="canonical" href="https:\/\/somaisumfadepearljam\.com\.br\/n\/abc123">/);
   assert.match(h, /<title>Eddie &lt;b&gt;Vedder&lt;\/b&gt; &amp; amigos \| Só mais um fã de Pearl Jam<\/title>/);
   assert.ok(!h.includes("—"));
 });
@@ -32,7 +32,7 @@ test("dados estruturados: NewsArticle e BreadcrumbList válidos", () => {
   const ld = JSON.parse(h.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(ld[0]["@type"], "NewsArticle");
   assert.equal(ld[0].author.name, "Só mais um fã de Pearl Jam");
-  assert.deepEqual(ld[0].image, ["https://setlists-pj-ev.pages.dev/media/news/img/abc123.jpg"]);
+  assert.deepEqual(ld[0].image, ["https://somaisumfadepearljam.com.br/media/news/img/abc123.jpg"]);
   assert.equal(ld[0].dateModified, "2026-09-24T10:00:00.000Z");
   assert.equal(ld[1]["@type"], "BreadcrumbList");
 });
@@ -75,5 +75,5 @@ test("índice /noticias/ agrupa por mês e linka todas", async () => {
   const h = paginaIndiceNoticias([ITEM, { id: "b", title_pt: "Outra", pubDate: "2026-08-02T10:00:00Z" }]);
   assert.ok(h.includes("<h2>setembro de 2026</h2>") && h.includes("<h2>agosto de 2026</h2>"));
   assert.ok(h.includes('<a href="/n/abc123">') && h.includes('<a href="/n/b">'));
-  assert.match(h, /<link rel="canonical" href="https:\/\/setlists-pj-ev\.pages\.dev\/noticias\/">/);
+  assert.match(h, /<link rel="canonical" href="https:\/\/somaisumfadepearljam\.com\.br\/noticias\/">/);
 });

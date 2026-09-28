@@ -31,7 +31,7 @@ const ITEMS_DIR = path.resolve("media/news/items");
 const INDEX = path.resolve("media/news/index.json");
 
 const HASHTAGS_FIXED = ["pearljam", "eddievedder", "pjbrasil", "grunge", "smufdpj"];
-const SITE_URL = "setlists-pj-ev.pages.dev";
+const SITE_URL = "somaisumfadepearljam.com.br";
 const SOCIAL_LINE = "siga @smufdpj no Instagram e no Facebook";
 const IG_CAPTION_MAX = 2200;
 

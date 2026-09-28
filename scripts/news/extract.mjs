@@ -4,7 +4,7 @@
 import got from "got";
 import * as cheerio from "cheerio";
 
-const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
+const UA = "setlists-pj-news-bot/1.0 (+https://somaisumfadepearljam.com.br)";
 const TIMEOUT_MS = 15000;
 const MAX_HTML_KB = 1500; // cap pra nao alocar HTML monstro
 

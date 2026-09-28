@@ -513,7 +513,7 @@ function footerBlockSvg({ tag, headline, tagBg, tagFg = "#fff", headFill = "#fff
 
   <text x="${PAD}" y="${urlBaseline}"
     font-family="${F_INTER_SB}" font-size="${urlFS}"
-    fill="#ffffff" opacity="0.82" letter-spacing="0.5">setlists-pj-ev.pages.dev</text>`;
+    fill="#ffffff" opacity="0.82" letter-spacing="0.5">somaisumfadepearljam.com.br</text>`;
 }
 
 // Wordmark "Só Mais um Fã de PEARL JAM" centrado no topo (Playfair italic).
@@ -673,7 +673,7 @@ function buildCoverFrontSvg(leadItem, bg = "#0a0a0a") {
 
   <text x="${PAD}" y="${urlBaseline}"
     font-family="${F_INTER_SB}" font-size="${urlFS}"
-    fill="#ffffff" opacity="0.6" letter-spacing="0.5">setlists-pj-ev.pages.dev</text>
+    fill="#ffffff" opacity="0.6" letter-spacing="0.5">somaisumfadepearljam.com.br</text>
 </svg>`;
 }
 
@@ -805,7 +805,7 @@ export async function buildQuoteSlide({ id, quote, author = "Eddie Vedder", cta 
   <text x="${PAD}" y="${startY + blockH + 46}" font-family="${F_INTER_XB}" font-weight="800" font-size="26" fill="${ACCENT}" letter-spacing="1.5">${escapeXml(author.toUpperCase())}</text>
   <rect x="${PAD}" y="${SLIDE_H - 150}" width="${boxW}" height="2" fill="#ffffff" opacity="0.15"/>
   <text x="${PAD}" y="${SLIDE_H - 104}" font-family="${F_INTER_XB}" font-weight="800" font-size="24" fill="#ffffff">→ ${escapeXml(cta)}</text>
-  <text x="${PAD}" y="${SLIDE_H - 68}" font-family="${F_INTER_SB}" font-size="21" fill="#ffffff" opacity="0.55" letter-spacing="0.5">setlists-pj-ev.pages.dev</text>
+  <text x="${PAD}" y="${SLIDE_H - 68}" font-family="${F_INTER_SB}" font-size="21" fill="#ffffff" opacity="0.55" letter-spacing="0.5">somaisumfadepearljam.com.br</text>
 </svg>`;
 
   const base = await sharp({ create: { width: SLIDE_W, height: SLIDE_H, channels: 3, background: hexToRgb(bg) } }).png().toBuffer();
@@ -838,7 +838,7 @@ export async function buildCtaSlide({ hook = "o maior acervo de Pearl Jam do Bra
   <text text-anchor="middle" font-family="${F_ANTON}" font-size="${hookFit.fs}" fill="#ffffff" letter-spacing="0.3">${hookSpans}</text>
 
   <text x="${cx}" y="${SLIDE_H - 150}" text-anchor="middle" font-family="${F_INTER_XB}" font-weight="800" font-size="30" fill="${bg}" letter-spacing="1">link no nosso perfil  &#8599;</text>
-  <text x="${cx}" y="${SLIDE_H - 96}" text-anchor="middle" font-family="${F_INTER_SB}" font-size="24" fill="#ffffff" opacity="0.7" letter-spacing="0.5">setlists-pj-ev.pages.dev</text>
+  <text x="${cx}" y="${SLIDE_H - 96}" text-anchor="middle" font-family="${F_INTER_SB}" font-size="24" fill="#ffffff" opacity="0.7" letter-spacing="0.5">somaisumfadepearljam.com.br</text>
 </svg>`;
 
   const base = await sharp({ create: { width: SLIDE_W, height: SLIDE_H, channels: 3, background: hexToRgb(DARK) } }).png().toBuffer();

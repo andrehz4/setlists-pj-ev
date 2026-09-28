@@ -146,7 +146,7 @@ function buildPrBody(commitMsg, items, branch, commits) {
     for (const it of items) {
       const tags = it.tags.length ? `\`${it.tags.join("\` \`")}\`` : "";
       lines.push(`- **${it.titulo}** ${tags}`);
-      lines.push(`  - \`${it.id}\` · https://setlists-pj-ev.pages.dev/n/${it.id}`);
+      lines.push(`  - \`${it.id}\` · https://somaisumfadepearljam.com.br/n/${it.id}`);
     }
     lines.push("");
   }
@@ -175,7 +175,7 @@ function buildTelegramMsg(items, prNum, branch) {
     const tagsStr = it.tags.length ? `  tags: ${it.tags.join(", ")}` : "";
     lines.push(`${i + 1}. <b>${titulo}</b>`);
     lines.push(`   <code>${it.id}</code>${tagsStr}`);
-    lines.push(`   ↳ https://setlists-pj-ev.pages.dev/n/${it.id}`);
+    lines.push(`   ↳ https://somaisumfadepearljam.com.br/n/${it.id}`);
     lines.push("");
   }
 

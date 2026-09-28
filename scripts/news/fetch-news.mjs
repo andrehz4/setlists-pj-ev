@@ -65,7 +65,7 @@ const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
 
-const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
+const UA = "setlists-pj-news-bot/1.0 (+https://somaisumfadepearljam.com.br)";
 
 // body_pt vai pra items/<id>.json; o index.json fica light com so metadata.
 function splitItemBody(it) {

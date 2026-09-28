@@ -1056,7 +1056,7 @@ function renderTopic(data) {
   // Canonical aponta pra página legível pelo Google (/t/<id>, functions/t/[id].js)
   let canon = document.querySelector('link[rel="canonical"]');
   if (!canon) { canon = document.createElement("link"); canon.rel = "canonical"; document.head.appendChild(canon); }
-  canon.href = `https://setlists-pj-ev.pages.dev/t/${encodeURIComponent(t.id)}`;
+  canon.href = `https://somaisumfadepearljam.com.br/t/${encodeURIComponent(t.id)}`;
 
   // Reactions
   document.querySelectorAll(".react-chip").forEach(btn => {

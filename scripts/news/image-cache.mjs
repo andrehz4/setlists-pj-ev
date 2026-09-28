@@ -12,7 +12,7 @@ import sharp from "sharp";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
+const UA = "setlists-pj-news-bot/1.0 (+https://somaisumfadepearljam.com.br)";
 const IMG_DIR = path.resolve("media/news/img");
 const MAX_IMG_BYTES = 10 * 1024 * 1024; // 10MB
 const TIMEOUT_MS = 20000;

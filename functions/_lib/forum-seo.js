@@ -2,7 +2,7 @@
 // Funções puras: recebem o JSON da API do fórum e devolvem HTML/XML prontos.
 // O fórum interativo continua em forum-topic.html; esta página só existe pra ser lida.
 
-export const SITE = "https://setlists-pj-ev.pages.dev";
+export const SITE = "https://somaisumfadepearljam.com.br";
 export const API = "https://perpetual-energy-production-1a69.up.railway.app";
 const NOME = "Só mais um fã de Pearl Jam";
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

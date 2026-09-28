@@ -107,7 +107,7 @@ async function publicar(envio) {
   entrarNoSite(envio, new Date().toISOString());
   await commitAndPush([INDEX, IMG, "media/news/items/", "n/", "sitemap.xml"], `contrib: ${id} publicado (IG ${r.postId})`, { dry: NO_GIT });
   await bot(`/publicado/${envio.id}`, { site_id: id, ig_post_id: r.postId, fb_post_id: r.fbPostId });
-  await telegram(`📣 ${video ? "Reel" : "Post"} de colaborador no ar: "${envio.title}"\npor ${creditoAutor(envio.autor)}${r.recuperado ? " (recuperado)" : ""}\nhttps://setlists-pj-ev.pages.dev/#news/${id}`);
+  await telegram(`📣 ${video ? "Reel" : "Post"} de colaborador no ar: "${envio.title}"\npor ${creditoAutor(envio.autor)}${r.recuperado ? " (recuperado)" : ""}\nhttps://somaisumfadepearljam.com.br/#news/${id}`);
 }
 
 async function main() {

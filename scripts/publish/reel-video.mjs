@@ -39,7 +39,7 @@ const BRAND = {
   sujo: "#f7f1de",
   wordmark: "Só Mais um Fã de PEARL JAM",
   handle: "@smufdpj",
-  site: "setlists-pj-ev.pages.dev",
+  site: "somaisumfadepearljam.com.br",
 };
 
 const TAG_LABELS = {
