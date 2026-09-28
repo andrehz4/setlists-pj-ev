@@ -19,6 +19,8 @@ node mock-ig/run.mjs reel   # roda o run-publish-reel REAL contra o mock (precis
 npm run publish:dry      # dry-run do publish (não chama IG, não commita)
 npm run publish:reel:dry # dry-run do reel semanal (gera o MP4, não chama IG)
 node scripts/news/build-news-stubs.mjs  # regenera stubs n/<id>.html + sitemap
+COVER_STYLE=zine node mock-ig/run.mjs feed  # força um estilo de capa (card11/poster/zine/ingresso)
+npm run fontes:mac       # instala as fontes do projeto no Mac (sem isso slides saem com fonte genérica)
 ```
 
 Validar mudança no pipeline = `npm test` + `node mock-ig/run.mjs feed` com itens maduros (editar `publishAt` na fila local e `git restore media/news/` depois).
@@ -76,6 +78,11 @@ todas no mesmo molde (`scripts/seo/layout.mjs`: menu de seções, breadcrumb, JS
 `run-publish-reel.mjs` -> `reel-select.mjs` (top 5-8 da semana + formato por cena: cinético/card/papel) -> `reel-clips.mjs` (casa trecho de clipe do acervo com a cena, por tag, rotação determinística por semana ISO) -> `reel-video.mjs` (renderer SVG frame a frame + ffmpeg, cold open 3s + 8 blocos de 4.5s + outro 2.5s = 41.5s, 1080x1920). Publica via `publishReel` (caption com índice + `share_to_feed` + `thumb_offset`). Larguras de texto medidas REAL via `sharp.trim` (estimar por char sobrepõe as palavras do Anton). Sem acervo de clipe, degrada pra foto com Ken Burns ou fundo fantasma "CLIPE". Spec versionado em `design-handoff/retorno/movie/project/entrega/MOTION-SPEC.md` (gitignored, é referência).
 
 ## Gotchas conhecidos (não redescobrir)
+
+- **Capas do carrossel** (desde 2026-09-28): rodízio diário (BRT) de 4 estilos, `card11` (original), `poster`, `zine`,
+  `ingresso` (`scripts/publish/cover-styles.mjs` + `cover-styles-svg.mjs`, desenho do Claude Design em
+  `design-handoff/retorno/capas/`). A capa entra NO LUGAR do slide da notícia líder (sem repetir). Notícia única = sem capa.
+- **Fontes no Mac**: o sharp do macOS usa CoreText e ignora o `fonts.conf`; precisa de `npm run fontes:mac`.
 
 - **Domínio** (desde 2026-09-28): `somaisumfadepearljam.com.br` (Registro.br, 5 anos até 2031, DNS no Cloudflare). O
   `setlists-pj-ev.pages.dev` redireciona 301 via Bulk Redirects da conta. O backend (Railway `SITE_ORIGINS`) aceita os
