@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-28T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "9270957b4a", "titulo": "Vedder sobe ao palco do Ohana e canta Hunger Strike com Stephen Wilson Jr.", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "50f77e405f", "title": "Eddie Vedder on the Death of Kurt Cobain", "reason": "post especulativo sem artigo, apenas pergunta sem conteudo informativo" },
+    { "id": "cs-5943265067", "title": "Pure joy with our new drummer", "reason": "spotlight sem selftext, score 0, conteudo ambiguo - impossivel identificar a obra do fa" },
+    { "id": "f4e6daa6cb", "title": "DS-1 or Proco Rat 2", "reason": "PJ tangencial - discussao sobre pedais de guitarra, Pearl Jam citado de passagem" }
+  ]
+}
