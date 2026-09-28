@@ -479,7 +479,7 @@ function buildCardSvg({ tarjaColor, item, idx, total, tRel, isLast }) {
 
     <text x="${SIDE_S}" y="${siteBaseline}"
       font-family="${F_INTER_SB}" font-size="${siteFS}" fill="#ffffff"
-      opacity="${(footerOpacity * 0.85).toFixed(2)}" letter-spacing="0.5">setlists-pj-ev.pages.dev</text>
+      opacity="${(footerOpacity * 0.85).toFixed(2)}" letter-spacing="0.5">somaisumfadepearljam.com.br</text>
   </svg>`;
 }
 

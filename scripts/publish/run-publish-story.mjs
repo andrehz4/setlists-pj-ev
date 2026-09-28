@@ -216,7 +216,7 @@ async function main() {
     curated: items.map((it) => ({
       title_pt: it.title_pt || it.title,
       sourceLabel: it.kind || "regular",
-      url: `https://setlists-pj-ev.pages.dev/n/${it.id}`,
+      url: `https://somaisumfadepearljam.com.br/n/${it.id}`,
     })),
   });
 
@@ -241,7 +241,7 @@ async function notifyTelegramStory({ items, postId, track, dateKey }) {
     const titulo = (it.title_pt || it.title || "(sem titulo)")
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     lines.push(`${i + 1}. <b>${titulo}</b>`);
-    lines.push(`   ↳ https://setlists-pj-ev.pages.dev/n/${it.id}`);
+    lines.push(`   ↳ https://somaisumfadepearljam.com.br/n/${it.id}`);
   }
 
   const text = lines.join("\n");

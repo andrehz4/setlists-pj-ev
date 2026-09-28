@@ -17,7 +17,7 @@
 
 const REDDIT_BASE = "https://www.reddit.com";
 const ALLOWED_PATH_RX = /^\/r\/[a-zA-Z0-9_]{2,30}\/(top|hot|new|about|rising|controversial)\.(json|rss)$/;
-const UA = "setlists-pj-news-bot/1.0 (by /u/andre, contact: setlists-pj-ev.pages.dev)";
+const UA = "setlists-pj-news-bot/1.0 (by /u/andre, contact: somaisumfadepearljam.com.br)";
 
 export default {
   async fetch(request) {

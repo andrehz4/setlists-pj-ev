@@ -13,7 +13,7 @@ import sharp from "sharp";
 import { fetchHtml } from "../news/extract.mjs";
 import { detectFaces } from "./face-crop.mjs";
 
-const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
+const UA = "setlists-pj-news-bot/1.0 (+https://somaisumfadepearljam.com.br)";
 const MAX_CANDIDATES = 5;     // limita scrape+deteccao por materia
 const MIN_WIDTH = 900;        // candidato pequeno demais nao serve
 

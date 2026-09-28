@@ -513,7 +513,7 @@ async function notifyTelegram(results) {
           .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         const tagsStr = it.tags.length ? `  <i>tags: ${it.tags.join(", ")}</i>` : "";
         lines.push(`${i + 1}. <b>${titulo}</b>${tagsStr}`);
-        lines.push(`   ↳ https://setlists-pj-ev.pages.dev/n/${it.id}`);
+        lines.push(`   ↳ https://somaisumfadepearljam.com.br/n/${it.id}`);
       }
       lines.push("");
     }

@@ -30,7 +30,7 @@ test("esc e idValido", () => {
 test("página do tópico: título, canonical, respostas escapadas e JSON-LD válido", () => {
   const html = paginaTopico({ topic: TOPICO, posts: POSTS, total_posts: 1 });
   assert.match(html, /<title>Qual música do PJ já te fez chorar\? &lt;b&gt; \| Fórum/);
-  assert.match(html, new RegExp(`<link rel="canonical" href="https://setlists-pj-ev.pages.dev/t/${ID}">`));
+  assert.match(html, new RegExp(`<link rel="canonical" href="https://somaisumfadepearljam.com.br/t/${ID}">`));
   assert.ok(html.includes("Fã &amp; Cia"));
   assert.ok(html.includes(`forum-topic.html?id=${ID}`));
   assert.ok(!html.includes("<script>alert"), "resposta não pode injetar script");
@@ -43,14 +43,14 @@ test("página do tópico: título, canonical, respostas escapadas e JSON-LD vál
 
 test("sitemap lista /t/<id> com lastmod", () => {
   const xml = sitemapXml([TOPICO]);
-  assert.ok(xml.includes(`<loc>https://setlists-pj-ev.pages.dev/t/${ID}</loc>`));
+  assert.ok(xml.includes(`<loc>https://somaisumfadepearljam.com.br/t/${ID}</loc>`));
   assert.ok(xml.includes("<lastmod>2026-05-27</lastmod>"));
 });
 
 test("cabeçalhos repassam o IP do visitante", () => {
   const h = cabecalhosApi(new Request("https://x", { headers: { "cf-connecting-ip": "200.1.2.3" } }));
   assert.equal(h["X-Forwarded-For"], "200.1.2.3");
-  assert.equal(h.Origin, "https://setlists-pj-ev.pages.dev");
+  assert.equal(h.Origin, "https://somaisumfadepearljam.com.br");
 });
 
 // Ambiente simulado do Cloudflare Pages

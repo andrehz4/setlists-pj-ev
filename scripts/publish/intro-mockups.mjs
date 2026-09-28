@@ -296,7 +296,7 @@ function buildVintageTicket() {
     <line x1="180" y1="1620" x2="${W - 180}" y2="1620" stroke="#0a0908" stroke-width="3"/>
 
     <!-- footer -->
-    <text x="${W / 2}" y="${H - 100}" font-family="'Newsreader','Georgia',serif" font-style="italic" font-size="28" fill="#0a0908" text-anchor="middle">setlists-pj-ev.pages.dev</text>
+    <text x="${W / 2}" y="${H - 100}" font-family="'Newsreader','Georgia',serif" font-style="italic" font-size="28" fill="#0a0908" text-anchor="middle">somaisumfadepearljam.com.br</text>
   </svg>`;
 }
 
@@ -373,7 +373,7 @@ function buildNewspaperFrontpage() {
     <rect x="40" y="${H - 97}" width="${W - 80}" height="3" fill="#0a0908"/>
 
     <!-- footer -->
-    <text x="${W / 2}" y="${H - 50}" font-family="'Newsreader','Georgia',serif" font-style="italic" font-size="26" fill="#0a0908" text-anchor="middle">edição completa: setlists-pj-ev.pages.dev  ·  @smufdpj</text>
+    <text x="${W / 2}" y="${H - 50}" font-family="'Newsreader','Georgia',serif" font-style="italic" font-size="26" fill="#0a0908" text-anchor="middle">edição completa: somaisumfadepearljam.com.br  ·  @smufdpj</text>
   </svg>`;
 }
 

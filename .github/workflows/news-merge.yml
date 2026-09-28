@@ -150,7 +150,7 @@ jobs:
                 "<b>" + (.value.titulo_pt | gsub("<"; "&lt;") | gsub(">"; "&gt;") | gsub("&"; "&amp;")) + "</b>\n" +
                 "   <code>" + .value.id + "</code>" +
                 (if (.value.tags // []) | length > 0 then "  tags: " + (.value.tags | join(", ")) else "" end) + "\n" +
-                "   ↳ https://setlists-pj-ev.pages.dev/n/" + .value.id
+                "   ↳ https://somaisumfadepearljam.com.br/n/" + .value.id
               ] | join("\n\n")
             ) +
             "\n\nPra cancelar alguma, edita _publish-queue.json no repo e seta postedAt=\"skipped\" no id."

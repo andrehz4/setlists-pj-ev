@@ -16,7 +16,7 @@ import { extractCandidates } from "../publish/find-better-image.mjs";
 import { getImageOverrideUrl } from "../publish/image-overrides.mjs";
 
 const DRY = process.argv.includes("--dry");
-const UA = "setlists-pj-news-bot/1.0 (+https://setlists-pj-ev.pages.dev)";
+const UA = "setlists-pj-news-bot/1.0 (+https://somaisumfadepearljam.com.br)";
 const IMG_DIR = path.resolve("media/news/img");
 const INDEX = path.resolve("media/news/index.json");
 // O slide e 1080x1350 (retrato): o gargalo e a MENOR dimensao da fonte.

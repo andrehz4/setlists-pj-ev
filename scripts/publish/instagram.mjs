@@ -83,7 +83,7 @@ function classifyIGError({ path, statusCode, body }) {
 
 const HASHTAGS_FIXED = ["pearljam", "eddievedder", "pjbrasil", "grunge", "smufdpj"];
 const IG_CAPTION_MAX = 2200;
-const SITE_URL = "setlists-pj-ev.pages.dev";
+const SITE_URL = "somaisumfadepearljam.com.br";
 // Assinatura de redes no rodape da legenda: viaja junto quando o post e
 // repostado em grupos de fa. @smufdpj resolve no Instagram; no Facebook a
 // Pagina "So mais um Fa de PJ" e achada pela busca (nao tem vanity URL).
