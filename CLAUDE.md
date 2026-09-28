@@ -6,7 +6,7 @@ Mapa do projeto pra agentes (Claude Code, routines). Fontes da verdade: este arq
 
 ## O que é
 
-Site fan-to-fan de Pearl Jam + Eddie Vedder (https://setlists-pj-ev.pages.dev, Cloudflare Pages, deploy automático no push da main) + pipeline autônomo de notícias que coleta (RSS/scrape), cura (routine Claude remota) e publica no Instagram @smufdpj. Fórum com backend FastAPI no Railway (`backend/`). Tudo PT-BR, sem travessão em texto.
+Site fan-to-fan de Pearl Jam + Eddie Vedder (https://somaisumfadepearljam.com.br, Cloudflare Pages, deploy automático no push da main) + pipeline autônomo de notícias que coleta (RSS/scrape), cura (routine Claude remota) e publica no Instagram @smufdpj. Fórum com backend FastAPI no Railway (`backend/`). Tudo PT-BR, sem travessão em texto.
 
 ## Comandos essenciais
 
@@ -76,6 +76,11 @@ todas no mesmo molde (`scripts/seo/layout.mjs`: menu de seções, breadcrumb, JS
 `run-publish-reel.mjs` -> `reel-select.mjs` (top 5-8 da semana + formato por cena: cinético/card/papel) -> `reel-clips.mjs` (casa trecho de clipe do acervo com a cena, por tag, rotação determinística por semana ISO) -> `reel-video.mjs` (renderer SVG frame a frame + ffmpeg, cold open 3s + 8 blocos de 4.5s + outro 2.5s = 41.5s, 1080x1920). Publica via `publishReel` (caption com índice + `share_to_feed` + `thumb_offset`). Larguras de texto medidas REAL via `sharp.trim` (estimar por char sobrepõe as palavras do Anton). Sem acervo de clipe, degrada pra foto com Ken Burns ou fundo fantasma "CLIPE". Spec versionado em `design-handoff/retorno/movie/project/entrega/MOTION-SPEC.md` (gitignored, é referência).
 
 ## Gotchas conhecidos (não redescobrir)
+
+- **Domínio** (desde 2026-09-28): `somaisumfadepearljam.com.br` (Registro.br, 5 anos até 2031, DNS no Cloudflare). O
+  `setlists-pj-ev.pages.dev` redireciona 301 via Bulk Redirects da conta. O backend (Railway `SITE_ORIGINS`) aceita os
+  dois; os robôs (contrib-curadoria, keep-db-awake, scripts/contrib, forum-seed) ainda mandam `Origin` antigo, de propósito.
+  `contato@somaisumfadepearljam.com.br` cai no Gmail do Andre (Cloudflare Email Routing).
 
 - **Falso-erro 2207051**: `media_publish` devolve `code 4 subcode 2207051` MAS publica. Tratado em 2 camadas: `recoverPublishedPost` (poll 5x10s) + guarda cross-run (`_lastAttemptCaption`). NÃO tratar como rate limit puro. Origem: conta MEDIA_CREATOR flagada, conversão pra BUSINESS pendente.
 - **Conflito de rebase no commit de estado**: `commitAndPush` reconcilia via `mergeQueueStates` (postado > backoff > pendente). Não trocar por push forçado.

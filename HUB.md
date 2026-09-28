@@ -8,6 +8,6 @@ entrada correspondente em `hub-hz/api/_lib/catalog.js` (campos status/url/
 localUrl/comoRodar) e dar push do hub-hz (deploy automático na Vercel).
 
 Dados deste app:
-- Produção: https://setlists-pj-ev.pages.dev (Cloudflare Pages, push na main)
+- Produção: https://somaisumfadepearljam.com.br (Cloudflare Pages, push na main). O antigo setlists-pj-ev.pages.dev redireciona (301).
 - Backend fórum: Railway (perpetual-energy-production-1a69.up.railway.app)
 - Rodar local: `npm run dev` (devserver estático)
