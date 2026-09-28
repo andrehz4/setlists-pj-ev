@@ -171,7 +171,7 @@ export async function nextRunDetail() {
 
   // 2. seleciona por tipo com diversidade (topicCap=1), igual o pipeline
   const nowIso = new Date().toISOString();
-  const matureLimit = 9; // card02: 9 itens + capa = 10
+  const matureLimit = 10; // card02: capa substitui o slide do lider, 10 itens = 10 slides
   const sigCache = new Map();
   const signatureFor = (q) => {
     if (sigCache.has(q.id)) return sigCache.get(q.id);
