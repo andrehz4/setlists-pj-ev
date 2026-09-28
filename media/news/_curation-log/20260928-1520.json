@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-09-28T14:01Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 10,
+  "distribution": { "midia": 9, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "3ace35f87f", "titulo": "Quem é Abe Laboriel Jr., o novo baterista que estreou com Pearl Jam no Ohana", "kind": "midia" },
+    { "id": "cabca20f9e", "titulo": "Pearl Jam surpreende no Ohana com show inédito pós-Matt Cameron e novo baterista", "kind": "midia" },
+    { "id": "4674bb6d74", "titulo": "Billy Strings invade o Ohana e Eddie dedica Better Man a Abe Laboriel Jr.", "kind": "midia" },
+    { "id": "0b2bb2930a", "titulo": "Stephen Wilson Jr. e Eddie Vedder cantam Hunger Strike no Ohana Festival", "kind": "midia" },
+    { "id": "857ab4477e", "titulo": "Jeff Ament abre o arquivo fotográfico e conta como o Pearl Jam escolheu Abe", "kind": "midia" },
+    { "id": "b99fea43fd", "titulo": "Setlist completo do Ohana: Pearl Jam homenageia Glen Hansard e fecha o festival", "kind": "midia" },
+    { "id": "cd-20260928", "titulo": "Na comunidade global, a explosão de alegria com o retorno do Pearl Jam no Ohana", "kind": "community-digest" },
+    { "id": "0806774f69", "titulo": "Pearl Jam oficializa Abe Laboriel Jr. com dedicatória de Better Man", "kind": "midia" },
+    { "id": "7cfbca355f", "titulo": "Abe Laboriel Jr.: o Pearl Jam confirma o baterista da nova era", "kind": "midia" },
+    { "id": "729666220e", "titulo": "Vedder discursa sobre liberdade de expressão e PJ encerra o Ohana com emoção", "kind": "midia" }
+  ],
+  "skipped": []
+}
