@@ -233,9 +233,9 @@ async function commitAndPush(paths, message, { retries = 3, onRebaseConflict = n
 }
 
 async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleColor, denylist, reconcile = null) {
-  // No layout card02 o carrossel ganha 1 slide de capa (Card 11). A capa
-  // conta no limite de 10 do IG, entao cap de 9 items + capa = 10.
-  const matureLimit = LAYOUT === "card02" ? 9 : 10;
+  // No layout card02 o carrossel abre com a capa (Card 11) do item lider, que
+  // substitui o slide dele. Limite do IG = 10 slides = 10 items.
+  const matureLimit = 10;
   // Assinatura de topico de cada item, pra diversidade por assunto no carrossel.
   // Le do index (ja em memoria); item sem texto/index nao entra em cluster.
   const sigCache = new Map();

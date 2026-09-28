@@ -323,10 +323,11 @@ const server = http.createServer(async (req, res) => {
             try { batch.posts.push(await previewSlide(id)); }
             catch (e) { batch.posts.push({ id, error: e.message }); }
           }
-          // o carrossel = capa (Card 11, se >=2 itens) + 1 slide por item.
+          // o carrossel = capa (Card 11, se >=2 itens) no lugar do slide do
+          // lider + 1 slide por item restante. Total = 1 slide por item.
           const slides = batch.posts.filter((p) => !p.error);
           const hasCover = slides.length >= 2;
-          const total = slides.length + (hasCover ? 1 : 0);
+          const total = slides.length;
           batch.carousel = {
             slideCount: total,
             hasCover,

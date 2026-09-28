@@ -66,15 +66,13 @@ test("publishFeedAlbum: sobe fotos e cria post do feed (2 items, sem capa)", asy
   assert.ok(feed[0].message.includes("DESTAQUES"), "usa a legenda de carrossel do IG");
 });
 
-test("publishFeedAlbum: capa entra como primeira foto do album", async () => {
+test("publishFeedAlbum: capa entra no lugar do item lider (sem repetir)", async () => {
   await resetStore();
   const cover = "https://raw.githubusercontent.example/cover.jpg";
   await publishFeedAlbum(items, { coverImageUrl: cover });
 
   const feed = await getFbFeed();
-  assert.equal(feed[0].photos.length, 3, "capa + 2 slides");
-  assert.equal(feed[0].photos[0], cover, "capa e a primeira foto do album");
-  assert.deepEqual(feed[0].photos.slice(1), [slideUrlFor("aa1"), slideUrlFor("bb2")], "slides seguem a capa");
+  assert.deepEqual(feed[0].photos, [cover, slideUrlFor("bb2")], "capa do lider + slide do 2o item");
 });
 
 test("publishFeedAlbum: 1 item usa a legenda single (com CTA)", async () => {

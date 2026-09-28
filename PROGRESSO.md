@@ -1,5 +1,17 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-28 (tarde): conferências do domínio + carrossel sem slide repetido
+
+- Conferido no navegador: contato@ com Email Routing "Enabled" e DNS "Locked"; home já indexada no Google;
+  indexação solicitada pra /musica/, /noticias/, /show/, /disco/, /banda/; login Google no fórum ok no domínio novo.
+- **Carrossel (pedido A)**: a capa (Card 11) agora SUBSTITUI o slide da notícia líder. Antes: capa A + A + B.
+  Agora: capa A + B (+ C...) no layout normal. Notícia única continua imagem única sem capa. Vale pro IG e o álbum
+  do FB. Limite passou pra 10 notícias por carrossel. Validado no mock (IG e FB) e 178 testes ok.
+- Detalhe achado: `somaisumfadepearljam.com.br/#forum` abre em Notícias, não no Fórum (baixa prioridade).
+
+**Próximo passo**: pedido B (mais layouts de capa alternando por dia, via Claude Design com print da capa atual).
+Andre: trocar link da bio do IG/FB pro domínio novo.
+
 ## 2026-09-28: domínio próprio somaisumfadepearljam.com.br no ar
 
 - Registrado no Registro.br (5 anos, até 2031), DNS no Cloudflare (eleanor/marty), site ligado com e sem www, HTTPS ok.

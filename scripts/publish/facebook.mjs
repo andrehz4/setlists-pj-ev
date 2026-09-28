@@ -135,11 +135,11 @@ export async function publishFeedAlbum(items, { pageId, pageToken, coverImageUrl
     throw new Error("publishFeedAlbum: FB_PAGE_ID e FB_PAGE_TOKEN obrigatorios");
   }
 
-  // Ordem das fotos no album: capa (se houver) primeiro, depois um slide por item,
-  // igual ao carrossel do IG.
+  // Ordem das fotos no album, igual ao carrossel do IG: capa (se houver) no
+  // lugar do item lider, depois um slide por item restante.
   const imageUrls = [];
   if (coverImageUrl) imageUrls.push(coverImageUrl);
-  for (const it of items) imageUrls.push(slideUrlFor(it.id, slideSuffix));
+  for (const it of coverImageUrl ? items.slice(1) : items) imageUrls.push(slideUrlFor(it.id, slideSuffix));
 
   // 1. sobe cada foto como nao publicada
   const mediaFbids = [];
