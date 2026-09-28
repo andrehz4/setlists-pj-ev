@@ -13,6 +13,8 @@
   7 testes novos (185 no total), conferido nas 4 cores e no mock com `COVER_STYLE=zine`.
 - **Prévia de link (og.jpg)** refeita com o bilhete do topo do site (a de maio tinha fonte genérica e endereço antigo).
 - **Link #forum** (e #banda, #timeline etc.) abre direto na aba; antes caía em Notícias. `#news/<id>` intacto.
+- **Topo da home mais limpo** (Andre aprovou): saíram a faixa "ADMIT ONE / PERSONAL ARCHIVE" e o parágrafo de apresentação;
+  no canto do bilhete ficam Instagram, Facebook e dia/noite (coluna no celular, título com a direita livre).
 - **Fonte no Mac** consertada (`npm run fontes:mac`; CoreText ignora o fonts.conf).
 
 **Próximo passo**: acompanhar no feed real os 4 dias do rodízio (29/09 pôster, 30/09 zine, 01/10 ingresso).
