@@ -36,6 +36,12 @@ export const FONTS_DIR = path.resolve("media/fonts");
   } catch (e) {
     console.warn(`[fonts] bootstrap fontconfig falhou (segue com fonte de sistema): ${e.message}`);
   }
+  // macOS: o libvips pre-compilado do sharp resolve fonte via CoreText (ignora
+  // o fonts.conf acima). As fontes precisam estar em ~/Library/Fonts, senao o
+  // texto sai em fonte generica. Instalar: npm run fontes:mac
+  if (process.platform === "darwin" && !fssync.existsSync(path.join(os.homedir(), "Library/Fonts/Anton-Regular.ttf"))) {
+    console.warn("[fonts] macOS sem as fontes do projeto em ~/Library/Fonts: slides vao sair com fonte generica. Rode: npm run fontes:mac");
+  }
 })();
 
 // Familias exatas (name table dos .ttf do fontsource: peso embutido na
