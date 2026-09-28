@@ -6954,6 +6954,21 @@ html[data-theme="dark"] .masthead-top { color: var(--ink-mute); border-bottom-co
   background: var(--ink-noir) !important;
   color: var(--ticket-cream) !important;
 }
+/* Canto do bilhete: Instagram, Facebook e tema, soltos (a faixa de cima saiu em 2026-09-28).
+   Os links copiam o visual do botao de tema. No celular viram coluna pra nao apertar o titulo. */
+.masthead-acoes { position: absolute; top: 22px; right: 24px; z-index: 3; display: flex; gap: 8px; }
+.masthead-rede {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; box-sizing: border-box;
+  border: 2px solid currentColor; color: inherit; background: transparent;
+}
+.masthead-rede svg { width: 17px; height: 17px; }
+.masthead-rede:hover { background: var(--ink-noir); color: var(--ticket-cream); }
+@media (max-width: 768px) {
+  header.masthead > .masthead-acoes { top: 20px; right: 14px; flex-direction: column; }
+  .masthead-rede { width: 44px; height: 44px; }     /* area de toque >= 44 */
+  header.masthead > h1 { padding-right: 66px !important; } /* titulo nao passa por baixo dos botoes */
+}
 
 .masthead h1 {
   font-family: var(--font-display) !important;
@@ -11203,18 +11218,15 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 
 <!-- MASTHEAD -->
 <header class="masthead" role="banner">
-  <div class="masthead-top">
-    <div class="masthead-meta">Personal archive · Brazil + Chicago 2005-2024</div>
+  <div class="masthead-acoes">
+    <a class="masthead-rede" href="https://instagram.com/smufdpj" target="_blank" rel="noopener noreferrer" aria-label="Instagram @smufdpj" title="Instagram @smufdpj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+    <a class="masthead-rede" href="https://www.facebook.com/smufdpj" target="_blank" rel="noopener noreferrer" aria-label="Facebook smufdpj" title="Facebook smufdpj"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8.5h2.86l.43-3.33H13.5V8.04c0-.96.27-1.62 1.65-1.62H17V3.44A23.8 23.8 0 0 0 14.43 3.3c-2.54 0-4.28 1.55-4.28 4.4v2.47H7.3v3.33h2.85V22h3.35z"/></svg></a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema escuro" aria-pressed="false">☀</button>
   </div>
   <h1 id="masthead-home" class="is-home-link" role="link" tabindex="0" aria-label="Voltar para a home, abre Notícias">
     Só mais um fã de <span class="accent-pj">Pearl Jam</span>
     <br><span class="tag-sub">o que ouvi ao vivo</span>
   </h1>
-  <p class="masthead-sub">
-    Todos os shows que assisti, cruzados com as músicas tocadas em cada noite.
-    Ranking, gaps e trilha histórica. O que já pintou no palco e o que ainda falta.
-  </p>
   <!-- Pré-preenchida com o que renderStats() gera: evita o pulo de layout; o JS reescreve com o valor atual -->
   <div class="stats-strip" id="stats-strip" role="group" aria-label="Resumo do arquivo"><div class="stat"><div class="stat-value">25</div><div class="stat-label">Shows</div></div><div class="stat"><div class="stat-value">208</div><div class="stat-label">Músicas únicas</div></div><div class="stat"><div class="stat-value">757</div><div class="stat-label">Total cantado</div></div><div class="stat"><div class="stat-value">7</div><div class="stat-label">Anos</div></div><div class="stat"><div class="stat-value">9</div><div class="stat-label">Cidades</div></div></div>
 </header>
