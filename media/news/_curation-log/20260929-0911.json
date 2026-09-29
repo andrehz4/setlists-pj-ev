@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-29T08:00Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "8d9ae113b0", "titulo": "Jeff Ament: Abe Laboriel Jr. era a primeira escolha do Pearl Jam antes de Ohana", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "b6cf44fcea", "title": "Billy and Pearl Jam", "reason": "texto extraído insuficiente (menos de 200 chars úteis, post do Reddit sem contexto de fonte jornalística)" },
+    { "id": "804ca443a0", "title": "Layne and Kurt", "reason": "PJ tangencial (matéria sobre Kurt Cobain e Layne Staley, PJ citado de passagem no contexto de bandas de grunge dos anos 90)" },
+    { "id": "e6c3c643e2", "title": "I Just Discovered Foo Files", "reason": "PJ tangencial (matéria sobre Foo Fighters, PJ mencionado em comparação passageira com Lost Dogs)" }
+  ]
+}
