@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-09-29T03:10Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "6572f44ea7", "titulo": "Abe Laboriel Jr. estreia como baterista do Pearl Jam no Ohana Festival", "kind": "midia" },
+    { "id": "92d5f2e8d8", "titulo": "Eddie Vedder salva show de banda irlandesa roubada e cede a própria guitarra", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "695c17224a", "title": "Pearl Jam Fell in Love With the Drummer: Abe Laboriel Jr. announced...", "reason": "texto vazio (apenas metadado Reddit sem artigo: 'submitted by /u/... [link] [comments]')" }
+  ]
+}
