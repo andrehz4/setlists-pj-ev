@@ -1,0 +1,16 @@
+{
+  "runAt": "2026-09-29T14:05Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 6,
+  "distribution": { "midia": 6, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "4cd0ddee9c", "titulo": "Jeff Ament fala em turne para 2027 e novo album do Pearl Jam", "kind": "midia" },
+    { "id": "a38a152b6f", "titulo": "Eddie Vedder convocado pelos Pixies para cantar Wave of Mutilation no Ohana", "kind": "midia" },
+    { "id": "b3e9b6f347", "titulo": "Eddie agradece Paul McCartney e o misterio sobre o baterista do PJ continua", "kind": "midia" },
+    { "id": "fd7f5932e7", "titulo": "NME conta como Eddie Vedder e os Pixies se tornaram fas mutuos", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "bcb4f83604", "title": "Which song fits Vodka best?", "reason": "nao e sobre PJ: pergunta generica de r/churchofvodka onde PJ aparece como uma opcao entre varias bandas" },
+    { "id": "c4e261867e", "title": "The second Eddie heard our guitars were stolen...", "reason": "texto vazio: so metadado Reddit (submitted by / link / comments), zero conteudo editorial" }
+  ]
+}
