@@ -20,6 +20,9 @@
 narração são irrelevantes (~22 MB o ano inteiro, uma vez só). Plano: mover vídeos antigos pro Cloudflare R2 (o projeto
 já usa) e manter no repo só as semanas recentes; avaliar limpar o histórico dos MP4 (reescrita de histórico: só com OK
 explícito do Andre, é destrutivo). Atenção: o IG e o FB baixam o vídeo pela URL raw do GitHub no momento de publicar.
+Andre confirmou: os vídeos NÃO precisam ser guardados (só servem de link pro IG/FB baixar na hora). Solução de raiz:
+subir pro R2 só pra publicar e apagar depois, sem commitar (precisa de token R2 com escrita, o Andre gera). Investigar
+também por que a poda dos reels (`prune-media.mjs`, 30 dias) não roda: há 16 reels na pasta, deveriam ser ~4.
 
 **Próximo passo**: conferir o story narrado de 01/10 (Chris) e o reel de 04/10 (Jessica). Depois: transições com
 trechos de clipe (Andre passa a lista de clipes e aceita o risco de imagem; acervo `media/reels-clips/` está vazio),
