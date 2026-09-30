@@ -15,7 +15,16 @@
 - Texto da manchete não some mais no meio da fala (saída acompanha a duração da cena).
 - Curadoria: trava de acento, guia voz-humana, regra de cobertura (ver sessão da madrugada abaixo). Routine no Opus 5.5.
 
-**Próximo item (anotado a pedido do Andre)**: tamanho do repositório. `.git` já está em ~1 GB (GitHub recomenda
+**FEITO (30/09 ~14h30 BRT): vídeos pro R2 + limpeza do histórico.** Reel e story sobem pro bucket R2 `smufdpj-midia`
+(link `midia.somaisumfadepearljam.com.br`, regra do bucket apaga em 3 dias, chave "smufdpj-midia-publicacao" restrita
+ao bucket; secrets `R2_*`), MP4 no `.gitignore` (fallback sem R2 força o add). Histórico reescrito com git-filter-repo
+tirando só `instagram-reels/*.mp4` e `instagram-stories/*.mp4`: 1.021 MB -> 734 MB, árvore atual idêntica (40e4c46),
+4585 -> 4440 commits. Backup completo: `/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`.
+Force push feito pelo Andre (o auto mode bloqueia pra mim). Outras cópias do repo (ex: Windows) precisam ser clonadas de novo.
+Oportunidade anotada: `media/pj-*` (~430 MB no histórico) parecem áudios de shows duplicados do R2; investigar antes.
+Revisar no Cloudflare: 2 tokens R2 "setlists-pj-ev build token" com Admin em todos os buckets (duplicados).
+
+(histórico do item) **Próximo item (anotado a pedido do Andre)**: tamanho do repositório. `.git` já está em ~1 GB (GitHub recomenda
 <1 GB, reclama acima de 5 GB). O peso é dos MP4: reels ~166 MB e crescendo ~10 MB/semana; stories também. Áudios da
 narração são irrelevantes (~22 MB o ano inteiro, uma vez só). Plano: mover vídeos antigos pro Cloudflare R2 (o projeto
 já usa) e manter no repo só as semanas recentes; avaliar limpar o histórico dos MP4 (reescrita de histórico: só com OK
