@@ -1,7 +1,7 @@
 // Kit diário do X (MODO MANUAL, sem API paga). Roda às 11h pelo agendador do Mac
 // (scripts/publish/x/mac/) e monta em .x-kit/<AAAA-MM-DD>/ os posts do dia, com
 // texto, imagens e horário: notícias das últimas 24h (máx. 4) às 12/14/16/18h e a
-// cápsula do dia às 20h05 (com link: no manual não há custo por URL). Depois o Claude (/x-hoje) agenda cada um no X e o
+// cápsula do dia às 20h05. Só a 1a notícia leva link (X entrega menos post com link; teste). Depois o Claude (/x-hoje) agenda cada um no X e o
 // Andre só clica em Schedule. Dia sem sessão = descartado (não acumula).
 //   node scripts/publish/x/kit-do-dia.mjs
 
@@ -67,12 +67,12 @@ function main() {
   const posts = noticias.map((it, i) => {
     const img = path.join(pasta, `${i + 1}-noticia.jpg`);
     fs.copyFileSync(card(it.id), img);
-    return { ordem: i + 1, tipo: "noticia", id: it.id, horario: HORARIOS[i], texto: textoNoticia(it, { link: linkMateria(it.id) }), imagens: [img] };
+    return { ordem: i + 1, tipo: "noticia", id: it.id, horario: HORARIOS[i], comLink: i === 0, texto: textoNoticia(it, i === 0 ? { link: linkMateria(it.id) } : {}), imagens: [img] };
   });
   const c = capsulaDeHoje(dia);
   if (c?.cap && c.slides.length) {
     const imgs = c.slides.map((s, i) => { const d = path.join(pasta, `capsula-${i + 1}.jpg`); fs.copyFileSync(s, d); return d; });
-    posts.push({ ordem: posts.length + 1, tipo: "capsula", id: c.id, horario: HORA_CAPSULA, texto: textoCapsula(c.cap, { link: linkMateria(c.id) }), imagens: imgs });
+    posts.push({ ordem: posts.length + 1, tipo: "capsula", id: c.id, horario: HORA_CAPSULA, comLink: false, texto: textoCapsula(c.cap), imagens: imgs });
   }
   c?.limpar();
   fs.writeFileSync(path.join(pasta, "kit.json"), JSON.stringify({ dia, criadoEm: new Date().toISOString(), posts }, null, 2));

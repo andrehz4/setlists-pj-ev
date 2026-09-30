@@ -11,7 +11,9 @@ O Andre só clica em **Schedule** em cada post. Publicar é sempre decisão dele
    - Ler a matéria (`media/news/items/<id>.json`, ou o rascunho da cápsula) e o guia `scripts/news/prompts/voz-humana-ptbr.md`.
    - Reescrever CONDENSADO pro X: 1 linha de gancho (não repetir o título do site ao pé da letra) + 1 ou 2 frases curtas
      com o fato principal. Fiel à matéria: não inventar nada, não afirmar o que a matéria trata como boato.
-   - Fechar com `Matéria completa: <link do kit>` (cápsula: `Cápsula completa: <link>`) e `#PearlJam #EddieVedder`.
+   - Link SÓ no post com `comLink: true` (a 1a notícia do dia): `Matéria completa: <link>`. Os outros fecham com
+     `Matéria completa no site (link na bio).` (cápsula: `A cápsula completa está no site (link na bio).`). Sempre
+     `#PearlJam #EddieVedder` no fim. Motivo: o X entrega menos post com link; é teste, rever com as estatísticas.
    - Sem travessão, sem "…", sem emoji em excesso (no máximo 1). Link conta 23 caracteres; limite 280.
    - Notícias do mesmo assunto no mesmo dia: ângulos diferentes, sem repetir a mesma frase.
    - Gravar no `kit.json` (campo `texto`) e rodar `node scripts/publish/x/conferir.mjs`: tudo tem que dar `ok`.

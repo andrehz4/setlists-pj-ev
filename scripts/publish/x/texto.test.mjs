@@ -25,3 +25,9 @@ test("conferir aponta estouro, travessão e falta de link", async () => {
   assert.deepEqual(problemas("Oi — tchau"), ["tem travessão", "sem link da matéria", "sem #PearlJam"]);
   assert.deepEqual(problemas("Oi\n\nhttps://somaisumfadepearljam.com.br/n/a\n\n#PearlJam"), []);
 });
+
+test("conferir: post sem link precisa de 'link na bio' e não pode ter URL", async () => {
+  const { problemas } = await import("./conferir.mjs");
+  assert.deepEqual(problemas("Oi\n\nMatéria completa no site (link na bio).\n\n#PearlJam", { comLink: false }), []);
+  assert.ok(problemas("Oi https://x.com/a #PearlJam", { comLink: false }).some((m) => m.startsWith("link onde")));
+});

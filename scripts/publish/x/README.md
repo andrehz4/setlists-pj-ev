@@ -26,7 +26,7 @@ validar o formato. Quando o Andre aprovar e colocar crédito na API, liga o auto
 
 Às 11h o Mac monta o kit (notícias das últimas 24h, máx. 4, às 12/14/16/18h + cápsula do dia às 20h05), toca o aviso e
 abre o Claude com `/x-hoje`. Ele agenda cada post no agendador nativo do X; o Andre só clica em Schedule. Dia sem
-sessão é descartado. No manual o link da matéria vai no texto (sem custo; o X entrega um pouco menos post com link).
+sessão é descartado. Só a 1a notícia do dia leva o link da matéria (o X entrega menos post com link); as outras e a cápsula dizem "link na bio". Teste desde 2026-09-30: rever com as estatísticas do X.
 Log: `/Users/andrehz/Library/Logs/smufdpj-x-kit.log`. Estado (ids já usados): `/Users/andrehz/.smufdpj-x-kit.json`.
 
 ## Plano do automático (aprovado em conceito)
