@@ -37,6 +37,9 @@ Pra layout e tipografia de peça que vira código (slides, reel, story), o camin
 | `perfil-quadrado-1000.jpg` | selo recortado em quadrado com margem (cabe no círculo de foto de perfil) |
 | `capa-x-1500x500.jpg` | capa do X no estilo bilhete do site (feita em SVG + sharp, fontes do projeto) |
 
+Perfil do X (@somaisumfadepj) configurado em 2026-09-30 com essas artes. Atenção: o X NÃO grava foto/capa enviada
+pelo upload automático do navegador (aparece no formulário, some ao salvar); o Andre escolhe o arquivo à mão.
+
 Recorte usado no perfil: `extract({ left: 640, top: 0, width: 1536, height: 1536 })` do original, depois 1000x1000.
 
 ## Pedido modelo (selo)
