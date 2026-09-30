@@ -146,7 +146,8 @@ async function main() {
   const outPath = path.join(REELS_DIR, `${weekKey}.mp4`);
   const r = await buildReelVideo({ items, trackPath: track.path, accent, rangeLabel, outPath, clipForScene, tmpDir, sceneDurs: narr?.sceneDurs });
   let narrado = false;
-  if (narr) {
+  let avisoVoz = narr?.aviso || "";
+  if (narr?.falas) {
     try {
       const semVoz = path.join(tmpDir, "sem-voz.mp4");
       await fs.rename(outPath, semVoz);
@@ -155,6 +156,7 @@ async function main() {
       console.log(`[reel] narração mixada (voz ${narr.voz.nome})`);
     } catch (e) {
       console.warn(`[reel] mixagem da narração falhou, segue só com música: ${e.message}`);
+      avisoVoz = `reel saiu SEM voz: a mixagem falhou (${e.message.slice(0, 120)})`;
       await fs.rename(path.join(tmpDir, "sem-voz.mp4"), outPath).catch(() => {});
     }
   }
@@ -217,7 +219,7 @@ async function main() {
   await writeLog(log);
   await commitAndPush(["media/news/instagram-reels/_reel-log.json"], `publish-reel: log sucesso ${weekKey} postId=${postId}`);
 
-  await notifyTelegram({ items, postId, track, weekKey, rangeLabel });
+  await notifyTelegram({ items, postId, track, weekKey, rangeLabel, avisoVoz });
   await writeStepSummary({
     title: "Publish Instagram Reel",
     meta: { dry: DRY, semana: weekKey, trilha: track.name, accent, clipes: clipForScene.size },
@@ -231,13 +233,14 @@ async function main() {
   console.log(`[reel] FIM`);
 }
 
-async function notifyTelegram({ items, postId, track, weekKey, rangeLabel }) {
+async function notifyTelegram({ items, postId, track, weekKey, rangeLabel, avisoVoz = "" }) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) return;
   const lines = [];
   lines.push(`🎞 <b>Reel semanal publicado (${weekKey})</b>`);
   lines.push(`<i>postId: <code>${postId}</code> · trilha: ${track.name} · ${rangeLabel}</i>`);
+  if (avisoVoz) lines.push(`🎙 ${avisoVoz.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}`);
   lines.push("");
   for (let i = 0; i < items.length; i++) {
     const titulo = (items[i].title_pt || "(sem titulo)")

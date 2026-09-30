@@ -65,18 +65,42 @@ test("desligada sem flag ou sem chave: devolve null e não chama a API", async (
   assert.equal(chamou, false);
 });
 
-test("falha na API: devolve null (reel sai só com música)", async () => {
+const SEM_SALDO_INFO = async () => null; // teste nunca consulta a rede
+
+test("falha na API: sai sem voz e com aviso pro Telegram", async () => {
   const r = await prepararNarracao(buildScenePlan(ITENS).scenes, {
-    weekKey: "2026-W40", tmpDir: tmp(), env: LIGADA, dirFixas: tmp(),
+    weekKey: "2026-W40", tmpDir: tmp(), env: LIGADA, dirFixas: tmp(), saldoImpl: SEM_SALDO_INFO,
     sintetizarImpl: async () => { throw new Error("402 paid_plan_required"); },
   });
-  assert.equal(r, null);
+  assert.equal(r.falas, undefined);
+  assert.match(r.aviso, /SEM voz.*402/);
+});
+
+test("saldo curto: não gasta nada, sai sem voz e avisa", async () => {
+  let chamou = false;
+  const r = await prepararNarracao(buildScenePlan(ITENS).scenes, {
+    weekKey: "2026-W40", tmpDir: tmp(), env: LIGADA, dirFixas: tmp(),
+    saldoImpl: async () => ({ usados: 9990, limite: 10000, restante: 10 }),
+    sintetizarImpl: async () => { chamou = true; },
+  });
+  assert.equal(chamou, false);
+  assert.match(r.aviso, /faltou crédito.*restam 10 de 10000/);
+});
+
+test("saldo suficiente: narra e informa quanto sobra", async () => {
+  const r = await prepararNarracao(buildScenePlan(ITENS).scenes, {
+    weekKey: "2026-W40", tmpDir: tmp(), env: LIGADA, dirFixas: tmp(), duracaoImpl: () => 2,
+    saldoImpl: async () => ({ usados: 0, limite: 10000, restante: 10000 }),
+    sintetizarImpl: async (t, { destino }) => fs.writeFileSync(destino, "mp3"),
+  });
+  assert.equal(r.falas.length, 4);
+  assert.match(r.aviso, /voz: Jessica · restam ~\d+ créditos/);
 });
 
 test("abertura e final reaproveitados na 2ª semana; manchetes sempre geradas", async () => {
   const fixas = tmp(), chamadas = [];
   const sint = async (texto, { destino }) => { chamadas.push(texto); fs.writeFileSync(destino, "mp3"); };
-  const opts = { weekKey: "2026-W40", env: LIGADA, dirFixas: fixas, sintetizarImpl: sint, duracaoImpl: () => 2 };
+  const opts = { weekKey: "2026-W40", env: LIGADA, dirFixas: fixas, sintetizarImpl: sint, duracaoImpl: () => 2, saldoImpl: SEM_SALDO_INFO };
   const { scenes } = buildScenePlan(ITENS);
   await prepararNarracao(scenes, { ...opts, tmpDir: tmp() });
   assert.equal(chamadas.length, 4);

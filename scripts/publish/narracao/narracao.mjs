@@ -9,7 +9,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { falasDasCenas, ABERTURAS, FINAIS } from "./fala.mjs";
-import { sintetizar, vozDaSemana } from "./elevenlabs.mjs";
+import { sintetizar, vozDaSemana, saldo } from "./elevenlabs.mjs";
 
 // Abertura e encerramento são sempre iguais: gerados 1x por voz e guardados no
 // repo (vão no mesmo commit do reel). Nome leva hash do texto: mudou a frase,
@@ -50,33 +50,50 @@ export function duracoesSincronizadas(scenes, durFala) {
   });
 }
 
-// Gera as falas. Devolve { voz, falas: [{ sceneIndex, texto, arquivo, dur }], sceneDurs } ou null.
-export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.env, sintetizarImpl = sintetizar, duracaoImpl = duracaoAudio, dirFixas = DIR_FIXAS }) {
+// Gera as falas. Devolve null (desligada), { aviso } (pulou: sem saldo ou erro,
+// o reel sai só com música e o aviso vai pro Telegram) ou
+// { voz, falas: [{ sceneIndex, texto, arquivo, dur }], sceneDurs, aviso }.
+export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.env, sintetizarImpl = sintetizar,
+  duracaoImpl = duracaoAudio, dirFixas = DIR_FIXAS, saldoImpl = saldo }) {
   if (!narracaoLigada(env)) return null;
   const voz = vozDaSemana(weekKey);
+  const apiKey = env.ELEVENLABS_API_KEY;
   try {
     const dir = path.join(tmpDir, "narracao");
     await fs.mkdir(dir, { recursive: true });
-    const falas = [];
-    let reaproveitadas = 0;
+    const plano = [];
     for (const f of falasDasCenas(scenes, weekKey)) {
       const fixo = arquivoFixo(f.texto, voz, dirFixas);
       const arquivo = fixo || path.join(dir, `fala_${String(f.sceneIndex).padStart(2, "0")}.mp3`);
-      const jaExiste = fixo && await fs.stat(fixo).then(() => true, () => false);
-      if (jaExiste) reaproveitadas++;
-      else {
-        if (fixo) await fs.mkdir(path.dirname(fixo), { recursive: true });
-        await sintetizarImpl(f.texto, { vozId: voz.id, apiKey: env.ELEVENLABS_API_KEY, destino: arquivo });
-      }
-      falas.push({ ...f, arquivo, dur: duracaoImpl(arquivo) });
+      const pronta = Boolean(fixo) && await fs.stat(fixo).then(() => true, () => false);
+      plano.push({ ...f, fixo, arquivo, pronta });
     }
-    if (reaproveitadas) console.log(`[narracao] ${reaproveitadas} fala(s) fixa(s) reaproveitada(s), sem gastar crédito`);
+    // checagem de saldo ANTES de gastar: ou narra a semana inteira, ou nada
+    const precisa = plano.filter((f) => !f.pronta).reduce((n, f) => n + f.texto.length, 0);
+    const conta = await saldoImpl({ apiKey });
+    if (conta && conta.restante < precisa) {
+      const aviso = `reel saiu SEM voz: faltou crédito no ElevenLabs (precisa ${precisa}, restam ${conta.restante} de ${conta.limite})`;
+      console.warn(`[narracao] ${aviso}`);
+      return { aviso };
+    }
+    for (const f of plano) {
+      if (!f.pronta) {
+        if (f.fixo) await fs.mkdir(path.dirname(f.fixo), { recursive: true });
+        await sintetizarImpl(f.texto, { vozId: voz.id, apiKey, destino: f.arquivo });
+      }
+      f.dur = duracaoImpl(f.arquivo);
+    }
+    const falas = plano.map(({ sceneIndex, texto, arquivo, dur }) => ({ sceneIndex, texto, arquivo, dur }));
     const sceneDurs = duracoesSincronizadas(scenes, new Map(falas.map((f) => [f.sceneIndex, f.dur])));
-    console.log(`[narracao] voz ${voz.nome}: ${falas.length} falas, reel de ${sceneDurs.reduce((a, b) => a + b, 0).toFixed(1)}s`);
-    return { voz, falas, sceneDurs };
+    const reaproveitadas = plano.filter((f) => f.pronta).length;
+    const restante = conta ? conta.restante - precisa : null;
+    console.log(`[narracao] voz ${voz.nome}: ${falas.length} falas (${reaproveitadas} reaproveitadas, ${precisa} caracteres gastos), reel de ${sceneDurs.reduce((a, b) => a + b, 0).toFixed(1)}s`);
+    const aviso = `voz: ${voz.nome}${restante != null ? ` · restam ~${restante} créditos no ElevenLabs` : ""}`;
+    return { voz, falas, sceneDurs, aviso };
   } catch (e) {
-    console.warn(`[narracao] FALHOU, reel sai só com música: ${e.message}`);
-    return null;
+    const aviso = `reel saiu SEM voz: narração falhou (${e.message.slice(0, 120)})`;
+    console.warn(`[narracao] ${aviso}`);
+    return { aviso };
   }
 }
 

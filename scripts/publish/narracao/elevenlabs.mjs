@@ -20,6 +20,18 @@ export function vozDaSemana(weekKey) {
   return VOZES[n % VOZES.length];
 }
 
+// Saldo da conta: { usados, limite, restante } ou null (sem permissão/erro de rede).
+export async function saldo({ apiKey, fetchImpl = fetch }) {
+  try {
+    const res = await fetchImpl(`${API}/user/subscription`, { headers: { "xi-api-key": apiKey }, signal: AbortSignal.timeout(20000) });
+    if (!res.ok) return null;
+    const s = await res.json();
+    const usados = Number(s.character_count), limite = Number(s.character_limit);
+    if (!Number.isFinite(usados) || !Number.isFinite(limite)) return null;
+    return { usados, limite, restante: limite - usados };
+  } catch { return null; }
+}
+
 // Grava o MP3 da fala em destino. fetchImpl injetável pros testes.
 export async function sintetizar(texto, { vozId, apiKey, destino, fetchImpl = fetch, tentativas = 2 }) {
   let ultimoErro;
