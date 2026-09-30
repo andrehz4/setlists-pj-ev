@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-09-30T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "f9cc02edc4", "titulo": "Abe Laboriel Jr. toca no Ohana com o PJ e Vedder agradece ao McCartney", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "6250ae4ad9", "title": "Eddie Vedder diz que Pearl Jam pegou emprestado baterista de Paul McCartney", "reason": "texto truncado pelo login wall da Terra, citacao do Eddie ausente, TMQA ja cobre o assunto completo" }
+  ]
+}
