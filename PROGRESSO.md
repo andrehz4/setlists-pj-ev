@@ -1,5 +1,24 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-30 (tarde): voz no reel e nos stories (ElevenLabs), reel reorganizado
+
+**Feito**
+- **Reel semanal narrado** (`scripts/publish/narracao/`, README lá): ElevenLabs Eleven v4, Jessica e Liam revezando por
+  semana, lê a manchete da tela, cada cena dura o tempo da fala, música abaixa com a voz, 3 aberturas e 3 finais
+  (chamada pro "maior acervo de Pearl Jam do Brasil") gravados no repo. Crédito discreto na legenda ("voz: ElevenLabs").
+  Checagem de saldo antes de narrar + aviso no Telegram. LIGADO (`REEL_NARRACAO: '1'`), 1º narrado: dom 04/10.
+- **Story diário com voz** só na abertura (data) e no final: Bella (dia par) e Chris (dia ímpar). 62 aberturas
+  (30/09 a 30/11) e 6 finais gravados; todo dia 1 grava os 31 dias seguintes. LIGADO (`STORY_NARRACAO: '1'`).
+- Conta ElevenLabs: a da EMPRESA do Andre (chave "reel-smufdpj", secret `ELEVENLABS_API_KEY`), plano grátis 10k/mês.
+  Uma conta só no projeto (termos proíbem várias contas grátis pra somar cota).
+- `reel-video.mjs` dividido em `scripts/publish/reel/` (<=150 linhas, teste), saída idêntica (hash de 293 amostras).
+- Texto da manchete não some mais no meio da fala (saída acompanha a duração da cena).
+- Curadoria: trava de acento, guia voz-humana, regra de cobertura (ver sessão da madrugada abaixo). Routine no Opus 5.5.
+
+**Próximo passo**: conferir o story narrado de 01/10 (Chris) e o reel de 04/10 (Jessica). Depois: transições com
+trechos de clipe (Andre passa a lista de clipes e aceita o risco de imagem; acervo `media/reels-clips/` está vazio),
+ideia equivalente pros stories, e a foto de capa de cápsula com texto embolando na cena do reel.
+
 ## 2026-09-30 (madrugada): revisão das notícias (destaques da edição)
 
 **Achados**: rodada da routine de 29/09 12h escreveu 4 notícias sem acento e foram pro IG ("NAO E OFICIAL", "TURNE");
