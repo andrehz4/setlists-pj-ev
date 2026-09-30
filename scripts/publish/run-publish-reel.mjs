@@ -147,7 +147,7 @@ async function main() {
   // abertura com sequência de trechos de clipe no lugar da foto (mesma flag das transições)
   let aberturaClipe = false;
   if (process.env.REEL_TRANSICOES === "1" && !clipForScene.has(0)) {
-    const abertura = montarAbertura(tmpDir, { semente: weekKey });
+    const abertura = montarAbertura(tmpDir, { semente: weekKey, dur: narr?.sceneDurs?.[0] ?? scenes[0].dur });
     if (abertura) { clipForScene.set(0, abertura); aberturaClipe = true; console.log("[reel] abertura com clipe (sequência de trechos)"); }
   }
 
