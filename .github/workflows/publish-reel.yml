@@ -56,7 +56,7 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           PUBLISH_FB: '1'
           # narração (scripts/publish/narracao/): '1' liga; sem a chave ou com erro, sai só com música
-          REEL_NARRACAO: '0'
+          REEL_NARRACAO: '1'
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           GIT_AUTHOR_NAME: pj-news-bot
           GIT_AUTHOR_EMAIL: bot@setlists-pj.local
