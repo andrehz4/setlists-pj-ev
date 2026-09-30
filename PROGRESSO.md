@@ -1,5 +1,25 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-30 (madrugada): revisão das notícias (destaques da edição)
+
+**Achados**: rodada da routine de 29/09 12h escreveu 4 notícias sem acento e foram pro IG ("NAO E OFICIAL", "TURNE");
+~15 notícias do mesmo assunto (Abe Laboriel) em 3 dias, com contradição ("oficializa" x "não confirmou"), 3 versões
+da mesma matéria no mesmo carrossel; "sitting in" no card; datas divergentes; legenda do IG terminando em "frase.…" e
+com "_via Fonte_" à mostra (246 notícias curtas); "*Vs.*" com asterisco no site (13).
+
+**Feito**
+- Trava `scripts/news/qualidade-ptbr.mjs` no `merge-curated.mjs`: sem acento = recusado, volta pro `_pending`, aviso no
+  Telegram (auto-merge); "dos Pearl Jam" corrigido sozinho. Testado no acervo inteiro: pega só os 5 reais.
+- Guia `scripts/news/prompts/voz-humana-ptbr.md` (humanizer-ptbr enxuto) lido pela routine. `system-curator-fa.txt`:
+  regra de cobertura revisada (só fato novo, republicação = SKIP), regra de confirmação e de datas. `routine-prompt.md`:
+  seção 2.5 com as manchetes das últimas 72h, checagem final por item, regras #6 e #7.
+- Routine no claude.ai (trig_01WTGwu5LzVJrQcxtMpRH3Te) agora só manda ler o `routine-prompt.md` do repo.
+- Legenda: corte sem "frase.…", sem markdown. Site: `*x*` vira itálico. 5 notícias reacentuadas, título do "sitting in",
+  data 25/27 e "dos Pearl Jam" corrigidos; stubs regenerados. 208 testes ok.
+
+**Próximo passo**: conferir a rodada das 06h (30/09) e o carrossel seguinte. Andre decidir se sobe a routine de
+Sonnet 4.6 pra Sonnet 5.5. Pendente: manchetes antigas de 28/09 que dizem "oficializa/confirma" o Abe.
+
 ## 2026-09-30: slide de citação das cápsulas com foto de quem fala (Claude Design)
 
 **Feito**

@@ -27,8 +27,10 @@ de fato acontece hoje, com os achados da investigacao de 2026-05-31/06-01:
   BRT). Ela le `_pending.json`, cura, e commita em branch `claude/news-routine-*`,
   que o auto-merge mescla na main. Nos commits aparece autor **"Claude"**, msg
   "news: curadoria automatica via routine sonnet". O prompt dela vive em
-  `scripts/news/routine-prompt.md` (mas a task usa um SNAPSHOT colado; editar o
-  arquivo nao atualiza a task, tem que recolar).
+  `scripts/news/routine-prompt.md`. Desde 2026-09-30 a task tem so um prompt curto
+  que manda ler e seguir esse arquivo do repo: editar o arquivo JA atualiza a routine
+  (nao precisa mais recolar). Trava de qualidade PT-BR no `merge-curated.mjs`
+  (`scripts/news/qualidade-ptbr.mjs`): texto sem acento volta pro `_pending`.
 - **Publicacao (ATIVA, disparada pelo TriggerAll):** `publish-instagram.yml`
   posta o carrossel no feed. Quem dispara nao e cron do YAML (nem manual): e o
   **TriggerAll** (ver secao dedicada abaixo).
