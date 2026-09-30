@@ -22,6 +22,7 @@ export async function renderScene({ scene, total, accent, ctx, dir, concurrency 
         accent, itemCount: total, rangeLabel: ctx.rangeLabel, dark: 0.6,
         letterWidths: ctx.letterWidths, tarjaTextW: ctx.tarjaTextW, chipTextW: ctx.chipTextW,
         showChip: ctx.mode === "overlay" || ctx.ghost === true, dur: scene.dur,
+        comFlash: ctx.mode !== "overlay", // abertura de clipe: sem flash azul da cor do ciclo
       });
     } else if (scene.kind === "outro") {
       const bf = ctx.badge?.frames?.length

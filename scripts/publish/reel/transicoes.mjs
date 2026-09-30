@@ -62,16 +62,28 @@ export function filtroFfmpeg(plano) {
 }
 
 // Aplica e devolve quantas transições entraram (0 = nada feito, vídeo intacto).
-export function aplicarTransicoes(videoPath, { scenes, semente, lista = carregarTransicoes() }) {
+// capaInicioS: copia o quadro desse instante (a capa no auge) pro 1o quadro do vídeo,
+// que é o que aparece com o vídeo parado.
+export function aplicarTransicoes(videoPath, { scenes, semente, capaInicioS = null, lista = carregarTransicoes() }) {
   const plano = planejarTransicoes(scenes, lista, semente);
   if (!plano.length) return 0;
   const tmp = videoPath.replace(/\.mp4$/, ".trans.mp4");
-  const args = ["-v", "error", "-y", "-i", videoPath, ...plano.flatMap((p) => ["-i", p.trecho.arq]),
-    "-filter_complex", filtroFfmpeg(plano), "-map", "[v]", "-map", "0:a?", "-c:v", "libx264", "-crf", "20",
+  let filtro = filtroFfmpeg(plano);
+  const extra = [];
+  if (Number.isFinite(capaInicioS)) {
+    const png = videoPath.replace(/\.mp4$/, ".capa.png");
+    if (spawnSync("ffmpeg", ["-v", "error", "-y", "-ss", String(capaInicioS), "-i", videoPath, "-frames:v", "1", png]).status === 0) {
+      extra.push("-i", png);
+      filtro = filtro.replace(/\[v\]$/, "[vt]") + `;[vt][${plano.length + 1}:v]overlay=enable='lt(n,1)'[v]`;
+    }
+  }
+  const args = ["-v", "error", "-y", "-i", videoPath, ...plano.flatMap((p) => ["-i", p.trecho.arq]), ...extra,
+    "-filter_complex", filtro, "-map", "[v]", "-map", "0:a?", "-c:v", "libx264", "-crf", "20",
     "-preset", "medium", "-pix_fmt", "yuv420p", "-c:a", "copy", "-movflags", "+faststart", tmp];
   const r = spawnSync("ffmpeg", args, { encoding: "utf8", maxBuffer: 1 << 26 });
   if (r.status !== 0) { fs.rmSync(tmp, { force: true }); throw new Error((r.stderr || "").split("\n").slice(-3).join(" ")); }
   fs.renameSync(tmp, videoPath);
+  fs.rmSync(videoPath.replace(/\.mp4$/, ".capa.png"), { force: true });
   return plano.length;
 }
 
