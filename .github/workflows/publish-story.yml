@@ -49,6 +49,12 @@ jobs:
           # voz na abertura e no final (scripts/publish/narracao/story.mjs): '1' liga
           STORY_NARRACAO: '1'
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          # mídia no R2 (scripts/publish/midia-r2.mjs): vídeo sobe pro bucket smufdpj-midia (apaga em 3 dias)
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_MIDIA_BUCKET: ${{ secrets.R2_MIDIA_BUCKET }}
+          R2_MIDIA_PUBLIC_BASE: ${{ secrets.R2_MIDIA_PUBLIC_BASE }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           # Facebook Pages: story de video sai junto do story do IG.

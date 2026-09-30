@@ -16,6 +16,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { publicarViaR2 } from "./midia-r2.mjs";
 import { selectStoryItems } from "./story-select.mjs";
 import { pickTrackForDate } from "./story-track.mjs";
 import { buildStoryVideo } from "./story-video.mjs";
@@ -172,6 +173,11 @@ async function main() {
   }
   console.log(`[story] MP4 gerado: ${outPath} (${duration.toFixed(2)}s)`);
 
+  // Link público do vídeo: R2 (apaga sozinho em 3 dias, não entra no git; ver midia-r2.mjs).
+  // Sem R2 ou se falhar: jeito antigo, o MP4 vai no commit (forçado, o .gitignore ignora MP4) e o IG baixa do raw.
+  const r2Url = DRY ? null : await publicarViaR2(outPath, `stories/${dateKey}-${Date.now()}.mp4`);
+  if (!r2Url && !DRY && !NO_GIT) spawnSync("git", ["add", "-f", outPath], { encoding: "utf8" });
+
   // 5. commita + push pra raw URL servir
   await commitAndPush(
     ["media/news/instagram-stories/"],
@@ -187,7 +193,7 @@ async function main() {
   await new Promise((r) => setTimeout(r, 5000));
 
   // 6. publica
-  const videoUrl = `${REPO_PUBLIC_BASE}/media/news/instagram-stories/${dateKey}.mp4`;
+  const videoUrl = r2Url || `${REPO_PUBLIC_BASE}/media/news/instagram-stories/${dateKey}.mp4`;
   console.log(`[story] publishing video_url=${videoUrl}`);
   let postId, containerId;
   try {

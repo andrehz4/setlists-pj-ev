@@ -14,6 +14,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import { spawnSync } from "node:child_process";
+import { publicarViaR2 } from "./midia-r2.mjs";
 import { selectReelItems } from "./reel-select.mjs";
 import { loadClips, pickClipFor, weekSeed } from "./reel-clips.mjs";
 import { pickTrackForDate } from "./story-track.mjs";
@@ -163,6 +164,11 @@ async function main() {
   await fs.rm(r.tmpDir, { recursive: true, force: true });
   console.log(`[reel] MP4 gerado: ${outPath} (${r.duration.toFixed(1)}s, ${r.scenes} cenas)`);
 
+  // Link público do vídeo: R2 (apaga sozinho em 3 dias, não entra no git; ver midia-r2.mjs).
+  // Sem R2 ou se falhar: jeito antigo, o MP4 vai no commit (forçado, o .gitignore ignora MP4) e o IG baixa do raw.
+  const r2Url = DRY ? null : await publicarViaR2(outPath, `reels/${weekKey}-${Date.now()}.mp4`);
+  if (!r2Url && !DRY && !NO_GIT) spawnSync("git", ["add", "-f", outPath], { encoding: "utf8" });
+
   // 5. commit pro raw servir
   await commitAndPush(["media/news/instagram-reels/"],
     `publish-reel: ${weekKey} (${items.length} manchetes, trilha ${track.name})`);
@@ -174,7 +180,7 @@ async function main() {
   await new Promise((res) => setTimeout(res, 5000));
 
   // 6. publica
-  const videoUrl = `${REPO_PUBLIC_BASE}/media/news/instagram-reels/${weekKey}.mp4`;
+  const videoUrl = r2Url || `${REPO_PUBLIC_BASE}/media/news/instagram-reels/${weekKey}.mp4`;
   const caption = buildReelCaption(items, { weekLabel: rangeLabel, creditoVoz: narrado });
   console.log(`[reel] publishing video_url=${videoUrl} (caption ${caption.length} chars)`);
   let postId, containerId, recovered;
