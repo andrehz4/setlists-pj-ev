@@ -15,6 +15,12 @@
 - Texto da manchete não some mais no meio da fala (saída acompanha a duração da cena).
 - Curadoria: trava de acento, guia voz-humana, regra de cobertura (ver sessão da madrugada abaixo). Routine no Opus 5.5.
 
+**Próximo item (anotado a pedido do Andre)**: tamanho do repositório. `.git` já está em ~1 GB (GitHub recomenda
+<1 GB, reclama acima de 5 GB). O peso é dos MP4: reels ~166 MB e crescendo ~10 MB/semana; stories também. Áudios da
+narração são irrelevantes (~22 MB o ano inteiro, uma vez só). Plano: mover vídeos antigos pro Cloudflare R2 (o projeto
+já usa) e manter no repo só as semanas recentes; avaliar limpar o histórico dos MP4 (reescrita de histórico: só com OK
+explícito do Andre, é destrutivo). Atenção: o IG e o FB baixam o vídeo pela URL raw do GitHub no momento de publicar.
+
 **Próximo passo**: conferir o story narrado de 01/10 (Chris) e o reel de 04/10 (Jessica). Depois: transições com
 trechos de clipe (Andre passa a lista de clipes e aceita o risco de imagem; acervo `media/reels-clips/` está vazio),
 ideia equivalente pros stories, e a foto de capa de cápsula com texto embolando na cena do reel.
