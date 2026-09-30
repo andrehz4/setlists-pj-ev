@@ -30,3 +30,46 @@ test("momentos: janelas com mais movimento, sem atravessar corte, espaçadas", a
   assert.ok(c.some((x) => x.ini >= 19.5 && x.fim <= 21.3 || x.ini >= 21.2 && x.fim <= 23.5), JSON.stringify(c));
   assert.ok(c.every((x) => !(x.ini < 21.05 && x.fim > 21.35)), "atravessou o corte");
 });
+
+test("transições: uma por troca de cena, rodízio sem repetir, filtro sobrepõe no ponto certo", async () => {
+  const { planejarTransicoes, filtroFfmpeg, DUR } = await import("./transicoes.mjs");
+  const scenes = [{ start: 0 }, { start: 3 }, { start: 7.5 }, { start: 12 }];
+  const lista = ["a", "b", "c"].map((f) => ({ file: f, arq: f, dur: 1.5 }));
+  const p = planejarTransicoes(scenes, lista, "2026-W40");
+  assert.equal(p.length, 3);
+  assert.equal(new Set(p.map((x) => x.trecho.file)).size, 3);
+  assert.equal(p[0].t, 3 - DUR / 2);
+  const f = filtroFfmpeg(p);
+  assert.match(f, /between\(t,2\.650,3\.350\)/);
+  assert.match(f, /\[v\]$/);
+  assert.deepEqual(planejarTransicoes(scenes, [], "x"), []);
+});
+
+test("abertura: 4 trechos sem repetir e sem o da 1a transição", async () => {
+  const { trechosDaAbertura, planejarTransicoes } = await import("./transicoes.mjs");
+  const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f }));
+  const ab = trechosDaAbertura(lista, "2026-W40");
+  assert.equal(ab.length, 4);
+  assert.equal(new Set(ab.map((t) => t.file)).size, 4);
+  const primeira = planejarTransicoes([{ start: 0 }, { start: 3 }], lista, "2026-W40")[0].trecho.file;
+  assert.ok(!ab.some((t) => t.file === primeira));
+  assert.deepEqual(trechosDaAbertura([], "x"), []);
+});
+
+test("capa na abertura: entre 1,8 e 2,4 s, antes do fim da abertura", async () => {
+  const { capaNaAbertura } = await import("./transicoes.mjs");
+  assert.equal(capaNaAbertura(3), 2400);
+  assert.equal(capaNaAbertura(3.9), 2400);
+  assert.equal(capaNaAbertura(2.2), 1800);
+});
+
+test("abertura: trecho de capa cai no slot da capa com o quadro certo", async () => {
+  const { trechosDaAbertura, CAPA_S } = await import("./transicoes.mjs");
+  const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f, dur: 1.5 }));
+  lista[3].capa = 0.55;
+  const ab = trechosDaAbertura(lista, "2026-W40");
+  assert.equal(ab.length, 4);
+  const i = ab.findIndex((t) => t.file === "d");
+  assert.equal(i, 2);
+  assert.ok(Math.abs(i * 0.9 + (0.55 - ab[i].iniAbertura) - CAPA_S) < 1e-9 || ab[i].iniAbertura === 0);
+});
