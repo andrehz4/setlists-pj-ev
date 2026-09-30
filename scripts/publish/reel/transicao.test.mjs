@@ -76,3 +76,13 @@ test("abertura: soma dos trechos = duração exata, capa no instante certo (com 
     assert.ok(Math.abs(quadro - capaNaAbertura(dur) / 1000) < 1e-9, `dur ${dur}: quadro em ${quadro}`);
   }
 });
+
+test("trazer do baixa: só o que é novo, com capa/foco e tags em lista", async () => {
+  const { novos } = await import("./trazer-do-baixa.mjs");
+  const la = [
+    { file: "a.mp4", musica: "Alive", capa: 0.75, foco: 0.3, tags: "eddie, memoria", extra: "x" },
+    { file: "b.mp4" },
+  ];
+  const r = novos(la, [{ file: "b.mp4" }]);
+  assert.deepEqual(r, [{ file: "a.mp4", musica: "Alive", capa: 0.75, foco: 0.3, tags: ["eddie", "memoria"] }]);
+});
