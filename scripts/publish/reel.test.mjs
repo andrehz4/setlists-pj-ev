@@ -260,3 +260,14 @@ test("publishReel: poll aguarda processamento do video (storyPolls > 0)", async 
   assert.ok(r.postId);
   await postMock("/_mock/fail", { fail: "none", storyPolls: "0" });
 });
+
+test("Regra 0: arquivos do reel ficam curtos (limite 150 linhas)", async () => {
+  const fs = await import("node:fs");
+  const path = await import("node:path");
+  const dir = path.resolve("scripts/publish/reel");
+  const arquivos = [...fs.readdirSync(dir).filter((f) => f.endsWith(".mjs")).map((f) => path.join(dir, f)), path.resolve("scripts/publish/reel-video.mjs")];
+  for (const f of arquivos) {
+    const n = fs.readFileSync(f, "utf8").split("\n").length;
+    assert.ok(n <= 150, `${path.basename(f)} tem ${n} linhas`);
+  }
+});
