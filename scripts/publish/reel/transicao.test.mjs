@@ -72,7 +72,8 @@ test("abertura: soma dos trechos = duração exata, capa no instante certo (com 
     assert.equal(ab.length, 4);
     assert.ok(Math.abs(ab.reduce((s, t) => s + t.slot, 0) - dur) < 1e-9, `soma != ${dur}`);
     const i = ab.findIndex((t) => t.file === "d");
-    const quadro = i * ab[i].slot + (0.75 - ab[i].iniAbertura); // instante do quadro da capa no reel
+    const antes = ab.slice(0, i).reduce((s, t) => s + t.slot, 0);
+    const quadro = antes + (0.75 - ab[i].iniAbertura); // instante do quadro da capa no reel
     assert.ok(Math.abs(quadro - capaNaAbertura(dur) / 1000) < 1e-9, `dur ${dur}: quadro em ${quadro}`);
   }
 });
@@ -111,4 +112,19 @@ test("recorte: foco fixo, centro por padrão e trilha do rosto vira expressão p
   assert.equal(recorte({ foco: 1.4 }), "crop=ih*9/16:ih:x=(iw-ih*9/16)*(1)");
   const r = recorte({ focoTrilha: [{ t: 0, foco: 0.2 }, { t: 1, foco: 0.8 }] });
   assert.match(r, /if\(lt\(t\\,1\)\\,0\.200\+\(0\.600\)\*\(t-0\)\/1\\,0\.800\)/);
+});
+
+test("abertura: capa no começo de um corte de 3 s vira o último trecho, quadro exato na capa", async () => {
+  const { trechosDaAbertura, capaNaAbertura } = await import("./transicoes.mjs");
+  const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f, dur: 1.5 }));
+  Object.assign(lista[2], { capa: 0, dur: 3 });
+  for (const dur of [3, 3.4, 3.9]) {
+    const ab = trechosDaAbertura(lista, "2026-W40", { dur });
+    const ult = ab.at(-1);
+    assert.equal(ult.file, "c");
+    assert.ok(Math.abs(ab.reduce((s, t) => s + t.slot, 0) - dur) < 1e-9);
+    const inicio = ab.slice(0, -1).reduce((s, t) => s + t.slot, 0);
+    assert.ok(Math.abs(inicio + (0 - ult.iniAbertura) - capaNaAbertura(dur) / 1000) < 1e-9);
+    assert.ok(ult.iniAbertura + ult.slot <= 3 + 1e-9);
+  }
 });

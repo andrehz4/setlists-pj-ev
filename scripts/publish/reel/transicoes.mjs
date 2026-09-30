@@ -89,11 +89,20 @@ export function trechosDaAbertura(lista, semente = "", { dur = 3, n = 4 } = {}) 
   const resto = lista.filter((t) => t !== capa);
   const qtd = Math.min(n - (capa ? 1 : 0), Math.max(1, resto.length - 1));
   const sel = Array.from({ length: qtd }, (_, i) => resto[(h + 1 + i) % resto.length]);
+  const tCapa = capaNaAbertura(dur) / 1000;
+  // Capa com vídeo de sobra DEPOIS do quadro (ex: corte de 3 s começando nele): vira o
+  // último trecho, entrando um pouco antes do quadro (até 0,5 s, se houver) e indo até o fim.
+  const antes = capa ? Math.min(capa.capa, 0.5) : 0;
+  if (capa && capa.capa + (dur - tCapa) <= (capa.dur || 1.5) + 1e-9) {
+    const inicio = tCapa - antes;
+    const slot = inicio / sel.length;
+    return [...sel.map((t) => ({ ...t, slot })), { ...capa, slot: dur - inicio, iniAbertura: capa.capa - antes }];
+  }
+  // Senão: slots iguais e a capa no slot que contém o instante (corte com o quadro no meio).
   const slot = dur / (qtd + (capa ? 1 : 0));
   if (capa) {
-    const tCapa = capaNaAbertura(dur) / 1000;
     const i = Math.min(Math.floor(tCapa / slot), sel.length);
-    // corte curto (ex: 1,5 s) não cobre o slot inteiro: desloca o mínimo pra caber no arquivo
+    // corte curto não cobre o slot inteiro: desloca o mínimo pra caber no arquivo
     const cabe = Math.max(0, (capa.dur || 2) - slot);
     sel.splice(i, 0, { ...capa, iniAbertura: Math.min(cabe, Math.max(0, capa.capa - (tCapa - i * slot))) });
   }
