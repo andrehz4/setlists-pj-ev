@@ -9,8 +9,25 @@ import { spawnSync } from "node:child_process";
 export const PASTA = path.resolve("media/reels-clips/transicoes");
 export const DUR = 0.7; // segundos de clipe em cada troca
 const FADE = 0.08;
-// Recorte vertical 9:16; foco (0 a 1, vindo do baixa-clipehz) = onde a ação está na horizontal.
-export const recorte = (foco) => `crop=ih*9/16:ih:x=(iw-ih*9/16)*${Number.isFinite(foco) ? Math.min(1, Math.max(0, foco)) : 0.5}`;
+// Recorte vertical 9:16. foco (0 a 1, do baixa-clipehz) = onde a ação está na horizontal.
+// focoTrilha [{t, foco}] (rastreio de rosto do baixa) = o recorte anda junto, interpolado
+// entre os pontos; t é o tempo DENTRO do corte (por isso o crop vem antes do setpts).
+const lim = (f) => Math.min(1, Math.max(0, f));
+export function exprFoco(trilha) {
+  const p = trilha.filter((k) => Number.isFinite(k.t) && Number.isFinite(k.foco)).sort((a, b) => a.t - b.t);
+  let e = lim(p.at(-1).foco).toFixed(3);
+  for (let i = p.length - 2; i >= 0; i--) {
+    const [a, b] = [p[i], p[i + 1]];
+    const lerp = `${lim(a.foco).toFixed(3)}+(${(lim(b.foco) - lim(a.foco)).toFixed(3)})*(t-${a.t})/${Math.max(0.001, b.t - a.t)}`;
+    e = `if(lt(t\\,${b.t})\\,${lerp}\\,${e})`;
+  }
+  return p[0].t > 0 ? `if(lt(t\\,${p[0].t})\\,${lim(p[0].foco).toFixed(3)}\\,${e})` : e;
+}
+export const recorte = (trecho = {}) => {
+  const trilha = Array.isArray(trecho.focoTrilha) && trecho.focoTrilha.length >= 2 ? trecho.focoTrilha : null;
+  const f = trilha ? exprFoco(trilha) : (Number.isFinite(trecho.foco) ? lim(trecho.foco) : 0.5);
+  return `crop=ih*9/16:ih:x=(iw-ih*9/16)*(${f})`;
+};
 
 export function carregarTransicoes(pasta = PASTA) {
   try {
@@ -34,8 +51,8 @@ export function filtroFfmpeg(plano) {
   plano.forEach(({ t, trecho }, i) => {
     const ini = Math.max(0, ((trecho.dur || DUR) - DUR) / 2); // miolo do trecho, onde tem mais ação
     const fim = (t + DUR).toFixed(3);
-    partes.push(`[${i + 1}:v]trim=${ini.toFixed(3)}:${(ini + DUR).toFixed(3)},setpts=PTS-STARTPTS+${t.toFixed(3)}/TB,` +
-      `${recorte(trecho.foco)},scale=1080:1920,setsar=1,format=yuva420p,` +
+    partes.push(`[${i + 1}:v]trim=${ini.toFixed(3)}:${(ini + DUR).toFixed(3)},${recorte(trecho)},` +
+      `setpts=PTS-STARTPTS+${t.toFixed(3)}/TB,scale=1080:1920,setsar=1,format=yuva420p,` +
       `fade=in:st=${t.toFixed(3)}:d=${FADE}:alpha=1,fade=out:st=${(t + DUR - FADE).toFixed(3)}:d=${FADE}:alpha=1[t${i}]`);
     const saida = i === plano.length - 1 ? "[v]" : `[b${i}]`;
     partes.push(`${base}[t${i}]overlay=eof_action=pass:enable='between(t,${t.toFixed(3)},${fim})'${saida}`);
@@ -89,7 +106,7 @@ export function montarAbertura(tmpDir, { semente, dur = 3, lista = carregarTrans
   const saida = path.join(tmpDir, "abertura-clipe.mp4");
   // cada trecho entra com o tamanho do slot: do miolo, ou a partir do ponto da capa
   const f = trechos.map((t, i) => { const ini = (t.iniAbertura ?? Math.max(0, ((t.dur || 1.5) - t.slot) / 2)).toFixed(3);
-    return `[${i}:v]trim=${ini}:${(+ini + t.slot).toFixed(3)},setpts=PTS-STARTPTS,${recorte(t.foco)},scale=1080:1920,setsar=1,fps=30[a${i}]`; }).join(";") +
+    return `[${i}:v]trim=${ini}:${(+ini + t.slot).toFixed(3)},${recorte(t)},setpts=PTS-STARTPTS,scale=1080:1920,setsar=1,fps=30[a${i}]`; }).join(";") +
     ";" + trechos.map((_, i) => `[a${i}]`).join("") + `concat=n=${trechos.length}:v=1:a=0[v]`;
   const r = spawnSync("ffmpeg", ["-v", "error", "-y", ...trechos.flatMap((t) => ["-i", t.arq]), "-filter_complex", f,
     "-map", "[v]", "-an", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", saida], { encoding: "utf8" });
