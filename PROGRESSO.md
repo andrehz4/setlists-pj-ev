@@ -1,5 +1,15 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-30 (noite): X em modo manual com kit diário
+
+- Feito: `kit-do-dia.mjs` monta os posts do dia em `.x-kit/<dia>/` (notícias 24h às 12/14/16/18h + cápsula 20h05),
+  agora com o link da matéria no texto (manual não paga por URL). Comando `/x-hoje` (`scripts/publish/x/ROTINA-X-HOJE.md`)
+  e tarefa do Mac às 11h em `scripts/publish/x/mac/`.
+- Estado: tarefa do Mac ainda NÃO instalada (precisa do OK do Andre: `zsh scripts/publish/x/mac/instalar.sh`).
+  Cápsula de hoje já agendada no X às 20h05.
+- Próximo: instalar a tarefa, primeira sessão real amanhã 11h; reel de domingo 04/10 postar à mão no X; automático via
+  API só depois de aprovar o formato e pôr crédito.
+
 ## 2026-09-30 (tarde): voz no reel e nos stories (ElevenLabs), reel reorganizado
 
 **Feito**

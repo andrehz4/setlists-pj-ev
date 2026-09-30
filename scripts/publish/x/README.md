@@ -16,7 +16,17 @@ validar o formato. Quando o Andre aprovar e colocar crédito na API, liga o auto
 | Arquivo | Papel |
 |---|---|
 | `oauth1.mjs` | assinatura OAuth 1.0a (HMAC-SHA1) sem SDK |
-| `texto.mjs` | texto de notícia, cápsula e reel (<= 280, SEM LINK: post com URL custa ~13x mais) |
+| `texto.mjs` | texto de notícia, cápsula e reel (<= 280; sem link por padrão, API cobra ~13x mais por URL; `{ link }` no manual) |
+| `kit-do-dia.mjs` | MODO MANUAL: monta `.x-kit/<dia>/` (texto com link da matéria, imagens, horário) |
+| `ROTINA-X-HOJE.md` | passo a passo do comando `/x-hoje` (Claude agenda no X pelo navegador, Andre clica Schedule) |
+| `mac/` | tarefa do Mac às 11h (launchd `com.smufdpj.x-kit`): roda o kit, avisa e abre o Claude. `instalar.sh` / `desinstalar.sh` |
+
+## Modo manual (atual, grátis)
+
+Às 11h o Mac monta o kit (notícias das últimas 24h, máx. 4, às 12/14/16/18h + cápsula do dia às 20h05), toca o aviso e
+abre o Claude com `/x-hoje`. Ele agenda cada post no agendador nativo do X; o Andre só clica em Schedule. Dia sem
+sessão é descartado. No manual o link da matéria vai no texto (sem custo; o X entrega um pouco menos post com link).
+Log: `/Users/andrehz/Library/Logs/smufdpj-x-kit.log`. Estado (ids já usados): `/Users/andrehz/.smufdpj-x-kit.json`.
 
 ## Plano do automático (aprovado em conceito)
 

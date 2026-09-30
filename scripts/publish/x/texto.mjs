@@ -1,16 +1,21 @@
-// Texto dos posts do X (limite 280). SEM LINK no texto: na API paga por uso,
-// post com URL custa ~13x mais (US$ 0,20 x 0,015). O link fica na bio.
+// Texto dos posts do X (limite 280). Na API paga por uso, post com URL custa ~13x
+// mais (US$ 0,20 x 0,015): por padrão SEM LINK (fica na bio). No modo manual (kit
+// do dia, grátis) passa `link` e ele entra no lugar da chamada.
 // Sem travessão (regra do projeto).
 
 export const LIMITE = 280;
 const CTA_NOTICIA = "Matéria completa no site (link na bio).";
 const CTA_CAPSULA = "A cápsula completa está no site (link na bio).";
 const TAGS = "#PearlJam #EddieVedder";
+const SITE = "https://somaisumfadepearljam.com.br";
+const PESO_URL = 23; // o X conta todo link como 23 caracteres
+export const linkMateria = (id) => `${SITE}/n/${id}`;
 
 // Tamanho como o X conta: emoji e alguns símbolos pesam 2; letra com acento pesa 1.
 export function tamanhoX(texto) {
   let n = 0;
-  for (const ch of String(texto)) n += ch.codePointAt(0) > 0x2fff ? 2 : 1;
+  const semUrl = String(texto).replace(/https?:\/\/\S+/g, () => { n += PESO_URL; return ""; });
+  for (const ch of semUrl) n += ch.codePointAt(0) > 0x2fff ? 2 : 1;
   return n;
 }
 
@@ -34,12 +39,12 @@ function montar(titulo, corpo, cta, tags = TAGS) {
   return [titulo, meio, cta, tags].filter(Boolean).join("\n\n");
 }
 
-export function textoNoticia(item) {
-  return montar(item.title_pt || item.title_ig || "", item.intro_pt || "", CTA_NOTICIA);
+export function textoNoticia(item, { link } = {}) {
+  return montar(item.title_pt || item.title_ig || "", item.intro_pt || "", link ? `Matéria completa: ${link}` : CTA_NOTICIA);
 }
 
-export function textoCapsula(cap) {
-  return montar(cap.title_capa || cap.title_pt || "", cap.intro_pt || "", CTA_CAPSULA);
+export function textoCapsula(cap, { link } = {}) {
+  return montar(cap.title_capa || cap.title_pt || "", cap.intro_pt || "", link ? `Cápsula completa: ${link}` : CTA_CAPSULA);
 }
 
 // rangeLabel: "24 A 30 SET" (o mesmo do reel).

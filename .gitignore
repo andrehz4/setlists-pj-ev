@@ -55,3 +55,6 @@ forum-sementes/
 # Fallback sem R2: o publicador força o MP4 no commit (git add -f).
 media/news/instagram-reels/*.mp4
 media/news/instagram-stories/*.mp4
+
+# kit diário do X (modo manual), gerado no Mac: scripts/publish/x/kit-do-dia.mjs
+.x-kit/
