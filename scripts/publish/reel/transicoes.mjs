@@ -58,12 +58,12 @@ export function aplicarTransicoes(videoPath, { scenes, semente, lista = carregar
   return plano.length;
 }
 
-// Abertura com clipe: sequência rápida de N trechos de 0,9 s, em 9:16 e mudo. O trecho
-// marcado com "capa" (segundo do melhor quadro) cai no slot da capa do reel, com o quadro
-// exato em CAPA_S. Os outros não repetem o da 1a transição, que vem logo depois.
+// Abertura com clipe: a duração EXATA da abertura (com voz ~3,3 a 3,9 s, sem voz 3 s)
+// dividida em N trechos iguais, em 9:16 e mudo. O trecho marcado com "capa" (segundo do
+// melhor quadro) cai no slot do instante da capa, com o quadro exato nele. Os outros não
+// repetem o da 1a transição, que vem logo depois.
 export const CAPA_S = 2.4;
-const SLOT = 0.9;
-export function trechosDaAbertura(lista, semente = "", n = 4) {
+export function trechosDaAbertura(lista, semente = "", { dur = 3, n = 4 } = {}) {
   if (!lista.length) return [];
   let h = 0;
   for (const ch of String(semente)) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
@@ -72,18 +72,22 @@ export function trechosDaAbertura(lista, semente = "", n = 4) {
   const resto = lista.filter((t) => t !== capa);
   const qtd = Math.min(n - (capa ? 1 : 0), Math.max(1, resto.length - 1));
   const sel = Array.from({ length: qtd }, (_, i) => resto[(h + 1 + i) % resto.length]);
-  const slotCapa = Math.floor(CAPA_S / SLOT); // slot que contém o instante da capa
-  if (capa) sel.splice(Math.min(slotCapa, sel.length), 0, { ...capa, iniAbertura: Math.max(0, capa.capa - (CAPA_S - slotCapa * SLOT)) });
-  return sel;
+  const slot = dur / (qtd + (capa ? 1 : 0));
+  if (capa) {
+    const tCapa = capaNaAbertura(dur) / 1000;
+    const i = Math.min(Math.floor(tCapa / slot), sel.length);
+    sel.splice(i, 0, { ...capa, iniAbertura: Math.max(0, capa.capa - (tCapa - i * slot)) });
+  }
+  return sel.map((t) => ({ ...t, slot }));
 }
 
-export function montarAbertura(tmpDir, { semente, lista = carregarTransicoes() } = {}) {
-  const trechos = trechosDaAbertura(lista, semente);
+export function montarAbertura(tmpDir, { semente, dur = 3, lista = carregarTransicoes() } = {}) {
+  const trechos = trechosDaAbertura(lista, semente, { dur });
   if (!trechos.length) return null;
   const saida = path.join(tmpDir, "abertura-clipe.mp4");
-  // 0,9 s de cada trecho (miolo, ou o ponto da capa): 4 trechos cabem na abertura (~3 a 4 s)
-  const f = trechos.map((t, i) => { const ini = (t.iniAbertura ?? Math.max(0, ((t.dur || 1.5) - SLOT) / 2)).toFixed(2);
-    return `[${i}:v]trim=${ini}:${(+ini + SLOT).toFixed(2)},setpts=PTS-STARTPTS,${recorte(t.foco)},scale=1080:1920,setsar=1,fps=30[a${i}]`; }).join(";") +
+  // cada trecho entra com o tamanho do slot: do miolo, ou a partir do ponto da capa
+  const f = trechos.map((t, i) => { const ini = (t.iniAbertura ?? Math.max(0, ((t.dur || 1.5) - t.slot) / 2)).toFixed(3);
+    return `[${i}:v]trim=${ini}:${(+ini + t.slot).toFixed(3)},setpts=PTS-STARTPTS,${recorte(t.foco)},scale=1080:1920,setsar=1,fps=30[a${i}]`; }).join(";") +
     ";" + trechos.map((_, i) => `[a${i}]`).join("") + `concat=n=${trechos.length}:v=1:a=0[v]`;
   const r = spawnSync("ffmpeg", ["-v", "error", "-y", ...trechos.flatMap((t) => ["-i", t.arq]), "-filter_complex", f,
     "-map", "[v]", "-an", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", saida], { encoding: "utf8" });

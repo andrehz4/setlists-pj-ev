@@ -63,13 +63,16 @@ test("capa na abertura: entre 1,8 e 2,4 s, antes do fim da abertura", async () =
   assert.equal(capaNaAbertura(2.2), 1800);
 });
 
-test("abertura: trecho de capa cai no slot da capa com o quadro certo", async () => {
-  const { trechosDaAbertura, CAPA_S } = await import("./transicoes.mjs");
+test("abertura: soma dos trechos = duração exata, capa no instante certo (com e sem voz)", async () => {
+  const { trechosDaAbertura, capaNaAbertura } = await import("./transicoes.mjs");
   const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f, dur: 1.5 }));
-  lista[3].capa = 0.55;
-  const ab = trechosDaAbertura(lista, "2026-W40");
-  assert.equal(ab.length, 4);
-  const i = ab.findIndex((t) => t.file === "d");
-  assert.equal(i, 2);
-  assert.ok(Math.abs(i * 0.9 + (0.55 - ab[i].iniAbertura) - CAPA_S) < 1e-9 || ab[i].iniAbertura === 0);
+  lista[3].capa = 0.75;
+  for (const dur of [3, 3.3, 3.9]) {
+    const ab = trechosDaAbertura(lista, "2026-W40", { dur });
+    assert.equal(ab.length, 4);
+    assert.ok(Math.abs(ab.reduce((s, t) => s + t.slot, 0) - dur) < 1e-9, `soma != ${dur}`);
+    const i = ab.findIndex((t) => t.file === "d");
+    const quadro = i * ab[i].slot + (0.75 - ab[i].iniAbertura); // instante do quadro da capa no reel
+    assert.ok(Math.abs(quadro - capaNaAbertura(dur) / 1000) < 1e-9, `dur ${dur}: quadro em ${quadro}`);
+  }
 });
