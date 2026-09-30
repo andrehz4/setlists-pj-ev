@@ -33,6 +33,12 @@ Andre confirmou: os vídeos NÃO precisam ser guardados (só servem de link pro 
 subir pro R2 só pra publicar e apagar depois, sem commitar (precisa de token R2 com escrita, o Andre gera). Investigar
 também por que a poda dos reels (`prune-media.mjs`, 30 dias) não roda: há 16 reels na pasta, deveriam ser ~4.
 
+**X (@somaisumfadepj), 30/09 à noite**: perfil pronto (selo em alta do Nano Banana + capa bilhete; artes em
+`media/marca/`, playbook `docs/PLAYBOOK-IMAGENS-GOOGLE.md`). Dev console com app Read+Write, chaves OAuth 1.0a nos
+secrets `X_*` (testadas), pay-per-use SEM crédito. Testes manuais: 1 post de notícia (card + texto) e a cápsula de 30/09
+agendada no próprio X pras 20h05 (4 imagens: conferir o corte do grid no feed). Automático só depois de validar o formato
+e o Andre colocar crédito (módulo `scripts/publish/x/`, README lá). Reel no X: postar à mão no domingo depois do IG.
+
 **Próximo passo**: conferir o story narrado de 01/10 (Chris) e o reel de 04/10 (Jessica). Depois: transições com
 trechos de clipe (Andre passa a lista de clipes e aceita o risco de imagem; acervo `media/reels-clips/` está vazio),
 ideia equivalente pros stories, e a foto de capa de cápsula com texto embolando na cena do reel.
