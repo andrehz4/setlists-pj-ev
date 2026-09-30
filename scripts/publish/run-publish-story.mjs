@@ -19,6 +19,8 @@ import { spawnSync } from "node:child_process";
 import { selectStoryItems } from "./story-select.mjs";
 import { pickTrackForDate } from "./story-track.mjs";
 import { buildStoryVideo } from "./story-video.mjs";
+import { prepararNarracaoStory, mixarStory, gravarDias } from "./narracao/story.mjs";
+import { saldo } from "./narracao/elevenlabs.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishStory } from "./instagram.mjs";
 import { publishVideoStory } from "./facebook.mjs";
@@ -132,15 +134,42 @@ async function main() {
   const tarjaColor = getCurrentCycleColor(queue.postCount);
   console.log(`[story] cor do ciclo: ${tarjaColor} (postCount=${queue.postCount})`);
 
-  // 4. renderiza video
+  // 4. voz (opcional, STORY_NARRACAO=1): dia 1 grava o mês seguinte; depois a fala de hoje
+  if (process.env.STORY_NARRACAO === "1" && process.env.ELEVENLABS_API_KEY && brt.getUTCDate() === 1) {
+    try {
+      const conta = await saldo({ apiKey: process.env.ELEVENLABS_API_KEY });
+      // só grava adiantado se sobrar folga pro reel da semana (~3 mil créditos)
+      if (!conta || conta.restante > 5000) console.log(`[story] gravou ${await gravarDias(brt, 31, { apiKey: process.env.ELEVENLABS_API_KEY })} caracteres adiantados`);
+      else console.log(`[story] gravação adiantada pulada: restam ${conta.restante} créditos`);
+    } catch (e) { console.warn(`[story] gravação adiantada falhou (segue): ${e.message}`); }
+  }
+  const narr = await prepararNarracaoStory(brt);
+  if (narr?.aviso) console.log(`[story] ${narr.aviso}`);
+
+  // 5. renderiza video
   const outPath = path.join(STORIES_DIR, `${dateKey}.mp4`);
-  const { duration } = await buildStoryVideo({
+  const video = await buildStoryVideo({
     items,
     trackPath: track.path,
     tarjaColor,
     date: brt,
     outPath,
+    introDur: narr?.introDur,
+    outroDur: narr?.outroDur,
   });
+  const { duration } = video;
+  let avisoVoz = narr?.aviso || "";
+  if (narr?.falas) {
+    const semVoz = path.join(video.tmpDir, "sem-voz.mp4");
+    try {
+      await fs.rename(outPath, semVoz);
+      await mixarStory(semVoz, outPath, { falas: narr.falas, outroInicio: video.outroInicio });
+    } catch (e) {
+      console.warn(`[story] mixagem da voz falhou, segue só com música: ${e.message}`);
+      await fs.rename(semVoz, outPath).catch(() => {});
+      avisoVoz = `story saiu SEM voz: a mixagem falhou`;
+    }
+  }
   console.log(`[story] MP4 gerado: ${outPath} (${duration.toFixed(2)}s)`);
 
   // 5. commita + push pra raw URL servir
@@ -207,7 +236,7 @@ async function main() {
     `publish-story: log sucesso ${dateKey} postId=${postId}`);
 
   // 8. notif Telegram (so se sucesso real)
-  await notifyTelegramStory({ items, postId, track, dateKey });
+  await notifyTelegramStory({ items, postId, track, dateKey, avisoVoz });
 
   await writeStepSummary({
     title: "Publish Instagram Story",
@@ -223,7 +252,7 @@ async function main() {
   console.log(`[story] FIM`);
 }
 
-async function notifyTelegramStory({ items, postId, track, dateKey }) {
+async function notifyTelegramStory({ items, postId, track, dateKey, avisoVoz = "" }) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) return;
@@ -233,6 +262,7 @@ async function notifyTelegramStory({ items, postId, track, dateKey }) {
   const lines = [];
   lines.push(`🎬 <b>Story publicado, ${brtNow} BRT</b>`);
   lines.push(`<i>postId: <code>${postId}</code> · trilha: ${track.name}</i>`);
+  if (avisoVoz) lines.push(`🎙 ${avisoVoz.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}`);
   lines.push("");
   lines.push(`<b>${items.length} ${items.length === 1 ? "manchete" : "manchetes"} do dia ${dateKey}</b>`);
   lines.push("");

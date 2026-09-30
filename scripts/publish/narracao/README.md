@@ -37,3 +37,17 @@ REEL_NARRACAO=1 ELEVENLABS_API_KEY="$(cat /Users/andrehz/.elevenlabs-key)" node 
 node --test scripts/publish/narracao/narracao.test.mjs
 ```
 (o dry-run grava `media/news/instagram-reels/<semana>.mp4`: apagar depois, o reel de verdade sai no domingo)
+
+## Story diário (`story.mjs`)
+
+Voz só na **abertura** ("Hoje é 30 de setembro, e tem novidade do Pearl Jam.") e no **final** (3 chamadas pro site,
+revezando por dia). Vozes próprias: **Bella** nos dias pares e **Chris** nos ímpares. Os cards não são narrados.
+Liga com `STORY_NARRACAO: '1'` no `publish-story.yml`.
+
+- Tudo gravado em `media/news/instagram-stories/narracao/` (`datas/<voz>-<MM-DD>-<hash>.mp3`, `finais/`). A data
+  leva só dia e mês: em 2027 o mesmo dia já está gravado, custo zero.
+- 30/09 a 30/11/2026 já gravados (2026-09-30). Todo **dia 1** o robô grava os 31 dias seguintes, só se sobrarem
+  mais de 5 mil créditos (folga pro reel). Data que faltar é gravada na hora.
+- Abertura e final duram o tempo da fala (`buildStoryVideo({ introDur, outroDur })`); a música abaixa com a voz.
+- Gravar à mão: `node --input-type=module -e 'import {gravarDias} from "./scripts/publish/narracao/story.mjs"; ...'`
+  (ver `gravarDias(desde, dias, { apiKey })`).

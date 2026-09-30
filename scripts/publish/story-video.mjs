@@ -532,11 +532,12 @@ async function prepareCardBg(item) {
 // ============ orquestracao ============
 
 // Resolve qual estado (intro/card/outro) corresponde a um tempo global.
-function resolveSegment(tGlobal, itemsCount) {
-  if (tGlobal < T_INTRO_END) {
+// introEnd: fim da abertura (com narração, dura o tempo da fala; padrão 3 s).
+function resolveSegment(tGlobal, itemsCount, introEnd = T_INTRO_END) {
+  if (tGlobal < introEnd) {
     return { kind: "intro", tRel: tGlobal };
   }
-  const afterIntro = tGlobal - T_INTRO_END;
+  const afterIntro = tGlobal - introEnd;
   for (let i = 0; i < itemsCount; i++) {
     const start = i * T_CARD_DUR;
     const end = start + T_CARD_DUR;
@@ -561,13 +562,14 @@ function runFfmpeg(args) {
   });
 }
 
-export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new Date(), outPath, tmpDir, concurrency = 8 } = {}) {
+// introDur/outroDur (opcionais): vêm da narração (scripts/publish/narracao/story.mjs).
+export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new Date(), outPath, tmpDir, concurrency = 8, introDur = T_INTRO_END, outroDur = T_OUTRO_DUR } = {}) {
   if (!Array.isArray(items) || items.length === 0) throw new Error("buildStoryVideo: items vazio");
   if (items.length > 5) items = items.slice(0, 5);
   // SEM repetir: 1 noticia = 1 card. Timeline dinamica acompanha.
   if (!trackPath) throw new Error("buildStoryVideo: trackPath obrigatorio");
 
-  const totalS = T_INTRO_END + items.length * T_CARD_DUR + T_OUTRO_DUR;
+  const totalS = introDur + items.length * T_CARD_DUR + outroDur;
   const totalFrames = Math.round(totalS * FPS);
 
   tmpDir = tmpDir || await fs.mkdtemp(path.join(os.tmpdir(), "smufdpj-story-"));
@@ -588,7 +590,7 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
   // helper: gera um frame pelo seu indice global
   async function renderFrame(idx) {
     const tGlobal = idx / FPS;
-    const seg = resolveSegment(tGlobal, items.length);
+    const seg = resolveSegment(tGlobal, items.length, introDur);
     const destPath = path.join(tmpDir, `frame_${String(idx).padStart(5, "0")}.png`);
     if (seg.kind === "intro") {
       const svg = buildIntroFrame({ tRel: seg.tRel, state: introState });
@@ -645,7 +647,7 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
   ];
   console.log(`[story-video] mixando audio + encoding MP4...`);
   await runFfmpeg(args);
-  return { outPath, duration: totalS, tmpDir, frames: totalFrames };
+  return { outPath, duration: totalS, tmpDir, frames: totalFrames, outroInicio: introDur + items.length * T_CARD_DUR };
 }
 
 // CLI util pra teste local
