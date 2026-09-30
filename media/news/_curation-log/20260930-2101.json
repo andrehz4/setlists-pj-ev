@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-09-30T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 1 },
+  "approved": [
+    { "id": "efcd555cfc", "titulo": "Pôster oficial do Ohana de 27 de setembro, assinado por Max Loeffler, chega ao Ten Club", "kind": "shop" }
+  ],
+  "skipped": [
+    { "id": "573b907d22", "title": "Eddie Vedder oferece guitarra para banda que teve instrumentos roubados (Terra)", "reason": "republicação de Rolling Stone Brasil, sem novidade (já publicado: 92d5f2e8d8)" },
+    { "id": "5604d963e0", "title": "Eddie Vedder oferece guitarra para banda que teve instrumentos roubados (RS Brasil)", "reason": "sem novidade (já publicado: 92d5f2e8d8)" },
+    { "id": "45ee313e0e", "title": "Winamp. Spending more time choosing a skin than choosing a song.", "reason": "texto vazio, sem menção a PJ (r/nostalgia)" }
+  ]
+}
