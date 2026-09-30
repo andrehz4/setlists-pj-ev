@@ -58,3 +58,4 @@ media/news/instagram-stories/*.mp4
 
 # kit diário do X (modo manual), gerado no Mac: scripts/publish/x/kit-do-dia.mjs
 .x-kit/
+.momentos/

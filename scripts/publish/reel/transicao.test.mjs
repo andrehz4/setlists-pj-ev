@@ -21,3 +21,12 @@ test("transicoes.json válido e todo arquivo listado existe", () => {
   assert.ok(Array.isArray(doc.transicoes));
   for (const t of doc.transicoes) assert.ok(fs.existsSync(`${PASTA}/${t.file}`), `falta ${t.file}`);
 });
+
+test("momentos: janelas com mais movimento, sem atravessar corte, espaçadas", async () => {
+  const { escolherCandidatos, lerMovimento } = await import("./momentos.mjs");
+  assert.deepEqual(lerMovimento("frame:0 pts:0 pts_time:1.5\nlavfi.signalstats.YAVG=12.3\n"), [[1.5, 12.3]]);
+  const mov = Array.from({ length: 400 }, (_, i) => [i / 10, i >= 200 && i < 230 ? 50 : 5]); // pico em 20 a 23 s
+  const c = escolherCandidatos(mov, [21.2], 3);
+  assert.ok(c.some((x) => x.ini >= 19.5 && x.fim <= 21.3 || x.ini >= 21.2 && x.fim <= 23.5), JSON.stringify(c));
+  assert.ok(c.every((x) => !(x.ini < 21.05 && x.fim > 21.35)), "atravessou o corte");
+});
