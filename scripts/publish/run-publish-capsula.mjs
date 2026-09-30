@@ -14,14 +14,15 @@ import { buildCoverSlide, buildQuoteSlide, buildCtaSlide } from "./slide-image.m
 import { publishCarouselFromUrls } from "./instagram.mjs";
 import { publishAlbumFromUrls } from "./facebook.mjs";
 import { CYCLE_COLORS } from "./color-cycle.mjs";
-import { buildQuoteSlideMoldura } from "./citacao/slide-citacao.mjs";
+import { buildQuoteSlideCitacao, estiloDoDia } from "./citacao/slide-citacao.mjs";
+import { fonteDoVideo } from "./citacao/fontes.mjs";
 
 const DRY = process.argv.includes("--dry-run");
 const NO_GIT = process.argv.includes("--no-git");
 const FORCE = process.argv.includes("--force");
 const PUBLISH_FB = process.env.PUBLISH_FB === "1";
-// Slide de citação: "moldura" (foto de quem fala + @smufdpj, ver scripts/publish/citacao/) ou o antigo.
-const CITACAO_MOLDURA = process.env.CAPSULA_CITACAO === "moldura";
+// Slide de citação novo (scripts/publish/citacao/): rodizio | editorial | revista. Vazio = slide antigo.
+const CITACAO = process.env.CAPSULA_CITACAO || "";
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 
@@ -109,10 +110,18 @@ async function gerarSlides(cap, cor, urlBase) {
   await buildCoverSlide({ id: capaId, title_pt: cap.title_capa || cap.title_pt, img: cap.img, tags: cap.tags, kind: "youtube", url: "" }, capaId, cor);
   urls.push(`${urlBase}/${capaId}.jpg`);
   const cs = Array.isArray(cap.carrossel) ? cap.carrossel : [];
+  const citacao = (estilo) => Promise.all(cs.map((c, i) => buildQuoteSlideCitacao({ quote: c.texto, author: c.autor || "Eddie Vedder",
+    seed: cap.id, fonte: fonteDoVideo(cap.videoId), estilo }, `${cap.id}-${String(i + 1).padStart(2, "0")}`, cor)));
+  if (CITACAO) {
+    // a cápsula inteira usa o mesmo estilo: se alguma citação não coube na revista, refaz tudo no editorial
+    const estilo = estiloDoDia(CITACAO);
+    const feitos = await citacao(estilo);
+    if (feitos.some((r) => r.estilo !== estilo)) await citacao("editorial");
+    console.log(`[capsula] citações no estilo ${feitos.every((r) => r.estilo === estilo) ? estilo : "editorial"}`);
+  }
   for (let i = 0; i < cs.length; i++) {
     const qId = `${cap.id}-${String(i + 1).padStart(2, "0")}`;
-    if (CITACAO_MOLDURA) await buildQuoteSlideMoldura({ quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder", seed: cap.id }, qId, cor);
-    else await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, cor);
+    if (!CITACAO) await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, cor);
     urls.push(`${urlBase}/${qId}.jpg`);
   }
   const ctaId = `${cap.id}-99`;

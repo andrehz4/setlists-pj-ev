@@ -44,6 +44,7 @@ design-handoff.zip
 media/news/youtube-acervo/*
 !media/news/youtube-acervo/_rascunhos.json
 !media/news/youtube-acervo/_capsula-queue.json
+!media/news/youtube-acervo/_fontes.json
 
 # venv local do backend
 backend/.venv/
