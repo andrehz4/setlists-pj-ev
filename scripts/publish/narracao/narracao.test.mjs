@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { normalizarFala, falasDasCenas, FALA_ABERTURA, FALA_FINAL } from "./fala.mjs";
+import { normalizarFala, falasDasCenas, ABERTURAS, FINAIS, variacaoDaSemana } from "./fala.mjs";
 import { vozDaSemana, sintetizar, VOZES } from "./elevenlabs.mjs";
 import { prepararNarracao, duracoesSincronizadas, filtroMixagem, narracaoLigada, arquivoFixo } from "./narracao.mjs";
 import { buildScenePlan, COLD_DUR, BLOCK_DUR, OUTRO_DUR } from "../reel-video.mjs";
@@ -29,10 +29,10 @@ test("fala lê o título da tela, trocando o que soa mal", () => {
 
 test("abertura e final fixos, uma fala por cena", () => {
   const { scenes } = buildScenePlan(ITENS);
-  const f = falasDasCenas(scenes);
+  const f = falasDasCenas(scenes, "2026-W40");
   assert.equal(f.length, scenes.length);
-  assert.equal(f[0].texto, FALA_ABERTURA);
-  assert.equal(f.at(-1).texto, FALA_FINAL);
+  assert.equal(f[0].texto, ABERTURAS[40 % 3]);
+  assert.equal(f.at(-1).texto, FINAIS[40 % 3]);
 });
 
 test("sem durações o plano de cenas fica idêntico ao de sempre", () => {
@@ -88,10 +88,19 @@ test("abertura e final reaproveitados na 2ª semana; manchetes sempre geradas", 
 });
 
 test("arquivo fixo muda quando muda a voz ou o texto", () => {
-  const a = arquivoFixo(FALA_ABERTURA, VOZES[0], "/x"), b = arquivoFixo(FALA_ABERTURA, VOZES[1], "/x");
+  const a = arquivoFixo(ABERTURAS[0], VOZES[0], "/x"), b = arquivoFixo(ABERTURAS[0], VOZES[1], "/x");
   assert.notEqual(a, b);
   assert.match(a, /jessica-abertura-[0-9a-f]{8}\.mp3$/);
   assert.equal(arquivoFixo("Outra frase.", VOZES[0], "/x"), null);
+});
+
+test("abertura e final variam por semana, 3 de cada", () => {
+  assert.equal(ABERTURAS.length, 3);
+  assert.equal(FINAIS.length, 3);
+  const semanas = ["2026-W40", "2026-W41", "2026-W42"].map((w) => variacaoDaSemana(ABERTURAS, w));
+  assert.equal(new Set(semanas).size, 3);
+  for (const f of FINAIS) assert.match(f, /maior acervo de Pearl Jam do Brasil/);
+  for (const t of [...ABERTURAS, ...FINAIS]) assert.doesNotMatch(t, /[—–]/);
 });
 
 test("voz reveza por semana", () => {

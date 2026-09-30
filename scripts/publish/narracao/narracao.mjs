@@ -8,7 +8,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { falasDasCenas, FALA_ABERTURA, FALA_FINAL } from "./fala.mjs";
+import { falasDasCenas, ABERTURAS, FINAIS } from "./fala.mjs";
 import { sintetizar, vozDaSemana } from "./elevenlabs.mjs";
 
 // Abertura e encerramento são sempre iguais: gerados 1x por voz e guardados no
@@ -16,9 +16,10 @@ import { sintetizar, vozDaSemana } from "./elevenlabs.mjs";
 // gera de novo sozinho. Economiza crédito do ElevenLabs toda semana.
 export const DIR_FIXAS = path.resolve("media/news/instagram-reels/narracao");
 export function arquivoFixo(texto, voz, dir = DIR_FIXAS) {
-  if (texto !== FALA_ABERTURA && texto !== FALA_FINAL) return null;
+  const tipo = ABERTURAS.includes(texto) ? "abertura" : FINAIS.includes(texto) ? "final" : null;
+  if (!tipo) return null;
   const h = createHash("sha1").update(`${voz.id}|${texto}`).digest("hex").slice(0, 8);
-  return path.join(dir, `${voz.nome.toLowerCase()}-${texto === FALA_ABERTURA ? "abertura" : "final"}-${h}.mp3`);
+  return path.join(dir, `${voz.nome.toLowerCase()}-${tipo}-${h}.mp3`);
 }
 
 // Folga depois da fala (a manchete fica um instante na tela) e limites.
@@ -58,7 +59,7 @@ export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.
     await fs.mkdir(dir, { recursive: true });
     const falas = [];
     let reaproveitadas = 0;
-    for (const f of falasDasCenas(scenes)) {
+    for (const f of falasDasCenas(scenes, weekKey)) {
       const fixo = arquivoFixo(f.texto, voz, dirFixas);
       const arquivo = fixo || path.join(dir, `fala_${String(f.sceneIndex).padStart(2, "0")}.mp3`);
       const jaExiste = fixo && await fs.stat(fixo).then(() => true, () => false);
