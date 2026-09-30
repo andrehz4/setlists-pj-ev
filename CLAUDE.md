@@ -59,6 +59,14 @@ Cloudflare Pages Functions, módulo apartado ligado por `FORUM_SEO=1` (variável
 da API do Railway; `/sitemap-forum.xml` lista todos (está no `robots.txt`). Cache de borda 1h/6h; API fora = 503 +
 Retry-After (nunca cacheado). `forum-topic.html` aponta o canonical pra `/t/<id>`. Testes em `scripts/forum-seo/`.
 
+### X / Twitter (@somaisumfadepj), MODO MANUAL
+
+Tudo em `scripts/publish/x/` (mapa no `README.md` de lá). Hoje é manual e grátis: às 11h o Mac (launchd
+`com.smufdpj.x-kit`, instalado) monta o kit do dia em `.x-kit/<dia>/` e abre o Claude com `/x-hoje`
+(`ROTINA-X-HOJE.md`): reescrevo cada post condensado, `conferir.mjs` valida, o Andre aprova, eu preencho no agendador
+do X e o **Andre clica em Schedule** (automação pelo site é proibida pelo X; nunca clicar sozinho). Só a 1a notícia do
+dia leva link (teste de alcance). Automático via API (`oauth1.mjs`) espera crédito no X.
+
 ### Imagens e marca (Nano Banana / Google Flow)
 
 O Andre tem Google Flow e Nano Banana pagos: usar pra imagem de marca (selo, perfil, capa), como o Claude Design é usado

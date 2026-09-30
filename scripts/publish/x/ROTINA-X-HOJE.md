@@ -32,9 +32,21 @@ O Andre só clica em **Schedule** em cada post. Publicar é sempre decisão dele
 6. Se o horário do post já passou (Andre abriu tarde): perguntar se agenda pra daqui a 10 min ou pula aquele post.
 7. No fim, abrir a lista de agendados (`https://x.com/compose/post/unsent/scheduled`), conferir e resumir.
 
+## Lições (não redescobrir)
+
+- Depois de subir a imagem e digitar, o layout da caixa muda: clicar no Schedule com ref antiga ou coordenada velha
+  acerta o botão "Edit" da imagem (abre "Crop media"). Se abrir, voltar com a seta SEM salvar. Sempre refazer o `find`
+  do "Schedule post" e esperar 1 a 2 s antes de procurar os selects do agendamento.
+- O `find` às vezes não enxerga o diálogo recém-aberto: tirar um screenshot e repetir o `find`.
+- Pro upload usar o `input type=file` (o `find` devolve como "button ... (file)"), nunca clicar no ícone de foto
+  (abre o seletor do sistema, que eu não controlo).
+- Link comprido quebra linha na caixa do X: é só visual, não é erro.
+- Kit de TESTE sem mexer no controle real: `HOME=<pasta do scratchpad> node scripts/publish/x/kit-do-dia.mjs`.
+
 ## Regras
 
-- Nunca clicar em Post/Schedule sozinho. Nunca postar sem o kit: imagem vem do kit; texto é a versão otimizada que o Andre aprovou.
+- Nunca clicar em Post/Schedule sozinho: o X proíbe automação pelo site (só API) e pode limitar ou suspender a conta.
+  O clique final do Andre torna o post humano. Nunca postar sem o kit: imagem vem do kit; texto é a versão otimizada que o Andre aprovou.
 - O X NÃO grava imagem de PERFIL enviada por upload automático; imagem de POST funciona.
 - Dia sem sessão é descartado: o kit só pega as últimas 24h (máx. 4 notícias), não acumula.
 - Não usar a API paga (sem crédito). O automático via API é outra etapa (ver README).

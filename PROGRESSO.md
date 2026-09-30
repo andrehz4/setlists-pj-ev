@@ -1,14 +1,15 @@
 # PROGRESSO, setlists-pj-ev
 
-## 2026-09-30 (noite): X em modo manual com kit diário
+## 2026-09-30 (noite): X em modo manual com kit diário (fechado)
 
-- Feito: `kit-do-dia.mjs` monta os posts do dia em `.x-kit/<dia>/` (notícias 24h às 12/14/16/18h + cápsula 20h05),
-  agora com o link da matéria no texto (manual não paga por URL). Comando `/x-hoje` (`scripts/publish/x/ROTINA-X-HOJE.md`)
-  e tarefa do Mac às 11h em `scripts/publish/x/mac/`.
-- Estado: tarefa do Mac INSTALADA em 2026-09-30 (launchd `com.smufdpj.x-kit`, todo dia 11h).
-  Cápsula de hoje já agendada no X às 20h05.
-- Próximo: primeira sessão real 01/10 às 11h; reel de domingo 04/10 postar à mão no X; automático via
-  API só depois de aprovar o formato e pôr crédito.
+- Feito: `kit-do-dia.mjs` (notícias 24h às 12/14/16/18h + cápsula 20h05), `/x-hoje` (`ROTINA-X-HOJE.md`: reescreve
+  condensado, `conferir.mjs` valida, Andre aprova e clica Schedule), tarefa do Mac às 11h INSTALADA. Só a 1a notícia
+  do dia leva link (teste de alcance). Testes do kit + Regra 0 (<=150 linhas) no módulo X. Seção do X no CLAUDE.md.
+- Teste real feito hoje: agendados no X 18h (com link), 19h, 20h05 (cápsula) e 21h, conferidos na lista do X.
+- Pendente: notícia "Do Bad Religion ao Pixies" (04a0d0850b) ficou fora do limite de 4 e não entra no kit de amanhã;
+  postar à mão se o Andre quiser.
+- Próximo: 1a sessão automática 01/10 às 11h; em ~2 semanas comparar nas estatísticas do X post com link x sem link;
+  reel de domingo 04/10 no X à mão; automático via API quando o formato estiver aprovado e houver crédito.
 
 ## 2026-09-30 (tarde): voz no reel e nos stories (ElevenLabs), reel reorganizado
 
