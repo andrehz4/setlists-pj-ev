@@ -1,3 +1,64 @@
 {
-  "transicoes": []
+  "transicoes": [
+    {
+      "file": "even-flow-headbang-eddie.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "tags": [
+        "eddie",
+        "memoria"
+      ]
+    },
+    {
+      "file": "even-flow-maos-publico.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "tags": [
+        "comunidade",
+        "memoria"
+      ]
+    },
+    {
+      "file": "even-flow-eddie-giro.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "capa": 0.55
+    },
+    {
+      "file": "even-flow-guitarra-azul.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "tags": [
+        "memoria"
+      ],
+      "capa": 0.95
+    },
+    {
+      "file": "even-flow-stage-dive.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "tags": [
+        "eddie",
+        "memoria"
+      ]
+    },
+    {
+      "file": "even-flow-bateria-cabelo.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "tags": [
+        "memoria"
+      ]
+    }
+  ]
 }

@@ -26,6 +26,7 @@ import { publishVideoReel } from "./facebook.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { isoWeekKey, weekRangeLabel } from "./reel-week.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
+import { aplicarTransicoes, montarAbertura, capaNaAbertura } from "./reel/transicoes.mjs";
 
 const REELS_DIR = path.resolve("media/news/instagram-reels");
 const LOG_PATH = path.join(REELS_DIR, "_reel-log.json");
@@ -143,6 +144,13 @@ async function main() {
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "smufdpj-reel-"));
   const narr = await prepararNarracao(scenes, { weekKey, tmpDir });
 
+  // abertura com sequência de trechos de clipe no lugar da foto (mesma flag das transições)
+  let aberturaClipe = false;
+  if (process.env.REEL_TRANSICOES === "1" && !clipForScene.has(0)) {
+    const abertura = montarAbertura(tmpDir, { semente: weekKey });
+    if (abertura) { clipForScene.set(0, abertura); aberturaClipe = true; console.log("[reel] abertura com clipe (sequência de trechos)"); }
+  }
+
   // 5. renderiza
   const outPath = path.join(REELS_DIR, `${weekKey}.mp4`);
   const r = await buildReelVideo({ items, trackPath: track.path, accent, rangeLabel, outPath, clipForScene, tmpDir, sceneDurs: narr?.sceneDurs });
@@ -160,6 +168,11 @@ async function main() {
       avisoVoz = `reel saiu SEM voz: a mixagem falhou (${e.message.slice(0, 120)})`;
       await fs.rename(path.join(tmpDir, "sem-voz.mp4"), outPath).catch(() => {});
     }
+  }
+  // transições com trecho de clipe nas trocas de cena (REEL_TRANSICOES=1; falha = segue sem)
+  if (process.env.REEL_TRANSICOES === "1") {
+    try { console.log(`[reel] transições: ${aplicarTransicoes(outPath, { scenes: r.sceneList, semente: weekKey })}`); }
+    catch (e) { console.warn(`[reel] transições falharam, segue sem: ${e.message.slice(0, 200)}`); }
   }
   await fs.rm(r.tmpDir, { recursive: true, force: true });
   console.log(`[reel] MP4 gerado: ${outPath} (${r.duration.toFixed(1)}s, ${r.scenes} cenas)`);
@@ -185,7 +198,7 @@ async function main() {
   console.log(`[reel] publishing video_url=${videoUrl} (caption ${caption.length} chars)`);
   let postId, containerId, recovered;
   try {
-    const pub = await publishReel({ videoUrl, caption, shareToFeed: true, thumbOffsetMs: thumbOffsetMsFor() });
+    const pub = await publishReel({ videoUrl, caption, shareToFeed: true, thumbOffsetMs: aberturaClipe ? capaNaAbertura(r.sceneList[0].dur) : thumbOffsetMsFor() });
     postId = pub.postId;
     containerId = pub.containerId;
     recovered = pub.recovered;
