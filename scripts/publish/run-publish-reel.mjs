@@ -12,11 +12,13 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import os from "node:os";
 import { spawnSync } from "node:child_process";
 import { selectReelItems } from "./reel-select.mjs";
 import { loadClips, pickClipFor, weekSeed } from "./reel-clips.mjs";
 import { pickTrackForDate } from "./story-track.mjs";
 import { buildReelVideo, buildScenePlan, thumbOffsetMsFor } from "./reel-video.mjs";
+import { prepararNarracao, mixarNarracao } from "./narracao/narracao.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishReel, buildReelCaption } from "./instagram.mjs";
 import { publishVideoReel } from "./facebook.mjs";
@@ -136,9 +138,26 @@ async function main() {
   const rangeLabel = weekRangeLabel(brt);
   console.log(`[reel] trilha: ${track.name} | accent: ${accent} | semana: ${rangeLabel}`);
 
-  // 4. renderiza
+  // 4. narração (opcional, REEL_NARRACAO=1 + ELEVENLABS_API_KEY): cada cena dura o tempo da fala
+  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "smufdpj-reel-"));
+  const narr = await prepararNarracao(scenes, { weekKey, tmpDir });
+
+  // 5. renderiza
   const outPath = path.join(REELS_DIR, `${weekKey}.mp4`);
-  const r = await buildReelVideo({ items, trackPath: track.path, accent, rangeLabel, outPath, clipForScene });
+  const r = await buildReelVideo({ items, trackPath: track.path, accent, rangeLabel, outPath, clipForScene, tmpDir, sceneDurs: narr?.sceneDurs });
+  let narrado = false;
+  if (narr) {
+    try {
+      const semVoz = path.join(tmpDir, "sem-voz.mp4");
+      await fs.rename(outPath, semVoz);
+      await mixarNarracao(semVoz, outPath, { falas: narr.falas, scenes: r.sceneList });
+      narrado = true;
+      console.log(`[reel] narração mixada (voz ${narr.voz.nome})`);
+    } catch (e) {
+      console.warn(`[reel] mixagem da narração falhou, segue só com música: ${e.message}`);
+      await fs.rename(path.join(tmpDir, "sem-voz.mp4"), outPath).catch(() => {});
+    }
+  }
   await fs.rm(r.tmpDir, { recursive: true, force: true });
   console.log(`[reel] MP4 gerado: ${outPath} (${r.duration.toFixed(1)}s, ${r.scenes} cenas)`);
 
@@ -154,7 +173,7 @@ async function main() {
 
   // 6. publica
   const videoUrl = `${REPO_PUBLIC_BASE}/media/news/instagram-reels/${weekKey}.mp4`;
-  const caption = buildReelCaption(items, { weekLabel: rangeLabel });
+  const caption = buildReelCaption(items, { weekLabel: rangeLabel, creditoVoz: narrado });
   console.log(`[reel] publishing video_url=${videoUrl} (caption ${caption.length} chars)`);
   let postId, containerId, recovered;
   try {

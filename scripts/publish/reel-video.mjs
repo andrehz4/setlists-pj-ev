@@ -404,16 +404,21 @@ export function outroSvg(t, { accent, badgeFrame = null, siteTextW = null }) {
 // ============ plano de cenas ============
 
 // items: saida do reel-select (com .format). Devolve a lista de cenas com
-// inicio/duracao, pro render e pro thumb_offset.
-export function buildScenePlan(items) {
-  const scenes = [{ kind: "coldopen", start: 0, dur: COLD_DUR }];
-  let cursor = COLD_DUR;
+// inicio/duracao, pro render e pro thumb_offset. sceneDurs (opcional, um por
+// cena) vem da narracao (scripts/publish/narracao/): cada cena dura o tempo da
+// fala. Sem ele, duracoes fixas de sempre.
+export function buildScenePlan(items, sceneDurs = null) {
+  const dur = (i, padrao) => (sceneDurs && Number.isFinite(sceneDurs[i]) ? sceneDurs[i] : padrao);
+  const scenes = [{ kind: "coldopen", start: 0, dur: dur(0, COLD_DUR) }];
+  let cursor = scenes[0].dur;
   items.forEach((item, i) => {
-    scenes.push({ kind: item.format, item, n: i + 1, start: cursor, dur: BLOCK_DUR });
-    cursor += BLOCK_DUR;
+    const d = dur(i + 1, BLOCK_DUR);
+    scenes.push({ kind: item.format, item, n: i + 1, start: cursor, dur: d });
+    cursor += d;
   });
-  scenes.push({ kind: "outro", start: cursor, dur: OUTRO_DUR });
-  return { scenes, totalS: cursor + OUTRO_DUR, totalFrames: Math.round((cursor + OUTRO_DUR) * FPS) };
+  const dOutro = dur(items.length + 1, OUTRO_DUR);
+  scenes.push({ kind: "outro", start: cursor, dur: dOutro });
+  return { scenes, totalS: cursor + dOutro, totalFrames: Math.round((cursor + dOutro) * FPS) };
 }
 
 // Momento da capa (thumb_offset): 1o bloco com a manchete ja montada.
@@ -566,12 +571,12 @@ async function renderScene({ scene, total, accent, ctx, dir, concurrency = 8 }) 
 // sceneIndex -> caminho de clipe (decidido pelo orquestrador via reel-clips).
 export async function buildReelVideo({
   items, trackPath, accent, rangeLabel, outPath,
-  clipForScene = new Map(), tmpDir, concurrency = 8,
+  clipForScene = new Map(), tmpDir, concurrency = 8, sceneDurs = null,
 } = {}) {
   if (!Array.isArray(items) || items.length === 0) throw new Error("buildReelVideo: items vazio");
   if (!trackPath) throw new Error("buildReelVideo: trackPath obrigatorio");
 
-  const { scenes, totalS, totalFrames } = buildScenePlan(items);
+  const { scenes, totalS, totalFrames } = buildScenePlan(items, sceneDurs);
   const total = items.length;
   tmpDir = tmpDir || await fs.mkdtemp(path.join(os.tmpdir(), "smufdpj-reel-"));
   await fs.mkdir(tmpDir, { recursive: true });
@@ -675,5 +680,5 @@ export async function buildReelVideo({
     outPath,
   ]);
 
-  return { outPath, duration: totalS, frames: totalFrames, scenes: scenes.length, tmpDir };
+  return { outPath, duration: totalS, frames: totalFrames, scenes: scenes.length, sceneList: scenes, tmpDir };
 }

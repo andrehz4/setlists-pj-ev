@@ -589,7 +589,9 @@ export async function createReelContainer({ igUserId, accessToken, videoUrl, cap
 
 // Caption do reel semanal: cabecalho + indice numerado das manchetes +
 // CTA + hashtags. Mesmo orcamento IG_CAPTION_MAX do carrossel.
-export function buildReelCaption(items, { weekLabel = "" } = {}) {
+// creditoVoz: reel narrado pelo ElevenLabs (plano grátis pede crédito). Vai
+// discreto no fim, só o nome, sem link nem domínio (o IG implica com link).
+export function buildReelCaption(items, { weekLabel = "" , creditoVoz = false } = {}) {
   const hashtags = dedupeTags([
     ...HASHTAGS_FIXED,
     ...items.flatMap((it) => Array.isArray(it.tags) ? it.tags : []),
@@ -609,6 +611,7 @@ export function buildReelCaption(items, { weekLabel = "" } = {}) {
 
   let caption = header + body.trim() + tail;
   if (caption.length > IG_CAPTION_MAX) caption = caption.slice(0, IG_CAPTION_MAX - 3) + "...";
+  if (creditoVoz) caption = caption.slice(0, IG_CAPTION_MAX - 20) + "\n\nvoz: ElevenLabs";
   return caption;
 }
 
