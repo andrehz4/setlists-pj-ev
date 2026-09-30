@@ -45,37 +45,11 @@ test("transições: uma por troca de cena, rodízio sem repetir, filtro sobrepõ
   assert.deepEqual(planejarTransicoes(scenes, [], "x"), []);
 });
 
-test("abertura: 4 trechos sem repetir e sem o da 1a transição", async () => {
-  const { trechosDaAbertura, planejarTransicoes } = await import("./transicoes.mjs");
-  const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f }));
-  const ab = trechosDaAbertura(lista, "2026-W40");
-  assert.equal(ab.length, 4);
-  assert.equal(new Set(ab.map((t) => t.file)).size, 4);
-  const primeira = planejarTransicoes([{ start: 0 }, { start: 3 }], lista, "2026-W40")[0].trecho.file;
-  assert.ok(!ab.some((t) => t.file === primeira));
-  assert.deepEqual(trechosDaAbertura([], "x"), []);
-});
-
 test("capa na abertura: entre 1,8 e 2,4 s, antes do fim da abertura", async () => {
   const { capaNaAbertura } = await import("./transicoes.mjs");
   assert.equal(capaNaAbertura(3), 2400);
   assert.equal(capaNaAbertura(3.9), 2400);
   assert.equal(capaNaAbertura(2.2), 1800);
-});
-
-test("abertura: soma dos trechos = duração exata, capa no instante certo (com e sem voz)", async () => {
-  const { trechosDaAbertura, capaNaAbertura } = await import("./transicoes.mjs");
-  const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f, dur: 1.5 }));
-  lista[3].capa = 0.75;
-  for (const dur of [3, 3.3, 3.9]) {
-    const ab = trechosDaAbertura(lista, "2026-W40", { dur });
-    assert.equal(ab.length, 4);
-    assert.ok(Math.abs(ab.reduce((s, t) => s + t.slot, 0) - dur) < 1e-9, `soma != ${dur}`);
-    const i = ab.findIndex((t) => t.file === "d");
-    const antes = ab.slice(0, i).reduce((s, t) => s + t.slot, 0);
-    const quadro = antes + (0.75 - ab[i].iniAbertura); // instante do quadro da capa no reel
-    assert.ok(Math.abs(quadro - capaNaAbertura(dur) / 1000) < 1e-9, `dur ${dur}: quadro em ${quadro}`);
-  }
 });
 
 test("trazer do baixa: só o que é novo, com capa/foco e tags em lista", async () => {
@@ -88,16 +62,6 @@ test("trazer do baixa: só o que é novo, com capa/foco e tags em lista", async 
   assert.deepEqual(r, [{ file: "a.mp4", musica: "Alive", capa: 0.75, foco: 0.3, tags: ["eddie", "memoria"] }]);
 });
 
-test("abertura: capa em corte de 1,5 s nunca pede vídeo além do arquivo", async () => {
-  const { trechosDaAbertura } = await import("./transicoes.mjs");
-  const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f, dur: 1.5 }));
-  lista[3].capa = 0.75;
-  for (let dur = 3; dur <= 4.01; dur += 0.05) {
-    const t = trechosDaAbertura(lista, "2026-W40", { dur }).find((x) => x.file === "d");
-    assert.ok(t.iniAbertura >= 0 && t.iniAbertura + t.slot <= 1.5 + 1e-9, `dur ${dur.toFixed(2)}`);
-  }
-});
-
 test("recorte: foco fixo, centro por padrão e trilha do rosto vira expressão por tempo", async () => {
   const { recorte } = await import("./transicoes.mjs");
   assert.equal(recorte({}), "crop=ih*9/16:ih:x=(iw-ih*9/16)*(0.5)");
@@ -114,17 +78,24 @@ test("recorte: foco fixo, centro por padrão e trilha do rosto vira expressão p
   assert.match(r, /if\(lt\(t\\,1\)\\,0\.200\+\(0\.600\)\*\(t-0\)\/1\\,0\.800\)/);
 });
 
-test("abertura: capa no começo de um corte de 3 s vira o último trecho, quadro exato na capa", async () => {
-  const { trechosDaAbertura, capaNaAbertura } = await import("./transicoes.mjs");
+
+test("abertura sem capa: 4 trechos iguais somando a duração, sem o da 1a transição", async () => {
+  const { trechosDaAbertura, planejarTransicoes } = await import("./transicoes.mjs");
   const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f, dur: 1.5 }));
-  Object.assign(lista[2], { capa: 0, dur: 3 });
-  for (const dur of [3, 3.4, 3.9]) {
+  for (const dur of [3, 3.9]) {
     const ab = trechosDaAbertura(lista, "2026-W40", { dur });
-    const ult = ab.at(-1);
-    assert.equal(ult.file, "c");
+    assert.equal(ab.length, 4);
+    assert.equal(new Set(ab.map((t) => t.file)).size, 4);
     assert.ok(Math.abs(ab.reduce((s, t) => s + t.slot, 0) - dur) < 1e-9);
-    const inicio = ab.slice(0, -1).reduce((s, t) => s + t.slot, 0);
-    assert.ok(Math.abs(inicio + (0 - ult.iniAbertura) - capaNaAbertura(dur) / 1000) < 1e-9);
-    assert.ok(ult.iniAbertura + ult.slot <= 3 + 1e-9);
+    const primeira = planejarTransicoes([{ start: 0 }, { start: 3 }], lista, "2026-W40")[0].trecho.file;
+    assert.ok(!ab.some((t) => t.file === primeira));
   }
+  assert.deepEqual(trechosDaAbertura([], "x"), []);
+});
+
+test("abertura com capa: a abertura inteira é o clipe da capa, do começo", async () => {
+  const { trechosDaAbertura } = await import("./transicoes.mjs");
+  const lista = [{ file: "a", arq: "a", dur: 1.5 }, { file: "c", arq: "c", dur: 3, capa: 0 }];
+  const ab = trechosDaAbertura(lista, "x", { dur: 3.6 });
+  assert.deepEqual(ab.map((t) => [t.file, t.iniAbertura, t.slot]), [["c", 0, 3.6]]);
 });
