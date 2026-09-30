@@ -15,7 +15,6 @@
 // tempo local da cena. Nada de random, estado acumulado ou filtros.
 
 // Desde 2026-09-30 o código vive em scripts/publish/reel/; aqui só montagem do MP4 e API pública.
-
 import "./fontconfig-boot.mjs";
 import fs from "node:fs/promises";
 import path from "node:path";
