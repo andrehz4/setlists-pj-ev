@@ -8,5 +8,6 @@ https://github.com/google/fonts. Uso e redistribuição livres, inclusive comerc
 | Anton-Regular.ttf | Anton, Vernon Adams |
 | Inter-*.ttf | Inter, Rasmus Andersson |
 | PlayfairDisplay-BlackItalic.ttf | Playfair Display, Claus Eggers Sørensen |
+| PlayfairDisplay-Italic/MediumItalic/BoldItalic.ttf | Playfair Display, Claus Eggers Sørensen (slide de citação das cápsulas; estáticos via fontsource) |
 | ArchivoBlack-Regular.ttf | Archivo Black, Omnibus-Type (legenda do Reel de colaborador) |
 | InstrumentSerif-Italic.ttf | Instrument Serif, Instrument (legenda do Reel de colaborador) |
