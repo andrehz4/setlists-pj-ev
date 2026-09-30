@@ -18,6 +18,7 @@ import { writeStepSummary } from "./_summary.mjs";
 import { readQueue, writeQueue, enqueue, readDenylist } from "../publish/queue.mjs";
 import { stripDashes } from "./curators/_shared.mjs";
 import { checkSimilarInHistory, recordSkipped, DEFAULT_HISTORY_DAYS, DEFAULT_THRESHOLD } from "./dedupe-history.mjs";
+import { checarPtBr, corrigirPtPt } from "./qualidade-ptbr.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -96,10 +97,10 @@ function validateCurated(c) {
     : null;
   return {
     id: c.id,
-    titulo_pt: stripDashes(c.titulo_pt),
-    titulo_ig: tituloIg,
-    intro_pt: stripDashes(c.intro_pt),
-    corpo_pt: stripDashes(c.corpo_pt),
+    titulo_pt: corrigirPtPt(stripDashes(c.titulo_pt)),
+    titulo_ig: tituloIg ? corrigirPtPt(tituloIg) : null,
+    intro_pt: corrigirPtPt(stripDashes(c.intro_pt)),
+    corpo_pt: corrigirPtPt(stripDashes(c.corpo_pt)),
     tags: tags.length ? tags : ["memoria"],
   };
 }
@@ -144,6 +145,17 @@ async function main() {
       rejected.push({ id: c?.id || null, reason: "validacao falhou (titulo ausente/longo ou corpo < 100)", at: new Date().toISOString() });
       continue;
     }
+    // Trava de qualidade PT-BR (qualidade-ptbr.mjs): texto sem acento NÃO entra.
+    // Não vai pro acceptedIds, então continua no _pending e a próxima rodada reescreve.
+    const qualidade = checarPtBr(validated);
+    if (qualidade.bloqueios.length) {
+      const motivo = `trava de qualidade: ${qualidade.bloqueios.join("; ")}`;
+      console.warn(`[merge] RECUSADO ${validated.id}: ${motivo}`);
+      mergeWarnings.push(`RECUSADO ${validated.id} ("${validated.titulo_pt.slice(0, 60)}"): ${motivo}. Volta pro _pending.`);
+      rejected.push({ id: validated.id, titulo: validated.titulo_pt, reason: motivo, at: new Date().toISOString() });
+      continue;
+    }
+    for (const a of qualidade.avisos) mergeWarnings.push(`aviso ${validated.id}: ${a}`);
     const p = pendingById.get(validated.id);
     if (!p) {
       console.warn(`[merge] id ${validated.id} nao esta em _pending.json (skip)`);
@@ -312,8 +324,10 @@ async function main() {
       const t = new Date(r.at || 0).getTime();
       return !Number.isFinite(t) || t >= ttl;
     });
-    const seenIds = new Set(doc.rejected.map((r) => r.id));
-    for (const r of rejected) if (!r.id || !seenIds.has(r.id)) doc.rejected.push(r);
+    // chave id+motivo: o mesmo item recusado de novo pela trava entra de novo (e avisa de novo)
+    const chave = (r) => `${r.id}|${r.reason}`;
+    const seenIds = new Set(doc.rejected.filter((r) => !String(r.reason).startsWith("trava")).map(chave));
+    for (const r of rejected) if (!r.id || !seenIds.has(chave(r))) doc.rejected.push(r);
     doc.updatedAt = now;
     await fs.writeFile(REJECTED_PATH, JSON.stringify(doc, null, 2));
     console.log(`[merge] _rejected-curated.json: +${rejected.length} registrado(s)`);

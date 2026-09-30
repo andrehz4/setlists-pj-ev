@@ -129,6 +129,16 @@ function extractItemsFromBranch(branch, files) {
   return items;
 }
 
+// Notícias que a trava de qualidade (scripts/news/qualidade-ptbr.mjs) barrou
+// nesta rodada: entradas novas em _rejected-curated.json com motivo "trava...".
+function extractRecusados(branch, files) {
+  const f = "media/news/_rejected-curated.json";
+  if (!files.includes(f)) return [];
+  const ler = (ref) => { try { return JSON.parse(sh(`git show "${ref}:${f}"`)).rejected || []; } catch { return []; } };
+  const antes = new Set(ler("origin/main").map((r) => `${r.id}|${r.at}`));
+  return ler(`origin/${branch}`).filter((r) => String(r.reason || "").startsWith("trava") && !antes.has(`${r.id}|${r.at}`));
+}
+
 function buildPrBody(commitMsg, items, branch, commits) {
   const lines = [];
   lines.push(`### Auto-merge de \`${branch}\``);
@@ -160,7 +170,7 @@ function buildPrBody(commitMsg, items, branch, commits) {
   return lines.join("\n");
 }
 
-function buildTelegramMsg(items, prNum, branch) {
+function buildTelegramMsg(items, prNum, branch, recusados = []) {
   const lines = [];
   lines.push(`📰 <b>Curadoria mesclada em main</b>`);
   lines.push(`<i>via auto-merge de <code>${branch}</code> (PR #${prNum})</i>`);
@@ -177,6 +187,12 @@ function buildTelegramMsg(items, prNum, branch) {
     lines.push(`   <code>${it.id}</code>${tagsStr}`);
     lines.push(`   ↳ https://somaisumfadepearljam.com.br/n/${it.id}`);
     lines.push("");
+  }
+
+  if (recusados.length) {
+    const esc = (t) => String(t || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    lines.push(`⚠️ <b>${recusados.length} barrada(s) pela trava de qualidade</b> (voltam pra fila, a próxima rodada reescreve):`);
+    for (const r of recusados) lines.push(`• ${esc(r.titulo || r.id)}: ${esc(r.reason)}`);
   }
 
   return lines.join("\n");
@@ -282,6 +298,8 @@ async function processBranch(branch) {
   console.log(`  ${v.commits.length} commit(s) validados, ${v.files.length} arquivo(s) em media/news/`);
 
   const items = extractItemsFromBranch(branch, v.files);
+
+  const recusados = extractRecusados(branch, v.files);
   console.log(`  ${items.length} items/<id>.json novo(s) no branch`);
 
   const dateSuffix = branch.replace(BRANCH_PREFIX, "");
@@ -354,7 +372,7 @@ async function processBranch(branch) {
     console.log(`  PR #${prNum} mesclado, branch deletado`);
   }
 
-  await notifyTelegram(buildTelegramMsg(items, prNum, branch));
+  await notifyTelegram(buildTelegramMsg(items, prNum, branch, recusados));
 
   return { branch, prNum, items: items.length, ok: true };
 }

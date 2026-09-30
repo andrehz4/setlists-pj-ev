@@ -91,20 +91,28 @@ const SOCIAL_LINE = "siga @smufdpj no Instagram e no Facebook";
 
 // Trunca body preservando o ultimo paragrafo/frase completa antes do
 // limite. Evita cortar palavra no meio.
+// Corta o texto da legenda. Se dá pra parar no fim de uma frase, para ali sem
+// reticências; só corta no meio (com "…") quando não há fim de frase razoável.
+// Antes saía "texto.…" (ponto + reticências).
 function truncateBody(body, maxChars) {
   if (!body) return "";
   if (body.length <= maxChars) return body;
   const slice = body.slice(0, maxChars);
-  const lastBreak = Math.max(
-    slice.lastIndexOf("\n\n"),
-    slice.lastIndexOf(". "),
-    slice.lastIndexOf("? "),
-    slice.lastIndexOf("! "),
-  );
-  if (lastBreak > maxChars * 0.55) {
-    return slice.slice(0, lastBreak + 1).trim() + "…";
-  }
-  return slice.trim() + "…";
+  let fim = -1;
+  for (const m of slice.matchAll(/[.!?…]["'”’)]?(?=\s)/g)) fim = m.index + m[0].length;
+  if (fim > maxChars * 0.55) return slice.slice(0, fim).trim();
+  const esp = slice.lastIndexOf(" ");
+  return slice.slice(0, esp > 0 ? esp : maxChars).trim().replace(/[,;:]$/, "") + "…";
+}
+
+// O Instagram não interpreta markdown: tira o "_via Fonte_" do fim (a fonte
+// fica no site) e as marcas de itálico (_x_ e *x*), deixando o texto limpo.
+function limparMarkdown(texto) {
+  return String(texto || "")
+    .replace(/(?:^|\n\s*\n)\s*(?:_via [^\n]*_|via [^\n.]{0,60})\s*$/i, "")
+    .replace(/\*([^*\n]+)\*/g, "$1")
+    .replace(/(^|[\s("“])_([^_\n]+)_(?=[\s.,;:!?)"”]|$)/g, "$1$2")
+    .trim();
 }
 
 function slideUrlFor(itemId, suffix = "") {
@@ -161,7 +169,7 @@ function buildSingleCaption(item) {
   if (item.body_pt) {
     const bodyBudget = budget - head.length - 2;
     if (bodyBudget > 120) {
-      const body = truncateBody(item.body_pt, bodyBudget);
+      const body = truncateBody(limparMarkdown(item.body_pt), bodyBudget);
       if (body) caption += `\n\n${body}`;
     }
   }
@@ -633,4 +641,4 @@ export async function publishReel({ videoUrl, caption, shareToFeed = true, thumb
   }
 }
 
-export { buildSingleCaption, buildCarouselCaption, slideUrlFor, logUsageHeaders };
+export { buildSingleCaption, buildCarouselCaption, slideUrlFor, logUsageHeaders, truncateBody, limparMarkdown };

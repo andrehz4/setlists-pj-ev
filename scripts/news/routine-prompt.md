@@ -28,13 +28,25 @@ Se houver items, conta quantos e mostra a distribuição por kind:
 jq '.items | group_by(.kind // "midia") | map({kind: .[0].kind // "midia", count: length})' media/news/_pending.json
 ```
 
-## 3. Carrega os 3 guias de voz
+## 2.5. CONTEXTO: o que já foi publicado nos últimos 3 dias
 
-Leia esses 3 arquivos. Eles são seus system prompts verbatim, com as regras de voz inegociáveis. Cumpra TODAS rigorosamente. Especial atenção às REGRAS ABSOLUTAS (anti-travessão, anti-menção-Reddit, anti-números-de-votos, tags por integrante).
+Antes de curar, veja o que já saiu, pra não repetir assunto nem contradizer o que foi publicado:
+```bash
+node -e 'const i=require("./media/news/index.json").items;const lim=Date.now()-72*3600e3;i.filter(x=>new Date(x.fetchedAt||x.pubDate)>lim).forEach(x=>console.log(`${(x.fetchedAt||x.pubDate).slice(0,16)} | ${x.sourceLabel} | ${x.title_pt} | ${x.intro_pt}`))'
+```
+Use essa lista em toda decisão (REGRA DE COBERTURA e REGRA DE CONFIRMAÇÃO do `system-curator-fa.txt`):
+- Item pendente que só repete o que já está na lista, sem fato novo: SKIP com razão "sem fato novo (já publicado: <id>)".
+- Republicação de outro portal (mesmo texto ou mesmo slug de URL): SKIP com razão "republicação de <fonte>".
+- Fato novo que muda o que foi publicado (ex: "não era oficial"): escreva como atualização e diga que mudou.
+
+## 3. Carrega os 4 guias de voz
+
+Leia esses 4 arquivos. Eles são seus system prompts verbatim, com as regras de voz inegociáveis. Cumpra TODAS rigorosamente. Especial atenção às REGRAS ABSOLUTAS (anti-travessão, anti-menção-Reddit, anti-números-de-votos, tags por integrante).
 
 - `scripts/news/prompts/system-curator-fa.txt` → usado pra items SEM campo `kind` (mídia tradicional: Stereogum, Folha, etc)
 - `scripts/news/prompts/system-community-digest.txt` → usado pra items com `kind: "community-digest"`
 - `scripts/news/prompts/system-community-spotlight.txt` → usado pra items com `kind: "community-spotlight"`
+- `scripts/news/prompts/voz-humana-ptbr.md` → vale pra TODOS os itens, junto com o prompt do tipo: português do Brasil com acento, sem cara de IA, e a checagem final de cada item.
 
 ## 4. Curatela cada item pendente, MODO BATCH EFICIENTE
 
@@ -46,7 +58,7 @@ Leia esses 3 arquivos. Eles são seus system prompts verbatim, com as regras de 
 4. **Em uma única passada**, escreve o objeto curado direto pro array final
 5. Move pro próximo item
 
-Não pare entre items. Não revise excessivamente. Sonnet 4.6 escreve PT-BR de qualidade de primeira passada, confie na sua escrita inicial. Se um item parece SKIP, decida em 5 segundos e pula.
+Não pare entre items nem reescreva o texto várias vezes: escreva de primeira. Mas, ao fechar CADA item, faça a checagem final de 10 segundos da seção 6 do `voz-humana-ptbr.md` (acento, travessão, inglês, datas, "confirma" sem fonte oficial). Se um item parece SKIP, decida em 5 segundos e pula.
 
 Pra cada item em `_pending.json` items[]:
 
@@ -145,6 +157,9 @@ Items curados:
 
 SKIP:
 - <id>: <razao>
+
+RECUSADOS pela trava de qualidade (linhas \"RECUSADO\" da saída do merge-curated; omita a seção se não houver):
+- <id>: <motivo>
 "
 
 # 5.7. Push em branch com -u pra setar upstream (proxy libera branches != main)
@@ -195,6 +210,10 @@ Reporte:
 **#4 TAGS POR INTEGRANTE só quando o foco é AQUELE integrante específico.** Pra banda completa em turnê/lançamento, use `turne` ou `lancamento`. Tags válidas: turne, lancamento, tenclub, memoria, br, bootleg, comunidade, eddie, mike, stone, jeff, matt, boom, josh.
 
 **#5 SEMPRE preencher `titulo_ig`** em TODO item curado (mídia, digest e spotlight). É a manchete curta de impacto que aparece gigante no card do Instagram, 30 a 60 caracteres, caixa normal, sem ponto final, sem travessão, sem hype falso, sustentada pelos fatos. NÃO é cópia do titulo_pt: é mais curta e mais forte. Regra completa na seção TÍTULO DE INSTAGRAM de cada system prompt. Item sem titulo_ig cai no titulo_pt no card (fallback), mas o objetivo é sempre ter a versão chamativa.
+
+**#6 PORTUGUÊS DO BRASIL COM ACENTO.** turnê, álbum, não, já, até. Texto sem acento é RECUSADO pelo `merge-curated.mjs` (trava automática desde 2026-09-30) e volta pro `_pending`. Nunca "o Pearl Jam" no plural ("os Pearl Jam" é Portugal). Sem jargão em inglês fora nome próprio ("sitting in" não).
+
+**#7 NÃO CONFIRMAR O QUE NÃO FOI CONFIRMADO.** "Confirma", "oficializa", "é o novo" só com declaração oficial na fonte. E nada de contradizer o que já foi publicado sem dizer que mudou (ver seção 2.5).
 
 # Cuidados
 

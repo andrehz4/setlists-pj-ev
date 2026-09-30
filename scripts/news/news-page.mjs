@@ -13,7 +13,7 @@ export { SITE_BASE, esc };
 // Mesmo formato do site (_newsBodyHtml no index.html): parágrafos por linha em branco, _itálico_.
 export function corpoHtml(body) {
   return String(body || "").split(/\n{2,}/).map(p => p.trim()).filter(Boolean)
-    .map(p => `<p>${esc(p).replace(/_([^_]+)_/g, "<em>$1</em>")}</p>`).join("\n");
+    .map(p => `<p>${esc(p).replace(/_([^_]+)_/g, "<em>$1</em>").replace(/\*([^*\n]+)\*/g, "<em>$1</em>")}</p>`).join("\n");
 }
 
 export function dataExtenso(iso) {

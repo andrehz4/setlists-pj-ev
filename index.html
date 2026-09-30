@@ -19565,7 +19565,7 @@ function _newsBodyHtml(body) {
   if (!body) return "";
   const paras = body.split(/\n{2,}/).map(p => p.trim()).filter(Boolean);
   return paras.map(p => {
-    const html = _newsEscape(p).replace(/_([^_]+)_/g, '<em>$1</em>');
+    const html = _newsEscape(p).replace(/_([^_]+)_/g, '<em>$1</em>').replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
     return `<p>${html}</p>`;
   }).join("");
 }
