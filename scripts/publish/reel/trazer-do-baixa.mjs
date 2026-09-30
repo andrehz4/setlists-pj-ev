@@ -8,7 +8,7 @@ import path from "node:path";
 import { PASTA } from "./transicoes.mjs";
 
 export const ORIGEM = "/Users/andrehz/Documents/Githubhz/baixa-clipehz/downloads/transicoes";
-const CAMPOS = ["musica", "origem", "url", "ini", "fim", "dur", "tags", "nota", "motivo", "foco", "capa"];
+const CAMPOS = ["musica", "origem", "url", "ini", "fim", "dur", "tags", "nota", "motivo", "foco", "focoTrilha", "rosto", "capa"];
 
 // Entradas do baixa que ainda não estão aqui, já no formato do nosso json.
 export function novos(daLa, daqui) {

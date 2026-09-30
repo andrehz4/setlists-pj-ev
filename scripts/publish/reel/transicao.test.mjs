@@ -96,3 +96,19 @@ test("abertura: capa em corte de 1,5 s nunca pede vídeo além do arquivo", asyn
     assert.ok(t.iniAbertura >= 0 && t.iniAbertura + t.slot <= 1.5 + 1e-9, `dur ${dur.toFixed(2)}`);
   }
 });
+
+test("recorte: foco fixo, centro por padrão e trilha do rosto vira expressão por tempo", async () => {
+  const { recorte } = await import("./transicoes.mjs");
+  assert.equal(recorte({}), "crop=ih*9/16:ih:x=(iw-ih*9/16)*(0.5)");
+  assert.equal(recorte({ foco: 1.4 }), "crop=ih*9/16:ih:x=(iw-ih*9/16)*(1)");
+  const r = recorte({ focoTrilha: [{ t: 0, foco: 0.2 }, { t: 1, foco: 0.8 }] });
+  assert.match(r, /if\(lt\(t\\,1\)\\,0\.200\+\(0\.600\)\*\(t-0\)\/1\\,0\.800\)/);
+});
+
+test("recorte: foco fixo, centro por padrão e trilha do rosto vira expressão por tempo", async () => {
+  const { recorte } = await import("./transicoes.mjs");
+  assert.equal(recorte({}), "crop=ih*9/16:ih:x=(iw-ih*9/16)*(0.5)");
+  assert.equal(recorte({ foco: 1.4 }), "crop=ih*9/16:ih:x=(iw-ih*9/16)*(1)");
+  const r = recorte({ focoTrilha: [{ t: 0, foco: 0.2 }, { t: 1, foco: 0.8 }] });
+  assert.match(r, /if\(lt\(t\\,1\)\\,0\.200\+\(0\.600\)\*\(t-0\)\/1\\,0\.800\)/);
+});
