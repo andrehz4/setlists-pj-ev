@@ -35,8 +35,8 @@ Antes de curar, veja o que já saiu, pra não repetir assunto nem contradizer o 
 node -e 'const i=require("./media/news/index.json").items;const lim=Date.now()-72*3600e3;i.filter(x=>new Date(x.fetchedAt||x.pubDate)>lim).forEach(x=>console.log(`${(x.fetchedAt||x.pubDate).slice(0,16)} | ${x.sourceLabel} | ${x.title_pt} | ${x.intro_pt}`))'
 ```
 Use essa lista em toda decisão (REGRA DE COBERTURA e REGRA DE CONFIRMAÇÃO do `system-curator-fa.txt`):
-- Item pendente que só repete o que já está na lista, sem fato novo: SKIP com razão "sem fato novo (já publicado: <id>)".
-- Republicação de outro portal (mesmo texto ou mesmo slug de URL): SKIP com razão "republicação de <fonte>".
+- História em andamento: cubra cada desdobramento (declaração, reação, rumor novo, bastidor), escrito como continuação do que já saiu.
+- SKIP só pra cópia: republicação de outro portal (mesmo texto ou mesmo slug de URL) ou a mesma informação recontada sem nada novo. Razão: "republicação de <fonte>" ou "sem novidade (já publicado: <id>)".
 - Fato novo que muda o que foi publicado (ex: "não era oficial"): escreva como atualização e diga que mudou.
 
 ## 3. Carrega os 4 guias de voz
@@ -213,7 +213,7 @@ Reporte:
 
 **#6 PORTUGUÊS DO BRASIL COM ACENTO.** turnê, álbum, não, já, até. Texto sem acento é RECUSADO pelo `merge-curated.mjs` (trava automática desde 2026-09-30) e volta pro `_pending`. Nunca "o Pearl Jam" no plural ("os Pearl Jam" é Portugal). Sem jargão em inglês fora nome próprio ("sitting in" não).
 
-**#7 NÃO CONFIRMAR O QUE NÃO FOI CONFIRMADO.** "Confirma", "oficializa", "é o novo" só com declaração oficial na fonte. E nada de contradizer o que já foi publicado sem dizer que mudou (ver seção 2.5).
+**#7 NOTICIE A EVOLUÇÃO, SEM VENDER RUMOR COMO FATO.** Rumor e especulação quentes podem virar matéria, com a origem clara ("segundo X", "circula entre os fãs", "ainda sem anúncio oficial"). Só "confirma", "oficializa", "é o novo" exigem declaração oficial na fonte. E nada de contradizer o que já foi publicado sem dizer que mudou (ver seção 2.5).
 
 # Cuidados
 
