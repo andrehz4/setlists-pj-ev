@@ -49,6 +49,8 @@ jobs:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           PUBLISH_FB: '1'
+          # slide de citação novo (scripts/publish/citacao/): rodizio | editorial | revista; apagar = slide antigo
+          CAPSULA_CITACAO: rodizio
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GIT_AUTHOR_NAME: pj-news-bot

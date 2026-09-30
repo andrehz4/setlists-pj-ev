@@ -1,5 +1,24 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-09-30: slide de citação das cápsulas com foto de quem fala (Claude Design)
+
+**Feito**
+- Slide de citação das cápsulas refeito a partir de um post do @igormirandasite. O Claude Design fez as opções e o
+  Andre escolheu duas: **editorial** (1c + seta de arrastar 3d) e **revista** (2b). Rodízio diário (BRT), igual às capas;
+  a cápsula inteira usa o mesmo estilo. Módulo apartado em `scripts/publish/citacao/` (README explica tudo).
+- **Retratos curados** por integrante, recortados no rosto (detector de rosto do macOS), em `media/band/retratos/`.
+  A foto nunca vem da imagem da matéria. Sem retrato (Letterman etc.): iniciais no círculo ou nome gigante.
+- **Fonte da fala** embaixo do nome ("em 1990 · Apple Music, 2024"): `media/news/youtube-acervo/_fontes.json`, 83 vídeos,
+  ano de quando a fala aconteceu. Liberado no `.gitignore`.
+- Playfair itálica (400/500/700) adicionada em `media/fonts/`. A Black reta NÃO, pra não mudar slides antigos.
+- Ligado em produção: `CAPSULA_CITACAO: rodizio` no `publish-capsula.yml`. 200 testes ok; validado no mock.
+- Export do Design: `/Users/andrehz/Downloads/Citacoes smufdpj.html` (referência, fora do repo).
+
+**Estado**: no ar a partir da cápsula de 30/09 20h (cap-Qq5GByx, estilo editorial, cor grafite).
+
+**Próximo passo**: conferir no feed a de 30/09 (editorial) e a de 01/10 (revista). Andre revisar `_fontes.json`.
+Vídeo novo no acervo precisa de entrada no `_fontes.json` (sem ela sai sem fonte, não quebra).
+
 ## 2026-09-28 (tarde): capas novas, carrossel sem repetição, topo da home limpo, playbook de SEO
 
 **Feito**
