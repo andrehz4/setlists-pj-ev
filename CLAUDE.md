@@ -59,6 +59,12 @@ Cloudflare Pages Functions, módulo apartado ligado por `FORUM_SEO=1` (variável
 da API do Railway; `/sitemap-forum.xml` lista todos (está no `robots.txt`). Cache de borda 1h/6h; API fora = 503 +
 Retry-After (nunca cacheado). `forum-topic.html` aponta o canonical pra `/t/<id>`. Testes em `scripts/forum-seo/`.
 
+### Imagens e marca (Nano Banana / Google Flow)
+
+O Andre tem Google Flow e Nano Banana pagos: usar pra imagem de marca (selo, perfil, capa), como o Claude Design é usado
+pra layout. Passo a passo, regras (nunca gerar foto de pessoa real) e acervo em `docs/PLAYBOOK-IMAGENS-GOOGLE.md`.
+Selo em alta e artes do perfil em `media/marca/`.
+
 ### SEO: páginas estáticas pro Google
 
 Playbook completo e reaproveitável (diagnóstico, Search Console, migração de domínio, velocidade, og.jpg):
