@@ -76,7 +76,9 @@ export function trechosDaAbertura(lista, semente = "", { dur = 3, n = 4 } = {}) 
   if (capa) {
     const tCapa = capaNaAbertura(dur) / 1000;
     const i = Math.min(Math.floor(tCapa / slot), sel.length);
-    sel.splice(i, 0, { ...capa, iniAbertura: Math.max(0, capa.capa - (tCapa - i * slot)) });
+    // corte curto (ex: 1,5 s) não cobre o slot inteiro: desloca o mínimo pra caber no arquivo
+    const cabe = Math.max(0, (capa.dur || 2) - slot);
+    sel.splice(i, 0, { ...capa, iniAbertura: Math.min(cabe, Math.max(0, capa.capa - (tCapa - i * slot))) });
   }
   return sel.map((t) => ({ ...t, slot }));
 }

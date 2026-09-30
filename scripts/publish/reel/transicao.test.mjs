@@ -86,3 +86,13 @@ test("trazer do baixa: só o que é novo, com capa/foco e tags em lista", async 
   const r = novos(la, [{ file: "b.mp4" }]);
   assert.deepEqual(r, [{ file: "a.mp4", musica: "Alive", capa: 0.75, foco: 0.3, tags: ["eddie", "memoria"] }]);
 });
+
+test("abertura: capa em corte de 1,5 s nunca pede vídeo além do arquivo", async () => {
+  const { trechosDaAbertura } = await import("./transicoes.mjs");
+  const lista = ["a", "b", "c", "d", "e", "f"].map((f) => ({ file: f, arq: f, dur: 1.5 }));
+  lista[3].capa = 0.75;
+  for (let dur = 3; dur <= 4.01; dur += 0.05) {
+    const t = trechosDaAbertura(lista, "2026-W40", { dur }).find((x) => x.file === "d");
+    assert.ok(t.iniAbertura >= 0 && t.iniAbertura + t.slot <= 1.5 + 1e-9, `dur ${dur.toFixed(2)}`);
+  }
+});
