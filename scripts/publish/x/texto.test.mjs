@@ -14,3 +14,14 @@ test("com link: X conta URL como 23 e o texto cabe em 280", () => {
   assert.equal(tamanhoX("https://exemplo.com/um/caminho/bem/comprido/mesmo"), 23);
   assert.ok(tamanhoX(t) <= LIMITE);
 });
+
+test("corte não para em abreviação (Jr.)", () => {
+  const t = textoNoticia({ id: "a", title_pt: "T".repeat(150), intro_pt: "Abe Laboriel Jr. tocou no Ohana. " + "Mais texto aqui. ".repeat(20) });
+  assert.doesNotMatch(t, /Jr\.\n/);
+});
+
+test("conferir aponta estouro, travessão e falta de link", async () => {
+  const { problemas } = await import("./conferir.mjs");
+  assert.deepEqual(problemas("Oi — tchau"), ["tem travessão", "sem link da matéria", "sem #PearlJam"]);
+  assert.deepEqual(problemas("Oi\n\nhttps://somaisumfadepearljam.com.br/n/a\n\n#PearlJam"), []);
+});

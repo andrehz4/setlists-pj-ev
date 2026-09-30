@@ -22,7 +22,8 @@ export function tamanhoX(texto) {
 // Corta no fim de uma frase que caiba; se nenhuma couber, na última palavra + "…".
 function caber(texto, max) {
   if (tamanhoX(texto) <= max) return texto;
-  const frases = texto.match(/[^.!?]+[.!?]+/g) || [];
+  // fim de frase = pontuação + espaço + maiúscula, sem cortar abreviação ("Jr.", "Sr.", "Dr.", "St.")
+  const frases = texto.split(/(?<=(?<!\b(?:Jr|Sr|Dr|St|Mr|Mrs|vs))[.!?])\s+(?=\p{Lu}|["“])/u).map((f, i, a) => (i < a.length - 1 ? `${f} ` : f));
   let out = "";
   for (const f of frases) { if (tamanhoX(out + f) > max) break; out += f; }
   if (out.trim()) return out.trim();

@@ -18,6 +18,7 @@ validar o formato. Quando o Andre aprovar e colocar crédito na API, liga o auto
 | `oauth1.mjs` | assinatura OAuth 1.0a (HMAC-SHA1) sem SDK |
 | `texto.mjs` | texto de notícia, cápsula e reel (<= 280; sem link por padrão, API cobra ~13x mais por URL; `{ link }` no manual) |
 | `kit-do-dia.mjs` | MODO MANUAL: monta `.x-kit/<dia>/` (texto com link da matéria, imagens, horário) |
+| `conferir.mjs` | confere os textos finais do kit (<= 280, link, sem travessão, sem corte) |
 | `ROTINA-X-HOJE.md` | passo a passo do comando `/x-hoje` (Claude agenda no X pelo navegador, Andre clica Schedule) |
 | `mac/` | tarefa do Mac às 11h (launchd `com.smufdpj.x-kit`): roda o kit, avisa e abre o Claude. `instalar.sh` / `desinstalar.sh` |
 
