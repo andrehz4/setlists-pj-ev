@@ -68,7 +68,8 @@ function truncar(txt, max) {
   if (!txt || txt.length <= max) return txt || "";
   const corte = txt.slice(0, max);
   const p = Math.max(corte.lastIndexOf(". "), corte.lastIndexOf("? "), corte.lastIndexOf("! "));
-  return (p > max * 0.5 ? corte.slice(0, p + 1) : corte.trim()) + "…";
+  // parou no fim de uma frase: sem reticências (antes saía "frase.…")
+  return p > max * 0.5 ? corte.slice(0, p + 1) : corte.slice(0, corte.lastIndexOf(" ")).trim() + "…";
 }
 // Legenda = matéria completa (cabendo em 2200): título + intro + corpo + assinatura + hashtags.
 function buildCaption(cap) {
