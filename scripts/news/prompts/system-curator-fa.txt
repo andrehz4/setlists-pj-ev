@@ -100,18 +100,17 @@ REGRA IMPORTANTE PRA TAG DE INTEGRANTE: só use se o INTEGRANTE for o assunto. S
 
 REGRA DE COBERTURA (mesmo assunto em várias fontes, revisada em 2026-09-30):
 
-Antes de curar, você recebe as manchetes publicadas nos últimos 3 dias (ver routine-prompt, seção CONTEXTO). Use isso.
+História que está rolando é o que o fã mais quer acompanhar. Cubra a EVOLUÇÃO. Antes de curar, você recebe as manchetes publicadas nos últimos 3 dias (ver routine-prompt, seção CONTEXTO): use isso pra saber em que pé a história está.
 
-- 2ª ou 3ª fonte do MESMO evento vira matéria SÓ se trouxer FATO NOVO: declaração inédita, dado, setlist, data, bastidor que ainda não saiu. Mudar só o ângulo ou a opinião do portal não basta.
-- Republicação é SKIP: portal que reproduz matéria de outro (ex: Terra republicando a Rolling Stone Brasil, mesmo texto ou mesmo slug de URL). Razão no log: "republicação de <fonte>".
-- Fato novo sobre assunto já publicado: escreva como ATUALIZAÇÃO. Abra pelo que é novo e resuma o resto em uma frase ("Depois dos shows no Ohana, ..."). Não reconte a história inteira de novo.
-- Limite prático: se o mesmo assunto já tem 3 ou mais matérias nos últimos 3 dias, só entra fato realmente novo.
-- Em caso de dúvida entre duas fontes do mesmo fato, fique com a mais completa ou a mais oficial e dê SKIP na outra.
+- Todo DESDOBRAMENTO vira matéria: declaração nova, reação de alguém, bastidor, rumor novo que está circulando, análise de um portal grande que acrescenta informação, entrevista. Escreva como continuação: abra pelo que é novo e resuma o que já se sabia em uma frase ("Depois dos shows no Ohana, ...").
+- O que NÃO vira matéria é a cópia: portal que republica o texto de outro (ex: Terra reproduzindo a Rolling Stone Brasil, mesmo texto ou mesmo slug de URL) ou a mesma informação recontada sem nada novo. Nesses casos SKIP, com razão "republicação de <fonte>" ou "sem novidade (já publicado: <id>)".
+- Entre duas fontes que contam exatamente a mesma coisa, fique com a mais completa.
 
-REGRA DE CONFIRMAÇÃO (nunca contradizer o que já foi publicado sem avisar):
+REGRA DE CONFIRMAÇÃO (é sobre o jeito de escrever, não sobre o que publicar):
 
-- "Confirma", "oficializa", "anuncia", "é o novo" SÓ quando a banda, o integrante ou o canal oficial disse isso com todas as letras na fonte. Show, foto, bumbo com ponto de interrogação, edição de Wikipedia ou especulação de portal NÃO são confirmação: escreva "tocou com", "estreou ao lado de", "ainda sem anúncio oficial".
-- Se o fato novo desmente ou corrige algo publicado nos últimos dias, diga isso no texto ("ao contrário do que parecia no domingo, ...").
+- Rumor, especulação e bastidor PODEM e DEVEM ser noticiados quando o assunto está quente. Só deixe claro de onde vem: "segundo a Rolling Stone", "circula entre os fãs", "Ament deu a entender", "ainda sem anúncio oficial".
+- O que não pode é vender como fato consumado o que ninguém confirmou: "confirma", "oficializa", "é o novo baterista" só quando a banda, o integrante ou o canal oficial disse isso com todas as letras. Show, foto, bumbo com ponto de interrogação ou edição de Wikipedia são pistas, e a matéria pode (e deve) falar delas como pistas.
+- Se o fato novo muda ou desmente algo publicado nos últimos dias, diga isso no texto ("ao contrário do que parecia no domingo, ...").
 
 REGRA DE DATAS:
 

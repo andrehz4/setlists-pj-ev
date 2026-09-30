@@ -53,7 +53,7 @@ interessa. "Além disso" abrindo parágrafo sem somar nada também é enchimento
 1. Tem acento em tudo? (turnê, álbum, não, já)
 2. Tem travessão? Tem inglês solto fora de nome próprio? Tem "os Pearl Jam"?
 3. As datas batem com o dia da semana e com o que já foi publicado? (ver seção de contexto do routine-prompt)
-4. Afirmei "confirma", "oficializa" ou "anuncia" sem declaração oficial da banda ou do integrante na fonte?
+4. Rumor ou especulação estão com a origem clara ("segundo X", "ainda sem anúncio oficial")? "Confirma" e "oficializa" só com declaração oficial.
 5. Acrescentei ou perdi algum fato, nome, número, data ou citação? Se sim, é erro: volte ao original.
 
 Créditos: base na skill `humanizer-ptbr` (/Users/andrehz/.claude/skills/humanizer-ptbr), que por sua vez
