@@ -4,7 +4,7 @@ import { W, H, BRAND, easeOutCubic, easeOutQuart, easeOutQuad, easeOutBack, seg,
 import { clipChipSvg, tarjaSvg, veilSvg, paperBgSvg } from "./atomos.mjs";
 
 // COLD OPEN: flash de cor, chip, SMUFDPJ letra a letra, assinatura, tarja, meta.
-export function coldOpenSvg(t, { accent, itemCount, rangeLabel, dark = 0.6, letterWidths = null, tarjaTextW = null, chipTextW = null, showChip = true }) {
+export function coldOpenSvg(t, { accent, itemCount, rangeLabel, dark = 0.6, letterWidths = null, tarjaTextW = null, chipTextW = null, showChip = true, comFlash = true }) {
   const ROT = [-3, 2, -2, 3, -1, 2, -3];
   const letters = "SMUFDPJ".split("");
   const size = 230;
@@ -28,7 +28,7 @@ export function coldOpenSvg(t, { accent, itemCount, rangeLabel, dark = 0.6, lett
   const wmO = seg(t, 0.9, 0.35, easeOutQuad);
   const wmY = 22 * (1 - seg(t, 0.9, 0.35, easeOutCubic));
   const metaO = seg(t, 2.1, 0.3, easeOutQuad);
-  const flash = 1 - seg(t, 0, 0.22, easeOutQuad);
+  const flash = comFlash ? 1 - seg(t, 0, 0.22, easeOutQuad) : 0; // flash da cor: só na abertura de foto
   const meta = `${String(itemCount).padStart(2, "0")} MANCHETES · ${rangeLabel}`;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">

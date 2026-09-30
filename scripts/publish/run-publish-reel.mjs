@@ -171,7 +171,7 @@ async function main() {
   }
   // transições com trecho de clipe nas trocas de cena (REEL_TRANSICOES=1; falha = segue sem)
   if (process.env.REEL_TRANSICOES === "1") {
-    try { console.log(`[reel] transições: ${aplicarTransicoes(outPath, { scenes: r.sceneList, semente: weekKey })}`); }
+    try { console.log(`[reel] transições: ${aplicarTransicoes(outPath, { scenes: r.sceneList, semente: weekKey, capaInicioS: aberturaClipe ? capaNaAbertura(r.sceneList[0].dur) / 1000 : null })}`); }
     catch (e) { console.warn(`[reel] transições falharam, segue sem: ${e.message.slice(0, 200)}`); }
   }
   await fs.rm(r.tmpDir, { recursive: true, force: true });
