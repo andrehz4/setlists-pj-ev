@@ -606,7 +606,7 @@ function coverLabel(item) {
 // Largura REAL de texto (renderiza e mede o ink via trim), com cache. Usada
 // pelas capas alternativas (cover-styles.mjs); estimar por char erra no Anton.
 const _measureCache = new Map();
-async function measureText(text, { size, family = F_ANTON, letterSpacing = 0 } = {}) {
+export async function measureText(text, { size, family = F_ANTON, letterSpacing = 0 } = {}) {
   const key = [text, size, family, letterSpacing].join("|");
   if (_measureCache.has(key)) return _measureCache.get(key);
   const pad = Math.ceil(size);
@@ -803,7 +803,7 @@ function mixHex(a, b, t) {
   const c = (k) => Math.round(pa[k] + (pb[k] - pa[k]) * t);
   return `#${[c("r"), c("g"), c("b")].map((n) => n.toString(16).padStart(2, "0")).join("")}`;
 }
-function capsuleColors(cycleColor = "#0a0a0a") {
+export function capsuleColors(cycleColor = "#0a0a0a") {
   const p = hexToRgb(cycleColor);
   const lum = 0.299 * p.r + 0.587 * p.g + 0.114 * p.b;
   const veryDark = lum < 40;

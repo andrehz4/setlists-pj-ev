@@ -14,11 +14,14 @@ import { buildCoverSlide, buildQuoteSlide, buildCtaSlide } from "./slide-image.m
 import { publishCarouselFromUrls } from "./instagram.mjs";
 import { publishAlbumFromUrls } from "./facebook.mjs";
 import { CYCLE_COLORS } from "./color-cycle.mjs";
+import { buildQuoteSlideMoldura } from "./citacao/slide-citacao.mjs";
 
 const DRY = process.argv.includes("--dry-run");
 const NO_GIT = process.argv.includes("--no-git");
 const FORCE = process.argv.includes("--force");
 const PUBLISH_FB = process.env.PUBLISH_FB === "1";
+// Slide de citação: "moldura" (foto de quem fala + @smufdpj, ver scripts/publish/citacao/) ou o antigo.
+const CITACAO_MOLDURA = process.env.CAPSULA_CITACAO === "moldura";
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 
@@ -108,7 +111,8 @@ async function gerarSlides(cap, cor, urlBase) {
   const cs = Array.isArray(cap.carrossel) ? cap.carrossel : [];
   for (let i = 0; i < cs.length; i++) {
     const qId = `${cap.id}-${String(i + 1).padStart(2, "0")}`;
-    await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, cor);
+    if (CITACAO_MOLDURA) await buildQuoteSlideMoldura({ quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder", seed: cap.id }, qId, cor);
+    else await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, cor);
     urls.push(`${urlBase}/${qId}.jpg`);
   }
   const ctaId = `${cap.id}-99`;

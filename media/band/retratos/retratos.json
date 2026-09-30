@@ -1,0 +1,60 @@
+{
+  "_leia": "Retratos curados (1 rosto por foto, recorte fixo) pro slide de citação das cápsulas. crop = [left, top, lado] em px da foto original, achado pelo detector de rosto do macOS e aprovado pelo Andre em 2026-09-30. Trocou a foto ou o crop? Rode: node scripts/publish/citacao/build-retratos.mjs",
+  "pessoas": {
+    "eddie-vedder": {
+      "nome": "Eddie Vedder",
+      "apelidos": ["eddie vedder", "eddie", "vedder"],
+      "fotos": [
+        { "src": "eddie-vedder/ev-commons-Werchter070718-86-cropped-.jpg", "crop": [685, 64, 589] },
+        { "src": "eddie-vedder/ev-commons-Eddie-Vedder-2018-3.jpg", "crop": [684, 49, 908] },
+        { "src": "eddie-vedder/ev-commons-Eddie-Vedder-2018.jpg", "crop": [460, 127, 800] },
+        { "src": "eddie-vedder/ev-commons-Eddie-Vedder-2011.jpg", "crop": [265, 218, 842] }
+      ]
+    },
+    "stone-gossard": {
+      "nome": "Stone Gossard",
+      "apelidos": ["stone gossard", "stone", "gossard"],
+      "fotos": [{ "src": "stone-gossard/stone-gossard-3.jpg", "crop": [235, 3, 329] }]
+    },
+    "mike-mccready": {
+      "nome": "Mike McCready",
+      "apelidos": ["mike mccready", "mccready"],
+      "fotos": [{ "src": "mike-mccready/mm-commons-2014-Pop-Conference-Mike-McCready-10.jpg", "crop": [711, 181, 849] }]
+    },
+    "jeff-ament": {
+      "nome": "Jeff Ament",
+      "apelidos": ["jeff ament", "ament"],
+      "fotos": [{ "src": "jeff-ament/jeff-ament-1.jpg", "crop": [278, 33, 347] }]
+    },
+    "matt-cameron": {
+      "nome": "Matt Cameron",
+      "apelidos": ["matt cameron", "cameron"],
+      "fotos": [{ "src": "matt-cameron/matt-cameron-1.jpg", "crop": [417, 0, 538] }]
+    },
+    "boom-gaspar": {
+      "nome": "Boom Gaspar",
+      "apelidos": ["boom gaspar", "boom"],
+      "fotos": [{ "src": "boom-gaspar/boom-gaspar-1.jpg", "crop": [379, 441, 377] }]
+    },
+    "dave-abbruzzese": {
+      "nome": "Dave Abbruzzese",
+      "apelidos": ["dave abbruzzese", "abbruzzese"],
+      "fotos": [{ "src": "dave-abbruzzese/dave-abbruzzese-2.jpg", "crop": [275, 0, 916] }]
+    },
+    "dave-krusen": {
+      "nome": "Dave Krusen",
+      "apelidos": ["dave krusen", "krusen"],
+      "fotos": [{ "src": "dave-krusen/dave-krusen-1.jpg", "crop": [43, 0, 550] }]
+    },
+    "jack-irons": {
+      "nome": "Jack Irons",
+      "apelidos": ["jack irons", "irons"],
+      "fotos": [{ "src": "jack-irons/jack-irons-2.jpg", "crop": [326, 50, 393] }]
+    },
+    "josh-klinghoffer": {
+      "nome": "Josh Klinghoffer",
+      "apelidos": ["josh klinghoffer", "klinghoffer"],
+      "fotos": [{ "src": "josh-klinghoffer/josh-klinghoffer-2.jpg", "crop": [701, 45, 354] }]
+    }
+  }
+}
