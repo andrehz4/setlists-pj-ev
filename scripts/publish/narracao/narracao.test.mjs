@@ -126,3 +126,15 @@ test("Regra 0: arquivos do módulo ficam curtos", () => {
     assert.ok(n <= 150, `${f} tem ${n} linhas`);
   }
 });
+
+test("cena longa: o texto da manchete continua na tela enquanto a voz fala", async () => {
+  const { kineticSvg, cardSvg, paperSvg } = await import("../reel-video.mjs");
+  const item = { id: "x", title_pt: "Manchete de teste", tags: ["turne"] };
+  const base = { item, n: 1, total: 8, accent: "#E10600" };
+  for (const fn of [kineticSvg, cardSvg, paperSvg]) {
+    // em 5 s de uma cena de 7 s o texto ainda está inteiro (antes saía em 4,18 s)
+    assert.equal(fn(5.0, { ...base, dur: 7 }), fn(5.0, { ...base, dur: 70 }), fn.name);
+    // e sem dur (reel sem narração) nada muda: a saída continua em 4,5 s
+    assert.notEqual(fn(4.4, base), fn(4.4, { ...base, dur: 7 }), fn.name);
+  }
+});

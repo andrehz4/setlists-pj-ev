@@ -237,9 +237,10 @@ export function coldOpenSvg(t, { accent, itemCount, rangeLabel, dark = 0.6, lett
 }
 
 // BLOCO CINETICO: tarja + manchete palavra a palavra sobre clipe/foto/fantasma.
-export function kineticSvg(t, { item, n, total, accent, dark = 0.68, ghost = false, layout = null, tarjaTextW = null, chipTextW = null, showChip = true }) {
+// dur: duração real da cena (com narração ela varia); a saída do texto acompanha.
+export function kineticSvg(t, { item, n, total, accent, dark = 0.68, ghost = false, layout = null, tarjaTextW = null, chipTextW = null, showChip = true, dur = BLOCK_DUR }) {
   const size = (item.title_pt || "").length > 60 ? 94 : 112;
-  const xe = seg(t, 4.18, 0.32, easeInCubic);
+  const xe = seg(t, dur - 0.32, 0.32, easeInCubic);
   const words = kineticWordsSvg(t, {
     text: item.title_pt || "", size, color: BRAND.sujo,
     x: 60, y: 664, maxWidth: 920, inAt: 0.5, stagger: 0.11, dur: 0.38,
@@ -248,7 +249,7 @@ export function kineticSvg(t, { item, n, total, accent, dark = 0.68, ghost = fal
   const tag = TAG_LABELS[item.tags?.[0]] || String(item.tags?.[0] || "NOTÍCIA").toUpperCase();
 
   // fundo fantasma (sem clipe e sem foto): listras + CLIPE outline derivando
-  const drift = -24 + 48 * linear(t / BLOCK_DUR);
+  const drift = -24 + 48 * linear(t / dur);
   const ghostBg = ghost ? `
     <rect x="0" y="0" width="${W}" height="${H}" fill="#0d0c0b"/>
     <defs><pattern id="kin-stripes" width="64" height="64" patternUnits="userSpaceOnUse" patternTransform="rotate(135)"><rect width="3" height="64" fill="rgba(247,241,222,0.045)"/></pattern></defs>
@@ -269,11 +270,11 @@ export function kineticSvg(t, { item, n, total, accent, dark = 0.68, ghost = fal
 }
 
 // BLOCO CARD: overlay sobre a foto (gradiente, cunha, tarja, manchete em bloco, meta).
-export function cardSvg(t, { item, n, total, accent, layout = null, tarjaTextW = null }) {
+export function cardSvg(t, { item, n, total, accent, layout = null, tarjaTextW = null, dur = BLOCK_DUR }) {
   const size = (item.title_pt || "").length > 60 ? 66 : 78;
   const lines = layout || wrapWords(item.title_pt || "", size, 880);
   const lh = Math.round(size * 1.06);
-  const xe = seg(t, 4.2, 0.3, easeInCubic);
+  const xe = seg(t, dur - 0.3, 0.3, easeInCubic);
   const wedge = seg(t, 0.15, 0.35, easeOutCubic);
   const head = seg(t, 0.6, 0.55, easeOutQuart);
   const metaO = seg(t, 1.3, 0.3, easeOutQuad);
@@ -332,9 +333,9 @@ function paperBgSvg(idPrefix) {
 }
 
 // BLOCO PAPEL: digesto da comunidade, snapshot colado inclinado + manchete em tinta.
-export function paperSvg(t, { item, n, total, accent, photoDataUri = null, layout = null, tarjaTextW = null }) {
+export function paperSvg(t, { item, n, total, accent, photoDataUri = null, layout = null, tarjaTextW = null, dur = BLOCK_DUR }) {
   const size = (item.title_pt || "").length > 56 ? 88 : 100;
-  const xe = seg(t, 4.18, 0.32, easeInCubic);
+  const xe = seg(t, dur - 0.32, 0.32, easeInCubic);
   const snapE = seg(t, 0.22, 0.5, easeOutBack);
   const typeO = seg(t, 1.5, 0.3, easeOutQuad);
   const tag = TAG_LABELS[item.tags?.[0]] || String(item.tags?.[0] || "COMUNIDADE").toUpperCase();
@@ -514,7 +515,7 @@ async function renderScene({ scene, total, accent, ctx, dir, concurrency = 8 }) 
       svg = coldOpenSvg(t, {
         accent, itemCount: total, rangeLabel: ctx.rangeLabel, dark: 0.6,
         letterWidths: ctx.letterWidths, tarjaTextW: ctx.tarjaTextW, chipTextW: ctx.chipTextW,
-        showChip: ctx.mode === "overlay" || ctx.ghost === true,
+        showChip: ctx.mode === "overlay" || ctx.ghost === true, dur: scene.dur,
       });
     } else if (scene.kind === "outro") {
       const bf = ctx.badge?.frames?.length
@@ -522,14 +523,14 @@ async function renderScene({ scene, total, accent, ctx, dir, concurrency = 8 }) 
         : null;
       svg = outroSvg(t, { accent, badgeFrame: bf, siteTextW: ctx.siteTextW });
     } else if (scene.kind === "paper") {
-      svg = paperSvg(t, { item: scene.item, n: scene.n, total, accent, photoDataUri: ctx.photoDataUri, layout: ctx.layout, tarjaTextW: ctx.tarjaTextW });
+      svg = paperSvg(t, { item: scene.item, n: scene.n, total, accent, photoDataUri: ctx.photoDataUri, layout: ctx.layout, tarjaTextW: ctx.tarjaTextW, dur: scene.dur });
     } else if (scene.kind === "card") {
-      svg = cardSvg(t, { item: scene.item, n: scene.n, total, accent, layout: ctx.layout, tarjaTextW: ctx.tarjaTextW });
+      svg = cardSvg(t, { item: scene.item, n: scene.n, total, accent, layout: ctx.layout, tarjaTextW: ctx.tarjaTextW, dur: scene.dur });
     } else {
       svg = kineticSvg(t, {
         item: scene.item, n: scene.n, total, accent, ghost: ctx.ghost === true,
         layout: ctx.layout, tarjaTextW: ctx.tarjaTextW, chipTextW: ctx.chipTextW,
-        showChip: ctx.mode === "overlay" || ctx.ghost === true,
+        showChip: ctx.mode === "overlay" || ctx.ghost === true, dur: scene.dur,
       });
     }
 
