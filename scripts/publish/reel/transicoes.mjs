@@ -75,48 +75,31 @@ export function aplicarTransicoes(videoPath, { scenes, semente, lista = carregar
   return plano.length;
 }
 
-// Abertura com clipe: a duração EXATA da abertura (com voz ~3,3 a 3,9 s, sem voz 3 s)
-// dividida em N trechos iguais, em 9:16 e mudo. O trecho marcado com "capa" (segundo do
-// melhor quadro) cai no slot do instante da capa, com o quadro exato nele. Os outros não
-// repetem o da 1a transição, que vem logo depois.
+// Abertura com clipe, na duração exata dela (com voz até ~4 s, sem voz 3 s), 9:16 e mudo.
+// - Tem capa feita à mão (o Andre corta começo, meio e fim; todo quadro serve): a abertura
+//   É esse clipe, do começo. Se a abertura passar do clipe, segura o último quadro.
+// - Sem capa: sequência rápida de N trechos iguais (não repete o da 1a transição).
 export const CAPA_S = 2.4;
 export function trechosDaAbertura(lista, semente = "", { dur = 3, n = 4 } = {}) {
   if (!lista.length) return [];
   let h = 0;
   for (const ch of String(semente)) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
   const capas = lista.filter((t) => Number.isFinite(t.capa));
-  const capa = capas.length ? capas[h % capas.length] : null;
-  const resto = lista.filter((t) => t !== capa);
-  const qtd = Math.min(n - (capa ? 1 : 0), Math.max(1, resto.length - 1));
-  const sel = Array.from({ length: qtd }, (_, i) => resto[(h + 1 + i) % resto.length]);
-  const tCapa = capaNaAbertura(dur) / 1000;
-  // Capa com vídeo de sobra DEPOIS do quadro (ex: corte de 3 s começando nele): vira o
-  // último trecho, entrando um pouco antes do quadro (até 0,5 s, se houver) e indo até o fim.
-  const antes = capa ? Math.min(capa.capa, 0.5) : 0;
-  if (capa && capa.capa + (dur - tCapa) <= (capa.dur || 1.5) + 1e-9) {
-    const inicio = tCapa - antes;
-    const slot = inicio / sel.length;
-    return [...sel.map((t) => ({ ...t, slot })), { ...capa, slot: dur - inicio, iniAbertura: capa.capa - antes }];
-  }
-  // Senão: slots iguais e a capa no slot que contém o instante (corte com o quadro no meio).
-  const slot = dur / (qtd + (capa ? 1 : 0));
-  if (capa) {
-    const i = Math.min(Math.floor(tCapa / slot), sel.length);
-    // corte curto não cobre o slot inteiro: desloca o mínimo pra caber no arquivo
-    const cabe = Math.max(0, (capa.dur || 2) - slot);
-    sel.splice(i, 0, { ...capa, iniAbertura: Math.min(cabe, Math.max(0, capa.capa - (tCapa - i * slot))) });
-  }
-  return sel.map((t) => ({ ...t, slot }));
+  if (capas.length) return [{ ...capas[h % capas.length], iniAbertura: 0, slot: dur }];
+  const qtd = Math.min(n, Math.max(1, lista.length - 1));
+  return Array.from({ length: qtd }, (_, i) => ({ ...lista[(h + 1 + i) % lista.length], slot: dur / qtd }));
 }
 
 export function montarAbertura(tmpDir, { semente, dur = 3, lista = carregarTransicoes() } = {}) {
   const trechos = trechosDaAbertura(lista, semente, { dur });
   if (!trechos.length) return null;
   const saida = path.join(tmpDir, "abertura-clipe.mp4");
-  // cada trecho entra com o tamanho do slot: do miolo, ou a partir do ponto da capa
-  const f = trechos.map((t, i) => { const ini = (t.iniAbertura ?? Math.max(0, ((t.dur || 1.5) - t.slot) / 2)).toFixed(3);
-    return `[${i}:v]trim=${ini}:${(+ini + t.slot).toFixed(3)},${recorte(t)},setpts=PTS-STARTPTS,scale=1080:1920,setsar=1,fps=30[a${i}]`; }).join(";") +
-    ";" + trechos.map((_, i) => `[a${i}]`).join("") + `concat=n=${trechos.length}:v=1:a=0[v]`;
+  // cada trecho com o tamanho do slot (do começo se for a capa); tpad segura o último quadro
+  const f = trechos.map((t, i) => {
+    const ini = (t.iniAbertura ?? Math.max(0, ((t.dur || 1.5) - t.slot) / 2)).toFixed(3);
+    return `[${i}:v]trim=${ini}:${(+ini + t.slot).toFixed(3)},${recorte(t)},setpts=PTS-STARTPTS,` +
+      `tpad=stop_mode=clone:stop_duration=1,trim=0:${t.slot.toFixed(3)},scale=1080:1920,setsar=1,fps=30[a${i}]`;
+  }).join(";") + ";" + trechos.map((_, i) => `[a${i}]`).join("") + `concat=n=${trechos.length}:v=1:a=0[v]`;
   const r = spawnSync("ffmpeg", ["-v", "error", "-y", ...trechos.flatMap((t) => ["-i", t.arq]), "-filter_complex", f,
     "-map", "[v]", "-an", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", saida], { encoding: "utf8" });
   return r.status === 0 ? saida : null;
