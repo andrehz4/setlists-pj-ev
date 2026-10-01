@@ -7170,6 +7170,539 @@
         "clima": "energia",
         "descricao": "Eddie e a banda no palco, fundo laranja"
       }
+    },
+    {
+      "file": "sirens-luz-perfil.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 8.38,
+      "fim": 9.88,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "calmo",
+        "descricao": "perfil em contraluz com estouro de luz branca"
+      }
+    },
+    {
+      "file": "sirens-bateria-contraluz.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 14.77,
+      "fim": 16.27,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "calmo",
+        "descricao": "baterista em contraluz entre os pratos"
+      }
+    },
+    {
+      "file": "sirens-eddie-perfil-rosa.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 0.97,
+      "ini": 25.31,
+      "fim": 26.28,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie de perfil sob luz rosa"
+      }
+    },
+    {
+      "file": "sirens-luz-rosa.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.03,
+      "ini": 26.44,
+      "fim": 27.49,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "estouro de luz rosa na lente (abstrato, otimo pra corte)"
+      }
+    },
+    {
+      "file": "sirens-eddie-canta.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 75.64,
+      "fim": 77.14,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie de pe cantando no escuro"
+      }
+    },
+    {
+      "file": "sirens-eddie-grito-perfil.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 102.52,
+      "fim": 104.02,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "grita",
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie gritando de perfil, bem de perto"
+      }
+    },
+    {
+      "file": "sirens-violao.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 121.41,
+      "fim": 122.91,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "violao acustico de perto"
+      }
+    },
+    {
+      "file": "sirens-eddie-banda.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 163.66,
+      "fim": 165.16,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.483
+        },
+        {
+          "t": 0.1,
+          "foco": 0.492
+        },
+        {
+          "t": 0.2,
+          "foco": 0.504
+        },
+        {
+          "t": 0.3,
+          "foco": 0.515
+        },
+        {
+          "t": 0.4,
+          "foco": 0.526
+        },
+        {
+          "t": 0.5,
+          "foco": 0.538
+        },
+        {
+          "t": 0.6,
+          "foco": 0.55
+        },
+        {
+          "t": 0.7,
+          "foco": 0.563
+        },
+        {
+          "t": 0.8,
+          "foco": 0.575
+        },
+        {
+          "t": 0.9,
+          "foco": 0.587
+        },
+        {
+          "t": 1,
+          "foco": 0.598
+        },
+        {
+          "t": 1.1,
+          "foco": 0.607
+        },
+        {
+          "t": 1.2,
+          "foco": 0.615
+        },
+        {
+          "t": 1.3,
+          "foco": 0.621
+        },
+        {
+          "t": 1.4,
+          "foco": 0.624
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.6
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie",
+          "banda"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie cantando com a banda atras"
+      }
+    },
+    {
+      "file": "sirens-eddie-close.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 189.54,
+      "fim": 191.04,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.635
+        },
+        {
+          "t": 0.1,
+          "foco": 0.627
+        },
+        {
+          "t": 0.2,
+          "foco": 0.614
+        },
+        {
+          "t": 0.3,
+          "foco": 0.606
+        },
+        {
+          "t": 0.4,
+          "foco": 0.6
+        },
+        {
+          "t": 0.5,
+          "foco": 0.597
+        },
+        {
+          "t": 0.6,
+          "foco": 0.593
+        },
+        {
+          "t": 0.7,
+          "foco": 0.587
+        },
+        {
+          "t": 0.8,
+          "foco": 0.583
+        },
+        {
+          "t": 0.9,
+          "foco": 0.587
+        },
+        {
+          "t": 1,
+          "foco": 0.593
+        },
+        {
+          "t": 1.1,
+          "foco": 0.599
+        },
+        {
+          "t": 1.2,
+          "foco": 0.603
+        },
+        {
+          "t": 1.3,
+          "foco": 0.605
+        },
+        {
+          "t": 1.4,
+          "foco": 0.605
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "close do Eddie cantando, olhos fechados"
+      }
+    },
+    {
+      "file": "sirens-mao-rosa.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 0.97,
+      "ini": 202.7,
+      "fim": 203.67,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "calmo",
+        "descricao": "mao no microfone sob luz rosa"
+      }
+    },
+    {
+      "file": "sirens-eddie-perfil-luz.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 286.02,
+      "fim": 287.52,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie de perfil com luz redonda ao lado"
+      }
+    },
+    {
+      "file": "sirens-luz-branca.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 319.8,
+      "fim": 321.3,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "luz branca redonda (abstrato)"
+      }
+    },
+    {
+      "file": "sirens-guitarrista.mp4",
+      "musica": "Sirens",
+      "origem": "＂Sirens＂ (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 330.56,
+      "fim": 332.06,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.427
+        },
+        {
+          "t": 0.1,
+          "foco": 0.428
+        },
+        {
+          "t": 0.2,
+          "foco": 0.428
+        },
+        {
+          "t": 0.3,
+          "foco": 0.43
+        },
+        {
+          "t": 0.4,
+          "foco": 0.431
+        },
+        {
+          "t": 0.5,
+          "foco": 0.434
+        },
+        {
+          "t": 0.6,
+          "foco": 0.439
+        },
+        {
+          "t": 0.7,
+          "foco": 0.445
+        },
+        {
+          "t": 0.8,
+          "foco": 0.456
+        },
+        {
+          "t": 0.9,
+          "foco": 0.469
+        },
+        {
+          "t": 1,
+          "foco": 0.485
+        },
+        {
+          "t": 1.1,
+          "foco": 0.501
+        },
+        {
+          "t": 1.2,
+          "foco": 0.514
+        },
+        {
+          "t": 1.3,
+          "foco": 0.521
+        },
+        {
+          "t": 1.4,
+          "foco": 0.522
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.53
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Sirens (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "intenso",
+        "descricao": "guitarrista de camiseta cinza olhando pra guitarra"
+      }
     }
   ]
 }
