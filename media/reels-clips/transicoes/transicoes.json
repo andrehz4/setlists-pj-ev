@@ -4249,7 +4249,7 @@
         "era": "1998",
         "fonte": "Do the Evolution (clipe animado, 1998)",
         "quem": [
-          "banda"
+          "animacao"
         ],
         "plano": "close",
         "acao": [
@@ -4279,7 +4279,7 @@
         "era": "1998",
         "fonte": "Do the Evolution (clipe animado, 1998)",
         "quem": [
-          "banda"
+          "animacao"
         ],
         "plano": "aberto",
         "acao": [
@@ -4288,6 +4288,222 @@
         "clima": "energia",
         "descricao": "animação: parede de fogo (abstrato, ótimo pra corte)",
         "animacao": true
+      }
+    },
+    {
+      "file": "do-the-evolution-origem-mar.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 1.5,
+      "ini": 14,
+      "fim": 15.5,
+      "tags": [
+        "memoria"
+      ],
+      "foco": 0.6,
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "animacao": true,
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "começo da vida: partículas no mar e criatura (abstrato)"
+      }
+    },
+    {
+      "file": "do-the-evolution-trex-luz.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 0.73,
+      "ini": 24.5,
+      "fim": 25.25,
+      "tags": [
+        "memoria"
+      ],
+      "foco": 0.3,
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "animacao": true,
+        "quem": [
+          "animacao"
+        ],
+        "plano": "medio",
+        "acao": [
+          "grita"
+        ],
+        "clima": "energia",
+        "descricao": "T-rex rugindo com estouro de luz amarela"
+      }
+    },
+    {
+      "file": "do-the-evolution-mulher-beijo.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 1.5,
+      "ini": 38.5,
+      "fim": 40,
+      "tags": [
+        "memoria"
+      ],
+      "foco": 0.3,
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "animacao": true,
+        "quem": [
+          "animacao"
+        ],
+        "plano": "close",
+        "acao": [
+          "dança"
+        ],
+        "clima": "intenso",
+        "descricao": "a mulher do clipe mandando beijo"
+      }
+    },
+    {
+      "file": "do-the-evolution-cavalos.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 0.77,
+      "ini": 48.5,
+      "fim": 49.25,
+      "tags": [
+        "memoria"
+      ],
+      "foco": 0.45,
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "animacao": true,
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "energia",
+        "descricao": "cavalos correndo na planície"
+      }
+    },
+    {
+      "file": "do-the-evolution-campo-menina.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 1.47,
+      "ini": 125,
+      "fim": 126.5,
+      "tags": [
+        "memoria"
+      ],
+      "foco": 0.55,
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "animacao": true,
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "campo aberto com árvore e menina correndo"
+      }
+    },
+    {
+      "file": "do-the-evolution-serpente-mecanica.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 1.5,
+      "ini": 204,
+      "fim": 205.5,
+      "tags": [
+        "memoria"
+      ],
+      "foco": 0.5,
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "animacao": true,
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "intenso",
+        "descricao": "serpente mecânica saindo da água diante da cidade"
+      }
+    },
+    {
+      "file": "do-the-evolution-terra-espaco.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 0.87,
+      "ini": 225.6,
+      "fim": 226.5,
+      "tags": [
+        "memoria"
+      ],
+      "foco": 0.55,
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "animacao": true,
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "a Terra vista do espaço"
+      }
+    },
+    {
+      "file": "do-the-evolution-fogo.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 1.47,
+      "ini": 230.5,
+      "fim": 232,
+      "tags": [
+        "memoria"
+      ],
+      "foco": 0.6,
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "animacao": true,
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "energia",
+        "descricao": "chamas sobre o chão (abstrato)"
       }
     }
   ]

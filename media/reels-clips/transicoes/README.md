@@ -38,7 +38,7 @@ seguindo o rosto), `rosto` ({achou, cobertura}).
 
 | Campo | Valores |
 |---|---|
-| `quem` | eddie, stone, jeff, mike, matt, banda, publico, baterista, guitarrista (sem nome quando não dá pra ter certeza) |
+| `quem` | eddie, stone, jeff, mike, matt, banda, publico, baterista, guitarrista (sem nome quando não dá pra ter certeza), animacao |
 | `plano` | close, medio, aberto |
 | `acao` | canta, grita, guitarra, baixo, bateria, headbang, pula, stage-dive, mosh, crowd-surf, maos-pro-alto, giro, dança |
 | `clima` | energia, intenso, calmo |
