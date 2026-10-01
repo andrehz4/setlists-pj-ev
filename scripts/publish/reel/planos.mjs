@@ -70,7 +70,7 @@ function importar(video, pares, musica) {
     const p = planos.find((x) => x.id === id);
     if (!p || !nomeCurto) { console.warn(`[planos] ${par}: plano ou nome inválido`); continue; }
     const nome = `${slug}-${nomeCurto}`;
-    const r = spawnSync(process.execPath, [path.resolve("scripts/publish/reel/importar-transicao.mjs"), video, nome, "--musica", musica || "",
+    const r = spawnSync(process.execPath, [path.resolve("scripts/publish/reel/importar-transicao.mjs"), path.resolve(video), nome, "--musica", musica || "",
       "--ini", String(p.ini), "--fim", String(p.fim)], { encoding: "utf8" });
     process.stdout.write(r.stdout || r.stderr);
     if (r.status !== 0) continue;

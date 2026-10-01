@@ -93,7 +93,7 @@ function importar(video, ids, musica) {
     const c = [...auto.t, ...auto.c, ...(auto.a || [])].find((x) => x.id === id);
     if (!c) { console.warn(`[auto] ${id} não existe`); continue; }
     const nome = `${slug}-${id[0] === "c" ? "capa" : id[0] === "a" ? "acao" : "t"}${id.slice(1)}`;
-    const r = spawnSync(process.execPath, [path.resolve("scripts/publish/reel/importar-transicao.mjs"), video, nome, "--musica", musica || "",
+    const r = spawnSync(process.execPath, [path.resolve("scripts/publish/reel/importar-transicao.mjs"), path.resolve(video), nome, "--musica", musica || "",
       "--ini", String(c.ini), "--fim", String(c.fim)], { encoding: "utf8" });
     process.stdout.write(r.stdout || r.stderr);
     if (r.status !== 0) continue;
@@ -111,7 +111,7 @@ function importar(video, ids, musica) {
 export function baixarLink(url) {
   const pasta = path.resolve(".momentos/fontes");
   fs.mkdirSync(pasta, { recursive: true });
-  const r = spawnSync("yt-dlp", ["-f", "bv*[height<=1080][ext=mp4]/bv*[height<=1080]", "--remux-video", "mp4", "--no-playlist",
+  const r = spawnSync("yt-dlp", ["-f", "bv*[vcodec^=avc1][height<=1080]/bv*[height<=1080][ext=mp4]/bv*[height<=1080]", "--remux-video", "mp4", "--no-playlist",
     "-o", path.join(pasta, "%(title)s.%(ext)s"), "--print", "after_move:filepath", url], { encoding: "utf8", maxBuffer: 1 << 26 });
   const arq = r.stdout.trim().split("\n").pop();
   if (r.status !== 0 || !arq || !fs.existsSync(arq)) throw new Error(`yt-dlp falhou: ${(r.stderr || "").slice(-300)}`);
