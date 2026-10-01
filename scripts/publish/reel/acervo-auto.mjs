@@ -1,7 +1,7 @@
 // Acervo automático do reel: de um clipe inteiro, acha TRANSIÇÕES (1,5 s com rosto e
 // movimento) e CAPAS (4 s com rosto grande e estável, a abertura inteira do reel), com o
 // recorte vertical seguindo o rosto. Gera folhas pra avaliar e depois importa os escolhidos.
-//   node scripts/publish/reel/acervo-auto.mjs <video|link do YouTube> [--max 20]   (analisa, gera folhas; pula o que já está no acervo)
+//   node scripts/publish/reel/acervo-auto.mjs <video|link do YouTube> [--max 20]   (analisa, gera folhas; pula o que já está no acervo; --curto p/ clipe de corte rápido)
 //   node scripts/publish/reel/acervo-auto.mjs <video> --importar t2,t5,c1 --musica "I Am Mine"
 // Saída da análise: .momentos/<nome>/auto.json, auto-transicoes.jpg, auto-capas.jpg (gitignored).
 // Depois de importar, preencher o "broll" de cada trecho no transicoes.json (ver README).
@@ -19,8 +19,9 @@ const TIPOS = {
 };
 
 // Janelas que não atravessam corte de cena, com rosto em boa parte dos quadros.
-export function candidatos({ mov, cortes, rostos, tipo, fimVideo, usados = [], max }) {
-  const T = TIPOS[tipo], res = [];
+export function candidatos({ mov, cortes, rostos, tipo, fimVideo, usados = [], max, curto = false }) {
+  // curto: clipe de corte rápido; transição/ação com 1 s (a transição só usa 0,7 s)
+  const T = curto && tipo !== "c" ? { ...TIPOS[tipo], dur: 1, espaco: 2 } : TIPOS[tipo], res = [];
   const lim = max || T.max;
   const media = (a, b) => { const v = mov.filter(([x]) => x >= a && x < b).map(([, y]) => y); return v.reduce((s, y) => s + y, 0) / (v.length || 1); };
   for (let ini = 3; ini + T.dur <= fimVideo - 3; ini += 0.5) {
@@ -63,7 +64,7 @@ function jaUsados(video) {
   } catch { return []; }
 }
 
-async function analisar(video, max) {
+async function analisar(video, max, curto = false) {
   const { out, mov, cortes } = analisarMovimento(video);
   fs.mkdirSync(path.join(out, "rt"), { recursive: true });
   const arqRostos = path.join(out, "rostos.json");
@@ -73,7 +74,7 @@ async function analisar(video, max) {
   const res = {};
   const usados = jaUsados(video);
   for (const tipo of ["t", "c", "a"]) {
-    res[tipo] = candidatos({ mov, cortes, rostos, tipo, fimVideo, usados, max }).map((c) => ({ ...c,
+    res[tipo] = candidatos({ mov, cortes, rostos, tipo, fimVideo, usados, max, curto }).map((c) => ({ ...c,
       trilha: trilhaSuave(rostos.filter((p) => p.t >= c.ini && p.t < c.fim).map((p) => ({ ...p, t: +(p.t - c.ini).toFixed(3) })), { larguraCorte: lc }) }));
   }
   fs.writeFileSync(path.join(out, "auto.json"), JSON.stringify({ video: path.resolve(video), ...res }, null, 1));
@@ -121,5 +122,5 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (/^https?:\/\//.test(a[0] || "")) { a[0] = baixarLink(a[0]); console.log(`[auto] baixado: ${a[0]}`); }
   if (!a[0] || !fs.existsSync(a[0])) { console.error("uso: acervo-auto.mjs <video> [--importar t1,c2 --musica X]"); process.exit(1); }
   if (op("--importar")) importar(a[0], op("--importar").split(","), op("--musica"));
-  else await analisar(a[0], Number(op("--max")) || null);
+  else await analisar(a[0], Number(op("--max")) || null, a.includes("--curto"));
 }
