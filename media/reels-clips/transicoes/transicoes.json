@@ -4229,6 +4229,66 @@
         "descricao": "Eddie de olhos fechados sob luz azul (capa)"
       },
       "qualidade": "720p"
+    },
+    {
+      "file": "do-the-evolution-acao6.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 1.47,
+      "ini": 162.5,
+      "fim": 164,
+      "tags": [
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0
+      },
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "close",
+        "acao": [
+          "giro"
+        ],
+        "clima": "intenso",
+        "descricao": "animação: braço robótico e luzes fortes (abstrato)",
+        "animacao": true
+      }
+    },
+    {
+      "file": "do-the-evolution-acao8.mp4",
+      "musica": "Do the Evolution",
+      "origem": "Pearl Jam - Do the Evolution (Official HD Video).mp4",
+      "dur": 1.47,
+      "ini": 220,
+      "fim": 221.5,
+      "tags": [
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0
+      },
+      "broll": {
+        "local": "estudio",
+        "era": "1998",
+        "fonte": "Do the Evolution (clipe animado, 1998)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "energia",
+        "descricao": "animação: parede de fogo (abstrato, ótimo pra corte)",
+        "animacao": true
+      }
     }
   ]
 }
