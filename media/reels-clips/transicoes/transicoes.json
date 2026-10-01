@@ -6405,6 +6405,771 @@
         "clima": "energia",
         "descricao": "braco da guitarra com fogo ao fundo"
       }
+    },
+    {
+      "file": "mind-your-manners-raio-banda.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.13,
+      "ini": 6.38,
+      "fim": 7.51,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "banda",
+          "animacao"
+        ],
+        "plano": "medio",
+        "acao": [
+          "giro"
+        ],
+        "clima": "energia",
+        "descricao": "o raio amarelo do Lightning Bolt com a banda",
+        "animacao": true
+      }
+    },
+    {
+      "file": "mind-your-manners-silhueta-arvores.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 0.97,
+      "ini": 10.26,
+      "fim": 11.23,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra",
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "silhueta da banda com arvores ao fundo"
+      }
+    },
+    {
+      "file": "mind-your-manners-silhueta-raio-pulo.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 12.3,
+      "fim": 13.8,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "pula"
+        ],
+        "clima": "energia",
+        "descricao": "silhueta pulando com o raio do Lightning Bolt atras"
+      }
+    },
+    {
+      "file": "mind-your-manners-eddie-escuro.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 19.21,
+      "fim": 20.71,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie cantando no escuro"
+      }
+    },
+    {
+      "file": "mind-your-manners-eddie-silhueta-mic.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 21.4,
+      "fim": 22.9,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "silhueta do Eddie no microfone, fundo texturizado"
+      }
+    },
+    {
+      "file": "mind-your-manners-bateria-silhueta-vermelho.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 23.65,
+      "fim": 25.15,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.781
+        },
+        {
+          "t": 0.1,
+          "foco": 0.773
+        },
+        {
+          "t": 0.2,
+          "foco": 0.761
+        },
+        {
+          "t": 0.3,
+          "foco": 0.754
+        },
+        {
+          "t": 0.4,
+          "foco": 0.752
+        },
+        {
+          "t": 0.5,
+          "foco": 0.755
+        },
+        {
+          "t": 0.6,
+          "foco": 0.759
+        },
+        {
+          "t": 0.7,
+          "foco": 0.764
+        },
+        {
+          "t": 0.8,
+          "foco": 0.768
+        },
+        {
+          "t": 0.9,
+          "foco": 0.77
+        },
+        {
+          "t": 1,
+          "foco": 0.772
+        },
+        {
+          "t": 1.1,
+          "foco": 0.773
+        },
+        {
+          "t": 1.2,
+          "foco": 0.774
+        },
+        {
+          "t": 1.3,
+          "foco": 0.774
+        },
+        {
+          "t": 1.4,
+          "foco": 0.774
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.53
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "silhueta da bateria contra o vermelho"
+      }
+    },
+    {
+      "file": "mind-your-manners-silhueta-cortina-verde.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 33.58,
+      "fim": 35.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra",
+          "bateria"
+        ],
+        "clima": "calmo",
+        "descricao": "silhueta da banda contra cortina verde"
+      }
+    },
+    {
+      "file": "mind-your-manners-silhueta-fogo.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 46.61,
+      "fim": 48.11,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra",
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "silhueta da banda com fogo e arvores"
+      }
+    },
+    {
+      "file": "mind-your-manners-boca-grito.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.17,
+      "ini": 62.85,
+      "fim": 64.02,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "close",
+        "acao": [
+          "grita"
+        ],
+        "clima": "intenso",
+        "descricao": "boca gritando em close (grafico)",
+        "animacao": true
+      }
+    },
+    {
+      "file": "mind-your-manners-eddie-palco.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 65.27,
+      "fim": 66.77,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie",
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie no palco com a bateria atras"
+      }
+    },
+    {
+      "file": "mind-your-manners-guitarra-silhueta-azul.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 71.49,
+      "fim": 72.99,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "silhueta do guitarrista contra o azul"
+      }
+    },
+    {
+      "file": "mind-your-manners-silhueta-selva.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 80.29,
+      "fim": 81.79,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "energia",
+        "descricao": "silhueta na selva verde"
+      }
+    },
+    {
+      "file": "mind-your-manners-animacao-ilha.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 85.67,
+      "fim": 87.17,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "silhueta animada sentada na ilha, azul",
+        "animacao": true
+      }
+    },
+    {
+      "file": "mind-your-manners-animacao-azul.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.17,
+      "ini": 89.92,
+      "fim": 91.09,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "silhueta animada andando, ceu azul",
+        "animacao": true
+      }
+    },
+    {
+      "file": "mind-your-manners-guitarra-cidade.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 94.57,
+      "fim": 96.07,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.347
+        },
+        {
+          "t": 0.1,
+          "foco": 0.349
+        },
+        {
+          "t": 0.2,
+          "foco": 0.352
+        },
+        {
+          "t": 0.3,
+          "foco": 0.357
+        },
+        {
+          "t": 0.4,
+          "foco": 0.365
+        },
+        {
+          "t": 0.5,
+          "foco": 0.378
+        },
+        {
+          "t": 0.6,
+          "foco": 0.398
+        },
+        {
+          "t": 0.7,
+          "foco": 0.428
+        },
+        {
+          "t": 0.8,
+          "foco": 0.473
+        },
+        {
+          "t": 0.9,
+          "foco": 0.437
+        },
+        {
+          "t": 1,
+          "foco": 0.414
+        },
+        {
+          "t": 1.1,
+          "foco": 0.399
+        },
+        {
+          "t": 1.2,
+          "foco": 0.39
+        },
+        {
+          "t": 1.3,
+          "foco": 0.385
+        },
+        {
+          "t": 1.4,
+          "foco": 0.382
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.67
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista com a cidade a noite atras"
+      }
+    },
+    {
+      "file": "mind-your-manners-guitarra-relampago.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 98.27,
+      "fim": 99.77,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarra com relampago no ceu"
+      }
+    },
+    {
+      "file": "mind-your-manners-guitarrista-close.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 105.73,
+      "fim": 107.23,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista de perto tocando, cabelo no rosto"
+      }
+    },
+    {
+      "file": "mind-your-manners-guitarrista-camiseta-cinza.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 110.19,
+      "fim": 111.69,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.57
+        },
+        {
+          "t": 0.1,
+          "foco": 0.554
+        },
+        {
+          "t": 0.2,
+          "foco": 0.531
+        },
+        {
+          "t": 0.3,
+          "foco": 0.498
+        },
+        {
+          "t": 0.4,
+          "foco": 0.491
+        },
+        {
+          "t": 0.5,
+          "foco": 0.476
+        },
+        {
+          "t": 0.6,
+          "foco": 0.451
+        },
+        {
+          "t": 0.7,
+          "foco": 0.443
+        },
+        {
+          "t": 0.8,
+          "foco": 0.444
+        },
+        {
+          "t": 0.9,
+          "foco": 0.448
+        },
+        {
+          "t": 1,
+          "foco": 0.45
+        },
+        {
+          "t": 1.1,
+          "foco": 0.452
+        },
+        {
+          "t": 1.2,
+          "foco": 0.453
+        },
+        {
+          "t": 1.3,
+          "foco": 0.454
+        },
+        {
+          "t": 1.4,
+          "foco": 0.454
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.53
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista de camiseta cinza, raio atras"
+      }
+    },
+    {
+      "file": "mind-your-manners-olhos-azuis.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 118.68,
+      "fim": 120.18,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "close",
+        "acao": [
+          "giro"
+        ],
+        "clima": "intenso",
+        "descricao": "olhos azuis em close com fogo acima (grafico)",
+        "animacao": true
+      }
+    },
+    {
+      "file": "mind-your-manners-silhueta-corpo-ilustrado.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 136.95,
+      "fim": 138.45,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "intenso",
+        "descricao": "silhueta com o corpo ilustrado (anatomia)",
+        "animacao": true
+      }
+    },
+    {
+      "file": "mind-your-manners-punho-vermelho.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 154.82,
+      "fim": 156.32,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "publico"
+        ],
+        "plano": "close",
+        "acao": [
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "punho em silhueta contra o vermelho"
+      }
+    },
+    {
+      "file": "mind-your-manners-eddie-banda-laranja.mp4",
+      "musica": "Mind Your Manners",
+      "origem": "Mind Your Manners (Official Music Video) - Pearl Jam.mp4",
+      "dur": 1,
+      "ini": 159.36,
+      "fim": 160.37,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Mind Your Manners (clipe oficial, Lightning Bolt, 2013)",
+        "quem": [
+          "eddie",
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie e a banda no palco, fundo laranja"
+      }
     }
   ]
 }
