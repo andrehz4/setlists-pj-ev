@@ -26,8 +26,9 @@ cenas e o render.
 
 ## Crédito e plano
 
-Plano grátis do ElevenLabs: uso não comercial com crédito. A legenda do reel termina com `voz: ElevenLabs` (discreto,
-sem link nem domínio, a pedido do Andre). Se a página passar a ter receita, trocar pro plano Starter.
+Plano grátis do ElevenLabs: uso não comercial. Desde 2026-10-01 a legenda NÃO leva crédito de ferramenta (voz,
+trilha), decisão do Andre. O plano grátis pede atribuição; se isso virar problema ou a página passar a ter receita,
+trocar pro plano Starter (sem exigência de crédito e com uso comercial).
 Custo: ~270 créditos por reel (10 mil por mês no grátis). Plano grátis não usa vozes da biblioteca (brasileiras) pela API.
 
 ## Testar local

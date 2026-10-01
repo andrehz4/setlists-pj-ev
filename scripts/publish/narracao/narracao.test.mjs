@@ -146,11 +146,8 @@ test("mixagem: cada fala entra no início da sua cena e a música abaixa com a v
   assert.match(f, /sidechaincompress/);
 });
 
-test("legenda: crédito discreto só quando narrado, sem link", () => {
-  const com = buildReelCaption(ITENS, { weekLabel: "x", creditoVoz: true });
-  assert.ok(com.endsWith("voz: ElevenLabs"));
-  assert.doesNotMatch(com, /elevenlabs\.io|https?:/i);
-  assert.doesNotMatch(buildReelCaption(ITENS, { weekLabel: "x" }), /ElevenLabs/);
+test("legenda do reel: sem crédito de ferramenta (decisão de 2026-10-01)", () => {
+  assert.doesNotMatch(buildReelCaption(ITENS, { weekLabel: "x" }), /ElevenLabs|Suno|Pixabay|voz:|trilha:/i);
 });
 
 test("Regra 0: arquivos do módulo ficam curtos", () => {

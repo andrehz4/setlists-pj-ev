@@ -194,7 +194,7 @@ async function main() {
 
   // 6. publica
   const videoUrl = r2Url || `${REPO_PUBLIC_BASE}/media/news/instagram-reels/${weekKey}.mp4`;
-  const caption = buildReelCaption(items, { weekLabel: rangeLabel, creditoVoz: narrado });
+  const caption = buildReelCaption(items, { weekLabel: rangeLabel });
   console.log(`[reel] publishing video_url=${videoUrl} (caption ${caption.length} chars)`);
   let postId, containerId, recovered;
   try {
