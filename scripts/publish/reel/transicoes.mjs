@@ -38,13 +38,29 @@ export function carregarTransicoes(pasta = PASTA) {
   } catch { return []; }
 }
 
-// Um trecho por troca de cena, em rodízio determinístico pela semana (sem repetir
-// enquanto houver trecho novo). Trocas = início de cada cena menos a primeira.
+// Rodízio sem repetir: a semente vira um número de ordem (dia "AAAA-MM-DD" = dias desde
+// 2026-01-01; semana "AAAA-Www" = semanas), a lista é embaralhada de forma FIXA (o
+// acervo vem agrupado por vídeo) e cada ordem pega o próximo bloco, sem sobrepor.
+export function ordem(semente = "") {
+  const s = String(semente);
+  const dia = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (dia) return Math.round((Date.UTC(+dia[1], +dia[2] - 1, +dia[3]) - Date.UTC(2026, 0, 1)) / 864e5);
+  const sem = s.match(/^(\d{4})-W(\d{2})$/);
+  if (sem) return (+sem[1] - 2026) * 53 + +sem[2];
+  let h = 0;
+  for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return h;
+}
+const hashTexto = (t) => { let h = 2166136261; for (const ch of t) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0; return h; };
+export const embaralhar = (lista) => [...lista].sort((a, b) => hashTexto(a.file) - hashTexto(b.file) || (a.file < b.file ? -1 : 1));
+const pos = (n, m) => ((n % m) + m) % m;
+
+// Um trecho por troca de cena (trocas = início de cada cena menos a primeira).
 export function planejarTransicoes(scenes, lista, semente = "") {
   if (!lista.length) return [];
-  let h = 0;
-  for (const ch of String(semente)) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-  return scenes.slice(1).map((s, i) => ({ t: Math.max(0, s.start - DUR / 2), trecho: lista[(h + i) % lista.length] }));
+  const mix = embaralhar(lista.filter((t) => !Number.isFinite(t.capa))).concat(lista.filter((t) => Number.isFinite(t.capa)));
+  const trocas = scenes.length - 1, base = ordem(semente) * trocas;
+  return scenes.slice(1).map((s, i) => ({ t: Math.max(0, s.start - DUR / 2), trecho: mix[pos(base + i, mix.length)] }));
 }
 
 export function filtroFfmpeg(plano) {
@@ -98,12 +114,11 @@ export function aplicarTransicoes(videoPath, { scenes, semente, capaInicioS = nu
 export const CAPA_S = 2.4;
 export function trechosDaAbertura(lista, semente = "", { dur = 3, n = 4 } = {}) {
   if (!lista.length) return [];
-  let h = 0;
-  for (const ch of String(semente)) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-  const capas = lista.filter((t) => Number.isFinite(t.capa));
-  if (capas.length) return [{ ...capas[h % capas.length], iniAbertura: 0, slot: dur }];
-  const qtd = Math.min(n, Math.max(1, lista.length - 1));
-  return Array.from({ length: qtd }, (_, i) => ({ ...lista[(h + 1 + i) % lista.length], slot: dur / qtd }));
+  const o = ordem(semente);
+  const capas = embaralhar(lista.filter((t) => Number.isFinite(t.capa)));
+  if (capas.length) return [{ ...capas[pos(o, capas.length)], iniAbertura: 0, slot: dur }];
+  const mix = embaralhar(lista), qtd = Math.min(n, Math.max(1, lista.length - 1));
+  return Array.from({ length: qtd }, (_, i) => ({ ...mix[pos(o * qtd + i + 1, mix.length)], slot: dur / qtd }));
 }
 
 export function montarAbertura(tmpDir, { semente, dur = 3, lista = carregarTransicoes() } = {}) {
