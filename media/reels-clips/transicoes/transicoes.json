@@ -5393,6 +5393,645 @@
         "clima": "intenso",
         "descricao": "Eddie de boca aberta cantando, luz quente (capa)"
       }
+    },
+    {
+      "file": "the-fixer-t2.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 10,
+      "fim": 11.5,
+      "tags": [
+        "stone",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.374
+        },
+        {
+          "t": 0.2,
+          "foco": 0.383
+        },
+        {
+          "t": 0.4,
+          "foco": 0.388
+        },
+        {
+          "t": 0.6,
+          "foco": 0.391
+        },
+        {
+          "t": 0.8,
+          "foco": 0.394
+        },
+        {
+          "t": 1,
+          "foco": 0.398
+        },
+        {
+          "t": 1.2,
+          "foco": 0.405
+        },
+        {
+          "t": 1.4,
+          "foco": 0.411
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.88
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "stone"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Stone Gossard de camiseta verde tocando guitarra"
+      }
+    },
+    {
+      "file": "the-fixer-t6.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 37.5,
+      "fim": 39,
+      "tags": [
+        "mike",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.281
+        },
+        {
+          "t": 0.3,
+          "foco": 0.28
+        },
+        {
+          "t": 0.5,
+          "foco": 0.279
+        },
+        {
+          "t": 0.7,
+          "foco": 0.277
+        },
+        {
+          "t": 0.9,
+          "foco": 0.277
+        },
+        {
+          "t": 1.1,
+          "foco": 0.293
+        },
+        {
+          "t": 1.3,
+          "foco": 0.314
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.71
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "mike"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista de cabelo curto e cavanhaque, parece o Mike McCready (conferir)"
+      }
+    },
+    {
+      "file": "the-fixer-t13.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 97,
+      "fim": 98.5,
+      "tags": [
+        "mike",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.551
+        },
+        {
+          "t": 0.2,
+          "foco": 0.53
+        },
+        {
+          "t": 0.4,
+          "foco": 0.511
+        },
+        {
+          "t": 0.6,
+          "foco": 0.506
+        },
+        {
+          "t": 0.8,
+          "foco": 0.506
+        },
+        {
+          "t": 1,
+          "foco": 0.507
+        },
+        {
+          "t": 1.2,
+          "foco": 0.511
+        },
+        {
+          "t": 1.4,
+          "foco": 0.518
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.88
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "mike"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "mão na guitarra e o guitarrista de preto, parece o Mike (conferir)"
+      }
+    },
+    {
+      "file": "the-fixer-t15.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 111,
+      "fim": 112.5,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.341
+        },
+        {
+          "t": 0.2,
+          "foco": 0.321
+        },
+        {
+          "t": 0.4,
+          "foco": 0.282
+        },
+        {
+          "t": 0.6,
+          "foco": 0.21
+        },
+        {
+          "t": 0.8,
+          "foco": 0.176
+        },
+        {
+          "t": 1,
+          "foco": 0.175
+        },
+        {
+          "t": 1.2,
+          "foco": 0.198
+        },
+        {
+          "t": 1.4,
+          "foco": 0.225
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "banda",
+          "baterista",
+          "guitarrista"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra",
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista e bateria ao fundo"
+      }
+    },
+    {
+      "file": "the-fixer-t19.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 162,
+      "fim": 163.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.463
+        },
+        {
+          "t": 0.2,
+          "foco": 0.459
+        },
+        {
+          "t": 0.4,
+          "foco": 0.459
+        },
+        {
+          "t": 0.6,
+          "foco": 0.46
+        },
+        {
+          "t": 0.8,
+          "foco": 0.459
+        },
+        {
+          "t": 1,
+          "foco": 0.458
+        },
+        {
+          "t": 1.2,
+          "foco": 0.457
+        },
+        {
+          "t": 1.4,
+          "foco": 0.461
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie",
+          "publico"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie cantando diante da plateia lotada"
+      }
+    },
+    {
+      "file": "the-fixer-t21.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 177.5,
+      "fim": 179,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.515
+        },
+        {
+          "t": 0.3,
+          "foco": 0.482
+        },
+        {
+          "t": 0.5,
+          "foco": 0.44
+        },
+        {
+          "t": 0.7,
+          "foco": 0.37
+        },
+        {
+          "t": 0.9,
+          "foco": 0.256
+        },
+        {
+          "t": 1.1,
+          "foco": 0.19
+        },
+        {
+          "t": 1.3,
+          "foco": 0.16
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.71
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie",
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie cantando e guitarrista ao lado"
+      }
+    },
+    {
+      "file": "the-fixer-acao3.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 26,
+      "fim": 27.5,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.462
+        },
+        {
+          "t": 0.2,
+          "foco": 0.424
+        },
+        {
+          "t": 0.4,
+          "foco": 0.424
+        },
+        {
+          "t": 0.6,
+          "foco": 0.463
+        },
+        {
+          "t": 0.8,
+          "foco": 0.548
+        },
+        {
+          "t": 1,
+          "foco": 0.594
+        },
+        {
+          "t": 1.2,
+          "foco": 0.623
+        },
+        {
+          "t": 1.4,
+          "foco": 0.63
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista na frente da parede de amplificadores"
+      }
+    },
+    {
+      "file": "the-fixer-acao7.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 63.5,
+      "fim": 65,
+      "tags": [
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.43
+      },
+      "broll": {
+        "local": "publico",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "publico"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "braço pro alto e o público lotado"
+      }
+    },
+    {
+      "file": "the-fixer-acao13.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 107,
+      "fim": 108.5,
+      "tags": [
+        "matt",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.319
+        },
+        {
+          "t": 0.2,
+          "foco": 0.328
+        },
+        {
+          "t": 0.4,
+          "foco": 0.342
+        },
+        {
+          "t": 0.6,
+          "foco": 0.365
+        },
+        {
+          "t": 0.8,
+          "foco": 0.395
+        },
+        {
+          "t": 1,
+          "foco": 0.425
+        },
+        {
+          "t": 1.2,
+          "foco": 0.446
+        },
+        {
+          "t": 1.4,
+          "foco": 0.468
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.75
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "matt"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista perto do prato, parece o Matt Cameron (conferir)"
+      }
+    },
+    {
+      "file": "the-fixer-acao17.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 143,
+      "fim": 144.5,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "close",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "energia",
+        "descricao": "baixo com adesivo A, parece o do Jeff (conferir)"
+      }
+    },
+    {
+      "file": "the-fixer-acao18.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 147.5,
+      "fim": 149,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.43
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "energia",
+        "descricao": "baixista de preto no palco, parece o Jeff (conferir)"
+      }
+    },
+    {
+      "file": "the-fixer-acao22.mp4",
+      "musica": "The Fixer",
+      "origem": "The Fixer (Music Video) - Backspacer - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 176,
+      "fim": 177.5,
+      "tags": [
+        "stone",
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.25
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2009",
+        "fonte": "The Fixer (clipe oficial, Backspacer, 2009)",
+        "qualidade": "720p",
+        "quem": [
+          "stone"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Stone de costas com a guitarra, bateria ao fundo"
+      }
     }
   ]
 }
