@@ -16,6 +16,9 @@ passagem. Entra no reel só com a flag `REEL_TRANSICOES=1` no publish-reel.yml (
    `scripts/publish/reel/rosto/`), pula o que já está no acervo e gera folhas em `.momentos/<nome>/auto-*.jpg`. O
    Claude olha as folhas, descarta trecho com troca de câmera no meio ou repetido, e importa:
    `--importar t2,a1,c3 --musica "Even Flow"`. Depois preenche o `broll` de cada um.
+   **Regras de curadoria:** fonte de no mínimo 720p (480p estica 4x no vertical e borra: World Wide Suicide e Oceans
+   só existem em 480p no YouTube e ficaram de fora); descartar trecho com troca de câmera no meio, repetido ou dentro
+   de uma capa; nada de imagem violenta ou sensível (do Do the Evolution só entraram fogo e luzes abstratos).
 5. Só movimento, sem rosto: `node scripts/publish/reel/momentos.mjs <video>`.
 
 ## Como o reel usa (flag REEL_TRANSICOES=1, `scripts/publish/reel/transicoes.mjs`)
