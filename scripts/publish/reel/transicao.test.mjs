@@ -117,3 +117,9 @@ test("acervo: todo trecho tem broll com quem/plano/acao", () => {
     assert.ok(t.broll && t.broll.quem?.length && t.broll.plano && t.broll.acao?.length, `${t.file} sem broll completo`);
   }
 });
+
+test("planos: cada plano de 1 s ou mais entre cortes, miolo de até 1,5 s, fora os usados", async () => {
+  const { listarPlanos } = await import("./planos.mjs");
+  const p = listarPlanos([2, 2.5, 6], 10, [[7, 8.5]]);
+  assert.deepEqual(p.map((x) => [x.ini, x.fim]), [[0.25, 1.75], [3.5, 5]]);
+});
