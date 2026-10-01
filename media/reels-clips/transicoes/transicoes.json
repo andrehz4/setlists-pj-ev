@@ -8,7 +8,25 @@
       "tags": [
         "eddie",
         "memoria"
-      ]
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie",
+          "publico"
+        ],
+        "plano": "medio",
+        "acao": [
+          "headbang",
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie no headbang e o público com as mãos pra cima"
+      },
+      "ini": 19,
+      "fim": 20.5
     },
     {
       "file": "even-flow-maos-publico.mp4",
@@ -18,7 +36,25 @@
       "tags": [
         "comunidade",
         "memoria"
-      ]
+      ],
+      "broll": {
+        "local": "publico",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "publico"
+        ],
+        "plano": "close",
+        "acao": [
+          "mosh",
+          "crowd-surf",
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "mãos no meio do público, alguém sendo carregado"
+      },
+      "ini": 95,
+      "fim": 96.5
     },
     {
       "file": "even-flow-eddie-giro.mp4",
@@ -28,7 +64,24 @@
       "tags": [
         "eddie",
         "memoria"
-      ]
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "giro",
+          "pula"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie girando e se jogando no palco"
+      },
+      "ini": 183,
+      "fim": 184.5
     },
     {
       "file": "even-flow-guitarra-azul.mp4",
@@ -37,7 +90,23 @@
       "dur": 1.47,
       "tags": [
         "memoria"
-      ]
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "intenso",
+        "descricao": "guitarra sob luz azul, braço em movimento"
+      },
+      "ini": 197,
+      "fim": 198.5
     },
     {
       "file": "even-flow-stage-dive.mp4",
@@ -47,7 +116,25 @@
       "tags": [
         "eddie",
         "memoria"
-      ]
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie",
+          "publico"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "stage-dive",
+          "pula"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie sem camisa se jogando no público (cena famosa do clipe)"
+      },
+      "ini": 291,
+      "fim": 292.5
     },
     {
       "file": "even-flow-bateria-cabelo.mp4",
@@ -56,17 +143,36 @@
       "dur": 1.5,
       "tags": [
         "memoria"
-      ]
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista batendo com o cabelo voando"
+      },
+      "ini": 307,
+      "fim": 308.5
     },
     {
       "file": "pearl-jam-i-am-mine-capa-21_48.mp4",
-      "musica": "Pearl Jam - I Am Mine",
+      "musica": "I Am Mine",
       "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
       "url": "https://youtu.be/Nkgv3LoQY2o?si=ehQn5tNxL80p77yI",
       "ini": 21.48,
       "fim": 24.48,
       "dur": 3,
-      "tags": [],
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
       "nota": "capa em 0:21.5",
       "foco": 0.589,
       "focoTrilha": [
@@ -199,7 +305,2333 @@
         "achou": true,
         "cobertura": 1
       },
-      "capa": 0
+      "capa": 0,
+      "broll": {
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "descricao": "Eddie cantando com a guitarra, cortina verde atrás (capa)"
+      }
+    },
+    {
+      "file": "even-flow-eddie-publico.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "tags": [
+        "eddie",
+        "comunidade",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.366
+        },
+        {
+          "t": 0.2,
+          "foco": 0.351
+        },
+        {
+          "t": 0.4,
+          "foco": 0.33
+        },
+        {
+          "t": 0.6,
+          "foco": 0.371
+        },
+        {
+          "t": 0.8,
+          "foco": 0.419
+        },
+        {
+          "t": 1,
+          "foco": 0.452
+        },
+        {
+          "t": 1.2,
+          "foco": 0.461
+        },
+        {
+          "t": 1.4,
+          "foco": 0.452
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie",
+          "publico"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "fã gritando e Eddie cantando no microfone"
+      },
+      "ini": 11,
+      "fim": 12.5
+    },
+    {
+      "file": "even-flow-eddie-close.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.637
+        },
+        {
+          "t": 0.2,
+          "foco": 0.623
+        },
+        {
+          "t": 0.4,
+          "foco": 0.604
+        },
+        {
+          "t": 0.6,
+          "foco": 0.582
+        },
+        {
+          "t": 0.8,
+          "foco": 0.567
+        },
+        {
+          "t": 1,
+          "foco": 0.561
+        },
+        {
+          "t": 1.2,
+          "foco": 0.567
+        },
+        {
+          "t": 1.4,
+          "foco": 0.577
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "close do Eddie cantando, cabelo no rosto"
+      },
+      "ini": 92,
+      "fim": 93.5
+    },
+    {
+      "file": "even-flow-eddie-maos-mic.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.565
+        },
+        {
+          "t": 0.2,
+          "foco": 0.591
+        },
+        {
+          "t": 0.4,
+          "foco": 0.616
+        },
+        {
+          "t": 0.6,
+          "foco": 0.627
+        },
+        {
+          "t": 0.8,
+          "foco": 0.622
+        },
+        {
+          "t": 1,
+          "foco": 0.603
+        },
+        {
+          "t": 1.2,
+          "foco": 0.577
+        },
+        {
+          "t": 1.4,
+          "foco": 0.555
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie com as duas mãos no microfone"
+      },
+      "ini": 101,
+      "fim": 102.5
+    },
+    {
+      "file": "even-flow-eddie-grito.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.481
+        },
+        {
+          "t": 0.2,
+          "foco": 0.487
+        },
+        {
+          "t": 0.4,
+          "foco": 0.493
+        },
+        {
+          "t": 0.6,
+          "foco": 0.493
+        },
+        {
+          "t": 0.8,
+          "foco": 0.489
+        },
+        {
+          "t": 1,
+          "foco": 0.478
+        },
+        {
+          "t": 1.2,
+          "foco": 0.467
+        },
+        {
+          "t": 1.4,
+          "foco": 0.461
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "grita",
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie gritando bem de perto, mão estendida"
+      },
+      "ini": 156,
+      "fim": 157.5
+    },
+    {
+      "file": "even-flow-eddie-palco.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.52
+        },
+        {
+          "t": 0.2,
+          "foco": 0.49
+        },
+        {
+          "t": 0.4,
+          "foco": 0.456
+        },
+        {
+          "t": 0.6,
+          "foco": 0.424
+        },
+        {
+          "t": 0.8,
+          "foco": 0.396
+        },
+        {
+          "t": 1,
+          "foco": 0.369
+        },
+        {
+          "t": 1.2,
+          "foco": 0.34
+        },
+        {
+          "t": 1.4,
+          "foco": 0.315
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie de corpo inteiro no palco cantando"
+      },
+      "ini": 179,
+      "fim": 180.5
+    },
+    {
+      "file": "even-flow-stone-guitarra.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "tags": [
+        "stone",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.468
+        },
+        {
+          "t": 0.2,
+          "foco": 0.635
+        },
+        {
+          "t": 0.4,
+          "foco": 0.732
+        },
+        {
+          "t": 0.6,
+          "foco": 0.779
+        },
+        {
+          "t": 0.8,
+          "foco": 0.785
+        },
+        {
+          "t": 1,
+          "foco": 0.759
+        },
+        {
+          "t": 1.2,
+          "foco": 0.729
+        },
+        {
+          "t": 1.4,
+          "foco": 0.717
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "stone"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Stone Gossard tocando guitarra (camiseta SISS)"
+      },
+      "ini": 191,
+      "fim": 192.5
+    },
+    {
+      "file": "even-flow-eddie-canta.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.617
+        },
+        {
+          "t": 0.3,
+          "foco": 0.598
+        },
+        {
+          "t": 0.5,
+          "foco": 0.579
+        },
+        {
+          "t": 0.7,
+          "foco": 0.567
+        },
+        {
+          "t": 0.9,
+          "foco": 0.565
+        },
+        {
+          "t": 1.1,
+          "foco": 0.575
+        },
+        {
+          "t": 1.3,
+          "foco": 0.586
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "close do Eddie cantando de olhos fechados"
+      },
+      "ini": 268.5,
+      "fim": 270
+    },
+    {
+      "file": "even-flow-jeff-baixo.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.161
+        },
+        {
+          "t": 0.3,
+          "foco": 0.151
+        },
+        {
+          "t": 0.5,
+          "foco": 0.132
+        },
+        {
+          "t": 0.7,
+          "foco": 0.1
+        },
+        {
+          "t": 0.9,
+          "foco": 0.069
+        },
+        {
+          "t": 1.1,
+          "foco": 0.051
+        },
+        {
+          "t": 1.3,
+          "foco": 0.043
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.86
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "energia",
+        "descricao": "Jeff Ament no baixo"
+      },
+      "ini": 300.5,
+      "fim": 302
+    },
+    {
+      "file": "i-am-mine-t1.mp4",
+      "musica": "I Am Mine",
+      "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
+      "dur": 1.47,
+      "ini": 21,
+      "fim": 22.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.765
+        },
+        {
+          "t": 0.2,
+          "foco": 0.75
+        },
+        {
+          "t": 0.4,
+          "foco": 0.733
+        },
+        {
+          "t": 0.6,
+          "foco": 0.716
+        },
+        {
+          "t": 0.8,
+          "foco": 0.7
+        },
+        {
+          "t": 1,
+          "foco": 0.687
+        },
+        {
+          "t": 1.2,
+          "foco": 0.677
+        },
+        {
+          "t": 1.4,
+          "foco": 0.671
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie cantando com a guitarra, cortina verde"
+      }
+    },
+    {
+      "file": "i-am-mine-t5.mp4",
+      "musica": "I Am Mine",
+      "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
+      "dur": 1.47,
+      "ini": 90.5,
+      "fim": 92,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.924
+        },
+        {
+          "t": 0.3,
+          "foco": 0.925
+        },
+        {
+          "t": 0.5,
+          "foco": 0.919
+        },
+        {
+          "t": 0.7,
+          "foco": 0.901
+        },
+        {
+          "t": 0.9,
+          "foco": 0.881
+        },
+        {
+          "t": 1.1,
+          "foco": 0.863
+        },
+        {
+          "t": 1.3,
+          "foco": 0.856
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.86
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie de perfil bem de perto no microfone"
+      }
+    },
+    {
+      "file": "i-am-mine-t6.mp4",
+      "musica": "I Am Mine",
+      "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
+      "dur": 1.47,
+      "ini": 129.5,
+      "fim": 131,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.206
+        },
+        {
+          "t": 0.3,
+          "foco": 0.205
+        },
+        {
+          "t": 0.5,
+          "foco": 0.203
+        },
+        {
+          "t": 0.7,
+          "foco": 0.203
+        },
+        {
+          "t": 0.9,
+          "foco": 0.203
+        },
+        {
+          "t": 1.1,
+          "foco": 0.203
+        },
+        {
+          "t": 1.3,
+          "foco": 0.203
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.86
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie cantando, fundo laranja e vermelho"
+      }
+    },
+    {
+      "file": "i-am-mine-t7.mp4",
+      "musica": "I Am Mine",
+      "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
+      "dur": 1.5,
+      "ini": 134,
+      "fim": 135.5,
+      "tags": [
+        "matt",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.871
+        },
+        {
+          "t": 0.2,
+          "foco": 0.874
+        },
+        {
+          "t": 0.4,
+          "foco": 0.877
+        },
+        {
+          "t": 0.6,
+          "foco": 0.88
+        },
+        {
+          "t": 0.8,
+          "foco": 0.881
+        },
+        {
+          "t": 1,
+          "foco": 0.877
+        },
+        {
+          "t": 1.2,
+          "foco": 0.875
+        },
+        {
+          "t": 1.4,
+          "foco": 0.876
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "quem": [
+          "matt"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "Matt Cameron na bateria"
+      }
+    },
+    {
+      "file": "i-am-mine-t10.mp4",
+      "musica": "I Am Mine",
+      "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
+      "dur": 1.5,
+      "ini": 175,
+      "fim": 176.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.556
+        },
+        {
+          "t": 0.2,
+          "foco": 0.553
+        },
+        {
+          "t": 0.4,
+          "foco": 0.547
+        },
+        {
+          "t": 0.6,
+          "foco": 0.545
+        },
+        {
+          "t": 0.8,
+          "foco": 0.544
+        },
+        {
+          "t": 1,
+          "foco": 0.539
+        },
+        {
+          "t": 1.2,
+          "foco": 0.535
+        },
+        {
+          "t": 1.4,
+          "foco": 0.536
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.88
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "close extremo do Eddie cantando de olhos fechados"
+      }
+    },
+    {
+      "file": "i-am-mine-t12.mp4",
+      "musica": "I Am Mine",
+      "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
+      "dur": 1.47,
+      "ini": 198.5,
+      "fim": 200,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0
+        },
+        {
+          "t": 0.3,
+          "foco": 0
+        },
+        {
+          "t": 0.5,
+          "foco": 0
+        },
+        {
+          "t": 0.7,
+          "foco": 0
+        },
+        {
+          "t": 0.9,
+          "foco": 0
+        },
+        {
+          "t": 1.1,
+          "foco": 0
+        },
+        {
+          "t": 1.3,
+          "foco": 0
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista no escuro, luz vermelha atrás"
+      }
+    },
+    {
+      "file": "i-am-mine-capa1.mp4",
+      "musica": "I Am Mine",
+      "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
+      "dur": 3.97,
+      "ini": 25,
+      "fim": 29,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.568
+        },
+        {
+          "t": 0.2,
+          "foco": 0.674
+        },
+        {
+          "t": 0.4,
+          "foco": 0.78
+        },
+        {
+          "t": 0.6,
+          "foco": 0.849
+        },
+        {
+          "t": 0.8,
+          "foco": 0.893
+        },
+        {
+          "t": 1,
+          "foco": 0.921
+        },
+        {
+          "t": 1.2,
+          "foco": 0.94
+        },
+        {
+          "t": 1.4,
+          "foco": 0.952
+        },
+        {
+          "t": 1.6,
+          "foco": 0.961
+        },
+        {
+          "t": 1.8,
+          "foco": 0.965
+        },
+        {
+          "t": 2,
+          "foco": 0.968
+        },
+        {
+          "t": 2.2,
+          "foco": 0.969
+        },
+        {
+          "t": 2.4,
+          "foco": 0.969
+        },
+        {
+          "t": 2.6,
+          "foco": 0.971
+        },
+        {
+          "t": 2.8,
+          "foco": 0.972
+        },
+        {
+          "t": 3,
+          "foco": 0.974
+        },
+        {
+          "t": 3.2,
+          "foco": 0.977
+        },
+        {
+          "t": 3.4,
+          "foco": 0.981
+        },
+        {
+          "t": 3.6,
+          "foco": 0.985
+        },
+        {
+          "t": 3.8,
+          "foco": 0.987
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.9
+      },
+      "capa": 0,
+      "broll": {
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie cantando no microfone, luz de lado (capa)"
+      }
+    },
+    {
+      "file": "i-am-mine-capa4.mp4",
+      "musica": "I Am Mine",
+      "origem": "Pearl Jam - I Am Mine (Live at Chop Suey - Official HD Video).mp4",
+      "dur": 4,
+      "ini": 108.5,
+      "fim": 112.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.889
+        },
+        {
+          "t": 0.3,
+          "foco": 0.882
+        },
+        {
+          "t": 0.5,
+          "foco": 0.872
+        },
+        {
+          "t": 0.7,
+          "foco": 0.855
+        },
+        {
+          "t": 0.9,
+          "foco": 0.84
+        },
+        {
+          "t": 1.1,
+          "foco": 0.823
+        },
+        {
+          "t": 1.3,
+          "foco": 0.806
+        },
+        {
+          "t": 1.5,
+          "foco": 0.798
+        },
+        {
+          "t": 1.7,
+          "foco": 0.8
+        },
+        {
+          "t": 1.9,
+          "foco": 0.803
+        },
+        {
+          "t": 2.1,
+          "foco": 0.804
+        },
+        {
+          "t": 2.3,
+          "foco": 0.805
+        },
+        {
+          "t": 2.5,
+          "foco": 0.801
+        },
+        {
+          "t": 2.7,
+          "foco": 0.795
+        },
+        {
+          "t": 2.9,
+          "foco": 0.791
+        },
+        {
+          "t": 3.1,
+          "foco": 0.794
+        },
+        {
+          "t": 3.3,
+          "foco": 0.795
+        },
+        {
+          "t": 3.5,
+          "foco": 0.801
+        },
+        {
+          "t": 3.7,
+          "foco": 0.804
+        },
+        {
+          "t": 3.9,
+          "foco": 0.804
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "capa": 0,
+      "broll": {
+        "local": "palco",
+        "era": "2002",
+        "fonte": "I Am Mine (ao vivo no Chop Suey, 2002)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "close do Eddie de olhos abertos, olhar forte (capa)"
+      }
+    },
+    {
+      "file": "even-flow-t2.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 45,
+      "fim": 46.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.556
+        },
+        {
+          "t": 0.2,
+          "foco": 0.551
+        },
+        {
+          "t": 0.4,
+          "foco": 0.541
+        },
+        {
+          "t": 0.6,
+          "foco": 0.528
+        },
+        {
+          "t": 0.8,
+          "foco": 0.524
+        },
+        {
+          "t": 1,
+          "foco": 0.532
+        },
+        {
+          "t": 1.2,
+          "foco": 0.552
+        },
+        {
+          "t": 1.4,
+          "foco": 0.571
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "grita"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie cantando forte de frente pra câmera"
+      }
+    },
+    {
+      "file": "even-flow-t3.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 52.5,
+      "fim": 54,
+      "tags": [
+        "stone",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.487
+        },
+        {
+          "t": 0.3,
+          "foco": 0.501
+        },
+        {
+          "t": 0.5,
+          "foco": 0.518
+        },
+        {
+          "t": 0.7,
+          "foco": 0.536
+        },
+        {
+          "t": 0.9,
+          "foco": 0.552
+        },
+        {
+          "t": 1.1,
+          "foco": 0.565
+        },
+        {
+          "t": 1.3,
+          "foco": 0.574
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "stone"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Stone Gossard tocando, corpo inteiro (camiseta SISS)"
+      }
+    },
+    {
+      "file": "even-flow-t4.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 59.5,
+      "fim": 61,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.007
+        },
+        {
+          "t": 0.3,
+          "foco": 0.011
+        },
+        {
+          "t": 0.5,
+          "foco": 0.016
+        },
+        {
+          "t": 0.7,
+          "foco": 0.025
+        },
+        {
+          "t": 0.9,
+          "foco": 0.031
+        },
+        {
+          "t": 1.1,
+          "foco": 0.023
+        },
+        {
+          "t": 1.3,
+          "foco": 0.02
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.71
+      },
+      "broll": {
+        "local": "publico",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "publico"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta",
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "fã cantando junto no meio do público"
+      }
+    },
+    {
+      "file": "even-flow-t7.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 89.5,
+      "fim": 91,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.599
+        },
+        {
+          "t": 0.3,
+          "foco": 0.599
+        },
+        {
+          "t": 0.5,
+          "foco": 0.6
+        },
+        {
+          "t": 0.7,
+          "foco": 0.594
+        },
+        {
+          "t": 0.9,
+          "foco": 0.558
+        },
+        {
+          "t": 1.1,
+          "foco": 0.513
+        },
+        {
+          "t": 1.3,
+          "foco": 0.486
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie inclinado cantando com raiva"
+      }
+    },
+    {
+      "file": "even-flow-t8.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 97.5,
+      "fim": 99,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.344
+        },
+        {
+          "t": 0.3,
+          "foco": 0.315
+        },
+        {
+          "t": 0.5,
+          "foco": 0.277
+        },
+        {
+          "t": 0.7,
+          "foco": 0.239
+        },
+        {
+          "t": 0.9,
+          "foco": 0.22
+        },
+        {
+          "t": 1.1,
+          "foco": 0.227
+        },
+        {
+          "t": 1.3,
+          "foco": 0.248
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie de corpo inteiro no microfone, banda atrás"
+      }
+    },
+    {
+      "file": "even-flow-t9.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 109,
+      "fim": 110.5,
+      "tags": [
+        "eddie",
+        "jeff",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.568
+        },
+        {
+          "t": 0.2,
+          "foco": 0.558
+        },
+        {
+          "t": 0.4,
+          "foco": 0.559
+        },
+        {
+          "t": 0.6,
+          "foco": 0.57
+        },
+        {
+          "t": 0.8,
+          "foco": 0.596
+        },
+        {
+          "t": 1,
+          "foco": 0.62
+        },
+        {
+          "t": 1.2,
+          "foco": 0.639
+        },
+        {
+          "t": 1.4,
+          "foco": 0.646
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.88
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie",
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "baixo"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie cantando e Jeff no baixo (troca de câmera)"
+      }
+    },
+    {
+      "file": "even-flow-t11.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 137.5,
+      "fim": 139,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.305
+        },
+        {
+          "t": 0.3,
+          "foco": 0.299
+        },
+        {
+          "t": 0.5,
+          "foco": 0.291
+        },
+        {
+          "t": 0.7,
+          "foco": 0.3
+        },
+        {
+          "t": 0.9,
+          "foco": 0.326
+        },
+        {
+          "t": 1.1,
+          "foco": 0.364
+        },
+        {
+          "t": 1.3,
+          "foco": 0.403
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.86
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta",
+          "headbang"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie com o cabelo voando no microfone"
+      }
+    },
+    {
+      "file": "even-flow-t12.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 147,
+      "fim": 148.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.205
+        },
+        {
+          "t": 0.2,
+          "foco": 0.228
+        },
+        {
+          "t": 0.4,
+          "foco": 0.264
+        },
+        {
+          "t": 0.6,
+          "foco": 0.319
+        },
+        {
+          "t": 0.8,
+          "foco": 0.365
+        },
+        {
+          "t": 1,
+          "foco": 0.395
+        },
+        {
+          "t": 1.2,
+          "foco": 0.416
+        },
+        {
+          "t": 1.4,
+          "foco": 0.426
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.75
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "dança"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie curvado no pedestal, cabelo solto"
+      }
+    },
+    {
+      "file": "even-flow-t13.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 159.5,
+      "fim": 161,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.404
+        },
+        {
+          "t": 0.3,
+          "foco": 0.398
+        },
+        {
+          "t": 0.5,
+          "foco": 0.387
+        },
+        {
+          "t": 0.7,
+          "foco": 0.374
+        },
+        {
+          "t": 0.9,
+          "foco": 0.362
+        },
+        {
+          "t": 1.1,
+          "foco": 0.344
+        },
+        {
+          "t": 1.3,
+          "foco": 0.334
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta",
+          "grita"
+        ],
+        "clima": "intenso",
+        "descricao": "close do Eddie gritando no microfone"
+      }
+    },
+    {
+      "file": "even-flow-t14.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 168.5,
+      "fim": 170,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.375
+        },
+        {
+          "t": 0.3,
+          "foco": 0.367
+        },
+        {
+          "t": 0.5,
+          "foco": 0.356
+        },
+        {
+          "t": 0.7,
+          "foco": 0.339
+        },
+        {
+          "t": 0.9,
+          "foco": 0.316
+        },
+        {
+          "t": 1.1,
+          "foco": 0.29
+        },
+        {
+          "t": 1.3,
+          "foco": 0.27
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie de pé no palco escuro, mãos no microfone"
+      }
+    },
+    {
+      "file": "even-flow-t16.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 205.5,
+      "fim": 207,
+      "tags": [
+        "stone",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.319
+        },
+        {
+          "t": 0.3,
+          "foco": 0.311
+        },
+        {
+          "t": 0.5,
+          "foco": 0.311
+        },
+        {
+          "t": 0.7,
+          "foco": 0.316
+        },
+        {
+          "t": 0.9,
+          "foco": 0.329
+        },
+        {
+          "t": 1.1,
+          "foco": 0.341
+        },
+        {
+          "t": 1.3,
+          "foco": 0.348
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "stone"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Stone na guitarra sob luz azul"
+      }
+    },
+    {
+      "file": "even-flow-t18.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 253,
+      "fim": 254.5,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.357
+        },
+        {
+          "t": 0.2,
+          "foco": 0.355
+        },
+        {
+          "t": 0.4,
+          "foco": 0.351
+        },
+        {
+          "t": 0.6,
+          "foco": 0.35
+        },
+        {
+          "t": 0.8,
+          "foco": 0.35
+        },
+        {
+          "t": 1,
+          "foco": 0.351
+        },
+        {
+          "t": 1.2,
+          "foco": 0.353
+        },
+        {
+          "t": 1.4,
+          "foco": 0.354
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "publico",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "publico"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "mosh",
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "público pulando sob luz azul"
+      }
+    },
+    {
+      "file": "even-flow-t19.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 296,
+      "fim": 297.5,
+      "tags": [
+        "stone",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.421
+        },
+        {
+          "t": 0.2,
+          "foco": 0.414
+        },
+        {
+          "t": 0.4,
+          "foco": 0.402
+        },
+        {
+          "t": 0.6,
+          "foco": 0.384
+        },
+        {
+          "t": 0.8,
+          "foco": 0.362
+        },
+        {
+          "t": 1,
+          "foco": 0.343
+        },
+        {
+          "t": 1.2,
+          "foco": 0.329
+        },
+        {
+          "t": 1.4,
+          "foco": 0.326
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.88
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "stone"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Stone tocando, bateria atrás"
+      }
+    },
+    {
+      "file": "even-flow-acao1.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 3,
+      "fim": 4.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.484
+        },
+        {
+          "t": 0.2,
+          "foco": 0.51
+        },
+        {
+          "t": 0.4,
+          "foco": 0.527
+        },
+        {
+          "t": 0.6,
+          "foco": 0.521
+        },
+        {
+          "t": 0.8,
+          "foco": 0.493
+        },
+        {
+          "t": 1,
+          "foco": 0.455
+        },
+        {
+          "t": 1.2,
+          "foco": 0.429
+        },
+        {
+          "t": 1.4,
+          "foco": 0.418
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta",
+          "grita"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie gritando de frente, mãos fechadas no microfone"
+      }
+    },
+    {
+      "file": "even-flow-acao7.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 63,
+      "fim": 64.5,
+      "tags": [
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.25
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria",
+          "headbang"
+        ],
+        "clima": "energia",
+        "descricao": "baterista com o cabelo voando, luz quente"
+      }
+    },
+    {
+      "file": "even-flow-acao14.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 209,
+      "fim": 210.5,
+      "tags": [
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baqueta e pratos, bateria por trás"
+      }
+    },
+    {
+      "file": "even-flow-acao15.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 265,
+      "fim": 266.5,
+      "tags": [
+        "jeff",
+        "eddie",
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "jeff",
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo",
+          "headbang"
+        ],
+        "clima": "energia",
+        "descricao": "Jeff de boné e Eddie de costas pro público"
+      }
+    },
+    {
+      "file": "even-flow-acao16.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 274,
+      "fim": 275.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.38
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "publico",
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "pula",
+          "stage-dive"
+        ],
+        "clima": "energia",
+        "descricao": "beira do palco com o público, alguém se jogando"
+      }
+    },
+    {
+      "file": "even-flow-acao17.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 296,
+      "fim": 297.5,
+      "tags": [
+        "stone",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.421
+        },
+        {
+          "t": 0.2,
+          "foco": 0.414
+        },
+        {
+          "t": 0.4,
+          "foco": 0.402
+        },
+        {
+          "t": 0.6,
+          "foco": 0.384
+        },
+        {
+          "t": 0.8,
+          "foco": 0.362
+        },
+        {
+          "t": 1,
+          "foco": 0.343
+        },
+        {
+          "t": 1.2,
+          "foco": 0.329
+        },
+        {
+          "t": 1.4,
+          "foco": 0.326
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.88
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "stone"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Stone tocando de frente"
+      }
+    },
+    {
+      "file": "even-flow-acao18.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 313.5,
+      "fim": 315,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie",
+          "publico"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie de costas encarando o público lotado"
+      }
+    },
+    {
+      "file": "even-flow-capa3.mp4",
+      "musica": "Even Flow",
+      "origem": "Pearl Jam - Even Flow (Official Video).mp4",
+      "dur": 3.97,
+      "ini": 87,
+      "fim": 91,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.54
+        },
+        {
+          "t": 0.2,
+          "foco": 0.53
+        },
+        {
+          "t": 0.4,
+          "foco": 0.519
+        },
+        {
+          "t": 0.6,
+          "foco": 0.503
+        },
+        {
+          "t": 0.8,
+          "foco": 0.491
+        },
+        {
+          "t": 1,
+          "foco": 0.481
+        },
+        {
+          "t": 1.2,
+          "foco": 0.476
+        },
+        {
+          "t": 1.4,
+          "foco": 0.474
+        },
+        {
+          "t": 1.6,
+          "foco": 0.478
+        },
+        {
+          "t": 1.8,
+          "foco": 0.489
+        },
+        {
+          "t": 2,
+          "foco": 0.509
+        },
+        {
+          "t": 2.2,
+          "foco": 0.54
+        },
+        {
+          "t": 2.4,
+          "foco": 0.568
+        },
+        {
+          "t": 2.6,
+          "foco": 0.579
+        },
+        {
+          "t": 2.8,
+          "foco": 0.585
+        },
+        {
+          "t": 3,
+          "foco": 0.591
+        },
+        {
+          "t": 3.2,
+          "foco": 0.588
+        },
+        {
+          "t": 3.4,
+          "foco": 0.554
+        },
+        {
+          "t": 3.6,
+          "foco": 0.509
+        },
+        {
+          "t": 3.8,
+          "foco": 0.483
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.95
+      },
+      "capa": 0,
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (clipe oficial, 1992)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "grita"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie cantando com a mão no ar, expressão forte (capa)"
+      }
     }
   ]
 }

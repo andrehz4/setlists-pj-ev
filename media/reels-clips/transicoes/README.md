@@ -11,7 +11,12 @@ passagem. Entra no reel só com a flag `REEL_TRANSICOES=1` no publish-reel.yml (
 2. O Claude traz pro projeto: `node scripts/publish/reel/trazer-do-baixa.mjs` (mostra) e `--aplicar` (copia e grava).
 3. Corte avulso fora do baixa: `node scripts/publish/reel/importar-transicao.mjs <arquivo> <nome> [--ini s] [--fim s]`
    (tira o som e corta preciso).
-4. Achar bons momentos num clipe inteiro: `node scripts/publish/reel/momentos.mjs <video>` (folhas em `.momentos/`).
+4. **Automático (preferido):** `node scripts/publish/reel/acervo-auto.mjs <video> [--max 20]` acha transições com rosto
+   (`t`), ação sem rosto (`a`) e capas de 4 s (`c`), com o recorte vertical seguindo o rosto (Apple Vision,
+   `scripts/publish/reel/rosto/`), pula o que já está no acervo e gera folhas em `.momentos/<nome>/auto-*.jpg`. O
+   Claude olha as folhas, descarta trecho com troca de câmera no meio ou repetido, e importa:
+   `--importar t2,a1,c3 --musica "Even Flow"`. Depois preenche o `broll` de cada um.
+5. Só movimento, sem rosto: `node scripts/publish/reel/momentos.mjs <video>`.
 
 ## Como o reel usa (flag REEL_TRANSICOES=1, `scripts/publish/reel/transicoes.mjs`)
 
@@ -23,4 +28,18 @@ passagem. Entra no reel só com a flag `REEL_TRANSICOES=1` no publish-reel.yml (
 
 `file` (nome do mp4 aqui), `musica`, `origem` (arquivo de onde saiu), `dur` (segundos), `tags` (mesmas das notícias),
 `foco` (0 a 1, onde a ação está na horizontal; recorte 9:16), `capa` (segundo do quadro de capa dentro do corte),
-`nota`/`motivo` (texto livre).
+`nota`/`motivo` (texto livre), `ini`/`fim` (posição no vídeo de origem; evita repetir trecho), `focoTrilha` (recorte
+seguindo o rosto), `rosto` ({achou, cobertura}).
+
+## B-roll (`broll`), pra achar trecho quando for editar
+
+| Campo | Valores |
+|---|---|
+| `quem` | eddie, stone, jeff, mike, matt, banda, publico, baterista, guitarrista (sem nome quando não dá pra ter certeza) |
+| `plano` | close, medio, aberto |
+| `acao` | canta, grita, guitarra, baixo, bateria, headbang, pula, stage-dive, mosh, crowd-surf, maos-pro-alto, giro, dança |
+| `clima` | energia, intenso, calmo |
+| `local` | palco, publico, estudio |
+| `era`, `fonte`, `descricao` | ano, de onde saiu, frase curta do que aparece |
+
+Buscar: `node -e 'const d=require("./media/reels-clips/transicoes/transicoes.json");console.log(d.transicoes.filter(t=>t.broll.quem.includes("stone")).map(t=>t.file))'`

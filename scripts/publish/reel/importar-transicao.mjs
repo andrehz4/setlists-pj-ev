@@ -47,6 +47,7 @@ function main() {
   const arqJson = path.join(PASTA, "transicoes.json");
   const doc = JSON.parse(fs.readFileSync(arqJson, "utf8"));
   const item = { file: `${op.nome}.mp4`, musica: op.musica || "", origem: path.basename(entrada), dur: duracao(saida),
+    ...(op.ini != null ? { ini: Number(op.ini), fim: Number(op.fim) } : {}),
     tags: op.tags ? op.tags.split(",").map((t) => t.trim()) : [] };
   doc.transicoes = [...doc.transicoes.filter((t) => t.file !== item.file), item];
   fs.writeFileSync(arqJson, JSON.stringify(doc, null, 2) + "\n");
