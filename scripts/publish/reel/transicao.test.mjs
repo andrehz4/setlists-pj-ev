@@ -16,10 +16,21 @@ test("argumentos e nome curto", () => {
   assert.ok(!nomeValido("Even Flow"));
 });
 
-test("transicoes.json válido e todo arquivo listado existe", () => {
+test("transicoes.json válido: nomes de MP4 simples e únicos (os vídeos ficam no R2)", () => {
   const doc = JSON.parse(fs.readFileSync(`${PASTA}/transicoes.json`, "utf8"));
   assert.ok(Array.isArray(doc.transicoes));
-  for (const t of doc.transicoes) assert.ok(fs.existsSync(`${PASTA}/${t.file}`), `falta ${t.file}`);
+  const nomes = doc.transicoes.map((t) => t.file);
+  assert.equal(new Set(nomes).size, nomes.length, "nome repetido");
+  for (const n of nomes) assert.match(n, /^[a-z0-9_-]+\.mp4$/, n);
+});
+
+test("materializar: usa o local, baixa o que falta e tira da lista o que não baixar", async () => {
+  const { materializar } = await import("./acervo-r2.mjs");
+  const baixados = [];
+  const baixar = (url, destino) => { baixados.push(url); if (url.includes("quebrado")) return false; fs.writeFileSync(destino, "x"); return true; };
+  const r = materializar([{ file: "teste-local.mp4", arq: `${PASTA}/transicoes.json` }, { file: "teste-remoto-unico.mp4" }, { file: "quebrado.mp4" }], { baixar });
+  assert.deepEqual(r.map((t) => t.file), ["teste-local.mp4", "teste-remoto-unico.mp4"]);
+  assert.ok(baixados.every((u) => u.includes("/acervo/")));
 });
 
 test("momentos: janelas com mais movimento, sem atravessar corte, espaçadas", async () => {

@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { materializar } from "./acervo-r2.mjs";
 
 export const PASTA = path.resolve("media/reels-clips/transicoes");
 export const DUR = 0.7; // segundos de clipe em cada troca
@@ -32,7 +33,8 @@ export const recorte = (trecho = {}) => {
 export function carregarTransicoes(pasta = PASTA) {
   try {
     const doc = JSON.parse(fs.readFileSync(path.join(pasta, "transicoes.json"), "utf8"));
-    return (doc.transicoes || []).filter((t) => fs.existsSync(path.join(pasta, t.file))).map((t) => ({ ...t, arq: path.join(pasta, t.file) }));
+    // arq = MP4 local quando existe (Mac); senão null e o materializar baixa do R2 só os sorteados
+    return (doc.transicoes || []).map((t) => ({ ...t, arq: fs.existsSync(path.join(pasta, t.file)) ? path.join(pasta, t.file) : null }));
   } catch { return []; }
 }
 
@@ -65,7 +67,9 @@ export function filtroFfmpeg(plano) {
 // capaInicioS: copia o quadro desse instante (a capa no auge) pro 1o quadro do vídeo,
 // que é o que aparece com o vídeo parado.
 export function aplicarTransicoes(videoPath, { scenes, semente, capaInicioS = null, lista = carregarTransicoes() }) {
-  const plano = planejarTransicoes(scenes, lista, semente);
+  const sorteados = planejarTransicoes(scenes, lista, semente);
+  const ok = new Set(materializar(sorteados.map((p) => p.trecho)));
+  const plano = sorteados.filter((p) => ok.has(p.trecho));
   if (!plano.length) return 0;
   const tmp = videoPath.replace(/\.mp4$/, ".trans.mp4");
   let filtro = filtroFfmpeg(plano);
@@ -103,7 +107,7 @@ export function trechosDaAbertura(lista, semente = "", { dur = 3, n = 4 } = {}) 
 }
 
 export function montarAbertura(tmpDir, { semente, dur = 3, lista = carregarTransicoes() } = {}) {
-  const trechos = trechosDaAbertura(lista, semente, { dur });
+  const trechos = materializar(trechosDaAbertura(lista, semente, { dur }));
   if (!trechos.length) return null;
   const saida = path.join(tmpDir, "abertura-clipe.mp4");
   // cada trecho com o tamanho do slot (do começo se for a capa); tpad segura o último quadro

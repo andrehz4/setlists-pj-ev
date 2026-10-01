@@ -92,6 +92,11 @@ todas no mesmo molde (`scripts/seo/layout.mjs`: menu de seções, breadcrumb, JS
 
 ### Reel semanal (motion design, MOTION-SPEC do Claude Design)
 
+**Acervo de clipes (transições, abertura e capa do reel, flag `REEL_TRANSICOES`)**: `scripts/publish/reel/transicoes.mjs`
++ `media/reels-clips/transicoes/transicoes.json` (330+ trechos com tags de b-roll). Os MP4 ficam no **R2** (`acervo/`), não
+no git. Novo clipe: `node scripts/publish/reel/planos.mjs <video>` (grade plano a plano; o Claude olha e escolhe) e
+`--importar p3:nome --musica X`. Mapa completo no README da pasta. Nunca mexer no baixa-clipehz (outra IA cuida).
+
 `run-publish-reel.mjs` -> `reel-select.mjs` (top 5-8 da semana + formato por cena: cinético/card/papel) -> `reel-clips.mjs` (casa trecho de clipe do acervo com a cena, por tag, rotação determinística por semana ISO) -> `reel-video.mjs` (renderer SVG frame a frame + ffmpeg, cold open 3s + 8 blocos de 4.5s + outro 2.5s = 41.5s, 1080x1920). Publica via `publishReel` (caption com índice + `share_to_feed` + `thumb_offset`). Larguras de texto medidas REAL via `sharp.trim` (estimar por char sobrepõe as palavras do Anton). Sem acervo de clipe, degrada pra foto com Ken Burns ou fundo fantasma "CLIPE". Spec versionado em `design-handoff/retorno/movie/project/entrega/MOTION-SPEC.md` (gitignored, é referência).
 
 ## Gotchas conhecidos (não redescobrir)

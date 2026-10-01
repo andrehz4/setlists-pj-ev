@@ -11,6 +11,7 @@ import { spawnSync } from "node:child_process";
 import sharp from "sharp";
 import { analisarMovimento, pastaDo } from "./momentos.mjs";
 import { detectar, trilhaSuave, MIN_COBERTURA } from "./rosto/rosto.mjs";
+import { subir } from "./acervo-r2.mjs";
 
 const ARQ_JSON = path.resolve("media/reels-clips/transicoes/transicoes.json");
 const POR_FOLHA = 60;
@@ -87,6 +88,6 @@ function importar(video, pares, musica) {
 if (import.meta.url === `file://${process.argv[1]}`) {
   const a = process.argv.slice(2), op = (k) => (a.includes(k) ? a[a.indexOf(k) + 1] : null);
   if (!a[0] || !fs.existsSync(a[0])) { console.error("uso: planos.mjs <video> [--importar p3:nome,p7:nome --musica X]"); process.exit(1); }
-  if (op("--importar")) importar(a[0], op("--importar").split(","), op("--musica"));
+  if (op("--importar")) importar(a[0], op("--importar").split(","), op("--musica")), subir(); // sobe pro R2 o que acabou de entrar
   else await analisar(a[0]);
 }

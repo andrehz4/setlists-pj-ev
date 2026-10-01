@@ -59,3 +59,6 @@ media/news/instagram-stories/*.mp4
 # kit diário do X (modo manual), gerado no Mac: scripts/publish/x/kit-do-dia.mjs
 .x-kit/
 .momentos/
+
+# acervo de trechos do reel: os MP4 ficam no R2 (acervo/), no git só o transicoes.json
+media/reels-clips/transicoes/*.mp4
