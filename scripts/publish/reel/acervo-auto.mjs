@@ -1,7 +1,7 @@
 // Acervo automático do reel: de um clipe inteiro, acha TRANSIÇÕES (1,5 s com rosto e
 // movimento) e CAPAS (4 s com rosto grande e estável, a abertura inteira do reel), com o
 // recorte vertical seguindo o rosto. Gera folhas pra avaliar e depois importa os escolhidos.
-//   node scripts/publish/reel/acervo-auto.mjs <video> [--max 20]             (analisa, gera folhas; pula o que já está no acervo)
+//   node scripts/publish/reel/acervo-auto.mjs <video|link do YouTube> [--max 20]   (analisa, gera folhas; pula o que já está no acervo)
 //   node scripts/publish/reel/acervo-auto.mjs <video> --importar t2,t5,c1 --musica "I Am Mine"
 // Saída da análise: .momentos/<nome>/auto.json, auto-transicoes.jpg, auto-capas.jpg (gitignored).
 // Depois de importar, preencher o "broll" de cada trecho no transicoes.json (ver README).
@@ -104,8 +104,21 @@ function importar(video, ids, musica) {
   }
 }
 
+// Link do YouTube: baixa só o vídeo (sem som, até 1080p) em .momentos/fontes/ e devolve o caminho.
+// Já baixado = reaproveita. Precisa do yt-dlp no PATH (Mac: brew).
+export function baixarLink(url) {
+  const pasta = path.resolve(".momentos/fontes");
+  fs.mkdirSync(pasta, { recursive: true });
+  const r = spawnSync("yt-dlp", ["-f", "bv*[height<=1080][ext=mp4]/bv*[height<=1080]", "--remux-video", "mp4", "--no-playlist",
+    "-o", path.join(pasta, "%(title)s.%(ext)s"), "--print", "after_move:filepath", url], { encoding: "utf8", maxBuffer: 1 << 26 });
+  const arq = r.stdout.trim().split("\n").pop();
+  if (r.status !== 0 || !arq || !fs.existsSync(arq)) throw new Error(`yt-dlp falhou: ${(r.stderr || "").slice(-300)}`);
+  return arq;
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const a = process.argv.slice(2), op = (k) => (a.includes(k) ? a[a.indexOf(k) + 1] : null);
+  if (/^https?:\/\//.test(a[0] || "")) { a[0] = baixarLink(a[0]); console.log(`[auto] baixado: ${a[0]}`); }
   if (!a[0] || !fs.existsSync(a[0])) { console.error("uso: acervo-auto.mjs <video> [--importar t1,c2 --musica X]"); process.exit(1); }
   if (op("--importar")) importar(a[0], op("--importar").split(","), op("--musica"));
   else await analisar(a[0], Number(op("--max")) || null);
