@@ -16,3 +16,6 @@ O volume é ajustado na mixagem (loudnorm -16 LUFS), não precisa normalizar o a
 
 Suno no plano grátis: a faixa é do Suno e o uso é não comercial (página de fã sem monetização). Se a página monetizar,
 assinar o Pro antes ou tirar as faixas do Suno do rodízio. Pedidos usados ficam no PROGRESSO.md (sessão de 2026-10-01).
+
+**Decisão do Andre (2026-10-01): nenhuma trilha leva crédito na legenda** (nem Pixabay, nem Suno). Não adicionar
+"trilha: ..." em reel nem story. Se um dia for exigido, a saída é tirar as faixas do Suno do rodízio, não creditar.
