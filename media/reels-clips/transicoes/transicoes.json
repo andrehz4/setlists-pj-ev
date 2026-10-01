@@ -7744,15 +7744,14 @@
         "era": "2020",
         "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
         "quem": [
-          "animacao"
+          "natureza"
         ],
         "plano": "aberto",
         "acao": [
           "giro"
         ],
         "clima": "calmo",
-        "descricao": "a Terra vista do espaco",
-        "animacao": true
+        "descricao": "a Terra vista do espaco"
       }
     },
     {
@@ -7862,15 +7861,14 @@
         "era": "2020",
         "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
         "quem": [
-          "animacao"
+          "natureza"
         ],
         "plano": "aberto",
         "acao": [
           "giro"
         ],
         "clima": "calmo",
-        "descricao": "mar batendo na praia ao por do sol",
-        "animacao": true
+        "descricao": "mar batendo na praia ao por do sol"
       }
     },
     {
@@ -7888,15 +7886,14 @@
         "era": "2020",
         "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
         "quem": [
-          "animacao"
+          "natureza"
         ],
         "plano": "aberto",
         "acao": [
           "giro"
         ],
         "clima": "energia",
-        "descricao": "onda quebrando em camera lenta",
-        "animacao": true
+        "descricao": "onda quebrando em camera lenta"
       }
     },
     {
@@ -7914,15 +7911,14 @@
         "era": "2020",
         "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
         "quem": [
-          "animacao"
+          "natureza"
         ],
         "plano": "aberto",
         "acao": [
           "giro"
         ],
         "clima": "energia",
-        "descricao": "onda batendo na rocha com luz vermelha",
-        "animacao": true
+        "descricao": "onda batendo na rocha com luz vermelha"
       }
     },
     {
@@ -7965,15 +7961,14 @@
         "era": "2020",
         "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
         "quem": [
-          "animacao"
+          "natureza"
         ],
         "plano": "close",
         "acao": [
           "giro"
         ],
         "clima": "calmo",
-        "descricao": "asa de borboleta monarca de perto",
-        "animacao": true
+        "descricao": "asa de borboleta monarca de perto"
       }
     },
     {
@@ -8436,15 +8431,14 @@
         "era": "2020",
         "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
         "quem": [
-          "animacao"
+          "natureza"
         ],
         "plano": "aberto",
         "acao": [
           "giro"
         ],
         "clima": "calmo",
-        "descricao": "arvore de folhas vermelhas",
-        "animacao": true
+        "descricao": "arvore de folhas vermelhas"
       }
     },
     {
@@ -8970,6 +8964,1260 @@
         ],
         "clima": "energia",
         "descricao": "banda tocando com fogo e luz atras"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-animacao-campo.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 1.21,
+      "fim": 2.71,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "animacao: campo verde e nuvens pretas",
+        "animacao": true
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-animacao-rosa.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 7.55,
+      "fim": 9.05,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "animacao: nuvens rosas e figuras no campo",
+        "animacao": true
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-dirigindo.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 35.14,
+      "fim": 36.64,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.226
+        },
+        {
+          "t": 0.1,
+          "foco": 0.23
+        },
+        {
+          "t": 0.2,
+          "foco": 0.235
+        },
+        {
+          "t": 0.3,
+          "foco": 0.24
+        },
+        {
+          "t": 0.4,
+          "foco": 0.246
+        },
+        {
+          "t": 0.5,
+          "foco": 0.251
+        },
+        {
+          "t": 0.6,
+          "foco": 0.256
+        },
+        {
+          "t": 0.7,
+          "foco": 0.262
+        },
+        {
+          "t": 0.8,
+          "foco": 0.268
+        },
+        {
+          "t": 0.9,
+          "foco": 0.274
+        },
+        {
+          "t": 1,
+          "foco": 0.278
+        },
+        {
+          "t": 1.1,
+          "foco": 0.282
+        },
+        {
+          "t": 1.2,
+          "foco": 0.286
+        },
+        {
+          "t": 1.3,
+          "foco": 0.287
+        },
+        {
+          "t": 1.4,
+          "foco": 0.288
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "rua",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie dirigindo, olhar de lado"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-canta.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 82.54,
+      "fim": 84.04,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.452
+        },
+        {
+          "t": 0.1,
+          "foco": 0.452
+        },
+        {
+          "t": 0.2,
+          "foco": 0.452
+        },
+        {
+          "t": 0.3,
+          "foco": 0.454
+        },
+        {
+          "t": 0.4,
+          "foco": 0.458
+        },
+        {
+          "t": 0.5,
+          "foco": 0.463
+        },
+        {
+          "t": 0.6,
+          "foco": 0.469
+        },
+        {
+          "t": 0.7,
+          "foco": 0.476
+        },
+        {
+          "t": 0.8,
+          "foco": 0.484
+        },
+        {
+          "t": 0.9,
+          "foco": 0.494
+        },
+        {
+          "t": 1,
+          "foco": 0.506
+        },
+        {
+          "t": 1.1,
+          "foco": 0.519
+        },
+        {
+          "t": 1.2,
+          "foco": 0.536
+        },
+        {
+          "t": 1.3,
+          "foco": 0.552
+        },
+        {
+          "t": 1.4,
+          "foco": 0.563
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "grita"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie cantando forte no microfone"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-guitarrista-cabelo.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 87.69,
+      "fim": 89.19,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.46
+        },
+        {
+          "t": 0.1,
+          "foco": 0.458
+        },
+        {
+          "t": 0.2,
+          "foco": 0.456
+        },
+        {
+          "t": 0.3,
+          "foco": 0.451
+        },
+        {
+          "t": 0.4,
+          "foco": 0.448
+        },
+        {
+          "t": 0.5,
+          "foco": 0.456
+        },
+        {
+          "t": 0.6,
+          "foco": 0.475
+        },
+        {
+          "t": 0.7,
+          "foco": 0.518
+        },
+        {
+          "t": 0.8,
+          "foco": 0.558
+        },
+        {
+          "t": 0.9,
+          "foco": 0.595
+        },
+        {
+          "t": 1,
+          "foco": 0.628
+        },
+        {
+          "t": 1.1,
+          "foco": 0.656
+        },
+        {
+          "t": 1.2,
+          "foco": 0.676
+        },
+        {
+          "t": 1.3,
+          "foco": 0.684
+        },
+        {
+          "t": 1.4,
+          "foco": 0.685
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.6
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra",
+          "headbang"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista com o cabelo caindo no rosto"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-guitarrista-loiro.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 107.19,
+      "fim": 108.69,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista loiro tocando de perto"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-violao-trilho.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 164.94,
+      "fim": 166.44,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "rua",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "violao tocado na linha do trem"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-mic-rosa.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.07,
+      "ini": 201.28,
+      "fim": 202.33,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie no microfone sob luz rosa"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-guitarra-branca.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 226.69,
+      "fim": 228.19,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.764
+        },
+        {
+          "t": 0.1,
+          "foco": 0.753
+        },
+        {
+          "t": 0.2,
+          "foco": 0.736
+        },
+        {
+          "t": 0.3,
+          "foco": 0.716
+        },
+        {
+          "t": 0.4,
+          "foco": 0.694
+        },
+        {
+          "t": 0.5,
+          "foco": 0.675
+        },
+        {
+          "t": 0.6,
+          "foco": 0.66
+        },
+        {
+          "t": 0.7,
+          "foco": 0.65
+        },
+        {
+          "t": 0.8,
+          "foco": 0.644
+        },
+        {
+          "t": 0.9,
+          "foco": 0.643
+        },
+        {
+          "t": 1,
+          "foco": 0.643
+        },
+        {
+          "t": 1.1,
+          "foco": 0.644
+        },
+        {
+          "t": 1.2,
+          "foco": 0.645
+        },
+        {
+          "t": 1.3,
+          "foco": 0.646
+        },
+        {
+          "t": 1.4,
+          "foco": 0.646
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.73
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista de preto com guitarra branca"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-animacao-arvore.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 245.12,
+      "fim": 246.62,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "animacao: arvore e folhas, verde e laranja",
+        "animacao": true
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-baixista-palco.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 248.17,
+      "fim": 249.67,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0
+        },
+        {
+          "t": 0.1,
+          "foco": 0
+        },
+        {
+          "t": 0.2,
+          "foco": 0
+        },
+        {
+          "t": 0.3,
+          "foco": 0
+        },
+        {
+          "t": 0.4,
+          "foco": 0
+        },
+        {
+          "t": 0.5,
+          "foco": 0
+        },
+        {
+          "t": 0.6,
+          "foco": 0
+        },
+        {
+          "t": 0.7,
+          "foco": 0
+        },
+        {
+          "t": 0.8,
+          "foco": 0
+        },
+        {
+          "t": 0.9,
+          "foco": 0
+        },
+        {
+          "t": 1,
+          "foco": 0
+        },
+        {
+          "t": 1.1,
+          "foco": 0
+        },
+        {
+          "t": 1.2,
+          "foco": 0
+        },
+        {
+          "t": 1.3,
+          "foco": 0
+        },
+        {
+          "t": 1.4,
+          "foco": 0
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.6
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista sozinho no palco com luz atras"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-paddle.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.37,
+      "ini": 284.99,
+      "fim": 286.37,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie de stand-up paddle no mar"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-paddle-remo.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 286.56,
+      "fim": 288.06,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie remando de stand-up, ceu azul"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-paddle-silhueta.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 293.92,
+      "fim": 295.42,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "silhueta do Eddie remando contra o ceu"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-guitarrista-contraluz.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 299.57,
+      "fim": 301.07,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "intenso",
+        "descricao": "guitarrista em contraluz no palco"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-trem-por-do-sol.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 317.55,
+      "fim": 319.05,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.006
+        },
+        {
+          "t": 0.1,
+          "foco": 0.008
+        },
+        {
+          "t": 0.2,
+          "foco": 0.013
+        },
+        {
+          "t": 0.3,
+          "foco": 0.02
+        },
+        {
+          "t": 0.4,
+          "foco": 0.031
+        },
+        {
+          "t": 0.5,
+          "foco": 0.048
+        },
+        {
+          "t": 0.6,
+          "foco": 0.073
+        },
+        {
+          "t": 0.7,
+          "foco": 0.109
+        },
+        {
+          "t": 0.8,
+          "foco": 0.152
+        },
+        {
+          "t": 0.9,
+          "foco": 0.196
+        },
+        {
+          "t": 1,
+          "foco": 0.234
+        },
+        {
+          "t": 1.1,
+          "foco": 0.265
+        },
+        {
+          "t": 1.2,
+          "foco": 0.287
+        },
+        {
+          "t": 1.3,
+          "foco": 0.304
+        },
+        {
+          "t": 1.4,
+          "foco": 0.312
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.73
+      },
+      "broll": {
+        "local": "natureza",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "natureza"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "trem passando ao por do sol"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-banda-palco.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 331.92,
+      "fim": 333.42,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "banda",
+          "jeff"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "baixo",
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "banda no palco, baixo rosa e bateria"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-perfil-mic.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.3,
+      "ini": 342.05,
+      "fim": 343.35,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie de perfil no microfone com luz quente"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-mao-cordas.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.07,
+      "ini": 343.51,
+      "fim": 344.6,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.142
+        },
+        {
+          "t": 0.1,
+          "foco": 0.144
+        },
+        {
+          "t": 0.2,
+          "foco": 0.148
+        },
+        {
+          "t": 0.3,
+          "foco": 0.154
+        },
+        {
+          "t": 0.4,
+          "foco": 0.162
+        },
+        {
+          "t": 0.5,
+          "foco": 0.177
+        },
+        {
+          "t": 0.6,
+          "foco": 0.191
+        },
+        {
+          "t": 0.7,
+          "foco": 0.205
+        },
+        {
+          "t": 0.8,
+          "foco": 0.215
+        },
+        {
+          "t": 0.9,
+          "foco": 0.222
+        },
+        {
+          "t": 1,
+          "foco": 0.226
+        },
+        {
+          "t": 1.1,
+          "foco": 0.227
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.67
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "mao deslizando nas cordas"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-praia.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 366.01,
+      "fim": 367.51,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "natureza"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "praia de pedras e mar de Seattle"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-violao-mar.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 388.51,
+      "fim": 390.01,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie tocando violao na beira do mar"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-violao-entardecer.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 394.54,
+      "fim": 396.04,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.613
+        },
+        {
+          "t": 0.1,
+          "foco": 0.613
+        },
+        {
+          "t": 0.2,
+          "foco": 0.614
+        },
+        {
+          "t": 0.3,
+          "foco": 0.615
+        },
+        {
+          "t": 0.4,
+          "foco": 0.615
+        },
+        {
+          "t": 0.5,
+          "foco": 0.614
+        },
+        {
+          "t": 0.6,
+          "foco": 0.614
+        },
+        {
+          "t": 0.7,
+          "foco": 0.615
+        },
+        {
+          "t": 0.8,
+          "foco": 0.616
+        },
+        {
+          "t": 0.9,
+          "foco": 0.617
+        },
+        {
+          "t": 1,
+          "foco": 0.617
+        },
+        {
+          "t": 1.1,
+          "foco": 0.617
+        },
+        {
+          "t": 1.2,
+          "foco": 0.616
+        },
+        {
+          "t": 1.3,
+          "foco": 0.615
+        },
+        {
+          "t": 1.4,
+          "foco": 0.616
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "natureza",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie tocando violao no entardecer"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-animacao-roxa.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 405.36,
+      "fim": 406.83,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "animacao: figura sobre nuvem, fundo roxo",
+        "animacao": true
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-praia-violao.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 438.19,
+      "fim": 439.69,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "Eddie sentado na praia com o violao"
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-logo-vela.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 467.13,
+      "fim": 468.6,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "logo do Pearl Jam com a vela (Lightning Bolt)",
+        "animacao": true
+      }
+    },
+    {
+      "file": "lightning-bolt-curta-eddie-gargalhada.mp4",
+      "musica": "Lightning Bolt (curta)",
+      "origem": "Lightning Bolt, A Short Film by Danny Clinch - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 505.48,
+      "fim": 506.98,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.57
+        },
+        {
+          "t": 0.1,
+          "foco": 0.581
+        },
+        {
+          "t": 0.2,
+          "foco": 0.597
+        },
+        {
+          "t": 0.3,
+          "foco": 0.616
+        },
+        {
+          "t": 0.4,
+          "foco": 0.628
+        },
+        {
+          "t": 0.5,
+          "foco": 0.638
+        },
+        {
+          "t": 0.6,
+          "foco": 0.647
+        },
+        {
+          "t": 0.7,
+          "foco": 0.649
+        },
+        {
+          "t": 0.8,
+          "foco": 0.651
+        },
+        {
+          "t": 0.9,
+          "foco": 0.655
+        },
+        {
+          "t": 1,
+          "foco": 0.655
+        },
+        {
+          "t": 1.1,
+          "foco": 0.646
+        },
+        {
+          "t": 1.2,
+          "foco": 0.638
+        },
+        {
+          "t": 1.3,
+          "foco": 0.633
+        },
+        {
+          "t": 1.4,
+          "foco": 0.634
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2013",
+        "fonte": "Lightning Bolt, curta de Danny Clinch (2013)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "grita"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie gargalhando bem de perto"
       }
     }
   ]
