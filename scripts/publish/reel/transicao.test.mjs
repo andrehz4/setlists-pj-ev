@@ -99,3 +99,21 @@ test("abertura com capa: a abertura inteira é o clipe da capa, do começo", asy
   const ab = trechosDaAbertura(lista, "x", { dur: 3.6 });
   assert.deepEqual(ab.map((t) => [t.file, t.iniAbertura, t.slot]), [["c", 0, 3.6]]);
 });
+
+test("acervo automático: janela com rosto, sem atravessar corte e sem repetir o que já está no acervo", async () => {
+  const { candidatos } = await import("./acervo-auto.mjs");
+  const mov = Array.from({ length: 300 }, (_, i) => [i / 10, 20]);
+  const rostos = Array.from({ length: 150 }, (_, i) => ({ t: i / 5, x: 0.5, w: 0.2, conf: 0.9 }));
+  const c = candidatos({ mov, cortes: [10], rostos, tipo: "t", fimVideo: 30 });
+  assert.ok(c.length > 0);
+  assert.ok(c.every((x) => !(x.ini < 9.9 && x.fim > 10.1)), "atravessou corte");
+  const sem = candidatos({ mov, cortes: [], rostos, tipo: "t", fimVideo: 30, usados: [[3, 27]] });
+  assert.equal(sem.length, 0);
+});
+
+test("acervo: todo trecho tem broll com quem/plano/acao", () => {
+  const doc = JSON.parse(fs.readFileSync(`${PASTA}/transicoes.json`, "utf8"));
+  for (const t of doc.transicoes) {
+    assert.ok(t.broll && t.broll.quem?.length && t.broll.plano && t.broll.acao?.length, `${t.file} sem broll completo`);
+  }
+});

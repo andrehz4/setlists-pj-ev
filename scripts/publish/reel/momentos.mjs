@@ -38,7 +38,20 @@ export function escolherCandidatos(mov, cortes, n = 24) {
   return esc.sort((a, b) => a.ini - b.ini).map((c, i) => ({ n: i + 1, ...c }));
 }
 
-async function folha(tiras, saida) {
+export const pastaDo = (video) => path.resolve(".momentos", path.basename(video, path.extname(video)).toLowerCase()
+  .normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60));
+
+// Movimento (10 fps) e cortes de cena do vídeo inteiro; guarda em .momentos/<nome>/.
+export function analisarMovimento(video) {
+  const out = pastaDo(video);
+  fs.mkdirSync(out, { recursive: true });
+  ff(["-i", video, "-an", "-vf", `scale=160:-2,fps=10,tblend=all_mode=difference,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=${path.join(out, "mov.txt")}`, "-f", "null", "-"]);
+  const sc = spawnSync("ffmpeg", ["-nostdin", "-i", video, "-an", "-vf", "scale=320:-2,select='gt(scene,0.3)',showinfo", "-f", "null", "-"], { encoding: "utf8", maxBuffer: 1 << 28 });
+  const cortes = [...sc.stderr.matchAll(/pts_time:([\d.]+)/g)].map((m) => +m[1]);
+  return { out, mov: lerMovimento(fs.readFileSync(path.join(out, "mov.txt"), "utf8")), cortes };
+}
+
+export async function folha(tiras, saida) {
   const ms = await Promise.all(tiras.map((t) => sharp(t.arq).metadata()));
   const W = Math.max(...ms.map((m) => m.width)) + 70, H = ms.reduce((s, m) => s + m.height + 6, 0);
   let y = 0; const comp = [];
@@ -54,13 +67,9 @@ async function folha(tiras, saida) {
 async function main() {
   const [video, , nArg] = process.argv.slice(2);
   if (!video || !fs.existsSync(video)) { console.error("uso: momentos.mjs <video> [--n 24]"); process.exit(1); }
-  const nome = path.basename(video, path.extname(video)).toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
-  const out = path.resolve(".momentos", nome);
+  const { out, mov, cortes } = analisarMovimento(video);
   fs.mkdirSync(path.join(out, "tiras"), { recursive: true });
-  ff(["-i", video, "-an", "-vf", `scale=160:-2,fps=10,tblend=all_mode=difference,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=${path.join(out, "mov.txt")}`, "-f", "null", "-"]);
-  const sc = spawnSync("ffmpeg", ["-nostdin", "-i", video, "-an", "-vf", "scale=320:-2,select='gt(scene,0.3)',showinfo", "-f", "null", "-"], { encoding: "utf8", maxBuffer: 1 << 28 });
-  const cortes = [...sc.stderr.matchAll(/pts_time:([\d.]+)/g)].map((m) => +m[1]);
-  const cands = escolherCandidatos(lerMovimento(fs.readFileSync(path.join(out, "mov.txt"), "utf8")), cortes, Number(nArg) || 24);
+  const cands = escolherCandidatos(mov, cortes, Number(nArg) || 24);
   const horiz = [], vert = [];
   for (const c of cands) {
     const len = c.fim - c.ini, h = path.join(out, "tiras", `h${c.n}.jpg`), v = path.join(out, "tiras", `v${c.n}.jpg`);
