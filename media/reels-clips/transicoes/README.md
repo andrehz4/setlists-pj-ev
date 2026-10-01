@@ -1,5 +1,13 @@
 # Transições do reel (trechos de clipe de 1 a 3 s)
 
+> **Onde ficam os vídeos:** no Cloudflare R2 (bucket `smufdpj-midia`, pasta `acervo/`, link público
+> `https://midia.somaisumfadepearljam.com.br/acervo/<file>`), e numa cópia local no Mac (esta pasta, ignorada pelo git).
+> **No git fica só o `transicoes.json`** (lista + tags). O reel no GitHub baixa só os trechos sorteados da semana
+> (`materializar` em `scripts/publish/reel/acervo-r2.mjs`). A pasta `acervo/` NÃO tem regra de apagar (as regras de 3 dias
+> valem só pra `reels/` e `stories/`). Subir o que falta: `node scripts/publish/reel/acervo-r2.mjs subir` (precisa
+> `npx wrangler login` uma vez no Mac); conferir: `node scripts/publish/reel/acervo-r2.mjs conferir`. O `planos.mjs` e
+> o `acervo-auto.mjs` já sobem sozinhos no fim do `--importar`.
+
 Acervo SEPARADO do `clips.json` (fundo dos blocos). Aqui ficam cortes curtos que entram ENTRE as cenas do reel, como
 passagem. Entra no reel só com a flag `REEL_TRANSICOES=1` no publish-reel.yml (desligada até o Andre aprovar).
 

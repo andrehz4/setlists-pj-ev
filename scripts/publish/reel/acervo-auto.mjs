@@ -11,6 +11,7 @@ import { spawnSync } from "node:child_process";
 import { analisarMovimento, pastaDo, folha } from "./momentos.mjs";
 import { detectar, trilhaSuave } from "./rosto/rosto.mjs";
 import { recorte } from "./transicoes.mjs";
+import { subir } from "./acervo-r2.mjs";
 
 const TIPOS = {
   t: { dur: 1.5, minCob: 0.7, minRosto: 0.07, espaco: 4, max: 12, nota: (c) => c.mov * (0.5 + c.cob) },
@@ -121,6 +122,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const a = process.argv.slice(2), op = (k) => (a.includes(k) ? a[a.indexOf(k) + 1] : null);
   if (/^https?:\/\//.test(a[0] || "")) { a[0] = baixarLink(a[0]); console.log(`[auto] baixado: ${a[0]}`); }
   if (!a[0] || !fs.existsSync(a[0])) { console.error("uso: acervo-auto.mjs <video> [--importar t1,c2 --musica X]"); process.exit(1); }
-  if (op("--importar")) importar(a[0], op("--importar").split(","), op("--musica"));
+  if (op("--importar")) importar(a[0], op("--importar").split(","), op("--musica")), subir(); // sobe pro R2 o que acabou de entrar
   else await analisar(a[0], Number(op("--max")) || null, a.includes("--curto"));
 }
