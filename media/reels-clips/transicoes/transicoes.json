@@ -12698,6 +12698,4387 @@
         "clima": "energia",
         "descricao": "Stone tocando sentado, guitarra preta"
       }
+    },
+    {
+      "file": "alive-unplugged-palco-vermelho.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 0.58,
+      "fim": 2.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "palco vermelho (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-maos-violao.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 4.58,
+      "fim": 6.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "maos violao (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-guitarrista-camisa-vermelha.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 24.58,
+      "fim": 26.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista camisa vermelha (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-eddie-close.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 32.58,
+      "fim": 34.08,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.894
+        },
+        {
+          "t": 0.1,
+          "foco": 0.888
+        },
+        {
+          "t": 0.2,
+          "foco": 0.879
+        },
+        {
+          "t": 0.3,
+          "foco": 0.866
+        },
+        {
+          "t": 0.4,
+          "foco": 0.848
+        },
+        {
+          "t": 0.5,
+          "foco": 0.82
+        },
+        {
+          "t": 0.6,
+          "foco": 0.777
+        },
+        {
+          "t": 0.7,
+          "foco": 0.709
+        },
+        {
+          "t": 0.8,
+          "foco": 0.619
+        },
+        {
+          "t": 0.9,
+          "foco": 0.536
+        },
+        {
+          "t": 1,
+          "foco": 0.49
+        },
+        {
+          "t": 1.1,
+          "foco": 0.456
+        },
+        {
+          "t": 1.2,
+          "foco": 0.433
+        },
+        {
+          "t": 1.3,
+          "foco": 0.421
+        },
+        {
+          "t": 1.4,
+          "foco": 0.416
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.87
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie close (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-palco-luzes-azuis.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 52.58,
+      "fim": 54.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "palco luzes azuis (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-bateria.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 84.58,
+      "fim": 86.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-violao-vermelho.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 96.58,
+      "fim": 98.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "violao vermelho (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-pratos.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 112.58,
+      "fim": 114.08,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.542
+        },
+        {
+          "t": 0.1,
+          "foco": 0.547
+        },
+        {
+          "t": 0.2,
+          "foco": 0.554
+        },
+        {
+          "t": 0.3,
+          "foco": 0.566
+        },
+        {
+          "t": 0.4,
+          "foco": 0.589
+        },
+        {
+          "t": 0.5,
+          "foco": 0.62
+        },
+        {
+          "t": 0.6,
+          "foco": 0.663
+        },
+        {
+          "t": 0.7,
+          "foco": 0.722
+        },
+        {
+          "t": 0.8,
+          "foco": 0.779
+        },
+        {
+          "t": 0.9,
+          "foco": 0.813
+        },
+        {
+          "t": 1,
+          "foco": 0.834
+        },
+        {
+          "t": 1.1,
+          "foco": 0.845
+        },
+        {
+          "t": 1.2,
+          "foco": 0.851
+        },
+        {
+          "t": 1.3,
+          "foco": 0.854
+        },
+        {
+          "t": 1.4,
+          "foco": 0.855
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.73
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "calmo",
+        "descricao": "pratos (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-eddie-de-pe-mic.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 135.95,
+      "fim": 137.45,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.887
+        },
+        {
+          "t": 0.1,
+          "foco": 0.827
+        },
+        {
+          "t": 0.2,
+          "foco": 0.737
+        },
+        {
+          "t": 0.3,
+          "foco": 0.647
+        },
+        {
+          "t": 0.4,
+          "foco": 0.557
+        },
+        {
+          "t": 0.5,
+          "foco": 0.467
+        },
+        {
+          "t": 0.6,
+          "foco": 0.377
+        },
+        {
+          "t": 0.7,
+          "foco": 0.287
+        },
+        {
+          "t": 0.8,
+          "foco": 0.224
+        },
+        {
+          "t": 0.9,
+          "foco": 0.207
+        },
+        {
+          "t": 1,
+          "foco": 0.201
+        },
+        {
+          "t": 1.1,
+          "foco": 0.205
+        },
+        {
+          "t": 1.2,
+          "foco": 0.218
+        },
+        {
+          "t": 1.3,
+          "foco": 0.244
+        },
+        {
+          "t": 1.4,
+          "foco": 0.232
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie de pe microfone (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-eddie-intenso.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 143.93,
+      "fim": 145.43,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.589
+        },
+        {
+          "t": 0.1,
+          "foco": 0.594
+        },
+        {
+          "t": 0.2,
+          "foco": 0.601
+        },
+        {
+          "t": 0.3,
+          "foco": 0.604
+        },
+        {
+          "t": 0.4,
+          "foco": 0.605
+        },
+        {
+          "t": 0.5,
+          "foco": 0.601
+        },
+        {
+          "t": 0.6,
+          "foco": 0.599
+        },
+        {
+          "t": 0.7,
+          "foco": 0.597
+        },
+        {
+          "t": 0.8,
+          "foco": 0.598
+        },
+        {
+          "t": 0.9,
+          "foco": 0.601
+        },
+        {
+          "t": 1,
+          "foco": 0.603
+        },
+        {
+          "t": 1.1,
+          "foco": 0.604
+        },
+        {
+          "t": 1.2,
+          "foco": 0.605
+        },
+        {
+          "t": 1.3,
+          "foco": 0.605
+        },
+        {
+          "t": 1.4,
+          "foco": 0.606
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.67
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie intenso (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-guitarrista-cabelo-liso.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 151.93,
+      "fim": 153.43,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.482
+        },
+        {
+          "t": 0.1,
+          "foco": 0.485
+        },
+        {
+          "t": 0.2,
+          "foco": 0.488
+        },
+        {
+          "t": 0.3,
+          "foco": 0.491
+        },
+        {
+          "t": 0.4,
+          "foco": 0.498
+        },
+        {
+          "t": 0.5,
+          "foco": 0.508
+        },
+        {
+          "t": 0.6,
+          "foco": 0.519
+        },
+        {
+          "t": 0.7,
+          "foco": 0.529
+        },
+        {
+          "t": 0.8,
+          "foco": 0.536
+        },
+        {
+          "t": 0.9,
+          "foco": 0.541
+        },
+        {
+          "t": 1,
+          "foco": 0.54
+        },
+        {
+          "t": 1.1,
+          "foco": 0.537
+        },
+        {
+          "t": 1.2,
+          "foco": 0.535
+        },
+        {
+          "t": 1.3,
+          "foco": 0.533
+        },
+        {
+          "t": 1.4,
+          "foco": 0.532
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "headbang",
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista cabelo liso (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-violao-preto.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 182.16,
+      "fim": 183.66,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "violao preto (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-guitarrista-gorro.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 184.81,
+      "fim": 186.31,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista gorro (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-dois-violoes.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 219.34,
+      "fim": 220.84,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "medio",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "dois violoes (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-guitarrista-violao.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 235.34,
+      "fim": 236.84,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.515
+        },
+        {
+          "t": 0.1,
+          "foco": 0.511
+        },
+        {
+          "t": 0.2,
+          "foco": 0.505
+        },
+        {
+          "t": 0.3,
+          "foco": 0.496
+        },
+        {
+          "t": 0.4,
+          "foco": 0.485
+        },
+        {
+          "t": 0.5,
+          "foco": 0.472
+        },
+        {
+          "t": 0.6,
+          "foco": 0.455
+        },
+        {
+          "t": 0.7,
+          "foco": 0.439
+        },
+        {
+          "t": 0.8,
+          "foco": 0.426
+        },
+        {
+          "t": 0.9,
+          "foco": 0.416
+        },
+        {
+          "t": 1,
+          "foco": 0.41
+        },
+        {
+          "t": 1.1,
+          "foco": 0.409
+        },
+        {
+          "t": 1.2,
+          "foco": 0.41
+        },
+        {
+          "t": 1.3,
+          "foco": 0.412
+        },
+        {
+          "t": 1.4,
+          "foco": 0.415
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista violao (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-eddie-cabelo-maos.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.33,
+      "ini": 242.28,
+      "fim": 243.62,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta",
+          "headbang"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie cabelo maos (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-maos-microfone.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 248.28,
+      "fim": 249.78,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "close",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "maos microfone (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-publico.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 252.28,
+      "fim": 253.78,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.882
+        },
+        {
+          "t": 0.1,
+          "foco": 0.876
+        },
+        {
+          "t": 0.2,
+          "foco": 0.868
+        },
+        {
+          "t": 0.3,
+          "foco": 0.86
+        },
+        {
+          "t": 0.4,
+          "foco": 0.852
+        },
+        {
+          "t": 0.5,
+          "foco": 0.844
+        },
+        {
+          "t": 0.6,
+          "foco": 0.835
+        },
+        {
+          "t": 0.7,
+          "foco": 0.825
+        },
+        {
+          "t": 0.8,
+          "foco": 0.815
+        },
+        {
+          "t": 0.9,
+          "foco": 0.806
+        },
+        {
+          "t": 1,
+          "foco": 0.8
+        },
+        {
+          "t": 1.1,
+          "foco": 0.796
+        },
+        {
+          "t": 1.2,
+          "foco": 0.794
+        },
+        {
+          "t": 1.3,
+          "foco": 0.793
+        },
+        {
+          "t": 1.4,
+          "foco": 0.792
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.6
+      },
+      "broll": {
+        "local": "publico",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "publico"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "publico (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-baquetas.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 256.28,
+      "fim": 257.78,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baquetas (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-guitarrista-jaqueta.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 264.28,
+      "fim": 265.78,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.57
+        },
+        {
+          "t": 0.1,
+          "foco": 0.569
+        },
+        {
+          "t": 0.2,
+          "foco": 0.567
+        },
+        {
+          "t": 0.3,
+          "foco": 0.564
+        },
+        {
+          "t": 0.4,
+          "foco": 0.559
+        },
+        {
+          "t": 0.5,
+          "foco": 0.554
+        },
+        {
+          "t": 0.6,
+          "foco": 0.545
+        },
+        {
+          "t": 0.7,
+          "foco": 0.534
+        },
+        {
+          "t": 0.8,
+          "foco": 0.521
+        },
+        {
+          "t": 0.9,
+          "foco": 0.51
+        },
+        {
+          "t": 1,
+          "foco": 0.501
+        },
+        {
+          "t": 1.1,
+          "foco": 0.494
+        },
+        {
+          "t": 1.2,
+          "foco": 0.488
+        },
+        {
+          "t": 1.3,
+          "foco": 0.483
+        },
+        {
+          "t": 1.4,
+          "foco": 0.479
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista jaqueta (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-eddie-cabelo-voando.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 284.53,
+      "fim": 286.03,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "headbang"
+        ],
+        "clima": "energia",
+        "descricao": "eddie cabelo voando (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-baterista-tocando.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 315.36,
+      "fim": 316.86,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista tocando (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-jeff-baixo-chapeu.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 317.69,
+      "fim": 319.19,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "calmo",
+        "descricao": "jeff baixo chapeu (Unplugged)"
+      }
+    },
+    {
+      "file": "alive-unplugged-jeff-palco.mp4",
+      "musica": "Alive Unplugged",
+      "origem": "Alive (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 321.69,
+      "fim": 323.19,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.447
+        },
+        {
+          "t": 0.1,
+          "foco": 0.449
+        },
+        {
+          "t": 0.2,
+          "foco": 0.452
+        },
+        {
+          "t": 0.3,
+          "foco": 0.452
+        },
+        {
+          "t": 0.4,
+          "foco": 0.451
+        },
+        {
+          "t": 0.5,
+          "foco": 0.446
+        },
+        {
+          "t": 0.6,
+          "foco": 0.434
+        },
+        {
+          "t": 0.7,
+          "foco": 0.414
+        },
+        {
+          "t": 0.8,
+          "foco": 0.379
+        },
+        {
+          "t": 0.9,
+          "foco": 0.416
+        },
+        {
+          "t": 1,
+          "foco": 0.439
+        },
+        {
+          "t": 1.1,
+          "foco": 0.453
+        },
+        {
+          "t": 1.2,
+          "foco": 0.462
+        },
+        {
+          "t": 1.3,
+          "foco": 0.468
+        },
+        {
+          "t": 1.4,
+          "foco": 0.47
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.73
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Alive (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff",
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "calmo",
+        "descricao": "jeff palco (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-prato-microfone.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 0.58,
+      "fim": 2.08,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.14
+        },
+        {
+          "t": 0.1,
+          "foco": 0.137
+        },
+        {
+          "t": 0.2,
+          "foco": 0.134
+        },
+        {
+          "t": 0.3,
+          "foco": 0.133
+        },
+        {
+          "t": 0.4,
+          "foco": 0.136
+        },
+        {
+          "t": 0.5,
+          "foco": 0.144
+        },
+        {
+          "t": 0.6,
+          "foco": 0.159
+        },
+        {
+          "t": 0.7,
+          "foco": 0.184
+        },
+        {
+          "t": 0.8,
+          "foco": 0.224
+        },
+        {
+          "t": 0.9,
+          "foco": 0.287
+        },
+        {
+          "t": 1,
+          "foco": 0.377
+        },
+        {
+          "t": 1.1,
+          "foco": 0.377
+        },
+        {
+          "t": 1.2,
+          "foco": 0.415
+        },
+        {
+          "t": 1.3,
+          "foco": 0.504
+        },
+        {
+          "t": 1.4,
+          "foco": 0.544
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "calmo",
+        "descricao": "prato microfone (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-banda-aberto.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 4.58,
+      "fim": 6.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "banda aberto (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-eddie-mao-mic.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 16.58,
+      "fim": 18.08,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.528
+        },
+        {
+          "t": 0.1,
+          "foco": 0.528
+        },
+        {
+          "t": 0.2,
+          "foco": 0.528
+        },
+        {
+          "t": 0.3,
+          "foco": 0.527
+        },
+        {
+          "t": 0.4,
+          "foco": 0.526
+        },
+        {
+          "t": 0.5,
+          "foco": 0.525
+        },
+        {
+          "t": 0.6,
+          "foco": 0.524
+        },
+        {
+          "t": 0.7,
+          "foco": 0.525
+        },
+        {
+          "t": 0.8,
+          "foco": 0.526
+        },
+        {
+          "t": 0.9,
+          "foco": 0.527
+        },
+        {
+          "t": 1,
+          "foco": 0.527
+        },
+        {
+          "t": 1.1,
+          "foco": 0.527
+        },
+        {
+          "t": 1.2,
+          "foco": 0.527
+        },
+        {
+          "t": 1.3,
+          "foco": 0.527
+        },
+        {
+          "t": 1.4,
+          "foco": 0.527
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie mao microfone (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-guitarrista-bandana.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 32.58,
+      "fim": 34.08,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.488
+        },
+        {
+          "t": 0.1,
+          "foco": 0.484
+        },
+        {
+          "t": 0.2,
+          "foco": 0.477
+        },
+        {
+          "t": 0.3,
+          "foco": 0.467
+        },
+        {
+          "t": 0.4,
+          "foco": 0.455
+        },
+        {
+          "t": 0.5,
+          "foco": 0.445
+        },
+        {
+          "t": 0.6,
+          "foco": 0.436
+        },
+        {
+          "t": 0.7,
+          "foco": 0.428
+        },
+        {
+          "t": 0.8,
+          "foco": 0.42
+        },
+        {
+          "t": 0.9,
+          "foco": 0.413
+        },
+        {
+          "t": 1,
+          "foco": 0.408
+        },
+        {
+          "t": 1.1,
+          "foco": 0.405
+        },
+        {
+          "t": 1.2,
+          "foco": 0.403
+        },
+        {
+          "t": 1.3,
+          "foco": 0.402
+        },
+        {
+          "t": 1.4,
+          "foco": 0.402
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.8
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista",
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista bandana (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-jeff-regata-baixo.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 52.58,
+      "fim": 54.08,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.235
+        },
+        {
+          "t": 0.1,
+          "foco": 0.228
+        },
+        {
+          "t": 0.2,
+          "foco": 0.218
+        },
+        {
+          "t": 0.3,
+          "foco": 0.207
+        },
+        {
+          "t": 0.4,
+          "foco": 0.204
+        },
+        {
+          "t": 0.5,
+          "foco": 0.211
+        },
+        {
+          "t": 0.6,
+          "foco": 0.227
+        },
+        {
+          "t": 0.7,
+          "foco": 0.245
+        },
+        {
+          "t": 0.8,
+          "foco": 0.266
+        },
+        {
+          "t": 0.9,
+          "foco": 0.299
+        },
+        {
+          "t": 1,
+          "foco": 0.362
+        },
+        {
+          "t": 1.1,
+          "foco": 0.452
+        },
+        {
+          "t": 1.2,
+          "foco": 0.542
+        },
+        {
+          "t": 1.3,
+          "foco": 0.615
+        },
+        {
+          "t": 1.4,
+          "foco": 0.643
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "calmo",
+        "descricao": "jeff regata baixo (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-guitarrista-bandana-close.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 60.58,
+      "fim": 62.08,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.572
+        },
+        {
+          "t": 0.1,
+          "foco": 0.571
+        },
+        {
+          "t": 0.2,
+          "foco": 0.569
+        },
+        {
+          "t": 0.3,
+          "foco": 0.568
+        },
+        {
+          "t": 0.4,
+          "foco": 0.567
+        },
+        {
+          "t": 0.5,
+          "foco": 0.565
+        },
+        {
+          "t": 0.6,
+          "foco": 0.562
+        },
+        {
+          "t": 0.7,
+          "foco": 0.561
+        },
+        {
+          "t": 0.8,
+          "foco": 0.562
+        },
+        {
+          "t": 0.9,
+          "foco": 0.568
+        },
+        {
+          "t": 1,
+          "foco": 0.583
+        },
+        {
+          "t": 1.1,
+          "foco": 0.611
+        },
+        {
+          "t": 1.2,
+          "foco": 0.641
+        },
+        {
+          "t": 1.3,
+          "foco": 0.667
+        },
+        {
+          "t": 1.4,
+          "foco": 0.679
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.73
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista",
+          "banda"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista bandana close (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-eddie-cabelo.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 77.32,
+      "fim": 78.82,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.521
+        },
+        {
+          "t": 0.1,
+          "foco": 0.526
+        },
+        {
+          "t": 0.2,
+          "foco": 0.532
+        },
+        {
+          "t": 0.3,
+          "foco": 0.54
+        },
+        {
+          "t": 0.4,
+          "foco": 0.55
+        },
+        {
+          "t": 0.5,
+          "foco": 0.558
+        },
+        {
+          "t": 0.6,
+          "foco": 0.565
+        },
+        {
+          "t": 0.7,
+          "foco": 0.571
+        },
+        {
+          "t": 0.8,
+          "foco": 0.573
+        },
+        {
+          "t": 0.9,
+          "foco": 0.569
+        },
+        {
+          "t": 1,
+          "foco": 0.557
+        },
+        {
+          "t": 1.1,
+          "foco": 0.55
+        },
+        {
+          "t": 1.2,
+          "foco": 0.546
+        },
+        {
+          "t": 1.3,
+          "foco": 0.544
+        },
+        {
+          "t": 1.4,
+          "foco": 0.543
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.6
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "headbang"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie cabelo (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-bateria.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 89.32,
+      "fim": 90.82,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-baterista-luz.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 149.32,
+      "fim": 150.82,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista luz (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-jeff-chapeu-palco.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 165.32,
+      "fim": 166.82,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff",
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "calmo",
+        "descricao": "jeff chapeu palco (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-palco-aberto.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 176.71,
+      "fim": 178.21,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "palco aberto (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-guitarrista-camiseta-vermelha.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 192.71,
+      "fim": 194.21,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.468
+        },
+        {
+          "t": 0.1,
+          "foco": 0.471
+        },
+        {
+          "t": 0.2,
+          "foco": 0.474
+        },
+        {
+          "t": 0.3,
+          "foco": 0.479
+        },
+        {
+          "t": 0.4,
+          "foco": 0.482
+        },
+        {
+          "t": 0.5,
+          "foco": 0.484
+        },
+        {
+          "t": 0.6,
+          "foco": 0.486
+        },
+        {
+          "t": 0.7,
+          "foco": 0.487
+        },
+        {
+          "t": 0.8,
+          "foco": 0.487
+        },
+        {
+          "t": 0.9,
+          "foco": 0.487
+        },
+        {
+          "t": 1,
+          "foco": 0.487
+        },
+        {
+          "t": 1.1,
+          "foco": 0.486
+        },
+        {
+          "t": 1.2,
+          "foco": 0.486
+        },
+        {
+          "t": 1.3,
+          "foco": 0.485
+        },
+        {
+          "t": 1.4,
+          "foco": 0.485
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista camiseta vermelha (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-guitarrista-bandana-violao.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 196.71,
+      "fim": 198.21,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.592
+        },
+        {
+          "t": 0.1,
+          "foco": 0.593
+        },
+        {
+          "t": 0.2,
+          "foco": 0.593
+        },
+        {
+          "t": 0.3,
+          "foco": 0.594
+        },
+        {
+          "t": 0.4,
+          "foco": 0.595
+        },
+        {
+          "t": 0.5,
+          "foco": 0.595
+        },
+        {
+          "t": 0.6,
+          "foco": 0.594
+        },
+        {
+          "t": 0.7,
+          "foco": 0.591
+        },
+        {
+          "t": 0.8,
+          "foco": 0.589
+        },
+        {
+          "t": 0.9,
+          "foco": 0.588
+        },
+        {
+          "t": 1,
+          "foco": 0.588
+        },
+        {
+          "t": 1.1,
+          "foco": 0.586
+        },
+        {
+          "t": 1.2,
+          "foco": 0.581
+        },
+        {
+          "t": 1.3,
+          "foco": 0.575
+        },
+        {
+          "t": 1.4,
+          "foco": 0.571
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista",
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista bandana violao (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-braco-violao.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 208.71,
+      "fim": 210.21,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "braco violao (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-guitarrista-preto.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 216.71,
+      "fim": 218.21,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.382
+        },
+        {
+          "t": 0.1,
+          "foco": 0.388
+        },
+        {
+          "t": 0.2,
+          "foco": 0.396
+        },
+        {
+          "t": 0.3,
+          "foco": 0.404
+        },
+        {
+          "t": 0.4,
+          "foco": 0.411
+        },
+        {
+          "t": 0.5,
+          "foco": 0.417
+        },
+        {
+          "t": 0.6,
+          "foco": 0.42
+        },
+        {
+          "t": 0.7,
+          "foco": 0.42
+        },
+        {
+          "t": 0.8,
+          "foco": 0.416
+        },
+        {
+          "t": 0.9,
+          "foco": 0.412
+        },
+        {
+          "t": 1,
+          "foco": 0.41
+        },
+        {
+          "t": 1.1,
+          "foco": 0.41
+        },
+        {
+          "t": 1.2,
+          "foco": 0.411
+        },
+        {
+          "t": 1.3,
+          "foco": 0.411
+        },
+        {
+          "t": 1.4,
+          "foco": 0.411
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista preto (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-violao-preto.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 228.71,
+      "fim": 230.21,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "violao preto (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-bateria-facho-luz.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 240.71,
+      "fim": 242.21,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria facho luz (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-eddie-grito.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 256.71,
+      "fim": 258.21,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "grita"
+        ],
+        "clima": "energia",
+        "descricao": "eddie grito (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-guitarrista-sorrindo.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 259.95,
+      "fim": 261.45,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.417
+        },
+        {
+          "t": 0.1,
+          "foco": 0.415
+        },
+        {
+          "t": 0.2,
+          "foco": 0.412
+        },
+        {
+          "t": 0.3,
+          "foco": 0.407
+        },
+        {
+          "t": 0.4,
+          "foco": 0.403
+        },
+        {
+          "t": 0.5,
+          "foco": 0.398
+        },
+        {
+          "t": 0.6,
+          "foco": 0.393
+        },
+        {
+          "t": 0.7,
+          "foco": 0.387
+        },
+        {
+          "t": 0.8,
+          "foco": 0.38
+        },
+        {
+          "t": 0.9,
+          "foco": 0.373
+        },
+        {
+          "t": 1,
+          "foco": 0.368
+        },
+        {
+          "t": 1.1,
+          "foco": 0.365
+        },
+        {
+          "t": 1.2,
+          "foco": 0.363
+        },
+        {
+          "t": 1.3,
+          "foco": 0.361
+        },
+        {
+          "t": 1.4,
+          "foco": 0.361
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista sorrindo (Unplugged)"
+      }
+    },
+    {
+      "file": "even-flow-unplugged-bateria-escuro.mp4",
+      "musica": "Even Flow Unplugged",
+      "origem": "Even Flow (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 282.26,
+      "fim": 283.76,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.901
+        },
+        {
+          "t": 0.1,
+          "foco": 0.901
+        },
+        {
+          "t": 0.2,
+          "foco": 0.901
+        },
+        {
+          "t": 0.3,
+          "foco": 0.902
+        },
+        {
+          "t": 0.4,
+          "foco": 0.905
+        },
+        {
+          "t": 0.5,
+          "foco": 0.908
+        },
+        {
+          "t": 0.6,
+          "foco": 0.91
+        },
+        {
+          "t": 0.7,
+          "foco": 0.912
+        },
+        {
+          "t": 0.8,
+          "foco": 0.912
+        },
+        {
+          "t": 0.9,
+          "foco": 0.911
+        },
+        {
+          "t": 1,
+          "foco": 0.907
+        },
+        {
+          "t": 1.1,
+          "foco": 0.903
+        },
+        {
+          "t": 1.2,
+          "foco": 0.898
+        },
+        {
+          "t": 1.3,
+          "foco": 0.894
+        },
+        {
+          "t": 1.4,
+          "foco": 0.891
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Even Flow (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria escuro (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-palco-aberto.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 0.58,
+      "fim": 2.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "palco aberto (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-jeff-chapeu-pele.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 8.58,
+      "fim": 10.08,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "calmo",
+        "descricao": "jeff chapeu pele (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-mao-violao.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 16.58,
+      "fim": 18.08,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "mao violao (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-braco-violao.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 45.77,
+      "fim": 47.27,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "braco violao (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-eddie-grito.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 53.77,
+      "fim": 55.27,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.649
+        },
+        {
+          "t": 0.1,
+          "foco": 0.648
+        },
+        {
+          "t": 0.2,
+          "foco": 0.645
+        },
+        {
+          "t": 0.3,
+          "foco": 0.645
+        },
+        {
+          "t": 0.4,
+          "foco": 0.64
+        },
+        {
+          "t": 0.5,
+          "foco": 0.636
+        },
+        {
+          "t": 0.6,
+          "foco": 0.633
+        },
+        {
+          "t": 0.7,
+          "foco": 0.63
+        },
+        {
+          "t": 0.8,
+          "foco": 0.628
+        },
+        {
+          "t": 0.9,
+          "foco": 0.623
+        },
+        {
+          "t": 1,
+          "foco": 0.619
+        },
+        {
+          "t": 1.1,
+          "foco": 0.616
+        },
+        {
+          "t": 1.2,
+          "foco": 0.614
+        },
+        {
+          "t": 1.3,
+          "foco": 0.613
+        },
+        {
+          "t": 1.4,
+          "foco": 0.613
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "grita"
+        ],
+        "clima": "energia",
+        "descricao": "eddie grito (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-jeff-baixo-aberto.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 67.86,
+      "fim": 69.36,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.283
+        },
+        {
+          "t": 0.1,
+          "foco": 0.286
+        },
+        {
+          "t": 0.2,
+          "foco": 0.29
+        },
+        {
+          "t": 0.3,
+          "foco": 0.297
+        },
+        {
+          "t": 0.4,
+          "foco": 0.306
+        },
+        {
+          "t": 0.5,
+          "foco": 0.315
+        },
+        {
+          "t": 0.6,
+          "foco": 0.325
+        },
+        {
+          "t": 0.7,
+          "foco": 0.337
+        },
+        {
+          "t": 0.8,
+          "foco": 0.347
+        },
+        {
+          "t": 0.9,
+          "foco": 0.356
+        },
+        {
+          "t": 1,
+          "foco": 0.364
+        },
+        {
+          "t": 1.1,
+          "foco": 0.37
+        },
+        {
+          "t": 1.2,
+          "foco": 0.375
+        },
+        {
+          "t": 1.3,
+          "foco": 0.381
+        },
+        {
+          "t": 1.4,
+          "foco": 0.384
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "calmo",
+        "descricao": "jeff baixo aberto (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-guitarrista-violao.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 94.79,
+      "fim": 96.29,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista violao (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-violao-prateado.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 106.79,
+      "fim": 108.29,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "violao prateado (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-dedos-violao.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 150.9,
+      "fim": 152.4,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "dedos violao (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-bateria.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.43,
+      "ini": 166.45,
+      "fim": 167.88,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-eddie-grito-close.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 172.54,
+      "fim": 174.04,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.64
+        },
+        {
+          "t": 0.1,
+          "foco": 0.637
+        },
+        {
+          "t": 0.2,
+          "foco": 0.634
+        },
+        {
+          "t": 0.3,
+          "foco": 0.632
+        },
+        {
+          "t": 0.4,
+          "foco": 0.63
+        },
+        {
+          "t": 0.5,
+          "foco": 0.626
+        },
+        {
+          "t": 0.6,
+          "foco": 0.619
+        },
+        {
+          "t": 0.7,
+          "foco": 0.61
+        },
+        {
+          "t": 0.8,
+          "foco": 0.597
+        },
+        {
+          "t": 0.9,
+          "foco": 0.58
+        },
+        {
+          "t": 1,
+          "foco": 0.556
+        },
+        {
+          "t": 1.1,
+          "foco": 0.521
+        },
+        {
+          "t": 1.2,
+          "foco": 0.468
+        },
+        {
+          "t": 1.3,
+          "foco": 0.435
+        },
+        {
+          "t": 1.4,
+          "foco": 0.463
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.8
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "grita"
+        ],
+        "clima": "energia",
+        "descricao": "eddie grito close (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-jeff-baixo-close.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 246.52,
+      "fim": 248.02,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "close",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "calmo",
+        "descricao": "jeff baixo close (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-baterista-baquetas.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 249.69,
+      "fim": 251.19,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista baquetas (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-guitarrista-violao-claro.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 261.12,
+      "fim": 262.62,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista violao claro (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-eddie-close.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 265.12,
+      "fim": 266.62,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie close (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-palco-luz.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 269.12,
+      "fim": 270.62,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "palco luz (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-bateria-pratos.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 278.31,
+      "fim": 279.81,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria pratos (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-eddie-cabelo.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 282.31,
+      "fim": 283.81,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "headbang"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie cabelo (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-jeff-chapeu-bateria.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 286.31,
+      "fim": 287.81,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff",
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo",
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "jeff chapeu bateria (Unplugged)"
+      }
+    },
+    {
+      "file": "jeremy-unplugged-baquetas.mp4",
+      "musica": "Jeremy Unplugged",
+      "origem": "Jeremy (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 294.31,
+      "fim": 295.81,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Jeremy (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baquetas (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-eddie-sentado-canta.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 8.58,
+      "fim": 10.08,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.437
+        },
+        {
+          "t": 0.1,
+          "foco": 0.435
+        },
+        {
+          "t": 0.2,
+          "foco": 0.432
+        },
+        {
+          "t": 0.3,
+          "foco": 0.428
+        },
+        {
+          "t": 0.4,
+          "foco": 0.425
+        },
+        {
+          "t": 0.5,
+          "foco": 0.422
+        },
+        {
+          "t": 0.6,
+          "foco": 0.42
+        },
+        {
+          "t": 0.7,
+          "foco": 0.418
+        },
+        {
+          "t": 0.8,
+          "foco": 0.417
+        },
+        {
+          "t": 0.9,
+          "foco": 0.416
+        },
+        {
+          "t": 1,
+          "foco": 0.416
+        },
+        {
+          "t": 1.1,
+          "foco": 0.415
+        },
+        {
+          "t": 1.2,
+          "foco": 0.414
+        },
+        {
+          "t": 1.3,
+          "foco": 0.414
+        },
+        {
+          "t": 1.4,
+          "foco": 0.413
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie sentado canta (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-palco-vermelho.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 31.37,
+      "fim": 32.87,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "palco vermelho (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-bateria-vermelha.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 43.89,
+      "fim": 45.39,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria vermelha (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-baixo-acustico.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 73.05,
+      "fim": 74.55,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "calmo",
+        "descricao": "baixo acustico (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-bateria.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 77.05,
+      "fim": 78.55,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-guitarrista-violao-branco.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 101.22,
+      "fim": 102.72,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.494
+        },
+        {
+          "t": 0.1,
+          "foco": 0.495
+        },
+        {
+          "t": 0.2,
+          "foco": 0.496
+        },
+        {
+          "t": 0.3,
+          "foco": 0.494
+        },
+        {
+          "t": 0.4,
+          "foco": 0.491
+        },
+        {
+          "t": 0.5,
+          "foco": 0.488
+        },
+        {
+          "t": 0.6,
+          "foco": 0.485
+        },
+        {
+          "t": 0.7,
+          "foco": 0.482
+        },
+        {
+          "t": 0.8,
+          "foco": 0.48
+        },
+        {
+          "t": 0.9,
+          "foco": 0.48
+        },
+        {
+          "t": 1,
+          "foco": 0.481
+        },
+        {
+          "t": 1.1,
+          "foco": 0.483
+        },
+        {
+          "t": 1.2,
+          "foco": 0.484
+        },
+        {
+          "t": 1.3,
+          "foco": 0.484
+        },
+        {
+          "t": 1.4,
+          "foco": 0.485
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.8
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista violao branco (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-guitarrista-violao.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 105.12,
+      "fim": 106.62,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista violao (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-guitarrista-cabelo.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 133.12,
+      "fim": 134.62,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "headbang",
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista cabelo (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-baterista-tocando.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 137.12,
+      "fim": 138.62,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista tocando (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-eddie-na-cadeira.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 166.68,
+      "fim": 168.18,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.851
+        },
+        {
+          "t": 0.1,
+          "foco": 0.854
+        },
+        {
+          "t": 0.2,
+          "foco": 0.859
+        },
+        {
+          "t": 0.3,
+          "foco": 0.863
+        },
+        {
+          "t": 0.4,
+          "foco": 0.865
+        },
+        {
+          "t": 0.5,
+          "foco": 0.865
+        },
+        {
+          "t": 0.6,
+          "foco": 0.862
+        },
+        {
+          "t": 0.7,
+          "foco": 0.858
+        },
+        {
+          "t": 0.8,
+          "foco": 0.854
+        },
+        {
+          "t": 0.9,
+          "foco": 0.852
+        },
+        {
+          "t": 1,
+          "foco": 0.85
+        },
+        {
+          "t": 1.1,
+          "foco": 0.849
+        },
+        {
+          "t": 1.2,
+          "foco": 0.848
+        },
+        {
+          "t": 1.3,
+          "foco": 0.848
+        },
+        {
+          "t": 1.4,
+          "foco": 0.848
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.53
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie de pe em cima da cadeira sob o holofote (Porch, Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-eddie-pulando.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 173.22,
+      "fim": 174.72,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "pula"
+        ],
+        "clima": "energia",
+        "descricao": "eddie pulando (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-pratos-luz.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 177.22,
+      "fim": 178.72,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "close",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "calmo",
+        "descricao": "pratos luz (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-banda-sentada.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 189.22,
+      "fim": 190.72,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "banda sentada (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-eddie-close.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 220.18,
+      "fim": 221.68,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.408
+        },
+        {
+          "t": 0.1,
+          "foco": 0.409
+        },
+        {
+          "t": 0.2,
+          "foco": 0.411
+        },
+        {
+          "t": 0.3,
+          "foco": 0.409
+        },
+        {
+          "t": 0.4,
+          "foco": 0.407
+        },
+        {
+          "t": 0.5,
+          "foco": 0.407
+        },
+        {
+          "t": 0.6,
+          "foco": 0.406
+        },
+        {
+          "t": 0.7,
+          "foco": 0.407
+        },
+        {
+          "t": 0.8,
+          "foco": 0.405
+        },
+        {
+          "t": 0.9,
+          "foco": 0.4
+        },
+        {
+          "t": 1,
+          "foco": 0.394
+        },
+        {
+          "t": 1.1,
+          "foco": 0.392
+        },
+        {
+          "t": 1.2,
+          "foco": 0.391
+        },
+        {
+          "t": 1.3,
+          "foco": 0.391
+        },
+        {
+          "t": 1.4,
+          "foco": 0.394
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie close (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-jeff-e-guitarrista.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 232.18,
+      "fim": 233.68,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.502
+        },
+        {
+          "t": 0.1,
+          "foco": 0.497
+        },
+        {
+          "t": 0.2,
+          "foco": 0.489
+        },
+        {
+          "t": 0.3,
+          "foco": 0.479
+        },
+        {
+          "t": 0.4,
+          "foco": 0.469
+        },
+        {
+          "t": 0.5,
+          "foco": 0.457
+        },
+        {
+          "t": 0.6,
+          "foco": 0.445
+        },
+        {
+          "t": 0.7,
+          "foco": 0.433
+        },
+        {
+          "t": 0.8,
+          "foco": 0.422
+        },
+        {
+          "t": 0.9,
+          "foco": 0.41
+        },
+        {
+          "t": 1,
+          "foco": 0.355
+        },
+        {
+          "t": 1.1,
+          "foco": 0.303
+        },
+        {
+          "t": 1.2,
+          "foco": 0.258
+        },
+        {
+          "t": 1.3,
+          "foco": 0.225
+        },
+        {
+          "t": 1.4,
+          "foco": 0.204
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.6
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "jeff",
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo",
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "jeff e guitarrista (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-boca-violao.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 236.18,
+      "fim": 237.68,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "boca violao (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-guitarrista-bandana.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 244.95,
+      "fim": 246.45,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.377
+        },
+        {
+          "t": 0.1,
+          "foco": 0.378
+        },
+        {
+          "t": 0.2,
+          "foco": 0.38
+        },
+        {
+          "t": 0.3,
+          "foco": 0.383
+        },
+        {
+          "t": 0.4,
+          "foco": 0.387
+        },
+        {
+          "t": 0.5,
+          "foco": 0.391
+        },
+        {
+          "t": 0.6,
+          "foco": 0.397
+        },
+        {
+          "t": 0.7,
+          "foco": 0.402
+        },
+        {
+          "t": 0.8,
+          "foco": 0.407
+        },
+        {
+          "t": 0.9,
+          "foco": 0.413
+        },
+        {
+          "t": 1,
+          "foco": 0.418
+        },
+        {
+          "t": 1.1,
+          "foco": 0.425
+        },
+        {
+          "t": 1.2,
+          "foco": 0.431
+        },
+        {
+          "t": 1.3,
+          "foco": 0.437
+        },
+        {
+          "t": 1.4,
+          "foco": 0.441
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.73
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "guitarrista",
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista bandana (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-bateria-facho.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 256.95,
+      "fim": 258.45,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria facho (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-eddie-de-pe.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 260.95,
+      "fim": 262.45,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "eddie de pe (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-palco-vermelho-eddie.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 272.95,
+      "fim": 274.45,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.91
+        },
+        {
+          "t": 0.1,
+          "foco": 0.873
+        },
+        {
+          "t": 0.2,
+          "foco": 0.815
+        },
+        {
+          "t": 0.3,
+          "foco": 0.827
+        },
+        {
+          "t": 0.4,
+          "foco": 0.811
+        },
+        {
+          "t": 0.5,
+          "foco": 0.764
+        },
+        {
+          "t": 0.6,
+          "foco": 0.778
+        },
+        {
+          "t": 0.7,
+          "foco": 0.807
+        },
+        {
+          "t": 0.8,
+          "foco": 0.805
+        },
+        {
+          "t": 0.9,
+          "foco": 0.774
+        },
+        {
+          "t": 1,
+          "foco": 0.705
+        },
+        {
+          "t": 1.1,
+          "foco": 0.685
+        },
+        {
+          "t": 1.2,
+          "foco": 0.708
+        },
+        {
+          "t": 1.3,
+          "foco": 0.779
+        },
+        {
+          "t": 1.4,
+          "foco": 0.812
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.87
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie",
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "palco vermelho eddie (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-eddie-grito.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 284.93,
+      "fim": 286.43,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.406
+        },
+        {
+          "t": 0.1,
+          "foco": 0.406
+        },
+        {
+          "t": 0.2,
+          "foco": 0.406
+        },
+        {
+          "t": 0.3,
+          "foco": 0.406
+        },
+        {
+          "t": 0.4,
+          "foco": 0.403
+        },
+        {
+          "t": 0.5,
+          "foco": 0.398
+        },
+        {
+          "t": 0.6,
+          "foco": 0.393
+        },
+        {
+          "t": 0.7,
+          "foco": 0.39
+        },
+        {
+          "t": 0.8,
+          "foco": 0.386
+        },
+        {
+          "t": 0.9,
+          "foco": 0.381
+        },
+        {
+          "t": 1,
+          "foco": 0.376
+        },
+        {
+          "t": 1.1,
+          "foco": 0.37
+        },
+        {
+          "t": 1.2,
+          "foco": 0.367
+        },
+        {
+          "t": 1.3,
+          "foco": 0.366
+        },
+        {
+          "t": 1.4,
+          "foco": 0.368
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "grita"
+        ],
+        "clima": "energia",
+        "descricao": "eddie grito (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-holofotes.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 307.29,
+      "fim": 308.79,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "holofotes (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-luzes-vermelhas.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.47,
+      "ini": 311.29,
+      "fim": 312.79,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "luzes vermelhas (Unplugged)"
+      }
+    },
+    {
+      "file": "porch-unplugged-banda-final.mp4",
+      "musica": "Porch Unplugged",
+      "origem": "Porch (Live) - MTV Unplugged - Pearl Jam.mp4",
+      "dur": 1.5,
+      "ini": 331.29,
+      "fim": 332.79,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "1992",
+        "fonte": "Porch (MTV Unplugged, 1992)",
+        "qualidade": "720p",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "banda final (Unplugged)"
+      }
     }
   ]
 }

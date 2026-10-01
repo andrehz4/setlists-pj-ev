@@ -15,15 +15,21 @@ import { detectar, trilhaSuave, MIN_COBERTURA } from "./rosto/rosto.mjs";
 const ARQ_JSON = path.resolve("media/reels-clips/transicoes/transicoes.json");
 const POR_FOLHA = 60;
 
-// Planos entre cortes com pelo menos `min` s; pega o miolo (até 1,5 s), fora do que já está no acervo.
+// Planos entre cortes com pelo menos `min` s: o miolo (até 1,5 s), ou um trecho a cada 4 s se o plano
+// passar de 6 s; fora do que já está no acervo.
 export function listarPlanos(cortes, fimVideo, usados = [], min = 0.95) {
   const bordas = [0, ...[...cortes].sort((a, b) => a - b), fimVideo], out = [];
   for (let i = 0; i < bordas.length - 1; i++) {
     const a = bordas[i] + 0.08, b = bordas[i + 1] - 0.08;
     if (b - a < min) continue;
-    const len = Math.min(1.5, b - a), ini = +(a + (b - a - len) / 2).toFixed(2), fim = +(ini + len).toFixed(2);
-    if (usados.some(([x, y]) => ini < y && fim > x)) continue;
-    out.push({ id: `p${out.length + 1}`, ini, fim });
+    // plano longo (câmera passeando, como no Unplugged): um trecho a cada 4 s; curto: o miolo
+    const inis = b - a > 6 ? Array.from({ length: Math.floor((b - a - 1.5) / 4) + 1 }, (_, k) => a + 0.5 + k * 4).filter((x) => x + 1.5 <= b)
+      : [a + (b - a - Math.min(1.5, b - a)) / 2];
+    for (const x of inis) {
+      const ini = +x.toFixed(2), fim = +(x + Math.min(1.5, b - a)).toFixed(2);
+      if (usados.some(([u, v]) => ini < v && fim > u)) continue;
+      out.push({ id: `p${out.length + 1}`, ini, fim });
+    }
   }
   return out;
 }
