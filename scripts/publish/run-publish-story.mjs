@@ -22,6 +22,7 @@ import { pickTrackForDate } from "./story-track.mjs";
 import { buildStoryVideo } from "./story-video.mjs";
 import { prepararNarracaoStory, mixarStory, gravarDias } from "./narracao/story.mjs";
 import { saldo } from "./narracao/elevenlabs.mjs";
+import { aplicarPadraoReel } from "./story/padrao-reel.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishStory } from "./instagram.mjs";
 import { publishVideoStory } from "./facebook.mjs";
@@ -159,6 +160,13 @@ async function main() {
     outroDur: narr?.outroDur,
   });
   const { duration } = video;
+  // padrão do reel (STORY_TRANSICOES=1): abertura com clipe + transições; falha = story como antes
+  if (process.env.STORY_TRANSICOES === "1") {
+    const introDur = narr?.introDur ?? 3.0, cards = Math.min(items.length, 5);
+    const r = await aplicarPadraoReel(outPath, { introDur, cards, cardDur: (video.outroInicio - introDur) / cards,
+      outroInicio: video.outroInicio, date: brt, accent: tarjaColor, tmpDir: video.tmpDir });
+    console.log(`[story] padrão do reel: abertura com clipe ${r.abertura ? "sim" : "não"}, ${r.transicoes} transições`);
+  }
   let avisoVoz = narr?.aviso || "";
   if (narr?.falas) {
     const semVoz = path.join(video.tmpDir, "sem-voz.mp4");

@@ -48,6 +48,8 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           # voz na abertura e no final (scripts/publish/narracao/story.mjs): '1' liga
           STORY_NARRACAO: '1'
+          # padrão do reel (scripts/publish/story/padrao-reel.mjs): abertura com clipe + transições do acervo no R2
+          STORY_TRANSICOES: '1'
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           # mídia no R2 (scripts/publish/midia-r2.mjs): vídeo sobe pro bucket smufdpj-midia (apaga em 3 dias)
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}

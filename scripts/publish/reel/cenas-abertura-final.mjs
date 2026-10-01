@@ -4,7 +4,7 @@ import { W, H, BRAND, easeOutCubic, easeOutQuart, easeOutQuad, easeOutBack, seg,
 import { clipChipSvg, tarjaSvg, veilSvg, paperBgSvg } from "./atomos.mjs";
 
 // COLD OPEN: flash de cor, chip, SMUFDPJ letra a letra, assinatura, tarja, meta.
-export function coldOpenSvg(t, { accent, itemCount, rangeLabel, dark = 0.6, letterWidths = null, tarjaTextW = null, chipTextW = null, showChip = true, comFlash = true }) {
+export function coldOpenSvg(t, { accent, itemCount, rangeLabel, dark = 0.6, letterWidths = null, tarjaTextW = null, chipTextW = null, showChip = true, comFlash = true, tarja = "AS NOTÍCIAS DA SEMANA" }) {
   const ROT = [-3, 2, -2, 3, -1, 2, -3];
   const letters = "SMUFDPJ".split("");
   const size = 230;
@@ -36,7 +36,7 @@ export function coldOpenSvg(t, { accent, itemCount, rangeLabel, dark = 0.6, lett
     ${showChip ? clipChipSvg(t, { inAt: 0.15, place: "top", textW: chipTextW }) : ""}
     ${wmO > 0 ? `<text x="${W / 2}" y="${(660 + 42 * 0.8 + wmY).toFixed(1)}" text-anchor="middle" font-family="${F_PLAYFAIR}" font-style="italic" font-weight="900" font-size="42" fill="${BRAND.sujo}" opacity="${wmO.toFixed(3)}">${escapeXml(BRAND.wordmark)}</text>` : ""}
     ${letterSvg}
-    ${tarjaSvg(t, { text: "AS NOTÍCIAS DA SEMANA", bg: accent, color: BRAND.sujo, y: 1030, size: 32, inAt: 1.7, dur: 0.35, id: "co-tarja", centerAt: W / 2, textW: tarjaTextW })}
+    ${tarjaSvg(t, { text: tarja, bg: accent, color: BRAND.sujo, y: 1030, size: 32, inAt: 1.7, dur: 0.35, id: "co-tarja", centerAt: W / 2, textW: tarjaTextW })}
     ${metaO > 0 ? `<text x="${W / 2}" y="${1130 + 28 * 0.8}" text-anchor="middle" font-family="${F_INTER_SB}" font-weight="600" font-size="28" letter-spacing="6.2" fill="rgba(247,241,222,0.85)" opacity="${metaO.toFixed(3)}">${escapeXml(meta)}</text>` : ""}
     ${flash > 0 ? `<rect x="0" y="0" width="${W}" height="${H}" fill="${accent}" opacity="${flash.toFixed(3)}"/>` : ""}
   </svg>`;
