@@ -7703,6 +7703,1274 @@
         "clima": "intenso",
         "descricao": "guitarrista de camiseta cinza olhando pra guitarra"
       }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-mao-lava.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 7.07,
+      "fim": 8.57,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "close",
+        "acao": [
+          "giro"
+        ],
+        "clima": "intenso",
+        "descricao": "mao estendida sobre fogo e lava"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-terra-espaco.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.5,
+      "ini": 62.02,
+      "fim": 63.52,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "a Terra vista do espaco",
+        "animacao": true
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-matt-bateria.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 73.66,
+      "fim": 75.16,
+      "tags": [
+        "matt",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.822
+        },
+        {
+          "t": 0.1,
+          "foco": 0.822
+        },
+        {
+          "t": 0.2,
+          "foco": 0.821
+        },
+        {
+          "t": 0.3,
+          "foco": 0.819
+        },
+        {
+          "t": 0.4,
+          "foco": 0.818
+        },
+        {
+          "t": 0.5,
+          "foco": 0.816
+        },
+        {
+          "t": 0.6,
+          "foco": 0.812
+        },
+        {
+          "t": 0.7,
+          "foco": 0.807
+        },
+        {
+          "t": 0.8,
+          "foco": 0.798
+        },
+        {
+          "t": 0.9,
+          "foco": 0.785
+        },
+        {
+          "t": 1,
+          "foco": 0.763
+        },
+        {
+          "t": 1.1,
+          "foco": 0.789
+        },
+        {
+          "t": 1.2,
+          "foco": 0.805
+        },
+        {
+          "t": 1.3,
+          "foco": 0.814
+        },
+        {
+          "t": 1.4,
+          "foco": 0.818
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "matt"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "Matt Cameron na bateria, fundo escuro"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-mar-por-do-sol.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 89.07,
+      "fim": 90.57,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "mar batendo na praia ao por do sol",
+        "animacao": true
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-onda.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 95.43,
+      "fim": 96.93,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "energia",
+        "descricao": "onda quebrando em camera lenta",
+        "animacao": true
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-onda-rocha.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.5,
+      "ini": 97.54,
+      "fim": 99.04,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "energia",
+        "descricao": "onda batendo na rocha com luz vermelha",
+        "animacao": true
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-tornado-banda.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 103.75,
+      "fim": 105.25,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "intenso",
+        "descricao": "tornado gigante sobre a banda em silhueta"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-asa-borboleta.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 114.93,
+      "fim": 116.43,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "close",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "asa de borboleta monarca de perto",
+        "animacao": true
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-bateria-raios.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.5,
+      "ini": 120.73,
+      "fim": 122.23,
+      "tags": [
+        "matt",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.169
+        },
+        {
+          "t": 0.1,
+          "foco": 0.142
+        },
+        {
+          "t": 0.2,
+          "foco": 0.1
+        },
+        {
+          "t": 0.3,
+          "foco": 0.078
+        },
+        {
+          "t": 0.4,
+          "foco": 0.07
+        },
+        {
+          "t": 0.5,
+          "foco": 0.075
+        },
+        {
+          "t": 0.6,
+          "foco": 0.094
+        },
+        {
+          "t": 0.7,
+          "foco": 0.131
+        },
+        {
+          "t": 0.8,
+          "foco": 0.171
+        },
+        {
+          "t": 0.9,
+          "foco": 0.195
+        },
+        {
+          "t": 1,
+          "foco": 0.208
+        },
+        {
+          "t": 1.1,
+          "foco": 0.213
+        },
+        {
+          "t": 1.2,
+          "foco": 0.212
+        },
+        {
+          "t": 1.3,
+          "foco": 0.208
+        },
+        {
+          "t": 1.4,
+          "foco": 0.206
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.67
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "matt"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "bateria com ceu de raios atras"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-jeff-baixo.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 124.85,
+      "fim": 126.35,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.361
+        },
+        {
+          "t": 0.1,
+          "foco": 0.369
+        },
+        {
+          "t": 0.2,
+          "foco": 0.381
+        },
+        {
+          "t": 0.3,
+          "foco": 0.394
+        },
+        {
+          "t": 0.4,
+          "foco": 0.409
+        },
+        {
+          "t": 0.5,
+          "foco": 0.422
+        },
+        {
+          "t": 0.6,
+          "foco": 0.436
+        },
+        {
+          "t": 0.7,
+          "foco": 0.451
+        },
+        {
+          "t": 0.8,
+          "foco": 0.468
+        },
+        {
+          "t": 0.9,
+          "foco": 0.486
+        },
+        {
+          "t": 1,
+          "foco": 0.503
+        },
+        {
+          "t": 1.1,
+          "foco": 0.518
+        },
+        {
+          "t": 1.2,
+          "foco": 0.531
+        },
+        {
+          "t": 1.3,
+          "foco": 0.542
+        },
+        {
+          "t": 1.4,
+          "foco": 0.55
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "energia",
+        "descricao": "Jeff Ament tocando baixo, luz de lado"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-banda-estrelas.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 132.51,
+      "fim": 134.01,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra",
+          "bateria"
+        ],
+        "clima": "calmo",
+        "descricao": "silhueta da banda sob ceu estrelado"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-rastro-estrelas.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 153.34,
+      "fim": 154.84,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "intenso",
+        "descricao": "rastro de estrelas girando sobre a banda"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-bateria-espaco.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 171.84,
+      "fim": 173.34,
+      "tags": [
+        "matt",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.116
+        },
+        {
+          "t": 0.1,
+          "foco": 0.178
+        },
+        {
+          "t": 0.2,
+          "foco": 0.268
+        },
+        {
+          "t": 0.3,
+          "foco": 0.358
+        },
+        {
+          "t": 0.4,
+          "foco": 0.448
+        },
+        {
+          "t": 0.5,
+          "foco": 0.538
+        },
+        {
+          "t": 0.6,
+          "foco": 0.61
+        },
+        {
+          "t": 0.7,
+          "foco": 0.57
+        },
+        {
+          "t": 0.8,
+          "foco": 0.638
+        },
+        {
+          "t": 0.9,
+          "foco": 0.663
+        },
+        {
+          "t": 1,
+          "foco": 0.655
+        },
+        {
+          "t": 1.1,
+          "foco": 0.611
+        },
+        {
+          "t": 1.2,
+          "foco": 0.673
+        },
+        {
+          "t": 1.3,
+          "foco": 0.707
+        },
+        {
+          "t": 1.4,
+          "foco": 0.722
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "matt"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "Matt na bateria com o espaco ao fundo"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-perfil-faiscas.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.23,
+      "ini": 176.01,
+      "fim": 177.27,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "perfil no escuro com faiscas voando"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-eddie-estrelas.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.5,
+      "ini": 181.29,
+      "fim": 182.79,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.403
+        },
+        {
+          "t": 0.1,
+          "foco": 0.409
+        },
+        {
+          "t": 0.2,
+          "foco": 0.415
+        },
+        {
+          "t": 0.3,
+          "foco": 0.423
+        },
+        {
+          "t": 0.4,
+          "foco": 0.431
+        },
+        {
+          "t": 0.5,
+          "foco": 0.439
+        },
+        {
+          "t": 0.6,
+          "foco": 0.446
+        },
+        {
+          "t": 0.7,
+          "foco": 0.452
+        },
+        {
+          "t": 0.8,
+          "foco": 0.458
+        },
+        {
+          "t": 0.9,
+          "foco": 0.463
+        },
+        {
+          "t": 1,
+          "foco": 0.467
+        },
+        {
+          "t": 1.1,
+          "foco": 0.472
+        },
+        {
+          "t": 1.2,
+          "foco": 0.475
+        },
+        {
+          "t": 1.3,
+          "foco": 0.476
+        },
+        {
+          "t": 1.4,
+          "foco": 0.477
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.87
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "energia",
+        "descricao": "Eddie cantando com estrelas ao fundo"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-arvore-vermelha.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 189.21,
+      "fim": 190.71,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "natureza",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "calmo",
+        "descricao": "arvore de folhas vermelhas",
+        "animacao": true
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-facho-luz.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 196.2,
+      "fim": 197.7,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "giro"
+        ],
+        "clima": "intenso",
+        "descricao": "facho de luz descendo (abstrato)",
+        "animacao": true
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-guitarra-amarelo.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 206.67,
+      "fim": 208.17,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "guitarrista",
+          "banda"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista com luz amarela atras, bateria ao lado"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-guitarra-fogo.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 0.97,
+      "ini": 211.96,
+      "fim": 212.93,
+      "tags": [
+        "memoria"
+      ],
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "animacao"
+        ],
+        "plano": "close",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "guitarra pegando fogo",
+        "animacao": true
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-eddie-close-vermelho.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 216.47,
+      "fim": 217.97,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.971
+        },
+        {
+          "t": 0.1,
+          "foco": 0.956
+        },
+        {
+          "t": 0.2,
+          "foco": 0.932
+        },
+        {
+          "t": 0.3,
+          "foco": 0.896
+        },
+        {
+          "t": 0.4,
+          "foco": 0.854
+        },
+        {
+          "t": 0.5,
+          "foco": 0.803
+        },
+        {
+          "t": 0.6,
+          "foco": 0.739
+        },
+        {
+          "t": 0.7,
+          "foco": 0.653
+        },
+        {
+          "t": 0.8,
+          "foco": 0.583
+        },
+        {
+          "t": 0.9,
+          "foco": 0.519
+        },
+        {
+          "t": 1,
+          "foco": 0.464
+        },
+        {
+          "t": 1.1,
+          "foco": 0.412
+        },
+        {
+          "t": 1.2,
+          "foco": 0.368
+        },
+        {
+          "t": 1.3,
+          "foco": 0.334
+        },
+        {
+          "t": 1.4,
+          "foco": 0.312
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "close do Eddie cantando, luz vermelha"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-guitarrista-por-do-sol.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.17,
+      "ini": 222.59,
+      "fim": 223.76,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.705
+        },
+        {
+          "t": 0.1,
+          "foco": 0.705
+        },
+        {
+          "t": 0.2,
+          "foco": 0.706
+        },
+        {
+          "t": 0.3,
+          "foco": 0.706
+        },
+        {
+          "t": 0.4,
+          "foco": 0.708
+        },
+        {
+          "t": 0.5,
+          "foco": 0.71
+        },
+        {
+          "t": 0.6,
+          "foco": 0.714
+        },
+        {
+          "t": 0.7,
+          "foco": 0.719
+        },
+        {
+          "t": 0.8,
+          "foco": 0.728
+        },
+        {
+          "t": 0.9,
+          "foco": 0.741
+        },
+        {
+          "t": 1,
+          "foco": 0.756
+        },
+        {
+          "t": 1.1,
+          "foco": 0.767
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.5
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra"
+        ],
+        "clima": "calmo",
+        "descricao": "guitarrista contra o ceu do por do sol"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-matt-close.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 225.73,
+      "fim": 227.23,
+      "tags": [
+        "matt",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.389
+        },
+        {
+          "t": 0.1,
+          "foco": 0.397
+        },
+        {
+          "t": 0.2,
+          "foco": 0.409
+        },
+        {
+          "t": 0.3,
+          "foco": 0.427
+        },
+        {
+          "t": 0.4,
+          "foco": 0.43
+        },
+        {
+          "t": 0.5,
+          "foco": 0.441
+        },
+        {
+          "t": 0.6,
+          "foco": 0.463
+        },
+        {
+          "t": 0.7,
+          "foco": 0.478
+        },
+        {
+          "t": 0.8,
+          "foco": 0.488
+        },
+        {
+          "t": 0.9,
+          "foco": 0.495
+        },
+        {
+          "t": 1,
+          "foco": 0.5
+        },
+        {
+          "t": 1.1,
+          "foco": 0.504
+        },
+        {
+          "t": 1.2,
+          "foco": 0.507
+        },
+        {
+          "t": 1.3,
+          "foco": 0.509
+        },
+        {
+          "t": 1.4,
+          "foco": 0.51
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "matt"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "Matt de perto tocando bateria"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-eddie-canta.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 243.54,
+      "fim": 245.04,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.736
+        },
+        {
+          "t": 0.1,
+          "foco": 0.726
+        },
+        {
+          "t": 0.2,
+          "foco": 0.712
+        },
+        {
+          "t": 0.3,
+          "foco": 0.69
+        },
+        {
+          "t": 0.4,
+          "foco": 0.657
+        },
+        {
+          "t": 0.5,
+          "foco": 0.606
+        },
+        {
+          "t": 0.6,
+          "foco": 0.528
+        },
+        {
+          "t": 0.7,
+          "foco": 0.549
+        },
+        {
+          "t": 0.8,
+          "foco": 0.564
+        },
+        {
+          "t": 0.9,
+          "foco": 0.575
+        },
+        {
+          "t": 1,
+          "foco": 0.582
+        },
+        {
+          "t": 1.1,
+          "foco": 0.588
+        },
+        {
+          "t": 1.2,
+          "foco": 0.588
+        },
+        {
+          "t": 1.3,
+          "foco": 0.584
+        },
+        {
+          "t": 1.4,
+          "foco": 0.578
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie cantando no microfone, luz quente"
+      }
+    },
+    {
+      "file": "dance-of-the-clairvoyants-banda-fogo.mp4",
+      "musica": "Dance of the Clairvoyants",
+      "origem": "Pearl Jam - Dance Of The Clairvoyants (Mach III).mp4",
+      "dur": 1.47,
+      "ini": 246.43,
+      "fim": 247.93,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.119
+        },
+        {
+          "t": 0.1,
+          "foco": 0.119
+        },
+        {
+          "t": 0.2,
+          "foco": 0.119
+        },
+        {
+          "t": 0.3,
+          "foco": 0.119
+        },
+        {
+          "t": 0.4,
+          "foco": 0.119
+        },
+        {
+          "t": 0.5,
+          "foco": 0.121
+        },
+        {
+          "t": 0.6,
+          "foco": 0.125
+        },
+        {
+          "t": 0.7,
+          "foco": 0.135
+        },
+        {
+          "t": 0.8,
+          "foco": 0.155
+        },
+        {
+          "t": 0.9,
+          "foco": 0.189
+        },
+        {
+          "t": 1,
+          "foco": 0.244
+        },
+        {
+          "t": 1.1,
+          "foco": 0.333
+        },
+        {
+          "t": 1.2,
+          "foco": 0.366
+        },
+        {
+          "t": 1.3,
+          "foco": 0.35
+        },
+        {
+          "t": 1.4,
+          "foco": 0.391
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.93
+      },
+      "broll": {
+        "local": "palco",
+        "era": "2020",
+        "fonte": "Dance of the Clairvoyants (clipe oficial Mach III, Gigaton, 2020)",
+        "quem": [
+          "banda"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "guitarra",
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "banda tocando com fogo e luz atras"
+      }
     }
   ]
 }
