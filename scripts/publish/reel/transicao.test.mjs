@@ -122,4 +122,6 @@ test("planos: cada plano de 1 s ou mais entre cortes, miolo de até 1,5 s, fora 
   const { listarPlanos } = await import("./planos.mjs");
   const p = listarPlanos([2, 2.5, 6], 10, [[7, 8.5]]);
   assert.deepEqual(p.map((x) => [x.ini, x.fim]), [[0.25, 1.75], [3.5, 5]]);
+  const longo = listarPlanos([], 14); // plano de ~14 s: vários trechos, 4 s entre eles
+  assert.deepEqual(longo.map((x) => x.ini), [0.58, 4.58, 8.58]);
 });
