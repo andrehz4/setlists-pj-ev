@@ -2632,6 +2632,874 @@
         "clima": "intenso",
         "descricao": "Eddie cantando com a mão no ar, expressão forte (capa)"
       }
+    },
+    {
+      "file": "alive-t1.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 19.5,
+      "fim": 21,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.393
+        },
+        {
+          "t": 0.3,
+          "foco": 0.405
+        },
+        {
+          "t": 0.5,
+          "foco": 0.421
+        },
+        {
+          "t": 0.7,
+          "foco": 0.448
+        },
+        {
+          "t": 0.9,
+          "foco": 0.485
+        },
+        {
+          "t": 1.1,
+          "foco": 0.52
+        },
+        {
+          "t": 1.3,
+          "foco": 0.543
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "energia",
+        "descricao": "Jeff Ament de gorro listrado tocando baixo"
+      }
+    },
+    {
+      "file": "alive-t5.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 80.5,
+      "fim": 82,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.558
+        },
+        {
+          "t": 0.3,
+          "foco": 0.547
+        },
+        {
+          "t": 0.5,
+          "foco": 0.553
+        },
+        {
+          "t": 0.7,
+          "foco": 0.567
+        },
+        {
+          "t": 0.9,
+          "foco": 0.573
+        },
+        {
+          "t": 1.1,
+          "foco": 0.57
+        },
+        {
+          "t": 1.3,
+          "foco": 0.569
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "close do Eddie cantando, sorriso"
+      }
+    },
+    {
+      "file": "alive-t6.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 88.5,
+      "fim": 90,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.549
+        },
+        {
+          "t": 0.3,
+          "foco": 0.536
+        },
+        {
+          "t": 0.5,
+          "foco": 0.52
+        },
+        {
+          "t": 0.7,
+          "foco": 0.503
+        },
+        {
+          "t": 0.9,
+          "foco": 0.484
+        },
+        {
+          "t": 1.1,
+          "foco": 0.464
+        },
+        {
+          "t": 1.3,
+          "foco": 0.458
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie cantando de olhos fechados, luz forte"
+      }
+    },
+    {
+      "file": "alive-t8.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 112,
+      "fim": 113.5,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.143
+        },
+        {
+          "t": 0.2,
+          "foco": 0.164
+        },
+        {
+          "t": 0.4,
+          "foco": 0.216
+        },
+        {
+          "t": 0.6,
+          "foco": 0.156
+        },
+        {
+          "t": 0.8,
+          "foco": 0.125
+        },
+        {
+          "t": 1,
+          "foco": 0.117
+        },
+        {
+          "t": 1.2,
+          "foco": 0.093
+        },
+        {
+          "t": 1.4,
+          "foco": 0.078
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "publico",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "publico"
+        ],
+        "plano": "medio",
+        "acao": [
+          "mosh"
+        ],
+        "clima": "energia",
+        "descricao": "público espremido na frente do palco"
+      }
+    },
+    {
+      "file": "alive-t10.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 138,
+      "fim": 139.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.678
+        },
+        {
+          "t": 0.2,
+          "foco": 0.603
+        },
+        {
+          "t": 0.4,
+          "foco": 0.548
+        },
+        {
+          "t": 0.6,
+          "foco": 0.531
+        },
+        {
+          "t": 0.8,
+          "foco": 0.561
+        },
+        {
+          "t": 1,
+          "foco": 0.636
+        },
+        {
+          "t": 1.2,
+          "foco": 0.718
+        },
+        {
+          "t": 1.4,
+          "foco": 0.762
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "close extremo do Eddie cantando"
+      }
+    },
+    {
+      "file": "alive-t11.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 160.5,
+      "fim": 162,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.819
+        },
+        {
+          "t": 0.3,
+          "foco": 0.785
+        },
+        {
+          "t": 0.5,
+          "foco": 0.733
+        },
+        {
+          "t": 0.7,
+          "foco": 0.818
+        },
+        {
+          "t": 0.9,
+          "foco": 0.874
+        },
+        {
+          "t": 1.1,
+          "foco": 0.907
+        },
+        {
+          "t": 1.3,
+          "foco": 0.921
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.86
+      },
+      "broll": {
+        "local": "publico",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "publico"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "crowd-surf",
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "alguém surfando sobre o público lotado"
+      }
+    },
+    {
+      "file": "alive-t13.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 216.5,
+      "fim": 218,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.713
+        },
+        {
+          "t": 0.3,
+          "foco": 0.716
+        },
+        {
+          "t": 0.5,
+          "foco": 0.722
+        },
+        {
+          "t": 0.7,
+          "foco": 0.73
+        },
+        {
+          "t": 0.9,
+          "foco": 0.738
+        },
+        {
+          "t": 1.1,
+          "foco": 0.738
+        },
+        {
+          "t": 1.3,
+          "foco": 0.746
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.71
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista de cabelo comprido tocando"
+      }
+    },
+    {
+      "file": "alive-t14.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 232,
+      "fim": 233.5,
+      "tags": [
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.614
+        },
+        {
+          "t": 0.2,
+          "foco": 0.623
+        },
+        {
+          "t": 0.4,
+          "foco": 0.637
+        },
+        {
+          "t": 0.6,
+          "foco": 0.639
+        },
+        {
+          "t": 0.8,
+          "foco": 0.623
+        },
+        {
+          "t": 1,
+          "foco": 0.61
+        },
+        {
+          "t": 1.2,
+          "foco": 0.605
+        },
+        {
+          "t": 1.4,
+          "foco": 0.602
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.88
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista sorrindo, luz estourada atrás"
+      }
+    },
+    {
+      "file": "alive-t16.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.47,
+      "ini": 264.5,
+      "fim": 266,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0.1,
+          "foco": 0.628
+        },
+        {
+          "t": 0.3,
+          "foco": 0.639
+        },
+        {
+          "t": 0.5,
+          "foco": 0.651
+        },
+        {
+          "t": 0.7,
+          "foco": 0.65
+        },
+        {
+          "t": 0.9,
+          "foco": 0.65
+        },
+        {
+          "t": 1.1,
+          "foco": 0.663
+        },
+        {
+          "t": 1.3,
+          "foco": 0.675
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.86
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "close",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie olhando pra cima, contraluz"
+      }
+    },
+    {
+      "file": "alive-acao3.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 74.5,
+      "fim": 76,
+      "tags": [
+        "jeff",
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "jeff"
+        ],
+        "plano": "medio",
+        "acao": [
+          "baixo"
+        ],
+        "clima": "energia",
+        "descricao": "Jeff de gorro e colares, cabeça baixa tocando"
+      }
+    },
+    {
+      "file": "alive-acao11.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 238,
+      "fim": 239.5,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "guitarrista",
+          "eddie"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "headbang",
+          "guitarra",
+          "pula"
+        ],
+        "clima": "energia",
+        "descricao": "guitarrista no headbang e Eddie pulando no palco"
+      }
+    },
+    {
+      "file": "alive-acao15.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 1.5,
+      "ini": 269,
+      "fim": 270.5,
+      "tags": [
+        "memoria"
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 0.13
+      },
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bateria"
+        ],
+        "clima": "energia",
+        "descricao": "baterista de chapéu atrás dos pratos"
+      }
+    },
+    {
+      "file": "alive-capa2.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 4,
+      "ini": 36,
+      "fim": 40,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.331
+        },
+        {
+          "t": 0.2,
+          "foco": 0.288
+        },
+        {
+          "t": 0.4,
+          "foco": 0.26
+        },
+        {
+          "t": 0.6,
+          "foco": 0.261
+        },
+        {
+          "t": 0.8,
+          "foco": 0.282
+        },
+        {
+          "t": 1,
+          "foco": 0.301
+        },
+        {
+          "t": 1.2,
+          "foco": 0.318
+        },
+        {
+          "t": 1.4,
+          "foco": 0.33
+        },
+        {
+          "t": 1.6,
+          "foco": 0.337
+        },
+        {
+          "t": 1.8,
+          "foco": 0.34
+        },
+        {
+          "t": 2,
+          "foco": 0.341
+        },
+        {
+          "t": 2.2,
+          "foco": 0.338
+        },
+        {
+          "t": 2.4,
+          "foco": 0.338
+        },
+        {
+          "t": 2.6,
+          "foco": 0.351
+        },
+        {
+          "t": 2.8,
+          "foco": 0.382
+        },
+        {
+          "t": 3,
+          "foco": 0.424
+        },
+        {
+          "t": 3.2,
+          "foco": 0.46
+        },
+        {
+          "t": 3.4,
+          "foco": 0.481
+        },
+        {
+          "t": 3.6,
+          "foco": 0.484
+        },
+        {
+          "t": 3.8,
+          "foco": 0.478
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "capa": 0,
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie de perfil cantando no microfone (capa)"
+      }
+    },
+    {
+      "file": "alive-capa3.mp4",
+      "musica": "Alive",
+      "origem": "Pearl Jam - Alive (Official Video).mp4",
+      "dur": 3.97,
+      "ini": 99,
+      "fim": 103,
+      "tags": [
+        "eddie",
+        "memoria"
+      ],
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.479
+        },
+        {
+          "t": 0.2,
+          "foco": 0.476
+        },
+        {
+          "t": 0.4,
+          "foco": 0.471
+        },
+        {
+          "t": 0.6,
+          "foco": 0.468
+        },
+        {
+          "t": 0.8,
+          "foco": 0.469
+        },
+        {
+          "t": 1,
+          "foco": 0.473
+        },
+        {
+          "t": 1.2,
+          "foco": 0.478
+        },
+        {
+          "t": 1.4,
+          "foco": 0.48
+        },
+        {
+          "t": 1.6,
+          "foco": 0.476
+        },
+        {
+          "t": 1.8,
+          "foco": 0.474
+        },
+        {
+          "t": 2,
+          "foco": 0.472
+        },
+        {
+          "t": 2.2,
+          "foco": 0.473
+        },
+        {
+          "t": 2.4,
+          "foco": 0.478
+        },
+        {
+          "t": 2.6,
+          "foco": 0.485
+        },
+        {
+          "t": 2.8,
+          "foco": 0.489
+        },
+        {
+          "t": 3,
+          "foco": 0.496
+        },
+        {
+          "t": 3.2,
+          "foco": 0.502
+        },
+        {
+          "t": 3.4,
+          "foco": 0.512
+        },
+        {
+          "t": 3.6,
+          "foco": 0.517
+        },
+        {
+          "t": 3.8,
+          "foco": 0.519
+        }
+      ],
+      "rosto": {
+        "achou": true,
+        "cobertura": 1
+      },
+      "capa": 0,
+      "broll": {
+        "local": "palco",
+        "era": "1991",
+        "fonte": "Alive (clipe oficial, 1991, preto e branco)",
+        "quem": [
+          "eddie"
+        ],
+        "plano": "medio",
+        "acao": [
+          "canta",
+          "grita"
+        ],
+        "clima": "intenso",
+        "descricao": "Eddie de frente no microfone, cortina clara atrás (capa)"
+      }
     }
   ]
 }
