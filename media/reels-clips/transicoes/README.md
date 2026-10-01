@@ -38,11 +38,11 @@ seguindo o rosto), `rosto` ({achou, cobertura}).
 
 | Campo | Valores |
 |---|---|
-| `quem` | eddie, stone, jeff, mike, matt, banda, publico, baterista, guitarrista (sem nome quando não dá pra ter certeza), animacao |
+| `quem` | eddie, stone, jeff, mike, matt, banda, publico, baterista, guitarrista (sem nome quando não dá pra ter certeza), animacao, natureza |
 | `plano` | close, medio, aberto |
 | `acao` | canta, grita, guitarra, baixo, bateria, headbang, pula, stage-dive, mosh, crowd-surf, maos-pro-alto, giro, dança |
 | `clima` | energia, intenso, calmo |
-| `local` | palco, publico, estudio |
+| `local` | palco, publico, estudio, natureza, rua |
 | `era`, `fonte`, `descricao` | ano, de onde saiu, frase curta do que aparece |
 
 Buscar: `node -e 'const d=require("./media/reels-clips/transicoes/transicoes.json");console.log(d.transicoes.filter(t=>t.broll.quem.includes("stone")).map(t=>t.file))'`
