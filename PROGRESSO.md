@@ -1,5 +1,15 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-10-02: Instagram oficial vira fonte de notícia
+
+- Posts da @pearljam e da @eddievedder entram na coleta pela API oficial da Meta (Business Discovery), sem navegador.
+  Precisou: permissões instagram_basic, instagram_manage_insights e business_management no app "Setlists PJ EV Bot"
+  (token gerado no Graph API Explorer e estendido pra não expirar), secret `IG_LEITURA_TOKEN`.
+- Teste no GitHub: 10 posts da @pearljam dos últimos 7 dias chegaram. Curadoria: matéria original em PT-BR, fonte
+  oficial, post vazio (emoji, agradecimento, propaganda) = SKIP, foto deles nunca (imagem do nosso acervo).
+- Próximo: conferir a primeira curadoria com esses itens (pode vir bastante coisa do Ohana repetida; a seção de 72 h
+  da curadoria deve juntar ou pular).
+
 ## 2026-10-01 (manhã): acervo fechado em 752 trechos e 70 capas
 
 - Entraram Even Flow (3ª passada), Thumbing My Way, 1/2 Full, e três shows inteiros em 1080p: Moline 2014, Roma 2018 e
