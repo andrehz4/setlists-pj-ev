@@ -1,5 +1,17 @@
 # PROGRESSO, setlists-pj-ev
 
+## 2026-10-01 (manhã): acervo fechado em 752 trechos e 70 capas
+
+- Entraram Even Flow (3ª passada), Thumbing My Way, 1/2 Full, e três shows inteiros em 1080p: Moline 2014, Roma 2018 e
+  Ten Show (Philadelphia, 2016). Shows inteiros são a melhor fonte de capa (close parado, luz de palco). Closes de fãs
+  ficam de fora (privacidade). Retrograde fora (atores, sem a banda).
+- Rodízio sem repetir (lista embaralhada fixa, bloco novo por dia/semana): story 70 dias sem repetir capa, reel 70 semanas.
+- Correções: download do YouTube agora prefere H.264 (VP9 não era lido pelo detector de rosto); importador usa caminho
+  absoluto. Grade de candidatos: `node scripts/publish/reel/grade-auto.mjs .momentos/<nome>`.
+- Acervo FECHADO por decisão do Andre. Reforço futuro: fase dos anos 2000 (Binaural, Riot Act, Avocado), mais Mike e Matt.
+- Pedido pra outra IA (baixa-clipehz, legenda gravada nos shows): opção desmarcada "Abertura SMUFDPJ" com "Só Mais um Fã
+  de PEARL JAM apresenta: <show>", marca nos intervalos sem legenda e "Só Mais um Fã IDIOTA de PEARL JAM agradece".
+
 ## 2026-10-01 (madrugada): acervo de clipes, transições no reel e no story, trilhas, R2 e limpeza do git
 
 - Acervo de trechos de clipe (`media/reels-clips/transicoes/transicoes.json`): 576 trechos de 41 vídeos, 12 capas, todos
