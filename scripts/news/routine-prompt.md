@@ -66,6 +66,14 @@ Pra cada item em `_pending.json` items[]:
 - Sem campo `kind` (ou `kind: undefined`) → mídia tradicional
 - `kind: "community-digest"` → digest da comunidade
 - `kind: "community-spotlight"` → spotlight de fã
+- `kind: "instagram-oficial"` → post das contas OFICIAIS (@pearljam, @eddievedder) no Instagram. Use o
+  system-curator-fa.txt, com estas regras a mais:
+  - É fonte OFICIAL: pode afirmar o que o post diz ("o Pearl Jam publicou", "Eddie escreveu"), citando que foi no
+    Instagram oficial. Traduza citações pro PT-BR (aspas curtas; não copie a legenda inteira).
+  - Escreva matéria ORIGINAL com contexto (o que é, por que importa, ligação com notícias recentes). Post só com
+    emoji, "mahalo", "thank you" ou propaganda sem informação nova = SKIP.
+  - Se o mesmo assunto já saiu por outra fonte nas últimas 72 h (seção 2.5), junte como atualização ou SKIP.
+  - NUNCA use a foto do post: o item vem sem imagem e a imagem sai do nosso acervo (fallback da banda).
 
 ### 4b. Aplique o system prompt apropriado
 
@@ -73,6 +81,7 @@ Pra cada item em `_pending.json` items[]:
 |------|--------------|-------------------|
 | (vazio) | system-curator-fa.txt | `title_orig`, `sourceLabel`, `url`, `pubDate`, `article_text` |
 | community-digest | system-community-digest.txt | array `community_posts` (cada um com author, title, score, num_comments, selftext, etc) |
+| instagram-oficial | system-curator-fa.txt (+ regras acima) | `title_orig`, `sourceLabel`, `url` (link do post), `pubDate`, `article_text` (legenda original) |
 | community-spotlight | system-community-spotlight.txt | `post_title_orig`, `post_flair`, `post_selftext`, `post_num_comments`, `community_post_score` (NÃO repassar autor/URL pro texto, são só pra metadado) |
 
 ### 4c. Monte o objeto curado

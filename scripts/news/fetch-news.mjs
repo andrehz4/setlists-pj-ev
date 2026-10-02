@@ -25,6 +25,7 @@ import { loadCurator } from "./curators/_shared.mjs";
 import { dedupeByContent } from "./dedupe.mjs";
 import { prunePendingByLogs } from "./prune-curated.mjs";
 import { fetchSetlistfmItems } from "./setlistfm.mjs";
+import { fetchIgOficialItems } from "./ig-oficial.mjs";
 import { writeStepSummary } from "./_summary.mjs";
 
 // --- args ---
@@ -98,6 +99,7 @@ async function fetchFeedItems(src) {
   if (src.kind === "pjcom-news") return fetchPjcomNewsItems(src);
   if (src.kind === "reddit-search-rss") return fetchRedditSearchItems(src);
   if (src.kind === "setlistfm") return fetchSetlistfmItems(src);
+  if (src.kind === "instagram-oficial") return fetchIgOficialItems(src);
   try {
     const feed = await parser.parseURL(src.url);
     const items = (feed.items || []).slice(0, 25).map((it) => ({

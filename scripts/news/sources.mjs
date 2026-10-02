@@ -83,6 +83,11 @@ export const SOURCES = [
   // News oficial: RSS quebrado em 2026-05-12. Scraping do JSON inline no HTML.
   { id: "pj-com-news", label: "Pearl Jam Oficial", group: "tenclub", url: "https://pearljam.com/news/", alwaysRelevant: true, kind: "pjcom-news" },
 
+  // Instagram OFICIAL (API da Meta, Business Discovery; ver scripts/news/ig-oficial.mjs). Só a legenda entra;
+  // a foto deles nunca é republicada. Desligado sem o secret IG_LEITURA_TOKEN.
+  { id: "ig-pearljam", label: "Instagram oficial @pearljam", group: "tenclub", url: "https://www.instagram.com/pearljam/", conta: "pearljam", alwaysRelevant: true, kind: "instagram-oficial" },
+  { id: "ig-eddievedder", label: "Instagram oficial @eddievedder", group: "tenclub", url: "https://www.instagram.com/eddievedder/", conta: "eddievedder", alwaysRelevant: true, kind: "instagram-oficial" },
+
   // Turne: setlists dos shows via setlist.fm API (precisa do secret SETLISTFM_API_KEY).
   // Cada show recente vira materia com o setlist completo (preText). Dormante fora de
   // turne (filtra shows dos ultimos 45 dias); em turne, cada show novo vira candidato.
