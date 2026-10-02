@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-10-02T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "25f48a486a", "title": "34th is pretty good (r/ween)", "reason": "sem mencao a PJ (post de outra banda)" },
+    { "id": "02eaae39a2", "title": "Do You Think Maynard Is Proud of Us? (r/ToolBand)", "reason": "sem mencao a PJ (post de outra banda)" },
+    { "id": "cs-4b01d80411", "title": "Ed wanted a selfie with me really bad", "reason": "spotlight sem selftext (selfie de fa com Eddie, sem show/data, nao e fan content)" },
+    { "id": "959330367d", "title": "#35 (r/KGATLW)", "reason": "sem mencao a PJ (post de outra banda)" },
+    { "id": "f42d519dfd", "title": "Great genres with shitty subgenres (r/fantanoforever)", "reason": "PJ tangencial (opiniao sobre post-grunge)" }
+  ]
+}
