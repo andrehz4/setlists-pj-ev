@@ -1,5 +1,6 @@
-// Gera as páginas estáticas de SEO a partir dos dados do site (index.html + media/):
-//   show/<id>, show/ · musica/<slug>, musica/ · disco/<id>, disco/ · banda/ · seção seo do sitemap.
+// Gera as páginas estáticas de SEO a partir dos dados do site (dados/*.js + index.html + media/):
+//   show/<id>, show/ · musica/<slug>, musica/ · disco/<id>, disco/ · banda/ · seção seo do sitemap
+//   e o media/shows.json que o fórum lê (mesma fonte dos shows do site, sem cópia à mão).
 // Rodar depois de mexer em show, disco, interpretação ou nota de tradução:
 //   node scripts/seo/build-seo-pages.mjs
 // O teste scripts/seo/seo.test.mjs falha se as páginas ficarem desatualizadas.
@@ -27,6 +28,14 @@ export function aplicarSitemap(atual, urls) {
     : limpo.replace("</urlset>", `${bloco}\n</urlset>`);
 }
 
+// Catálogo de shows do fórum (forum*.html): mais recente primeiro, has_audio pela mídia do show.
+export function showsJsonForum(shows, midia) {
+  const lista = [...shows].sort((a, b) => b.date.localeCompare(a.date)).map(({ id, artist, date, venue, city, tour, songs }) =>
+    ({ id, artist, date, venue, city, tour, songs, has_audio: Boolean(midia[id]?.audio?.length) }));
+  const doc = { total: lista.length, with_audio: lista.filter(s => s.has_audio).length, shows: lista };
+  return JSON.stringify(doc, null, 2) + "\n";
+}
+
 // Devolve { caminho: conteúdo } de tudo que o gerador escreve (usado também pelo teste de sincronia).
 export function gerarArquivos(dados, sitemapAtual) {
   const catalogo = catalogoMusicas(dados);
@@ -47,6 +56,7 @@ export function gerarArquivos(dados, sitemapAtual) {
     return [u, u.endsWith("/") ? "0.8" : "0.6"];
   });
   saida["sitemap.xml"] = aplicarSitemap(sitemapAtual, urls);
+  saida["media/shows.json"] = showsJsonForum(dados.shows, dados.midia);
   return saida;
 }
 

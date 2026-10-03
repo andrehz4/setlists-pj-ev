@@ -1,11 +1,11 @@
-// Lê as coleções embutidas no index.html (uma por linha: `const NOME = {...};`) e os
-// arquivos de texto do site. É a fonte da verdade do SPA; as páginas de SEO derivam dela.
+// Lê as coleções do site em dados/*.js (uma linha `const NOME = {...};` cada), o PJ_MEMBERS do index.html
+// e os arquivos de texto. É a fonte da verdade do SPA; as páginas de SEO derivam dela.
 import fs from "node:fs";
 import vm from "node:vm";
 
 export function lerColecao(html, nome) {
   const linha = html.split("\n").find(l => l.startsWith(`const ${nome} =`));
-  if (!linha) throw new Error(`index.html sem const ${nome}`);
+  if (!linha) throw new Error(`sem const ${nome}`);
   return JSON.parse(linha.replace(/^const \w+ = /, "").replace(/;\s*$/, ""));
 }
 
@@ -24,7 +24,8 @@ const lerJson = p => JSON.parse(fs.readFileSync(p, "utf8"));
 
 export function lerDadosSite(raiz = ".") {
   const html = fs.readFileSync(`${raiz}/index.html`, "utf8");
-  const albums = lerColecao(html, "ALBUMS");
+  const dado = (arq, nome) => lerColecao(fs.readFileSync(`${raiz}/dados/${arq}`, "utf8"), nome);
+  const albums = dado("albums.js", "ALBUMS");
   const ensaios = {};
   for (const a of albums) {
     const p = `${raiz}/media/albums/${a.id}.md`;
@@ -32,10 +33,10 @@ export function lerDadosSite(raiz = ".") {
   }
   const capas = new Set(albums.map(a => a.id).filter(id => fs.existsSync(`${raiz}/media/albums/${id}.jpg`)));
   return {
-    shows: lerColecao(html, "SHOWS"),
+    shows: dado("shows.js", "SHOWS"),
     albums,
-    songsDb: lerColecao(html, "SONGS_DB").songs,
-    midia: lerColecao(html, "MEDIA_MANIFEST"),
+    songsDb: dado("songs-db.js", "SONGS_DB").songs,
+    midia: dado("media-manifest.js", "MEDIA_MANIFEST"),
     interpretacoes: lerJson(`${raiz}/media/interpretations.json`),
     notas: lerJson(`${raiz}/media/lyrics-notes.json`),
     membros: lerMembros(html),

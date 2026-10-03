@@ -86,14 +86,18 @@ Playbook completo e reaproveitável (diagnóstico, Search Console, migração de
 O SPA (`index.html`) usa `#` e o Google não indexa o que vem depois dele. Por isso cada conteúdo tem página estática,
 todas no mesmo molde (`scripts/seo/layout.mjs`: menu de seções, breadcrumb, JSON-LD, GA):
 - `n/<id>.html` + `noticias/index.html`: gerados pelo publish via `scripts/news/build-news-stubs.mjs` (`news-page.mjs`).
-- `show/`, `musica/`, `disco/`, `banda/`: gerados de `index.html` (SHOWS, ALBUMS, SONGS_DB, PJ_MEMBERS) +
-  `media/interpretations.json`, `media/lyrics-notes.json` e `media/albums/*.md` por `node scripts/seo/build-seo-pages.mjs`.
+- `show/`, `musica/`, `disco/`, `banda/`: gerados de `dados/*.js` (SHOWS, ALBUMS, SONGS_DB, MEDIA_MANIFEST), do
+  PJ_MEMBERS do `index.html`, de `media/interpretations.json`, `media/lyrics-notes.json` e `media/albums/*.md` por
+  `node scripts/seo/build-seo-pages.mjs`, que também gera o `media/shows.json` do fórum.
   **Mexeu nesses dados? Rode o gerador**, senão o teste de sincronia (`scripts/seo/seo.test.mjs`) falha.
 - Música sem texto em PT não ganha página (conteúdo fino). Letra e cifra nunca vão pras páginas estáticas (direito autoral).
 - `sitemap.xml` tem seções marcadas (`news:start/end`, `seo:start/end`); cada gerador só reescreve a sua.
 - O rodapé da home tem a coluna "Pra ler" com links reais pros índices: é por ela que o Google entra.
 - Letras (`LYRICS`/`LYRICS_PT`) ficam em `media/letras/en.json` e `pt.json`, carregadas em segundo plano pelo index.html
   (`_letrasPromise`). Não voltar a embutir no HTML: pesa 316 KB e o Google indexaria letra com direito autoral.
+- **index.html enxuto** (desde 2026-10-03): dados em `dados/*.js` (uma linha `const NOME = ...;` cada, carregada antes do
+  script principal), CSS em `css/app.css` (no lugar do antigo `<style>`, mesma ordem de cascata). Teste
+  `scripts/seo/site-leve.test.mjs` barra linha gigante e `<style>` grande de volta no HTML.
 
 ### Reel semanal (motion design, MOTION-SPEC do Claude Design)
 
