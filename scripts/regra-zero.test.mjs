@@ -13,11 +13,8 @@ const PULA = /node_modules|[\\/]dist[\\/]/;
 
 const EXCECOES = {
   "mock-ig/server.mjs": 697,
-  "scripts/news/fetch-news.mjs": 597,
-  "scripts/news/community-fetch.mjs": 537,
   "scripts/publish/auto-merge-routine.mjs": 428,
   "scripts/publish/queue.mjs": 397,
-  "scripts/news/merge-curated.mjs": 387,
   "scripts/news/youtube/capsulas-grid.mjs": 344,
   "scripts/publish/story-styles/caderno-b.mjs": 307,
   "scripts/publish/run-publish-story.mjs": 277,
