@@ -1,0 +1,23 @@
+{
+  "runAt": "2026-10-03T09:02Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 13,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0, "instagram-oficial": 11 },
+  "approved": [
+    { "id": "8169f48012", "titulo": "No Dia Mundial do Sorriso, Pearl Jam conta como Dennis Flemion mexeu na letra de Smile", "kind": "instagram-oficial" }
+  ],
+  "skipped": [
+    { "id": "a88ef69140", "title": "High fashion at TheOhanaFest", "reason": "post só com emoji/legenda curta, sem informação nova" },
+    { "id": "6247c65295", "title": "A picture perfect close to an incredible theohanafest weekend", "reason": "post de fotos sem informação nova" },
+    { "id": "31f03a82d5", "title": "Hello good humans (carta de Eddie pós Ohana)", "reason": "sem novidade (já publicado: b3e9b6f347, f9cc02edc4)" },
+    { "id": "a2a5da2656", "title": "Mahalo, theohanafest!", "reason": "post só com mahalo, sem informação" },
+    { "id": "31b2b2d973", "title": "These limited-edition items just surfed in", "reason": "merch de festival já encerrado" },
+    { "id": "7847a500ae", "title": "Brent Barry joins Ament at TheOhanaFest", "reason": "aviso de painel de 27/9 já passado; livro já publicado: bb21be8fbd" },
+    { "id": "15c846c7c4", "title": "Help make a lasting impact (leilão Ohana)", "reason": "propaganda de leilão de evento já encerrado" },
+    { "id": "e1e52ddcc4", "title": "Sand, surf, music and a couple of books", "reason": "merch/livros já publicados (bb21be8fbd)" },
+    { "id": "b842f50553", "title": "Eddie Vedder & Friends, The Honking Seals", "reason": "sem novidade (já publicado: 04a0d0850b)" },
+    { "id": "47ae79c9fb", "title": "It's a Pearl Jam show after all", "reason": "merch de festival já encerrado" },
+    { "id": "c1c2fbae5d", "title": "Happy Birthday, Josh Klinghoffer!", "reason": "texto vazio" },
+    { "id": "2f42b9b498", "title": "Chris Cornell: Screaming Life", "reason": "PJ tangencial (relato pessoal sobre Soundgarden)" }
+  ]
+}
