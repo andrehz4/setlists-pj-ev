@@ -42,7 +42,7 @@
     "fontes:mac": "mkdir -p ~/Library/Fonts && cp -n media/fonts/*.ttf ~/Library/Fonts/ ; echo fontes do projeto em ~/Library/Fonts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.40.1",
+    "@anthropic-ai/sdk": "^0.129.0",
     "@google/generative-ai": "^0.24.1",
     "@tensorflow-models/blazeface": "^0.1.0",
     "@tensorflow/tfjs": "^4.22.0",
