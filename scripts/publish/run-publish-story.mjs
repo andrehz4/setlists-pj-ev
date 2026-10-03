@@ -13,62 +13,37 @@
 //   --no-git     pula commits/push (uso local)
 //   --force      ignora _story-log (republica mesmo se ja postou hoje)
 
-import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { publicarViaR2 } from "./midia-r2.mjs";
 import { selectStoryItems } from "./story-select.mjs";
 import { pickTrackForDate } from "./story-track.mjs";
-import { buildStoryVideo } from "./story-video.mjs";
-import { prepararNarracaoStory, mixarStory, gravarDias } from "./narracao/story.mjs";
-import { saldo } from "./narracao/elevenlabs.mjs";
-import { aplicarPadraoReel } from "./story/padrao-reel.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishStory } from "./instagram.mjs";
-import { publishVideoStory } from "./facebook.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
-import { lerEstado, comLista } from "../lib/estado.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 import { naRaiz, linkNoticia } from "../config.mjs";
-import { enviarTelegram } from "../lib/telegram.mjs";
-import { emBRT, horaBRT } from "../lib/brt.mjs";
+import { emBRT } from "../lib/brt.mjs";
+import { montarStory } from "./story/montar.mjs";
+import { notifyTelegramStory } from "./story/aviso.mjs";
+import { readLog, writeLog, espelharNoFacebook } from "./story/registro.mjs";
 
 const STORIES_DIR = naRaiz("media/news/instagram-stories");
-const LOG_PATH = path.join(STORIES_DIR, "_story-log.json");
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
-
-// Ciclo de cor: fonte unica em ./color-cycle.mjs (mesma do carrossel/capa).
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
 const NO_GIT = args.includes("--no-git");
 const FORCE = args.includes("--force");
 
-// Calcula a "data BRT do story": 9h BRT = 12h UTC. Pro carimbo da
-// peca e nome de arquivo, usa fuso BRT (UTC-3). Garante que o story
-// publicado de manha cedo BRT mostre a data BRT, nao UTC.
-function brtDate(now = new Date()) {
-  return emBRT(now);
-}
-
 // commit + push único do projeto (scripts/lib/git.mjs): aborta rebase que falhou, retry com jitter
 const commitAndPush = (paths, message, opts = {}) => commitAndPushGit(paths, message, { dry: NO_GIT || DRY, ...opts });
 
-async function readLog() {
-  // Corrompido derruba: log vazio em silêncio quebrava a idempotência (post duplicado)
-  return lerEstado(LOG_PATH, { entries: [] }, { valida: comLista("entries") });
-}
-
-async function writeLog(log) {
-  await fs.mkdir(path.dirname(LOG_PATH), { recursive: true });
-  await fs.writeFile(LOG_PATH, JSON.stringify(log, null, 2));
-}
-
 async function main() {
   const now = new Date();
-  const brt = brtDate(now);
+  const brt = emBRT(now); // data do story em Brasília (carimbo e nome do arquivo)
   const dateKey = brt.toISOString().slice(0, 10); // YYYY-MM-DD em BRT
   console.log(`[story] run em ${now.toISOString()} (BRT date=${dateKey}) dry=${DRY} no-git=${NO_GIT} force=${FORCE}`);
 
@@ -98,50 +73,9 @@ async function main() {
   const tarjaColor = getCurrentCycleColor(queue.postCount);
   console.log(`[story] cor do ciclo: ${tarjaColor} (postCount=${queue.postCount})`);
 
-  // 4. voz (opcional, STORY_NARRACAO=1): dia 1 grava o mês seguinte; depois a fala de hoje
-  if (process.env.STORY_NARRACAO === "1" && process.env.ELEVENLABS_API_KEY && brt.getUTCDate() === 1) {
-    try {
-      const conta = await saldo({ apiKey: process.env.ELEVENLABS_API_KEY });
-      // só grava adiantado se sobrar folga pro reel da semana (~3 mil créditos)
-      if (!conta || conta.restante > 5000) console.log(`[story] gravou ${await gravarDias(brt, 31, { apiKey: process.env.ELEVENLABS_API_KEY })} caracteres adiantados`);
-      else console.log(`[story] gravação adiantada pulada: restam ${conta.restante} créditos`);
-    } catch (e) { console.warn(`[story] gravação adiantada falhou (segue): ${e.message}`); }
-  }
-  const narr = await prepararNarracaoStory(brt);
-  if (narr?.aviso) console.log(`[story] ${narr.aviso}`);
-
-  // 5. renderiza video
+  // 4. vídeo (voz, render, padrão do reel, mixagem)
   const outPath = path.join(STORIES_DIR, `${dateKey}.mp4`);
-  const video = await buildStoryVideo({
-    items,
-    trackPath: track.path,
-    tarjaColor,
-    date: brt,
-    outPath,
-    introDur: narr?.introDur,
-    outroDur: narr?.outroDur,
-  });
-  const { duration } = video;
-  // padrão do reel (STORY_TRANSICOES=1): abertura com clipe + transições; falha = story como antes
-  if (process.env.STORY_TRANSICOES === "1") {
-    const introDur = narr?.introDur ?? 3.0, cards = Math.min(items.length, 5);
-    const r = await aplicarPadraoReel(outPath, { introDur, cards, cardDur: (video.outroInicio - introDur) / cards,
-      outroInicio: video.outroInicio, date: brt, accent: tarjaColor, tmpDir: video.tmpDir });
-    console.log(`[story] padrão do reel: abertura com clipe ${r.abertura ? "sim" : "não"}, ${r.transicoes} transições`);
-  }
-  let avisoVoz = narr?.aviso || "";
-  if (narr?.falas) {
-    const semVoz = path.join(video.tmpDir, "sem-voz.mp4");
-    try {
-      await fs.rename(outPath, semVoz);
-      await mixarStory(semVoz, outPath, { falas: narr.falas, outroInicio: video.outroInicio });
-    } catch (e) {
-      console.warn(`[story] mixagem da voz falhou, segue só com música: ${e.message}`);
-      await fs.rename(semVoz, outPath).catch(() => {});
-      avisoVoz = `story saiu SEM voz: a mixagem falhou`;
-    }
-  }
-  console.log(`[story] MP4 gerado: ${outPath} (${duration.toFixed(2)}s)`);
+  const { avisoVoz } = await montarStory({ items, track, tarjaColor, brt, outPath });
 
   // Link público do vídeo: R2 (apaga sozinho em 3 dias, não entra no git; ver midia-r2.mjs).
   // Sem R2 ou se falhar: jeito antigo, o MP4 vai no commit (forçado, o .gitignore ignora MP4) e o IG baixa do raw.
@@ -184,19 +118,8 @@ async function main() {
     process.exit(1);
   }
 
-  // 6b. Facebook Pages (story de video), best-effort: o IG ja publicou; falha
-  //     no FB so loga. So com a flag PUBLISH_FB=1 + secrets presentes.
-  let fbPostId = null;
-  if (process.env.PUBLISH_FB === "1" && process.env.FB_PAGE_ID && process.env.FB_PAGE_TOKEN) {
-    try {
-      const fb = await publishVideoStory({ videoUrl });
-      fbPostId = fb.postId;
-      console.log(`[story] FB OK fbPostId=${fbPostId}`);
-    } catch (e) {
-      const d = typeof e.toDetailString === "function" ? e.toDetailString() : e.message;
-      console.error(`[story] FB FALHA (IG ja publicou, seguindo): ${d}`);
-    }
-  }
+  // 6b. Facebook Pages (story de vídeo), best-effort
+  const fbPostId = await espelharNoFacebook(videoUrl);
 
   // 7. registra log + push
   log.entries.push({
@@ -205,8 +128,6 @@ async function main() {
     track: track.name, tarjaColor,
     postId, containerId, videoUrl, fbPostId,
   });
-  // mantem so ultimos 60 entries
-  if (log.entries.length > 60) log.entries = log.entries.slice(-60);
   await writeLog(log);
   await commitAndPush(["media/news/instagram-stories/_story-log.json"],
     `publish-story: log sucesso ${dateKey} postId=${postId}`);
@@ -226,31 +147,6 @@ async function main() {
   });
 
   console.log(`[story] FIM`);
-}
-
-async function notifyTelegramStory({ items, postId, track, dateKey, avisoVoz = "" }) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return;
-
-  const brtNow = horaBRT();
-
-  const lines = [];
-  lines.push(`🎬 <b>Story publicado, ${brtNow} BRT</b>`);
-  lines.push(`<i>postId: <code>${postId}</code> · trilha: ${track.name}</i>`);
-  if (avisoVoz) lines.push(`🎙 ${avisoVoz.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}`);
-  lines.push("");
-  lines.push(`<b>${items.length} ${items.length === 1 ? "manchete" : "manchetes"} do dia ${dateKey}</b>`);
-  lines.push("");
-  for (let i = 0; i < items.length; i++) {
-    const it = items[i];
-    const titulo = (it.title_pt || it.title || "(sem titulo)")
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    lines.push(`${i + 1}. <b>${titulo}</b>`);
-    lines.push(`   ↳ ${linkNoticia(it.id)}`);
-  }
-
-  await enviarTelegram(lines.join("\n"), { prefixo: "[story]", token, chat: chatId });
 }
 
 main().catch((e) => {

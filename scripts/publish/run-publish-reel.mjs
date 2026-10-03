@@ -10,31 +10,24 @@
 //
 // Flags: --dry-run (gera MP4, nao publica/commita) | --no-git | --force
 
-import fs from "node:fs/promises";
 import path from "node:path";
-import os from "node:os";
 import { spawnSync } from "node:child_process";
 import { publicarViaR2 } from "./midia-r2.mjs";
 import { selectReelItems } from "./reel-select.mjs";
-import { loadClips, pickClipFor, weekSeed } from "./reel-clips.mjs";
 import { pickTrackForDate } from "./story-track.mjs";
-import { buildReelVideo, buildScenePlan, thumbOffsetMsFor } from "./reel-video.mjs";
-import { prepararNarracao, mixarNarracao } from "./narracao/narracao.mjs";
+import { thumbOffsetMsFor } from "./reel-video.mjs";
+import { montarReel } from "./reel/montar-reel.mjs";
+import { readLog, writeLog, espelharNoFacebook, avisarReel } from "./reel/registro.mjs";
 import { readQueue } from "./queue.mjs";
 import { publishReel, buildReelCaption } from "./instagram.mjs";
-import { publishVideoReel } from "./facebook.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { isoWeekKey, weekRangeLabel } from "./reel-week.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
-import { aplicarTransicoes, montarAbertura, capaNaAbertura } from "./reel/transicoes.mjs";
-import { lerEstado, comLista } from "../lib/estado.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 import { naRaiz, linkNoticia } from "../config.mjs";
-import { enviarTelegram } from "../lib/telegram.mjs";
 import { emBRT } from "../lib/brt.mjs";
 
 const REELS_DIR = naRaiz("media/news/instagram-reels");
-const LOG_PATH = path.join(REELS_DIR, "_reel-log.json");
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 const MIN_ITEMS = 3;
@@ -44,25 +37,12 @@ const DRY = args.includes("--dry-run");
 const NO_GIT = args.includes("--no-git");
 const FORCE = args.includes("--force");
 
-function brtDate(now = new Date()) {
-  return emBRT(now);
-}
-
 // commit + push único do projeto (scripts/lib/git.mjs): aborta rebase que falhou, retry com jitter
 const commitAndPush = (paths, message, opts = {}) => commitAndPushGit(paths, message, { dry: NO_GIT || DRY, ...opts });
 
-async function readLog() {
-  // Corrompido derruba: log vazio em silêncio quebrava a idempotência (post duplicado)
-  return lerEstado(LOG_PATH, { entries: [] }, { valida: comLista("entries") });
-}
-async function writeLog(log) {
-  await fs.mkdir(path.dirname(LOG_PATH), { recursive: true });
-  await fs.writeFile(LOG_PATH, JSON.stringify(log, null, 2));
-}
-
 async function main() {
   const now = new Date();
-  const brt = brtDate(now);
+  const brt = emBRT(now);
   const weekKey = isoWeekKey(brt);
   console.log(`[reel] run em ${now.toISOString()} (semana ${weekKey}) dry=${DRY} no-git=${NO_GIT} force=${FORCE}`);
 
@@ -83,20 +63,6 @@ async function main() {
   console.log(`[reel] ${items.length} items:`);
   items.forEach((it, i) => console.log(`  ${i + 1}. [${it.format}${it.hasImg ? "" : " sem-foto"}] ${it.id} - ${(it.title_pt || "").slice(0, 60)}`));
 
-  // 2. clipes do acervo pras cenas de fundo de video
-  const clips = await loadClips();
-  const { scenes } = buildScenePlan(items);
-  const clipForScene = new Map();
-  const used = new Set();
-  const seed = weekSeed(weekKey);
-  scenes.forEach((scene, si) => {
-    if (scene.kind !== "coldopen" && scene.kind !== "kinetic") return;
-    const item = scene.item || items[0];
-    const clip = pickClipFor(item, clips, { used, seed, slot: si });
-    if (clip) clipForScene.set(si, clip.path);
-  });
-  console.log(`[reel] acervo: ${clips.length} clipes, ${clipForScene.size} cenas com clipe real`);
-
   // 3. trilha + cor do ciclo
   const track = await pickTrackForDate(brt);
   const queue = await readQueue();
@@ -104,42 +70,9 @@ async function main() {
   const rangeLabel = weekRangeLabel(brt);
   console.log(`[reel] trilha: ${track.name} | accent: ${accent} | semana: ${rangeLabel}`);
 
-  // 4. narração (opcional, REEL_NARRACAO=1 + ELEVENLABS_API_KEY): cada cena dura o tempo da fala
-  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "smufdpj-reel-"));
-  const narr = await prepararNarracao(scenes, { weekKey, tmpDir });
-
-  // abertura com sequência de trechos de clipe no lugar da foto (mesma flag das transições)
-  let aberturaClipe = false;
-  if (process.env.REEL_TRANSICOES === "1" && !clipForScene.has(0)) {
-    const abertura = montarAbertura(tmpDir, { semente: weekKey, dur: narr?.sceneDurs?.[0] ?? scenes[0].dur });
-    if (abertura) { clipForScene.set(0, abertura); aberturaClipe = true; console.log("[reel] abertura com clipe (sequência de trechos)"); }
-  }
-
-  // 5. renderiza
+  // 4. vídeo (clipes, voz, abertura, transições)
   const outPath = path.join(REELS_DIR, `${weekKey}.mp4`);
-  const r = await buildReelVideo({ items, trackPath: track.path, accent, rangeLabel, outPath, clipForScene, tmpDir, sceneDurs: narr?.sceneDurs });
-  let narrado = false;
-  let avisoVoz = narr?.aviso || "";
-  if (narr?.falas) {
-    try {
-      const semVoz = path.join(tmpDir, "sem-voz.mp4");
-      await fs.rename(outPath, semVoz);
-      await mixarNarracao(semVoz, outPath, { falas: narr.falas, scenes: r.sceneList });
-      narrado = true;
-      console.log(`[reel] narração mixada (voz ${narr.voz.nome})`);
-    } catch (e) {
-      console.warn(`[reel] mixagem da narração falhou, segue só com música: ${e.message}`);
-      avisoVoz = `reel saiu SEM voz: a mixagem falhou (${e.message.slice(0, 120)})`;
-      await fs.rename(path.join(tmpDir, "sem-voz.mp4"), outPath).catch(() => {});
-    }
-  }
-  // transições com trecho de clipe nas trocas de cena (REEL_TRANSICOES=1; falha = segue sem)
-  if (process.env.REEL_TRANSICOES === "1") {
-    try { console.log(`[reel] transições: ${aplicarTransicoes(outPath, { scenes: r.sceneList, semente: weekKey, capaInicioS: aberturaClipe ? capaNaAbertura(r.sceneList[0].dur) / 1000 : null })}`); }
-    catch (e) { console.warn(`[reel] transições falharam, segue sem: ${e.message.slice(0, 200)}`); }
-  }
-  await fs.rm(r.tmpDir, { recursive: true, force: true });
-  console.log(`[reel] MP4 gerado: ${outPath} (${r.duration.toFixed(1)}s, ${r.scenes} cenas)`);
+  const { clipForScene, capaMs, avisoVoz } = await montarReel({ items, track, accent, rangeLabel, weekKey, outPath });
 
   // Link público do vídeo: R2 (apaga sozinho em 3 dias, não entra no git; ver midia-r2.mjs).
   // Sem R2 ou se falhar: jeito antigo, o MP4 vai no commit (forçado, o .gitignore ignora MP4) e o IG baixa do raw.
@@ -162,7 +95,7 @@ async function main() {
   console.log(`[reel] publishing video_url=${videoUrl} (caption ${caption.length} chars)`);
   let postId, containerId, recovered;
   try {
-    const pub = await publishReel({ videoUrl, caption, shareToFeed: true, thumbOffsetMs: aberturaClipe ? capaNaAbertura(r.sceneList[0].dur) : thumbOffsetMsFor() });
+    const pub = await publishReel({ videoUrl, caption, shareToFeed: true, thumbOffsetMs: capaMs ?? thumbOffsetMsFor() });
     postId = pub.postId;
     containerId = pub.containerId;
     recovered = pub.recovered;
@@ -178,19 +111,8 @@ async function main() {
     process.exit(1);
   }
 
-  // 6b. Facebook Pages (reel de video, com a mesma legenda), best-effort: o IG
-  //     ja publicou; falha no FB so loga. So com a flag PUBLISH_FB=1 + secrets.
-  let fbPostId = null;
-  if (process.env.PUBLISH_FB === "1" && process.env.FB_PAGE_ID && process.env.FB_PAGE_TOKEN) {
-    try {
-      const fb = await publishVideoReel({ videoUrl, description: caption });
-      fbPostId = fb.postId;
-      console.log(`[reel] FB OK fbPostId=${fbPostId}`);
-    } catch (e) {
-      const d = typeof e.toDetailString === "function" ? e.toDetailString() : e.message;
-      console.error(`[reel] FB FALHA (IG ja publicou, seguindo): ${d}`);
-    }
-  }
+  // 6b. Facebook Pages (reel de vídeo, mesma legenda), best-effort
+  const fbPostId = await espelharNoFacebook(videoUrl, caption);
 
   // 7. log + telegram + summary
   log.entries.push({
@@ -198,11 +120,10 @@ async function main() {
     track: track.name, accent, postId, containerId, videoUrl, fbPostId,
     clipsUsed: [...clipForScene.values()].map((p) => path.basename(p)),
   });
-  if (log.entries.length > 60) log.entries = log.entries.slice(-60);
   await writeLog(log);
   await commitAndPush(["media/news/instagram-reels/_reel-log.json"], `publish-reel: log sucesso ${weekKey} postId=${postId}`);
 
-  await notifyTelegram({ items, postId, track, weekKey, rangeLabel, avisoVoz });
+  await avisarReel({ items, postId, track, weekKey, rangeLabel, avisoVoz });
   await writeStepSummary({
     title: "Publish Instagram Reel",
     meta: { dry: DRY, semana: weekKey, trilha: track.name, accent, clipes: clipForScene.size },
@@ -214,24 +135,6 @@ async function main() {
     })),
   });
   console.log(`[reel] FIM`);
-}
-
-async function notifyTelegram({ items, postId, track, weekKey, rangeLabel, avisoVoz = "" }) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return;
-  const lines = [];
-  lines.push(`🎞 <b>Reel semanal publicado (${weekKey})</b>`);
-  lines.push(`<i>postId: <code>${postId}</code> · trilha: ${track.name} · ${rangeLabel}</i>`);
-  if (avisoVoz) lines.push(`🎙 ${avisoVoz.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}`);
-  lines.push("");
-  for (let i = 0; i < items.length; i++) {
-    const titulo = (items[i].title_pt || "(sem titulo)")
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    lines.push(`${i + 1}. <b>${titulo}</b>`);
-    lines.push(`   ↳ ${linkNoticia(items[i].id)}`);
-  }
-  await enviarTelegram(lines.join("\n"), { prefixo: "[reel]", token, chat: chatId });
 }
 
 main().catch((e) => {
