@@ -92,7 +92,7 @@ function buildIntroFrame({ tRel, state }) {
 
     <text x="${cx}" y="${H - 90}" text-anchor="middle"
       font-family="${F_INTER_XB}" font-weight="800" font-size="26"
-      fill="#ffffff" opacity="${(footP * 0.85).toFixed(2)}" letter-spacing="3">SETLISTS-PJ-EV.PAGES.DEV</text>
+      fill="#ffffff" opacity="${(footP * 0.85).toFixed(2)}" letter-spacing="3">SOMAISUMFADEPEARLJAM.COM.BR</text>
   </svg>`;
 }
 

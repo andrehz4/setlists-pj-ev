@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = new URL("../../..", import.meta.url).pathname;
-const sharp = (await import(`${ROOT}node_modules/sharp/lib/index.js`)).default;
+const { default: sharp } = await import("sharp"); // import do pacote (o caminho interno mudou no sharp 0.35)
 const { buildCoverSlide } = await import(`${ROOT}scripts/publish/slide-image.mjs`);
 
 const rasc = JSON.parse(fs.readFileSync(path.join(ROOT, "media/news/youtube-acervo/_rascunhos.json"), "utf8"));

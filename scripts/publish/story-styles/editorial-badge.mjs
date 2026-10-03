@@ -47,7 +47,7 @@ function brandFooterSvg(opacity = 1, tarjaColor, H) {
   return `<g opacity="${opacity.toFixed(2)}">
     <rect x="0" y="${H - 84}" width="1080" height="4" fill="${TINTA}"/>
     <rect x="0" y="${H - 80}" width="1080" height="80" fill="${tarjaColor}"/>
-    <text x="${1080 / 2}" y="${H - 35}" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="32" font-weight="900" fill="${CREME}" stroke="${TINTA}" stroke-width="2" paint-order="stroke fill" letter-spacing="6" text-anchor="middle">SETLISTS-PJ-EV.PAGES.DEV</text>
+    <text x="${1080 / 2}" y="${H - 35}" font-family="'Big Shoulders Stencil Display','Arial Black',Impact,sans-serif" font-size="32" font-weight="900" fill="${CREME}" stroke="${TINTA}" stroke-width="2" paint-order="stroke fill" letter-spacing="6" text-anchor="middle">SOMAISUMFADEPEARLJAM.COM.BR</text>
   </g>`;
 }
 

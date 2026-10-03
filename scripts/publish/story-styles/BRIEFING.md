@@ -91,7 +91,7 @@ Cada style precisa mostrar em algum momento dos 3s:
    sticker em conta < 10k followers, então CTA é textual e dominante)
 3. **Handle**: "@SMUFDPJ"
 4. **Footer de continuidade**: "PRÓXIMA EDIÇÃO AMANHÃ 09H BRT" + URL
-   `SETLISTS-PJ-EV.PAGES.DEV`
+   `SOMAISUMFADEPEARLJAM.COM.BR`
 5. **Cor accent**: mesma `state.tarjaColor` usada na intro
 
 ### Animação

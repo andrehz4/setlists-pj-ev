@@ -13,7 +13,7 @@ import fs from "node:fs";
 import { spawnSync } from "node:child_process";
 
 const base = new URL("../../..", import.meta.url).pathname;
-const sharp = (await import(`${base}node_modules/sharp/lib/index.js`)).default;
+const { default: sharp } = await import("sharp"); // import do pacote (o caminho interno mudou no sharp 0.35)
 
 function arg(nome, def) {
   const i = process.argv.indexOf(`--${nome}`);

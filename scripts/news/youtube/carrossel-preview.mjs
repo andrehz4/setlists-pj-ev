@@ -8,7 +8,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 
 const ROOT = new URL("../../..", import.meta.url).pathname;
-const sharp = (await import(`${ROOT}node_modules/sharp/lib/index.js`)).default;
+const { default: sharp } = await import("sharp"); // import do pacote (o caminho interno mudou no sharp 0.35)
 const { buildCoverSlide, buildQuoteSlide, buildCtaSlide } = await import(`${ROOT}scripts/publish/slide-image.mjs`);
 const { CYCLE_COLORS } = await import(`${ROOT}scripts/publish/color-cycle.mjs`);
 

@@ -170,7 +170,7 @@ function buildOutroFrame({ tRel, state }) {
     <g opacity="${footerP.toFixed(2)}">
       <line x1="100" y1="${H - 200}" x2="${W - 100}" y2="${H - 200}" stroke="#0a0908" stroke-width="1"/>
       <text x="100" y="${H - 140}" font-family="'Helvetica Neue','Helvetica',sans-serif" font-size="20" fill="#0a0908" letter-spacing="6" opacity="0.7">PRÓXIMA EDIÇÃO  /  AMANHÃ  /  09H BRT</text>
-      <text x="100" y="${H - 95}" font-family="'Helvetica Neue','Helvetica',sans-serif" font-size="20" fill="#0a0908" letter-spacing="6" opacity="0.7">SETLISTS-PJ-EV.PAGES.DEV</text>
+      <text x="100" y="${H - 95}" font-family="'Helvetica Neue','Helvetica',sans-serif" font-size="20" fill="#0a0908" letter-spacing="6" opacity="0.7">SOMAISUMFADEPEARLJAM.COM.BR</text>
       <text x="${W - 100}" y="${H - 60}" font-family="'Helvetica Neue','Helvetica',sans-serif" font-size="14" fill="#0a0908" letter-spacing="4" text-anchor="end" opacity="0.6">PG. ${String(itemCount).padStart(2,"0")} OF ${String(itemCount).padStart(2,"0")}</text>
     </g>
   </svg>`;
