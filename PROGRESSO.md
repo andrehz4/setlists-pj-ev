@@ -9,6 +9,9 @@
   oficial, post vazio (emoji, agradecimento, propaganda) = SKIP, foto deles nunca (imagem do nosso acervo).
 - Próximo: conferir a primeira curadoria com esses itens (pode vir bastante coisa do Ohana repetida; a seção de 72 h
   da curadoria deve juntar ou pular).
+- Pendências da sessão (handoff): story de 02/10 e reel de 04/10 no padrão novo (conferir no ar); backup de 30/09
+  (`_backup-setlists-pj-ev-2026-09-30.git`, único com o histórico ORIGINAL) ficou mantido, decidir depois; rotina do
+  X às 11h (`/x-hoje`) rodando no Mac; pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
 
 ## 2026-10-01 (manhã): acervo fechado em 752 trechos e 70 capas
 
