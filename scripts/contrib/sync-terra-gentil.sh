@@ -10,6 +10,11 @@ DESTINO="${1:-/Users/andrehz/Documents/Githubhz/terra-gentil-app}/backend"
 COMMIT="$(git -C "$ORIGEM" rev-parse --short HEAD)"
 
 [ -f "$DESTINO/app/main.py" ] || { echo "ERRO: $DESTINO não parece o backend do Terra Gentil"; exit 1; }
+# Desde 2026-10-03 o painel usa PyJWT (python-jose tinha CVEs). Sem ele lá, o import quebra a produção.
+grep -qi '^pyjwt' "$DESTINO/requirements.txt" || {
+  echo "ERRO: $DESTINO/requirements.txt sem pyjwt. Adicione 'pyjwt[crypto]==2.15.1' lá (e troque python-jose) antes de sincronizar."
+  exit 1
+}
 git -C "$ORIGEM" diff --quiet -- app/contrib tests || echo "AVISO: há mudanças não commitadas no painel; o ORIGEM.md vai citar $COMMIT"
 
 # Módulo: cópia espelhada (apaga lá o que foi apagado aqui).

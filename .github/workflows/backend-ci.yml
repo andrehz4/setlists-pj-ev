@@ -46,4 +46,3 @@ jobs:
 
       - name: Auditoria de dependencias (pip-audit)
         run: pip-audit -r requirements.txt
-        continue-on-error: true

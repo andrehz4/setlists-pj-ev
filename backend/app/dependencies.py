@@ -6,6 +6,9 @@ from app.services.auth_service import verify_jwt
 
 ALLOWED_SITES = {"pj", "terra-gentil"}
 
+# Ids de rota são UUID; validar na borda devolve 422 em vez de 500 do Postgres.
+UUID_RE = r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+
 
 def resolve_site(request: Request) -> str:
     """Determina o site pelo Origin da request. Rejeita origens desconhecidas."""
@@ -37,9 +40,3 @@ def optional_auth(authorization: str | None = Header(default=None)) -> str | Non
     except HTTPException:
         return None
 
-
-def require_admin(user_id: str = None) -> str:
-    """Use junto com require_auth: depende dele primeiro."""
-    if not settings.is_admin(user_id):
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Apenas admin.")
-    return user_id

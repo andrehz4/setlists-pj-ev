@@ -7,8 +7,9 @@ Admin do painel = Gmail listado em CONTRIB_ADMIN_EMAILS.
 import uuid
 from datetime import UTC, datetime, timedelta
 
+import jwt
 from fastapi import Depends, Header, HTTPException
-from jose import JWTError, jwt
+from jwt import PyJWTError as JWTError
 
 from app.contrib.config import contrib_settings as cfg
 from app.core.config import settings

@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install --user --no-cache-dir -r requirements.txt
+RUN pip install --prefix=/install --no-cache-dir -r requirements.txt
 
 
 FROM python:3.12-slim
@@ -23,11 +23,13 @@ WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PATH=/root/.local/bin:$PATH \
     PORT=8000
 
-COPY --from=builder /root/.local /root/.local
-COPY ./app ./app
+# Usuário sem privilégio: o app não roda como root no container.
+RUN useradd --create-home --uid 10001 app
+COPY --from=builder /install /usr/local
+COPY --chown=app:app ./app ./app
+USER app
 
 EXPOSE 8000
 

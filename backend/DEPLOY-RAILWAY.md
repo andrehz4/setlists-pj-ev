@@ -20,6 +20,23 @@ Consequência prática:
 - Como o banco é compartilhado, se ele cair, os DOIS apps caem juntos; se for
   mantido vivo, os dois ficam vivos.
 
+## Duas cópias do código do fórum (atenção)
+
+O que roda em produção é `/Users/andrehz/Documents/Githubhz/terra-gentil-app/backend` (repo do Terra Gentil). O
+`backend/` deste repo é uma cópia do fórum que ficou PARA TRÁS em funcionalidade (lá já existe editar tópico e
+resposta, por exemplo). Só o painel de colaboradores (`app/contrib/`) tem a fonte da verdade aqui e é levado pra lá
+por `scripts/contrib/sync-terra-gentil.sh`.
+
+Em 2026-10-03 a vistoria corrigiu aqui, e AINDA PRECISA SER PORTADO pro terra-gentil-app:
+- E-mail no perfil público `GET /forum/users/{id}`: só o dono vê (lá: `app/routes/forum.py`, SELECT com `email`).
+- `JWT_SECRET` obrigatório (32+ caracteres) em produção (`app/core/config.py`) e `/docs` fechado em produção.
+- python-jose (CVEs) trocado por PyJWT; authlib, fastapi/starlette e python-dotenv atualizados (`requirements.txt`).
+  O sync do painel recusa rodar enquanto o requirements de lá não tiver `pyjwt`.
+- Rate limit pela ÚLTIMA entrada do X-Forwarded-For (a primeira é forjável). Antes de portar, confirmar no Railway
+  que o proxy anexa o IP real no fim do cabeçalho (logar `x-forwarded-for` de uma request real).
+- Ids de rota validados como UUID (422 em vez de 500), paginação do feed com limites, foto do feed só https,
+  rate limit nas rotas de escrita, pool com `command_timeout`, Dockerfile sem root.
+
 ## Onde roda
 
 - **Plataforma app:** Railway (conta do Andre, eng.andrehz@gmail.com).

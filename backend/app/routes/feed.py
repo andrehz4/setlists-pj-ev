@@ -1,10 +1,11 @@
 import logging
 import uuid
 
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, Request, status
 
+from app.core.config import settings
 from app.core.limiter import limiter
-from app.dependencies import optional_auth, require_auth, resolve_site
+from app.dependencies import UUID_RE, optional_auth, require_auth, resolve_site
 from app.schemas.feed import (
     CommentCreate,
     FeedCommentOut,
@@ -27,8 +28,8 @@ _optional_auth = optional_auth
 @router.get("/posts", response_model=FeedPageOut, tags=["Feed"])
 async def list_posts(
     request: Request,
-    page: int = 1,
-    per_page: int = 20,
+    page: int = Query(default=1, ge=1, le=10000),
+    per_page: int = Query(default=20, ge=1, le=50),
     user_id: str | None = Depends(_optional_auth),
 ):
     site = _resolve_site(request)
@@ -98,8 +99,8 @@ async def create_post(
 
 @router.get("/posts/{post_id}", response_model=FeedPostDetailOut, tags=["Feed"])
 async def get_post(
-    post_id: str,
     request: Request,
+    post_id: str = Path(pattern=UUID_RE),
     user_id: str | None = Depends(_optional_auth),
 ):
     site = _resolve_site(request)
@@ -142,9 +143,10 @@ async def get_post(
 
 
 @router.post("/posts/{post_id}/likes", status_code=status.HTTP_200_OK, tags=["Feed"])
+@limiter.limit("30/minute")
 async def toggle_like(
-    post_id: str,
     request: Request,
+    post_id: str = Path(pattern=UUID_RE),
     user_id: str = Depends(_require_auth),
 ):
     site = _resolve_site(request)
@@ -190,8 +192,8 @@ async def toggle_like(
 @limiter.limit("3/minute")
 async def create_comment(
     request: Request,
-    post_id: str,
     payload: CommentCreate,
+    post_id: str = Path(pattern=UUID_RE),
     user_id: str = Depends(_require_auth),
 ):
     site = _resolve_site(request)
@@ -226,9 +228,10 @@ async def create_comment(
 
 
 @router.delete("/comments/{comment_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["Feed"])
+@limiter.limit("20/minute")
 async def delete_comment(
-    comment_id: str,
     request: Request,
+    comment_id: str = Path(pattern=UUID_RE),
     user_id: str = Depends(_require_auth),
 ):
     site = _resolve_site(request)
@@ -247,7 +250,7 @@ async def delete_comment(
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Comentário não encontrado")
         if row["site"] != site:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Comentário não encontrado")
-        if row["user_id"] != user_id:
+        if row["user_id"] != user_id and not settings.is_admin(user_id):  # admin modera, como no fórum
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Sem permissão")
 
         await conn.execute(

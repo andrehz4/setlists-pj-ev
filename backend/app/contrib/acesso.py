@@ -74,5 +74,6 @@ async def definir_membro(payload: MembroIn, admin: str = Depends(auth.require_ad
     email = payload.email.strip().lower()
     async with get_conn() as conn:
         await membros.definir(conn, email=email, status=payload.status, novo_id=str(uuid.uuid4()))
-    logger.info("Contrib membro %s -> %s por admin=%s", email, payload.status, admin)
+    # e-mail mascarado no log (LGPD): f***@gmail.com
+    logger.info("Contrib membro %s -> %s por admin=%s", email[:1] + "***@" + email.split("@")[-1], payload.status, admin)
     return {"email": email, "status": payload.status}

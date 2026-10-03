@@ -1,4 +1,5 @@
 import uuid
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,14 +13,26 @@ from app.core.config import settings
 from app.core.limiter import limiter
 from app.core.logging import configure_logging, request_id_ctx
 from app.routes import auth, feed, forum
-from app.services.db import get_conn
+from app.services.db import close_pool, get_conn
 
 configure_logging()
 
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    yield
+    await close_pool()
+
+_producao = settings.ENVIRONMENT == "production"
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
     description="API do Fórum SMUFDPJ",
+    lifespan=lifespan,
+    # documentação interativa só fora de produção (não expõe o mapa da API)
+    docs_url=None if _producao else "/docs",
+    redoc_url=None if _producao else "/redoc",
+    openapi_url=None if _producao else "/openapi.json",
 )
 app.state.limiter = limiter
 
@@ -36,11 +49,11 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=_allowed_origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
+    allow_methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
 )
 
-app.add_middleware(SessionMiddleware, secret_key=settings.JWT_SECRET or "dev-session-only")
+app.add_middleware(SessionMiddleware, secret_key=settings.JWT_SECRET or "dev-session-only")  # vazio só fora de produção (config valida)
 app.add_middleware(SlowAPIMiddleware)
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
@@ -89,4 +102,4 @@ async def health_db() -> JSONResponse:
 
 @app.get("/", tags=["Root"])
 async def root() -> dict:
-    return {"app": settings.APP_NAME, "version": settings.APP_VERSION, "docs": "/docs"}
+    return {"app": settings.APP_NAME, "version": settings.APP_VERSION}

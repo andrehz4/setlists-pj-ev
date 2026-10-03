@@ -2,8 +2,9 @@ import logging
 import uuid
 from datetime import UTC, datetime, timedelta
 
+import jwt
 from fastapi import HTTPException, status
-from jose import JWTError, jwt
+from jwt import PyJWTError as JWTError
 
 from app.core.config import settings
 from app.services.db import get_conn
@@ -34,7 +35,10 @@ def verify_jwt(token: str) -> dict:
 
 
 async def upsert_user(profile: dict) -> str:
-    user_id = str(profile.get("sub") or uuid.uuid4())
+    # O "sub" do Google é numérico (21 dígitos), não UUID: deriva um UUID estável dele
+    # (mesma regra do backend do Terra Gentil, que é o que roda em produção).
+    sub = str(profile.get("sub") or "")
+    user_id = str(uuid.uuid5(uuid.NAMESPACE_URL, sub) if sub else uuid.uuid4())
     display_name = profile.get("name", "Usuário")
     avatar_url = profile.get("picture")
 

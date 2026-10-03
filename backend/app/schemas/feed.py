@@ -2,7 +2,8 @@ from pydantic import BaseModel, Field
 
 
 class FeedPostCreate(BaseModel):
-    photo_url: str = Field(min_length=10, max_length=500)
+    # só https (bloqueia javascript:, data: e http em claro)
+    photo_url: str = Field(min_length=10, max_length=500, pattern=r"^https://[^\s]+$")
     caption: str | None = Field(default=None, max_length=2200)
 
 

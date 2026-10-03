@@ -1,4 +1,4 @@
-from pydantic import Field
+from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -19,13 +19,13 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_SECRET: str = Field(default="", description="Google OAuth client secret")
     JWT_SECRET: str = Field(default="", description="Secret for signing forum JWTs")
     FORUM_CORS_ORIGIN: str = Field(
-        default="https://setlists-pj-ev.pages.dev",
+        default="https://somaisumfadepearljam.com.br",
         description="Frontend origin (used in OAuth redirect)",
     )
 
     # Mapeamento origem → site. Formato: "https://dominio.com=pj,https://outro.com=terra-gentil"
     SITE_ORIGINS: str = Field(
-        default="https://setlists-pj-ev.pages.dev=pj",
+        default="https://somaisumfadepearljam.com.br=pj,https://setlists-pj-ev.pages.dev=pj",
         description="Mapa de origens para site ID, separado por vírgula",
     )
 
@@ -39,6 +39,13 @@ class Settings(BaseSettings):
         default="",
         description="UUIDs/Google sub dos admins, separados por vírgula",
     )
+
+    @model_validator(mode="after")
+    def _segredo_forte_em_producao(self):
+        # JWT_SECRET vazio = tokens forjáveis (e a sessão do OAuth e o JWT do painel derivam dele).
+        if self.ENVIRONMENT == "production" and len(self.JWT_SECRET) < 32:
+            raise ValueError("JWT_SECRET ausente ou curto (mínimo 32 caracteres) em produção; o app não sobe assim")
+        return self
 
     @property
     def admin_user_ids(self) -> set[str]:

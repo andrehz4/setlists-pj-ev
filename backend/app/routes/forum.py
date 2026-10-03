@@ -3,11 +3,11 @@ import logging
 import secrets
 import uuid
 
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, HTTPException, Path, Request, status
 
 from app.core.config import settings
 from app.core.limiter import limiter
-from app.dependencies import optional_auth, require_auth, resolve_site
+from app.dependencies import UUID_RE, optional_auth, require_auth, resolve_site
 from app.schemas.forum import (
     PostCreate,
     PostOut,
@@ -105,27 +105,26 @@ async def list_topics(
         ) rc ON rc.target_id = t.id
     """
 
-    where = ["t.site = $3"]
-    args = [per_page, offset, site]
+    # Filtros: coluna fixa aqui, valor sempre por placeholder. _where(n) numera a partir de $n,
+    # então a listagem (que usa $1/$2 pro LIMIT/OFFSET) e o COUNT montam o WHERE sem trocar texto.
+    filtros = [("t.site", site)]
     if category:
-        args.append(category)
-        where.append(f"t.category = ${len(args)}")
+        filtros.append(("t.category", category))
     if show_id:
-        args.append(show_id)
-        where.append(f"t.anchor_show_id = ${len(args)}")
-    where_sql = " WHERE " + " AND ".join(where)
+        filtros.append(("t.anchor_show_id", show_id))
+    valores = [v for _, v in filtros]
+
+    def _where(primeiro: int) -> str:
+        return " WHERE " + " AND ".join(f"{col} = ${primeiro + i}" for i, (col, _) in enumerate(filtros))
 
     async with get_conn() as conn:
-        rows = await conn.fetch(  # noqa: S608 (order vem de _SORT_MAP, args via placeholders)
-            base_select + where_sql + f" ORDER BY t.pinned DESC, {order} LIMIT $1 OFFSET $2",
-            *args,
+        rows = await conn.fetch(  # noqa: S608 (order vem de _SORT_MAP, valores via placeholders)
+            base_select + _where(3) + f" ORDER BY t.pinned DESC, {order} LIMIT $1 OFFSET $2",
+            per_page, offset, *valores,
         )
-        # COUNT usa os mesmos filtros mas sem LIMIT/OFFSET (offset args 1 e 2)
-        count_args = args[2:]
-        count_where = where_sql.replace("$3", "$1").replace("$4", "$2").replace("$5", "$3")
         total = await conn.fetchval(
-            f"SELECT COUNT(*) FROM forum_topics t {count_where}",  # noqa: S608 (where de fragmentos fixos, valores via placeholders)
-            *count_args,
+            f"SELECT COUNT(*) FROM forum_topics t {_where(1)}",  # noqa: S608 (colunas fixas, valores via placeholders)
+            *valores,
         )
 
     items = [_topic_from_row(r) for r in rows]
@@ -212,8 +211,8 @@ async def create_bot_topic(request: Request, payload: TopicCreate):
 
 @router.get("/topics/{topic_id}", response_model=TopicDetailOut, tags=["Forum"])
 async def get_topic(
-    topic_id: str,
     request: Request,
+    topic_id: str = Path(pattern=UUID_RE),
     page: int = 1,
     per_page: int = 30,
     user_id: str | None = Depends(optional_auth),
@@ -273,7 +272,11 @@ async def get_topic(
 
 
 @router.get("/users/{user_id}", tags=["Forum"])
-async def get_user_profile(user_id: str, request: Request):
+async def get_user_profile(
+    request: Request,
+    user_id: str = Path(pattern=UUID_RE),
+    viewer: str | None = Depends(optional_auth),
+):
     """Perfil público com agregações pra montar a página de perfil."""
     site = resolve_site(request)
     async with get_conn() as conn:
@@ -334,7 +337,7 @@ async def get_user_profile(user_id: str, request: Request):
         "avatar_url": u["avatar_url"],
         "created_at": u["created_at"],
         "bio": u["bio"],
-        "email": u["email"],
+        "email": u["email"] if viewer == u["id"] else "",  # privado: só o dono vê
         "birth_year": u["birth_year"],
         "city": u["city"],
         "shows_attended": list(u["shows_attended"] or []),
@@ -353,7 +356,9 @@ async def get_user_profile(user_id: str, request: Request):
 
 
 @router.patch("/users/me", tags=["Forum"])
+@limiter.limit("10/minute")
 async def update_my_profile(
+    request: Request,
     payload: UserProfileUpdate,
     user_id: str = Depends(require_auth),
 ):
@@ -384,7 +389,7 @@ async def update_my_profile(
 
 
 @router.get("/users/{user_id}/badges", tags=["Forum"])
-async def get_user_badges(user_id: str, request: Request):
+async def get_user_badges(request: Request, user_id: str = Path(pattern=UUID_RE)):
     """Badges automáticos derivados de counts. Cacheável."""
     site = resolve_site(request)
     async with get_conn() as conn:
@@ -419,8 +424,8 @@ async def get_user_badges(user_id: str, request: Request):
 @limiter.limit("1/minute")
 async def create_post(
     request: Request,
-    topic_id: str,
     payload: PostCreate,
+    topic_id: str = Path(pattern=UUID_RE),
     user_id: str = Depends(require_auth),
 ):
     site = resolve_site(request)
@@ -517,9 +522,10 @@ async def toggle_reaction(
 
 
 @router.delete("/posts/{post_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["Forum"])
+@limiter.limit("20/minute")
 async def delete_post(
-    post_id: str,
     request: Request,
+    post_id: str = Path(pattern=UUID_RE),
     user_id: str = Depends(require_auth),
 ):
     """Apaga uma resposta. Autor ou admin podem apagar."""
@@ -541,9 +547,10 @@ async def delete_post(
 
 
 @router.delete("/topics/{topic_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["Forum"])
+@limiter.limit("20/minute")
 async def delete_topic(
-    topic_id: str,
     request: Request,
+    topic_id: str = Path(pattern=UUID_RE),
     user_id: str = Depends(require_auth),
 ):
     """Apaga um tópico inteiro (e respostas em cascata). Autor ou admin podem apagar."""
@@ -565,6 +572,7 @@ async def delete_topic(
 
 
 @router.post("/reports", status_code=status.HTTP_201_CREATED, tags=["Forum"])
+@limiter.limit("5/minute")
 async def create_report(
     request: Request,
     payload: ReportCreate,
