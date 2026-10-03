@@ -12,7 +12,6 @@ const PASTAS = ["scripts", "mock-ig", "colab", "functions"];
 const PULA = /node_modules|[\\/]dist[\\/]/;
 
 const EXCECOES = {
-  "mock-ig/server.mjs": 697,
   "scripts/news/youtube/capsulas-grid.mjs": 344,
   "scripts/publish/story-styles/caderno-b.mjs": 307,
   "scripts/publish/reel.test.mjs": 275,
