@@ -1,0 +1,15 @@
+# Atualizações automáticas (PRs semanais). As actions estão fixadas por SHA nos workflows; o dependabot
+# mantém o SHA e o comentário de versão em dia.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: weekly }
+  - package-ecosystem: npm
+    directory: "/"
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 5
+  - package-ecosystem: pip
+    directory: "/backend"
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 5

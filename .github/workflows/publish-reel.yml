@@ -2,7 +2,7 @@ name: Publish Instagram Reel
 on:
   schedule:
     # domingo 12:00 UTC = 09:00 BRT (resumao da semana)
-    - cron: '0 12 * * 0'
+    - cron: '7 12 * * 0'
   workflow_dispatch:
     inputs:
       dry-run:
@@ -26,12 +26,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 1
           persist-credentials: true
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: '22'
           cache: 'npm'

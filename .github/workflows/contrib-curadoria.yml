@@ -36,8 +36,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: '22'
           cache: npm
@@ -64,19 +64,20 @@ jobs:
           CONTRIB_BOT_KEY: ${{ secrets.CONTRIB_BOT_KEY }}
         run: |
           if [ -z "$CONTRIB_BOT_KEY" ]; then echo "sem CONTRIB_BOT_KEY"; echo "n=0" >> "$GITHUB_OUTPUT"; exit 0; fi
-          resp=$(curl -s -m 30 -H "X-Bot-Key: $CONTRIB_BOT_KEY" -H "Origin: https://setlists-pj-ev.pages.dev" \
-            https://perpetual-energy-production-1a69.up.railway.app/contrib/bot/contagem || echo '{}')
+          # retry cobre o cold start do Railway; backend fora vira aviso no log (antes parecia "fila vazia")
+          resp=$(curl -sf -m 30 --retry 2 --retry-delay 10 -H "X-Bot-Key: $CONTRIB_BOT_KEY" -H "Origin: https://setlists-pj-ev.pages.dev" \
+            https://perpetual-energy-production-1a69.up.railway.app/contrib/bot/contagem) || { echo "::warning::backend do painel nao respondeu a contagem"; resp='{}'; }
           n=$(echo "$resp" | jq -r '((.fila // 0) + (.pedidos // 0) + (.prontos // 0))' 2>/dev/null || echo 0)
           echo "contagem: $resp"
           echo "n=$n" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         if: steps.fila.outputs.n != '0'
         with:
           fetch-depth: 5
           persist-credentials: true
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         if: steps.fila.outputs.n != '0'
         with:
           node-version: '22'

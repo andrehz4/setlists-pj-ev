@@ -24,11 +24,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: '22'
           cache: 'npm'
@@ -147,7 +147,7 @@ jobs:
             (
               [ . | to_entries[] |
                 ((.key + 1) | tostring) + ". " +
-                "<b>" + (.value.titulo_pt | gsub("<"; "&lt;") | gsub(">"; "&gt;") | gsub("&"; "&amp;")) + "</b>\n" +
+                "<b>" + (.value.titulo_pt | gsub("&"; "&amp;") | gsub("<"; "&lt;") | gsub(">"; "&gt;")) + "</b>\n" +
                 "   <code>" + .value.id + "</code>" +
                 (if (.value.tags // []) | length > 0 then "  tags: " + (.value.tags | join(", ")) else "" end) + "\n" +
                 "   ↳ https://somaisumfadepearljam.com.br/n/" + .value.id

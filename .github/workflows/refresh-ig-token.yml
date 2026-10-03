@@ -1,6 +1,6 @@
 name: Refresh IG token
 # Tokens long-lived do Instagram expiram em 60 dias.
-# Roda no dia 1 de cada mes — suficiente pra renovar dentro do prazo.
+# Roda nos dias 1 e 15 (o token dura 60 dias; uma tentativa por mes ja deixou ele expirar).
 #
 # PRE-REQUISITO: secret GH_PAT_SECRETS com um PAT de escopo "repo".
 #   Como criar:
@@ -16,7 +16,7 @@ on:
   schedule:
     # Dia 1 de cada mes, 06:13 UTC. Token expira em 60 dias, renovar 1x/mes e
     # suficiente com boa margem de seguranca.
-    - cron: '13 6 1 * *'
+    - cron: '13 6 1,15 * *'
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 1
 
@@ -41,7 +41,7 @@ jobs:
           fi
           echo "GH_PAT_SECRETS presente, prosseguindo."
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: '22'
           cache: 'npm'
