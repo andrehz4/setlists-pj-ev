@@ -10,6 +10,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
+import { naRaiz } from "../config.mjs";
 
 // store + porta proprios (a suite roda arquivos em paralelo: 8795 livre)
 process.env.MOCK_IG_STORE = path.join(os.tmpdir(), `mock-ig-reel-${process.pid}.json`);
@@ -264,8 +265,8 @@ test("publishReel: poll aguarda processamento do video (storyPolls > 0)", async 
 test("Regra 0: arquivos do reel ficam curtos (limite 150 linhas)", async () => {
   const fs = await import("node:fs");
   const path = await import("node:path");
-  const dir = path.resolve("scripts/publish/reel");
-  const arquivos = [...fs.readdirSync(dir).filter((f) => f.endsWith(".mjs")).map((f) => path.join(dir, f)), path.resolve("scripts/publish/reel-video.mjs")];
+  const dir = naRaiz("scripts/publish/reel");
+  const arquivos = [...fs.readdirSync(dir).filter((f) => f.endsWith(".mjs")).map((f) => path.join(dir, f)), naRaiz("scripts/publish/reel-video.mjs")];
   for (const f of arquivos) {
     const n = fs.readFileSync(f, "utf8").split("\n").length;
     assert.ok(n <= 150, `${path.basename(f)} tem ${n} linhas`);

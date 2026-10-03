@@ -3,8 +3,9 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { naRaiz } from "../../config.mjs";
 
-const ARQ = path.resolve("media/news/youtube-acervo/_fontes.json");
+const ARQ = naRaiz("media/news/youtube-acervo/_fontes.json");
 let _fontes = null;
 
 export function fonteDoVideo(videoId) {

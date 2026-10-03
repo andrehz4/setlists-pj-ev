@@ -63,14 +63,14 @@ test("mergeQueueStates: backoff/erro local vence pendente remoto (preserva _rate
   assert.ok(m.items[0]._rateLimitedUntil, "backoff nao pode se perder no merge");
 });
 
-// readQueue resolve o caminho relativo ao CWD no load do modulo, entao o
-// teste roda um subprocesso com cwd num diretorio temporario.
+// readQueue resolve o caminho pela raiz do repo (scripts/config.mjs); SMUFDPJ_RAIZ aponta a raiz
+// pra um diretorio temporario, num subprocesso.
 function runReadQueueIn(cwd) {
   const queueModUrl = new URL("./queue.mjs", import.meta.url).href;
   return spawnSync(process.execPath, [
     "-e",
     `import(${JSON.stringify(queueModUrl)}).then(m => m.readQueue()).then(q => { console.log("OK " + q.items.length); }).catch(e => { console.error("ERR " + e.message); process.exit(3); });`,
-  ], { cwd, encoding: "utf8" });
+  ], { cwd, encoding: "utf8", env: { ...process.env, SMUFDPJ_RAIZ: cwd } });
 }
 
 test("readQueue: arquivo corrompido lanca erro (nao zera a fila silenciosamente)", () => {

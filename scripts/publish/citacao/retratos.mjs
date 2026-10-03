@@ -5,8 +5,9 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { naRaiz } from "../../config.mjs";
 
-export const RETRATOS_DIR = path.resolve("media/band/retratos");
+export const RETRATOS_DIR = naRaiz("media/band/retratos");
 const CATALOGO = path.join(RETRATOS_DIR, "retratos.json");
 
 let _catalogo = null;

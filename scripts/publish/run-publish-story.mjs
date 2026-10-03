@@ -30,8 +30,9 @@ import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
 import { lerEstado, comLista } from "../lib/estado.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
+import { naRaiz, linkNoticia } from "../config.mjs";
 
-const STORIES_DIR = path.resolve("media/news/instagram-stories");
+const STORIES_DIR = naRaiz("media/news/instagram-stories");
 const LOG_PATH = path.join(STORIES_DIR, "_story-log.json");
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
@@ -218,7 +219,7 @@ async function main() {
     curated: items.map((it) => ({
       title_pt: it.title_pt || it.title,
       sourceLabel: it.kind || "regular",
-      url: `https://somaisumfadepearljam.com.br/n/${it.id}`,
+      url: linkNoticia(it.id),
     })),
   });
 
@@ -244,7 +245,7 @@ async function notifyTelegramStory({ items, postId, track, dateKey, avisoVoz = "
     const titulo = (it.title_pt || it.title || "(sem titulo)")
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     lines.push(`${i + 1}. <b>${titulo}</b>`);
-    lines.push(`   ↳ https://somaisumfadepearljam.com.br/n/${it.id}`);
+    lines.push(`   ↳ ${linkNoticia(it.id)}`);
   }
 
   const text = lines.join("\n");

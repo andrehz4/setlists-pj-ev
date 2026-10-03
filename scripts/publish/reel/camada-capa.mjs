@@ -9,8 +9,9 @@ import sharp from "sharp";
 import { measureText, F_ANTON, F_INTER_SB, F_INTER_XB } from "./base.mjs";
 import { coldOpenSvg } from "./cenas-abertura-final.mjs";
 import { CAPA_S } from "./transicoes.mjs";
+import { naRaiz } from "../../config.mjs";
 
-export const SAIDA = path.resolve("media/marca/camada-capa-reel.png");
+export const SAIDA = naRaiz("media/marca/camada-capa-reel.png");
 
 async function main() {
   const saida = process.argv[2] || SAIDA;

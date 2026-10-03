@@ -2,9 +2,10 @@
 // Modulo isolado para facilitar testes sem carregar sharp/canvas.
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-export const BAND_DIR = path.resolve("media/band");
-const EMERGENCY_FALLBACK = path.resolve("media/news/img/_band-fallback-1.jpg");
+export const BAND_DIR = naRaiz("media/band");
+const EMERGENCY_FALLBACK = naRaiz("media/news/img/_band-fallback-1.jpg");
 
 export async function loadBandFallbacks(dir = BAND_DIR) {
   try {

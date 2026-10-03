@@ -20,8 +20,9 @@
 // como input no publish-instagram.yml com mode=smoke).
 
 import got from "got";
+import { GRAPH_IG } from "../config.mjs";
 
-const API_BASE = process.env.IG_API_BASE || "https://graph.instagram.com/v21.0";
+const API_BASE = process.env.IG_API_BASE || GRAPH_IG;
 
 function mask(s, keep = 6) {
   if (!s) return "(vazio)";

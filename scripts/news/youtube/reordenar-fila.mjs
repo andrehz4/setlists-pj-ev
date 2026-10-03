@@ -15,8 +15,9 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { naRaiz } from "../../config.mjs";
 
-const ACERVO = path.resolve("media/news/youtube-acervo");
+const ACERVO = naRaiz("media/news/youtube-acervo");
 const RASC = path.join(ACERVO, "_rascunhos.json");
 const QUEUE = path.join(ACERVO, "_capsula-queue.json");
 const APLICAR = process.argv.includes("--aplicar");

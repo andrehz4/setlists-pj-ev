@@ -9,10 +9,11 @@
 import fs from "node:fs/promises";
 import { lerEstado, comLista } from "../lib/estado.mjs";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const QUEUE_PATH = path.resolve("media/news/_publish-queue.json");
-const DENYLIST_PATH = path.resolve("media/news/_deleted-from-ig.json");
-const COOLDOWN_PATH = path.resolve("media/news/_ig-cooldown.json");
+const QUEUE_PATH = naRaiz("media/news/_publish-queue.json");
+const DENYLIST_PATH = naRaiz("media/news/_deleted-from-ig.json");
+const COOLDOWN_PATH = naRaiz("media/news/_ig-cooldown.json");
 // Zero = posta no proximo cron de 30min apos a curadoria.
 export const PUBLISH_DELAY_MS = 0;
 export const MAX_PER_CAROUSEL = 10;

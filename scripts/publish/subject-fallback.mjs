@@ -11,8 +11,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { pickFallback } from "./band-fallback.mjs";
+import { naRaiz } from "../config.mjs";
 
-export const SUBJECTS_ROOT = path.resolve("media/band/subjects");
+export const SUBJECTS_ROOT = naRaiz("media/band/subjects");
 
 // Mapa pessoa -> pasta + padrao de deteccao. Ordem importa: numa noticia que
 // cita mais de um, o PRIMEIRO match vence (Jack Irons em primeiro por ser o

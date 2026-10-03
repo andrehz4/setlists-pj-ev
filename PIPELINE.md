@@ -5,7 +5,7 @@
 
 
 Documentacao oficial do pipeline de noticias do site Pearl Jam fan-to-fan
-(setlists-pj-ev.pages.dev / Instagram @smufdpj).
+(https://somaisumfadepearljam.com.br / Instagram @smufdpj; o antigo setlists-pj-ev.pages.dev redireciona 301).
 
 > **Para proximos chats:** este e o documento de referencia do fluxo de noticias,
 > postagem e do schedule de curadoria. Leia a secao de Estado real abaixo ANTES
@@ -14,7 +14,7 @@ Documentacao oficial do pipeline de noticias do site Pearl Jam fan-to-fan
 
 ---
 
-## ⚠️ Estado real e diagnostico (atualizado 2026-06-01) — LEIA PRIMEIRO
+## ⚠️ Estado real e diagnostico (atualizado 2026-06-01, modelo e dominio em 2026-10-03), LEIA PRIMEIRO
 
 O resto do documento descreve o desenho ORIGINAL. Estes pontos refletem o que
 de fato acontece hoje, com os achados da investigacao de 2026-05-31/06-01:
@@ -23,7 +23,7 @@ de fato acontece hoje, com os achados da investigacao de 2026-05-31/06-01:
 - **Coleta (ATIVA):** `news.yml` (autor de commit `pj-news-bot`) e `community.yml`
   rodam no GitHub Actions e enchem `media/news/_pending.json` com candidatos crus.
 - **Curadoria (ATIVA, mas e o Claude schedule, NAO um Action):** a "Rotina Claude"
-  e uma **scheduled task no Anthropic Cloud** (Claude Sonnet), 4x/dia (00/06/12/18
+  e uma **scheduled task no Anthropic Cloud** (hoje Claude Opus 5.5; o "routine sonnet" nas mensagens de commit e nome historico), 4x/dia (00/06/12/18
   BRT). Ela le `_pending.json`, cura, e commita em branch `claude/news-routine-*`,
   que o auto-merge mescla na main. Nos commits aparece autor **"Claude"**, msg
   "news: curadoria automatica via routine sonnet". O prompt dela vive em
@@ -223,7 +223,7 @@ dashboard ou consultar a tabela `triggers`.
 
 ## Workflows
 
-### 1. news.yml — News fetch
+### 1. news.yml, News fetch
 **Funcao:** scrapa sites de noticias (Stereogum, Pitchfork, pearljam.com, loja, etc.)
 e escreve candidatos em `media/news/_pending.json`.
 
@@ -236,7 +236,7 @@ e escreve candidatos em `media/news/_pending.json`.
 
 ---
 
-### 2. community.yml — Community fetch
+### 2. community.yml, Community fetch
 **Funcao:** coleta conteudo do Reddit r/pearljam em dois modos:
 - **Digest** (09:25 BRT): top posts das ultimas 24h, agrega em 1 materia
 - **Spotlight** (21:25 BRT): melhor fan art/conteudo da semana com score >= 50 e imagem
@@ -260,7 +260,7 @@ aplica regras de voz (sem travessao, sem mencionar Reddit, etc.), e faz push em 
 **Horario:** 4x/dia em BRT: 00:00, 06:00, 12:00, 18:00
 (`0 3,9,15,21 * * *` UTC)
 
-**Modelo:** Claude Sonnet (Anthropic Cloud, ambiente remoto com proxy de rede)
+**Modelo:** Claude Opus 5.5 desde 2026-09-30 (antes Sonnet; Anthropic Cloud, ambiente remoto com proxy de rede)
 
 **Output:** branch `claude/news-routine-YYYYMMDD` com `media/news/` atualizado
 
@@ -268,7 +268,7 @@ aplica regras de voz (sem travessao, sem mencionar Reddit, etc.), e faz push em 
 
 ---
 
-### 4. publish-instagram.yml — Publish Instagram
+### 4. publish-instagram.yml, Publish Instagram
 **Funcao dupla:**
 1. **Auto-merge:** detecta branches `claude/news-routine-*`, valida (committer whitelist + path), abre PR, mescla em main, notifica Telegram
 2. **Publish:** le fila `_publish-queue.json`, gera slides JPG, posta carrossel no IG via Graph API
@@ -286,7 +286,7 @@ mexer aqui no YAML.
 
 ---
 
-### 5. publish-story.yml — Publish Instagram Story
+### 5. publish-story.yml, Publish Instagram Story
 **Funcao:** seleciona ate 5 noticias das ultimas 24h do `index.json`, gera MP4 1080x1920
 com sharp+ffmpeg, posta como story no IG.
 
@@ -299,7 +299,7 @@ Sem conteudo das ultimas 24h, o story e cancelado automaticamente.
 
 ---
 
-### 6. refresh-ig-token.yml — Refresh IG token
+### 6. refresh-ig-token.yml, Refresh IG token
 **Funcao:** renova o token long-lived do Instagram (expira em 60 dias).
 
 **Horario:** dia 1 de cada mes, `13 6 1 * *` UTC = 03:13 BRT

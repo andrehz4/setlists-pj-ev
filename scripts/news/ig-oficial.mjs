@@ -1,9 +1,10 @@
+import { GRAPH_FB } from "../config.mjs";
 // Fonte: posts das contas OFICIAIS no Instagram (@pearljam, @eddievedder), lidos pela API
 // oficial da Meta (Business Discovery, via a página "Só mais um Fã de PJ" vinculada à
 // @smufdpj). Nada de navegador nem scraping. Desligado sem o secret IG_LEITURA_TOKEN.
 // Só entra a LEGENDA como matéria-prima: a foto deles não é republicada (direito autoral);
 // a curadoria escreve matéria original em PT-BR e a imagem vem do nosso acervo.
-const API = "https://graph.facebook.com/v21.0";
+const API = GRAPH_FB;
 const ID_PADRAO = "17841414148425536"; // @smufdpj vista pela Graph do Facebook (não é segredo)
 const DIAS = 7; // só posts recentes
 

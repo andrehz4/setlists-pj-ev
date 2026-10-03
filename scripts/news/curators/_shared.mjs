@@ -2,8 +2,9 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../../config.mjs";
 
-const PROMPTS_DIR = path.resolve("scripts/news/prompts");
+const PROMPTS_DIR = naRaiz("scripts/news/prompts");
 
 let _systemPrompt = null;
 let _userTemplate = null;

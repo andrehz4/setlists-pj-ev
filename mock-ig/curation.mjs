@@ -16,8 +16,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { readQueue } from "../scripts/publish/queue.mjs";
+import { naRaiz } from "../scripts/config.mjs";
 
-const NEWS_DIR = path.resolve("media/news");
+const NEWS_DIR = naRaiz("media/news");
 const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const REJECTED_PATH = path.join(NEWS_DIR, "_rejected-curated.json");

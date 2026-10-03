@@ -61,7 +61,7 @@ B=https://perpetual-energy-production-1a69.up.railway.app
 curl -s "$B/health"
 # 200 {"status":"ok",...} = app de pé. (Não diz nada sobre o banco.)
 
-curl -s -H "Origin: https://setlists-pj-ev.pages.dev" "$B/forum/topics"
+curl -s -H "Origin: https://somaisumfadepearljam.com.br" "$B/forum/topics"
 # 200 com {"items":[...]}  = fórum OK (app + banco).
 # 500 "InternalServerError" = banco fora -> Supabase provavelmente pausou.
 # 403 "Origem não autorizada" = faltou o header Origin (normal via curl sem ele).
@@ -85,15 +85,17 @@ dois apps (banco compartilhado) ou separa.
 
 - `ENVIRONMENT=production`
 - `DATABASE_URL` (Postgres do Supabase)
-- `JWT_SECRET` (se vazio, o app assina JWT com string vazia = tokens forjáveis)
+- `JWT_SECRET` (obrigatório, 32+ caracteres: desde 2026-10-03 o app NÃO sobe em produção sem ele)
+  (a sessão do OAuth e o JWT do painel de colaboradores derivam dele)
 - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
-- `SITE_ORIGINS=https://setlists-pj-ev.pages.dev=pj` (+ a origem do Terra Gentil)
-- `FORUM_CORS_ORIGIN=https://setlists-pj-ev.pages.dev`
+- `SITE_ORIGINS=https://somaisumfadepearljam.com.br=pj,https://setlists-pj-ev.pages.dev=pj` (+ a origem do Terra Gentil).
+  O pages.dev fica porque os robôs (contrib-curadoria, keep-db-awake, forum-seed) ainda mandam esse Origin.
+- `FORUM_CORS_ORIGIN=https://somaisumfadepearljam.com.br,https://setlists-pj-ev.pages.dev`
 - `FORUM_BOT_KEY` (pro seeder semanal `forum-seed.yml`; sem ela o endpoint fica off)
 - `ADMIN_USER_IDS` (Google sub dos admins)
 
 ## Observações
 
-- O código do fórum está 100% no repo (`backend/`), testes passam (`pytest`, 84+).
+- O código do fórum está 100% no repo (`backend/`), testes passam (`pytest`, 200+, CI em `.github/workflows/backend-ci.yml`).
   Nunca foi perda de código; as quedas foram sempre banco (Supabase pause) ou infra.
 - Deploy do app é automático no push do repo conectado no Railway.

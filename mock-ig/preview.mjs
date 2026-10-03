@@ -14,8 +14,9 @@ import { buildSlide } from "../scripts/publish/slide-image.mjs";
 import { buildSingleCaption, buildCarouselCaption } from "../scripts/publish/instagram.mjs";
 import { getCurrentCycleColor } from "../scripts/publish/color-cycle.mjs";
 import { topicSignature, similarity } from "../scripts/news/dedupe-history.mjs";
+import { naRaiz } from "../scripts/config.mjs";
 
-const NEWS_DIR = path.resolve("media/news");
+const NEWS_DIR = naRaiz("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");

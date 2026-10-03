@@ -6,8 +6,9 @@
 import path from "node:path";
 import sharp from "sharp";
 import { carregarCatalogo, arquivoRetrato } from "./retratos.mjs";
+import { naRaiz } from "../../config.mjs";
 
-const FONTE = path.resolve("media/band/subjects");
+const FONTE = naRaiz("media/band/subjects");
 const LADO = 600;
 
 for (const [slug, p] of Object.entries(carregarCatalogo())) {

@@ -17,8 +17,9 @@
 // TTL nao compoe com isso (o log e re-lido toda rodada), entao nao se aplica.
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const NEWS_DIR = path.resolve("media/news");
+const NEWS_DIR = naRaiz("media/news");
 export const CURATION_LOG_DIR = path.join(NEWS_DIR, "_curation-log");
 
 // Junta todos os ids ja julgados (approved + skipped) de todos os logs de rodada.

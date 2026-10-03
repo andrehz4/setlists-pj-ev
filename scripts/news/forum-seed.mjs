@@ -14,12 +14,13 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz, FORUM_API } from "../config.mjs";
 
-const API_BASE = process.env.FORUM_API_BASE || "https://perpetual-energy-production-1a69.up.railway.app";
+const API_BASE = process.env.FORUM_API_BASE || FORUM_API;
 const ORIGIN = process.env.FORUM_ORIGIN || "https://setlists-pj-ev.pages.dev";
 const BOT_KEY = process.env.FORUM_BOT_KEY || "";
-const INDEX_PATH = path.resolve("media/news/index.json");
-const STAMP_PATH = path.resolve("media/news/_forum-seed-stamp.json");
+const INDEX_PATH = naRaiz("media/news/index.json");
+const STAMP_PATH = naRaiz("media/news/_forum-seed-stamp.json");
 const MAX_ITEMS = 5;
 
 // Semana ISO (AAAA-WNN) pra idempotencia do stamp.

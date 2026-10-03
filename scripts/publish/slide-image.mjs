@@ -33,7 +33,7 @@ const { default: smartcrop } = await import("smartcrop-sharp");
 
 const SLIDE_W = 1080;
 const SLIDE_H = 1350;
-export const SLIDES_DIR = path.resolve("media/news/instagram-slides");
+export const SLIDES_DIR = naRaiz("media/news/instagram-slides");
 
 // Flag de layout. Default = "card02" (novo design, aprovado e no ar desde
 // 2026-05-16). Rollback instantaneo: SLIDE_LAYOUT=cadernob no workflow
@@ -47,6 +47,7 @@ const LAYOUT = (process.env.SLIDE_LAYOUT || "card02").toLowerCase();
 import { loadBandFallbacks, pickFallback } from "./band-fallback.mjs";
 // Fallback por assunto: noticia que cita um integrante usa a foto dele.
 import { subjectFallbackPath } from "./subject-fallback.mjs";
+import { naRaiz } from "../config.mjs";
 const BAND_FALLBACKS = await loadBandFallbacks();
 function bandFallbackPath(id) { return pickFallback(BAND_FALLBACKS, id); }
 
@@ -121,7 +122,7 @@ async function fetchBaseImageBuffer(item) {
       const buf = await got(ovUrl, { timeout: { request: 15000 }, retry: { limit: 1 }, responseType: "buffer" }).buffer();
       if (buf && buf.length > 1024) {
         if (item.img && item.img.startsWith("/media/news/img/")) {
-          const dest = path.join(process.cwd(), item.img.replace(/^\//, ""));
+          const dest = naRaiz(item.img.replace(/^\//, ""));
           await fs.writeFile(dest, buf).catch(() => {});
         }
         console.log(`[slide] ${item.id}: usando imagem de override manual (${ovUrl})`);
@@ -135,7 +136,7 @@ async function fetchBaseImageBuffer(item) {
   // Foto local do repo: imagens scraped (/media/news/img/) ou foto escolhida do
   // acervo (/media/band/...), usada pelas cápsulas pra variar a foto por item.
   if (item.img && item.img.startsWith("/media/")) {
-    const local = path.join(process.cwd(), item.img.replace(/^\//, ""));
+    const local = naRaiz(item.img.replace(/^\//, ""));
     try {
       const buf = await fs.readFile(local);
       if (buf.length > 1024) return buf;
@@ -364,7 +365,7 @@ async function prepareSource(item) {
         srcBuf = better.buffer;
         det = await detectFaces(srcBuf);
         if (item.img && item.img.startsWith("/media/news/img/")) {
-          const dest = path.join(process.cwd(), item.img.replace(/^\//, ""));
+          const dest = naRaiz(item.img.replace(/^\//, ""));
           await fs.writeFile(dest, srcBuf).catch(() => {});
         }
         console.log(`[slide] ${item.id}: fonte cortada no rosto -> imagem melhor de ${better.url}`);
@@ -948,7 +949,7 @@ export async function buildSlide(item, { outDir } = {}) {
             srcBuf = better.buffer;
             det = await detectFaces(srcBuf);
             if (item.img && item.img.startsWith("/media/news/img/")) {
-              const dest = path.join(process.cwd(), item.img.replace(/^\//, ""));
+              const dest = naRaiz(item.img.replace(/^\//, ""));
               await fs.writeFile(dest, srcBuf).catch(() => {});
             }
             console.log(`[slide] ${item.id}: fonte cortada no rosto -> imagem melhor de ${better.url}`);

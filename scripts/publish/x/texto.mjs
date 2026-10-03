@@ -1,3 +1,4 @@
+import { SITE_URL } from "../../config.mjs";
 // Texto dos posts do X (limite 280). Na API paga por uso, post com URL custa ~13x
 // mais (US$ 0,20 x 0,015): por padrão SEM LINK (fica na bio). No modo manual (kit
 // do dia, grátis) passa `link` e ele entra no lugar da chamada.
@@ -7,7 +8,7 @@ export const LIMITE = 280;
 const CTA_NOTICIA = "Matéria completa no site (link na bio).";
 const CTA_CAPSULA = "A cápsula completa está no site (link na bio).";
 const TAGS = "#PearlJam #EddieVedder";
-const SITE = "https://somaisumfadepearljam.com.br";
+const SITE = SITE_URL;
 const PESO_URL = 23; // o X conta todo link como 23 caracteres
 export const linkMateria = (id) => `${SITE}/n/${id}`;
 

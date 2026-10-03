@@ -17,10 +17,11 @@
 
 import got from "got";
 import { buildCarouselCaption, slideUrlFor } from "./instagram.mjs";
+import { GRAPH_FB } from "../config.mjs";
 
 // FB_API_BASE permite apontar pro mock local (ver mock-ig/) sem mudar a logica.
 // Sem a env, usa a Graph API real do Facebook (producao).
-const FB_API_BASE = process.env.FB_API_BASE || "https://graph.facebook.com/v21.0";
+const FB_API_BASE = process.env.FB_API_BASE || GRAPH_FB;
 
 // Codes de rate-limit do Graph API do Facebook (Meta), espelhando o IG.
 // 4: Application request limit reached

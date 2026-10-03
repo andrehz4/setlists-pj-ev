@@ -15,8 +15,9 @@
 import got from "got";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz, GRAPH_IG } from "../config.mjs";
 
-const API_BASE = process.env.IG_API_BASE || "https://graph.instagram.com/v21.0";
+const API_BASE = process.env.IG_API_BASE || GRAPH_IG;
 const LOOKBACK_DAYS_DEFAULT = 30;
 const CONCURRENCY = 5;
 
@@ -26,7 +27,7 @@ const CONCURRENCY = 5;
 // estourar o limite code 4). Com o cache, so checamos postIds novos ou
 // cujo "exists=true" ja passou de CACHE_FRESH_DAYS. Persistido em arquivo
 // porque cada run do Actions e checkout limpo.
-const CACHE_PATH = path.resolve("media/news/_ig-exists-cache.json");
+const CACHE_PATH = naRaiz("media/news/_ig-exists-cache.json");
 const CACHE_FRESH_DAYS = 7;
 
 async function readExistsCache() {

@@ -8,8 +8,9 @@
 // janela do oldest post nos ultimos 24h (best effort, IG nao da exatidao).
 
 import got from "got";
+import { GRAPH_IG } from "../config.mjs";
 
-const API_BASE = process.env.IG_API_BASE || "https://graph.instagram.com/v21.0";
+const API_BASE = process.env.IG_API_BASE || GRAPH_IG;
 
 // Margem de seguranca: se quota_total - quota_usage <= MARGIN, aborta a run
 // antes mesmo de tentar. Permite Andre publicar manualmente pelo app sem

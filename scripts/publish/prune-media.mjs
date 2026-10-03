@@ -22,10 +22,11 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const SLIDES_DIR = path.resolve("media/news/instagram-slides");
-const STORIES_DIR = path.resolve("media/news/instagram-stories");
-const REELS_DIR = path.resolve("media/news/instagram-reels");
+const SLIDES_DIR = naRaiz("media/news/instagram-slides");
+const STORIES_DIR = naRaiz("media/news/instagram-stories");
+const REELS_DIR = naRaiz("media/news/instagram-reels");
 export const KEEP_DAYS_DEFAULT = 14;
 export const KEEP_DAYS_REELS = 30;
 

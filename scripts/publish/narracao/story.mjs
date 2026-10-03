@@ -9,6 +9,7 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import { sintetizar, saldo } from "./elevenlabs.mjs";
 import { duracaoAudio, mixarNarracao } from "./narracao.mjs";
+import { naRaiz } from "../../config.mjs";
 
 export const VOZES_STORY = [
   { nome: "Bella", id: "hpp4J3VqNfWAUOO0d1Us" }, // dia par
@@ -20,7 +21,7 @@ export const FINAIS_STORY = [
   "Amanhã tem mais. Segue o Só Mais um Fã de Pearl Jam!",
 ];
 const MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
-export const DIR_STORY = path.resolve("media/news/instagram-stories/narracao");
+export const DIR_STORY = naRaiz("media/news/instagram-stories/narracao");
 const INICIO_FALA = 0.25;
 
 // date = Date já em BRT (como o run-publish-story usa). Tudo pelo UTC dela.

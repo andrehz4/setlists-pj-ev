@@ -10,10 +10,11 @@
 //   (REPO_PUBLIC_BASE opcional, default raw.githubusercontent.com/andrehz4/setlists-pj-ev/main)
 
 import got from "got";
+import { GRAPH_IG, SITE_DOMINIO } from "../config.mjs";
 
 // IG_API_BASE permite apontar pra um mock local (ver mock-ig/) sem mudar
 // nada da logica. Sem a env, usa a Graph API real (producao intocada).
-const API_BASE = process.env.IG_API_BASE || "https://graph.instagram.com/v21.0";
+const API_BASE = process.env.IG_API_BASE || GRAPH_IG;
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 
@@ -83,7 +84,7 @@ function classifyIGError({ path, statusCode, body }) {
 
 const HASHTAGS_FIXED = ["pearljam", "eddievedder", "pjbrasil", "grunge", "smufdpj"];
 const IG_CAPTION_MAX = 2200;
-const SITE_URL = "somaisumfadepearljam.com.br";
+const SITE_URL = SITE_DOMINIO;
 // Assinatura de redes no rodape da legenda: viaja junto quando o post e
 // repostado em grupos de fa. @smufdpj resolve no Instagram; no Facebook a
 // Pagina "So mais um Fa de PJ" e achada pela busca (nao tem vanity URL).

@@ -12,8 +12,9 @@ import * as cheerio from "cheerio";
 import sharp from "sharp";
 import { fetchHtml } from "../news/extract.mjs";
 import { detectFaces } from "./face-crop.mjs";
+import { UA_ROBO } from "../config.mjs";
 
-const UA = "setlists-pj-news-bot/1.0 (+https://somaisumfadepearljam.com.br)";
+const UA = UA_ROBO;
 const MAX_CANDIDATES = 5;     // limita scrape+deteccao por materia
 const MIN_WIDTH = 900;        // candidato pequeno demais nao serve
 

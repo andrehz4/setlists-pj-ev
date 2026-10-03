@@ -1,6 +1,6 @@
 # CLAUDE.md, setlists-pj-ev
 
-Mapa do projeto pra agentes (Claude Code, routines). Fontes da verdade: este arquivo (estrutura) + `PROGRESSO.md` (estado/sessões) + `PIPELINE.md` (fluxo detalhado de notícias) + `backend/DEPLOY-RAILWAY.md` (deploy/infra do fórum). `HANDOFF.md` está defasado, não confiar.
+Mapa do projeto pra agentes (Claude Code, routines). Fontes da verdade: este arquivo (estrutura) + `PROGRESSO.md` (estado agora + últimas semanas; histórico em `docs/progresso/`) + `PIPELINE.md` (fluxo detalhado de notícias) + `backend/DEPLOY-RAILWAY.md` (deploy/infra do fórum). Saúde do projeto: `docs/VISTORIA-2026-10-02.md`. Docs antigos (HANDOFF, auditorias de mídia) ficam em `docs/arquivo/`: histórico, não instrução.
 
 > **Fórum caiu?** Ver `backend/DEPLOY-RAILWAY.md`. Teste de vida REAL: `curl -s -H "Origin: https://somaisumfadepearljam.com.br" https://perpetual-energy-production-1a69.up.railway.app/forum/topics` tem que devolver 200 com `items`. O `GET /` responder `Terra Gentil API` é ESPERADO (o Railway roda o backend do Terra Gentil, superset multi-site do fórum, mesmo banco); não é sinal de Source errada. Causa recorrente de queda: Supabase free pausado por inatividade (`keep-db-awake.yml` evita).
 
@@ -49,8 +49,13 @@ Regras: NUNCA editar a fila sem entender `markPosted`/`mergeQueueStates` (`scrip
 1. `news.yml` coleta de ~40 fontes pra `_pending.json` (teto `MAX_NEW_PER_RUN`). Inclui o **Instagram oficial** (@pearljam, @eddievedder) pela API da Meta (Business Discovery, `scripts/news/ig-oficial.mjs`, secret `IG_LEITURA_TOKEN`, token de usuário que não expira, app "Setlists PJ EV Bot", via página "Só mais um Fã de PJ" vinculada à @smufdpj). Só a legenda entra; foto deles nunca. Nada de navegador nem scraping no Instagram.
 2. Routine Claude remota cura `_pending` -> `index.json` + `items/<id>.json` + enfileira na `_publish-queue` (commita em branch `claude/news-routine-*`, PR auto-merged pelo passo `auto-merge-routine.mjs` do publish). A routine só tem um prompt curto que manda seguir `scripts/news/routine-prompt.md` (editar o arquivo já vale). Guias de voz em `scripts/news/prompts/` (inclui `voz-humana-ptbr.md`). O `merge-curated.mjs` barra texto sem acento (`qualidade-ptbr.mjs`): volta pro `_pending` e avisa no Telegram.
 3. `publish-instagram.yml` publica carrossel/single via Graph API, marca `postedAt`, notifica Telegram. `publish-story.yml` gera story diário em vídeo. `publish-reel.yml` gera o reel semanal (domingo 09:00 BRT, resumão dos 7 dias).
-4. `test.yml` roda a suíte em todo push/PR de `scripts/`/`mock-ig/`.
+4. `test.yml` roda a suíte em todo push/PR de `scripts/`, `mock-ig/`, `colab/`, `functions/` e `index.html`. O `npm test` acha sozinho todo `*.test.mjs` (não precisa registrar teste novo). `backend-ci.yml` roda ruff + pytest + pip-audit do backend.
 5. `contrib-curadoria.yml` (a cada 10 min): painel de colaboradores (`colaborar.html` + `colab/`, backend `backend/app/contrib/`, scripts `scripts/contrib/`). Cura por IA (Gemini ouve o áudio) e publica os aprovados às :30 no IG/FB/site. Módulo apartado, desligado sem o secret `CONTRIB_BOT_KEY`. Mapa completo em `backend/app/contrib/README.md`.
+6. `publish-capsula.yml` (20h BRT): publica uma cápsula do YouTube por dia (`scripts/publish/run-publish-capsula.mjs`, fila em `media/news/youtube-acervo/`, pipeline em `scripts/news/youtube/`).
+7. `community.yml`: digest e spotlight do Reddit (`scripts/news/community-fetch.mjs`). `news-merge.yml`: disparado pela routine via o worker `cloudflare-worker/news-merge-dispatch.js` (o `reddit-proxy.js` é o proxy do Reddit).
+8. Manutenção: `refresh-ig-token.yml` (dia 1, renova o token do IG), `keep-db-awake.yml` (diário, não deixa o Supabase pausar), `forum-seed.yml` (sexta, tópico semanal no fórum), `fb-smoke.yml` (manual, valida o token da Página).
+
+Quem dispara: `news`, `community`, `publish-instagram` e `publish-story` NÃO têm cron no YAML; quem chama é o **TriggerAll** (sistema externo, ver `PIPELINE.md` seção 7). Renomear esses workflows quebra os gatilhos. Os que instalam ffmpeg usam a action `.github/actions/ffmpeg` (apt com teto de tempo e reserva estática; o apt já levou 12 min e derrubou o story).
 
 ### Páginas de tópico pro Google (`functions/`)
 
@@ -93,7 +98,7 @@ todas no mesmo molde (`scripts/seo/layout.mjs`: menu de seções, breadcrumb, JS
 ### Reel semanal (motion design, MOTION-SPEC do Claude Design)
 
 **Acervo de clipes (transições, abertura e capa do reel, flag `REEL_TRANSICOES`)**: `scripts/publish/reel/transicoes.mjs`
-+ `media/reels-clips/transicoes/transicoes.json` (330+ trechos com tags de b-roll). Os MP4 ficam no **R2** (`acervo/`), não
++ `media/reels-clips/transicoes/transicoes.json` (750+ trechos com tags de b-roll). Os MP4 ficam no **R2** (`acervo/`), não
 no git. Novo clipe: `node scripts/publish/reel/planos.mjs <video>` (grade plano a plano; o Claude olha e escolhe) e
 `--importar p3:nome --musica X`. Mapa completo no README da pasta. Nunca mexer no baixa-clipehz (outra IA cuida).
 
@@ -112,15 +117,21 @@ no git. Novo clipe: `node scripts/publish/reel/planos.mjs <video>` (grade plano 
   `contato@somaisumfadepearljam.com.br` cai no Gmail do Andre (Cloudflare Email Routing).
 
 - **Falso-erro 2207051**: `media_publish` devolve `code 4 subcode 2207051` MAS publica. Tratado em 2 camadas: `recoverPublishedPost` (poll 5x10s) + guarda cross-run (`_lastAttemptCaption`). NÃO tratar como rate limit puro. Origem: conta MEDIA_CREATOR flagada, conversão pra BUSINESS pendente.
-- **Conflito de rebase no commit de estado**: `commitAndPush` reconcilia via `mergeQueueStates` (postado > backoff > pendente). Não trocar por push forçado.
+- **Conflito de rebase no commit de estado**: `commitAndPush` (único, `scripts/lib/git.mjs`) sempre aborta o rebase que falhou; o run-publish reconcilia via `mergeQueueStates` (postado > backoff > pendente). Não trocar por push forçado.
 - `GET /<uid>/media` tem consistência eventual (post recém-criado demora a aparecer).
 - `billboard-br` devolve XML malformado intermitente; `reddit-pj` dá 403 sem proxy.
-- Site é SPA com deep-link `#news/<id>`; os stubs estáticos `n/<id>.html` (gerados pelo publish) existem só pra OG/social e redirecionam pro hash.
+- Site é SPA com deep-link `#news/<id>`; as páginas `n/<id>.html` (geradas pelo publish) são páginas reais de SEO com o texto da notícia e link pro SPA, não redirecionam.
 - Mock IG (`mock-ig/`) cobre feed, story, reel, falhas injetáveis (`ghostpublish`, `ratelimit`, `mediaHideCalls`). Sempre validar nele antes de produção. `GET /<uid>/media` agora mescla feed + reels (o IG real lista reel no /media; story não), pra a recuperação pós-erro enxergar reel.
 - **Reel: direitos autorais**: trecho de clipe oficial é detectado pelo IG principalmente via ÁUDIO. Mitigação: clipes entram SEMPRE mudos (trilha royalty-free própria por cima), trechos curtos 2-6s. Áudio original = mute/bloqueio quase certo.
 
 ## Convenções
 
+- **Regra 0 (módulo apartado)**: feature nova em pasta própria, desligada por flag/secret, arquivo de até 160 linhas
+  (teste global `scripts/regra-zero.test.mjs`; os arquivos antigos maiores estão numa lista de exceções com teto que
+  só pode diminuir). Arquivo grande demais = fatiar por responsabilidade, nunca subir o teto.
+- **Estado e git**: ler JSON de estado só com `lerEstado` e commitar só com `commitAndPush`, ambos em `scripts/lib/`
+  (README lá). Nunca `catch { return vazio }` em arquivo de estado.
+- **Config**: domínio, URL do fórum, versão da Graph API e caminhos de estado ficam em `scripts/config.mjs`.
 - Commits em PT-BR descritivo, sem travessão. Nunca commitar segredo (tudo em GitHub Secrets).
 - Antes de mexer em >5 arquivos, propor plano.
 - Fim de sessão: atualizar `PROGRESSO.md` + pipeline de commit completo.

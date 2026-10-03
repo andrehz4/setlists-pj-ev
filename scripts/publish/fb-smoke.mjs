@@ -11,11 +11,12 @@
 // Precisa dos secrets no env (roda no CI via fb-smoke.yml).
 
 import got from "got";
+import { GRAPH_FB } from "../config.mjs";
 import {
   uploadUnpublishedPhoto, createFeedPost, publishVideoStory, publishVideoReel,
 } from "./facebook.mjs";
 
-const FB_API_BASE = process.env.FB_API_BASE || "https://graph.facebook.com/v21.0";
+const FB_API_BASE = process.env.FB_API_BASE || GRAPH_FB;
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 

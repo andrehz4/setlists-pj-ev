@@ -12,6 +12,7 @@ import { analisarMovimento, pastaDo, folha } from "./momentos.mjs";
 import { detectar, trilhaSuave } from "./rosto/rosto.mjs";
 import { recorte } from "./transicoes.mjs";
 import { subir } from "./acervo-r2.mjs";
+import { naRaiz } from "../../config.mjs";
 
 const TIPOS = {
   t: { dur: 1.5, minCob: 0.7, minRosto: 0.07, espaco: 4, max: 12, nota: (c) => c.mov * (0.5 + c.cob) },
@@ -60,7 +61,7 @@ async function folhaVertical(video, cands, out, saida) {
 // Trechos deste vídeo que já estão no acervo (pra não repetir).
 function jaUsados(video) {
   try {
-    const doc = JSON.parse(fs.readFileSync(path.resolve("media/reels-clips/transicoes/transicoes.json"), "utf8"));
+    const doc = JSON.parse(fs.readFileSync(naRaiz("media/reels-clips/transicoes/transicoes.json"), "utf8"));
     return doc.transicoes.filter((t) => t.origem === path.basename(video) && Number.isFinite(t.ini)).map((t) => [t.ini, t.fim ?? t.ini + (t.dur || 1.5)]);
   } catch { return []; }
 }
@@ -88,12 +89,12 @@ async function analisar(video, max, curto = false) {
 function importar(video, ids, musica) {
   const auto = JSON.parse(fs.readFileSync(path.join(pastaDo(video), "auto.json"), "utf8"));
   const slug = (musica || "clipe").toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  const arqJson = path.resolve("media/reels-clips/transicoes/transicoes.json");
+  const arqJson = naRaiz("media/reels-clips/transicoes/transicoes.json");
   for (const id of ids) {
     const c = [...auto.t, ...auto.c, ...(auto.a || [])].find((x) => x.id === id);
     if (!c) { console.warn(`[auto] ${id} não existe`); continue; }
     const nome = `${slug}-${id[0] === "c" ? "capa" : id[0] === "a" ? "acao" : "t"}${id.slice(1)}`;
-    const r = spawnSync(process.execPath, [path.resolve("scripts/publish/reel/importar-transicao.mjs"), path.resolve(video), nome, "--musica", musica || "",
+    const r = spawnSync(process.execPath, [naRaiz("scripts/publish/reel/importar-transicao.mjs"), path.resolve(video), nome, "--musica", musica || "",
       "--ini", String(c.ini), "--fim", String(c.fim)], { encoding: "utf8" });
     process.stdout.write(r.stdout || r.stderr);
     if (r.status !== 0) continue;

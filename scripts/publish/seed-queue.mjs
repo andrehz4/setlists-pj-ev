@@ -11,8 +11,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { readQueue, writeQueue } from "./queue.mjs";
+import { naRaiz } from "../config.mjs";
 
-const INDEX_PATH = path.resolve("media/news/index.json");
+const INDEX_PATH = naRaiz("media/news/index.json");
 
 const args = process.argv.slice(2);
 const COUNT_ARG = args.find((a) => a.startsWith("--count="));

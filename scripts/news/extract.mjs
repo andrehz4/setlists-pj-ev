@@ -3,8 +3,9 @@
 
 import got from "got";
 import * as cheerio from "cheerio";
+import { UA_ROBO } from "../config.mjs";
 
-const UA = "setlists-pj-news-bot/1.0 (+https://somaisumfadepearljam.com.br)";
+const UA = UA_ROBO;
 const TIMEOUT_MS = 15000;
 const MAX_HTML_KB = 1500; // cap pra nao alocar HTML monstro
 

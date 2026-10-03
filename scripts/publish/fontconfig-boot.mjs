@@ -12,8 +12,9 @@
 import os from "node:os";
 import path from "node:path";
 import fssync from "node:fs";
+import { naRaiz } from "../config.mjs";
 
-export const FONTS_DIR = path.resolve("media/fonts");
+export const FONTS_DIR = naRaiz("media/fonts");
 
 (function bootstrapFontconfig() {
   try {

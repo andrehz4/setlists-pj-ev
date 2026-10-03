@@ -1,9 +1,10 @@
+import { SITE_DOMINIO } from "../config.mjs";
 // Monta o post do colaborador: id no site, crédito, legenda do Instagram e item do site.
 // Funções puras (sem rede nem disco), testadas em curadoria.test.mjs.
 
 const IG_MAX = 2200;
 const HASHTAGS = "#pearljam #eddievedder #pjbrasil #grunge #smufdpj";
-const SITE = "somaisumfadepearljam.com.br";
+const SITE = SITE_DOMINIO;
 
 export const idSite = (envio) => `colab-${envio.id.replace(/-/g, "").slice(0, 8)}`;
 

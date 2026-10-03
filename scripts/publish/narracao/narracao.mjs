@@ -10,11 +10,12 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { falasDasCenas, ABERTURAS, FINAIS } from "./fala.mjs";
 import { sintetizar, vozDaSemana, saldo } from "./elevenlabs.mjs";
+import { naRaiz } from "../../config.mjs";
 
 // Abertura e encerramento são sempre iguais: gerados 1x por voz e guardados no
 // repo (vão no mesmo commit do reel). Nome leva hash do texto: mudou a frase,
 // gera de novo sozinho. Economiza crédito do ElevenLabs toda semana.
-export const DIR_FIXAS = path.resolve("media/news/instagram-reels/narracao");
+export const DIR_FIXAS = naRaiz("media/news/instagram-reels/narracao");
 export function arquivoFixo(texto, voz, dir = DIR_FIXAS) {
   const tipo = ABERTURAS.includes(texto) ? "abertura" : FINAIS.includes(texto) ? "final" : null;
   if (!tipo) return null;

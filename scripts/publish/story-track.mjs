@@ -6,8 +6,9 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const TRACKS_DIR = path.resolve("scripts/publish/assets/story-tracks");
+const TRACKS_DIR = naRaiz("scripts/publish/assets/story-tracks");
 
 export function dayOfYear(date = new Date()) {
   const start = Date.UTC(date.getUTCFullYear(), 0, 0);

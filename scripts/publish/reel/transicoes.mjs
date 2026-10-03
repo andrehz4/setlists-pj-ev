@@ -6,8 +6,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { materializar } from "./acervo-r2.mjs";
+import { naRaiz } from "../../config.mjs";
 
-export const PASTA = path.resolve("media/reels-clips/transicoes");
+export const PASTA = naRaiz("media/reels-clips/transicoes");
 export const DUR = 0.7; // segundos de clipe em cada troca
 const FADE = 0.08;
 // Recorte vertical 9:16. foco (0 a 1, do baixa-clipehz) = onde a ação está na horizontal.

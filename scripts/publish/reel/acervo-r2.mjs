@@ -8,6 +8,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { naRaiz } from "../../config.mjs";
 
 export const BUCKET = "smufdpj-midia";
 export const PREFIXO = "acervo";
@@ -40,7 +41,7 @@ function baixarCurl(url, destino) {
 const responde = (url) => spawnSync("curl", ["-sfI", "--max-time", "20", semCache(url)]).status === 0;
 
 function lerAcervo() {
-  const pasta = path.resolve("media/reels-clips/transicoes");
+  const pasta = naRaiz("media/reels-clips/transicoes");
   return { pasta, lista: JSON.parse(fs.readFileSync(path.join(pasta, "transicoes.json"), "utf8")).transicoes };
 }
 

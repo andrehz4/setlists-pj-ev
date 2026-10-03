@@ -7,12 +7,13 @@ import { spawn } from "node:child_process";
 import sharp from "sharp";
 import got from "got";
 import { W, H, FPS } from "./base.mjs";
+import { naRaiz } from "../../config.mjs";
 
 // ============ fundos ============
 
 export async function fetchImageBuffer(item) {
   if (item?.img && item.img.startsWith("/media/news/img/")) {
-    const local = path.join(process.cwd(), item.img.replace(/^\//, ""));
+    const local = naRaiz(item.img.replace(/^\//, ""));
     try {
       const buf = await fs.readFile(local);
       if (buf.length > 1024) return buf;
@@ -27,7 +28,7 @@ export async function fetchImageBuffer(item) {
   try {
     const hex = String(item?.id || "").replace(/[^0-9a-f]/gi, "")[0] || "0";
     const n = (parseInt(hex, 16) % 4) + 1;
-    const buf = await fs.readFile(path.join(process.cwd(), `media/news/img/_band-fallback-${n}.jpg`));
+    const buf = await fs.readFile(naRaiz(`media/news/img/_band-fallback-${n}.jpg`));
     if (buf && buf.length > 1024) return buf;
   } catch {}
   return null;

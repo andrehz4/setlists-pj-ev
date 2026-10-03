@@ -10,13 +10,14 @@
 import fs from "node:fs";
 import path from "node:path";
 import got from "got";
+import { naRaiz } from "../scripts/config.mjs";
 
 const PORT = process.env.MOCK_IG_PORT || "8788";
 const base = `http://127.0.0.1:${PORT}`;
 const REPO = base;
 const UID = process.env.IG_USER_ID || "mock_user";
 const TOKEN = process.env.IG_ACCESS_TOKEN || "mock_token";
-const STORIES_DIR = path.resolve("media/news/instagram-stories");
+const STORIES_DIR = naRaiz("media/news/instagram-stories");
 
 function pickMp4(arg) {
   if (arg) return arg;

@@ -9,8 +9,9 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const OVERRIDES_PATH = path.resolve("media/news/image-overrides.json");
+const OVERRIDES_PATH = naRaiz("media/news/image-overrides.json");
 
 let _cache = null;
 

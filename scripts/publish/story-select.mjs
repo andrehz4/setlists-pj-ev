@@ -7,9 +7,10 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const INDEX_PATH = path.resolve("media/news/index.json");
-const ITEMS_DIR = path.resolve("media/news/items");
+const INDEX_PATH = naRaiz("media/news/index.json");
+const ITEMS_DIR = naRaiz("media/news/items");
 
 const SPOTLIGHT_KINDS = new Set(["community-spotlight", "community-digest"]);
 

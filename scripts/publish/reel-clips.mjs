@@ -8,8 +8,9 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const CLIPS_DIR = path.resolve("media/reels-clips");
+const CLIPS_DIR = naRaiz("media/reels-clips");
 
 // Valida uma entrada do clips.json. Devolve string de erro ou null.
 export function validateClipEntry(entry) {

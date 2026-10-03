@@ -28,6 +28,7 @@ import { fetchSetlistfmItems } from "./setlistfm.mjs";
 import { fetchIgOficialItems } from "./ig-oficial.mjs";
 import { writeStepSummary } from "./_summary.mjs";
 import { lerEstado } from "../lib/estado.mjs";
+import { naRaiz, UA_ROBO } from "../config.mjs";
 
 // --- args ---
 const args = process.argv.slice(2);
@@ -60,14 +61,14 @@ if (LEGACY_NO_CLAUDE) CURATOR_NAME = "routine"; // backward compat
 // Backlog baixo e estavel = seguro. Backlog crescendo = baixar de volta. Rollback = trocar o numero.
 const MAX_NEW_PER_RUN = 10;
 const TOP_KEEP = 30;
-const NEWS_DIR = path.resolve("media/news");
+const NEWS_DIR = naRaiz("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
 const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
 
-const UA = "setlists-pj-news-bot/1.0 (+https://somaisumfadepearljam.com.br)";
+const UA = UA_ROBO;
 
 // body_pt vai pra items/<id>.json; o index.json fica light com so metadata.
 function splitItemBody(it) {

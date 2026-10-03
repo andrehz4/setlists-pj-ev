@@ -17,6 +17,7 @@ import { CYCLE_COLORS } from "./color-cycle.mjs";
 import { buildQuoteSlideCitacao, estiloDoDia } from "./citacao/slide-citacao.mjs";
 import { fonteDoVideo } from "./citacao/fontes.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
+import { naRaiz, SITE_DOMINIO } from "../config.mjs";
 
 const DRY = process.argv.includes("--dry-run");
 const NO_GIT = process.argv.includes("--no-git");
@@ -27,16 +28,16 @@ const CITACAO = process.env.CAPSULA_CITACAO || "";
 const REPO_PUBLIC_BASE = process.env.REPO_PUBLIC_BASE
   || "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main";
 
-const ACERVO = path.resolve("media/news/youtube-acervo");
+const ACERVO = naRaiz("media/news/youtube-acervo");
 const RASCUNHOS = path.join(ACERVO, "_rascunhos.json");
 const QUEUE = path.join(ACERVO, "_capsula-queue.json");
-const SLIDES_DIR = path.resolve("media/news/instagram-slides");
-const IMG_DIR = path.resolve("media/news/img");
-const ITEMS_DIR = path.resolve("media/news/items");
-const INDEX = path.resolve("media/news/index.json");
+const SLIDES_DIR = naRaiz("media/news/instagram-slides");
+const IMG_DIR = naRaiz("media/news/img");
+const ITEMS_DIR = naRaiz("media/news/items");
+const INDEX = naRaiz("media/news/index.json");
 
 const HASHTAGS_FIXED = ["pearljam", "eddievedder", "pjbrasil", "grunge", "smufdpj"];
-const SITE_URL = "somaisumfadepearljam.com.br";
+const SITE_URL = SITE_DOMINIO;
 const SOCIAL_LINE = "siga @smufdpj no Instagram e no Facebook";
 const IG_CAPTION_MAX = 2200;
 

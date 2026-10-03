@@ -16,8 +16,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { readDenylist, writeDenylist, addToDenylist, removeFromDenylist, isDenied, readQueue } from "./queue.mjs";
+import { naRaiz } from "../config.mjs";
 
-const CURSOR_PATH = path.resolve("media/news/_telegram-cursor.json");
+const CURSOR_PATH = naRaiz("media/news/_telegram-cursor.json");
 const TELEGRAM_API = "https://api.telegram.org";
 
 async function readCursor() {

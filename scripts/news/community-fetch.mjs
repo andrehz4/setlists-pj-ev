@@ -32,6 +32,7 @@ import { curate as curateSpotlight } from "./curators/community-spotlight.mjs";
 import { prunePendingByLogs } from "./prune-curated.mjs";
 import { writeStepSummary } from "./_summary.mjs";
 import { lerEstado } from "../lib/estado.mjs";
+import { naRaiz } from "../config.mjs";
 
 const args = process.argv.slice(2);
 function argVal(name) {
@@ -59,7 +60,7 @@ if (!["gemini", "routine"].includes(CURATOR_NAME)) {
 const IS_ROUTINE = CURATOR_NAME === "routine";
 
 const TOP_KEEP = 30;
-const NEWS_DIR = path.resolve("media/news");
+const NEWS_DIR = naRaiz("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
 const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");

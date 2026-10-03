@@ -20,8 +20,9 @@ import { stripDashes } from "./curators/_shared.mjs";
 import { checkSimilarInHistory, recordSkipped, DEFAULT_HISTORY_DAYS, DEFAULT_THRESHOLD } from "./dedupe-history.mjs";
 import { checarPtBr, corrigirPtPt } from "./qualidade-ptbr.mjs";
 import { lerEstado } from "../lib/estado.mjs";
+import { naRaiz } from "../config.mjs";
 
-const NEWS_DIR = path.resolve("media/news");
+const NEWS_DIR = naRaiz("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const SEEN_PATH = path.join(NEWS_DIR, "seen.json");
 const PENDING_PATH = path.join(NEWS_DIR, "_pending.json");

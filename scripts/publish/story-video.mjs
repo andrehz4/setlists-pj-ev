@@ -36,6 +36,7 @@ import sharp from "sharp";
 import got from "got";
 import { pickStyle, DEFAULT_STYLE } from "./story-styles/index.mjs";
 import { getEditionNumber } from "./edition.mjs";
+import { naRaiz } from "../config.mjs";
 
 const STORY_STYLE = process.env.STORY_STYLE || process.env.INTRO_STYLE || DEFAULT_STYLE;
 const activeStyle = pickStyle(STORY_STYLE);
@@ -133,8 +134,8 @@ function ffprobeGif(file) {
 // converte cada um pra PNG base64 (resize 800x800 max pra leveza).
 // Se for PNG estatico, retorna { frames: [b64], fps: 0, totalFrames: 1 }.
 export async function loadBadgeAnimated() {
-  const gifPath = path.join(process.cwd(), "scripts/publish/assets/intro-badge.gif");
-  const pngPath = path.join(process.cwd(), "scripts/publish/assets/intro-badge.png");
+  const gifPath = naRaiz("scripts/publish/assets/intro-badge.gif");
+  const pngPath = naRaiz("scripts/publish/assets/intro-badge.png");
 
   // 1) GIF animado (prioridade)
   try {
@@ -248,7 +249,7 @@ function sliceWrapped(lines, nChars) {
 
 async function fetchImageBuffer(item) {
   if (item.img && item.img.startsWith("/media/news/img/")) {
-    const local = path.join(process.cwd(), item.img.replace(/^\//, ""));
+    const local = naRaiz(item.img.replace(/^\//, ""));
     try {
       const buf = await fs.readFile(local);
       if (buf.length > 1024) return buf;
@@ -265,7 +266,7 @@ async function fetchImageBuffer(item) {
   try {
     const hex = String(item.id || "").replace(/[^0-9a-f]/gi, "")[0] || "0";
     const n = (parseInt(hex, 16) % 4) + 1;
-    const fb = path.join(process.cwd(), `media/news/img/_band-fallback-${n}.jpg`);
+    const fb = naRaiz(`media/news/img/_band-fallback-${n}.jpg`);
     const buf = await fs.readFile(fb);
     if (buf && buf.length > 1024) return buf;
   } catch {}

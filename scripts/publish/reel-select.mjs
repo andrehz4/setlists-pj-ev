@@ -9,8 +9,9 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const INDEX_PATH = path.resolve("media/news/index.json");
+const INDEX_PATH = naRaiz("media/news/index.json");
 
 const COMMUNITY_KINDS = new Set(["community-spotlight", "community-digest"]);
 const STRONG_TAGS = new Set(["turne", "lancamento", "br"]);
@@ -23,7 +24,7 @@ async function hasUsableImg(it) {
   if (!it.img || typeof it.img !== "string") return false;
   if (/^https?:/.test(it.img)) return true;
   try {
-    const st = await fs.stat(path.join(process.cwd(), it.img.replace(/^\//, "")));
+    const st = await fs.stat(naRaiz(it.img.replace(/^\//, "")));
     return st.isFile() && st.size > 1024;
   } catch {
     return false;

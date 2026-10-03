@@ -6,6 +6,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { naRaiz } from "../../../config.mjs";
 
 const SWIFT = path.join(path.dirname(new URL(import.meta.url).pathname), "rosto.swift");
 const BIN = path.join(os.tmpdir(), "smufdpj-rosto");
@@ -57,7 +58,7 @@ function larguraDoCorte(video) {
 function main() {
   const a = process.argv.slice(2);
   if (a[0] === "--acervo") {
-    const pasta = path.resolve("media/reels-clips/transicoes"), arq = path.join(pasta, "transicoes.json");
+    const pasta = naRaiz("media/reels-clips/transicoes"), arq = path.join(pasta, "transicoes.json");
     const doc = JSON.parse(fs.readFileSync(arq, "utf8"));
     for (const t of doc.transicoes) {
       if (Array.isArray(t.focoTrilha)) { console.log(`[rosto] ${t.file}: já tem trilha`); continue; }

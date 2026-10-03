@@ -4,8 +4,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { naRaiz } from "../../config.mjs";
 
-export const PASTA = path.resolve("media/reels-clips/transicoes");
+export const PASTA = naRaiz("media/reels-clips/transicoes");
 const DOWNLOADS = "/Users/andrehz/Documents/Githubhz/baixa-clipehz/downloads";
 
 export function lerArgs(argv) {

@@ -1,6 +1,7 @@
+import { FORUM_API } from "../config.mjs";
 // Conversa com as rotas do robô no backend (/contrib/bot/*) e com o Telegram do Andre.
 
-const API = process.env.CONTRIB_API || "https://perpetual-energy-production-1a69.up.railway.app";
+const API = process.env.CONTRIB_API || FORUM_API;
 const ORIGEM = "https://setlists-pj-ev.pages.dev";
 const DRY = process.argv.includes("--dry");
 

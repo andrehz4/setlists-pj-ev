@@ -126,8 +126,8 @@ STORY_STYLE=<nome> npm run publish:story:dry
 ```
 
 Gera MP4 em `media/news/instagram-stories/<DATA>.mp4`. Abre no player default.
-Pra ver só intro/outro isolados sem esperar render completo, posso adaptar
-`intro-mockups.mjs` pra incluir o novo style (peça quando precisar).
+Pra ver só intro/outro isolados sem esperar render completo: o antigo gerador de mockups da intro foi
+removido em 2026-10-03 (recuperar com `git log --all -- scripts/publish/intro-mockups.mjs`).
 
 ---
 

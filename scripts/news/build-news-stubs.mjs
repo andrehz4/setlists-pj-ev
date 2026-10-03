@@ -17,13 +17,14 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { SITE_BASE, esc, paginaNoticia, paginaIndiceNoticias, relacionadas } from "./news-page.mjs";
+import { naRaiz } from "../config.mjs";
 
-const NEWS_DIR = path.resolve("media/news");
+const NEWS_DIR = naRaiz("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
-const STUBS_DIR = path.resolve("n");
-const SITEMAP_PATH = path.resolve("sitemap.xml");
-const INDICE_PATH = path.resolve("noticias/index.html");
+const STUBS_DIR = naRaiz("n");
+const SITEMAP_PATH = naRaiz("sitemap.xml");
+const INDICE_PATH = naRaiz("noticias/index.html");
 
 async function lerCorpo(id) {
   try {

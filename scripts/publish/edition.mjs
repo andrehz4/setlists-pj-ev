@@ -13,8 +13,9 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { naRaiz } from "../config.mjs";
 
-const STORY_LOG = path.resolve("media/news/instagram-stories/_story-log.json");
+const STORY_LOG = naRaiz("media/news/instagram-stories/_story-log.json");
 
 // Mesmo calculo de dateKey do run-publish-story.mjs: BRT (UTC-3),
 // depois slice ISO. Tem que casar exatamente, senao o numero de

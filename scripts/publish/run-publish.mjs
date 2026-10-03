@@ -36,8 +36,9 @@ import { pruneOldMedia } from "./prune-media.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
 import { lerEstado } from "../lib/estado.mjs";
 import { commitAndPush as commitAndPushGit, gitTry } from "../lib/git.mjs";
+import { naRaiz, linkNoticia } from "../config.mjs";
 
-const NEWS_DIR = path.resolve("media/news");
+const NEWS_DIR = naRaiz("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
 const ITEMS_DIR = path.join(NEWS_DIR, "items");
 const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
@@ -452,7 +453,7 @@ async function notifyTelegram(results) {
           .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         const tagsStr = it.tags.length ? `  <i>tags: ${it.tags.join(", ")}</i>` : "";
         lines.push(`${i + 1}. <b>${titulo}</b>${tagsStr}`);
-        lines.push(`   ↳ https://somaisumfadepearljam.com.br/n/${it.id}`);
+        lines.push(`   ↳ ${linkNoticia(it.id)}`);
       }
       lines.push("");
     }

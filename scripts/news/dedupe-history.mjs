@@ -27,9 +27,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { lerEstado, comLista } from "../lib/estado.mjs";
+import { naRaiz } from "../config.mjs";
 
-const ITEMS_DIR = path.resolve("media/news/items");
-const SKIPPED_PATH = path.resolve("media/news/_skipped-similar.json");
+const ITEMS_DIR = naRaiz("media/news/items");
+const SKIPPED_PATH = naRaiz("media/news/_skipped-similar.json");
 
 export const DEFAULT_HISTORY_DAYS = 7;
 export const DEFAULT_THRESHOLD = 0.30;

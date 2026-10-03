@@ -9,12 +9,13 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { validateCurated } from "./_shared.mjs";
+import { naRaiz } from "../../config.mjs";
 
 const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const TEMPERATURE = 0.7;
 const MAX_OUTPUT_TOKENS = 4000;
 
-const PROMPT_PATH = path.resolve("scripts/news/prompts/system-community-digest.txt");
+const PROMPT_PATH = naRaiz("scripts/news/prompts/system-community-digest.txt");
 
 let _client = null;
 function getClient() {

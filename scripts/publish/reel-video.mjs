@@ -13,7 +13,6 @@
 //
 // Regra de ouro herdada do spec: toda animacao e funcao deterministica do
 // tempo local da cena. Nada de random, estado acumulado ou filtros.
-
 // Desde 2026-09-30 o código vive em scripts/publish/reel/; aqui só montagem do MP4 e API pública.
 import "./fontconfig-boot.mjs";
 import fs from "node:fs/promises";
@@ -25,6 +24,7 @@ import { FPS, BRAND, TAG_LABELS, measureText, layoutWords, F_ANTON, F_INTER_SB, 
 import { buildScenePlan } from "./reel/plano.mjs";
 import { fetchImageBuffer, prepareZoomBase, runFfmpeg, encodePngSegment, encodeClipSegment } from "./reel/midia.mjs";
 import { renderScene } from "./reel/render.mjs";
+import { naRaiz } from "../config.mjs";
 
 export { COLD_DUR, BLOCK_DUR, OUTRO_DUR, measureText, wrapWords, layoutWords } from "./reel/base.mjs";
 export { coldOpenSvg, outroSvg } from "./reel/cenas-abertura-final.mjs";
@@ -132,7 +132,7 @@ export async function buildReelVideo({
   const silentPath = path.join(tmpDir, "silent.mp4");
   await runFfmpeg(["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-c", "copy", silentPath]);
 
-  outPath = outPath || path.resolve("media/news/instagram-reels/reel.mp4");
+  outPath = outPath || naRaiz("media/news/instagram-reels/reel.mp4");
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   await runFfmpeg([
     "-y", "-i", silentPath, "-i", trackPath,

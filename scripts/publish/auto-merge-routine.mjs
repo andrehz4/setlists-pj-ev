@@ -29,6 +29,7 @@
 
 import { execSync } from "node:child_process";
 import fs from "node:fs/promises";
+import { linkNoticia } from "../config.mjs";
 
 const REPO = process.env.GITHUB_REPOSITORY || "andrehz4/setlists-pj-ev";
 const BRANCH_PREFIX = "claude/news-routine-";
@@ -156,7 +157,7 @@ function buildPrBody(commitMsg, items, branch, commits) {
     for (const it of items) {
       const tags = it.tags.length ? `\`${it.tags.join("\` \`")}\`` : "";
       lines.push(`- **${it.titulo}** ${tags}`);
-      lines.push(`  - \`${it.id}\` · https://somaisumfadepearljam.com.br/n/${it.id}`);
+      lines.push(`  - \`${it.id}\` · ${linkNoticia(it.id)}`);
     }
     lines.push("");
   }
@@ -185,7 +186,7 @@ function buildTelegramMsg(items, prNum, branch, recusados = []) {
     const tagsStr = it.tags.length ? `  tags: ${it.tags.join(", ")}` : "";
     lines.push(`${i + 1}. <b>${titulo}</b>`);
     lines.push(`   <code>${it.id}</code>${tagsStr}`);
-    lines.push(`   ↳ https://somaisumfadepearljam.com.br/n/${it.id}`);
+    lines.push(`   ↳ ${linkNoticia(it.id)}`);
     lines.push("");
   }
 
