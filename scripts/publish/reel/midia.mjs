@@ -5,34 +5,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import sharp from "sharp";
-import got from "got";
 import { W, H, FPS } from "./base.mjs";
-import { naRaiz } from "../../config.mjs";
 
 // ============ fundos ============
 
-export async function fetchImageBuffer(item) {
-  if (item?.img && item.img.startsWith("/media/news/img/")) {
-    const local = naRaiz(item.img.replace(/^\//, ""));
-    try {
-      const buf = await fs.readFile(local);
-      if (buf.length > 1024) return buf;
-    } catch {}
-  }
-  const src = item?.img || item?.imgRemote || null;
-  if (src && /^https?:/.test(src)) {
-    try {
-      return await got(src, { timeout: { request: 15000 }, retry: { limit: 1 }, responseType: "buffer" }).buffer();
-    } catch {}
-  }
-  try {
-    const hex = String(item?.id || "").replace(/[^0-9a-f]/gi, "")[0] || "0";
-    const n = (parseInt(hex, 16) % 4) + 1;
-    const buf = await fs.readFile(naRaiz(`media/news/img/_band-fallback-${n}.jpg`));
-    if (buf && buf.length > 1024) return buf;
-  } catch {}
-  return null;
-}
+// Foto de fundo da cena: mesma escolha do slide do feed (override > local > URL > assunto > banda).
+export { fetchBaseImageBuffer as fetchImageBuffer } from "../slide/imagem.mjs";
 
 // Base pro Ken Burns: foto cover em W*Z x H*Z. Por frame, extrai a janela
 // central correspondente ao zoom(t) e redimensiona pra W x H.
