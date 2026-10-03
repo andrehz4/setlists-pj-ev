@@ -26,6 +26,7 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { lerEstado, comLista } from "../lib/estado.mjs";
 
 const ITEMS_DIR = path.resolve("media/news/items");
 const SKIPPED_PATH = path.resolve("media/news/_skipped-similar.json");
@@ -235,12 +236,7 @@ const SKIPPED_TTL_DAYS = 30;
 // expiradas (> SKIPPED_TTL_DAYS) ao carregar, mantendo o arquivo enxuto.
 export async function recordSkipped(blocked, nowIso = new Date().toISOString()) {
   if (!blocked || blocked.length === 0) return 0;
-  let doc = { skipped: [], updatedAt: null };
-  try {
-    const raw = await fs.readFile(SKIPPED_PATH, "utf8");
-    const parsed = JSON.parse(raw);
-    if (parsed && Array.isArray(parsed.skipped)) doc = parsed;
-  } catch {}
+  const doc = await lerEstado(SKIPPED_PATH, { skipped: [], updatedAt: null }, { valida: comLista("skipped") });
   // poda expirados antes de anexar
   const ttlCutoff = new Date(nowIso).getTime() - SKIPPED_TTL_DAYS * 24 * 60 * 60 * 1000;
   doc.skipped = doc.skipped.filter((s) => {

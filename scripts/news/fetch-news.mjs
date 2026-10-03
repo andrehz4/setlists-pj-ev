@@ -27,6 +27,7 @@ import { prunePendingByLogs } from "./prune-curated.mjs";
 import { fetchSetlistfmItems } from "./setlistfm.mjs";
 import { fetchIgOficialItems } from "./ig-oficial.mjs";
 import { writeStepSummary } from "./_summary.mjs";
+import { lerEstado } from "../lib/estado.mjs";
 
 // --- args ---
 const args = process.argv.slice(2);
@@ -75,11 +76,8 @@ function splitItemBody(it) {
 }
 
 async function readJson(p, fallback) {
-  try { return JSON.parse(await fs.readFile(p, "utf8")); }
-  catch (err) {
-    if (err.code !== "ENOENT") console.warn(`[news] readJson: ${path.basename(p)} corrompido ou ilegivel (${err.message}), usando fallback`);
-    return fallback;
-  }
+  // ausente = fallback; corrompido = derruba a run (scripts/lib/estado.mjs)
+  return lerEstado(p, fallback);
 }
 async function writeJson(p, data) {
   if (DRY) return;

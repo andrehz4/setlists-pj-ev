@@ -31,6 +31,7 @@ import { curate as curateDigest } from "./curators/community-digest.mjs";
 import { curate as curateSpotlight } from "./curators/community-spotlight.mjs";
 import { prunePendingByLogs } from "./prune-curated.mjs";
 import { writeStepSummary } from "./_summary.mjs";
+import { lerEstado } from "../lib/estado.mjs";
 
 const args = process.argv.slice(2);
 function argVal(name) {
@@ -77,11 +78,8 @@ const DIGEST_MAX_INPUT_POSTS = 15;
 const SPOTLIGHT_MIN_SCORE = 0;
 
 async function readJson(p, fallback) {
-  try { return JSON.parse(await fs.readFile(p, "utf8")); }
-  catch (err) {
-    if (err.code !== "ENOENT") console.warn(`[community] readJson: ${path.basename(p)} corrompido ou ilegivel (${err.message}), usando fallback`);
-    return fallback;
-  }
+  // ausente = fallback; corrompido = derruba a run (scripts/lib/estado.mjs)
+  return lerEstado(p, fallback);
 }
 async function writeJson(p, data) {
   if (DRY) return;

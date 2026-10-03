@@ -16,6 +16,7 @@ import { publishAlbumFromUrls } from "./facebook.mjs";
 import { CYCLE_COLORS } from "./color-cycle.mjs";
 import { buildQuoteSlideCitacao, estiloDoDia } from "./citacao/slide-citacao.mjs";
 import { fonteDoVideo } from "./citacao/fontes.mjs";
+import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 
 const DRY = process.argv.includes("--dry-run");
 const NO_GIT = process.argv.includes("--no-git");
@@ -40,23 +41,8 @@ const SOCIAL_LINE = "siga @smufdpj no Instagram e no Facebook";
 const IG_CAPTION_MAX = 2200;
 
 /* ---------- git ---------- */
-function git(args) { const r = spawnSync("git", args, { encoding: "utf8" }); if (r.status !== 0) throw new Error(`git ${args.join(" ")}: ${r.stderr}`); return r.stdout; }
-function gitTry(args) { const r = spawnSync("git", args, { encoding: "utf8" }); return { ok: r.status === 0, err: r.stderr || r.stdout }; }
-async function commitAndPush(paths, message, retries = 3) {
-  if (NO_GIT || DRY) { console.log(`[git] skip (dry/no-git): ${message}`); return; }
-  spawnSync("git", ["config", "user.name", process.env.GIT_AUTHOR_NAME || "pj-news-bot"], { encoding: "utf8" });
-  spawnSync("git", ["config", "user.email", process.env.GIT_AUTHOR_EMAIL || "bot@setlists-pj.local"], { encoding: "utf8" });
-  for (const p of paths) spawnSync("git", ["add", p], { encoding: "utf8" });
-  if (spawnSync("git", ["diff", "--cached", "--quiet"], { encoding: "utf8" }).status === 0) { console.log(`[git] nada pra commitar: ${message}`); return; }
-  git(["commit", "-m", message]);
-  for (let i = 0; i < retries; i++) {
-    const pull = gitTry(["pull", "--rebase", "--autostash"]);
-    if (!pull.ok) console.warn(`[git] pull warn: ${pull.err}`);
-    if (gitTry(["push"]).ok) { console.log(`[git] push OK (try ${i + 1}): ${message}`); return; }
-    await new Promise((r) => setTimeout(r, 2000 + i * 1000));
-  }
-  throw new Error(`git push falhou apos ${retries} tentativas`);
-}
+// commit + push único do projeto (scripts/lib/git.mjs): aborta rebase que falhou, retry com jitter
+const commitAndPush = (paths, message, opts = {}) => commitAndPushGit(paths, message, { dry: NO_GIT || DRY, ...opts });
 
 /* ---------- helpers ---------- */
 function dedupeTags(list) {

@@ -34,6 +34,8 @@ import { pollTelegramCommands } from "./telegram-bot.mjs";
 import { buildNewsStubs } from "../news/build-news-stubs.mjs";
 import { pruneOldMedia } from "./prune-media.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
+import { lerEstado } from "../lib/estado.mjs";
+import { commitAndPush as commitAndPushGit, gitTry } from "../lib/git.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -102,20 +104,8 @@ const MAX_BATCHES_ARG = args.find((a) => a.startsWith("--max-batches="));
 const MAX_BATCHES = MAX_BATCHES_ARG ? parseInt(MAX_BATCHES_ARG.split("=")[1], 10) : 2;
 
 async function readJson(p, fallback) {
-  try { return JSON.parse(await fs.readFile(p, "utf8")); } catch { return fallback; }
-}
-
-function git(args, opts = {}) {
-  const r = spawnSync("git", args, { encoding: "utf8", ...opts });
-  if (r.status !== 0) {
-    throw new Error(`git ${args.join(" ")} falhou: ${r.stderr || r.stdout}`);
-  }
-  return r.stdout;
-}
-
-function gitTry(args) {
-  const r = spawnSync("git", args, { encoding: "utf8" });
-  return { ok: r.status === 0, out: r.stdout, err: r.stderr };
+  // ausente = fallback; corrompido = derruba a run (scripts/lib/estado.mjs)
+  return lerEstado(p, fallback);
 }
 
 // Tombstone dos pendentes expirados por idade (no silent caps). Audit-only:
@@ -155,7 +145,9 @@ async function hydrateItem(qEntry, indexById) {
   try {
     const raw = await fs.readFile(path.join(ITEMS_DIR, `${qEntry.id}.json`), "utf8");
     body = JSON.parse(raw).body_pt || "";
-  } catch {}
+  } catch (e) {
+    if (e.code !== "ENOENT") console.warn(`[publish] items/${qEntry.id}.json ilegível, seguindo sem corpo: ${e.message}`);
+  }
   return { ...idx, body_pt: body };
 }
 
@@ -170,67 +162,14 @@ async function findInArchive(id) {
       const it = (doc.items || []).find((x) => x.id === id);
       if (it) return it;
     }
-  } catch {}
+  } catch (e) {
+    if (e.code !== "ENOENT") console.warn(`[publish] archive ilegível ao procurar ${id}: ${e.message}`);
+  }
   return null;
 }
 
-async function commitAndPush(paths, message, { retries = 3, onRebaseConflict = null } = {}) {
-  if (NO_GIT || DRY) {
-    console.log(`[git] skip (dry/no-git): ${message}`);
-    return;
-  }
-  // configura autor (sobrescreve se ja estiver set)
-  const name = process.env.GIT_AUTHOR_NAME || "github-actions[bot]";
-  const email = process.env.GIT_AUTHOR_EMAIL || "41898282+github-actions[bot]@users.noreply.github.com";
-  spawnSync("git", ["config", "user.name", name], { encoding: "utf8" });
-  spawnSync("git", ["config", "user.email", email], { encoding: "utf8" });
-
-  const stage = () => {
-    for (const p of paths) {
-      spawnSync("git", ["add", p], { encoding: "utf8" });
-    }
-  };
-  stage();
-  const diff = spawnSync("git", ["diff", "--cached", "--quiet"], { encoding: "utf8" });
-  if (diff.status === 0) {
-    console.log(`[git] nada pra commitar: ${message}`);
-    return;
-  }
-  git(["commit", "-m", message]);
-
-  for (let i = 0; i < retries; i++) {
-    const pull = gitTry(["pull", "--rebase", "--autostash"]);
-    if (!pull.ok) {
-      console.warn(`[git] pull rebase falhou: ${pull.err}`);
-      // Rebase pendurado deixa o repo inoperante (todo pull/push seguinte
-      // falha). Aborta SEMPRE antes de decidir o que fazer.
-      gitTry(["rebase", "--abort"]);
-      if (onRebaseConflict) {
-        // Conflito real de conteudo (outro workflow commitou os mesmos
-        // arquivos de estado). O caller sabe reconciliar: re-escreve os
-        // arquivos a partir de origin/main + estado em memoria, e a gente
-        // re-commita. Sem isso o estado desta run (postedAt!) se perdia.
-        console.warn(`[git] reconciliando estado com origin/main (try ${i + 1})`);
-        const ok = await onRebaseConflict();
-        if (ok) {
-          stage();
-          const d2 = spawnSync("git", ["diff", "--cached", "--quiet"], { encoding: "utf8" });
-          if (d2.status !== 0) git(["commit", "-m", `${message} (reconciliado)`]);
-          continue; // proxima iteracao: pull deve passar limpo e push segue
-        }
-        console.warn(`[git] reconciliacao falhou, tentando push direto`);
-      }
-    }
-    const push = gitTry(["push"]);
-    if (push.ok) {
-      console.log(`[git] push OK (try ${i + 1}): ${message}`);
-      return;
-    }
-    console.warn(`[git] push falhou (try ${i + 1}/${retries}): ${push.err}`);
-    await new Promise((r) => setTimeout(r, 2000 + i * 1000));
-  }
-  throw new Error(`git push falhou apos ${retries} tentativas`);
-}
+// commit + push único do projeto (scripts/lib/git.mjs): aborta rebase que falhou, retry com jitter
+const commitAndPush = (paths, message, opts = {}) => commitAndPushGit(paths, message, { dry: NO_GIT || DRY, ...opts });
 
 async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleColor, denylist, reconcile = null) {
   // No layout card02 o carrossel abre com a capa (Card 11) do item lider, que

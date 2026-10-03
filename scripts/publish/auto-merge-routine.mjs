@@ -227,6 +227,13 @@ async function notifyTelegram(text) {
 // Aplica arquivos do branch diretamente quando gh pr merge falha por conflito.
 // Para JSONs de lista (index, queue, archives): faz merge por id (union).
 // Para demais arquivos: aplica a versao do branch.
+// Desfaz o que o apply direto já aplicou no working tree (volta media/news pro HEAD).
+function descartarApply() {
+  shTry("git reset -q HEAD -- media/news/");
+  shTry("git checkout -- media/news/");
+  shTry("git clean -fdq media/news/");
+}
+
 async function applyBranchDirectly(branch, files) {
   console.log(`  conflito detectado, aplicando branch arquivo a arquivo...`);
 
@@ -244,14 +251,17 @@ async function applyBranchDirectly(branch, files) {
 
     const isJsonMerge = JSON_MERGE_PATHS.includes(f) || f.match(/^media\/news\/archive\//);
     if (isJsonMerge) {
+      // Main ou branch ilegível: PARA (o PR fica aberto pra próxima run). Antes caía pra versão
+      // do branch, que pode ser antiga e apagar postedAt da main (repost no feed).
+      let branchDoc, mainDoc;
       try {
-        const branchDoc = JSON.parse(sh(`git show "origin/${branch}:${f}"`));
-        let mainDoc;
-        try {
-          mainDoc = JSON.parse(sh(`cat "${f}"`));
-        } catch {
-          mainDoc = branchDoc;
-        }
+        branchDoc = JSON.parse(sh(`git show "origin/${branch}:${f}"`));
+        mainDoc = JSON.parse(await fs.readFile(f, "utf8"));
+      } catch (e) {
+        descartarApply();
+        throw new Error(`apply direto abortado: ${f} ilegível (${e.message}); PR preservado`);
+      }
+      try {
         const mainIds = new Set((mainDoc.items || []).map((i) => i.id));
         const newItems = (branchDoc.items || []).filter((i) => !mainIds.has(i.id));
         if (newItems.length > 0) {
@@ -266,8 +276,8 @@ async function applyBranchDirectly(branch, files) {
           console.log(`    ${f}: sem items novos, mantendo main`);
         }
       } catch (e) {
-        console.warn(`    aviso ao mesclar ${f}: ${e.message}, usando versao do branch`);
-        shTry(`git checkout "origin/${branch}" -- "${f}"`);
+        descartarApply();
+        throw new Error(`apply direto abortado ao mesclar ${f}: ${e.message}; PR preservado`);
       }
       continue;
     }
@@ -399,6 +409,8 @@ async function main() {
     } catch (e) {
       console.error(`[auto-merge] excecao processando ${b}:`, e.message);
       results.push({ branch: b, error: e.message });
+      const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      await notifyTelegram(`⚠️ auto-merge: ${esc(b)} não entrou (${esc(e.message.slice(0, 300))})`);
     }
   }
 

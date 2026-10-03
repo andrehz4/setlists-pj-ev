@@ -7,6 +7,7 @@
 // e marca como postado.
 
 import fs from "node:fs/promises";
+import { lerEstado, comLista } from "../lib/estado.mjs";
 import path from "node:path";
 
 const QUEUE_PATH = path.resolve("media/news/_publish-queue.json");
@@ -83,14 +84,9 @@ export function mergeQueueStates(remoteDoc, localDoc) {
 //   - o item sair do queue (apos 30d) e a curadoria re-criar item com mesmo id
 //   - a routine sonnet enqueue de novo
 export async function readDenylist() {
-  try {
-    const raw = await fs.readFile(DENYLIST_PATH, "utf8");
-    const doc = JSON.parse(raw);
-    if (!doc || !Array.isArray(doc.deleted)) return { deleted: [], updatedAt: null };
-    return { deleted: doc.deleted, updatedAt: doc.updatedAt || null };
-  } catch {
-    return { deleted: [], updatedAt: null };
-  }
+  // Ausente = lista vazia; corrompida = derruba (a denylist é perpétua, não pode sumir em silêncio)
+  const doc = await lerEstado(DENYLIST_PATH, { deleted: [], updatedAt: null }, { valida: comLista("deleted") });
+  return { deleted: doc.deleted, updatedAt: doc.updatedAt || null };
 }
 
 export async function writeDenylist(denylist) {
@@ -136,13 +132,9 @@ export function isDenied(denylist, itemId) {
 // publicar. Para de martelar a API e de poluir o repo com commits vazios.
 // Persistido em arquivo porque cada run do Actions e um checkout limpo.
 export async function readCooldown() {
-  try {
-    const raw = await fs.readFile(COOLDOWN_PATH, "utf8");
-    const doc = JSON.parse(raw);
-    return { until: doc.until || null, reason: doc.reason || null, code: doc.code ?? null, fbtraceId: doc.fbtraceId || null, setAt: doc.setAt || null };
-  } catch {
-    return { until: null, reason: null, code: null, fbtraceId: null, setAt: null };
-  }
+  // Corrompido derruba: cooldown sumindo em silêncio fazia a run voltar a martelar a API
+  const doc = await lerEstado(COOLDOWN_PATH, {});
+  return { until: doc.until || null, reason: doc.reason || null, code: doc.code ?? null, fbtraceId: doc.fbtraceId || null, setAt: doc.setAt || null };
 }
 
 // Retorna true se ha cooldown ativo (until no futuro relativo a nowIso).

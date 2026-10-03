@@ -28,6 +28,8 @@ import { publishStory } from "./instagram.mjs";
 import { publishVideoStory } from "./facebook.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
+import { lerEstado, comLista } from "../lib/estado.mjs";
+import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 
 const STORIES_DIR = path.resolve("media/news/instagram-stories");
 const LOG_PATH = path.join(STORIES_DIR, "_story-log.json");
@@ -48,55 +50,12 @@ function brtDate(now = new Date()) {
   return new Date(now.getTime() - 3 * 60 * 60 * 1000);
 }
 
-function git(args, opts = {}) {
-  const r = spawnSync("git", args, { encoding: "utf8", ...opts });
-  if (r.status !== 0) throw new Error(`git ${args.join(" ")} falhou: ${r.stderr || r.stdout}`);
-  return r.stdout;
-}
-function gitTry(args) {
-  const r = spawnSync("git", args, { encoding: "utf8" });
-  return { ok: r.status === 0, out: r.stdout, err: r.stderr };
-}
-
-async function commitAndPush(paths, message, retries = 3) {
-  if (NO_GIT || DRY) {
-    console.log(`[git] skip (dry/no-git): ${message}`);
-    return;
-  }
-  const name = process.env.GIT_AUTHOR_NAME || "github-actions[bot]";
-  const email = process.env.GIT_AUTHOR_EMAIL || "41898282+github-actions[bot]@users.noreply.github.com";
-  spawnSync("git", ["config", "user.name", name], { encoding: "utf8" });
-  spawnSync("git", ["config", "user.email", email], { encoding: "utf8" });
-  for (const p of paths) spawnSync("git", ["add", p], { encoding: "utf8" });
-  const diff = spawnSync("git", ["diff", "--cached", "--quiet"], { encoding: "utf8" });
-  if (diff.status === 0) {
-    console.log(`[git] nada pra commitar: ${message}`);
-    return;
-  }
-  git(["commit", "-m", message]);
-  for (let i = 0; i < retries; i++) {
-    const pull = gitTry(["pull", "--rebase", "--autostash"]);
-    if (!pull.ok) console.warn(`[git] pull rebase warn: ${pull.err}`);
-    const push = gitTry(["push"]);
-    if (push.ok) {
-      console.log(`[git] push OK (try ${i + 1}): ${message}`);
-      return;
-    }
-    console.warn(`[git] push falhou (try ${i + 1}/${retries}): ${push.err}`);
-    await new Promise((r) => setTimeout(r, 2000 + i * 1000));
-  }
-  throw new Error(`git push falhou apos ${retries} tentativas`);
-}
+// commit + push único do projeto (scripts/lib/git.mjs): aborta rebase que falhou, retry com jitter
+const commitAndPush = (paths, message, opts = {}) => commitAndPushGit(paths, message, { dry: NO_GIT || DRY, ...opts });
 
 async function readLog() {
-  try {
-    const raw = await fs.readFile(LOG_PATH, "utf8");
-    const doc = JSON.parse(raw);
-    if (!Array.isArray(doc.entries)) return { entries: [] };
-    return doc;
-  } catch {
-    return { entries: [] };
-  }
+  // Corrompido derruba: log vazio em silêncio quebrava a idempotência (post duplicado)
+  return lerEstado(LOG_PATH, { entries: [] }, { valida: comLista("entries") });
 }
 
 async function writeLog(log) {

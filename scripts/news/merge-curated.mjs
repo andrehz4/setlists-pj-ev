@@ -19,6 +19,7 @@ import { readQueue, writeQueue, enqueue, readDenylist } from "../publish/queue.m
 import { stripDashes } from "./curators/_shared.mjs";
 import { checkSimilarInHistory, recordSkipped, DEFAULT_HISTORY_DAYS, DEFAULT_THRESHOLD } from "./dedupe-history.mjs";
 import { checarPtBr, corrigirPtPt } from "./qualidade-ptbr.mjs";
+import { lerEstado } from "../lib/estado.mjs";
 
 const NEWS_DIR = path.resolve("media/news");
 const INDEX_PATH = path.join(NEWS_DIR, "index.json");
@@ -76,7 +77,8 @@ async function readStdin() {
 }
 
 async function readJson(p, fallback) {
-  try { return JSON.parse(await fs.readFile(p, "utf8")); } catch { return fallback; }
+  // ausente = fallback; corrompido = derruba a run (scripts/lib/estado.mjs)
+  return lerEstado(p, fallback);
 }
 
 function validateCurated(c) {
