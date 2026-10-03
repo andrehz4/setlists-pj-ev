@@ -12,13 +12,14 @@ import { resolverAutor } from "./retratos.mjs";
 import { paleta } from "./paleta.mjs";
 import { svgEditorial } from "./estilo-editorial.mjs";
 import { svgRevista, fotoDuotone } from "./estilo-revista.mjs";
+import { numeroDiaBRT } from "../../lib/brt.mjs";
 
 export const ESTILOS = ["editorial", "revista"];
 
 // Modo do env -> estilo do dia. Dia contado em BRT (UTC-3), como as capas.
 export function estiloDoDia(modo, date = new Date()) {
   if (ESTILOS.includes(modo)) return modo;
-  const dia = Math.floor((date.getTime() - 3 * 3600e3) / 86400e3);
+  const dia = numeroDiaBRT(date);
   return ESTILOS[dia % ESTILOS.length];
 }
 

@@ -11,13 +11,14 @@ import { avaliar } from "./gemini-curador.mjs";
 import { prepararMidia } from "./midia.mjs";
 import { decidir, resumoTelegram } from "./veredito.mjs";
 import { bot, falhou, telegram } from "./api.mjs";
+import { emBRT } from "../lib/brt.mjs";
 
 const CHAVE = process.env.CONTRIB_BOT_KEY;
 const DRY = process.argv.includes("--dry");
 const ORIGEM = "https://setlists-pj-ev.pages.dev";
 
 const horaBrt = (iso) => {
-  const d = new Date(new Date(iso).getTime() - 3 * 3600e3);
+  const d = emBRT(iso);
   return `${d.getUTCHours()}h${String(d.getUTCMinutes()).padStart(2, "0")}`;
 };
 

@@ -14,6 +14,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { naRaiz } from "../config.mjs";
+import { diaBRT } from "../lib/brt.mjs";
 
 const STORY_LOG = naRaiz("media/news/instagram-stories/_story-log.json");
 
@@ -22,8 +23,7 @@ const STORY_LOG = naRaiz("media/news/instagram-stories/_story-log.json");
 // edicao do carrossel diverge do story em postagens noturnas.
 function dateKeyOf(d) {
   const dt = d instanceof Date ? d : new Date(d || Date.now());
-  const brt = new Date(dt.getTime() - 3 * 60 * 60 * 1000);
-  return brt.toISOString().slice(0, 10);
+  return diaBRT(dt);
 }
 
 export async function getEditionNumber(date = new Date()) {

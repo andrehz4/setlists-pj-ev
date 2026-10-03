@@ -12,8 +12,6 @@ const PASTAS = ["scripts", "mock-ig", "colab", "functions"];
 const PULA = /node_modules|[\\/]dist[\\/]/;
 
 const EXCECOES = {
-  "scripts/publish/slide-image.mjs": 1033,
-  "scripts/publish/run-publish.mjs": 924,
   "mock-ig/server.mjs": 697,
   "scripts/publish/story-video.mjs": 671,
   "scripts/publish/instagram.mjs": 647,

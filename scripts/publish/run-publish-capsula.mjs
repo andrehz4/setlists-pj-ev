@@ -18,6 +18,7 @@ import { buildQuoteSlideCitacao, estiloDoDia } from "./citacao/slide-citacao.mjs
 import { fonteDoVideo } from "./citacao/fontes.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 import { naRaiz, SITE_DOMINIO } from "../config.mjs";
+import { enviarTelegram } from "../lib/telegram.mjs";
 
 const DRY = process.argv.includes("--dry-run");
 const NO_GIT = process.argv.includes("--no-git");
@@ -149,14 +150,8 @@ async function waitForRaw(url, timeoutMs = 90000) {
 }
 
 async function telegram(msg) {
-  const token = process.env.TELEGRAM_BOT_TOKEN, chat = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chat || DRY) return;
-  try {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ chat_id: chat, text: msg }),
-    });
-  } catch (e) { console.warn(`[telegram] ${e.message}`); }
+  if (DRY) return;
+  await enviarTelegram(msg, { html: false, prefixo: "[capsula]" });
 }
 
 async function main() {

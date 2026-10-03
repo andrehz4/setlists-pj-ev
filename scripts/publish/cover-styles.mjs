@@ -3,6 +3,7 @@
 // (planCover) e o rodizio; o SVG fica em cover-styles-svg.mjs. Medidas fieis
 // ao export em design-handoff/retorno/capas/ (gitignored).
 import { F_ANTON, F_INTER_XB } from "./fontconfig-boot.mjs";
+import { numeroDiaBRT } from "../lib/brt.mjs";
 
 export const COVER_STYLES = ["card11", "poster", "zine", "ingresso"];
 
@@ -10,7 +11,7 @@ export const COVER_STYLES = ["card11", "poster", "zine", "ingresso"];
 // COVER_STYLE=<estilo> forca um estilo (mock, conferencia manual).
 export function coverStyleFor(date = new Date(), forced = process.env.COVER_STYLE) {
   if (COVER_STYLES.includes(forced)) return forced;
-  const day = Math.floor((date.getTime() - 3 * 3600e3) / 864e5);
+  const day = numeroDiaBRT(date);
   return COVER_STYLES[((day % COVER_STYLES.length) + COVER_STYLES.length) % COVER_STYLES.length];
 }
 

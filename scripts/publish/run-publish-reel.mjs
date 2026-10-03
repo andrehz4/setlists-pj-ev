@@ -30,6 +30,8 @@ import { aplicarTransicoes, montarAbertura, capaNaAbertura } from "./reel/transi
 import { lerEstado, comLista } from "../lib/estado.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 import { naRaiz, linkNoticia } from "../config.mjs";
+import { enviarTelegram } from "../lib/telegram.mjs";
+import { emBRT } from "../lib/brt.mjs";
 
 const REELS_DIR = naRaiz("media/news/instagram-reels");
 const LOG_PATH = path.join(REELS_DIR, "_reel-log.json");
@@ -43,7 +45,7 @@ const NO_GIT = args.includes("--no-git");
 const FORCE = args.includes("--force");
 
 function brtDate(now = new Date()) {
-  return new Date(now.getTime() - 3 * 60 * 60 * 1000);
+  return emBRT(now);
 }
 
 // commit + push único do projeto (scripts/lib/git.mjs): aborta rebase que falhou, retry com jitter
@@ -229,21 +231,7 @@ async function notifyTelegram({ items, postId, track, weekKey, rangeLabel, aviso
     lines.push(`${i + 1}. <b>${titulo}</b>`);
     lines.push(`   ↳ ${linkNoticia(items[i].id)}`);
   }
-  const text = lines.join("\n");
-  const truncated = text.length > 3900 ? text.slice(0, 3900) + "\n\n(truncado)" : text;
-  try {
-    const params = new URLSearchParams({ chat_id: chatId, parse_mode: "HTML", disable_web_page_preview: "true", text: truncated });
-    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-    });
-    const json = await res.json();
-    if (!json.ok) console.warn("[reel] telegram falhou:", json);
-    else console.log("[reel] telegram notif enviada");
-  } catch (e) {
-    console.warn("[reel] telegram erro:", e.message);
-  }
+  await enviarTelegram(lines.join("\n"), { prefixo: "[reel]", token, chat: chatId });
 }
 
 main().catch((e) => {

@@ -215,10 +215,9 @@ test("dedupe: titulos curtos com 1 nome comum NAO se bloqueiam (guard)", async (
 
 // ---------- D1: consistencia das listas de rate-limit codes ----------
 
-test("RATE_LIMIT_CODES contem todos os app-level codes", () => {
-  // APP_LEVEL_CODES em run-publish.mjs (nao importavel: o modulo self-executa).
-  // Espelhado aqui; o classifier de instagram.mjs PRECISA reconhecer cada um.
-  const APP_LEVEL_CODES = [4, 17, 32, 613];
+test("RATE_LIMIT_CODES contem todos os app-level codes", async () => {
+  // APP_LEVEL_CODES (scripts/publish/feed/config.mjs): o classifier de instagram.mjs PRECISA reconhecer cada um.
+  const { APP_LEVEL_CODES } = await import("./feed/config.mjs");
   for (const code of APP_LEVEL_CODES) {
     assert.ok(RATE_LIMIT_CODES.has(code), `RATE_LIMIT_CODES deveria conter ${code}`);
   }

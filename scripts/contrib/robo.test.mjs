@@ -12,8 +12,8 @@ function simular(respostaFalha) {
   const telegram = [];
   globalThis.fetch = async (url, opts) => {
     if (String(url).includes("api.telegram.org")) {
-      telegram.push(JSON.parse(opts.body).text);
-      return { ok: true, json: async () => ({}) };
+      telegram.push(new URLSearchParams(opts.body).get("text")); // scripts/lib/telegram.mjs manda formulário
+      return { ok: true, status: 200, json: async () => ({ ok: true }) };
     }
     return { ok: true, json: async () => respostaFalha };
   };

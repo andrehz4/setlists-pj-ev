@@ -30,6 +30,7 @@
 import { execSync } from "node:child_process";
 import fs from "node:fs/promises";
 import { linkNoticia } from "../config.mjs";
+import { enviarTelegram } from "../lib/telegram.mjs";
 
 const REPO = process.env.GITHUB_REPOSITORY || "andrehz4/setlists-pj-ev";
 const BRANCH_PREFIX = "claude/news-routine-";
@@ -200,29 +201,7 @@ function buildTelegramMsg(items, prNum, branch, recusados = []) {
 }
 
 async function notifyTelegram(text) {
-  if (!TG_TOKEN || !TG_CHAT) {
-    console.log("[auto-merge] sem TELEGRAM_* envs, skip notif");
-    return;
-  }
-  const truncated = text.length > 3900 ? text.slice(0, 3900) + "\n\n(truncado)" : text;
-  const params = new URLSearchParams({
-    chat_id: TG_CHAT,
-    parse_mode: "HTML",
-    disable_web_page_preview: "true",
-    text: truncated,
-  });
-  try {
-    const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-    });
-    const json = await res.json();
-    if (!json.ok) console.warn("[auto-merge] telegram falhou:", json);
-    else console.log("[auto-merge] telegram OK");
-  } catch (e) {
-    console.warn("[auto-merge] telegram erro:", e.message);
-  }
+  await enviarTelegram(text, { prefixo: "[auto-merge]", token: TG_TOKEN, chat: TG_CHAT });
 }
 
 // Aplica arquivos do branch diretamente quando gh pr merge falha por conflito.

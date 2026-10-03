@@ -10,6 +10,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { textoNoticia, textoCapsula, linkMateria } from "./texto.mjs";
+import { diaBRT } from "../../lib/brt.mjs";
 
 const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../../..");
 process.chdir(REPO);
@@ -20,7 +21,7 @@ const JANELA_MS = 24 * 3600e3;
 const lerJson = (f, padrao) => { try { return JSON.parse(fs.readFileSync(f, "utf8")); } catch { return padrao; } };
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
-export function hojeBRT(agora = new Date()) { return new Date(agora.getTime() - 3 * 3600e3).toISOString().slice(0, 10); }
+export function hojeBRT(agora = new Date()) { return diaBRT(agora); }
 
 // Notícias publicadas no IG nas últimas 24h, mais novas primeiro, sem repetir kit anterior.
 export function escolherNoticias({ fila, indice, jaUsados, agora = Date.now(), max = HORARIOS.length, existeCard }) {

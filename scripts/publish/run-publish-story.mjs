@@ -31,6 +31,8 @@ import { writeStepSummary } from "../news/_summary.mjs";
 import { lerEstado, comLista } from "../lib/estado.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 import { naRaiz, linkNoticia } from "../config.mjs";
+import { enviarTelegram } from "../lib/telegram.mjs";
+import { emBRT, horaBRT } from "../lib/brt.mjs";
 
 const STORIES_DIR = naRaiz("media/news/instagram-stories");
 const LOG_PATH = path.join(STORIES_DIR, "_story-log.json");
@@ -48,7 +50,7 @@ const FORCE = args.includes("--force");
 // peca e nome de arquivo, usa fuso BRT (UTC-3). Garante que o story
 // publicado de manha cedo BRT mostre a data BRT, nao UTC.
 function brtDate(now = new Date()) {
-  return new Date(now.getTime() - 3 * 60 * 60 * 1000);
+  return emBRT(now);
 }
 
 // commit + push único do projeto (scripts/lib/git.mjs): aborta rebase que falhou, retry com jitter
@@ -231,7 +233,7 @@ async function notifyTelegramStory({ items, postId, track, dateKey, avisoVoz = "
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) return;
 
-  const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
+  const brtNow = horaBRT();
 
   const lines = [];
   lines.push(`🎬 <b>Story publicado, ${brtNow} BRT</b>`);
@@ -248,26 +250,7 @@ async function notifyTelegramStory({ items, postId, track, dateKey, avisoVoz = "
     lines.push(`   ↳ ${linkNoticia(it.id)}`);
   }
 
-  const text = lines.join("\n");
-  const truncated = text.length > 3900 ? text.slice(0, 3900) + "\n\n(truncado)" : text;
-  try {
-    const params = new URLSearchParams({
-      chat_id: chatId,
-      parse_mode: "HTML",
-      disable_web_page_preview: "true",
-      text: truncated,
-    });
-    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-    });
-    const json = await res.json();
-    if (!json.ok) console.warn("[story] telegram falhou:", json);
-    else console.log("[story] telegram notif enviada");
-  } catch (e) {
-    console.warn("[story] telegram erro:", e.message);
-  }
+  await enviarTelegram(lines.join("\n"), { prefixo: "[story]", token, chat: chatId });
 }
 
 main().catch((e) => {

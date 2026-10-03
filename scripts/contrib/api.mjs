@@ -1,4 +1,5 @@
 import { FORUM_API } from "../config.mjs";
+import { enviarTelegram } from "../lib/telegram.mjs";
 // Conversa com as rotas do robô no backend (/contrib/bot/*) e com o Telegram do Andre.
 
 const API = process.env.CONTRIB_API || FORUM_API;
@@ -22,11 +23,7 @@ export async function bot(caminho, corpo) {
 export async function telegram(texto) {
   const { TELEGRAM_BOT_TOKEN: token, TELEGRAM_CHAT_ID: chat } = process.env;
   if (!token || !chat || DRY) return console.log("[telegram]", texto);
-  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chat, text: texto, disable_web_page_preview: true }),
-  }).catch((e) => console.warn("[telegram] falhou:", e.message));
+  await enviarTelegram(texto, { html: false, prefixo: "[contrib]", token, chat });
 }
 
 // Registra a falha no backend e decide o aviso: só na 1ª falha e na desistência (sem spam).

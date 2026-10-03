@@ -108,3 +108,35 @@ test("git: conflito sem reconciliador não deixa rebase pendurado e lança", asy
   await assert.rejects(emRepo(a, () => commitAndPush(["s.json"], "a", { esperaBaseMs: 1, tentativas: 2 })), /push falhou/);
   assert.ok(!(await fs.stat(path.join(a, ".git", "rebase-merge")).catch(() => null)), "rebase pendurado");
 });
+
+test("telegram: trunca, escolhe modo e nunca lança", async () => {
+  const { enviarTelegram, escHtml } = await import("./telegram.mjs");
+  const chamadas = [];
+  const fetchOriginal = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    chamadas.push({ url, corpo: new URLSearchParams(init.body) });
+    return { status: 200, json: async () => ({ ok: true }) };
+  };
+  try {
+    assert.equal(await enviarTelegram("oi", { token: "", chat: "" }), false);
+    assert.equal(await enviarTelegram("x".repeat(5000), { token: "t", chat: "c" }), true);
+    assert.ok(chamadas[0].corpo.get("text").endsWith("(truncado)"));
+    assert.equal(chamadas[0].corpo.get("parse_mode"), "HTML");
+    await enviarTelegram("puro", { token: "t", chat: "c", html: false });
+    assert.equal(chamadas[1].corpo.get("parse_mode"), null);
+    globalThis.fetch = async () => { throw new Error("rede caiu"); };
+    assert.equal(await enviarTelegram("oi", { token: "t", chat: "c" }), false);
+    assert.equal(escHtml("<a&b>"), "&lt;a&amp;b&gt;");
+  } finally {
+    globalThis.fetch = fetchOriginal;
+  }
+});
+
+test("brt: dia, número do dia e hora em Brasília", async () => {
+  const { diaBRT, numeroDiaBRT, horaBRT, emBRT } = await import("./brt.mjs");
+  const d = new Date("2026-10-03T02:30:00Z"); // 23:30 de 02/10 em Brasília
+  assert.equal(diaBRT(d), "2026-10-02");
+  assert.equal(emBRT(d).getUTCHours(), 23);
+  assert.equal(numeroDiaBRT(d), Math.floor((d.getTime() - 3 * 3600e3) / 864e5));
+  assert.equal(horaBRT(d), "23:30");
+});

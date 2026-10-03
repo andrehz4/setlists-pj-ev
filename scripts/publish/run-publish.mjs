@@ -1,583 +1,54 @@
-// Orquestrador da publicacao no Instagram. Roda no cron do workflow
-// publish-instagram.yml a cada 30min. Fluxo:
-//   1. le fila + index
-//   2. pega items maduros (publishAt <= now), agrupa por type, max 10 cada
-//   3. hidrata cada item (body_pt + sourceLabel) lendo items/<id>.json
-//   4. gera slide JPG composto em media/news/instagram-slides/<id>.jpg
-//   5. git add + commit + push dos slides (raw.githubusercontent passa a
-//      servir imediatamente)
-//   6. chama publishItems(...) por grupo, com pequena espera entre etapas
-//   7. atualiza queue com postedAt + postId
-//   8. git add + commit + push da queue
+// Orquestrador da publicação do feed (carrossel/single) no Instagram e no Facebook.
+// Workflow publish-instagram.yml, disparado pelo TriggerAll. As etapas vivem em scripts/publish/feed/:
+//   1. lê fila, denylist e index; expira pendentes velhos (sempre, mesmo se a run sair cedo)
+//   2. guardas: cooldown global e quota (saem cedo sem tocar a API)
+//   3. manutenção: páginas de notícia, comandos do bot, detecção de posts apagados
+//   4. lotes (regular, spotlight): slides + capa, commit, publish IG + FB, marca a fila na hora
+//   5. cooldown, poda, alerta de feed parado, commit final do estado e aviso no Telegram
 //
-// Flags:
-//   --dry-run        gera slides mas nao publica nem commita
-//   --no-git         pula commits/push (uso local pra teste)
-//   --max-batches=N  limita N grupos por run (default 2: 1 regular + 1 spotlight)
-//
-// Env esperado:
-//   IG_USER_ID, IG_ACCESS_TOKEN (obrigatorios pra publicar)
-//   GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL (default github-actions[bot])
-
-import fs from "node:fs/promises";
-import path from "node:path";
-import { spawnSync } from "node:child_process";
-import { readQueue, writeQueue, mergeQueueStates, pickMatureByTypeDiverse, markPosted, markError, markRateLimited, markAttempt, pruneOldPosted, pruneStalePending, readDenylist, writeDenylist, addToDenylist, readCooldown, isCoolingDown, setCooldown, clearCooldown } from "./queue.mjs";
-import { topicSignature, similarity } from "../news/dedupe-history.mjs";
-import { buildSlides, buildCoverSlide, SLIDES_DIR, LAYOUT } from "./slide-image.mjs";
-import { publishItems, slideUrlFor, recoverPublishedPost, buildCarouselCaption } from "./instagram.mjs";
-import { publishFeedAlbum } from "./facebook.mjs";
+// Flags: --dry-run (gera slides, não publica nem commita) · --no-git · --max-batches=N (padrão 2)
+// Env: IG_USER_ID, IG_ACCESS_TOKEN (obrigatórios pra publicar), GIT_AUTHOR_NAME/EMAIL.
+import { readQueue, writeQueue, pruneOldPosted, pruneStalePending, readDenylist } from "./queue.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
-import { getContentPublishingLimit, QUOTA_SAFETY_MARGIN, estimateUnsaturationDelayMs } from "./ig-quota.mjs";
-import { detectDeletedPosts } from "./ig-detect-deleted.mjs";
-import { pollTelegramCommands } from "./telegram-bot.mjs";
-import { buildNewsStubs } from "../news/build-news-stubs.mjs";
-import { pruneOldMedia } from "./prune-media.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
-import { lerEstado } from "../lib/estado.mjs";
-import { commitAndPush as commitAndPushGit, gitTry } from "../lib/git.mjs";
-import { naRaiz, linkNoticia } from "../config.mjs";
-
-const NEWS_DIR = naRaiz("media/news");
-const INDEX_PATH = path.join(NEWS_DIR, "index.json");
-const ITEMS_DIR = path.join(NEWS_DIR, "items");
-const ARCHIVE_DIR = path.join(NEWS_DIR, "archive");
-const DETECT_STAMP_PATH = path.join(NEWS_DIR, "_detect-deleted-stamp.json");
-
-// Reducao de volume de chamadas (o feed estourava o limite da app code 4 por
-// fazer ~15-25 chamadas/run vs ~2 do story). Dois cortes de overhead:
-//  - deteccao de apagados (~5-33 GETs) so 1x a cada DETECT_INTERVAL_H horas.
-//  - pre-check de quota pulado por padrao (reporta 0/50 mesmo com a app
-//    throttled, entao nao protege de nada e ainda gasta 1 chamada). Reativavel
-//    via IG_QUOTA_PRECHECK=1.
-const DETECT_INTERVAL_H = Number.isFinite(Number(process.env.IG_DETECT_INTERVAL_H)) && Number(process.env.IG_DETECT_INTERVAL_H) > 0
-  ? Number(process.env.IG_DETECT_INTERVAL_H) : 20;
-const QUOTA_PRECHECK = process.env.IG_QUOTA_PRECHECK === "1";
-
-// Ciclo de cores da tarja superior do slide. Muda a cada POSTS_PER_COLOR
-// posts publicados, dando dinamica visual no feed sem perder identidade.
-// Ciclo completo = TARJA_COLORS.length * POSTS_PER_COLOR posts.
-const TARJA_COLORS = [
-  "#c12727", // vermelho sangue PJ (default)
-  "#0a0908", // preto profundo
-  "#a87f2c", // ocre sepia
-  "#2a5b9e", // azul petroleo
-];
-const POSTS_PER_COLOR = 3;
-
-// Duracao do cooldown global por classe de rate limit. App-level (code 4
-// "Application request limit reached", code 17/32 user/page) e um teto
-// coarse-grained da app inteira: backoff maior pra dar folga real. Content
-// publishing (codes 80xxx, cota de 50/24h) usa janela menor.
-const COOLDOWN_APP_LEVEL_MS = 3 * 60 * 60 * 1000;   // 3h
-const COOLDOWN_CONTENT_MS = 60 * 60 * 1000;          // 1h
-const APP_LEVEL_CODES = new Set([4, 17, 32, 613]);
-function cooldownMsForCode(code) {
-  return APP_LEVEL_CODES.has(code) ? COOLDOWN_APP_LEVEL_MS : COOLDOWN_CONTENT_MS;
-}
-
-// Defesa em profundidade no rate limit: markRateLimited (por item,
-// _rateLimitedUntil) cobre a cota de content publishing 50/24h; setCooldown
-// (global, _ig-cooldown.json) cobre o limite DA APP (code 4). Os dois coexistem
-// de proposito, nao sao redundancia a consolidar.
-
-// Diversidade e expiracao da fila (override por env).
-const TOPIC_CAP = Number.isFinite(Number(process.env.IG_TOPIC_CAP)) && Number(process.env.IG_TOPIC_CAP) > 0
-  ? Number(process.env.IG_TOPIC_CAP) : 1;
-const STALE_DAYS = Number.isFinite(Number(process.env.IG_STALE_DAYS)) && Number(process.env.IG_STALE_DAYS) > 0
-  ? Number(process.env.IG_STALE_DAYS) : 2;
-const STALE_DAYS_EVERGREEN = Number.isFinite(Number(process.env.IG_STALE_DAYS_EVERGREEN)) && Number(process.env.IG_STALE_DAYS_EVERGREEN) > 0
-  ? Number(process.env.IG_STALE_DAYS_EVERGREEN) : 30;
-
-function getCurrentTarjaColor(postCount) {
-  const idx = Math.floor((postCount || 0) / POSTS_PER_COLOR) % TARJA_COLORS.length;
-  return TARJA_COLORS[idx];
-}
-
-// Ciclo de cor card02/capa: agora em ./color-cycle.mjs (fonte unica,
-// compartilhada com run-publish-story). Dirige o FUNDO da capa Card 11
-// e a cunha + tarja do Card 02.
+import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
+import { INDEX_PATH, STATE_PATHS, STALE_DAYS, STALE_DAYS_EVERGREEN, POSTS_PER_COLOR, getCurrentTarjaColor } from "./feed/config.mjs";
+import { lerIndex, recordStaleTombstone } from "./feed/itens.mjs";
+import { rodarLotes } from "./feed/lote.mjs";
+import { notifyTelegram } from "./feed/avisos.mjs";
+import { guardaCooldown, guardaQuota, atualizarCooldown } from "./feed/guardas.mjs";
+import { gerarPaginasNoticia, comandosTelegram, detectarApagados, podarMidia, alertaFeedParado } from "./feed/manutencao.mjs";
+import { criarReconciliador } from "./feed/reconciliar.mjs";
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
 const NO_GIT = args.includes("--no-git");
 const MAX_BATCHES_ARG = args.find((a) => a.startsWith("--max-batches="));
 const MAX_BATCHES = MAX_BATCHES_ARG ? parseInt(MAX_BATCHES_ARG.split("=")[1], 10) : 2;
-
-async function readJson(p, fallback) {
-  // ausente = fallback; corrompido = derruba a run (scripts/lib/estado.mjs)
-  return lerEstado(p, fallback);
-}
-
-// Tombstone dos pendentes expirados por idade (no silent caps). Audit-only:
-// o conteudo segue vivo no index/archive do site, sair da fila so significa
-// "perdeu a janela de publicacao no IG". Idempotente por id, podado em 60d.
-async function recordStaleTombstone(removed, indexById, nowIso) {
-  const STALE_TOMBSTONE_TTL_DAYS = 60;
-  const p = path.join(NEWS_DIR, "_skipped-stale.json");
-  let doc = await readJson(p, { stale: [], updatedAt: null });
-  if (!Array.isArray(doc.stale)) doc = { stale: [], updatedAt: null };
-  const cutoff = new Date(nowIso).getTime() - STALE_TOMBSTONE_TTL_DAYS * 24 * 60 * 60 * 1000;
-  doc.stale = doc.stale.filter((s) => {
-    const t = new Date(s.prunedAt || 0).getTime();
-    return !Number.isFinite(t) || t >= cutoff;
-  });
-  const existing = new Set(doc.stale.map((s) => s.id));
-  for (const q of removed) {
-    if (existing.has(q.id)) continue;
-    const idx = indexById.get(q.id);
-    doc.stale.push({
-      id: q.id,
-      type: q.type,
-      title_pt: idx?.title_pt || "",
-      pubDate: idx?.pubDate || null,
-      queuedAt: q.queuedAt || null,
-      prunedAt: nowIso,
-    });
-  }
-  doc.updatedAt = nowIso;
-  await fs.writeFile(p, JSON.stringify(doc, null, 2));
-}
-
-async function hydrateItem(qEntry, indexById) {
-  const idx = indexById.get(qEntry.id);
-  if (!idx) return null;
-  let body = "";
-  try {
-    const raw = await fs.readFile(path.join(ITEMS_DIR, `${qEntry.id}.json`), "utf8");
-    body = JSON.parse(raw).body_pt || "";
-  } catch (e) {
-    if (e.code !== "ENOENT") console.warn(`[publish] items/${qEntry.id}.json ilegível, seguindo sem corpo: ${e.message}`);
-  }
-  return { ...idx, body_pt: body };
-}
-
-async function findInArchive(id) {
-  // Items podem ter saido do index pro archive entre o enqueue e o
-  // momento do publish. Fallback: olha archives mes a mes.
-  try {
-    const months = await fs.readdir(ARCHIVE_DIR);
-    for (const f of months) {
-      if (!f.endsWith(".json")) continue;
-      const doc = await readJson(path.join(ARCHIVE_DIR, f), { items: [] });
-      const it = (doc.items || []).find((x) => x.id === id);
-      if (it) return it;
-    }
-  } catch (e) {
-    if (e.code !== "ENOENT") console.warn(`[publish] archive ilegível ao procurar ${id}: ${e.message}`);
-  }
-  return null;
-}
-
-// commit + push único do projeto (scripts/lib/git.mjs): aborta rebase que falhou, retry com jitter
 const commitAndPush = (paths, message, opts = {}) => commitAndPushGit(paths, message, { dry: NO_GIT || DRY, ...opts });
-
-async function processBatch(type, queue, indexById, nowIso, tarjaColor, cycleColor, denylist, reconcile = null) {
-  // No layout card02 o carrossel abre com a capa (Card 11) do item lider, que
-  // substitui o slide dele. Limite do IG = 10 slides = 10 items.
-  const matureLimit = 10;
-  // Assinatura de topico de cada item, pra diversidade por assunto no carrossel.
-  // Le do index (ja em memoria); item sem texto/index nao entra em cluster.
-  const sigCache = new Map();
-  const signatureFor = (q) => {
-    if (sigCache.has(q.id)) return sigCache.get(q.id);
-    const idx = indexById.get(q.id);
-    const text = idx ? `${idx.title_pt || idx.titulo_pt || ""} ${idx.intro_pt || ""}`.trim() : "";
-    const sig = text ? topicSignature(text) : null;
-    sigCache.set(q.id, sig);
-    return sig;
-  };
-  const mature = pickMatureByTypeDiverse(queue, type, nowIso, {
-    limit: matureLimit,
-    denylist,
-    signatureFor,
-    similarFn: similarity,
-    topicCap: TOPIC_CAP,
-    onDropped: (item, reason) => console.log(`[publish] adiado ${item.id} (${type}): ${reason}`),
-  });
-  if (mature.length === 0) {
-    console.log(`[publish] tipo=${type}: 0 maduros, skip`);
-    return null;
-  }
-  console.log(`[publish] tipo=${type}: ${mature.length} maduros`);
-
-  // Guarda cross-run contra repost: item maduro com tentativa anterior
-  // registrada (markAttempt) pode JA estar publicado, se o run anterior caiu
-  // no falso-erro 2207051 e nem o poll pos-erro enxergou o post. Antes de
-  // republicar, confere as midias recentes do IG com a caption da tentativa.
-  // Achou: marca como postado e tira do batch. 1 GET por caption pendente,
-  // so quando ha tentativa falha anterior.
-  // Trade-off aceito: o match e por prefixo de caption (>=60 chars). Se o
-  // batch retentado mudou de composicao e o lider coincide com um post
-  // legitimo posterior, um item pode ser marcado sem ter saido. Perder 1
-  // item raro custa menos que duplicar no feed.
-  if (!DRY) {
-    const byCaption = new Map();
-    for (const q of mature.filter((m) => m._lastAttemptCaption)) {
-      if (!byCaption.has(q._lastAttemptCaption)) byCaption.set(q._lastAttemptCaption, []);
-      byCaption.get(q._lastAttemptCaption).push(q);
-    }
-    const recoveredItems = [];
-    let recoveredPostId = null;
-    for (const [caption, group] of byCaption) {
-      const sinceMs = Math.min(...group.map((q) => {
-        const t = new Date(q._lastAttemptAt || 0).getTime();
-        return Number.isFinite(t) && t > 0 ? t : Date.now();
-      }));
-      const found = await recoverPublishedPost({ caption, sinceMs, attempts: 1 });
-      if (!found) continue;
-      console.warn(`[publish] guarda cross-run: tentativa anterior de ${group.map((q) => q.id).join(", ")} JA esta no IG (postId=${found}). Marcando como postado SEM republicar.`);
-      markPosted(queue, group.map((q) => q.id), found, nowIso);
-      recoveredPostId = found;
-      for (const q of group) {
-        recoveredItems.push(q);
-        const i = mature.indexOf(q);
-        if (i >= 0) mature.splice(i, 1);
-      }
-    }
-    if (mature.length === 0) {
-      // batch inteiro ja estava publicado: devolve como sucesso (conta no
-      // postCount e notifica), sem nenhum publish novo.
-      return {
-        type,
-        attempted: recoveredItems.length,
-        succeeded: recoveredItems.length,
-        postId: recoveredPostId,
-        recoveredCrossRun: true,
-        items: recoveredItems.map((q) => {
-          const idx = indexById.get(q.id);
-          return { id: q.id, title_pt: idx?.title_pt || "(recuperado de tentativa anterior)", tags: idx?.tags || [] };
-        }),
-      };
-    }
-  }
-
-  const hydrated = [];
-  for (const m of mature) {
-    let h = await hydrateItem(m, indexById);
-    if (!h) h = await findInArchive(m.id);
-    if (h) {
-      // anota a cor da tarja (cadernob) e a cor do ciclo (card02/capa)
-      h._tarjaColor = tarjaColor;
-      h._cycleColor = cycleColor;
-      hydrated.push(h);
-    } else {
-      console.warn(`[publish] item ${m.id} nao achado em index nem archive, skip`);
-    }
-  }
-  if (hydrated.length === 0) {
-    // marca como erro pra nao tentar pra sempre
-    markError(queue, mature.map((m) => m.id), "item nao encontrado em index/archive", nowIso);
-    return { type, attempted: mature.length, succeeded: 0 };
-  }
-
-  // 1. gera slides
-  const slides = await buildSlides(hydrated);
-  console.log(`[publish] slides gerados: ${slides.length} (${slides.filter((s) => s.reused).length} reuso de cache)`);
-
-  if (slides.length === 0) {
-    markError(queue, hydrated.map((h) => h.id), "falha ao gerar slides", nowIso);
-    return { type, attempted: hydrated.length, succeeded: 0 };
-  }
-
-  // 2. items que terao slide; capa do carrossel (card02, >=2 items) usa o
-  //    primeiro como lider. Gera a capa ANTES do push pra ela ir no mesmo
-  //    commit dos slides (raw URL precisa estar publicada antes do publish).
-  const itemsToPost = hydrated.filter((h) => slides.find((s) => s.id === h.id));
-  // Item hidratado sem slide gerado = falha no buildSlide. Marca erro pra
-  // nao ficar voltando pro topo da fila a cada run (bloqueando 1 slot).
-  const failedSlide = hydrated.filter((h) => !slides.find((s) => s.id === h.id));
-  if (failedSlide.length) {
-    console.warn(`[publish] ${failedSlide.length} item(s) sem slide, marcando erro: ${failedSlide.map((h) => h.id).join(", ")}`);
-    markError(queue, failedSlide.map((h) => h.id), "falha ao gerar slide", nowIso);
-  }
-  let coverImageUrl = null;
-  if (LAYOUT === "card02" && itemsToPost.length >= 2) {
-    try {
-      const coverId = `_cover-${type}`;
-      await buildCoverSlide(itemsToPost[0], coverId, cycleColor);
-      coverImageUrl = slideUrlFor(coverId);
-      console.log(`[publish] capa gerada (lider=${itemsToPost[0].id})`);
-    } catch (e) {
-      console.warn(`[publish] falha ao gerar capa (segue sem capa): ${e.message}`);
-      coverImageUrl = null;
-    }
-  }
-
-  // 3. commita + push slides (inclui a capa) pra raw URL funcionar
-  await commitAndPush(
-    ["media/news/instagram-slides/"],
-    `publish-ig: gera slides ${type} (${slides.length}${coverImageUrl ? "+capa" : ""}) ${nowIso.slice(0, 16)}Z`,
-  );
-
-  // 4. pequena espera pra raw.githubusercontent indexar (geralmente <2s, mas seguranca)
-  if (!DRY) await new Promise((r) => setTimeout(r, 5000));
-
-  if (DRY) {
-    console.log(`[publish] DRY: slides prontos${coverImageUrl ? " (com capa)" : ""}, pulando chamada IG`);
-    return { type, attempted: hydrated.length, succeeded: 0, dry: true };
-  }
-
-  // 5. publica via API. Antes, registra a tentativa (caption + instante) na
-  //    fila: se o publish falhar E o post sair mesmo assim (falso-erro 2207051),
-  //    a guarda cross-run do proximo run acha o post por essa caption e nao
-  //    republica. buildCarouselCaption delega pra single quando ha 1 item, e a
-  //    mesma caption que publishItems vai montar.
-  const slideSuffix = LAYOUT === "card02" ? ".card02" : "";
-  markAttempt(queue, itemsToPost.map((it) => it.id), buildCarouselCaption(itemsToPost), nowIso);
-  // Persiste a caption da tentativa (via git) ANTES do publish. Se a run morrer
-  // DURANTE o publishItems (timeout de 10min do runner, SIGKILL) depois do post
-  // ja ter saido no IG, markPosted e o commit imediato nunca rodam; sem esta
-  // gravacao previa, o proximo cron nao acha _lastAttemptCaption e re-posta.
-  // Com ela, a guarda cross-run casa a caption e evita o duplicado. 1 commit
-  // extra por batch, barato. Falha aqui nao derruba a run (segue pro publish,
-  // == comportamento anterior, sem regressao).
-  try {
-    await writeQueue(queue);
-    await commitAndPush(
-      ["media/news/_publish-queue.json"],
-      `publish-ig: registra tentativa ${type} (${itemsToPost.length} item/s) ${nowIso.slice(0, 16)}Z`,
-      { onRebaseConflict: reconcile },
-    );
-  } catch (e) {
-    console.warn(`[publish] pre-commit da tentativa falhou (segue pro publish): ${e.message}`);
-  }
-  try {
-    const r = await publishItems(itemsToPost, { coverImageUrl, slideSuffix });
-    if (r.recovered) {
-      console.warn(`[publish] RECUPERADO tipo=${type}: media_publish deu erro mas o post saiu (postId=${r.postId}). Marcando como postado pra NAO re-postar.`);
-    }
-    console.log(`[publish] OK tipo=${type} postId=${r.postId} count=${r.count}`);
-    markPosted(queue, itemsToPost.map((it) => it.id), r.postId, new Date().toISOString());
-
-    // Publicacao paralela no Facebook Pages (mesmo conteudo, album de fotos).
-    // BEST-EFFORT: o IG ja publicou e marcou postado; uma falha no FB apenas
-    // loga e segue, NAO derruba a run nem devolve o item pra fila (senao o IG
-    // duplicaria). So liga com a flag PUBLISH_FB=1 + secrets presentes, pra o
-    // FB nao entrar em producao sem validacao consciente.
-    let fbPostId = null;
-    if (process.env.PUBLISH_FB === "1" && process.env.FB_PAGE_ID && process.env.FB_PAGE_TOKEN) {
-      try {
-        const fb = await publishFeedAlbum(itemsToPost, { coverImageUrl, slideSuffix });
-        fbPostId = fb.postId;
-        console.log(`[publish] FB OK tipo=${type} fbPostId=${fb.postId} count=${fb.count}`);
-      } catch (e) {
-        const d = typeof e.toDetailString === "function" ? e.toDetailString() : e.message;
-        console.error(`[publish] FB FALHA tipo=${type} (IG ja publicou, seguindo): ${d}`);
-      }
-    } else if (process.env.FB_PAGE_ID && process.env.FB_PAGE_TOKEN) {
-      console.log(`[publish] FB desligado (PUBLISH_FB!=1); IG publicado normalmente`);
-    }
-
-    return {
-      type,
-      attempted: itemsToPost.length,
-      succeeded: itemsToPost.length,
-      postId: r.postId,
-      fbPostId,
-      items: itemsToPost.map((it) => ({ id: it.id, title_pt: it.title_pt, tags: it.tags || [] })),
-    };
-  } catch (e) {
-    // Erros IGAPIError/IGRateLimitError expoem code/subcode/fbtrace via
-    // toDetailString. Outros erros usam message normal.
-    const detail = typeof e.toDetailString === "function" ? e.toDetailString() : e.message;
-    const nowIso2 = new Date().toISOString();
-    console.error(`[publish] FALHA tipo=${type}: ${detail}`);
-    if (e.isRateLimit) {
-      // Backoff temporal: marca items pra nao tentar de novo enquanto a
-      // janela rolling de 24h nao liberar. Quando expirar (1h default),
-      // pickMature volta a considera-los.
-      const untilIso = new Date(Date.now() + estimateUnsaturationDelayMs()).toISOString();
-      markRateLimited(queue, itemsToPost.map((it) => it.id), untilIso, nowIso2);
-      console.warn(`[publish] rate-limited ate ${untilIso}, items ${itemsToPost.map((it) => it.id).join(", ")} em backoff`);
-    } else {
-      markError(queue, itemsToPost.map((it) => it.id), detail, nowIso2);
-    }
-    return {
-      type,
-      attempted: itemsToPost.length,
-      succeeded: 0,
-      error: detail,
-      errorCode: e.code,
-      errorSubcode: e.subcode,
-      fbtraceId: e.fbtraceId,
-      isRateLimit: !!e.isRateLimit,
-    };
-  }
-}
-
-async function sendTelegram(token, chatId, text) {
-  const truncated = text.length > 3900 ? text.slice(0, 3900) + "\n\n(truncado)" : text;
-  try {
-    const params = new URLSearchParams({
-      chat_id: chatId,
-      parse_mode: "HTML",
-      disable_web_page_preview: "true",
-      text: truncated,
-    });
-    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-    });
-    const json = await res.json();
-    if (!json.ok) console.warn("[publish] telegram falhou:", json);
-    else console.log("[publish] telegram notif enviada");
-  } catch (e) {
-    console.warn("[publish] telegram erro:", e.message);
-  }
-}
-
-async function notifyTelegram(results) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return;
-
-  const success = results.filter((r) => r.succeeded > 0 && r.postId);
-  const failed = results.filter((r) => r.succeeded === 0 && r.error);
-
-  if (success.length > 0) {
-    const totalItems = success.reduce((s, r) => s + r.items.length, 0);
-    const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
-    const lines = [];
-    lines.push(`✅ <b>Publicado no @smufdpj, ${brtNow} BRT</b>`);
-    lines.push("");
-    for (const batch of success) {
-      const label = batch.type === "spotlight" ? "Spotlight da comunidade" : "Notícias regulares";
-      lines.push(`<b>${batch.items.length} ${batch.items.length === 1 ? "post" : "posts"} (${label})</b>`);
-      lines.push(`<i>postId: <code>${batch.postId}</code></i>`);
-      lines.push("");
-      for (let i = 0; i < batch.items.length; i++) {
-        const it = batch.items[i];
-        const titulo = (it.title_pt || "(sem titulo)")
-          .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        const tagsStr = it.tags.length ? `  <i>tags: ${it.tags.join(", ")}</i>` : "";
-        lines.push(`${i + 1}. <b>${titulo}</b>${tagsStr}`);
-        lines.push(`   ↳ ${linkNoticia(it.id)}`);
-      }
-      lines.push("");
-    }
-    lines.push(`Total: ${totalItems} item(s) no feed agora.`);
-    await sendTelegram(token, chatId, lines.join("\n"));
-  }
-
-  if (failed.length > 0) {
-    const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
-    const lines = [];
-    lines.push(`❌ <b>Falha ao publicar no @smufdpj, ${brtNow} BRT</b>`);
-    lines.push("");
-    const escape = (s) => String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    for (const batch of failed) {
-      const err = escape(batch.error || "erro desconhecido");
-      const tag = batch.isRateLimit ? " ⏱ <i>rate limit</i>" : "";
-      lines.push(`<b>tipo: ${batch.type}</b>${tag} — ${batch.attempted} item(s) tentado(s)`);
-      lines.push(`<code>${err}</code>`);
-      const meta = [];
-      if (batch.errorCode != null) meta.push(`code=${batch.errorCode}`);
-      if (batch.errorSubcode != null) meta.push(`subcode=${batch.errorSubcode}`);
-      if (batch.fbtraceId) meta.push(`fbtrace=<code>${escape(batch.fbtraceId)}</code>`);
-      if (meta.length) lines.push(meta.join(" "));
-      lines.push("");
-    }
-    const rateLimited = failed.some((r) => r.isRateLimit);
-    const tokenError = failed.some((r) => /blocked|token|expired|oauth/i.test(r.error || ""));
-    if (rateLimited) {
-      const appLevel = failed.some((r) => APP_LEVEL_CODES.has(r.errorCode));
-      if (appLevel) {
-        lines.push("⏱ <b>Rate limit DA APP (code 4).</b> Limite de chamadas da aplicacao inteira no Graph API, independente da cota de 50/24h.");
-        lines.push(`Cooldown global armado por ${COOLDOWN_APP_LEVEL_MS / 3600000}h: proximos crons saem cedo sem tocar a API ate liberar.`);
-        lines.push("Se persistir, cheque restricao/tier da app no Meta Developer Portal.");
-      } else {
-        lines.push("⏱ <b>Rate limit IG (content publishing).</b> Cota de publishes na janela rolling de 24h saturou.");
-        lines.push(`Cooldown global armado por ${COOLDOWN_CONTENT_MS / 3600000}h: proximos crons saem cedo ate liberar.`);
-      }
-    } else if (tokenError) {
-      lines.push("⚠️ Provavel token expirado. Reautorize em Meta Developer Portal e atualize o secret:");
-      lines.push("<code>gh secret set IG_ACCESS_TOKEN --repo andrehz4/setlists-pj-ev</code>");
-    }
-    await sendTelegram(token, chatId, lines.join("\n"));
-  }
-}
+const resumo = (nowIso, extra) => writeStepSummary({
+  title: "Publish Instagram",
+  meta: { dry: DRY, "max-batches": MAX_BATCHES, run: nowIso.slice(0, 16) + "Z" },
+  ...extra,
+});
 
 async function main() {
   const nowIso = new Date().toISOString();
   console.log(`[publish] run em ${nowIso} | dry=${DRY} no-git=${NO_GIT} max-batches=${MAX_BATCHES}`);
-
-  if (!DRY) {
-    if (!process.env.IG_USER_ID || !process.env.IG_ACCESS_TOKEN) {
-      console.error("IG_USER_ID e IG_ACCESS_TOKEN obrigatorios (env)");
-      process.exit(2);
-    }
+  if (!DRY && (!process.env.IG_USER_ID || !process.env.IG_ACCESS_TOKEN)) {
+    console.error("IG_USER_ID e IG_ACCESS_TOKEN obrigatorios (env)");
+    process.exit(2);
   }
 
-  // Le o estado da fila CEDO, antes dos guards de cooldown/quota, pra o
-  // housekeeping de stale (abaixo) rodar SEMPRE. Antes a leitura ficava depois
-  // dos early-returns e o anti-stale nunca era alcancado quando a run abortava
-  // por cooldown/rate-limit: noticia datada velha (ex: saga do baterista de 5
-  // dias) ficava presa no topo do FIFO pra sempre e atropelava o conteudo novo.
+  // 1. Estado lido CEDO, antes das guardas, pra a expiração de pendentes velhos rodar sempre
+  //    (antes, notícia datada velha ficava presa no topo do FIFO quando a run saía por cooldown).
   const queue = await readQueue();
   const denylist = await readDenylist();
-  // index.json corrompido NAO pode virar fallback vazio: com index vazio,
-  // todo item maduro cai em "nao achado em index/archive" e e marcado como
-  // erro permanente. Melhor falhar a run inteira, visivel no Actions.
-  let indexDoc;
-  try {
-    const rawIndex = await fs.readFile(INDEX_PATH, "utf8");
-    indexDoc = JSON.parse(rawIndex);
-    if (!indexDoc || !Array.isArray(indexDoc.items)) throw new Error("sem .items[]");
-  } catch (e) {
-    if (e.code === "ENOENT") {
-      indexDoc = { items: [] };
-    } else {
-      throw new Error(`index.json ilegivel (${e.message}). Abortando pra nao marcar erro em itens validos.`);
-    }
-  }
+  const indexDoc = await lerIndex(INDEX_PATH);
   const indexById = new Map((indexDoc.items || []).map((x) => [x.id, x]));
+  const reconcile = criarReconciliador(queue);
+  const ctx = { dry: DRY, commitAndPush, reconcile };
 
-  // Arquivos de estado que ESTA run escreve e commita. Usado pela
-  // reconciliacao pos-conflito (snapshot local + reset pra origin/main).
-  const STATE_PATHS = [
-    "media/news/_publish-queue.json",
-    "media/news/_deleted-from-ig.json",
-    "media/news/_telegram-cursor.json",
-    "media/news/_ig-cooldown.json",
-    "media/news/_ig-exists-cache.json",
-    "media/news/_skipped-stale.json",
-    "media/news/_detect-deleted-stamp.json",
-    "media/news/_health-stamp.json",
-  ];
-
-  // Reconcilia com origin/main apos conflito de rebase no commit de estado.
-  // A fila e mesclada por id (news-merge enfileira em paralelo); os demais
-  // arquivos de estado sao exclusivos deste workflow (concurrency group
-  // impede outra run igual), entao a versao local desta run e autoritativa.
-  async function reconcileWithRemote() {
-    const snapshot = new Map();
-    for (const p of STATE_PATHS) {
-      try { snapshot.set(p, await fs.readFile(p, "utf8")); } catch {}
-    }
-    const f = gitTry(["fetch", "origin"]);
-    if (!f.ok) { console.warn(`[git] fetch falhou na reconciliacao: ${f.err}`); return false; }
-    const r = gitTry(["reset", "--hard", "origin/main"]);
-    if (!r.ok) { console.warn(`[git] reset falhou na reconciliacao: ${r.err}`); return false; }
-    let remoteQueue;
-    try { remoteQueue = await readQueue(); } catch { remoteQueue = { items: [], postCount: 0 }; }
-    const merged = mergeQueueStates(remoteQueue, queue);
-    queue.items = merged.items;
-    queue.postCount = merged.postCount;
-    await writeQueue(queue);
-    for (const [p, content] of snapshot) {
-      if (p.endsWith("_publish-queue.json")) continue;
-      await fs.writeFile(p, content);
-    }
-    console.log(`[git] reconciliado: fila mesclada por id (${queue.items.length} itens), demais estados restaurados da run`);
-    return true;
-  }
-
-  // Expira pendentes datados velhos demais (default 2d, 30d evergreen/memoria),
-  // SEMPRE, mesmo que a run aborte cedo logo abaixo. Retorna se a fila ficou
-  // suja (precisa persistir). Os early-returns de cooldown/quota chamam
-  // persistStaleIfDirty() pra gravar a fila limpa antes de sair.
   const staleRemoved = pruneStalePending(queue, nowIso, {
     staleDays: STALE_DAYS,
     evergreenDays: STALE_DAYS_EVERGREEN,
@@ -585,336 +56,83 @@ async function main() {
     isEvergreen: (q) => (indexById.get(q.id)?.tags || []).includes("memoria"),
     denylist,
   });
-  let queueDirty = false;
   if (staleRemoved.length > 0) {
     await recordStaleTombstone(staleRemoved, indexById, nowIso);
-    queueDirty = true;
     console.log(`[publish] stale: ${staleRemoved.length} pendente(s) expirado(s): ${staleRemoved.map((q) => q.id).join(", ")}`);
   }
 
-  // Persiste a fila limpa (so quando houve expiracao). Usado pelos early-returns
-  // pra nao perder o housekeeping quando a run aborta. NAO toca _ig-cooldown.json
-  // (pra nao reescrever o cooldown vigente).
-  async function persistStaleIfDirty() {
-    if (!queueDirty) return;
-    await writeQueue(queue);
-    await commitAndPush(
-      ["media/news/_publish-queue.json", "media/news/_skipped-stale.json"],
-      `publish-ig: expira ${staleRemoved.length} stale (housekeeping) ${nowIso.slice(0, 16)}Z`,
-      { onRebaseConflict: reconcileWithRemote },
-    );
-    queueDirty = false; // ja persistido; evita commit duplo no fim da run
-  }
-
-  // Cooldown global: se a run anterior bateu no limite DA APP (code 4 etc),
-  // sai cedo SEM rodar deteccao de apagados, gerar slides, dar push nem
-  // tentar publicar. Para de martelar a API enquanto o throttle nao limpa
-  // e evita encher o repo de commits de slide que nao vao pro ar. Pula em
-  // DRY (DRY nao chama IG API).
+  // 2. Guardas. Saindo cedo, ainda grava a fila limpa (sem tocar _ig-cooldown.json).
   if (!DRY) {
-    const cooldown = await readCooldown();
-    if (isCoolingDown(cooldown, nowIso)) {
-      const msg = `cooldown global ativo ate ${cooldown.until} (motivo: ${cooldown.reason || "rate limit"}${cooldown.code != null ? ` code=${cooldown.code}` : ""}). Aborta a run sem tocar a IG API.`;
-      console.warn(`[publish] ${msg}`);
-      await writeStepSummary({
-        title: "Publish Instagram",
-        meta: { dry: DRY, "max-batches": MAX_BATCHES, run: nowIso.slice(0, 16) + "Z" },
-        stats: { "batches": 0, "publicados": 0, "falhas": 0 },
-        extras: [{ heading: "Cooldown ativo", body: msg }],
-      });
-      // Sem telegram aqui: a falha que armou o cooldown ja notificou. Notificar
-      // a cada cron de 30min so geraria spam.
-      await persistStaleIfDirty(); // grava a fila limpa mesmo abortando aqui
-      process.exitCode = 0; // backoff intencional, nao e erro de pipeline
+    const parada = (await guardaCooldown(nowIso)) || (await guardaQuota());
+    if (parada) {
+      console.warn(`[publish] ${parada.msg}`);
+      await resumo(nowIso, { stats: { batches: 0, publicados: 0, falhas: 0 }, extras: [{ heading: parada.titulo, body: parada.msg }] });
+      if (staleRemoved.length > 0) {
+        await writeQueue(queue);
+        await commitAndPush(
+          ["media/news/_publish-queue.json", "media/news/_skipped-stale.json"],
+          `publish-ig: expira ${staleRemoved.length} stale (housekeeping) ${nowIso.slice(0, 16)}Z`,
+          { onRebaseConflict: reconcile },
+        );
+      }
+      process.exitCode = 0; // backoff intencional, não é erro de pipeline
       return;
     }
-    // cooldown expirou mas o arquivo ainda tem `until` no passado: normaliza
-    // pra nao deixar estado stale no repo (clearCooldown so roda em sucesso,
-    // que pode nao acontecer se nao ha item maduro quando a app destrava).
-    if (cooldown.until) {
-      await clearCooldown();
-      console.log("[publish] cooldown expirado, estado limpo");
-    }
   }
 
-  // Pre-check de quota IG. DESLIGADO por padrao: o endpoint content_publishing
-  // _limit reporta a cota de publishes (50/24h), nao o limite DA APP (code 4)
-  // que e o que realmente derruba o feed. Com a app throttled ele devolve 0/50
-  // (livre) e a run segue pra estourar no publish mesmo assim. Ou seja: nao
-  // protege de nada e ainda gasta 1 chamada/run. Reativavel via IG_QUOTA_PRECHECK=1.
-  let quotaInfo = null;
-  if (!DRY && QUOTA_PRECHECK) {
-    try {
-      quotaInfo = await getContentPublishingLimit();
-      console.log(`[publish] quota IG: ${quotaInfo.usage}/${quotaInfo.total} usados, ${quotaInfo.remaining} restantes (margem=${QUOTA_SAFETY_MARGIN})`);
-      if (quotaInfo.saturated) {
-        const msg = `IG content publishing quota saturada: ${quotaInfo.usage}/${quotaInfo.total} usados, ${quotaInfo.remaining} restantes (<= margem ${QUOTA_SAFETY_MARGIN}). Aborta a run antes de tentar publicar.`;
-        console.error(`[publish] ${msg}`);
-        await writeStepSummary({
-          title: "Publish Instagram",
-          meta: { dry: DRY, "max-batches": MAX_BATCHES, run: nowIso.slice(0, 16) + "Z" },
-          stats: { "batches": 0, "publicados": 0, "falhas": 0 },
-          extras: [{ heading: "Quota saturada", body: msg }],
-        });
-        const token = process.env.TELEGRAM_BOT_TOKEN;
-        const chatId = process.env.TELEGRAM_CHAT_ID;
-        if (token && chatId) {
-          const brtNow = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" });
-          await sendTelegram(token, chatId, `⏸ <b>Publish IG pulado, ${brtNow} BRT</b>\n\nQuota saturada: <code>${quotaInfo.usage}/${quotaInfo.total}</code> usados.\nRestam <b>${quotaInfo.remaining}</b> (margem ${QUOTA_SAFETY_MARGIN}).\nAguardando janela rolling de 24h liberar.`);
-        }
-        await persistStaleIfDirty(); // grava a fila limpa mesmo abortando aqui
-        process.exitCode = 0; // nao e erro de pipeline, e backoff intencional
-        return;
-      }
-    } catch (e) {
-      // pre-check falhou. Nao bloqueia a run; pode ser API instavel ou
-      // permissao faltando. Loga e segue (o publish em si vai expor o erro
-      // real com mais detalhe na proxima etapa).
-      console.warn(`[publish] pre-check quota falhou (segue mesmo assim): ${e.message}`);
-    }
-  }
-
-  // Stubs de noticia (n/<id>.html + sitemap): gera o que falta e commita
-  // ANTES de publicar, pra os links /n/<id> do Telegram/IG ja abrirem o
-  // artigo com preview social correto. Idempotente; 0 escritos = sem commit.
+  // 3. Manutenção antes de publicar.
   if (!DRY) {
-    try {
-      const wrote = await buildNewsStubs();
-      if (wrote > 0) {
-        await commitAndPush(["n/", "noticias/", "sitemap.xml"], `publish-ig: gera ${wrote} pagina(s) de noticia (n/ + noticias/ + sitemap) ${nowIso.slice(0, 16)}Z`);
-        console.log(`[publish] stubs de noticia: ${wrote} gerado(s)`);
-      }
-    } catch (e) {
-      console.warn(`[publish] stubs de noticia falharam (segue sem): ${e.message}`);
-    }
+    await gerarPaginasNoticia(nowIso, ctx);
+    await comandosTelegram();
+    await detectarApagados(queue, denylist, nowIso);
   }
-
-  // Telegram bot: processa comandos /ban /unban /denylist /status que
-  // Andre mandou desde o ultimo cron. Atualiza o _deleted-from-ig.json
-  // antes da detecao automatica abaixo, entao bans manuais via celular
-  // tem efeito imediato nesse cron.
-  if (!DRY) {
-    try {
-      const r = await pollTelegramCommands();
-      if (r.processed > 0) console.log(`[publish] telegram bot: ${r.processed} comando(s) processado(s)`);
-    } catch (e) {
-      console.warn(`[publish] telegram bot polling falhou (segue): ${e.message}`);
-    }
-  }
-
-  // (queue, denylist, indexById ja foram lidos no topo de main(), antes dos
-  // guards, pra o housekeeping de stale rodar sempre.)
-
-  // Auto-deteccao: bate GET /<postId> nos posts recentes pra ver quais
-  // sumiram do IG (Andre apagou no app). Adiciona a denylist + grava.
-  // ~5-33 GETs por run: era o maior ofensor de volume de chamadas. Agora so
-  // roda 1x a cada DETECT_INTERVAL_H horas (default 20h, ~1x/dia), nao toda
-  // run. Apagar post e raro; checar de hora em hora nao agrega e estourava o
-  // limite da app. O timestamp da ultima checagem fica em _detect-deleted-stamp.json.
-  let detectRan = false;
-  if (!DRY) {
-    const stamp = await readJson(DETECT_STAMP_PATH, { lastAt: null });
-    const lastMs = stamp.lastAt ? new Date(stamp.lastAt).getTime() : 0;
-    const dueMs = DETECT_INTERVAL_H * 60 * 60 * 1000;
-    if (Date.now() - lastMs < dueMs) {
-      const hLeft = ((dueMs - (Date.now() - lastMs)) / 3600000).toFixed(1);
-      console.log(`[publish] deteccao de apagados: pulada (proxima em ~${hLeft}h, intervalo ${DETECT_INTERVAL_H}h)`);
-    } else {
-    try {
-      const det = await detectDeletedPosts({ queue, lookbackDays: 30 });
-      detectRan = true;
-      if (det.deletedItems.length > 0) {
-        let addedCount = 0;
-        for (const di of det.deletedItems) {
-          if (addToDenylist(denylist, { itemId: di.itemId, postId: di.postId, reason: "auto-detected (404 no IG)" })) {
-            addedCount++;
-          }
-        }
-        if (addedCount > 0) {
-          await writeDenylist(denylist);
-          console.log(`[publish] denylist: +${addedCount} item(s) auto-detectados como apagados (${det.deletedItems.map((d) => d.itemId).join(", ")})`);
-          const token = process.env.TELEGRAM_BOT_TOKEN;
-          const chatId = process.env.TELEGRAM_CHAT_ID;
-          if (token && chatId) {
-            const lines = [
-              "🗑 <b>Posts apagados detectados no IG</b>",
-              "",
-              `${addedCount} item(s) banido(s) permanentemente:`,
-              ...det.deletedItems.slice(0, 10).map((d) => `<code>${d.itemId}</code> (postId ${d.postId})`),
-            ];
-            await sendTelegram(token, chatId, lines.join("\n"));
-          }
-        }
-      }
-      console.log(`[publish] deteccao de apagados: ${det.checked} posts checados (${det.cachedSkipped ?? 0} pulados via cache de ${det.total ?? det.checked}), ${det.deletedItems.length} apagados, ${det.indeterminate} indeterminados`);
-    } catch (e) {
-      console.warn(`[publish] auto-deteccao de apagados falhou (segue): ${e.message}`);
-    }
-    }
-  }
-  // marca o timestamp da deteccao (mesmo se falhou: nao re-tenta a cada run).
-  if (detectRan) {
-    await fs.writeFile(DETECT_STAMP_PATH, JSON.stringify({ lastAt: nowIso }, null, 2));
-  }
-
   console.log(`[publish] queue: ${queue.items.length} items totais, ${queue.items.filter((q) => !q.postedAt).length} pendentes, postCount=${queue.postCount}, denylist=${denylist.deleted.length}`);
 
-  // cor da tarja desta rodada (cicla a cada 3 posts publicados)
+  // 4. Lotes. Cor da tarja e do ciclo trocam a cada POSTS_PER_COLOR posts publicados.
   const tarjaColor = getCurrentTarjaColor(queue.postCount);
-  // cor do ciclo card02/capa (mesma regra de 3 posts/cor)
   const cycleColor = getCurrentCycleColor(queue.postCount);
   console.log(`[publish] cor: tarja=${tarjaColor} ciclo=${cycleColor} (a cada ${POSTS_PER_COLOR} posts)`);
+  const results = await rodarLotes({ queue, indexById, nowIso, tarjaColor, cycleColor, denylist, ctx, maxBatches: MAX_BATCHES });
 
-  const results = [];
-  const types = ["regular", "spotlight"];
-  let batchCount = 0;
-  let rateLimitedHit = false;
-  for (const t of types) {
-    if (batchCount >= MAX_BATCHES) break;
-    if (rateLimitedHit) {
-      // Se um batch ja bateu rate limit, o proximo vai bater igual (mesma
-      // janela rolling). Aborta cedo pra nao queimar mais quota nem
-      // confundir telemetria com falhas em cascata.
-      console.warn(`[publish] abort early: tipo=${t} pulado porque batch anterior bateu rate limit`);
-      break;
-    }
-    const r = await processBatch(t, queue, indexById, nowIso, tarjaColor, cycleColor, denylist, reconcileWithRemote);
-    if (r) {
-      results.push(r);
-      batchCount++;
-      // 1 batch sucesso = 1 post real no IG = incrementa postCount
-      if (r.succeeded > 0 && r.postId) {
-        queue.postCount = (queue.postCount || 0) + 1;
-        // Persiste o postedAt IMEDIATAMENTE apos o publish. Antes a fila so
-        // era commitada no fim da run: se a run morresse no meio (timeout,
-        // crash, push conflitado), o postedAt se perdia e o proximo cron
-        // re-postava o mesmo conteudo. Falha aqui nao derruba a run, o
-        // commit final tenta de novo.
-        try {
-          await writeQueue(queue);
-          await commitAndPush(
-            ["media/news/_publish-queue.json"],
-            `publish-ig: marca postado ${r.type} (${r.succeeded} item/s) ${nowIso.slice(0, 16)}Z`,
-            { onRebaseConflict: reconcileWithRemote },
-          );
-        } catch (e) {
-          console.warn(`[publish] persistencia imediata falhou (estado segue pro commit final): ${e.message}`);
-        }
-      }
-      if (r.isRateLimit) rateLimitedHit = true;
-    }
-  }
-
-  // Cooldown global: se qualquer batch bateu rate limit, arma o cooldown
-  // pros proximos crons sairem cedo (prioridade sobre sucesso parcial, ja
-  // que o throttle e da app inteira). Se nenhum bateu e algum publicou,
-  // limpa cooldown stale.
-  if (!DRY) {
-    const rl = results.find((r) => r.isRateLimit);
-    const anySuccess = results.some((r) => r.succeeded > 0 && r.postId);
-    if (rl) {
-      const ms = cooldownMsForCode(rl.errorCode);
-      const cd = await setCooldown({ ms, reason: rl.error, code: rl.errorCode, fbtraceId: rl.fbtraceId });
-      console.warn(`[publish] cooldown global armado ate ${cd.until} (code=${rl.errorCode ?? "?"})`);
-    } else if (anySuccess) {
-      await clearCooldown();
-    }
-  }
-
-  // housekeeping: limpa postados muito antigos. Denylist preserva items
-  // banidos (tombstone perpetuo) mesmo apos 30 dias.
-  // (a expiracao de PENDENTES stale ja rodou no topo de main(), antes dos
-  // guards, pra valer mesmo quando a run aborta cedo.)
+  // 5. Fechamento.
+  if (!DRY) await atualizarCooldown(results);
+  // Poda de postados antigos (a denylist preserva os banidos pra sempre).
   const pruned = pruneOldPosted(queue, nowIso, 30, denylist);
   if (pruned > 0) console.log(`[publish] prune: ${pruned} postados antigos removidos`);
-
-  // Poda de binarios IG-only (slides/stories ja publicados ha >14d). Segura
-  // o tamanho do checkout; as delecoes entram no commit final de estado.
   if (!DRY) {
-    try {
-      const pm = await pruneOldMedia(queue);
-      if (pm.slides + pm.stories + (pm.reels || 0) > 0) {
-        console.log(`[publish] prune media: ${pm.slides} slide(s), ${pm.stories} storie(s) e ${pm.reels || 0} reel(s) antigos apagados`);
-      }
-    } catch (e) {
-      console.warn(`[publish] prune media falhou (segue): ${e.message}`);
-    }
+    await podarMidia(queue);
+    await alertaFeedParado(queue, nowIso);
   }
-
-  // Detector de feed parado: cron verde + 0 publicados por dias passava
-  // despercebido (coleta morta, cooldown em loop, fila drenada). Se nada
-  // foi postado ha mais de IG_FEED_STALL_H horas, alerta no Telegram no
-  // maximo 1x/24h (stamp em _health-stamp.json).
-  if (!DRY) {
-    const STALL_H = Number.isFinite(Number(process.env.IG_FEED_STALL_H)) && Number(process.env.IG_FEED_STALL_H) > 0
-      ? Number(process.env.IG_FEED_STALL_H) : 48;
-    const HEALTH_STAMP_PATH = path.join(NEWS_DIR, "_health-stamp.json");
-    const lastPostedMs = queue.items.reduce((max, q) => {
-      const t = q.postedAt ? new Date(q.postedAt).getTime() : 0;
-      return Number.isFinite(t) && t > max ? t : max;
-    }, 0);
-    const stalledMs = Date.now() - lastPostedMs;
-    if (lastPostedMs > 0 && stalledMs > STALL_H * 3600 * 1000) {
-      const stamp = await readJson(HEALTH_STAMP_PATH, { lastAlertAt: null });
-      const lastAlertMs = stamp.lastAlertAt ? new Date(stamp.lastAlertAt).getTime() : 0;
-      if (Date.now() - lastAlertMs > 24 * 3600 * 1000) {
-        const hStalled = Math.round(stalledMs / 3600000);
-        const token = process.env.TELEGRAM_BOT_TOKEN;
-        const chatId = process.env.TELEGRAM_CHAT_ID;
-        console.warn(`[publish] FEED PARADO: ultimo post ha ${hStalled}h (limite ${STALL_H}h)`);
-        if (token && chatId) {
-          await sendTelegram(token, chatId, [
-            `⚠️ <b>Feed parado ha ${hStalled}h</b>`,
-            "",
-            `Nenhum post no @smufdpj desde ${new Date(lastPostedMs).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })} BRT.`,
-            `Pendentes na fila agora: ${queue.items.filter((q) => !q.postedAt).length}.`,
-            "Cheque: coleta (news.yml), curadoria (routine), cooldown (_ig-cooldown.json).",
-          ].join("\n"));
-        }
-        await fs.writeFile(HEALTH_STAMP_PATH, JSON.stringify({ lastAlertAt: nowIso }, null, 2));
-      }
-    }
-  }
-
   await writeQueue(queue);
-  // Denylist + cursor do telegram + queue commitados juntos pro proximo
-  // cron ja ver bans manuais que entraram via /ban no Telegram. Os dirs de
-  // slides/stories entram pra carregar as DELECOES do prune de media.
+  // Fila + denylist + cursor do bot juntos (o próximo cron já vê os /ban); as pastas de slides e
+  // stories entram pra levar as deleções da poda.
   await commitAndPush(
     [...STATE_PATHS, "media/news/instagram-slides/", "media/news/instagram-stories/"],
     `publish-ig: atualiza fila (${results.map((r) => `${r.type}:${r.succeeded}/${r.attempted}`).join(" ")}) ${nowIso.slice(0, 16)}Z`,
-    { onRebaseConflict: reconcileWithRemote },
+    { onRebaseConflict: reconcile },
   );
-
   if (!DRY) await notifyTelegram(results);
-
-  const publishedBatches = results.filter((r) => r.succeeded > 0 && r.items);
-  const failedBatches = results.filter((r) => r.succeeded === 0 && r.error);
-  const publishedItems = publishedBatches.flatMap((r) =>
-    r.items.map((it) => ({ ...it, sourceLabel: r.type === "spotlight" ? "Spotlight da comunidade" : "Noticia regular" }))
-  );
-  await writeStepSummary({
-    title: "Publish Instagram",
-    meta: { dry: DRY, "max-batches": MAX_BATCHES, run: nowIso.slice(0, 16) + "Z" },
-    stats: {
-      "batches": results.length,
-      "publicados": publishedBatches.reduce((s, r) => s + r.succeeded, 0),
-      "falhas": failedBatches.length,
-    },
-    curated: publishedItems.length > 0 ? publishedItems : undefined,
-    extras: [
-      ...(results.length === 0 ? [{ heading: "Resultado", body: "Fila vazia, nenhum item maduro." }] : []),
-      ...failedBatches.map((r) => ({ heading: `Falha (${r.type})`, body: `\`${r.error}\`` })),
-    ],
-  });
-
-  const allFailed = results.length > 0 && results.every((r) => r.succeeded === 0 && r.error);
-  if (allFailed) {
+  await escreverResumo(results, nowIso);
+  if (results.length > 0 && results.every((r) => r.succeeded === 0 && r.error)) {
     console.error("[publish] todos os batches falharam, sinalizando erro pro workflow");
     process.exitCode = 1;
   }
-
   console.log(`[publish] FIM`, results);
+}
+
+async function escreverResumo(results, nowIso) {
+  const publicados = results.filter((r) => r.succeeded > 0 && r.items);
+  const falhas = results.filter((r) => r.succeeded === 0 && r.error);
+  const itens = publicados.flatMap((r) =>
+    r.items.map((it) => ({ ...it, sourceLabel: r.type === "spotlight" ? "Spotlight da comunidade" : "Noticia regular" })));
+  await resumo(nowIso, {
+    stats: { batches: results.length, publicados: publicados.reduce((s, r) => s + r.succeeded, 0), falhas: falhas.length },
+    curated: itens.length > 0 ? itens : undefined,
+    extras: [
+      ...(results.length === 0 ? [{ heading: "Resultado", body: "Fila vazia, nenhum item maduro." }] : []),
+      ...falhas.map((r) => ({ heading: `Falha (${r.type})`, body: `\`${r.error}\`` })),
+    ],
+  });
 }
 
 main().catch((e) => {
