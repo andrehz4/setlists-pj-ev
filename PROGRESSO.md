@@ -8,13 +8,31 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 - Site, fórum e pipeline no ar. Publish IG/FB, story diário, reel de domingo, cápsulas, contrib e X manual rodando.
 - Instagram oficial (@pearljam, @eddievedder) é fonte de notícia desde 02/10 (`scripts/news/ig-oficial.mjs`).
-- Saúde: vistoria completa em `docs/VISTORIA-2026-10-02.md` (achados, notas por eixo, plano). Ver a sessão de 03/10.
+- Vistoria de saúde executada em 03/10 (ver a sessão abaixo e `docs/VISTORIA-2026-10-02.md`, seção Status).
 - Pendências vivas:
-  - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, com abertura de clipe e transições).
-  - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB, único com o
-    histórico original): decidir se apaga.
+  - **Portar as correções de segurança do backend pro terra-gentil-app** (lista em `backend/DEPLOY-RAILWAY.md`). O
+    `sync-terra-gentil.sh` recusa rodar até o requirements de lá ter `pyjwt`.
+  - Revisar os PRs do dependabot (abrem toda semana).
+  - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
+  - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB): decidir se apaga.
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
+
+## 2026-10-03: vistoria de saúde executada (15 commits)
+
+- CI: ffmpeg com teto de tempo e reserva estática (o story de 02/10 morreu no apt), Node 22, actions por SHA,
+  dependabot, crons fora do :00, CI do backend verde de novo.
+- Estado: JSON corrompido derruba a run em vez de virar "vazio" (`scripts/lib/estado.mjs`); commit único que aborta
+  rebase (`scripts/lib/git.mjs`); Telegram e fuso BRT únicos; `scripts/config.mjs` (scripts rodam de qualquer pasta).
+- Backend (cópia deste repo): e-mail privado no perfil, JWT_SECRET obrigatório, PyJWT, deps sem CVE, Dockerfile sem
+  root. Produção é o terra-gentil-app: falta portar.
+- Site: CSS e dados fora do `index.html` (21 mil -> 10 mil linhas), conferido no Chrome (DOM e tela iguais) e no ar.
+- Fatiados por responsabilidade (mesma API, conferido pixel a pixel, legenda a legenda e no mock): run-publish,
+  slide-image, instagram, story-video, coletores, merge-curated, fila, auto-merge, mock-ig, story/reel.
+- Bugs achados e corrigidos: poll de vídeo com status ERROR esperava 3 a 5 min; coletor fora do modo routine cortava o
+  index pra 30 e apagava imagens; pearljam.com com HTML novo derrubava a coleta; story mostrava `SETLISTS-PJ-EV.PAGES.DEV`;
+  ferramentas de cápsula quebradas pelo sharp 0.35.
+- Removidos: 17 scripts sem uso, pastas `_design-*`, backup de maio, `media-manifest.json`. Docs antigos em `docs/arquivo/`.
 
 ## 2026-10-02: Instagram oficial vira fonte de notícia
 

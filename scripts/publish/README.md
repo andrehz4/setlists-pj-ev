@@ -15,14 +15,23 @@ Fluxo geral e arquivos de estado: `CLAUDE.md` da raiz. Helpers comuns (estado, g
 
 ## Módulos
 
-- **Fila e estado:** `queue.mjs` (fila, denylist, cooldown, `mergeQueueStates`), `edition.mjs`, `color-cycle.mjs`.
-- **Instagram e Facebook:** `instagram.mjs` (Graph API, recuperação do falso-erro 2207051), `facebook.mjs`,
-  `ig-quota.mjs`, `ig-detect-deleted.mjs`, `refresh-token.mjs`, `midia-r2.mjs` (vídeo pro R2).
-- **Imagem:** `slide-image.mjs` (slides do carrossel), `cover-styles*.mjs` (capas em rodízio), `face-crop.mjs`,
-  `band-fallback.mjs`, `subject-fallback.mjs`, `find-better-image.mjs`, `image-overrides.mjs`, `fontconfig-boot.mjs`.
-- **Story:** `story-video.mjs`, `story-select.mjs`, `story-track.mjs`, `story-styles/`, `story/padrao-reel.mjs`.
-- **Reel:** `reel-select.mjs`, `reel-clips.mjs`, `reel-video.mjs`, `reel-week.mjs` e a pasta `reel/` (tem README).
-- **Outros:** `citacao/` (slide de citação das cápsulas), `narracao/` (voz ElevenLabs), `x/` (X manual), `assets/`.
+Os arquivos grandes viraram fachada ou roteiro curto; o código vive em subpastas (uma responsabilidade por arquivo):
+
+| Pasta | O que tem |
+|---|---|
+| `feed/` | Etapas do `run-publish.mjs`: config, itens, guarda contra repost, lote, publicação, avisos, guardas (cooldown/quota), manutenção, reconciliação. |
+| `fila/` | A fila (`queue.mjs` é fachada): io, denylist, cooldown, seleção, marcação. NUNCA mexer sem entender `markPosted`/`mergeQueueStates`. |
+| `ig/` | Cliente do Instagram (`instagram.mjs` é fachada): erros, legendas, http, containers, recuperação do falso-erro 2207051, publicações. |
+| `slide/` | Slides do feed (`slide-image.mjs` é fachada): base, texto, escolha da foto, recorte, card02, capa, cápsula, cadernob (rollback). |
+| `story/` | Story diário: linha do tempo, selo animado, card, montagem, registro, aviso, padrão do reel. |
+| `reel/` | Reel semanal e acervo de clipes (README próprio). |
+| `routine/` | Auto-merge da curadoria: git/gh, validação de segurança, mensagens, aplicação direta. |
+| `story-styles/` | Estilos de abertura e final do story (padrão `card11`). |
+| `citacao/`, `narracao/`, `x/`, `assets/` | Slide de citação das cápsulas, voz ElevenLabs, X manual, trilhas e selo. |
+
+Soltos: `facebook.mjs`, `ig-quota.mjs`, `ig-detect-deleted.mjs`, `refresh-token.mjs`, `midia-r2.mjs`, `cover-styles*.mjs`,
+`face-crop.mjs`, `band-fallback.mjs`, `subject-fallback.mjs`, `find-better-image.mjs`, `image-overrides.mjs`,
+`fontconfig-boot.mjs`, `edition.mjs`, `color-cycle.mjs`, `story-select.mjs`, `story-track.mjs`, `reel-*.mjs`.
 
 ## Ferramentas manuais
 

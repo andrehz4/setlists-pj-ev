@@ -25,6 +25,17 @@ npm run fontes:mac       # instala as fontes do projeto no Mac (sem isso slides 
 
 Validar mudança no pipeline = `npm test` + `node mock-ig/run.mjs feed` com itens maduros (editar `publishAt` na fila local e `git restore media/news/` depois).
 
+## Mapa do código
+
+- `scripts/lib/`: estado (`lerEstado`), git (`commitAndPush`), Telegram, fuso BRT, argumentos. `scripts/config.mjs`: raiz do
+  repo, domínio, link de notícia, Graph API, URL do fórum, caminhos de estado.
+- `scripts/publish/`: tudo que publica (README lá, com o mapa das subpastas `feed/`, `fila/`, `ig/`, `slide/`, `story/`,
+  `reel/`, `routine/`). Arquivos que eram gigantes viraram fachada (mesma API) ou roteiro curto.
+- `scripts/news/`: coleta e curadoria. `index-site.mjs` é a regra ÚNICA de gravação do `index.json` (teto 2000, notícia nova
+  nunca arquivada); `coleta/`, `comunidade/` e `curadoria/` são as partes do fetch-news, community-fetch e merge-curated.
+- Site: `index.html` + `css/app.css` + `dados/*.js` (shows, discos, músicas, mídia). Fórum: `forum*.html` + `functions/`.
+- `backend/`: cópia do fórum que ficou para trás; produção roda `terra-gentil-app/backend` (ver `backend/DEPLOY-RAILWAY.md`).
+
 ## Arquivos de estado (media/news/), todos versionados no git
 
 | Arquivo | Papel | Quem escreve |
