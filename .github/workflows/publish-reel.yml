@@ -24,7 +24,7 @@ concurrency:
 jobs:
   publish-reel:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v5
         with:
@@ -33,14 +33,12 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install ffmpeg
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
-          ffmpeg -version | head -n 1
+        timeout-minutes: 10
+        uses: ./.github/actions/ffmpeg
 
       - name: Install deps
         run: npm ci --no-audit --no-fund

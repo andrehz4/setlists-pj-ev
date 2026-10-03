@@ -31,7 +31,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
         with:
@@ -44,7 +44,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install deps
@@ -64,7 +64,9 @@ jobs:
         run: node scripts/publish/auto-merge-routine.mjs || true
 
       - name: Pull rebased main (auto-merge pode ter avancado)
-        run: git pull --rebase --autostash || true
+        # Se o rebase falhar, aborta pra não deixar o repo no meio de um rebase (run-publish
+        # reconcilia a fila sozinho no commit dele).
+        run: git pull --rebase --autostash || { git rebase --abort 2>/dev/null; echo "::warning::pull falhou, seguindo na main local"; }
 
       - name: Smoke test (valida token/escopo, nao publica)
         if: ${{ inputs.mode == 'smoke' }}
@@ -87,7 +89,10 @@ jobs:
           PUBLISH_FB: ${{ inputs.skip_fb && '0' || '1' }}
           GIT_AUTHOR_NAME: pj-news-bot
           GIT_AUTHOR_EMAIL: bot@setlists-pj.local
+          MAX_BATCHES: ${{ inputs.max-batches || '2' }}
+          DRY_RUN: ${{ inputs.dry-run }}
         run: |
-          ARGS="--max-batches=${{ inputs.max-batches || '2' }}"
-          if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          case "$MAX_BATCHES" in ''|*[!0-9]*) echo "max-batches inválido: $MAX_BATCHES"; exit 1;; esac
+          ARGS="--max-batches=$MAX_BATCHES"
+          if [ "$DRY_RUN" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           node scripts/publish/run-publish.mjs $ARGS

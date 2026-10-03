@@ -10,6 +10,10 @@ on:
     paths:
       - "scripts/**"
       - "mock-ig/**"
+      - "colab/**"
+      - "functions/**"
+      - "index.html"
+      - "media/*.json"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/test.yml"
@@ -17,6 +21,10 @@ on:
     paths:
       - "scripts/**"
       - "mock-ig/**"
+      - "colab/**"
+      - "functions/**"
+      - "index.html"
+      - "media/*.json"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/test.yml"
@@ -39,7 +47,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install deps

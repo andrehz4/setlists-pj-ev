@@ -1,7 +1,8 @@
 # Curadoria por IA E publicação dos posts de colaboradores (painel colaborar.html).
 # Curadoria: scripts/contrib/curar.mjs. Publicação (fase 4, fotos): scripts/contrib/publicar.mjs,
 # que posta no IG/FB e entra no site quando chega o horário (:30) do envio aprovado.
-# Módulo apartado: não toca media/news nem os outros crons. Sem o secret
+# Módulo apartado: a curadoria não toca media/news, mas a PUBLICAÇÃO grava media/news/index.json,
+# img/ e items/ (scripts/contrib/publicar.mjs), então concorre com os crons de notícia. Sem o secret
 # CONTRIB_BOT_KEY, ou com o painel desligado no backend, termina em segundos sem fazer nada.
 #
 # Os posts saem sempre às :30 da próxima hora, então há de 30 a 90 min pra curar.
@@ -35,14 +36,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: '22'
           cache: npm
-      - run: |
-          npm ci --no-audit --no-fund
-          sudo apt-get update && sudo apt-get install -y ffmpeg espeak-ng
+      - run: npm ci --no-audit --no-fund
+      - name: ffmpeg + espeak-ng
+        timeout-minutes: 10
+        uses: ./.github/actions/ffmpeg
+        with:
+          extra: espeak-ng
       - name: Gemini ouve a regra 1
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -52,7 +56,7 @@ jobs:
   curar:
     if: ${{ !inputs.smoke }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Tem algo na fila?
         id: fila
@@ -66,25 +70,31 @@ jobs:
           echo "contagem: $resp"
           echo "n=$n" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         if: steps.fila.outputs.n != '0'
         with:
           fetch-depth: 5
           persist-credentials: true
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         if: steps.fila.outputs.n != '0'
         with:
-          node-version: 20
+          node-version: '22'
           cache: npm
 
       - name: Dependências
         if: steps.fila.outputs.n != '0'
-        run: |
-          npm ci --no-audit --no-fund
-          # ffmpeg do Ubuntu SEMPRE (tem libass, que queima a legenda do Reel)
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          ffmpeg -hide_banner -buildconf | grep -q libass
+        run: npm ci --no-audit --no-fund
+
+      # ffmpeg com libass (queima a legenda do Reel); apt com teto de tempo e reserva estática
+      - name: ffmpeg
+        if: steps.fila.outputs.n != '0'
+        timeout-minutes: 10
+        uses: ./.github/actions/ffmpeg
+
+      - name: Confere libass
+        if: steps.fila.outputs.n != '0'
+        run: ffmpeg -hide_banner -buildconf | grep -q libass
 
       - name: Curadoria
         if: steps.fila.outputs.n != '0'

@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install deps
@@ -40,9 +40,11 @@ jobs:
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          DELETE_POST_ID: ${{ inputs.delete_post_id }}
+          MODO: ${{ inputs.mode || 'feed' }}
         run: |
-          if [ -n "${{ inputs.delete_post_id }}" ]; then
-            node scripts/publish/fb-smoke.mjs --delete "${{ inputs.delete_post_id }}"
+          if [ -n "$DELETE_POST_ID" ]; then
+            node scripts/publish/fb-smoke.mjs --delete "$DELETE_POST_ID"
           else
-            node scripts/publish/fb-smoke.mjs --${{ inputs.mode || 'feed' }}
+            node scripts/publish/fb-smoke.mjs "--$MODO"
           fi

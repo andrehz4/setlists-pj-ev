@@ -12,7 +12,12 @@ from app.contrib.config import contrib_settings as cfg
 from app.contrib.limite import limiter
 from app.contrib.r2 import r2_url
 from app.contrib.schemas import (
-    ConfigOut, MediaOut, SubmissionCreate, SubmissionOut, UploadOut, UploadRequest,
+    ConfigOut,
+    MediaOut,
+    SubmissionCreate,
+    SubmissionOut,
+    UploadOut,
+    UploadRequest,
 )
 from app.contrib.site import resolve_site
 from app.core.config import settings

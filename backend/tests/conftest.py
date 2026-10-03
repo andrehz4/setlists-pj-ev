@@ -27,7 +27,7 @@ def disable_rate_limit():
     for lim in limiters:
         lim.enabled = False
     yield
-    for lim, valor in zip(limiters, previous):
+    for lim, valor in zip(limiters, previous, strict=True):
         lim.enabled = valor
 
 

@@ -1,0 +1,42 @@
+# Instala ffmpeg (com libass) de forma resiliente.
+# Motivo: o apt-get do runner às vezes leva 12+ min (mirror lento) e estoura o timeout do job
+# (story de 08/09 e 02/10 cancelados). Aqui o apt tem teto de tempo e retentativa; se falhar,
+# cai pro build estático do johnvansickle (também tem libass), guardado no cache do Actions.
+name: ffmpeg
+description: Instala ffmpeg com teto de tempo e reserva estática
+inputs:
+  extra:
+    description: pacotes apt extras (ex. espeak-ng); só entram pelo caminho do apt
+    required: false
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: Cache do ffmpeg estático
+      uses: actions/cache@v4
+      with:
+        path: ~/.ffmpeg-static
+        key: ffmpeg-static-amd64-v1
+
+    - name: Instala ffmpeg
+      shell: bash
+      env:
+        EXTRA: ${{ inputs.extra }}
+      run: |
+        set -u
+        APT="sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o DPkg::Lock::Timeout=60"
+        if timeout 240 $APT update -qq && timeout 300 $APT install -y -qq ffmpeg $EXTRA; then
+          echo "ffmpeg via apt"
+        else
+          echo "::warning::apt lento ou falhou, usando ffmpeg estático"
+          DIR="$HOME/.ffmpeg-static"
+          if [ ! -x "$DIR/ffmpeg" ]; then
+            mkdir -p "$DIR"
+            curl -fsSL --retry 3 --max-time 180 -o /tmp/ff.tar.xz \
+              https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
+            tar -xJf /tmp/ff.tar.xz -C "$DIR" --strip-components=1
+          fi
+          echo "$DIR" >> "$GITHUB_PATH"
+          export PATH="$DIR:$PATH"
+        fi
+        ffmpeg -hide_banner -version | head -n 1
