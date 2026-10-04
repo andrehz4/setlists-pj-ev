@@ -12,8 +12,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Pendências vivas:
   - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com Blaymorphed, Black Circle e Singles, coleta
     diária (`agenda.yml`) com a turnê oficial de pearljam.com/tour. Story do dia por estado (`agenda-story.yml`)
-    e post "Agenda da semana" (`agenda-semana.yml`) prontos e testados no mock, DESLIGADOS até o Andre criar a
-    variável do repo `AGENDA_PUBLICAR=1`. Página no desenho do Claude Design (projeto "Agenda de Pearl Jam
+    e post "Agenda da semana" (`agenda-semana.yml`) prontos e LIGADOS desde 04/10 (variável do repo
+    `AGENDA_PUBLICAR=1`; apagar a variável desliga). 1ª publicação real: post da semana seg 05/10 10:07 e story
+    de SP às 14:07. Conferir se a marcação (user_tags) no story foi aceita pelo IG. Página no desenho do Claude Design (projeto "Agenda de Pearl Jam
     Brasil"), com "Agenda" no menu de todas as páginas. Indexação pedida no Search Console em 04/10; teste de
     pesquisa aprimorada: 20 eventos válidos. Conferir em ~1 semana se /agenda/ entrou no índice.
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
