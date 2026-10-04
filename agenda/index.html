@@ -37,6 +37,197 @@ text-decoration:none;font:600 15px system-ui,sans-serif}
 footer{clear:both;margin-top:40px;border-top:1px solid #d9cfbf;padding-top:14px;font:13px system-ui,sans-serif}
 footer a{color:#a8322b;text-decoration:none}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,900&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+/* /agenda/ · classes ag- · mobile primeiro */
+.ag-wrap{max-width:1120px}
+.ag{--ag-tinta:#0a0908;--ag-creme:#f7f1de;--ag-creme2:#ede4cc;--ag-fundo:#f4eee2;--ag-verm:#e10600;--ag-verm2:#a00400;--ag-ocre:#a87f2c;--ag-ocre2:#6e5115;--ag-azul:#2a5b9e;--ag-cinza:#4a443b;
+--ag-ruido:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .22 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+font:16px/1.55 Inter,system-ui,sans-serif;color:var(--ag-tinta)}
+.ag *{box-sizing:border-box}
+.ag p{margin:0}
+.ag a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+.ag a:hover{color:var(--ag-verm2)}
+.ag a:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.ag-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* topo */
+.ag-hero{padding:22px 0 26px;border-bottom:3px solid var(--ag-tinta);display:grid;gap:22px}
+.ag-assin{font:900 italic 19px/1.2 "Playfair Display",Georgia,serif;color:var(--ag-verm2);margin-bottom:4px!important}
+.ag-h1{margin:0;font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:.88;letter-spacing:.005em}
+.ag-h1-a{display:block;font-size:clamp(84px,27vw,210px)}
+.ag-h1-b{display:block;font-size:clamp(27px,7.6vw,52px);line-height:1;margin-top:8px}
+.ag-h1::after{content:"";display:block;height:5px;background:var(--ag-verm);margin-top:16px}
+.ag-intro{max-width:60ch;font-size:16px;color:var(--ag-cinza)}
+.ag-atalhos{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ag-atalhos a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:2px solid var(--ag-tinta);font:700 13px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;text-decoration:none}
+.ag-atalhos a:hover{background:var(--ag-tinta);color:var(--ag-creme)}
+.ag-atalhos span{background:var(--ag-verm2);color:#fff;padding:3px 6px}
+.ag-prox{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:12px 0;border-bottom:1.5px dashed var(--ag-cinza);font-weight:600}
+.ag-prox-tag{background:var(--ag-verm2);color:#fff;font:800 11px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;padding:6px 8px}
+.ag-prox a{text-decoration:underline}
+@media (min-width:900px){.ag-hero{grid-template-columns:1.15fr 1fr;align-items:end;gap:48px;padding-top:34px}}
+
+/* seções */
+.ag-sec{margin-top:56px}
+.ag-kicker{font:15px/1.2 "Special Elite","Courier New",monospace;color:var(--ag-cinza);margin-bottom:6px!important}
+.ag-h2{margin:0 0 20px;font:400 clamp(32px,8.6vw,56px)/.95 Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;color:var(--ag-tinta)}
+.ag-h2--p{font-size:clamp(26px,6.4vw,36px)}
+.ag-vazio{font:16px "Special Elite",monospace;padding:20px;border:2px dashed var(--ag-cinza)}
+.ag-fonte{margin-top:18px!important;font-size:13px;color:var(--ag-cinza)}
+
+/* turnê oficial: cartaz */
+.ag-cartaz{position:relative;margin:26px 4px 0;padding:34px 20px 22px;background:var(--ag-verm2) var(--ag-ruido);color:#fff;transform:rotate(-.6deg);box-shadow:5px 6px 0 var(--ag-tinta);display:grid;gap:24px}
+.ag-cartaz::before,.ag-cartaz::after{content:"";position:absolute;top:-13px;width:96px;height:28px;background:rgba(237,228,204,.85);box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.ag-cartaz::before{left:16px;transform:rotate(-7deg)}
+.ag-cartaz::after{right:16px;transform:rotate(5deg)}
+.ag-cartaz a:hover{color:inherit}
+.ag-carimbo{display:inline-block;background:var(--ag-verm);color:#fff;font:800 15px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.14em;padding:9px 12px;transform:rotate(-2deg);margin-bottom:14px!important}
+.ag-cartaz-artista{margin:0;font:400 clamp(60px,18vw,132px)/.86 Anton,Impact,sans-serif;text-transform:uppercase}
+.ag-cartaz-evento{margin-top:14px!important;font:800 17px/1.25 Inter,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.ag-cartaz-local{margin-top:4px!important;color:#f6dcd8;font-size:16px}
+.ag-ingressos{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.ag-ing{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ag-creme);color:var(--ag-tinta);padding:12px 12px 12px 16px;border-left:3px dashed var(--ag-verm2)}
+.ag-ing-data{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:10px;align-items:end;line-height:1}
+.ag-ing-dia{grid-row:1/3;font:400 54px/.85 Anton,Impact,sans-serif}
+.ag-ing-dds{grid-column:2;font:800 12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--ag-verm2)}
+.ag-ing-mes{grid-column:2;grid-row:2;font:600 14px Inter,sans-serif;text-transform:uppercase}
+.ag-btn{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;background:var(--ag-tinta);color:#fff!important;font:800 14px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;white-space:nowrap}
+.ag-btn:hover{background:var(--ag-verm)}
+.ag .ag-btn:focus-visible{outline-color:var(--ag-tinta)}
+.ag-btn--off{background:transparent;color:var(--ag-cinza)!important;border:2px dashed var(--ag-cinza)}
+.ag-of-tit{margin:28px 0 8px;font:400 22px Anton,sans-serif;text-transform:uppercase}
+.ag-of-lista{margin:0;padding-left:18px}
+.ag-of-lista li{margin:4px 0}
+@media (min-width:600px){.ag-ingressos{grid-template-columns:1fr 1fr}}
+@media (min-width:900px){.ag-cartaz{grid-template-columns:1.25fr 1fr;align-items:end;padding:44px 36px 32px;gap:36px}.ag-ingressos{grid-template-columns:1fr}}
+
+/* primeira vez */
+.ag-basico{background:var(--ag-creme2);border:2px solid var(--ag-tinta);padding:24px 20px}
+.ag-basico .ag-h2{margin-bottom:18px}
+.ag-basico-lista{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:ag-b}
+.ag-basico-lista li{counter-increment:ag-b;display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:10px;font-size:15px}
+.ag-basico-lista li::before{content:"0" counter(ag-b);grid-row:1/3;font:400 34px/1 Anton,sans-serif;color:var(--ag-ocre)}
+.ag-basico-tit{font:800 12px/1.6 Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--ag-ocre2)}
+.ag-basico-mais{margin-top:20px!important;padding-top:14px;border-top:1.5px dashed var(--ag-cinza);font-weight:600}
+@media (min-width:760px){.ag-basico{padding:30px 32px}.ag-basico-lista{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}}
+
+/* filtro UF */
+.ag-filtro{position:sticky;top:0;z-index:5;min-width:0;margin:0 -16px 6px;padding:10px 16px;border:0;border-bottom:2px solid var(--ag-tinta);background:var(--ag-fundo);display:flex;align-items:center;gap:10px}
+.ag-filtro-tit{float:left;padding:0;font:15px "Special Elite",monospace;color:var(--ag-cinza)}
+.ag-filtro-op{display:flex;flex-wrap:wrap;gap:6px}
+.ag-uf-in{position:absolute;opacity:0;width:1px;height:1px}
+.ag-uf-in+label{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:2px solid var(--ag-tinta);font:800 14px/1 Inter,sans-serif;letter-spacing:.04em;cursor:pointer;user-select:none}
+.ag-uf-in+label span{font-weight:500;color:var(--ag-cinza)}
+.ag-uf-in+label:hover{background:var(--ag-creme2)}
+.ag-uf-in:checked+label{background:var(--ag-tinta);color:var(--ag-creme)}
+.ag-uf-in:checked+label span{color:var(--ag-creme)}
+.ag-uf-in:focus-visible+label{outline:3px solid var(--ag-azul);outline-offset:2px}
+@supports not selector(:has(*)){.ag-filtro{display:none}}
+.ag-agenda:has(.ag-uf-in:not(#ag-uf-todos):checked) .ag-mes-qtd{visibility:hidden}
+
+/* calendário: lista (padrão) */
+.ag-mes{margin-top:30px}
+.ag-mes-topo{display:flex;justify-content:space-between;align-items:baseline;gap:12px;background:var(--ag-tinta);color:var(--ag-creme);padding:10px 14px}
+.ag-mes-nome{margin:0;font:400 28px/1.05 Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.ag-mes-qtd{font:14px "Special Elite",monospace;white-space:nowrap}
+.ag-semana{display:none}
+.ag-dias{list-style:none;margin:0;padding:0}
+.ag-dia{display:grid;grid-template-columns:58px minmax(0,1fr);gap:0 14px;padding:16px 0;border-bottom:1.5px dashed rgba(10,9,8,.4)}
+.ag-dia--vazio{display:none}
+.ag-data{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+.ag-data-dds{font:800 12px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--ag-verm2)}
+.ag-data-num{font:400 46px/1 Anton,Impact,sans-serif;margin-top:4px}
+.ag-data-mes{font:600 12px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--ag-cinza);margin-top:2px}
+.ag-shows{list-style:none;margin:0;padding:0}
+.ag-show+.ag-show{margin-top:14px;padding-top:14px;border-top:1px solid rgba(10,9,8,.15)}
+.ag-show-banda{font:400 27px/1 Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em}
+.ag-show-banda a{text-decoration:none}
+.ag-show-banda a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.ag-c-azul .ag-show-banda a{color:var(--ag-azul)}
+.ag-c-vermelho .ag-show-banda a{color:var(--ag-verm2)}
+.ag-c-preto .ag-show-banda a{color:var(--ag-tinta)}
+.ag-c-ocre .ag-show-banda a{color:var(--ag-ocre2)}
+.ag-show-local{margin-top:6px!important;font-size:15px;line-height:1.4;overflow-wrap:anywhere}
+.ag-casa--tbd{font:14px "Special Elite",monospace;color:var(--ag-cinza);border-bottom:1.5px dashed var(--ag-cinza)}
+.ag-cidade{font-weight:600}
+.ag-show-extra{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:8px!important}
+.ag-tag{font:800 11px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:5px 7px;border:1.5px solid var(--ag-tinta)}
+.ag-tag--rel{background:var(--ag-verm2);border-color:var(--ag-verm2);color:#fff}
+.ag-tag--hora{background:var(--ag-tinta);color:var(--ag-creme)}
+.ag-post{display:inline-flex;align-items:center;padding:12px 0;margin:-12px 0;font:700 12px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+@media (min-width:900px){
+  .ag-dia{grid-template-columns:90px minmax(0,1fr)}
+  .ag-mes:not(.ag-mes--grade) .ag-show{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,1fr);gap:20px;align-items:baseline}
+  .ag-mes:not(.ag-mes--grade) .ag-show-local,.ag-mes:not(.ag-mes--grade) .ag-show-extra{margin-top:0!important}
+  .ag-mes:not(.ag-mes--grade) .ag-show-extra{justify-content:flex-end}
+}
+
+/* calendário: grade de mês no desktop */
+@media (min-width:900px){
+  .ag-mes--grade .ag-semana,.ag-mes--grade .ag-dias{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));list-style:none;margin:0;padding:0;border-left:2px solid var(--ag-tinta)}
+  .ag-mes--grade .ag-semana li{padding:8px 10px;border-right:2px solid var(--ag-tinta);border-bottom:2px solid var(--ag-tinta);background:var(--ag-creme2);font:800 12px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em}
+  .ag-mes--grade .ag-dia{display:block;min-height:148px;padding:8px 10px 12px;border:0;border-right:2px solid var(--ag-tinta);border-bottom:2px solid var(--ag-tinta);background:var(--ag-creme)}
+  .ag-mes--grade .ag-dia--vazio{background:transparent}
+  .ag-mes--grade .ag-dia--passado{background:repeating-linear-gradient(-45deg,transparent 0 7px,rgba(10,9,8,.07) 7px 8px)}
+  .ag-mes--grade .ag-dia--hoje{background:var(--ag-verm2);color:#fff}
+  .ag-mes--grade .ag-dia--hoje::after{content:"hoje";display:block;margin-top:6px;font:14px "Special Elite",monospace}
+  .ag-dia-num{font:400 22px/1 Anton,sans-serif;color:var(--ag-cinza)}
+  .ag-dia--hoje .ag-dia-num{color:#fff}
+  .ag-mes--grade .ag-data{display:block;margin-bottom:10px}
+  .ag-mes--grade .ag-data-num{font-size:22px;margin:0}
+  .ag-mes--grade .ag-data-dds,.ag-mes--grade .ag-data-mes{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .ag-mes--grade .ag-show-banda{font-size:19px}
+  .ag-mes--grade .ag-show-local{font-size:12.5px;line-height:1.35;margin-top:3px!important}
+  .ag-mes--grade .ag-sep{display:none}
+  .ag-mes--grade .ag-cidade{display:block}
+  .ag-mes--grade .ag-show-extra{margin-top:6px!important;gap:4px 6px}
+  .ag-mes--grade .ag-tag{font-size:10px;padding:4px 5px}
+  .ag-mes--grade .ag-post{font-size:10.5px}
+  .ag-mes--grade .ag-show+.ag-show{margin-top:10px;padding-top:10px}
+  .ag-ini-1{grid-column-start:1}.ag-ini-2{grid-column-start:2}.ag-ini-3{grid-column-start:3}.ag-ini-4{grid-column-start:4}.ag-ini-5{grid-column-start:5}.ag-ini-6{grid-column-start:6}.ag-ini-7{grid-column-start:7}
+}
+
+/* bandas */
+.ag-bandas{list-style:none;margin:0;padding:0;display:grid;gap:18px;grid-template-columns:minmax(0,1fr)}
+.ag-banda{container-type:inline-size;display:flex;flex-direction:column;padding:22px 20px 18px;color:#fff;background-image:var(--ag-ruido)}
+.ag-banda:nth-child(odd){transform:rotate(-.4deg)}
+.ag-banda:nth-child(even){transform:rotate(.5deg)}
+.ag-bg-azul{background-color:var(--ag-azul)}
+.ag-bg-vermelho{background-color:var(--ag-verm2)}
+.ag-bg-preto{background-color:var(--ag-tinta)}
+.ag-bg-ocre{background-color:var(--ag-ocre);color:var(--ag-tinta)}
+.ag-banda a:hover{color:inherit}
+.ag-banda-desde{font:15px/1 "Special Elite",monospace}
+.ag-banda-desde span{font:400 22px/1 Anton,sans-serif;letter-spacing:.04em;margin-left:4px}
+.ag-banda-nome{margin:12px 0 4px;font:400 clamp(32px,15cqi,48px)/.95 Anton,Impact,sans-serif;text-transform:uppercase;overflow-wrap:anywhere}
+.ag-banda-nome a{text-decoration:none}
+.ag-banda-nome a:hover{text-decoration:underline;text-decoration-thickness:3px}
+.ag-banda-cidade{font:800 12px/1.4 Inter,sans-serif;text-transform:uppercase;letter-spacing:.12em}
+.ag-banda-resumo{margin-top:14px!important;font-size:15px;line-height:1.55}
+.ag-banda-rodape{margin-top:auto!important;padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 12px;font:14px "Special Elite",monospace}
+.ag-banda-rodape::before{content:"";flex-basis:100%;border-top:1.5px dashed currentColor;opacity:.6;margin-top:16px}
+.ag-banda-rodape a{font:700 14px/1 Inter,sans-serif;padding:12px 0;margin:-12px 0}
+@media (min-width:760px){.ag-bandas{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
+
+/* chamada pra bandas */
+.ag-cta{margin:60px 0 8px;padding:30px 20px;background:var(--ag-tinta);color:var(--ag-creme);display:grid;gap:16px}
+.ag-cta-tit{font:400 clamp(34px,9.4vw,60px)/.95 Anton,Impact,sans-serif;text-transform:uppercase}
+.ag-cta-txt{font-size:17px}
+.ag-cta-txt a{display:inline-block;margin-top:8px;padding:12px 16px;background:var(--ag-verm);color:#fff;font-weight:800;text-decoration:none}
+.ag-cta-txt a:hover{background:var(--ag-creme);color:var(--ag-tinta)}
+@media (min-width:900px){.ag-cta{grid-template-columns:1.4fr 1fr;align-items:center;padding:40px}}
+
+.ag-agenda:has(#ag-uf-SP:checked) .ag-show:not([data-uf="SP"]),.ag-agenda:has(#ag-uf-SP:checked) .ag-mes:not(:has([data-uf="SP"])),.ag-agenda:has(#ag-uf-SP:checked) .ag-mes:not(.ag-mes--grade) .ag-dia:not(:has([data-uf="SP"])){display:none}
+@media (max-width:899px){.ag-agenda:has(#ag-uf-SP:checked) .ag-dia:not(:has([data-uf="SP"])){display:none}}
+.ag-agenda:has(#ag-uf-RJ:checked) .ag-show:not([data-uf="RJ"]),.ag-agenda:has(#ag-uf-RJ:checked) .ag-mes:not(:has([data-uf="RJ"])),.ag-agenda:has(#ag-uf-RJ:checked) .ag-mes:not(.ag-mes--grade) .ag-dia:not(:has([data-uf="RJ"])){display:none}
+@media (max-width:899px){.ag-agenda:has(#ag-uf-RJ:checked) .ag-dia:not(:has([data-uf="RJ"])){display:none}}
+.ag-agenda:has(#ag-uf-CE:checked) .ag-show:not([data-uf="CE"]),.ag-agenda:has(#ag-uf-CE:checked) .ag-mes:not(:has([data-uf="CE"])),.ag-agenda:has(#ag-uf-CE:checked) .ag-mes:not(.ag-mes--grade) .ag-dia:not(:has([data-uf="CE"])){display:none}
+@media (max-width:899px){.ag-agenda:has(#ag-uf-CE:checked) .ag-dia:not(:has([data-uf="CE"])){display:none}}
+.ag-agenda:has(#ag-uf-PE:checked) .ag-show:not([data-uf="PE"]),.ag-agenda:has(#ag-uf-PE:checked) .ag-mes:not(:has([data-uf="PE"])),.ag-agenda:has(#ag-uf-PE:checked) .ag-mes:not(.ag-mes--grade) .ag-dia:not(:has([data-uf="PE"])){display:none}
+@media (max-width:899px){.ag-agenda:has(#ag-uf-PE:checked) .ag-dia:not(:has([data-uf="PE"])){display:none}}
+</style>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-234ZL5MF0T');
@@ -45,54 +236,310 @@ s.src='https://www.googletagmanager.com/gtag/js?id=G-234ZL5MF0T';document.head.a
 </script>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap ag-wrap">
 <header><a href="/">SÓ MAIS UM FÃ DE PEARL JAM</a></header>
 <nav class="menu"><a href="/">Início</a><a href="/show/">Shows</a><a href="/musica/">Músicas</a><a href="/disco/">Discos</a><a href="/noticias/">Notícias</a><a href="/banda/">Banda</a><a href="/forum.html">Fórum</a></nav>
 <nav class="trilha"><a href="/">Início</a></nav>
-<h1>Agenda: Pearl Jam ao vivo no Brasil</h1>
-<p>Onde ver Pearl Jam ao vivo: a turnê oficial da banda e do Eddie Vedder, e a agenda das bandas cover e
-tributo pelo Brasil, lida dos perfis oficiais delas no Instagram. Confirme sempre no post da banda antes de sair de casa.</p>
-<h2>Turnê oficial: Pearl Jam e Eddie Vedder</h2>
-<ul><li class="no-brasil"><time datetime="2026-11-20">20/11/2026</time> <strong>Eddie Vedder</strong> no Best of Rock and Blues festival, Ibirapuera Park, São Paulo, Brasil <small>(no Brasil!)</small> <a href="https://www.ticketmaster.com.br/event/best-of-blues-and-rock-2026" rel="nofollow noopener">ingressos</a></li>
-<li class="no-brasil"><time datetime="2026-11-22">22/11/2026</time> <strong>Eddie Vedder</strong> no Best of Rock and Blues Festival, Ibirapuera Park, São Paulo, Brasil <small>(no Brasil!)</small> <a href="https://www.ticketmaster.com.br/event/best-of-blues-and-rock-2026" rel="nofollow noopener">ingressos</a></li></ul>
-<p><small>Datas de <a href="https://pearljam.com/tour" rel="nofollow noopener">pearljam.com/tour</a>, conferidas todo dia.</small></p>
-<h3>Primeira vez num show? O básico</h3>
-<p>Pearl Jam é a banda de Seattle que nasceu em 1990 e segue na estrada com Eddie Vedder, Stone Gossard, Jeff Ament,
-Mike McCready e Matt Cameron. Eddie também faz shows solo, mais intimistas. A pré-venda de ingressos costuma abrir
-primeiro pro Ten Club, o fã-clube oficial, e depois vem a venda geral no link oficial. O repertório muda a cada noite:
-depois do show, o setlist sai no setlist.fm e aqui no site, na seção <a href="/show/">Shows</a>. Quer conhecer a banda?
-Comece pela página <a href="/banda/">A banda</a> e pelos <a href="/disco/">discos</a>.</p>
-<h2>Bandas cover e tributo no Brasil</h2>
-<h3>outubro de 2026</h3>
-<ul><li><time datetime="2026-10-05">seg 05/10</time> <a href="https://www.instagram.com/blaymorphed/" rel="nofollow"><strong>Blaymorphed</strong></a> em <a href="https://www.instagram.com/comics_smashburger/" rel="nofollow">@comics_smashburger</a>, Mauá/SP <small>(SV Solo)</small> <a href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-09">sex 09/10</time> <a href="https://www.instagram.com/blaymorphed/" rel="nofollow"><strong>Blaymorphed</strong></a> em <a href="https://www.instagram.com/barrockclub_/" rel="nofollow">@barrockclub_</a>, São Bernardo/SP <a href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-10">sáb 10/10</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, Rio de Janeiro/RJ <a href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-10">sáb 10/10</time> <a href="https://www.instagram.com/blaymorphed/" rel="nofollow"><strong>Blaymorphed</strong></a> em <a href="https://www.instagram.com/acervodotuzzibar/" rel="nofollow">@acervodotuzzibar</a>, Bragança Pta/SP <a href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-11">dom 11/10</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, Volta Redonda/RJ <a href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-11">dom 11/10</time> <a href="https://www.instagram.com/blaymorphed/" rel="nofollow"><strong>Blaymorphed</strong></a> em <a href="https://www.instagram.com/stones_bar/" rel="nofollow">@stones_bar</a>, São Paulo/SP <a href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-15">qui 15/10</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, Rio de Janeiro/RJ <a href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-16">sex 16/10</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, Niterói/RJ <a href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-23">sex 23/10</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, Osasco/SP <a href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-23">sex 23/10</time> <a href="https://www.instagram.com/blaymorphed/" rel="nofollow"><strong>Blaymorphed</strong></a> em <a href="https://www.instagram.com/brothers_rock_bar/" rel="nofollow">@brothers_rock_bar</a>, Ribeirão Pires/SP <a href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-24">sáb 24/10</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, São Bernardo do Campo/SP <a href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-24">sáb 24/10</time> <a href="https://www.instagram.com/blaymorphed/" rel="nofollow"><strong>Blaymorphed</strong></a> em <a href="https://www.instagram.com/santorockbar/" rel="nofollow">@santorockbar</a>, Santo André/SP <a href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-30">sex 30/10</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, Rio de Janeiro/RJ <a href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2026-10-31">sáb 31/10</time> <a href="https://www.instagram.com/blaymorphed/" rel="nofollow"><strong>Blaymorphed</strong></a> em <a href="https://www.instagram.com/buxixorockbar/" rel="nofollow">@buxixorockbar</a>, Mogi das Cruzes/SP <a href="https://www.instagram.com/p/Da3EgtgFd1t/" rel="nofollow">post da banda</a></li></ul>
-<h3>novembro de 2026</h3>
-<ul><li><time datetime="2026-11-02">seg 02/11</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em Teatro Multiplan, Rio de Janeiro/RJ <small>(20h)</small> <a href="https://www.instagram.com/reel/Db9Bps-hy8v/" rel="nofollow">post da banda</a></li></ul>
-<h3>fevereiro de 2027</h3>
-<ul><li><time datetime="2027-02-26">sex 26/02</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, São Paulo/SP <a href="https://www.instagram.com/reel/Dd7SJXLMEC0/" rel="nofollow">post da banda</a></li></ul>
-<h3>março de 2027</h3>
-<ul><li><time datetime="2027-03-13">sáb 13/03</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, Recife/PE <a href="https://www.instagram.com/reel/Dd7SJXLMEC0/" rel="nofollow">post da banda</a></li>
-<li><time datetime="2027-03-14">dom 14/03</time> <a href="https://www.instagram.com/blackcirclepj/" rel="nofollow"><strong>Black Circle</strong></a> em local a confirmar, Fortaleza/CE <a href="https://www.instagram.com/reel/Dd7SJXLMEC0/" rel="nofollow">post da banda</a></li></ul>
-<h2>As bandas cover</h2>
-<h3 class="banda"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a> <small>Santo André/SP, desde 2000</small></h3>
-<p>Formada em Santo André em 2000, reproduz o Pearl Jam com a mesma divisão de instrumentos da banda original e um acervo de mais de 100 equipamentos iguais aos deles. Em 2018, Eddie Vedder chamou o vocalista Sergio Vedder ao palco em São Paulo e os dois cantaram Black.</p>
-<h3 class="banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a> <small>Rio de Janeiro/RJ, desde 2016</small></h3>
-<p>Formada no Rio em 2016, roda o país com o tributo ao Pearl Jam e com o Pearl Jam Symphonic, ao lado de uma orquestra. Em 2023, num show do Pearl Jam em Austin, Eddie Vedder recebeu uma bandeira da banda e dedicou a ela Spin the Black Circle.</p>
-<h3 class="banda"><a href="https://www.instagram.com/singlesplayspearljam/" rel="nofollow">Singles</a> <small>Belo Horizonte/MG, desde 2000</small></h3>
-<p>Tributo ao Pearl Jam de Belo Horizonte desde 2000, com versões próprias das músicas, do jeito que o Pearl Jam faz ao vivo. Lançou CD e DVD em 2015 e fez em 2025 um especial com a trilha de Into The Wild.</p>
-<p><small>Toca Pearl Jam e quer aparecer aqui? Fale com a gente pelo Instagram @smufdpj.</small></p>
+<main class="ag">
+<div class="ag-hero">
+<div class="ag-hero-tit">
+<p class="ag-assin">Só Mais um Fã de PEARL JAM</p>
+<h1 class="ag-h1"><span class="ag-h1-a">Agenda<span class="ag-sr">:</span></span> <span class="ag-h1-b">Pearl Jam ao vivo no Brasil</span></h1>
+</div>
+<div class="ag-hero-txt">
+<p class="ag-intro">Onde ver Pearl Jam ao vivo: a turnê oficial da banda e do Eddie Vedder, e a agenda das bandas cover e tributo pelo Brasil, lida dos perfis oficiais delas no Instagram. Confirme sempre no post da banda antes de sair de casa.</p>
+<nav class="ag-atalhos" aria-label="Nesta página"><a href="#oficial">Turnê oficial</a><a href="#agenda">Bandas cover <span>18</span></a><a href="#bandas">As bandas</a></nav>
+</div>
+</div>
+<p class="ag-prox"><span class="ag-prox-tag">Próximo show cover</span> <a href="#ag-2026-10-05">amanhã: Blaymorphed em Mauá/SP</a></p>
+
+<section class="ag-sec" id="oficial" aria-labelledby="ag-t-oficial">
+<p class="ag-kicker">na estrada</p>
+<h2 class="ag-h2" id="ag-t-oficial">Turnê oficial: Pearl Jam e Eddie Vedder</h2>
+<article class="ag-cartaz">
+<div class="ag-cartaz-info">
+<p class="ag-carimbo">No Brasil!</p>
+<h3 class="ag-cartaz-artista">Eddie Vedder</h3>
+<p class="ag-cartaz-evento">Best of Rock and Blues Festival</p>
+<p class="ag-cartaz-local">Ibirapuera Park · São Paulo</p>
+</div>
+<ul class="ag-ingressos">
+<li class="ag-ing">
+<time class="ag-ing-data" datetime="2026-11-20"><span class="ag-ing-dds">sexta</span> <span class="ag-ing-dia">20</span> <span class="ag-ing-mes">nov 2026</span></time>
+<a class="ag-btn" href="https://www.ticketmaster.com.br/event/best-of-blues-and-rock-2026" rel="nofollow noopener">Ingressos<span class="ag-sr"> para 20/11</span></a>
+</li>
+<li class="ag-ing">
+<time class="ag-ing-data" datetime="2026-11-22"><span class="ag-ing-dds">domingo</span> <span class="ag-ing-dia">22</span> <span class="ag-ing-mes">nov 2026</span></time>
+<a class="ag-btn" href="https://www.ticketmaster.com.br/event/best-of-blues-and-rock-2026" rel="nofollow noopener">Ingressos<span class="ag-sr"> para 22/11</span></a>
+</li>
+</ul>
+</article>
+<p class="ag-fonte">Datas de <a href="https://pearljam.com/tour" rel="nofollow noopener">pearljam.com/tour</a>, conferidas todo dia.</p>
+</section>
+
+<section class="ag-sec ag-basico" id="primeira-vez" aria-labelledby="ag-t-basico">
+<h2 class="ag-h2 ag-h2--p" id="ag-t-basico">Primeira vez num show? O básico</h2>
+<ol class="ag-basico-lista">
+<li><p class="ag-basico-tit">A banda</p><p>Pearl Jam é a banda de Seattle que nasceu em 1990 e segue na estrada com Eddie Vedder, Stone Gossard, Jeff Ament, Mike McCready e Matt Cameron. Eddie também faz shows solo, mais intimistas.</p></li>
+<li><p class="ag-basico-tit">Ingressos</p><p>A pré-venda de ingressos costuma abrir primeiro pro Ten Club, o fã-clube oficial, e depois vem a venda geral no link oficial.</p></li>
+<li><p class="ag-basico-tit">O repertório</p><p>O repertório muda a cada noite: depois do show, o setlist sai no setlist.fm e aqui no site, na seção <a href="/show/">Shows</a>.</p></li>
+</ol>
+<p class="ag-basico-mais">Quer conhecer a banda? Comece pela página <a href="/banda/">A banda</a> e pelos <a href="/disco/">discos</a>.</p>
+</section>
+
+<section class="ag-sec ag-agenda" id="agenda" aria-labelledby="ag-t-agenda">
+<p class="ag-kicker">todo dia, dos perfis das bandas</p>
+<h2 class="ag-h2" id="ag-t-agenda">Bandas cover e tributo no Brasil</h2>
+<fieldset class="ag-filtro">
+<legend class="ag-filtro-tit">Estado</legend>
+<div class="ag-filtro-op">
+<input class="ag-uf-in" type="radio" name="ag-uf" id="ag-uf-todos" checked><label for="ag-uf-todos">Todos <span>18</span></label>
+<input class="ag-uf-in" type="radio" name="ag-uf" id="ag-uf-SP"><label for="ag-uf-SP">SP <span>10</span></label>
+<input class="ag-uf-in" type="radio" name="ag-uf" id="ag-uf-RJ"><label for="ag-uf-RJ">RJ <span>6</span></label>
+<input class="ag-uf-in" type="radio" name="ag-uf" id="ag-uf-CE"><label for="ag-uf-CE">CE <span>1</span></label>
+<input class="ag-uf-in" type="radio" name="ag-uf" id="ag-uf-PE"><label for="ag-uf-PE">PE <span>1</span></label>
+</div>
+</fieldset>
+<section class="ag-mes ag-mes--grade" aria-labelledby="ag-m-2026-10">
+<div class="ag-mes-topo"><h3 class="ag-mes-nome" id="ag-m-2026-10">outubro de 2026</h3><p class="ag-mes-qtd">14 shows</p></div>
+<ol class="ag-semana" aria-hidden="true"><li>dom</li><li>seg</li><li>ter</li><li>qua</li><li>qui</li><li>sex</li><li>sáb</li></ol>
+<ol class="ag-dias">
+<li class="ag-dia ag-ini-5 ag-dia--passado ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">1</span></li>
+<li class="ag-dia ag-dia--passado ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">2</span></li>
+<li class="ag-dia ag-dia--passado ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">3</span></li>
+<li class="ag-dia ag-dia--hoje ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">4</span></li>
+<li class="ag-dia" id="ag-2026-10-05">
+<time class="ag-data" datetime="2026-10-05"><span class="ag-data-dds">seg</span> <span class="ag-data-num">05</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-azul" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></p>
+<p class="ag-show-local"><a class="ag-casa" href="https://www.instagram.com/comics_smashburger/" rel="nofollow">@comics_smashburger</a><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Mauá/SP</span></p>
+<p class="ag-show-extra"><span class="ag-tag ag-tag--rel">amanhã</span><span class="ag-tag">SV Solo</span><a class="ag-post" href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">6</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">7</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">8</span></li>
+<li class="ag-dia" id="ag-2026-10-09">
+<time class="ag-data" datetime="2026-10-09"><span class="ag-data-dds">sex</span> <span class="ag-data-num">09</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-azul" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></p>
+<p class="ag-show-local"><a class="ag-casa" href="https://www.instagram.com/barrockclub_/" rel="nofollow">@barrockclub_</a><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">São Bernardo/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia" id="ag-2026-10-10">
+<time class="ag-data" datetime="2026-10-10"><span class="ag-data-dds">sáb</span> <span class="ag-data-num">10</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="RJ">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Rio de Janeiro/RJ</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+<li class="ag-show ag-c-azul" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></p>
+<p class="ag-show-local"><a class="ag-casa" href="https://www.instagram.com/acervodotuzzibar/" rel="nofollow">@acervodotuzzibar</a><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Bragança Pta/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia" id="ag-2026-10-11">
+<time class="ag-data" datetime="2026-10-11"><span class="ag-data-dds">dom</span> <span class="ag-data-num">11</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="RJ">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Volta Redonda/RJ</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+<li class="ag-show ag-c-azul" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></p>
+<p class="ag-show-local"><a class="ag-casa" href="https://www.instagram.com/stones_bar/" rel="nofollow">@stones_bar</a><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">São Paulo/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">12</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">13</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">14</span></li>
+<li class="ag-dia" id="ag-2026-10-15">
+<time class="ag-data" datetime="2026-10-15"><span class="ag-data-dds">qui</span> <span class="ag-data-num">15</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="RJ">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Rio de Janeiro/RJ</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia" id="ag-2026-10-16">
+<time class="ag-data" datetime="2026-10-16"><span class="ag-data-dds">sex</span> <span class="ag-data-num">16</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="RJ">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Niterói/RJ</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">17</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">18</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">19</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">20</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">21</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">22</span></li>
+<li class="ag-dia" id="ag-2026-10-23">
+<time class="ag-data" datetime="2026-10-23"><span class="ag-data-dds">sex</span> <span class="ag-data-num">23</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Osasco/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+<li class="ag-show ag-c-azul" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></p>
+<p class="ag-show-local"><a class="ag-casa" href="https://www.instagram.com/brothers_rock_bar/" rel="nofollow">@brothers_rock_bar</a><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Ribeirão Pires/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia" id="ag-2026-10-24">
+<time class="ag-data" datetime="2026-10-24"><span class="ag-data-dds">sáb</span> <span class="ag-data-num">24</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">São Bernardo do Campo/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+<li class="ag-show ag-c-azul" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></p>
+<p class="ag-show-local"><a class="ag-casa" href="https://www.instagram.com/santorockbar/" rel="nofollow">@santorockbar</a><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Santo André/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd7SbGbSmIt/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">25</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">26</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">27</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">28</span></li>
+<li class="ag-dia ag-dia--vazio" aria-hidden="true"><span class="ag-dia-num">29</span></li>
+<li class="ag-dia" id="ag-2026-10-30">
+<time class="ag-data" datetime="2026-10-30"><span class="ag-data-dds">sex</span> <span class="ag-data-num">30</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="RJ">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Rio de Janeiro/RJ</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Dd96ZAVsWkU/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia" id="ag-2026-10-31">
+<time class="ag-data" datetime="2026-10-31"><span class="ag-data-dds">sáb</span> <span class="ag-data-num">31</span> <span class="ag-data-mes">out</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-azul" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></p>
+<p class="ag-show-local"><a class="ag-casa" href="https://www.instagram.com/buxixorockbar/" rel="nofollow">@buxixorockbar</a><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Mogi das Cruzes/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/p/Da3EgtgFd1t/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section class="ag-mes" aria-labelledby="ag-m-2026-11">
+<div class="ag-mes-topo"><h3 class="ag-mes-nome" id="ag-m-2026-11">novembro de 2026</h3><p class="ag-mes-qtd">1 show</p></div>
+
+<ol class="ag-dias">
+<li class="ag-dia" id="ag-2026-11-02">
+<time class="ag-data" datetime="2026-11-02"><span class="ag-data-dds">seg</span> <span class="ag-data-num">02</span> <span class="ag-data-mes">nov</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="RJ">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa">Teatro Multiplan</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Rio de Janeiro/RJ</span></p>
+<p class="ag-show-extra"><span class="ag-tag ag-tag--hora">20h</span><a class="ag-post" href="https://www.instagram.com/reel/Db9Bps-hy8v/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section class="ag-mes" aria-labelledby="ag-m-2027-02">
+<div class="ag-mes-topo"><h3 class="ag-mes-nome" id="ag-m-2027-02">fevereiro de 2027</h3><p class="ag-mes-qtd">1 show</p></div>
+
+<ol class="ag-dias">
+<li class="ag-dia" id="ag-2027-02-26">
+<time class="ag-data" datetime="2027-02-26"><span class="ag-data-dds">sex</span> <span class="ag-data-num">26</span> <span class="ag-data-mes">fev</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="SP">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">São Paulo/SP</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/reel/Dd7SJXLMEC0/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section class="ag-mes" aria-labelledby="ag-m-2027-03">
+<div class="ag-mes-topo"><h3 class="ag-mes-nome" id="ag-m-2027-03">março de 2027</h3><p class="ag-mes-qtd">2 shows</p></div>
+
+<ol class="ag-dias">
+<li class="ag-dia" id="ag-2027-03-13">
+<time class="ag-data" datetime="2027-03-13"><span class="ag-data-dds">sáb</span> <span class="ag-data-num">13</span> <span class="ag-data-mes">mar</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="PE">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Recife/PE</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/reel/Dd7SJXLMEC0/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+<li class="ag-dia" id="ag-2027-03-14">
+<time class="ag-data" datetime="2027-03-14"><span class="ag-data-dds">dom</span> <span class="ag-data-num">14</span> <span class="ag-data-mes">mar</span></time>
+<ul class="ag-shows">
+<li class="ag-show ag-c-vermelho" data-uf="CE">
+<p class="ag-show-banda"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></p>
+<p class="ag-show-local"><span class="ag-casa ag-casa--tbd">local a confirmar</span><span class="ag-sep" aria-hidden="true"> · </span><span class="ag-cidade">Fortaleza/CE</span></p>
+<p class="ag-show-extra"><a class="ag-post" href="https://www.instagram.com/reel/Dd7SJXLMEC0/" rel="nofollow">post da banda<span aria-hidden="true"> ↗</span></a></p>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+<section class="ag-sec" id="bandas" aria-labelledby="ag-t-bandas">
+<p class="ag-kicker">quem toca</p>
+<h2 class="ag-h2" id="ag-t-bandas">As bandas cover</h2>
+<ul class="ag-bandas">
+<li class="ag-banda ag-bg-azul">
+<p class="ag-banda-desde">desde <span>2000</span></p>
+<h3 class="ag-banda-nome"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></h3>
+<p class="ag-banda-cidade">Santo André/SP</p>
+<p class="ag-banda-resumo">Formada em Santo André em 2000, reproduz o Pearl Jam com a mesma divisão de instrumentos da banda original e um acervo de mais de 100 equipamentos iguais aos deles. Em 2018, Eddie Vedder chamou o vocalista Sergio Vedder ao palco em São Paulo e os dois cantaram Black.</p>
+<p class="ag-banda-rodape"><span>7 shows na agenda</span><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">@blaymorphed</a></p>
+</li>
+<li class="ag-banda ag-bg-vermelho">
+<p class="ag-banda-desde">desde <span>2016</span></p>
+<h3 class="ag-banda-nome"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></h3>
+<p class="ag-banda-cidade">Rio de Janeiro/RJ</p>
+<p class="ag-banda-resumo">Formada no Rio em 2016, roda o país com o tributo ao Pearl Jam e com o Pearl Jam Symphonic, ao lado de uma orquestra. Em 2023, num show do Pearl Jam em Austin, Eddie Vedder recebeu uma bandeira da banda e dedicou a ela Spin the Black Circle.</p>
+<p class="ag-banda-rodape"><span>11 shows na agenda</span><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">@blackcirclepj</a></p>
+</li>
+<li class="ag-banda ag-bg-preto">
+<p class="ag-banda-desde">desde <span>2000</span></p>
+<h3 class="ag-banda-nome"><a href="https://www.instagram.com/singlesplayspearljam/" rel="nofollow">Singles</a></h3>
+<p class="ag-banda-cidade">Belo Horizonte/MG</p>
+<p class="ag-banda-resumo">Tributo ao Pearl Jam de Belo Horizonte desde 2000, com versões próprias das músicas, do jeito que o Pearl Jam faz ao vivo. Lançou CD e DVD em 2015 e fez em 2025 um especial com a trilha de Into The Wild.</p>
+<p class="ag-banda-rodape"><span>sem datas no momento</span><a href="https://www.instagram.com/singlesplayspearljam/" rel="nofollow">@singlesplayspearljam</a></p>
+</li>
+</ul>
+</section>
+
+<aside class="ag-cta">
+<p class="ag-cta-tit">Toca Pearl Jam e quer aparecer aqui?</p>
+<p class="ag-cta-txt">Fale com a gente pelo Instagram <a href="https://www.instagram.com/smufdpj/" rel="nofollow">@smufdpj</a>.</p>
+</aside>
+</main>
 <footer><a href="/">Setlists, cifras, músicas e notícias de Pearl Jam e Eddie Vedder</a></footer>
 </div>
 </body>

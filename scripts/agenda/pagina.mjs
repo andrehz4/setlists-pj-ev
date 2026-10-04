@@ -1,16 +1,17 @@
-// Página estática /agenda/ (o Google não lê o SPA): shows das bandas cover por mês, com JSON-LD MusicEvent
-// em cada show (resultado de evento na busca) e o perfil de cada banda. Visual provisório: o desenho final
-// vem do Claude Design. Evento fechado não entra.
+// Página estática /agenda/ (o Google não lê o SPA): turnê oficial, calendário das bandas cover e perfis, com
+// JSON-LD MusicEvent em cada show. Desenho do Claude Design (design-handoff/retorno/agenda/): CSS em
+// agenda.css (classes ag-), calendário em pagina-mes.mjs, turnê em pagina-oficial.mjs. Evento fechado não entra.
+import fs from "node:fs";
 import { pagina, esc, SITE_BASE } from "../seo/layout.mjs";
+import { diaBRT } from "../lib/brt.mjs";
 import { secaoOficial, eventoOficialLd } from "./pagina-oficial.mjs";
+import { calendario, proximo, ig, plural } from "./pagina-mes.mjs";
 
-const MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
-const SEMANA = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
-const ig = (h) => `https://www.instagram.com/${h}/`;
-const dataBr = (d) => { const [a, m, dia] = d.split("-"); return `${dia}/${m}`; };
-const diaSemana = (d) => SEMANA[new Date(`${d}T12:00:00-03:00`).getUTCDay()];
+const CSS = fs.readFileSync(new URL("./agenda.css", import.meta.url), "utf8");
+const FONTES = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+  + '<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,900&family=Special+Elite&display=swap" rel="stylesheet">';
+const CORES = ["azul", "vermelho", "preto", "ocre"];
 const lugar = (s) => s.casaNome || s.casa || "local a confirmar";
-const cidadeUf = (s) => [s.cidade, s.uf].filter(Boolean).join("/");
 
 export function eventoLd(s) {
   return {
@@ -27,44 +28,74 @@ export function eventoLd(s) {
   };
 }
 
-function linha(s) {
-  const casa = s.casa ? `<a href="${ig(s.casa)}" rel="nofollow">@${esc(s.casa)}</a>` : esc(lugar(s));
-  const extra = [s.hora && `${s.hora.replace(":00", "h").replace(":", "h")}`, s.observacao].filter(Boolean).join(" · ");
-  return `<li><time datetime="${s.data}">${diaSemana(s.data)} ${dataBr(s.data)}</time> `
-    + `<a href="${ig(s.banda)}" rel="nofollow"><strong>${esc(s.nome)}</strong></a> em ${casa}`
-    + `${cidadeUf(s) ? `, ${esc(cidadeUf(s))}` : ""}${extra ? ` <small>(${esc(extra)})</small>` : ""}`
-    + ` <a href="${esc(s.detalhe || s.fonte)}" rel="nofollow">post da banda</a></li>`;
+// Cor fixa por banda, no ciclo da marca (mesma cor no calendário e no card da banda).
+function coresDasBandas(bandas, shows) {
+  const cor = {};
+  let i = 0;
+  for (const c of [...bandas.map((b) => b.conta), ...shows.map((s) => s.banda)]) if (!cor[c]) cor[c] = CORES[i++ % CORES.length];
+  return cor;
 }
 
-export function paginaAgenda({ shows, bandas, oficial = [] }) {
-  const publicos = shows.filter((s) => !s.fechado);
-  const porMes = new Map();
-  for (const s of publicos) {
-    const k = s.data.slice(0, 7);
-    if (!porMes.has(k)) porMes.set(k, []);
-    porMes.get(k).push(s);
-  }
-  const meses = [...porMes].map(([k, lista]) => {
-    const [a, m] = k.split("-");
-    return `<h3>${MESES[+m - 1]} de ${a}</h3>\n<ul>${lista.map(linha).join("\n")}</ul>`;
-  }).join("\n");
-  const perfis = bandas.map((b) => `<h3 class="banda"><a href="${ig(b.conta)}" rel="nofollow">${esc(b.nome)}</a> `
-    + `<small>${esc(b.cidade)}/${esc(b.uf)}, desde ${b.desde}</small></h3>\n<p>${esc(b.resumo)}</p>`).join("\n");
-  const cidades = [...new Set(publicos.map((s) => s.uf).filter(Boolean))].sort();
-  const corpo = `<p>Onde ver Pearl Jam ao vivo: a turnê oficial da banda e do Eddie Vedder, e a agenda das bandas cover e
-tributo pelo Brasil, lida dos perfis oficiais delas no Instagram. Confirme sempre no post da banda antes de sair de casa.</p>
-${secaoOficial(oficial)}
-<h2>Bandas cover e tributo no Brasil</h2>
-${meses || "<p>Nenhum show anunciado no momento.</p>"}
-<h2>As bandas cover</h2>
-${perfis}
-<p><small>Toca Pearl Jam e quer aparecer aqui? Fale com a gente pelo Instagram @smufdpj.</small></p>`;
+const bandaHTML = (b, n, cor) => `<li class="ag-banda ag-bg-${cor[b.conta]}">
+<p class="ag-banda-desde">desde <span>${esc(b.desde)}</span></p>
+<h3 class="ag-banda-nome"><a href="${ig(b.conta)}" rel="nofollow">${esc(b.nome)}</a></h3>
+<p class="ag-banda-cidade">${esc(b.cidade)}/${esc(b.uf)}</p>
+<p class="ag-banda-resumo">${esc(b.resumo)}</p>
+<p class="ag-banda-rodape"><span>${n ? plural(n, "show na agenda", "shows na agenda") : "sem datas no momento"}</span><a href="${ig(b.conta)}" rel="nofollow">@${esc(b.conta)}</a></p>
+</li>`;
+
+export function paginaAgenda({ shows, bandas, oficial = [], hoje = diaBRT() }) {
+  const publicos = shows.filter((s) => !s.fechado && s.data >= hoje)
+    .sort((a, b) => a.data.localeCompare(b.data) || a.nome.localeCompare(b.nome));
+  const ofi = oficial.filter((o) => o.data >= hoje).sort((a, b) => a.data.localeCompare(b.data));
+  const cor = coresDasBandas(bandas, publicos);
+  const cal = calendario(publicos, { hoje, cor });
+  const porBanda = {};
+  for (const s of publicos) porBanda[s.banda] = (porBanda[s.banda] || 0) + 1;
+  const corpo = `<main class="ag">
+<div class="ag-hero">
+<div class="ag-hero-tit">
+<p class="ag-assin">Só Mais um Fã de PEARL JAM</p>
+<h1 class="ag-h1"><span class="ag-h1-a">Agenda<span class="ag-sr">:</span></span> <span class="ag-h1-b">Pearl Jam ao vivo no Brasil</span></h1>
+</div>
+<div class="ag-hero-txt">
+<p class="ag-intro">Onde ver Pearl Jam ao vivo: a turnê oficial da banda e do Eddie Vedder, e a agenda das bandas cover e tributo pelo Brasil, lida dos perfis oficiais delas no Instagram. Confirme sempre no post da banda antes de sair de casa.</p>
+<nav class="ag-atalhos" aria-label="Nesta página"><a href="#oficial">Turnê oficial</a><a href="#agenda">Bandas cover <span>${publicos.length}</span></a><a href="#bandas">As bandas</a></nav>
+</div>
+</div>
+${proximo(publicos, hoje)}
+
+${secaoOficial(ofi)}
+
+<section class="ag-sec ag-agenda" id="agenda" aria-labelledby="ag-t-agenda">
+<p class="ag-kicker">todo dia, dos perfis das bandas</p>
+<h2 class="ag-h2" id="ag-t-agenda">Bandas cover e tributo no Brasil</h2>
+${cal.html}
+</section>
+
+<section class="ag-sec" id="bandas" aria-labelledby="ag-t-bandas">
+<p class="ag-kicker">quem toca</p>
+<h2 class="ag-h2" id="ag-t-bandas">As bandas cover</h2>
+<ul class="ag-bandas">
+${bandas.map((b) => bandaHTML(b, porBanda[b.conta] || 0, cor)).join("\n")}
+</ul>
+</section>
+
+<aside class="ag-cta">
+<p class="ag-cta-tit">Toca Pearl Jam e quer aparecer aqui?</p>
+<p class="ag-cta-txt">Fale com a gente pelo Instagram <a href="https://www.instagram.com/smufdpj/" rel="nofollow">@smufdpj</a>.</p>
+</aside>
+</main>`;
+  const ufs = [...cal.ufs].sort();
   return pagina({
     titulo: "Agenda de shows: turnê do Pearl Jam e bandas cover no Brasil",
     h1: "Agenda: Pearl Jam ao vivo no Brasil",
-    descricao: `Turnê oficial do Pearl Jam e do Eddie Vedder e shows das bandas cover e tributo de Pearl Jam pelo Brasil${cidades.length ? ` (${cidades.join(", ")})` : ""}: datas, cidades e casas, atualizados todo dia.`,
+    descricao: `Turnê oficial do Pearl Jam e do Eddie Vedder e shows das bandas cover e tributo de Pearl Jam pelo Brasil${ufs.length ? ` (${ufs.join(", ")})` : ""}: datas, cidades e casas, atualizados todo dia.`,
     url: `${SITE_BASE}/agenda/`,
-    ld: [...oficial.map(eventoOficialLd), ...publicos.map(eventoLd)],
+    ld: [...ofi.map(eventoOficialLd), ...publicos.map(eventoLd)],
+    cabeca: `${FONTES}\n<style>\n${CSS}\n${cal.css}\n</style>\n`,
+    classeWrap: "ag-wrap",
+    h1Proprio: true,
     corpo,
   });
 }

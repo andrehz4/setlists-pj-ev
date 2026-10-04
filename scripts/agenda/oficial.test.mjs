@@ -30,14 +30,16 @@ test("formato mudou: erro claro (a coleta mantém a lista de antes)", async () =
 
 test("página: turnê oficial no topo, com contexto e evento com ingresso", () => {
   const oficial = extrairOficial(HTML, "2026-10-04");
-  const html = paginaAgenda({ shows: [], bandas: [], oficial });
+  const html = paginaAgenda({ shows: [], bandas: [], oficial, hoje: "2026-10-04" });
   assert.match(html, /Turnê oficial: Pearl Jam e Eddie Vedder/);
-  assert.match(html, /20\/11\/2026/);
-  assert.match(html, /no Brasil!/);
+  assert.match(html, /datetime="2026-11-20"/);
+  assert.match(html, /No Brasil!/);
+  assert.equal((html.match(/class="ag-cartaz"/g) || []).length, 1, "duas noites no mesmo lugar = um cartaz");
+  assert.equal((html.match(/class="ag-btn"/g) || []).length, 2, "um botão de ingresso por noite");
   assert.match(html, /Ten Club/);
   assert.equal((html.match(/"MusicEvent"/g) || []).length, 2);
   const ld = eventoOficialLd(oficial[0]);
   assert.equal(ld.performer["@type"], "Person");
   assert.match(ld.offers.url, /ticketmaster/);
-  assert.match(paginaAgenda({ shows: [], bandas: [], oficial: [] }), /Nenhuma data oficial anunciada/);
+  assert.match(paginaAgenda({ shows: [], bandas: [], oficial: [], hoje: "2026-10-04" }), /Nenhuma data oficial anunciada/);
 });

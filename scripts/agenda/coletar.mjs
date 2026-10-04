@@ -58,7 +58,7 @@ async function main() {
   }
   await gravarEstado(ESTADO, { atualizado: new Date().toISOString(), bandas: infos, oficial, shows });
   await fs.mkdir(naRaiz("agenda"), { recursive: true });
-  await fs.writeFile(naRaiz("agenda/index.html"), paginaAgenda({ shows, bandas, oficial }));
+  await fs.writeFile(naRaiz("agenda/index.html"), paginaAgenda({ shows, bandas, oficial, hoje }));
   await fs.writeFile(naRaiz("sitemap.xml"), aplicarSitemap(await fs.readFile(naRaiz("sitemap.xml"), "utf8")));
   await commitAndPush(["media/agenda/", "agenda/", "sitemap.xml"], `agenda: ${shows.length} show(s), ${novos.length} novo(s) ${hoje}`, { dry: NO_GIT });
   if (oficiaisNovos.length) {

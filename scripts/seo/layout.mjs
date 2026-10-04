@@ -39,7 +39,10 @@ export const breadcrumb = itens => ({
 });
 
 // trilha: [["Músicas", "/musica/"], ...] (a página atual não entra; o h1 já diz onde está)
-export function pagina({ titulo, h1 = titulo, descricao, url, ld = [], trilha = [], corpo, imagem, tipoOg = "website" }) {
+// Opcionais de página desenhada à parte (ex: /agenda/): cabeca (HTML extra no <head>), classeWrap (classe a mais
+// no container) e h1Proprio (o corpo traz o próprio <h1>; o molde não imprime o dele).
+export function pagina({ titulo, h1 = titulo, descricao, url, ld = [], trilha = [], corpo, imagem, tipoOg = "website",
+  cabeca = "", classeWrap = "", h1Proprio = false }) {
   const img = imagem || `${SITE_BASE}/og.jpg`;
   const bc = breadcrumb([[NOME, `${SITE_BASE}/`], ...trilha.map(([n, u]) => [n, SITE_BASE + u]), [h1, url]]);
   const dados = [...(Array.isArray(ld) ? ld : [ld]), bc];
@@ -66,15 +69,14 @@ export function pagina({ titulo, h1 = titulo, descricao, url, ld = [], trilha = 
 <style>
 ${CSS}
 </style>
-${GA_SNIPPET}
+${cabeca}${GA_SNIPPET}
 </head>
 <body>
-<div class="wrap">
+<div class="wrap${classeWrap ? ` ${classeWrap}` : ""}">
 <header><a href="/">${NOME.toUpperCase()}</a></header>
 <nav class="menu">${SECOES.map(([u, n]) => `<a href="${u}">${n}</a>`).join("")}</nav>
 <nav class="trilha">${migalhas}</nav>
-<h1>${esc(h1)}</h1>
-${corpo}
+${h1Proprio ? "" : `<h1>${esc(h1)}</h1>\n`}${corpo}
 <footer><a href="/">Setlists, cifras, músicas e notícias de Pearl Jam e Eddie Vedder</a></footer>
 </div>
 </body>
