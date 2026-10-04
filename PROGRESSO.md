@@ -13,8 +13,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com Blaymorphed, Black Circle e Singles, coleta
     diária (`agenda.yml`) com a turnê oficial de pearljam.com/tour. Story do dia por estado (`agenda-story.yml`)
     e post "Agenda da semana" (`agenda-semana.yml`) prontos e testados no mock, DESLIGADOS até o Andre criar a
-    variável do repo `AGENDA_PUBLICAR=1`. Pacote do Claude Design em
-    `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/design-handoff/agenda.zip`; retorno vai pra `pagina.mjs`.
+    variável do repo `AGENDA_PUBLICAR=1`. Página no desenho do Claude Design (projeto "Agenda de Pearl Jam
+    Brasil"), com "Agenda" no menu de todas as páginas. Indexação pedida no Search Console em 04/10; teste de
+    pesquisa aprimorada: 20 eventos válidos. Conferir em ~1 semana se /agenda/ entrou no índice.
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
   - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
@@ -28,7 +29,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   @ da banda e o @ da casa (marcados na foto; se o IG recusar a marcação, sai sem ela). Fora do reel.
 - Turnê oficial lida do JSON embutido em pearljam.com/tour (Bandsintown recusa sem app aprovado). Hoje: Eddie
   Vedder no Ibirapuera, 20 e 22/11. Data oficial nova avisa no Telegram.
-- Briefing do Claude Design da página /agenda/ montado com dados reais e prints.
+- Página /agenda/ redesenhada pelo Claude Design e portada pro gerador (CSS em `scripts/agenda/agenda.css`,
+  calendário em grade, filtro por estado só com CSS). Agenda no menu comum (816 páginas regeneradas), título
+  pra busca "shows de Pearl Jam no Brasil", eventos completos, lastmod diário, indexação pedida.
 
 ## 2026-10-04 (madrugada): token restrito, Terra Gentil sem CVE, POC da agenda
 
