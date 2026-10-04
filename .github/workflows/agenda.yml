@@ -1,0 +1,40 @@
+# Agenda das bandas cover de Pearl Jam (scripts/agenda/, plano em docs/agenda/PLANO-AGENDA.md).
+# Todo dia lê as bandas de media/agenda/bandas.json pela API oficial do Instagram, monta os shows, gera
+# /agenda/ e avisa os novos no Telegram. Módulo apartado: sem o secret IG_LEITURA_TOKEN não faz nada.
+name: agenda
+on:
+  schedule:
+    - cron: "17 12 * * *" # 09:17 BRT
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Só mostrar (não grava nem avisa)"
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: agenda
+  cancel-in-progress: false
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+      - name: Coleta e página
+        env:
+          IG_LEITURA_TOKEN: ${{ secrets.IG_LEITURA_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GIT_AUTHOR_NAME: pj-news-bot
+          GIT_AUTHOR_EMAIL: bot@setlists-pj.local
+          DRY_RUN: ${{ inputs.dry-run }}
+        run: |
+          if [ -z "$IG_LEITURA_TOKEN" ]; then echo "sem IG_LEITURA_TOKEN, nada a fazer"; exit 0; fi
+          if [ "$DRY_RUN" = "true" ]; then node scripts/agenda/coletar.mjs --dry-run; else node scripts/agenda/coletar.mjs; fi
