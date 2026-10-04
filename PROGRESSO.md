@@ -24,6 +24,18 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
 
+## 2026-10-04 (madrugada, parte 3): páginas com a cara do site, QA
+
+- Todas as páginas estáticas (agenda, show, música, disco, banda, notícias) usam a casca do site: topo ticket,
+  abas da home com a da seção ativa, tema claro/escuro compartilhado (`scripts/seo/casca-site.mjs` +
+  `casca-site/*.html|css`). Home ganhou a aba Agenda (link). CSS com `?v=` pra furar cache.
+- Agenda: card da banda com a foto de perfil do IG em duotone (hoje são logos); foto de verdade = salvar
+  `media/agenda/fotos/<conta>-manual.jpg`. Calendário com semanas completas. Bloco "Primeira vez" no fim.
+- Sergio Vedder (@sergiovedder, shows do Eddie solo): conta pessoal, a API não lê ("Invalid user id"). Entra
+  se ele virar conta profissional (criador, grátis) ou por cadastro manual. Os shows "SV Solo" já aparecem
+  quando a Blaymorphed anuncia.
+- QA no navegador: abas, filtro por UF, tema, links pro SPA, cards, calendário, celular 360px.
+
 ## 2026-10-04 (madrugada, parte 2): agenda nas redes e turnê oficial
 
 - Story "Alô, pessoal do RJ!" (um por estado com show no dia, 14:07) e post de segunda "Agenda da semana" com o
