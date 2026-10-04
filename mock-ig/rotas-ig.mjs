@@ -44,7 +44,7 @@ export async function rotasIg(c) {
     const apiCalls = { total: s.callCount || 0, byKind: { ...(s.callsByKind || {}) }, carouselMax: 12, over: (s.callCount || 0) > 12 };
     const createdAt = new Date().toISOString();
     if (c.type === "STORIES") {
-      s.stories.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt, apiCalls });
+      s.stories.unshift({ postId, videoUrl: c.video_url, imageUrl: c.image_url, userTags: c.user_tags, caption: c.caption || "", createdAt, apiCalls });
     } else if (c.type === "REELS") {
       if (!s.reels) s.reels = [];
       s.reels.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt, apiCalls });
@@ -94,13 +94,18 @@ export async function rotasIg(c) {
     bumpCall(s, "POST /media");
     const id = nextId(s, "c");
     // STORIES e REELS sao video: passam por processamento (polling de status).
-    const isVideo = body.media_type === "STORIES" || body.media_type === "REELS";
+    const isVideo = (body.media_type === "STORIES" && !body.image_url) || body.media_type === "REELS";
+    // falha injetável "storytags": recusa marcação em story (pra testar a segunda tentativa sem marcação)
+    if (body.media_type === "STORIES" && body.user_tags && failMode(s, query) === "storytags") {
+      return graphError(res, 400, { code: 100, message: "Invalid parameter: user_tags is not supported for stories" }, s);
+    }
     s.containers[id] = {
       type: body.media_type || "IMAGE",
       image_url: body.image_url || null,
       video_url: body.video_url || null,
       children: body.children ? String(body.children).split(",") : null,
       caption: body.caption || null,
+      user_tags: body.user_tags ? JSON.parse(body.user_tags) : null,
       // video so fica pronto apos storyPolls chamadas (caminho feliz = 0)
       status_code: isVideo && (s.control?.storyPolls > 0) ? "IN_PROGRESS" : "FINISHED",
       polls: 0,

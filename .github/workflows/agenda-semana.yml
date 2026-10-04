@@ -1,0 +1,48 @@
+# Post de feed "Agenda da semana" com o @ da banda e o @ da casa de cada show (fora do reel).
+# Script scripts/agenda/redes/post-semana.mjs. Só publica de verdade com a variável do repo AGENDA_PUBLICAR=1;
+# sem ela, gera a arte e mostra no log o que sairia (e não marca ninguém).
+name: agenda-semana
+on:
+  schedule:
+    - cron: "7 13 * * 1" # segunda 10:07 BRT
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Só gerar a arte (não publica)"
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: agenda
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+      - name: Dependências
+        run: npm ci --no-audit --no-fund
+      - name: Publicar
+        env:
+          AGENDA_PUBLICAR: ${{ vars.AGENDA_PUBLICAR }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_MIDIA_BUCKET: ${{ secrets.R2_MIDIA_BUCKET }}
+          R2_MIDIA_PUBLIC_BASE: ${{ secrets.R2_MIDIA_PUBLIC_BASE }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GIT_AUTHOR_NAME: pj-news-bot
+          GIT_AUTHOR_EMAIL: bot@setlists-pj.local
+          DRY_RUN: ${{ inputs.dry-run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then node scripts/agenda/redes/post-semana.mjs --dry-run; else node scripts/agenda/redes/post-semana.mjs; fi
