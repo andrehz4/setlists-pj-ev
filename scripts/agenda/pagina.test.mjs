@@ -68,5 +68,5 @@ test("card da banda: foto quando existe, sem foto quando não", () => {
   const com = paginaAgenda({ shows: [], bandas: [b], hoje: "2026-10-10", fotos: { blaymorphed: "/media/agenda/fotos/blaymorphed.jpg" } });
   assert.match(com, /<img src="\/media\/agenda\/fotos\/blaymorphed.jpg" alt="Foto da banda Blaymorphed"/);
   assert.match(com, /ag-banda--foto/);
-  assert.doesNotMatch(paginaAgenda({ shows: [], bandas: [b], hoje: "2026-10-10" }), /ag-banda-foto/);
+  assert.doesNotMatch(paginaAgenda({ shows: [], bandas: [b], hoje: "2026-10-10" }), /<div class="ag-banda-foto">/);
 });
