@@ -33,7 +33,7 @@ test("página: show público entra com @ da banda e da casa; evento fechado fica
   assert.match(html, /1 show na agenda/);
   assert.match(html, /<h1 class="ag-h1">/, "h1 da página");
   assert.match(html, /<a class="tab active" href="\/agenda\/" aria-current="page">Agenda<\/a>/, "aba Agenda ativa no topo do site");
-  assert.match(html, /href="\/css\/app.css"/, "usa o CSS do site");
+  assert.match(html, /href="\/css\/app.css(\?v=[^"]+)?"/, "usa o CSS do site");
   assert.ok(html.indexOf('id="primeira-vez"') > html.indexOf('id="bandas"') && html.indexOf('id="primeira-vez"') < html.indexOf('class="ag-cta"'), "básico depois das bandas, antes da chamada");
   assert.doesNotMatch(html, /conferidas todo dia/);
   assert.ok(!html.includes("—"), "sem travessão");
