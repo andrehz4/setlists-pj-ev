@@ -7,9 +7,8 @@ import path from "node:path";
 import { naRaiz } from "../config.mjs";
 
 export const PASTA_FOTOS = naRaiz("media/agenda/fotos");
-const { default: sharp } = await import("sharp");
-
 export async function tratarFoto(entrada, destino) {
+  const { default: sharp } = await import("sharp"); // só aqui: sem sharp, falha a foto, não a coleta
   await sharp(entrada).rotate().resize(640, 480, { fit: "cover", position: "attention" })
     .grayscale().normalise().jpeg({ quality: 78, mozjpeg: true }).toFile(destino);
   return destino;
