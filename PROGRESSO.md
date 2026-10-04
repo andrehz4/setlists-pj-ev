@@ -10,13 +10,22 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Instagram oficial (@pearljam, @eddievedder) é fonte de notícia desde 02/10 (`scripts/news/ig-oficial.mjs`).
 - Vistoria de saúde executada em 03/10 (ver a sessão abaixo e `docs/VISTORIA-2026-10-02.md`, seção Status).
 - Pendências vivas:
-  - **Portar as correções de segurança do backend pro terra-gentil-app** (lista em `backend/DEPLOY-RAILWAY.md`). O
-    `sync-terra-gentil.sh` recusa rodar até o requirements de lá ter `pyjwt`.
+  - Agenda de shows (Pearl Jam + bandas cover): POC com a @blaymorphed funcionou; plano em
+    `docs/agenda/PLANO-AGENDA.md`. Próximo: lista de bandas, extração, aprovação no Telegram, front no Claude Design.
+  - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
   - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
   - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB): decidir se apaga.
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
+
+## 2026-10-04 (madrugada): token restrito, Terra Gentil sem CVE, POC da agenda
+
+- Token do refresh do IG trocado por fine-grained (só este repo, só Secrets); clássico revogado; teste ok.
+- terra-gentil-app (produção do fórum): já tinha e-mail privado e JWT obrigatório; subiram as deps sem CVE
+  (Pillow 12, authlib 1.8, PyJWT no lugar do python-jose, fastapi/starlette novos). 249 testes, deploy ok no
+  Railway, fórum/login/painel conferidos no ar.
+- POC da agenda de bandas cover com a @blaymorphed (API oficial, só legenda): `docs/agenda/PLANO-AGENDA.md`.
 
 ## 2026-10-03: vistoria de saúde executada (15 commits)
 
