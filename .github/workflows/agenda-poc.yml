@@ -1,0 +1,29 @@
+# POC da agenda de bandas cover: lê os posts públicos de uma conta do Instagram (API oficial, só texto).
+# Manual: Actions > agenda-poc > Run workflow > conta. O resultado sai no log.
+name: agenda-poc
+on:
+  workflow_dispatch:
+    inputs:
+      conta:
+        description: "Conta do Instagram (sem @)"
+        required: true
+      quantos:
+        description: "Quantos posts (até 50)"
+        default: "30"
+permissions:
+  contents: read
+jobs:
+  ler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+      - name: Lê a conta
+        env:
+          IG_LEITURA_TOKEN: ${{ secrets.IG_LEITURA_TOKEN }}
+          CONTA: ${{ inputs.conta }}
+          QUANTOS: ${{ inputs.quantos }}
+        run: node scripts/agenda/poc-ig.mjs "$CONTA" "$QUANTOS"
