@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-10-04T15:02Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20261004", "titulo": "Stephen Perkins na mira dos fãs, rumor de Mad Cool e saudade de Tom Petty", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "b2536d7141", "title": "I don't remember this track", "reason": "sem relevância (bug de tela de carro, sub de Hadestown)" }
+  ]
+}
