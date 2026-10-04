@@ -229,6 +229,11 @@ font:16px/1.55 Inter,system-ui,sans-serif;color:var(--ag-tinta)}
 .ag-cta-txt a{display:inline-block;margin-top:8px;padding:12px 16px;background:var(--ag-verm);color:#fff;font-weight:800;text-decoration:none}
 .ag-cta-txt a:hover{background:var(--ag-creme);color:var(--ag-tinta)}
 @media (min-width:900px){.ag-cta{grid-template-columns:1.4fr 1fr;align-items:center;padding:40px}}
+/* foto da banda no card (preto e branco + cor do card por cima = duotone, como os slides do carrossel) */
+.ag-banda-foto{position:relative;margin:-22px -20px 18px;aspect-ratio:4/3;overflow:hidden;background:inherit;isolation:isolate}
+.ag-banda-foto img{display:block;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;filter:brightness(1.35) contrast(1.05)}
+.ag-bg-preto .ag-banda-foto img{mix-blend-mode:screen;filter:contrast(1.1) brightness(.85)}
+.ag-banda-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35))}
 
 .ag-agenda:has(#ag-uf-SP:checked) .ag-show:not([data-uf="SP"]),.ag-agenda:has(#ag-uf-SP:checked) .ag-mes:not(:has([data-uf="SP"])),.ag-agenda:has(#ag-uf-SP:checked) .ag-mes:not(.ag-mes--grade) .ag-dia:not(:has([data-uf="SP"])){display:none}
 @media (max-width:899px){.ag-agenda:has(#ag-uf-SP:checked) .ag-dia:not(:has([data-uf="SP"])){display:none}}
@@ -530,21 +535,24 @@ s.src='https://www.googletagmanager.com/gtag/js?id=G-234ZL5MF0T';document.head.a
 <p class="ag-kicker">quem toca</p>
 <h2 class="ag-h2" id="ag-t-bandas">As bandas cover</h2>
 <ul class="ag-bandas">
-<li class="ag-banda ag-bg-azul">
+<li class="ag-banda ag-bg-azul ag-banda--foto">
+<div class="ag-banda-foto"><img src="/media/agenda/fotos/blaymorphed.jpg" alt="Foto da banda Blaymorphed" width="640" height="480" loading="lazy" decoding="async"></div>
 <p class="ag-banda-desde">desde <span>2000</span></p>
 <h3 class="ag-banda-nome"><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">Blaymorphed</a></h3>
 <p class="ag-banda-cidade">Santo André/SP</p>
 <p class="ag-banda-resumo">Formada em Santo André em 2000, reproduz o Pearl Jam com a mesma divisão de instrumentos da banda original e um acervo de mais de 100 equipamentos iguais aos deles. Em 2018, Eddie Vedder chamou o vocalista Sergio Vedder ao palco em São Paulo e os dois cantaram Black.</p>
 <p class="ag-banda-rodape"><span>7 shows na agenda</span><a href="https://www.instagram.com/blaymorphed/" rel="nofollow">@blaymorphed</a></p>
 </li>
-<li class="ag-banda ag-bg-vermelho">
+<li class="ag-banda ag-bg-vermelho ag-banda--foto">
+<div class="ag-banda-foto"><img src="/media/agenda/fotos/blackcirclepj.jpg" alt="Foto da banda Black Circle" width="640" height="480" loading="lazy" decoding="async"></div>
 <p class="ag-banda-desde">desde <span>2016</span></p>
 <h3 class="ag-banda-nome"><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">Black Circle</a></h3>
 <p class="ag-banda-cidade">Rio de Janeiro/RJ</p>
 <p class="ag-banda-resumo">Formada no Rio em 2016, roda o país com o tributo ao Pearl Jam e com o Pearl Jam Symphonic, ao lado de uma orquestra. Em 2023, num show do Pearl Jam em Austin, Eddie Vedder recebeu uma bandeira da banda e dedicou a ela Spin the Black Circle.</p>
 <p class="ag-banda-rodape"><span>11 shows na agenda</span><a href="https://www.instagram.com/blackcirclepj/" rel="nofollow">@blackcirclepj</a></p>
 </li>
-<li class="ag-banda ag-bg-preto">
+<li class="ag-banda ag-bg-preto ag-banda--foto">
+<div class="ag-banda-foto"><img src="/media/agenda/fotos/singlesplayspearljam.jpg" alt="Foto da banda Singles" width="640" height="480" loading="lazy" decoding="async"></div>
 <p class="ag-banda-desde">desde <span>2000</span></p>
 <h3 class="ag-banda-nome"><a href="https://www.instagram.com/singlesplayspearljam/" rel="nofollow">Singles</a></h3>
 <p class="ag-banda-cidade">Belo Horizonte/MG</p>

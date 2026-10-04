@@ -1,22 +1,52 @@
 {
-  "atualizado": "2026-10-04T03:12:59.235Z",
+  "atualizado": "2026-10-04T04:30:38.465Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-04T03:12:57.221Z",
-      "seguidores": 33070,
+      "lidoEm": "2026-10-04T04:30:35.849Z",
+      "seguidores": 33073,
       "ultimoPost": "2026-09-30T21:21:22+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-04T03:12:58.343Z",
-      "seguidores": 101039,
+      "lidoEm": "2026-10-04T04:30:37.061Z",
+      "seguidores": 101047,
       "ultimoPost": "2026-10-03T19:41:21+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-04T03:12:59.235Z",
+      "lidoEm": "2026-10-04T04:30:38.173Z",
       "seguidores": 9402,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     }
   },
+  "oficial": [
+    {
+      "id": "oficial-23232",
+      "data": "2026-11-20",
+      "artista": "Eddie Vedder",
+      "turne": "Eddie Vedder 2026",
+      "evento": "Best of Rock and Blues festival",
+      "casaNome": "Ibirapuera Park",
+      "cidade": "São Paulo",
+      "estado": "",
+      "pais": "Brazil",
+      "brasil": true,
+      "ingresso": "https://www.ticketmaster.com.br/event/best-of-blues-and-rock-2026",
+      "fonte": "https://pearljam.com/tour"
+    },
+    {
+      "id": "oficial-23233",
+      "data": "2026-11-22",
+      "artista": "Eddie Vedder",
+      "turne": "Eddie Vedder 2026",
+      "evento": "Best of Rock and Blues Festival",
+      "casaNome": "Ibirapuera Park",
+      "cidade": "São Paulo",
+      "estado": "",
+      "pais": "Brazil",
+      "brasil": true,
+      "ingresso": "https://www.ticketmaster.com.br/event/best-of-blues-and-rock-2026",
+      "fonte": "https://pearljam.com/tour"
+    }
+  ],
   "shows": [
     {
       "id": "blaymorphed-2026-10-05-maua",
