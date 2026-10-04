@@ -74,10 +74,12 @@ export function secaoOficial(oficial = []) {
 <p class="ag-kicker">na estrada</p>
 <h2 class="ag-h2" id="ag-t-oficial">Turnê oficial: Pearl Jam e Eddie Vedder</h2>
 ${conteudo}
-<p class="ag-fonte">Datas de <a href="https://pearljam.com/tour" rel="nofollow noopener">pearljam.com/tour</a>, conferidas todo dia.</p>
-</section>
+</section>`;
+}
 
-<section class="ag-sec ag-basico" id="primeira-vez" aria-labelledby="ag-t-basico">
+// Bloco pra quem vai pela primeira vez (fica no fim da página, antes da chamada pras bandas).
+export function secaoBasico() {
+  return `<section class="ag-sec ag-basico" id="primeira-vez" aria-labelledby="ag-t-basico">
 <h2 class="ag-h2 ag-h2--p" id="ag-t-basico">Primeira vez num show? O básico</h2>
 <ol class="ag-basico-lista">
 <li><p class="ag-basico-tit">A banda</p><p>Pearl Jam é a banda de Seattle que nasceu em 1990 e segue na estrada com Eddie Vedder, Stone Gossard, Jeff Ament, Mike McCready e Matt Cameron. Eddie também faz shows solo, mais intimistas.</p></li>

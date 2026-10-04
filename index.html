@@ -203,6 +203,7 @@
 <!-- TABS -->
 <div class="tabs" role="tablist" aria-label="Visualizações do arquivo">
   <button class="tab active" role="tab" id="tab-news" aria-selected="true" aria-controls="view-news" tabindex="0" data-view="news">Notícias</button>
+  <a class="tab tab-link" href="/agenda/">Agenda</a>
   <button class="tab" role="tab" id="tab-timeline" aria-selected="false" aria-controls="view-timeline" tabindex="-1" data-view="timeline">Timeline</button>
   <button class="tab" role="tab" id="tab-tabs" aria-selected="false" aria-controls="view-tabs" tabindex="-1" data-view="tabs">Cifras &amp; Tabs</button>
   <button class="tab" role="tab" id="tab-banda" aria-selected="false" aria-controls="view-banda" tabindex="-1" data-view="banda">BANDA</button>
@@ -2233,6 +2234,7 @@ function activateTab(viewName, opts) {
   }
   state.currentView = viewName;
   document.querySelectorAll(".tab").forEach(t => {
+    if (!t.dataset.view) return; // aba que é link pra outra página (ex: /agenda/)
     const on = t.dataset.view === viewName;
     t.classList.toggle("active", on);
     t.setAttribute("aria-selected", on ? "true" : "false");
@@ -9690,6 +9692,7 @@ async function init() {
   });
   document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
     const v = t.dataset.view;
+    if (!v) return; // link normal (ex: Agenda): o navegador segue o href
     if (v === "news" && state.currentView === "news"
         && typeof _newsParseHash === "function" && _newsParseHash()) {
       _newsSetHash(null);

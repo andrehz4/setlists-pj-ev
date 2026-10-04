@@ -1,5 +1,18 @@
 /* /agenda/ · classes ag- · mobile primeiro */
-.ag-wrap{max-width:1120px}
+.ag-wrap{max-width:1360px;margin:0 auto;padding:28px 16px 48px}
+@media (min-width:769px){.ag-wrap{padding:36px 32px 64px}}
+.ag-wrap>footer{margin-top:40px;border-top:1px solid var(--divider);padding-top:14px;font:13px Inter,system-ui,sans-serif}
+.ag-wrap>footer a{color:var(--pj);text-decoration:none}
+/* tema escuro do site (html[data-theme=dark]): mesmas peças, tinta e papel invertidos */
+html[data-theme="dark"] .ag{--ag-tinta:#f2e7c7;--ag-creme:#2f2720;--ag-creme2:#252018;--ag-fundo:#1a1611;--ag-cinza:#b3a78a;--ag-verm2:#e88a82;--ag-ocre2:#e0b45a;--ag-azul:#7aa7e0}
+html[data-theme="dark"] .ag-btn{background:#0a0908}
+/* no escuro o --ag-verm2 clareia pra texto; fundo vermelho continua vermelho de verdade */
+html[data-theme="dark"] .ag-cartaz{background-color:#a00400}
+html[data-theme="dark"] .ag-atalhos span,html[data-theme="dark"] .ag-prox-tag,html[data-theme="dark"] .ag-tag--rel,html[data-theme="dark"] .ag-mes--grade .ag-dia--hoje{background:#a00400;border-color:#a00400}
+html[data-theme="dark"] .ag-bg-azul{background-color:#2a5b9e}
+html[data-theme="dark"] .ag-bg-vermelho{background-color:#a00400}
+html[data-theme="dark"] .ag-bg-preto{background-color:#0a0908;box-shadow:inset 0 0 0 1px #5a4d3a}
+html[data-theme="dark"] .ag-bg-ocre{background-color:#a87f2c;color:#0a0908}
 .ag{--ag-tinta:#0a0908;--ag-creme:#f7f1de;--ag-creme2:#ede4cc;--ag-fundo:#f4eee2;--ag-verm:#e10600;--ag-verm2:#a00400;--ag-ocre:#a87f2c;--ag-ocre2:#6e5115;--ag-azul:#2a5b9e;--ag-cinza:#4a443b;
 --ag-ruido:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .22 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 font:16px/1.55 Inter,system-ui,sans-serif;color:var(--ag-tinta)}

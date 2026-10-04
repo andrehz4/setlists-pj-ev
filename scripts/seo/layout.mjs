@@ -2,6 +2,7 @@
 // Cada página passa só o que muda: título, descrição, URL, JSON-LD e o corpo.
 import { SITE_BASE, esc } from "./base.mjs";
 import { GA_SNIPPET } from "./analytics.mjs";
+import { CABECA_SITE, topoSite, TEMA_JS } from "./casca-site.mjs";
 
 export const NOME = "Só mais um fã de Pearl Jam";
 export { SITE_BASE, esc };
@@ -40,9 +41,10 @@ export const breadcrumb = itens => ({
 
 // trilha: [["Músicas", "/musica/"], ...] (a página atual não entra; o h1 já diz onde está)
 // Opcionais de página desenhada à parte (ex: /agenda/): cabeca (HTML extra no <head>), classeWrap (classe a mais
-// no container) e h1Proprio (o corpo traz o próprio <h1>; o molde não imprime o dele).
+// no container) e h1Proprio (o corpo traz o próprio <h1>; o molde não imprime o dele). abaSite: [href, rótulo] troca a
+// casca simples pela cara do site principal (topo ticket, abas da home, tema claro/escuro; ver casca-site.mjs).
 export function pagina({ titulo, h1 = titulo, descricao, url, ld = [], trilha = [], corpo, imagem, tipoOg = "website",
-  cabeca = "", classeWrap = "", h1Proprio = false }) {
+  cabeca = "", classeWrap = "", h1Proprio = false, abaSite = null }) {
   const img = imagem || `${SITE_BASE}/og.jpg`;
   const bc = breadcrumb([[NOME, `${SITE_BASE}/`], ...trilha.map(([n, u]) => [n, SITE_BASE + u]), [h1, url]]);
   const dados = [...(Array.isArray(ld) ? ld : [ld]), bc];
@@ -66,20 +68,18 @@ export function pagina({ titulo, h1 = titulo, descricao, url, ld = [], trilha = 
 <meta property="og:image" content="${esc(img)}">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">${JSON.stringify(dados).replace(/</g, "\\u003c")}</script>
-<style>
-${CSS}
-</style>
+${abaSite ? CABECA_SITE : `<style>\n${CSS}\n</style>`}
 ${cabeca}${GA_SNIPPET}
 </head>
 <body>
-<div class="wrap${classeWrap ? ` ${classeWrap}` : ""}">
-<header><a href="/">${NOME.toUpperCase()}</a></header>
+${abaSite ? `${topoSite(abaSite)}\n` : ""}<div class="wrap${classeWrap ? ` ${classeWrap}` : ""}">
+${abaSite ? "" : `<header><a href="/">${NOME.toUpperCase()}</a></header>
 <nav class="menu">${SECOES.map(([u, n]) => `<a href="${u}">${n}</a>`).join("")}</nav>
 <nav class="trilha">${migalhas}</nav>
-${h1Proprio ? "" : `<h1>${esc(h1)}</h1>\n`}${corpo}
+`}${h1Proprio ? "" : `<h1>${esc(h1)}</h1>\n`}${corpo}
 <footer><a href="/">Setlists, cifras, músicas e notícias de Pearl Jam e Eddie Vedder</a></footer>
 </div>
-</body>
+${abaSite ? `${TEMA_JS}\n` : ""}</body>
 </html>
 `;
 }

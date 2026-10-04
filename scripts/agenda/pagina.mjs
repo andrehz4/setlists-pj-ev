@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import { pagina, esc, SITE_BASE } from "../seo/layout.mjs";
 import { diaBRT } from "../lib/brt.mjs";
-import { secaoOficial, eventoOficialLd } from "./pagina-oficial.mjs";
+import { secaoOficial, secaoBasico, eventoOficialLd } from "./pagina-oficial.mjs";
 import { calendario, proximo, ig, plural } from "./pagina-mes.mjs";
 
 const CSS = fs.readFileSync(new URL("./agenda.css", import.meta.url), "utf8");
@@ -59,7 +59,6 @@ export function paginaAgenda({ shows, bandas, oficial = [], hoje = diaBRT() }) {
   const corpo = `<main class="ag">
 <div class="ag-hero">
 <div class="ag-hero-tit">
-<p class="ag-assin">Só Mais um Fã de PEARL JAM</p>
 <h1 class="ag-h1"><span class="ag-h1-a">Agenda<span class="ag-sr">:</span></span> <span class="ag-h1-b">Pearl Jam ao vivo no Brasil</span></h1>
 </div>
 <div class="ag-hero-txt">
@@ -85,6 +84,8 @@ ${bandas.map((b) => bandaHTML(b, porBanda[b.conta] || 0, cor)).join("\n")}
 </ul>
 </section>
 
+${secaoBasico()}
+
 <aside class="ag-cta">
 <p class="ag-cta-tit">Toca Pearl Jam e quer aparecer aqui?</p>
 <p class="ag-cta-txt">Fale com a gente pelo Instagram <a href="https://www.instagram.com/smufdpj/" rel="nofollow">@smufdpj</a>.</p>
@@ -99,6 +100,7 @@ ${bandas.map((b) => bandaHTML(b, porBanda[b.conta] || 0, cor)).join("\n")}
     ld: [...ofi.map(eventoOficialLd), ...publicos.map(eventoLd)],
     cabeca: `${FONTES}\n<style>\n${CSS}\n${cal.css}\n</style>\n`,
     classeWrap: "ag-wrap",
+    abaSite: ["/agenda/", "Agenda"],
     h1Proprio: true,
     corpo,
   });
