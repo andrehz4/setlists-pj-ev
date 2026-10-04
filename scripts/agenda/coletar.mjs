@@ -9,6 +9,7 @@ import { enviarTelegram, escHtml } from "../lib/telegram.mjs";
 import { diaBRT } from "../lib/brt.mjs";
 import { lerConta } from "./ler-instagram.mjs";
 import { lerOficial } from "./oficial.mjs";
+import { atualizarFoto, fotosExistentes } from "./fotos.mjs";
 import { montarAgenda } from "./montar.mjs";
 import { paginaAgenda } from "./pagina.mjs";
 import { aplicarSitemap } from "./sitemap.mjs";
@@ -29,6 +30,7 @@ async function main() {
     try {
       const conta = await lerConta(b.conta, { n: 30 });
       const agenda = montarAgenda(b, conta.posts, hoje);
+      if (!DRY) await atualizarFoto(b.conta, conta.foto);
       shows.push(...agenda);
       infos[b.conta] = { lidoEm: new Date().toISOString(), seguidores: conta.seguidores, ultimoPost: conta.posts[0]?.data || null };
       console.log(`[agenda] @${b.conta}: ${agenda.length} show(s) de hoje em diante`);
@@ -58,7 +60,7 @@ async function main() {
   }
   await gravarEstado(ESTADO, { atualizado: new Date().toISOString(), bandas: infos, oficial, shows });
   await fs.mkdir(naRaiz("agenda"), { recursive: true });
-  await fs.writeFile(naRaiz("agenda/index.html"), paginaAgenda({ shows, bandas, oficial, hoje }));
+  await fs.writeFile(naRaiz("agenda/index.html"), paginaAgenda({ shows, bandas, oficial, hoje, fotos: fotosExistentes(bandas) }));
   await fs.writeFile(naRaiz("sitemap.xml"), aplicarSitemap(await fs.readFile(naRaiz("sitemap.xml"), "utf8"), hoje));
   await commitAndPush(["media/agenda/", "agenda/", "sitemap.xml"], `agenda: ${shows.length} show(s), ${novos.length} novo(s) ${hoje}`, { dry: NO_GIT });
   if (oficiaisNovos.length) {

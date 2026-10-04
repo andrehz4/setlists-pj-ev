@@ -40,15 +40,15 @@ function coresDasBandas(bandas, shows) {
   return cor;
 }
 
-const bandaHTML = (b, n, cor) => `<li class="ag-banda ag-bg-${cor[b.conta]}">
-<p class="ag-banda-desde">desde <span>${esc(b.desde)}</span></p>
+const bandaHTML = (b, n, cor, foto) => `<li class="ag-banda ag-bg-${cor[b.conta]}${foto ? " ag-banda--foto" : ""}">
+${foto ? `<div class="ag-banda-foto"><img src="${esc(foto)}" alt="Foto da banda ${esc(b.nome)}" width="640" height="480" loading="lazy" decoding="async"></div>\n` : ""}<p class="ag-banda-desde">desde <span>${esc(b.desde)}</span></p>
 <h3 class="ag-banda-nome"><a href="${ig(b.conta)}" rel="nofollow">${esc(b.nome)}</a></h3>
 <p class="ag-banda-cidade">${esc(b.cidade)}/${esc(b.uf)}</p>
 <p class="ag-banda-resumo">${esc(b.resumo)}</p>
 <p class="ag-banda-rodape"><span>${n ? plural(n, "show na agenda", "shows na agenda") : "sem datas no momento"}</span><a href="${ig(b.conta)}" rel="nofollow">@${esc(b.conta)}</a></p>
 </li>`;
 
-export function paginaAgenda({ shows, bandas, oficial = [], hoje = diaBRT() }) {
+export function paginaAgenda({ shows, bandas, oficial = [], hoje = diaBRT(), fotos = {} }) {
   const publicos = shows.filter((s) => !s.fechado && s.data >= hoje)
     .sort((a, b) => a.data.localeCompare(b.data) || a.nome.localeCompare(b.nome));
   const ofi = oficial.filter((o) => o.data >= hoje).sort((a, b) => a.data.localeCompare(b.data));
@@ -80,7 +80,7 @@ ${cal.html}
 <p class="ag-kicker">quem toca</p>
 <h2 class="ag-h2" id="ag-t-bandas">As bandas cover</h2>
 <ul class="ag-bandas">
-${bandas.map((b) => bandaHTML(b, porBanda[b.conta] || 0, cor)).join("\n")}
+${bandas.map((b) => bandaHTML(b, porBanda[b.conta] || 0, cor, fotos[b.conta])).join("\n")}
 </ul>
 </section>
 

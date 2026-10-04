@@ -62,3 +62,11 @@ test("sitemap: seção da agenda é idempotente e não mexe no resto", () => {
   assert.match(um, /\/agenda\//);
   assert.match(aplicarSitemap(base, "2026-10-04"), /<lastmod>2026-10-04<\/lastmod>/);
 });
+
+test("card da banda: foto quando existe, sem foto quando não", () => {
+  const b = { conta: "blaymorphed", nome: "Blaymorphed", cidade: "Santo André", uf: "SP", desde: 2000, resumo: "x" };
+  const com = paginaAgenda({ shows: [], bandas: [b], hoje: "2026-10-10", fotos: { blaymorphed: "/media/agenda/fotos/blaymorphed.jpg" } });
+  assert.match(com, /<img src="\/media\/agenda\/fotos\/blaymorphed.jpg" alt="Foto da banda Blaymorphed"/);
+  assert.match(com, /ag-banda--foto/);
+  assert.doesNotMatch(paginaAgenda({ shows: [], bandas: [b], hoje: "2026-10-10" }), /ag-banda-foto/);
+});

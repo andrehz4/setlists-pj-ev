@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /media/news/img/
+Allow: /media/agenda/fotos/
 Allow: /media/albums/*.jpg
 Disallow: /media/
 
