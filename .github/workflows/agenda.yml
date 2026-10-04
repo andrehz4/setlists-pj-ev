@@ -1,4 +1,4 @@
-# Agenda das bandas cover de Pearl Jam (scripts/agenda/, plano em docs/agenda/PLANO-AGENDA.md).
+# Agenda: turnê oficial (pearljam.com/tour) e bandas cover de Pearl Jam (scripts/agenda/, plano em docs/agenda/PLANO-AGENDA.md).
 # Todo dia lê as bandas de media/agenda/bandas.json pela API oficial do Instagram, monta os shows, gera
 # /agenda/ e avisa os novos no Telegram. Módulo apartado: sem o secret IG_LEITURA_TOKEN não faz nada.
 name: agenda

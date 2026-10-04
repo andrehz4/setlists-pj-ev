@@ -2,6 +2,7 @@
 // em cada show (resultado de evento na busca) e o perfil de cada banda. Visual provisório: o desenho final
 // vem do Claude Design. Evento fechado não entra.
 import { pagina, esc, SITE_BASE } from "../seo/layout.mjs";
+import { secaoOficial, eventoOficialLd } from "./pagina-oficial.mjs";
 
 const MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 const SEMANA = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
@@ -35,7 +36,7 @@ function linha(s) {
     + ` <a href="${esc(s.detalhe || s.fonte)}" rel="nofollow">post da banda</a></li>`;
 }
 
-export function paginaAgenda({ shows, bandas }) {
+export function paginaAgenda({ shows, bandas, oficial = [] }) {
   const publicos = shows.filter((s) => !s.fechado);
   const porMes = new Map();
   for (const s of publicos) {
@@ -45,23 +46,25 @@ export function paginaAgenda({ shows, bandas }) {
   }
   const meses = [...porMes].map(([k, lista]) => {
     const [a, m] = k.split("-");
-    return `<h2>${MESES[+m - 1]} de ${a}</h2>\n<ul>${lista.map(linha).join("\n")}</ul>`;
+    return `<h3>${MESES[+m - 1]} de ${a}</h3>\n<ul>${lista.map(linha).join("\n")}</ul>`;
   }).join("\n");
-  const perfis = bandas.map((b) => `<h3><a href="${ig(b.conta)}" rel="nofollow">${esc(b.nome)}</a> `
+  const perfis = bandas.map((b) => `<h3 class="banda"><a href="${ig(b.conta)}" rel="nofollow">${esc(b.nome)}</a> `
     + `<small>${esc(b.cidade)}/${esc(b.uf)}, desde ${b.desde}</small></h3>\n<p>${esc(b.resumo)}</p>`).join("\n");
   const cidades = [...new Set(publicos.map((s) => s.uf).filter(Boolean))].sort();
-  const corpo = `<p>Onde ver Pearl Jam ao vivo no Brasil este mês: a agenda das bandas cover e tributo, lida dos perfis
-oficiais delas no Instagram. Confirme sempre no post da banda antes de sair de casa.</p>
+  const corpo = `<p>Onde ver Pearl Jam ao vivo: a turnê oficial da banda e do Eddie Vedder, e a agenda das bandas cover e
+tributo pelo Brasil, lida dos perfis oficiais delas no Instagram. Confirme sempre no post da banda antes de sair de casa.</p>
+${secaoOficial(oficial)}
+<h2>Bandas cover e tributo no Brasil</h2>
 ${meses || "<p>Nenhum show anunciado no momento.</p>"}
-<h2>As bandas</h2>
+<h2>As bandas cover</h2>
 ${perfis}
 <p><small>Toca Pearl Jam e quer aparecer aqui? Fale com a gente pelo Instagram @smufdpj.</small></p>`;
   return pagina({
-    titulo: "Agenda de shows: bandas cover de Pearl Jam no Brasil",
+    titulo: "Agenda de shows: turnê do Pearl Jam e bandas cover no Brasil",
     h1: "Agenda: Pearl Jam ao vivo no Brasil",
-    descricao: `Shows das bandas cover e tributo de Pearl Jam pelo Brasil${cidades.length ? ` (${cidades.join(", ")})` : ""}: datas, cidades e casas, atualizados todo dia.`,
+    descricao: `Turnê oficial do Pearl Jam e do Eddie Vedder e shows das bandas cover e tributo de Pearl Jam pelo Brasil${cidades.length ? ` (${cidades.join(", ")})` : ""}: datas, cidades e casas, atualizados todo dia.`,
     url: `${SITE_BASE}/agenda/`,
-    ld: publicos.map(eventoLd),
+    ld: [...oficial.map(eventoOficialLd), ...publicos.map(eventoLd)],
     corpo,
   });
 }
