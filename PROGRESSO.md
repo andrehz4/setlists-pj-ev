@@ -10,8 +10,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Instagram oficial (@pearljam, @eddievedder) é fonte de notícia desde 02/10 (`scripts/news/ig-oficial.mjs`).
 - Vistoria de saúde executada em 03/10 (ver a sessão abaixo e `docs/VISTORIA-2026-10-02.md`, seção Status).
 - Pendências vivas:
-  - Agenda de shows (Pearl Jam + bandas cover): POC com a @blaymorphed funcionou; plano em
-    `docs/agenda/PLANO-AGENDA.md`. Próximo: lista de bandas, extração, aprovação no Telegram, front no Claude Design.
+  - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com Blaymorphed, Black Circle e Singles, coleta
+    diária (`agenda.yml`). Próximo: story do dia por região, post semanal com @, turnê oficial, Claude Design.
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
   - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.

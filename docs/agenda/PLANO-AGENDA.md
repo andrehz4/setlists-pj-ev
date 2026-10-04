@@ -16,6 +16,12 @@ com horário, abertura e reservas ("Bloco 1 = 21:30 às 23:00", "Reservas: (11) 
 Agenda de outubro/2026 lida: Campo Grande (2 e 3), Mauá (5, SV solo), São Bernardo (9), Bragança Paulista (10),
 São Paulo (11, Stones Bar), evento fechado (16 e 17), Ribeirão Pires (23), Santo André (24), Mogi das Cruzes (31).
 
+## Estado da POC (2026-10-04)
+
+No ar: coleta diária das 3 bandas, `/agenda/` com 18 shows públicos (eventos pro Google), resumo dos novos no
+Telegram. Falta: story do dia por região, post semanal com os @, turnê oficial do Pearl Jam, desenho no Claude
+Design. Reavaliar em 11/10 e ampliar a lista de bandas se tudo der certo.
+
 ## Como vai funcionar
 
 1. Lista de bandas em `media/agenda/bandas.json` (@ do Instagram, nome, cidade-base, texto de perfil). Banda
