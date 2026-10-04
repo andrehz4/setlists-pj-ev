@@ -2,20 +2,16 @@ name: Refresh IG token
 # Tokens long-lived do Instagram expiram em 60 dias.
 # Roda nos dias 1 e 15 (o token dura 60 dias; uma tentativa por mes ja deixou ele expirar).
 #
-# PRE-REQUISITO: secret GH_PAT_SECRETS com um PAT de escopo "repo".
-#   Como criar:
-#     1. github.com > Settings > Developer settings > Personal access tokens > Tokens (classic)
-#     2. "Generate new token (classic)" > seleciona escopo "repo" > Generate
-#     3. Copia o token gerado
-#     4. No repo: Settings > Secrets and variables > Actions > New repository secret
-#        Name: GH_PAT_SECRETS  |  Value: <token copiado>
-#   Esse PAT so precisa existir uma vez. Nao expira enquanto voce nao revogar.
-#
+# PRE-REQUISITO: secret GH_PAT_SECRETS com um token fine-grained (trocado em 2026-10-03):
+#   github.com > Settings > Developer settings > Fine-grained tokens, nome "setlists-pj-ev renovar token IG",
+#   sem expiracao, SO o repo andrehz4/setlists-pj-ev, permissao "Secrets: Read and write" (Metadata vem junto).
+#   Salvar pelo app Terminal (o ! do Claude Code grava vazio):
+#     read -s K && printf %s "$K" | gh secret set GH_PAT_SECRETS --repo andrehz4/setlists-pj-ev && echo "salvo: ${#K} caracteres"; unset K
+#   (deve dar ~93 caracteres)
 # SEM o PAT: o workflow falha com mensagem clara e NAO imprime o token no log.
 on:
   schedule:
-    # Dia 1 de cada mes, 06:13 UTC. Token expira em 60 dias, renovar 1x/mes e
-    # suficiente com boa margem de seguranca.
+    # Dias 1 e 15, 06:13 UTC (o token do IG dura 60 dias).
     - cron: '13 6 1,15 * *'
   workflow_dispatch:
 
