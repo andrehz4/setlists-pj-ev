@@ -76,7 +76,7 @@ font:16px/1.55 Inter,system-ui,sans-serif;color:var(--ag-tinta)}
 .ag-basico{background:var(--ag-creme2);border:2px solid var(--ag-tinta);padding:24px 20px}
 .ag-basico .ag-h2{margin-bottom:18px}
 .ag-basico-lista{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:ag-b}
-.ag-basico-lista li{counter-increment:ag-b;display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:10px;font-size:15px}
+.ag-basico-lista li{counter-increment:ag-b;display:grid;grid-template-columns:44px minmax(0,1fr);grid-template-rows:auto 1fr;align-content:start;column-gap:10px;font-size:15px}
 .ag-basico-lista li::before{content:"0" counter(ag-b);grid-row:1/3;font:400 34px/1 Anton,sans-serif;color:var(--ag-ocre)}
 .ag-basico-tit{font:800 12px/1.6 Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--ag-ocre2)}
 .ag-basico-mais{margin-top:20px!important;padding-top:14px;border-top:1.5px dashed var(--ag-cinza);font-weight:600}

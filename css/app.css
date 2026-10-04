@@ -11041,3 +11041,6 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 @media (max-width: 600px) {
   .chord-diagram { width: 88px; }
 }
+
+/* Aba que é link pra outra página (ex: Agenda, /agenda/): mesmo visual das abas-botão */
+.tabs a.tab{text-decoration:none!important;line-height:normal}
