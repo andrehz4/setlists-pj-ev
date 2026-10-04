@@ -11,13 +11,24 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Vistoria de saúde executada em 03/10 (ver a sessão abaixo e `docs/VISTORIA-2026-10-02.md`, seção Status).
 - Pendências vivas:
   - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com Blaymorphed, Black Circle e Singles, coleta
-    diária (`agenda.yml`). Próximo: story do dia por região, post semanal com @, turnê oficial, Claude Design.
+    diária (`agenda.yml`) com a turnê oficial de pearljam.com/tour. Story do dia por estado (`agenda-story.yml`)
+    e post "Agenda da semana" (`agenda-semana.yml`) prontos e testados no mock, DESLIGADOS até o Andre criar a
+    variável do repo `AGENDA_PUBLICAR=1`. Pacote do Claude Design em
+    `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/design-handoff/agenda.zip`; retorno vai pra `pagina.mjs`.
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
   - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
   - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB): decidir se apaga.
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
+
+## 2026-10-04 (madrugada, parte 2): agenda nas redes e turnê oficial
+
+- Story "Alô, pessoal do RJ!" (um por estado com show no dia, 14:07) e post de segunda "Agenda da semana" com o
+  @ da banda e o @ da casa (marcados na foto; se o IG recusar a marcação, sai sem ela). Fora do reel.
+- Turnê oficial lida do JSON embutido em pearljam.com/tour (Bandsintown recusa sem app aprovado). Hoje: Eddie
+  Vedder no Ibirapuera, 20 e 22/11. Data oficial nova avisa no Telegram.
+- Briefing do Claude Design da página /agenda/ montado com dados reais e prints.
 
 ## 2026-10-04 (madrugada): token restrito, Terra Gentil sem CVE, POC da agenda
 

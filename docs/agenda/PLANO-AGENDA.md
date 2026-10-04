@@ -19,8 +19,9 @@ São Paulo (11, Stones Bar), evento fechado (16 e 17), Ribeirão Pires (23), San
 ## Estado da POC (2026-10-04)
 
 No ar: coleta diária das 3 bandas, `/agenda/` com 18 shows públicos (eventos pro Google), resumo dos novos no
-Telegram. Falta: story do dia por região, post semanal com os @, turnê oficial do Pearl Jam, desenho no Claude
-Design. Reavaliar em 11/10 e ampliar a lista de bandas se tudo der certo.
+Telegram, turnê oficial (pearljam.com/tour) no topo da página. Story do dia por estado e post semanal com os @
+prontos, travados pela variável `AGENDA_PUBLICAR=1`. Desenho da página enviado ao Claude Design (pacote em
+`design-handoff/agenda.zip`, fora do git). Reavaliar em 11/10 e ampliar a lista de bandas se tudo der certo.
 
 ## Como vai funcionar
 
