@@ -33,9 +33,8 @@ function showHTML(s, cor, hoje) {
 </li>`;
 }
 
-function diaHTML(iso, sh, { grade, primeiro, hoje, cor }) {
+function diaHTML(iso, sh, { hoje, cor }) {
   const cls = ["ag-dia"];
-  if (grade && primeiro) cls.push(`ag-ini-${dow(iso) + 1}`);
   if (iso === hoje) cls.push("ag-dia--hoje");
   if (!sh) {
     if (iso < hoje) cls.push("ag-dia--passado");
@@ -58,7 +57,11 @@ function mesHTML(k, lista, ctx) {
   const dias = grade
     ? Array.from({ length: new Date(Date.UTC(a, m, 0)).getUTCDate() }, (_, i) => `${k}-${pad(i + 1)}`)
     : Object.keys(porDia);
-  const lis = dias.map((iso, i) => diaHTML(iso, porDia[iso], { ...ctx, grade, primeiro: i === 0 })).join("\n");
+  // Grade: células vazias completam a 1ª e a última semana (senão ficam sem as linhas da grade).
+  const fora = '<li class="ag-dia ag-dia--vazio ag-dia--fora" aria-hidden="true"></li>';
+  const antes = grade ? fora.repeat(dow(dias[0])) : "";
+  const depois = grade ? fora.repeat(6 - dow(dias[dias.length - 1])) : "";
+  const lis = antes + dias.map((iso) => diaHTML(iso, porDia[iso], { ...ctx, grade })).join("\n") + depois;
   const semana = grade ? `<ol class="ag-semana" aria-hidden="true">${DDS.map((d) => `<li>${d}</li>`).join("")}</ol>` : "";
   return `<section class="ag-mes${grade ? " ag-mes--grade" : ""}" aria-labelledby="ag-m-${k}">
 <div class="ag-mes-topo"><h3 class="ag-mes-nome" id="ag-m-${k}">${MES[m - 1]} de ${a}</h3><p class="ag-mes-qtd">${plural(lista.length, "show", "shows")}</p></div>

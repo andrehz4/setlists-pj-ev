@@ -43,7 +43,7 @@ test("calendário: mês cheio vira grade, show passado sai, filtro por UF só co
   const varios = Array.from({ length: 6 }, (_, i) => ({ ...show, id: `v${i}`, data: `2026-10-${12 + i}`, uf: i % 2 ? "RJ" : "SP" }));
   const html = paginaAgenda({ shows: [{ ...show, id: "velho", data: "2026-10-01" }, ...varios], bandas: [], hoje: "2026-10-10" });
   assert.match(html, /ag-mes--grade/);
-  assert.match(html, /ag-ini-5/, "1º de outubro de 2026 é quinta");
+  assert.equal((html.match(/ag-dia--fora/g) || []).length - 1, 4 + 0, "out/2026 começa na quinta (4 vazias antes) e termina no sábado (0 depois)");
   assert.doesNotMatch(html, /datetime="2026-10-01"/);
   assert.match(html, /id="ag-uf-RJ"/);
   assert.match(html, /:has\(#ag-uf-SP:checked\)/);

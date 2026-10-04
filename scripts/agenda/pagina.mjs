@@ -100,7 +100,6 @@ ${secaoBasico()}
     ld: [...ofi.map(eventoOficialLd), ...publicos.map(eventoLd)],
     cabeca: `${FONTES}\n<style>\n${CSS}\n${cal.css}\n</style>\n`,
     classeWrap: "ag-wrap",
-    abaSite: ["/agenda/", "Agenda"],
     h1Proprio: true,
     corpo,
   });

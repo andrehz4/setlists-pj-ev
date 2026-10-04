@@ -1,8 +1,6 @@
 /* /agenda/ · classes ag- · mobile primeiro */
 .ag-wrap{max-width:1360px;margin:0 auto;padding:28px 16px 48px}
 @media (min-width:769px){.ag-wrap{padding:36px 32px 64px}}
-.ag-wrap>footer{margin-top:40px;border-top:1px solid var(--divider);padding-top:14px;font:13px Inter,system-ui,sans-serif}
-.ag-wrap>footer a{color:var(--pj);text-decoration:none}
 /* tema escuro do site (html[data-theme=dark]): mesmas peças, tinta e papel invertidos */
 html[data-theme="dark"] .ag{--ag-tinta:#f2e7c7;--ag-creme:#2f2720;--ag-creme2:#252018;--ag-fundo:#1a1611;--ag-cinza:#b3a78a;--ag-verm2:#e88a82;--ag-ocre2:#e0b45a;--ag-azul:#7aa7e0}
 html[data-theme="dark"] .ag-btn{background:#0a0908}
@@ -141,6 +139,7 @@ font:16px/1.55 Inter,system-ui,sans-serif;color:var(--ag-tinta)}
   .ag-mes--grade .ag-semana li{padding:8px 10px;border-right:2px solid var(--ag-tinta);border-bottom:2px solid var(--ag-tinta);background:var(--ag-creme2);font:800 12px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em}
   .ag-mes--grade .ag-dia{display:block;min-height:148px;padding:8px 10px 12px;border:0;border-right:2px solid var(--ag-tinta);border-bottom:2px solid var(--ag-tinta);background:var(--ag-creme)}
   .ag-mes--grade .ag-dia--vazio{background:transparent}
+  .ag-mes--grade .ag-dia--fora{background:repeating-linear-gradient(-45deg,transparent 0 7px,rgba(10,9,8,.04) 7px 8px)}
   .ag-mes--grade .ag-dia--passado{background:repeating-linear-gradient(-45deg,transparent 0 7px,rgba(10,9,8,.07) 7px 8px)}
   .ag-mes--grade .ag-dia--hoje{background:var(--ag-verm2);color:#fff}
   .ag-mes--grade .ag-dia--hoje::after{content:"hoje";display:block;margin-top:6px;font:14px "Special Elite",monospace}
@@ -157,7 +156,6 @@ font:16px/1.55 Inter,system-ui,sans-serif;color:var(--ag-tinta)}
   .ag-mes--grade .ag-tag{font-size:10px;padding:4px 5px}
   .ag-mes--grade .ag-post{font-size:10.5px}
   .ag-mes--grade .ag-show+.ag-show{margin-top:10px;padding-top:10px}
-  .ag-ini-1{grid-column-start:1}.ag-ini-2{grid-column-start:2}.ag-ini-3{grid-column-start:3}.ag-ini-4{grid-column-start:4}.ag-ini-5{grid-column-start:5}.ag-ini-6{grid-column-start:6}.ag-ini-7{grid-column-start:7}
 }
 
 /* bandas */

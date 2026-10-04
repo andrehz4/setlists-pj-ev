@@ -7,10 +7,15 @@ import path from "node:path";
 import { naRaiz } from "../config.mjs";
 
 export const PASTA_FOTOS = naRaiz("media/agenda/fotos");
-export async function tratarFoto(entrada, destino) {
+// logo: foto de perfil do IG (quadrada, quase sempre o logo) entra inteira, 400x400 centrada sobre preto em 640x480.
+// Sem logo (foto manual da banda): recorte 640x480 pelo ponto de interesse.
+export async function tratarFoto(entrada, destino, { logo = false } = {}) {
   const { default: sharp } = await import("sharp"); // só aqui: sem sharp, falha a foto, não a coleta
-  await sharp(entrada).rotate().resize(640, 480, { fit: "cover", position: "attention" })
-    .grayscale().normalise().jpeg({ quality: 78, mozjpeg: true }).toFile(destino);
+  const img = sharp(entrada).rotate();
+  if (logo) img.resize(400, 400, { fit: "contain", background: "#000" })
+    .extend({ top: 40, bottom: 40, left: 120, right: 120, background: "#000" });
+  else img.resize(640, 480, { fit: "cover", position: "attention" });
+  await img.grayscale().normalise().jpeg({ quality: 78, mozjpeg: true }).toFile(destino);
   return destino;
 }
 
@@ -24,7 +29,7 @@ export async function atualizarFoto(conta, url, { fetchImpl = fetch } = {}) {
     else if (url) {
       const r = await fetchImpl(url, { signal: AbortSignal.timeout(20000) });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      await tratarFoto(Buffer.from(await r.arrayBuffer()), destino);
+      await tratarFoto(Buffer.from(await r.arrayBuffer()), destino, { logo: true });
     }
   } catch (e) {
     console.warn(`[agenda] foto de @${conta} não atualizada: ${e.message}`);
