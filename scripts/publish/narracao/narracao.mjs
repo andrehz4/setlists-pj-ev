@@ -26,7 +26,8 @@ export function arquivoFixo(texto, voz, dir = DIR_FIXAS) {
 // Folga depois da fala (a manchete fica um instante na tela) e limites.
 const FOLGA = { coldopen: 0.5, outro: 0.6, bloco: 0.8 };
 const MIN = { coldopen: 3.0, outro: 2.5, bloco: 3.5 };
-const MAX_BLOCO = 9.0;
+const MAX_BLOCO = 9.0; // teto do bloco quando a fala cabe com folga
+const FOLGA_MINIMA = 0.3; // acima do teto a cena cresce até a fala caber inteira
 const INICIO_FALA = 0.25; // a voz entra logo depois do corte
 
 export function narracaoLigada(env = process.env) {
@@ -47,7 +48,11 @@ export function duracoesSincronizadas(scenes, durFala) {
     const fala = durFala.get(i);
     if (fala == null) return s.dur;
     const d = Math.max(MIN[tipo], INICIO_FALA + fala + FOLGA[tipo]);
-    return tipo === "bloco" ? Math.min(d, MAX_BLOCO) : d;
+    if (tipo !== "bloco") return d;
+    // O teto só encurta a folga: a fala inteira SEMPRE cabe na cena. Cortar a cena
+    // antes da fala acabar faz a voz invadir a cena seguinte e atropelar a próxima
+    // (reel 2026-W40: manchetes de 11 a 13 s presas em 9 s).
+    return Math.min(d, Math.max(MAX_BLOCO, INICIO_FALA + fala + FOLGA_MINIMA));
   });
 }
 

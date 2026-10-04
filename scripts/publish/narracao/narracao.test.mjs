@@ -52,7 +52,7 @@ test("duração sincronizada: fala + folga, com mínimo e teto", () => {
   const d = duracoesSincronizadas(scenes, new Map([[0, 1.5], [1, 5.0], [2, 20], [3, 1.0]]));
   assert.equal(d[0], 3.0);             // abertura curta fica no mínimo
   assert.ok(Math.abs(d[1] - 6.05) < 1e-9); // 0,25 + 5,0 + 0,8
-  assert.equal(d[2], 9.0);             // teto do bloco
+  assert.ok(Math.abs(d[2] - 20.55) < 1e-9); // fala maior que o teto: 0,25 + 20 + 0,3, a fala cabe inteira
   assert.equal(d[3], 2.5);             // final no mínimo
 });
 

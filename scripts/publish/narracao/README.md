@@ -15,7 +15,7 @@ ou da mixagem, o reel sai exatamente como antes (só música). Nunca derruba a p
 2. `elevenlabs.mjs`: chama a API (modelo `eleven_v4`, `language_code: pt`). Nome em inglês sai com pronúncia nativa
    numa fala só. Erro 4xx (chave, plano, crédito) não repete.
 3. `narracao.mjs`: gera as falas, mede a duração e devolve `sceneDurs`: **cada cena dura o tempo da sua fala**
-   (+ folga, mínimo 3,5 s e teto 9 s por manchete). Depois do render, `mixarNarracao` põe as vozes e abaixa a trilha
+   (+ folga, mínimo 3,5 s e teto 9 s por manchete; manchete que não cabe nos 9 s estica a cena até a fala terminar, nunca corta a voz nem deixa invadir a cena seguinte). Depois do render, `mixarNarracao` põe as vozes e abaixa a trilha
    enquanto alguém fala (sidechain).
 4. Abertura e encerramento de cada voz ficam guardados em `media/news/instagram-reels/narracao/` (nome com hash do
    texto) e são reaproveitados toda semana, sem gastar crédito.

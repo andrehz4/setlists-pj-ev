@@ -19,10 +19,19 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     pesquisa aprimorada: 20 eventos válidos. Conferir em ~1 semana se /agenda/ entrou no índice.
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
-  - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
+  - Reel de 04/10 (1º com voz) saiu com 3 manchetes longas atropelando a voz seguinte; corrigido em 04/10 (tarde),
+    conferir no reel de 11/10 se cada fala termina antes da próxima.
   - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB): decidir se apaga.
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
+
+## 2026-10-04 (tarde): voz do reel atropelando a cena seguinte
+
+- Reel 2026-W40 (1º com narração, Jessica): manchetes de 157 a 179 caracteres levam 11 a 13 s pra ler (voz a ~14
+  caracteres/s), mas o bloco era cortado no teto de 9 s. A voz continuava por cima da cena seguinte e atropelava a
+  próxima fala (manchetes 4, 6 e 8; a 8ª invadiu o encerramento). Transições não têm culpa: só sobrepõem vídeo.
+- Correção em `scripts/publish/narracao/narracao.mjs` (`duracoesSincronizadas`): o teto de 9 s só encurta a folga;
+  fala maior que isso estica a cena até terminar (+0,3 s). Teste novo `duracao.test.mjs` reproduz a semana W40.
 
 ## 2026-10-04 (madrugada, parte 3): páginas com a cara do site, QA
 
