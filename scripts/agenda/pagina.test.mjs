@@ -13,6 +13,9 @@ test("evento no padrão do Google (MusicEvent com contexto, horário e endereço
   assert.equal(e.location.address.addressLocality, "São Paulo");
   assert.equal(e.performer.sameAs, "https://www.instagram.com/blaymorphed/");
   assert.match(e.image[0], /og\.jpg$/);
+  assert.equal(e.endDate, "2026-10-11");
+  assert.equal(e.organizer.url, "https://www.instagram.com/blaymorphed/");
+  assert.equal(e.location.name, "@stones_bar");
   assert.match(e.description, /Blaymorphed toca Pearl Jam em São Paulo\/SP, no @stones_bar/);
 });
 
