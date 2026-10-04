@@ -8,7 +8,7 @@ export { SITE_BASE, esc };
 
 // Menu que aparece em toda página: é por ele que o Google navega entre as seções.
 export const SECOES = [
-  ["/", "Início"], ["/show/", "Shows"], ["/musica/", "Músicas"], ["/disco/", "Discos"],
+  ["/", "Início"], ["/show/", "Shows"], ["/agenda/", "Agenda"], ["/musica/", "Músicas"], ["/disco/", "Discos"],
   ["/noticias/", "Notícias"], ["/banda/", "Banda"], ["/forum.html", "Fórum"],
 ];
 

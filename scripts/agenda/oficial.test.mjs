@@ -41,5 +41,6 @@ test("página: turnê oficial no topo, com contexto e evento com ingresso", () =
   const ld = eventoOficialLd(oficial[0]);
   assert.equal(ld.performer["@type"], "Person");
   assert.match(ld.offers.url, /ticketmaster/);
+  assert.equal(ld.location.address.addressCountry, "BR");
   assert.match(paginaAgenda({ shows: [], bandas: [], oficial: [], hoje: "2026-10-04" }), /Nenhuma data oficial anunciada/);
 });

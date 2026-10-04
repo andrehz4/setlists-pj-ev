@@ -24,6 +24,8 @@ export function eventoLd(s) {
     location: { "@type": "Place", name: lugar(s),
       address: { "@type": "PostalAddress", addressLocality: s.cidade || undefined, addressRegion: s.uf || undefined, addressCountry: "BR" } },
     performer: { "@type": "MusicGroup", name: s.nome, sameAs: ig(s.banda) },
+    image: [`${SITE_BASE}/og.jpg`],
+    description: `${s.nome} toca Pearl Jam${s.cidade ? ` em ${s.cidade}${s.uf ? `/${s.uf}` : ""}` : ""}${s.casaNome || s.casa ? `, no ${s.casaNome || "@" + s.casa}` : ""}. Agenda de bandas cover do Só mais um fã de Pearl Jam.`,
     url: `${SITE_BASE}/agenda/`,
   };
 }
@@ -88,9 +90,9 @@ ${bandas.map((b) => bandaHTML(b, porBanda[b.conta] || 0, cor)).join("\n")}
 </main>`;
   const ufs = [...cal.ufs].sort();
   return pagina({
-    titulo: "Agenda de shows: turnê do Pearl Jam e bandas cover no Brasil",
+    titulo: "Shows de Pearl Jam no Brasil: agenda das bandas cover e turnê oficial",
     h1: "Agenda: Pearl Jam ao vivo no Brasil",
-    descricao: `Turnê oficial do Pearl Jam e do Eddie Vedder e shows das bandas cover e tributo de Pearl Jam pelo Brasil${ufs.length ? ` (${ufs.join(", ")})` : ""}: datas, cidades e casas, atualizados todo dia.`,
+    descricao: `Onde tem show de Pearl Jam no Brasil: datas das bandas cover e tributo${ufs.length ? ` (${ufs.join(", ")})` : ""} e da turnê oficial do Pearl Jam e do Eddie Vedder, com casa, cidade e ingressos. Atualizada todo dia.`,
     url: `${SITE_BASE}/agenda/`,
     ld: [...ofi.map(eventoOficialLd), ...publicos.map(eventoLd)],
     cabeca: `${FONTES}\n<style>\n${CSS}\n${cal.css}\n</style>\n`,

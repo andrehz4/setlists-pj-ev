@@ -3,7 +3,8 @@ import { SITE_BASE } from "../seo/layout.mjs";
 
 const INI = "<!-- agenda:start -->", FIM = "<!-- agenda:end -->";
 
-export function aplicarSitemap(atual) {
-  const bloco = `${INI}\n  <url>\n    <loc>${SITE_BASE}/agenda/</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>\n${FIM}`;
+// hoje (AAAA-MM-DD) vira <lastmod>: a página muda todo dia, e o Google volta mais rápido.
+export function aplicarSitemap(atual, hoje) {
+  const bloco = `${INI}\n  <url>\n    <loc>${SITE_BASE}/agenda/</loc>\n${hoje ? `    <lastmod>${hoje}</lastmod>\n` : ""}    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>\n${FIM}`;
   return atual.includes(INI) ? atual.replace(new RegExp(`${INI}[\\s\\S]*?${FIM}`), bloco) : atual.replace("</urlset>", `${bloco}\n</urlset>`);
 }

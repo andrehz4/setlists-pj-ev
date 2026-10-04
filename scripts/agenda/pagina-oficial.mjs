@@ -8,6 +8,9 @@ const PAIS = { Brazil: "Brasil", USA: "EUA", "United States": "EUA", Canada: "Ca
   Chile: "Chile", Colombia: "Colômbia", Peru: "Peru", England: "Inglaterra", "United Kingdom": "Reino Unido", Germany: "Alemanha",
   Italy: "Itália", Spain: "Espanha", France: "França", Netherlands: "Holanda", Australia: "Austrália", "New Zealand": "Nova Zelândia" };
 const pais = (p) => PAIS[p] || p;
+const ISO = { Brazil: "BR", Brasil: "BR", USA: "US", "United States": "US", Canada: "CA", Mexico: "MX", Argentina: "AR", Chile: "CL",
+  Colombia: "CO", Peru: "PE", England: "GB", "United Kingdom": "GB", Germany: "DE", Italy: "IT", Spain: "ES", France: "FR",
+  Netherlands: "NL", Australia: "AU", "New Zealand": "NZ" };
 const maiusculas = (s) => (s || "").replace(/[^A-Z]/g, "").length;
 
 export function eventoOficialLd(s) {
@@ -19,9 +22,11 @@ export function eventoOficialLd(s) {
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: { "@type": "Place", name: s.casaNome || s.cidade,
-      address: { "@type": "PostalAddress", addressLocality: s.cidade || undefined, addressRegion: s.estado || undefined, addressCountry: s.pais || undefined } },
+      address: { "@type": "PostalAddress", addressLocality: s.cidade || undefined, addressRegion: s.estado || undefined, addressCountry: ISO[s.pais] || s.pais || undefined } },
     performer: { "@type": s.artista === "Pearl Jam" ? "MusicGroup" : "Person", name: s.artista },
     ...(s.ingresso ? { offers: { "@type": "Offer", url: s.ingresso, availability: "https://schema.org/InStock" } } : {}),
+    image: [`${SITE_BASE}/og.jpg`],
+    description: `${s.artista}${s.evento ? ` no ${s.evento}` : ""}${s.cidade ? `, ${s.cidade}` : ""}. Data oficial de pearljam.com/tour.`,
     url: `${SITE_BASE}/agenda/`,
   };
 }

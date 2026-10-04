@@ -12,6 +12,8 @@ test("evento no padrão do Google (MusicEvent com contexto, horário e endereço
   assert.equal(e.startDate, "2026-10-11T21:30:00-03:00");
   assert.equal(e.location.address.addressLocality, "São Paulo");
   assert.equal(e.performer.sameAs, "https://www.instagram.com/blaymorphed/");
+  assert.match(e.image[0], /og\.jpg$/);
+  assert.match(e.description, /Blaymorphed toca Pearl Jam em São Paulo\/SP, no @stones_bar/);
 });
 
 test("página: show público entra com @ da banda e da casa; evento fechado fica de fora", () => {
@@ -51,4 +53,5 @@ test("sitemap: seção da agenda é idempotente e não mexe no resto", () => {
   assert.equal(aplicarSitemap(um), um);
   assert.match(um, /<loc>a<\/loc>/);
   assert.match(um, /\/agenda\//);
+  assert.match(aplicarSitemap(base, "2026-10-04"), /<lastmod>2026-10-04<\/lastmod>/);
 });
