@@ -27,15 +27,13 @@ O que roda em produção é `/Users/andrehz/Documents/Githubhz/terra-gentil-app/
 resposta, por exemplo). Só o painel de colaboradores (`app/contrib/`) tem a fonte da verdade aqui e é levado pra lá
 por `scripts/contrib/sync-terra-gentil.sh`.
 
-Em 2026-10-03 a vistoria corrigiu aqui, e AINDA PRECISA SER PORTADO pro terra-gentil-app:
-- E-mail no perfil público `GET /forum/users/{id}`: só o dono vê (lá: `app/routes/forum.py`, SELECT com `email`).
-- `JWT_SECRET` obrigatório (32+ caracteres) em produção (`app/core/config.py`) e `/docs` fechado em produção.
-- python-jose (CVEs) trocado por PyJWT; authlib, fastapi/starlette e python-dotenv atualizados (`requirements.txt`).
-  O sync do painel recusa rodar enquanto o requirements de lá não tiver `pyjwt`.
-- Rate limit pela ÚLTIMA entrada do X-Forwarded-For (a primeira é forjável). Antes de portar, confirmar no Railway
-  que o proxy anexa o IP real no fim do cabeçalho (logar `x-forwarded-for` de uma request real).
-- Ids de rota validados como UUID (422 em vez de 500), paginação do feed com limites, foto do feed só https,
-  rate limit nas rotas de escrita, pool com `command_timeout`, Dockerfile sem root.
+Em 2026-10-03 conferimos o terra-gentil-app: ele JÁ esconde e-mail e nascimento no perfil público, já exige
+JWT_SECRET e já tem timeout no pool (a cópia daqui é que estava atrasada). Faltava lá: dependências com CVE
+(authlib, Pillow, python-jose, starlette, python-multipart, python-dotenv), levadas na branch
+`seguranca/deps-2026-10` do terra-gentil-app.
+- Rate limit: a escolha do IP do X-Forwarded-For é configurável. Padrão = primeiro IP (o de hoje, forjável pelo
+  cliente). `RATE_LIMIT_IP=ultimo` no Railway usa o IP que o proxy anexou; ligar só depois de conferir nos logs
+  do Railway que o cabeçalho chega como "ip-do-cliente, ip-real".
 
 ## Onde roda
 

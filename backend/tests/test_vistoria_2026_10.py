@@ -75,11 +75,14 @@ def test_producao_exige_jwt_secret_forte():
 
 
 @pytest.mark.parametrize("modulo,funcao", [("app.core.limiter", "_client_ip"), ("app.contrib.limite", "_ip_cliente")])
-def test_rate_limit_usa_ip_que_o_proxy_anexou(modulo, funcao):
+def test_rate_limit_ip_primeiro_por_padrao_ultimo_por_env(modulo, funcao, monkeypatch):
     import importlib
     f = getattr(importlib.import_module(modulo), funcao)
     req = MagicMock()
     req.headers = {"x-forwarded-for": "1.2.3.4, 200.10.20.30"}
+    monkeypatch.delenv("RATE_LIMIT_IP", raising=False)
+    assert f(req) == "1.2.3.4"
+    monkeypatch.setenv("RATE_LIMIT_IP", "ultimo")
     assert f(req) == "200.10.20.30"
 
 
