@@ -34,6 +34,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Cápsula: imagem do site agora é a foto da capa, não a capa pronta (`scripts/news/youtube/imagem-site.mjs`; as 25
   publicadas refeitas). Tarja de vídeo (letterbox) removida no salvamento (`scripts/news/tarja.mjs`; 9 digests
   corrigidos). Placeholder sem "em curadoria". Selo do rodapé sem data fixa.
+- Cifra tocando: letra e braço do acorde visíveis juntos (desktop em duas colunas, celular com o braço grudado no
+  rodapé; só CSS no fim do `css/app.css`, vale quando o Visualizador está ligado).
 - Imagens de notícia têm cache de 7 dias: quem já visitou pode ver a versão antiga por alguns dias.
 
 ## 2026-10-04 (madrugada, parte 3): páginas com a cara do site, QA
