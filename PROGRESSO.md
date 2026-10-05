@@ -36,6 +36,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   corrigidos). Placeholder sem "em curadoria". Selo do rodapé sem data fixa.
 - Cifra tocando: letra e braço do acorde visíveis juntos (desktop em duas colunas, celular com o braço grudado no
   rodapé; só CSS no fim do `css/app.css`, vale quando o Visualizador está ligado).
+- QA no celular (390px, todas as abas e páginas estáticas): sem rolagem lateral em nenhuma; corrigidos mixer de
+  Cifras (largura e fotos dos integrantes), botão Cifra, acentos, busca, filtros da Galeria, barra de filtros só nas
+  abas onde vale, atalhos da agenda. Teste em moldura de celular: página local com iframe 390x844 (ver sessão).
 - Imagens de notícia têm cache de 7 dias: quem já visitou pode ver a versão antiga por alguns dias.
 
 ## 2026-10-04 (madrugada, parte 3): páginas com a cara do site, QA
