@@ -7471,7 +7471,7 @@ function _populateMixer(mixerAside, tracks) {
     const color = (member && MEMBER_COLORS[member.id]) || TRACK_COLORS[i % TRACK_COLORS.length];
     const icon = _MIXER_ICONS[kind] || _MIXER_ICONS.guitar;
     const _pjm = member && typeof PJ_MEMBERS !== 'undefined' ? PJ_MEMBERS.find(m => m.id === member.id) : null;
-    const _photo = (_pjm && _pjm.photo) ? _pjm.photo : (member ? `media/band/${member.id}.jpg` : '');
+    const _photo = (_pjm && _pjm.photo) ? _pjm.photo : (member ? `media/band/web/${member.id}.jpg` : '');
     const _photoPos = (_pjm && _pjm.photoPos) ? _pjm.photoPos : 'center top';
     // url() dentro de variável CSS resolve a partir do arquivo de CSS (/css/), não da página: precisa da raiz '/'
     const _photoAbs = /^(\/|https?:)/.test(_photo) ? _photo : '/' + _photo;
