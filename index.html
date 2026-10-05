@@ -2503,7 +2503,7 @@ function renderRarity() {
           <div class="rar-trophy-album">${getAlbumTitle(e.song) || 'b-side / jam'}</div>
         </div>
         <div class="rar-trophy-foot">
-          <div class="rar-trophy-show">${e.shows[0].date} · <b>${e.shows[0].city.split(',')[0]}</b></div>
+          <div class="rar-trophy-show">${fmtDate(e.shows[0].date)} · <b>${e.shows[0].city.split(',')[0]}</b></div>
           <div class="rar-trophy-serial">#${String(i+1).padStart(3,'0')}/${uniqueSongCount}</div>
         </div>
       </article>`).join('')}
@@ -4916,10 +4916,17 @@ async function _initAlphaTabPanel(container, songKey, tabFormat, tabFile) {
     const r = await fetch(fileUrl, { cache: 'default' });
     if (!r.ok) throw new Error('arquivo alphatex nao encontrado');
     settings.tex = await r.text();
-  } else {
-    settings.file = fileUrl;
+  }
+  // GP/GP5: baixa o arquivo e entrega os bytes (api.load). Com settings.file a lib não carregava a música e não
+  // acusava erro nenhum: a partitura ficava em branco (QA 2026-10-05).
+  let bytes = null;
+  if (ext !== 'alphatex') {
+    const r = await fetch(fileUrl, { cache: 'default' });
+    if (!r.ok) throw new Error('arquivo de tablatura nao encontrado');
+    bytes = new Uint8Array(await r.arrayBuffer());
   }
   const api = new at.AlphaTabApi(container, settings);
+  if (bytes) api.load(bytes);
   return api;
 }
 // Render unificado do painel TAB (cifra + tab). Reusado tanto pelo painel
