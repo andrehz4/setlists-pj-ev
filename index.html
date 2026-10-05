@@ -4910,7 +4910,9 @@ async function _initAlphaTabPanel(container, songKey, tabFormat, tabFile) {
     // score pra drums (percussion) e piano. Antes era 'tab' fixo, o que
     // deixava bateria invisivel (percussion nao tem tablatura).
     display: { staveProfile: 'default' },
-    core: { fontDirectory: `${libBase}/font/` },
+    // useWorkers false: a lib é carregada sob demanda e o worker dela nunca sobe (a partitura não terminava de
+    // desenhar). Sem worker o desenho roda na página e termina (QA 2026-10-05).
+    core: { fontDirectory: `${libBase}/font/`, useWorkers: false },
   };
   if (ext === 'alphatex') {
     const r = await fetch(fileUrl, { cache: 'default' });
