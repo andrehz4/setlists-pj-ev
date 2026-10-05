@@ -12,6 +12,7 @@ import sharp from "sharp";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { naRaiz, UA_ROBO } from "../config.mjs";
+import { semTarja } from "./tarja.mjs";
 
 const UA = UA_ROBO;
 const IMG_DIR = naRaiz("media/news/img");
@@ -42,8 +43,7 @@ export async function cacheImage(remoteUrl, hash) {
       console.warn(`[image] tamanho invalido em ${remoteUrl} (${buf?.length} bytes)`);
       return null;
     }
-    await sharp(buf, { failOn: "none" })
-      .rotate() // honra orientacao EXIF (sem corte 16:9 a orientacao importa)
+    await sharp(await semTarja(await sharp(buf, { failOn: "none" }).rotate().toBuffer()), { failOn: "none" }) // honra orientacao EXIF (sem corte 16:9 a orientacao importa)
       .resize(1800, 1800, { fit: "inside", withoutEnlargement: true })
       .jpeg({ quality: 85, mozjpeg: true })
       .toFile(dest);

@@ -19,6 +19,7 @@ import { fonteDoVideo } from "./citacao/fontes.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 import { naRaiz, SITE_DOMINIO } from "../config.mjs";
 import { enviarTelegram } from "../lib/telegram.mjs";
+import { imagemDoSite } from "../news/youtube/imagem-site.mjs";
 
 const DRY = process.argv.includes("--dry-run");
 const NO_GIT = process.argv.includes("--no-git");
@@ -116,9 +117,8 @@ async function gerarSlides(cap, cor, urlBase) {
   const ctaId = `${cap.id}-99`;
   await buildCtaSlide({ hook: "o maior acervo de Pearl Jam do Brasil" }, ctaId, cor);
   urls.push(`${urlBase}/${ctaId}.jpg`);
-  // capa também vira a imagem do site
-  fs.mkdirSync(IMG_DIR, { recursive: true });
-  fs.copyFileSync(path.join(SLIDES_DIR, `${capaId}.jpg`), path.join(IMG_DIR, `${cap.id}.jpg`));
+  // imagem do site: a foto da capa (sem moldura nem título); sem foto local, a própria capa
+  await imagemDoSite(cap, path.join(SLIDES_DIR, `${capaId}.jpg`), path.join(IMG_DIR, `${cap.id}.jpg`));
   return urls;
 }
 

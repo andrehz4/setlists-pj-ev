@@ -61,10 +61,13 @@ export function paginaIndiceShows(shows) {
   const porAno = {};
   const ordenados = [...shows].sort((a, b) => b.date.localeCompare(a.date));
   for (const s of ordenados) (porAno[s.date.slice(0, 4)] ||= []).push(s);
-  const item = s => `<li><a href="/show/${esc(s.id)}">${esc(tituloShow(s))}</a></li>`;
+  const item = s => `<li><a href="/show/${esc(s.id)}">${esc(tituloShow(s))}</a>${s.extra ? " <small>(acervo)</small>" : ""}</li>`;
   const blocos = Object.entries(porAno).sort((a, b) => b[0].localeCompare(a[0]))
     .map(([ano, l]) => `<h2>${ano}</h2>\n<ul>\n${l.map(item).join("\n")}\n</ul>`);
-  const desc = `Setlists completos de ${shows.length} shows de Pearl Jam e Eddie Vedder presenciados ao vivo, de 2005 a 2024.`;
+  // Shows "extra" são do acervo (não presenciados): ficam na lista, mas fora da conta dos presenciados.
+  const vistos = shows.filter(s => !s.extra).length, acervo = shows.length - vistos;
+  const desc = `Setlists completos de ${vistos} shows de Pearl Jam e Eddie Vedder presenciados ao vivo, de 2005 a 2024`
+    + `${acervo ? `, mais ${acervo} do acervo` : ""}.`;
   return pagina({
     titulo: "Setlists de Pearl Jam e Eddie Vedder ao vivo", h1: "Shows", descricao: desc,
     url: `${SITE_BASE}/show/`, corpo: `<p>${esc(desc)}</p>\n${blocos.join("\n")}`,

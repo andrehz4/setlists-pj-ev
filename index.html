@@ -368,7 +368,7 @@
       </div>
       <p class="footer-tag">arquivo pessoal de shows presenciados ao vivo. Pearl Jam + Eddie Vedder solo, de Pacaembu 2005 a Wrigley 2024.</p>
       <div class="footer-meta" id="footer-stats">
-        <strong>28 shows</strong> · <strong>225 músicas</strong> · <strong>~5,8 GB</strong> de áudio<br>
+        <strong id="ft-shows">25 shows</strong> · <strong id="ft-musicas">208 músicas</strong> · <strong>~5,8 GB</strong> de áudio<br>
         <strong>Brasil + Chicago</strong> · <strong>2005 a 2024</strong><br>
         feito por um fã, pra fãs
       </div>
@@ -391,7 +391,7 @@
       <!-- Links normais (não abas do SPA): é por aqui que o Google chega nas páginas estáticas -->
       <ul class="footer-nav">
         <li><a href="/show/">Setlists dos shows</a></li>
-        <li><a href="/agenda/">Agenda de shows no Brasil</a></li>
+        <li><a href="/agenda/">Agenda de shows</a></li>
         <li><a href="/musica/">Músicas e significados</a></li>
         <li><a href="/disco/">Discos</a></li>
         <li><a href="/noticias/">Notícias</a></li>
@@ -430,8 +430,7 @@
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-left">
-      <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · maio.2026</span>
-      <span class="footer-build" aria-label="Versão do build" title="Versão do build (atualiza a cada deploy)">build 2026-05-29.21</span>
+      <span class="footer-pill"><span class="pill-dot"></span> arquivo vivo · atualizado todo dia</span>
     </div>
     <div class="footer-bottom-right footer-credit">
       <em>"all that's sacred comes from youth"</em>
@@ -729,6 +728,12 @@ function renderStats() {
     stat(s.totalPlayed, 'Total cantado') +
     stat(s.years,       'Anos') +
     stat(s.cities,      'Cidades');
+  // Rodapé: mesmo critério do topo (shows presenciados, músicas únicas), mas sempre sem filtro de artista/ano
+  const vistos = SHOWS.filter(x => !x.extra), unicas = new Set();
+  vistos.forEach(x => [...x.songs, ...(x.soundcheck || [])].forEach(m => splitMedley(m).forEach(p => unicas.add(p))));
+  const fs = document.getElementById("ft-shows"), fm = document.getElementById("ft-musicas");
+  if (fs) fs.textContent = `${vistos.length} shows`;
+  if (fm) fm.textContent = `${unicas.size} músicas`;
   if (window.refreshAfterRender) window.refreshAfterRender();
 }
 
@@ -909,13 +914,14 @@ function renderGaps() {
 }
 
 function renderHighlights() {
-  const freq = songFrequency().sort((a,b) => b.count - a.count);
+  const freq = songFrequency().sort((a,b) => b.count - a.count || a.song.localeCompare(b.song)); // mesmo desempate do Ranking
   const shows = filteredShows();
   const totalSongsPlayed = shows.reduce((acc,s) => acc + s.songs.length, 0);
   const avgSongs = shows.length ? (totalSongsPlayed / shows.length).toFixed(1) : 0;
   const longest = shows.reduce((max, s) => s.songs.length > (max?.songs.length || 0) ? s : max, null);
   const shortest = shows.reduce((min, s) => !min || s.songs.length < min.songs.length ? s : min, null);
   const mostPlayed = freq[0];
+  const empatadas = freq.filter(f => mostPlayed && f !== mostPlayed && f.count === mostPlayed.count).map(f => f.song);
   const oneHitters = freq.filter(f => f.count === 1).length;
   const in80pct = freq.filter(f => f.count >= Math.ceil(shows.length * 0.8));
   const crossoverSongs = freq.filter(f => f.artists.length === 2).length;
@@ -938,12 +944,12 @@ function renderHighlights() {
   const timelineSvg = renderShowsTimelineChart(showsByDate);
 
   document.getElementById("highlights-content").innerHTML = `
-    <div class="highlight-card"><div class="highlight-label">Música que mais ouviu</div><div class="highlight-value">${mostPlayed?.song || "…"}</div><div class="highlight-sub">${mostPlayed?.count || 0}× · ${getAlbumTitle(mostPlayed?.song || "")}</div></div>
+    <div class="highlight-card"><div class="highlight-label">Música que mais ouviu</div><div class="highlight-value">${mostPlayed?.song || "…"}</div><div class="highlight-sub">${mostPlayed?.count || 0}× · ${getAlbumTitle(mostPlayed?.song || "")}${empatadas.length ? ` · empatada com ${empatadas.join(", ")}` : ""}</div></div>
     <div class="highlight-card"><div class="highlight-label">Presentes em 80%+ dos shows</div><div class="highlight-value">${in80pct.length}</div><div class="highlight-sub">${in80pct.length ? in80pct.slice(0,3).map(f=>f.song).join(", ") + (in80pct.length > 3 ? '…' : '') : "nenhuma"}</div></div>
-    <div class="highlight-card"><div class="highlight-label">Show mais longo</div><div class="highlight-value">${longest?.songs.length || 0} músicas</div><div class="highlight-sub">${longest ? longest.venue + ', ' + longest.date : "…"}</div></div>
-    <div class="highlight-card"><div class="highlight-label">Show mais curto</div><div class="highlight-value">${shortest?.songs.length || 0} músicas</div><div class="highlight-sub">${shortest ? shortest.venue + ', ' + shortest.date : "…"}</div></div>
+    <div class="highlight-card"><div class="highlight-label">Show mais longo</div><div class="highlight-value">${longest?.songs.length || 0} músicas</div><div class="highlight-sub">${longest ? longest.venue + ', ' + fmtDate(longest.date) : "…"}</div></div>
+    <div class="highlight-card"><div class="highlight-label">Show mais curto</div><div class="highlight-value">${shortest?.songs.length || 0} músicas</div><div class="highlight-sub">${shortest ? shortest.venue + ', ' + fmtDate(shortest.date) : "…"}</div></div>
     <div class="highlight-card"><div class="highlight-label">Média por show</div><div class="highlight-value">${avgSongs}</div><div class="highlight-sub">músicas por noite</div></div>
-    <div class="highlight-card"><div class="highlight-label">Raridades (só 1×)</div><div class="highlight-value">${oneHitters}</div><div class="highlight-sub">músicas únicas no arquivo</div></div>
+    <div class="highlight-card"><div class="highlight-label">Raridades (só 1×)</div><div class="highlight-value">${oneHitters}</div><div class="highlight-sub">ouvidas uma vez só</div></div>
     <div class="highlight-card"><div class="highlight-label">Crossover PJ ↔ EV</div><div class="highlight-value">${crossoverSongs}</div><div class="highlight-sub">ouvi em show do PJ <em>e</em> do Eddie solo</div></div>
     <div class="highlight-card"><div class="highlight-label">Exclusivas Pearl Jam</div><div class="highlight-value">${onlyPJ}</div><div class="highlight-sub">só tocadas com a banda</div></div>
     <div class="highlight-card"><div class="highlight-label">Exclusivas Eddie solo</div><div class="highlight-value">${onlyEV}</div><div class="highlight-sub">só ouvi nos shows solo</div></div>
@@ -2299,7 +2305,7 @@ function renderLuckGauge(value, luck) {
   const [sx, sy] = pt(0);
   const [ex, ey] = pt(max);
   const [vx, vy] = pt(value);
-  const largeArc = value > 50 ? 1 : 0;
+  const largeArc = 0; // meia-volta: o arco do valor nunca passa de 180°, então nunca é o "arco grande"
   const pAngle = Math.PI * (1 - value / max);
   const px = (cx + (r - 18) * Math.cos(pAngle)).toFixed(1);
   const py = (cy - (r - 18) * Math.sin(pAngle)).toFixed(1);
@@ -2433,7 +2439,7 @@ function renderRarity() {
       <div class="rar-stub">
         <div class="rar-stub-row">Arquivo<b>${yearRange}</b></div>
         <div class="rar-stub-row">Shows assistidos<b>${shows.length} noites</b></div>
-        <div class="rar-stub-row">Músicas únicas<b>${uniqueSongCount}</b></div>
+        <div class="rar-stub-row">Músicas com histórico<b>${uniqueSongCount}</b></div>
         <div class="rar-stub-row">Raridades ≤100×<b>${rareSongs.length} músicas</b></div>
         <div style="flex:1"></div>
         <div class="rar-barcode" aria-hidden="true"></div>
@@ -3017,7 +3023,7 @@ return [
     id: "eddie",
     name: "Eddie Vedder",
     role: "Vocal · Letras",
-    photo: "media/band/eddie.jpg",
+    photo: "media/band/web/eddie.jpg",
     photoPos: "center 18%",
     initials: "EV",
     bio: {
@@ -3150,7 +3156,7 @@ return [
     id: "stone",
     name: "Stone Gossard",
     role: "Guitarra rítmica",
-    photo: "media/band/stone.jpg",
+    photo: "media/band/web/stone.jpg",
     photoPos: "center 12%",
     initials: "SG",
     bio: {
@@ -3284,7 +3290,7 @@ return [
     id: "jeff",
     name: "Jeff Ament",
     role: "Baixo · Capas",
-    photo: "media/band/jeff.jpg",
+    photo: "media/band/web/jeff.jpg",
     photoPos: "center 15%",
     initials: "JA",
     bio: {
@@ -3419,7 +3425,7 @@ return [
     id: "mike",
     name: "Mike McCready",
     role: "Guitarra solo",
-    photo: "media/band/mike.jpg",
+    photo: "media/band/web/mike.jpg",
     photoPos: "center 20%",
     initials: "MM",
     bio: {
@@ -3554,7 +3560,7 @@ return [
     id: "matt",
     name: "Matt Cameron",
     role: "Bateria",
-    photo: "media/band/matt.jpg",
+    photo: "media/band/web/matt.jpg",
     photoPos: "center 25%",
     initials: "MC",
     bio: {
@@ -3688,7 +3694,7 @@ return [
     id: "boom",
     name: "Boom Gaspar",
     role: "Teclados · Hammond",
-    photo: "media/band/boom.jpg",
+    photo: "media/band/web/boom.jpg",
     photoPos: "center 22%",
     initials: "BG",
     bio: {
@@ -8771,7 +8777,7 @@ function _renderNewsGrid(container, items, manifest) {
   const heroHtml = heroItem ? _renderNewsHeroHtml(heroItem, 1) : "";
 
   const cards = gridItems.map((item, i) => {
-    const img = item.img || "/media/news/_placeholder.svg";
+    const img = item.img || "/media/news/_placeholder.svg?v=2";
     const tagsAttr = (Array.isArray(item.tags) ? item.tags : []).join(",");
     const num = String(i + 2).padStart(3, "0"); // 002, 003... (hero eh 001)
     return `
@@ -8918,7 +8924,7 @@ function _renderNewsGrid(container, items, manifest) {
 // pendurada (»). idx = 1 sempre (capa eh #001).
 function _renderNewsHeroHtml(item, idx = 1) {
   if (!item) return "";
-  const img = item.img || "/media/news/_placeholder.svg";
+  const img = item.img || "/media/news/_placeholder.svg?v=2";
   const eyebrow = (Array.isArray(item.tags) && item.tags[0])
     ? (_NEWS_TAG_LABELS[item.tags[0]] || item.tags[0])
     : "destaque";
@@ -8961,7 +8967,7 @@ function _pickRelatedNews(currentItem, allItems, n = 6) {
 }
 
 function _renderNewsRelatedCardHtml(item, i) {
-  const img = item.img || "/media/news/_placeholder.svg";
+  const img = item.img || "/media/news/_placeholder.svg?v=2";
   const num = String(i + 1).padStart(3, "0");
   return `
     <article class="news-card" data-id="${_newsEscape(item.id)}" style="--news-card-i:${i}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
@@ -8981,7 +8987,7 @@ function _renderNewsRelatedCardHtml(item, i) {
 }
 
 function _renderNewsDetail(container, item, allItems) {
-  const img = item.img || "/media/news/_placeholder.svg";
+  const img = item.img || "/media/news/_placeholder.svg?v=2";
   // proxima/anterior pra navegacao sequencial
   const idx = allItems.findIndex(i => i.id === item.id);
   const prev = idx > 0 ? allItems[idx - 1] : null;
