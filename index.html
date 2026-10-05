@@ -149,7 +149,7 @@
   })();
 </script>
 
-<link rel="stylesheet" href="/css/app.css?v=2026-10-05b">
+<link rel="stylesheet" href="/css/app.css?v=2026-10-05d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -218,7 +218,7 @@
 </div>
 
 <!-- FILTER BAR -->
-<div class="filter-bar" role="group" aria-label="Filtros">
+<div class="filter-bar" role="group" aria-label="Filtros" hidden>
   <span class="filter-label" id="filter-label-artist">Artista</span>
   <div role="group" aria-labelledby="filter-label-artist" style="display:contents;">
     <button class="filter-chip active" data-filter="artist" data-value="all" aria-pressed="true">Todos</button>
@@ -2239,6 +2239,9 @@ function activateTab(viewName, opts) {
     setTimeout(() => stamp.classList.remove("active"), 380);
   }
   state.currentView = viewName;
+  // Filtros de artista/ano só valem nas abas que usam a lista de shows; nas outras a barra só ocupava espaço.
+  const _fb = document.querySelector(".filter-bar");
+  if (_fb) _fb.hidden = !["timeline", "ranking", "gaps", "highlights", "rarity", "gallery"].includes(viewName);
   document.querySelectorAll(".tab").forEach(t => {
     if (!t.dataset.view) return; // aba que é link pra outra página (ex: /agenda/)
     const on = t.dataset.view === viewName;
@@ -7117,8 +7120,8 @@ function _renderCifraDetail(container, songKey, tabMeta) {
   const hasAnyAnalise = !!(interpEN || interpPT || lyricNote);
   const chips = [];
   if (lyricEN) chips.push({ id: 'lyric', label: 'Letra' });
-  if (lyricPT) chips.push({ id: 'translation', label: 'Traducao' });
-  if (hasAnyAnalise) chips.push({ id: 'analise', label: 'Analise' });
+  if (lyricPT) chips.push({ id: 'translation', label: 'Tradução' });
+  if (hasAnyAnalise) chips.push({ id: 'analise', label: 'Análise' });
   const chipsHtml = chips.length ? `
     <div class="cifra-context-chips">
       ${chips.map(c => `<button type="button" class="cifra-context-chip" data-context="${c.id}" aria-expanded="false">${c.label}</button>`).join('')}
@@ -7470,7 +7473,9 @@ function _populateMixer(mixerAside, tracks) {
     const _pjm = member && typeof PJ_MEMBERS !== 'undefined' ? PJ_MEMBERS.find(m => m.id === member.id) : null;
     const _photo = (_pjm && _pjm.photo) ? _pjm.photo : (member ? `media/band/${member.id}.jpg` : '');
     const _photoPos = (_pjm && _pjm.photoPos) ? _pjm.photoPos : 'center top';
-    const photoStyle = member ? `;--mixer-photo:url('${_photo}');--mixer-photo-pos:${_photoPos}` : '';
+    // url() dentro de variável CSS resolve a partir do arquivo de CSS (/css/), não da página: precisa da raiz '/'
+    const _photoAbs = /^(\/|https?:)/.test(_photo) ? _photo : '/' + _photo;
+    const photoStyle = member ? `;--mixer-photo:url('${_photoAbs}');--mixer-photo-pos:${_photoPos}` : '';
     const displayName = member ? member.label : rawName;
     const trackIdAttr = member ? ` data-track-id="${member.id}"` : '';
     // Foto real <img> (mesma tecnica/asset da secao BANDA: media/band/<id>.jpg

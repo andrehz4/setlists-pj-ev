@@ -11104,3 +11104,28 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
 @media (max-width: 768px) {
   .tabs { background: var(--bg) !important; }
 }
+/* Celular: o controle do volume geral do mixer tinha largura mínima de 280px e empurrava o "80%" pra fora da tela
+   (rolagem lateral na aba Cifras & Tabs). QA 2026-10-05. */
+@media (max-width: 768px) {
+  #view-tabs .mixer-master-slider,
+  #view-tabs .mixer-card .mixer-master-slider { min-width: 0 !important; width: auto !important; flex: 1 1 0 !important; }
+}
+/* Celular: o botão Cifra/Tab tinha o ícone (38px) + a palavra + o selo ON por cima, e o ON cobria a palavra
+   ("CIF"). No celular o ícone sai e o botão reserva lugar pro selo. QA 2026-10-05. */
+@media (max-width: 600px) {
+  #view-tabs .tab-lang-bar .lyric-lang-btn[data-tabtype] { padding-left: 14px !important; padding-right: 46px !important; }
+  #view-tabs .tab-lang-bar .lyric-lang-btn[data-tabtype]::before { display: none !important; }
+}
+
+/* barra de filtros escondida nas abas onde não vale (activateTab liga/desliga o hidden) */
+.filter-bar[hidden] { display: none !important; }
+/* Galeria: filtros de turnê pareciam texto solto (só o "Todos" tinha cara de botão). QA 2026-10-05. */
+#view-gallery .gallery-filter-chip:not(.active) {
+  border: 1.5px solid var(--divider-strong) !important;
+  background: var(--bg-card) !important;
+}
+/* Buscar no celular: a lupa ficava por cima do texto do campo e o atalho ⌘K (de teclado) espremia o campo. */
+@media (max-width: 768px) {
+  #view-search .search-stub .search-input-big { padding-left: 34px !important; min-width: 0 !important; }
+  #view-search .search-kbd { display: none !important; }
+}
