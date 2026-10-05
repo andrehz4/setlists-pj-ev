@@ -2,6 +2,7 @@
 //   Post de agenda do mês, uma linha por show:
 //     Blaymorphed:  "Sex 09 - barrockclub_ - São Bernardo - SP"  (dia, casa, cidade, UF)
 //     Black Circle: "📍 10/10 // Rio de Janeiro/RJ"               (dia/mês, cidade/UF; casa vem no post do dia)
+//     PJ Ribeirão:  "08/10 • Araxá/MG — oktobeeraraxa"           (dia/mês, cidade/UF, casa)
 //   Post do dia: "HOJE 10/09 ... stones_bar" -> completa a casa e o horário de um show já conhecido.
 const MESES = ["janeiro", "fevereiro", "marco", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 const semAcento = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -44,7 +45,8 @@ function local(partes) {
 
 // Uma linha de agenda -> lista de shows (pode ter 2 dias: "Sex 16 e Sáb 17").
 export function linhaParaShows(linha, mes, ano) {
-  const limpa = linha.replace(/[^\p{L}\p{N}\s/.,:_()=-]/gu, " ").replace(/\s+/g, " ").trim();
+  // "—", "–" e "•" separam campos ("08/10 • Araxá/MG — oktobeeraraxa"): viram " - " antes da limpeza
+  const limpa = linha.replace(/\s*[—–•]\s*/g, " - ").replace(/[^\p{L}\p{N}\s/.,:_()=-]/gu, " ").replace(/\s+/g, " ").trim();
   const m = limpa.match(/^((?:(?:[A-Za-zÀ-ú]+\.?\s+)?\d{1,2}(?:\/\d{1,2}(?:\/\d{2,4})?)?\s*(?:e\s+)?)+)(.*)$/);
   if (!m) return [];
   const palavras = m[1].replace(/\d.*$/, "").trim().split(/\s+/).filter(Boolean);
@@ -89,7 +91,8 @@ export function detalhesDoPostDoDia(legenda, dataPost, handlesIgnorar = []) {
 // A API devolve a legenda SEM o @ das menções: a casa aparece como palavra minúscula colada ("rocknbeerpub").
 // Procura nas posições típicas de menção e ignora créditos de foto/vídeo e hashtags.
 const NAO_CASA = new Set(["quinta", "sexta", "sabado", "domingo", "segunda", "terca", "quarta", "hoje", "amanha", "palco",
-  "querido", "querida", "incrivel", "nosso", "nossa", "show", "shows", "ingressos", "pearl", "tributo"]);
+  "querido", "querida", "incrivel", "nosso", "nossa", "show", "shows", "ingressos", "pearl", "tributo",
+  "cidade", "noite", "festa", "galera", "regiao", "shopping", "evento", "estreia", "abertura"]);
 export function casaNaLegenda(legenda, ignorar = []) {
   const fora = new Set(ignorar.map((h) => h.toLowerCase()));
   const ok = (t) => t && t.length >= 5 && !fora.has(t) && !NAO_CASA.has(semAcento(t)) && !/\.(jpg|png|com|br)$/.test(t);

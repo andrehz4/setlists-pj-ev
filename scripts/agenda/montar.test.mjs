@@ -20,6 +20,12 @@ test("agenda do mês + post do dia: casa e horário entram, passado sai", () => 
   assert.equal(a[1].casa, null);
 });
 
-test("sem post de agenda: lista vazia", () => {
-  assert.deepEqual(montarAgenda(BC, [posts[1]], "2026-10-04"), []);
+test("aviso solto sem agenda vira show (data, casa, cidade/UF e horário do próprio post)", () => {
+  const a = montarAgenda(BC, [posts[1]], "2026-10-04");
+  assert.equal(a.length, 1);
+  assert.deepEqual([a[0].data, a[0].casa, a[0].hora], ["2026-10-08", "rocknbeerpub", "22:00"]);
+});
+
+test("post sem data nenhuma: lista vazia", () => {
+  assert.deepEqual(montarAgenda(BC, [{ data: "2026-10-01T00:00:00+0000", link: "x", legenda: "Obrigado galera!" }], "2026-10-01"), []);
 });

@@ -15,12 +15,17 @@ export function showsDaSemana(shows, inicio) {
   return shows.filter((s) => !s.fechado && s.data >= inicio && s.data <= fim);
 }
 
-const ondeTexto = (s) => (s.casa ? `no @${s.casa}` : s.casaNome ? `no ${s.casaNome}` : "");
+// O Instagram recusa legenda com mais de 20 menções: passado o teto, o nome sai sem "@" (a agenda continua inteira).
+export const MAX_MENCOES = 20;
 
 export function legendaSemana(lista, inicio) {
+  let mencoes = 0;
+  const arroba = (h) => (mencoes < MAX_MENCOES ? (mencoes++, `@${h}`) : h);
   const linhas = lista.map((s) => {
-    const lugar = [ondeTexto(s), [s.cidade, s.uf].filter(Boolean).join("/")].filter(Boolean).join(", ");
-    return `${diaSemana(s.data)} ${dm(s.data)} · @${s.banda} ${lugar}${s.hora ? ` (${horaCurta(s.hora)})` : ""}`.replace(/\s+/g, " ").trim();
+    const banda = arroba(s.banda);
+    const onde = s.casa ? `no ${arroba(s.casa)}` : s.casaNome ? `no ${s.casaNome}` : "";
+    const lugar = [onde, [s.cidade, s.uf].filter(Boolean).join("/")].filter(Boolean).join(", ");
+    return `${diaSemana(s.data)} ${dm(s.data)} · ${banda} ${lugar}${s.hora ? ` (${horaCurta(s.hora)})` : ""}`.replace(/\s+/g, " ").trim();
   });
   return [
     `🎸 AGENDA DA SEMANA: Pearl Jam ao vivo no Brasil (${dm(inicio)} a ${dm(somaDias(inicio, 6))})`,

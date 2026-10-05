@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { preposicao, saudacao, showsDoDiaPorUf, contasDoShow, horaCurta } from "./regiao.mjs";
-import { showsDaSemana, legendaSemana, contasDaSemana, segundaDa, diaSemana } from "./semana.mjs";
+import { showsDaSemana, legendaSemana, contasDaSemana, segundaDa, diaSemana, MAX_MENCOES } from "./semana.mjs";
 import { svgStory } from "./arte-story.mjs";
 import { svgSemana } from "./arte-semana.mjs";
 
@@ -67,4 +67,11 @@ test("artes escapam texto e cortam o excesso", () => {
   const muitos = Array.from({ length: 12 }, (_, i) => sh({ id: `m${i}`, data: "2026-10-06" }));
   const sem = svgSemana(muitos, "2026-10-05", "2026-10-11");
   assert.match(sem, /\+ 3 show\(s\) na agenda do site/);
+});
+
+test("legenda da semana nunca passa de 20 menções (teto do Instagram)", () => {
+  const muitos = Array.from({ length: 15 }, (_, i) => sh({ id: `x${i}`, data: "2026-10-06", banda: `banda${i}`, casa: `casa${i}` }));
+  const l = legendaSemana(muitos, "2026-10-05");
+  assert.equal((l.match(/@/g) || []).length, MAX_MENCOES);
+  assert.match(l, /banda14 no casa14/, "o resto entra sem @, mas entra");
 });
