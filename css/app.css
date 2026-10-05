@@ -11072,3 +11072,35 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
     z-index: 6;
   }
 }
+/* Coluna do braço no desktop: desenho na altura exata (sem faixa vazia) e prévia do próximo acorde embaixo. */
+.cifra-fretboard-next { display: none; }
+@media (min-width: 1000px) {
+  #view-tabs .tab-pane-cifra > .cifra-fretboard.inline.show .cifra-fretboard-svg-wrap { height: auto; padding: 6px 0; }
+  #view-tabs .tab-pane-cifra > .cifra-fretboard.inline.show .cifra-fretboard-svg-wrap svg { height: auto; }
+  #view-tabs .tab-pane-cifra > .cifra-fretboard.inline.show .cifra-fretboard-next {
+    display: flex; flex-direction: column; gap: 6px;
+    padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.18);
+  }
+  #view-tabs .tab-pane-cifra > .cifra-fretboard.inline.show .cifra-fretboard-next.vazio .cifra-fretboard-next-svg { display: none; }
+  .cifra-fretboard-next-label {
+    font: 600 11px/1 var(--font-mono, monospace); letter-spacing: .16em; text-transform: uppercase; color: #e8d9b8; opacity: .8;
+  }
+  .cifra-fretboard-next-label b { font: 400 20px/1 var(--font-display, sans-serif); letter-spacing: 0; margin-left: 6px; opacity: 1; color: #fff; }
+  .cifra-fretboard-next-svg {
+    background: linear-gradient(180deg, #6b4a28 0%, #4a3018 100%); border: 1px solid #3a2914; border-radius: 6px;
+    padding: 4px 0; opacity: .78;
+  }
+  .cifra-fretboard-next-svg svg { width: 100%; height: auto; display: block; }
+}
+@media (min-width: 1000px) {
+  /* a prévia embaixo já diz o próximo: tira a repetição do cabeçalho */
+  #view-tabs .tab-pane-cifra > .cifra-fretboard.inline.show .cifra-fretboard-next-name { display: none; }
+}
+/* "Tamanho" do braço legível sobre a madeira (era azul escuro sobre marrom) */
+#view-tabs .cifra-fretboard.inline .fretboard-zoom-label,
+#view-tabs .cifra-fretboard.inline .fretboard-zoom-val { color: #f2e7c7 !important; opacity: .9; }
+/* Celular: a barra de abas gruda no topo; sem fundo, o texto rolando aparecia através dela (QA 2026-10-05).
+   O mobile-core.css pede fundo, mas este arquivo carrega depois e o deixava transparente. */
+@media (max-width: 768px) {
+  .tabs { background: var(--bg) !important; }
+}

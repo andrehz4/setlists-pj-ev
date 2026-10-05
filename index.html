@@ -149,7 +149,7 @@
   })();
 </script>
 
-<link rel="stylesheet" href="/css/app.css?v=2026-10-05">
+<link rel="stylesheet" href="/css/app.css?v=2026-10-05b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -4403,7 +4403,8 @@ function _renderMiniGuitarFretboardLegacy(data) {
       if (f > maxFret) maxFret = f;
     }
   }
-  const fretOffset = (minFret >= 4 && maxFret - minFret < N_FRETS) ? (minFret - 1) : 0;
+  // só cordas soltas/abafadas (ex: A5 'xx00' no ukulele): não há casa apertada, minFret fica Infinity -> sem deslocamento
+  const fretOffset = (Number.isFinite(minFret) && minFret >= 4 && maxFret - minFret < N_FRETS) ? (minFret - 1) : 0;
   if (fretOffset > 0) {
     svg += `<text x="${padL - 16}" y="${padT - 2}" font-family="sans-serif" font-size="9" font-weight="700" fill="#e0b070" text-anchor="middle">${fretOffset + 1}fr</text>`;
   }
@@ -4495,7 +4496,8 @@ function _renderMiniUkuleleFretboard(chordName, fingering, fingers) {
       if (f > maxFret) maxFret = f;
     }
   }
-  const fretOffset = (minFret >= 4 && maxFret - minFret < N_FRETS) ? (minFret - 1) : 0;
+  // só cordas soltas/abafadas (ex: A5 'xx00' no ukulele): não há casa apertada, minFret fica Infinity -> sem deslocamento
+  const fretOffset = (Number.isFinite(minFret) && minFret >= 4 && maxFret - minFret < N_FRETS) ? (minFret - 1) : 0;
   if (fretOffset > 0) {
     svg += `<text x="${padL - 16}" y="${padT - 2}" font-family="sans-serif" font-size="9" font-weight="700" fill="#e0b070" text-anchor="middle">${fretOffset + 1}fr</text>`;
   }
@@ -7913,6 +7915,10 @@ function _ensureCifraFretboard() {
       <span class="cifra-fretboard-next-name">próximo: —</span>
     </div>
     <div class="cifra-fretboard-svg-wrap"></div>
+    <div class="cifra-fretboard-next" aria-hidden="true">
+      <span class="cifra-fretboard-next-label">Próximo <b class="cifra-fretboard-next-chord">—</b></span>
+      <div class="cifra-fretboard-next-svg"></div>
+    </div>
     <div class="cifra-fretboard-bar">
       <div class="cifra-fretboard-instr" role="tablist" aria-label="Instrumento ativo no braço">
         <button type="button" class="fretboard-tab${initialInst === 'violao' ? ' active' : ''}" data-inst="violao" aria-pressed="${initialInst === 'violao'}">
@@ -8057,6 +8063,14 @@ function _updateCifraFretboard(chordName, nextChord, root) {
     const multi = root && root._multiData;
     const svg = _renderChordMiniFretboard(chordName, multi, _activeCifraInstrument);
     wrap.innerHTML = svg || `<div class="cifra-fretboard-empty">${chordName}<br><small>digitação não cadastrada</small></div>`;
+  }
+  // Prévia do próximo acorde (só aparece no layout de duas colunas do desktop; ver css "letra e braço juntos")
+  const nextBox = fb.querySelector('.cifra-fretboard-next');
+  if (nextBox) {
+    const nextSvg = nextChord ? _renderChordMiniFretboard(nextChord, root && root._multiData, _activeCifraInstrument) : '';
+    nextBox.querySelector('.cifra-fretboard-next-chord').textContent = nextChord || '—';
+    nextBox.querySelector('.cifra-fretboard-next-svg').innerHTML = nextSvg || '';
+    nextBox.classList.toggle('vazio', !nextSvg);
   }
   // Re-trigger pulse animation no nome
   fb.classList.remove('cifra-fretboard-pulse');
