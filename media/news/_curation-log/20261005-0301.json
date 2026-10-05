@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-10-05T03:01Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "7477d337a5", "titulo": "Dave Krusen, baterista do Ten, responde perguntas de fãs no dia 9 de outubro", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cs-0c3cfff72d", "title": "So Matt Cameron just dropped that the new band is Suns of Soundgarden!", "reason": "spotlight sem selftext; sem novidade (já publicado: fd71168ca1)" },
+    { "id": "6655fe2fed", "title": "I have to say, besides loving this series, the music is killer.", "reason": "PJ tangencial (opinião de espectador da série Dark Matter sobre Present Tense na trilha)" }
+  ]
+}
