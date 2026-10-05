@@ -24,6 +24,18 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
 
+## 2026-10-05: QA do site inteiro e correções
+
+- Tablatura (Cifras & Tabs) voltou a desenhar. Eram 3 travas em fila: CSP sem `'self'` em font-src (fonte Bravura
+  bloqueada desde maio), `settings.file` do alphaTab falhando calado (agora baixa e usa `api.load`) e worker que
+  não subia com a lib carregada sob demanda (`useWorkers: false`).
+- Rodapé e /show/ contam só shows presenciados (25; os 3 "extra" são acervo). Destaques com o mesmo desempate
+  do Ranking e datas BR. Medidor de Raridades sem arco cortado. Fotos da aba BANDA em versão leve (`media/band/web/`).
+- Cápsula: imagem do site agora é a foto da capa, não a capa pronta (`scripts/news/youtube/imagem-site.mjs`; as 25
+  publicadas refeitas). Tarja de vídeo (letterbox) removida no salvamento (`scripts/news/tarja.mjs`; 9 digests
+  corrigidos). Placeholder sem "em curadoria". Selo do rodapé sem data fixa.
+- Imagens de notícia têm cache de 7 dias: quem já visitou pode ver a versão antiga por alguns dias.
+
 ## 2026-10-04 (madrugada, parte 3): páginas com a cara do site, QA
 
 - Todas as páginas estáticas (agenda, show, música, disco, banda, notícias) usam a casca do site: topo ticket,
