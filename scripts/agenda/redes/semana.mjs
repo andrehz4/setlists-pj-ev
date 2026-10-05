@@ -29,7 +29,6 @@ export function legendaSemana(lista, inicio) {
     "",
     "Confirme sempre no perfil da banda antes de sair de casa.",
     "Agenda completa e atualizada: somaisumfadepearljam.com.br/agenda",
-    "Toca Pearl Jam e quer aparecer aqui? Manda uma mensagem pra gente.",
     "",
     "#pearljam #pearljamcover #pearljamtributo #agendadeshows #smufdpj",
   ].join("\n");

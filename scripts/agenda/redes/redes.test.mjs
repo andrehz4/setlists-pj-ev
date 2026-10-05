@@ -50,6 +50,7 @@ test("legenda da semana tem @ da banda e @ da casa, sem fechado", () => {
   assert.match(l, /sáb 10\/10 · @blackcirclepj Rio de Janeiro\/RJ/);
   assert.match(l, /05\/10 a 11\/10/);
   assert.match(l, /somaisumfadepearljam\.com\.br\/agenda/);
+  assert.doesNotMatch(l, /quer aparecer aqui/);
   assert.ok(!l.includes("—"), "sem travessão");
   assert.ok(l.length <= 2200);
 });
