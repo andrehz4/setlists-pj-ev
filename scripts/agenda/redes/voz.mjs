@@ -11,7 +11,7 @@ export const IDIOMA = null; // sem forçar: soou brasileiro; com "pt" soou portu
 
 // Como a voz deve falar o nome (sigla e número soletrados do jeito certo)
 // Só pra voz (na tela fica o nome oficial). Decisões do Andre após ouvir os testes de 2026-10-06.
-const FALADO = { "PJ 90": "Pearl Jam noventa", Blaymorphed: "Blaymorfedi" };
+const FALADO = { "PJ 90": "Pearl Jam noventa", Blaymorphed: "Blaymorfédi" };
 export const nomeFalado = (nome) => FALADO[nome] || nome;
 
 export const ABERTURAS = [
