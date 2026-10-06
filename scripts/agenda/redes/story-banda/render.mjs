@@ -8,6 +8,7 @@ import { p, move, lerp, momento, DURACAO, FALAS, ROTEIRO } from "./tempo.mjs";
 import { COR, TEMAS, carimbo } from "./pecas.mjs";
 import { titulo, logo, final } from "./cenas-a.mjs";
 import { mapa, shows } from "./cenas-b.mjs";
+import { encaixar } from "./encaixe.mjs";
 
 const { default: sharp } = await import("sharp");
 const FPS = 30;
@@ -54,12 +55,17 @@ export async function renderizarStory({ story, tema = "azul", logo: logoArq, cli
   fc += `[${ult}][${nq}:v]overlay=format=auto[v];`;
   // áudio: falas nos seus tempos, trilha baixa por baixo
   const audios = FALAS.filter((f) => falas[f.chave]);
+  // mede cada fala e acelera o que passar da janela (o gerador já escolheu variações que cabem)
+  const dur = Object.fromEntries(audios.map((f) => [f.chave, Number(spawnSync("ffprobe", ["-v", "error", "-show_entries",
+    "format=duration", "-of", "csv=p=0", falas[f.chave]]).stdout.toString()) || 0]));
+  const enc = encaixar(dur);
+  for (const [k, e] of Object.entries(enc)) if (!e.cabe) throw new Error(`fala "${k}" não cabe no story nem acelerada (${e.atempo}x)`);
   audios.forEach((f) => entradas.push("-i", falas[f.chave]));
   entradas.push("-stream_loop", "-1", "-i", trilha);
   const ia = nq + 1;
-  audios.forEach((f, k) => { fc += `[${ia + k}:a]${f.atempo ? `atempo=${f.atempo},` : ""}aresample=44100,aformat=channel_layouts=stereo,adelay=${Math.round(f.em * 1000)}|${Math.round(f.em * 1000)}[a${k}];`; });
+  audios.forEach((f, k) => { const at = enc[f.chave].atempo; fc += `[${ia + k}:a]${at > 1.001 ? `atempo=${at},` : ""}aresample=44100,aformat=channel_layouts=stereo,adelay=${Math.round(f.em * 1000)}|${Math.round(f.em * 1000)}[a${k}];`; });
   fc += `[${ia + audios.length}:a]aresample=44100,aformat=channel_layouts=stereo,volume=0.16,afade=t=out:st=${DURACAO - 1.2}:d=1.2,atrim=0:${DURACAO}[mus];`;
-  fc += `${audios.map((_, k) => `[a${k}]`).join("")}[mus]amix=inputs=${audios.length + 1}:normalize=0:duration=longest,atrim=0:${DURACAO}[a]`;
+  fc += `${audios.map((_, k) => `[a${k}]`).join("")}[mus]amix=inputs=${audios.length + 1}:normalize=0:duration=longest,atrim=0:${DURACAO},afade=t=out:st=${DURACAO - 0.25}:d=0.25[a]`;
   ff([...entradas, "-filter_complex", fc, "-map", "[v]", "-map", "[a]", "-t", String(DURACAO), "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "veryfast", "-crf", "20", "-c:a", "aac", "-b:a", "160k", saida]);
   fs.rmSync(tmp, { recursive: true, force: true });
   return saida;

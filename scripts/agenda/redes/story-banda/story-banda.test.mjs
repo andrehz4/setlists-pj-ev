@@ -25,3 +25,13 @@ test("quadros: SVG válido nas cenas, vazio no b-roll, sem travessão", () => {
   assert.doesNotMatch(quadroSvg(5.8, story, cor, null), /<text/);
   assert.ok(!quadroSvg(12, story, cor, null).includes("—"));
 });
+
+import { encaixar, variacaoQueCabe } from "./encaixe.mjs";
+test("encaixe: fala que cabe não acelera, que passa um pouco acelera, que passa muito troca de variação", () => {
+  const e = encaixar({ abertura: 4.72, final: 7.04 });
+  assert.equal(e.abertura.atempo, 1);
+  assert.ok(e.final.atempo > 1 && e.final.cabe, "final de 7 s acelera um pouco e cabe");
+  assert.equal(encaixar({ final: 9 }).final.cabe, false);
+  assert.equal(variacaoQueCabe("abertura", [8, 7.5, 5]), 2, "pula as longas e fica com a que cabe");
+  assert.equal(variacaoQueCabe("abertura", [9, 9]), null);
+});

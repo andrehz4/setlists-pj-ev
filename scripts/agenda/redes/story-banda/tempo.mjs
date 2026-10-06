@@ -28,12 +28,12 @@ export function momento(r) {
   return { T: lerp(s.t0, s.t1, clamp(animado)), broll: null };
 }
 
-// Onde cada fala entra (s reais) e o fator de velocidade (o final acelera um pouco pra caber).
+// Onde cada fala entra (s reais). A velocidade é calculada pela duração real (encaixe.mjs).
 export const FALAS = [
   { chave: "abertura", em: 0.3 },
   { chave: "whoosh", em: 6.0 },
   { chave: "estado", em: 6.7 },
   { chave: "data", em: 10.0 },
   { chave: "hora", em: 11.5 },
-  { chave: "final", em: 14.6, atempo: 1.06 },
+  { chave: "final", em: 14.6 },
 ];
