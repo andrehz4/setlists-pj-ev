@@ -46,8 +46,9 @@ test("semana: segunda da semana e janela de 7 dias", () => {
 
 test("legenda da semana tem @ da banda e @ da casa, sem fechado", () => {
   const l = legendaSemana(showsDaSemana(SHOWS, "2026-10-05"), "2026-10-05");
-  assert.match(l, /seg 05\/10 · @blaymorphed no @comics_smashburger, Mauá\/SP \(20h\)/);
-  assert.match(l, /sáb 10\/10 · @blackcirclepj Rio de Janeiro\/RJ/);
+  assert.match(l, /@blaymorphed\nseg 05\/10 · @comics_smashburger, Mauá\/SP \(20h\)/);
+  assert.match(l, /@blackcirclepj\nsáb 10\/10 · Rio de Janeiro\/RJ/);
+  assert.equal((l.match(/@blaymorphed/g) || []).length, 1, "@ da banda uma vez só");
   assert.match(l, /05\/10 a 11\/10/);
   assert.match(l, /somaisumfadepearljam\.com\.br\/agenda/);
   assert.doesNotMatch(l, /quer aparecer aqui/);
@@ -73,5 +74,5 @@ test("legenda da semana nunca passa de 20 menções (teto do Instagram)", () => 
   const muitos = Array.from({ length: 15 }, (_, i) => sh({ id: `x${i}`, data: "2026-10-06", banda: `banda${i}`, casa: `casa${i}` }));
   const l = legendaSemana(muitos, "2026-10-05");
   assert.equal((l.match(/@/g) || []).length, MAX_MENCOES);
-  assert.match(l, /banda14 no casa14/, "o resto entra sem @, mas entra");
+  assert.match(l, /\nbanda14\n.*casa14/, "o resto entra sem @, mas entra");
 });

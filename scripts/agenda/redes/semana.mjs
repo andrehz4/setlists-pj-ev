@@ -18,15 +18,28 @@ export function showsDaSemana(shows, inicio) {
 // O Instagram recusa legenda com mais de 20 menções: passado o teto, o nome sai sem "@" (a agenda continua inteira).
 export const MAX_MENCOES = 20;
 
+// Agrupada por banda: o @ da banda aparece uma vez só, com os shows dela embaixo (menos repetição = menos cara
+// de spam). @ de casa repetida também sai uma vez só; da 2a em diante vai sem @.
 export function legendaSemana(lista, inicio) {
   let mencoes = 0;
-  const arroba = (h) => (mencoes < MAX_MENCOES ? (mencoes++, `@${h}`) : h);
-  const linhas = lista.map((s) => {
-    const banda = arroba(s.banda);
-    const onde = s.casa ? `no ${arroba(s.casa)}` : s.casaNome ? `no ${s.casaNome}` : "";
-    const lugar = [onde, [s.cidade, s.uf].filter(Boolean).join("/")].filter(Boolean).join(", ");
-    return `${diaSemana(s.data)} ${dm(s.data)} · ${banda} ${lugar}${s.hora ? ` (${horaCurta(s.hora)})` : ""}`.replace(/\s+/g, " ").trim();
-  });
+  const citadas = new Set();
+  const arroba = (h) => {
+    if (citadas.has(h) || mencoes >= MAX_MENCOES) return h;
+    citadas.add(h); mencoes++;
+    return `@${h}`;
+  };
+  const porBanda = new Map();
+  for (const s of lista) (porBanda.get(s.banda) || porBanda.set(s.banda, []).get(s.banda)).push(s);
+  const linhas = [...porBanda].flatMap(([banda, shows], i) => [
+    ...(i ? [""] : []),
+    arroba(banda),
+    ...shows.map((s) => {
+      const onde = s.casa ? arroba(s.casa) : s.casaNome || "";
+      const lugar = [onde, [s.cidade, s.uf].filter(Boolean).join("/")].filter(Boolean).join(", ");
+      return `${diaSemana(s.data)} ${dm(s.data)} · ${lugar || "local a confirmar"}${s.hora ? ` (${horaCurta(s.hora)})` : ""}`
+        .replace(/\s+/g, " ").trim();
+    }),
+  ]);
   return [
     `🎸 AGENDA DA SEMANA: Pearl Jam ao vivo no Brasil (${dm(inicio)} a ${dm(somaDias(inicio, 6))})`,
     "",
