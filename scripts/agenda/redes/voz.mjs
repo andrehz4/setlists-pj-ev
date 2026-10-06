@@ -41,7 +41,9 @@ const UF_NOME = { AC: "no Acre", AL: "em Alagoas", AP: "no Amapá", AM: "no Amaz
 export const fraseEstado = (uf) => (UF_NOME[uf] ? `O show é ${UF_NOME[uf]}!` : null);
 // Horário: hora cheia de baixo (20h30 vira "a partir das vinte horas"), das 16h às 23h.
 const HORAS = { 16: "dezesseis", 17: "dezessete", 18: "dezoito", 19: "dezenove", 20: "vinte", 21: "vinte e uma", 22: "vinte e duas", 23: "vinte e três" };
-export const fraseHora = (hhmm) => { const h = hhmm ? +hhmm.slice(0, 2) : null; return HORAS[h] ? `E começa a partir das ${HORAS[h]} horas!` : null; };
+// Sem horário no post da banda (ou fora das 16h às 23h): frase padrão, que manda a pessoa pro perfil da banda.
+export const FRASE_SEM_HORA = "Confere o horário no perfil da banda!";
+export const fraseHora = (hhmm) => { const h = hhmm ? +hhmm.slice(0, 2) : null; return HORAS[h] ? `E começa a partir das ${HORAS[h]} horas!` : FRASE_SEM_HORA; };
 
 // Nome do arquivo pelo texto: frase mudou, grava de novo; frase igual, reaproveita.
 export function arquivoDaFala(texto, voz = VOZ, dir = DIR_VOZ) {
@@ -51,7 +53,7 @@ export function arquivoDaFala(texto, voz = VOZ, dir = DIR_VOZ) {
 
 // Todas as falas que precisam existir pras bandas da lista.
 export const falasNecessarias = (nomes, ufs = []) => [...nomes.flatMap((n) => ABERTURAS.map((f) => f(nomeFalado(n)))), ...FINAIS,
-  ...ufs.map(fraseEstado).filter(Boolean), ...Object.keys(HORAS).map((h) => fraseHora(`${h}:00`))];
+  ...ufs.map(fraseEstado).filter(Boolean), ...Object.keys(HORAS).map((h) => fraseHora(`${h}:00`)), FRASE_SEM_HORA];
 
 // Falas do story de uma banda num dia: variação escolhida pelo dia (rodízio), abertura e final diferentes entre si.
 export function falasDoStory(nomeBanda, dia) {

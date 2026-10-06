@@ -6,7 +6,7 @@ import { lerEstado } from "../../lib/estado.mjs";
 import { commitAndPush } from "../../lib/git.mjs";
 import { sintetizar, saldo } from "../../publish/narracao/elevenlabs.mjs";
 import { spawnSync } from "node:child_process";
-import { VOZES, IDIOMA, DIR_VOZ, arquivoDaFala, falasNecessarias, FINAIS } from "./voz.mjs";
+import { VOZES, IDIOMA, DIR_VOZ, arquivoDaFala, falasNecessarias, FINAIS, FRASE_SEM_HORA } from "./voz.mjs";
 import { encaixar } from "./story-banda/encaixe.mjs";
 
 const DRY = process.argv.includes("--dry-run");
@@ -31,7 +31,7 @@ for (const { t, voz } of faltam) {
   await sintetizar(t, { vozId: voz.id, apiKey, destino: arquivoDaFala(t, voz), idioma: IDIOMA });
   // mede na hora: frase que não cabe no story de 21,3 s nem acelerada é avisada já na gravação
   const d = Number(spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", arquivoDaFala(t, voz)]).stdout.toString());
-  const tipo = FINAIS.includes(t) ? "final" : /^O show é/.test(t) ? "estado" : /^E começa/.test(t) ? "hora" : "abertura";
+  const tipo = FINAIS.includes(t) ? "final" : /^O show é/.test(t) ? "estado" : /^E começa/.test(t) || t === FRASE_SEM_HORA ? "hora" : "abertura";
   const e = encaixar({ [tipo]: d });
   const [r] = Object.values(e);
   console.log(`[voz] ok: ${t} (${d.toFixed(2)} s${r.atempo > 1 ? `, acelera ${r.atempo}x` : ""}${r.cabe ? "" : ", NÃO CABE: encurtar a frase"})`);
