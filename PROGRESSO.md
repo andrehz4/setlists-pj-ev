@@ -10,13 +10,12 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Instagram oficial (@pearljam, @eddievedder) é fonte de notícia desde 02/10 (`scripts/news/ig-oficial.mjs`).
 - Vistoria de saúde executada em 03/10 (ver a sessão abaixo e `docs/VISTORIA-2026-10-02.md`, seção Status).
 - Pendências vivas:
-  - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com Blaymorphed, Black Circle e Singles, coleta
-    diária (`agenda.yml`) com a turnê oficial de pearljam.com/tour. Story do dia por estado (`agenda-story.yml`)
-    e post "Agenda da semana" (`agenda-semana.yml`) prontos e LIGADOS desde 04/10 (variável do repo
-    `AGENDA_PUBLICAR=1`; apagar a variável desliga). 1ª publicação real: post da semana seg 05/10 10:07 e story
-    de SP às 14:07. Conferir se a marcação (user_tags) no story foi aceita pelo IG. Página no desenho do Claude Design (projeto "Agenda de Pearl Jam
-    Brasil"), com "Agenda" no menu de todas as páginas. Indexação pedida no Search Console em 04/10; teste de
-    pesquisa aprimorada: 20 eventos válidos. Conferir em ~1 semana se /agenda/ entrou no índice.
+  - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com 7 bandas e a turnê oficial, coleta diária
+    09:17 (`agenda.yml`). Post "Agenda da semana" (segunda 10:07) e STORY EM VÍDEO POR BANDA (todo dia 10:37,
+    `AGENDA_STORY_VIDEO=1` + `AGENDA_PUBLICAR=1`, ambos LIGADOS em 06/10). 1º story por banda real: qui 08/10 10:37
+    (Pearl Jam Cover Ribeirão, mapa Papel). Conferir no Telegram e em `media/agenda/_story-banda-log.json` se o
+    story de VÍDEO aceitou a marcação (`marcou: true`) e perguntar a uma banda se apareceu o botão de repostar.
+    Conferir em ~1 semana se /agenda/ entrou no índice do Google.
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
   - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
@@ -24,7 +23,25 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
 
-## 2026-10-06 (madrugada): story em vídeo POR BANDA pronto (desligado)
+## 2026-10-06 (madrugada, parte 2): story por banda LIGADO, 3 mapas em rodízio, logo da banda no mapa
+
+- Story por banda ligado (`AGENDA_STORY_VIDEO=1`) e passado pra manhã: `agenda-story.yml` às 10:37 BRT (depois da
+  coleta das 09:17 e do post de segunda das 10:07).
+- Mapa em rodízio diário (`story-banda/variacao.mjs`), desenho do Claude Design (projeto "Pearl Jam Cover Story
+  Video", retorno em `design-handoff/retorno/story-mapa/variacoes-2026-10-06/`, fora do git), aprovado pelo Andre:
+  A pinos (`cenas-b.mjs`), B papel recortado com fita, círculo à caneta e nome à mão (`mapa-papel.mjs`, fonte
+  Permanent Marker em media/fonts), C rota de turnê da cidade da banda até os shows com km contando
+  (`mapa-rota.mjs`). Rota só com >= 150 km e cidades achadas no IBGE; senão, papel. `AGENDA_MAPA=C` força no teste.
+- Logo da banda no mapa (`story-banda/viajante.mjs`): viaja pela estrada na rota (some antes do pino cair), cai e
+  vira o pino em A, colado no círculo e vira o pino em B. Stickman andando ficou de opção (`AGENDA_VIAJANTE=boneco`).
+- Busca de cidade (`mapa.mjs` `localizar`) completa nome cortado que só um município completa ("São Bernardo" ->
+  São Bernardo do Campo) e marca `aproximado` o que cai no meio do estado (aí a rota não é usada).
+- Voz: frase padrão quando a banda não deu horário, "Confere o horário no perfil da banda!" (gravada nas 2 vozes,
+  2,2 a 2,3 s, menor que a do horário). Conta ElevenLabs da agenda: ~5.320 caracteres sobrando.
+- Próxima semana: qui 08/10 papel, sex 09/10 papel (nenhuma banda viaja 150 km), sáb 10/10 pinos, dom 11/10 papel.
+- Andre pediu: logo da banda viajando (feito); próximo passo é só acompanhar os stories reais.
+
+## 2026-10-06 (madrugada): story em vídeo POR BANDA pronto
 
 - Robô `scripts/agenda/redes/story-por-banda.mjs` (+ `story-banda/`): um vídeo de 21,3 s por banda com show no dia
   (abertura com b-roll do acervo, logo, mapa, shows, final), voz fixa gravada (114 falas, Bella/Chris pelo dia, conta
@@ -161,139 +178,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Histórico do git limpo (vídeos antigos fora): 1,3 GB -> 774 MB no GitHub. Backup: `/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-10-01.git`.
 - Próximo: conferir o story de 02/10 e o reel de 04/10 no ar; seguir alimentando o acervo (clipes HD, outras eras);
   apagar o backup de 30/09 se o Andre confirmar; a pasta de downloads do baixa-clipehz (35 GB) é da outra IA.
-
-## 2026-09-30 (noite): X em modo manual com kit diário (fechado)
-
-- Feito: `kit-do-dia.mjs` (notícias 24h às 12/14/16/18h + cápsula 20h05), `/x-hoje` (`ROTINA-X-HOJE.md`: reescreve
-  condensado, `conferir.mjs` valida, Andre aprova e clica Schedule), tarefa do Mac às 11h INSTALADA. Só a 1a notícia
-  do dia leva link (teste de alcance). Testes do kit + Regra 0 (<=150 linhas) no módulo X. Seção do X no CLAUDE.md.
-- Teste real feito hoje: agendados no X 18h (com link), 19h, 20h05 (cápsula) e 21h, conferidos na lista do X.
-- Pendente: notícia "Do Bad Religion ao Pixies" (04a0d0850b) ficou fora do limite de 4 e não entra no kit de amanhã;
-  postar à mão se o Andre quiser.
-- Próximo: 1a sessão automática 01/10 às 11h; em ~2 semanas comparar nas estatísticas do X post com link x sem link;
-  reel de domingo 04/10 no X à mão; automático via API quando o formato estiver aprovado e houver crédito.
-
-## 2026-09-30 (tarde): voz no reel e nos stories (ElevenLabs), reel reorganizado
-
-**Feito**
-- **Reel semanal narrado** (`scripts/publish/narracao/`, README lá): ElevenLabs Eleven v4, Jessica e Liam revezando por
-  semana, lê a manchete da tela, cada cena dura o tempo da fala, música abaixa com a voz, 3 aberturas e 3 finais
-  (chamada pro "maior acervo de Pearl Jam do Brasil") gravados no repo. Crédito discreto na legenda ("voz: ElevenLabs").
-  Checagem de saldo antes de narrar + aviso no Telegram. LIGADO (`REEL_NARRACAO: '1'`), 1º narrado: dom 04/10.
-- **Story diário com voz** só na abertura (data) e no final: Bella (dia par) e Chris (dia ímpar). 62 aberturas
-  (30/09 a 30/11) e 6 finais gravados; todo dia 1 grava os 31 dias seguintes. LIGADO (`STORY_NARRACAO: '1'`).
-- Conta ElevenLabs: a da EMPRESA do Andre (chave "reel-smufdpj", secret `ELEVENLABS_API_KEY`), plano grátis 10k/mês.
-  Uma conta só no projeto (termos proíbem várias contas grátis pra somar cota).
-- `reel-video.mjs` dividido em `scripts/publish/reel/` (<=150 linhas, teste), saída idêntica (hash de 293 amostras).
-- Texto da manchete não some mais no meio da fala (saída acompanha a duração da cena).
-- Curadoria: trava de acento, guia voz-humana, regra de cobertura (ver sessão da madrugada abaixo). Routine no Opus 5.5.
-
-**FEITO (30/09 ~14h30 BRT): vídeos pro R2 + limpeza do histórico.** Reel e story sobem pro bucket R2 `smufdpj-midia`
-(link `midia.somaisumfadepearljam.com.br`, regra do bucket apaga em 3 dias, chave "smufdpj-midia-publicacao" restrita
-ao bucket; secrets `R2_*`), MP4 no `.gitignore` (fallback sem R2 força o add). Histórico reescrito com git-filter-repo
-tirando só `instagram-reels/*.mp4` e `instagram-stories/*.mp4`: 1.021 MB -> 734 MB, árvore atual idêntica (40e4c46),
-4585 -> 4440 commits. Backup completo: `/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`.
-Force push feito pelo Andre (o auto mode bloqueia pra mim). Outras cópias do repo (ex: Windows) precisam ser clonadas de novo.
-Oportunidade anotada: `media/pj-*` (~430 MB no histórico) parecem áudios de shows duplicados do R2; investigar antes.
-Revisar no Cloudflare: 2 tokens R2 "setlists-pj-ev build token" com Admin em todos os buckets (duplicados).
-
-(histórico do item) **Próximo item (anotado a pedido do Andre)**: tamanho do repositório. `.git` já está em ~1 GB (GitHub recomenda
-<1 GB, reclama acima de 5 GB). O peso é dos MP4: reels ~166 MB e crescendo ~10 MB/semana; stories também. Áudios da
-narração são irrelevantes (~22 MB o ano inteiro, uma vez só). Plano: mover vídeos antigos pro Cloudflare R2 (o projeto
-já usa) e manter no repo só as semanas recentes; avaliar limpar o histórico dos MP4 (reescrita de histórico: só com OK
-explícito do Andre, é destrutivo). Atenção: o IG e o FB baixam o vídeo pela URL raw do GitHub no momento de publicar.
-Andre confirmou: os vídeos NÃO precisam ser guardados (só servem de link pro IG/FB baixar na hora). Solução de raiz:
-subir pro R2 só pra publicar e apagar depois, sem commitar (precisa de token R2 com escrita, o Andre gera). Investigar
-também por que a poda dos reels (`prune-media.mjs`, 30 dias) não roda: há 16 reels na pasta, deveriam ser ~4.
-
-**X (@somaisumfadepj), 30/09 à noite**: perfil pronto (selo em alta do Nano Banana + capa bilhete; artes em
-`media/marca/`, playbook `docs/PLAYBOOK-IMAGENS-GOOGLE.md`). Dev console com app Read+Write, chaves OAuth 1.0a nos
-secrets `X_*` (testadas), pay-per-use SEM crédito. Testes manuais: 1 post de notícia (card + texto) e a cápsula de 30/09
-agendada no próprio X pras 20h05 (4 imagens: conferir o corte do grid no feed). Automático só depois de validar o formato
-e o Andre colocar crédito (módulo `scripts/publish/x/`, README lá). Reel no X: postar à mão no domingo depois do IG.
-
-**Próximo passo**: conferir o story narrado de 01/10 (Chris) e o reel de 04/10 (Jessica). Depois: transições com
-trechos de clipe (Andre passa a lista de clipes e aceita o risco de imagem; acervo `media/reels-clips/` está vazio),
-ideia equivalente pros stories, e a foto de capa de cápsula com texto embolando na cena do reel.
-
-## 2026-09-30 (madrugada): revisão das notícias (destaques da edição)
-
-**Achados**: rodada da routine de 29/09 12h escreveu 4 notícias sem acento e foram pro IG ("NAO E OFICIAL", "TURNE");
-~15 notícias do mesmo assunto (Abe Laboriel) em 3 dias, com contradição ("oficializa" x "não confirmou"), 3 versões
-da mesma matéria no mesmo carrossel; "sitting in" no card; datas divergentes; legenda do IG terminando em "frase.…" e
-com "_via Fonte_" à mostra (246 notícias curtas); "*Vs.*" com asterisco no site (13).
-
-**Feito**
-- Trava `scripts/news/qualidade-ptbr.mjs` no `merge-curated.mjs`: sem acento = recusado, volta pro `_pending`, aviso no
-  Telegram (auto-merge); "dos Pearl Jam" corrigido sozinho. Testado no acervo inteiro: pega só os 5 reais.
-- Guia `scripts/news/prompts/voz-humana-ptbr.md` (humanizer-ptbr enxuto) lido pela routine. `system-curator-fa.txt`:
-  regra de cobertura revisada (só fato novo, republicação = SKIP), regra de confirmação e de datas. `routine-prompt.md`:
-  seção 2.5 com as manchetes das últimas 72h, checagem final por item, regras #6 e #7.
-- Routine no claude.ai (trig_01WTGwu5LzVJrQcxtMpRH3Te) agora só manda ler o `routine-prompt.md` do repo.
-- Legenda: corte sem "frase.…", sem markdown. Site: `*x*` vira itálico. 5 notícias reacentuadas, título do "sitting in",
-  data 25/27 e "dos Pearl Jam" corrigidos; stubs regenerados. 208 testes ok.
-
-**Próximo passo**: conferir a rodada das 06h (30/09) e o carrossel seguinte. Andre decidir se sobe a routine de
-Sonnet 4.6 pra Sonnet 5.5. Pendente: manchetes antigas de 28/09 que dizem "oficializa/confirma" o Abe.
-
-## 2026-09-30: slide de citação das cápsulas com foto de quem fala (Claude Design)
-
-**Feito**
-- Slide de citação das cápsulas refeito a partir de um post do @igormirandasite. O Claude Design fez as opções e o
-  Andre escolheu duas: **editorial** (1c + seta de arrastar 3d) e **revista** (2b). Rodízio diário (BRT), igual às capas;
-  a cápsula inteira usa o mesmo estilo. Módulo apartado em `scripts/publish/citacao/` (README explica tudo).
-- **Retratos curados** por integrante, recortados no rosto (detector de rosto do macOS), em `media/band/retratos/`.
-  A foto nunca vem da imagem da matéria. Sem retrato (Letterman etc.): iniciais no círculo ou nome gigante.
-- **Fonte da fala** embaixo do nome ("em 1990 · Apple Music, 2024"): `media/news/youtube-acervo/_fontes.json`, 83 vídeos,
-  ano de quando a fala aconteceu. Liberado no `.gitignore`.
-- Playfair itálica (400/500/700) adicionada em `media/fonts/`. A Black reta NÃO, pra não mudar slides antigos.
-- Ligado em produção: `CAPSULA_CITACAO: rodizio` no `publish-capsula.yml`. 200 testes ok; validado no mock.
-- Export do Design: `/Users/andrehz/Downloads/Citacoes smufdpj.html` (referência, fora do repo).
-
-**Estado**: no ar a partir da cápsula de 30/09 20h (cap-Qq5GByx, estilo editorial, cor grafite).
-
-**Próximo passo**: conferir no feed a de 30/09 (editorial) e a de 01/10 (revista). Andre revisar `_fontes.json`.
-Vídeo novo no acervo precisa de entrada no `_fontes.json` (sem ela sai sem fonte, não quebra).
-
-## 2026-09-28 (tarde): capas novas, carrossel sem repetição, topo da home limpo, playbook de SEO
-
-**Feito**
-- Conferências do handoff no navegador: contato@ com Email Routing "Enabled"; home já indexada no Google; indexação
-  solicitada pra /musica/, /noticias/, /show/, /disco/, /banda/; login Google no fórum ok no domínio novo.
-- **Carrossel (pedido A)**: a capa (Card 11) SUBSTITUI o slide da notícia líder. Antes: capa A + A + B; agora: capa A + B
-  (+ C...) no layout normal. Notícia única segue imagem única sem capa. Vale pro IG e o álbum do FB. Limite: 10 notícias.
-- **Capas novas (pedido B)**: Claude Design (projeto "Pearl Jam carousel cover layouts") fez pôster de show, zine recortado
-  e ingresso; Andre aprovou. Rodízio diário (BRT) com a capa atual em `scripts/publish/cover-styles.mjs` +
-  `cover-styles-svg.mjs`; foto embutida no SVG, largura de texto medida de verdade. `COVER_STYLE=<estilo>` força um estilo.
-  Export do Design em `design-handoff/retorno/capas/` (gitignored).
-- **og.jpg** (prévia de link no WhatsApp/redes) refeito com o bilhete do topo do site via Chrome headless.
-- **Link #forum** (e #banda, #timeline etc.) abre direto na aba; `#news/<id>` intacto.
-- **Topo da home** (Andre aprovou): sem a faixa "ADMIT ONE / PERSONAL ARCHIVE" e sem o parágrafo de apresentação;
-  Instagram, Facebook e dia/noite no canto do bilhete (coluna no celular, título com a direita livre).
-- **E-mail público** (rodapé e privacidade) passou pra contato@somaisumfadepearljam.com.br.
-- **Fonte no Mac** consertada: sharp do macOS usa CoreText e ignora o fonts.conf; `npm run fontes:mac`.
-- **Playbook de SEO/Google** reaproveitável em `docs/PLAYBOOK-SEO-GOOGLE.md`, com ponteiro no CLAUDE.md global.
-
-**Estado**: tudo no ar, 185 testes ok. Hoje (28/09) a capa do rodízio é a atual (card11).
-
-**Próximo passo**: conferir no feed real as capas novas com fotos de verdade: 29/09 pôster, 30/09 zine, 01/10 ingresso.
-Se alguma sair ruim, ajustar em `cover-styles-svg.mjs` e validar com `COVER_STYLE=<estilo> node mock-ig/run.mjs feed`.
-
-**Pendências / blockers**
-- Andre: trocar o link da bio do Instagram e do Facebook pro domínio novo.
-- Search Console: acompanhar Indexação > Páginas em 1 a 2 semanas.
-- 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia), herdado.
-
-## 2026-09-28: domínio próprio somaisumfadepearljam.com.br no ar
-
-- Registrado no Registro.br (5 anos, até 2031), DNS no Cloudflare (eleanor/marty), site ligado com e sem www, HTTPS ok.
-- Código trocado pro domínio novo (canonicals, sitemaps, 774 páginas, links IG/Telegram, rodapé das imagens do IG).
-- Backend: `SITE_ORIGINS` com os dois endereços, `FORUM_CORS_ORIGIN` no novo; R2 CORS e origens do Google OAuth liberados.
-- Redirect 301 do pages.dev (Bulk Redirects), testado com links de notícia, show e tópico.
-- Search Console: propriedade nova verificada, sitemaps enviados, "Mudança de endereço" confirmada.
-- `contato@somaisumfadepearljam.com.br` -> Gmail (Email Routing; MX/SPF do Cloudflare no lugar do bloqueio do Registro.br).
-- Hub HZ: site cadastrado no catálogo (não estava).
-- Fórum: perfil mike2006 (curadoria do site, bio explica) postou 15 respostas creditadas do fórum oficial em 11 tópicos.
-
-**Próximo passo**: 10h04 de hoje, pedido de indexação no Search Console (agendado). Andre: trocar link da bio do IG/FB
-pro domínio novo; logar de novo no fórum (login é por endereço); testar um e-mail pro contato@.
