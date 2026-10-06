@@ -1,20 +1,40 @@
 {
-  "atualizado": "2026-10-04T16:52:41.208Z",
+  "atualizado": "2026-10-06T00:01:20.298Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-04T16:52:35.380Z",
-      "seguidores": 33091,
-      "ultimoPost": "2026-09-30T21:21:22+0000"
+      "lidoEm": "2026-10-06T00:01:10.549Z",
+      "seguidores": 33079,
+      "ultimoPost": "2026-10-05T19:16:21+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-04T16:52:38.404Z",
-      "seguidores": 101110,
+      "lidoEm": "2026-10-06T00:01:11.984Z",
+      "seguidores": 101123,
       "ultimoPost": "2026-10-03T19:41:21+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-04T16:52:40.899Z",
-      "seguidores": 9400,
+      "lidoEm": "2026-10-06T00:01:13.537Z",
+      "seguidores": 9401,
       "ultimoPost": "2025-07-07T16:21:11+0000"
+    },
+    "pjnoventa": {
+      "lidoEm": "2026-10-06T00:01:15.074Z",
+      "seguidores": 74090,
+      "ultimoPost": "2026-10-05T02:06:38+0000"
+    },
+    "pearljamsp": {
+      "lidoEm": "2026-10-06T00:01:16.535Z",
+      "seguidores": 21143,
+      "ultimoPost": "2026-10-05T16:01:12+0000"
+    },
+    "pearljamcoverribeirao": {
+      "lidoEm": "2026-10-06T00:01:17.827Z",
+      "seguidores": 32998,
+      "ultimoPost": "2026-10-05T21:53:27+0000"
+    },
+    "thehomerpj": {
+      "lidoEm": "2026-10-06T00:01:19.968Z",
+      "seguidores": 6262,
+      "ultimoPost": "2026-09-02T20:46:51+0000"
     }
   },
   "oficial": [
@@ -63,6 +83,21 @@
       "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
     },
     {
+      "id": "pearljamcoverribeirao-2026-10-08-araxa",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-10-08",
+      "casa": "oktobeeraraxa",
+      "casaNome": null,
+      "cidade": "Araxá",
+      "uf": "MG",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
+      "detalhe": "https://www.instagram.com/p/Dd2C7uSuddY/"
+    },
+    {
       "id": "blaymorphed-2026-10-09-sao-bernardo",
       "banda": "blaymorphed",
       "nome": "Blaymorphed",
@@ -75,6 +110,35 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-10-09-araraquara",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-10-09",
+      "casa": "corleonemh",
+      "casaNome": null,
+      "cidade": "Araraquara",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
+      "detalhe": "https://www.instagram.com/p/Dd2MtXaMfdK/"
+    },
+    {
+      "id": "pjnoventa-2026-10-09-jundiai",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-09",
+      "casa": "jumpbarbecue",
+      "casaNome": null,
+      "cidade": "Jundiai",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "21:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
     },
     {
       "id": "blackcirclepj-2026-10-10-rio-de-janeiro",
@@ -105,6 +169,77 @@
       "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
     },
     {
+      "id": "pearljamsp-2026-10-10-suzano",
+      "banda": "pearljamsp",
+      "nome": "Lost Dogs",
+      "data": "2026-10-10",
+      "casa": "botecohelena",
+      "casaNome": null,
+      "cidade": "Suzano",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "22:00",
+      "fonte": "https://www.instagram.com/p/DeHkOjTR7GZ/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-10-10-tres-lagoas",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-10-10",
+      "casa": "viamalte.ms",
+      "casaNome": null,
+      "cidade": "Três Lagoas",
+      "uf": "MS",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
+      "detalhe": "https://www.instagram.com/p/Dd4k7FbBJbg/"
+    },
+    {
+      "id": "pjnoventa-2026-10-10-local",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-10",
+      "casa": null,
+      "casaNome": null,
+      "cidade": null,
+      "uf": null,
+      "fechado": true,
+      "observacao": null,
+      "hora": "13:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+    },
+    {
+      "id": "pjnoventa-2026-10-10-santo-andre",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-10",
+      "casa": "beersfestival",
+      "casaNome": "Paço Municipal",
+      "cidade": "Santo André",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "17:30",
+      "fonte": "https://www.instagram.com/p/DeGGQe8DC44/"
+    },
+    {
+      "id": "pjnoventa-2026-10-10-braganca-pta",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-10",
+      "casa": "brasilbeerfest",
+      "casaNome": null,
+      "cidade": "Bragança Pta",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "23:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+    },
+    {
       "id": "blackcirclepj-2026-10-11-volta-redonda",
       "banda": "blackcirclepj",
       "nome": "Black Circle",
@@ -133,6 +268,20 @@
       "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
     },
     {
+      "id": "pearljamsp-2026-10-11-praia-grande",
+      "banda": "pearljamsp",
+      "nome": "Lost Dogs",
+      "data": "2026-10-11",
+      "casa": null,
+      "casaNome": null,
+      "cidade": "Praia Grande",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "20:00",
+      "fonte": "https://www.instagram.com/p/DeHlwozxcsP/"
+    },
+    {
       "id": "blackcirclepj-2026-10-15-rio-de-janeiro",
       "banda": "blackcirclepj",
       "nome": "Black Circle",
@@ -145,6 +294,20 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/"
+    },
+    {
+      "id": "pjnoventa-2026-10-15-campinas",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-15",
+      "casa": "pradocraftbeer",
+      "casaNome": null,
+      "cidade": "Campinas",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": "Trio Acústico",
+      "hora": "20:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
     },
     {
       "id": "blackcirclepj-2026-10-16-niteroi",
@@ -175,6 +338,35 @@
       "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
     },
     {
+      "id": "pearljamcoverribeirao-2026-10-16-franca",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-10-16",
+      "casa": "therootsfranca",
+      "casaNome": null,
+      "cidade": "Franca",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pjnoventa-2026-10-16-dourados",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-16",
+      "casa": "vibesbardourados",
+      "casaNome": null,
+      "cidade": "Dourados",
+      "uf": "MS",
+      "fechado": false,
+      "observacao": null,
+      "hora": "21:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/",
+      "detalhe": "https://www.instagram.com/reel/DdUtRHYJYjQ/"
+    },
+    {
       "id": "blaymorphed-2026-10-17-sergiovedder",
       "banda": "blaymorphed",
       "nome": "Blaymorphed",
@@ -187,6 +379,48 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-10-17-sertaozinho",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-10-17",
+      "casa": "wolfesbier",
+      "casaNome": null,
+      "cidade": "Sertãozinho",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pjnoventa-2026-10-17-campo-grande",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-17",
+      "casa": "augustarockstore",
+      "casaNome": null,
+      "cidade": "Campo Grande",
+      "uf": "MS",
+      "fechado": false,
+      "observacao": null,
+      "hora": "19:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+    },
+    {
+      "id": "pjnoventa-2026-10-18-sao-paulo",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-18",
+      "casa": "quinkasbaripiranga",
+      "casaNome": null,
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "21:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
     },
     {
       "id": "blackcirclepj-2026-10-23-osasco",
@@ -217,6 +451,34 @@
       "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
     },
     {
+      "id": "pearljamcoverribeirao-2026-10-23-curitiba",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-10-23",
+      "casa": "clayhighway",
+      "casaNome": null,
+      "cidade": "Curitiba",
+      "uf": "PR",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pjnoventa-2026-10-23-carapicuiba",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-23",
+      "casa": "vitaorockbaroficial",
+      "casaNome": null,
+      "cidade": "Carapicuíba",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "22:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+    },
+    {
       "id": "blackcirclepj-2026-10-24-sao-bernardo-do-campo",
       "banda": "blackcirclepj",
       "nome": "Black Circle",
@@ -245,6 +507,63 @@
       "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
     },
     {
+      "id": "pearljamcoverribeirao-2026-10-24-londrina",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-10-24",
+      "casa": "vitrolabar",
+      "casaNome": null,
+      "cidade": "Londrina",
+      "uf": "PR",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
+      "detalhe": "https://www.instagram.com/p/DdpAJjoBLeU/"
+    },
+    {
+      "id": "pjnoventa-2026-10-24-sao-paulo",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-24",
+      "casa": "foodplay.centrogastronomico",
+      "casaNome": null,
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "19:30",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+    },
+    {
+      "id": "thehomerpj-2026-10-24-barreiro",
+      "banda": "thehomerpj",
+      "nome": "The Homer",
+      "data": "2026-10-24",
+      "casa": null,
+      "casaNome": "Quinta Arte",
+      "cidade": "Barreiro",
+      "uf": "MG",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DYXLREvAhOy/"
+    },
+    {
+      "id": "pjnoventa-2026-10-25-osasco",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-25",
+      "casa": "latavelharock",
+      "casaNome": null,
+      "cidade": "Osasco",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "19:30",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+    },
+    {
       "id": "blackcirclepj-2026-10-30-rio-de-janeiro",
       "banda": "blackcirclepj",
       "nome": "Black Circle",
@@ -257,6 +576,20 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/"
+    },
+    {
+      "id": "pjnoventa-2026-10-30-taubate",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-30",
+      "casa": "donabierrockshow",
+      "casaNome": null,
+      "cidade": "Taubaté",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "22:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
     },
     {
       "id": "blaymorphed-2026-10-31-mogi-das-cruzes",
@@ -274,6 +607,48 @@
       "detalhe": "https://www.instagram.com/p/Da3EgtgFd1t/"
     },
     {
+      "id": "pearljamcoverribeirao-2026-10-31-batatais",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-10-31",
+      "casa": "cervejariacabala",
+      "casaNome": null,
+      "cidade": "Batatais",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pjnoventa-2026-10-31-guarulhos",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-10-31",
+      "casa": "strongwash",
+      "casaNome": null,
+      "cidade": "Guarulhos",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "22:00",
+      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-11-01-bauru",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-11-01",
+      "casa": "armazen_bar",
+      "casaNome": null,
+      "cidade": "Bauru",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
       "id": "blackcirclepj-2026-11-02-rio-de-janeiro",
       "banda": "blackcirclepj",
       "nome": "Black Circle",
@@ -289,6 +664,133 @@
       "detalhe": "https://www.instagram.com/reel/Db9Bps-hy8v/"
     },
     {
+      "id": "pearljamcoverribeirao-2026-11-06-ribeirao-preto",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-11-06",
+      "casa": "dompedro.ribeirao",
+      "casaNome": null,
+      "cidade": "Ribeirão Preto",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
+      "detalhe": "https://www.instagram.com/reel/DeDW4oAsskq/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-12-05-ribeirao-preto",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-12-05",
+      "casa": "galpao20",
+      "casaNome": null,
+      "cidade": "Ribeirão Preto",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-12-18-uberaba",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-12-18",
+      "casa": "casadigiulietta.eventos",
+      "casaNome": null,
+      "cidade": "Uberaba",
+      "uf": "MG",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-12-19-uberlandia",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-12-19",
+      "casa": "cervejabenedith_oficial",
+      "casaNome": null,
+      "cidade": "Uberlândia",
+      "uf": "MG",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-12-26-ribeirao-preto",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-12-26",
+      "casa": "hrc.ribeiraopreto",
+      "casaNome": null,
+      "cidade": "Ribeirão Preto",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2027-01-02-botucatu",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2027-01-02",
+      "casa": "goldentaphouse",
+      "casaNome": null,
+      "cidade": "Botucatu",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2027-01-08-brasilia",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2027-01-08",
+      "casa": "vikings_pub.df",
+      "casaNome": null,
+      "cidade": "Brasília",
+      "uf": "DF",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2027-01-23-jau",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2027-01-23",
+      "casa": "casarao682",
+      "casaNome": null,
+      "cidade": "Jaú",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2027-01-30-sao-paulo",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2027-01-30",
+      "casa": "misterrockinsampa",
+      "casaNome": null,
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+    },
+    {
       "id": "blackcirclepj-2027-02-26-sao-paulo",
       "banda": "blackcirclepj",
       "nome": "Black Circle",
@@ -301,6 +803,20 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/reel/Dd7SJXLMEC0/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2027-03-05-goiania",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2027-03-05",
+      "casa": "vikings_pub",
+      "casaNome": null,
+      "cidade": "Goiânia",
+      "uf": "GO",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
     },
     {
       "id": "blackcirclepj-2027-03-13-recife",
