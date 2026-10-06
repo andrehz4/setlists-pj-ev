@@ -24,6 +24,17 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
 
+## 2026-10-06 (madrugada): story em vídeo POR BANDA pronto (desligado)
+
+- Robô `scripts/agenda/redes/story-por-banda.mjs` (+ `story-banda/`): um vídeo de 21,3 s por banda com show no dia
+  (abertura com b-roll do acervo, logo, mapa, shows, final), voz fixa gravada (114 falas, Bella/Chris pelo dia, conta
+  ElevenLabs SÓ da agenda: secret ELEVENLABS_API_KEY_AGENDA, chave local /Users/andrehz/.elevenlabs-key-agenda),
+  data cortada da gravação do story diário, whoosh sintético, trilha do story. Nunca passa de 21,3 s (encaixe.mjs).
+- Publica story de vídeo com marcação (banda + casas) e plano B sem marcação (`ig/story-video.mjs`). Testado no mock
+  (publicar, não repetir, plano B) e no GitHub (render real, artefato conferido).
+- Liga com a variável do repo AGENDA_STORY_VIDEO=1 (troca o "Alô, pessoal de..." no agenda-story.yml, 14:07).
+  Teste manual: workflow agenda-story, video=true + dry-run=true + dia, baixa os MP4 como artefato.
+
 ## 2026-10-06 (noite): story em vídeo do mapa no Claude Design, sites das bandas
 
 - Claude Design (projeto "Pearl Jam Cover Story Video") fez o protótipo de 15 s: abertura com clipe, mapa com zoom e
