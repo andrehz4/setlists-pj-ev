@@ -22,7 +22,7 @@ mostram no log o que sairia.
 
 | Peça | Script | Workflow | Quando |
 |---|---|---|---|
-| Story "Alô, pessoal do RJ!" (um por estado com show hoje) | `redes/story-do-dia.mjs` | `agenda-story.yml` | todo dia 14:07 BRT |
+| Story "Alô, pessoal do RJ!" (um por estado com show hoje) | `redes/story-do-dia.mjs` | `agenda-story.yml` | todo dia 10:37 BRT |
 | Post "Agenda da semana" (seg a dom, @ da banda e @ da casa) | `redes/post-semana.mjs` | `agenda-semana.yml` | segunda 10:07 BRT |
 
 - Marcação: banda e casa entram em `user_tags`. Se o IG recusar a marcação, publica de novo sem ela e avisa no Telegram.

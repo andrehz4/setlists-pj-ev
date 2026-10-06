@@ -32,7 +32,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   data cortada da gravação do story diário, whoosh sintético, trilha do story. Nunca passa de 21,3 s (encaixe.mjs).
 - Publica story de vídeo com marcação (banda + casas) e plano B sem marcação (`ig/story-video.mjs`). Testado no mock
   (publicar, não repetir, plano B) e no GitHub (render real, artefato conferido).
-- Liga com a variável do repo AGENDA_STORY_VIDEO=1 (troca o "Alô, pessoal de..." no agenda-story.yml, 14:07).
+- Liga com a variável do repo AGENDA_STORY_VIDEO=1 (troca o "Alô, pessoal de..." no agenda-story.yml, 10:37 BRT).
   Teste manual: workflow agenda-story, video=true + dry-run=true + dia, baixa os MP4 como artefato.
 
 ## 2026-10-06 (noite): story em vídeo do mapa no Claude Design, sites das bandas
