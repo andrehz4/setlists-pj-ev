@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-10-06T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "f277f60e54", "titulo": "No Ohana, McCready liga Mad Season a Given to Fly e fala de luto em Farewell to Seasons", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cf04b0984a", "title": "Matt Cameron se junta a Tom Morello (Terra)", "reason": "sem novidade (já publicado: Suns of Soundgarden no Power to the People, 4/10); texto truncado" },
+    { "id": "01ff8dcbe3", "title": "Matt Cameron se junta a Tom Morello (TMDQA)", "reason": "sem novidade (já publicado: Suns of Soundgarden no Power to the People, 4/10)" },
+    { "id": "f9ac60a729", "title": "Rockin' in the Free World, 5 versões (Rolling Stone DE)", "reason": "PJ tangencial; Billy Strings no Ohana já publicado: 4674bb6d74" }
+  ]
+}
