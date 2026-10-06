@@ -24,6 +24,14 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
 
+## 2026-10-06: 4 bandas novas na agenda
+
+- Entraram PJ 90 (@pjnoventa), Lost Dogs (@pearljamsp), Pearl Jam Cover Ribeirão e The Homer (@thehomerpj): 7 bandas,
+  55 shows. Leitores novos: agenda em blocos (`extrair-blocos.mjs`), aviso solto de um show (`extrair-solto.mjs`),
+  linha com "•" e "—". Vários shows no mesmo dia. Legenda semanal com teto de 20 menções.
+- Push via SSH do Mac falhou ("Permission denied (publickey)") durante instabilidade do GitHub; foi por HTTPS com o
+  login do gh. Conferir se o SSH voltou.
+
 ## 2026-10-05: QA do site inteiro e correções
 
 - Tablatura (Cifras & Tabs) voltou a desenhar. Eram 3 travas em fila: CSP sem `'self'` em font-src (fonte Bravura
