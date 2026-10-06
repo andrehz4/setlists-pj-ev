@@ -1,39 +1,39 @@
 {
-  "atualizado": "2026-10-06T00:01:20.298Z",
+  "atualizado": "2026-10-06T18:26:58.506Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-06T00:01:10.549Z",
-      "seguidores": 33079,
+      "lidoEm": "2026-10-06T18:26:50.944Z",
+      "seguidores": 33071,
       "ultimoPost": "2026-10-05T19:16:21+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-06T00:01:11.984Z",
-      "seguidores": 101123,
+      "lidoEm": "2026-10-06T18:26:52.045Z",
+      "seguidores": 101109,
       "ultimoPost": "2026-10-03T19:41:21+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-06T00:01:13.537Z",
-      "seguidores": 9401,
+      "lidoEm": "2026-10-06T18:26:52.843Z",
+      "seguidores": 9397,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-06T00:01:15.074Z",
-      "seguidores": 74090,
+      "lidoEm": "2026-10-06T18:26:54.186Z",
+      "seguidores": 74064,
       "ultimoPost": "2026-10-05T02:06:38+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-06T00:01:16.535Z",
-      "seguidores": 21143,
+      "lidoEm": "2026-10-06T18:26:55.682Z",
+      "seguidores": 21145,
       "ultimoPost": "2026-10-05T16:01:12+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-06T00:01:17.827Z",
-      "seguidores": 32998,
-      "ultimoPost": "2026-10-05T21:53:27+0000"
+      "lidoEm": "2026-10-06T18:26:56.651Z",
+      "seguidores": 33006,
+      "ultimoPost": "2026-10-06T18:00:08+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-06T00:01:19.968Z",
-      "seguidores": 6262,
+      "lidoEm": "2026-10-06T18:26:58.424Z",
+      "seguidores": 6253,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
   },
@@ -68,20 +68,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blaymorphed-2026-10-05-maua",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-10-05",
-      "casa": "comics_smashburger",
-      "casaNome": null,
-      "cidade": "Mauá",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": "SV Solo",
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
-    },
     {
       "id": "pearljamcoverribeirao-2026-10-08-araxa",
       "banda": "pearljamcoverribeirao",
@@ -349,7 +335,8 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/"
+      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
+      "detalhe": "https://www.instagram.com/p/Dd9io5uN6-K/"
     },
     {
       "id": "pjnoventa-2026-10-16-dourados",
@@ -559,7 +546,7 @@
       "cidade": "Osasco",
       "uf": "SP",
       "fechado": false,
-      "observacao": null,
+      "observacao": "TRIO ACÚSTICO",
       "hora": "19:30",
       "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
     },
