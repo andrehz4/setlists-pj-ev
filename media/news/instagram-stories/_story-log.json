@@ -1,18 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-07-25",
-      "runAt": "2026-07-25T16:00:51.175Z",
-      "items": [
-        "024474396f"
-      ],
-      "track": "02-nightcast-grunge-diner.mp3",
-      "tarjaColor": "#2a5b9e",
-      "postId": "18046620113592796",
-      "containerId": "18147274303471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-07-25.mp4"
-    },
-    {
       "dateKey": "2026-07-28",
       "runAt": "2026-07-28T16:01:09.642Z",
       "items": [
@@ -845,6 +833,20 @@
       "containerId": "18154832293471615",
       "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-10-05-1791216117852.mp4",
       "fbPostId": "1835647310782617"
+    },
+    {
+      "dateKey": "2026-10-06",
+      "runAt": "2026-10-06T16:00:56.049Z",
+      "items": [
+        "d07cc5ca71",
+        "cap-LveEoEQ"
+      ],
+      "track": "08-pixabay-rust-and-rain.mp3",
+      "tarjaColor": "#E10600",
+      "postId": "18112904765107970",
+      "containerId": "18154935778471615",
+      "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-10-06-1791302510336.mp4",
+      "fbPostId": "1573589211454929"
     }
   ]
 }
