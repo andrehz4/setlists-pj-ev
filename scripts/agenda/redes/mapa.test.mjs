@@ -10,6 +10,9 @@ test("localiza cidade pelo IBGE, com apelido e com reserva no meio do estado", (
   const x = localizar("Cidade Que Não Existe", "RJ");
   assert.equal(x.nome, "Cidade Que Não Existe");
   assert.ok(x.pos[0] > -45 && x.pos[0] < -40, "cai dentro do RJ");
+  assert.equal(x.aproximado, true);
+  assert.equal(localizar("São Bernardo", "SP").nome, "São Bernardo do Campo", "nome cortado que só um município completa");
+  assert.equal(localizar("Santo", "SP").aproximado, true, "começo ambíguo não chuta");
   assert.equal(localizar("Lugar", null), null);
 });
 

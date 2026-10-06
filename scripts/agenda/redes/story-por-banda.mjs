@@ -20,6 +20,7 @@ import { materializar } from "../../publish/reel/acervo-r2.mjs";
 import { storiesDoDia, falasDaBanda, clipesDoStory, contasDoStory } from "./story-banda/dados.mjs";
 import { cortarData } from "./story-banda/data-cortada.mjs";
 import { renderizarStory } from "./story-banda/render.mjs";
+import { variacaoDoDia } from "./story-banda/variacao.mjs";
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run"), NO_GIT = args.includes("--no-git");
@@ -50,10 +51,11 @@ async function main() {
     const falas = { abertura: f.abertura, whoosh: f.whoosh, estado: f.estado, data: cortarData(f.dataInteira, tmp), hora: f.hora, final: f.final };
     const logo = naRaiz(`media/agenda/fotos/${st.contaPura}.jpg`);
     const saida = path.join(tmp, `${dia}-${st.contaPura}.mp4`);
-    await renderizarStory({ story: st, tema, logo: fs.existsSync(logo) ? logo : null, clipes, falas,
+    const variacao = variacaoDoDia(dia, st);
+    await renderizarStory({ story: st, tema, variacao, logo: fs.existsSync(logo) ? logo : null, clipes, falas,
       trilha: tracks[(dayOfYear(new Date(`${dia}T12:00:00Z`)) + k) % tracks.length].path, saida });
     const contas = contasDoStory(st);
-    console.log(`[story-banda] ${st.banda}: ${st.shows.length} show(s), voz ${f.voz.nome}, marcar ${contas.join(", ")} -> ${saida}`);
+    console.log(`[story-banda] ${st.banda}: ${st.shows.length} show(s), mapa ${variacao}, voz ${f.voz.nome}, marcar ${contas.join(", ")} -> ${saida}`);
     if (DRY) { fs.copyFileSync(saida, naRaiz(`media/agenda/_teste-${dia}-${st.contaPura}.mp4`)); continue; }
     if (!PUBLICAR) continue;
     let videoUrl = await publicarViaR2(saida, `stories/agenda-${dia}-${st.contaPura}.mp4`);
@@ -65,7 +67,7 @@ async function main() {
     if (!videoUrl) throw new Error("R2 indisponível: story em vídeo precisa do R2");
     const r = await publishVideoStory({ videoUrl, contas });
     console.log(`[story-banda] ${st.banda} OK postId=${r.postId} marcou=${r.marcou}`);
-    log.entradas.push({ dia, banda: st.contaPura, postId: r.postId, marcou: r.marcou, em: new Date().toISOString() });
+    log.entradas.push({ dia, banda: st.contaPura, postId: r.postId, marcou: r.marcou, mapa: variacao, em: new Date().toISOString() });
     feitos.push(`${escHtml(st.banda)}${r.marcou ? "" : " (sem marcação)"}`);
   }
   fs.rmSync(tmp, { recursive: true, force: true });

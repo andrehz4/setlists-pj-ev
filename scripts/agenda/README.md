@@ -23,10 +23,14 @@ mostram no log o que sairia.
 | Peça | Script | Workflow | Quando |
 |---|---|---|---|
 | Story "Alô, pessoal do RJ!" (um por estado com show hoje) | `redes/story-do-dia.mjs` | `agenda-story.yml` | todo dia 10:37 BRT |
+| Story em vídeo por banda (com `AGENDA_STORY_VIDEO=1`, no lugar do de cima) | `redes/story-por-banda.mjs` | `agenda-story.yml` | todo dia 10:37 BRT |
 | Post "Agenda da semana" (seg a dom, @ da banda e @ da casa) | `redes/post-semana.mjs` | `agenda-semana.yml` | segunda 10:07 BRT |
 
 - Marcação: banda e casa entram em `user_tags`. Se o IG recusar a marcação, publica de novo sem ela e avisa no Telegram.
 - Idempotência: `media/agenda/_story-log.json` (dia + estado) e `_semana-log.json` (semana ISO).
+- Mapa do story por banda em rodízio diário (`redes/story-banda/variacao.mjs`): A pinos, B papel recortado, C rota de
+  turnê. A rota só sai com 150 km ou mais e com as cidades achadas na lista do IBGE; senão, papel. `AGENDA_MAPA=C` força
+  uma variação no teste. Desenho do Claude Design em `design-handoff/retorno/story-mapa/variacoes-2026-10-06/`.
 - Bandas cover nunca entram no reel semanal: estas peças não passam pela fila de notícias.
 - Testar no mock: `npm run mock:server`, depois `IG_API_BASE=http://localhost:8788 IG_USER_ID=x IG_ACCESS_TOKEN=x
   REPO_PUBLIC_BASE=http://localhost:8788/mock-media/.. AGENDA_PUBLICAR=1 node scripts/agenda/redes/post-semana.mjs --no-git`

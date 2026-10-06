@@ -11,3 +11,4 @@ https://github.com/google/fonts. Uso e redistribuição livres, inclusive comerc
 | PlayfairDisplay-Italic/MediumItalic/BoldItalic.ttf | Playfair Display, Claus Eggers Sørensen (slide de citação das cápsulas; estáticos via fontsource) |
 | ArchivoBlack-Regular.ttf | Archivo Black, Omnibus-Type (legenda do Reel de colaborador) |
 | InstrumentSerif-Italic.ttf | Instrument Serif, Instrument (legenda do Reel de colaborador) |
+| PermanentMarker-Regular.ttf | Permanent Marker, Font Diner (Apache 2.0; nome da cidade escrito à mão no story por banda, variação B do mapa) |

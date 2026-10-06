@@ -15,12 +15,14 @@ export function storiesDoDia(shows, bandas, dia) {
   for (const s of shows) if (s.data === dia && !s.fechado) (porBanda.get(s.banda) || porBanda.set(s.banda, []).get(s.banda)).push(s);
   return [...porBanda].map(([conta, lista]) => {
     const b = bandas.find((x) => x.conta === conta) || { nome: lista[0].nome, cidade: "", uf: "", desde: "" };
+    const base = b.cidade && b.uf ? localizar(b.cidade, b.uf) : null;
     const ordenados = [...lista].sort((a, c) => String(a.hora || "99").localeCompare(String(c.hora || "99")));
     return {
       conta: `@${conta}`, contaPura: conta, banda: b.nome, cidadeBase: [b.cidade, b.uf].filter(Boolean).join("/"), desde: b.desde, dia,
+      baseLonlat: base && !base.aproximado ? base.pos : null, // origem da rota de turnê (mapa C)
       shows: ordenados.map((s) => {
         const l = localizar(s.cidade, s.uf || b.uf);
-        return { cidade: l ? l.nome : s.cidade || "", uf: s.uf || b.uf, lonlat: l ? l.pos : null, hora: s.hora || null,
+        return { cidade: l ? l.nome : s.cidade || "", uf: s.uf || b.uf, lonlat: l ? l.pos : null, aproximado: !l || !!l.aproximado, hora: s.hora || null,
           casa: s.casa ? `@${s.casa}` : s.casaNome || null, casaPura: s.casa || null };
       }).filter((s) => s.lonlat),
     };

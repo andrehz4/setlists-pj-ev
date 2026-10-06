@@ -14,16 +14,18 @@ const norm = (t) => String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toL
 const APELIDOS = { pta: "paulista", sto: "santo", sta: "santa", s: "sao", sjc: "sao jose dos campos", bh: "belo horizonte",
   sp: "sao paulo", rj: "rio de janeiro", poa: "porto alegre" };
 
-// { pos: [lon, lat], nome } da cidade (nome oficial do IBGE: "Bragança Pta" vira "Bragança Paulista"); sem achar,
-// o meio do estado com o nome como veio (o ponto nunca fica fora do mapa); sem estado, null.
+// { pos: [lon, lat], nome } da cidade (nome oficial do IBGE: "Bragança Pta" vira "Bragança Paulista"; nome cortado
+// que só um município completa, como "São Bernardo", também acha); sem achar, o meio do estado com o nome como veio e
+// aproximado: true (o ponto nunca fica fora do mapa); sem estado, null.
 export function localizar(cidade, uf) {
   const m = mun()[uf];
   if (!m) return null;
   const n = norm(cidade);
   const exp = n.split(" ").map((p) => APELIDOS[p] || p).join(" ");
-  const achou = m[n] || m[exp] || (APELIDOS[n] && m[APELIDOS[n]]);
+  const comeco = n ? Object.keys(m).filter((k) => k.startsWith(`${exp} `)) : [];
+  const achou = m[n] || m[exp] || (APELIDOS[n] && m[APELIDOS[n]]) || (comeco.length === 1 && m[comeco[0]]);
   if (achou) return { pos: [achou[0], achou[1]], nome: achou[2] || cidade };
-  return { pos: centroUf(uf), nome: cidade || uf };
+  return { pos: centroUf(uf), nome: cidade || uf, aproximado: true };
 }
 
 // Meio do estado (média dos pontos do maior polígono): ponto de reserva e lugar da sigla no mapa.
