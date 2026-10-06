@@ -1,6 +1,6 @@
 // Voz do story por banda: frases FIXAS, gravadas uma vez e guardadas em media/agenda/voz/ (o dia a dia não gasta
-// crédito do ElevenLabs). Abertura = frase inteira com o nome da banda (sem emenda, que soa recortado), 3 variações
-// por banda; final = 3 chamadas pra compartilhar. Banda nova: o gravador grava só o que falta. Rodízio pelo dia.
+// crédito do ElevenLabs). Abertura = frase inteira com o nome da banda (sem emenda, que soa recortado), 5 variações
+// por banda; final = 5 chamadas pra compartilhar. Banda nova: o gravador grava só o que falta. Rodízio pelo dia.
 import crypto from "node:crypto";
 import path from "node:path";
 import { naRaiz } from "../../config.mjs";
@@ -9,18 +9,22 @@ export const DIR_VOZ = naRaiz("media/agenda/voz");
 export const VOZ = { nome: "Jessica", id: "cgSgspJ2msm6clMCkdW9" }; // aprovada pelo Andre no reel (2026-09-30)
 
 // Como a voz deve falar o nome (sigla e número soletrados do jeito certo)
-const FALADO = { "PJ 90": "P J Noventa" };
+const FALADO = { "PJ 90": "Pearl Jam noventa" }; // decisão do Andre: Pearl Jam em inglês, noventa em português
 export const nomeFalado = (nome) => FALADO[nome] || nome;
 
 export const ABERTURAS = [
   (b) => `Alô, fã de Pearl Jam! Hoje tem ${b} ao vivo!`,
   (b) => `Atenção, fã de Pearl Jam: hoje é dia de ${b}!`,
   (b) => `Anota aí: hoje tem ${b} no palco!`,
+  (b) => `Hoje o dia é de Pearl Jam, com ${b}!`,
+  (b) => `Separa a camisa de flanela: hoje tem ${b}!`,
 ];
 export const FINAIS = [
   "Compartilha com quem vai com você, e bora pro show!",
   "Marca aquele amigo fã de Pearl Jam e cola no show hoje!",
   "Manda pra quem vai com você! A agenda completa tá no site.",
+  "Chama a turma, e a gente se vê no show!",
+  "Repassa pra quem também canta Black a plenos pulmões!",
 ];
 
 // Nome do arquivo pelo texto: frase mudou, grava de novo; frase igual, reaproveita.
