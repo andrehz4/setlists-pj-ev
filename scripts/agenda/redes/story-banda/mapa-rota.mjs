@@ -2,6 +2,7 @@
 // palheta andando na ponta e a quilometragem contando. MOTION-SPEC-banda, "Cena 3, variações B e C".
 import { p, pop, enter, move, lerp, clamp } from "./tempo.mjs";
 import { COR, esc, etiqueta, F_INTER_XB } from "./pecas.mjs";
+import { viajante } from "./viajante.mjs";
 import { mundo, caixaDe, enquadra, camera, tela, estados, grupoMapa, pino, onda, etiquetaCidade, naCena4, saindo, R3, R4 } from "./mapa-comum.mjs";
 
 export const distanciaKm = ([lo1, la1], [lo2, la2]) => {
@@ -33,17 +34,18 @@ function parcial(q, f) {
   return out;
 }
 
-function estrada(T, q, l, k, cor) {
+function estrada(T, q, l, k, cor, quem) {
   const f = p(T, l.t0, l.dur, move);
   if (f <= 0) return "";
   const r = parcial(q, f), d = `M${r.map((v) => `${v[0].toFixed(1)},${v[1].toFixed(1)}`).join("L")}`, e = r.at(-1), e0 = r[Math.max(0, r.length - 2)];
-  const palheta = 1 - p(T, l.t0 + l.dur, 0.2, enter), ang = (Math.atan2(e[1] - e0[1], e[0] - e0[0]) * 180) / Math.PI;
+  // o logo some nos últimos 0.2 s da estrada, antes do pino vermelho cair no lugar; boneco fica pra comemorar
+  const fica = { logo: -0.2, boneco: 0.3 }[quem.tipo] || 0, some = 1 - p(T, l.t0 + l.dur + fica, 0.2, enter), ang = (Math.atan2(e[1] - e0[1], e[0] - e0[0]) * 180) / Math.PI;
   return `<path d="${d}" fill="none" stroke="${COR.tinta}" stroke-width="${14 * k}" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="${d}" fill="none" stroke="${COR.creme}" stroke-width="${5 * k}" stroke-dasharray="${16 * k} ${12 * k}"/>
-  ${palheta > 0 ? `<g opacity="${palheta.toFixed(3)}" transform="translate(${e[0].toFixed(1)} ${e[1].toFixed(1)}) rotate(${ang.toFixed(1)})"><path d="M22 0C14 14-8 20-16 12C-22 6-22-6-16-12C-8-20 14-14 22 0Z" fill="${cor.pin}" stroke="${COR.creme}" stroke-width="4"/></g>` : ""}`;
+  ${some > 0 ? `<g opacity="${some.toFixed(3)}">${viajante(T, quem.tipo, { e, ang, chegou: p(T, l.t0 + l.dur, 0.15, enter), cor, logoUri: quem.logoUri })}</g>` : ""}`;
 }
 
-export function mapaRota(T, story, cor) {
+export function mapaRota(T, story, cor, quem = { tipo: "palheta" }) {
   const base = origem(story), ls = pernas(story), N = story.shows.length;
   const caixa = caixaDe([...story.shows.map((s) => mundo(s.lonlat)), mundo(base)]);
   const cam = camera(T, enquadra(caixa, R3, 2.25, 140), enquadra(caixa, R4, 3, 50));
@@ -52,7 +54,7 @@ export function mapaRota(T, story, cor) {
   const ufBase = (story.cidadeBase || "").split("/")[1];
   const acende = Object.fromEntries([...(ufBase ? [[ufBase, p(T, 6.95, 0.3, enter)]] : []), ...story.shows.map((s, i) => [s.uf, p(T, ls[i].pouso, 0.3, enter)])]
     .reduce((m, [u, v]) => m.set(u, Math.max(m.get(u) || 0, v)), new Map()));
-  const ruas = ls.map((l) => estrada(T, amostras(l.i ? P[l.i - 1] : O, P[l.i], l, R), l, k, cor)).join("");
+  const ruas = ls.map((l) => estrada(T, amostras(l.i ? P[l.i - 1] : O, P[l.i], l, R), l, k, cor, quem)).join("");
   const ob = p(T, 6.95, 0.3, pop);
   const marco = ob > 0 ? `<g transform="translate(${O[0].toFixed(1)} ${O[1].toFixed(1)}) scale(${(ob * lerp(1, 0.6, c4)).toFixed(3)})"><circle r="14" fill="${COR.creme}" stroke="${COR.tinta}" stroke-width="6"/></g>` : "";
   const pinos = story.shows.map((s, i) => {

@@ -19,7 +19,7 @@ export function quadroSvg(r, story, cor, logoUri, variacao = "A") {
   const painel = lerp(1920, 0, p(T, 2.7, 0.6, move));
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
   ${painel < 1920 ? `<rect x="0" y="${painel}" width="1080" height="${1920 - painel}" fill="${cor.bg}"/>` : ""}
-  ${mapa(T, story, cor, variacao)}${shows(T, story, cor)}${logo(T, story, logoUri)}${titulo(T, story, cor)}${carimbo(T)}${final(T, cor)}</svg>`;
+  ${mapa(T, story, cor, variacao, { tipo: process.env.AGENDA_VIAJANTE || (logoUri ? "logo" : "palheta"), logoUri })}${shows(T, story, cor)}${logo(T, story, logoUri)}${titulo(T, story, cor)}${carimbo(T)}${final(T, cor)}</svg>`;
 }
 
 // Logo quadrado a partir da foto de perfil tratada (640x480 com o logo 400x400 no meio).

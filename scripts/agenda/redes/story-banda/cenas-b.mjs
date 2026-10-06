@@ -6,10 +6,10 @@ import { mundo, caixaDe, enquadra, camera, tela, estados, grupoMapa, pino, onda,
 import { mapaPapel } from "./mapa-papel.mjs";
 import { mapaRota } from "./mapa-rota.mjs";
 
-export function mapa(T, story, cor, variacao = "A") {
+export function mapa(T, story, cor, variacao = "A", quem) {
   if (T < 5.5) return "";
   if (variacao === "B") return mapaPapel(T, story, cor);
-  if (variacao === "C") return mapaRota(T, story, cor);
+  if (variacao === "C") return mapaRota(T, story, cor, quem);
   const caixa = caixaDe(story.shows.map((s) => mundo(s.lonlat)));
   const cam = camera(T, enquadra(caixa, R3, 6, 140), enquadra(caixa, R4, 3, 50));
   const acende = Object.fromEntries(story.shows.map((s, i) => [s.uf, p(T, 7.84 + i * 0.45, 0.3, enter)]));
