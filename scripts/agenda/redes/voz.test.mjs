@@ -4,7 +4,7 @@ import { falasNecessarias, falasDoStory, arquivoDaFala, nomeFalado } from "./voz
 
 test("falas fixas: 5 aberturas por banda + 5 finais, nome falado do jeito certo", () => {
   const f = falasNecessarias(["PJ 90", "Lost Dogs"]);
-  assert.equal(f.length, 15);
+  assert.equal(f.length, 15 + 8, "5+5 por banda e final, mais 8 horários");
   assert.ok(f.some((t) => t.includes("Pearl Jam noventa")));
   assert.equal(nomeFalado("Lost Dogs"), "Lost Dogs");
   assert.equal(nomeFalado("Blaymorphed"), "Blaymorfédi", "só a voz lê assim");
