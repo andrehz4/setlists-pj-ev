@@ -7,13 +7,15 @@ import { naRaiz } from "../../config.mjs";
 
 export const DIR_VOZ = naRaiz("media/agenda/voz");
 export const VOZ = { nome: "Jessica", id: "cgSgspJ2msm6clMCkdW9" }; // aprovada pelo Andre no reel (2026-09-30)
+export const IDIOMA = null; // sem forçar: soou brasileiro; com "pt" soou português de Portugal
 
 // Como a voz deve falar o nome (sigla e número soletrados do jeito certo)
-const FALADO = { "PJ 90": "Pearl Jam noventa" }; // decisão do Andre: Pearl Jam em inglês, noventa em português
+// Só pra voz (na tela fica o nome oficial). Decisões do Andre após ouvir os testes de 2026-10-06.
+const FALADO = { "PJ 90": "Pearl Jam noventa", Blaymorphed: "Blaymorfedi" };
 export const nomeFalado = (nome) => FALADO[nome] || nome;
 
 export const ABERTURAS = [
-  (b) => `Alô, fã de Pearl Jam! Hoje tem ${b} ao vivo!`,
+  (b) => `Alô, fã de Pearl Jam! Hoje, a banda ${b} ao vivo!`,
   (b) => `Atenção, fã de Pearl Jam: hoje é dia de ${b}!`,
   (b) => `Anota aí: hoje tem ${b} no palco!`,
   (b) => `Hoje o dia é de Pearl Jam, com ${b}!`,

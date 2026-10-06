@@ -5,7 +5,7 @@ import { naRaiz } from "../../config.mjs";
 import { lerEstado } from "../../lib/estado.mjs";
 import { commitAndPush } from "../../lib/git.mjs";
 import { sintetizar, saldo } from "../../publish/narracao/elevenlabs.mjs";
-import { VOZ, DIR_VOZ, arquivoDaFala, falasNecessarias } from "./voz.mjs";
+import { VOZ, IDIOMA, DIR_VOZ, arquivoDaFala, falasNecessarias } from "./voz.mjs";
 
 const DRY = process.argv.includes("--dry-run");
 const apiKey = process.env.ELEVENLABS_API_KEY;
@@ -22,7 +22,7 @@ if (!apiKey) throw new Error("falta ELEVENLABS_API_KEY");
 const s = await saldo({ apiKey });
 if (s && s.restante < custo + 500) throw new Error(`saldo baixo: ${s.restante} caracteres sobrando, precisa de ${custo}`);
 for (const t of faltam) {
-  await sintetizar(t, { vozId: VOZ.id, apiKey, destino: arquivoDaFala(t) });
+  await sintetizar(t, { vozId: VOZ.id, apiKey, destino: arquivoDaFala(t), idioma: IDIOMA });
   console.log(`[voz] ok: ${t}`);
 }
 await commitAndPush(["media/agenda/voz/"], `agenda: ${faltam.length} fala(s) fixa(s) do story por banda`);

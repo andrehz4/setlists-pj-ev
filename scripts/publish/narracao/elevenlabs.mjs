@@ -33,14 +33,16 @@ export async function saldo({ apiKey, fetchImpl = fetch }) {
 }
 
 // Grava o MP3 da fala em destino. fetchImpl injetável pros testes.
-export async function sintetizar(texto, { vozId, apiKey, destino, fetchImpl = fetch, tentativas = 2 }) {
+// idioma: "pt" força português (padrão do reel); null deixa a voz detectar pelo texto (no story da agenda, o forçado
+// puxava sotaque de Portugal).
+export async function sintetizar(texto, { vozId, apiKey, destino, fetchImpl = fetch, tentativas = 2, idioma = "pt" }) {
   let ultimoErro;
   for (let i = 0; i < tentativas; i++) {
     try {
       const res = await fetchImpl(`${API}/text-to-speech/${vozId}?output_format=mp3_44100_128`, {
         method: "POST",
         headers: { "xi-api-key": apiKey, "Content-Type": "application/json" },
-        body: JSON.stringify({ text: texto, model_id: MODELO, language_code: "pt" }),
+        body: JSON.stringify({ text: texto, model_id: MODELO, ...(idioma ? { language_code: idioma } : {}) }),
         signal: AbortSignal.timeout(60000),
       });
       if (!res.ok) {

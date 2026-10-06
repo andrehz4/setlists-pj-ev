@@ -7,6 +7,7 @@ test("falas fixas: 5 aberturas por banda + 5 finais, nome falado do jeito certo"
   assert.equal(f.length, 15);
   assert.ok(f.some((t) => t.includes("Pearl Jam noventa")));
   assert.equal(nomeFalado("Lost Dogs"), "Lost Dogs");
+  assert.equal(nomeFalado("Blaymorphed"), "Blaymorfedi", "só a voz lê assim");
 });
 
 test("story do dia: rodízio pelo dia e arquivo pelo texto (mesma frase = mesmo arquivo)", () => {
