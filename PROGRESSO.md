@@ -28,7 +28,11 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 - Claude Design (projeto "Pearl Jam Cover Story Video") fez o protótipo de 15 s: abertura com clipe, mapa com zoom e
   pinos, lista de cidades com @, final em papel creme. Retorno em `design-handoff/retorno/story-mapa/` (MOTION-SPEC +
-  story.jsx, fora do git). Próximo: portar pro renderizador do reel (SVG puro, 30 fps), clipe do acervo + trilha.
+  story.jsx, fora do git). Andre trocou o conceito: 1 STORY POR BANDA (banda e casa repostam), aprovado
+  ("ficou muito bom"): `story-banda.jsx` + `MOTION-SPEC-banda.md` (abertura com clipe e nome da banda, logo,
+  mapa só das cidades dela, shows, final "Compartilha com quem vai com você" + Siga @smufdpj; marca = carimbo A).
+  Próximo: portar pro renderizador do reel (SVG puro, 30 fps), logo real (media/agenda/fotos), clipe do acervo,
+  trilha e voz ElevenLabs (3 frases em rodízio + pedido de compartilhar no fim). Marcação em story confirmada no app.
 - Rascunho estático do mapa já no repo (`scripts/agenda/redes/mapa.mjs`, `arte-mapa.mjs`, bases IBGE em
   `media/agenda/geo/`), não ligado na publicação.
 - Card da banda na agenda com link do site (Blaymorphed, PJ 90). As outras só têm Instagram; o site da Ribeirão
