@@ -1,0 +1,1 @@
+Bases do mapa do story da agenda. ufs.json: contorno dos estados [lon,lat], da API de malhas do IBGE (servicodados.ibge.gov.br, qualidade mínima). municipios.json: UF -> nome normalizado -> [lon,lat,nome oficial], da lista de municípios do IBGE (github.com/kelvins/municipios-brasileiros). Dados públicos.
