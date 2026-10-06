@@ -24,6 +24,16 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
 
+## 2026-10-06 (noite): story em vídeo do mapa no Claude Design, sites das bandas
+
+- Claude Design (projeto "Pearl Jam Cover Story Video") fez o protótipo de 15 s: abertura com clipe, mapa com zoom e
+  pinos, lista de cidades com @, final em papel creme. Retorno em `design-handoff/retorno/story-mapa/` (MOTION-SPEC +
+  story.jsx, fora do git). Próximo: portar pro renderizador do reel (SVG puro, 30 fps), clipe do acervo + trilha.
+- Rascunho estático do mapa já no repo (`scripts/agenda/redes/mapa.mjs`, `arte-mapa.mjs`, bases IBGE em
+  `media/agenda/geo/`), não ligado na publicação.
+- Card da banda na agenda com link do site (Blaymorphed, PJ 90). As outras só têm Instagram; o site da Ribeirão
+  estava fora do ar.
+
 ## 2026-10-06: 4 bandas novas na agenda
 
 - Entraram PJ 90 (@pjnoventa), Lost Dogs (@pearljamsp), Pearl Jam Cover Ribeirão e The Homer (@thehomerpj): 7 bandas,
