@@ -45,7 +45,7 @@ ${foto ? `<div class="ag-banda-foto"><img src="${esc(foto)}" alt="Foto da banda 
 <h3 class="ag-banda-nome"><a href="${ig(b.conta)}" rel="nofollow">${esc(b.nome)}</a></h3>
 <p class="ag-banda-cidade">${esc(b.cidade)}/${esc(b.uf)}</p>
 <p class="ag-banda-resumo">${esc(b.resumo)}</p>
-<p class="ag-banda-rodape"><span>${n ? plural(n, "show na agenda", "shows na agenda") : "sem datas no momento"}</span><a href="${ig(b.conta)}" rel="nofollow">@${esc(b.conta)}</a></p>
+<p class="ag-banda-rodape"><span>${n ? plural(n, "show na agenda", "shows na agenda") : "sem datas no momento"}</span><span class="ag-banda-links"><a href="${ig(b.conta)}" rel="nofollow">@${esc(b.conta)}</a>${b.site ? `<a href="${esc(b.site)}" rel="nofollow noopener">site</a>` : ""}</span></p>
 </li>`;
 
 export function paginaAgenda({ shows, bandas, oficial = [], hoje = diaBRT(), fotos = {} }) {

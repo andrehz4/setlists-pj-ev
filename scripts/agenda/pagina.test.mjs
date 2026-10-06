@@ -70,3 +70,9 @@ test("card da banda: foto quando existe, sem foto quando não", () => {
   assert.match(com, /ag-banda--foto/);
   assert.doesNotMatch(paginaAgenda({ shows: [], bandas: [b], hoje: "2026-10-10" }), /<div class="ag-banda-foto">/);
 });
+
+test("card da banda: link do site quando a banda tem, ao lado do Instagram", () => {
+  const b = { conta: "pjnoventa", nome: "PJ 90", cidade: "São Paulo", uf: "SP", desde: 2015, resumo: "x", site: "https://www.pj90pearljamcover.com.br" };
+  assert.match(paginaAgenda({ shows: [], bandas: [b], hoje: "2026-10-10" }), /<a href="https:\/\/www.pj90pearljamcover.com.br" rel="nofollow noopener">site<\/a>/);
+  assert.doesNotMatch(paginaAgenda({ shows: [], bandas: [{ ...b, site: undefined }], hoje: "2026-10-10" }), />site<\/a>/);
+});

@@ -194,3 +194,4 @@ font:16px/1.55 Inter,system-ui,sans-serif;color:var(--ag-tinta)}
 .ag-banda-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35))}
 /* pulo pelos atalhos (#oficial, #agenda, #bandas) não esconde o título atrás da barra de abas grudada no celular */
 .ag-sec, .ag-dia { scroll-margin-top: 72px; }
+.ag-banda-links{display:inline-flex;gap:14px}
