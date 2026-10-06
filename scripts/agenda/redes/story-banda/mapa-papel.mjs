@@ -3,6 +3,7 @@
 import { ufs } from "../mapa.mjs";
 import { p, pop, enter, move, lerp, clamp } from "./tempo.mjs";
 import { COR, esc } from "./pecas.mjs";
+import { logoQueViraPino } from "./viajante.mjs";
 import { mundo, caixaDe, enquadra, camera, tela, caminho, estados, grupoMapa, pino, naCena4, saindo, afastar, R3, R4 } from "./mapa-comum.mjs";
 
 const F_MAO = "'Permanent Marker',cursive", MAO_F = 52;
@@ -55,7 +56,7 @@ function nomeAMao(T, x, y, rC, cidade, pouso, i) {
   fill="${COR.tinta}" stroke="${COR.papel}" stroke-width="12" stroke-linejoin="round" paint-order="stroke">${esc(cidade)}</text></g>`;
 }
 
-export function mapaPapel(T, story, cor) {
+export function mapaPapel(T, story, cor, quem) {
   const ufsShow = [...new Set(story.shows.map((s) => s.uf))].filter((u) => ufs()[u]);
   const caixa = caixaDe(ufsShow.flatMap((u) => ufs()[u].flat().map(mundo)));
   const e3 = enquadra(caixa, R3, 2, 110), e4 = enquadra(caixa, R4, 3, 50), cam = camera(T, e3, e4);
@@ -70,7 +71,8 @@ export function mapaPapel(T, story, cor) {
     const fio = Math.hypot(x - ax, y - ay) > 4 ? `<line x1="${ax.toFixed(1)}" y1="${ay.toFixed(1)}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${COR.tinta}" stroke-width="3"/><circle cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="6" fill="${COR.tinta}" stroke="${COR.creme}" stroke-width="2.5"/>` : "";
     const pen = p(T, drop, 0.4, move), c = caneta(x, y, rC, (i + 1) * 1.3);
     const traco = pen > 0 ? `<path d="${c.d}" fill="none" stroke="${COR.tinta}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="${c.len.toFixed(1)}" stroke-dashoffset="${(c.len * (1 - pen)).toFixed(1)}"/>` : "";
-    return fio + traco + nomeAMao(T, x, y, rC, s.cidade, drop + 0.34, i) + pino(T, { x, y, R, i, N, cor, s: p(T, pinAt, 0.3, pop) });
+    return fio + traco + nomeAMao(T, x, y, rC, s.cidade, drop + 0.34, i) + // logo colado no círculo, vira o pino enquanto o nome é escrito
+      logoQueViraPino(T, pino(T, { x, y, R, i, N, cor, s: p(T, pinAt, 0.3, pop) }), { x, y, s: 0.85 * p(T, pinAt, 0.3, pop), uri: quem?.logoUri, vira: drop + 0.5 });
   }).join("");
   return grupoMapa(T, estados(cam, cor, () => 0.1) + ufsShow.map((u) => recorte(T, cam, u)).join("") + cidades);
 }

@@ -5,10 +5,11 @@ import { COR, esc, larguraAnton, F_ANTON, F_INTER_XB } from "./pecas.mjs";
 import { mundo, caixaDe, enquadra, camera, tela, estados, grupoMapa, pino, onda, etiquetaCidade, R3, R4 } from "./mapa-comum.mjs";
 import { mapaPapel } from "./mapa-papel.mjs";
 import { mapaRota } from "./mapa-rota.mjs";
+import { logoQueViraPino } from "./viajante.mjs";
 
 export function mapa(T, story, cor, variacao = "A", quem) {
   if (T < 5.5) return "";
-  if (variacao === "B") return mapaPapel(T, story, cor);
+  if (variacao === "B") return mapaPapel(T, story, cor, quem);
   if (variacao === "C") return mapaRota(T, story, cor, quem);
   const caixa = caixaDe(story.shows.map((s) => mundo(s.lonlat)));
   const cam = camera(T, enquadra(caixa, R3, 6, 140), enquadra(caixa, R4, 3, 50));
@@ -18,7 +19,8 @@ export function mapa(T, story, cor, variacao = "A", quem) {
     const drop = 7.5 + i * 0.45;
     if (T < drop) return "";
     const [x, y0] = tela(cam, mundo(s.lonlat)), y = y0 - 170 * (1 - p(T, drop, 0.34, pop));
-    return onda(T, x, y0, R, drop + 0.34) + pino(T, { x, y, R, i, N, cor }) + etiquetaCidade(T, x, y0, R, s.cidade, drop + 0.34);
+    // o logo da banda cai no lugar do pino e vira o pino logo depois do pouso
+    return onda(T, x, y0, R, drop + 0.34) + logoQueViraPino(T, pino(T, { x, y, R, i, N, cor }), { x, y, uri: quem?.logoUri, vira: drop + 0.45 }) + etiquetaCidade(T, x, y0, R, s.cidade, drop + 0.34);
   }).join("");
   return grupoMapa(T, estados(cam, cor, (uf) => 0.2 + 0.55 * (acende[uf] || 0)) + pinos);
 }
