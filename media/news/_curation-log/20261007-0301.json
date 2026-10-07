@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-10-07T03:01Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "82d87938ee", "title": "What 9 albums meant the most to you?", "reason": "PJ tangencial (enquete genérica de discos, sem menção a PJ no texto)" },
+    { "id": "9aea5eaf81", "title": "Pearl Jam (Funko pop)", "reason": "merch (fã pensando em vender Funko do fã-clube, sem notícia)" },
+    { "id": "968a28c3fc", "title": "Anyone else have a band that just feels like home", "reason": "conversa genérica de nostalgia, sem fato novo" },
+    { "id": "08ec841623", "title": "Cobain once compared Pearl Jam to Bad Company", "reason": "texto vazio (menos de 200 chars, só pergunta)" }
+  ]
+}
