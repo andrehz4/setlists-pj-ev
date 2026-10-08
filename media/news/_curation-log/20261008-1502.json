@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-10-08T15:02Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "cd-20261008", "titulo": "Mike na Comic Con, o livro do Jeff e Even Flow no game na comunidade", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "30011ea15f", "title": "Pearl Jam, tutti gli album dal peggiore al migliore (Far Out)", "reason": "lista clickbait (ranking de discos da Far Out republicado)" }
+  ]
+}
