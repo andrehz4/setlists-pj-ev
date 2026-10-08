@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-10-08T03:02Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "5742d69320", "title": "35 years ago I saw the show of a lifetime", "reason": "relato pessoal de fã em fórum, sem notícia nem data/local verificável" },
+    { "id": "556175c40e", "title": "Jeff Ament on Pearl Jam's Future", "reason": "texto vazio (só link); sem novidade (já publicado: 76b80bc28e)" },
+    { "id": "d6b1867a8f", "title": "is my music taste fire", "reason": "texto vazio, sem relação com notícia de PJ" },
+    { "id": "f94c201c33", "title": "Wez kickin off owr set at Grace's...", "reason": "post de humor/roleplay, PJ tangencial" }
+  ]
+}
