@@ -1,38 +1,38 @@
 {
-  "atualizado": "2026-10-08T18:53:49.800Z",
+  "atualizado": "2026-10-09T18:24:24.688Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-08T18:53:39.182Z",
-      "seguidores": 33068,
-      "ultimoPost": "2026-10-08T14:07:04+0000"
+      "lidoEm": "2026-10-09T18:24:13.097Z",
+      "seguidores": 33070,
+      "ultimoPost": "2026-10-09T11:08:41+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-08T18:53:40.428Z",
-      "seguidores": 101162,
-      "ultimoPost": "2026-10-07T20:43:58+0000"
+      "lidoEm": "2026-10-09T18:24:14.823Z",
+      "seguidores": 101283,
+      "ultimoPost": "2026-10-08T20:55:07+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-08T18:53:41.727Z",
+      "lidoEm": "2026-10-09T18:24:15.936Z",
       "seguidores": 9389,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-08T18:53:43.398Z",
-      "seguidores": 74057,
-      "ultimoPost": "2026-10-05T02:06:38+0000"
+      "lidoEm": "2026-10-09T18:24:17.709Z",
+      "seguidores": 74059,
+      "ultimoPost": "2026-10-09T01:24:30+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-08T18:53:45.225Z",
-      "seguidores": 21141,
+      "lidoEm": "2026-10-09T18:24:19.944Z",
+      "seguidores": 21144,
       "ultimoPost": "2026-10-05T16:01:12+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-08T18:53:46.586Z",
-      "seguidores": 33125,
+      "lidoEm": "2026-10-09T18:24:21.598Z",
+      "seguidores": 33170,
       "ultimoPost": "2026-10-07T22:00:19+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-08T18:53:49.349Z",
+      "lidoEm": "2026-10-09T18:24:24.359Z",
       "seguidores": 6251,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
@@ -69,21 +69,6 @@
   ],
   "shows": [
     {
-      "id": "pearljamcoverribeirao-2026-10-08-araxa",
-      "banda": "pearljamcoverribeirao",
-      "nome": "Pearl Jam Cover Ribeirão",
-      "data": "2026-10-08",
-      "casa": "oktobeeraraxa",
-      "casaNome": null,
-      "cidade": "Araxá",
-      "uf": "MG",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
-      "detalhe": "https://www.instagram.com/p/Dd2C7uSuddY/"
-    },
-    {
       "id": "blaymorphed-2026-10-09-sao-bernardo",
       "banda": "blaymorphed",
       "nome": "Blaymorphed",
@@ -95,7 +80,8 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
+      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/",
+      "detalhe": "https://www.instagram.com/p/DeRXdk8vQdX/"
     },
     {
       "id": "pearljamcoverribeirao-2026-10-09-araraquara",
@@ -118,13 +104,13 @@
       "nome": "PJ 90",
       "data": "2026-10-09",
       "casa": "jumpbarbecue",
-      "casaNome": null,
-      "cidade": "Jundiai",
+      "casaNome": "Último show do ano",
+      "cidade": "Jundiaí",
       "uf": "SP",
       "fechado": false,
       "observacao": null,
-      "hora": "21:00",
-      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+      "hora": "21:30",
+      "fonte": "https://www.instagram.com/p/DeQUnYYG4C-/"
     },
     {
       "id": "blackcirclepj-2026-10-10-rio-de-janeiro",
@@ -185,46 +171,32 @@
       "detalhe": "https://www.instagram.com/reel/DeNYdcaR2aH/"
     },
     {
-      "id": "pjnoventa-2026-10-10-local",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-10",
-      "casa": null,
-      "casaNome": null,
-      "cidade": null,
-      "uf": null,
-      "fechado": true,
-      "observacao": null,
-      "hora": "13:00",
-      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
-    },
-    {
       "id": "pjnoventa-2026-10-10-santo-andre",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-10-10",
       "casa": "beersfestival",
-      "casaNome": "Paço Municipal",
+      "casaNome": null,
       "cidade": "Santo André",
       "uf": "SP",
       "fechado": false,
       "observacao": null,
-      "hora": "17:30",
-      "fonte": "https://www.instagram.com/p/DeGGQe8DC44/"
+      "hora": "17:00",
+      "fonte": "https://www.instagram.com/p/DeQUnYYG4C-/"
     },
     {
-      "id": "pjnoventa-2026-10-10-braganca-pta",
+      "id": "pjnoventa-2026-10-10-braganca-paulista",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-10-10",
       "casa": "brasilbeerfest",
       "casaNome": null,
-      "cidade": "Bragança Pta",
+      "cidade": "Bragança Paulista",
       "uf": "SP",
       "fechado": false,
       "observacao": null,
       "hora": "23:00",
-      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+      "fonte": "https://www.instagram.com/p/DeQUnYYG4C-/"
     },
     {
       "id": "blackcirclepj-2026-10-11-volta-redonda",
