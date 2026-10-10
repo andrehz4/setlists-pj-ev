@@ -1,5 +1,5 @@
 // Gerador do MP4 do story diário (1080x1920, 30 fps), animado quadro a quadro.
-//   1. Um fundo por card (foto + gradiente), reaproveitado em todos os quadros daquele card.
+//   1. Um fundo por card (foto + gradiente) com aproximação lenta no rosto (story/fundo.mjs).
 //   2. Cada quadro é um PNG calculado pelo tempo (manchete em máquina de escrever, tarja que pula).
 //   3. ffmpeg junta a sequência e mixa a trilha (loudnorm -16 LUFS, fade in/out).
 // Linha do tempo: abertura (3 s, ou o tempo da narração) + 3,5 s por notícia (até 5) + final 1,5 s.
@@ -15,7 +15,8 @@ import { getEditionNumber } from "./edition.mjs";
 import { naRaiz } from "../config.mjs";
 import { FPS, T_INTRO_END, T_CARD_DUR, T_OUTRO_DUR, buildIntroState, resolveSegment } from "./story/base.mjs";
 import { loadBadgeAnimated } from "./story/badge.mjs";
-import { buildCardSvg, prepareCardBg } from "./story/card.mjs";
+import { buildCardSvg } from "./story/card.mjs";
+import { prepararFundo, fundoNoQuadro } from "./story/fundo.mjs";
 
 export { loadBadgeAnimated };
 
@@ -48,7 +49,7 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
   const introState = buildIntroState({ date, itemCount: items.length, tarjaColor, badgeAnim, edition });
   console.log(`[story-video] style: ${STORY_STYLE} | edicao Nº ${introState.edition} | ${introState.dayOfWeekShort}`);
   console.log(`[story-video] preparando ${items.length} BGs...`);
-  const bgBuffers = await Promise.all(items.map(prepareCardBg));
+  const fundos = await Promise.all(items.map(prepararFundo));
   console.log(`[story-video] ${items.length} card(s), ${totalS.toFixed(1)}s, renderizando ${totalFrames} frames @${FPS}fps...`);
 
   async function renderFrame(idx) {
@@ -56,7 +57,7 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
     const destPath = path.join(tmpDir, `frame_${String(idx).padStart(5, "0")}.png`);
     if (seg.kind === "card") {
       const svg = buildCardSvg({ tarjaColor, item: items[seg.index], idx: seg.index + 1, total: items.length, tRel: seg.tRel });
-      await sharp(bgBuffers[seg.index]).composite([{ input: Buffer.from(svg), blend: "over" }]).png({ compressionLevel: 6 }).toFile(destPath);
+      await sharp(await fundoNoQuadro(fundos[seg.index], seg.tRel)).composite([{ input: Buffer.from(svg), blend: "over" }]).png({ compressionLevel: 6 }).toFile(destPath);
       return;
     }
     const montar = seg.kind === "intro" ? activeStyle.intro : activeStyle.outro;

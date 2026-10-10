@@ -1,10 +1,8 @@
 // Card de notícia do story, no padrão card02 vertical: cunha da cor do ciclo, wordmark, contador,
 // tarja que "pula", manchete Anton em máquina de escrever e o site no rodapé.
-import sharp from "sharp";
 import { F_ANTON, F_INTER_SB, F_INTER_XB, F_PLAYFAIR } from "../fontconfig-boot.mjs";
 import { clamp01, easeOutCubic, easeOutBack, progress, escapeXml } from "../story-styles/_shared.mjs";
 import { splitBalanced } from "../slide/texto.mjs";
-import { fetchBaseImageBuffer } from "../slide/imagem.mjs";
 import { W, H } from "./base.mjs";
 
 const SIDE_S = 64;
@@ -108,32 +106,4 @@ export function buildCardSvg({ tarjaColor, item, idx, total, tRel }) {
       font-family="${F_INTER_SB}" font-size="${siteFS}" fill="#ffffff"
       opacity="${(footerOpacity * 0.85).toFixed(2)}" letter-spacing="0.5">somaisumfadepearljam.com.br</text>
   </svg>`;
-}
-
-// Fundo do card: foto (mesma escolha do slide do feed) em cover + gradiente card02 vertical. Na faixa da manchete
-// (da tarja até o rodapé) a foto vem desfocada e mais escura, com borda de 160 px em degradê: foto clara atrás não
-// briga com a letra branca. Sem foto: grafite.
-const FEATHER = 160;
-export async function prepareCardBg(item) {
-  const baseBuf = (await fetchBaseImageBuffer(item))
-    || (await sharp({ create: { width: W, height: H, channels: 3, background: { r: 26, g: 24, b: 21 } } }).png().toBuffer());
-  const cover = await sharp(baseBuf, { failOn: "none" })
-    .resize(W, H, { fit: "cover", position: "attention" }).sharpen(1.1).png().toBuffer();
-  const y0 = Math.max(0, Math.round(layoutCard(item).tagTopY - 70)), yF = Math.max(0, y0 - FEATHER);
-  const mask = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <defs><linearGradient id="m" gradientUnits="userSpaceOnUse" x1="0" y1="${yF}" x2="0" y2="${y0}">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="1"/>
-    </linearGradient></defs><rect x="0" y="${yF}" width="${W}" height="${H - yF}" fill="url(#m)"/></svg>`);
-  const desfocada = await sharp(cover).blur(26).modulate({ brightness: 0.55, saturation: 0.7 })
-    .composite([{ input: mask, blend: "dest-in" }]).png().toBuffer();
-  const grad = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#000" stop-opacity="0.32"/>
-      <stop offset="22%" stop-color="#000" stop-opacity="0"/>
-      <stop offset="${Math.round((yF / H) * 100)}%" stop-color="#000" stop-opacity="0"/>
-      <stop offset="${Math.round((y0 / H) * 100)}%" stop-color="#000" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#000" stop-opacity="0.88"/>
-    </linearGradient></defs>
-    <rect x="0" y="0" width="${W}" height="${H}" fill="url(#g)"/></svg>`);
-  return sharp(cover).composite([{ input: desfocada, blend: "over" }, { input: grad, blend: "over" }]).png().toBuffer();
 }

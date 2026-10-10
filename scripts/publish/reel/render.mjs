@@ -5,6 +5,8 @@ import { W, H, FPS, clamp01, linear, easeOutQuart } from "./base.mjs";
 import { coldOpenSvg, outroSvg } from "./cenas-abertura-final.mjs";
 import { kineticSvg, cardSvg, paperSvg } from "./cenas-blocos.mjs";
 import { zoomWindow } from "./midia.mjs";
+import { comFaixa } from "../desfoque-faixa.mjs";
+import { prepararDesfoque } from "./desfoque.mjs";
 
 // ============ orquestracao ============
 
@@ -12,6 +14,7 @@ import { zoomWindow } from "./midia.mjs";
 export async function renderScene({ scene, total, accent, ctx, dir, concurrency = 8 }) {
   const frames = Math.round(scene.dur * FPS);
   await fs.mkdir(dir, { recursive: true });
+  await prepararDesfoque(scene, ctx, dir); // faixa da manchete (antes do encode, que usa ctx.mascaraPath)
 
   async function renderFrame(idx) {
     const t = idx / FPS;
@@ -50,6 +53,10 @@ export async function renderScene({ scene, total, accent, ctx, dir, concurrency 
     const scale = ctx.zoomFrom + (ctx.zoomTo - ctx.zoomFrom) * linear(t / scene.dur);
     const win = zoomWindow(ctx.zoom, scale);
     let pipe = sharp(ctx.zoom.base).extract(win).resize(W, H);
+    if (ctx.desfoque) {
+      const [nitido, desf] = await Promise.all([pipe.png().toBuffer(), sharp(ctx.desfoque.base).extract(win).resize(W, H).png().toBuffer()]);
+      pipe = sharp(await comFaixa(nitido, desf, ctx.desfoque.mascara));
+    }
     const composites = [];
     if (scene.kind === "card") {
       const wipe = easeOutQuart(clamp01(t / 0.45));

@@ -24,6 +24,16 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
 
+## 2026-10-10: desfoque atrás da manchete no reel, zoom no rosto no story
+
+- Desfoque comum em `scripts/publish/desfoque-faixa.mjs` (story e reel). Reel: cards de foto e cenas cinéticas
+  (com foto ou com clipe, via ffmpeg) desfocam a faixa da manchete (`reel/desfoque.mjs`, `REEL_DESFOQUE=0` desliga).
+  Abertura, papel, final e fundo fantasma ficam como estavam.
+- Story: foto do card ganhou aproximação lenta (1,00 a 1,12 no card) puxando pro rosto (blazeface), sem rosto vai pro
+  centro (`story/fundo.mjs`, `STORY_ZOOM=0` deixa parada). O desfoque acompanha o zoom.
+- Conferido: `npm test` (359 ok), story e reel renderizados em dry-run, cena de clipe testada à parte.
+- Conferir no ar: reel de domingo 11/10 e story de domingo.
+
 ## 2026-10-09 (noite): story mais legível, stories de banda variados, agenda no TriggerAll, cartão do site
 
 - Story diário de notícias (`scripts/publish/story/card.mjs`): foto desfocada e escurecida só na faixa da manchete

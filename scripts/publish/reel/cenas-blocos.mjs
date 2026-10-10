@@ -37,23 +37,34 @@ export function kineticSvg(t, { item, n, total, accent, dark = 0.68, ghost = fal
   </svg>`;
 }
 
-// BLOCO CARD: overlay sobre a foto (gradiente, cunha, tarja, manchete em bloco, meta).
-export function cardSvg(t, { item, n, total, accent, layout = null, tarjaTextW = null, dur = BLOCK_DUR }) {
+// Card ancorado no fundo: meta colada em bottom 300, manchete acima, tarja acima.
+function cardGeometria(item, layout) {
   const size = (item.title_pt || "").length > 60 ? 66 : 78;
   const lines = layout || wrapWords(item.title_pt || "", size, 880);
   const lh = Math.round(size * 1.06);
+  const metaTop = H - 300 - (27 + 14 + 27);
+  const titleH = lines.length * lh;
+  const titleTop = metaTop - 30 - titleH;
+  return { size, lines, lh, metaTop, titleH, titleTop, tarjaTop: titleTop - 26 - (28 + 22) };
+}
+
+// Faixa vertical (px) ocupada pelo texto da cena, pro desfoque atrás dele (null = cena sem desfoque).
+export function faixaDoTexto(kind, item, layout) {
+  if (kind === "card") return { y0: cardGeometria(item, layout).tarjaTop - 70, y1: H };
+  if (kind !== "kinetic") return null;
+  const size = (item.title_pt || "").length > 60 ? 94 : 112;
+  const linhas = (layout || wrapWords(item.title_pt || "", size, 920)).length;
+  return { y0: 560 - 60, y1: 664 + linhas * Math.round(size * 1.02) + 60 };
+}
+
+// BLOCO CARD: overlay sobre a foto (gradiente, cunha, tarja, manchete em bloco, meta).
+export function cardSvg(t, { item, n, total, accent, layout = null, tarjaTextW = null, dur = BLOCK_DUR }) {
+  const { size, lines, lh, metaTop, titleH, titleTop, tarjaTop } = cardGeometria(item, layout);
   const xe = seg(t, dur - 0.3, 0.3, easeInCubic);
   const wedge = seg(t, 0.15, 0.35, easeOutCubic);
   const head = seg(t, 0.6, 0.55, easeOutQuart);
   const metaO = seg(t, 1.3, 0.3, easeOutQuad);
   const tag = TAG_LABELS[item.tags?.[0]] || String(item.tags?.[0] || "NOTÍCIA").toUpperCase();
-
-  // ancoragem no fundo: meta colada em bottom 300, manchete acima, tarja acima
-  const metaH = 27 + 14 + 27;
-  const metaTop = H - 300 - metaH;
-  const titleH = lines.length * lh;
-  const titleTop = metaTop - 30 - titleH;
-  const tarjaTop = titleTop - 26 - (28 + 22);
 
   let titleText = "";
   lines.forEach((line, li) => {

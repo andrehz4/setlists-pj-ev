@@ -118,7 +118,7 @@ export async function buildReelVideo({
     await renderScene({ scene, total, accent, ctx, dir, concurrency });
 
     if (ctx.mode === "overlay") {
-      await encodeClipSegment({ clipPath, overlayDir: dir, dur: scene.dur, outPath: segPath });
+      await encodeClipSegment({ clipPath, overlayDir: dir, dur: scene.dur, outPath: segPath, mascaraPath: ctx.mascaraPath });
     } else {
       await encodePngSegment({ framesDir: dir, outPath: segPath });
     }

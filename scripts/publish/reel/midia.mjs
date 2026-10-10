@@ -6,6 +6,8 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import sharp from "sharp";
 import { W, H, FPS } from "./base.mjs";
+import { filtroFfmpeg } from "../desfoque-faixa.mjs";
+import { BRILHO_REEL } from "./desfoque.mjs";
 
 // ============ fundos ============
 
@@ -49,13 +51,17 @@ export async function encodePngSegment({ framesDir, outPath }) {
   await runFfmpeg(["-y", "-framerate", String(FPS), "-i", path.join(framesDir, "f_%05d.png"), ...X264, "-an", outPath]);
 }
 
-export async function encodeClipSegment({ clipPath, overlayDir, dur, outPath }) {
+// mascaraPath (opcional): faixa da manchete desfocada no clipe (reel/desfoque.mjs).
+export async function encodeClipSegment({ clipPath, overlayDir, dur, outPath, mascaraPath = null }) {
+  const clipe = `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1`;
+  const fundo = mascaraPath ? `${clipe}[cl];${filtroFfmpeg("[cl]", "[2:v]", "[bg]", { brilho: BRILHO_REEL })}` : `${clipe}[bg]`;
   await runFfmpeg([
     "-y",
     "-stream_loop", "-1", "-t", String(dur + 0.5), "-i", clipPath,
     "-framerate", String(FPS), "-i", path.join(overlayDir, "f_%05d.png"),
+    ...(mascaraPath ? ["-loop", "1", "-framerate", String(FPS), "-t", String(dur + 0.5), "-i", mascaraPath] : []),
     "-filter_complex",
-    `[0:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1[bg];[bg][1:v]overlay=0:0:shortest=1[v]`,
+    `${fundo};[bg][1:v]overlay=0:0:shortest=1[v]`,
     "-map", "[v]", "-an", "-t", String(dur), ...X264, outPath,
   ]);
 }
