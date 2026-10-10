@@ -1,39 +1,39 @@
 {
-  "atualizado": "2026-10-09T18:24:24.688Z",
+  "atualizado": "2026-10-10T12:17:39.738Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-09T18:24:13.097Z",
-      "seguidores": 33070,
+      "lidoEm": "2026-10-10T12:17:30.371Z",
+      "seguidores": 33066,
       "ultimoPost": "2026-10-09T11:08:41+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-09T18:24:14.823Z",
-      "seguidores": 101283,
-      "ultimoPost": "2026-10-08T20:55:07+0000"
+      "lidoEm": "2026-10-10T12:17:31.670Z",
+      "seguidores": 101315,
+      "ultimoPost": "2026-10-09T20:39:22+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-09T18:24:15.936Z",
-      "seguidores": 9389,
+      "lidoEm": "2026-10-10T12:17:32.861Z",
+      "seguidores": 9390,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-09T18:24:17.709Z",
-      "seguidores": 74059,
+      "lidoEm": "2026-10-10T12:17:34.636Z",
+      "seguidores": 74079,
       "ultimoPost": "2026-10-09T01:24:30+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-09T18:24:19.944Z",
-      "seguidores": 21144,
+      "lidoEm": "2026-10-10T12:17:36.105Z",
+      "seguidores": 21152,
       "ultimoPost": "2026-10-05T16:01:12+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-09T18:24:21.598Z",
-      "seguidores": 33170,
+      "lidoEm": "2026-10-10T12:17:37.274Z",
+      "seguidores": 33214,
       "ultimoPost": "2026-10-07T22:00:19+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-09T18:24:24.359Z",
-      "seguidores": 6251,
+      "lidoEm": "2026-10-10T12:17:39.588Z",
+      "seguidores": 6256,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
   },
@@ -68,50 +68,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blaymorphed-2026-10-09-sao-bernardo",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-10-09",
-      "casa": "barrockclub_",
-      "casaNome": null,
-      "cidade": "São Bernardo",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/",
-      "detalhe": "https://www.instagram.com/p/DeRXdk8vQdX/"
-    },
-    {
-      "id": "pearljamcoverribeirao-2026-10-09-araraquara",
-      "banda": "pearljamcoverribeirao",
-      "nome": "Pearl Jam Cover Ribeirão",
-      "data": "2026-10-09",
-      "casa": "corleonemh",
-      "casaNome": null,
-      "cidade": "Araraquara",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
-      "detalhe": "https://www.instagram.com/p/Dd2MtXaMfdK/"
-    },
-    {
-      "id": "pjnoventa-2026-10-09-jundiai",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-09",
-      "casa": "jumpbarbecue",
-      "casaNome": "Último show do ano",
-      "cidade": "Jundiaí",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "21:30",
-      "fonte": "https://www.instagram.com/p/DeQUnYYG4C-/"
-    },
     {
       "id": "blackcirclepj-2026-10-10-rio-de-janeiro",
       "banda": "blackcirclepj",
