@@ -55,9 +55,10 @@ export function arquivoDaFala(texto, voz = VOZ, dir = DIR_VOZ) {
 export const falasNecessarias = (nomes, ufs = []) => [...nomes.flatMap((n) => ABERTURAS.map((f) => f(nomeFalado(n)))), ...FINAIS,
   ...ufs.map(fraseEstado).filter(Boolean), ...Object.keys(HORAS).map((h) => fraseHora(`${h}:00`)), FRASE_SEM_HORA];
 
-// Falas do story de uma banda num dia: variação escolhida pelo dia (rodízio), abertura e final diferentes entre si.
-export function falasDoStory(nomeBanda, dia) {
-  const n = Number(String(dia).replaceAll("-", "")) || 0;
+// Falas do story de uma banda num dia: variação escolhida pelo dia (rodízio) mais k (ordem da banda no dia), pra
+// bandas do mesmo dia não abrirem nem fecharem com a mesma frase.
+export function falasDoStory(nomeBanda, dia, k = 0) {
+  const n = (Number(String(dia).replaceAll("-", "")) || 0) + k;
   const voz = vozDoDia(dia);
   const abertura = ABERTURAS[n % ABERTURAS.length](nomeFalado(nomeBanda));
   const final = FINAIS[(n + 1) % FINAIS.length];

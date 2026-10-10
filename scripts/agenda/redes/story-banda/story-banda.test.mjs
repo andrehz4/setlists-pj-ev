@@ -54,6 +54,15 @@ test("mapa: rodízio A/B/C por dia, rota só com estrada de verdade", () => {
   assert.equal(variacaoDoDia(diaC, { ...rib, baseLonlat: null }), "B", "sem cidade de origem: sem rota");
 });
 
+test("mapa: bandas do mesmo dia não repetem mapa", () => {
+  const dia = "2026-10-09", usados = [];
+  for (const k of [0, 1, 2]) usados.push(variacaoDoDia(dia, rib, k, usados));
+  assert.equal(new Set(usados).size, 3);
+  const semRota = [];
+  for (const k of [0, 1]) semRota.push(variacaoDoDia(dia, casa, k, semRota));
+  assert.deepEqual(new Set(semRota), new Set(["A", "B"]), "sem rota: alterna papel e pinos");
+});
+
 test("mapa B e C: SVG válido em todas as fases, sem travessão", () => {
   for (const v of ["B", "C"]) for (const st of [story, rib, casa]) for (const r of [6.5, 7.9, 8.6, 9.4, 10.5]) {
     const svg = quadroSvg(r, st, cor, null, v);

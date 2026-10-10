@@ -27,6 +27,9 @@ const DRY = args.includes("--dry-run"), NO_GIT = args.includes("--no-git");
 const PUBLICAR = process.env.AGENDA_PUBLICAR === "1" && !DRY;
 const LOG = naRaiz("media/agenda/_story-banda-log.json");
 const TEMA = { "#0a0a0a": "preto", "#E10600": "vermelho", "#a87f2c": "ocre", "#2a5b9e": "azul" };
+const ORDEM_TEMAS = ["azul", "ocre", "preto", "vermelho"];
+// cor do ciclo pra 1a banda do dia; as seguintes andam na roda (3 stories seguidos não saem da mesma cor)
+const temaDaBanda = (tema, k) => ORDEM_TEMAS[(ORDEM_TEMAS.indexOf(tema) + k) % ORDEM_TEMAS.length];
 
 async function main() {
   const dia = process.env.AGENDA_DIA || diaBRT();
@@ -41,21 +44,23 @@ async function main() {
   const tema = TEMA[cor] || "azul";
   const tracks = await listTracks();
   const acervo = carregarTransicoes();
-  const feitos = [];
+  const feitos = [], mapasUsados = DRY ? [] : log.entradas.filter((e) => e.dia === dia && e.mapa).map((e) => e.mapa);
   for (const [k, st] of stories.entries()) {
-    if (log.entradas.some((e) => e.dia === dia && e.banda === st.contaPura && e.postId)) { console.log(`[story-banda] ${st.banda} já publicado`); continue; }
+    if (!DRY && log.entradas.some((e) => e.dia === dia && e.banda === st.contaPura && e.postId)) { console.log(`[story-banda] ${st.banda} já publicado`); continue; }
     const escolhidos = clipesDoStory(acervo, dia, k);
     const clipes = escolhidos ? materializar(escolhidos).map((t) => t.arq) : [];
     if (clipes.length < 3) { console.warn(`[story-banda] ${st.banda}: sem trechos de clipe suficientes, pulando`); continue; }
-    const f = falasDaBanda(st);
+    const f = falasDaBanda(st, k);
     const falas = { abertura: f.abertura, whoosh: f.whoosh, estado: f.estado, data: cortarData(f.dataInteira, tmp), hora: f.hora, final: f.final };
     const logo = naRaiz(`media/agenda/fotos/${st.contaPura}.jpg`);
     const saida = path.join(tmp, `${dia}-${st.contaPura}.mp4`);
-    const variacao = variacaoDoDia(dia, st);
-    await renderizarStory({ story: st, tema, variacao, logo: fs.existsSync(logo) ? logo : null, clipes, falas,
+    const variacao = variacaoDoDia(dia, st, k, mapasUsados);
+    mapasUsados.push(variacao);
+    const temaK = temaDaBanda(tema, k);
+    await renderizarStory({ story: st, tema: temaK, variacao, logo: fs.existsSync(logo) ? logo : null, clipes, falas,
       trilha: tracks[(dayOfYear(new Date(`${dia}T12:00:00Z`)) + k) % tracks.length].path, saida });
     const contas = contasDoStory(st);
-    console.log(`[story-banda] ${st.banda}: ${st.shows.length} show(s), mapa ${variacao}, voz ${f.voz.nome}, marcar ${contas.join(", ")} -> ${saida}`);
+    console.log(`[story-banda] ${st.banda}: ${st.shows.length} show(s), mapa ${variacao}, cor ${temaK}, voz ${f.voz.nome}, marcar ${contas.join(", ")} -> ${saida}`);
     if (DRY) { fs.copyFileSync(saida, naRaiz(`media/agenda/_teste-${dia}-${st.contaPura}.mp4`)); continue; }
     if (!PUBLICAR) continue;
     let videoUrl = await publicarViaR2(saida, `stories/agenda-${dia}-${st.contaPura}.mp4`);

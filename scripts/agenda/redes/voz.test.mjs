@@ -16,4 +16,7 @@ test("story do dia: rodízio pelo dia e arquivo pelo texto (mesma frase = mesmo 
   assert.notEqual(a.textos.abertura, b.textos.abertura);
   assert.equal(a.abertura, arquivoDaFala(a.textos.abertura));
   assert.ok(!Object.values(a.textos).join(" ").includes("—"));
+  const k1 = falasDoStory("Lost Dogs", "2026-10-10", 1);
+  assert.notEqual(k1.textos.abertura, a.textos.abertura, "2a banda do dia abre com outra frase");
+  assert.notEqual(k1.textos.final, a.textos.final, "e fecha com outra");
 });

@@ -40,9 +40,9 @@ function arquivoData(dia, voz) {
   return f ? path.join(DIR_DATAS, f) : null;
 }
 
-export function falasDaBanda(st) {
-  const voz = vozDoDia(st.dia);
-  const f = falasDoStory(st.banda, st.dia);
+export function falasDaBanda(st, k = 0) {
+  const voz = vozDoDia(st.dia); // fica a do dia: a fala da data só existe gravada nela
+  const f = falasDoStory(st.banda, st.dia, k);
   const estado = fraseEstado(st.shows[0].uf), hora = fraseHora(st.shows[0].hora);
   return {
     voz,
