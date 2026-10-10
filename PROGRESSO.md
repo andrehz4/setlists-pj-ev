@@ -33,6 +33,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   centro (`story/fundo.mjs`, `STORY_ZOOM=0` deixa parada). O desfoque acompanha o zoom.
 - Conferido: `npm test` (359 ok), story e reel renderizados em dry-run, cena de clipe testada à parte.
 - Conferir no ar: reel de domingo 11/10 e story de domingo.
+- Pendente: no reel de 11/10 a manchete do Jeff Ament (card) corta "NEM QUE FOSSE DE" na borda direita (quebra de
+  linha do card no `reel/cenas-blocos.mjs`, problema antigo, não do desfoque). Andre aprovou o desfoque e o zoom.
 
 ## 2026-10-09 (noite): story mais legível, stories de banda variados, agenda no TriggerAll, cartão do site
 
