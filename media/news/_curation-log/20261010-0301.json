@@ -1,0 +1,20 @@
+{
+  "runAt": "2026-10-10T03:01Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 10,
+  "distribution": { "midia": 10, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "1a330845fe", "titulo": "Olivia Vedder lança Show Me The Truth, seu primeiro single solo", "kind": "midia" },
+    { "id": "189856d157", "titulo": "Mike McCready topa o Pearl Jam na Sphere, mas diz que a banda é meio pão-dura", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "5981a0343e", "title": "Pearl Jam Covers (r/SturgillSimpson)", "reason": "especulação de fã sobre cover hipotético" },
+    { "id": "0b3fca8878", "title": "Classic Rock 359 (Queen)", "reason": "PJ tangencial (só citado no sumário da revista)" },
+    { "id": "b5b9ef2fb2", "title": "No One Knows single at thrift (r/qotsa)", "reason": "texto vazio, sem menção a PJ" },
+    { "id": "8ca3d1b6ac", "title": "Pearl Jam, 1992 (r/VintageLadyBoners)", "reason": "texto vazio" },
+    { "id": "d87a671c43", "title": "35 years ago today (r/Soundgarden)", "reason": "relato pessoal curto, sem data nem show identificado" },
+    { "id": "23ec9f3aeb", "title": "Class of 97 collection (r/vinyl)", "reason": "PJ tangencial (lista de coleção de vinil)" },
+    { "id": "497020e968", "title": "Song name? (r/NameThatSong)", "reason": "texto vazio" },
+    { "id": "34b44e470d", "title": "Mirror Ball full album (r/Music)", "reason": "texto vazio (só link do álbum)" }
+  ]
+}
