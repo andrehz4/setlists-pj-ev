@@ -12,16 +12,34 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Pendências vivas:
   - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com 7 bandas e a turnê oficial, coleta diária
     09:17 (`agenda.yml`). Post "Agenda da semana" (segunda 10:07) e STORY EM VÍDEO POR BANDA (todo dia 10:37,
-    `AGENDA_STORY_VIDEO=1` + `AGENDA_PUBLICAR=1`, ambos LIGADOS em 06/10). 1º story por banda real: qui 08/10 10:37
-    (Pearl Jam Cover Ribeirão, mapa Papel). Conferir no Telegram e em `media/agenda/_story-banda-log.json` se o
-    story de VÍDEO aceitou a marcação (`marcou: true`) e perguntar a uma banda se apareceu o botão de repostar.
-    Conferir em ~1 semana se /agenda/ entrou no índice do Google.
+    `AGENDA_STORY_VIDEO=1` + `AGENDA_PUBLICAR=1`, ambos LIGADOS em 06/10). Marcação no story de vídeo OK
+    (`marcou: true` nos 3 de 09/10). Desde 09/10 os 3 robôs da agenda são disparados pelo TriggerAll (ids 7, 8, 9):
+    CONFERIR sáb 10/10 se a coleta rodou 09:17 e o story 10:37 (antes o cron do GitHub atrasava 5 a 6 h).
+    Perguntar a uma banda se apareceu o botão de repostar. Conferir se /agenda/ entrou no índice do Google.
+  - Google Analytics do site (G-234ZL5MF0T) não aparece na conta eng.andrehz: descobrir em qual conta Google está.
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
   - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
   - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB): decidir se apaga.
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
+
+## 2026-10-09 (noite): story mais legível, stories de banda variados, agenda no TriggerAll, cartão do site
+
+- Story diário de notícias (`scripts/publish/story/card.mjs`): foto desfocada e escurecida só na faixa da manchete
+  (calculada pelo mesmo layout do texto, borda em degradê de 160 px); máquina de escrever em ritmo constante (a curva
+  que freava deixava a última letra ~1 s parada).
+- Story por banda: bandas do mesmo dia não repetem mapa, cor de fundo, abertura nem frase final (`variacaoDoDia` com
+  k e mapas já usados, `falasDoStory` com k, tema girando a partir da cor do ciclo). A voz fica a do dia (a fala da
+  data só existe gravada nela). Sem rota de turnê (show a menos de 150 km) só sobram 2 mapas: a 3ª banda repete um.
+  Fala de apoio (data, estado, hora) que não cabe sai do story em vez de cancelar o dia (08/10 não saiu por isso).
+  `--dry-run` agora refaz story já publicado (pra testar).
+- Horário: o cron do GitHub atrasava 5 a 6 h (story das 10:37 saía 16h). Criados 3 gatilhos no TriggerAll
+  (Agenda Coleta 09:17, Agenda da Semana seg 10:07, Agenda Story por Banda 10:37); cron do YAML vira reserva.
+- Analytics (Cloudflare Web Analytics, 7 dias): 92 visitas, ~30 de fora (resto é Mac de teste); Facebook 12,
+  Google 8, IG 1; home e /agenda/ as mais vistas. Cartão "Site" no TriggerAll com esses números (repo triggerall,
+  rota `/api/analytics/site`, variáveis CF_* no Railway "hearty-trust"). O git do triggerall commita como
+  terra-gentil (a Vercel bloqueia outro autor).
 
 ## 2026-10-06 (madrugada, parte 2): story por banda LIGADO, 3 mapas em rodízio, logo da banda no mapa
 
