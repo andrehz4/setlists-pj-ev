@@ -520,6 +520,7 @@
 <script src="dados/albums.js"></script>
 <script src="dados/songs-db.js"></script>
 <script src="dados/media-manifest.js"></script>
+<script src="dados/fotos-reserva.js"></script>
 <script>
 // ========================================================================
 // DATA (injected at build-time)
@@ -8556,6 +8557,20 @@ function _newsEscape(s) {
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+// Foto da notícia. Sem foto própria, usa o acervo (dados/fotos-reserva.js, o mesmo do Instagram): foto da
+// pessoa citada no título/intro/tags, senão foto da banda. Escolha fixa por id (a notícia não troca de foto).
+function _newsImg(item) {
+  if (item.img) return item.img;
+  const R = typeof FOTOS_RESERVA !== "undefined" ? FOTOS_RESERVA : null;
+  if (!R) return "/media/news/_placeholder.svg?v=2";
+  const hay = [item.title_pt, item.title_ig, item.intro_pt, (item.tags || []).join(" ")].filter(Boolean).join(" ");
+  const pessoa = R.pessoas.find((p) => new RegExp(p.re, "i").test(hay));
+  const pool = pessoa ? pessoa.fotos : R.banda;
+  let h = 0;
+  for (const c of String(item.id || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return pool[h % pool.length];
+}
+
 // converte body com _via Fonte_ em <em>via Fonte</em>, mantem paragrafos por \n\n
 function _newsBodyHtml(body) {
   if (!body) return "";
@@ -8805,7 +8820,7 @@ function _renderNewsGrid(container, items, manifest) {
   const heroHtml = heroItem ? _renderNewsHeroHtml(heroItem, 1) : "";
 
   const cards = gridItems.map((item, i) => {
-    const img = item.img || "/media/news/_placeholder.svg?v=2";
+    const img = _newsImg(item);
     const tagsAttr = (Array.isArray(item.tags) ? item.tags : []).join(",");
     const num = String(i + 2).padStart(3, "0"); // 002, 003... (hero eh 001)
     return `
@@ -8952,7 +8967,7 @@ function _renderNewsGrid(container, items, manifest) {
 // pendurada (»). idx = 1 sempre (capa eh #001).
 function _renderNewsHeroHtml(item, idx = 1) {
   if (!item) return "";
-  const img = item.img || "/media/news/_placeholder.svg?v=2";
+  const img = _newsImg(item);
   const eyebrow = (Array.isArray(item.tags) && item.tags[0])
     ? (_NEWS_TAG_LABELS[item.tags[0]] || item.tags[0])
     : "destaque";
@@ -8995,7 +9010,7 @@ function _pickRelatedNews(currentItem, allItems, n = 6) {
 }
 
 function _renderNewsRelatedCardHtml(item, i) {
-  const img = item.img || "/media/news/_placeholder.svg?v=2";
+  const img = _newsImg(item);
   const num = String(i + 1).padStart(3, "0");
   return `
     <article class="news-card" data-id="${_newsEscape(item.id)}" style="--news-card-i:${i}" tabindex="0" role="link" aria-label="Abrir: ${_newsEscape(item.title_pt)}">
@@ -9015,7 +9030,7 @@ function _renderNewsRelatedCardHtml(item, i) {
 }
 
 function _renderNewsDetail(container, item, allItems) {
-  const img = item.img || "/media/news/_placeholder.svg?v=2";
+  const img = _newsImg(item);
   // proxima/anterior pra navegacao sequencial
   const idx = allItems.findIndex(i => i.id === item.id);
   const prev = idx > 0 ? allItems[idx - 1] : null;

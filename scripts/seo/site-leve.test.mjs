@@ -20,7 +20,7 @@ test("index.html sem <style> grande (CSS do site em css/app.css)", () => {
 
 test("dados/*.js carregam antes do script principal e existem", () => {
   const tags = [...html.matchAll(/<script src="(dados\/[^"]+)"><\/script>/g)].map((m) => m[1]);
-  assert.deepEqual(tags, ["dados/shows.js", "dados/albums.js", "dados/songs-db.js", "dados/media-manifest.js"]);
+  assert.deepEqual(tags, ["dados/shows.js", "dados/albums.js", "dados/songs-db.js", "dados/media-manifest.js", "dados/fotos-reserva.js"]);
   for (const t of tags) assert.ok(fs.existsSync(naRaiz(t)), t);
   assert.ok(html.indexOf(tags.at(-1)) < html.indexOf("DATA (injected"), "dados precisam vir antes do script principal");
 });
