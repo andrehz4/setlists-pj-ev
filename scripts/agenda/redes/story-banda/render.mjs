@@ -12,6 +12,7 @@ import { encaixar } from "./encaixe.mjs";
 
 const { default: sharp } = await import("sharp");
 const FPS = 30;
+const DISPENSAVEIS = ["data", "estado", "hora"];
 
 export function quadroSvg(r, story, cor, logoUri, variacao = "A") {
   const { T } = momento(r);
@@ -54,12 +55,17 @@ export async function renderizarStory({ story, tema = "azul", variacao = "A", lo
   entradas.push("-framerate", String(FPS), "-i", path.join(tmp, "q%04d.png"));
   fc += `[${ult}][${nq}:v]overlay=format=auto[v];`;
   // áudio: falas nos seus tempos, trilha baixa por baixo
-  const audios = FALAS.filter((f) => falas[f.chave]);
+  let audios = FALAS.filter((f) => falas[f.chave]);
   // mede cada fala e acelera o que passar da janela (o gerador já escolheu variações que cabem)
   const dur = Object.fromEntries(audios.map((f) => [f.chave, Number(spawnSync("ffprobe", ["-v", "error", "-show_entries",
     "format=duration", "-of", "csv=p=0", falas[f.chave]]).stdout.toString()) || 0]));
   const enc = encaixar(dur);
-  for (const [k, e] of Object.entries(enc)) if (!e.cabe) throw new Error(`fala "${k}" não cabe no story nem acelerada (${e.atempo}x)`);
+  // fala que não cabe: as de apoio (a data, o estado e a hora já estão escritos na tela) saem; abertura e final derrubam
+  for (const [k, e] of Object.entries(enc)) if (!e.cabe) {
+    if (!DISPENSAVEIS.includes(k)) throw new Error(`fala "${k}" não cabe no story nem acelerada (${e.atempo}x)`);
+    console.warn(`[story-banda] fala "${k}" não cabe (${e.atempo}x), story sai sem ela`);
+    audios = audios.filter((f) => f.chave !== k);
+  }
   audios.forEach((f) => entradas.push("-i", falas[f.chave]));
   entradas.push("-stream_loop", "-1", "-i", trilha);
   const ia = nq + 1;

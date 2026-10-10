@@ -178,6 +178,9 @@ webhooks (`backend/src/routes/webhooks.js`):
 | community.yml (digest) | `25 12 * * *` | 09:25 | cron |
 | community.yml (spotlight) | `25 0 * * *` | 21:25 | cron |
 | publish-story.yml | `0 16 * * *` | 13:00 | cron |
+| agenda.yml | `17 12 * * *` | 09:17 | cron (desde 2026-10-09; cron do YAML fica de reserva) |
+| agenda-semana.yml | `7 13 * * 1` | seg 10:07 | cron (idem) |
+| agenda-story.yml | `37 13 * * *` | 10:37 | cron (idem; o GitHub chegou a atrasar 6 h) |
 | **publish-instagram.yml** | (sem cron proprio) | **toda vez que a routine pusha** + ~06h | **webhook push** `claude/news-routine-*` (webhooks.js:127-177, dedup 3min) + encadeia publish-story no sucesso |
 
 ### ACHADO CRITICO (conecta com o bug de 2026-06-01) -- CAUSA REAL CORRIGIDA
