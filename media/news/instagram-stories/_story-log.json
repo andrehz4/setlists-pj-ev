@@ -1,18 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-07-31",
-      "runAt": "2026-07-31T16:01:05.085Z",
-      "items": [
-        "1a2dbc3aa6",
-        "b42d5778fb",
-        "56ac4b4cea"
-      ],
-      "track": "03-the-mountain-action-rock.mp3",
-      "tarjaColor": "#a87f2c",
-      "error": "IG API /27761714130083125/media: Error validating access token: Session has expired on Thursday, 30-Jul-26 12:06:45 PDT. The current time is Friday, 31-Jul-26 09:01:55 PDT."
-    },
-    {
       "dateKey": "2026-08-03",
       "runAt": "2026-08-03T16:01:01.904Z",
       "items": [
@@ -845,6 +833,23 @@
       "containerId": "18155232679471615",
       "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-10-09-1791561731712.mp4",
       "fbPostId": "2241757206556880"
+    },
+    {
+      "dateKey": "2026-10-10",
+      "runAt": "2026-10-10T16:00:49.599Z",
+      "items": [
+        "cd-20261010",
+        "291fa51b5e",
+        "189856d157",
+        "1a330845fe",
+        "cap-XCbazaD"
+      ],
+      "track": "12-pixabay-yutanaya-when-youre-not-here.mp3",
+      "tarjaColor": "#2a5b9e",
+      "postId": "18193307473396598",
+      "containerId": "18155336977471615",
+      "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-10-10-1791648165992.mp4",
+      "fbPostId": "1479188307602149"
     }
   ]
 }
