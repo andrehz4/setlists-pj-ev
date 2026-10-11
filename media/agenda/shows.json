@@ -1,38 +1,38 @@
 {
-  "atualizado": "2026-10-10T17:22:42.241Z",
+  "atualizado": "2026-10-11T12:17:38.532Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-10T17:22:32.297Z",
-      "seguidores": 33061,
+      "lidoEm": "2026-10-11T12:17:27.805Z",
+      "seguidores": 33075,
       "ultimoPost": "2026-10-09T11:08:41+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-10T17:22:33.809Z",
-      "seguidores": 101339,
+      "lidoEm": "2026-10-11T12:17:29.381Z",
+      "seguidores": 101382,
       "ultimoPost": "2026-10-09T20:39:22+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-10T17:22:34.889Z",
+      "lidoEm": "2026-10-11T12:17:30.635Z",
       "seguidores": 9388,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-10T17:22:36.718Z",
-      "seguidores": 74083,
+      "lidoEm": "2026-10-11T12:17:32.765Z",
+      "seguidores": 74188,
       "ultimoPost": "2026-10-09T01:24:30+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-10T17:22:38.450Z",
-      "seguidores": 21152,
+      "lidoEm": "2026-10-11T12:17:34.368Z",
+      "seguidores": 21161,
       "ultimoPost": "2026-10-05T16:01:12+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-10T17:22:39.695Z",
-      "seguidores": 33223,
+      "lidoEm": "2026-10-11T12:17:35.812Z",
+      "seguidores": 33256,
       "ultimoPost": "2026-10-07T22:00:19+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-10T17:22:41.945Z",
+      "lidoEm": "2026-10-11T12:17:38.220Z",
       "seguidores": 6258,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
@@ -68,92 +68,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-10-10-rio-de-janeiro",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-10-10",
-      "casa": "ttgarage.bar",
-      "casaNome": null,
-      "cidade": "Rio de Janeiro",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": "23:00",
-      "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/",
-      "detalhe": "https://www.instagram.com/p/DeKpixBsQrR/"
-    },
-    {
-      "id": "blaymorphed-2026-10-10-braganca-pta",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-10-10",
-      "casa": "acervodotuzzibar",
-      "casaNome": null,
-      "cidade": "Bragança Pta",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
-    },
-    {
-      "id": "pearljamsp-2026-10-10-suzano",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-10-10",
-      "casa": "botecohelena",
-      "casaNome": null,
-      "cidade": "Suzano",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "22:00",
-      "fonte": "https://www.instagram.com/p/DeHkOjTR7GZ/"
-    },
-    {
-      "id": "pearljamcoverribeirao-2026-10-10-tres-lagoas",
-      "banda": "pearljamcoverribeirao",
-      "nome": "Pearl Jam Cover Ribeirão",
-      "data": "2026-10-10",
-      "casa": "viamalte.ms",
-      "casaNome": null,
-      "cidade": "Três Lagoas",
-      "uf": "MS",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
-      "detalhe": "https://www.instagram.com/reel/DeNYdcaR2aH/"
-    },
-    {
-      "id": "pjnoventa-2026-10-10-santo-andre",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-10",
-      "casa": "beersfestival",
-      "casaNome": null,
-      "cidade": "Santo André",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "17:00",
-      "fonte": "https://www.instagram.com/p/DeQUnYYG4C-/"
-    },
-    {
-      "id": "pjnoventa-2026-10-10-braganca-paulista",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-10",
-      "casa": "brasilbeerfest",
-      "casaNome": null,
-      "cidade": "Bragança Paulista",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "23:00",
-      "fonte": "https://www.instagram.com/p/DeQUnYYG4C-/"
-    },
     {
       "id": "blackcirclepj-2026-10-11-volta-redonda",
       "banda": "blackcirclepj",
