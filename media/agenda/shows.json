@@ -1,39 +1,39 @@
 {
-  "atualizado": "2026-10-12T12:17:45.202Z",
+  "atualizado": "2026-10-12T21:18:42.173Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-12T12:17:30.266Z",
-      "seguidores": 33086,
+      "lidoEm": "2026-10-12T21:18:31.319Z",
+      "seguidores": 33085,
       "ultimoPost": "2026-10-11T19:35:56+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-12T12:17:32.192Z",
-      "seguidores": 101440,
-      "ultimoPost": "2026-10-09T20:39:22+0000"
+      "lidoEm": "2026-10-12T21:18:32.886Z",
+      "seguidores": 101477,
+      "ultimoPost": "2026-10-12T21:03:28+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-12T12:17:34.940Z",
-      "seguidores": 9388,
+      "lidoEm": "2026-10-12T21:18:33.967Z",
+      "seguidores": 9387,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-12T12:17:37.330Z",
-      "seguidores": 74238,
+      "lidoEm": "2026-10-12T21:18:35.545Z",
+      "seguidores": 74246,
       "ultimoPost": "2026-10-11T18:10:25+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-12T12:17:39.253Z",
-      "seguidores": 21015,
+      "lidoEm": "2026-10-12T21:18:37.422Z",
+      "seguidores": 21012,
       "ultimoPost": "2026-10-05T16:01:12+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-12T12:17:41.223Z",
-      "seguidores": 33269,
+      "lidoEm": "2026-10-12T21:18:39.124Z",
+      "seguidores": 33272,
       "ultimoPost": "2026-10-07T22:00:19+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-12T12:17:44.957Z",
-      "seguidores": 6259,
+      "lidoEm": "2026-10-12T21:18:41.779Z",
+      "seguidores": 6266,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
   },
@@ -73,14 +73,15 @@
       "banda": "blackcirclepj",
       "nome": "Black Circle",
       "data": "2026-10-15",
-      "casa": null,
+      "casa": "coordenadasbar",
       "casaNome": null,
       "cidade": "Rio de Janeiro",
       "uf": "RJ",
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/"
+      "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/",
+      "detalhe": "https://www.instagram.com/p/DeaJyMjMbko/"
     },
     {
       "id": "pjnoventa-2026-10-15-pradocraftbeer",
