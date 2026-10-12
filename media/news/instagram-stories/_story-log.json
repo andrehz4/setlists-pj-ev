@@ -2,18 +2,6 @@
   "entries": [
     {
       "dateKey": "2026-08-04",
-      "runAt": "2026-08-04T16:02:06.726Z",
-      "items": [
-        "cd-20260804",
-        "0bb83f13b9",
-        "8dfd314407"
-      ],
-      "track": "02-nightcast-grunge-diner.mp3",
-      "tarjaColor": "#a87f2c",
-      "error": "IG API /27761714130083125/media: Error validating access token: Session has expired on Thursday, 30-Jul-26 12:06:45 PDT. The current time is Tuesday, 04-Aug-26 09:03:06 PDT."
-    },
-    {
-      "dateKey": "2026-08-04",
       "runAt": "2026-08-04T19:07:07.950Z",
       "items": [
         "cd-20260804",
@@ -851,6 +839,20 @@
       "containerId": "18155447776471615",
       "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-10-11-1791734555669.mp4",
       "fbPostId": "1110742124791470"
+    },
+    {
+      "dateKey": "2026-10-12",
+      "runAt": "2026-10-12T16:01:10.832Z",
+      "items": [
+        "0fc9108a8f",
+        "cap-pgEpKbE"
+      ],
+      "track": "14-pixabay-nickpanek-energetic-pop-punk-grunge.mp3",
+      "tarjaColor": "#2a5b9e",
+      "postId": "18127538704842304",
+      "containerId": "18155552131471615",
+      "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-10-12-1791820980641.mp4",
+      "fbPostId": "1718115360000918"
     }
   ]
 }
