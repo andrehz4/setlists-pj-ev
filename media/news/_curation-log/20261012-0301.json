@@ -1,0 +1,11 @@
+{
+  "runAt": "2026-10-12T03:01Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-f4f55363a0", "title": "Jeff crushing it in Etown last night", "reason": "spotlight sem conteúdo: só uma linha, local e contexto ambíguos (Etown), não é fan content" },
+    { "id": "eca0adb245", "title": "Some of the collection", "reason": "texto vazio, coleção de fitas em r/cassetteculture, PJ tangencial" }
+  ]
+}
