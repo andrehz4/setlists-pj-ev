@@ -1,38 +1,38 @@
 {
-  "atualizado": "2026-10-11T17:42:59.690Z",
+  "atualizado": "2026-10-12T12:17:45.202Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-11T17:42:51.097Z",
-      "seguidores": 33078,
-      "ultimoPost": "2026-10-09T11:08:41+0000"
+      "lidoEm": "2026-10-12T12:17:30.266Z",
+      "seguidores": 33086,
+      "ultimoPost": "2026-10-11T19:35:56+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-11T17:42:52.387Z",
-      "seguidores": 101399,
+      "lidoEm": "2026-10-12T12:17:32.192Z",
+      "seguidores": 101440,
       "ultimoPost": "2026-10-09T20:39:22+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-11T17:42:53.480Z",
+      "lidoEm": "2026-10-12T12:17:34.940Z",
       "seguidores": 9388,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-11T17:42:54.865Z",
-      "seguidores": 74215,
-      "ultimoPost": "2026-10-11T15:38:16+0000"
+      "lidoEm": "2026-10-12T12:17:37.330Z",
+      "seguidores": 74238,
+      "ultimoPost": "2026-10-11T18:10:25+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-11T17:42:56.341Z",
-      "seguidores": 21153,
+      "lidoEm": "2026-10-12T12:17:39.253Z",
+      "seguidores": 21015,
       "ultimoPost": "2026-10-05T16:01:12+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-11T17:42:57.496Z",
-      "seguidores": 33266,
+      "lidoEm": "2026-10-12T12:17:41.223Z",
+      "seguidores": 33269,
       "ultimoPost": "2026-10-07T22:00:19+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-11T17:42:59.355Z",
+      "lidoEm": "2026-10-12T12:17:44.957Z",
       "seguidores": 6259,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
@@ -69,49 +69,6 @@
   ],
   "shows": [
     {
-      "id": "blackcirclepj-2026-10-11-volta-redonda",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-10-11",
-      "casa": "blendbbq_festival",
-      "casaNome": null,
-      "cidade": "Volta Redonda",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/",
-      "detalhe": "https://www.instagram.com/p/DeNPt0MGcZ3/"
-    },
-    {
-      "id": "blaymorphed-2026-10-11-sao-paulo",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-10-11",
-      "casa": "stones_bar",
-      "casaNome": null,
-      "cidade": "São Paulo",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
-    },
-    {
-      "id": "pearljamsp-2026-10-11-praia-grande",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-10-11",
-      "casa": null,
-      "casaNome": null,
-      "cidade": "Praia Grande",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "20:00",
-      "fonte": "https://www.instagram.com/p/DeHlwozxcsP/"
-    },
-    {
       "id": "blackcirclepj-2026-10-15-rio-de-janeiro",
       "banda": "blackcirclepj",
       "nome": "Black Circle",
@@ -126,18 +83,18 @@
       "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/"
     },
     {
-      "id": "pjnoventa-2026-10-15-campinas",
+      "id": "pjnoventa-2026-10-15-pradocraftbeer",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-10-15",
       "casa": "pradocraftbeer",
       "casaNome": null,
-      "cidade": "Campinas",
-      "uf": "SP",
+      "cidade": null,
+      "uf": null,
       "fechado": false,
-      "observacao": "Trio Acústico",
-      "hora": "20:00",
-      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+      "observacao": null,
+      "hora": "19:00",
+      "fonte": "https://www.instagram.com/reel/DeXQ-nKJzWt/"
     },
     {
       "id": "blackcirclepj-2026-10-16-niteroi",
@@ -183,18 +140,18 @@
       "detalhe": "https://www.instagram.com/p/Dd9io5uN6-K/"
     },
     {
-      "id": "pjnoventa-2026-10-16-dourados",
+      "id": "pjnoventa-2026-10-16-vibesbardourados",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-10-16",
       "casa": "vibesbardourados",
       "casaNome": null,
-      "cidade": "Dourados",
-      "uf": "MS",
+      "cidade": null,
+      "uf": null,
       "fechado": false,
       "observacao": null,
-      "hora": "21:00",
-      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/",
+      "hora": null,
+      "fonte": "https://www.instagram.com/reel/DeXQ-nKJzWt/",
       "detalhe": "https://www.instagram.com/reel/DdUtRHYJYjQ/"
     },
     {
@@ -227,32 +184,32 @@
       "detalhe": "https://www.instagram.com/p/DeM9wUbPZhX/"
     },
     {
-      "id": "pjnoventa-2026-10-17-campo-grande",
+      "id": "pjnoventa-2026-10-17-o-irlandes-pub",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-10-17",
-      "casa": "augustarockstore",
+      "casa": "o_irlandes_pub",
       "casaNome": null,
-      "cidade": "Campo Grande",
-      "uf": "MS",
+      "cidade": null,
+      "uf": null,
       "fechado": false,
       "observacao": null,
-      "hora": "19:00",
-      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+      "hora": null,
+      "fonte": "https://www.instagram.com/reel/DeXQ-nKJzWt/"
     },
     {
-      "id": "pjnoventa-2026-10-18-sao-paulo",
+      "id": "pjnoventa-2026-10-18-quinkasbaripiranga",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-10-18",
       "casa": "quinkasbaripiranga",
       "casaNome": null,
-      "cidade": "São Paulo",
-      "uf": "SP",
+      "cidade": null,
+      "uf": null,
       "fechado": false,
       "observacao": null,
-      "hora": "21:00",
-      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
+      "hora": "18:00",
+      "fonte": "https://www.instagram.com/reel/DeXQ-nKJzWt/"
     },
     {
       "id": "blackcirclepj-2026-10-23-osasco",
