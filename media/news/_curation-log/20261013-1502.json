@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-10-13T15:02Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "fbe8aad76f", "title": "Guitarrista diz que Pearl Jam não deve tocar na Sphere (Terra)", "reason": "republicação de Tenho Mais Discos Que Amigos; sem novidade (já publicado: 0bce1566ab)" },
+    { "id": "5a990e2fa8", "title": "Guitarrista diz que Pearl Jam não deve tocar na Sphere (TMDQA)", "reason": "sem novidade (já publicado: 0bce1566ab, mesmas falas de Mike e Stone)" },
+    { "id": "cd-20261013", "title": "Digest comunidade 13/10", "reason": "dia fraco: fotos do Ohana sem texto, Vs. já publicado (7616fc3149), merch e perguntas soltas, nenhum post com engajamento" },
+    { "id": "3ac75330c5", "title": "Whale Wars with Capt. Paul Watson (podcast)", "reason": "PJ tangencial: entrevista com Paul Watson no palco Ohana Storytellers, sem integrante do PJ" }
+  ]
+}
