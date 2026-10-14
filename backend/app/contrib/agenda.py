@@ -5,8 +5,9 @@ Regra do Andre: o post nunca sai na hora. Vai pro próximo horário fixo que est
 colaborador não brigar no git com a coleta de notícias (as duas gravam media/news/):
 23h30, 01h30, 05h30, 08h30, 11h30, 13h30, 17h30 e 19h30 de Brasília.
 No máximo 1 post de colaborador por horário; ocupado, pula pro seguinte.
-O TriggerAll (gatilho "Contrib Curadoria") dispara o contrib-curadoria.yml às :31 dessas horas
-UTC; a mesma rodada faz a curadoria e publica. Mudou HORAS_UTC? Mude o gatilho e colab/api.js.
+O TriggerAll (gatilho "Contrib Curadoria") dispara o contrib-curadoria.yml às :11 e :31 dessas horas
+UTC: a das :11 adianta a curadoria (a FOLGA garante que o envio já existe), a das :31 cura o que
+faltou e publica. Mudou HORAS_UTC? Mude o gatilho e colab/api.js.
 """
 from datetime import UTC, datetime, timedelta, timezone
 

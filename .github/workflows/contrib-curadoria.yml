@@ -6,8 +6,8 @@
 # CONTRIB_BOT_KEY, ou com o painel desligado no backend, termina em segundos sem fazer nada.
 #
 # Os posts saem em 8 horários fixos (News fetch + 30 min, ver backend/app/contrib/agenda.py).
-# Sem cron aqui: quem dispara é o TriggerAll, gatilho "Contrib Curadoria" (`31 2,4,8,11,14,16,20,22 * * *`
-# UTC), uma rodada por horário que cura e já publica. O cron a cada 10 min do GitHub saía caro: cada
+# Sem cron aqui: quem dispara é o TriggerAll, gatilho "Contrib Curadoria" (`11,31 2,4,8,11,14,16,20,22 * * *`
+# UTC): a das :11 adianta a curadoria, a das :31 cura o que faltou e publica (2a chance se a 1a travar). O cron a cada 10 min do GitHub saía caro: cada
 # rodada vazia de 5 s era cobrada como 1 minuto (~2.300 min/mês).
 name: contrib-curadoria
 

@@ -23,6 +23,27 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB): decidir se apaga.
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
+  - Colaboradores em 8 horários fixos desde 14/10: acompanhar o 1º envio real (horário prometido x publicado) e o
+    consumo de Actions no fim do mês (esperado ~1.000 a 1.300 min no total da conta, antes rumava a ~3.700).
+
+## 2026-10-14: minutos do GitHub Actions, colaboradores em horários fixos
+
+- Diagnóstico: setlists gastava 91% da franquia (1.550 de 1.709 min em 14 dias, rumo a ~3.700 de 3.000 no mês). Culpado:
+  contrib-curadoria disparado 76x/dia (TriggerAll #6 em `5,20,31 * * * *` + resto do cron `*/10` do YAML). Cada rodada
+  de 5 s só via fila vazia e era cobrada como 1 min (~2.300 min/mês). Em ~1.000 rodadas só 1 envio real (05/10).
+- Mudança: post de colaborador sai no próximo de 8 horários fixos, News fetch + 30 min (23h30, 1h30, 5h30, 8h30, 11h30,
+  13h30, 17h30, 19h30 BRT), com folga mínima de 30 min (`backend/app/contrib/agenda.py`, `HORAS_UTC`; espelho em
+  `colab/api.js`, teste de casamento em `colab/colab.test.mjs`). TriggerAll #6 agora `11,31 2,4,8,11,14,16,20,22 * * *`
+  UTC (:11 adianta a curadoria, :31 publica; 2a chance porque as 3 rodadas do envio real de 05/10 travaram) (alterado pela API do painel); cron do YAML removido. Mudou os horários? Mudar os 3 juntos.
+- Produção: sync pro terra-gentil-app (commit dd3f3b8, deploy perpetual-energy OK, `/contrib/config` 200). Testes: backend
+  234, Terra Gentil 257, npm 360, painel 7, todos ok. Fila estava vazia na troca.
+- Encaixe conferido com todos os robôs do TriggerAll e do YAML (rotina 03/09/15/21 UTC, story 16:00, reel dom 12:07,
+  agenda 12:17/13:07/13:37, cápsula 23:07, community 00:25/12:25): folga mínima de 29 min, rodada de contrib dura até 15.
+- Consequência aceita: espera do colaborador até ~4 h; aviso de pedido de acesso no Telegram também só nesses horários.
+- Painel do TriggerAll mostrava o próximo disparo só pelo 1º minuto do cron; corrigido (repo triggerall 2939945).
+- CONFERIR 15/10 (roteiro): `gh run list -w contrib-curadoria.yml --limit 30 --json createdAt,event,conclusion`
+  tem que mostrar SÓ disparos às :11 e :31 de 02,04,08,11,14,16,20,22 UTC (16 por dia), todos `success`, nenhum
+  `schedule`. No TriggerAll o card "Contrib Curadoria" sem bolinha vermelha. Billing do Actions parando de subir ~76/dia.
 
 ## 2026-10-10: desfoque atrás da manchete no reel, zoom no rosto no story
 

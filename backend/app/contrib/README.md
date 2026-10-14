@@ -70,7 +70,7 @@ Status do envio: `enviado` -> `aprovado` / `ajustado` / `recusado` (curadoria IA
 ## Curadoria por IA (fase 3)
 
 `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/.github/workflows/contrib-curadoria.yml`, disparado pelo TriggerAll
-nos 8 horários (`31 2,4,8,11,14,16,20,22 * * *` UTC),
+nos 8 horários, às :11 (curadoria adiantada) e :31 (publica) (`11,31 2,4,8,11,14,16,20,22 * * *` UTC),
 código em `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/scripts/contrib/`:
 
 | Arquivo | Papel |
