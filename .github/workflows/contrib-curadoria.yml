@@ -5,13 +5,13 @@
 # img/ e items/ (scripts/contrib/publicar.mjs), então concorre com os crons de notícia. Sem o secret
 # CONTRIB_BOT_KEY, ou com o painel desligado no backend, termina em segundos sem fazer nada.
 #
-# Os posts saem sempre às :30 da próxima hora, então há de 30 a 90 min pra curar.
-# O cron do GitHub pode atrasar; rodar a cada 10 min dá folga.
+# Os posts saem em 8 horários fixos (News fetch + 30 min, ver backend/app/contrib/agenda.py).
+# Sem cron aqui: quem dispara é o TriggerAll, gatilho "Contrib Curadoria" (`31 2,4,8,11,14,16,20,22 * * *`
+# UTC), uma rodada por horário que cura e já publica. O cron a cada 10 min do GitHub saía caro: cada
+# rodada vazia de 5 s era cobrada como 1 minuto (~2.300 min/mês).
 name: contrib-curadoria
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   workflow_dispatch:
     inputs:
       dry:

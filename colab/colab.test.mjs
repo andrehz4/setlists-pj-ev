@@ -47,3 +47,15 @@ test("trecho vigente no tempo, com folga curta no fim", () => {
   assert.equal(trechoEm(ls, 2.6), null);
   assert.equal(trechoEm(ls, 4)?.text, "b");
 });
+
+test("horário previsto do painel é o mesmo do backend (agenda.py)", async () => {
+  const { HORAS_UTC, proximoHorario } = await import("./api.js");
+  const py = readFileSync(join(PASTA, "..", "backend", "app", "contrib", "agenda.py"), "utf8");
+  const horas = py.match(/^HORAS_UTC = \(([^)]*)\)/m)[1].split(",").map(Number);
+  assert.deepEqual(HORAS_UTC, horas);
+  const casos = [
+    ["2026-09-24T17:10:00Z", "17h30"], ["2026-09-24T20:00:00Z", "17h30"], ["2026-09-24T20:01:00Z", "19h30"],
+    ["2026-09-24T23:40:00Z", "23h30"], ["2026-09-25T02:05:00Z", "1h30"], ["2026-09-25T05:00:00Z", "5h30"],
+  ];
+  for (const [agora, esperado] of casos) assert.equal(proximoHorario(new Date(agora)), esperado, agora);
+});

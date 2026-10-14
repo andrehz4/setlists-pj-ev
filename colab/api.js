@@ -74,12 +74,21 @@ export function aviso(msg, tipo = "ok") {
   timerAviso = setTimeout(() => { box.hidden = true; }, 5000);
 }
 
-// Próximo :30 em horário de Brasília (só pra mostrar; quem decide é o servidor).
+// Horários fixos dos posts (UTC, :30), espelho de HORAS_UTC em backend/app/contrib/agenda.py.
+export const HORAS_UTC = [2, 4, 8, 11, 14, 16, 20, 22];
+
+// Próximo horário com 30 min de folga (só pra mostrar; quem decide é o servidor).
 export function proximoHorario(agora = new Date()) {
+  const limite = new Date(agora).getTime() + 30 * 60000;
   const d = new Date(agora);
-  d.setUTCMinutes(0, 0, 0);
-  d.setUTCHours(d.getUTCHours() + 1, 30);
-  return rotuloHora(d);
+  d.setUTCHours(0, 0, 0, 0);
+  for (;;) {
+    for (const hora of HORAS_UTC) {
+      d.setUTCHours(hora, 30, 0, 0);
+      if (d.getTime() >= limite) return rotuloHora(d);
+    }
+    d.setUTCDate(d.getUTCDate() + 1);
+  }
 }
 
 export function rotuloHora(data) {

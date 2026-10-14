@@ -18,23 +18,53 @@ def _utc(h, m):
     return datetime(2026, 9, 24, h, m, tzinfo=UTC)
 
 
+def _dia(d, h, m):
+    return datetime(2026, 9, d, h, m, tzinfo=UTC)
+
+
 @pytest.mark.parametrize("agora,esperado", [
-    (_utc(17, 10), _utc(18, 30)),
-    (_utc(17, 50), _utc(18, 30)),
-    (_utc(17, 0), _utc(18, 30)),
-    (_utc(23, 40), datetime(2026, 9, 25, 0, 30, tzinfo=UTC)),
+    (_utc(17, 10), _utc(20, 30)),  # 14h10 BRT sai 17h30
+    (_utc(19, 59), _utc(20, 30)),  # folga de 31 min, cabe
+    (_utc(20, 0), _utc(20, 30)),  # folga de 30 min exatos, cabe
+    (_utc(20, 1), _utc(22, 30)),  # 29 min, pula pro seguinte
+    (_utc(20, 30), _utc(22, 30)),
+    (_utc(23, 40), _dia(25, 2, 30)),  # vira o dia em UTC
+    (_dia(25, 2, 5), _dia(25, 4, 30)),
+    (_dia(25, 4, 0), _dia(25, 4, 30)),
+    (_dia(25, 5, 0), _dia(25, 8, 30)),
 ])
-def test_proximo_slot_e_sempre_meia_da_proxima_hora(agora, esperado):
+def test_proximo_slot_e_o_horario_fixo_com_folga(agora, esperado):
     assert agenda.proximo_slot(agora) == esperado
 
 
-def test_slot_ocupado_pula_pra_hora_seguinte():
-    ocupados = {_utc(18, 30), _utc(19, 30)}
-    assert agenda.escolher_slot(_utc(17, 10), ocupados) == _utc(20, 30)
+def test_horarios_casam_com_o_news_fetch_mais_30_min():
+    # Mudou aqui? Mude o gatilho "Contrib Curadoria" do TriggerAll e colab/api.js.
+    assert agenda.HORAS_UTC == (2, 4, 8, 11, 14, 16, 20, 22)
+    rotulos = [agenda.hora_brt(_utc(h, agenda.MINUTO)) for h in agenda.HORAS_UTC]
+    assert rotulos == ["23h30", "1h30", "5h30", "8h30", "11h30", "13h30", "17h30", "19h30"]
+
+
+def test_todo_slot_e_um_horario_fixo():
+    agora = _utc(0, 0)
+    for _ in range(200):
+        slot = agenda.proximo_slot(agora)
+        assert slot.minute == agenda.MINUTO and slot.hour in agenda.HORAS_UTC
+        assert slot - agora >= agenda.FOLGA
+        agora += timedelta(minutes=7)
+
+
+def test_slot_ocupado_pula_pro_horario_seguinte():
+    ocupados = {_utc(20, 30), _utc(22, 30)}
+    assert agenda.escolher_slot(_utc(17, 10), ocupados) == _dia(25, 2, 30)
+
+
+def test_ocupado_antes_do_proximo_nao_atrapalha():
+    assert agenda.escolher_slot(_utc(17, 10), {_utc(16, 30)}) == _utc(20, 30)
 
 
 def test_agenda_cheia_falha():
-    ocupados = {_utc(18, 30) + timedelta(hours=i) for i in range(agenda.MAX_SALTOS)}
+    slots = agenda._horarios_desde(_utc(0, 0))
+    ocupados = {s for s in (next(slots) for _ in range(80)) if s >= _utc(20, 30)}
     with pytest.raises(ValueError):
         agenda.escolher_slot(_utc(17, 10), ocupados)
 

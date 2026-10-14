@@ -1,7 +1,7 @@
 # scripts/contrib
 
 Robô do painel de colaboradores (`colaborar.html` + `colab/`). Mapa completo do módulo, incluindo o backend:
-`backend/app/contrib/README.md`. Roda no `contrib-curadoria.yml` a cada 10 min; sem o secret `CONTRIB_BOT_KEY`
+`backend/app/contrib/README.md`. Roda no `contrib-curadoria.yml` (TriggerAll, 8x por dia); sem o secret `CONTRIB_BOT_KEY`
 termina em segundos sem fazer nada.
 
 | Arquivo | Papel |

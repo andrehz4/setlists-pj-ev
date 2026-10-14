@@ -1,32 +1,47 @@
 """Agenda dos posts de colaborador. Funções puras, sem banco.
 
-Regra do Andre: o post nunca sai na hora. Vai sempre pro :30 da PRÓXIMA hora
-(14h10 e 14h50 saem às 15h30), o que dá de 30 a 90 minutos pra curadoria.
-No máximo 1 post de colaborador por slot; ocupado, pula pro :30 seguinte.
-O cron do publish roda em :12/:32/:52 UTC, então o :30 cai no ciclo das :32.
+Regra do Andre: o post nunca sai na hora. Vai pro próximo horário fixo que esteja a pelo menos
+30 minutos (FOLGA) do envio. Os horários são os do News fetch + 30 min, pra publicação do
+colaborador não brigar no git com a coleta de notícias (as duas gravam media/news/):
+23h30, 01h30, 05h30, 08h30, 11h30, 13h30, 17h30 e 19h30 de Brasília.
+No máximo 1 post de colaborador por horário; ocupado, pula pro seguinte.
+O TriggerAll (gatilho "Contrib Curadoria") dispara o contrib-curadoria.yml às :31 dessas horas
+UTC; a mesma rodada faz a curadoria e publica. Mudou HORAS_UTC? Mude o gatilho e colab/api.js.
 """
 from datetime import UTC, datetime, timedelta, timezone
 
 # Brasil sem horário de verão desde 2019: UTC-3 fixo, sem depender de tzdata.
 BRT = timezone(timedelta(hours=-3))
-MAX_SALTOS = 48
+HORAS_UTC = (2, 4, 8, 11, 14, 16, 20, 22)  # mesmas do News fetch no TriggerAll
+MINUTO = 30
+FOLGA = timedelta(minutes=30)
+MAX_SALTOS = 48  # horários tentados (6 dias) antes de dizer que a agenda está cheia
+
+
+def _horarios_desde(inicio: datetime):
+    """Horários fixos em ordem, a partir do dia de `inicio` (UTC)."""
+    dia = inicio.astimezone(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
+    while True:
+        for hora in HORAS_UTC:
+            yield dia.replace(hour=hora, minute=MINUTO)
+        dia += timedelta(days=1)
 
 
 def proximo_slot(now: datetime) -> datetime:
-    """:30 da próxima hora cheia, em UTC."""
-    hora = now.astimezone(UTC).replace(minute=0, second=0, microsecond=0)
-    return hora + timedelta(hours=1, minutes=30)
+    """Primeiro horário fixo a pelo menos FOLGA de `now`, em UTC."""
+    return next(s for s in _horarios_desde(now) if s >= now + FOLGA)
 
 
 def escolher_slot(now: datetime, ocupados: set[datetime]) -> datetime:
-    """Primeiro :30 livre a partir do próximo. Falha se 48 horas estiverem cheias."""
-    slot = proximo_slot(now)
+    """Primeiro horário livre a partir do próximo. Falha se MAX_SALTOS horários estiverem cheios."""
     ocupados_utc = {o.astimezone(UTC) for o in ocupados}
-    for _ in range(MAX_SALTOS):
+    inicio = proximo_slot(now)
+    for i, slot in enumerate(s for s in _horarios_desde(inicio) if s >= inicio):
+        if i >= MAX_SALTOS:
+            break
         if slot not in ocupados_utc:
             return slot
-        slot += timedelta(hours=1)
-    raise ValueError("agenda cheia nas próximas 48 horas")
+    raise ValueError("agenda cheia nos próximos horários")
 
 
 def inicio_do_dia_brt(now: datetime) -> datetime:

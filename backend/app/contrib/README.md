@@ -1,7 +1,8 @@
 # Colaboradores (backend/app/contrib)
 
 Fãs enviam posts (foto, texto e, depois, vídeo com legenda automática) pelo site. A curadoria por IA
-aprova sem revisão humana, e o post sai no site e no IG sempre às :30 da próxima hora.
+aprova sem revisão humana, e o post sai no site e no IG no próximo dos 8 horários fixos (23h30, 1h30, 5h30, 8h30, 11h30,
+13h30, 17h30, 19h30 de Brasília), com pelo menos 30 min de folga.
 
 ## Regra 0 (inegociável)
 
@@ -28,7 +29,7 @@ aprova sem revisão humana, e o post sai no site e no IG sempre às :30 da próx
 | Arquivo | Papel |
 |---|---|
 | `config.py` | variáveis `CONTRIB_*`, formatos e tamanhos aceitos |
-| `agenda.py` | slot das :30 da próxima hora, 1 por slot, dia do limite em horário de Brasília (funções puras) |
+| `agenda.py` | 8 horários fixos (News fetch + 30 min), 1 por horário, dia do limite em horário de Brasília (funções puras) |
 | `r2.py` | URL pré-assinada SigV4 pro Cloudflare R2 (sem SDK) |
 | `repo.py` | todo o SQL, só em `contrib_submissions` |
 | `schemas.py` | contratos de entrada e saída, lista de status |
@@ -68,7 +69,8 @@ Status do envio: `enviado` -> `aprovado` / `ajustado` / `recusado` (curadoria IA
 
 ## Curadoria por IA (fase 3)
 
-Cron `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/.github/workflows/contrib-curadoria.yml` a cada 10 min,
+`/Users/andrehz/Documents/Githubhz/setlists-pj-ev/.github/workflows/contrib-curadoria.yml`, disparado pelo TriggerAll
+nos 8 horários (`31 2,4,8,11,14,16,20,22 * * *` UTC),
 código em `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/scripts/contrib/`:
 
 | Arquivo | Papel |
@@ -92,7 +94,7 @@ O original da pessoa fica guardado em `ai_verdict.original` quando a IA ajusta.
 
 ## Publicação (fase 4)
 
-Mesmo cron da curadoria, passo "Publicação". Pega `/contrib/bot/prontos` (aprovado/ajustado com
+Mesma rodada da curadoria, passo "Publicação". Pega `/contrib/bot/prontos` (aprovado/ajustado com
 horário vencido). Foto: gera os slides, commita, espera o raw do
 GitHub, grava a tentativa (`/bot/publicando`) e publica o carrossel. Se uma run morrer entre o IG e
 o `/bot/publicado`, a próxima procura o post pela legenda no IG antes de postar de novo. Respeita o
