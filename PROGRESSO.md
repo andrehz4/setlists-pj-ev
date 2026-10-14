@@ -23,8 +23,11 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB): decidir se apaga.
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
-  - Colaboradores em 8 horários fixos desde 14/10: acompanhar o 1º envio real (horário prometido x publicado) e o
-    consumo de Actions no fim do mês (esperado ~1.000 a 1.300 min no total da conta, antes rumava a ~3.700).
+  - Colaboradores PAUSADOS em 14/10 (ainda não há colaboradores): TriggerAll #6 sem horário (custo zero de Actions).
+    O painel `colaborar.html` continua aberto, e um envio feito agora fica parado sem aviso no Telegram. Pra religar:
+    colar `11,31 2,4,8,11,14,16,20,22 * * *` no horário do gatilho (está na descrição dele) e conferir o 1º disparo.
+    Conta do Actions: ~1.860 min/mês com contrib ligado, ~1.400 pausado (franquia 3.000). Outubro deve fechar ~2.750.
+    Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
 ## 2026-10-14: minutos do GitHub Actions, colaboradores em horários fixos
 
@@ -41,9 +44,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   agenda 12:17/13:07/13:37, cápsula 23:07, community 00:25/12:25): folga mínima de 29 min, rodada de contrib dura até 15.
 - Consequência aceita: espera do colaborador até ~4 h; aviso de pedido de acesso no Telegram também só nesses horários.
 - Painel do TriggerAll mostrava o próximo disparo só pelo 1º minuto do cron; corrigido (repo triggerall 2939945).
-- CONFERIR 15/10 (roteiro): `gh run list -w contrib-curadoria.yml --limit 30 --json createdAt,event,conclusion`
-  tem que mostrar SÓ disparos às :11 e :31 de 02,04,08,11,14,16,20,22 UTC (16 por dia), todos `success`, nenhum
-  `schedule`. No TriggerAll o card "Contrib Curadoria" sem bolinha vermelha. Billing do Actions parando de subir ~76/dia.
+- Depois, no mesmo dia, gatilho PAUSADO a pedido do Andre (sem colaboradores ainda).
+- CONFERIR 15/10: `gh run list -w contrib-curadoria.yml --limit 10 --json createdAt,event` NÃO pode ter nada depois de
+  2026-10-14T04:05Z (nem `schedule`, nem `workflow_dispatch`). Ao religar: só disparos às :11 e :31 das 8 horas, `success`.
 
 ## 2026-10-10: desfoque atrás da manchete no reel, zoom no rosto no story
 
