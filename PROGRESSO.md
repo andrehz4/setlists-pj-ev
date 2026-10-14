@@ -26,7 +26,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - Colaboradores PAUSADOS em 14/10 (ainda não há colaboradores): TriggerAll #6 sem horário (custo zero de Actions).
     O painel `colaborar.html` continua aberto, e um envio feito agora fica parado sem aviso no Telegram. Pra religar:
     colar `11,31 2,4,8,11,14,16,20,22 * * *` no horário do gatilho (está na descrição dele) e conferir o 1º disparo.
-    Conta do Actions: ~1.860 min/mês com contrib ligado, ~1.400 pausado (franquia 3.000). Outubro deve fechar ~2.750.
+    Conta do Actions (todos os repos): ~2.080 min/mês com contrib ligado, ~1.600 pausado, antes ~3.900 (franquia 3.000).
+    Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
 ## 2026-10-14: minutos do GitHub Actions, colaboradores em horários fixos
