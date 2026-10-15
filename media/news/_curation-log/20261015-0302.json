@@ -1,0 +1,16 @@
+{
+  "runAt": "2026-10-15T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 6,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 1, "instagram-oficial": 1, "shop": 0 },
+  "approved": [
+    { "id": "cbdfe39df6", "titulo": "Pearl Jam pede aos fãs que defendam o Westport Light State Park de um campo de golfe", "kind": "instagram-oficial" },
+    { "id": "51cb8d4ee2", "titulo": "Jeff Ament abre a sexta pista de skate na reserva Flathead, em Montana", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cs-d7088c7700", "title": "Ed, MFC & Kim all at Rush together", "reason": "spotlight sem selftext, não é obra de fã" },
+    { "id": "378d170086", "title": "Pearl Jam - I Am Mine [alternative rock]", "reason": "texto vazio" },
+    { "id": "a60aeba762", "title": "What Slipknot songs do you think I'd enjoy", "reason": "sem menção a PJ" },
+    { "id": "d397f12e91", "title": "Word of the Day (10/8/2026): ANIMAL", "reason": "sem menção a PJ" }
+  ]
+}
