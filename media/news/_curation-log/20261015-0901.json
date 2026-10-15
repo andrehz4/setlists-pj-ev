@@ -1,0 +1,11 @@
+{
+  "runAt": "2026-10-15T09:01Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "90f553b25b", "title": "Lightning Bolt Turns 13", "reason": "texto vazio (só hashtag)" },
+    { "id": "601302327e", "title": "I hate modern music", "reason": "copypasta, PJ tangencial" }
+  ]
+}
