@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-10-15T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 1, "instagram-oficial": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "5518db8f77", "titulo": "Lightning Bolt faz 13 anos e o Pearl Jam abre o arquivo de fotos da época", "kind": "instagram-oficial" }
+  ],
+  "skipped": [
+    { "id": "ac1a34ad86", "title": "Jeff Ament aggiunge nuove date europee (Londra e Parigi)", "reason": "sem novidade (já publicado: 5158153a6a e cd-20261010)" },
+    { "id": "b5f5f9c72d", "title": "Eddie Vedder & Friends Ohana 2026 merch", "reason": "merch" }
+  ]
+}
