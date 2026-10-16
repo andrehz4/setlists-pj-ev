@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-10-16T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-876ad7fd2a", "title": "Happy 13th birthday to Lightning Bolt", "reason": "spotlight sem obra de fã (só opinião); 13 anos de Lightning Bolt já publicado via Instagram oficial em 15/10" },
+    { "id": "f9330855d7", "title": "Albums released on this date", "reason": "PJ tangencial (lista de discos lançados na data)" },
+    { "id": "1685e43f83", "title": "Crazy: October monthly Spotify plays", "reason": "texto vazio, sem menção a PJ (Lil Peep)" }
+  ]
+}
