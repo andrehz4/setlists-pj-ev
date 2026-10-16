@@ -1,39 +1,39 @@
 {
-  "atualizado": "2026-10-15T17:07:20.110Z",
+  "atualizado": "2026-10-16T12:17:40.212Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-15T17:07:07.231Z",
+      "lidoEm": "2026-10-16T12:17:28.180Z",
       "seguidores": 33083,
       "ultimoPost": "2026-10-11T19:35:56+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-15T17:07:09.182Z",
-      "seguidores": 101544,
-      "ultimoPost": "2026-10-14T20:45:01+0000"
+      "lidoEm": "2026-10-16T12:17:29.748Z",
+      "seguidores": 101559,
+      "ultimoPost": "2026-10-15T21:51:40+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-15T17:07:10.718Z",
-      "seguidores": 9383,
+      "lidoEm": "2026-10-16T12:17:31.281Z",
+      "seguidores": 9382,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-15T17:07:12.756Z",
-      "seguidores": 74222,
+      "lidoEm": "2026-10-16T12:17:33.090Z",
+      "seguidores": 74245,
       "ultimoPost": "2026-10-14T19:02:48+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-15T17:07:15.237Z",
-      "seguidores": 21022,
-      "ultimoPost": "2026-10-13T10:55:12+0000"
+      "lidoEm": "2026-10-16T12:17:35.675Z",
+      "seguidores": 21029,
+      "ultimoPost": "2026-10-15T18:00:50+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-15T17:07:17.015Z",
-      "seguidores": 33283,
+      "lidoEm": "2026-10-16T12:17:37.674Z",
+      "seguidores": 33299,
       "ultimoPost": "2026-10-14T22:22:14+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-15T17:07:19.789Z",
-      "seguidores": 6285,
+      "lidoEm": "2026-10-16T12:17:40.105Z",
+      "seguidores": 6286,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
   },
@@ -68,35 +68,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-10-15-rio-de-janeiro",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-10-15",
-      "casa": "coordenadasbar",
-      "casaNome": null,
-      "cidade": "Rio de Janeiro",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/",
-      "detalhe": "https://www.instagram.com/p/DeaJyMjMbko/"
-    },
-    {
-      "id": "pjnoventa-2026-10-15-pradocraftbeer",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-15",
-      "casa": "pradocraftbeer",
-      "casaNome": null,
-      "cidade": null,
-      "uf": null,
-      "fechado": false,
-      "observacao": null,
-      "hora": "19:00",
-      "fonte": "https://www.instagram.com/reel/DeXQ-nKJzWt/"
-    },
     {
       "id": "blackcirclepj-2026-10-16-niteroi",
       "banda": "blackcirclepj",
@@ -137,7 +108,8 @@
       "fechado": false,
       "observacao": null,
       "hora": "21:30",
-      "fonte": "https://www.instagram.com/p/DebmccwRI8s/"
+      "fonte": "https://www.instagram.com/p/DebmccwRI8s/",
+      "detalhe": "https://www.instagram.com/p/DehjZnIRiQE/"
     },
     {
       "id": "pearljamcoverribeirao-2026-10-16-franca",
