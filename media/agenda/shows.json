@@ -1,39 +1,39 @@
 {
-  "atualizado": "2026-10-16T16:44:37.352Z",
+  "atualizado": "2026-10-17T12:17:41.728Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-16T16:44:26.855Z",
-      "seguidores": 33078,
+      "lidoEm": "2026-10-17T12:17:26.880Z",
+      "seguidores": 33077,
       "ultimoPost": "2026-10-11T19:35:56+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-16T16:44:28.139Z",
-      "seguidores": 101551,
+      "lidoEm": "2026-10-17T12:17:28.748Z",
+      "seguidores": 101565,
       "ultimoPost": "2026-10-15T21:51:40+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-16T16:44:29.521Z",
-      "seguidores": 9384,
+      "lidoEm": "2026-10-17T12:17:30.274Z",
+      "seguidores": 9383,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-16T16:44:31.209Z",
-      "seguidores": 74246,
+      "lidoEm": "2026-10-17T12:17:32.732Z",
+      "seguidores": 74272,
       "ultimoPost": "2026-10-14T19:02:48+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-16T16:44:33.455Z",
-      "seguidores": 21028,
+      "lidoEm": "2026-10-17T12:17:35.236Z",
+      "seguidores": 21047,
       "ultimoPost": "2026-10-15T18:00:50+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-16T16:44:34.989Z",
-      "seguidores": 33300,
+      "lidoEm": "2026-10-17T12:17:36.986Z",
+      "seguidores": 33321,
       "ultimoPost": "2026-10-16T14:00:15+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-16T16:44:37.255Z",
-      "seguidores": 6284,
+      "lidoEm": "2026-10-17T12:17:41.634Z",
+      "seguidores": 6288,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
   },
@@ -68,79 +68,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-10-16-niteroi",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-10-16",
-      "casa": null,
-      "casaNome": null,
-      "cidade": "Niterói",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/"
-    },
-    {
-      "id": "blaymorphed-2026-10-16-sergiovedder",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-10-16",
-      "casa": "sergiovedder",
-      "casaNome": null,
-      "cidade": null,
-      "uf": null,
-      "fechado": true,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
-    },
-    {
-      "id": "pearljamsp-2026-10-16-longbeach64",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-10-16",
-      "casa": "longbeach64",
-      "casaNome": null,
-      "cidade": null,
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "21:30",
-      "fonte": "https://www.instagram.com/p/DebmccwRI8s/",
-      "detalhe": "https://www.instagram.com/p/DehjZnIRiQE/"
-    },
-    {
-      "id": "pearljamcoverribeirao-2026-10-16-franca",
-      "banda": "pearljamcoverribeirao",
-      "nome": "Pearl Jam Cover Ribeirão",
-      "data": "2026-10-16",
-      "casa": "therootsfranca",
-      "casaNome": null,
-      "cidade": "Franca",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
-      "detalhe": "https://www.instagram.com/reel/Dejss_6xLqw/"
-    },
-    {
-      "id": "pjnoventa-2026-10-16-vibesbardourados",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-16",
-      "casa": "vibesbardourados",
-      "casaNome": null,
-      "cidade": null,
-      "uf": null,
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/reel/DeXQ-nKJzWt/",
-      "detalhe": "https://www.instagram.com/reel/DdUtRHYJYjQ/"
-    },
     {
       "id": "blaymorphed-2026-10-17-sergiovedder",
       "banda": "blaymorphed",
