@@ -1,39 +1,39 @@
 {
-  "atualizado": "2026-10-17T15:41:10.396Z",
+  "atualizado": "2026-10-18T12:17:35.945Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-17T15:40:59.364Z",
-      "seguidores": 33081,
+      "lidoEm": "2026-10-18T12:17:24.223Z",
+      "seguidores": 33086,
       "ultimoPost": "2026-10-11T19:35:56+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-17T15:41:01.135Z",
-      "seguidores": 101578,
+      "lidoEm": "2026-10-18T12:17:25.813Z",
+      "seguidores": 101604,
       "ultimoPost": "2026-10-15T21:51:40+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-17T15:41:02.229Z",
-      "seguidores": 9384,
+      "lidoEm": "2026-10-18T12:17:27.187Z",
+      "seguidores": 9383,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-17T15:41:04.124Z",
-      "seguidores": 74271,
+      "lidoEm": "2026-10-18T12:17:28.848Z",
+      "seguidores": 74287,
       "ultimoPost": "2026-10-14T19:02:48+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-17T15:41:06.361Z",
-      "seguidores": 21054,
+      "lidoEm": "2026-10-18T12:17:30.880Z",
+      "seguidores": 21062,
       "ultimoPost": "2026-10-15T18:00:50+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-17T15:41:07.948Z",
-      "seguidores": 33334,
+      "lidoEm": "2026-10-18T12:17:32.385Z",
+      "seguidores": 33359,
       "ultimoPost": "2026-10-17T14:00:13+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-17T15:41:10.295Z",
-      "seguidores": 6287,
+      "lidoEm": "2026-10-18T12:17:35.695Z",
+      "seguidores": 6300,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
   },
@@ -68,63 +68,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blaymorphed-2026-10-17-sergiovedder",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-10-17",
-      "casa": "sergiovedder",
-      "casaNome": null,
-      "cidade": null,
-      "uf": null,
-      "fechado": true,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/"
-    },
-    {
-      "id": "pearljamsp-2026-10-17-omelhorpub",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-10-17",
-      "casa": "omelhorpub",
-      "casaNome": null,
-      "cidade": null,
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "20:00",
-      "fonte": "https://www.instagram.com/p/DebnbZ1RlMp/"
-    },
-    {
-      "id": "pearljamcoverribeirao-2026-10-17-sertaozinho",
-      "banda": "pearljamcoverribeirao",
-      "nome": "Pearl Jam Cover Ribeirão",
-      "data": "2026-10-17",
-      "casa": "wolfesbier",
-      "casaNome": null,
-      "cidade": "Sertãozinho",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
-      "detalhe": "https://www.instagram.com/reel/DemRg7pxyCO/"
-    },
-    {
-      "id": "pjnoventa-2026-10-17-o-irlandes-pub",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-17",
-      "casa": "o_irlandes_pub",
-      "casaNome": null,
-      "cidade": null,
-      "uf": null,
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/reel/DeXQ-nKJzWt/"
-    },
     {
       "id": "pearljamsp-2026-10-18-bluesbeer-festival",
       "banda": "pearljamsp",
