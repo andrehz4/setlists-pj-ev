@@ -62,7 +62,7 @@ export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.
   duracaoImpl = duracaoAudio, dirFixas = DIR_FIXAS, saldoImpl = saldo }) {
   if (!narracaoLigada(env)) return null;
   const voz = vozDaSemana(weekKey);
-  const apiKey = env.ELEVENLABS_API_KEY;
+  let apiKey = env.ELEVENLABS_API_KEY;
   try {
     const dir = path.join(tmpDir, "narracao");
     await fs.mkdir(dir, { recursive: true });
@@ -74,13 +74,21 @@ export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.
       plano.push({ ...f, fixo, arquivo, pronta });
     }
     // checagem de saldo ANTES de gastar: ou narra a semana inteira, ou nada
+    // Chave principal sem saldo: tenta a reserva (ELEVENLABS_API_KEY_RESERVA, conta da agenda) antes de sair sem voz
+    // (bug 19/10/2026: o reel ia sair mudo com crédito sobrando na outra conta; scripts/regressao/).
     const precisa = plano.filter((f) => !f.pronta).reduce((n, f) => n + f.texto.length, 0);
-    const conta = await saldoImpl({ apiKey });
+    let conta = null, reserva = false;
+    for (const [i, chave] of [env.ELEVENLABS_API_KEY, env.ELEVENLABS_API_KEY_RESERVA].filter(Boolean).entries()) {
+      conta = await saldoImpl({ apiKey: chave });
+      apiKey = chave; reserva = i > 0;
+      if (!conta || conta.restante >= precisa) break;
+    }
     if (conta && conta.restante < precisa) {
       const aviso = `reel saiu SEM voz: faltou crédito no ElevenLabs (precisa ${precisa}, restam ${conta.restante} de ${conta.limite})`;
       console.warn(`[narracao] ${aviso}`);
       return { aviso };
     }
+    if (reserva) console.log("[narracao] chave principal sem saldo, usando a reserva");
     for (const f of plano) {
       if (!f.pronta) {
         if (f.fixo) await fs.mkdir(path.dirname(f.fixo), { recursive: true });
@@ -93,7 +101,7 @@ export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.
     const reaproveitadas = plano.filter((f) => f.pronta).length;
     const restante = conta ? conta.restante - precisa : null;
     console.log(`[narracao] voz ${voz.nome}: ${falas.length} falas (${reaproveitadas} reaproveitadas, ${precisa} caracteres gastos), reel de ${sceneDurs.reduce((a, b) => a + b, 0).toFixed(1)}s`);
-    const aviso = `voz: ${voz.nome}${restante != null ? ` · restam ~${restante} créditos no ElevenLabs` : ""}`;
+    const aviso = `voz: ${voz.nome}${reserva ? " (conta reserva)" : ""}${restante != null ? ` · restam ~${restante} créditos no ElevenLabs` : ""}`;
     return { voz, falas, sceneDurs, aviso };
   } catch (e) {
     const aviso = `reel saiu SEM voz: narração falhou (${e.message.slice(0, 120)})`;
