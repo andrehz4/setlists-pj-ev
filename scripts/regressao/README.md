@@ -11,3 +11,4 @@ a regra antiga reproduzindo o erro e o código atual fazendo o certo. Roda junto
 | `selo-mudo.test.mjs` | selo "CLIPE · MUDO" na abertura de um reel que tem som | 18/10/2026 |
 | `pronuncia-narracao.test.mjs` | voz lendo "Fá" (frase começando com Fã) e "Mungo" (mundo Pearl Jam) | 18/10/2026 |
 | `selo-final-animado.test.mjs` | selo animado do final virando PNG parado com ffmpeg 8+ (-vsync removido) | 18/10/2026 |
+| `fala-sobreposta.test.mjs` | narração da manchete longa cortada pela próxima fala (teto de 9 s) | 18/10/2026 |

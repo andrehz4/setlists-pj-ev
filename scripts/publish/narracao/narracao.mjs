@@ -27,6 +27,7 @@ export function arquivoFixo(texto, voz, dir = DIR_FIXAS) {
 const FOLGA = { coldopen: 0.5, outro: 0.6, bloco: 0.8 };
 const MIN = { coldopen: 3.0, outro: 2.5, bloco: 3.5 };
 const MAX_BLOCO = 9.0;
+const FOLGA_MIN = 0.3; // fala longa: respiro mínimo antes da próxima voz
 const INICIO_FALA = 0.25; // a voz entra logo depois do corte
 
 export function narracaoLigada(env = process.env) {
@@ -47,7 +48,9 @@ export function duracoesSincronizadas(scenes, durFala) {
     const fala = durFala.get(i);
     if (fala == null) return s.dur;
     const d = Math.max(MIN[tipo], INICIO_FALA + fala + FOLGA[tipo]);
-    return tipo === "bloco" ? Math.min(d, MAX_BLOCO) : d;
+    // O teto só come a folga, nunca a fala: cortar a cena no meio da voz fazia a próxima falar por cima
+    // (bug 18/10/2026, scripts/regressao/fala-sobreposta.test.mjs).
+    return tipo === "bloco" ? Math.max(Math.min(d, MAX_BLOCO), INICIO_FALA + fala + FOLGA_MIN) : d;
   });
 }
 
