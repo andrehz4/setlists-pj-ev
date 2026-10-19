@@ -44,6 +44,13 @@ export function janela({ bw, bh, foco }, p) {
   return { left, top, width: w, height: h };
 }
 
+// Base do Ken Burns: recorta já pelo rosto da foto inteira. Cortar antes e procurar depois perdia o rosto da borda
+// (teste em scripts/regressao/recorte-rosto.test.mjs).
+export async function baseDoFundo(foto, det) {
+  const bw = Math.round(W * ZOOM), bh = Math.round(H * ZOOM);
+  return sharp(await coverCrop(foto, det, bw, bh)).sharpen(1.1).jpeg({ quality: 92 }).toBuffer();
+}
+
 export async function prepararFundo(item) {
   const y0 = Math.max(0, Math.round(layoutCard(item).tagTopY - 70));
   const grad = gradienteSvg(Math.max(0, y0 - 160), y0);
@@ -54,8 +61,7 @@ export async function prepararFundo(item) {
     return { parado: liso };
   }
   const bw = Math.round(W * ZOOM), bh = Math.round(H * ZOOM);
-  // Recorta já pelo rosto da foto inteira: cortar antes e procurar depois perdia o rosto da borda.
-  const base = await sharp(await coverCrop(foto, det, bw, bh)).sharpen(1.1).jpeg({ quality: 92 }).toBuffer();
+  const base = await baseDoFundo(foto, det);
   const fundo = { base, bw, bh, grad, desfocada: await desfocar(base, { escala: ZOOM }), mascara: await mascaraAlfa(W, H, y0, H) };
   if (process.env.STORY_ZOOM === "0") return { parado: await quadro(fundo, 0) };
   fundo.foco = await focoDoRosto(base);

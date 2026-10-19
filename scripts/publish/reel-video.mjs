@@ -22,6 +22,7 @@ import sharp from "sharp";
 import { loadBadgeAnimated } from "./story-video.mjs";
 import { FPS, BRAND, TAG_LABELS, measureText, layoutWords, F_ANTON, F_INTER_SB, F_INTER_XB } from "./reel/base.mjs";
 import { buildScenePlan } from "./reel/plano.mjs";
+import { fotoDaCena } from "./reel/foto-cena.mjs";
 import { fetchImageBuffer, prepareZoomBase, runFfmpeg, encodePngSegment, encodeClipSegment } from "./reel/midia.mjs";
 import { renderScene } from "./reel/render.mjs";
 import { naRaiz } from "../config.mjs";
@@ -83,9 +84,7 @@ export async function buildReelVideo({
       if (clipPath) {
         ctx.mode = "overlay";
       } else {
-        const photoBuf = scene.kind === "coldopen"
-          ? await fetchImageBuffer(items.find((it) => it.hasImg) || items[0])
-          : await fetchImageBuffer(scene.item); // sem foto própria cai na foto do integrante/banda, nunca no fantasma
+        const photoBuf = await fotoDaCena(scene, items);
         if (photoBuf) {
           ctx.mode = "photo";
           ctx.zoomFrom = scene.kind === "coldopen" ? 1.30 : 1.06;
