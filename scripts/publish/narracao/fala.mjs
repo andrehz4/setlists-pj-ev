@@ -6,11 +6,11 @@
 // cada, aprovadas em 2026-09-30, alternando por semana. Ficam GRAVADAS no repo
 // por voz (ver narracao.mjs, arquivoFixo): não gastam crédito toda semana.
 // Mudou uma frase? O áudio dela é regerado sozinho (hash do texto no nome).
-// Frase começando com "Fã" a voz lia "Fá"; "mundo Pearl Jam" saía "Mungo" (whisper, 18/10/2026). Regras em
+// Frase começando com "Fã" a voz lia "Fá"; "mundo Pearl Jam" saía "Mungo" e "agitada" saía em espanhol (whisper, 18 e 19/10/2026). Regras em
 // scripts/regressao/pronuncia-narracao.test.mjs.
 export const ABERTURAS = [
   "Você que é fã de Pearl Jam, olha o que rolou essa semana.",
-  "Semana agitada pro Pearl Jam. Vem ver.",
+  "Olha o que o Pearl Jam aprontou essa semana. Vem ver.",
   "Tem novidade do Pearl Jam. Bora pro resumo da semana?",
 ];
 export const FINAIS = [

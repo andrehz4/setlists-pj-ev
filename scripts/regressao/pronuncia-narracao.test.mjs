@@ -11,12 +11,17 @@ import { ABERTURAS as AG_ABERTURAS, FINAIS as AG_FINAIS } from "../agenda/redes/
 const PRONUNCIA_RUIM = [
   [/(^|[.!?]\s+)fã(?!\p{L})/iu, "frase começando com Fã (a voz lê Fá)"],
   [/\bmundo Pearl Jam\b/i, "mundo Pearl Jam (a voz lê Mungo)"],
+  [/\bagitad[ao]s?\b/i, "agitada (a voz lê com sotaque espanhol, 19/10/2026)"],
 ];
 const problemas = (frase) => PRONUNCIA_RUIM.filter(([re]) => re.test(frase)).map(([, motivo]) => motivo);
 
 test("frases antigas caem nas regras (prova do bug)", () => {
   assert.deepEqual(problemas("Fã de Pearl Jam? Olha o que rolou essa semana."), ["frase começando com Fã (a voz lê Fá)"]);
-  assert.deepEqual(problemas("Semana agitada no mundo Pearl Jam. Vem ver."), ["mundo Pearl Jam (a voz lê Mungo)"]);
+  assert.deepEqual(problemas("Semana agitada no mundo Pearl Jam. Vem ver."), ["mundo Pearl Jam (a voz lê Mungo)", "agitada (a voz lê com sotaque espanhol, 19/10/2026)"]);
+});
+
+test("agitada cai na regra (prova do bug de 19/10)", () => {
+  assert.deepEqual(problemas("Semana agitada pro Pearl Jam. Vem ver."), ["agitada (a voz lê com sotaque espanhol, 19/10/2026)"]);
 });
 
 test("Fã no meio da frase passa (a voz lê certo)", () => {

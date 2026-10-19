@@ -29,6 +29,7 @@ const MIN = { coldopen: 3.0, outro: 2.5, bloco: 3.5 };
 const MAX_BLOCO = 9.0;
 const FOLGA_MIN = 0.3; // fala longa: respiro mínimo antes da próxima voz
 const INICIO_FALA = 0.25; // a voz entra logo depois do corte
+export const MUSICA_LUFS = -24; // trilha normalizada nesse volume no reel narrado (cada trilha vem num volume)
 
 export function narracaoLigada(env = process.env) {
   return env.REEL_NARRACAO === "1" && Boolean(env.ELEVENLABS_API_KEY);
@@ -108,7 +109,9 @@ export function filtroMixagem(falas, inicios) {
     return `[${k + 1}:a]adelay=${ms}|${ms},aformat=channel_layouts=stereo[f${k}]`;
   });
   const junta = `${falas.map((_, k) => `[f${k}]`).join("")}amix=inputs=${falas.length}:normalize=0,volume=1.8,asplit=2[voz][chave]`;
-  const duck = "[0:a][chave]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=400[musica]";
+  // Reel todo narrado: a música vira cama. Trilha normalizada baixa + ducking forte quando a voz fala (antes a música ficava
+  // 2,3 dB ACIMA da voz; bug 18/10/2026, scripts/regressao/voz-acima-da-musica.test.mjs).
+  const duck = `[0:a]loudnorm=I=${MUSICA_LUFS}:TP=-2:LRA=11[cama];[cama][chave]sidechaincompress=threshold=0.015:ratio=14:attack=15:release=600[musica]`;
   const final = "[musica][voz]amix=inputs=2:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11[aout]";
   return [...vozes, junta, duck, final].join(";");
 }

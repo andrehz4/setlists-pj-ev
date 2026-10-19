@@ -13,3 +13,4 @@ a regra antiga reproduzindo o erro e o código atual fazendo o certo. Roda junto
 | `selo-final-animado.test.mjs` | selo animado do final virando PNG parado com ffmpeg 8+ (-vsync removido) | 18/10/2026 |
 | `fala-sobreposta.test.mjs` | narração da manchete longa cortada pela próxima fala (teto de 9 s) | 18/10/2026 |
 | `agenda-arte-semana.test.mjs` | agenda: data vermelha sumindo no fundo vermelho, "+ N shows" no rodapé, cidade grudada no @ | 18/10/2026 |
+| `voz-acima-da-musica.test.mjs` | reel narrado com a música 2,3 dB acima da voz (mede com as 16 trilhas) | 19/10/2026 |
