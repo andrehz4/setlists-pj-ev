@@ -10,6 +10,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { falasDasCenas, ABERTURAS, FINAIS } from "./fala.mjs";
 import { sintetizar, vozDaSemana, saldo } from "./elevenlabs.mjs";
+import { chavesEmOrdem, erroDeConta } from "./chaves.mjs";
 import { naRaiz } from "../../config.mjs";
 
 // Abertura e encerramento são sempre iguais: gerados 1x por voz e guardados no
@@ -32,7 +33,7 @@ const INICIO_FALA = 0.25; // a voz entra logo depois do corte
 export const MUSICA_LUFS = -24; // trilha normalizada nesse volume no reel narrado (cada trilha vem num volume)
 
 export function narracaoLigada(env = process.env) {
-  return env.REEL_NARRACAO === "1" && Boolean(env.ELEVENLABS_API_KEY);
+  return env.REEL_NARRACAO === "1" && chavesEmOrdem(env).length > 0;
 }
 
 export function duracaoAudio(arquivo) {
@@ -62,7 +63,6 @@ export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.
   duracaoImpl = duracaoAudio, dirFixas = DIR_FIXAS, saldoImpl = saldo }) {
   if (!narracaoLigada(env)) return null;
   const voz = vozDaSemana(weekKey);
-  let apiKey = env.ELEVENLABS_API_KEY;
   try {
     const dir = path.join(tmpDir, "narracao");
     await fs.mkdir(dir, { recursive: true });
@@ -73,35 +73,37 @@ export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.
       const pronta = Boolean(fixo) && await fs.stat(fixo).then(() => true, () => false);
       plano.push({ ...f, fixo, arquivo, pronta });
     }
-    // checagem de saldo ANTES de gastar: ou narra a semana inteira, ou nada
-    // Chave principal sem saldo: tenta a reserva (ELEVENLABS_API_KEY_RESERVA, conta da agenda) antes de sair sem voz
-    // (bug 19/10/2026: o reel ia sair mudo com crédito sobrando na outra conta; scripts/regressao/).
+    // Saldo checado ANTES de gastar (ou narra a semana inteira, ou nada), conta por conta: a principal sem saldo
+    // não deixa mais o reel mudo com crédito sobrando em outra (bug 19/10/2026, scripts/regressao/).
     const precisa = plano.filter((f) => !f.pronta).reduce((n, f) => n + f.texto.length, 0);
-    let conta = null, reserva = false;
-    for (const [i, chave] of [env.ELEVENLABS_API_KEY, env.ELEVENLABS_API_KEY_RESERVA].filter(Boolean).entries()) {
-      conta = await saldoImpl({ apiKey: chave });
-      apiKey = chave; reserva = i > 0;
-      if (!conta || conta.restante >= precisa) break;
+    let usada = null, conta = null, motivo = "nenhuma chave";
+    for (const c of chavesEmOrdem(env)) {
+      const s = await saldoImpl({ apiKey: c.chave });
+      if (s && s.restante < precisa) { motivo = `${c.nome}: precisa ${precisa}, restam ${s.restante} de ${s.limite}`; continue; }
+      try {
+        for (const f of plano) {
+          if (f.pronta) continue;
+          if (f.fixo) await fs.mkdir(path.dirname(f.fixo), { recursive: true });
+          await sintetizarImpl(f.texto, { vozId: voz.id, apiKey: c.chave, destino: f.arquivo });
+        }
+        usada = c; conta = s; break;
+      } catch (e) {
+        if (!erroDeConta(e)) throw e;
+        motivo = `${c.nome}: ${e.message.slice(0, 80)}`;
+      }
     }
-    if (conta && conta.restante < precisa) {
-      const aviso = `reel saiu SEM voz: faltou crédito no ElevenLabs (precisa ${precisa}, restam ${conta.restante} de ${conta.limite})`;
+    if (!usada) {
+      const aviso = `reel saiu SEM voz: faltou crédito no ElevenLabs (${motivo})`;
       console.warn(`[narracao] ${aviso}`);
       return { aviso };
     }
-    if (reserva) console.log("[narracao] chave principal sem saldo, usando a reserva");
-    for (const f of plano) {
-      if (!f.pronta) {
-        if (f.fixo) await fs.mkdir(path.dirname(f.fixo), { recursive: true });
-        await sintetizarImpl(f.texto, { vozId: voz.id, apiKey, destino: f.arquivo });
-      }
-      f.dur = duracaoImpl(f.arquivo);
-    }
+    for (const f of plano) f.dur = duracaoImpl(f.arquivo);
     const falas = plano.map(({ sceneIndex, texto, arquivo, dur }) => ({ sceneIndex, texto, arquivo, dur }));
     const sceneDurs = duracoesSincronizadas(scenes, new Map(falas.map((f) => [f.sceneIndex, f.dur])));
     const reaproveitadas = plano.filter((f) => f.pronta).length;
     const restante = conta ? conta.restante - precisa : null;
     console.log(`[narracao] voz ${voz.nome}: ${falas.length} falas (${reaproveitadas} reaproveitadas, ${precisa} caracteres gastos), reel de ${sceneDurs.reduce((a, b) => a + b, 0).toFixed(1)}s`);
-    const aviso = `voz: ${voz.nome}${reserva ? " (conta reserva)" : ""}${restante != null ? ` · restam ~${restante} créditos no ElevenLabs` : ""}`;
+    const aviso = `voz: ${voz.nome}${usada.nome !== "principal" ? ` (conta ${usada.nome})` : ""}${restante != null ? ` · restam ~${restante} créditos no ElevenLabs` : ""}`;
     return { voz, falas, sceneDurs, aviso };
   } catch (e) {
     const aviso = `reel saiu SEM voz: narração falhou (${e.message.slice(0, 120)})`;

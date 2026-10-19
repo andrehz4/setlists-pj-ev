@@ -56,8 +56,11 @@ jobs:
           # narração (scripts/publish/narracao/): '1' liga; sem a chave ou com erro, sai só com música
           REEL_NARRACAO: '1'
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-          # reserva: conta da agenda, usada só quando a principal não tem saldo pra semana
-          ELEVENLABS_API_KEY_RESERVA: ${{ secrets.ELEVENLABS_API_KEY_AGENDA }}
+          # contas extras (scripts/publish/narracao/chaves.mjs): principal -> reserva -> agenda, só quando a anterior
+          # não tem saldo. Variável do repo ELEVENLABS_CHAVE (principal|reserva|agenda) força uma.
+          ELEVENLABS_API_KEY_RESERVA: ${{ secrets.ELEVENLABS_API_KEY_RESERVA }}
+          ELEVENLABS_API_KEY_AGENDA: ${{ secrets.ELEVENLABS_API_KEY_AGENDA }}
+          ELEVENLABS_CHAVE: ${{ vars.ELEVENLABS_CHAVE }}
           # transições e abertura com clipe (scripts/publish/reel/transicoes.mjs): trechos baixados do R2 (acervo/);
           # falha ou acervo vazio = reel sai sem transição
           REEL_TRANSICOES: '1'
