@@ -53,5 +53,10 @@ jobs:
       - name: Install deps
         run: npm ci --no-audit --no-fund
 
+      # testes de regressão medem áudio e vídeo de verdade (selo animado, voz acima da música): precisam de ffmpeg
+      - name: Install ffmpeg
+        timeout-minutes: 10
+        uses: ./.github/actions/ffmpeg
+
       - name: Run suite
         run: npm test
