@@ -10,3 +10,4 @@ a regra antiga reproduzindo o erro e o código atual fazendo o certo. Roda junto
 | `card-letra-cortada.test.mjs` | card do reel comendo a última letra da manchete ("ENTROI") | 18/10/2026 |
 | `selo-mudo.test.mjs` | selo "CLIPE · MUDO" na abertura de um reel que tem som | 18/10/2026 |
 | `pronuncia-narracao.test.mjs` | voz lendo "Fá" (frase começando com Fã) e "Mungo" (mundo Pearl Jam) | 18/10/2026 |
+| `selo-final-animado.test.mjs` | selo animado do final virando PNG parado com ffmpeg 8+ (-vsync removido) | 18/10/2026 |

@@ -26,6 +26,10 @@ async function fpsDoGif(file) {
   return den ? num / den : 15;
 }
 
+// -fps_mode passthrough (ffmpeg 5.1+) no lugar do -vsync 0, que o ffmpeg 8+ removeu: no Mac o selo do final do reel
+// caía no PNG parado (bug 18/10/2026, scripts/regressao/selo-final-animado.test.mjs).
+export const argsFramesDoGif = (gif, dir) => ["-y", "-i", gif, "-fps_mode", "passthrough", path.join(dir, "f_%04d.png")];
+
 // GIF: extrai todos os frames (PNG base64, até 800x800). PNG: 1 frame (até 1000x1000). Nenhum: null.
 export async function loadBadgeAnimated() {
   const gifPath = naRaiz("scripts/publish/assets/intro-badge.gif");
@@ -35,7 +39,7 @@ export async function loadBadgeAnimated() {
     if (stat.isFile() && stat.size >= 1024) {
       const fps = await fpsDoGif(gifPath);
       const dir = await fs.mkdtemp(path.join(os.tmpdir(), "smufdpj-badge-"));
-      await rodar("ffmpeg", ["-y", "-i", gifPath, "-vsync", "0", path.join(dir, "f_%04d.png")]);
+      await rodar("ffmpeg", argsFramesDoGif(gifPath, dir));
       const files = (await fs.readdir(dir)).filter((f) => f.endsWith(".png")).sort();
       const frames = [];
       for (const f of files) {
