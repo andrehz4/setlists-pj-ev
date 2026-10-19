@@ -2,6 +2,7 @@
 // o librsvg não baixa URL) ou, sem foto, carimbo redondo com as iniciais.
 import { H, CREME, CREME2, TINTA, ASSIN, RODAPE, CORES, clamp, n1, esc, dm, diaSem, semanaIso, medir, caber, txt,
   fonte, ticket, abre, fundoIngresso, ingressoGrande, barras } from "./svg-base.mjs";
+import { horaCurta } from "../regiao.mjs";
 
 export const MAX_SHOWS_BANDA = 4;
 
@@ -100,7 +101,9 @@ export function svgBanda(banda, shows, inicio, fim, corId = "azul", fotoHref = n
     const rot = i % 2 ? .5 : -.5, dx = (i % 3 - 1) * 6, tp = ticket(60, y, 960, h, sx, 12 * s);
     const cidS = sh.cidade ? [sh.cidade, sh.uf].filter(Boolean).join("/").toUpperCase() : null;
     const casa = sh.casa ? "@" + sh.casa : sh.casaNome || null;
-    const lead = cidS || casa || "LOCAL A CONFIRMAR", sub = cidS ? casa : null;
+    // horário (quando a banda divulga) vai na linha de baixo, junto da casa: "@casa · 22h"
+    const lead = cidS || casa || "LOCAL A CONFIRMAR";
+    const sub = [cidS ? casa : null, sh.hora ? horaCurta(sh.hora) : null].filter(Boolean).join(" · ") || null;
     out.push(`<g transform="translate(${dx},0) rotate(${rot} 540 ${n1(y + h / 2)})">`,
       `<path d="${tp}" fill="#000" opacity=".35" filter="url(#${p}s)" transform="translate(4,6)"/>`,
       `<path d="${tp}" fill="${i % 2 ? CREME2 : CREME}"/><path d="${tp}" fill="url(#${p}g)"/>`,

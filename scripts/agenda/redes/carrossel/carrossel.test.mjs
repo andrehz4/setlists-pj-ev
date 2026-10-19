@@ -69,3 +69,10 @@ test("todos os slides geram SVG válido nas 4 cores (sem foto)", async () => {
     for (const sl of s) assert.match(sl.svg, /^<svg[\s\S]*<\/svg>$/);
   }
 });
+
+test("slide da banda mostra o horário quando a banda divulga", async () => {
+  const lista = [{ ...show("2026-10-23", "pjnoventa", "vitaorockbaroficial"), hora: "22:00" }, { ...show("2026-10-24", "pjnoventa", null), hora: "19:30" }];
+  const [, banda] = await svgsDoCarrossel(lista, [], "2026-10-19", "2026-10-25", "azul", { dirFotos: "/nao/existe" });
+  assert.match(banda.svg, />@vitaorockbaroficial · 22h</);
+  assert.match(banda.svg, />19h30</);
+});
