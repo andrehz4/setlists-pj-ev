@@ -7,10 +7,10 @@
 import { test, after } from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
-import os from "node:os";
+import { pastaTemp } from "../lib/pasta-temp.mjs";
 
 // store + porta proprios (a suite roda arquivos em paralelo: 8796 livre)
-process.env.MOCK_IG_STORE = path.join(os.tmpdir(), `mock-ig-fb-${process.pid}.json`);
+process.env.MOCK_IG_STORE = path.join(pastaTemp("smufdpj-teste-"), `mock-ig-fb-${process.pid}.json`);
 const PORT = Number(process.env.MOCK_FB_PORT || 8796);
 const base = `http://127.0.0.1:${PORT}`;
 process.env.MOCK_IG_PORT = String(PORT);

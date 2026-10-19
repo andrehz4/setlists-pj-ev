@@ -10,10 +10,10 @@
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
-import os from "node:os";
+import { pastaTemp } from "../lib/pasta-temp.mjs";
 
 // store proprio de teste (nao mexe no _store.json real)
-process.env.MOCK_IG_STORE = path.join(os.tmpdir(), `mock-ig-recover-${Date.now()}.json`);
+process.env.MOCK_IG_STORE = path.join(pastaTemp("smufdpj-teste-"), `mock-ig-recover-${Date.now()}.json`);
 
 // IMPORTANTE: API_BASE e REPO_PUBLIC_BASE sao capturados no LOAD do instagram.mjs,
 // e o server.mjs importa o instagram.mjs de forma transitiva (via preview.mjs).

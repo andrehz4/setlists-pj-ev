@@ -4,14 +4,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { prepararNarracao } from "../publish/narracao/narracao.mjs";
 import { buildScenePlan } from "../publish/reel-video.mjs";
+import { pastaTemp } from "../lib/pasta-temp.mjs";
 
 // 6 manchetes como num reel de verdade (~400 caracteres a gravar, mais que os 260 da conta principal).
 const ITENS = Array.from({ length: 6 }, (_, i) => ({ id: `n${i}`, format: "card", title_pt: `Jack Irons recusou ser o baterista do Pearl Jam em 199${i}` }));
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), "regressao-reserva-"));
+const tmp = () => pastaTemp("regressao-reserva-");
 // reserva: chave só de gerar fala, não informa saldo (null).
 const SALDOS = { principal: 260, reserva: null, agenda: 4076 };
 const saldoImpl = async ({ apiKey }) => (SALDOS[apiKey] == null ? null : { usados: 10000 - SALDOS[apiKey], limite: 10000, restante: SALDOS[apiKey] });

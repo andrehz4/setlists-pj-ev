@@ -4,11 +4,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { aberturaDoDia, vozDoDia, finalDoDia, arquivoStory, prepararNarracaoStory, gravarDias, FINAIS_STORY, VOZES_STORY } from "./story.mjs";
+import { pastaTemp } from "../../lib/pasta-temp.mjs";
 
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), "story-voz-"));
+const tmp = () => pastaTemp("story-voz-");
 const dia = (iso) => new Date(`${iso}T12:00:00Z`);
 const LIGADA = { STORY_NARRACAO: "1", ELEVENLABS_API_KEY: "falsa" };
 const gravaFalso = (chamadas) => async (texto, { destino }) => { chamadas.push(texto); fs.writeFileSync(destino, "mp3"); };

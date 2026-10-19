@@ -2,9 +2,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { pastaTemp } from "../lib/pasta-temp.mjs";
 
 const item = (id, dia, extra = {}) => ({ id, pubDate: `2026-${dia}T00:00:00Z`, title_pt: id, ...extra });
 
@@ -26,7 +26,7 @@ test("mesclarIndex: acima do teto arquiva os mais antigos, nunca os novos (mesmo
 });
 
 test("arquivar + gravarIndex: corpo vai pro arquivo mensal e o index fica leve", () => {
-  const raiz = fs.mkdtempSync(path.join(os.tmpdir(), "idx-"));
+  const raiz = pastaTemp("idx-");
   const codigo = `
     const m = await import(${JSON.stringify(new URL("./index-site.mjs", import.meta.url).href)});
     await m.gravarIndex([{ id: "velho", pubDate: "2026-03-05T00:00:00Z", body_pt: "corpo velho" }]);

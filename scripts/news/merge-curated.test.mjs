@@ -3,16 +3,16 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { pastaTemp } from "../lib/pasta-temp.mjs";
 
 const SCRIPT = path.join(path.dirname(fileURLToPath(import.meta.url)), "merge-curated.mjs");
 const corpo = (n) => `Parágrafo com acentuação correta, número ${n}, falando de show, disco e história da banda. `.repeat(3);
 
 function montar() {
-  const raiz = fs.mkdtempSync(path.join(os.tmpdir(), "merge-"));
+  const raiz = pastaTemp("merge-");
   const news = path.join(raiz, "media/news");
   fs.mkdirSync(path.join(news, "items"), { recursive: true });
   const pend = (id, extra = {}) => ({ id, url: `https://ex.com/${id}`, source: "x", sourceLabel: "Fonte X", group: "intl",

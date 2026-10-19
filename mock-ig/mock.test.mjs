@@ -6,10 +6,10 @@
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
-import os from "node:os";
+import { pastaTemp } from "../scripts/lib/pasta-temp.mjs";
 
 // store proprio de teste (nao mexe no _store.json real)
-process.env.MOCK_IG_STORE = path.join(os.tmpdir(), `mock-ig-test-${Date.now()}.json`);
+process.env.MOCK_IG_STORE = path.join(pastaTemp("smufdpj-teste-"), `mock-ig-test-${Date.now()}.json`);
 
 const { server, start } = await import("./server.mjs");
 let base;

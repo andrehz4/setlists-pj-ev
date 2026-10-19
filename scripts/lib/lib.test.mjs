@@ -1,13 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
-import os from "node:os";
+import { pastaTemp } from "./pasta-temp.mjs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { lerEstado, gravarEstado, comLista, EstadoCorrompido } from "./estado.mjs";
 import { commitAndPush } from "./git.mjs";
 
-const tmp = () => fs.mkdtemp(path.join(os.tmpdir(), "lib-test-"));
+const tmp = () => Promise.resolve(pastaTemp("lib-test-"));
 
 test("estado: ausente devolve cópia do padrão", async () => {
   const d = await tmp();

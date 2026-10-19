@@ -4,13 +4,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { normalizarFala, falasDasCenas, ABERTURAS, FINAIS, variacaoDaSemana } from "./fala.mjs";
 import { vozDaSemana, sintetizar, VOZES } from "./elevenlabs.mjs";
 import { prepararNarracao, duracoesSincronizadas, filtroMixagem, narracaoLigada, arquivoFixo } from "./narracao.mjs";
 import { buildScenePlan, COLD_DUR, BLOCK_DUR, OUTRO_DUR } from "../reel-video.mjs";
 import { buildReelCaption } from "../instagram.mjs";
+import { pastaTemp } from "../../lib/pasta-temp.mjs";
 
 const DIR = path.dirname(new URL(import.meta.url).pathname);
 const ITENS = [
@@ -18,7 +18,7 @@ const ITENS = [
   { id: "b", format: "card", title_pt: "Eddie Vedder toca \"Better Man\" no Ohana" },
 ];
 const LIGADA = { REEL_NARRACAO: "1", ELEVENLABS_API_KEY: "chave-falsa" };
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), "narr-test-"));
+const tmp = () => pastaTemp("narr-test-");
 
 test("fala lê o título da tela, trocando o que soa mal", () => {
   assert.equal(normalizarFala("PJ volta ao palco com Abe Laboriel Jr. & convidados"),

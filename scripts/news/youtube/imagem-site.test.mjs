@@ -1,12 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { imagemDoSite } from "./imagem-site.mjs";
+import { pastaTemp } from "../../lib/pasta-temp.mjs";
 
 const { default: sharp } = await import("sharp");
-const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "cap-site-"));
+const tmp = pastaTemp("cap-site-");
 const capa = path.join(tmp, "capa.jpg");
 await sharp({ create: { width: 1080, height: 1350, channels: 3, background: "#111" } }).jpeg().toFile(capa);
 

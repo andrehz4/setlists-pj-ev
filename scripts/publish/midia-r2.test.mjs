@@ -4,15 +4,15 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { configR2, assinar, enviarR2, publicarViaR2 } from "./midia-r2.mjs";
+import { pastaTemp } from "../lib/pasta-temp.mjs";
 
 const ENV = {
   R2_ACCOUNT_ID: "conta", R2_ACCESS_KEY_ID: "a".repeat(32), R2_SECRET_ACCESS_KEY: "b".repeat(64),
   R2_MIDIA_BUCKET: "smufdpj-midia", R2_MIDIA_PUBLIC_BASE: "https://midia.exemplo.com/",
 };
-const arquivo = () => { const f = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "r2-")), "v.mp4"); fs.writeFileSync(f, "video"); return f; };
+const arquivo = () => { const f = path.join(pastaTemp("r2-"), "v.mp4"); fs.writeFileSync(f, "video"); return f; };
 
 test("config: só liga com os 5 dados; tira a barra do fim do link público", () => {
   assert.equal(configR2({}), null);

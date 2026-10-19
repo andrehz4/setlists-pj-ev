@@ -9,11 +9,11 @@ import { test, after } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
-import os from "node:os";
+import { pastaTemp } from "../lib/pasta-temp.mjs";
 import { naRaiz } from "../config.mjs";
 
 // store + porta proprios (a suite roda arquivos em paralelo: 8795 livre)
-process.env.MOCK_IG_STORE = path.join(os.tmpdir(), `mock-ig-reel-${process.pid}.json`);
+process.env.MOCK_IG_STORE = path.join(pastaTemp("smufdpj-teste-"), `mock-ig-reel-${process.pid}.json`);
 const PORT = Number(process.env.MOCK_REEL_PORT || 8795);
 const base = `http://127.0.0.1:${PORT}`;
 process.env.MOCK_IG_PORT = String(PORT);
@@ -52,7 +52,7 @@ function fixtureIndex() {
 }
 
 async function writeFixtureIndex() {
-  const p = path.join(os.tmpdir(), `reel-index-${process.pid}.json`);
+  const p = path.join(pastaTemp("smufdpj-teste-"), `reel-index-${process.pid}.json`);
   await fs.writeFile(p, JSON.stringify(fixtureIndex()));
   return p;
 }
@@ -83,7 +83,7 @@ test("reel-select: janela de 7d, cap de 2 comunidade, formatos do design", async
 });
 
 test("reel-select: menos que o minimo devolve vazio", async () => {
-  const p = path.join(os.tmpdir(), `reel-index-min-${process.pid}.json`);
+  const p = path.join(pastaTemp("smufdpj-teste-"), `reel-index-min-${process.pid}.json`);
   await fs.writeFile(p, JSON.stringify({ items: fixtureIndex().items.slice(0, 2) }));
   const items = await selectReelItems({ now: NOW, indexPath: p });
   assert.equal(items.length, 0);
@@ -125,7 +125,7 @@ test("reel-clips: pickClipFor prioriza tag e nao repete; deterministico por seed
 });
 
 test("reel-clips: loadClips ignora entrada sem arquivo no disco", async () => {
-  const dir = path.join(os.tmpdir(), `reel-clips-${process.pid}`);
+  const dir = path.join(pastaTemp("smufdpj-teste-"), `reel-clips-${process.pid}`);
   await fs.mkdir(dir, { recursive: true });
   await fs.writeFile(path.join(dir, "clips.json"), JSON.stringify({
     clips: [{ file: "fantasma.mp4", tags: ["eddie"] }],
