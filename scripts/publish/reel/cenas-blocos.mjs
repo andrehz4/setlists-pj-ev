@@ -1,7 +1,7 @@
 // Cenas de manchete do reel: cinética, card e papel. `dur` = duração real da
 // cena (com narração varia); a saída do texto acompanha.
 
-import { W, H, BLOCK_DUR, F_TYPEWRITER, BRAND, TAG_LABELS, linear, easeOutCubic, easeOutQuart, easeOutQuad, easeInCubic, easeOutBack, seg, escapeXml, wrapWords, F_ANTON, F_INTER, F_INTER_XB } from "./base.mjs";
+import { W, H, BLOCK_DUR, F_TYPEWRITER, BRAND, TAG_LABELS, easeOutCubic, easeOutQuart, easeOutQuad, easeInCubic, easeOutBack, seg, escapeXml, wrapWords, F_ANTON, F_INTER, F_INTER_XB } from "./base.mjs";
 import { wordmarkSvg, counterSvg, clipChipSvg, tarjaSvg, kineticWordsSvg, veilSvg, paperBgSvg } from "./atomos.mjs";
 
 // BLOCO CINETICO: tarja + manchete palavra a palavra sobre clipe/foto/fantasma.
@@ -16,13 +16,11 @@ export function kineticSvg(t, { item, n, total, accent, dark = 0.68, ghost = fal
   });
   const tag = TAG_LABELS[item.tags?.[0]] || String(item.tags?.[0] || "NOTÍCIA").toUpperCase();
 
-  // fundo fantasma (sem clipe e sem foto): listras + CLIPE outline derivando
-  const drift = -24 + 48 * linear(t / dur);
+  // fundo de último caso (sem clipe e sem foto nenhuma): só listras, sem escrever "CLIPE" (parecia erro)
   const ghostBg = ghost ? `
     <rect x="0" y="0" width="${W}" height="${H}" fill="#0d0c0b"/>
     <defs><pattern id="kin-stripes" width="64" height="64" patternUnits="userSpaceOnUse" patternTransform="rotate(135)"><rect width="3" height="64" fill="rgba(247,241,222,0.045)"/></pattern></defs>
-    <rect x="0" y="0" width="${W}" height="${H}" fill="url(#kin-stripes)"/>
-    <text x="${(W / 2 + drift).toFixed(1)}" y="${700 + 340 * 0.8}" text-anchor="middle" font-family="${F_ANTON}" font-size="340" fill="none" stroke="rgba(247,241,222,0.12)" stroke-width="2">CLIPE</text>` : "";
+    <rect x="0" y="0" width="${W}" height="${H}" fill="url(#kin-stripes)"/>` : "";
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
     ${ghostBg}

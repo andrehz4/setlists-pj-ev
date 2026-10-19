@@ -85,7 +85,7 @@ export async function buildReelVideo({
       } else {
         const photoBuf = scene.kind === "coldopen"
           ? await fetchImageBuffer(items.find((it) => it.hasImg) || items[0])
-          : (scene.item.hasImg !== false ? await fetchImageBuffer(scene.item) : null);
+          : await fetchImageBuffer(scene.item); // sem foto própria cai na foto do integrante/banda, nunca no fantasma
         if (photoBuf) {
           ctx.mode = "photo";
           ctx.zoomFrom = scene.kind === "coldopen" ? 1.30 : 1.06;

@@ -1,9 +1,10 @@
-// Fundo do card do story: foto (mesma escolha do slide do feed) com aproximação lenta (Ken Burns, igual ao reel)
-// que puxa pro rosto quando acha um (blazeface); sem rosto, aproxima no centro. Na faixa da manchete a foto vem
+// Fundo do card do story: foto e recorte iguais aos do slide do feed (rosto > smartcrop > attention) com aproximação
+// lenta (Ken Burns, igual ao reel) que puxa pro rosto quando acha um (blazeface); sem rosto, aproxima no centro. Na faixa da manchete a foto vem
 // desfocada e escura (desfoque-faixa.mjs). Gradiente card02 por cima. Sem foto: grafite parado.
 // STORY_ZOOM=0 deixa a foto parada.
 import sharp from "sharp";
-import { fetchBaseImageBuffer } from "../slide/imagem.mjs";
+import { prepareSource } from "../slide/imagem.mjs";
+import { coverCrop } from "../slide/foto.mjs";
 import { detectFaces } from "../face-crop.mjs";
 import { desfocar, comFaixa, mascaraAlfa } from "../desfoque-faixa.mjs";
 import { clamp01 } from "../story-styles/_shared.mjs";
@@ -46,15 +47,15 @@ export function janela({ bw, bh, foco }, p) {
 export async function prepararFundo(item) {
   const y0 = Math.max(0, Math.round(layoutCard(item).tagTopY - 70));
   const grad = gradienteSvg(Math.max(0, y0 - 160), y0);
-  const foto = await fetchBaseImageBuffer(item);
+  const { srcBuf: foto, det } = await prepareSource(item);
   if (!foto) {
     const liso = await sharp({ create: { width: W, height: H, channels: 3, background: { r: 26, g: 24, b: 21 } } })
       .composite([{ input: grad, blend: "over" }]).png().toBuffer();
     return { parado: liso };
   }
   const bw = Math.round(W * ZOOM), bh = Math.round(H * ZOOM);
-  const base = await sharp(foto, { failOn: "none" })
-    .resize(bw, bh, { fit: "cover", position: "attention" }).sharpen(1.1).jpeg({ quality: 92 }).toBuffer();
+  // Recorta já pelo rosto da foto inteira: cortar antes e procurar depois perdia o rosto da borda.
+  const base = await sharp(await coverCrop(foto, det, bw, bh)).sharpen(1.1).jpeg({ quality: 92 }).toBuffer();
   const fundo = { base, bw, bh, grad, desfocada: await desfocar(base, { escala: ZOOM }), mascara: await mascaraAlfa(W, H, y0, H) };
   if (process.env.STORY_ZOOM === "0") return { parado: await quadro(fundo, 0) };
   fundo.foco = await focoDoRosto(base);

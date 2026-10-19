@@ -24,7 +24,7 @@ export async function renderScene({ scene, total, accent, ctx, dir, concurrency 
       svg = coldOpenSvg(t, {
         accent, itemCount: total, rangeLabel: ctx.rangeLabel, dark: 0.6,
         letterWidths: ctx.letterWidths, tarjaTextW: ctx.tarjaTextW, chipTextW: ctx.chipTextW,
-        showChip: ctx.mode === "overlay" || ctx.ghost === true, dur: scene.dur,
+        showChip: ctx.mode === "overlay", dur: scene.dur,
         comFlash: ctx.mode !== "overlay", // abertura de clipe: sem flash azul da cor do ciclo
       });
     } else if (scene.kind === "outro") {
@@ -40,7 +40,7 @@ export async function renderScene({ scene, total, accent, ctx, dir, concurrency 
       svg = kineticSvg(t, {
         item: scene.item, n: scene.n, total, accent, ghost: ctx.ghost === true,
         layout: ctx.layout, tarjaTextW: ctx.tarjaTextW, chipTextW: ctx.chipTextW,
-        showChip: ctx.mode === "overlay" || ctx.ghost === true, dur: scene.dur,
+        showChip: ctx.mode === "overlay", dur: scene.dur,
       });
     }
 
