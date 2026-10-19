@@ -8,3 +8,5 @@ a regra antiga reproduzindo o erro e o código atual fazendo o certo. Roda junto
 | `recorte-rosto.test.mjs` | story e reel com o rosto cortado fora (fotos reais em `fixtures/`) | 18/10/2026 |
 | `reel-sem-fantasma.test.mjs` | reel com fundo "CLIPE" e selo "CLIPE · MUDO" em notícia sem foto | 18/10/2026 |
 | `card-letra-cortada.test.mjs` | card do reel comendo a última letra da manchete ("ENTROI") | 18/10/2026 |
+| `selo-mudo.test.mjs` | selo "CLIPE · MUDO" na abertura de um reel que tem som | 18/10/2026 |
+| `pronuncia-narracao.test.mjs` | voz lendo "Fá" (frase começando com Fã) e "Mungo" (mundo Pearl Jam) | 18/10/2026 |

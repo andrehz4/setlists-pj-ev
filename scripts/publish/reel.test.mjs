@@ -168,7 +168,7 @@ test("reel-video: SVGs das 5 cenas renderizam conteudo esperado", () => {
   const kin = kineticSvg(3.0, { item, n: 1, total: 8, accent: "#E10600" });
   assert.ok(kin.includes("TURNÊ") && kin.includes("PEARL"));
   const ghost = kineticSvg(3.0, { item, n: 1, total: 8, accent: "#E10600", ghost: true });
-  assert.ok(ghost.includes("CLIPE") && ghost.includes("#0d0c0b"));
+  assert.ok(!ghost.includes("CLIPE") && ghost.includes("#0d0c0b")); // fundo vazio não escreve CLIPE (scripts/regressao/)
 
   const card = cardSvg(2.0, { item, n: 2, total: 8, accent: "#E10600" });
   assert.ok(card.includes("LEIA MAIS") && card.includes("somaisumfadepearljam.com.br") && card.includes("card-grad"));

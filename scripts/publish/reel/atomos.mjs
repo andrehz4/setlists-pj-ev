@@ -18,8 +18,11 @@ export function counterSvg(t, n, total, color, inAt = 0.1) {
   return `<text x="${W - 60}" y="${(62 + 32 * 0.8 - 24 * (1 - e)).toFixed(1)}" text-anchor="end" font-family="${F_INTER_XB}" font-weight="800" font-size="32" letter-spacing="2.5" fill="${color}" opacity="${e.toFixed(3)}">${label}</text>`;
 }
 
-// Chip "CLIPE · MUDO" com bolinha vermelha piscando (step de 0.5s).
+// Chip "CLIPE · MUDO" com bolinha vermelha piscando (step de 0.5s). DESLIGADO: reel e story sempre têm trilha e
+// narração, então o selo dizia "mudo" num vídeo com som (bug 18/10/2026, scripts/regressao/selo-mudo.test.mjs).
+export const SELO_MUDO = false;
 export function clipChipSvg(t, { inAt = 0.12, place = "top", textW = null } = {}) {
+  if (!SELO_MUDO) return "";
   const o = seg(t, inAt, 0.25, easeOutQuad);
   if (o <= 0) return "";
   const blink = Math.floor(t * 2) % 2 === 0 ? 1 : 0.25;
