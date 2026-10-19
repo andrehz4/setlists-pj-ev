@@ -8,19 +8,21 @@ import sharp from "sharp";
 import { W, H, FPS } from "./base.mjs";
 import { filtroFfmpeg } from "../desfoque-faixa.mjs";
 import { BRILHO_REEL } from "./desfoque.mjs";
+import { detectFaces } from "../face-crop.mjs";
+import { coverCrop } from "../slide/foto.mjs";
 
 // ============ fundos ============
 
 // Foto de fundo da cena: mesma escolha do slide do feed (override > local > URL > assunto > banda).
 export { fetchBaseImageBuffer as fetchImageBuffer } from "../slide/imagem.mjs";
 
-// Base pro Ken Burns: foto cover em W*Z x H*Z. Por frame, extrai a janela
-// central correspondente ao zoom(t) e redimensiona pra W x H.
+// Base pro Ken Burns: foto em W*Z x H*Z recortada como o slide do feed (rosto > smartcrop > attention), pra o
+// rosto da borda não sumir. Por frame, extrai a janela central correspondente ao zoom(t) e redimensiona pra W x H.
 export async function prepareZoomBase(buf, maxZoom) {
   const bw = Math.round(W * maxZoom);
   const bh = Math.round(H * maxZoom);
-  const base = await sharp(buf, { failOn: "none" })
-    .resize(bw, bh, { fit: "cover", position: "attention" })
+  const det = await detectFaces(buf).catch(() => null);
+  const base = await sharp(await coverCrop(buf, det, bw, bh))
     .sharpen(1.05)
     .jpeg({ quality: 92 })
     .toBuffer();
