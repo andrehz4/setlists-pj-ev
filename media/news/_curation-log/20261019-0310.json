@@ -1,0 +1,11 @@
+{
+  "runAt": "2026-10-19T03:10Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-dcdf3e3292", "title": "Vitalogy -album 1994", "reason": "spotlight sem obra de fã (foto do disco), conteúdo ambíguo" },
+    { "id": "f7dcffa22f", "title": "Pearl Jam - Last Exit (Drum Cover)", "reason": "texto vazio (menos de 200 chars), cover de bateria sem informação" }
+  ]
+}
