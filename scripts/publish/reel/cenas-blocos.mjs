@@ -55,7 +55,8 @@ export function faixaDoTexto(kind, item, layout) {
   return { y0: 560 - 60, y1: 664 + linhas * Math.round(size * 1.02) + 60 };
 }
 
-// BLOCO CARD: overlay sobre a foto (gradiente, cunha, tarja, manchete em bloco, meta).
+// BLOCO CARD: overlay sobre a foto (gradiente, cunha, tarja, manchete em bloco, meta). A máscara da manchete só corta
+// na vertical (revelação); na largura vai até a borda, senão comia a última letra (scripts/regressao/).
 export function cardSvg(t, { item, n, total, accent, layout = null, tarjaTextW = null, dur = BLOCK_DUR }) {
   const { size, lines, lh, metaTop, titleH, titleTop, tarjaTop } = cardGeometria(item, layout);
   const xe = seg(t, dur - 0.3, 0.3, easeInCubic);
@@ -79,7 +80,7 @@ export function cardSvg(t, { item, n, total, accent, layout = null, tarjaTextW =
         <stop offset="88%" stop-color="rgba(10,9,8,0.9)"/>
         <stop offset="100%" stop-color="rgba(10,9,8,0.9)"/>
       </linearGradient>
-      <clipPath id="card-title-${n}"><rect x="54" y="${(titleTop - size * 0.12).toFixed(1)}" width="892" height="${(titleH + size * 0.24).toFixed(1)}"/></clipPath>
+      <clipPath id="card-title-${n}"><rect x="54" y="${(titleTop - size * 0.12).toFixed(1)}" width="${W - 54}" height="${(titleH + size * 0.24).toFixed(1)}"/></clipPath>
     </defs>
     <rect x="0" y="0" width="${W}" height="${H}" fill="url(#card-grad)"/>
     <g transform="translate(${(-(1 - wedge) * 454).toFixed(1)} ${(-(1 - wedge) * 420).toFixed(1)})">
