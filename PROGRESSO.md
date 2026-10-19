@@ -30,6 +30,25 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-10-18/19: bugs do reel viram testes de regressão, carrossel da agenda, contas da ElevenLabs
+
+- **Regra nova**: todo bug pego vira teste em `scripts/regressao/` (README lá), provando o erro antigo e o certo.
+  11 arquivos hoje. CI de testes agora instala ffmpeg (testes de áudio e vídeo medem de verdade).
+- **Reel/story corrigidos**: recorte sem rosto (cortava antes de achar o rosto), fundo fantasma "CLIPE" em notícia
+  sem foto, última letra da manchete comida no card, selo "CLIPE · MUDO" num vídeo com som, voz "Fá" e "Mungo" e
+  "agitada" em espanhol (frases trocadas e regravadas, conferidas no mlx_whisper do voz-hz), fala cortada pela
+  próxima (teto de 9 s), música 2,3 dB acima da voz (agora trilha normalizada, voz 13 a 23 dB acima), selo final
+  parado com ffmpeg 8+.
+- **ElevenLabs, 3 contas** (`scripts/publish/narracao/chaves.mjs`): principal -> reserva -> agenda, pula sem saldo
+  ou sem crédito no meio; variável `ELEVENLABS_CHAVE` força uma. Saldos em 19/10: principal 260 (renova 31/10),
+  reserva ~9.186 (18/11), agenda 4.076 (05/11). Reel de 25/10 vai usar a reserva.
+- **Agenda da semana em carrossel** (desenho do Claude Design, proposta 1b/2b, `scripts/agenda/redes/carrossel/`):
+  capa em ingressos (2 páginas se passar de 9 shows) + 1 slide por banda com selo, horário e marcação própria +
+  chamada final. LIGADO (`AGENDA_CARROSSEL=1`) a partir de 19/10 10:07. CONFERIR o 1º post no ar.
+- Testes não deixam mais lixo em /var/folders (`scripts/lib/pasta-temp.mjs`). O projeto youtube-marcaregistrada
+  deixa ~24 mil pastas `tmpXXXX` lá (não mexido).
+- Pendente: rosto atrás da faixa borrada nas cenas cinéticas do reel (Andre ainda não decidiu).
+
 ## 2026-10-14: minutos do GitHub Actions, colaboradores em horários fixos
 
 - Diagnóstico: setlists gastava 91% da franquia (1.550 de 1.709 min em 14 dias, rumo a ~3.700 de 3.000 no mês). Culpado:
