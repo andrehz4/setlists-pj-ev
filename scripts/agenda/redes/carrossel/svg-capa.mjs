@@ -1,5 +1,6 @@
 // Capa do carrossel (1º slide, proposta 1b "Ingressos"): cabeçalho é um ingresso grande com canhoto da semana,
-// cada show é um ingresso com a data no canhoto. Até 9 shows; o resto vira "+ N show(s)" acima do rodapé.
+// cada show é um ingresso com a data no canhoto. Até 9 shows por página; semana cheia ganha uma 2ª página
+// (montar.mjs) e só o que passar das páginas vira "+ N show(s)" acima do rodapé.
 import { W, H, CREME, CREME2, TINTA, ASSIN, RODAPE, CORES, clamp, n1, dm, diaSem, semanaIso, medir, caber,
   txt, tspan, grao, ticket, abre, barras } from "./svg-base.mjs";
 
@@ -16,8 +17,10 @@ export function prepararCapa(lista, max = MAX_CAPA) {
   return { mostrar: todos.slice(0, max), resto: Math.max(0, todos.length - max) };
 }
 
-export function svgCapa(lista, inicio, fim, corId = "azul", p = "cp") {
+// parte: "1/2", "2/2" (null = página única) · resto: shows que não couberam em nenhuma página.
+export function svgCapa(lista, inicio, fim, corId = "azul", p = "cp", { parte = null, resto = null } = {}) {
   const c = CORES[corId], d = prepararCapa(lista), escuro = corId === "preto", num = semanaIso(inicio);
+  if (resto != null) d.resto = resto;
   const out = [abre, `<defs>
 <pattern id="${p}h" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><circle cx="8" cy="8" r="2.2" fill="${escuro ? CREME : "#000"}" opacity="${escuro ? .06 : .13}"/></pattern>
 ${grao(p + "g", TINTA, 4, 70, 150, .5, 1.4, .05, .14)}
@@ -30,7 +33,7 @@ ${grao(p + "g", TINTA, 4, 70, 150, .5, 1.4, .05, .14)}
     `<path d="${hp}" fill="${CREME2}"/><path d="${hp}" fill="url(#${p}g)"/>`,
     `<line x1="${hs}" y1="${hy + 34}" x2="${hs}" y2="${hy + hh - 34}" stroke="${TINTA}" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 14" opacity=".35"/>`,
     txt(100, 114, ASSIN, { f: "pf", size: 30, fill: TINTA }),
-    txt(748, 114, `Nº ${num}`, { f: "xb", size: 18, fill: "#5a554c", anchor: "end" }),
+    txt(748, 114, parte ? `Nº ${num} · PARTE ${parte}` : `Nº ${num}`, { f: "xb", size: 18, fill: "#5a554c", anchor: "end" }),
     txt(94, 298, "AGENDA", { f: "anton", size: 196, fill: c.titulo }),
     txt(98, 362, "DA SEMANA", { f: "anton", size: 58, fill: TINTA }),
     txt(900, 130, "SEMANA", { f: "xb", size: 18, fill: "#5a554c", anchor: "middle" }),

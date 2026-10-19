@@ -1,13 +1,14 @@
-// Monta o carrossel "Agenda da semana": capa (todos os shows) + 1 slide por banda + chamada final, até 10 slides.
+// Monta o carrossel "Agenda da semana": capa (1 ou 2 páginas) + 1 slide por banda + chamada final, até 10 slides.
 // Cada slide leva as contas pra marcar nele (banda e casas no slide da banda; as bandas na capa).
 import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 import { naRaiz } from "../../../config.mjs";
-import { svgCapa } from "./svg-capa.mjs";
+import { svgCapa, MAX_CAPA } from "./svg-capa.mjs";
 import { svgBanda, svgChamada } from "./svg-banda.mjs";
 
 export const MAX_SLIDES = 10;
+export const MAX_PAGINAS_CAPA = 2; // até 18 shows listados; passou disso, "+ N show(s)" na última página
 const DIR_FOTOS = naRaiz("media/agenda/fotos");
 
 // Resumo do slide: a primeira frase do perfil (o slide quebra em até 3 linhas).
@@ -24,12 +25,26 @@ export function bandasDaSemana(lista) {
   return [...grupos.values()];
 }
 
-// Plano puro dos slides: [{ tipo: "capa"|"banda"|"chamada", grupo?, contas }]. Com bandas demais, a chamada sai
-// e entram até 9 bandas; as que sobram só aparecem na capa.
+// Páginas da capa: até 9 shows por página, até MAX_PAGINAS_CAPA, divididos por igual (10 shows = 5 + 5, não 9 + 1).
+// Devolve [{ shows, parte, resto }].
+export function paginasDaCapa(lista) {
+  const ord = lista.slice().sort((a, b) => a.data.localeCompare(b.data));
+  const n = Math.min(MAX_PAGINAS_CAPA, Math.max(1, Math.ceil(ord.length / MAX_CAPA)));
+  const por = Math.ceil(Math.min(ord.length, n * MAX_CAPA) / n);
+  return Array.from({ length: n }, (_, i) => ({
+    shows: ord.slice(i * por, Math.min((i + 1) * por, n * MAX_CAPA)),
+    parte: n > 1 ? `${i + 1}/${n}` : null,
+    resto: i === n - 1 ? Math.max(0, ord.length - n * MAX_CAPA) : 0,
+  }));
+}
+
+// Plano puro dos slides: [{ tipo: "capa"|"banda"|"chamada", pagina?, grupo?, contas }]. Prioridade nos 10 slides:
+// capas (todo show aparece) > bandas > chamada. Bandas que não cabem só aparecem na capa.
 export function planoDoCarrossel(lista) {
-  const grupos = bandasDaSemana(lista);
-  const cabem = grupos.length >= MAX_SLIDES - 1 ? MAX_SLIDES - 1 : grupos.length;
-  const slides = [{ tipo: "capa", contas: grupos.map((g) => g.conta).filter(Boolean).slice(0, 20) }];
+  const grupos = bandasDaSemana(lista), paginas = paginasDaCapa(lista);
+  const slides = paginas.map((pagina) => ({ tipo: "capa", pagina,
+    contas: [...new Set(pagina.shows.map((s) => s.banda).filter(Boolean))].slice(0, 20) }));
+  const cabem = Math.min(grupos.length, MAX_SLIDES - slides.length);
   for (const g of grupos.slice(0, cabem)) {
     slides.push({ tipo: "banda", grupo: g, contas: [...new Set([g.conta, ...g.shows.map((s) => s.casa)].filter(Boolean))] });
   }
@@ -55,7 +70,7 @@ export async function svgsDoCarrossel(lista, bandas, inicio, fim, corId, { dirFo
   const out = [];
   for (const [i, sl] of planoDoCarrossel(lista).entries()) {
     let svg;
-    if (sl.tipo === "capa") svg = svgCapa(lista, inicio, fim, corId);
+    if (sl.tipo === "capa") svg = svgCapa(sl.pagina.shows, inicio, fim, corId, `cp${i}`, sl.pagina);
     else if (sl.tipo === "chamada") svg = svgChamada(inicio, fim, corId);
     else {
       const b = porConta.get(sl.grupo.conta) || {};

@@ -4,7 +4,7 @@ import fs from "node:fs";
 import "../../../publish/fontconfig-boot.mjs";
 import { measureText } from "../../../publish/reel/base.mjs";
 import { F_ANTON } from "../../../publish/fontconfig-boot.mjs";
-import { planoDoCarrossel, resumoCurto, bandasDaSemana, svgsDoCarrossel, MAX_SLIDES } from "./montar.mjs";
+import { planoDoCarrossel, paginasDaCapa, resumoCurto, bandasDaSemana, svgsDoCarrossel, MAX_SLIDES } from "./montar.mjs";
 import { caber, corDoCiclo } from "./svg-base.mjs";
 import { quebrar, iniciais } from "./svg-banda.mjs";
 
@@ -19,12 +19,21 @@ test("plano: capa + 1 por banda (ordem do 1º show) + chamada; contas certas em 
   assert.deepEqual(p[3].contas, []);
 });
 
-test("plano: nunca passa de 10 slides; com 9+ bandas a chamada sai", () => {
+test("plano: nunca passa de 10 slides; capas têm prioridade, depois bandas, chamada se sobrar", () => {
   const lista = Array.from({ length: 12 }, (_, i) => show("2026-10-15", `banda${i}`, null));
   const p = planoDoCarrossel(lista);
   assert.equal(p.length, MAX_SLIDES);
-  assert.ok(!p.some((s) => s.tipo === "chamada"));
+  assert.deepEqual(p.map((s) => s.tipo), ["capa", "capa", ...Array(8).fill("banda")]);
   assert.equal(bandasDaSemana(lista).length, 12); // as que sobram ficam na capa
+});
+
+test("semana cheia: 2ª página da capa (dividida por igual) em vez de '+ N shows'; + N só depois de 18", () => {
+  const n = (k) => Array.from({ length: k }, (_, i) => show(`2026-10-${String(19 + (i % 7)).padStart(2, "0")}`, "a", null));
+  assert.deepEqual(paginasDaCapa(n(9)).map((p) => [p.shows.length, p.parte, p.resto]), [[9, null, 0]]);
+  assert.deepEqual(paginasDaCapa(n(10)).map((p) => [p.shows.length, p.parte, p.resto]), [[5, "1/2", 0], [5, "2/2", 0]]);
+  assert.deepEqual(paginasDaCapa(n(20)).map((p) => [p.shows.length, p.parte, p.resto]), [[9, "1/2", 0], [9, "2/2", 2]]);
+  const capas = planoDoCarrossel(n(10)).filter((s) => s.tipo === "capa");
+  assert.equal(capas.length, 2);
 });
 
 test("resumo curto = 1ª frase; quebra em até 3 linhas com reticências", () => {
