@@ -16,4 +16,5 @@ export { getRecentMedia, recoverPublishedPost } from "./ig/recuperar.mjs";
 export { publishItems, publishCarouselFromUrls, publishStory, publishReel } from "./ig/publicar.mjs";
 export { publishImageStory } from "./ig/story-imagem.mjs";
 export { publishSingleImage } from "./ig/post-imagem.mjs";
+export { publishTaggedCarousel } from "./ig/carrossel-marcado.mjs";
 export { publishVideoStory } from "./ig/story-video.mjs";

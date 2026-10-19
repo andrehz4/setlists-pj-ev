@@ -12,3 +12,4 @@ a regra antiga reproduzindo o erro e o código atual fazendo o certo. Roda junto
 | `pronuncia-narracao.test.mjs` | voz lendo "Fá" (frase começando com Fã) e "Mungo" (mundo Pearl Jam) | 18/10/2026 |
 | `selo-final-animado.test.mjs` | selo animado do final virando PNG parado com ffmpeg 8+ (-vsync removido) | 18/10/2026 |
 | `fala-sobreposta.test.mjs` | narração da manchete longa cortada pela próxima fala (teto de 9 s) | 18/10/2026 |
+| `agenda-arte-semana.test.mjs` | agenda: data vermelha sumindo no fundo vermelho, "+ N shows" no rodapé, cidade grudada no @ | 18/10/2026 |
