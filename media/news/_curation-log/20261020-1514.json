@@ -1,0 +1,15 @@
+{
+  "runAt": "2026-10-20T15:12Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 5, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "30cfc9cb66", "titulo": "Roger Daltrey elogia Eddie Vedder antes de dividir o Best of Blues and Rock", "kind": "midia" },
+    { "id": "f7a2def434", "titulo": "McCready diz que o Pearl Jam está em hibernação, mas promete volta", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "d44b74920b", "title": "Roger Daltrey fala à RS (Terra)", "reason": "republicação de Rolling Stone Brasil" },
+    { "id": "96297add70", "title": "Lightning Bolt Superlatives (podcast)", "reason": "episódio de podcast, ranking sem fato novo" },
+    { "id": "c5b5387a1b", "title": "The Strokes ranked #57 on Consequence", "reason": "sem menção a PJ" }
+  ]
+}
