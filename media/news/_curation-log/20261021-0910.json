@@ -1,0 +1,19 @@
+{
+  "runAt": "2026-10-21T09:10Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 1,
+  "distribution": {
+    "midia": 1,
+    "community-digest": 0,
+    "community-spotlight": 0,
+    "shop": 0
+  },
+  "approved": [],
+  "skipped": [
+    {
+      "id": "5e37be8e5b",
+      "title": "What lyric is as sad as that bar from Pearl Jam's Black?",
+      "reason": "pergunta genérica de fã no r/Music, sem notícia, texto com menos de 200 chars"
+    }
+  ]
+}
