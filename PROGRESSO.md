@@ -9,6 +9,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Site, fórum e pipeline no ar. Publish IG/FB, story diário, reel de domingo, cápsulas, contrib e X manual rodando.
 - Instagram oficial (@pearljam, @eddievedder) é fonte de notícia desde 02/10 (`scripts/news/ig-oficial.mjs`).
 - Vistoria de saúde executada em 03/10 (ver a sessão abaixo e `docs/VISTORIA-2026-10-02.md`, seção Status).
+- Quiz de Quarta: mora no repo PRIVADO `andrehz4/fabrica-quiz` desde 24/10 (estado e próximo passo no PROGRESSO.md
+  de lá). Aqui no público não fica nada do quiz.
 - Pendências vivas:
   - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com 7 bandas e a turnê oficial, coleta diária
     09:17 (`agenda.yml`). Post "Agenda da semana" (segunda 10:07) e STORY EM VÍDEO POR BANDA (todo dia 10:37,
@@ -20,7 +22,6 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
   - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
-  - Backup de 30/09 (`/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-09-30.git`, 1 GB): decidir se apaga.
   - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
   - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
   - Colaboradores PAUSADOS em 14/10 (ainda não há colaboradores): TriggerAll #6 sem horário (custo zero de Actions).
@@ -29,6 +30,14 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Conta do Actions (todos os repos): ~2.080 min/mês com contrib ligado, ~1.600 pausado, antes ~3.900 (franquia 3.000).
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
+
+## 2026-10-24: limpeza do HD e quiz migrado pro repo privado
+
+- HD: apagados o backup de 30/09 (1 GB, já sem uso) e sobras fora do git (~30 MB: design-handoff.zip de junho,
+  reel/story já publicados, previews, kit do X de 30/09, caches do Python).
+- Quiz de Quarta (planejado na sessão web, branch `ccr-e9c8f370-u6acn6`) foi pro repo privado `fabrica-quiz` com o
+  histórico; branches `ccr-e9c8f370-u6acn6` e `ccr-204cfbb4-e1ak68` apagadas daqui. Do que a branch tinha fora do
+  quiz, só o `docs/PLANO-REPO-PRIVADO.md` (plano de deixar ESTE repo privado, nada executado) veio pra main.
 
 ## 2026-10-18/19: bugs do reel viram testes de regressão, carrossel da agenda, contas da ElevenLabs
 

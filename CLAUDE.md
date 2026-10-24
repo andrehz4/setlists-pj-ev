@@ -34,6 +34,9 @@ Validar mudança no pipeline = `npm test` + `node mock-ig/run.mjs feed` com iten
 - `scripts/news/`: coleta e curadoria. `index-site.mjs` é a regra ÚNICA de gravação do `index.json` (teto 2000, notícia nova
   nunca arquivada); `coleta/`, `comunidade/` e `curadoria/` são as partes do fetch-news, community-fetch e merge-curated.
 - Site: `index.html` + `css/app.css` + `dados/*.js` (shows, discos, músicas, mídia). Fórum: `forum*.html` + `functions/`.
+- Quiz de Quarta (reel de perguntas): mora no repo PRIVADO `andrehz4/fabrica-quiz` (fábrica de reels quiz
+  multimarca; este site é a marca SMUFDPJ; no Mac em `/Users/andrehz/Documents/Githubhz/fabrica-quiz`). Nunca colocar
+  código, pergunta, gabarito ou spec do quiz aqui no público (nem PR, nem issue). O quiz só LÊ dados públicos daqui.
 - `backend/`: cópia do fórum que ficou para trás; produção roda `terra-gentil-app/backend` (ver `backend/DEPLOY-RAILWAY.md`).
 
 ## Arquivos de estado (media/news/), todos versionados no git
