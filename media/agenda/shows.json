@@ -1,39 +1,39 @@
 {
-  "atualizado": "2026-10-23T17:14:35.712Z",
+  "atualizado": "2026-10-24T12:17:40.404Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-23T17:14:25.703Z",
-      "seguidores": 33076,
+      "lidoEm": "2026-10-24T12:17:26.162Z",
+      "seguidores": 33092,
       "ultimoPost": "2026-10-22T18:50:27+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-23T17:14:26.992Z",
-      "seguidores": 101728,
+      "lidoEm": "2026-10-24T12:17:27.891Z",
+      "seguidores": 101810,
       "ultimoPost": "2026-10-22T21:53:32+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-23T17:14:27.873Z",
-      "seguidores": 9373,
+      "lidoEm": "2026-10-24T12:17:29.191Z",
+      "seguidores": 9372,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-23T17:14:29.674Z",
-      "seguidores": 74263,
+      "lidoEm": "2026-10-24T12:17:31.869Z",
+      "seguidores": 74262,
       "ultimoPost": "2026-10-22T21:13:00+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-23T17:14:31.666Z",
-      "seguidores": 21095,
+      "lidoEm": "2026-10-24T12:17:34.255Z",
+      "seguidores": 21097,
       "ultimoPost": "2026-10-20T16:12:29+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-23T17:14:33.228Z",
-      "seguidores": 33431,
-      "ultimoPost": "2026-10-22T19:00:10+0000"
+      "lidoEm": "2026-10-24T12:17:36.320Z",
+      "seguidores": 33461,
+      "ultimoPost": "2026-10-23T18:00:22+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-23T17:14:35.383Z",
-      "seguidores": 6315,
+      "lidoEm": "2026-10-24T12:17:40.332Z",
+      "seguidores": 6317,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     }
   },
@@ -68,78 +68,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-10-23-osasco",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-10-23",
-      "casa": null,
-      "casaNome": null,
-      "cidade": "Osasco",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dez_mdlGdmU/"
-    },
-    {
-      "id": "blaymorphed-2026-10-23-ribeirao-pires",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-10-23",
-      "casa": "brothers_rock_bar",
-      "casaNome": null,
-      "cidade": "Ribeirão Pires",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Dd7SbGbSmIt/",
-      "detalhe": "https://www.instagram.com/p/DeuVpMZS9ZT/"
-    },
-    {
-      "id": "pearljamsp-2026-10-23-latavelharock",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-10-23",
-      "casa": "latavelharock",
-      "casaNome": null,
-      "cidade": null,
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "23:00",
-      "fonte": "https://www.instagram.com/p/DerRha7RWn2/"
-    },
-    {
-      "id": "pearljamcoverribeirao-2026-10-23-curitiba",
-      "banda": "pearljamcoverribeirao",
-      "nome": "Pearl Jam Cover Ribeirão",
-      "data": "2026-10-23",
-      "casa": "clayhighway",
-      "casaNome": null,
-      "cidade": "Curitiba",
-      "uf": "PR",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
-      "detalhe": "https://www.instagram.com/reel/DeunnKWR9bo/"
-    },
-    {
-      "id": "pjnoventa-2026-10-23-carapicuiba",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-23",
-      "casa": "vitaorockbaroficial",
-      "casaNome": null,
-      "cidade": "Carapicuíba",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "22:00",
-      "fonte": "https://www.instagram.com/p/DdzSl9mCTci/"
-    },
     {
       "id": "blackcirclepj-2026-10-24-sao-bernardo-do-campo",
       "banda": "blackcirclepj",
