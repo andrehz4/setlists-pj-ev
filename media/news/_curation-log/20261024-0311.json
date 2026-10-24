@@ -1,0 +1,27 @@
+{
+  "runAt": "2026-10-24T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 17,
+  "distribution": { "midia": 13, "community-digest": 2, "community-spotlight": 1, "instagram-oficial": 1, "shop": 0 },
+  "approved": [
+    { "id": "90bae386af", "titulo": "Pearl Jam celebra 36 anos do primeiro show com fotos de várias épocas", "kind": "instagram-oficial" },
+    { "id": "cs-9e08669f69", "titulo": "Fã reencontra setlist de 1994 anotado à mão pela namorada em Cleveland", "kind": "community-spotlight" },
+    { "id": "cd-20261023", "titulo": "O mistério do Dead End, a briga em Lukin e o sonho de turnê na Europa", "kind": "community-digest" }
+  ],
+  "skipped": [
+    { "id": "1ce1449737", "title": "Pearl Jam evita residência na Sphere (Terra)", "reason": "sem novidade (já publicado: 0bce1566ab)" },
+    { "id": "cd-20261022", "title": "digest 22/10", "reason": "dia fraco, assuntos fundidos no digest cd-20261023" },
+    { "id": "f1509d323f", "title": "Albums with synonymous titles", "reason": "PJ tangencial" },
+    { "id": "88c133aa74", "title": "Happy Birthday, Pearl Jam! (Red Mosquito)", "reason": "texto vazio (coberto pelo post oficial 90bae386af)" },
+    { "id": "7bddcfc215", "title": "LEGO Daft Punk pyramid set", "reason": "sem menção a PJ" },
+    { "id": "eda21e595c", "title": "Bill Simmons / Hunter Thompson columns", "reason": "PJ tangencial" },
+    { "id": "6f6fa8ed6f", "title": "how basic is it?", "reason": "texto vazio" },
+    { "id": "d3f88a885d", "title": "Alive em vídeo de protesto estudantil sérvio", "reason": "texto vazio (só título)" },
+    { "id": "ff53a592ee", "title": "CD collection update", "reason": "PJ tangencial" },
+    { "id": "ba7010b780", "title": "Favorite album starting with V", "reason": "PJ tangencial" },
+    { "id": "7eabbf3122", "title": "Eddie Vedder as Sirius", "reason": "meme" },
+    { "id": "ecda6384e4", "title": "Hawai'i '78 em Honolulu 2006 (vídeo)", "reason": "texto vazio (só título de vídeo)" },
+    { "id": "b902141aca", "title": "Hawai'i '78 em Honolulu 2006 (vídeo, r/grunge)", "reason": "duplicado de ecda6384e4, texto vazio" },
+    { "id": "f33a0aeee0", "title": "Anyone here who listens to bands (Sri Lanka)", "reason": "PJ tangencial" }
+  ]
+}
