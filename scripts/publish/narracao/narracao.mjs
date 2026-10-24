@@ -118,11 +118,14 @@ export function filtroMixagem(falas, inicios) {
     const ms = Math.round((inicios[f.sceneIndex] + INICIO_FALA) * 1000);
     return `[${k + 1}:a]adelay=${ms}|${ms},aformat=channel_layouts=stereo[f${k}]`;
   });
-  const junta = `${falas.map((_, k) => `[f${k}]`).join("")}amix=inputs=${falas.length}:normalize=0,volume=1.8,asplit=2[voz][chave]`;
+  // A chave do ducking é estendida com silêncio (apad): sem isso o sidechaincompress acaba junto com a última fala.
+  const junta = `${falas.map((_, k) => `[f${k}]`).join("")}amix=inputs=${falas.length}:normalize=0,volume=1.8,asplit=2[voz][ch];[ch]apad[chave]`;
   // Reel todo narrado: a música vira cama. Trilha normalizada baixa + ducking forte quando a voz fala (antes a música ficava
   // 2,3 dB ACIMA da voz; bug 18/10/2026, scripts/regressao/voz-acima-da-musica.test.mjs).
-  const duck = `[0:a]loudnorm=I=${MUSICA_LUFS}:TP=-2:LRA=11[cama];[cama][chave]sidechaincompress=threshold=0.015:ratio=14:attack=15:release=600[musica]`;
-  const final = "[musica][voz]amix=inputs=2:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11[aout]";
+  // O loudnorm sai em 192 kHz; sem o aresample o amix com a voz (44,1 kHz) cortava os ~3 s finais
+  // (bug 24/10/2026, scripts/regressao/final-sem-audio.test.mjs).
+  const duck = `[0:a]loudnorm=I=${MUSICA_LUFS}:TP=-2:LRA=11,aresample=44100[cama];[cama][chave]sidechaincompress=threshold=0.015:ratio=14:attack=15:release=600[musica]`;
+  const final = "[musica][voz]amix=inputs=2:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=44100[aout]";
   return [...vozes, junta, duck, final].join(";");
 }
 
