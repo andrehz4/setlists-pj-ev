@@ -1,0 +1,11 @@
+{
+  "runAt": "2026-10-26T03:10Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-a2571553e2", "title": "Does Eddie Vedder have a butt chin?", "reason": "spotlight meme/piada, sem selftext" },
+    { "id": "4235ab203a", "title": "Lady L lowkey sounds like a Pearl Jam song", "reason": "texto vazio (<200 chars), PJ tangencial (r/freaksandgeeks)" }
+  ]
+}
