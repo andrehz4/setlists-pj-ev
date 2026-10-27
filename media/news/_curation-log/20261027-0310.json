@@ -1,0 +1,17 @@
+{
+  "runAt": "2026-10-27T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 7,
+  "distribution": { "midia": 6, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "cs-e83ed17b73", "titulo": "Fã esculpe o logo do Pearl Jam numa abóbora de Halloween", "kind": "community-spotlight" }
+  ],
+  "skipped": [
+    { "id": "92b558b314", "title": "Mirrorball by Neil Young", "reason": "texto vazio (só título de post)" },
+    { "id": "128749d6a3", "title": "Latest adds. Still finding great hair metal", "reason": "texto vazio, sem menção a PJ" },
+    { "id": "3da5d8f105", "title": "What album closing track is not your favorite", "reason": "PJ tangencial (lista genérica)" },
+    { "id": "c1d5f54899", "title": "Raspored koncerata za vikend (Croácia)", "reason": "PJ tangencial (banda cover em agenda local)" },
+    { "id": "7f8ad29bc9", "title": "My 9 Albums", "reason": "sem menção a PJ no texto" },
+    { "id": "e7018ecdee", "title": "PJ Hamilton 2011 poster", "reason": "conteúdo fino (post curto sobre pôster antigo, sem novidade)" }
+  ]
+}
