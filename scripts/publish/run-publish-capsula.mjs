@@ -16,6 +16,7 @@ import { publishAlbumFromUrls } from "./facebook.mjs";
 import { CYCLE_COLORS } from "./color-cycle.mjs";
 import { buildQuoteSlideCitacao, estiloDoDia } from "./citacao/slide-citacao.mjs";
 import { fonteDoVideo } from "./citacao/fontes.mjs";
+import { ehFoto, buildFotoSlide } from "./citacao/foto.mjs";
 import { commitAndPush as commitAndPushGit } from "../lib/git.mjs";
 import { naRaiz, SITE_DOMINIO } from "../config.mjs";
 import { enviarTelegram } from "../lib/telegram.mjs";
@@ -97,21 +98,23 @@ async function gerarSlides(cap, cor, urlBase) {
   fs.mkdirSync(SLIDES_DIR, { recursive: true });
   const urls = [];
   const capaId = `${cap.id}-00`;
+  if (cap.estiloCapa) process.env.COVER_STYLE = cap.estiloCapa; // foto colorida pede estilo sem P&B
   await buildCoverSlide({ id: capaId, title_pt: cap.title_capa || cap.title_pt, img: cap.img, tags: cap.tags, kind: "youtube", url: "" }, capaId, cor);
   urls.push(`${urlBase}/${capaId}.jpg`);
   const cs = Array.isArray(cap.carrossel) ? cap.carrossel : [];
-  const citacao = (estilo) => Promise.all(cs.map((c, i) => buildQuoteSlideCitacao({ quote: c.texto, author: c.autor || "Eddie Vedder",
+  const citacao = (estilo) => Promise.all(cs.map((c, i) => ehFoto(c) ? null : buildQuoteSlideCitacao({ quote: c.texto, author: c.autor || "Eddie Vedder",
     seed: cap.id, fonte: fonteDoVideo(cap.videoId), estilo }, `${cap.id}-${String(i + 1).padStart(2, "0")}`, cor)));
   if (CITACAO) {
     // a cápsula inteira usa o mesmo estilo: se alguma citação não coube na revista, refaz tudo no editorial
     const estilo = estiloDoDia(CITACAO);
     const feitos = await citacao(estilo);
-    if (feitos.some((r) => r.estilo !== estilo)) await citacao("editorial");
-    console.log(`[capsula] citações no estilo ${feitos.every((r) => r.estilo === estilo) ? estilo : "editorial"}`);
+    if (feitos.some((r) => r && r.estilo !== estilo)) await citacao("editorial");
+    console.log(`[capsula] citações no estilo ${feitos.every((r) => !r || r.estilo === estilo) ? estilo : "editorial"}`);
   }
   for (let i = 0; i < cs.length; i++) {
     const qId = `${cap.id}-${String(i + 1).padStart(2, "0")}`;
-    if (!CITACAO) await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, cor);
+    if (ehFoto(cs[i])) await buildFotoSlide(cap, cs[i], qId, cor);
+    else if (!CITACAO) await buildQuoteSlide({ id: qId, quote: cs[i].texto, author: cs[i].autor || "Eddie Vedder" }, qId, cor);
     urls.push(`${urlBase}/${qId}.jpg`);
   }
   const ctaId = `${cap.id}-99`;

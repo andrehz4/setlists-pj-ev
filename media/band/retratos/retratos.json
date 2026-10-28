@@ -55,6 +55,11 @@
       "nome": "Josh Klinghoffer",
       "apelidos": ["josh klinghoffer", "klinghoffer"],
       "fotos": [{ "src": "josh-klinghoffer/josh-klinghoffer-2.jpg", "crop": [701, 45, 354] }]
+    },
+    "sergio-vedder": {
+      "nome": "Sergio Vedder",
+      "apelidos": ["sergio vedder", "sergio"],
+      "fotos": [{ "src": "sergio-vedder/sergio-cantando.jpg", "crop": [62, 0, 120] }]
     }
   }
 }

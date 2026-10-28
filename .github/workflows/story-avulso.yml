@@ -1,0 +1,40 @@
+# Story de imagem avulso (aviso pontual). A arte vai commitada em media/news/stories-avulsos/ antes do disparo.
+# Script scripts/publish/story-avulso/run.mjs.
+name: story-avulso
+on:
+  workflow_dispatch:
+    inputs:
+      imagem:
+        description: "Caminho da arte no repo (media/news/stories-avulsos/<arquivo>.jpg)"
+        type: string
+        required: true
+      marcar:
+        description: "Contas a marcar, separadas por vírgula (sem @)"
+        type: string
+        default: ""
+permissions:
+  contents: read
+concurrency:
+  group: story-avulso
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+      - name: Publicar story
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          IMAGEM: ${{ inputs.imagem }}
+          MARCAR: ${{ inputs.marcar }}
+        run: node scripts/publish/story-avulso/run.mjs --imagem "$IMAGEM" --marcar "$MARCAR"
