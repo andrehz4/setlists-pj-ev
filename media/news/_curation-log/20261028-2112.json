@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-10-28T21:10Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0, "instagram-oficial": 1 },
+  "approved": [
+    { "id": "fae96754de", "titulo": "Mike McCready canta Neil Young, Stones e Merle Haggard no Justice Jam em Nashville", "kind": "midia" },
+    { "id": "faae28ccd4", "titulo": "Slow Pulp grava versão acústica de Better Man para a SiriusXMU", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "a282800b26", "title": "Let The Records Play live in Philadelphia, 2016", "reason": "post de arquivo sem informação nova" },
+    { "id": "0862687750", "title": "Listen To This: Pearl Jam-Vs (1993)", "reason": "texto vazio" }
+  ]
+}
