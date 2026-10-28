@@ -1,5 +1,6 @@
 name: Publish Capsula
-# Publica UMA cápsula do YouTube por dia às 20h BRT (23:00 UTC). O orquestrador
+# Publica UMA cápsula do YouTube por dia às 20h BRT (23:00 UTC), disparada pelo TriggerAll (#015);
+# o cron abaixo é só reserva (o GitHub atrasa 2 a 3 h). O orquestrador
 # pega a próxima da fila (_capsula-queue.json), gera o carrossel, publica no
 # Instagram + Facebook e adiciona ao site. NÃO usa yt-dlp (a extração das
 # legendas é feita local; aqui só publica slides já prontos das matérias).
