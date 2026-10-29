@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-10-29T03:10Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "cs-8d2ee1c058", "titulo": "Fã encontra exemplar de 1927 do Vitalogy original na casa dos sogros", "kind": "community-spotlight" }
+  ],
+  "skipped": [
+    { "id": "638494b560", "title": "Anyone one here who listens to Bands?", "reason": "PJ tangencial (lista de bandas em sub de adolescentes)" },
+    { "id": "c3180cf42e", "title": "The October 1992 dismemberment murder of Diana Vicari", "reason": "sem relação com PJ (caso criminal)" }
+  ]
+}
