@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-10-30T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-8a40e38701", "title": "Picture of Mike I took in 2006 SFShow", "reason": "spotlight sem selftext (só 'Mike!'), sem contexto pra matéria" },
+    { "id": "2171d99daf", "title": "Which season winner is getting aux?", "reason": "sem mencao a PJ (r/BattleForDreamIsland, texto vazio)" },
+    { "id": "6fa24aec31", "title": "Collection Favourites - 2002! (Part 2)", "reason": "PJ tangencial (Riot Act numa lista de CDs de colecionador)" }
+  ]
+}
