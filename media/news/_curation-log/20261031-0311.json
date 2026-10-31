@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-10-31T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 1, "community-digest": 0, "community-spotlight": 1, "instagram-oficial": 1, "shop": 0 },
+  "approved": [
+    { "id": "cs-7b6d08b78a", "titulo": "Fã tatua Backspacer, o primeiro disco do Pearl Jam que teve na vida", "kind": "community-spotlight" }
+  ],
+  "skipped": [
+    { "id": "da3bfa5a1d", "title": "Restless Souls, Enjoy Your Tunes this Halloween Eve (playlist)", "reason": "propaganda sem informação nova (playlist de Halloween sem faixas)" },
+    { "id": "eb5a2d786b", "title": "Thoughts on A Head Full of Dreams (Coldplay)", "reason": "PJ tangencial (post sobre Coldplay)" }
+  ]
+}
