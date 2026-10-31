@@ -1,19 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-08-29",
-      "runAt": "2026-08-29T16:01:14.951Z",
-      "items": [
-        "eaf682f90e",
-        "91afb765d4"
-      ],
-      "track": "02-nightcast-grunge-diner.mp3",
-      "tarjaColor": "#2a5b9e",
-      "postId": "18089335886424969",
-      "containerId": "18150973345471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-08-29.mp4"
-    },
-    {
       "dateKey": "2026-08-30",
       "runAt": "2026-08-30T16:01:05.727Z",
       "items": [
@@ -861,6 +848,20 @@
       "containerId": "18157701985471615",
       "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-10-30-1793376171685.mp4",
       "fbPostId": "1098621589626589"
+    },
+    {
+      "dateKey": "2026-10-31",
+      "runAt": "2026-10-31T16:01:19.483Z",
+      "items": [
+        "cs-7b6d08b78a",
+        "cap-mSlDBfX"
+      ],
+      "track": "01-sigmamusicart-grunge-rock.mp3",
+      "tarjaColor": "#a87f2c",
+      "postId": "18127445194808104",
+      "containerId": "18157808386471615",
+      "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-10-31-1793462617426.mp4",
+      "fbPostId": "1704049851145402"
     }
   ]
 }
