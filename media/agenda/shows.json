@@ -1,44 +1,44 @@
 {
-  "atualizado": "2026-10-30T18:04:07.648Z",
+  "atualizado": "2026-10-31T12:17:39.430Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-10-30T18:03:53.608Z",
-      "seguidores": 33088,
+      "lidoEm": "2026-10-31T12:17:25.407Z",
+      "seguidores": 33092,
       "ultimoPost": "2026-10-26T18:17:06+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-10-30T18:03:55.814Z",
-      "seguidores": 101905,
+      "lidoEm": "2026-10-31T12:17:26.761Z",
+      "seguidores": 101930,
       "ultimoPost": "2026-10-29T20:33:05+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-10-30T18:03:57.684Z",
-      "seguidores": 9360,
+      "lidoEm": "2026-10-31T12:17:28.061Z",
+      "seguidores": 9358,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-10-30T18:03:59.476Z",
-      "seguidores": 74327,
+      "lidoEm": "2026-10-31T12:17:31.055Z",
+      "seguidores": 74391,
       "ultimoPost": "2026-10-28T18:44:09+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-10-30T18:04:01.409Z",
-      "seguidores": 21052,
+      "lidoEm": "2026-10-31T12:17:33.586Z",
+      "seguidores": 21057,
       "ultimoPost": "2026-10-27T14:50:28+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-10-30T18:04:03.016Z",
-      "seguidores": 33552,
+      "lidoEm": "2026-10-31T12:17:35.055Z",
+      "seguidores": 33581,
       "ultimoPost": "2026-10-26T16:30:04+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-10-30T18:04:06.043Z",
-      "seguidores": 6298,
+      "lidoEm": "2026-10-31T12:17:37.727Z",
+      "seguidores": 6299,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-10-30T18:04:07.329Z",
-      "seguidores": 6167,
+      "lidoEm": "2026-10-31T12:17:39.327Z",
+      "seguidores": 6168,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     }
   },
@@ -73,35 +73,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-10-30-rio-de-janeiro",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-10-30",
-      "casa": "bardochico_bangu",
-      "casaNome": null,
-      "cidade": "Rio de Janeiro",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": "21:00",
-      "fonte": "https://www.instagram.com/p/Dd96ZAVsWkU/",
-      "detalhe": "https://www.instagram.com/p/DfA28hCyaY1/"
-    },
-    {
-      "id": "pjnoventa-2026-10-30-taubate",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-10-30",
-      "casa": "donabierrockshow",
-      "casaNome": null,
-      "cidade": "Taubaté",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/reel/DfDFlynpJyQ/"
-    },
     {
       "id": "blaymorphed-2026-10-31-mogi-das-cruzes",
       "banda": "blaymorphed",
