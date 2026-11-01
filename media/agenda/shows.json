@@ -1,43 +1,43 @@
 {
-  "atualizado": "2026-11-01T12:17:38.420Z",
+  "atualizado": "2026-11-01T17:57:39.049Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-01T12:17:25.364Z",
-      "seguidores": 33117,
+      "lidoEm": "2026-11-01T17:57:28.702Z",
+      "seguidores": 33122,
       "ultimoPost": "2026-10-26T18:17:06+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-01T12:17:27.369Z",
-      "seguidores": 101987,
+      "lidoEm": "2026-11-01T17:57:29.892Z",
+      "seguidores": 101993,
       "ultimoPost": "2026-10-31T20:11:55+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-01T12:17:28.506Z",
+      "lidoEm": "2026-11-01T17:57:30.727Z",
       "seguidores": 9359,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-01T12:17:30.486Z",
-      "seguidores": 74405,
-      "ultimoPost": "2026-10-28T18:44:09+0000"
+      "lidoEm": "2026-11-01T17:57:32.155Z",
+      "seguidores": 74407,
+      "ultimoPost": "2026-11-01T13:24:31+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-01T12:17:32.454Z",
-      "seguidores": 21059,
+      "lidoEm": "2026-11-01T17:57:34.119Z",
+      "seguidores": 21062,
       "ultimoPost": "2026-10-27T14:50:28+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-01T12:17:34.817Z",
-      "seguidores": 33617,
-      "ultimoPost": "2026-10-26T16:30:04+0000"
+      "lidoEm": "2026-11-01T17:57:35.266Z",
+      "seguidores": 33621,
+      "ultimoPost": "2026-11-01T17:00:08+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-01T12:17:37.126Z",
+      "lidoEm": "2026-11-01T17:57:37.353Z",
       "seguidores": 6305,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-01T12:17:38.093Z",
+      "lidoEm": "2026-11-01T17:57:39.009Z",
       "seguidores": 6167,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     }
@@ -104,6 +104,20 @@
       "detalhe": "https://www.instagram.com/reel/DfK-ptRs4_o/"
     },
     {
+      "id": "pjnoventa-2026-11-05-quinta-trio-acustico",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-05",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". QUINTA (Trio Acústico)",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
       "id": "pearljamcoverribeirao-2026-11-06-ribeirao-preto",
       "banda": "pearljamcoverribeirao",
       "nome": "Pearl Jam Cover Ribeirão",
@@ -117,6 +131,132 @@
       "hora": null,
       "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
       "detalhe": "https://www.instagram.com/p/DefLTSgsapK/"
+    },
+    {
+      "id": "pjnoventa-2026-11-06-sexta-trio-acustico",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-06",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". SEXTA (Trio Acústico)",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-07-jukadani",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-07",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". JUKADANI",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-13-sexta",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-13",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". SEXTA",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-14-festival-itapira-breve-mais-informacoes",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-14",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". Festival Itapira (Breve mais informações)",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-15-domingo",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-15",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". DOMINGO",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-19-quinta-vespera-de-feriado",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-19",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". QUINTA (Véspera de feriado)",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-20-sexta-feriado",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-20",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". SEXTA (Feriado)",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-20-sexta-feriado",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-20",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". SEXTA (Feriado)",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-21-sabado",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-21",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". SÁBADO",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
     },
     {
       "id": "blaymorphed-2026-11-27-santo-andre",
@@ -133,6 +273,34 @@
       "fonte": "https://www.instagram.com/p/De96AUjB_xd/"
     },
     {
+      "id": "pjnoventa-2026-11-27-sexta",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-27",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". SEXTA",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pjnoventa-2026-11-27-sexta",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-27",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". SEXTA",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
       "id": "blaymorphed-2026-11-28-campinas",
       "banda": "blaymorphed",
       "nome": "Blaymorphed",
@@ -145,6 +313,20 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/p/De96AUjB_xd/"
+    },
+    {
+      "id": "pjnoventa-2026-11-28-sabado",
+      "banda": "pjnoventa",
+      "nome": "PJ 90",
+      "data": "2026-11-28",
+      "casa": null,
+      "casaNome": null,
+      "cidade": ". SÁBADO",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
     },
     {
       "id": "pearljamcoverribeirao-2026-12-05-ribeirao-preto",
