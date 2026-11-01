@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-11-01T15:10Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "3be9c4a78b", "title": "Tragic irony of big 4/5 song titles", "reason": "meme de grunge, PJ tangencial" },
+    { "id": "ef8aec2c01", "title": "Fender Mike McCready Stratocaster", "reason": "review pessoal de fã sobre guitarra, sem notícia" },
+    { "id": "cd-20261101", "title": "Digest comunidade 2026-11-01", "reason": "dia fraco: posts sem tração nem assunto com substância" }
+  ]
+}
