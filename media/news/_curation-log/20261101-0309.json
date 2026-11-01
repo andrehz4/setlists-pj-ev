@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-11-01T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "886d028a96", "title": "Pigeons and Dizgo, Los Angeles", "reason": "PJ tangencial (outra banda tocou cover de Evenflow)" },
+    { "id": "cs-08d6e8a610", "title": "Halloween in Philly, one of the longest 17yrs ago", "reason": "spotlight sem selftext (só emoji), conteúdo ambíguo" },
+    { "id": "16916d5938", "title": "Kaset koleksiyonum", "reason": "sem menção a PJ" }
+  ]
+}
