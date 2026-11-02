@@ -1,44 +1,44 @@
 {
-  "atualizado": "2026-11-01T17:57:39.049Z",
+  "atualizado": "2026-11-02T12:17:48.730Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-01T17:57:28.702Z",
-      "seguidores": 33122,
+      "lidoEm": "2026-11-02T12:17:37.764Z",
+      "seguidores": 33132,
       "ultimoPost": "2026-10-26T18:17:06+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-01T17:57:29.892Z",
-      "seguidores": 101993,
+      "lidoEm": "2026-11-02T12:17:39.158Z",
+      "seguidores": 102031,
       "ultimoPost": "2026-10-31T20:11:55+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-01T17:57:30.727Z",
-      "seguidores": 9359,
+      "lidoEm": "2026-11-02T12:17:39.857Z",
+      "seguidores": 9358,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-01T17:57:32.155Z",
-      "seguidores": 74407,
+      "lidoEm": "2026-11-02T12:17:41.750Z",
+      "seguidores": 74408,
       "ultimoPost": "2026-11-01T13:24:31+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-01T17:57:34.119Z",
-      "seguidores": 21062,
-      "ultimoPost": "2026-10-27T14:50:28+0000"
+      "lidoEm": "2026-11-02T12:17:43.698Z",
+      "seguidores": 21102,
+      "ultimoPost": "2026-11-02T04:17:38+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-01T17:57:35.266Z",
-      "seguidores": 33621,
+      "lidoEm": "2026-11-02T12:17:45.014Z",
+      "seguidores": 33639,
       "ultimoPost": "2026-11-01T17:00:08+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-01T17:57:37.353Z",
-      "seguidores": 6305,
+      "lidoEm": "2026-11-02T12:17:47.515Z",
+      "seguidores": 6304,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-01T17:57:39.009Z",
-      "seguidores": 6167,
+      "lidoEm": "2026-11-02T12:17:48.663Z",
+      "seguidores": 6166,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     }
   },
@@ -74,21 +74,6 @@
   ],
   "shows": [
     {
-      "id": "pearljamcoverribeirao-2026-11-01-bauru",
-      "banda": "pearljamcoverribeirao",
-      "nome": "Pearl Jam Cover Ribeirão",
-      "data": "2026-11-01",
-      "casa": "armazen_bar",
-      "casaNome": null,
-      "cidade": "Bauru",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DeIM9C4t5E0/",
-      "detalhe": "https://www.instagram.com/p/DexZmU3PUoG/"
-    },
-    {
       "id": "blackcirclepj-2026-11-02-rio-de-janeiro",
       "banda": "blackcirclepj",
       "nome": "Black Circle",
@@ -104,6 +89,20 @@
       "detalhe": "https://www.instagram.com/reel/DfK-ptRs4_o/"
     },
     {
+      "id": "pearljamsp-2026-11-02-guaruja",
+      "banda": "pearljamsp",
+      "nome": "Lost Dogs",
+      "data": "2026-11-02",
+      "casa": "burning.fest",
+      "casaNome": null,
+      "cidade": "Guarujá",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfOWYiTRmOa/"
+    },
+    {
       "id": "pjnoventa-2026-11-05-quinta-trio-acustico",
       "banda": "pjnoventa",
       "nome": "PJ 90",
@@ -116,6 +115,20 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pearljamsp-2026-11-06-almacampinas",
+      "banda": "pearljamsp",
+      "nome": "Lost Dogs",
+      "data": "2026-11-06",
+      "casa": "almacampinas",
+      "casaNome": null,
+      "cidade": null,
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfOaFurRsBe/"
     },
     {
       "id": "pearljamcoverribeirao-2026-11-06-ribeirao-preto",
@@ -145,6 +158,21 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+    },
+    {
+      "id": "pearljamsp-2026-11-07-soundstones-oficial",
+      "banda": "pearljamsp",
+      "nome": "Lost Dogs",
+      "data": "2026-11-07",
+      "casa": "soundstones.oficial",
+      "casaNome": null,
+      "cidade": null,
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfObB4gRnqE/",
+      "detalhe": "https://www.instagram.com/p/DfObgD6Rf96/"
     },
     {
       "id": "pjnoventa-2026-11-07-jukadani",
