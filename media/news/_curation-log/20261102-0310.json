@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-11-02T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cs-130d9d7ff8", "title": "New lap top - new sticker", "reason": "spotlight sem selftext, conteúdo ambíguo (não dá pra saber qual adesivo nem obra do fã)" },
+    { "id": "a2b176297c", "title": "[Amazon] Pearl Jam - Dark Matter @ $20.00", "reason": "merch/oferta de varejo" },
+    { "id": "930a3ce1ea", "title": "Hot take: fear of a blank planet...", "reason": "sem foco em PJ (post sobre Porcupine Tree, PJ tangencial)" }
+  ]
+}
