@@ -1,43 +1,43 @@
 {
-  "atualizado": "2026-11-02T21:45:14.500Z",
+  "atualizado": "2026-11-03T12:17:41.499Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-02T21:44:53.185Z",
+      "lidoEm": "2026-11-03T12:17:27.450Z",
       "seguidores": 33126,
       "ultimoPost": "2026-10-26T18:17:06+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-02T21:44:55.180Z",
-      "seguidores": 102062,
+      "lidoEm": "2026-11-03T12:17:28.735Z",
+      "seguidores": 102138,
       "ultimoPost": "2026-11-02T14:52:49+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-02T21:44:57.419Z",
-      "seguidores": 9358,
+      "lidoEm": "2026-11-03T12:17:29.725Z",
+      "seguidores": 9357,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-02T21:45:00.151Z",
-      "seguidores": 74412,
-      "ultimoPost": "2026-11-01T13:24:31+0000"
+      "lidoEm": "2026-11-03T12:17:32.013Z",
+      "seguidores": 74402,
+      "ultimoPost": "2026-11-03T10:56:13+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-02T21:45:02.777Z",
-      "seguidores": 21128,
+      "lidoEm": "2026-11-03T12:17:34.099Z",
+      "seguidores": 21135,
       "ultimoPost": "2026-11-02T13:12:54+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-02T21:45:06.098Z",
-      "seguidores": 33652,
+      "lidoEm": "2026-11-03T12:17:35.565Z",
+      "seguidores": 33653,
       "ultimoPost": "2026-11-01T17:00:08+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-02T21:45:10.785Z",
-      "seguidores": 6304,
+      "lidoEm": "2026-11-03T12:17:40.003Z",
+      "seguidores": 6306,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-02T21:45:14.289Z",
+      "lidoEm": "2026-11-03T12:17:41.425Z",
       "seguidores": 6167,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     }
@@ -73,35 +73,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-11-02-rio-de-janeiro",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-11-02",
-      "casa": null,
-      "casaNome": "Teatro Multiplan",
-      "cidade": "Rio de Janeiro",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": "20:00",
-      "fonte": "https://www.instagram.com/reel/Dd7SJXLMEC0/",
-      "detalhe": "https://www.instagram.com/reel/DfK-ptRs4_o/"
-    },
-    {
-      "id": "pearljamsp-2026-11-02-guaruja",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-02",
-      "casa": "burning.fest",
-      "casaNome": null,
-      "cidade": "Guarujá",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfOWYiTRmOa/"
-    },
     {
       "id": "pjnoventa-2026-11-05-quinta-trio-acustico",
       "banda": "pjnoventa",
