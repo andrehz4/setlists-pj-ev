@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-11-04T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "8c43fbb8d9", "title": "TONIGHT, TONIGHT", "reason": "sem menção a PJ (r/imaginaryelections, texto vazio)" },
+    { "id": "cs-424e5248c6", "title": "Does anyone here recognize this shirt?", "reason": "spotlight sem selftext (só a foto de uma camiseta, sem informação)" },
+    { "id": "edb4bbe8f3", "title": "One of my mysterious Pearl Jam shirts.", "reason": "texto vazio (mesmo post da camiseta repetido em outro fórum)" },
+    { "id": "84d11dcc1e", "title": "Apple Music lyrics formatting", "reason": "sem menção a PJ (sobre Radiohead/Apple Music)" }
+  ]
+}
