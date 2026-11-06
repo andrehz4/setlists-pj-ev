@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-11-06T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "instagram-oficial": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "222a37d70f", "titulo": "Since Forever chega à The Strand com Roberta Bayley no comando da conversa", "kind": "instagram-oficial" }
+  ],
+  "skipped": [
+    { "id": "7e16d69c63", "title": "Las 10 mejores bandas de grunge según especialistas", "reason": "lista clickbait genérica, PJ tangencial (republicação de ranking da Loudwire)" },
+    { "id": "45d7b76599", "title": "They removed it…", "reason": "PJ tangencial (easter egg em jogo de skate)" }
+  ]
+}
