@@ -1,0 +1,11 @@
+{
+  "runAt": "2026-11-06T09:10Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "3a20175856", "title": "Pearl Jam's Ten", "reason": "opinião de fã em subreddit genérico, sem notícia (texto < 200 chars)" },
+    { "id": "881ebb608f", "title": "Absolutely love this song", "reason": "texto vazio (só metadado do Reddit)" }
+  ]
+}
