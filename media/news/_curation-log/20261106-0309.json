@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-11-06T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 0, "shop": 0, "instagram-oficial": 1 },
+  "approved": [],
+  "skipped": [
+    { "id": "77d06bcd54", "title": "In a blue state. 💙", "reason": "post oficial só com emoji e crédito de foto, sem informação nova" },
+    { "id": "bb4c8b34fd", "title": "New episode with cellmate EDP445...", "reason": "PJ tangencial (podcast de outro assunto)" },
+    { "id": "216610d12a", "title": "Pearl Jam in the 90s (r/90s)", "reason": "texto vazio (foto antiga sem contexto)" },
+    { "id": "abd727efa5", "title": "Pearl Jam in the 90s (r/grunge)", "reason": "texto vazio (foto antiga sem contexto, repost)" }
+  ]
+}
