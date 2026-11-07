@@ -1,0 +1,15 @@
+{
+  "runAt": "2026-11-07T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 3, "community-digest": 0, "community-spotlight": 1, "instagram-oficial": 1, "shop": 0 },
+  "approved": [
+    { "id": "dbef3ff01d", "titulo": "Como uma fita demo enviada pelo correio juntou Eddie Vedder ao Pearl Jam", "kind": "midia" },
+    { "id": "11e37d1d79", "titulo": "Barry Ament e os pôsteres do Pearl Jam: de um por turnê a mais de 300", "kind": "instagram-oficial" }
+  ],
+  "skipped": [
+    { "id": "7b1d10b9fc", "title": "Which band is more legendary: Nirvana or Pearl Jam?", "reason": "texto vazio (só metadado do Reddit Search)" },
+    { "id": "9b3b540a9e", "title": "Gas ask how he can join Pearl Jam", "reason": "texto vazio (só metadado do Reddit Search)" },
+    { "id": "cs-5d1f882f80", "title": "Low Budget Album Recreation", "reason": "spotlight sem selftext" }
+  ]
+}
