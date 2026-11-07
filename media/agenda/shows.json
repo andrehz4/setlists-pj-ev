@@ -1,43 +1,43 @@
 {
-  "atualizado": "2026-11-06T19:29:39.581Z",
+  "atualizado": "2026-11-07T12:17:45.743Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-06T19:29:16.990Z",
-      "seguidores": 33117,
+      "lidoEm": "2026-11-07T12:17:29.294Z",
+      "seguidores": 33119,
       "ultimoPost": "2026-11-03T16:24:13+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-06T19:29:19.455Z",
-      "seguidores": 102569,
+      "lidoEm": "2026-11-07T12:17:31.345Z",
+      "seguidores": 102730,
       "ultimoPost": "2026-11-04T20:35:06+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-06T19:29:22.747Z",
-      "seguidores": 9358,
+      "lidoEm": "2026-11-07T12:17:32.528Z",
+      "seguidores": 9357,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-06T19:29:26.087Z",
-      "seguidores": 74490,
+      "lidoEm": "2026-11-07T12:17:35.016Z",
+      "seguidores": 74537,
       "ultimoPost": "2026-11-04T15:14:02+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-06T19:29:28.839Z",
-      "seguidores": 21146,
+      "lidoEm": "2026-11-07T12:17:37.400Z",
+      "seguidores": 21149,
       "ultimoPost": "2026-11-03T16:42:22+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-06T19:29:31.241Z",
-      "seguidores": 33649,
-      "ultimoPost": "2026-11-04T18:25:29+0000"
+      "lidoEm": "2026-11-07T12:17:39.742Z",
+      "seguidores": 33660,
+      "ultimoPost": "2026-11-07T02:30:04+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-06T19:29:37.004Z",
+      "lidoEm": "2026-11-07T12:17:42.943Z",
       "seguidores": 6305,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-06T19:29:39.273Z",
+      "lidoEm": "2026-11-07T12:17:45.409Z",
       "seguidores": 6164,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     }
@@ -73,63 +73,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-11-06-rio-das-ostras",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-11-06",
-      "casa": null,
-      "casaNome": null,
-      "cidade": "Rio das Ostras",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfS7zINNpOv/"
-    },
-    {
-      "id": "pearljamsp-2026-11-06-almacampinas",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-06",
-      "casa": "almacampinas",
-      "casaNome": null,
-      "cidade": null,
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "22:00",
-      "fonte": "https://www.instagram.com/p/DfOaFurRsBe/"
-    },
-    {
-      "id": "pearljamcoverribeirao-2026-11-06-ribeirao-preto",
-      "banda": "pearljamcoverribeirao",
-      "nome": "Pearl Jam Cover Ribeirão",
-      "data": "2026-11-06",
-      "casa": "dompedro.ribeirao",
-      "casaNome": null,
-      "cidade": "Ribeirão Preto",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/",
-      "detalhe": "https://www.instagram.com/p/DefLTSgsapK/"
-    },
-    {
-      "id": "pjnoventa-2026-11-06-sexta-trio-acustico",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-06",
-      "casa": null,
-      "casaNome": null,
-      "cidade": ". SEXTA (Trio Acústico)",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
-    },
     {
       "id": "blackcirclepj-2026-11-07-rio-de-janeiro",
       "banda": "blackcirclepj",
