@@ -1,44 +1,44 @@
 {
-  "atualizado": "2026-11-07T17:46:15.608Z",
+  "atualizado": "2026-11-08T12:17:46.970Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-07T17:45:55.916Z",
-      "seguidores": 33123,
+      "lidoEm": "2026-11-08T12:17:24.927Z",
+      "seguidores": 33130,
       "ultimoPost": "2026-11-03T16:24:13+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-07T17:45:58.343Z",
-      "seguidores": 102748,
+      "lidoEm": "2026-11-08T12:17:28.875Z",
+      "seguidores": 102779,
       "ultimoPost": "2026-11-04T20:35:06+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-07T17:46:00.577Z",
+      "lidoEm": "2026-11-08T12:17:31.178Z",
       "seguidores": 9353,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-07T17:46:02.838Z",
-      "seguidores": 74546,
+      "lidoEm": "2026-11-08T12:17:33.570Z",
+      "seguidores": 74610,
       "ultimoPost": "2026-11-04T13:10:37+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-07T17:46:06.715Z",
-      "seguidores": 21153,
+      "lidoEm": "2026-11-08T12:17:37.730Z",
+      "seguidores": 21172,
       "ultimoPost": "2026-11-03T16:42:22+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-07T17:46:08.057Z",
-      "seguidores": 33657,
-      "ultimoPost": "2026-11-07T02:30:04+0000"
+      "lidoEm": "2026-11-08T12:17:40.234Z",
+      "seguidores": 33666,
+      "ultimoPost": "2026-11-07T18:00:04+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-07T17:46:13.062Z",
-      "seguidores": 6304,
+      "lidoEm": "2026-11-08T12:17:43.152Z",
+      "seguidores": 6308,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-07T17:46:15.392Z",
-      "seguidores": 6164,
+      "lidoEm": "2026-11-08T12:17:46.815Z",
+      "seguidores": 6165,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     }
   },
@@ -73,49 +73,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-11-07-rio-de-janeiro",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-11-07",
-      "casa": null,
-      "casaNome": null,
-      "cidade": "Rio de Janeiro",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfS7zINNpOv/"
-    },
-    {
-      "id": "pearljamsp-2026-11-07-soundstones-oficial",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-07",
-      "casa": "soundstones.oficial",
-      "casaNome": null,
-      "cidade": null,
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfObB4gRnqE/",
-      "detalhe": "https://www.instagram.com/p/DfObgD6Rf96/"
-    },
-    {
-      "id": "pjnoventa-2026-11-07-jukadani",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-07",
-      "casa": null,
-      "casaNome": null,
-      "cidade": ". JUKADANI",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
-    },
     {
       "id": "blaymorphed-2026-11-12-sao-paulo",
       "banda": "blaymorphed",
@@ -409,6 +366,20 @@
       "observacao": null,
       "hora": null,
       "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-12-11-dompedro-ribeirao",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-12-11",
+      "casa": "dompedro.ribeirao",
+      "casaNome": null,
+      "cidade": null,
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfFtLiSBUNS/"
     },
     {
       "id": "pearljamcoverribeirao-2026-12-18-uberaba",
