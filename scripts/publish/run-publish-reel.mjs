@@ -17,9 +17,12 @@ import { selectReelItems } from "./reel-select.mjs";
 import { pickTrackForDate } from "./story-track.mjs";
 import { thumbOffsetMsFor } from "./reel-video.mjs";
 import { montarReel } from "./reel/montar-reel.mjs";
-import { readLog, writeLog, espelharNoFacebook, avisarReel } from "./reel/registro.mjs";
+import { readLog, writeLog, espelharNoFacebook, avisarReel, avisarFalha } from "./reel/registro.mjs";
+import { publishReelComFallback } from "./reel/fallback.mjs";
+import { entradaFalha, foraDaJanela } from "./reel/pendente.mjs";
+import { retomarPendente } from "./reel/retomar.mjs";
 import { readQueue } from "./queue.mjs";
-import { publishReel, buildReelCaption } from "./instagram.mjs";
+import { buildReelCaption } from "./instagram.mjs";
 import { getCurrentCycleColor } from "./color-cycle.mjs";
 import { isoWeekKey, weekRangeLabel } from "./reel-week.mjs";
 import { writeStepSummary } from "../news/_summary.mjs";
@@ -53,6 +56,13 @@ async function main() {
     console.log(`[reel] ja postado na semana ${weekKey} (postId=${already.postId}), skip. use --force pra republicar.`);
     return;
   }
+  // Rodada de reserva atrasada que caísse na segunda publicaria a semana seguinte (só vale pro cron; ver workflow).
+  if (process.env.REEL_SO_DOMINGO === "1" && foraDaJanela(brt)) {
+    console.log("[reel] fora do domingo (BRT), skip");
+    return;
+  }
+  // Reel que ficou preso no IG numa rodada anterior: se o container terminou, só publica (sem renderizar).
+  if (!FORCE && !DRY && await retomarPendente({ log, weekKey, agoraMs: now.getTime(), commit: commitAndPush })) return;
 
   // 1. noticias da semana
   const items = await selectReelItems({ now: now.getTime(), days: 7, max: 8, min: MIN_ITEMS });
@@ -93,21 +103,20 @@ async function main() {
   const videoUrl = r2Url || `${REPO_PUBLIC_BASE}/media/news/instagram-reels/${weekKey}.mp4`;
   const caption = buildReelCaption(items, { weekLabel: rangeLabel });
   console.log(`[reel] publishing video_url=${videoUrl} (caption ${caption.length} chars)`);
+  const thumbOffsetMs = capaMs ?? thumbOffsetMsFor();
   let postId, containerId, recovered;
   try {
-    const pub = await publishReel({ videoUrl, caption, shareToFeed: true, thumbOffsetMs: capaMs ?? thumbOffsetMsFor() });
+    const pub = await publishReelComFallback({ videoUrl, caption, shareToFeed: true, thumbOffsetMs });
     postId = pub.postId;
     containerId = pub.containerId;
     recovered = pub.recovered;
     console.log(`[reel] OK postId=${postId} containerId=${containerId}${recovered ? " (recuperado de falso-erro)" : ""}`);
   } catch (e) {
     console.error(`[reel] FALHA: ${e.message}`);
-    log.entries.push({
-      weekKey, runAt: now.toISOString(), items: items.map((it) => it.id),
-      track: track.name, accent, error: e.message,
-    });
+    log.entries.push(entradaFalha({ now, weekKey, items, track, accent, rangeLabel, videoUrl, caption, thumbOffsetMs, erro: e }));
     await writeLog(log);
     await commitAndPush(["media/news/instagram-reels/_reel-log.json"], `publish-reel: log falha ${weekKey}`);
+    await avisarFalha({ weekKey, erro: e });
     process.exit(1);
   }
 
@@ -137,7 +146,8 @@ async function main() {
   console.log(`[reel] FIM`);
 }
 
-main().catch((e) => {
+main().catch(async (e) => {
   console.error("[reel] FATAL:", e);
+  await avisarFalha({ weekKey: isoWeekKey(emBRT(new Date())), erro: e }).catch(() => {});
   process.exit(1);
 });

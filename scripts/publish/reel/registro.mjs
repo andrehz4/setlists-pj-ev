@@ -30,14 +30,27 @@ export async function espelharNoFacebook(videoUrl, caption) {
   }
 }
 
-export async function avisarReel({ items, postId, track, weekKey, rangeLabel, avisoVoz = "" }) {
+export async function avisarReel({ items, postId, track, weekKey, rangeLabel, avisoVoz = "", retomado = false }) {
   if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) return;
   const lines = [`🎞 <b>Reel semanal publicado (${weekKey})</b>`, `<i>postId: <code>${postId}</code> · trilha: ${track.name} · ${rangeLabel}</i>`];
   if (avisoVoz) lines.push(`🎙 ${escHtml(avisoVoz)}`);
+  if (retomado) lines.push("↻ retomado: o IG demorou a processar o vídeo, publicado sem renderizar de novo");
   lines.push("");
   items.forEach((it, i) => {
     lines.push(`${i + 1}. <b>${escHtml(it.title_pt || "(sem titulo)")}</b>`);
     lines.push(`   ↳ ${linkNoticia(it.id)}`);
   });
   await enviarTelegram(lines.join("\n"), { prefixo: "[reel]" });
+}
+
+// Falha do reel: o robô avisa na hora (antes a run só ficava vermelha e ninguém via).
+export async function avisarFalha({ weekKey, erro }) {
+  const ids = (erro.containerIds || []).join(", ") || "nenhum";
+  const depois = erro.publicando
+    ? "Erro ao PUBLICAR: confira o perfil ANTES de tentar de novo (pode ter saído)."
+    : `${process.env.REEL_RESERVAS === "1" ? "Tento de novo sozinho nos próximos horários de domingo (12h, 15h e 18h BRT). " : ""}`
+      + `Na mão: Actions > Publish Instagram Reel > Run workflow${erro.containerIds?.length
+        ? " (retoma o vídeo já enviado, sem renderizar)." : " (refaz o vídeo)."}`;
+  await enviarTelegram([`⚠️ <b>Reel semanal NÃO saiu (${weekKey})</b>`, `<i>${escHtml(erro.message)}</i>`,
+    `containers: <code>${ids}</code>`, depois].join("\n"), { prefixo: "[reel]" });
 }
