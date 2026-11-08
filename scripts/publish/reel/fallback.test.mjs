@@ -83,6 +83,28 @@ test("retomar: IG terminou de processar → publica o MESMO container, sem criar
   assert.equal(acharPendente(log, "2026-W45", now.getTime()), null, "com postId a semana não tem mais pendência");
 });
 
+// container que o IG não conhece (expirou): status "?" → nenhum container serve
+const semContainer = (extra) => ({ entries: [{ weekKey: "2026-W45", runAt: new Date().toISOString(), containerIds: ["c_expirado"],
+  videoUrl: "https://midia/reels/w45.mp4", caption: CAPTION, resumo: [], track: "t.mp3", rangeLabel: "x", ...extra }] });
+
+test("retomar vídeo APROVADO: container morto → containers novos do MESMO MP4, sem renderizar outro", async () => {
+  const log = semContainer({ aprovado: true, thumbOffsetMs: 5500 });
+  const chamou = [];
+  const ok = await retomarPendente({ log, weekKey: "2026-W45", agoraMs: Date.now(), commit: async () => {}, esperaMs: 100,
+    deps: { gravar: async () => {}, publishReelComFallback: async (a) => { chamou.push(a); return { postId: "p_novo", containerId: "c_novo" }; } } });
+  assert.equal(ok, true);
+  assert.deepEqual(chamou, [{ videoUrl: "https://midia/reels/w45.mp4", caption: CAPTION, thumbOffsetMs: 5500 }]);
+  assert.equal(log.entries[0].postId, "p_novo");
+});
+
+test("retomar SEM aprovação: container morto → devolve false (segue o fluxo normal, com render)", async () => {
+  const chamou = [];
+  const ok = await retomarPendente({ log: semContainer({}), weekKey: "2026-W45", agoraMs: Date.now(), commit: async () => {},
+    deps: { gravar: async () => {}, publishReelComFallback: async (a) => { chamou.push(a); return {}; } } });
+  assert.equal(ok, false);
+  assert.equal(chamou.length, 0);
+});
+
 test("pendente: só entrada da semana, sem postId, retomável e dentro da validade", () => {
   const agora = Date.parse("2026-11-08T21:00:00Z");
   const e = (x) => ({ weekKey: "2026-W45", runAt: new Date(agora - 3600e3).toISOString(), containerIds: ["c1"],
