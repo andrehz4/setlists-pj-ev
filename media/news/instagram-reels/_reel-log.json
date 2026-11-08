@@ -427,6 +427,23 @@
       "clipsUsed": [
         "abertura-clipe.mp4"
       ]
+    },
+    {
+      "weekKey": "2026-W45",
+      "runAt": "2026-11-08T17:54:01.527Z",
+      "items": [
+        "cap-cvQ60MD",
+        "dbef3ff01d",
+        "cd-20261105",
+        "cap-c5xeDNQ",
+        "662f2e7a85",
+        "cd-20261102",
+        "11e37d1d79",
+        "222a37d70f"
+      ],
+      "track": "09-pixabay-abydos-90s-garage-rock.mp3",
+      "accent": "#0a0a0a",
+      "error": "container 18158689288471615 nao ficou pronto em 300000ms (ultimo status: IN_PROGRESS)"
     }
   ]
 }
