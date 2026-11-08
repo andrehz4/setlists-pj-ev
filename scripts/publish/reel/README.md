@@ -15,6 +15,22 @@ Orquestrador: `scripts/publish/run-publish-reel.mjs`. Spec visual: MOTION-SPEC d
 | `transicoes.mjs` | Flag `REEL_TRANSICOES=1`: clipe de 0,7 s em cada troca de cena e abertura com capa. |
 | `render.mjs` | Orquestra frames + ffmpeg. |
 
+## Fallback do reel (preso no processamento do IG)
+
+Em 08/11/2026 o IG deixou o container em `IN_PROGRESS` por 5 min e o reel da semana não saiu. Agora são 4 camadas:
+
+| Arquivo | Papel |
+|---|---|
+| `fallback.mjs` | `publishReelComFallback`: espera 10 min; se travar, cria um 2º container do MESMO vídeo (8 min). Erro no `media_publish` NÃO vira outro container (falso-erro 2207051 duplicaria o reel). |
+| `pendente.mjs` | Entrada de falha do `_reel-log.json` (containers, legenda, vídeo), achar a pendência (validade 20 h) e a janela de domingo BRT. |
+| `retomar.mjs` | Próxima rodada: container terminou de processar = só publica (IG + FB), sem renderizar de novo. |
+| `registro.mjs` | Alerta no Telegram quando o reel falha (`avisarFalha`) e aviso de reel retomado. |
+
+Reservas no mesmo domingo (crons 12h07, 15h07 e 18h07 BRT, job de 45 min, `REEL_SO_DOMINGO=1` e `REEL_RESERVAS=1`):
+só entram no `publish-reel.yml` aplicando `scripts/publish/reel/RESERVAS-WORKFLOW.md` (o acesso do Claude ao GitHub não tem o escopo
+`workflow`). Sem elas, retomar é manual: Run workflow. `REEL_SO_DOMINGO` impede rodada atrasada na segunda de publicar a semana seguinte. Testar contra o mock:
+`REEL_ESPERAS_MS=300,300 REEL_POLL_MS=30` + `storyPolls` alto no mock (container preso) e depois `storyPolls=0`.
+
 ## Acervo de clipes (roda no Mac, à mão)
 
 Lista em `media/reels-clips/transicoes/transicoes.json` (700+ trechos com tags de b-roll). Os MP4 ficam no R2

@@ -140,6 +140,7 @@ no git. Novo clipe: `node scripts/publish/reel/planos.mjs <video>` (grade plano 
 - `billboard-br` devolve XML malformado intermitente; `reddit-pj` dá 403 sem proxy.
 - Site é SPA com deep-link `#news/<id>`; as páginas `n/<id>.html` (geradas pelo publish) são páginas reais de SEO com o texto da notícia e link pro SPA, não redirecionam.
 - Mock IG (`mock-ig/`) cobre feed, story, reel, falhas injetáveis (`ghostpublish`, `ratelimit`, `mediaHideCalls`). Sempre validar nele antes de produção. `GET /<uid>/media` agora mescla feed + reels (o IG real lista reel no /media; story não), pra a recuperação pós-erro enxergar reel.
+- **Reel preso no IG** (08/11/2026): container em `IN_PROGRESS` além de 5 min derrubou o reel da semana. Hoje há 2º container, retomada sem renderizar (`scripts/publish/reel/retomar.mjs`), alerta no Telegram e crons de reserva no domingo (esses só valem depois de aplicar `scripts/publish/reel/RESERVAS-WORKFLOW.md` no workflow). Mapa em `scripts/publish/reel/README.md`.
 - **Reel: direitos autorais**: trecho de clipe oficial é detectado pelo IG principalmente via ÁUDIO. Mitigação: clipes entram SEMPRE mudos (trilha royalty-free própria por cima), trechos curtos 2-6s. Áudio original = mute/bloqueio quase certo.
 
 ## Convenções
