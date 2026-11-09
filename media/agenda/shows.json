@@ -1,44 +1,44 @@
 {
-  "atualizado": "2026-11-09T15:18:49.329Z",
+  "atualizado": "2026-11-09T22:27:36.892Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-09T15:17:59.873Z",
-      "seguidores": 33136,
+      "lidoEm": "2026-11-09T22:27:18.555Z",
+      "seguidores": 33139,
       "ultimoPost": "2026-11-03T16:24:13+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-09T15:18:07.271Z",
-      "seguidores": 102807,
-      "ultimoPost": "2026-11-04T20:35:06+0000"
+      "lidoEm": "2026-11-09T22:27:20.175Z",
+      "seguidores": 102820,
+      "ultimoPost": "2026-11-09T21:32:13+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-09T15:18:17.357Z",
-      "seguidores": 9350,
+      "lidoEm": "2026-11-09T22:27:21.429Z",
+      "seguidores": 9347,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-09T15:18:28.146Z",
-      "seguidores": 74640,
+      "lidoEm": "2026-11-09T22:27:23.703Z",
+      "seguidores": 74630,
       "ultimoPost": "2026-11-04T13:10:37+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-09T15:18:35.320Z",
-      "seguidores": 21197,
+      "lidoEm": "2026-11-09T22:27:26.591Z",
+      "seguidores": 21205,
       "ultimoPost": "2026-11-08T19:33:35+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-09T15:18:37.199Z",
-      "seguidores": 33679,
-      "ultimoPost": "2026-11-08T23:00:54+0000"
+      "lidoEm": "2026-11-09T22:27:28.684Z",
+      "seguidores": 33678,
+      "ultimoPost": "2026-11-09T21:24:04+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-09T15:18:39.517Z",
-      "seguidores": 6309,
+      "lidoEm": "2026-11-09T22:27:35.295Z",
+      "seguidores": 6305,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-09T15:18:49.085Z",
-      "seguidores": 6165,
+      "lidoEm": "2026-11-09T22:27:36.813Z",
+      "seguidores": 6167,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     }
   },
@@ -198,6 +198,21 @@
       "observacao": "Shop Itaquera",
       "hora": "16:00",
       "fonte": "https://www.instagram.com/p/DfSVhjYxuxQ/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2026-11-15-ribeirao-preto",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2026-11-15",
+      "casa": "champions_beer_",
+      "casaNome": null,
+      "cidade": "Ribeirão Preto",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "19:00",
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/",
+      "detalhe": "https://www.instagram.com/p/DfiSO8lxt--/"
     },
     {
       "id": "pjnoventa-2026-11-15-sao-paulo",
@@ -456,28 +471,28 @@
       "banda": "pearljamcoverribeirao",
       "nome": "Pearl Jam Cover Ribeirão",
       "data": "2026-12-05",
-      "casa": "galpao20",
-      "casaNome": null,
+      "casa": null,
+      "casaNome": "galpao20 Noite de gravação",
       "cidade": "Ribeirão Preto",
       "uf": "SP",
       "fechado": false,
-      "observacao": "noite de gravação",
+      "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
-      "id": "pearljamcoverribeirao-2026-12-11-dompedro-ribeirao",
+      "id": "pearljamcoverribeirao-2026-12-11-ribeirao-preto",
       "banda": "pearljamcoverribeirao",
       "nome": "Pearl Jam Cover Ribeirão",
       "data": "2026-12-11",
       "casa": "dompedro.ribeirao",
       "casaNome": null,
-      "cidade": null,
+      "cidade": "Ribeirão Preto",
       "uf": "SP",
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfFtLiSBUNS/",
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/",
       "detalhe": "https://www.instagram.com/reel/Dff3wf9OxQf/"
     },
     {
@@ -492,7 +507,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
       "id": "pearljamcoverribeirao-2026-12-19-uberlandia",
@@ -506,7 +521,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/",
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/",
       "detalhe": "https://www.instagram.com/p/Dezl-WrstM2/"
     },
     {
@@ -535,7 +550,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
       "id": "pearljamcoverribeirao-2026-12-26-ribeirao-preto",
@@ -547,9 +562,9 @@
       "cidade": "Ribeirão Preto",
       "uf": "SP",
       "fechado": false,
-      "observacao": "Hard Rock Cafe",
+      "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
       "id": "pearljamcoverribeirao-2027-01-02-botucatu",
@@ -563,7 +578,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
       "id": "pearljamcoverribeirao-2027-01-02-expectativa",
@@ -591,7 +606,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
       "id": "pearljamcoverribeirao-2027-01-23-jau",
@@ -605,7 +620,21 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
+    },
+    {
+      "id": "pearljamcoverribeirao-2027-01-29-curitiba",
+      "banda": "pearljamcoverribeirao",
+      "nome": "Pearl Jam Cover Ribeirão",
+      "data": "2027-01-29",
+      "casa": "clayhighway",
+      "casaNome": null,
+      "cidade": "Curitiba",
+      "uf": "PR",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
       "id": "pearljamcoverribeirao-2027-01-30-sao-paulo",
@@ -619,7 +648,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
       "id": "blaymorphed-2027-01-31-metade",
@@ -647,7 +676,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/reel/DfVU-b8B_dK/"
+      "fonte": "https://www.instagram.com/reel/DfiTRfBsBvD/"
     },
     {
       "id": "pearljamcoverribeirao-2027-03-05-goiania",
@@ -661,7 +690,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/p/DfVF0eBxAiA/"
+      "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/"
     },
     {
       "id": "blackcirclepj-2027-03-13-recife",
@@ -675,7 +704,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/reel/DfVU-b8B_dK/"
+      "fonte": "https://www.instagram.com/reel/DfiTRfBsBvD/"
     },
     {
       "id": "blackcirclepj-2027-03-14-fortaleza",
@@ -689,7 +718,7 @@
       "fechado": false,
       "observacao": null,
       "hora": null,
-      "fonte": "https://www.instagram.com/reel/DfVU-b8B_dK/"
+      "fonte": "https://www.instagram.com/reel/DfiTRfBsBvD/"
     }
   ]
 }
