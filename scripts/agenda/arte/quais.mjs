@@ -19,6 +19,12 @@ const handle = (c) => {
   return /^[a-z0-9._]{3,30}$/.test(t) ? t : null;
 };
 
+// observacao vira etiqueta pública no site: só texto curto, nunca comentário do curador ("arte diz 01PM; Campo Belo").
+const etiqueta = (t) => {
+  const v = String(t || "").trim();
+  return v && v.length <= 30 && !/[;]|\barte\b|\blegenda\b/i.test(v) ? v : null;
+};
+
 // Leitura do curador ({shows:[{dia, mes, hora, casa, cidade, uf, observacao}]}) -> shows. Ano: mês da agenda
 // antes do mês do post = ano seguinte (mesma regra das legendas).
 export function showsDaArte(resposta, dataPost) {
@@ -29,7 +35,7 @@ export function showsDaArte(resposta, dataPost) {
     return {
       data: iso(ano, s.mes, s.dia), casa, casaNome: casa ? null : (s.casa || "").trim() || null,
       cidade: (s.cidade || "").trim() || null, uf: /^[A-Z]{2}$/.test(s.uf || "") ? s.uf : null,
-      fechado: /fechado/i.test(s.observacao || ""), observacao: (s.observacao || "").trim() || null, hora: hora(s.hora),
+      fechado: /fechado/i.test(s.observacao || ""), observacao: etiqueta(s.observacao), hora: hora(s.hora),
     };
   });
 }

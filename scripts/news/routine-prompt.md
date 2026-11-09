@@ -34,7 +34,9 @@ Sem nada listado, siga pro passo 2. Para cada pedido listado:
 3. Acrescente em `media/news/agenda-arte/lidas.json` (crie `{}` se não existir), com a chave = `link` do pedido:
    `{"lidoEm":"<ISO agora>","shows":[{"dia":13,"mes":11,"hora":"20h","casa":"blues_beer","cidade":"São Paulo","uf":"SP","observacao":"Into The Wild"}]}`
    `dia`/`mes` em número; `hora` como "21h" ou "21h30" (vazio se não tiver); `casa`: o @ da casa sem o @ se aparecer,
-   senão o nome como está escrito; `uf` sigla de 2 letras; `observacao`: projeto ou formato (acústico, evento fechado).
+   senão o nome como está escrito; `uf` sigla de 2 letras; `observacao`: SÓ projeto ou formato, até 30 caracteres
+   (ex.: "Into The Wild", "acústico", "evento fechado"), porque vira etiqueta pública no site; vazio se não houver.
+   Bairro, dúvida de leitura ou qualquer comentário seu vai em `nota` (não aparece em lugar nenhum).
 4. NUNCA edite `pendentes.json` nem apague imagem: quem limpa é o coletor, depois de ver a leitura.
 5. Apague de `lidas.json` as entradas com `lidoEm` de mais de 60 dias.
 

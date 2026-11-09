@@ -35,6 +35,11 @@ test("leitura do curador vira show: hora, @ da casa, nome da casa e ano", () => 
   ]);
   assert.equal(showsDaArte({ shows: [{ dia: 5, mes: 1 }] }, "2026-12-10T12:00:00Z")[0].data, "2027-01-05");
   assert.deepEqual(showsDaArte({ shows: [{ dia: 40, mes: 13 }] }, "2026-11-03T00:00:00Z"), []);
+  // comentário do curador não vira etiqueta pública (leitura real de 09/11/2026)
+  const notas = showsDaArte({ shows: [{ dia: 7, mes: 11, observacao: "Patriarca; arte diz 01PM" },
+    { dia: 19, mes: 11, observacao: "show especial Esquenta Eddie Vedder, Into The Wild + Lost Dogs" },
+    { dia: 27, mes: 11, observacao: "datas na legenda" }, { dia: 26, mes: 11, observacao: "Eddie Vedder solo" }] }, "2026-11-03T00:00:00Z");
+  assert.deepEqual(notas.map((x) => x.observacao), [null, null, null, "Eddie Vedder solo"]);
 });
 
 test("fila: baixa a arte uma vez, não repete pedido nem o que já foi lido, e limpa depois da leitura", async () => {
