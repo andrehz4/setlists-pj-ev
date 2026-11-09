@@ -15,3 +15,4 @@ a regra antiga reproduzindo o erro e o código atual fazendo o certo. Roda junto
 | `agenda-arte-semana.test.mjs` | agenda: data vermelha sumindo no fundo vermelho, "+ N shows" no rodapé, cidade grudada no @ | 18/10/2026 |
 | `voz-acima-da-musica.test.mjs` | reel narrado com a música 2,3 dB acima da voz (mede com as 16 trilhas) | 19/10/2026 |
 | `narracao-chave-reserva.test.mjs` | reel ia sair mudo com crédito sobrando em outra conta (principal, reserva, agenda + interruptor) | 19/10/2026 |
+| `agenda-lost-dogs-datas.test.mjs` | agenda: data por extenso perdida, 2 shows no dia viravam 1, banda do line-up como casa, preço lido como hora | 09/11/2026 |

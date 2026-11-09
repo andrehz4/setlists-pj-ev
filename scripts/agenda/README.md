@@ -11,6 +11,7 @@ Agenda de shows das bandas cover de Pearl Jam (POC desde 2026-10-04). Plano e pe
 | `coletar.mjs` | Roda tudo, grava `media/agenda/shows.json`, gera `/agenda/` e avisa os novos no Telegram. |
 | `pagina.mjs`, `sitemap.mjs` | Página estática com JSON-LD `MusicEvent` e a seção `agenda:start/end` do sitemap. |
 | `poc-ig.mjs` | Avaliar banda nova (workflow manual `agenda-poc.yml`). |
+| `arte/` | Agenda que só está na ARTE do post ("se liga nesta agenda"): o Gemini lê o texto da imagem e os shows entram como post de agenda. Só posts com "agenda" na legenda, imagem e menos de 2 datas no texto. Cache por post em `media/agenda/_arte-cache.json` (lê uma vez só). Desligado sem `GEMINI_API_KEY`. A foto nunca é salva nem publicada. |
 
 Banda nova: rodar `agenda-poc.yml` com a conta, conferir se a agenda dela é legível e acrescentar em
 `media/agenda/bandas.json`.

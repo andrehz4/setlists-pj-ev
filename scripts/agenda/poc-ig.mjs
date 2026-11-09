@@ -10,7 +10,7 @@ if (!conta) {
 try {
   const r = await lerConta(conta, { n: Math.min(Number(process.argv[3]) || 25, 50) });
   console.log(JSON.stringify({ conta: r.conta, nome: r.nome, seguidores: r.seguidores,
-    ultimos: r.posts.map((p) => ({ data: p.data, link: p.link, legenda: p.legenda })) }, null, 2));
+    ultimos: r.posts.map((p) => ({ data: p.data, link: p.link, legenda: p.legenda, imagens: p.imagens.length })) }, null, 2));
 } catch (e) {
   console.error(`[agenda-poc] falhou: ${e.message}`);
   process.exit(1);

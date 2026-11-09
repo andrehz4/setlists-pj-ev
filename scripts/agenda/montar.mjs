@@ -2,7 +2,8 @@
 //   agenda em lista (uma linha por show) ou em blocos (várias linhas por show): o post mais recente vence para as
 //   datas que ele traz (pode ter vários shows no mesmo dia);
 //   post do dia: completa casa e horário de um show já conhecido;
-//   aviso solto ("dia 10/10 no botecohelena em Suzano"): cria o show se a data ainda não está na agenda.
+//   aviso solto ("dia 10/10 no botecohelena em Suzano"): cria o show se a data ainda não está na agenda;
+//   agenda só na arte (post.arte, lida por scripts/agenda/arte/): vale como post de agenda.
 import { showsDoPostDeAgenda, detalhesDoPostDoDia } from "./extrair.mjs";
 import { showsEmBlocos } from "./extrair-blocos.mjs";
 import { showDoAvisoSolto } from "./extrair-solto.mjs";
@@ -13,11 +14,17 @@ export const idDoShow = (conta, s) => `${conta}-${s.data}-${slug(s.cidade || s.c
 
 // Agenda do post (lista ou blocos). Bloco só vale se disser onde é (ou que é fechado): evita falso positivo.
 function agendaDoPost(p) {
+  if (p.arte?.length) return p.arte;
   const lista = showsDoPostDeAgenda(p.legenda, p.data);
   if (lista) return lista;
   const blocos = showsEmBlocos(p.legenda, p.data);
   return blocos && blocos.some((s) => s.casa || s.cidade || s.fechado) ? blocos : null;
 }
+
+// Mesma casa escrita de jeitos diferentes: "Mister Rock" (arte) e "misterrockinsampa" (@ na legenda).
+const norma = (t) => slug(t).replace(/-/g, "");
+const mesmaCasa = (a, b) => { const x = norma(a), y = norma(b); return !!x && !!y && (x.includes(y) || y.includes(x)); };
+const casaDe = (s) => s.casa || s.casaNome;
 
 // hoje: "AAAA-MM-DD" (BRT). Só entram shows de hoje em diante.
 export function montarAgenda(banda, posts, hoje) {
@@ -51,23 +58,25 @@ export function montarAgenda(banda, posts, hoje) {
   for (const p of avisos) {
     const d = detalhesDoPostDoDia(p.legenda, p.data, [banda.conta]);
     const conhecidos = d && porData.get(d.data);
-    if (conhecidos) { // post do dia: completa casa e horário (nunca troca a cidade)
-      if (conhecidos.length === 1) {
-        const s = conhecidos[0];
-        if (!s.casa && d.casa) s.casa = d.casa;
-        if (!s.hora && d.hora) s.hora = d.hora;
-        s.detalhe = p.link;
-      }
+    // post do dia: completa casa e horário (nunca troca a cidade). Casa diferente da conhecida = outro show no dia.
+    const alvo = conhecidos && (conhecidos.find((s) => d.casa && mesmaCasa(casaDe(s), d.casa))
+      || (conhecidos.length === 1 && !(d.casa && casaDe(conhecidos[0])) ? conhecidos[0] : null));
+    if (alvo) {
+      if (!alvo.casa && d.casa) alvo.casa = d.casa;
+      if (!alvo.hora && d.hora) alvo.hora = d.hora;
+      alvo.detalhe = p.link;
       continue;
     }
+    if (conhecidos && !d.casa) continue;
     const solto = showDoAvisoSolto(p.legenda, p.data, banda);
     if (!solto) continue;
-    const ja = porData.get(solto.data);
-    if (ja) { // dois avisos do mesmo show: junta o que cada um sabe
-      for (const k of ["casa", "cidade", "hora"]) ja[0][k] ||= solto[k];
+    const ja = porData.get(solto.data) || [];
+    const mesmo = ja.find((s) => !casaDe(s) || !solto.casa || mesmaCasa(casaDe(s), solto.casa));
+    if (mesmo) { // dois avisos do mesmo show: junta o que cada um sabe
+      for (const k of ["casa", "cidade", "hora"]) mesmo[k] ||= solto[k];
       continue;
     }
-    porData.set(solto.data, [{ ...solto, fonte: p.link }]);
+    porData.set(solto.data, [...ja, { ...solto, fonte: p.link }]);
   }
   return [...porData.values()].flat()
     .filter((s) => s.data >= hoje)

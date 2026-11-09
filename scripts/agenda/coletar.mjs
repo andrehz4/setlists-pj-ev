@@ -11,6 +11,7 @@ import { lerConta } from "./ler-instagram.mjs";
 import { lerOficial } from "./oficial.mjs";
 import { atualizarFoto, fotosExistentes } from "./fotos.mjs";
 import { montarAgenda } from "./montar.mjs";
+import { completarComArte } from "./arte/index.mjs";
 import { paginaAgenda } from "./pagina.mjs";
 import { aplicarSitemap } from "./sitemap.mjs";
 
@@ -19,16 +20,20 @@ const DRY = args.includes("--dry-run");
 const NO_GIT = args.includes("--no-git");
 const BANDAS = naRaiz("media/agenda/bandas.json");
 const ESTADO = naRaiz("media/agenda/shows.json");
+const CACHE_ARTE = naRaiz("media/agenda/_arte-cache.json");
 
 async function main() {
   const hoje = diaBRT();
   const { bandas } = await lerEstado(BANDAS, { bandas: [] });
   const antes = await lerEstado(ESTADO, { shows: [], bandas: {} });
+  const cacheArte = await lerEstado(CACHE_ARTE, {});
   const shows = [];
   const infos = { ...antes.bandas };
   for (const b of bandas) {
     try {
       const conta = await lerConta(b.conta, { n: 30 });
+      const lidas = await completarComArte(b, conta.posts, cacheArte);
+      if (lidas) console.log(`[agenda] @${b.conta}: ${lidas} arte(s) de agenda lida(s)`);
       const agenda = montarAgenda(b, conta.posts, hoje);
       if (!DRY) await atualizarFoto(b.conta, conta.foto);
       shows.push(...agenda);
@@ -59,6 +64,7 @@ async function main() {
     return;
   }
   await gravarEstado(ESTADO, { atualizado: new Date().toISOString(), bandas: infos, oficial, shows });
+  await gravarEstado(CACHE_ARTE, cacheArte);
   await fs.mkdir(naRaiz("agenda"), { recursive: true });
   await fs.writeFile(naRaiz("agenda/index.html"), paginaAgenda({ shows, bandas, oficial, hoje, fotos: fotosExistentes(bandas) }));
   await fs.writeFile(naRaiz("sitemap.xml"), aplicarSitemap(await fs.readFile(naRaiz("sitemap.xml"), "utf8"), hoje));
