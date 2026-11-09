@@ -14,12 +14,16 @@ const slug = (t) => String(t || "").toLowerCase().normalize("NFD").replace(/[̀-
 export const idDoShow = (conta, s) => `${conta}-${s.data}-${slug(s.cidade || s.casa || "local")}`;
 
 // Agenda do post (lista ou blocos). Bloco só vale se disser onde é (ou que é fechado): evita falso positivo.
+// Blocos primeiro: "AGENDA NOVEMBRO" + "05. QUINTA / 🏠 casa" também parece lista e saía cidade ". QUINTA".
 function agendaDoPost(p) {
-  const lista = showsDoPostDeAgenda(p.legenda, p.data);
-  if (lista) return lista;
   const blocos = showsEmBlocos(p.legenda, p.data);
-  return blocos && blocos.some((s) => s.casa || s.cidade || s.fechado) ? blocos : null;
+  const temLocal = blocos && blocos.some((s) => s.casa || s.casaNome || s.cidade || s.fechado);
+  if (temLocal && blocos.length >= 2) return blocos;
+  return showsDoPostDeAgenda(p.legenda, p.data) || (temLocal ? blocos : null);
 }
+
+// "2026-11-31" não existe (legenda do The Homer: "31/11 Réveillon"): data inválida não vira show.
+const dataExiste = (d) => { const [a, m, dia] = d.split("-").map(Number); return dia <= new Date(Date.UTC(a, m, 0)).getUTCDate(); };
 
 // Mesma casa escrita de jeitos diferentes: "Mister Rock" (arte) e "misterrockinsampa" (@ na legenda).
 const norma = (t) => slug(t).replace(/-/g, "");
@@ -89,7 +93,7 @@ export function montarAgenda(banda, posts, hoje) {
   }
   for (const p of ordenados) for (const a of p.arte || []) completarComArte(porData, a, p.link);
   return [...porData.values()].flat()
-    .filter((s) => s.data >= hoje)
+    .filter((s) => s.data >= hoje && dataExiste(s.data))
     .sort((a, b) => a.data.localeCompare(b.data) || String(a.hora || "").localeCompare(String(b.hora || "")))
     // cidade sem estado ("Barreiro"): vale o estado da banda, que quase sempre toca perto de casa
     .map((s) => ({ id: idDoShow(banda.conta, s), banda: banda.conta, nome: banda.nome, ...s,

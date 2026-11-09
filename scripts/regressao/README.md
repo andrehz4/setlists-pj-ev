@@ -16,3 +16,4 @@ a regra antiga reproduzindo o erro e o código atual fazendo o certo. Roda junto
 | `voz-acima-da-musica.test.mjs` | reel narrado com a música 2,3 dB acima da voz (mede com as 16 trilhas) | 19/10/2026 |
 | `narracao-chave-reserva.test.mjs` | reel ia sair mudo com crédito sobrando em outra conta (principal, reserva, agenda + interruptor) | 19/10/2026 |
 | `agenda-lost-dogs-datas.test.mjs` | agenda: data por extenso perdida, 2 shows no dia viravam 1, banda do line-up como casa, preço lido como hora | 09/11/2026 |
+| `agenda-pj90-homer.test.mjs` | agenda: blocos da PJ 90 lidos como lista (cidade ". SEXTA"), The Homer com show em 31/11 | 09/11/2026 |

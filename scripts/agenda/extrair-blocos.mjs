@@ -10,7 +10,8 @@
 const MESES = ["janeiro", "fevereiro", "marco", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 const semAcento = (t) => String(t).normalize("NFD").replace(/[̀-ͯ]/g, "");
 const iso = (a, m, d) => `${a}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-const INICIO = /^\W*(\d{1,2})\s*[.\-]\s*(segunda|terca|quarta|quinta|sexta|sabado|domingo)(?:-feira)?\b\s*(.*)$/i;
+// "05. QUINTA (Trio Acústico)" ou "07. JUKADANI" (dia + ponto + nome do evento, sem dia da semana)
+const INICIO = /^\W*(\d{1,2})\s*(?:[.\-]\s*(?:segunda|terca|quarta|quinta|sexta|sabado|domingo)(?:-feira)?\b|\.\s+(?=[a-z]))\s*(.*)$/i;
 const MINUSC = new Set(["de", "do", "da", "dos", "das", "e"]);
 
 // "SÃO PAULO" -> "São Paulo"; "BRAGANÇA PTA" -> "Bragança Pta"
@@ -36,7 +37,10 @@ function detalhar(show, linha) {
   }
   const casa = l.match(/^🏠\s*([a-z0-9._]{3,30})\b/u);
   if (casa) { show.casa = casa[1]; return; }
-  const hora = l.match(/^🕰️?\s*(?:in[ií]cio\s*)?(\d{1,2})\s*h\s*(\d{2})?/iu);
+  const nome = l.match(/^🏠\s*([^(]+?)\s*(?:\(|$)/u); // "🏠 Festival Rock (Breve mais informações)"
+  if (nome) { show.casaNome = nome[1]; return; }
+  // "🕰️ Casa abre 20h / Começamos 23h": vale a hora do show
+  const hora = l.match(/come[çc]amos\s*(\d{1,2})\s*h\s*(\d{2})?/iu) || l.match(/^🕰️?\s*(?:in[ií]cio\s*)?(\d{1,2})\s*h\s*(\d{2})?/iu);
   if (hora && +hora[1] <= 23) show.hora = `${hora[1].padStart(2, "0")}:${hora[2] || "00"}`;
 }
 
@@ -60,7 +64,7 @@ export function showsEmBlocos(legenda, dataPost) {
         mm = post.getUTCMonth() + 1;
         if (+b[1] < post.getUTCDate()) { mm += 1; if (mm > 12) { mm = 1; aa += 1; } }
       }
-      const obs = b[3].match(/\(([^)]+)\)/);
+      const obs = b[2].match(/\(([^)]+)\)/);
       atual = { data: iso(aa, mm, +b[1]), casa: null, casaNome: null, cidade: null, uf: null, fechado: false,
         observacao: obs ? linha.match(/\(([^)]+)\)/)[1].trim() : null };
       shows.push(atual);
