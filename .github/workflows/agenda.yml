@@ -32,7 +32,6 @@ jobs:
       - name: Coleta e página
         env:
           IG_LEITURA_TOKEN: ${{ secrets.IG_LEITURA_TOKEN }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # lê agenda que só está na arte (scripts/agenda/arte/)
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GIT_AUTHOR_NAME: pj-news-bot

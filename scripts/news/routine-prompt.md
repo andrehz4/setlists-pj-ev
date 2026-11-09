@@ -19,6 +19,30 @@ git pull origin main --rebase --autostash
 
 Roda `npm ci --no-audit --no-fund` (uns 30s) pra ter as dependências do `merge-curated.mjs`.
 
+## 1.5. Agenda: ler as artes de agenda das bandas cover
+
+O coletor da agenda (`agenda.yml`) guarda em `media/news/agenda-arte/` as imagens de posts de agenda das bandas cover
+de Pearl Jam e lista os pedidos em `media/news/agenda-arte/pendentes.json`. Muitas bandas põem as datas só na arte.
+Ver o que falta ler:
+```bash
+node -e 'const p=require("./media/news/agenda-arte/pendentes.json");let l={};try{l=require("./media/news/agenda-arte/lidas.json")}catch{};p.filter(x=>!l[x.link]).forEach(x=>console.log(x.link,x.banda,x.dataPost,x.imagens.join(" ")))' 2>/dev/null
+```
+Sem nada listado, siga pro passo 2. Para cada pedido listado:
+1. Abra CADA imagem com a ferramenta de leitura de arquivo (Read) e leia a legenda (`legenda` no pendentes.json).
+2. Liste os shows DESTA banda que aparecem na arte: só o que está escrito, nunca invente. Datas de outros artistas
+   (ex.: shows do Eddie Vedder ou do Pearl Jam que a banda vai assistir) NÃO entram. Arte sem agenda = lista vazia.
+3. Acrescente em `media/news/agenda-arte/lidas.json` (crie `{}` se não existir), com a chave = `link` do pedido:
+   `{"lidoEm":"<ISO agora>","shows":[{"dia":13,"mes":11,"hora":"20h","casa":"blues_beer","cidade":"São Paulo","uf":"SP","observacao":"Into The Wild"}]}`
+   `dia`/`mes` em número; `hora` como "21h" ou "21h30" (vazio se não tiver); `casa`: o @ da casa sem o @ se aparecer,
+   senão o nome como está escrito; `uf` sigla de 2 letras; `observacao`: projeto ou formato (acústico, evento fechado).
+4. NUNCA edite `pendentes.json` nem apague imagem: quem limpa é o coletor, depois de ver a leitura.
+5. Apague de `lidas.json` as entradas com `lidoEm` de mais de 60 dias.
+
+Se você gravou leitura e o passo 2 encerraria a rodada (sem notícia pendente), NÃO encerre: grave
+`{"rodada":"só agenda","artes":<quantas leu>,"itens":[]}` em `/tmp/curation-log.json` e vá direto ao passo 5 (sem
+curated: o commit leva a leitura da agenda e o log). Na mensagem do commit, acrescente a linha
+`Agenda: <N> arte(s) lida(s) (<banda>: <datas>)`.
+
 ## 2. Confere se há pending
 
 Lê `media/news/_pending.json`. Se o arquivo não existir OU `items[]` estiver vazio, **encerre aqui**: print "Sem pending nessa run." e encerre.

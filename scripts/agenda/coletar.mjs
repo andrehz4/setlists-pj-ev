@@ -11,7 +11,7 @@ import { lerConta } from "./ler-instagram.mjs";
 import { lerOficial } from "./oficial.mjs";
 import { atualizarFoto, fotosExistentes } from "./fotos.mjs";
 import { montarAgenda } from "./montar.mjs";
-import { completarComArte } from "./arte/index.mjs";
+import { aplicarLeituras, enfileirarArtes, limparFila, PASTA } from "./arte/index.mjs";
 import { paginaAgenda } from "./pagina.mjs";
 import { aplicarSitemap } from "./sitemap.mjs";
 
@@ -20,20 +20,24 @@ const DRY = args.includes("--dry-run");
 const NO_GIT = args.includes("--no-git");
 const BANDAS = naRaiz("media/agenda/bandas.json");
 const ESTADO = naRaiz("media/agenda/shows.json");
-const CACHE_ARTE = naRaiz("media/agenda/_arte-cache.json");
+const PENDENTES = naRaiz(`${PASTA}/pendentes.json`);
+const LIDAS = naRaiz(`${PASTA}/lidas.json`);
 
 async function main() {
   const hoje = diaBRT();
   const { bandas } = await lerEstado(BANDAS, { bandas: [] });
   const antes = await lerEstado(ESTADO, { shows: [], bandas: {} });
-  const cacheArte = await lerEstado(CACHE_ARTE, {});
+  const lidas = await lerEstado(LIDAS, {}); // escrito pelo curador (routine)
+  const fila = await lerEstado(PENDENTES, []);
+  const pendentes = DRY ? fila : await limparFila(fila, lidas, { raiz: naRaiz(".") }); // apaga imagem já lida
   const shows = [];
   const infos = { ...antes.bandas };
   for (const b of bandas) {
     try {
       const conta = await lerConta(b.conta, { n: 30 });
-      const lidas = await completarComArte(b, conta.posts, cacheArte);
-      if (lidas) console.log(`[agenda] @${b.conta}: ${lidas} arte(s) de agenda lida(s)`);
+      const comArte = aplicarLeituras(conta.posts, lidas);
+      const novas = DRY ? 0 : await enfileirarArtes(b, conta.posts, { pendentes, lidas, hoje, raiz: naRaiz(".") });
+      if (comArte || novas) console.log(`[agenda] @${b.conta}: ${comArte} arte(s) lida(s) usada(s), ${novas} nova(s) pro curador`);
       const agenda = montarAgenda(b, conta.posts, hoje);
       if (!DRY) await atualizarFoto(b.conta, conta.foto);
       shows.push(...agenda);
@@ -64,11 +68,11 @@ async function main() {
     return;
   }
   await gravarEstado(ESTADO, { atualizado: new Date().toISOString(), bandas: infos, oficial, shows });
-  await gravarEstado(CACHE_ARTE, cacheArte);
+  await gravarEstado(PENDENTES, pendentes);
   await fs.mkdir(naRaiz("agenda"), { recursive: true });
   await fs.writeFile(naRaiz("agenda/index.html"), paginaAgenda({ shows, bandas, oficial, hoje, fotos: fotosExistentes(bandas) }));
   await fs.writeFile(naRaiz("sitemap.xml"), aplicarSitemap(await fs.readFile(naRaiz("sitemap.xml"), "utf8"), hoje));
-  await commitAndPush(["media/agenda/", "agenda/", "sitemap.xml"], `agenda: ${shows.length} show(s), ${novos.length} novo(s) ${hoje}`, { dry: NO_GIT });
+  await commitAndPush(["media/agenda/", "agenda/", "sitemap.xml", `${PASTA}/`], `agenda: ${shows.length} show(s), ${novos.length} novo(s) ${hoje}`, { dry: NO_GIT });
   if (oficiaisNovos.length) {
     const linhas = oficiaisNovos.map((s) => `• ${s.data.split("-").reverse().join("/")} <b>${escHtml(s.artista)}</b>`
       + ` em ${escHtml([s.casaNome, s.cidade, s.pais].filter(Boolean).join(", "))}${s.brasil ? " 🇧🇷" : ""}`);

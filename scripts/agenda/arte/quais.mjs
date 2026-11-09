@@ -1,13 +1,13 @@
-// Quais posts têm a agenda SÓ na arte (a legenda diz "se liga nesta agenda" mas não traz as datas), e como a
-// resposta do leitor de arte vira shows no formato do montar.mjs. Funções puras, testadas.
+// Quais posts têm agenda na arte (o curador lê a imagem, ver fila.mjs) e como a leitura dele vira shows no
+// formato do montar.mjs. Funções puras, testadas.
 const iso = (a, m, d) => `${a}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
 
-// Post com cara de agenda, com imagem, e com menos de 2 datas dd/mm no texto (senão o extrator de texto resolve).
-export function precisaArte(post) {
+// Post com cara de agenda, com imagem, dos últimos 21 dias (post antigo não traz show futuro).
+// A legenda pode até ter datas: a arte só completa o que faltar nela (montar.mjs).
+export function precisaArte(post, hoje) {
   if (!post.imagens?.length) return false;
-  const t = String(post.legenda || "");
-  if (!/\bagenda\b|pr[óo]xim[oa]s (shows|datas)/i.test(t)) return false;
-  return (t.match(/\b\d{1,2}\/\d{1,2}\b/g) || []).length < 2;
+  if (hoje && (Date.parse(hoje) - Date.parse(post.data)) / 864e5 > 21) return false;
+  return /\bagenda\b|pr[óo]xim[oa]s (shows|datas)/i.test(String(post.legenda || ""));
 }
 
 const hora = (h) => {
@@ -19,7 +19,7 @@ const handle = (c) => {
   return /^[a-z0-9._]{3,30}$/.test(t) ? t : null;
 };
 
-// Resposta do Gemini ({shows:[{dia, mes, hora, casa, cidade, uf, observacao}]}) -> shows. Ano: mês da agenda
+// Leitura do curador ({shows:[{dia, mes, hora, casa, cidade, uf, observacao}]}) -> shows. Ano: mês da agenda
 // antes do mês do post = ano seguinte (mesma regra das legendas).
 export function showsDaArte(resposta, dataPost) {
   const post = new Date(dataPost);

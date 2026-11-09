@@ -1,29 +1,16 @@
-// Agenda que só está na ARTE do post: lê o texto da imagem (Gemini) e pendura os shows em post.arte, que o
-// montar.mjs trata como post de agenda. Módulo apartado: sem GEMINI_API_KEY não faz nada.
-// Cache (media/agenda/_arte-cache.json, por link do post): cada arte é lida UMA vez; entradas com mais de 90 dias saem.
-import { precisaArte, showsDaArte } from "./quais.mjs";
-import { lerArteGemini } from "./gemini.mjs";
+// Agenda na ARTE do post: o coletor guarda a imagem (fila.mjs), o curador (routine Claude) lê e grava em
+// media/news/agenda-arte/lidas.json, e aqui a leitura volta pros posts como post.arte, que o montar.mjs usa só pra
+// COMPLETAR o que a legenda não disse. Sem leitura nenhuma, nada muda.
+import { showsDaArte } from "./quais.mjs";
 
-const NOVENTA_DIAS = 90 * 864e5;
+export { enfileirarArtes, limparFila, PASTA } from "./fila.mjs";
 
-// posts: os da banda (com imagens). cache: objeto {link: {lidoEm, resposta}}, alterado no lugar.
-export async function completarComArte(banda, posts, cache, { env = process.env, ler = lerArteGemini, agora = Date.now() } = {}) {
-  for (const [link, v] of Object.entries(cache)) if (agora - Date.parse(v.lidoEm) > NOVENTA_DIAS) delete cache[link];
-  if (!env.GEMINI_API_KEY) return 0;
-  let lidas = 0;
+// Pendura em cada post a leitura do curador, se houver. Devolve quantos posts ganharam shows da arte.
+export function aplicarLeituras(posts, lidas) {
+  let n = 0;
   for (const p of posts) {
-    if (!precisaArte(p)) continue;
-    if (!cache[p.link]) {
-      try {
-        cache[p.link] = { lidoEm: new Date(agora).toISOString(), resposta: await ler(p.imagens, { banda, dataPost: p.data, env }) };
-        lidas++;
-      } catch (e) {
-        console.warn(`[agenda] arte de ${p.link} não deu pra ler: ${e.message}`);
-        continue;
-      }
-    }
-    const shows = showsDaArte(cache[p.link].resposta, p.data);
-    if (shows.length) p.arte = shows;
+    const shows = lidas[p.link] ? showsDaArte(lidas[p.link], p.data) : [];
+    if (shows.length) { p.arte = shows; n++; }
   }
-  return lidas;
+  return n;
 }

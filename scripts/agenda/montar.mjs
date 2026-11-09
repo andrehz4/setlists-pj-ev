@@ -3,7 +3,8 @@
 //   datas que ele traz (pode ter vários shows no mesmo dia);
 //   post do dia: completa casa e horário de um show já conhecido;
 //   aviso solto ("dia 10/10 no botecohelena em Suzano"): cria o show se a data ainda não está na agenda;
-//   agenda só na arte (post.arte, lida por scripts/agenda/arte/): vale como post de agenda.
+//   arte do post (post.arte, lida pelo curador, ver scripts/agenda/arte/): por último, só COMPLETA a legenda:
+//   show que a legenda já tem ganha o que faltou (hora, casa, cidade); data que ela não tem vira show novo.
 import { showsDoPostDeAgenda, detalhesDoPostDoDia } from "./extrair.mjs";
 import { showsEmBlocos } from "./extrair-blocos.mjs";
 import { showDoAvisoSolto } from "./extrair-solto.mjs";
@@ -14,7 +15,6 @@ export const idDoShow = (conta, s) => `${conta}-${s.data}-${slug(s.cidade || s.c
 
 // Agenda do post (lista ou blocos). Bloco só vale se disser onde é (ou que é fechado): evita falso positivo.
 function agendaDoPost(p) {
-  if (p.arte?.length) return p.arte;
   const lista = showsDoPostDeAgenda(p.legenda, p.data);
   if (lista) return lista;
   const blocos = showsEmBlocos(p.legenda, p.data);
@@ -25,6 +25,15 @@ function agendaDoPost(p) {
 const norma = (t) => slug(t).replace(/-/g, "");
 const mesmaCasa = (a, b) => { const x = norma(a), y = norma(b); return !!x && !!y && (x.includes(y) || y.includes(x)); };
 const casaDe = (s) => s.casa || s.casaNome;
+
+// Show lido da arte: casa igual (ou o único do dia, se um dos dois não tem casa) recebe só os campos vazios.
+function completarComArte(porData, a, link) {
+  const dia = porData.get(a.data) || [];
+  const igual = dia.find((s) => mesmaCasa(casaDe(s), casaDe(a)))
+    || (dia.length === 1 && !(casaDe(dia[0]) && casaDe(a)) ? dia[0] : null);
+  if (!igual) { porData.set(a.data, [...dia, { ...a, fonte: link }]); return; }
+  for (const k of ["casa", "casaNome", "cidade", "uf", "hora", "observacao"]) igual[k] ||= a[k];
+}
 
 // hoje: "AAAA-MM-DD" (BRT). Só entram shows de hoje em diante.
 export function montarAgenda(banda, posts, hoje) {
@@ -78,6 +87,7 @@ export function montarAgenda(banda, posts, hoje) {
     }
     porData.set(solto.data, [...ja, { ...solto, fonte: p.link }]);
   }
+  for (const p of ordenados) for (const a of p.arte || []) completarComArte(porData, a, p.link);
   return [...porData.values()].flat()
     .filter((s) => s.data >= hoje)
     .sort((a, b) => a.data.localeCompare(b.data) || String(a.hora || "").localeCompare(String(b.hora || "")))
