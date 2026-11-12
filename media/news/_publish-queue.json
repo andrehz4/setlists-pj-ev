@@ -473,6 +473,24 @@
       "postId": "17995015734114024",
       "error": null,
       "errorCount": 0
+    },
+    {
+      "id": "60317c250e",
+      "type": "regular",
+      "queuedAt": "2026-11-12T15:13:00.038Z",
+      "publishAt": "2026-11-12T15:13:00.038Z",
+      "postedAt": null,
+      "postId": null,
+      "error": null
+    },
+    {
+      "id": "cd-20261112",
+      "type": "spotlight",
+      "queuedAt": "2026-11-12T15:13:00.038Z",
+      "publishAt": "2026-11-12T15:13:00.038Z",
+      "postedAt": null,
+      "postId": null,
+      "error": null
     }
   ],
   "postCount": 231
