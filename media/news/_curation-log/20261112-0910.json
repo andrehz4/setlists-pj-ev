@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-11-12T09:10Z",
+  "marco": "06:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 1, "shop": 0 },
+  "approved": [
+    { "id": "394b846dc2", "titulo": "A briga do Pearl Jam com a Ticketmaster, três décadas depois", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "cs-4bc4c594f4", "title": "Ten Live Vinyl", "reason": "spotlight sem obra de fã (só chegada de vinil, sem repercussão)" },
+    { "id": "851ddd6cd0", "title": "Riot Act Turns 24", "reason": "texto vazio (só hashtag)" }
+  ]
+}
