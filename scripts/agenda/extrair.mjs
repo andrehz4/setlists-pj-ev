@@ -96,11 +96,17 @@ const NAO_CASA = new Set(["quinta", "sexta", "sabado", "domingo", "segunda", "te
 export function casaNaLegenda(legenda, ignorar = []) {
   const fora = new Set(ignorar.map((h) => h.toLowerCase()));
   const ok = (t) => t && t.length >= 5 && !fora.has(t) && !NAO_CASA.has(semAcento(t)) && !/\.(jpg|png|com|br)$/.test(t);
-  const linhas = legenda.split("\n").filter((l) => !/^\s*(📸|🎥|📷|foto|fotos|video|vídeo)/i.test(l)).map((l) => l.replace(/#[\w.]+/g, " "));
+  // linha de line-up ("soundstones.oficial 15:30h") é outra banda tocando no mesmo dia, não a casa
+  const lineup = (l) => /^\s*[a-z0-9._]{3,30}\s+\d{1,2}(?::\d{2})?\s*h?\s*$/i.test(l);
+  const linhas = legenda.split("\n").filter((l) => !/^\s*(📸|🎥|📷|foto|fotos|video|vídeo)/i.test(l) && !lineup(l))
+    .map((l) => l.replace(/#[\w.]+/g, " "));
   const texto = linhas.join("\n");
   const fortes = texto.match(/(?<![\w@])[a-z][a-z0-9]*[._][a-z0-9._]*[a-z0-9]|(?<![\w@])[a-z]+\d{2,}\b/g) || [];
   const forte = fortes.find(ok);
   if (forte) return forte;
+  // palavra minúscula colada de 16+ letras ("rooftopgaleriadorock"): é @ sem o @, palavra comum quase nunca é tão longa
+  const longo = (texto.match(/(?<![\w@À-ú])[a-z][a-z0-9]{15,29}(?![\wÀ-ú])/g) || []).find(ok);
+  if (longo) return longo;
   const posicao = /(?:📍\s*|\b(?:no|na|lá no|la no|palco do|palco da)\s+)([a-z][a-z0-9]{4,29})\b/g;
   for (const m of texto.matchAll(posicao)) if (ok(m[1])) return m[1];
   return null;

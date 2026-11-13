@@ -11,6 +11,7 @@ Agenda de shows das bandas cover de Pearl Jam (POC desde 2026-10-04). Plano e pe
 | `coletar.mjs` | Roda tudo, grava `media/agenda/shows.json`, gera `/agenda/` e avisa os novos no Telegram. |
 | `pagina.mjs`, `sitemap.mjs` | Página estática com JSON-LD `MusicEvent` e a seção `agenda:start/end` do sitemap. |
 | `poc-ig.mjs` | Avaliar banda nova (workflow manual `agenda-poc.yml`). |
+| `arte/` | Agenda na ARTE do post. O coletor guarda a imagem reduzida em `media/news/agenda-arte/` e lista em `pendentes.json` (posts com "agenda" na legenda, imagem e até 21 dias). O curador (routine Claude, passo 1.5 de `scripts/news/routine-prompt.md`) lê e grava em `lidas.json`. No coletor seguinte a legenda manda e a arte só completa (data nova, hora, casa); a imagem lida sai do repo. |
 
 Banda nova: rodar `agenda-poc.yml` com a conta, conferir se a agenda dela é legível e acrescentar em
 `media/agenda/bandas.json`.

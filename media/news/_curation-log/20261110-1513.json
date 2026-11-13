@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-11-10T15:12Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 1, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "cd-20261110", "title": "digest comunidade 10/11", "reason": "dia fraco no digest (5 posts sem engajamento: skates do Jeff, food truck, cover de bateria, venda de pôster e ingresso)" },
+    { "id": "87673c10a1", "title": "Mount Rushmore Songs: Oasis", "reason": "sem menção a PJ (podcast sobre Oasis)" },
+    { "id": "04a83b4bf8", "title": "Could Pearl Jam heal cancer?", "reason": "sem menção à banda (Stand 'Pearl Jam' de JoJo's Bizarre Adventure)" }
+  ]
+}
