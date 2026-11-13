@@ -2,6 +2,7 @@
 //   "ALÔ SUZANO E REGIÃO / Neste sábado dia 10/10 estaremos ... no botecohelena em Suzano. O show começa às 22h"
 //   "Alô galera de contagem e região, dia 17/08 ... no ironrockpub_oficial"
 //   "📍DIA 19 DE NOVEMBRO 21H" (data por extenso, hora logo depois)
+//   "Sábado tem espetáculo da ... loveboat_tribute" (dia da semana, sem data: o próximo a partir do post, em BRT)
 // Só vale data de hoje em diante em relação ao post (relato de show passado não vira show). Cidade: "Alô X",
 // "Atenção X", "X e região" ou "em X"; UF: "Cidade/UF" ou "-UF" no texto, senão a da banda.
 import { casaNaLegenda, horaNaLegenda } from "./extrair.mjs";
@@ -27,7 +28,23 @@ function dataDoTexto(t) {
   const dm = t.match(/\b(\d{1,2})\/(\d{1,2})(?!\/\d)/);
   if (dm) return { dia: +dm[1], mes: +dm[2], fim: dm.index + dm[0].length };
   const ext = semAcento(t).match(new RegExp(`\\b(\\d{1,2})\\s+de\\s+(${MESES.join("|")})\\b`, "i"));
-  return ext ? { dia: +ext[1], mes: MESES.indexOf(ext[2].toLowerCase()) + 1, fim: ext.index + ext[0].length } : null;
+  if (ext) return { dia: +ext[1], mes: MESES.indexOf(ext[2].toLowerCase()) + 1, fim: ext.index + ext[0].length };
+  return null;
+}
+
+// Dia da semana falando do FUTURO ("neste sábado", "Sábado tem", "sexta-feira teremos"): "sábado foi incrível" não vale.
+// Data do post em BRT; mesmo dia da semana do post = o próprio dia. Post do Studio Rock Café de 09/11/2026 (bug: show
+// da Love Boat de 14/11 não entrou porque a legenda só dizia "Sábado tem").
+const SEMANA = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"];
+const DIA = `(${SEMANA.join("|")})(?:[\\s-]*feira)?`;
+const FUTURO = new RegExp(`\\b(?:(?:neste|nesse|nesta|nessa|este|esse|esta|essa|proximo|proxima)\\s+${DIA}|${DIA},?\\s+(?:tem|teremos|vai ter|rola|estaremos|vamos)\\b)`, "i");
+export function dataDoDiaDaSemana(t, dataPost) {
+  const m = semAcento(t).match(FUTURO);
+  if (!m) return null;
+  const alvo = SEMANA.indexOf((m[1] || m[2]).toLowerCase());
+  const post = new Date(new Date(dataPost).getTime() - 3 * 3600e3); // BRT
+  const d = new Date(post.getTime() + ((alvo - post.getUTCDay() + 7) % 7) * 864e5);
+  return { dia: d.getUTCDate(), mes: d.getUTCMonth() + 1, ano: d.getUTCFullYear(), fim: m.index + m[0].length };
 }
 
 // Hora. Linha com preço ("após às 22h R$40") é de ingresso, não de show. Ordem: hora colada na data
@@ -47,11 +64,11 @@ function horaDoTexto(t, fimData, nome) {
 // legenda + data do post + banda ({conta, nome, uf}) -> show ou null
 export function showDoAvisoSolto(legenda, dataPost, banda) {
   const texto = String(legenda);
-  const d = dataDoTexto(texto);
+  const d = dataDoTexto(texto) || dataDoDiaDaSemana(texto, dataPost);
   if (!d) return null;
   const post = new Date(dataPost);
   if (d.mes < 1 || d.mes > 12 || d.dia < 1 || d.dia > 31) return null;
-  const ano = d.mes < post.getUTCMonth() + 1 - 1 ? post.getUTCFullYear() + 1 : post.getUTCFullYear();
+  const ano = d.ano || (d.mes < post.getUTCMonth() + 1 - 1 ? post.getUTCFullYear() + 1 : post.getUTCFullYear());
   const data = iso(ano, d.mes, d.dia);
   if (data < dataPost.slice(0, 10)) return null; // falando de show que já passou
   const ufTexto = texto.match(/[A-Za-zÀ-ú]\s*[/-]\s*([A-Z]{2})\b/);

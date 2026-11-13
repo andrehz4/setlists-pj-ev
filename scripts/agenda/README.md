@@ -13,8 +13,15 @@ Agenda de shows das bandas cover de Pearl Jam (POC desde 2026-10-04). Plano e pe
 | `poc-ig.mjs` | Avaliar banda nova (workflow manual `agenda-poc.yml`). |
 | `arte/` | Agenda na ARTE do post. O coletor guarda a imagem reduzida em `media/news/agenda-arte/` e lista em `pendentes.json` (posts com "agenda" na legenda, imagem e até 21 dias). O curador (routine Claude, passo 1.5 de `scripts/news/routine-prompt.md`) lê e grava em `lidas.json`. No coletor seguinte a legenda manda e a arte só completa (data nova, hora, casa); a imagem lida sai do repo. |
 
-Banda nova: rodar `agenda-poc.yml` com a conta, conferir se a agenda dela é legível e acrescentar em
-`media/agenda/bandas.json`.
+Banda nova: rodar `agenda-poc.yml` com a conta, conferir se a agenda dela é legível, acrescentar em
+`media/agenda/bandas.json` e rodar `agenda-voz.yml` (grava as aberturas do story com o nome da banda; NÃO é automático).
+
+## Casas de show (`casas/`, desde 13/11/2026)
+
+Post de colaboração (casa + banda) só aparece no feed de quem publicou, e a API lê só o feed da própria conta. Por isso
+a coleta também lê as casas de `media/agenda/casas.json` (@, cidade, UF) e entrega à banda os posts que citam o @ dela.
+Post de casa só vira show como aviso solto, com casa, cidade e UF do cadastro. "Sábado tem" (sem data) vale o próximo
+sábado a partir do post. Casa nova: acrescentar no JSON. Desliga com `AGENDA_CASAS=0`.
 
 ## Redes (`redes/`): story do dia e agenda da semana
 

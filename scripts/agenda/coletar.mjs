@@ -13,6 +13,7 @@ import { atualizarFoto, fotosExistentes } from "./fotos.mjs";
 import { montarAgenda } from "./montar.mjs";
 import { aplicarLeituras, enfileirarArtes, limparFila, PASTA } from "./arte/index.mjs";
 import { paginaAgenda } from "./pagina.mjs";
+import { postsDasCasas } from "./casas/index.mjs";
 import { aplicarSitemap } from "./sitemap.mjs";
 
 const args = process.argv.slice(2);
@@ -32,13 +33,14 @@ async function main() {
   const pendentes = DRY ? fila : await limparFila(fila, lidas, { raiz: naRaiz(".") }); // apaga imagem já lida
   const shows = [];
   const infos = { ...antes.bandas };
+  const dasCasas = await postsDasCasas(bandas); // posts de colaboração que só a casa tem no feed
   for (const b of bandas) {
     try {
       const conta = await lerConta(b.conta, { n: 30 });
       const comArte = aplicarLeituras(conta.posts, lidas);
       const novas = DRY ? 0 : await enfileirarArtes(b, conta.posts, { pendentes, lidas, hoje, raiz: naRaiz(".") });
       if (comArte || novas) console.log(`[agenda] @${b.conta}: ${comArte} arte(s) lida(s) usada(s), ${novas} nova(s) pro curador`);
-      const agenda = montarAgenda(b, conta.posts, hoje);
+      const agenda = montarAgenda(b, [...conta.posts, ...(dasCasas.get(b.conta) || [])], hoje);
       if (!DRY) await atualizarFoto(b.conta, conta.foto);
       shows.push(...agenda);
       infos[b.conta] = { lidoEm: new Date().toISOString(), seguidores: conta.seguidores, ultimoPost: conta.posts[0]?.data || null };

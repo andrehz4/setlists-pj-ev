@@ -28,7 +28,7 @@ export const FINAIS = [
   "Compartilha com quem vai com você! E segue o Só Mais um Fã de Pearl Jam, o maior acervo da banda no Brasil.",
   "Marca aquele amigo que vai com você! A agenda completa tá no maior acervo de Pearl Jam do Brasil.",
   "Manda pra quem vai com você! Setlists, letras e a agenda inteira no Só Mais um Fã de Pearl Jam.",
-  "Chama a turma pro show! E entra no maior acervo da banda no Brasil, link no perfil.",
+  "Chama a turma para o show! E entra no maior acervo da banda no Brasil, link no perfil.",
   "Repassa pra quem canta Black a plenos pulmões! Mais shows na nossa agenda, link no perfil.",
 ];
 

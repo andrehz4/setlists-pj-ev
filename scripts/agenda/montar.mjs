@@ -3,6 +3,8 @@
 //   datas que ele traz (pode ter vários shows no mesmo dia);
 //   post do dia: completa casa e horário de um show já conhecido;
 //   aviso solto ("dia 10/10 no botecohelena em Suzano"): cria o show se a data ainda não está na agenda;
+//   post de CASA de show que cita a banda (post.casaDona, ver scripts/agenda/casas/): só como aviso solto, com casa,
+//   cidade e UF do cadastro da casa (a menção na legenda pode ser o artista da abertura);
 //   arte do post (post.arte, lida pelo curador, ver scripts/agenda/arte/): por último, só COMPLETA a legenda:
 //   show que a legenda já tem ganha o que faltou (hora, casa, cidade); data que ela não tem vira show novo.
 import { showsDoPostDeAgenda, detalhesDoPostDoDia } from "./extrair.mjs";
@@ -45,7 +47,7 @@ export function montarAgenda(banda, posts, hoje) {
   const ordenados = [...posts].sort((a, b) => a.data.localeCompare(b.data)); // antigo -> recente
   const avisos = [];
   for (const p of ordenados) {
-    const shows = agendaDoPost(p);
+    const shows = p.casaDona ? null : agendaDoPost(p); // agenda de casa lista outras bandas: nunca vira lista
     if (!shows) { avisos.push(p); continue; }
     const novos = new Map();
     for (const s of shows) (novos.get(s.data) || novos.set(s.data, []).get(s.data)).push({ ...s, hora: s.hora || null, fonte: p.link });
@@ -69,7 +71,7 @@ export function montarAgenda(banda, posts, hoje) {
     }
   }
   for (const p of avisos) {
-    const d = detalhesDoPostDoDia(p.legenda, p.data, [banda.conta]);
+    const d = p.casaDona ? null : detalhesDoPostDoDia(p.legenda, p.data, [banda.conta]);
     const conhecidos = d && porData.get(d.data);
     // post do dia: completa casa e horário (nunca troca a cidade). Casa diferente da conhecida = outro show no dia.
     const alvo = conhecidos && (conhecidos.find((s) => d.casa && mesmaCasa(casaDe(s), d.casa))
@@ -83,6 +85,8 @@ export function montarAgenda(banda, posts, hoje) {
     if (conhecidos && !d.casa) continue;
     const solto = showDoAvisoSolto(p.legenda, p.data, banda);
     if (!solto) continue;
+    if (p.casaDona) Object.assign(solto, { casa: p.casaDona.conta, casaNome: p.casaDona.nome || null,
+      cidade: p.casaDona.cidade || solto.cidade, uf: p.casaDona.uf || solto.uf });
     const ja = porData.get(solto.data) || [];
     const mesmo = ja.find((s) => !casaDe(s) || !solto.casa || mesmaCasa(casaDe(s), solto.casa));
     if (mesmo) { // dois avisos do mesmo show: junta o que cada um sabe

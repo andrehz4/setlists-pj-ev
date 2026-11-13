@@ -11,7 +11,7 @@
 export const ABERTURAS = [
   "Você que é fã de Pearl Jam, olha o que rolou essa semana.",
   "Olha o que o Pearl Jam aprontou essa semana. Vem ver.",
-  "Tem novidade do Pearl Jam. Bora pro resumo da semana?",
+  "Tem novidade do Pearl Jam. Bora ver o resumo da semana?",
 ];
 export const FINAIS = [
   "Tem muito mais no maior acervo de Pearl Jam do Brasil. O link tá na bio!",
@@ -29,6 +29,9 @@ export function variacaoDaSemana(lista, weekKey) {
 const TROCAS = [
   [/\bPJ\b/g, "Pearl Jam"],
   [/\bEV\b/g, "Eddie Vedder"],
+  // "pro" a voz lê "PRÓ" (de profissional), story da agenda de 11/2026
+  [/(?<![\p{L}-])pros(?![\p{L}-])/gu, "para os"],
+  [/(?<![\p{L}-])pro(?![\p{L}-])/gu, "para o"],
   [/\bJr\.?(?=\s|$|[,:;!?])/g, "Júnior"],
   [/\s&\s/g, " e "],
   [/["“”«»]/g, ""],

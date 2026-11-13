@@ -30,7 +30,9 @@ if (s && s.restante < custo + 500) throw new Error(`saldo baixo: ${s.restante} c
 for (const { t, voz } of faltam) {
   await sintetizar(t, { vozId: voz.id, apiKey, destino: arquivoDaFala(t, voz), idioma: IDIOMA });
   // mede na hora: frase que não cabe no story de 21,3 s nem acelerada é avisada já na gravação
-  const d = Number(spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", arquivoDaFala(t, voz)]).stdout.toString());
+  // sem ffprobe não perde a fala já paga: grava, só não mede (bug 13/11/2026, workflow sem ffmpeg)
+  const d = Number(spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", arquivoDaFala(t, voz)]).stdout?.toString());
+  if (!d) { console.warn(`[voz] gravada sem medir (ffprobe ausente?): ${t}`); continue; }
   const tipo = FINAIS.includes(t) ? "final" : /^O show é/.test(t) ? "estado" : /^E começa/.test(t) || t === FRASE_SEM_HORA ? "hora" : "abertura";
   const e = encaixar({ [tipo]: d });
   const [r] = Object.values(e);
