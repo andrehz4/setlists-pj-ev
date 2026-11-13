@@ -41,7 +41,7 @@ function coresDasBandas(bandas, shows) {
 }
 
 const bandaHTML = (b, n, cor, foto) => `<li class="ag-banda ag-bg-${cor[b.conta]}${foto ? " ag-banda--foto" : ""}">
-${foto ? `<div class="ag-banda-foto"><img src="${esc(foto)}" alt="Foto da banda ${esc(b.nome)}" width="640" height="480" loading="lazy" decoding="async"></div>\n` : ""}<p class="ag-banda-desde">desde <span>${esc(b.desde)}</span></p>
+${foto ? `<div class="ag-banda-foto"><img src="${esc(foto)}" alt="Foto da banda ${esc(b.nome)}" width="640" height="480" loading="lazy" decoding="async"></div>\n` : ""}${b.desde ? `<p class="ag-banda-desde">desde <span>${esc(b.desde)}</span></p>` : ""}
 <h3 class="ag-banda-nome"><a href="${ig(b.conta)}" rel="nofollow">${esc(b.nome)}</a></h3>
 <p class="ag-banda-cidade">${esc(b.cidade)}/${esc(b.uf)}</p>
 <p class="ag-banda-resumo">${esc(b.resumo)}</p>
