@@ -8,7 +8,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 - **Reel de domingo com fallback (08/11):** a run de 08/11 falhou (W45): container do IG ficou `IN_PROGRESS` além dos 5 min.
   Agora: espera 10 min, 2º container do mesmo vídeo (8 min), retomada sem renderizar na próxima rodada, crons de reserva
-  12h/15h/18h BRT no domingo (PENDENTE: aplicar `scripts/publish/reel/RESERVAS-WORKFLOW.md` no `publish-reel.yml` à mão) e alerta no Telegram (`scripts/publish/reel/{fallback,pendente,retomar}.mjs`). Testado
+  12h/15h/18h BRT no domingo (PENDENTE: criar o trigger do reel no TriggerAll, script em `scripts/publish/reel/RESERVAS-WORKFLOW.md`) e alerta no Telegram (`scripts/publish/reel/{fallback,pendente,retomar}.mjs`). Testado
   ponta a ponta no mock (travou, retomou sem refazer o MP4, não duplicou).
 
 - Site, fórum e pipeline no ar. Publish IG/FB, story diário, reel de domingo, cápsulas, contrib e X manual rodando.
@@ -35,6 +35,32 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Conta do Actions (todos os repos): ~2.080 min/mês com contrib ligado, ~1.600 pausado, antes ~3.900 (franquia 3.000).
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
+
+## 2026-11-08: reel W45 preso no IG, fallback no ar e reel no TriggerAll (HANDOFF)
+
+- **O que houve:** a run de domingo (cron do GitHub, 14:53 BRT) criou o container do IG, ele ficou `IN_PROGRESS` por 5 min
+  e o robô desistiu (`container ... nao ficou pronto em 300000ms`). Não foi cota (uso zerado) nem gatilho perdido.
+- **Gatilho:** o reel NUNCA esteve no TriggerAll. Roda no cron do próprio GitHub (`7 12 * * 0`), que atrasa 3h40 a 5h47
+  todo domingo (medido em 7 semanas). Run vindo do TriggerAll aparece como `workflow_dispatch` com `:01` nos segundos.
+- **Feito (PR #621, squash):** `scripts/publish/reel/{fallback,pendente,retomar}.mjs`: espera 10 min, 2º container do
+  MESMO vídeo (8 min), falhou = log guarda containers + legenda + vídeo e a próxima rodada só publica (validade 20 h);
+  entrada `aprovado` nunca renderiza outro vídeo; erro no `media_publish` não vira outro container (2207051). Alerta
+  de falha no Telegram. `REEL_SO_DOMINGO` (só no cron) barra rodada atrasada que caísse na segunda. 8 testes novos.
+- **W45 publicado à mão:** o Andre assistiu o MP4 do R2 e aprovou; entrada `aprovado` no `_reel-log.json`, run nº 24
+  (`workflow_dispatch`) retomou o container de 18:01Z: IG `18126603427692997`, FB `122126663043322237`. Conferir no perfil.
+- **PENDENTE (Andre):** criar 1 trigger no TriggerAll (`publish-reel.yml`, `7 12,15,18,21 * * 0` em UTC = 09:07, 12:07,
+  15:07 e 18:07 BRT; idempotente). O Claude não alcança o servidor nem tem a senha: script que copia o trigger do
+  `publish-story.yml` está em `scripts/publish/reel/RESERVAS-WORKFLOW.md`. Depois: conferir no painel (ativo, próxima
+  execução domingo 12:07 UTC) e fechar o item abaixo.
+- **Depois do trigger:** (1) o alerta do Telegram só diz "tento de novo sozinho" com `REEL_RESERVAS=1`, variável que
+  só entraria pelo workflow: trocar o default em `reel/registro.mjs` (`avisarFalha`); (2) apagar a opção de crons do
+  `RESERVAS-WORKFLOW.md` ou marcá-la como alternativa; (3) o cron do YAML fica de reserva (run idempotente).
+- **Armadilhas:** o acesso do Claude ao GitHub NÃO tem escopo `workflow` (não edita `.github/workflows/`); o
+  classificador bloqueia `--force-with-lease` (resolver com cherry-pick sobre o tip remoto, push fast-forward).
+  Download do R2 exige o host `midia.somaisumfadepearljam.com.br` liberado (ambiente pessoal "SMUFDPJ: site, quiz e
+  baixa-clipe", criado em 08/11). 6 testes de recorte de rosto (`scripts/regressao/recorte-rosto`) falham no ambiente
+  da nuvem e na `main` limpa: não são do reel.
+- **Quiz:** vive no repo privado `andrehz4/fabrica-quiz` (estado e próximo passo no PROGRESSO de lá). Nada dele aqui.
 
 ## 2026-10-24: limpeza do HD e quiz migrado pro repo privado
 
