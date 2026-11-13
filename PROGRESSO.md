@@ -61,8 +61,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   removeu foi o 9 (Mac 9.0.2, Ubuntu do CI 8.0.1). Prova do bug só no 9+, e checagem dos argumentos em qualquer versão.
 - **Google Analytics achado:** G-234ZL5MF0T está na eng.andrehz, conta "Default Account for Firebase", propriedade
   "teste-15e8d" (240201637), fluxo "Site Pearl Jam". Recebendo tráfego. Vale renomear a propriedade.
-- **Dependabot:** merge de #527, #548, #549, #553 (backend, cópia atrasada). Rebase pedido em #551, #615 (SDK Anthropic 1.4)
-  e #616 (got 16): os dois passam nos 469 testes localmente; dar merge quando o CI ficar verde. #506, #525, #526, #569
+- **Dependabot:** merge de #527, #548, #549, #551, #553 (backend, cópia atrasada) e #616 (got 16, CI verde). #615 (SDK
+  Anthropic 1.4) passa nos 469 testes localmente; o dependabot não rebaseou, pedi `recreate`: dar merge quando o CI ficar verde. #506, #525, #526, #569
   mexem em workflow: o token do Claude não tem escopo `workflow`, merge à mão pelo Andre.
 - **ALERTA Actions:** o TriggerAll projeta 4.786 min em novembro (2.039 até dia 13, franquia 3.000, estoura ~dia 20). Estourar
   PARA os jobs até virar o mês (sem cartão, não cobra). Investigar o que subiu (trilha própria nos stories?).
