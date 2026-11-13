@@ -6,6 +6,10 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Banda nova na agenda (13/11):** Love Boat Tribute (@loveboat_tribute, Santos/SP) cadastrada e no ar em `/agenda/`,
+  sem show futuro ainda. Andre mandou DM pedindo ano de início, foto e história: quando responderem, completar
+  `desde` e `resumo` em `media/agenda/bandas.json` e salvar a foto como `media/agenda/fotos/loveboat_tribute-manual.jpg`.
+
 - **Trilha própria (13/11): APROVADA pelo Andre ("ficaram muito boas, pode ligar elas"), FALTA LIGAR.**
   9 camas do Suno Premier (instrumentos separados, ACRCloud ok): `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/entrega-setlists.json`
   (estudo no trilha-hz, `scripts/pearl-jam/`). Módulo pronto e testado: `scripts/publish/trilha/` (README lá), teste no
