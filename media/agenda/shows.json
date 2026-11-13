@@ -1,44 +1,44 @@
 {
-  "atualizado": "2026-11-12T20:01:45.414Z",
+  "atualizado": "2026-11-13T12:17:46.989Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-12T20:01:17.340Z",
-      "seguidores": 33151,
+      "lidoEm": "2026-11-13T12:17:31.978Z",
+      "seguidores": 33164,
       "ultimoPost": "2026-11-10T12:58:59+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-12T20:01:20.141Z",
-      "seguidores": 102859,
-      "ultimoPost": "2026-11-11T20:50:35+0000"
+      "lidoEm": "2026-11-13T12:17:33.649Z",
+      "seguidores": 102877,
+      "ultimoPost": "2026-11-12T22:19:51+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-12T20:01:21.596Z",
-      "seguidores": 9343,
+      "lidoEm": "2026-11-13T12:17:34.975Z",
+      "seguidores": 9342,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-12T20:01:30.098Z",
-      "seguidores": 74621,
-      "ultimoPost": "2026-11-04T13:10:37+0000"
+      "lidoEm": "2026-11-13T12:17:38.117Z",
+      "seguidores": 74624,
+      "ultimoPost": "2026-11-12T21:16:00+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-12T20:01:35.678Z",
+      "lidoEm": "2026-11-13T12:17:39.972Z",
       "seguidores": 21221,
       "ultimoPost": "2026-11-10T21:21:37+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-12T20:01:37.270Z",
-      "seguidores": 33666,
+      "lidoEm": "2026-11-13T12:17:41.596Z",
+      "seguidores": 33667,
       "ultimoPost": "2026-11-09T21:24:04+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-12T20:01:43.301Z",
-      "seguidores": 6303,
+      "lidoEm": "2026-11-13T12:17:44.995Z",
+      "seguidores": 6302,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-12T20:01:45.307Z",
-      "seguidores": 6166,
+      "lidoEm": "2026-11-13T12:17:46.669Z",
+      "seguidores": 6165,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     }
   },
@@ -73,21 +73,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blaymorphed-2026-11-12-sao-paulo",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-11-12",
-      "casa": "stones_bar",
-      "casaNome": null,
-      "cidade": "São Paulo",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": "STONES Music Bar",
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfSTceTN0x3/",
-      "detalhe": "https://www.instagram.com/p/Dfj9hcLhuKm/"
-    },
     {
       "id": "blackcirclepj-2026-11-13-sexta-21h",
       "banda": "blackcirclepj",
@@ -254,7 +239,7 @@
       "uf": "SP",
       "fechado": false,
       "observacao": null,
-      "hora": "20:00",
+      "hora": "16:00",
       "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
     },
     {
