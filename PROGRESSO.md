@@ -6,13 +6,13 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
-- **Trilha própria (13/11, EM ANDAMENTO):** as músicas grátis (Pixabay + Suno grátis em
-  `scripts/publish/assets/story-tracks/`) vão sair de story, reel e agenda. Estudo e geração moram no trilha-hz
-  (`/Users/andrehz/Documents/Githubhz/trilha-hz/scripts/pearl-jam/`, PROGRESSO de lá). Entrega pronta com 6 de 9
-  faixas: `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/entrega-setlists.json`. Próximo aqui: módulo
-  `scripts/publish/trilha/` (flag `TRILHA_PROPRIA`) que monta a música por instrumento (piano sozinho na parte calma,
-  bateria e guitarra entram na manchete, cortes no tempo), teste no mock de 1 story e 1 reel, Andre aprova.
-  Atenção: o áudio mora no SSD; o GitHub Actions precisa de cópia (R2, como os clipes do reel) antes de ligar.
+- **Trilha própria (13/11, EM TESTE):** as músicas grátis (Pixabay + Suno grátis) vão sair de story, reel e agenda.
+  Estudo e Suno no trilha-hz (`/Users/andrehz/Documents/Githubhz/trilha-hz/scripts/pearl-jam/`): 9 faixas, todas com
+  instrumentos separados e aprovadas no ACRCloud. Entrega: `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/entrega-setlists.json`.
+  Módulo aqui: `scripts/publish/trilha/` (README lá). Teste no reel W46 (dry-run, sem narração), 9 versões em
+  `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/teste-reel/comparar.html`: golpes de +6 a +40 dB contra +0,4 dB da
+  trilha antiga. PENDENTE: Andre ouvir e escolher camas; depois flag `TRILHA_PROPRIA` no reel/story/agenda, áudio no
+  R2, mixagem sob a narração. `scripts/publish/reel/fallback.test.mjs` já falhava antes (não é deste trabalho).
 
 - **Reel de domingo com fallback (08/11):** a run de 08/11 falhou (W45): container do IG ficou `IN_PROGRESS` além dos 5 min.
   Agora: espera 10 min, 2º container do mesmo vídeo (8 min), retomada sem renderizar na próxima rodada, crons de reserva
@@ -283,20 +283,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Acervo FECHADO por decisão do Andre. Reforço futuro: fase dos anos 2000 (Binaural, Riot Act, Avocado), mais Mike e Matt.
 - Pedido pra outra IA (baixa-clipehz, legenda gravada nos shows): opção desmarcada "Abertura SMUFDPJ" com "Só Mais um Fã
   de PEARL JAM apresenta: <show>", marca nos intervalos sem legenda e "Só Mais um Fã IDIOTA de PEARL JAM agradece".
-
-## 2026-10-01 (madrugada): acervo de clipes, transições no reel e no story, trilhas, R2 e limpeza do git
-
-- Acervo de trechos de clipe (`media/reels-clips/transicoes/transicoes.json`): 576 trechos de 41 vídeos, 12 capas, todos
-  com tags de b-roll (quem, plano, ação, clima, local, era). Os MP4 ficam no R2 (`acervo/`, sem regra de apagar); no git
-  só a lista. Comandos: `scripts/publish/reel/planos.mjs` (plano a plano, o Claude escolhe), `acervo-auto.mjs` (rosto +
-  movimento, aceita link do YouTube), `rosto/` (Apple Vision, recorte vertical segue o rosto), `acervo-r2.mjs`.
-- Reel (`REEL_TRANSICOES=1`, ligado): abertura = clipe da capa (feita à mão ou automática), primeiro quadro = capa no
-  auge, sem flash azul; 0,7 s de clipe em cada troca de cena. 1º reel assim: domingo 04/10.
-- Story (`STORY_TRANSICOES=1`, ligado): mesma abertura do reel com tarja "AS NOTÍCIAS DO DIA" e transições entre os cards
-  (`scripts/publish/story/padrao-reel.mjs`). 1º story assim: 02/10.
-- Trilhas: 16 no rodízio (2 do Suno no clima do Ten, 9 do Pixabay sem Content ID). Sem crédito nenhum na legenda
-  (decisão do Andre; tirado também o "voz: ElevenLabs" do reel). Ver `scripts/publish/assets/story-tracks/CREDITOS.md`.
-- R2: regras de apagar em 3 dias agora só em `reels/` e `stories/`. Wrangler logado no Mac.
-- Histórico do git limpo (vídeos antigos fora): 1,3 GB -> 774 MB no GitHub. Backup: `/Users/andrehz/Documents/Githubhz/_backup-setlists-pj-ev-2026-10-01.git`.
-- Próximo: conferir o story de 02/10 e o reel de 04/10 no ar; seguir alimentando o acervo (clipes HD, outras eras);
-  apagar o backup de 30/09 se o Andre confirmar; a pasta de downloads do baixa-clipehz (35 GB) é da outra IA.
