@@ -25,7 +25,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 - **Reel de domingo com fallback (08/11):** a run de 08/11 falhou (W45): container do IG ficou `IN_PROGRESS` além dos 5 min.
   Agora: espera 10 min, 2º container do mesmo vídeo (8 min), retomada sem renderizar na próxima rodada, crons de reserva
-  12h/15h/18h BRT no domingo (PENDENTE: criar o trigger do reel no TriggerAll, script em `scripts/publish/reel/RESERVAS-WORKFLOW.md`) e alerta no Telegram (`scripts/publish/reel/{fallback,pendente,retomar}.mjs`). Testado
+  12h/15h/18h BRT no domingo (TriggerAll #016 criado em 13/11, `7 12,15,18,21 * * 0` UTC) e alerta no Telegram (`scripts/publish/reel/{fallback,pendente,retomar}.mjs`). Testado
   ponta a ponta no mock (travou, retomou sem refazer o MP4, não duplicou).
 
 - Site, fórum e pipeline no ar. Publish IG/FB, story diário, reel de domingo, cápsulas, contrib e X manual rodando.
@@ -40,7 +40,6 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     (`marcou: true` nos 3 de 09/10). Desde 09/10 os 3 robôs da agenda são disparados pelo TriggerAll (ids 7, 8, 9):
     CONFERIR sáb 10/10 se a coleta rodou 09:17 e o story 10:37 (antes o cron do GitHub atrasava 5 a 6 h).
     Perguntar a uma banda se apareceu o botão de repostar. Conferir se /agenda/ entrou no índice do Google.
-  - Google Analytics do site (G-234ZL5MF0T) não aparece na conta eng.andrehz: descobrir em qual conta Google está.
   - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
   - Revisar os PRs do dependabot (abrem toda semana).
   - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
@@ -52,6 +51,21 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Conta do Actions (todos os repos): ~2.080 min/mês com contrib ligado, ~1.600 pausado, antes ~3.900 (franquia 3.000).
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
+
+## 2026-11-13 (noite): trigger do reel, CI verde, GA achado, dependabot
+
+- **Reel no TriggerAll:** não existia (15 triggers, nenhum do reel). Criado o #016 "Publish Reel (domingo)", `7 12,15,18,21 * * 0`
+  UTC (09:07, 12:07, 15:07, 18:07 BRT), token `GITHUB_ACTION`. O card mostra "09:07 (14h)" na sexta: bug só da tela
+  (`TriggerCard.jsx` ignora dia da semana); o node-cron do backend respeita o domingo. CONFERIR dom 15/11 09:07.
+- **CI vermelho desde 09/11:** `scripts/regressao/selo-final-animado.test.mjs` supunha que o ffmpeg 8 recusa `-vsync`; quem
+  removeu foi o 9 (Mac 9.0.2, Ubuntu do CI 8.0.1). Prova do bug só no 9+, e checagem dos argumentos em qualquer versão.
+- **Google Analytics achado:** G-234ZL5MF0T está na eng.andrehz, conta "Default Account for Firebase", propriedade
+  "teste-15e8d" (240201637), fluxo "Site Pearl Jam". Recebendo tráfego. Vale renomear a propriedade.
+- **Dependabot:** merge de #527, #548, #549, #553 (backend, cópia atrasada). Rebase pedido em #551, #615 (SDK Anthropic 1.4)
+  e #616 (got 16): os dois passam nos 469 testes localmente; dar merge quando o CI ficar verde. #506, #525, #526, #569
+  mexem em workflow: o token do Claude não tem escopo `workflow`, merge à mão pelo Andre.
+- **ALERTA Actions:** o TriggerAll projeta 4.786 min em novembro (2.039 até dia 13, franquia 3.000, estoura ~dia 20). Estourar
+  PARA os jobs até virar o mês (sem cartão, não cobra). Investigar o que subiu (trilha própria nos stories?).
 
 ## 2026-11-08: reel W45 preso no IG, fallback no ar e reel no TriggerAll (HANDOFF)
 
@@ -267,28 +281,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   index pra 30 e apagava imagens; pearljam.com com HTML novo derrubava a coleta; story mostrava `SETLISTS-PJ-EV.PAGES.DEV`;
   ferramentas de cápsula quebradas pelo sharp 0.35.
 - Removidos: 17 scripts sem uso, pastas `_design-*`, backup de maio, `media-manifest.json`. Docs antigos em `docs/arquivo/`.
-
-## 2026-10-02: Instagram oficial vira fonte de notícia
-
-- Posts da @pearljam e da @eddievedder entram na coleta pela API oficial da Meta (Business Discovery), sem navegador.
-  Precisou: permissões instagram_basic, instagram_manage_insights e business_management no app "Setlists PJ EV Bot"
-  (token gerado no Graph API Explorer e estendido pra não expirar), secret `IG_LEITURA_TOKEN`.
-- Teste no GitHub: 10 posts da @pearljam dos últimos 7 dias chegaram. Curadoria: matéria original em PT-BR, fonte
-  oficial, post vazio (emoji, agradecimento, propaganda) = SKIP, foto deles nunca (imagem do nosso acervo).
-- Próximo: conferir a primeira curadoria com esses itens (pode vir bastante coisa do Ohana repetida; a seção de 72 h
-  da curadoria deve juntar ou pular).
-- Pendências da sessão (handoff): story de 02/10 e reel de 04/10 no padrão novo (conferir no ar); backup de 30/09
-  (`_backup-setlists-pj-ev-2026-09-30.git`, único com o histórico ORIGINAL) ficou mantido, decidir depois; rotina do
-  X às 11h (`/x-hoje`) rodando no Mac; pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
-
-## 2026-10-01 (manhã): acervo fechado em 752 trechos e 70 capas
-
-- Entraram Even Flow (3ª passada), Thumbing My Way, 1/2 Full, e três shows inteiros em 1080p: Moline 2014, Roma 2018 e
-  Ten Show (Philadelphia, 2016). Shows inteiros são a melhor fonte de capa (close parado, luz de palco). Closes de fãs
-  ficam de fora (privacidade). Retrograde fora (atores, sem a banda).
-- Rodízio sem repetir (lista embaralhada fixa, bloco novo por dia/semana): story 70 dias sem repetir capa, reel 70 semanas.
-- Correções: download do YouTube agora prefere H.264 (VP9 não era lido pelo detector de rosto); importador usa caminho
-  absoluto. Grade de candidatos: `node scripts/publish/reel/grade-auto.mjs .momentos/<nome>`.
-- Acervo FECHADO por decisão do Andre. Reforço futuro: fase dos anos 2000 (Binaural, Riot Act, Avocado), mais Mike e Matt.
-- Pedido pra outra IA (baixa-clipehz, legenda gravada nos shows): opção desmarcada "Abertura SMUFDPJ" com "Só Mais um Fã
-  de PEARL JAM apresenta: <show>", marca nos intervalos sem legenda e "Só Mais um Fã IDIOTA de PEARL JAM agradece".

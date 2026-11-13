@@ -1,5 +1,8 @@
 # Reservas do reel semanal
 
+**FEITO em 13/11: TriggerAll #016 "Publish Reel (domingo)"** (pelo formulário do painel, token `GITHUB_ACTION`). O card do
+painel mostra o "próximo" ignorando o dia da semana (bug só visual do `TriggerCard.jsx`); o node-cron do backend respeita o domingo.
+
 **Caminho preferido (08/11): TriggerAll.** O reel nunca esteve nele e o cron do GitHub atrasa 3h40 a 5h47 todo domingo.
 Um trigger só dispara o `publish-reel.yml` às 09:07, 12:07, 15:07 e 18:07 BRT (o script é idempotente e retoma o vídeo
 preso). Não precisa editar workflow. Rodar no terminal do Mac; a senha é digitada só lá (`/api/auth/login` do backend,
