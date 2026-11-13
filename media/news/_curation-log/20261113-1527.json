@@ -1,0 +1,14 @@
+{
+  "runAt": "2026-11-13T15:30Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 1, "instagram-oficial": 1, "community-digest": 1, "community-spotlight": 0, "shop": 0, "relato-fa": 1 },
+  "approved": [
+    { "id": "7cc374d029", "titulo": "Em Londres, Jeff Ament teria dito a uma fã que o Pearl Jam volta ao Brasil", "kind": "midia" },
+    { "id": "fad3f40ead", "titulo": "Farewell to Seasons sai para todo mundo, com clipe animado de Cyrus Entezam", "kind": "midia" },
+    { "id": "1ecf3c6fe8", "titulo": "Segunda noite de Since Forever em Londres tem George Garner, da Music Week", "kind": "instagram-oficial" }
+  ],
+  "skipped": [
+    { "id": "cd-20261113", "title": "digest comunidade 13/11", "reason": "dia fraco: posts sem engajamento e assuntos já cobertos (Since Forever, Farewell to Seasons)" }
+  ]
+}
