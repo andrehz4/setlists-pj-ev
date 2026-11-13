@@ -9,6 +9,7 @@ import { COR, TEMAS, carimbo } from "./pecas.mjs";
 import { titulo, logo, final } from "./cenas-a.mjs";
 import { mapa, shows } from "./cenas-b.mjs";
 import { encaixar } from "./encaixe.mjs";
+import { LAYOUTS, temaDoLayout } from "./layouts/index.mjs";
 
 const { default: sharp } = await import("sharp");
 const FPS = 30;
@@ -17,6 +18,7 @@ const DISPENSAVEIS = ["data", "estado", "hora"];
 export function quadroSvg(r, story, cor, logoUri, variacao = "A") {
   const { T } = momento(r);
   if (T === null) return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920"/>`;
+  if (LAYOUTS[variacao]) return LAYOUTS[variacao].quadro(T, story, cor, logoUri);
   const painel = lerp(1920, 0, p(T, 2.7, 0.6, move));
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
   ${painel < 1920 ? `<rect x="0" y="${painel}" width="1080" height="${1920 - painel}" fill="${cor.bg}"/>` : ""}
@@ -33,7 +35,8 @@ const ff = (args) => { const r = spawnSync("ffmpeg", ["-hide_banner", "-loglevel
 
 // trilhaVolume: as antigas vêm em ~-12 LUFS (0.16); a trilha própria vem em -16 LUFS (0.25 deixa no mesmo nível).
 export async function renderizarStory({ story, tema = "azul", variacao = "A", logo: logoArq, clipes, falas, trilha, trilhaVolume = 0.16, saida }) {
-  const cor = { bg: TEMAS[tema], pin: tema === "vermelho" ? COR.tinta : COR.pin, strip: tema === "vermelho" ? COR.tinta : COR.pin };
+  const cor = LAYOUTS[variacao] ? temaDoLayout(variacao, tema)
+    : { bg: TEMAS[tema], pin: tema === "vermelho" ? COR.tinta : COR.pin, strip: tema === "vermelho" ? COR.tinta : COR.pin };
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "story-banda-"));
   const logoUri = logoArq ? await logoDaFoto(logoArq) : null;
   const total = Math.round(DURACAO * FPS);

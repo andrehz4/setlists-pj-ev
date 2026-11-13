@@ -52,6 +52,20 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-13 (noite, parte 2): 4 layouts novos no story por banda, LIGADOS
+
+- Problema: com 9 bandas, os stories por banda só mudavam de cor. Agora o rodízio tem 7: A/B/C (mapas antigos) + G
+  painel de embarque (split-flap, mapa de LED), H disco de vinil, I jornal "Edição Extra", J conversa de grupo.
+  Desenho do Claude Code, mesma régua de tempo (`tempo.mjs`): voz, clipes, trilha e publicação não mudaram.
+- Código em `scripts/agenda/redes/story-banda/layouts/<letra>/` (registro em `layouts/index.mjs`, 4 temas cada).
+  Flag `AGENDA_LAYOUTS_NOVOS=1` no `agenda-story.yml`. Rascunho sem publicar: `rascunho.mjs --layouts G --mp4`.
+- Sáb 14/11: Black Circle B, Blaymorphed G, Lost Dogs H, Love Boat I, PJ 90 J. CONFERIR os 5 stories às 10:37.
+- Claude Design (projeto "Pearl Jam Cover Story Video"): pedido de mais 3 (D, E, F) enviado
+  (`design-handoff/pedidos/story-banda-layouts-DEF.md`), PAUSADO no limite semanal (volta 22:00). Próximo: Resume,
+  baixar o zip, portar cada um como `layouts/D` etc. (o `quadro(T, story, tema, logoUri)` dos layouts meus é o molde).
+- Claude Design standalone fecha em 14/12/2026: mover os projetos pro Claude antes disso.
+- Fala da data sai em todos os stories ("não cabe 1.211x"): conferir se em produção é igual.
+
 ## 2026-11-13 (noite): trigger do reel, CI verde, GA achado, dependabot
 
 - **Reel no TriggerAll:** não existia (15 triggers, nenhum do reel). Criado o #016 "Publish Reel (domingo)", `7 12,15,18,21 * * 0`

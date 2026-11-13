@@ -38,6 +38,9 @@ const UF_NOME = { AC: "no Acre", AL: "em Alagoas", AP: "no Amapá", AM: "no Amaz
   MS: "no Mato Grosso do Sul", MG: "em Minas Gerais", PA: "no Pará", PB: "na Paraíba", PR: "no Paraná", PE: "em Pernambuco",
   PI: "no Piauí", RJ: "no Rio de Janeiro", RN: "no Rio Grande do Norte", RS: "no Rio Grande do Sul", RO: "em Rondônia",
   RR: "em Roraima", SC: "em Santa Catarina", SP: "em São Paulo", SE: "em Sergipe", TO: "no Tocantins" };
+// nome do estado sem a preposição ("SP" -> "São Paulo"), pros layouts que escrevem o estado na tela
+export const ufComPreposicao = (uf) => UF_NOME[uf] || `em ${uf}`;
+export const nomeUf = (uf) => (UF_NOME[uf] ? UF_NOME[uf].replace(/^(no|na|em) /, "") : uf);
 export const fraseEstado = (uf) => (UF_NOME[uf] ? `O show é ${UF_NOME[uf]}!` : null);
 // Horário: hora cheia de baixo (20h30 vira "a partir das vinte horas"), das 16h às 23h.
 const HORAS = { 16: "dezesseis", 17: "dezessete", 18: "dezoito", 19: "dezenove", 20: "vinte", 21: "vinte e uma", 22: "vinte e duas", 23: "vinte e três" };
