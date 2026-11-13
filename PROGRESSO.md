@@ -6,13 +6,18 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
-- **Trilha própria (13/11, EM TESTE):** as músicas grátis (Pixabay + Suno grátis) vão sair de story, reel e agenda.
-  Estudo e Suno no trilha-hz (`/Users/andrehz/Documents/Githubhz/trilha-hz/scripts/pearl-jam/`): 9 faixas, todas com
-  instrumentos separados e aprovadas no ACRCloud. Entrega: `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/entrega-setlists.json`.
-  Módulo aqui: `scripts/publish/trilha/` (README lá). Teste no reel W46 (dry-run, sem narração), 9 versões em
-  `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/teste-reel/comparar.html`: golpes de +6 a +40 dB contra +0,4 dB da
-  trilha antiga. PENDENTE: Andre ouvir e escolher camas; depois flag `TRILHA_PROPRIA` no reel/story/agenda, áudio no
-  R2, mixagem sob a narração. `scripts/publish/reel/fallback.test.mjs` já falhava antes (não é deste trabalho).
+- **Trilha própria (13/11): APROVADA pelo Andre ("ficaram muito boas, pode ligar elas"), FALTA LIGAR.**
+  9 camas do Suno Premier (instrumentos separados, ACRCloud ok): `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/entrega-setlists.json`
+  (estudo no trilha-hz, `scripts/pearl-jam/`). Módulo pronto e testado: `scripts/publish/trilha/` (README lá), teste no
+  reel W46 em `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/teste-reel/comparar.html`.
+  PRÓXIMO (plano, propor antes de codar): (1) subir as pistas WAV das 9 camas pro R2 (`trilha/<cama>/<familia>.wav`,
+  mesmo esquema do acervo de clipes) + `entrega-setlists.json` com caminhos relativos; o Actions baixa só a cama do dia;
+  (2) flag `TRILHA_PROPRIA=1`, sem ela ou sem kit segue a trilha antiga; (3) reel: `run-publish-reel.mjs` monta a trilha
+  com `planoReel` e passa como `trackPath` (cama por rodízio da semana ISO; mixar POR BAIXO da narração ElevenLabs,
+  conferir o ducking que já existe); (4) story diário (`story-video.mjs`) com `planoStory` nas trocas de manchete;
+  (5) story da agenda (`scripts/agenda/redes/story-banda/render.mjs`, hoje `-stream_loop` da trilha); (6) testar no mock
+  (`node mock-ig/run.mjs reel`) e abrir pro Andre; (7) tirar Pixabay/Suno grátis do rodízio e atualizar CREDITOS.md.
+  `scripts/publish/reel/fallback.test.mjs` já falhava antes (não é deste trabalho).
 
 - **Reel de domingo com fallback (08/11):** a run de 08/11 falhou (W45): container do IG ficou `IN_PROGRESS` além dos 5 min.
   Agora: espera 10 min, 2º container do mesmo vídeo (8 min), retomada sem renderizar na próxima rodada, crons de reserva
