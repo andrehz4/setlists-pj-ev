@@ -21,6 +21,9 @@ import { storiesDoDia, falasDaBanda, clipesDoStory, contasDoStory } from "./stor
 import { cortarData } from "./story-banda/data-cortada.mjs";
 import { renderizarStory } from "./story-banda/render.mjs";
 import { variacaoDoDia } from "./story-banda/variacao.mjs";
+import { ROTEIRO, DURACAO } from "./story-banda/tempo.mjs";
+import { trilhaPropria } from "../../publish/trilha/ligar.mjs";
+import { planoStory } from "../../publish/trilha/plano.mjs";
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run"), NO_GIT = args.includes("--no-git");
@@ -30,6 +33,8 @@ const TEMA = { "#0a0a0a": "preto", "#E10600": "vermelho", "#a87f2c": "ocre", "#2
 const ORDEM_TEMAS = ["azul", "ocre", "preto", "vermelho"];
 // cor do ciclo pra 1a banda do dia; as seguintes andam na roda (3 stories seguidos não saem da mesma cor)
 const temaDaBanda = (tema, k) => ORDEM_TEMAS[(ORDEM_TEMAS.indexOf(tema) + k) % ORDEM_TEMAS.length];
+// começo de cada cena com texto depois da abertura (logo, mapa, shows, final): onde a banda entra
+const TROCAS = ROTEIRO.filter((s) => s.t0 !== undefined && s.r0 > 0).map((s) => s.r0);
 
 async function main() {
   const dia = process.env.AGENDA_DIA || diaBRT();
@@ -57,8 +62,12 @@ async function main() {
     const variacao = variacaoDoDia(dia, st, k, mapasUsados);
     mapasUsados.push(variacao);
     const temaK = temaDaBanda(tema, k);
+    // Trilha própria (TRILHA_PROPRIA=1): golpe em cada cena (logo, mapa, shows, final); sem ela segue o rodízio antigo.
+    const propria = trilhaPropria({ uso: "agenda", semente: `${dia}-${st.contaPura}`, plano: planoStory(TROCAS, DURACAO),
+      duracao: DURACAO, saida: path.join(tmp, `trilha-${k}.m4a`) });
     await renderizarStory({ story: st, tema: temaK, variacao, logo: fs.existsSync(logo) ? logo : null, clipes, falas,
-      trilha: tracks[(dayOfYear(new Date(`${dia}T12:00:00Z`)) + k) % tracks.length].path, saida });
+      trilha: propria?.path ?? tracks[(dayOfYear(new Date(`${dia}T12:00:00Z`)) + k) % tracks.length].path,
+      trilhaVolume: propria ? 0.25 : 0.16, saida });
     const contas = contasDoStory(st);
     console.log(`[story-banda] ${st.banda}: ${st.shows.length} show(s), mapa ${variacao}, cor ${temaK}, voz ${f.voz.nome}, marcar ${contas.join(", ")} -> ${saida}`);
     if (DRY) { fs.copyFileSync(saida, naRaiz(`media/agenda/_teste-${dia}-${st.contaPura}.mp4`)); continue; }

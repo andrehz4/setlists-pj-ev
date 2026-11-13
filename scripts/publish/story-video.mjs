@@ -34,7 +34,7 @@ function runFfmpeg(args) {
 }
 
 // introDur/outroDur (opcionais): vêm da narração (scripts/publish/narracao/story.mjs).
-export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new Date(), outPath, tmpDir, concurrency = 8, introDur = T_INTRO_END, outroDur = T_OUTRO_DUR } = {}) {
+export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new Date(), outPath, tmpDir, concurrency = 8, introDur = T_INTRO_END, outroDur = T_OUTRO_DUR, audioPronto = false } = {}) {
   if (!Array.isArray(items) || items.length === 0) throw new Error("buildStoryVideo: items vazio");
   if (items.length > 5) items = items.slice(0, 5);
   if (!trackPath) throw new Error("buildStoryVideo: trackPath obrigatorio");
@@ -89,7 +89,8 @@ export async function buildStoryVideo({ items, trackPath, tarjaColor, date = new
     "-i", path.join(tmpDir, "frame_%05d.png"),
     "-i", trackPath,
     "-filter_complex",
-    `[1:a]atrim=0:${totalS},afade=t=in:d=0.3,afade=t=out:st=${(totalS - 0.5).toFixed(2)}:d=0.5,loudnorm=I=-16:TP=-1.5:LRA=11[aout]`,
+    // trilha própria já vem mixada em -16 LUFS: loudnorm aqui apagaria o golpe (scripts/publish/trilha/README.md)
+    `[1:a]atrim=0:${totalS},afade=t=in:d=0.3,afade=t=out:st=${(totalS - 0.5).toFixed(2)}:d=0.5,${audioPronto ? "aresample=44100" : "loudnorm=I=-16:TP=-1.5:LRA=11"}[aout]`,
     "-map", "0:v", "-map", "[aout]",
     "-c:v", "libx264", "-pix_fmt", "yuv420p", "-r", String(FPS),
     "-profile:v", "main", "-level", "4.0",

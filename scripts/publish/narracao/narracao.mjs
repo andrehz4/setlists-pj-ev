@@ -113,7 +113,7 @@ export async function prepararNarracao(scenes, { weekKey, tmpDir, env = process.
 }
 
 // Filtro do ffmpeg: música abaixa quando a voz entra (sidechain) e volta depois.
-export function filtroMixagem(falas, inicios) {
+export function filtroMixagem(falas, inicios, { musicaPronta = false } = {}) {
   const vozes = falas.map((f, k) => {
     const ms = Math.round((inicios[f.sceneIndex] + INICIO_FALA) * 1000);
     return `[${k + 1}:a]adelay=${ms}|${ms},aformat=channel_layouts=stereo[f${k}]`;
@@ -124,16 +124,18 @@ export function filtroMixagem(falas, inicios) {
   // 2,3 dB ACIMA da voz; bug 18/10/2026, scripts/regressao/voz-acima-da-musica.test.mjs).
   // O loudnorm sai em 192 kHz; sem o aresample o amix com a voz (44,1 kHz) cortava os ~3 s finais
   // (bug 24/10/2026, scripts/regressao/final-sem-audio.test.mjs).
-  const duck = `[0:a]loudnorm=I=${MUSICA_LUFS}:TP=-2:LRA=11,aresample=44100[cama];[cama][chave]sidechaincompress=threshold=0.015:ratio=14:attack=15:release=600[musica]`;
+  // Trilha própria já vem em -16 LUFS com o golpe desenhado: ganho fixo até MUSICA_LUFS em vez de loudnorm.
+  const nivel = musicaPronta ? `volume=${MUSICA_LUFS + 16}dB` : `loudnorm=I=${MUSICA_LUFS}:TP=-2:LRA=11`;
+  const duck = `[0:a]${nivel},aresample=44100[cama];[cama][chave]sidechaincompress=threshold=0.015:ratio=14:attack=15:release=600[musica]`;
   const final = "[musica][voz]amix=inputs=2:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=44100[aout]";
   return [...vozes, junta, duck, final].join(";");
 }
 
 // Mistura as falas no MP4 já renderizado (vídeo intacto, só troca o áudio).
-export async function mixarNarracao(videoIn, videoOut, { falas, scenes }) {
+export async function mixarNarracao(videoIn, videoOut, { falas, scenes, musicaPronta = false }) {
   const inicios = scenes.map((s) => s.start);
   const args = ["-y", "-v", "error", "-i", videoIn, ...falas.flatMap((f) => ["-i", f.arquivo]),
-    "-filter_complex", filtroMixagem(falas, inicios),
+    "-filter_complex", filtroMixagem(falas, inicios, { musicaPronta }),
     "-map", "0:v", "-map", "[aout]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-ar", "44100",
     "-movflags", "+faststart", videoOut];
   const r = spawnSync("ffmpeg", args, { encoding: "utf8" });

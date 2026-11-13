@@ -55,6 +55,8 @@ jobs:
           PUBLISH_FB: '1'
           # narração (scripts/publish/narracao/): '1' liga; sem a chave ou com erro, sai só com música
           REEL_NARRACAO: '1'
+          # trilha própria (scripts/publish/trilha/, áudio no R2): '1' liga; sem kit ou com erro, segue a trilha antiga
+          TRILHA_PROPRIA: '1'
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           # contas extras (scripts/publish/narracao/chaves.mjs): principal -> reserva -> agenda, só quando a anterior
           # não tem saldo. Variável do repo ELEVENLABS_CHAVE (principal|reserva|agenda) força uma.

@@ -31,7 +31,8 @@ export async function logoDaFoto(arquivo) {
 
 const ff = (args) => { const r = spawnSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", ...args], { stdio: "inherit" }); if (r.status) throw new Error("ffmpeg falhou"); };
 
-export async function renderizarStory({ story, tema = "azul", variacao = "A", logo: logoArq, clipes, falas, trilha, saida }) {
+// trilhaVolume: as antigas vêm em ~-12 LUFS (0.16); a trilha própria vem em -16 LUFS (0.25 deixa no mesmo nível).
+export async function renderizarStory({ story, tema = "azul", variacao = "A", logo: logoArq, clipes, falas, trilha, trilhaVolume = 0.16, saida }) {
   const cor = { bg: TEMAS[tema], pin: tema === "vermelho" ? COR.tinta : COR.pin, strip: tema === "vermelho" ? COR.tinta : COR.pin };
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "story-banda-"));
   const logoUri = logoArq ? await logoDaFoto(logoArq) : null;
@@ -70,7 +71,7 @@ export async function renderizarStory({ story, tema = "azul", variacao = "A", lo
   entradas.push("-stream_loop", "-1", "-i", trilha);
   const ia = nq + 1;
   audios.forEach((f, k) => { const at = enc[f.chave].atempo; fc += `[${ia + k}:a]${at > 1.001 ? `atempo=${at},` : ""}aresample=44100,aformat=channel_layouts=stereo,adelay=${Math.round(f.em * 1000)}|${Math.round(f.em * 1000)}[a${k}];`; });
-  fc += `[${ia + audios.length}:a]aresample=44100,aformat=channel_layouts=stereo,volume=0.16,afade=t=out:st=${DURACAO - 1.2}:d=1.2,atrim=0:${DURACAO}[mus];`;
+  fc += `[${ia + audios.length}:a]aresample=44100,aformat=channel_layouts=stereo,volume=${trilhaVolume},afade=t=out:st=${DURACAO - 1.2}:d=1.2,atrim=0:${DURACAO}[mus];`;
   fc += `${audios.map((_, k) => `[a${k}]`).join("")}[mus]amix=inputs=${audios.length + 1}:normalize=0:duration=longest,atrim=0:${DURACAO},afade=t=out:st=${DURACAO - 0.25}:d=0.25[a]`;
   ff([...entradas, "-filter_complex", fc, "-map", "[v]", "-map", "[a]", "-t", String(DURACAO), "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "veryfast", "-crf", "20", "-c:a", "aac", "-b:a", "160k", saida]);
   fs.rmSync(tmp, { recursive: true, force: true });

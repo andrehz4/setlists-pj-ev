@@ -84,8 +84,8 @@ export async function prepararNarracaoStory(date, { env = process.env, dir = DIR
 }
 
 // Mistura as 2 falas no MP4 do story (abertura em 0 s, final em outroInicio).
-export function mixarStory(videoIn, videoOut, { falas, outroInicio }) {
-  return mixarNarracao(videoIn, videoOut, { falas, scenes: [{ start: 0 }, { start: outroInicio }] });
+export function mixarStory(videoIn, videoOut, { falas, outroInicio, musicaPronta = false }) {
+  return mixarNarracao(videoIn, videoOut, { falas, scenes: [{ start: 0 }, { start: outroInicio }], musicaPronta });
 }
 
 // Grava as aberturas de N dias a partir de `desde` (e os finais que faltarem).

@@ -36,7 +36,7 @@ export { buildScenePlan, thumbOffsetMsFor } from "./reel/plano.mjs";
 // sceneIndex -> caminho de clipe (decidido pelo orquestrador via reel-clips).
 export async function buildReelVideo({
   items, trackPath, accent, rangeLabel, outPath,
-  clipForScene = new Map(), tmpDir, concurrency = 8, sceneDurs = null,
+  clipForScene = new Map(), tmpDir, concurrency = 8, sceneDurs = null, audioPronto = false,
 } = {}) {
   if (!Array.isArray(items) || items.length === 0) throw new Error("buildReelVideo: items vazio");
   if (!trackPath) throw new Error("buildReelVideo: trackPath obrigatorio");
@@ -136,7 +136,8 @@ export async function buildReelVideo({
   await runFfmpeg([
     "-y", "-i", silentPath, "-i", trackPath,
     "-filter_complex",
-    `[1:a]atrim=0:${totalS},afade=t=in:d=0.3,afade=t=out:st=${(totalS - 0.5).toFixed(2)}:d=0.5,loudnorm=I=-16:TP=-1.5:LRA=11[aout]`,
+    // trilha própria já vem mixada em -16 LUFS: loudnorm aqui apagaria o golpe (scripts/publish/trilha/README.md)
+    `[1:a]atrim=0:${totalS},afade=t=in:d=0.3,afade=t=out:st=${(totalS - 0.5).toFixed(2)}:d=0.5,${audioPronto ? "aresample=44100" : "loudnorm=I=-16:TP=-1.5:LRA=11"}[aout]`,
     "-map", "0:v", "-map", "[aout]",
     "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-ar", "44100",
     "-shortest", "-movflags", "+faststart",

@@ -7,6 +7,8 @@ import { loadClips, pickClipFor, weekSeed } from "../reel-clips.mjs";
 import { buildReelVideo, buildScenePlan } from "../reel-video.mjs";
 import { prepararNarracao, mixarNarracao } from "../narracao/narracao.mjs";
 import { aplicarTransicoes, montarAbertura, capaNaAbertura } from "./transicoes.mjs";
+import { trilhaPropria } from "../trilha/ligar.mjs";
+import { planoReel } from "../trilha/plano.mjs";
 
 // Trecho de clipe do acervo pras cenas de abertura e cinéticas (rotação determinística por semana).
 async function clipesPorCena(items, scenes, weekKey) {
@@ -37,13 +39,18 @@ export async function montarReel({ items, track, accent, rangeLabel, weekKey, ou
       console.log("[reel] abertura com clipe (sequência de trechos)");
     }
   }
-  const r = await buildReelVideo({ items, trackPath: track.path, accent, rangeLabel, outPath, clipForScene, tmpDir, sceneDurs: narr?.sceneDurs });
+  // Trilha própria (TRILHA_PROPRIA=1): mixada no tempo real das cenas; sem ela segue a trilha do rodízio antigo.
+  const { scenes: cenas } = buildScenePlan(items, narr?.sceneDurs);
+  const propria = trilhaPropria({ uso: "reel", semente: weekKey, plano: planoReel(cenas.length - 2, cenas),
+    duracao: cenas.at(-1).start + cenas.at(-1).dur, saida: path.join(tmpDir, "trilha.m4a") });
+  if (propria) Object.assign(track, propria); // o nome vai pro log, pro Telegram e pro registro da semana
+  const r = await buildReelVideo({ items, trackPath: track.path, accent, rangeLabel, outPath, clipForScene, tmpDir, sceneDurs: narr?.sceneDurs, audioPronto: !!track.propria });
   let avisoVoz = narr?.aviso || "";
   if (narr?.falas) {
     const semVoz = path.join(tmpDir, "sem-voz.mp4");
     try {
       await fs.rename(outPath, semVoz);
-      await mixarNarracao(semVoz, outPath, { falas: narr.falas, scenes: r.sceneList });
+      await mixarNarracao(semVoz, outPath, { falas: narr.falas, scenes: r.sceneList, musicaPronta: !!track.propria });
       console.log(`[reel] narração mixada (voz ${narr.voz.nome})`);
     } catch (e) {
       console.warn(`[reel] mixagem da narração falhou, segue só com música: ${e.message}`);

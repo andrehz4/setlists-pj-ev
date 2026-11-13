@@ -14,18 +14,14 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - **Banda nova na agenda (13/11):** Love Boat Tribute (@loveboat_tribute, Santos/SP) cadastrada e no ar em `/agenda/`. Andre mandou DM pedindo ano de início, foto e história: quando responderem, completar
   `desde` e `resumo` em `media/agenda/bandas.json` e salvar a foto como `media/agenda/fotos/loveboat_tribute-manual.jpg`.
 
-- **Trilha própria (13/11): APROVADA pelo Andre ("ficaram muito boas, pode ligar elas"), FALTA LIGAR.**
-  9 camas do Suno Premier (instrumentos separados, ACRCloud ok): `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/entrega-setlists.json`
-  (estudo no trilha-hz, `scripts/pearl-jam/`). Módulo pronto e testado: `scripts/publish/trilha/` (README lá), teste no
-  reel W46 em `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/teste-reel/comparar.html`.
-  PRÓXIMO (plano, propor antes de codar): (1) subir as pistas WAV das 9 camas pro R2 (`trilha/<cama>/<familia>.wav`,
-  mesmo esquema do acervo de clipes) + `entrega-setlists.json` com caminhos relativos; o Actions baixa só a cama do dia;
-  (2) flag `TRILHA_PROPRIA=1`, sem ela ou sem kit segue a trilha antiga; (3) reel: `run-publish-reel.mjs` monta a trilha
-  com `planoReel` e passa como `trackPath` (cama por rodízio da semana ISO; mixar POR BAIXO da narração ElevenLabs,
-  conferir o ducking que já existe); (4) story diário (`story-video.mjs`) com `planoStory` nas trocas de manchete;
-  (5) story da agenda (`scripts/agenda/redes/story-banda/render.mjs`, hoje `-stream_loop` da trilha); (6) testar no mock
-  (`node mock-ig/run.mjs reel`) e abrir pro Andre; (7) tirar Pixabay/Suno grátis do rodízio e atualizar CREDITOS.md.
-  `scripts/publish/reel/fallback.test.mjs` já falhava antes (não é deste trabalho).
+- **Trilha própria (13/11): LIGADA** no reel, no story diário e no story da agenda (flag `TRILHA_PROPRIA=1` nos 3
+  workflows). 9 camas Suno Premier, 50 pistas em AAC 256k no R2 (`trilha/<cama>/<instrumento>.m4a`), kit no git
+  (`scripts/publish/trilha/kit-publicado.json`); o Actions baixa só a cama do dia (~23 MB). Porta única
+  `scripts/publish/trilha/ligar.mjs`: sem flag, sem kit ou R2 fora, volta pra trilha antiga sem derrubar o publish.
+  Reel e story pulam o loudnorm com a trilha própria (apagaria o golpe); sob a narração entra com ganho fixo + sidechain.
+  Testado no mock: reel W46 (golpe de -28 pra -17 dB aos 3 s e aos 25,5 s), story diário e 5 stories da agenda (dry).
+  Suno grátis (06, 07) saiu da pasta; Pixabay fica só de reserva. Faixa nova: `node scripts/publish/trilha/r2.mjs subir`.
+  PRÓXIMO: ouvir o reel de domingo 15/11 e o story de amanhã em produção (primeiro uso com narração ElevenLabs por cima).
 
 - **Reel de domingo com fallback (08/11):** a run de 08/11 falhou (W45): container do IG ficou `IN_PROGRESS` além dos 5 min.
   Agora: espera 10 min, 2º container do mesmo vídeo (8 min), retomada sem renderizar na próxima rodada, crons de reserva

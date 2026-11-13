@@ -1,0 +1,1100 @@
+{
+ "gerado_por": "trilha-hz/scripts/pearl-jam/entrega_setlists.py",
+ "licenca": "Suno Premier (uso comercial, faixa baixada na vigencia segue liberada, sem credito obrigatorio)",
+ "camas": [
+  {
+   "id": "hz-pj-01a",
+   "titulo": "HZ PJ 01 Rapido Claro",
+   "suno_id": "871225ca",
+   "uso": "manchete animada (show anunciado, disco novo)",
+   "bpm": 161.5,
+   "bpm_alternativo": 80.7,
+   "tom": "La maior",
+   "duracao_s": 174.9,
+   "comeco_sem_bateria_s": 5,
+   "golpes": [
+    {
+     "t": 153,
+     "sobe_db": 6.2,
+     "bateria_db": 12.9
+    },
+    {
+     "t": 174.5,
+     "sobe_db": 8.2,
+     "bateria_db": 9
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 5.7,
+     "nivel": "magro"
+    },
+    {
+     "de": 5.7,
+     "ate": 24,
+     "nivel": "magro"
+    },
+    {
+     "de": 24,
+     "ate": 106.3,
+     "nivel": "medio"
+    },
+    {
+     "de": 106.3,
+     "ate": 137.7,
+     "nivel": "medio"
+    },
+    {
+     "de": 137.7,
+     "ate": 150,
+     "nivel": "cheio"
+    },
+    {
+     "de": 150,
+     "ate": 151.9,
+     "nivel": "magro"
+    },
+    {
+     "de": 151.9,
+     "ate": 164.9,
+     "nivel": "cheio"
+    },
+    {
+     "de": 164.9,
+     "ate": 168.5,
+     "nivel": "magro"
+    },
+    {
+     "de": 168.5,
+     "ate": 174.9,
+     "nivel": "magro"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-01a/bateria.m4a",
+     "nome_suno": "0 Drums",
+     "nivel_db": -23.7
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-01a/baixo.m4a",
+     "nome_suno": "1 Bass",
+     "nivel_db": -21.9
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-01a/guitarra.m4a",
+     "nome_suno": "2 Guitar",
+     "nivel_db": -22.4
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-01a/teclado.m4a",
+     "nome_suno": "3 Keyboard",
+     "nivel_db": -32.2
+    }
+   },
+   "pistas_vazias": [
+    "4 Synth",
+    "5 Other"
+   ],
+   "acr": {
+    "pedacos": 17,
+    "palpites": 7,
+    "nota_maxima": 37,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  },
+  {
+   "id": "hz-pj-01b",
+   "titulo": "HZ PJ 01 Rapido Claro",
+   "suno_id": "93ec7d3a",
+   "uso": "manchete animada (show anunciado, disco novo)",
+   "bpm": 161.5,
+   "bpm_alternativo": 80.7,
+   "tom": "Si menor",
+   "duracao_s": 171.7,
+   "comeco_sem_bateria_s": 5,
+   "golpes": [
+    {
+     "t": 147,
+     "sobe_db": 6.4,
+     "bateria_db": 16.3
+    },
+    {
+     "t": 171.5,
+     "sobe_db": 6.8,
+     "bateria_db": 10.6
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 5.8,
+     "nivel": "magro"
+    },
+    {
+     "de": 5.8,
+     "ate": 18.3,
+     "nivel": "magro"
+    },
+    {
+     "de": 18.3,
+     "ate": 88.5,
+     "nivel": "magro"
+    },
+    {
+     "de": 88.5,
+     "ate": 94.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 94.1,
+     "ate": 112.2,
+     "nivel": "medio"
+    },
+    {
+     "de": 112.2,
+     "ate": 116.3,
+     "nivel": "magro"
+    },
+    {
+     "de": 116.3,
+     "ate": 144.4,
+     "nivel": "medio"
+    },
+    {
+     "de": 144.4,
+     "ate": 146.6,
+     "nivel": "magro"
+    },
+    {
+     "de": 146.6,
+     "ate": 171.7,
+     "nivel": "cheio"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-01b/bateria.m4a",
+     "nome_suno": "0 Drums",
+     "nivel_db": -22.8
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-01b/baixo.m4a",
+     "nome_suno": "1 Bass",
+     "nivel_db": -22
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-01b/guitarra.m4a",
+     "nome_suno": "2 Guitar",
+     "nivel_db": -22.1
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-01b/teclado.m4a",
+     "nome_suno": "3 Keyboard",
+     "nivel_db": -30.5
+    }
+   },
+   "pistas_vazias": [
+    "4 Synth",
+    "5 Other"
+   ],
+   "acr": {
+    "pedacos": 17,
+    "palpites": 6,
+    "nota_maxima": 43,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  },
+  {
+   "id": "hz-pj-02a",
+   "titulo": "HZ PJ 02 Rapido Escuro",
+   "suno_id": "8b2a6f54",
+   "uso": "manchete forte ou polemica",
+   "bpm": 143.6,
+   "bpm_alternativo": 95.7,
+   "tom": "Re menor",
+   "duracao_s": 191.2,
+   "comeco_sem_bateria_s": 20,
+   "golpes": [
+    {
+     "t": 156,
+     "sobe_db": 6.2,
+     "bateria_db": 14.6
+    },
+    {
+     "t": 191,
+     "sobe_db": 11,
+     "bateria_db": 19
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 12.2,
+     "nivel": "magro"
+    },
+    {
+     "de": 12.2,
+     "ate": 27.7,
+     "nivel": "magro"
+    },
+    {
+     "de": 27.7,
+     "ate": 56.4,
+     "nivel": "medio"
+    },
+    {
+     "de": 56.4,
+     "ate": 65.3,
+     "nivel": "magro"
+    },
+    {
+     "de": 65.3,
+     "ate": 109.5,
+     "nivel": "medio"
+    },
+    {
+     "de": 109.5,
+     "ate": 115.4,
+     "nivel": "magro"
+    },
+    {
+     "de": 115.4,
+     "ate": 149.2,
+     "nivel": "medio"
+    },
+    {
+     "de": 149.2,
+     "ate": 155.3,
+     "nivel": "magro"
+    },
+    {
+     "de": 155.3,
+     "ate": 181.9,
+     "nivel": "cheio"
+    },
+    {
+     "de": 181.9,
+     "ate": 191.2,
+     "nivel": "magro"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-02a/bateria.m4a",
+     "nome_suno": "1 Drums",
+     "nivel_db": -19
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-02a/baixo.m4a",
+     "nome_suno": "2 Bass",
+     "nivel_db": -22.8
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-02a/guitarra.m4a",
+     "nome_suno": "3 Guitar",
+     "nivel_db": -21.9
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-02a/teclado.m4a",
+     "nome_suno": "4 Keyboard",
+     "nivel_db": -32.3
+    },
+    "sintetizador": {
+     "arquivo": "trilha/hz-pj-02a/sintetizador.m4a",
+     "nome_suno": "7 Synth",
+     "nivel_db": -35.4
+    }
+   },
+   "pistas_vazias": [
+    "0 Backing Vocals",
+    "10 Woodwinds",
+    "5 Percussion",
+    "6 Strings",
+    "8 Other",
+    "9 Brass"
+   ],
+   "acr": {
+    "pedacos": 19,
+    "palpites": 5,
+    "nota_maxima": 43,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  },
+  {
+   "id": "hz-pj-02b",
+   "titulo": "HZ PJ 02 Rapido Escuro",
+   "suno_id": "23d32c22",
+   "uso": "manchete forte ou polemica",
+   "bpm": 143.6,
+   "bpm_alternativo": 95.7,
+   "tom": "Mi menor",
+   "duracao_s": 192.8,
+   "comeco_sem_bateria_s": 27,
+   "golpes": [
+    {
+     "t": 119,
+     "sobe_db": 6.1,
+     "bateria_db": 11.2
+    },
+    {
+     "t": 192.5,
+     "sobe_db": 11.5,
+     "bateria_db": 20.5
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 7,
+     "nivel": "magro"
+    },
+    {
+     "de": 7,
+     "ate": 27.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 27.1,
+     "ate": 37.8,
+     "nivel": "magro"
+    },
+    {
+     "de": 37.8,
+     "ate": 81.7,
+     "nivel": "medio"
+    },
+    {
+     "de": 81.7,
+     "ate": 91.3,
+     "nivel": "medio"
+    },
+    {
+     "de": 91.3,
+     "ate": 108.4,
+     "nivel": "medio"
+    },
+    {
+     "de": 108.4,
+     "ate": 118.3,
+     "nivel": "magro"
+    },
+    {
+     "de": 118.3,
+     "ate": 174.3,
+     "nivel": "cheio"
+    },
+    {
+     "de": 174.3,
+     "ate": 181.2,
+     "nivel": "magro"
+    },
+    {
+     "de": 181.2,
+     "ate": 192.8,
+     "nivel": "magro"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-02b/bateria.m4a",
+     "nome_suno": "0 Drums",
+     "nivel_db": -20.1
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-02b/baixo.m4a",
+     "nome_suno": "1 Bass",
+     "nivel_db": -22.5
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-02b/guitarra.m4a",
+     "nome_suno": "2 Guitar",
+     "nivel_db": -22.3
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-02b/teclado.m4a",
+     "nome_suno": "3 Keyboard",
+     "nivel_db": -31.3
+    },
+    "sintetizador": {
+     "arquivo": "trilha/hz-pj-02b/sintetizador.m4a",
+     "nome_suno": "5 Synth",
+     "nivel_db": -41.8
+    }
+   },
+   "pistas_vazias": [
+    "4 Percussion",
+    "6 Other"
+   ],
+   "acr": {
+    "pedacos": 19,
+    "palpites": 4,
+    "nota_maxima": 40,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  },
+  {
+   "id": "hz-pj-03a",
+   "titulo": "HZ PJ 03 Groove Medio",
+   "suno_id": "351e6fb2",
+   "uso": "corpo do reel e do story (noticia comum)",
+   "bpm": 107.7,
+   "bpm_alternativo": 71.8,
+   "tom": "Re maior",
+   "duracao_s": 221.7,
+   "comeco_sem_bateria_s": 0,
+   "golpes": [
+    {
+     "t": 205.5,
+     "sobe_db": 6.6,
+     "bateria_db": 16.7
+    },
+    {
+     "t": 221.5,
+     "sobe_db": 10.6,
+     "bateria_db": 17.1
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 7.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 7.1,
+     "ate": 77.1,
+     "nivel": "medio"
+    },
+    {
+     "de": 77.1,
+     "ate": 119.3,
+     "nivel": "magro"
+    },
+    {
+     "de": 119.3,
+     "ate": 134.8,
+     "nivel": "medio"
+    },
+    {
+     "de": 134.8,
+     "ate": 139.2,
+     "nivel": "magro"
+    },
+    {
+     "de": 139.2,
+     "ate": 190,
+     "nivel": "medio"
+    },
+    {
+     "de": 190,
+     "ate": 198.8,
+     "nivel": "cheio"
+    },
+    {
+     "de": 198.8,
+     "ate": 201.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 201.1,
+     "ate": 204.5,
+     "nivel": "magro"
+    },
+    {
+     "de": 204.5,
+     "ate": 205.7,
+     "nivel": "magro"
+    },
+    {
+     "de": 205.7,
+     "ate": 221.7,
+     "nivel": "medio"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-03a/bateria.m4a",
+     "nome_suno": "1 Drums",
+     "nivel_db": -23.6
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-03a/baixo.m4a",
+     "nome_suno": "2 Bass",
+     "nivel_db": -23.5
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-03a/guitarra.m4a",
+     "nome_suno": "3 Guitar",
+     "nivel_db": -21.9
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-03a/teclado.m4a",
+     "nome_suno": "4 Keyboard",
+     "nivel_db": -31.4
+    },
+    "cordas": {
+     "arquivo": "trilha/hz-pj-03a/cordas.m4a",
+     "nome_suno": "6 Strings",
+     "nivel_db": -42.7
+    },
+    "sintetizador": {
+     "arquivo": "trilha/hz-pj-03a/sintetizador.m4a",
+     "nome_suno": "7 Synth",
+     "nivel_db": -38.5
+    },
+    "outro": {
+     "arquivo": "trilha/hz-pj-03a/outro.m4a",
+     "nome_suno": "8 Other",
+     "nivel_db": -44.5
+    }
+   },
+   "pistas_vazias": [
+    "0 Backing Vocals",
+    "5 Percussion"
+   ],
+   "acr": {
+    "pedacos": 22,
+    "palpites": 9,
+    "nota_maxima": 49,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  },
+  {
+   "id": "hz-pj-03b",
+   "titulo": "HZ PJ 03 Groove Medio",
+   "suno_id": "b47b6c8a",
+   "uso": "corpo do reel e do story (noticia comum)",
+   "bpm": 107.7,
+   "bpm_alternativo": 53.8,
+   "tom": "Re maior",
+   "duracao_s": 193.2,
+   "comeco_sem_bateria_s": 17,
+   "golpes": [
+    {
+     "t": 193,
+     "sobe_db": 18.1,
+     "bateria_db": 25.5
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 16.7,
+     "nivel": "magro"
+    },
+    {
+     "de": 16.7,
+     "ate": 19.5,
+     "nivel": "magro"
+    },
+    {
+     "de": 19.5,
+     "ate": 90.8,
+     "nivel": "medio"
+    },
+    {
+     "de": 90.8,
+     "ate": 108.7,
+     "nivel": "medio"
+    },
+    {
+     "de": 108.7,
+     "ate": 126.5,
+     "nivel": "cheio"
+    },
+    {
+     "de": 126.5,
+     "ate": 128.7,
+     "nivel": "magro"
+    },
+    {
+     "de": 128.7,
+     "ate": 129.8,
+     "nivel": "magro"
+    },
+    {
+     "de": 129.8,
+     "ate": 164.4,
+     "nivel": "cheio"
+    },
+    {
+     "de": 164.4,
+     "ate": 167.7,
+     "nivel": "medio"
+    },
+    {
+     "de": 167.7,
+     "ate": 193.2,
+     "nivel": "magro"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-03b/bateria.m4a",
+     "nome_suno": "0 Drums",
+     "nivel_db": -20.3
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-03b/baixo.m4a",
+     "nome_suno": "1 Bass",
+     "nivel_db": -23.1
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-03b/guitarra.m4a",
+     "nome_suno": "2 Guitar",
+     "nivel_db": -21.8
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-03b/teclado.m4a",
+     "nome_suno": "3 Keyboard",
+     "nivel_db": -27.4
+    }
+   },
+   "pistas_vazias": [
+    "4 Percussion",
+    "5 Strings",
+    "6 Synth"
+   ],
+   "acr": {
+    "pedacos": 19,
+    "palpites": 9,
+    "nota_maxima": 40,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  },
+  {
+   "id": "hz-pj-04a",
+   "titulo": "HZ PJ 04 Pulso Novo",
+   "suno_id": "7e4cfb05",
+   "uso": "story diario e agenda",
+   "bpm": 117.5,
+   "bpm_alternativo": 60.1,
+   "tom": "Fa# menor",
+   "duracao_s": 193.2,
+   "comeco_sem_bateria_s": 8,
+   "golpes": [
+    {
+     "t": 8.5,
+     "sobe_db": 6.2,
+     "bateria_db": 18.1
+    },
+    {
+     "t": 104.5,
+     "sobe_db": 6.4,
+     "bateria_db": 8.3
+    },
+    {
+     "t": 132.5,
+     "sobe_db": 7,
+     "bateria_db": 9.4
+    },
+    {
+     "t": 152,
+     "sobe_db": 6.5,
+     "bateria_db": 8.2
+    },
+    {
+     "t": 193,
+     "sobe_db": 15.8,
+     "bateria_db": 23.7
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 8.2,
+     "nivel": "magro"
+    },
+    {
+     "de": 8.2,
+     "ate": 100.3,
+     "nivel": "medio"
+    },
+    {
+     "de": 100.3,
+     "ate": 103.8,
+     "nivel": "magro"
+    },
+    {
+     "de": 103.8,
+     "ate": 126.3,
+     "nivel": "medio"
+    },
+    {
+     "de": 126.3,
+     "ate": 132.3,
+     "nivel": "magro"
+    },
+    {
+     "de": 132.3,
+     "ate": 148.3,
+     "nivel": "cheio"
+    },
+    {
+     "de": 148.3,
+     "ate": 151.8,
+     "nivel": "magro"
+    },
+    {
+     "de": 151.8,
+     "ate": 164.8,
+     "nivel": "cheio"
+    },
+    {
+     "de": 164.8,
+     "ate": 167.8,
+     "nivel": "magro"
+    },
+    {
+     "de": 167.8,
+     "ate": 193.2,
+     "nivel": "magro"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-04a/bateria.m4a",
+     "nome_suno": "0 Drums",
+     "nivel_db": -19.2
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-04a/baixo.m4a",
+     "nome_suno": "1 Bass",
+     "nivel_db": -21.4
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-04a/guitarra.m4a",
+     "nome_suno": "2 Guitar",
+     "nivel_db": -23.2
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-04a/teclado.m4a",
+     "nome_suno": "3 Keyboard",
+     "nivel_db": -32.5
+    },
+    "percussao": {
+     "arquivo": "trilha/hz-pj-04a/percussao.m4a",
+     "nome_suno": "4 Percussion",
+     "nivel_db": -42.7
+    },
+    "sintetizador": {
+     "arquivo": "trilha/hz-pj-04a/sintetizador.m4a",
+     "nome_suno": "6 Synth",
+     "nivel_db": -33.3
+    },
+    "outro": {
+     "arquivo": "trilha/hz-pj-04a/outro.m4a",
+     "nome_suno": "7 Other",
+     "nivel_db": -38.4
+    }
+   },
+   "pistas_vazias": [
+    "5 Strings",
+    "8 Brass"
+   ],
+   "acr": {
+    "pedacos": 19,
+    "palpites": 9,
+    "nota_maxima": 40,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  },
+  {
+   "id": "hz-pj-04b",
+   "titulo": "HZ PJ 04 Pulso Novo",
+   "suno_id": "a8226d4c",
+   "uso": "story diario e agenda",
+   "bpm": 117.5,
+   "bpm_alternativo": 60.1,
+   "tom": "Fa# menor",
+   "duracao_s": 213.7,
+   "comeco_sem_bateria_s": 3.5,
+   "golpes": [
+    {
+     "t": 2,
+     "sobe_db": 7.2,
+     "bateria_db": 6.8
+    },
+    {
+     "t": 69,
+     "sobe_db": 6.4,
+     "bateria_db": 6
+    },
+    {
+     "t": 152.5,
+     "sobe_db": 7.7,
+     "bateria_db": 6
+    },
+    {
+     "t": 169,
+     "sobe_db": 6.1,
+     "bateria_db": 12.3
+    },
+    {
+     "t": 192.5,
+     "sobe_db": 6.2,
+     "bateria_db": 20
+    },
+    {
+     "t": 213.5,
+     "sobe_db": 12.9,
+     "bateria_db": 22.4
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 64.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 64.1,
+     "ate": 68.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 68.1,
+     "ate": 84.1,
+     "nivel": "medio"
+    },
+    {
+     "de": 84.1,
+     "ate": 99.6,
+     "nivel": "magro"
+    },
+    {
+     "de": 99.6,
+     "ate": 124.1,
+     "nivel": "medio"
+    },
+    {
+     "de": 124.1,
+     "ate": 128.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 128.1,
+     "ate": 148.6,
+     "nivel": "medio"
+    },
+    {
+     "de": 148.6,
+     "ate": 152.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 152.1,
+     "ate": 188.6,
+     "nivel": "cheio"
+    },
+    {
+     "de": 188.6,
+     "ate": 192.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 192.1,
+     "ate": 213.7,
+     "nivel": "magro"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-04b/bateria.m4a",
+     "nome_suno": "0 Drums",
+     "nivel_db": -19.1
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-04b/baixo.m4a",
+     "nome_suno": "1 Bass",
+     "nivel_db": -22
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-04b/guitarra.m4a",
+     "nome_suno": "2 Guitar",
+     "nivel_db": -25.7
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-04b/teclado.m4a",
+     "nome_suno": "3 Keyboard",
+     "nivel_db": -26.3
+    },
+    "percussao": {
+     "arquivo": "trilha/hz-pj-04b/percussao.m4a",
+     "nome_suno": "4 Percussion",
+     "nivel_db": -40.5
+    },
+    "sintetizador": {
+     "arquivo": "trilha/hz-pj-04b/sintetizador.m4a",
+     "nome_suno": "5 Synth",
+     "nivel_db": -35.4
+    },
+    "outro": {
+     "arquivo": "trilha/hz-pj-04b/outro.m4a",
+     "nome_suno": "6 Other",
+     "nivel_db": -40.1
+    }
+   },
+   "pistas_vazias": [],
+   "acr": {
+    "pedacos": 21,
+    "palpites": 11,
+    "nota_maxima": 43,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  },
+  {
+   "id": "hz-pj-05b",
+   "titulo": "HZ PJ 05 Hino Lento",
+   "suno_id": "deb2da90",
+   "uso": "noticia emotiva, homenagem, fechamento do reel",
+   "bpm": 152,
+   "bpm_alternativo": 76,
+   "tom": "Mi maior",
+   "duracao_s": 230,
+   "comeco_sem_bateria_s": 25.5,
+   "golpes": [
+    {
+     "t": 7,
+     "sobe_db": 6.4,
+     "bateria_db": 15.8
+    },
+    {
+     "t": 163,
+     "sobe_db": 7.6,
+     "bateria_db": 13
+    },
+    {
+     "t": 224,
+     "sobe_db": 6.5,
+     "bateria_db": 11.1
+    },
+    {
+     "t": 230,
+     "sobe_db": 14.2,
+     "bateria_db": 23.5
+    }
+   ],
+   "partes": [
+    {
+     "de": 0,
+     "ate": 2.2,
+     "nivel": "magro"
+    },
+    {
+     "de": 2.2,
+     "ate": 6.5,
+     "nivel": "magro"
+    },
+    {
+     "de": 6.5,
+     "ate": 25.1,
+     "nivel": "magro"
+    },
+    {
+     "de": 25.1,
+     "ate": 61.8,
+     "nivel": "medio"
+    },
+    {
+     "de": 61.8,
+     "ate": 151,
+     "nivel": "medio"
+    },
+    {
+     "de": 151,
+     "ate": 153,
+     "nivel": "magro"
+    },
+    {
+     "de": 153,
+     "ate": 163.4,
+     "nivel": "magro"
+    },
+    {
+     "de": 163.4,
+     "ate": 198.4,
+     "nivel": "cheio"
+    },
+    {
+     "de": 198.4,
+     "ate": 201.2,
+     "nivel": "medio"
+    },
+    {
+     "de": 201.2,
+     "ate": 208.8,
+     "nivel": "magro"
+    },
+    {
+     "de": 208.8,
+     "ate": 211.3,
+     "nivel": "magro"
+    },
+    {
+     "de": 211.3,
+     "ate": 230,
+     "nivel": "magro"
+    }
+   ],
+   "pistas": {
+    "bateria": {
+     "arquivo": "trilha/hz-pj-05b/bateria.m4a",
+     "nome_suno": "1 Drums",
+     "nivel_db": -22.8
+    },
+    "baixo": {
+     "arquivo": "trilha/hz-pj-05b/baixo.m4a",
+     "nome_suno": "2 Bass",
+     "nivel_db": -24.4
+    },
+    "guitarra": {
+     "arquivo": "trilha/hz-pj-05b/guitarra.m4a",
+     "nome_suno": "3 Guitar",
+     "nivel_db": -20.6
+    },
+    "teclado": {
+     "arquivo": "trilha/hz-pj-05b/teclado.m4a",
+     "nome_suno": "4 Keyboard",
+     "nivel_db": -28.9
+    },
+    "cordas": {
+     "arquivo": "trilha/hz-pj-05b/cordas.m4a",
+     "nome_suno": "6 Strings",
+     "nivel_db": -39.8
+    },
+    "sintetizador": {
+     "arquivo": "trilha/hz-pj-05b/sintetizador.m4a",
+     "nome_suno": "7 Synth",
+     "nivel_db": -33.9
+    },
+    "outro": {
+     "arquivo": "trilha/hz-pj-05b/outro.m4a",
+     "nome_suno": "8 Other",
+     "nivel_db": -44.6
+    }
+   },
+   "pistas_vazias": [
+    "0 Lead Vocals",
+    "5 Percussion"
+   ],
+   "acr": {
+    "pedacos": 23,
+    "palpites": 17,
+    "nota_maxima": 55,
+    "pearl_jam": 0,
+    "passou": true
+   }
+  }
+ ]
+}

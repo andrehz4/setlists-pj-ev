@@ -4,15 +4,17 @@ import { COLD_DUR, BLOCK_DUR, OUTRO_DUR } from "../reel/base.mjs";
 
 // Reel de domingo: abertura no piano, banda inteira na manchete líder, médio no meio, respiro no piano,
 // segundo golpe e banda cheia até o fim das manchetes, encerramento no piano.
-export function planoReel(nBlocos = 8) {
-  const ini = (i) => COLD_DUR + i * BLOCK_DUR;
+// `cenas` (opcional): [{ start, dur }] reais do reel (abertura, blocos, final); com narração cada cena dura a fala.
+export function planoReel(nBlocos = 8, cenas = null) {
+  const ini = (i) => (cenas ? cenas[i + 1].start : COLD_DUR + i * BLOCK_DUR);
+  const outro = cenas ? cenas.at(-1).dur : OUTRO_DUR;
   const respiro = Math.min(4, nBlocos - 2);
   const fim = ini(nBlocos);
   const p = [{ de: 0, ate: ini(0), nivel: "magro" }, { de: ini(0), ate: ini(1), nivel: "cheio" }];
   if (respiro > 1) p.push({ de: ini(1), ate: ini(respiro), nivel: "medio" });
   p.push({ de: ini(respiro), ate: ini(respiro + 1), nivel: "magro" });
   p.push({ de: ini(respiro + 1), ate: fim, nivel: "cheio" });
-  p.push({ de: fim, ate: fim + OUTRO_DUR, nivel: "magro" });
+  p.push({ de: fim, ate: fim + outro, nivel: "magro" });
   return p.filter((x) => x.ate > x.de);
 }
 
