@@ -6,6 +6,14 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Trilha própria (13/11, EM ANDAMENTO):** as músicas grátis (Pixabay + Suno grátis em
+  `scripts/publish/assets/story-tracks/`) vão sair de story, reel e agenda. Estudo e geração moram no trilha-hz
+  (`/Users/andrehz/Documents/Githubhz/trilha-hz/scripts/pearl-jam/`, PROGRESSO de lá). Entrega pronta com 6 de 9
+  faixas: `/Volumes/SSD Terra Gentil/trilha-hz/pearl-jam/entrega-setlists.json`. Próximo aqui: módulo
+  `scripts/publish/trilha/` (flag `TRILHA_PROPRIA`) que monta a música por instrumento (piano sozinho na parte calma,
+  bateria e guitarra entram na manchete, cortes no tempo), teste no mock de 1 story e 1 reel, Andre aprova.
+  Atenção: o áudio mora no SSD; o GitHub Actions precisa de cópia (R2, como os clipes do reel) antes de ligar.
+
 - **Reel de domingo com fallback (08/11):** a run de 08/11 falhou (W45): container do IG ficou `IN_PROGRESS` além dos 5 min.
   Agora: espera 10 min, 2º container do mesmo vídeo (8 min), retomada sem renderizar na próxima rodada, crons de reserva
   12h/15h/18h BRT no domingo (PENDENTE: criar o trigger do reel no TriggerAll, script em `scripts/publish/reel/RESERVAS-WORKFLOW.md`) e alerta no Telegram (`scripts/publish/reel/{fallback,pendente,retomar}.mjs`). Testado
