@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-11-13T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "instagram-oficial": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "71252fc4f8", "titulo": "Olivia Vedder lança Hummingbird, e Mike conta como Farewell to Seasons nasceu", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "d7e13fee3f", "title": "Mike McCready präsentiert Farewell to Seasons", "reason": "republicação de Rolling Stone (já publicado: fad3f40ead)" },
+    { "id": "0250d9a8bf", "title": "Come say hi to my friend Eli this World Kindness Day", "reason": "post oficial sem informação nova (legenda curta, sem contexto)" }
+  ]
+}
