@@ -1,6 +1,6 @@
 // Voz do story por banda: frases FIXAS, gravadas uma vez e guardadas em media/agenda/voz/ (o dia a dia não gasta
-// crédito do ElevenLabs). Abertura = frase inteira com o nome da banda (sem emenda, que soa recortado), 12 variações
-// por banda; final = 15 chamadas pra compartilhar. Banda nova: o gravador grava só o que falta. Rodízio pelo dia.
+// crédito do ElevenLabs). Abertura = frase inteira com o nome da banda (sem emenda, que soa recortado), 18 variações
+// por banda; final = 25 chamadas pra compartilhar. Banda nova: o gravador grava só o que falta. Rodízio pelo dia.
 import crypto from "node:crypto";
 import path from "node:path";
 import { naRaiz } from "../../config.mjs";
@@ -31,6 +31,13 @@ export const ABERTURAS = [
   (b) => `Hoje é dia de cantar Alive junto com a banda ${b}!`,
   (b) => `Aumenta o som, que a banda ${b} sobe no palco hoje!`,
   (b) => `Chama a galera: hoje tem Pearl Jam com a banda ${b}!`,
+  // mais 6 (14/11/2026, chave reserva2): 18 por banda
+  (b) => `Hoje a noite é de Pearl Jam com a banda ${b}!`,
+  (b) => `Garante seu lugar: hoje tem show da banda ${b}!`,
+  (b) => `Quem é fã de Pearl Jam já sabe: hoje tem a banda ${b}!`,
+  (b) => `Hoje o palco é da banda ${b}, tocando Pearl Jam!`,
+  (b) => `Afina a voz para o refrão: hoje tem a banda ${b} ao vivo!`,
+  (b) => `Já pode ir aquecendo, que hoje tem a banda ${b} no palco!`,
 ];
 export const FINAIS = [
   "Compartilha com quem vai com você! E segue o Só Mais um Fã de Pearl Jam, o maior acervo da banda no Brasil.",
@@ -49,6 +56,17 @@ export const FINAIS = [
   "Manda pra quem nunca perde um show! E segue o maior acervo de Pearl Jam do Brasil.",
   "Marca o amigo que sabe todas as letras! Mais datas na agenda, link no perfil.",
   "Divulga pra galera e apoia quem toca Pearl Jam por aqui! Segue a gente pra ver a agenda inteira.",
+  // mais 10 (14/11/2026, chave reserva2): 25 finais
+  "Compartilha com quem vai dividir a grade com você! E segue o Só Mais um Fã de Pearl Jam.",
+  "Marca quem tá sempre na primeira fila! A agenda completa tá no link do perfil.",
+  "Avisa a turma do grupo! Mais shows de Pearl Jam pelo Brasil na nossa agenda.",
+  "Repassa pra quem ama Pearl Jam! E segue a gente pra receber a agenda toda semana.",
+  "Chama quem canta Alive mais alto que todo mundo! Mais datas no link do perfil.",
+  "Compartilha esse story e ajuda a lotar o show! A agenda inteira tá no link do perfil.",
+  "Marca quem vai com você e não esquece de seguir o Só Mais um Fã de Pearl Jam!",
+  "Manda pra quem tá precisando de um show! Setlists, letras e agenda no link do perfil.",
+  "Divide com quem vai de primeira viagem! O maior acervo de Pearl Jam do Brasil tá no link do perfil.",
+  "Chama quem não perde um show de Pearl Jam! Segue o Só Mais um Fã de Pearl Jam pra saber de tudo.",
 ];
 
 // Estado do show (sem forçar o idioma, frase curta demais saía em inglês; "O show é em" resolveu).

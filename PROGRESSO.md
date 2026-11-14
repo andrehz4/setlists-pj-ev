@@ -85,6 +85,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   voz-hz; "cena cover" saía "Sela Cover" e foi trocada (regra no teste de pronúncia). Saldo depois: agenda ~3.900,
   reserva4 ~1.400. Chave nova reserva2 (secret ELEVENLABS_API_KEY_RESERVA2, local .elevenlabs-key-reserva6, 10 mil)
   na roleta do reel E agora do story diário (principal -> reserva -> reserva2; agenda fora do story).
+  Mais 128 falas na reserva2 (gastou ~9.300 dos 10 mil): agora 18 aberturas por banda e 25 finais. "Corre que..."
+  no começo saía embolado (Correc/Quareque): frase tirada e regra no teste de pronúncia.
 - Pendente da auditoria: R, U e Z quebram com 4+ shows na mesma banda (hoje máx 2); `media/agenda/shows.json` tem
   "cidade" suja ("Sexta, 21h", "caverna/Mister", "Iron Rock", "MG"); A, B, C imprimem "DESDE undefined" pra
   loveboat_tribute; Y repete ids na abertura (cosmético). CI medido 14/11: dry-run de 28/11 (T, U, V, W) levou 10,5 min no runner, fontes certas no Linux. Em 28/11 o The Homer sai com cidade "Iron Rock" (dado sujo).
