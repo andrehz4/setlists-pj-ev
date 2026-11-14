@@ -60,7 +60,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Fonte Permanent Marker (K, L) já estava em media/fonts. "de <cidade>" virou "base: <cidade>" (evita "de Rio").
 - Layout O "Ten" (homenagem, sem copiar a capa): fundo rosa, placas de compensado, letreiro pintado à mão e 5
   bonequinhos em silhueta unindo as mãos no alto (`layouts/O/bonecos.mjs`), na abertura e no final. Rodízio vai a 12.
-  Próximo: P "Vs." (Andre pediu em seguida).
+- Layout P "Vs." (homenagem): xerox P&B granulado, alambrado de arame e ovelha em cartum apertando o focinho na
+  cerca (`layouts/P/ovelha.mjs`). Rodízio vai a 13. Próximo: Q "Vitalogy". D/E/F do Design retomados às 22h.
 - Ordem nova: sáb 14/11 G, H, I, J, K (Black Circle, Blaymorphed, Lost Dogs, Love Boat, PJ 90); dom 15/11 H, I, J.
 - D, E, F do Claude Design continuam a caminho (pedido retomado 22:04): com eles o rodízio vai a 14.
 
