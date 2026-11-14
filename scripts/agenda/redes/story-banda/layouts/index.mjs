@@ -1,7 +1,10 @@
-// Layouts novos do story por banda (G a N do Claude Code; D, E, F do Claude Design a caminho). Módulo apartado: só entram no rodízio com
+// Layouts novos do story por banda (D, E, F do Claude Design; G a Z do Claude Code). Módulo apartado: só entram no rodízio com
 // AGENDA_LAYOUTS_NOVOS=1. Cada layout exporta { temas: [4 temas {bg, ...}], quadro(T, story, tema, logoUri) -> SVG }
 // e reaproveita o resto do story (tempo.mjs, voz, b-roll, trilha, publicação). A ordem dos temas segue a roda de
 // cores do story (azul, ocre, preto, vermelho): o layout pinta cada posição com a paleta dele.
+import * as D from "./D/index.mjs";
+import * as E from "./E/index.mjs";
+import * as F from "./F/index.mjs";
 import * as G from "./G/index.mjs";
 import * as H from "./H/index.mjs";
 import * as I from "./I/index.mjs";
@@ -31,6 +34,9 @@ export function registrar(nome, layout) {
   if (typeof layout.quadro !== "function") throw new Error(`layout ${nome}: falta quadro()`);
   LAYOUTS[nome] = layout;
 }
+registrar("D", D);
+registrar("E", E);
+registrar("F", F);
 registrar("G", G);
 registrar("H", H);
 registrar("I", I);

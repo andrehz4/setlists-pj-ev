@@ -12,3 +12,4 @@ https://github.com/google/fonts. Uso e redistribuição livres, inclusive comerc
 | ArchivoBlack-Regular.ttf | Archivo Black, Omnibus-Type (legenda do Reel de colaborador) |
 | InstrumentSerif-Italic.ttf | Instrument Serif, Instrument (legenda do Reel de colaborador) |
 | PermanentMarker-Regular.ttf | Permanent Marker, Font Diner (Apache 2.0; nome da cidade escrito à mão no story por banda, variação B do mapa) |
+| JetBrainsMono-ExtraBold.ttf | JetBrains Mono, The JetBrains Mono Project Authors (OFL; layout F "Painel" do story por banda) |

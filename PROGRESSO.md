@@ -6,9 +6,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
-- **Story por banda (fechado 14/11):** rodízio com 22 layouts (A, B, C, G a Z), 23 aberturas por banda e 38 finais
-  gravados nas 2 vozes, roleta de chaves no reel e no story diário. Primeiro layout novo no ar: R em 26/11. PRÓXIMO:
-  portar D, E, F do Claude Design (zip em `design-handoff/retorno/story-mapa/layouts-DEF/`, gitignored); conferir
+- **Story por banda (14/11 noite):** rodízio com 25 layouts (A a Z), D/E/F do Claude Design portados e LIGADOS.
+  23 aberturas por banda e 38 finais nas 2 vozes, roleta de chaves no reel e no story diário. PRÓXIMO: guia
+  `docs/PLAYBOOK-LAYOUT-STORY.md` com a "régua" dos specs do Design (fecha 14/12) e 1 layout de teste só com ele; conferir
   saldo da chave nova (reserva2/.elevenlabs-key-reserva6) depois de 15/12; fala da data curta só pra agenda (não cabe hoje, 1,2x) ainda sem resposta.
 - **Agenda lê as casas de show (13/11):** post de colaboração (casa + banda) só aparece no feed da casa, e o show da
   Love Boat de 14/11 no Studio Rock Café escapou. Agora a coleta lê `media/agenda/casas.json` (25 casas) e entende
@@ -55,6 +55,17 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Conta do Actions (todos os repos): ~2.080 min/mês com contrib ligado, ~1.600 pausado, antes ~3.900 (franquia 3.000).
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
+
+## 2026-11-14 (noite): layouts D, E, F do Claude Design no rodízio
+
+- D "Grade" (cartaz tipográfico), E "Bilhete" (ingresso de teatro dourado), F "Painel" (split-flap de rodoviária,
+  mapa de LEDs), portados por 3 agentes em paralelo de `design-handoff/retorno/story-mapa/layouts-DEF/`, aprovados pelo
+  Andre. Sem "desde" a linha some; sem logo mostra o nome; até 6 shows encolhem pra caber. Rodízio de 22 pra 25: a
+  ordem dos próximos dias mudou (R pode não sair mais em 26/11).
+- Medidor de largura comum: `layouts/comum/medida.mjs` (qualquer .ttf de media/fonts); S a Z ainda têm cópia própria.
+- Fonte nova: JetBrains Mono ExtraBold (OFL, em LICENCAS.md). Render do F: 12 s no Mac.
+- Andre notou o capricho a mais do Design: vem do processo (spec antes do pixel, 2 fontes, 1 movimento base,
+  contenção). Plano: extrair essa régua num playbook antes do Design fechar em 14/12.
 
 ## 2026-11-14 (noite): correção manual da agenda, "Iron Rock" resolvido
 
