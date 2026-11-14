@@ -62,6 +62,13 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   bonequinhos em silhueta unindo as mãos no alto (`layouts/O/bonecos.mjs`), na abertura e no final. Rodízio vai a 12.
 - Layout P "Vs." (homenagem): xerox P&B granulado, alambrado de arame e ovelha em cartum apertando o focinho na
   cerca (`layouts/P/ovelha.mjs`). Rodízio vai a 13. Próximo: Q "Vitalogy". D/E/F do Design retomados às 22h.
+- EM ANDAMENTO (13/11 ~22:20): layout Q "Vitalogy" sendo feito por agente em `layouts/Q/` (NÃO commitado, NÃO
+  registrado). Conceito: livro velho de medicina caseira (tecido gasto com ouro, páginas amareladas, ornamentos finos,
+  gravuras anatômicas genéricas, logo como "Fig. 1", mapa como "Prancha II", shows como índice "Capítulo I ... 20h",
+  final com carimbo + ex-libris). 4 temas: ferrugem/ouro, musgo/ouro, couro, creme/sépia. Proibido: palavra do título,
+  foto/scan da capa. Andre reparou traço grosseiro antes: capricho nos detalhes.
+- Claude Design: D/E/F retomados 22:00 (Resume clicado), ainda rodando. Ao terminar: Download Project pra
+  `design-handoff/retorno/story-mapa/layouts-DEF/` e portar como layouts/D, E, F.
 - Ordem nova: sáb 14/11 G, H, I, J, K (Black Circle, Blaymorphed, Lost Dogs, Love Boat, PJ 90); dom 15/11 H, I, J.
 - D, E, F do Claude Design continuam a caminho (pedido retomado 22:04): com eles o rodízio vai a 14.
 
