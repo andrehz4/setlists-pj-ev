@@ -13,6 +13,7 @@ const PRONUNCIA_RUIM = [
   [/\bmundo Pearl Jam\b/i, "mundo Pearl Jam (a voz lê Mungo)"],
   [/\bagitad[ao]s?\b/i, "agitada (a voz lê com sotaque espanhol, 19/10/2026)"],
   [/(?<![\p{L}-])pros?(?![\p{L}-])/iu, "pro (a voz lê PRÓ de profissional, 13/11/2026)"],
+  [/\bcena cover\b/i, "cena cover (a voz lê Sela/Senna Cover, 14/11/2026)"],
 ];
 const problemas = (frase) => PRONUNCIA_RUIM.filter(([re]) => re.test(frase)).map(([, motivo]) => motivo);
 
@@ -32,6 +33,11 @@ test("Fã no meio da frase passa (a voz lê certo)", () => {
 test("nenhuma frase fixa gravada tem pronúncia ruim conhecida", () => {
   const todas = [...ABERTURAS, ...FINAIS, ...FINAIS_STORY, ...AG_ABERTURAS.map((f) => f("Black Circle")), ...AG_FINAIS];
   for (const frase of todas) assert.deepEqual(problemas(frase), [], frase);
+});
+
+test("cena cover cai na regra (prova do bug de 14/11)", () => {
+  assert.deepEqual(problemas("Compartilha e fortalece a cena cover!"), ["cena cover (a voz lê Sela/Senna Cover, 14/11/2026)"]);
+  assert.deepEqual(problemas("Compartilha e apoia as bandas cover!"), []);
 });
 
 test("pro cai na regra (prova do bug de 13/11)", () => {

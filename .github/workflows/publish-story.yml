@@ -51,6 +51,11 @@ jobs:
           # padrão do reel (scripts/publish/story/padrao-reel.mjs): abertura com clipe + transições do acervo no R2
           STORY_TRANSICOES: '1'
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          # roleta (scripts/publish/narracao/chaves.mjs): principal -> reserva -> reserva2, só quando a anterior não
+          # tem saldo. A da agenda fica de fora (grava as falas do story por banda).
+          ELEVENLABS_API_KEY_RESERVA: ${{ secrets.ELEVENLABS_API_KEY_RESERVA }}
+          ELEVENLABS_API_KEY_RESERVA2: ${{ secrets.ELEVENLABS_API_KEY_RESERVA2 }}
+          ELEVENLABS_CHAVE: ${{ vars.ELEVENLABS_CHAVE }}
           # mídia no R2 (scripts/publish/midia-r2.mjs): vídeo sobe pro bucket smufdpj-midia (apaga em 3 dias)
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}

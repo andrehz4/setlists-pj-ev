@@ -80,6 +80,11 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   story por banda gravado e commitado POR BANDA (job morto no meio republicava) com try/catch por banda; W punha "@" em
   casa sem Instagram; W media SemiBold e renderizava Bold; Q sobrepunha cidade longa e "ver perfil". Teste em
   `scripts/regressao/agenda-story-banda-auditoria.test.mjs`. Validado no mock (19/11, 2 bandas, rerun não republica).
+- Vozes do story por banda (14/11): 12 aberturas por banda (eram 5) e 15 finais (eram 5), 146 falas novas. Chris pela
+  chave agenda, Bella pela reserva4 (só local, /Users/andrehz/.elevenlabs-key-reserva4). Conferidas no whisper do
+  voz-hz; "cena cover" saía "Sela Cover" e foi trocada (regra no teste de pronúncia). Saldo depois: agenda ~3.900,
+  reserva4 ~1.400. Chave nova reserva2 (secret ELEVENLABS_API_KEY_RESERVA2, local .elevenlabs-key-reserva6, 10 mil)
+  na roleta do reel E agora do story diário (principal -> reserva -> reserva2; agenda fora do story).
 - Pendente da auditoria: R, U e Z quebram com 4+ shows na mesma banda (hoje máx 2); `media/agenda/shows.json` tem
   "cidade" suja ("Sexta, 21h", "caverna/Mister", "Iron Rock", "MG"); A, B, C imprimem "DESDE undefined" pra
   loveboat_tribute; Y repete ids na abertura (cosmético). CI medido 14/11: dry-run de 28/11 (T, U, V, W) levou 10,5 min no runner, fontes certas no Linux. Em 28/11 o The Homer sai com cidade "Iron Rock" (dado sujo).

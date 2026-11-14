@@ -58,9 +58,10 @@ jobs:
           # trilha própria (scripts/publish/trilha/, áudio no R2): '1' liga; sem kit ou com erro, segue a trilha antiga
           TRILHA_PROPRIA: '1'
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-          # contas extras (scripts/publish/narracao/chaves.mjs): principal -> reserva -> agenda, só quando a anterior
-          # não tem saldo. Variável do repo ELEVENLABS_CHAVE (principal|reserva|agenda) força uma.
+          # contas extras (scripts/publish/narracao/chaves.mjs): principal -> reserva -> reserva2 -> agenda, só quando a anterior
+          # não tem saldo. Variável do repo ELEVENLABS_CHAVE (principal|reserva|reserva2|agenda) força uma.
           ELEVENLABS_API_KEY_RESERVA: ${{ secrets.ELEVENLABS_API_KEY_RESERVA }}
+          ELEVENLABS_API_KEY_RESERVA2: ${{ secrets.ELEVENLABS_API_KEY_RESERVA2 }}
           ELEVENLABS_API_KEY_AGENDA: ${{ secrets.ELEVENLABS_API_KEY_AGENDA }}
           ELEVENLABS_CHAVE: ${{ vars.ELEVENLABS_CHAVE }}
           # transições e abertura com clipe (scripts/publish/reel/transicoes.mjs): trechos baixados do R2 (acervo/);

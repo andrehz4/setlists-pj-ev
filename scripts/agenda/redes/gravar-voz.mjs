@@ -9,7 +9,7 @@ import { spawnSync } from "node:child_process";
 import { VOZES, IDIOMA, DIR_VOZ, arquivoDaFala, falasNecessarias, FINAIS, FRASE_SEM_HORA } from "./voz.mjs";
 import { encaixar } from "./story-banda/encaixe.mjs";
 
-const DRY = process.argv.includes("--dry-run");
+const DRY = process.argv.includes("--dry-run"), NO_GIT = process.argv.includes("--no-git"); // --no-git: grava e não commita (conferir antes)
 const apiKey = process.env.ELEVENLABS_API_KEY;
 const { bandas } = await lerEstado(naRaiz("media/agenda/bandas.json"), { bandas: [] });
 await fs.mkdir(DIR_VOZ, { recursive: true });
@@ -38,4 +38,4 @@ for (const { t, voz } of faltam) {
   const [r] = Object.values(e);
   console.log(`[voz] ok: ${t} (${d.toFixed(2)} s${r.atempo > 1 ? `, acelera ${r.atempo}x` : ""}${r.cabe ? "" : ", NÃO CABE: encurtar a frase"})`);
 }
-await commitAndPush(["media/agenda/voz/"], `agenda: ${faltam.length} fala(s) fixa(s) do story por banda`);
+await commitAndPush(["media/agenda/voz/"], `agenda: ${faltam.length} fala(s) fixa(s) do story por banda`, { dry: NO_GIT });

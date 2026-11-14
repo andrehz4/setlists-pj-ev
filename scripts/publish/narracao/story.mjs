@@ -9,6 +9,7 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import { sintetizar, saldo } from "./elevenlabs.mjs";
 import { duracaoAudio, mixarNarracao } from "./narracao.mjs";
+import { chavesEmOrdem, erroDeConta } from "./chaves.mjs";
 import { naRaiz } from "../../config.mjs";
 
 export const VOZES_STORY = [
@@ -58,25 +59,36 @@ async function garantir(texto, voz, arquivo, { apiKey, sintetizarImpl }) {
 
 // Falas do story do dia. null (desligada), { aviso } (saiu sem voz) ou
 // { falas, introDur, outroDur, aviso }. Intro/outro duram o tempo da fala.
+// Roleta de contas (chaves.mjs): principal sem saldo ou recusando crédito passa pra próxima (14/11/2026).
 export async function prepararNarracaoStory(date, { env = process.env, dir = DIR_STORY, sintetizarImpl = sintetizar,
   duracaoImpl = duracaoAudio, saldoImpl = saldo, introMin = 3.0, outroMin = 1.5 } = {}) {
-  if (!(env.STORY_NARRACAO === "1" && env.ELEVENLABS_API_KEY)) return null;
-  const apiKey = env.ELEVENLABS_API_KEY;
+  const contas = chavesEmOrdem(env);
+  if (!(env.STORY_NARRACAO === "1" && contas.length)) return null;
   const voz = vozDoDia(date);
   const abertura = aberturaDoDia(date), final = finalDoDia(date);
   const arqA = arquivoStory(abertura, voz, { mmdd: mmddDe(date), dir });
   const arqF = arquivoStory(final, voz, { dir });
   try {
     const falta = (await existe(arqA) ? 0 : abertura.length) + (await existe(arqF) ? 0 : final.length);
-    const conta = falta ? await saldoImpl({ apiKey }) : null;
-    if (conta && conta.restante < falta) return { aviso: `story saiu SEM voz: faltou crédito (precisa ${falta}, restam ${conta.restante})` };
-    await garantir(abertura, voz, arqA, { apiKey, sintetizarImpl });
-    await garantir(final, voz, arqF, { apiKey, sintetizarImpl });
+    let usada = falta ? null : { nome: "nenhuma" }, motivo = "";
+    for (const c of falta ? contas : []) {
+      const conta = await saldoImpl({ apiKey: c.chave });
+      if (conta && conta.restante < falta) { motivo += ` ${c.nome}: precisa ${falta}, restam ${conta.restante}.`; continue; }
+      try {
+        await garantir(abertura, voz, arqA, { apiKey: c.chave, sintetizarImpl });
+        await garantir(final, voz, arqF, { apiKey: c.chave, sintetizarImpl });
+        usada = c; break;
+      } catch (e) {
+        if (!erroDeConta(e)) throw e;
+        motivo += ` ${c.nome}: ${String(e.message).slice(0, 60)}.`;
+      }
+    }
+    if (!usada) return { aviso: `story saiu SEM voz: faltou crédito em todas as contas (${motivo.trim()})` };
     const dA = duracaoImpl(arqA), dF = duracaoImpl(arqF);
     return {
       falas: [{ sceneIndex: 0, texto: abertura, arquivo: arqA, dur: dA }, { sceneIndex: 1, texto: final, arquivo: arqF, dur: dF }],
       introDur: Math.max(introMin, INICIO_FALA + dA + 0.4), outroDur: Math.max(outroMin, INICIO_FALA + dF + 0.5),
-      aviso: `voz do story: ${voz.nome}${falta ? ` · gravou ${falta} caracteres` : " · áudio já gravado"}`,
+      aviso: `voz do story: ${voz.nome}${falta ? ` · gravou ${falta} caracteres (conta ${usada.nome})` : " · áudio já gravado"}`,
     };
   } catch (e) {
     return { aviso: `story saiu SEM voz: ${e.message.slice(0, 120)}` };

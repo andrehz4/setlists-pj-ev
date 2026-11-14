@@ -70,3 +70,30 @@ test("gravar dias: finais das 2 vozes + 1 abertura por dia, sem regravar", async
   await gravarDias(dia("2026-10-01"), 3, { apiKey: "k", dir, sintetizarImpl: gravaFalso(c), log: () => {} });
   assert.equal(c.length, 0);
 });
+
+// Roleta de contas no story diário (14/11/2026): antes só existia a principal; sem saldo, o story saía mudo.
+const RODA = { STORY_NARRACAO: "1", ELEVENLABS_API_KEY: "p", ELEVENLABS_API_KEY_RESERVA2: "r2" };
+
+test("roleta: principal sem saldo, grava na reserva2", async () => {
+  const c = [], usadas = [];
+  const r = await prepararNarracaoStory(dia("2026-09-30"), { env: RODA, dir: tmp(), duracaoImpl: () => 2,
+    saldoImpl: async ({ apiKey }) => ({ restante: apiKey === "p" ? 5 : 9000, limite: 10000 }),
+    sintetizarImpl: async (t, o) => { usadas.push(o.apiKey); return gravaFalso(c)(t, o); } });
+  assert.equal(r.falas.length, 2);
+  assert.deepEqual([...new Set(usadas)], ["r2"]);
+  assert.match(r.aviso, /conta reserva2/);
+});
+
+test("roleta: principal recusa por crédito no meio, passa pra reserva2", async () => {
+  const c = [];
+  const r = await prepararNarracaoStory(dia("2026-09-30"), { env: RODA, dir: tmp(), duracaoImpl: () => 2, saldoImpl: async () => null,
+    sintetizarImpl: async (t, o) => { if (o.apiKey === "p") throw new Error("quota_exceeded"); return gravaFalso(c)(t, o); } });
+  assert.equal(r.falas.length, 2);
+  assert.match(r.aviso, /conta reserva2/);
+});
+
+test("roleta: erro que não é de conta não pula pra outra (sai sem voz)", async () => {
+  const r = await prepararNarracaoStory(dia("2026-09-30"), { env: RODA, dir: tmp(), duracaoImpl: () => 2, saldoImpl: async () => null,
+    sintetizarImpl: async () => { throw new Error("timeout de rede"); } });
+  assert.match(r.aviso, /SEM voz: timeout/);
+});
