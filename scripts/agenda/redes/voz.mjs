@@ -1,6 +1,6 @@
 // Voz do story por banda: frases FIXAS, gravadas uma vez e guardadas em media/agenda/voz/ (o dia a dia não gasta
-// crédito do ElevenLabs). Abertura = frase inteira com o nome da banda (sem emenda, que soa recortado), 24 variações
-// por banda; final = 39 chamadas pra compartilhar. Banda nova: o gravador grava só o que falta. Rodízio pelo dia.
+// crédito do ElevenLabs). Abertura = frase inteira com o nome da banda (sem emenda, que soa recortado), 23 variações
+// por banda; final = 38 chamadas pra compartilhar. Banda nova: o gravador grava só o que falta. Rodízio pelo dia.
 import crypto from "node:crypto";
 import path from "node:path";
 import { naRaiz } from "../../config.mjs";
@@ -31,14 +31,13 @@ export const ABERTURAS = [
   (b) => `Hoje é dia de cantar Alive junto com a banda ${b}!`,
   (b) => `Aumenta o som, que a banda ${b} sobe no palco hoje!`,
   (b) => `Chama a galera: hoje tem Pearl Jam com a banda ${b}!`,
-  // mais 6 (14/11/2026, chave reserva2): 18 por banda
+  // mais 5 (14/11/2026, chave reserva2): 17 por banda
   (b) => `Hoje a noite é de Pearl Jam com a banda ${b}!`,
   (b) => `Garante seu lugar: hoje tem show da banda ${b}!`,
-  (b) => `Quem é fã de Pearl Jam já sabe: hoje tem a banda ${b}!`,
   (b) => `Hoje o palco é da banda ${b}, tocando Pearl Jam!`,
   (b) => `Afina a voz para o refrão: hoje tem a banda ${b} ao vivo!`,
   (b) => `Já pode ir aquecendo, que hoje tem a banda ${b} no palco!`,
-  // mais 6 (14/11/2026, 2a leva da reserva2): 24 por banda
+  // mais 6 (14/11/2026, 2a leva da reserva2): 23 por banda
   (b) => `Programa garantido: hoje tem a banda ${b} tocando Pearl Jam!`,
   (b) => `Vai ter Pearl Jam no volume máximo com a banda ${b} hoje!`,
   (b) => `Olha só quem toca hoje: a banda ${b}!`,
@@ -74,8 +73,7 @@ export const FINAIS = [
   "Manda pra quem tá precisando de um show! Setlists, letras e agenda no link do perfil.",
   "Divide com quem vai de primeira viagem! O maior acervo de Pearl Jam do Brasil tá no link do perfil.",
   "Chama quem não perde um show de Pearl Jam! Segue o Só Mais um Fã de Pearl Jam pra saber de tudo.",
-  // mais 14 (14/11/2026, 2a leva da reserva2): 39 finais
-  "Marca quem divide o fone com você! Mais shows na agenda, link no perfil.",
+  // mais 13 (14/11/2026, 2a leva da reserva2): 38 finais
   "Compartilha com quem te apresentou o Pearl Jam! A agenda completa tá no link do perfil.",
   "Manda pra turma do rock! E segue o Só Mais um Fã de Pearl Jam pra saber de todos os shows.",
   "Repassa esse vídeo e chama a galera! Toda semana tem show novo na nossa agenda.",

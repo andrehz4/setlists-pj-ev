@@ -16,6 +16,7 @@ const PRONUNCIA_RUIM = [
   [/\bcena cover\b/i, "cena cover (a voz lê Sela/Senna Cover, 14/11/2026)"],
   [/^corre que\b/i, "começar com Corre que (a voz embola: Correc, Quareque, 14/11/2026)"],
   [/\bquem ainda\b/i, "quem ainda (a Bella emenda: que a Mainda / que o Emma, 14/11/2026)"],
+  [/^quem\b|\bquem divide\b/i, "Quem no começo ou quem divide (a Bella lê Queen, em inglês; Andre ouviu, 14/11/2026)"],
 ];
 const problemas = (frase) => PRONUNCIA_RUIM.filter(([re]) => re.test(frase)).map(([, motivo]) => motivo);
 
@@ -44,6 +45,11 @@ test("cena cover cai na regra (prova do bug de 14/11)", () => {
 
 test("Corre que no começo cai na regra (prova do bug de 14/11)", () => {
   assert.deepEqual(problemas("Corre que hoje tem show!"), ["começar com Corre que (a voz embola: Correc, Quareque, 14/11/2026)"]);
+});
+
+test("Queen no lugar de quem cai na regra (prova do bug de 14/11)", () => {
+  assert.deepEqual(problemas("Quem é fã de Pearl Jam já sabe!"), ["Quem no começo ou quem divide (a Bella lê Queen, em inglês; Andre ouviu, 14/11/2026)"]);
+  assert.deepEqual(problemas("Marca quem vai cantar junto com você!"), []);
 });
 
 test("pro cai na regra (prova do bug de 13/11)", () => {
