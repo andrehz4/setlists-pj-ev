@@ -82,7 +82,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `scripts/regressao/agenda-story-banda-auditoria.test.mjs`. Validado no mock (19/11, 2 bandas, rerun não republica).
 - Pendente da auditoria: R, U e Z quebram com 4+ shows na mesma banda (hoje máx 2); `media/agenda/shows.json` tem
   "cidade" suja ("Sexta, 21h", "caverna/Mister", "Iron Rock", "MG"); A, B, C imprimem "DESDE undefined" pra
-  loveboat_tribute; Y repete ids na abertura (cosmético). Medir no CI: dispatch agenda-story dry-run dia=2026-11-28.
+  loveboat_tribute; Y repete ids na abertura (cosmético). CI medido 14/11: dry-run de 28/11 (T, U, V, W) levou 10,5 min no runner, fontes certas no Linux. Em 28/11 o The Homer sai com cidade "Iron Rock" (dado sujo).
 - Pendências comuns: com 1 show sobra espaço embaixo; pinos de cidades vizinhas juntos; não há fonte mono de
   máquina de escrever em media/fonts (U e W usam Inter em grade).
 - Ordem nova: sáb 14/11 G, H, I, J, K (Black Circle, Blaymorphed, Lost Dogs, Love Boat, PJ 90); dom 15/11 H, I, J.
