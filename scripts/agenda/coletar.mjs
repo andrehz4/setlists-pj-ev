@@ -15,6 +15,7 @@ import { aplicarLeituras, enfileirarArtes, limparFila, PASTA } from "./arte/inde
 import { paginaAgenda } from "./pagina.mjs";
 import { postsDasCasas } from "./casas/index.mjs";
 import { aplicarSitemap } from "./sitemap.mjs";
+import { aplicarCorrecoes, lerCorrecoes } from "./correcoes.mjs";
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
@@ -33,6 +34,7 @@ async function main() {
   const pendentes = DRY ? fila : await limparFila(fila, lidas, { raiz: naRaiz(".") }); // apaga imagem já lida
   const shows = [];
   const infos = { ...antes.bandas };
+  const correcoes = await lerCorrecoes(); // legenda ambígua corrigida à mão (correcoes.mjs)
   const dasCasas = await postsDasCasas(bandas); // posts de colaboração que só a casa tem no feed
   for (const b of bandas) {
     try {
@@ -40,7 +42,7 @@ async function main() {
       const comArte = aplicarLeituras(conta.posts, lidas);
       const novas = DRY ? 0 : await enfileirarArtes(b, conta.posts, { pendentes, lidas, hoje, raiz: naRaiz(".") });
       if (comArte || novas) console.log(`[agenda] @${b.conta}: ${comArte} arte(s) lida(s) usada(s), ${novas} nova(s) pro curador`);
-      const agenda = montarAgenda(b, [...conta.posts, ...(dasCasas.get(b.conta) || [])], hoje);
+      const agenda = aplicarCorrecoes(montarAgenda(b, [...conta.posts, ...(dasCasas.get(b.conta) || [])], hoje), correcoes);
       if (!DRY) await atualizarFoto(b.conta, conta.foto);
       shows.push(...agenda);
       infos[b.conta] = { lidoEm: new Date().toISOString(), seguidores: conta.seguidores, ultimoPost: conta.posts[0]?.data || null };

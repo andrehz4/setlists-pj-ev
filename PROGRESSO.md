@@ -9,8 +9,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - **Story por banda (fechado 14/11):** rodízio com 22 layouts (A, B, C, G a Z), 23 aberturas por banda e 38 finais
   gravados nas 2 vozes, roleta de chaves no reel e no story diário. Primeiro layout novo no ar: R em 26/11. PRÓXIMO:
   portar D, E, F do Claude Design (zip em `design-handoff/retorno/story-mapa/layouts-DEF/`, gitignored); conferir
-  saldo da chave nova (reserva2/.elevenlabs-key-reserva6) depois de 15/12; corrigir "Iron Rock" do The Homer em
-  28/11 em `media/agenda/shows.json`; fala da data curta só pra agenda (não cabe hoje, 1,2x) ainda sem resposta.
+  saldo da chave nova (reserva2/.elevenlabs-key-reserva6) depois de 15/12; fala da data curta só pra agenda (não cabe hoje, 1,2x) ainda sem resposta.
 - **Agenda lê as casas de show (13/11):** post de colaboração (casa + banda) só aparece no feed da casa, e o show da
   Love Boat de 14/11 no Studio Rock Café escapou. Agora a coleta lê `media/agenda/casas.json` (25 casas) e entende
   "Sábado tem" sem data (`scripts/agenda/casas/`, flag `AGENDA_CASAS=0` desliga). CONFERIR sáb 14/11 10:37 o story da
@@ -56,6 +55,13 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Conta do Actions (todos os repos): ~2.080 min/mês com contrib ligado, ~1.600 pausado, antes ~3.900 (franquia 3.000).
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
+
+## 2026-11-14 (noite): correção manual da agenda, "Iron Rock" resolvido
+
+- Legenda ambígua agora tem correção à mão: `media/agenda/correcoes.json` (chave = id do show, só campos de local e
+  hora), aplicada pela coleta a cada run (`scripts/agenda/correcoes.mjs`), então a releitura do post não desfaz.
+- The Homer 28/11: "Iron Rock" virou casa, cidade Belo Horizonte/MG (escolha do Andre; casa não achada na web).
+  Teste em `scripts/regressao/agenda-homer-iron-rock.test.mjs`. Suíte 485/485.
 
 ## 2026-11-14: 10 layouts novos (Q a Z), auditoria, vozes x5 e roleta de chaves
 
