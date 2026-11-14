@@ -3,6 +3,6 @@
 # Ferramentas de qualidade (CI e local)
 ruff==0.17.0
 pytest==9.1.1
-pytest-asyncio==1.4.0
+pytest-asyncio==1.4.1.post1
 pytest-cov==7.1.0
 pip-audit==2.10.1
