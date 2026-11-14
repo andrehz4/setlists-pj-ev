@@ -1,49 +1,49 @@
 {
-  "atualizado": "2026-11-13T19:49:39.885Z",
+  "atualizado": "2026-11-14T12:18:49.016Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-13T19:49:13.931Z",
-      "seguidores": 33164,
-      "ultimoPost": "2026-11-10T12:58:59+0000"
+      "lidoEm": "2026-11-14T12:18:26.820Z",
+      "seguidores": 33171,
+      "ultimoPost": "2026-11-13T21:27:23+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-13T19:49:20.607Z",
-      "seguidores": 102885,
+      "lidoEm": "2026-11-14T12:18:28.928Z",
+      "seguidores": 102908,
       "ultimoPost": "2026-11-12T22:19:51+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-13T19:49:22.156Z",
+      "lidoEm": "2026-11-14T12:18:30.163Z",
       "seguidores": 9338,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-13T19:49:24.830Z",
-      "seguidores": 74616,
+      "lidoEm": "2026-11-14T12:18:34.109Z",
+      "seguidores": 74622,
       "ultimoPost": "2026-11-12T21:16:00+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-13T19:49:26.764Z",
-      "seguidores": 21217,
+      "lidoEm": "2026-11-14T12:18:36.072Z",
+      "seguidores": 21224,
       "ultimoPost": "2026-11-10T21:21:37+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-13T19:49:32.658Z",
+      "lidoEm": "2026-11-14T12:18:38.016Z",
       "seguidores": 33674,
       "ultimoPost": "2026-11-09T21:24:04+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-13T19:49:36.276Z",
-      "seguidores": 6302,
+      "lidoEm": "2026-11-14T12:18:42.161Z",
+      "seguidores": 6305,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-13T19:49:37.800Z",
-      "seguidores": 6166,
+      "lidoEm": "2026-11-14T12:18:44.044Z",
+      "seguidores": 6165,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     },
     "loveboat_tribute": {
-      "lidoEm": "2026-11-13T19:49:39.597Z",
-      "seguidores": 3821,
+      "lidoEm": "2026-11-14T12:18:48.911Z",
+      "seguidores": 3822,
       "ultimoPost": "2026-09-13T18:23:12+0000"
     }
   },
@@ -78,48 +78,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-11-13-sexta-21h",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-11-13",
-      "casa": null,
-      "casaNome": null,
-      "cidade": "Sexta, 21h",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfnYS3mGQbM/"
-    },
-    {
-      "id": "pearljamsp-2026-11-13-sao-paulo",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-13",
-      "casa": "blues_beer",
-      "casaNome": "Blues Beer",
-      "cidade": "São Paulo",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "20:00",
-      "fonte": "https://www.instagram.com/p/DffhF7ktXt4/"
-    },
-    {
-      "id": "pjnoventa-2026-11-13-carapicuiba",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-13",
-      "casa": "vitaorockbaroficial",
-      "casaNome": null,
-      "cidade": "Carapicuíba",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "22:00",
-      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
-    },
     {
       "id": "blackcirclepj-2026-11-14-sabado-21h",
       "banda": "blackcirclepj",
@@ -527,6 +485,20 @@
       "hora": null,
       "fonte": "https://www.instagram.com/p/Dfad1Rcv_ke/",
       "detalhe": "https://www.instagram.com/reel/Dff3wf9OxQf/"
+    },
+    {
+      "id": "blaymorphed-2026-12-17-stones-bar",
+      "banda": "blaymorphed",
+      "nome": "Blaymorphed",
+      "data": "2026-12-17",
+      "casa": "stones_bar",
+      "casaNome": null,
+      "cidade": null,
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": null,
+      "fonte": "https://www.instagram.com/p/DfsmF1Shmf2/"
     },
     {
       "id": "pearljamcoverribeirao-2026-12-18-uberaba",
