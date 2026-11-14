@@ -75,6 +75,14 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   disco na tela nem foto de capa. Cada um tem `medida.mjs` próprio (largura real do .ttf): juntar num módulo comum.
 - ATENÇÃO render: R ~11 min, Z ~5,5 min, X ~4,5 min no Mac (blur/grão). Conferir se o story diário segue no horário
   no CI; se atrasar, aliviar o blur desses layouts.
+- Auditoria Fable (14/11) dos layouts Q a Z: nada quebra; 170 mil quadros contra todas as bandas reais, 15 MP4 de
+  produção OK. CORRIGIDO: teto do agenda-story 30 -> 60 min (28/11 com T, U, V, W estimado 16 a 37 min no CI); log do
+  story por banda gravado e commitado POR BANDA (job morto no meio republicava) com try/catch por banda; W punha "@" em
+  casa sem Instagram; W media SemiBold e renderizava Bold; Q sobrepunha cidade longa e "ver perfil". Teste em
+  `scripts/regressao/agenda-story-banda-auditoria.test.mjs`. Validado no mock (19/11, 2 bandas, rerun não republica).
+- Pendente da auditoria: R, U e Z quebram com 4+ shows na mesma banda (hoje máx 2); `media/agenda/shows.json` tem
+  "cidade" suja ("Sexta, 21h", "caverna/Mister", "Iron Rock", "MG"); A, B, C imprimem "DESDE undefined" pra
+  loveboat_tribute; Y repete ids na abertura (cosmético). Medir no CI: dispatch agenda-story dry-run dia=2026-11-28.
 - Pendências comuns: com 1 show sobra espaço embaixo; pinos de cidades vizinhas juntos; não há fonte mono de
   máquina de escrever em media/fonts (U e W usam Inter em grade).
 - Ordem nova: sáb 14/11 G, H, I, J, K (Black Circle, Blaymorphed, Lost Dogs, Love Boat, PJ 90); dom 15/11 H, I, J.

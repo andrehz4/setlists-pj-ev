@@ -43,13 +43,17 @@ export function cenaShows(T, story, cor) {
   const itens = story.shows.map((sh, i) => {
     const k = p(T, 9.4 + i * 0.35, 0.45, enter);
     if (k <= 0) return "";
-    const y = y0 + i * alto + 70, cap = `Cap. ${romano(i + 1)}.`, hh = hora(sh.hora) || "ver perfil", e = Math.min(1, alto / 200);
-    const fc = cabe(sh.cidade, 450, 76 * e, 0.5), xc = 330, fimC = xc + sh.cidade.length * 0.5 * fc + 20, fh = 62 * e, iniH = 930 - hh.length * 0.5 * fh - 18;
-    const casa = sh.casa ? `na casa ${sh.casa}` : "horário no perfil da banda";
+    const y = y0 + i * alto + 70, cap = `Cap. ${romano(i + 1)}.`, e = Math.min(1, alto / 200), xc = 330, fh = 62 * e;
+    const larg = (txt, f) => txt.length * 0.5 * f, fc0 = cabe(sh.cidade, 450, 76 * e, 0.5);
+    // sem horário e cidade longa: "ver perfil" desce pra linha da casa em vez de encostar na cidade
+    const desce = !hora(sh.hora) && xc + larg(sh.cidade, fc0) + 20 > 930 - larg("ver perfil", fh) - 18;
+    const hh = hora(sh.hora) || (desce ? "" : "ver perfil"), iniH = 930 - larg(hh, fh) - 18;
+    const fc = hh ? Math.min(fc0, cabe(sh.cidade, iniH - xc - 30, 76 * e, 0.5)) : fc0, fimC = xc + larg(sh.cidade, fc) + 20;
+    const casa = sh.casa ? `na casa ${sh.casa}${desce ? " · horário no perfil" : ""}` : "horário no perfil da banda";
     return `<g opacity="${k.toFixed(3)}" transform="translate(${f1((1 - k) * 30)} 0)">${serif(170, y, cap, 32 * e, cor.tinta, { anchor: "start", peso: "bold", op: 0.8 })}
       ${serif(xc, y, sh.cidade, fc, cor.tinta, { anchor: "start", peso: "black" })}
-      ${iniH > fimC ? `<path d="M${f1(fimC)},${y - 6} H${f1(iniH)}" stroke="${cor.tinta}" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="0.1 13" opacity="0.7"/>` : ""}
-      ${serif(930, y, hh, fh, cor.acento, { anchor: "end", peso: "bold" })}${serif(xc, y + 64 * e, casa, cabe(casa, 600, 42 * e, 0.46), cor.tinta, { anchor: "start", op: 0.75 })}
+      ${hh && iniH > fimC ? `<path d="M${f1(fimC)},${y - 6} H${f1(iniH)}" stroke="${cor.tinta}" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="0.1 13" opacity="0.7"/>` : ""}
+      ${hh ? serif(930, y, hh, fh, cor.acento, { anchor: "end", peso: "bold" }) : ""}${serif(xc, y + 64 * e, casa, cabe(casa, 600, 42 * e, 0.46), cor.tinta, { anchor: "start", op: 0.75 })}
       <path d="M122,${y - 24} l12,14 l24,-30" fill="none" stroke="${cor.acento}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="${p(T, 9.8 + i * 0.35, 0.3).toFixed(3)}"/></g>`;
   }).join("");
   const ym = y0 + N * alto + 250;

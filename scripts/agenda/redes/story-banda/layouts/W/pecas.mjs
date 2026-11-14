@@ -7,7 +7,7 @@ import { largura } from "./medida.mjs";
 export { esc };
 export const FAM = {
   archivo: ["'Archivo Black','Inter ExtraBold',sans-serif", 400], mao: ["'Permanent Marker','Archivo Black',cursive", 400],
-  sans: ["'Inter',system-ui,sans-serif", 700], semi: ["'Inter',system-ui,sans-serif", 600],
+  sans: ["'Inter',system-ui,sans-serif", 700], semi: ["'Inter SemiBold','Inter',system-ui,sans-serif", 600],
 };
 export const rnd = (s) => { const x = Math.sin(s * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); };
 let _id = 0;

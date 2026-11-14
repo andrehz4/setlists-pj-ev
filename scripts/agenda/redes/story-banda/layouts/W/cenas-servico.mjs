@@ -62,7 +62,7 @@ export function cenaShows(T, story, cor) {
   const topo = balao(540, 360, 820, 220, cor, { tx: 330, ty: 520, k: kb }) + (kb > 0.6 ? txt(540, 360 + ft * 0.36, tit, ft, cor.linha) : "");
   const tira = story.shows.map((sh, i) => {
     const k = p(T, 9.3 + i * 0.3, 0.4, pop), y = y0 + i * (h + gap), hh = hora(sh.hora) || "ver perfil", e = Math.min(1, h / 340);
-    const casa = sh.casa ? `@${String(sh.casa).replace(/^@/, "")}` : "";
+    const casa = sh.casa || ""; // "@conta" ou nome da casa sem Instagram (nunca "@Nome Da Casa")
     const fc = cabe(sh.cidade, 580, 70 * e), fh = cabe(hh, 400, (sh.hora ? 84 : 54) * e), fk = cabe(casa, 580, 38 * e, "semi");
     const xt = 340, desenho = DESENHOS[i % 3](195, y + h / 2, Math.min(0.95, h / 300), cor, i % 3 === 1 ? 0 : undefined);
     const miolo = desenho + txt(xt, y + h * 0.33, sh.cidade, fc, cor.linha, { anchor: "start" }) +
