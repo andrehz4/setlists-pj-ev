@@ -68,7 +68,15 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   estimadas, medir com sharp) e pinos empilhados em cidades vizinhas no mapa.
 - Claude Design: D/E/F PRONTOS. Zip extraído em `design-handoff/retorno/story-mapa/layouts-DEF/` (gitignored):
   story-banda-D/E/F.jsx, MOTION-SPEC-banda-D/E/F.md, story-banda-comum.js. Falta portar como layouts/D, E, F.
-- Próximo: layout R "No Code" (pedido do Andre 13/11).
+- Layouts R a Z (homenagens, aprovados pelo Andre 13/11, feitos por agentes em paralelo): R No Code (mural de
+  polaroides), S Yield (estrada e placas verdes), T Binaural (céu estrelado e osciloscópio), U Riot Act (ofício
+  datilografado e carimbos), V Avocado (feira livre), W Backspacer (gibi e máquina de escrever), X Lightning Bolt
+  (neon art déco), Y Gigaton (gelo e aurora), Z Dark Matter (pintura com luz). Rodízio vai a 22. Nenhum usa nome de
+  disco na tela nem foto de capa. Cada um tem `medida.mjs` próprio (largura real do .ttf): juntar num módulo comum.
+- ATENÇÃO render: R ~11 min, Z ~5,5 min, X ~4,5 min no Mac (blur/grão). Conferir se o story diário segue no horário
+  no CI; se atrasar, aliviar o blur desses layouts.
+- Pendências comuns: com 1 show sobra espaço embaixo; pinos de cidades vizinhas juntos; não há fonte mono de
+  máquina de escrever em media/fonts (U e W usam Inter em grade).
 - Ordem nova: sáb 14/11 G, H, I, J, K (Black Circle, Blaymorphed, Lost Dogs, Love Boat, PJ 90); dom 15/11 H, I, J.
 
 ## 2026-11-13 (noite, parte 2): 4 layouts novos no story por banda, LIGADOS

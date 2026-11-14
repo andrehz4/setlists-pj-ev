@@ -13,6 +13,15 @@ import * as N from "./N/index.mjs";
 import * as O from "./O/index.mjs";
 import * as P from "./P/index.mjs";
 import * as Q from "./Q/index.mjs";
+import * as R from "./R/index.mjs";
+import * as S from "./S/index.mjs";
+import * as T from "./T/index.mjs";
+import * as U from "./U/index.mjs";
+import * as V from "./V/index.mjs";
+import * as W from "./W/index.mjs";
+import * as X from "./X/index.mjs";
+import * as Y from "./Y/index.mjs";
+import * as Z from "./Z/index.mjs";
 
 export const LAYOUTS = {};
 export const ORDEM_TEMAS = ["azul", "ocre", "preto", "vermelho"];
@@ -33,6 +42,15 @@ registrar("N", N);
 registrar("O", O);
 registrar("P", P);
 registrar("Q", Q);
+registrar("R", R);
+registrar("S", S);
+registrar("T", T);
+registrar("U", U);
+registrar("V", V);
+registrar("W", W);
+registrar("X", X);
+registrar("Y", Y);
+registrar("Z", Z);
 
 export const layoutsLigados = () => (process.env.AGENDA_LAYOUTS_NOVOS === "1" ? Object.keys(LAYOUTS) : []);
 
