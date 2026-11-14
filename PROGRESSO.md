@@ -7,8 +7,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 ## Estado agora
 
 - **Story por banda (14/11 noite):** rodízio com 25 layouts (A a Z), D/E/F do Claude Design portados e LIGADOS.
-  23 aberturas por banda e 38 finais nas 2 vozes, roleta de chaves no reel e no story diário. PRÓXIMO: guia
-  `docs/PLAYBOOK-LAYOUT-STORY.md` com a "régua" dos specs do Design (fecha 14/12) e 1 layout de teste só com ele; conferir
+  23 aberturas por banda e 38 finais nas 2 vozes, roleta de chaves no reel e no story diário. Lapidar G a Z
+  pela régua do Design foi DESCARTADO (14/11): piloto no O tirou a personalidade, Andre preferiu o antes. PRÓXIMO: conferir
   saldo da chave nova (reserva2/.elevenlabs-key-reserva6) depois de 15/12; fala da data curta só pra agenda (não cabe hoje, 1,2x) ainda sem resposta.
 - **Agenda lê as casas de show (13/11):** post de colaboração (casa + banda) só aparece no feed da casa, e o show da
   Love Boat de 14/11 no Studio Rock Café escapou. Agora a coleta lê `media/agenda/casas.json` (25 casas) e entende
