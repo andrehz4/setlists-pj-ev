@@ -2,9 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { falasNecessarias, falasDoStory, arquivoDaFala, nomeFalado } from "./voz.mjs";
 
-test("falas fixas: 18 aberturas por banda + 25 finais, nome falado do jeito certo", () => {
+test("falas fixas: 24 aberturas por banda + 39 finais, nome falado do jeito certo", () => {
   const f = falasNecessarias(["PJ 90", "Lost Dogs"]);
-  assert.equal(f.length, 2 * 18 + 25 + 8 + 1, "18 por banda, 25 finais, 8 horários e a frase de sem horário");
+  assert.equal(f.length, 2 * 24 + 39 + 8 + 1, "24 por banda, 39 finais, 8 horários e a frase de sem horário");
   assert.ok(f.includes("Confere o horário no perfil da banda!"));
   assert.ok(f.some((t) => t.includes("Pearl Jam noventa")));
   assert.equal(nomeFalado("Lost Dogs"), "Lost Dogs");

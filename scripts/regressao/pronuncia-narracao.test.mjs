@@ -15,6 +15,7 @@ const PRONUNCIA_RUIM = [
   [/(?<![\p{L}-])pros?(?![\p{L}-])/iu, "pro (a voz lê PRÓ de profissional, 13/11/2026)"],
   [/\bcena cover\b/i, "cena cover (a voz lê Sela/Senna Cover, 14/11/2026)"],
   [/^corre que\b/i, "começar com Corre que (a voz embola: Correc, Quareque, 14/11/2026)"],
+  [/\bquem ainda\b/i, "quem ainda (a Bella emenda: que a Mainda / que o Emma, 14/11/2026)"],
 ];
 const problemas = (frase) => PRONUNCIA_RUIM.filter(([re]) => re.test(frase)).map(([, motivo]) => motivo);
 

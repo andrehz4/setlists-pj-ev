@@ -87,6 +87,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   na roleta do reel E agora do story diário (principal -> reserva -> reserva2; agenda fora do story).
   Mais 128 falas na reserva2 (gastou ~9.300 dos 10 mil): agora 18 aberturas por banda e 25 finais. "Corre que..."
   no começo saía embolado (Correc/Quareque): frase tirada e regra no teste de pronúncia.
+  2a leva na reserva2 (o contador zerou depois da 1a: ciclo vencido desde jan; 2a gastou ~9.200, sobram ~700, renova
+  15/12): 24 aberturas por banda e 39 finais. "quem ainda" a Bella emenda (regra no teste). Áudio pra ouvir em
+  /Users/andrehz/Desktop/falas-novas-agenda/.
 - Pendente da auditoria: R, U e Z quebram com 4+ shows na mesma banda (hoje máx 2); `media/agenda/shows.json` tem
   "cidade" suja ("Sexta, 21h", "caverna/Mister", "Iron Rock", "MG"); A, B, C imprimem "DESDE undefined" pra
   loveboat_tribute; Y repete ids na abertura (cosmético). CI medido 14/11: dry-run de 28/11 (T, U, V, W) levou 10,5 min no runner, fontes certas no Linux. Em 28/11 o The Homer sai com cidade "Iron Rock" (dado sujo).
