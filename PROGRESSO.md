@@ -52,6 +52,15 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-13 (noite, parte 3): mais 4 layouts no story por banda (K, L, M, N), LIGADOS
+
+- Rodízio foi de 7 pra 11: K setlist de palco (folha com fita crepe, "ENSAIO" riscado, BIS circulado), L fita cassete
+  (deck, encarte com mapa, LADO A, rebobina), M lambe-lambe (cartazes colados na parede), N rádio FM (dial, visor,
+  radar). Desenho do Claude Code, mesma régua de tempo; abertura deixa o clipe aparecer, b-roll igual.
+- Fonte Permanent Marker (K, L) já estava em media/fonts. "de <cidade>" virou "base: <cidade>" (evita "de Rio").
+- Ordem nova: sáb 14/11 G, H, I, J, K (Black Circle, Blaymorphed, Lost Dogs, Love Boat, PJ 90); dom 15/11 H, I, J.
+- D, E, F do Claude Design continuam a caminho (pedido retomado 22:04): com eles o rodízio vai a 14.
+
 ## 2026-11-13 (noite, parte 2): 4 layouts novos no story por banda, LIGADOS
 
 - Problema: com 9 bandas, os stories por banda só mudavam de cor. Agora o rodízio tem 7: A/B/C (mapas antigos) + G
@@ -279,19 +288,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   (Pillow 12, authlib 1.8, PyJWT no lugar do python-jose, fastapi/starlette novos). 249 testes, deploy ok no
   Railway, fórum/login/painel conferidos no ar.
 - POC da agenda de bandas cover com a @blaymorphed (API oficial, só legenda): `docs/agenda/PLANO-AGENDA.md`.
-
-## 2026-10-03: vistoria de saúde executada (15 commits)
-
-- CI: ffmpeg com teto de tempo e reserva estática (o story de 02/10 morreu no apt), Node 22, actions por SHA,
-  dependabot, crons fora do :00, CI do backend verde de novo.
-- Estado: JSON corrompido derruba a run em vez de virar "vazio" (`scripts/lib/estado.mjs`); commit único que aborta
-  rebase (`scripts/lib/git.mjs`); Telegram e fuso BRT únicos; `scripts/config.mjs` (scripts rodam de qualquer pasta).
-- Backend (cópia deste repo): e-mail privado no perfil, JWT_SECRET obrigatório, PyJWT, deps sem CVE, Dockerfile sem
-  root. Produção é o terra-gentil-app: falta portar.
-- Site: CSS e dados fora do `index.html` (21 mil -> 10 mil linhas), conferido no Chrome (DOM e tela iguais) e no ar.
-- Fatiados por responsabilidade (mesma API, conferido pixel a pixel, legenda a legenda e no mock): run-publish,
-  slide-image, instagram, story-video, coletores, merge-curated, fila, auto-merge, mock-ig, story/reel.
-- Bugs achados e corrigidos: poll de vídeo com status ERROR esperava 3 a 5 min; coletor fora do modo routine cortava o
-  index pra 30 e apagava imagens; pearljam.com com HTML novo derrubava a coleta; story mostrava `SETLISTS-PJ-EV.PAGES.DEV`;
-  ferramentas de cápsula quebradas pelo sharp 0.35.
-- Removidos: 17 scripts sem uso, pastas `_design-*`, backup de maio, `media-manifest.json`. Docs antigos em `docs/arquivo/`.
