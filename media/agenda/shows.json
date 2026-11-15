@@ -1,49 +1,49 @@
 {
-  "atualizado": "2026-11-14T18:13:46.505Z",
+  "atualizado": "2026-11-15T12:19:26.316Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-14T18:13:23.815Z",
-      "seguidores": 33179,
+      "lidoEm": "2026-11-15T12:18:45.140Z",
+      "seguidores": 33185,
       "ultimoPost": "2026-11-13T21:27:23+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-14T18:13:29.386Z",
-      "seguidores": 102927,
+      "lidoEm": "2026-11-15T12:18:48.736Z",
+      "seguidores": 102967,
       "ultimoPost": "2026-11-12T22:19:51+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-14T18:13:30.773Z",
-      "seguidores": 9339,
+      "lidoEm": "2026-11-15T12:18:51.006Z",
+      "seguidores": 9338,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-14T18:13:33.353Z",
-      "seguidores": 74629,
+      "lidoEm": "2026-11-15T12:19:01.493Z",
+      "seguidores": 74632,
       "ultimoPost": "2026-11-12T21:16:00+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-14T18:13:35.687Z",
-      "seguidores": 21228,
-      "ultimoPost": "2026-11-10T21:21:37+0000"
+      "lidoEm": "2026-11-15T12:19:04.888Z",
+      "seguidores": 21251,
+      "ultimoPost": "2026-11-15T05:53:09+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-14T18:13:37.450Z",
-      "seguidores": 33680,
+      "lidoEm": "2026-11-15T12:19:13.473Z",
+      "seguidores": 33690,
       "ultimoPost": "2026-11-09T21:24:04+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-14T18:13:40.113Z",
-      "seguidores": 6307,
+      "lidoEm": "2026-11-15T12:19:19.680Z",
+      "seguidores": 6305,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-14T18:13:41.896Z",
+      "lidoEm": "2026-11-15T12:19:22.582Z",
       "seguidores": 6168,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     },
     "loveboat_tribute": {
-      "lidoEm": "2026-11-14T18:13:46.439Z",
-      "seguidores": 3823,
+      "lidoEm": "2026-11-15T12:19:26.010Z",
+      "seguidores": 3822,
       "ultimoPost": "2026-09-13T18:23:12+0000"
     }
   },
@@ -78,90 +78,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "blackcirclepj-2026-11-14-sabado-21h",
-      "banda": "blackcirclepj",
-      "nome": "Black Circle",
-      "data": "2026-11-14",
-      "casa": null,
-      "casaNome": null,
-      "cidade": "Sábado, 21h",
-      "uf": "RJ",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfnYS3mGQbM/"
-    },
-    {
-      "id": "blaymorphed-2026-11-14-sao-bernardo",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-11-14",
-      "casa": "barrockclub",
-      "casaNome": null,
-      "cidade": "São Bernardo",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": "Rock Club",
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfSTceTN0x3/"
-    },
-    {
-      "id": "pearljamsp-2026-11-14-jundiai",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-14",
-      "casa": "soundstones.oficial",
-      "casaNome": null,
-      "cidade": "Jundiaí",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "16:00",
-      "fonte": "https://www.instagram.com/p/Dfkfth_N-0A/"
-    },
-    {
-      "id": "pearljamsp-2026-11-14-jundiai",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-14",
-      "casa": null,
-      "casaNome": "Cervejaria Ahtrio",
-      "cidade": "Jundiaí",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "21:00",
-      "fonte": "https://www.instagram.com/p/DfSVhjYxuxQ/"
-    },
-    {
-      "id": "loveboat_tribute-2026-11-14-santos",
-      "banda": "loveboat_tribute",
-      "nome": "Love Boat Tribute",
-      "data": "2026-11-14",
-      "casa": "studiorockcafe",
-      "casaNome": "Studio Rock Café",
-      "cidade": "Santos",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "22:00",
-      "fonte": "https://www.instagram.com/p/Dfg7ox3hl4T/"
-    },
-    {
-      "id": "pjnoventa-2026-11-14-itapira",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-14",
-      "casa": "bangalogastrobar",
-      "casaNome": null,
-      "cidade": "Itapira",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "20:00",
-      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
-    },
     {
       "id": "pearljamsp-2026-11-15-itaquera",
       "banda": "pearljamsp",
