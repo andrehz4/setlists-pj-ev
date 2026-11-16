@@ -3,7 +3,7 @@
 // que o Instagram cobre com o campo de mensagem. Sem sticker de menção: aqui é só arte.
 import { W, M, COR, DISP, CORPO, linha, tamanho } from './story-pincel.js';
 
-export const RODAPE = { y: 1466 };
+export const RODAPE = { y: 1476 };
 const LOGO = 124, TX = M + LOGO + 24;
 
 function logo(c, im) {

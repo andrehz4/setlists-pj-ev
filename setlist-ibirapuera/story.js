@@ -7,8 +7,9 @@ import { W, H, M, COR, DISP, carregar, fontes, tela, caixa, linha, quebrar, peda
 import { rodape, sublinhar } from './story-rodape.js';
 
 const $ = (s) => document.querySelector(s);
-export const FOLHA = { y: 428, larg: 330 }, INDICE = { y: 862, h: 180 }, GRADE = { y: 1054, h: 134, gap: 12 };
-const CHANCE = { y: 1346, h: 104 }; // o rodapé (story-rodape.js) começa em 1466
+// Folha maior na imagem (400 px) e cartas mais baixas pra caber tudo antes do rodapé (story-rodape.js, que começa em 1476).
+export const FOLHA = { y: 428, larg: 400 }, INDICE = { y: 950, h: 150 }, GRADE = { y: 1112, h: 118, gap: 10 };
+const CHANCE = { y: 1368, h: 96 };
 const ORDEM = ['Sua raridade', 'Sua aposta certa', 'Tocadas em 2026', 'Num show típico'];
 
 // Fundo: quadro do vídeo do Eddie (foto ou o próprio <video>) no alto, sumindo no escuro.
@@ -24,7 +25,9 @@ function titulo(c) {
   rotulo(c, M, 186, $('#r-show')?.textContent || 'Ibirapuera', COR.ouro, 22);
   const base = { fonte: tamanho(108, DISP, 900), cor: COR.texto };
   const linhas = [[]]; // o <br> do #r-nome separa as duas linhas
-  for (const n of $('#r-nome')?.childNodes || []) {
+  const longo = $('#r-nome .nome-longo'); // nome comprido: no site ganha linha própria; no story volta pro "NOME, O SEU / SETLIST NO IBIRAPUERA:"
+  if (longo) linhas.splice(0, 1, [{ ...base, cor: COR.ouro, t: longo.textContent.toUpperCase() }, { ...base, t: ' O SEU' }], [{ ...base, t: 'SETLIST NO IBIRAPUERA:' }]);
+  else for (const n of $('#r-nome')?.childNodes || []) {
     if (n.nodeName === 'BR') linhas.push([]);
     else linhas.at(-1).push({ ...base, cor: n.nodeName === 'EM' ? COR.ouro : COR.texto, t: n.textContent.toUpperCase() });
   }
@@ -62,18 +65,18 @@ function cartaIndice(c, el) {
   caixa(c, M, y, W - 2 * M, h, 24, COR.ouro);
   rotulo(c, M + 28, y + 40, el.querySelector('.rot').textContent, 'rgba(26,19,5,.7)');
   const ver = (el.querySelector('.txt b')?.textContent || '').replace(/[.!]\s*$/, '').toUpperCase();
-  linha(c, M + 26, y + 118, [{ fonte: tamanho(68, DISP, 900), cor: COR.esc, t: ver }], 620);
-  linha(c, M + 28, y + 150, pedacos(el.querySelector('.txt'), TXT('rgba(26,19,5,.78)', COR.esc, 22), 'B'), 640);
-  caixa(c, M + 28, y + h - 18, W - 2 * M - 56, 10, 5, 'rgba(26,19,5,.18)');
-  return { medidor: { x: M + 28, y: y + h - 18, w: W - 2 * M - 56, h: 10, pct: parseFloat(el.querySelector('.medidor i')?.style.width) || 0 },
-    numero: { ped: pedacos(el.querySelector('.val'), VAL(COR.esc, 'rgba(26,19,5,.55)', 116)), x: W - M - 28, y: y + 118, w: 300, al: 'right' } };
+  linha(c, M + 26, y + 98, [{ fonte: tamanho(62, DISP, 900), cor: COR.esc, t: ver }], 620);
+  linha(c, M + 28, y + 124, pedacos(el.querySelector('.txt'), TXT('rgba(26,19,5,.78)', COR.esc, 22), 'B'), 640);
+  caixa(c, M + 28, y + h - 15, W - 2 * M - 56, 8, 4, 'rgba(26,19,5,.18)');
+  return { medidor: { x: M + 28, y: y + h - 15, w: W - 2 * M - 56, h: 8, pct: parseFloat(el.querySelector('.medidor i')?.style.width) || 0 },
+    numero: { ped: pedacos(el.querySelector('.val'), VAL(COR.esc, 'rgba(26,19,5,.55)', 104)), x: W - M - 28, y: y + 104, w: 300, al: 'right' } };
 }
 
 function carta(c, el, x, y, w, h) {
   caixa(c, x, y, w, h, 20, COR.carta, COR.linha);
-  rotulo(c, x + 24, y + 36, el.querySelector('.rot').textContent, COR.fraco, 19);
-  linha(c, x + 24, y + h - 18, pedacos(el.querySelector('.txt'), TXT(COR.fraco, COR.texto, 21)), w - 48);
-  return { numero: { ped: pedacos(el.querySelector('.val'), VAL(COR.texto, COR.fraco, 54)), x: x + 24, y: y + 88, w: w - 48 } };
+  rotulo(c, x + 24, y + 32, el.querySelector('.rot').textContent, COR.fraco, 19);
+  linha(c, x + 24, y + h - 14, pedacos(el.querySelector('.txt'), TXT(COR.fraco, COR.texto, 21)), w - 48);
+  return { numero: { ped: pedacos(el.querySelector('.val'), VAL(COR.texto, COR.fraco, 50)), x: x + 24, y: y + 80, w: w - 48 } };
 }
 
 // "Chance de ouvir todas" ocupa a largura toda: número à esquerda, explicação em 2 linhas à direita.
@@ -81,8 +84,8 @@ function cartaChance(c, el) {
   const { y, h } = CHANCE, x = M, w = W - 2 * M;
   caixa(c, x, y, w, h, 20, COR.carta, COR.linha);
   rotulo(c, x + 24, y + 36, el.querySelector('.rot').textContent, COR.fraco, 19);
-  quebrar(c, x + 440, y + 50, pedacos(el.querySelector('.txt'), TXT(COR.fraco, COR.texto, 21)), w - 464, 27);
-  return { numero: { ped: pedacos(el.querySelector('.val'), VAL(COR.texto, COR.fraco, 58)), x: x + 24, y: y + 94, w: 390 } };
+  quebrar(c, x + 440, y + 44, pedacos(el.querySelector('.txt'), TXT(COR.fraco, COR.texto, 21)), w - 464, 27);
+  return { numero: { ped: pedacos(el.querySelector('.val'), VAL(COR.texto, COR.fraco, 54)), x: x + 24, y: y + 84, w: 390 } };
 }
 
 // Número da carta; f < 1 conta de 0 até o valor (só os algarismos grandes, "1 em" e expoente ficam).
@@ -120,7 +123,7 @@ export async function montar(folha) {
     camadas.push(camada('carta', x, y, wc, GRADE.h, (c) => carta(c, el, x, y, wc, GRADE.h)));
   });
   if (chance) camadas.push(camada('carta', 0, CHANCE.y, W, CHANCE.h, (c) => cartaChance(c, chance)));
-  camadas.push(...rodape(camada, await carregar('img/logo-smufdpj.png')));
+  camadas.push(...rodape(camada, await carregar('img/logo-smufdpj.png?v=2')));
   return camadas;
 }
 
