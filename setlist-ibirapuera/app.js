@@ -4,6 +4,7 @@ import { desenharFolha, paraBlob } from './folha.js';
 import { story } from './story.js';
 import { entregar } from './salvar.js';
 import { sortearShow } from './sorteio.js';
+import { ligar } from './link-setlist.js';
 import { vaiEscrever, pedirEscrita, jaVista, papelEmBranco, escreverAoVivo, atualizarDepois } from './folha-viva.js';
 
 const LIMITE = 24;
@@ -12,8 +13,7 @@ const $ = (s) => document.querySelector(s);
 const estado = { show: 1, listas: { 1: [], 2: [] },
   get lista() { return this.listas[this.show]; }, set lista(v) { this.listas[this.show] = v; } };
 const chaveDe = (show) => show + ':' + estado.listas[show].map((m) => m.chave + (m.bis ? '|' : '')).join(',');
-let grupos = [];
-let modelo = null;
+let grupos = [], modelo = null;
 
 const esc = (t) => String(t).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 const naLista = (k) => estado.lista.some((m) => m.chave === k);
@@ -157,5 +157,7 @@ $('#lista').addEventListener('drop', (e) => {
 });
 $('#busca').addEventListener('input', catalogo);
 // window.musicasCedo: o index.html já começou a baixar o catálogo antes deste módulo chegar.
-(window.musicasCedo || fetch('musicas.json').then((r) => r.json())).then((d) => { grupos = d.grupos; modelo = d.modelo; if (location.hash === '#sortear') sortear(); else tudo(); })
+// ligar(): se a URL trouxe ?s=<código>, reabre aquela mesma setlist (link-setlist.js).
+(window.musicasCedo || fetch('musicas.json').then((r) => r.json())).then((d) => { grupos = d.grupos; modelo = d.modelo;
+  if (ligar(estado, grupos)) pedirEscrita(); else if (location.hash === '#sortear') return sortear(); tudo(); })
   .catch(() => { $('#catalogo').textContent = 'As músicas não carregaram. Recarregue a página.'; });

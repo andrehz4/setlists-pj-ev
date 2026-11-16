@@ -38,7 +38,7 @@ export function nomeProibido(nome) {
 // Letra cirílica ou grega parecida ("putа", "hіtler") cai fora, e "Ganhe-ingresso-pix" vira "Ganhe".
 export const soLetras = (t) => String(t).split('-')[0].replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s']/g, '').replace(/\s{2,}/g, ' ').slice(0, 18);
 
-if (typeof document !== 'undefined') {
+if (typeof document !== 'undefined' && document.querySelector('#nome')) { // só na página, com o campo do nome
   const campo = document.querySelector('#nome');
   const aviso = Object.assign(document.createElement('small'), { id: 'nome-aviso', role: 'status' });
   aviso.style.cssText = 'color:var(--cor);font-size:13px;min-height:1em';

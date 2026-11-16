@@ -1,5 +1,7 @@
 // Navegação entre as 3 telas, sorteio pessoal, estatísticas de sorte, Spotify e estado de carregando da folha.
 // Não mexe no app.js: lê a lista que ele desenha em #lista e reaproveita os mesmos botões por id.
+import { CODIGO } from './link-setlist.js';
+
 const $ = (s) => document.querySelector(s);
 const params = new URLSearchParams(location.search);
 // Vídeo de fundo: só o poster com movimento reduzido
@@ -169,9 +171,9 @@ new MutationObserver(atualizar).observe($('#shows'), { subtree: true, attributes
   ultimaChave = ''; atualizar();
 });
 
-// Atalhos: #sortear (app.js já sorteia), ?tela=montar|resultado pra visualizar telas
+// Atalhos: #sortear (app.js já sorteia), ?s=<código> (app.js restaura a setlist do link), ?tela=montar|resultado pra visualizar telas
 const pronto = () => new Promise((ok) => { const t = setInterval(() => { if ($('#catalogo').children.length) { clearInterval(t); ok(); } }, 80); });
-if (location.hash === '#sortear') ir('resultado', false);
+if (location.hash === '#sortear' || CODIGO) ir('resultado', false);
 else if (params.get('tela')) pronto().then(() => {
   if (params.has('demo') || params.get('tela') === 'resultado') $('#sortear').click();
   setTimeout(() => ir(params.get('tela'), false), 20);

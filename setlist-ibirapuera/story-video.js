@@ -1,17 +1,18 @@
 // Story em VÍDEO (15 a 20 s, 1080x1920, MP4): o vídeo do Eddie em P&B passando atrás, a folha escrita na hora, a lista
 // digitada e as cartas com os números contando (roteiro em story-roteiro.js). Gravado no navegador da
 // pessoa com canvas.captureStream + MediaRecorder. Só aparece onde o navegador grava MP4 (Instagram pode recusar WebM).
-// No navegador interno do Instagram/Facebook o botão ensina a abrir no Safari/Chrome. Falhou: oferece a imagem na hora. Desligar: LIGADO = false ou ?sem-video na URL.
+// No navegador interno do Instagram/Facebook o botão abre o Safari/Chrome com a mesma setlist (abrir-fora.js). Falhou: oferece a imagem na hora. Desligar: LIGADO = false ou ?sem-video na URL.
 import { W, H, tela, carregar } from './story-pincel.js';
 import { prepararRoteiro, quadro } from './story-roteiro.js';
 import { entregar, fecharTela, DENTRO_DE_APP } from './salvar.js';
+import { abrirFora } from './abrir-fora.js';
 
 const LIGADO = true;
 const FPS = 30;
 const TIPOS = ['video/mp4;codecs=avc1.42E01F', 'video/mp4;codecs=avc1', 'video/mp4'];
 const $ = (s) => document.querySelector(s);
 
-// 'app' = navegador interno do Instagram/Facebook: o botão aparece, mas ensina a abrir no Safari/Chrome.
+// 'app' = navegador interno do Instagram/Facebook: o botão aparece e abre o Safari/Chrome com a mesma setlist.
 export function formato() {
   if (!LIGADO || /[?&]sem-video/.test(location.search)) return null;
   if (DENTRO_DE_APP) return 'app';
@@ -127,17 +128,13 @@ const tipo = formato();
 const b = $('#story-video');
 if (tipo && b) {
   b.hidden = false;
-  if (tipo !== 'app') { // vídeo como opção principal; dentro do Instagram não dá pra baixar vídeo, então lá a imagem segue na frente
-    $('#acoes').classList.add('com-video'); b.classList.add('cheio', 'story-btn');
-    b.innerHTML = '<span>Baixar vídeo para o seu stories</span>'; $('#story').firstElementChild.textContent = 'Prefere foto? Baixar só a imagem';
-    mirar(b);
-  }
+  // Vídeo como opção principal, também no navegador interno do Instagram (lá o botão abre o navegador de verdade).
+  $('#acoes').classList.add('com-video'); b.classList.add('cheio', 'story-btn');
+  b.innerHTML = '<span>Baixar vídeo para o seu stories</span>'; $('#story').firstElementChild.textContent = 'Prefere foto? Baixar só a imagem';
+  mirar(b);
   const ref = $('#story'), espelhar = () => { b.disabled = ref.disabled; };
   new MutationObserver(espelhar).observe(ref, { attributes: true, attributeFilter: ['disabled'] });
   espelhar();
-  b.addEventListener('click', () => (tipo === 'app'
-    ? recado('O Instagram não deixa baixar vídeo por aqui. Toque no menu ••• lá em cima, escolha "Abrir no navegador" '
-      + '(Safari ou Chrome) e toque de novo em "Baixar vídeo para o seu stories". A imagem funciona aqui mesmo.', 'Baixar a imagem', () => $('#story').click())
-    : storyVideo(b, tipo)));
+  b.addEventListener('click', () => (tipo === 'app' ? abrirFora(() => $('#story').click()) : storyVideo(b, tipo)));
 }
 if (!$('#acoes')?.classList.contains('com-video')) mirar($('#story')); // sem vídeo, a imagem é o botão principal
