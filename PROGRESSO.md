@@ -12,13 +12,17 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   nas 228 sem PNG; traço de bis; baixar folha/story; "Ouvir no YouTube" sem login (`watch_videos`, só as 173 com ID).
   Regenerar: `node scripts/setlist-ibirapuera/build.mjs` + `reels-especiais/letra-eddie/venv/bin/python
   reels-especiais/letra-eddie/ferramentas/gerar-ibira.py`. Teste local: `#sortear` na URL abre sorteada.
-  16/11 tarde: `sorteio.js` (sorteio realista: abre/fecha/bis do modelo da era Earthling, 46 shows 2022+, gerado em
-  `musicas.json.modelo` por `scripts/setlist-ibirapuera/modelo.mjs`) e estatísticas (`pct`, `ult`, `showsSolo`). AINDA NÃO
-  LIGADO no app.js (trocar o `sortear()` por `sortearShow(grupos, modelo)`). Agente Fable mexeu em folha.js/app.js/index.html
-  (folha progressiva com prazo por imagem, contra o "só carrega" no celular): revisar com `git diff setlist-ibirapuera`,
-  testar e publicar. Claude Design: projeto "Gerador de setlist do Eddie" (claude.ai/design/p/863d6417-ec95-41c6-905e-893e6c0738b0)
-  refazendo o front com `design-handoff/setlist-ibirapuera/BRIEF-DESIGN.md` (chegada com 2 botões, montar, resultado com
-  estatísticas de sorte, ouvir YouTube/Spotify, baixar); exportar pra `design-handoff/retorno/` e aplicar mantendo os IDs.
+  16/11 tarde: `sorteio.js` LIGADO no app.js (abre/fecha/bis do modelo da era Earthling, 46 shows 2022+, gerado em
+  `musicas.json.modelo` por `scripts/setlist-ibirapuera/modelo.mjs`; testado no Chrome com `#sortear`). Correções do
+  Fable PUBLICADAS: folha pintada aos poucos (prazo de 9 s por imagem, vira letra simples e se ajeita), `salvar.js`
+  (no navegador do Instagram mostra a imagem pra segurar e salvar), botão fixo "Ver minha setlist" no celular, PNGs
+  recomprimidos (3,36 para 1,75 MB), cache de 1 dia em `_headers`. Claude Design: projeto "Gerador de setlist do Eddie"
+  (claude.ai/design/p/863d6417-ec95-41c6-905e-893e6c0738b0). O pacote `design-handoff/setlist-ibirapuera/` agora tem
+  prints do oficial (`referencia/oficial-*.png`, celular e desktop, todas as telas) e o VÍDEO DE FUNDO pedido pelo Andre
+  (`referencia/fundo-eddie.mp4`: 8 trechos mudos do Eddie, 25 s em loop, P&B escuro, 1,1 MB; cópia já em
+  `setlist-ibirapuera/fundo-eddie.mp4`); BRIEF atualizado. FALTA o Andre arrastar esses arquivos novos no projeto do
+  Design. Quando voltar: exportar pra `design-handoff/retorno/` e aplicar mantendo os IDs.
+  Fable notou: traço de bis em y+84 encosta na música seguinte (parece riscá-la). Papel de 338 KB vem do glitch.ge.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +

@@ -6,10 +6,19 @@
 <title>Monte a sua setlist do Eddie no Ibirapuera</title>
 <meta name="description" content="Escolha as músicas, arraste pra ordenar e baixe a sua setlist do Eddie Vedder no Ibirapuera escrita à mão.">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#141311">
+<link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
+<link rel="modulepreload" href="app.js">
+<link rel="modulepreload" href="folha.js">
+<link rel="modulepreload" href="salvar.js">
+<link rel="modulepreload" href="sorteio.js">
+<script>window.musicasCedo = fetch('musicas.json').then(function (r) { return r.json(); });</script>
 <style>
   :root { --fundo: #141311; --cartao: #1f1d1a; --linha: #34302a; --texto: #f2efe6; --fraco: #a39c8e; --cor: #e8b04a; }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.45 system-ui, -apple-system, sans-serif; }
+  [hidden] { display: none !important; }
+  html { overflow-x: hidden; }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.45 system-ui, -apple-system, sans-serif; overflow-wrap: anywhere; -webkit-text-size-adjust: 100%; }
   header, main { max-width: 1180px; margin: 0 auto; padding: 16px; }
   h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); margin: 8px 0 4px; }
   header p { color: var(--fraco); margin: 0 0 16px; }
@@ -38,7 +47,18 @@
   .dica { color: var(--fraco); font-size: .9em; margin: 4px 0 8px; }
   #previa { margin-top: 16px; }
   #folha { width: 100%; max-width: 560px; display: block; margin: 0 auto 12px; border-radius: 4px; }
+  #previa.montando #folha { opacity: .6; }
+  #estado-folha { color: var(--cor); min-height: 1.45em; margin: 0 0 6px; text-align: center; }
   #aviso { color: #ff9b85; min-height: 1em; }
+  #atalho { display: none; }
+  @media (max-width: 860px) {
+    body { padding-bottom: 72px; }
+    #atalho { display: block; position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 5; padding: 12px; box-shadow: 0 4px 16px #000a; }
+    #lista button { padding: 8px 10px; }
+  }
+  #salvar-tela { position: fixed; inset: 0; z-index: 10; background: #000e; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 16px; }
+  #salvar-tela p { margin: 0; text-align: center; }
+  #salvar-tela img { max-width: 100%; max-height: 72vh; border-radius: 4px; -webkit-touch-callout: default; }
   footer { color: var(--fraco); font-size: .85em; max-width: 1180px; margin: 0 auto; padding: 16px; }
   footer a { color: var(--fraco); }
 </style>
@@ -62,14 +82,15 @@
     <section>
       <h2>Músicas</h2>
       <input id="busca" type="search" placeholder="Buscar música ou artista" autocomplete="off">
-      <div id="catalogo"></div>
+      <div id="catalogo"><p class="dica">Carregando as músicas...</p></div>
     </section>
-    <section>
+    <section id="minha">
       <h2>Sua setlist <span id="contador">0/24</span></h2>
       <p class="dica">Arraste pra reordenar (ou use as setas). "bis" põe o traço do bis depois da música.</p>
       <p class="dica" id="limite" hidden>Chegou no limite de 24 músicas.</p>
       <ul id="lista"></ul>
       <div id="previa" hidden>
+        <p id="estado-folha" role="status"></p>
         <canvas id="folha" width="1100" height="1400"></canvas>
         <div class="barra" id="acoes" hidden>
           <button id="baixar" class="principal">Baixar a folha</button>
@@ -86,6 +107,7 @@
   Lista com todas as músicas que o Eddie já tocou solo (setlist.fm) e as do gerador oficial do Pearl Jam.
   Site de fã, sem ligação com a banda.
 </footer>
+<button id="atalho" class="principal" hidden></button>
 <script type="module" src="app.js"></script>
 </body>
 </html>

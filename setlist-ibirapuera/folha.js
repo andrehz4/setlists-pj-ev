@@ -1,6 +1,9 @@
 // Desenha a folha da setlist no canvas, no mesmo layout do gerador oficial: papel 1100x1400, cabeçalho no topo,
 // 2 colunas de 12 músicas (x 100 e 660), passo de 90 px a partir de y 255. Traço de bis desenhado depois da música marcada.
+// A folha é pintada aos poucos (cada imagem que chega repinta) e nunca trava: imagem que falha ou passa do prazo
+// vira texto (música) ou fundo liso (papel). Se a atrasada chegar depois, entra no lugar do texto.
 const PAPEL = 'https://assets.glitch.ge/pearljam/setlistgenerator/papers/pearl-jam-set-list-paper-without-lines.jpg';
+const PRAZO = 9000;
 const cache = new Map();
 
 export function carregar(src) {
@@ -16,25 +19,53 @@ export function carregar(src) {
   return cache.get(src);
 }
 
-export async function desenharFolha(canvas, { show, musicas }) {
-  canvas.width = 1100; canvas.height = 1400;
+// prontas[i]: Image (chegou), false (falhou) ou null (ainda vindo). Ordem: papel, cabeçalho, ibirapuera, traço, músicas.
+function pintar(canvas, [papel, cab, ibira, traco, ...imgs], musicas) {
   const c = canvas.getContext('2d');
-  const [papel, cab, ibira, traco, ...imgs] = await Promise.all([
-    carregar(PAPEL), carregar(`img/${show === 2 ? 'cab-sp2' : 'cab-sp1'}.png`), carregar('img/cab-ibira.png'),
-    carregar('img/traco-bis.png'), ...musicas.map((m) => carregar(m.png)),
-  ]);
-  c.fillStyle = '#fff'; c.fillRect(0, 0, 1100, 1400);
-  c.drawImage(papel, 0, 0, 1100, 1400);
-  c.drawImage(cab, 550 - cab.width / 2, 40);
-  c.drawImage(ibira, 550 - ibira.width * 0.4, 125, ibira.width * 0.8, ibira.height * 0.8);
+  c.fillStyle = papel ? '#fff' : '#f4f1e8'; c.fillRect(0, 0, 1100, 1400);
+  if (papel) c.drawImage(papel, 0, 0, 1100, 1400);
+  if (cab) c.drawImage(cab, 550 - cab.width / 2, 40);
+  if (ibira) c.drawImage(ibira, 550 - ibira.width * 0.4, 125, ibira.width * 0.8, ibira.height * 0.8);
+  c.fillStyle = '#16130f'; c.textBaseline = 'middle'; c.font = '700 44px "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive';
   imgs.forEach((im, i) => {
     const x = i < 12 ? 100 : 660;
     const y = 255 + 90 * (i % 12);
-    const larg = Math.min(im.width, 440);
-    c.drawImage(im, x, y, larg, im.height * (larg / im.width));
-    if (musicas[i].bis) c.drawImage(traco, x - 30, y + 84, 420, traco.height * (420 / traco.width));
+    if (im) {
+      const larg = Math.min(im.width, 440);
+      c.drawImage(im, x, y, larg, im.height * (larg / im.width));
+    } else if (im === false) c.fillText(musicas[i].nome.toUpperCase(), x, y + 45, 420);
+    if (!musicas[i].bis) return;
+    if (traco) c.drawImage(traco, x - 30, y + 84, 420, traco.height * (420 / traco.width));
+    else if (traco === false) c.fillRect(x - 30, y + 92, 420, 5);
   });
-  return canvas;
+}
+
+// vigente(): false quando um pedido mais novo já começou (não pinta por cima). progresso(chegaram, total) a cada imagem.
+// Devolve quantas imagens faltaram (0 = folha perfeita). atrasada(faltam) avisa quando uma que faltou chega depois.
+export async function desenharFolha(canvas, { show, musicas }, { vigente = () => true, progresso = () => {}, atrasada = () => {} } = {}) {
+  const fontes = [PAPEL, `img/${show === 2 ? 'cab-sp2' : 'cab-sp1'}.png`, 'img/cab-ibira.png', 'img/traco-bis.png',
+    ...musicas.map((m) => m.png)];
+  const prontas = fontes.map(() => null);
+  let feitas = 0, agendado = false;
+  const repintar = () => {
+    if (agendado) return;
+    agendado = true;
+    requestAnimationFrame(() => { agendado = false; if (vigente()) pintar(canvas, prontas, musicas); });
+  };
+  if (vigente()) pintar(canvas, prontas, musicas);
+  const faltam = () => prontas.filter((p) => p === false).length;
+  await Promise.all(fontes.map((src, i) => new Promise((fim) => {
+    const marca = (im) => {
+      const tardia = prontas[i] === false;
+      prontas[i] = im;
+      if (vigente()) { if (tardia) atrasada(faltam()); else progresso(++feitas, fontes.length); repintar(); }
+      fim();
+    };
+    const t = setTimeout(() => marca(false), PRAZO);
+    carregar(src).then((im) => { clearTimeout(t); marca(im); }, () => { clearTimeout(t); if (prontas[i] === null) marca(false); });
+  })));
+  if (vigente()) pintar(canvas, prontas, musicas);
+  return faltam();
 }
 
 // Versão story (1080x1920): folha inteira no meio, fundo escuro, assinatura do site embaixo.
@@ -53,4 +84,6 @@ export function story(folha) {
   return s;
 }
 
-export const paraBlob = (canvas, q = 0.9) => new Promise((ok) => canvas.toBlob(ok, 'image/jpeg', q));
+export const paraBlob = (canvas, q = 0.9) => new Promise((ok, erro) => {
+  try { canvas.toBlob((b) => (b ? ok(b) : erro(new Error('sem imagem'))), 'image/jpeg', q); } catch (e) { erro(e); }
+});

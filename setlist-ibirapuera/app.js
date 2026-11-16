@@ -1,11 +1,14 @@
 // Gerador de setlist do Eddie no Ibirapuera: escolhe o show, monta até 24 músicas (ou sorteia), reordena, marca o bis,
 // vê a folha escrita à mão e baixa/compartilha (folha 1100x1400 ou story 1080x1920).
 import { desenharFolha, story, paraBlob } from './folha.js';
+import { entregar } from './salvar.js';
+import { sortearShow } from './sorteio.js';
 
 const LIMITE = 24;
 const $ = (s) => document.querySelector(s);
 const estado = { show: 1, lista: [] };
 let grupos = [];
+let modelo = null;
 
 const esc = (t) => String(t).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 const naLista = (k) => estado.lista.some((m) => m.chave === k);
@@ -32,6 +35,8 @@ function selecionadas() {
     <button data-acao="desce" data-i="${i}" aria-label="descer">↓</button>
     <button data-acao="tira" data-i="${i}" aria-label="tirar">✕</button></li>`).join('');
   $('#acoes').hidden = !n;
+  $('#atalho').hidden = !n;
+  $('#atalho').textContent = `Ver minha setlist (${n}/${LIMITE}) ↓`;
   const yt = estado.lista.filter((m) => m.yt).length;
   $('#ouvir').hidden = !yt;
   $('#ouvir').textContent = yt === n ? 'Ouvir no YouTube' : `Ouvir no YouTube (${yt} de ${n})`;
@@ -42,25 +47,31 @@ async function folha() {
   const meu = ++pedido;
   if (!estado.lista.length) { $('#previa').hidden = true; return; }
   $('#previa').hidden = false;
-  try {
-    await desenharFolha($('#folha'), { show: estado.show, musicas: estado.lista });
-  } catch (e) { if (meu === pedido) $('#aviso').textContent = 'Uma imagem não carregou. Tente de novo.'; }
+  const ocupado = (sim, txt = '') => {
+    $('#estado-folha').textContent = txt;
+    $('#previa').classList.toggle('montando', sim);
+    for (const id of ['baixar', 'story', 'compartilhar']) $(`#${id}`).disabled = sim;
+  };
+  ocupado(true, 'Montando a folha...');
+  $('#aviso').textContent = '';
+  const falhas = await desenharFolha($('#folha'), { show: estado.show, musicas: [...estado.lista] }, {
+    vigente: () => meu === pedido,
+    progresso: (k, total) => { $('#estado-folha').textContent = `Montando a folha... ${k}/${total}`; },
+    atrasada: (faltam) => { if (!faltam) $('#aviso').textContent = ''; },
+  }).catch(() => -1);
+  if (meu !== pedido) return;
+  ocupado(false);
+  if (falhas) $('#aviso').textContent = falhas < 0 ? 'Não consegui desenhar a folha. Recarregue a página.'
+    : 'Algumas imagens não chegaram (internet lenta?). A folha saiu com letra simples nessas e se ajeita sozinha quando chegarem.';
 }
 
 function tudo() { catalogo(); selecionadas(); folha(); }
 
 function sortear() {
-  const solo = grupos.flatMap((g) => g.musicas).filter((m) => m.vezes > 0);
-  const escolha = [];
-  while (escolha.length < 20 && solo.length) {
-    const total = solo.reduce((s, m) => s + Math.sqrt(m.vezes), 0);
-    let r = Math.random() * total, i = 0;
-    while ((r -= Math.sqrt(solo[i].vezes)) > 0) i++;
-    escolha.push({ ...solo.splice(i, 1)[0] });
-  }
-  escolha[15].bis = true;
+  const escolha = sortearShow(grupos, modelo);
   estado.lista = escolha;
   tudo();
+  $('#previa').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function mover(i, j) {
@@ -70,16 +81,11 @@ function mover(i, j) {
 }
 
 async function baixar(tipo) {
-  const c = tipo === 'story' ? story($('#folha')) : $('#folha');
-  const blob = await paraBlob(c);
   const nome = `setlist-eddie-ibirapuera-${estado.show === 2 ? '22' : '20'}-11${tipo === 'story' ? '-story' : ''}.jpg`;
-  const arq = new File([blob], nome, { type: 'image/jpeg' });
-  if (tipo === 'compartilhar' && navigator.canShare?.({ files: [arq] })) {
-    return navigator.share({ files: [arq], title: 'Minha setlist do Eddie no Ibirapuera' }).catch(() => {});
-  }
-  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: nome });
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  try {
+    const blob = await paraBlob(tipo === 'story' ? story($('#folha')) : $('#folha'));
+    await entregar(blob, nome, { compartilhar: tipo === 'compartilhar' });
+  } catch (e) { $('#aviso').textContent = 'Não consegui gerar a imagem. Tire um print da folha.'; }
 }
 
 document.addEventListener('click', (e) => {
@@ -103,6 +109,7 @@ document.addEventListener('click', (e) => {
   const extras = { sortear, limpar: () => { estado.lista = []; tudo(); },
     ouvir: () => window.open(`https://www.youtube.com/watch_videos?video_ids=${
       estado.lista.filter((m) => m.yt).slice(0, 50).map((m) => m.yt).join(',')}`, '_blank', 'noopener'),
+    atalho: () => $('#minha').scrollIntoView({ behavior: 'smooth', block: 'start' }),
     baixar: () => baixar('folha'), story: () => baixar('story'), compartilhar: () => baixar('compartilhar') };
   extras[b.id]?.();
 });
@@ -118,5 +125,6 @@ $('#lista').addEventListener('drop', (e) => {
 });
 $('#busca').addEventListener('input', catalogo);
 
-fetch('musicas.json').then((r) => r.json()).then((d) => { grupos = d.grupos; if (location.hash === '#sortear') sortear(); else tudo(); })
-  .catch(() => { $('#aviso').textContent = 'Não consegui carregar a lista de músicas.'; });
+// window.musicasCedo: o index.html já começou a baixar o catálogo antes deste módulo chegar.
+(window.musicasCedo || fetch('musicas.json').then((r) => r.json())).then((d) => { grupos = d.grupos; modelo = d.modelo; if (location.hash === '#sortear') sortear(); else tudo(); })
+  .catch(() => { $('#catalogo').textContent = 'Não consegui carregar a lista de músicas. Recarregue a página.'; });

@@ -17,6 +17,10 @@
 /media/news/img/*
   Cache-Control: public, max-age=604800
 
+# Letras escritas a mao do gerador de setlist do Ibirapuera: mudam raramente, 1 dia de cache.
+/setlist-ibirapuera/img/*
+  Cache-Control: public, max-age=86400
+
 /forum-topic.html
   Permissions-Policy: microphone=(self)
 
