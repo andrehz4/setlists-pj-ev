@@ -6,13 +6,15 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
-- **Carrossel do ranking do Eddie solo (16/11): PRONTO, falta postar terça 17/11.** 10 slides do Claude Design
-  (projeto "Ranking Eddie Vedder Solo"), aprovados pelo Andre: JPGs + `legenda.txt` em
-  `reels-especiais/eddie-carreira/postar/` (fora do git; capa com foto de bastidor que o Andre liberou). Dados de
-  `estudo.json` (setlist.fm, 315 shows solo); conferido: Pearl Jam nunca tocou Hard Sun, os 8 solo no Brasil foram no
-  Citibank Hall. PRÓXIMO: postar terça (Andre pelo Meta Business Suite, ou criar publicação automática de carrossel
-  especial no molde do `especial.mjs`). O modelo virou módulo: `scripts/publish/carrossel/` (paletas + render, README).
-  Login do Claude CLI expira entre 20 e 23/11 (`claude auth login` antes).
+- **Carrossel do ranking do Eddie solo: AGENDADO ter 17/11 17:30 BRT (TriggerAll #018, cron `30 20 17 11 *`).**
+  10 slides do Claude Design (projeto "Ranking Eddie Vedder Solo") no R2 `especiais/eddie-ranking-solo/01..10.jpg`,
+  `reels-especiais/eddie-ranking-solo/publicar.json` (imagens + legenda). Mesmo workflow do reel especial: quando o
+  publicar.json tem `imagens`, `scripts/publish/reel/especial.mjs` chama `scripts/publish/carrossel/especial.mjs`
+  (confere os links, carrossel no IG, álbum no FB, idempotente). Teste seco no GitHub OK (run 43860887669). O painel
+  do TriggerAll mostra "17:30 (8h)" porque ignora o dia (só visual; o node-cron do backend respeita o dia 17).
+  CONFERIR ter 17:30 no Telegram/IG. Modelo do Design virou módulo reaproveitável: `scripts/publish/carrossel/`
+  (paletas amarelo/laranja/vermelho/verde/azul/rosa + render em JPG, README). Arquivos locais (fora do git):
+  `reels-especiais/eddie-carreira/postar/` e `design/`. Login do Claude CLI expira entre 20 e 23/11.
 - **Letra do Eddie (16/11, EM ANDAMENTO):** o gerador oficial (glitch.ge) não usa fonte: 1 PNG à mão por música
   (173), por cidade (22) e 5 papéis; o traço de bis e o floreio do título vêm PINTADOS no papel. Tudo baixado em
   `reels-especiais/letra-eddie/` (FORA do git, repo público). Criamos a NOSSA "fonte": letras recortadas dos PNGs
