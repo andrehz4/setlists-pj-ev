@@ -1,0 +1,99 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+<template>
+<style>
+@font-face{font-family:Anton;src:url(../assets/fonts/Anton-Regular.ttf)}
+@font-face{font-family:InterX;src:url(../assets/fonts/Inter-ExtraBold.ttf)}
+@font-face{font-family:InterS;src:url(../assets/fonts/Inter-SemiBold.ttf)}
+@font-face{font-family:Mono;src:url(../assets/fonts/JetBrainsMono-ExtraBold.ttf)}
+@font-face{font-family:Marker;src:url(../assets/fonts/PermanentMarker-Regular.ttf)}
+#c7-root{position:absolute;inset:0;overflow:hidden;color:#f4efe6;font-family:InterX,sans-serif}
+#c7-root .st{position:absolute;inset:0}
+#c7-root .a{position:absolute}
+#c7-root .h{opacity:0}
+#c7-root .anton{font-family:Anton,sans-serif;line-height:.92;letter-spacing:.005em;white-space:nowrap}
+#c7-root .ix{font-family:InterX,sans-serif}
+#c7-root .is{font-family:InterS,sans-serif}
+#c7-root .mono{font-family:Mono,monospace;letter-spacing:.02em}
+#c7-root .sh{text-shadow:0 6px 26px rgba(0,0,0,.85),0 2px 0 rgba(0,0,0,.6)}
+#c7-root .row{display:flex;gap:24px}
+#c7-root .dot{width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.45);border:5px solid rgba(244,239,230,.3);box-shadow:0 0 0px rgba(0,0,0,0)}
+#c7-root .rl{font-family:Mono,monospace;font-size:28px;color:rgba(244,239,230,.85);white-space:nowrap}
+#c7-root .chip{font-family:InterX,sans-serif;font-size:32px;padding:8px 18px;border-radius:10px;color:#0b0b0c;white-space:nowrap}
+#c7-root .stamp{font-family:Marker,cursive;line-height:1.05;padding:4px 30px 0;border-radius:18px;border:10px solid;background:rgba(11,11,12,.55);white-space:nowrap;text-align:center}
+#c7-root .card{border-radius:22px}
+#c7-root .face{position:absolute;inset:0;border-radius:22px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden}
+#c7-root .back{background:#141414}
+#c7-root .front{background:#f4efe6;color:#0b0b0c;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+#c7-root .foto{overflow:hidden;border:10px solid #f4efe6;box-shadow:0 24px 50px rgba(0,0,0,.7);background:#222}
+#c7-root .foto img,#c7-root .bgf img{width:100%;height:100%;object-fit:cover;display:block}
+#c7-root .bgf{position:absolute;inset:0;overflow:hidden}
+#c7-root .panel{border-radius:20px;overflow:hidden}
+</style>
+<div id="c7-root" data-composition-id="c7" data-width="1080" data-height="1920" data-duration="4.478">
+<div class="st">
+<div class="a foto pol" style="left:606px;top:252px;width:290px;height:300px"><img class="kbi" src="../assets/fotos/eddie-vedder-2018.jpg" alt=""></div>
+<div class="a anton sh badge" style="left:62px;top:226px;font-size:260px;color:#39e07a">3</div>
+
+<div class="a ix sh kick" style="left:250px;top:300px;font-size:36px;color:#39e07a;letter-spacing:.1em">NÚMERO 3</div>
+<div class="a is sh kick2" style="left:250px;top:350px;font-size:30px">das 5 certas</div>
+
+<div class="a card" style="left:70px;top:600px;width:830px;height:340px">
+  <div class="face back" style="border:6px solid #39e07a"><span class="anton" style="font-size:280px;color:#39e07a">3</span></div>
+  <div class="face front h"><div class="a mono" style="left:30px;top:22px;font-size:26px;color:rgba(11,11,12,.6)">Nº 3</div><span class="anton" style="font-size:146px">FAR BEHIND</span></div>
+</div>
+<div class="a rl r9-l " style="left:101px;top:1000px">DESDE 2023 · 9 SHOWS SOLO</div><div class="a row r9 " style="left:101px;top:1040px"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+<div class="a rl rbr-l h" style="left:101px;top:1130px">BRASIL · 2014 E 2018</div><div class="a row rbr h" style="left:101px;top:1170px"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+<div class="a anton sh cnt h" style="left:70px;top:1252px;font-size:150px;color:#39e07a"><span class="n">9</span> DE 9</div>
+<div class="a anton sh cnt2 h" style="left:70px;top:1252px;font-size:150px;color:#f6c445"><span class="n">9</span> DE 17</div>
+<div class="a chip brchip h" style="left:560px;top:1120px;background:#f6c445">BRASIL: 8 DE 8</div>
+<div class="a is sh sub h" style="left:72px;top:1402px;font-size:34px">e nunca falhou no Brasil</div>
+<div class="a stamp certa h" style="left:540px;top:850px;font-size:92px;color:#f6c445;border-color:#f6c445">CERTA</div>
+</div>
+</div>
+<script>
+(function(){
+const ID='c7', D=4.478;
+
+const root=document.getElementById(ID+'-root');
+const q=s=>root.querySelector(s), qa=s=>Array.from(root.querySelectorAll(s));
+const tl=gsap.timeline({paused:true});
+const st=q('.st'); const F=1/30;
+function inn(el,t,from,d,ease){tl.fromTo(el,Object.assign({opacity:0},from),{opacity:1,x:0,y:0,scale:1,duration:d||0.32,ease:ease||'expo.out',immediateRender:false},t);}
+function slam(el,t,s,d){inn(el,t,{scale:s||2.2},d||0.26,'expo.out');}
+function pop(el,t,d){inn(el,t,{scale:0.3},d||0.38,'back.out(2.4)');}
+function fromL(el,t,d){inn(el,t,{x:-1100},d||0.34);}
+function fromR(el,t,d){inn(el,t,{x:1100},d||0.34);}
+function fromB(el,t,d){inn(el,t,{y:420},d||0.34);}
+function fromT(el,t,d){inn(el,t,{y:-700},d||0.4,'bounce.out');}
+function out(el,t,d){tl.to(el,{opacity:0,duration:d||0.18,ease:'power1.in'},t);}
+function shake(el,t,a,n){a=a||16;n=n||5;for(let i=0;i<n;i++){const k=(n-i)/n;tl.to(el,{x:(i%2?-a:a)*k,y:((i%3)-1)*a*0.6*k,duration:F,ease:'none'},t+i*F);}tl.to(el,{x:0,y:0,duration:F,ease:'none'},t+n*F);}
+function tranco(t,a){shake(st,t,a||18);}
+function punch(t,s){tl.fromTo(st,{scale:s||1.05},{scale:1,duration:0.3,ease:'power2.out',immediateRender:false},t);}
+function count(el,a,b,t,d,ease){const o={v:a};tl.to(o,{v:b,duration:d,ease:ease||'power2.out',onUpdate:()=>{el.textContent=String(Math.round(o.v));}},t);}
+function light(ds,t,s,col){ds.forEach((d,i)=>{const u=t+i*s;tl.to(d,{backgroundColor:col,borderColor:col,boxShadow:'0 0 34px '+col,duration:0.1,ease:'none'},u);tl.fromTo(d,{scale:1.7},{scale:1,duration:0.3,ease:'back.out(3)',immediateRender:false},u);});}
+function dim(ds,t,s){ds.forEach((d,i)=>{const u=t+i*s;tl.to(d,{backgroundColor:'rgba(0,0,0,0.45)',borderColor:'rgba(244,239,230,0.3)',boxShadow:'0 0 0px rgba(0,0,0,0)',duration:0.14,ease:'none'},u);tl.fromTo(d,{scale:0.6},{scale:1,duration:0.25,ease:'back.out(2)',immediateRender:false},u);});}
+function recolor(els,t,col){els.forEach(e=>tl.to(e,{color:col,duration:0.2,ease:'none'},t));}
+function stamp(el,t,rot){rot=rot||-9;tl.fromTo(el,{opacity:0,scale:3,rotation:rot-12},{opacity:1,scale:1,rotation:rot,duration:0.18,ease:'power4.in',immediateRender:false},t);tranco(t+0.18,26);let i=0;for(let u=t+0.32;u<D-0.07;u+=0.07,i++){tl.to(el,{rotation:rot+(i%2?1.5:-1.5),x:((i%3)-1)*4,duration:0.07,ease:'none'},u);}}
+function flip(card,t){const b=card.querySelector('.back'),f=card.querySelector('.front');tl.to(b,{rotationY:90,transformPerspective:1600,duration:0.12,ease:'power2.in'},t);tl.fromTo(f,{opacity:1,rotationY:-90,transformPerspective:1600},{rotationY:0,duration:0.34,ease:'back.out(1.8)',immediateRender:false},t+0.12);tranco(t+0.34,14);}
+function kb(el,s0,s1,x1){tl.fromTo(el,{scale:s0||1.06,x:0},{scale:s1||1.2,x:x1===undefined?-30:x1,duration:D,ease:'none',immediateRender:false},0);}
+function entrada(){tl.fromTo(st,{scale:1.08},{scale:1,duration:0.3,ease:'expo.out',immediateRender:false},0);}
+
+
+entrada(); tl.fromTo(q('.badge'),{opacity:1,rotationX:-90,transformPerspective:900},{rotationX:0,duration:0.22,ease:'back.out(2)',immediateRender:false},0);
+pop(q('.kick'),0.05); pop(q('.kick2'),0.1);
+inn(q('.pol'),0.1,{x:500},0.35); tl.fromTo(q('.pol'),{rotation:12},{rotation:4,duration:0.4,ease:'back.out(2)',immediateRender:false},0.1); kb(q('.pol .kbi'));
+fromB(q('.card'),0.0,0.26); flip(q('.card'),0.42);
+light(qa('.r9 .dot'),1.05,0.035,'#39e07a'); slam(q('.cnt'),1.45,2); inn(q('.sub'),1.7,{y:20},0.2);
+recolor([q('.badge'),q('.kick'),q('.cnt')],2.75,'#f6c445');
+qa('.r9 .dot').forEach(d=>tl.to(d,{backgroundColor:'#f6c445',borderColor:'#f6c445',boxShadow:'0 0 34px #f6c445',duration:0.2,ease:'none'},2.75));
+inn(q('.rbr'),2.85,{x:-900},0.3); pop(q('.rbr-l'),2.85); punch(2.89);
+light(qa('.rbr .dot'),3.3,0.04,'#f6c445'); pop(q('.brchip'),3.42);
+out(q('.cnt'),3.66,0.08); out(q('.sub'),3.66,0.08); slam(q('.cnt2'),3.72,1.6,0.2); count(q('.cnt2 .n'),9,17,3.75,0.4,'power1.out'); tranco(4.16,18);
+stamp(q('.certa'),4.12,-8);
+window.__timelines['c7']=tl;
+})();
+</script>
+</template>
+</body></html>

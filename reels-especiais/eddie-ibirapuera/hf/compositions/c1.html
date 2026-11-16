@@ -1,0 +1,108 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+<template>
+<style>
+@font-face{font-family:Anton;src:url(../assets/fonts/Anton-Regular.ttf)}
+@font-face{font-family:InterX;src:url(../assets/fonts/Inter-ExtraBold.ttf)}
+@font-face{font-family:InterS;src:url(../assets/fonts/Inter-SemiBold.ttf)}
+@font-face{font-family:Mono;src:url(../assets/fonts/JetBrainsMono-ExtraBold.ttf)}
+@font-face{font-family:Marker;src:url(../assets/fonts/PermanentMarker-Regular.ttf)}
+#c1-root{position:absolute;inset:0;overflow:hidden;color:#f4efe6;font-family:InterX,sans-serif}
+#c1-root .st{position:absolute;inset:0}
+#c1-root .a{position:absolute}
+#c1-root .h{opacity:0}
+#c1-root .anton{font-family:Anton,sans-serif;line-height:.92;letter-spacing:.005em;white-space:nowrap}
+#c1-root .ix{font-family:InterX,sans-serif}
+#c1-root .is{font-family:InterS,sans-serif}
+#c1-root .mono{font-family:Mono,monospace;letter-spacing:.02em}
+#c1-root .sh{text-shadow:0 6px 26px rgba(0,0,0,.85),0 2px 0 rgba(0,0,0,.6)}
+#c1-root .row{display:flex;gap:24px}
+#c1-root .dot{width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.45);border:5px solid rgba(244,239,230,.3);box-shadow:0 0 0px rgba(0,0,0,0)}
+#c1-root .rl{font-family:Mono,monospace;font-size:28px;color:rgba(244,239,230,.85);white-space:nowrap}
+#c1-root .chip{font-family:InterX,sans-serif;font-size:32px;padding:8px 18px;border-radius:10px;color:#0b0b0c;white-space:nowrap}
+#c1-root .stamp{font-family:Marker,cursive;line-height:1.05;padding:4px 30px 0;border-radius:18px;border:10px solid;background:rgba(11,11,12,.55);white-space:nowrap;text-align:center}
+#c1-root .card{border-radius:22px}
+#c1-root .face{position:absolute;inset:0;border-radius:22px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden}
+#c1-root .back{background:#141414}
+#c1-root .front{background:#f4efe6;color:#0b0b0c;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+#c1-root .foto{overflow:hidden;border:10px solid #f4efe6;box-shadow:0 24px 50px rgba(0,0,0,.7);background:#222}
+#c1-root .foto img,#c1-root .bgf img{width:100%;height:100%;object-fit:cover;display:block}
+#c1-root .bgf{position:absolute;inset:0;overflow:hidden}
+#c1-root .panel{border-radius:20px;overflow:hidden}
+</style>
+<div id="c1-root" data-composition-id="c1" data-width="1080" data-height="1920" data-duration="5.399">
+<div class="st">
+<div class="a anton sh as" style="left:70px;top:262px;font-size:96px">AS</div>
+<div class="a anton sh cinco" style="left:46px;top:384px;font-size:760px;line-height:.8;color:#f6c445">5</div>
+<div class="a tit" style="left:478px;top:370px;width:430px">
+  <div class="anton sh w0" style="font-size:100px;line-height:.96">MÚSICAS</div><div class="anton sh w1" style="font-size:100px;line-height:.96">QUE O</div><div class="anton sh w2" style="font-size:100px;line-height:.96">EDDIE</div><div class="anton sh w3" style="font-size:100px;line-height:.96">VEDDER</div><div class="anton sh w4" style="font-size:100px;line-height:.96">SEMPRE</div><div class="anton sh w5" style="font-size:100px;line-height:.96">TOCA</div>
+</div>
+<div class="a bar h" style="left:478px;top:960px;width:330px;height:12px;background:#f6c445;transform-origin:left center"></div>
+<div class="a anton slab" style="left:70px;top:1010px;font-size:74px;line-height:1.12;padding:2px 20px 0;background:#ff3b30;color:#f4efe6">BEST OF BLUES AND ROCK</div>
+<div class="a ix sh ibi" style="left:72px;top:1112px;font-size:46px">IBIRAPUERA · 20 E 22/11</div>
+<div class="a fan f0 h" style="left:86px;top:1200px;width:98px;height:140px;border-radius:12px;background:#141414;border:5px solid #f6c445;display:flex;align-items:center;justify-content:center"><span class="anton" style="font-size:90px;color:#f6c445">5</span></div><div class="a fan f1 h" style="left:192px;top:1200px;width:98px;height:140px;border-radius:12px;background:#141414;border:5px solid #f6c445;display:flex;align-items:center;justify-content:center"><span class="anton" style="font-size:90px;color:#f6c445">4</span></div><div class="a fan f2 h" style="left:298px;top:1200px;width:98px;height:140px;border-radius:12px;background:#141414;border:5px solid #f6c445;display:flex;align-items:center;justify-content:center"><span class="anton" style="font-size:90px;color:#f6c445">3</span></div><div class="a fan f3 h" style="left:404px;top:1200px;width:98px;height:140px;border-radius:12px;background:#141414;border:5px solid #f6c445;display:flex;align-items:center;justify-content:center"><span class="anton" style="font-size:90px;color:#f6c445">2</span></div><div class="a fan f4 h" style="left:510px;top:1200px;width:98px;height:140px;border-radius:12px;background:#141414;border:5px solid #f6c445;display:flex;align-items:center;justify-content:center"><span class="anton" style="font-size:90px;color:#f6c445">1</span></div>
+<div class="a is sh palp" style="left:72px;top:1372px;font-size:27px;color:rgba(244,239,230,.9)">palpite pelo histórico, não é setlist oficial</div>
+<svg class="a cpring" style="left:626px;top:1064px;width:336px;height:410px;overflow:visible" viewBox="0 0 410 450" preserveAspectRatio="none"><path vector-effect="non-scaling-stroke" pathLength="1" d="M60 95 C120 20 300 10 360 90 C415 170 400 330 330 400 C250 465 110 450 55 380 C5 310 10 170 75 80 C95 55 130 40 160 38" fill="none" stroke="#f6c445" stroke-width="9" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+<div class="a spk spk0" data-at="0.62" style="left:612px;top:1070px;font-size:48px;color:#f6c445;opacity:0;text-shadow:0 0 18px rgba(240,190,70,.8)">✦</div><div class="a spk spk1" data-at="0.74" style="left:900px;top:1100px;font-size:38px;color:#f6c445;opacity:0;text-shadow:0 0 18px rgba(240,190,70,.8)">✦</div><div class="a spk spk2" data-at="2.78" style="left:618px;top:1408px;font-size:40px;color:#f6c445;opacity:0;text-shadow:0 0 18px rgba(240,190,70,.8)">✦</div><div class="a spk spk3" data-at="2.86" style="left:890px;top:1428px;font-size:52px;color:#f6c445;opacity:0;text-shadow:0 0 18px rgba(240,190,70,.8)">✦</div><div class="a spk spk4" data-at="4.02" style="left:902px;top:1262px;font-size:34px;color:#f6c445;opacity:0;text-shadow:0 0 18px rgba(240,190,70,.8)">✦</div>
+<div class="a capol" style="left:652px;top:1112px;width:250px;padding:12px 12px 0;background:#f4efe6;box-shadow:0 18px 40px rgba(0,0,0,.6);transform:rotate(6deg)">
+  <div style="position:absolute;left:-26px;top:-14px;width:96px;height:30px;background:rgba(240,225,170,.75);transform:rotate(-32deg)"></div><div style="position:absolute;right:-26px;top:-14px;width:96px;height:30px;background:rgba(240,225,170,.75);transform:rotate(30deg)"></div>
+  <div style="width:226px;height:236px;overflow:hidden"><img class="cpi" src="../assets/fotos/eddie-rosto-2018.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 40%"></div>
+  <div style="font-family:Marker,cursive;color:#0b0b0c;font-size:33px;line-height:1;text-align:center;padding:12px 0 14px">EDDIE VEDDER</div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+const ID='c1', D=5.399;
+
+const root=document.getElementById(ID+'-root');
+const q=s=>root.querySelector(s), qa=s=>Array.from(root.querySelectorAll(s));
+const tl=gsap.timeline({paused:true});
+const st=q('.st'); const F=1/30;
+function inn(el,t,from,d,ease){tl.fromTo(el,Object.assign({opacity:0},from),{opacity:1,x:0,y:0,scale:1,duration:d||0.32,ease:ease||'expo.out',immediateRender:false},t);}
+function slam(el,t,s,d){inn(el,t,{scale:s||2.2},d||0.26,'expo.out');}
+function pop(el,t,d){inn(el,t,{scale:0.3},d||0.38,'back.out(2.4)');}
+function fromL(el,t,d){inn(el,t,{x:-1100},d||0.34);}
+function fromR(el,t,d){inn(el,t,{x:1100},d||0.34);}
+function fromB(el,t,d){inn(el,t,{y:420},d||0.34);}
+function fromT(el,t,d){inn(el,t,{y:-700},d||0.4,'bounce.out');}
+function out(el,t,d){tl.to(el,{opacity:0,duration:d||0.18,ease:'power1.in'},t);}
+function shake(el,t,a,n){a=a||16;n=n||5;for(let i=0;i<n;i++){const k=(n-i)/n;tl.to(el,{x:(i%2?-a:a)*k,y:((i%3)-1)*a*0.6*k,duration:F,ease:'none'},t+i*F);}tl.to(el,{x:0,y:0,duration:F,ease:'none'},t+n*F);}
+function tranco(t,a){shake(st,t,a||18);}
+function punch(t,s){tl.fromTo(st,{scale:s||1.05},{scale:1,duration:0.3,ease:'power2.out',immediateRender:false},t);}
+function count(el,a,b,t,d,ease){const o={v:a};tl.to(o,{v:b,duration:d,ease:ease||'power2.out',onUpdate:()=>{el.textContent=String(Math.round(o.v));}},t);}
+function light(ds,t,s,col){ds.forEach((d,i)=>{const u=t+i*s;tl.to(d,{backgroundColor:col,borderColor:col,boxShadow:'0 0 34px '+col,duration:0.1,ease:'none'},u);tl.fromTo(d,{scale:1.7},{scale:1,duration:0.3,ease:'back.out(3)',immediateRender:false},u);});}
+function dim(ds,t,s){ds.forEach((d,i)=>{const u=t+i*s;tl.to(d,{backgroundColor:'rgba(0,0,0,0.45)',borderColor:'rgba(244,239,230,0.3)',boxShadow:'0 0 0px rgba(0,0,0,0)',duration:0.14,ease:'none'},u);tl.fromTo(d,{scale:0.6},{scale:1,duration:0.25,ease:'back.out(2)',immediateRender:false},u);});}
+function recolor(els,t,col){els.forEach(e=>tl.to(e,{color:col,duration:0.2,ease:'none'},t));}
+function stamp(el,t,rot){rot=rot||-9;tl.fromTo(el,{opacity:0,scale:3,rotation:rot-12},{opacity:1,scale:1,rotation:rot,duration:0.18,ease:'power4.in',immediateRender:false},t);tranco(t+0.18,26);let i=0;for(let u=t+0.32;u<D-0.07;u+=0.07,i++){tl.to(el,{rotation:rot+(i%2?1.5:-1.5),x:((i%3)-1)*4,duration:0.07,ease:'none'},u);}}
+function flip(card,t){const b=card.querySelector('.back'),f=card.querySelector('.front');tl.to(b,{rotationY:90,transformPerspective:1600,duration:0.12,ease:'power2.in'},t);tl.fromTo(f,{opacity:1,rotationY:-90,transformPerspective:1600},{rotationY:0,duration:0.34,ease:'back.out(1.8)',immediateRender:false},t+0.12);tranco(t+0.34,14);}
+function kb(el,s0,s1,x1){tl.fromTo(el,{scale:s0||1.06,x:0},{scale:s1||1.2,x:x1===undefined?-30:x1,duration:D,ease:'none',immediateRender:false},0);}
+function entrada(){tl.fromTo(st,{scale:1.08},{scale:1,duration:0.3,ease:'expo.out',immediateRender:false},0);}
+
+
+tl.fromTo(q('.cinco'),{scale:1.06},{scale:1,duration:0.35,ease:'power2.out',immediateRender:false},0.15);
+recolor([q('.w2')],1.38,'#f6c445'); recolor([q('.w3')],1.77,'#f6c445');
+tl.fromTo(q('.w2'),{scale:1.25},{scale:1,duration:0.25,ease:'back.out(3)',immediateRender:false},1.38);
+tl.fromTo(q('.w3'),{scale:1.25},{scale:1,duration:0.25,ease:'back.out(3)',immediateRender:false},1.77);
+punch(0.54,1.03);
+tl.fromTo(q('.bar'),{opacity:1,scaleX:0},{scaleX:1,duration:0.3,ease:'expo.out',immediateRender:false},2.25);
+qa('.fan').forEach((f,i)=>{tl.fromTo(f,{opacity:0,y:420,rotation:0},{opacity:1,y:0,rotation:(i-2)*7,duration:0.36,ease:'back.out(1.8)',immediateRender:false},2.3+i*0.07);});
+punch(2.75,1.04);
+shake(q('.slab'),3.33,10);
+tl.to(q('.slab'),{backgroundColor:'#f6c445',color:'#0b0b0c',duration:0.08,ease:'none'},4.0);
+tl.fromTo(q('.slab'),{scale:1.12},{scale:1,duration:0.3,ease:'back.out(3)',immediateRender:false},4.0);
+tranco(4.0,12);
+qa('.fan').forEach((f,i)=>{tl.to(f,{y:-26,duration:0.12,yoyo:true,repeat:1,ease:'power2.out'},4.5+i*0.06);});
+tl.to(q('.cinco'),{scale:1.1,duration:0.3,ease:'power2.in'},D-0.3);
+tl.fromTo(q('.cpi'),{scale:1.04},{scale:1.16,duration:D,ease:'none',immediateRender:false},0);
+tl.fromTo(q('.capol'),{rotation:6},{rotation:3,duration:0.3,ease:'back.out(3)',immediateRender:false},2.75);
+tl.to(q('.cpring path'),{attr:{'stroke-dashoffset':0},duration:0.55,ease:'power2.inOut'},0.3);
+tl.fromTo(q('.cpring'),{scale:1},{scale:1.05,duration:0.15,yoyo:true,repeat:1,ease:'power2.out',transformOrigin:'50% 50%',immediateRender:false},2.75);
+qa('.spk').forEach((e)=>{const at=+e.dataset.at;tl.fromTo(e,{opacity:0,scale:0,rotation:-60},{opacity:1,scale:1.3,rotation:0,duration:0.18,ease:'back.out(3)',immediateRender:false},at);tl.to(e,{opacity:0,scale:0.4,rotation:40,duration:0.35,ease:'power2.in'},at+0.45);});
+for(let u=0.2;u<D-0.4;u+=1.2){tl.to(q('.capol'),{y:-8,duration:0.6,yoyo:true,repeat:1,ease:'sine.inOut'},u);}
+window.__timelines['c1']=tl;
+})();
+</script>
+</template>
+</body></html>

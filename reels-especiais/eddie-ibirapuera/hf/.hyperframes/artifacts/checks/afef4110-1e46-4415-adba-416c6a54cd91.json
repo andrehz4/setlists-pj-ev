@@ -1,0 +1,5210 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "filesScanned": 14
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 18,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target null not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 0,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target null not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 0,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target null not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 0,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target null not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 0,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target null not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 0,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target null not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 0,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 15.563,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 21.788,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 28.013,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 34.238,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 34.238,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 34.238,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 34.238,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 40.463,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 40.463,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 40.463,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 40.463,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      },
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "GSAP target  not found. https://gsap.com",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "56.025",
+          "data-width": "1080",
+          "data-height": "1920"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "time": 46.688,
+        "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+        "line": 9
+      }
+    ]
+  },
+  "layout": {
+    "ok": false,
+    "errorCount": 1,
+    "warningCount": 76,
+    "infoCount": 3,
+    "findings": [
+      {
+        "code": "content_overlap",
+        "severity": "error",
+        "time": 3.113,
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 70,
+          "top": 233,
+          "right": 161.86,
+          "bottom": 378,
+          "width": 91.86,
+          "height": 145
+        },
+        "containerSelector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "text": "AS",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply. Decoration nobody needs to read can take data-layout-ignore.",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 70,
+          "y": 233,
+          "width": 91.86,
+          "height": 145
+        },
+        "firstSeen": 0,
+        "lastSeen": 5.321,
+        "occurrences": 19,
+        "heldMs": 5321,
+        "times": [
+          0,
+          0.313,
+          0.626,
+          0.939,
+          1.252,
+          1.565,
+          1.878,
+          2.191,
+          2.504,
+          2.817,
+          3.113,
+          3.13,
+          3.443,
+          3.756,
+          4.069,
+          4.382,
+          4.695,
+          5.008,
+          5.321
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "warning",
+        "time": 24.1,
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(3)",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 103.52,
+          "top": 648,
+          "right": 378.99,
+          "bottom": 1145,
+          "width": 275.47,
+          "height": 497
+        },
+        "containerSelector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "text": "14",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply. Decoration nobody needs to read can take data-layout-ignore.",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 103.52,
+          "y": 648,
+          "width": 275.47,
+          "height": 497
+        },
+        "firstSeen": 24.1,
+        "lastSeen": 24.413,
+        "occurrences": 2,
+        "heldMs": 312.99999999999886,
+        "times": [
+          24.1,
+          24.413
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "warning",
+        "time": 45.383,
+        "selector": "#c11 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 635.61,
+          "top": 411.99,
+          "right": 923.39,
+          "bottom": 552.42,
+          "width": 287.78,
+          "height": 140.43
+        },
+        "containerSelector": "#c11 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(13)",
+        "text": "DIFÍCIL",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply. Decoration nobody needs to read can take data-layout-ignore.",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c11.html",
+        "bbox": {
+          "x": 635.61,
+          "y": 411.99,
+          "width": 287.78,
+          "height": 140.43
+        },
+        "firstSeen": 45.383,
+        "lastSeen": 45.696,
+        "occurrences": 2,
+        "heldMs": 312.9999999999953,
+        "times": [
+          45.383,
+          45.696
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 70,
+          "y": 233,
+          "width": 91.86,
+          "height": 145
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 70,
+          "top": 233,
+          "right": 161.86,
+          "bottom": 378,
+          "width": 91.86,
+          "height": 145
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "AS",
+        "message": "<div> \"AS\" is outside the safe area: TikTok (left and top edges), Instagram Reels (top edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 46,
+          "y": 56,
+          "width": 409.3,
+          "height": 1235
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 46,
+          "top": 56,
+          "right": 455.3,
+          "bottom": 1291,
+          "width": 409.3,
+          "height": 1235
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "5",
+        "message": "<div> \"5\" is outside the safe area: TikTok (left and top and bottom edges), Instagram Reels (left and top and bottom edges), YouTube Shorts (left and top and bottom edges).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 90,
+          "y": 997,
+          "width": 687.34,
+          "height": 111
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 90,
+          "top": 997,
+          "right": 777.34,
+          "bottom": 1108,
+          "width": 687.34,
+          "height": 111
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "BEST OF BLUES AND ROCK",
+        "message": "<div> \"BEST OF BLUES AND ROCK\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 72,
+          "y": 1112,
+          "width": 543.41,
+          "height": 56
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 72,
+          "top": 1112,
+          "right": 615.41,
+          "bottom": 1168,
+          "width": 543.41,
+          "height": 56
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "IBIRAPUERA · 20 E 22/11",
+        "message": "<div> \"IBIRAPUERA · 20 E 22/11\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 135.38,
+          "y": 1197.22,
+          "width": 93.19,
+          "height": 173.38
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 135.38,
+          "top": 1197.22,
+          "right": 228.57,
+          "bottom": 1370.6,
+          "width": 93.19,
+          "height": 173.38
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "5",
+        "message": "<span> \"5\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 276.69,
+          "y": 1198.68,
+          "width": 74.6,
+          "height": 170.46
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 276.69,
+          "top": 1198.68,
+          "right": 351.29,
+          "bottom": 1369.14,
+          "width": 74.6,
+          "height": 170.46
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "4",
+        "message": "<span> \"4\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 418.55,
+          "y": 1201.41,
+          "width": 54.9,
+          "height": 165
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 418.55,
+          "top": 1201.41,
+          "right": 473.45,
+          "bottom": 1366.41,
+          "width": 54.9,
+          "height": 165
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "3",
+        "message": "<span> \"3\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(10) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 540.71,
+          "y": 1198.68,
+          "width": 74.6,
+          "height": 170.46
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 540.71,
+          "top": 1198.68,
+          "right": 615.31,
+          "bottom": 1369.14,
+          "width": 74.6,
+          "height": 170.46
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "2",
+        "message": "<span> \"2\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 672.14,
+          "y": 1199.39,
+          "width": 75.75,
+          "height": 169.03
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 672.14,
+          "top": 1199.39,
+          "right": 747.89,
+          "bottom": 1368.42,
+          "width": 75.75,
+          "height": 169.03
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "1",
+        "message": "<span> \"1\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 72,
+          "y": 1398,
+          "width": 590.14,
+          "height": 36
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 72,
+          "top": 1398,
+          "right": 662.14,
+          "bottom": 1434,
+          "width": 590.14,
+          "height": 36
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "palpite pelo histórico, não é setlist oficial",
+        "message": "<div> \"palpite pelo histórico, não é setlist oficial\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 3.113,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.113
+        ]
+      },
+      {
+        "selector": "#selo",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 92,
+          "y": 1470,
+          "width": 511.81,
+          "height": 31
+        },
+        "time": 3.113,
+        "rect": {
+          "left": 92,
+          "top": 1470,
+          "right": 603.81,
+          "bottom": 1501,
+          "width": 511.81,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "ESTUDO SMUFDPJ · base: setlist.fm",
+        "message": "<div> \"ESTUDO SMUFDPJ · base: setlist.fm\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 3.113,
+        "lastSeen": 52.912,
+        "occurrences": 9,
+        "heldMs": 0,
+        "times": [
+          3.113,
+          9.337,
+          15.563,
+          21.788,
+          28.013,
+          34.238,
+          40.463,
+          46.688,
+          52.912
+        ]
+      },
+      {
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 72,
+          "y": 268,
+          "width": 283.63,
+          "height": 49
+        },
+        "time": 9.337,
+        "rect": {
+          "left": 72,
+          "top": 268,
+          "right": 355.63,
+          "bottom": 317,
+          "width": 283.63,
+          "height": 49
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "O CRITÉRIO",
+        "message": "<div> \"O CRITÉRIO\" is outside the safe area: TikTok (left edge), Instagram Reels (top edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.337,
+        "lastSeen": 9.337,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.337
+        ]
+      },
+      {
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 70,
+          "y": 288,
+          "width": 517.27,
+          "height": 193
+        },
+        "time": 9.337,
+        "rect": {
+          "left": 70,
+          "top": 288,
+          "right": 587.27,
+          "bottom": 481,
+          "width": 517.27,
+          "height": 193
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "TOCOU NOS",
+        "message": "<div> \"TOCOU NOS\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.337,
+        "lastSeen": 9.337,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.337
+        ]
+      },
+      {
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 70,
+          "y": 410,
+          "width": 700.75,
+          "height": 193
+        },
+        "time": 9.337,
+        "rect": {
+          "left": 70,
+          "top": 410,
+          "right": 770.75,
+          "bottom": 603,
+          "width": 700.75,
+          "height": 193
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "SHOWS SOLO 9",
+        "message": "<div> \"SHOWS SOLO 9\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.337,
+        "lastSeen": 9.337,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.337
+        ]
+      },
+      {
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 70,
+          "y": 532,
+          "width": 580.09,
+          "height": 193
+        },
+        "time": 9.337,
+        "rect": {
+          "left": 70,
+          "top": 532,
+          "right": 650.09,
+          "bottom": 725,
+          "width": 580.09,
+          "height": 193
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DESDE 2023",
+        "message": "<div> \"DESDE 2023\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.337,
+        "lastSeen": 9.337,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.337
+        ]
+      },
+      {
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 72,
+          "y": 712,
+          "width": 677.05,
+          "height": 37
+        },
+        "time": 9.337,
+        "rect": {
+          "left": 72,
+          "top": 712,
+          "right": 749.05,
+          "bottom": 749,
+          "width": 677.05,
+          "height": 37
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "fev/2023 a abr/2026 · fonte: setlist.fm",
+        "message": "<div> \"fev/2023 a abr/2026 · fonte: setlist.fm\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.337,
+        "lastSeen": 9.337,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.337
+        ]
+      },
+      {
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(18)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 101,
+          "y": 1026,
+          "width": 115.2,
+          "height": 31
+        },
+        "time": 9.337,
+        "rect": {
+          "left": 101,
+          "top": 1026,
+          "right": 216.2,
+          "bottom": 1057,
+          "width": 115.2,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "fev/2023",
+        "message": "<div> \"fev/2023\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.337,
+        "lastSeen": 9.337,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.337
+        ]
+      },
+      {
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(19)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 760,
+          "y": 1026,
+          "width": 115.2,
+          "height": 31
+        },
+        "time": 9.337,
+        "rect": {
+          "left": 760,
+          "top": 1026,
+          "right": 875.2,
+          "bottom": 1057,
+          "width": 115.2,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "abr/2026",
+        "message": "<div> \"abr/2026\" is outside the safe area: TikTok (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.337,
+        "lastSeen": 9.337,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.337
+        ]
+      },
+      {
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(20)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 70,
+          "y": 1025,
+          "width": 526.2,
+          "height": 331
+        },
+        "time": 9.337,
+        "rect": {
+          "left": 70,
+          "top": 1025,
+          "right": 596.2,
+          "bottom": 1356,
+          "width": 526.2,
+          "height": 331
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "9 DE 9",
+        "message": "<div> \"9 DE 9\" is outside the safe area: TikTok (left and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.337,
+        "lastSeen": 9.337,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.337
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 69.72,
+          "y": 232.56,
+          "width": 297.18,
+          "height": 145.09
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 69.72,
+          "top": 232.56,
+          "right": 366.9,
+          "bottom": 377.65,
+          "width": 297.18,
+          "height": 145.09
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "MAS E A",
+        "message": "<div> \"MAS E A\" is outside the safe area: TikTok (left and top edges), Instagram Reels (top edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 65.72,
+          "y": 285.6,
+          "width": 723.27,
+          "height": 356.21
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 65.72,
+          "top": 285.6,
+          "right": 788.99,
+          "bottom": 641.81,
+          "width": 723.27,
+          "height": 356.21
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "SIRENS?",
+        "message": "<div> \"SIRENS?\" is outside the safe area: TikTok (left edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 87.73,
+          "y": 627.8,
+          "width": 185,
+          "height": 39.02
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 87.73,
+          "top": 627.8,
+          "right": 272.73,
+          "bottom": 666.82,
+          "width": 185,
+          "height": 39.02
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "10 PEDIDOS",
+        "message": "<div> \"10 PEDIDOS\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 409.7,
+          "y": 534.76,
+          "width": 557.22,
+          "height": 263.08
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 409.7,
+          "top": 534.76,
+          "right": 966.92,
+          "bottom": 797.84,
+          "width": 557.22,
+          "height": 263.08
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "ESQUECE",
+        "message": "<div> \"ESQUECE\" is outside the safe area: TikTok (right edge), YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 100.74,
+          "y": 809.91,
+          "width": 144.08,
+          "height": 31.02
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 100.74,
+          "top": 809.91,
+          "right": 244.82,
+          "bottom": 840.93,
+          "width": 144.08,
+          "height": 31.02
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DESDE 2023",
+        "message": "<div> \"DESDE 2023\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 100.74,
+          "y": 925.98,
+          "width": 86.45,
+          "height": 31.02
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 100.74,
+          "top": 925.98,
+          "right": 187.19,
+          "bottom": 957,
+          "width": 86.45,
+          "height": 31.02
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "BRASIL",
+        "message": "<div> \"BRASIL\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 69.72,
+          "y": 958,
+          "width": 189.8,
+          "height": 572.34
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 69.72,
+          "top": 958,
+          "right": 259.52,
+          "bottom": 1530.34,
+          "width": 189.8,
+          "height": 572.34
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "0",
+        "message": "<div> \"0\" is outside the safe area: TikTok (left and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(10)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 329.87,
+          "y": 1066.06,
+          "width": 298.53,
+          "height": 225.14
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 329.87,
+          "top": 1066.06,
+          "right": 628.4,
+          "bottom": 1291.2,
+          "width": 298.53,
+          "height": 225.14
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DE 17",
+        "message": "<div> \"DE 17\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 333.88,
+          "y": 1237.17,
+          "width": 360.17,
+          "height": 114.06
+        },
+        "time": 15.563,
+        "rect": {
+          "left": 333.88,
+          "top": 1237.17,
+          "right": 694.05,
+          "bottom": 1351.23,
+          "width": 360.17,
+          "height": 114.06
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "SHOWS SOLO",
+        "message": "<div> \"SHOWS SOLO\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 15.563,
+        "lastSeen": 15.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          15.563
+        ]
+      },
+      {
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 70,
+          "y": 237,
+          "width": 98.59,
+          "height": 129
+        },
+        "time": 21.788,
+        "rect": {
+          "left": 70,
+          "top": 237,
+          "right": 168.59,
+          "bottom": 366,
+          "width": 98.59,
+          "height": 129
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "E A",
+        "message": "<div> \"E A\" is outside the safe area: TikTok (left and top edges), Instagram Reels (top edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 21.788,
+        "lastSeen": 21.788,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          21.788
+        ]
+      },
+      {
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 66,
+          "y": 300,
+          "width": 668.09,
+          "height": 225
+        },
+        "time": 21.788,
+        "rect": {
+          "left": 66,
+          "top": 300,
+          "right": 734.09,
+          "bottom": 525,
+          "width": 668.09,
+          "height": 225
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "INVINCIBLE?",
+        "message": "<div> \"INVINCIBLE?\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 21.788,
+        "lastSeen": 21.788,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          21.788
+        ]
+      },
+      {
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 103,
+          "y": 575,
+          "width": 262.2,
+          "height": 39
+        },
+        "time": 21.788,
+        "rect": {
+          "left": 103,
+          "top": 575,
+          "right": 365.2,
+          "bottom": 614,
+          "width": 262.2,
+          "height": 39
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "COM A BANDA",
+        "message": "<div> \"COM A BANDA\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 21.788,
+        "lastSeen": 21.788,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          21.788
+        ]
+      },
+      {
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 101,
+          "y": 600,
+          "width": 307.06,
+          "height": 105
+        },
+        "time": 21.788,
+        "rect": {
+          "left": 101,
+          "top": 600,
+          "right": 408.06,
+          "bottom": 705,
+          "width": 307.06,
+          "height": 105
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "EARTHLINGS",
+        "message": "<div> \"EARTHLINGS\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 21.788,
+        "lastSeen": 21.788,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          21.788
+        ]
+      },
+      {
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 99,
+          "y": 648,
+          "width": 275.47,
+          "height": 497
+        },
+        "time": 21.788,
+        "rect": {
+          "left": 99,
+          "top": 648,
+          "right": 374.47,
+          "bottom": 1145,
+          "width": 275.47,
+          "height": 497
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "14",
+        "message": "<div> \"14\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 21.788,
+        "lastSeen": 21.788,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          21.788
+        ]
+      },
+      {
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 103,
+          "y": 1105,
+          "width": 238.09,
+          "height": 31
+        },
+        "time": 21.788,
+        "rect": {
+          "left": 103,
+          "top": 1105,
+          "right": 341.09,
+          "bottom": 1136,
+          "width": 238.09,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "vezes desde 2022",
+        "message": "<div> \"vezes desde 2022\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 21.788,
+        "lastSeen": 21.788,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          21.788
+        ]
+      },
+      {
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 62,
+          "y": 149,
+          "width": 129.78,
+          "height": 392
+        },
+        "time": 28.013,
+        "rect": {
+          "left": 62,
+          "top": 149,
+          "right": 191.78,
+          "bottom": 541,
+          "width": 129.78,
+          "height": 392
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "3",
+        "message": "<div> \"3\" is outside the safe area: TikTok (left and top edges), Instagram Reels (left and top edges), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 28.013,
+        "lastSeen": 28.013,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.013
+        ]
+      },
+      {
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 100,
+          "y": 622,
+          "width": 64.48,
+          "height": 35
+        },
+        "time": 28.013,
+        "rect": {
+          "left": 100,
+          "top": 622,
+          "right": 164.48,
+          "bottom": 657,
+          "width": 64.48,
+          "height": 35
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Nº 3",
+        "message": "<div> \"Nº 3\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 28.013,
+        "lastSeen": 28.013,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.013
+        ]
+      },
+      {
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 175.19,
+          "y": 659.84,
+          "width": 619.61,
+          "height": 220
+        },
+        "time": 28.013,
+        "rect": {
+          "left": 175.19,
+          "top": 659.84,
+          "right": 794.8,
+          "bottom": 879.84,
+          "width": 619.61,
+          "height": 220
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "FAR BEHIND",
+        "message": "<span> \"FAR BEHIND\" is outside the safe area: TikTok (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 28.013,
+        "lastSeen": 28.013,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.013
+        ]
+      },
+      {
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 101,
+          "y": 1000,
+          "width": 360,
+          "height": 31
+        },
+        "time": 28.013,
+        "rect": {
+          "left": 101,
+          "top": 1000,
+          "right": 461,
+          "bottom": 1031,
+          "width": 360,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DESDE 2023 · 9 SHOWS SOLO",
+        "message": "<div> \"DESDE 2023 · 9 SHOWS SOLO\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 28.013,
+        "lastSeen": 28.013,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.013
+        ]
+      },
+      {
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 101,
+          "y": 1110,
+          "width": 288,
+          "height": 31
+        },
+        "time": 28.013,
+        "rect": {
+          "left": 101,
+          "top": 1110,
+          "right": 389,
+          "bottom": 1141,
+          "width": 288,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "BRASIL · 2014 E 2018",
+        "message": "<div> \"BRASIL · 2014 E 2018\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 28.013,
+        "lastSeen": 28.013,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.013
+        ]
+      },
+      {
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(10)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 70,
+          "y": 1186,
+          "width": 406.63,
+          "height": 256
+        },
+        "time": 28.013,
+        "rect": {
+          "left": 70,
+          "top": 1186,
+          "right": 476.63,
+          "bottom": 1442,
+          "width": 406.63,
+          "height": 256
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DE 9 9",
+        "message": "<div> \"DE 9 9\" is outside the safe area: TikTok (left and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 28.013,
+        "lastSeen": 28.013,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.013
+        ]
+      },
+      {
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 647.3,
+          "y": 1104.2,
+          "width": 253.58,
+          "height": 42.6
+        },
+        "time": 28.013,
+        "rect": {
+          "left": 647.3,
+          "top": 1104.2,
+          "right": 900.88,
+          "bottom": 1146.8,
+          "width": 253.58,
+          "height": 42.6
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "BRASIL: 8 DE 8",
+        "message": "<div> \"BRASIL: 8 DE 8\" is outside the safe area: TikTok (right edge), YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 28.013,
+        "lastSeen": 28.013,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.013
+        ]
+      },
+      {
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(13)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 72,
+          "y": 1406,
+          "width": 392.92,
+          "height": 41
+        },
+        "time": 28.013,
+        "rect": {
+          "left": 72,
+          "top": 1406,
+          "right": 464.92,
+          "bottom": 1447,
+          "width": 392.92,
+          "height": 41
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "e nunca falhou no Brasil",
+        "message": "<div> \"e nunca falhou no Brasil\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 28.013,
+        "lastSeen": 28.013,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.013
+        ]
+      },
+      {
+        "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c9.html",
+        "bbox": {
+          "x": 61.62,
+          "y": 148.35,
+          "width": 129.88,
+          "height": 392.31
+        },
+        "time": 34.238,
+        "rect": {
+          "left": 61.62,
+          "top": 148.35,
+          "right": 191.5,
+          "bottom": 540.66,
+          "width": 129.88,
+          "height": 392.31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "2",
+        "message": "<div> \"2\" is outside the safe area: TikTok (left and top edges), Instagram Reels (left and top edges), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 34.238,
+        "lastSeen": 34.238,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          34.238
+        ]
+      },
+      {
+        "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c9.html",
+        "bbox": {
+          "x": 99.65,
+          "y": 621.73,
+          "width": 64.53,
+          "height": 35.03
+        },
+        "time": 34.238,
+        "rect": {
+          "left": 99.65,
+          "top": 621.73,
+          "right": 164.18,
+          "bottom": 656.76,
+          "width": 64.53,
+          "height": 35.03
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Nº 2",
+        "message": "<div> \"Nº 2\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 34.238,
+        "lastSeen": 34.238,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          34.238
+        ]
+      },
+      {
+        "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c9.html",
+        "bbox": {
+          "x": 173.46,
+          "y": 641.54,
+          "width": 622.98,
+          "height": 256.21
+        },
+        "time": 34.238,
+        "rect": {
+          "left": 173.46,
+          "top": 641.54,
+          "right": 796.44,
+          "bottom": 897.75,
+          "width": 622.98,
+          "height": 256.21
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "HARD SUN",
+        "message": "<span> \"HARD SUN\" is outside the safe area: TikTok (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 34.238,
+        "lastSeen": 34.238,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          34.238
+        ]
+      },
+      {
+        "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c9.html",
+        "bbox": {
+          "x": 100.65,
+          "y": 1000.03,
+          "width": 360.29,
+          "height": 31.03
+        },
+        "time": 34.238,
+        "rect": {
+          "left": 100.65,
+          "top": 1000.03,
+          "right": 460.94,
+          "bottom": 1031.06,
+          "width": 360.29,
+          "height": 31.03
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DESDE 2023 · 9 SHOWS SOLO",
+        "message": "<div> \"DESDE 2023 · 9 SHOWS SOLO\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 34.238,
+        "lastSeen": 34.238,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          34.238
+        ]
+      },
+      {
+        "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c9.html",
+        "bbox": {
+          "x": 100.65,
+          "y": 1110.12,
+          "width": 288.23,
+          "height": 31.02
+        },
+        "time": 34.238,
+        "rect": {
+          "left": 100.65,
+          "top": 1110.12,
+          "right": 388.88,
+          "bottom": 1141.14,
+          "width": 288.23,
+          "height": 31.02
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "BRASIL · 2014 E 2018",
+        "message": "<div> \"BRASIL · 2014 E 2018\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 34.238,
+        "lastSeen": 34.238,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          34.238
+        ]
+      },
+      {
+        "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(10)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c9.html",
+        "bbox": {
+          "x": 69.62,
+          "y": 1186.18,
+          "width": 521.14,
+          "height": 256.21
+        },
+        "time": 34.238,
+        "rect": {
+          "left": 69.62,
+          "top": 1186.18,
+          "right": 590.76,
+          "bottom": 1442.39,
+          "width": 521.14,
+          "height": 256.21
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DE 17 10",
+        "message": "<div> \"DE 17 10\" is outside the safe area: TikTok (left and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 34.238,
+        "lastSeen": 34.238,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          34.238
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 1288,
+          "y": 706,
+          "width": 382.84,
+          "height": 100
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 1288,
+          "top": 706,
+          "right": 1670.84,
+          "bottom": 806,
+          "width": 382.84,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "5 · BETTER MAN",
+        "message": "<div> \"5 · BETTER MAN\" is outside the safe area: TikTok (right edge), Instagram Reels (right edge), YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 1288,
+          "y": 802,
+          "width": 425.97,
+          "height": 100
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 1288,
+          "top": 802,
+          "right": 1713.97,
+          "bottom": 902,
+          "width": 425.97,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "4 · JUST BREATHE",
+        "message": "<div> \"4 · JUST BREATHE\" is outside the safe area: TikTok (right edge), Instagram Reels (right edge), YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 1288,
+          "y": 898,
+          "width": 360.44,
+          "height": 100
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 1288,
+          "top": 898,
+          "right": 1648.44,
+          "bottom": 998,
+          "width": 360.44,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "3 · FAR BEHIND",
+        "message": "<div> \"3 · FAR BEHIND\" is outside the safe area: TikTok (right edge), Instagram Reels (right edge), YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 1288,
+          "y": 994,
+          "width": 322.02,
+          "height": 100
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 1288,
+          "top": 994,
+          "right": 1610.02,
+          "bottom": 1094,
+          "width": 322.02,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "2 · HARD SUN",
+        "message": "<div> \"2 · HARD SUN\" is outside the safe area: TikTok (right edge), Instagram Reels (right edge), YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 70,
+          "y": 233,
+          "width": 297,
+          "height": 145
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 70,
+          "top": 233,
+          "right": 367,
+          "bottom": 378,
+          "width": 297,
+          "height": 145
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "MAS E A",
+        "message": "<div> \"MAS E A\" is outside the safe area: TikTok (left and top edges), Instagram Reels (top edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 62,
+          "y": 264,
+          "width": 848.95,
+          "height": 452
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 62,
+          "top": 264,
+          "right": 910.95,
+          "bottom": 716,
+          "width": 848.95,
+          "height": 452
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "BLACK?",
+        "message": "<div> \"BLACK?\" is outside the safe area: TikTok (left edge), Instagram Reels (left and top edges), YouTube Shorts (top and right edges).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 88,
+          "y": 692,
+          "width": 183.16,
+          "height": 39
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 88,
+          "top": 692,
+          "right": 271.16,
+          "bottom": 731,
+          "width": 183.16,
+          "height": 39
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "21 PEDIDOS",
+        "message": "<div> \"21 PEDIDOS\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 447.86,
+          "y": 612.82,
+          "width": 448.59,
+          "height": 222.33
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 447.86,
+          "top": 612.82,
+          "right": 896.45,
+          "bottom": 835.15,
+          "width": 448.59,
+          "height": 222.33
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DIFÍCIL",
+        "message": "<div> \"DIFÍCIL\" is outside the safe area: YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 101,
+          "y": 872,
+          "width": 360,
+          "height": 31
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 101,
+          "top": 872,
+          "right": 461,
+          "bottom": 903,
+          "width": 360,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DESDE 2023 · 9 SHOWS SOLO",
+        "message": "<div> \"DESDE 2023 · 9 SHOWS SOLO\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 101,
+          "y": 988,
+          "width": 144,
+          "height": 31
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 101,
+          "top": 988,
+          "right": 245,
+          "bottom": 1019,
+          "width": 144,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "TEMPE 2023",
+        "message": "<div> \"TEMPE 2023\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 744,
+          "y": 988,
+          "width": 144,
+          "height": 31
+        },
+        "time": 40.463,
+        "rect": {
+          "left": 744,
+          "top": 988,
+          "right": 888,
+          "bottom": 1019,
+          "width": 144,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "JAPÃO 2026",
+        "message": "<div> \"JAPÃO 2026\" is outside the safe area: TikTok (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 40.463,
+        "lastSeen": 40.463,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          40.463
+        ]
+      },
+      {
+        "selector": "#c12 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c12.html",
+        "bbox": {
+          "x": 61.32,
+          "y": 145.91,
+          "width": 88.61,
+          "height": 398.16
+        },
+        "time": 46.688,
+        "rect": {
+          "left": 61.32,
+          "top": 145.91,
+          "right": 149.93,
+          "bottom": 544.07,
+          "width": 88.61,
+          "height": 398.16
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "1",
+        "message": "<div> \"1\" is outside the safe area: TikTok (left and top edges), Instagram Reels (left and top edges), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 46.688,
+        "lastSeen": 46.688,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          46.688
+        ]
+      },
+      {
+        "selector": "#c12 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c12.html",
+        "bbox": {
+          "x": 101,
+          "y": 830,
+          "width": 144,
+          "height": 31
+        },
+        "time": 46.688,
+        "rect": {
+          "left": 101,
+          "top": 830,
+          "right": 245,
+          "bottom": 861,
+          "width": 144,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "DESDE 2023",
+        "message": "<div> \"DESDE 2023\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 46.688,
+        "lastSeen": 46.688,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          46.688
+        ]
+      },
+      {
+        "selector": "#c12 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c12.html",
+        "bbox": {
+          "x": 101,
+          "y": 950,
+          "width": 86.41,
+          "height": 31
+        },
+        "time": 46.688,
+        "rect": {
+          "left": 101,
+          "top": 950,
+          "right": 187.41,
+          "bottom": 981,
+          "width": 86.41,
+          "height": 31
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "BRASIL",
+        "message": "<div> \"BRASIL\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 46.688,
+        "lastSeen": 46.688,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          46.688
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 72,
+          "y": 262,
+          "width": 753.31,
+          "height": 36
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 72,
+          "top": 262,
+          "right": 825.31,
+          "bottom": 298,
+          "width": 753.31,
+          "height": 36
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "PALPITE PELO HISTÓRICO, NÃO É SETLIST OFICIAL",
+        "message": "<div> \"PALPITE PELO HISTÓRICO, NÃO É SETLIST OFICIAL\" is outside the safe area: TikTok (left edge), Instagram Reels (top edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 70,
+          "y": 300,
+          "width": 32.95,
+          "height": 100
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 70,
+          "top": 300,
+          "right": 102.95,
+          "bottom": 400,
+          "width": 32.95,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "5",
+        "message": "<span> \"5\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 70,
+          "y": 382,
+          "width": 32.95,
+          "height": 100
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 70,
+          "top": 382,
+          "right": 102.95,
+          "bottom": 482,
+          "width": 32.95,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "4",
+        "message": "<span> \"4\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 70,
+          "y": 464,
+          "width": 32.95,
+          "height": 100
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 70,
+          "top": 464,
+          "right": 102.95,
+          "bottom": 564,
+          "width": 32.95,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "3",
+        "message": "<span> \"3\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 70,
+          "y": 546,
+          "width": 32.95,
+          "height": 100
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 70,
+          "top": 546,
+          "right": 102.95,
+          "bottom": 646,
+          "width": 32.95,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "2",
+        "message": "<span> \"2\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 70,
+          "y": 628,
+          "width": 22.16,
+          "height": 100
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 70,
+          "top": 628,
+          "right": 92.16,
+          "bottom": 728,
+          "width": 22.16,
+          "height": 100
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "1",
+        "message": "<span> \"1\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 70,
+          "y": 758,
+          "width": 103.09,
+          "height": 36
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 70,
+          "top": 758,
+          "right": 173.09,
+          "bottom": 794,
+          "width": 103.09,
+          "height": 36
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "BLACK",
+        "message": "<span> \"BLACK\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 70,
+          "y": 832,
+          "width": 172.25,
+          "height": 36
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 70,
+          "top": 832,
+          "right": 242.25,
+          "bottom": 868,
+          "width": 172.25,
+          "height": 36
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "INVINCIBLE",
+        "message": "<span> \"INVINCIBLE\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(10) > span:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 762.45,
+          "y": 828,
+          "width": 111.55,
+          "height": 43
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 762.45,
+          "top": 828,
+          "right": 874,
+          "bottom": 871,
+          "width": 111.55,
+          "height": 43
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "TALVEZ",
+        "message": "<span> \"TALVEZ\" is outside the safe area: TikTok (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 70,
+          "y": 883,
+          "width": 561.13,
+          "height": 178
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 70,
+          "top": 883,
+          "right": 631.13,
+          "bottom": 1061,
+          "width": 561.13,
+          "height": 178
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "TÁ ANSIOSO?",
+        "message": "<div> \"TÁ ANSIOSO?\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 71.84,
+          "y": 1046,
+          "width": 751.91,
+          "height": 51
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 71.84,
+          "top": 1046,
+          "right": 823.75,
+          "bottom": 1097,
+          "width": 751.91,
+          "height": 51
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "MANDA PARA QUEM VAI COM VOCÊ",
+        "message": "<div> \"MANDA PARA QUEM VAI COM VOCÊ\" is outside the safe area: TikTok (left and right edges).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(16)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 72,
+          "y": 1316,
+          "width": 669.61,
+          "height": 53
+        },
+        "time": 52.912,
+        "rect": {
+          "left": 72,
+          "top": 1316,
+          "right": 741.61,
+          "bottom": 1369,
+          "width": 669.61,
+          "height": 53
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "somaisumfadepearljam.com.br",
+        "message": "<div> \"somaisumfadepearljam.com.br\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 52.912,
+        "lastSeen": 52.912,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          52.912
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 2.504,
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9) > span:nth-of-type(1)",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 418.55,
+          "top": 1356.96,
+          "right": 473.45,
+          "bottom": 1521.96,
+          "width": 54.9,
+          "height": 165
+        },
+        "containerSelector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "text": "3",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply. Decoration nobody needs to read can take data-layout-ignore.",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 418.55,
+          "y": 1356.96,
+          "width": 54.9,
+          "height": 165
+        },
+        "firstSeen": 2.504,
+        "lastSeen": 2.504,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          2.504
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 5.321,
+        "selector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 35.13,
+          "top": 23.18,
+          "right": 466.16,
+          "bottom": 1323.76,
+          "width": 431.03,
+          "height": 1300.58
+        },
+        "containerSelector": "#c1 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+        "text": "5",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply. Decoration nobody needs to read can take data-layout-ignore.",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c1.html",
+        "bbox": {
+          "x": 35.13,
+          "y": 23.18,
+          "width": 431.03,
+          "height": 1300.58
+        },
+        "firstSeen": 5.321,
+        "lastSeen": 5.321,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          5.321
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 7.825,
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 101,
+          "top": 808,
+          "right": 487.05,
+          "bottom": 919,
+          "width": 386.05,
+          "height": 111
+        },
+        "containerSelector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "text": "SEATTLE 2024",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply. Decoration nobody needs to read can take data-layout-ignore.",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 101,
+          "y": 808,
+          "width": 386.05,
+          "height": 111
+        },
+        "firstSeen": 7.825,
+        "lastSeen": 7.825,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          7.825
+        ]
+      }
+    ],
+    "duration": 56.025,
+    "samples": [
+      3.113,
+      9.337,
+      15.563,
+      21.788,
+      28.013,
+      34.238,
+      40.463,
+      46.688,
+      52.912
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 110,
+    "truncated": true
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      3.113,
+      15.563,
+      28.013,
+      40.463,
+      52.912
+    ],
+    "checked": 74,
+    "passed": 74
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 35,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and \"ESTUDO SMUFDPJ · base: setlist.fm\" renders at 26 px for 56.02 s: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "ESTUDO SMUFDPJ · base: setlist.fm",
+        "selector": "#selo",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 92,
+          "y": 1470,
+          "width": 511.81,
+          "height": 31
+        },
+        "time": 0,
+        "times": [
+          0
+        ],
+        "fontPx": 26,
+        "floorPx": 28,
+        "seconds": 56.025,
+        "elements": [
+          {
+            "selector": "#selo",
+            "text": "ESTUDO SMUFDPJ · base: setlist.fm",
+            "fontPx": 26,
+            "time": 0,
+            "seconds": 56.025
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"fev/2023\" at 24 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "fev/2023",
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(18)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 98.41,
+          "y": 1026.39,
+          "width": 115.88,
+          "height": 31.18
+        },
+        "time": 5.49,
+        "times": [
+          5.49,
+          5.49
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 4.368,
+        "elements": [
+          {
+            "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(18)",
+            "text": "fev/2023",
+            "fontPx": 24,
+            "time": 5.49,
+            "seconds": 4.368
+          },
+          {
+            "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(19)",
+            "text": "abr/2026",
+            "fontPx": 24,
+            "time": 5.49,
+            "seconds": 4.368
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"TEMPE 2023\" (2 words) is on screen 0.20 s (±0.01 s), under its 0.40 s floor: hold it about 0.5 s + 0.3 s a word (1.10 s here) before it leaves or changes; see references/motion.md.",
+        "text": "TEMPE 2023",
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 95.25,
+          "y": 806.04,
+          "width": 352.21,
+          "height": 112.46000000000004
+        },
+        "time": 7.035,
+        "words": 2,
+        "seconds": 0.202,
+        "floorSeconds": 0.4,
+        "measured": [
+          {
+            "time": 6.738,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 6.863,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 6.988,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.112,
+            "opacity": 1,
+            "heightPx": 112
+          },
+          {
+            "time": 7.237,
+            "opacity": 0.12,
+            "heightPx": 111
+          },
+          {
+            "time": 7.362,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.487,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"SEATTLE 2023\" (2 words) is on screen 0.37 s (±0.01 s), under its 0.40 s floor: hold it about 0.5 s + 0.3 s a word (1.10 s here) before it leaves or changes; see references/motion.md.",
+        "text": "SEATTLE 2023",
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 100.74,
+          "y": 811.52,
+          "width": 386.28,
+          "height": 111.06999999999994
+        },
+        "time": 7.237,
+        "words": 2,
+        "seconds": 0.366,
+        "floorSeconds": 0.4,
+        "measured": [
+          {
+            "time": 6.863,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 6.988,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.112,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.237,
+            "opacity": 0.88,
+            "heightPx": 111
+          },
+          {
+            "time": 7.362,
+            "opacity": 1,
+            "heightPx": 111
+          },
+          {
+            "time": 7.487,
+            "opacity": 1,
+            "heightPx": 111
+          },
+          {
+            "time": 7.611,
+            "opacity": 0.49,
+            "heightPx": 111
+          },
+          {
+            "time": 7.736,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.861,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"SEATTLE 2024\" (2 words) is on screen 0.20 s (±0.01 s), under its 0.40 s floor: hold it about 0.5 s + 0.3 s a word (1.10 s here) before it leaves or changes; see references/motion.md.",
+        "text": "SEATTLE 2024",
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 101,
+          "y": 816.03,
+          "width": 386.05,
+          "height": 111
+        },
+        "time": 7.603,
+        "words": 2,
+        "seconds": 0.203,
+        "floorSeconds": 0.4,
+        "measured": [
+          {
+            "time": 7.237,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.362,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.487,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.611,
+            "opacity": 0.73,
+            "heightPx": 111
+          },
+          {
+            "time": 7.736,
+            "opacity": 1,
+            "heightPx": 111
+          },
+          {
+            "time": 7.861,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.986,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 8.111,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"VANCOUVER 2025\" (2 words) is on screen 0.20 s (±0.01 s), under its 0.40 s floor: hold it about 0.5 s + 0.3 s a word (1.10 s here) before it leaves or changes; see references/motion.md.",
+        "text": "VANCOUVER 2025",
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 101,
+          "y": 808.42,
+          "width": 481.3399999999999,
+          "height": 111
+        },
+        "time": 7.806,
+        "words": 2,
+        "seconds": 0.195,
+        "floorSeconds": 0.4,
+        "measured": [
+          {
+            "time": 7.487,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.611,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.736,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 7.861,
+            "opacity": 0.99,
+            "heightPx": 111
+          },
+          {
+            "time": 7.986,
+            "opacity": 0.76,
+            "heightPx": 111
+          },
+          {
+            "time": 8.111,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 8.235,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 8.36,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"9 DE 9\" (3 words) is on screen 0.97 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "9 DE 9",
+        "selector": "#c2 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(20)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c2.html",
+        "bbox": {
+          "x": 0,
+          "y": 972.76,
+          "width": 678.9,
+          "height": 435.03999999999996
+        },
+        "time": 8.836,
+        "words": 3,
+        "seconds": 0.967,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 8.485,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 8.61,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 8.734,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 8.859,
+            "opacity": 0.78,
+            "heightPx": 435
+          },
+          {
+            "time": 8.984,
+            "opacity": 1,
+            "heightPx": 332
+          },
+          {
+            "time": 9.109,
+            "opacity": 1,
+            "heightPx": 331
+          },
+          {
+            "time": 9.234,
+            "opacity": 1,
+            "heightPx": 331
+          },
+          {
+            "time": 9.358,
+            "opacity": 1,
+            "heightPx": 331
+          },
+          {
+            "time": 9.483,
+            "opacity": 1,
+            "heightPx": 331
+          },
+          {
+            "time": 9.608,
+            "opacity": 1,
+            "heightPx": 331
+          },
+          {
+            "time": 9.733,
+            "opacity": 1,
+            "heightPx": 331
+          },
+          {
+            "time": 9.857,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 9.982,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 10.107,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and \"DESDE 2023 · 9 SHOWS SOLO\" renders at 24 px for 2.75 s: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "DESDE 2023 · 9 SHOWS SOLO",
+        "selector": "#c3 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c3.html",
+        "bbox": {
+          "x": 84.98,
+          "y": 1001.46,
+          "width": 373.14,
+          "height": 32.13
+        },
+        "time": 9.857,
+        "times": [
+          9.857
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 2.746,
+        "elements": [
+          {
+            "selector": "#c3 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+            "text": "DESDE 2023 · 9 SHOWS SOLO",
+            "fontPx": 24,
+            "time": 9.857,
+            "seconds": 2.746
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"9 DE 9\" (3 words) is on screen 0.60 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "9 DE 9",
+        "selector": "#c3 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c3.html",
+        "bbox": {
+          "x": 47.41,
+          "y": 1061.76,
+          "width": 451.79999999999995,
+          "height": 284.44000000000005
+        },
+        "time": 11.94,
+        "words": 3,
+        "seconds": 0.601,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 11.604,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 11.729,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 11.854,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 11.979,
+            "opacity": 0.91,
+            "heightPx": 284
+          },
+          {
+            "time": 12.103,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 12.228,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 12.353,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 12.478,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 12.603,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.727,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.852,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"14 de 17 contando o Brasil\" (6 words) is on screen 0.50 s (±0.01 s), under its 1.72 s floor: hold it about 0.5 s + 0.3 s a word (2.30 s here) before it leaves or changes; see references/motion.md.",
+        "text": "14 de 17 contando o Brasil",
+        "selector": "#c3 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(10)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c3.html",
+        "bbox": {
+          "x": 72,
+          "y": 1296.45,
+          "width": 423.17,
+          "height": 41
+        },
+        "time": 12.041,
+        "words": 6,
+        "seconds": 0.499,
+        "floorSeconds": 1.725,
+        "measured": [
+          {
+            "time": 11.729,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 11.854,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 11.979,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.103,
+            "opacity": 0.98,
+            "heightPx": 41
+          },
+          {
+            "time": 12.228,
+            "opacity": 1,
+            "heightPx": 41
+          },
+          {
+            "time": 12.353,
+            "opacity": 1,
+            "heightPx": 41
+          },
+          {
+            "time": 12.478,
+            "opacity": 1,
+            "heightPx": 41
+          },
+          {
+            "time": 12.603,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.727,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.852,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"CERTA\" (1 word) is on screen 0.27 s (±0.01 s), under its 0.40 s floor: hold it about 0.5 s + 0.3 s a word (0.80 s here) before it leaves or changes; see references/motion.md.",
+        "text": "CERTA",
+        "selector": "#c3 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c3.html",
+        "bbox": {
+          "x": 588.95,
+          "y": 1103.04,
+          "width": 300.18000000000006,
+          "height": 169.3499999999999
+        },
+        "time": 12.267,
+        "words": 1,
+        "seconds": 0.273,
+        "floorSeconds": 0.4,
+        "measured": [
+          {
+            "time": 11.979,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.103,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.228,
+            "opacity": 0.06,
+            "heightPx": 629
+          },
+          {
+            "time": 12.353,
+            "opacity": 1,
+            "heightPx": 169
+          },
+          {
+            "time": 12.478,
+            "opacity": 1,
+            "heightPx": 174
+          },
+          {
+            "time": 12.603,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.727,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 12.852,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"BRASIL\" at 24 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "BRASIL",
+        "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c4.html",
+        "bbox": {
+          "x": 96,
+          "y": 925.61,
+          "width": 87.39,
+          "height": 31.36
+        },
+        "time": 12.603,
+        "times": [
+          12.603,
+          14.1
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 3.493,
+        "elements": [
+          {
+            "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+            "text": "BRASIL",
+            "fontPx": 24,
+            "time": 12.603,
+            "seconds": 3.493
+          },
+          {
+            "selector": "#c4 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+            "text": "DESDE 2023",
+            "fontPx": 24,
+            "time": 14.1,
+            "seconds": 1.996
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and \"DESDE 2023 · 9 SHOWS SOLO\" renders at 24 px for 3.00 s: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "DESDE 2023 · 9 SHOWS SOLO",
+        "selector": "#c5 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c5.html",
+        "bbox": {
+          "x": 87.17,
+          "y": 1001.26,
+          "width": 371.34,
+          "height": 31.98
+        },
+        "time": 16.096,
+        "times": [
+          16.096
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 2.995,
+        "elements": [
+          {
+            "selector": "#c5 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+            "text": "DESDE 2023 · 9 SHOWS SOLO",
+            "fontPx": 24,
+            "time": 16.096,
+            "seconds": 2.995
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"9 DE 9\" (3 words) is on screen 0.76 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "9 DE 9",
+        "selector": "#c5 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c5.html",
+        "bbox": {
+          "x": 57.68,
+          "y": 1068.23,
+          "width": 431.27,
+          "height": 271.51
+        },
+        "time": 18.272,
+        "words": 3,
+        "seconds": 0.765,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 17.968,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.093,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.217,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.342,
+            "opacity": 0.95,
+            "heightPx": 272
+          },
+          {
+            "time": 18.467,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 18.592,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 18.717,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 18.841,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 18.966,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 19.091,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 19.216,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 19.34,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"14 de 17 contando o Brasil\" (6 words) is on screen 0.63 s (±0.01 s), under its 1.72 s floor: hold it about 0.5 s + 0.3 s a word (2.30 s here) before it leaves or changes; see references/motion.md.",
+        "text": "14 de 17 contando o Brasil",
+        "selector": "#c5 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(10)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c5.html",
+        "bbox": {
+          "x": 72,
+          "y": 1296.71,
+          "width": 423.17,
+          "height": 41
+        },
+        "time": 18.405,
+        "words": 6,
+        "seconds": 0.632,
+        "floorSeconds": 1.725,
+        "measured": [
+          {
+            "time": 18.093,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.217,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.342,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.467,
+            "opacity": 0.96,
+            "heightPx": 41
+          },
+          {
+            "time": 18.592,
+            "opacity": 1,
+            "heightPx": 41
+          },
+          {
+            "time": 18.717,
+            "opacity": 1,
+            "heightPx": 41
+          },
+          {
+            "time": 18.841,
+            "opacity": 1,
+            "heightPx": 41
+          },
+          {
+            "time": 18.966,
+            "opacity": 1,
+            "heightPx": 41
+          },
+          {
+            "time": 19.091,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 19.216,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 19.34,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"CERTA\" (1 word) is on screen 0.33 s (±0.01 s), under its 0.40 s floor: hold it about 0.5 s + 0.3 s a word (0.80 s here) before it leaves or changes; see references/motion.md.",
+        "text": "CERTA",
+        "selector": "#c5 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c5.html",
+        "bbox": {
+          "x": 544.84,
+          "y": 1080.16,
+          "width": 395.53,
+          "height": 227.3900000000001
+        },
+        "time": 18.701,
+        "words": 1,
+        "seconds": 0.335,
+        "floorSeconds": 0.4,
+        "measured": [
+          {
+            "time": 18.342,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.467,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.592,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 18.717,
+            "opacity": 0.84,
+            "heightPx": 227
+          },
+          {
+            "time": 18.841,
+            "opacity": 1,
+            "heightPx": 165
+          },
+          {
+            "time": 18.966,
+            "opacity": 1,
+            "heightPx": 168
+          },
+          {
+            "time": 19.091,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 19.216,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 19.34,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"vezes desde 2022\" at 24 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "vezes desde 2022",
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 55.03,
+          "y": 1105,
+          "width": 238.1,
+          "height": 31
+        },
+        "time": 20.089,
+        "times": [
+          20.089,
+          20.089
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 3.245,
+        "elements": [
+          {
+            "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(4)",
+            "text": "vezes desde 2022",
+            "fontPx": 24,
+            "time": 20.089,
+            "seconds": 3.245
+          },
+          {
+            "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(5)",
+            "text": "em 17 shows solo",
+            "fontPx": 24,
+            "time": 20.089,
+            "seconds": 4.368
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"IBIRAPUERA É SOLO (segundo a imprensa)\" (6 words) is on screen 1.27 s (±0.01 s), under its 1.72 s floor: hold it about 0.5 s + 0.3 s a word (2.30 s here) before it leaves or changes; see references/motion.md.",
+        "text": "IBIRAPUERA É SOLO (segundo a imprensa)",
+        "selector": "#c6 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c6.html",
+        "bbox": {
+          "x": 72,
+          "y": 1240.15,
+          "width": 699.77,
+          "height": 46
+        },
+        "time": 23.17,
+        "words": 6,
+        "seconds": 1.271,
+        "floorSeconds": 1.725,
+        "measured": [
+          {
+            "time": 22.834,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 22.959,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 23.084,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 23.209,
+            "opacity": 0.86,
+            "heightPx": 46
+          },
+          {
+            "time": 23.333,
+            "opacity": 1,
+            "heightPx": 46
+          },
+          {
+            "time": 23.458,
+            "opacity": 1,
+            "heightPx": 46
+          },
+          {
+            "time": 23.583,
+            "opacity": 1,
+            "heightPx": 46
+          },
+          {
+            "time": 23.957,
+            "opacity": 1,
+            "heightPx": 46
+          },
+          {
+            "time": 24.082,
+            "opacity": 1,
+            "heightPx": 46
+          },
+          {
+            "time": 24.207,
+            "opacity": 1,
+            "heightPx": 46
+          },
+          {
+            "time": 24.332,
+            "opacity": 1,
+            "heightPx": 46
+          },
+          {
+            "time": 24.456,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 24.581,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 24.706,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"DESDE 2023 · 9 SHOWS SOLO\" at 24 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "DESDE 2023 · 9 SHOWS SOLO",
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 70.67,
+          "y": 1002.76,
+          "width": 384.87,
+          "height": 33.15
+        },
+        "time": 24.456,
+        "times": [
+          24.456,
+          24.456
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 4.493,
+        "elements": [
+          {
+            "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+            "text": "DESDE 2023 · 9 SHOWS SOLO",
+            "fontPx": 24,
+            "time": 24.456,
+            "seconds": 4.493
+          },
+          {
+            "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+            "text": "BRASIL · 2014 E 2018",
+            "fontPx": 24,
+            "time": 24.456,
+            "seconds": 2.87
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"BRASIL: 8 DE 8\" (4 words) is on screen 1.01 s (±0.01 s), under its 1.27 s floor: hold it about 0.5 s + 0.3 s a word (1.70 s here) before it leaves or changes; see references/motion.md.",
+        "text": "BRASIL: 8 DE 8",
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 669.04,
+          "y": 1107.85,
+          "width": 210.09000000000003,
+          "height": 35.299999999999955
+        },
+        "time": 27.934,
+        "words": 4,
+        "seconds": 1.006,
+        "floorSeconds": 1.275,
+        "measured": [
+          {
+            "time": 27.576,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 27.701,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 27.825,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 27.95,
+            "opacity": 0.86,
+            "heightPx": 35
+          },
+          {
+            "time": 28.075,
+            "opacity": 1,
+            "heightPx": 44
+          },
+          {
+            "time": 28.2,
+            "opacity": 1,
+            "heightPx": 39
+          },
+          {
+            "time": 28.324,
+            "opacity": 1,
+            "heightPx": 39
+          },
+          {
+            "time": 28.449,
+            "opacity": 1,
+            "heightPx": 39
+          },
+          {
+            "time": 28.574,
+            "opacity": 1,
+            "heightPx": 39
+          },
+          {
+            "time": 28.699,
+            "opacity": 1,
+            "heightPx": 39
+          },
+          {
+            "time": 28.824,
+            "opacity": 1,
+            "heightPx": 39
+          },
+          {
+            "time": 28.948,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 29.073,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 29.198,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"10 DE 17\" (3 words) is on screen 0.74 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "10 DE 17",
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 45.19,
+          "y": 1173.78,
+          "width": 570.3399999999999,
+          "height": 280.39999999999986
+        },
+        "time": 28.2,
+        "words": 3,
+        "seconds": 0.74,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 27.825,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 27.95,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 28.075,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 28.2,
+            "opacity": 0.84,
+            "heightPx": 280
+          },
+          {
+            "time": 28.324,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 28.449,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 28.574,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 28.699,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 28.824,
+            "opacity": 1,
+            "heightPx": 256
+          },
+          {
+            "time": 28.948,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 29.073,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 29.198,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"CERTA\" (1 word) is on screen 0.20 s (±0.01 s), under its 0.40 s floor: hold it about 0.5 s + 0.3 s a word (0.80 s here) before it leaves or changes; see references/motion.md.",
+        "text": "CERTA",
+        "selector": "#c7 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(14)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c7.html",
+        "bbox": {
+          "x": 578.55,
+          "y": 1220.59,
+          "width": 300.18000000000006,
+          "height": 169.3499999999999
+        },
+        "time": 28.738,
+        "words": 1,
+        "seconds": 0.202,
+        "floorSeconds": 0.4,
+        "measured": [
+          {
+            "time": 28.449,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 28.574,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 28.699,
+            "opacity": 0.13,
+            "heightPx": 587
+          },
+          {
+            "time": 28.824,
+            "opacity": 1,
+            "heightPx": 169
+          },
+          {
+            "time": 28.948,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 29.073,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 29.198,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"BRASIL: 5 DE 8\" at 24 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "BRASIL: 5 DE 8",
+        "selector": "#c8 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c8.html",
+        "bbox": {
+          "x": 82.65,
+          "y": 876.66,
+          "width": 210.04,
+          "height": 32.29
+        },
+        "time": 28.948,
+        "times": [
+          28.948,
+          28.948
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 3.869,
+        "elements": [
+          {
+            "selector": "#c8 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+            "text": "BRASIL: 5 DE 8",
+            "fontPx": 24,
+            "time": 28.948,
+            "seconds": 3.869
+          },
+          {
+            "selector": "#c8 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+            "text": "DESDE 2023: 0 DE 9",
+            "fontPx": 24,
+            "time": 28.948,
+            "seconds": 3.869
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"DESDE 2023 · 9 SHOWS SOLO\" at 24 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "DESDE 2023 · 9 SHOWS SOLO",
+        "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c9.html",
+        "bbox": {
+          "x": 83.31,
+          "y": 1001.61,
+          "width": 374.51,
+          "height": 32.25
+        },
+        "time": 32.816,
+        "times": [
+          32.816,
+          32.816
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 3.869,
+        "elements": [
+          {
+            "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+            "text": "DESDE 2023 · 9 SHOWS SOLO",
+            "fontPx": 24,
+            "time": 32.816,
+            "seconds": 3.869
+          },
+          {
+            "selector": "#c9 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+            "text": "BRASIL · 2014 E 2018",
+            "fontPx": 24,
+            "time": 32.816,
+            "seconds": 3.869
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"5 · BETTER MAN\" (3 words) is on screen 0.27 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "5 · BETTER MAN",
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 119.52,
+          "y": 706,
+          "width": 382.84,
+          "height": 100
+        },
+        "time": 36.568,
+        "words": 3,
+        "seconds": 0.272,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 36.31,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.435,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.56,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.685,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 36.809,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 36.934,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 37.059,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 37.184,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"4 · JUST BREATHE\" (3 words) is on screen 0.30 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "4 · JUST BREATHE",
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 90.35,
+          "y": 802,
+          "width": 425.9599999999999,
+          "height": 100
+        },
+        "time": 36.568,
+        "words": 3,
+        "seconds": 0.304,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 36.31,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.435,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.56,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.685,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 36.809,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 36.934,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 37.059,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 37.184,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"3 · FAR BEHIND\" (3 words) is on screen 0.37 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "3 · FAR BEHIND",
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 88,
+          "y": 898,
+          "width": 360.44,
+          "height": 100
+        },
+        "time": 36.568,
+        "words": 3,
+        "seconds": 0.366,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 36.31,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.435,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.56,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.685,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 36.809,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 36.934,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 37.059,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 37.184,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"2 · HARD SUN\" (3 words) is on screen 0.41 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "2 · HARD SUN",
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 88,
+          "y": 994,
+          "width": 322.02,
+          "height": 100
+        },
+        "time": 36.568,
+        "words": 3,
+        "seconds": 0.405,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 36.31,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.435,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.56,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 36.685,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 36.809,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 36.934,
+            "opacity": 1,
+            "heightPx": 100
+          },
+          {
+            "time": 37.059,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 37.184,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 37.308,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 3 text elements stay under it for 0.5 s or more, the smallest \"DESDE 2023 · 9 SHOWS SOLO\" at 22 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "DESDE 2023 · 9 SHOWS SOLO",
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 101,
+          "y": 872,
+          "width": 360,
+          "height": 31
+        },
+        "time": 36.685,
+        "times": [
+          36.685,
+          36.685,
+          39.18
+        ],
+        "fontPx": 21.91,
+        "floorPx": 28,
+        "seconds": 5.365,
+        "elements": [
+          {
+            "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)",
+            "text": "DESDE 2023 · 9 SHOWS SOLO",
+            "fontPx": 21.91,
+            "time": 36.685,
+            "seconds": 5.365
+          },
+          {
+            "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(12)",
+            "text": "JAPÃO 2026",
+            "fontPx": 24,
+            "time": 36.685,
+            "seconds": 5.365
+          },
+          {
+            "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+            "text": "TEMPE 2023",
+            "fontPx": 24,
+            "time": 39.18,
+            "seconds": 2.87
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"8 SHOWS SOLO\" (3 words) is on screen 0.83 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "8 SHOWS SOLO",
+        "selector": "#c10 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(15)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c10.html",
+        "bbox": {
+          "x": 419,
+          "y": 1168.38,
+          "width": 525.56,
+          "height": 145
+        },
+        "time": 41.138,
+        "words": 3,
+        "seconds": 0.834,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 40.802,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 40.927,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 41.052,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 41.177,
+            "opacity": 0.88,
+            "heightPx": 145
+          },
+          {
+            "time": 41.301,
+            "opacity": 1,
+            "heightPx": 145
+          },
+          {
+            "time": 41.426,
+            "opacity": 1,
+            "heightPx": 145
+          },
+          {
+            "time": 41.551,
+            "opacity": 1,
+            "heightPx": 145
+          },
+          {
+            "time": 41.676,
+            "opacity": 1,
+            "heightPx": 145
+          },
+          {
+            "time": 41.8,
+            "opacity": 1,
+            "heightPx": 145
+          },
+          {
+            "time": 41.925,
+            "opacity": 1,
+            "heightPx": 145
+          },
+          {
+            "time": 42.05,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 42.175,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 42.299,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"AO AR LIVRE\" (3 words) is on screen 1.00 s (±0.06 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "AO AR LIVRE",
+        "selector": "#c11 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(11)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c11.html",
+        "bbox": {
+          "x": 537.09,
+          "y": 1285.22,
+          "width": 188.42999999999995,
+          "height": 36.559999999999945
+        },
+        "time": 44.92,
+        "words": 3,
+        "seconds": 0.998,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 44.545,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 44.67,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 44.795,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 44.92,
+            "opacity": 1,
+            "heightPx": 37
+          },
+          {
+            "time": 45.045,
+            "opacity": 1,
+            "heightPx": 35
+          },
+          {
+            "time": 45.169,
+            "opacity": 1,
+            "heightPx": 34
+          },
+          {
+            "time": 45.294,
+            "opacity": 1,
+            "heightPx": 34
+          },
+          {
+            "time": 45.419,
+            "opacity": 1,
+            "heightPx": 34
+          },
+          {
+            "time": 45.544,
+            "opacity": 1,
+            "heightPx": 34
+          },
+          {
+            "time": 45.668,
+            "opacity": 1,
+            "heightPx": 34
+          },
+          {
+            "time": 45.793,
+            "opacity": 1,
+            "heightPx": 34
+          },
+          {
+            "time": 45.918,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 46.043,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 46.168,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"DESDE 2023\" at 24 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "DESDE 2023",
+        "selector": "#c12 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c12.html",
+        "bbox": {
+          "x": 101,
+          "y": 830,
+          "width": 144,
+          "height": 31
+        },
+        "time": 45.918,
+        "times": [
+          45.918,
+          45.918
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 3.868,
+        "elements": [
+          {
+            "selector": "#c12 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+            "text": "DESDE 2023",
+            "fontPx": 24,
+            "time": 45.918,
+            "seconds": 3.868
+          },
+          {
+            "selector": "#c12 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+            "text": "BRASIL",
+            "fontPx": 24,
+            "time": 45.918,
+            "seconds": 3.868
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"AS 5 CERTAS\" (3 words) is on screen 0.50 s (±0.06 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "AS 5 CERTAS",
+        "selector": "div.a.lineup > div:nth-of-type(6)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c12.html",
+        "bbox": {
+          "x": 80,
+          "y": 989,
+          "width": 325.97,
+          "height": 105
+        },
+        "time": 49.287,
+        "words": 3,
+        "seconds": 0.499,
+        "floorSeconds": 1.05,
+        "measured": [
+          {
+            "time": 48.913,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 49.037,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 49.162,
+            "opacity": 0.12,
+            "heightPx": 105
+          },
+          {
+            "time": 49.287,
+            "opacity": 1,
+            "heightPx": 105
+          },
+          {
+            "time": 49.412,
+            "opacity": 1,
+            "heightPx": 105
+          },
+          {
+            "time": 49.537,
+            "opacity": 1,
+            "heightPx": 105
+          },
+          {
+            "time": 49.661,
+            "opacity": 1,
+            "heightPx": 105
+          },
+          {
+            "time": 49.786,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 49.911,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 50.036,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and \"PALPITE PELO HISTÓRICO, NÃO É SETLIST OFICIAL\" renders at 27 px for 5.37 s: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "PALPITE PELO HISTÓRICO, NÃO É SETLIST OFICIAL",
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 59.98,
+          "y": 251.81,
+          "width": 764.31,
+          "height": 36.52
+        },
+        "time": 50.66,
+        "times": [
+          50.66
+        ],
+        "fontPx": 27,
+        "floorPx": 28,
+        "seconds": 5.365,
+        "elements": [
+          {
+            "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+            "text": "PALPITE PELO HISTÓRICO, NÃO É SETLIST OFICIAL",
+            "fontPx": 27,
+            "time": 50.66,
+            "seconds": 5.365
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"COMENTA A SUA APOSTA\" (4 words) is on screen 1.93 s (±0.06 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "COMENTA A SUA APOSTA",
+        "selector": "#c13 > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(13)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/c13.html",
+        "bbox": {
+          "x": 54.34,
+          "y": 1112,
+          "width": 544.16,
+          "height": 51
+        },
+        "time": 54.153,
+        "words": 4,
+        "seconds": 1.934,
+        "floorSeconds": 2,
+        "measured": [
+          {
+            "time": 53.779,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 53.904,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 54.029,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 54.153,
+            "opacity": 0.98,
+            "heightPx": 51
+          },
+          {
+            "time": 54.278,
+            "opacity": 1,
+            "heightPx": 51
+          },
+          {
+            "time": 54.403,
+            "opacity": 1,
+            "heightPx": 51
+          },
+          {
+            "time": 54.528,
+            "opacity": 1,
+            "heightPx": 51
+          },
+          {
+            "time": 55.526,
+            "opacity": 1,
+            "heightPx": 51
+          },
+          {
+            "time": 55.651,
+            "opacity": 1,
+            "heightPx": 51
+          },
+          {
+            "time": 55.775,
+            "opacity": 1,
+            "heightPx": 51
+          },
+          {
+            "time": 55.9,
+            "opacity": 1,
+            "heightPx": 51
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 449
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

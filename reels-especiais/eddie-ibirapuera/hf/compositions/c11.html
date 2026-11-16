@@ -1,0 +1,102 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+<template>
+<style>
+@font-face{font-family:Anton;src:url(../assets/fonts/Anton-Regular.ttf)}
+@font-face{font-family:InterX;src:url(../assets/fonts/Inter-ExtraBold.ttf)}
+@font-face{font-family:InterS;src:url(../assets/fonts/Inter-SemiBold.ttf)}
+@font-face{font-family:Mono;src:url(../assets/fonts/JetBrainsMono-ExtraBold.ttf)}
+@font-face{font-family:Marker;src:url(../assets/fonts/PermanentMarker-Regular.ttf)}
+#c11-root{position:absolute;inset:0;overflow:hidden;color:#f4efe6;font-family:InterX,sans-serif}
+#c11-root .st{position:absolute;inset:0}
+#c11-root .a{position:absolute}
+#c11-root .h{opacity:0}
+#c11-root .anton{font-family:Anton,sans-serif;line-height:.92;letter-spacing:.005em;white-space:nowrap}
+#c11-root .ix{font-family:InterX,sans-serif}
+#c11-root .is{font-family:InterS,sans-serif}
+#c11-root .mono{font-family:Mono,monospace;letter-spacing:.02em}
+#c11-root .sh{text-shadow:0 6px 26px rgba(0,0,0,.85),0 2px 0 rgba(0,0,0,.6)}
+#c11-root .row{display:flex;gap:24px}
+#c11-root .dot{width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.45);border:5px solid rgba(244,239,230,.3);box-shadow:0 0 0px rgba(0,0,0,0)}
+#c11-root .rl{font-family:Mono,monospace;font-size:28px;color:rgba(244,239,230,.85);white-space:nowrap}
+#c11-root .chip{font-family:InterX,sans-serif;font-size:32px;padding:8px 18px;border-radius:10px;color:#0b0b0c;white-space:nowrap}
+#c11-root .stamp{font-family:Marker,cursive;line-height:1.05;padding:4px 30px 0;border-radius:18px;border:10px solid;background:rgba(11,11,12,.55);white-space:nowrap;text-align:center}
+#c11-root .card{border-radius:22px}
+#c11-root .face{position:absolute;inset:0;border-radius:22px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden}
+#c11-root .back{background:#141414}
+#c11-root .front{background:#f4efe6;color:#0b0b0c;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+#c11-root .foto{overflow:hidden;border:10px solid #f4efe6;box-shadow:0 24px 50px rgba(0,0,0,.7);background:#222}
+#c11-root .foto img,#c11-root .bgf img{width:100%;height:100%;object-fit:cover;display:block}
+#c11-root .bgf{position:absolute;inset:0;overflow:hidden}
+#c11-root .panel{border-radius:20px;overflow:hidden}
+</style>
+<div id="c11-root" data-composition-id="c11" data-width="1080" data-height="1920" data-duration="3.871">
+<div class="st">
+<div class="bgf" style="background:rgba(11,11,12,.55)"></div>
+<svg class="a mapa" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <g stroke="rgba(244,239,230,.12)" stroke-width="2" fill="none"><path d="M117 470 L117 1288"/><path d="M235 470 L235 1288"/><path d="M353 470 L353 1288"/><path d="M471 470 L471 1288"/><path d="M589 470 L589 1288"/><path d="M707 470 L707 1288"/><path d="M825 470 L825 1288"/><path d="M70 563 L884 563"/><path d="M70 687 L884 687"/><path d="M70 811 L884 811"/><path d="M70 935 L884 935"/><path d="M70 1059 L884 1059"/><path d="M70 1183 L884 1183"/></g>
+  <path class="cont" d="M88 513 L141 495 L294 501 L412 489 L501 489 L577 513 L601 551 L678 563 L731 613 L672 656 L648 675 L613 699 L613 718 L583 743 L589 774 L577 768 L560 749 L530 749 L489 768 L489 799 L518 823 L548 805 L542 836 L566 867 L595 879 L601 885 L589 885 L572 885 L554 861 L518 848 L495 836 L442 811 L436 792 L412 786 L400 755 L371 737 L347 718 L330 687 L330 650 L336 631 L294 600 L265 575 L223 563 L164 569 L129 582 L88 563 Z" fill="rgba(244,239,230,.06)" stroke="#f4efe6" stroke-width="4" stroke-linejoin="round"/>
+  <path class="cont" d="M601 885 L636 861 L690 867 L707 885 L754 904 L766 935 L802 947 L855 966 L855 991 L831 1028 L819 1071 L778 1096 L749 1146 L719 1171 L695 1183 L678 1214 L660 1245 L654 1270 L636 1264 L619 1226 L631 1183 L642 1121 L648 1047 L613 1022 L583 972 L589 941 L607 910 Z" fill="rgba(244,239,230,.06)" stroke="#f4efe6" stroke-width="4" stroke-linejoin="round"/>
+  <path class="rota" d="M401 728 Q 731 808 786 1081" fill="none" stroke="#ff8a1f" stroke-width="8" stroke-linecap="round"/>
+</svg>
+<svg class="a dash h" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><path d="M401 728 Q 731 808 786 1081" fill="none" stroke="#0b0b0c" stroke-width="10" stroke-dasharray="4 18"/></svg>
+<div class="a bola" style="left:101px;top:912px;width:64px;height:64px;border-radius:50%;background:#ff8a1f"></div>
+<div class="a ix sh k h" style="left:72px;top:262px;font-size:36px;color:#ff8a1f;letter-spacing:.1em">ÚLTIMA VEZ:</div>
+<div class="a anton sh tit h" style="left:70px;top:310px;font-size:84px">TEMPE (EUA), 26/02/2023</div>
+<svg class="a pt h" style="left:371px;top:644px" width="60" height="86" viewBox="0 0 70 100"><path d="M35 98 C35 98 4 58 4 35 A31 31 0 1 1 66 35 C66 58 35 98 35 98Z" fill="#ff8a1f" stroke="#f4efe6" stroke-width="6"/><circle cx="35" cy="35" r="12" fill="#f4efe6"/></svg><svg class="a pi h" style="left:756px;top:997px" width="60" height="86" viewBox="0 0 70 100"><path d="M35 98 C35 98 4 58 4 35 A31 31 0 1 1 66 35 C66 58 35 98 35 98Z" fill="#f6c445" stroke="#f4efe6" stroke-width="6"/><circle cx="35" cy="35" r="12" fill="#f4efe6"/></svg>
+<div class="a ix sh lt h" style="left:441px;top:662px;font-size:30px">INNINGS FESTIVAL</div>
+<div class="a ix sh li h" style="left:526px;top:1007px;font-size:30px;color:#f6c445">IBIRAPUERA</div>
+<div class="a chip tt tt0 h" style="right:723px;top:688px;background:#f4efe6;font-size:28px">SOLO</div><div class="a chip tt tt1 h" style="right:723px;top:750px;background:#ff8a1f;font-size:28px">FESTIVAL</div><div class="a chip tt tt2 h" style="right:723px;top:812px;background:#ff8a1f;font-size:28px">AO AR LIVRE</div>
+<div class="a chip ti ti0 h" style="right:344px;top:1121px;background:#f4efe6;font-size:28px">SOLO</div><div class="a chip ti ti1 h" style="right:344px;top:1183px;background:#ff8a1f;font-size:28px">FESTIVAL</div><div class="a chip ti ti2 h" style="right:344px;top:1245px;background:#ff8a1f;font-size:28px">AO AR LIVRE</div>
+<div class="a stamp dif h" style="left:84px;top:1170px;font-size:72px;color:#ff8a1f;border-color:#ff8a1f">DIFÍCIL<span class="qm" style="display:inline-block;opacity:0">?</span></div>
+</div>
+</div>
+<script>
+(function(){
+const ID='c11', D=3.871;
+
+const root=document.getElementById(ID+'-root');
+const q=s=>root.querySelector(s), qa=s=>Array.from(root.querySelectorAll(s));
+const tl=gsap.timeline({paused:true});
+const st=q('.st'); const F=1/30;
+function inn(el,t,from,d,ease){tl.fromTo(el,Object.assign({opacity:0},from),{opacity:1,x:0,y:0,scale:1,duration:d||0.32,ease:ease||'expo.out',immediateRender:false},t);}
+function slam(el,t,s,d){inn(el,t,{scale:s||2.2},d||0.26,'expo.out');}
+function pop(el,t,d){inn(el,t,{scale:0.3},d||0.38,'back.out(2.4)');}
+function fromL(el,t,d){inn(el,t,{x:-1100},d||0.34);}
+function fromR(el,t,d){inn(el,t,{x:1100},d||0.34);}
+function fromB(el,t,d){inn(el,t,{y:420},d||0.34);}
+function fromT(el,t,d){inn(el,t,{y:-700},d||0.4,'bounce.out');}
+function out(el,t,d){tl.to(el,{opacity:0,duration:d||0.18,ease:'power1.in'},t);}
+function shake(el,t,a,n){a=a||16;n=n||5;for(let i=0;i<n;i++){const k=(n-i)/n;tl.to(el,{x:(i%2?-a:a)*k,y:((i%3)-1)*a*0.6*k,duration:F,ease:'none'},t+i*F);}tl.to(el,{x:0,y:0,duration:F,ease:'none'},t+n*F);}
+function tranco(t,a){shake(st,t,a||18);}
+function punch(t,s){tl.fromTo(st,{scale:s||1.05},{scale:1,duration:0.3,ease:'power2.out',immediateRender:false},t);}
+function count(el,a,b,t,d,ease){const o={v:a};tl.to(o,{v:b,duration:d,ease:ease||'power2.out',onUpdate:()=>{el.textContent=String(Math.round(o.v));}},t);}
+function light(ds,t,s,col){ds.forEach((d,i)=>{const u=t+i*s;tl.to(d,{backgroundColor:col,borderColor:col,boxShadow:'0 0 34px '+col,duration:0.1,ease:'none'},u);tl.fromTo(d,{scale:1.7},{scale:1,duration:0.3,ease:'back.out(3)',immediateRender:false},u);});}
+function dim(ds,t,s){ds.forEach((d,i)=>{const u=t+i*s;tl.to(d,{backgroundColor:'rgba(0,0,0,0.45)',borderColor:'rgba(244,239,230,0.3)',boxShadow:'0 0 0px rgba(0,0,0,0)',duration:0.14,ease:'none'},u);tl.fromTo(d,{scale:0.6},{scale:1,duration:0.25,ease:'back.out(2)',immediateRender:false},u);});}
+function recolor(els,t,col){els.forEach(e=>tl.to(e,{color:col,duration:0.2,ease:'none'},t));}
+function stamp(el,t,rot){rot=rot||-9;tl.fromTo(el,{opacity:0,scale:3,rotation:rot-12},{opacity:1,scale:1,rotation:rot,duration:0.18,ease:'power4.in',immediateRender:false},t);tranco(t+0.18,26);let i=0;for(let u=t+0.32;u<D-0.07;u+=0.07,i++){tl.to(el,{rotation:rot+(i%2?1.5:-1.5),x:((i%3)-1)*4,duration:0.07,ease:'none'},u);}}
+function flip(card,t){const b=card.querySelector('.back'),f=card.querySelector('.front');tl.to(b,{rotationY:90,transformPerspective:1600,duration:0.12,ease:'power2.in'},t);tl.fromTo(f,{opacity:1,rotationY:-90,transformPerspective:1600},{rotationY:0,duration:0.34,ease:'back.out(1.8)',immediateRender:false},t+0.12);tranco(t+0.34,14);}
+function kb(el,s0,s1,x1){tl.fromTo(el,{scale:s0||1.06,x:0},{scale:s1||1.2,x:x1===undefined?-30:x1,duration:D,ease:'none',immediateRender:false},0);}
+function entrada(){tl.fromTo(st,{scale:1.08},{scale:1,duration:0.3,ease:'expo.out',immediateRender:false},0);}
+
+
+const b=q('.bola');
+tl.fromTo(b,{scale:1,opacity:1},{scale:46,duration:0.32,ease:'power3.in',immediateRender:false},0.0);
+tl.to(b,{opacity:0,duration:0.2,ease:'none'},0.3);
+const cs=qa('.cont'); cs.forEach((c,i)=>{const L=c.getTotalLength(); tl.fromTo(c,{strokeDasharray:L,strokeDashoffset:L},{strokeDashoffset:0,duration:0.9,ease:'power2.out',immediateRender:false},0.25+i*0.15);});
+const r=q('.rota'), RL=r.getTotalLength(); tl.fromTo(r,{strokeDasharray:RL,strokeDashoffset:RL},{strokeDashoffset:0,duration:0.8,ease:'power1.inOut'},1.29);
+tl.fromTo(q('.dash'),{opacity:0},{opacity:1,duration:0.1,immediateRender:false},2.1);
+inn(q('.k'),0.3,{x:-60},0.2); slam(q('.tit'),0.41,1.8);
+fromT(q('.pt'),0.45,0.4); pop(q('.lt'),0.7);
+qa('.tt').forEach((t,i)=>pop(t,0.85+i*0.12,0.25));
+fromT(q('.pi'),2.05,0.4); pop(q('.li'),2.2);
+const ti=qa('.ti'); pop(ti[0],2.26,0.25); pop(ti[1],2.4,0.25); pop(ti[2],2.86,0.25); punch(2.86,1.03);
+pop(q('.dif'),0.6,0.3); tl.fromTo(q('.dif'),{rotation:-8},{rotation:-8,duration:0.01,immediateRender:false},0.6);
+slam(q('.qm'),3.2,3.2); shake(q('.dif'),3.36,12);
+tl.fromTo(q('.mapa'),{scale:1},{scale:1.06,duration:D,ease:'none',immediateRender:false},0);
+window.__timelines['c11']=tl;
+})();
+</script>
+</template>
+</body></html>

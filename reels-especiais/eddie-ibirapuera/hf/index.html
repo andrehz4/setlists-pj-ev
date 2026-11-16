@@ -1,61 +1,231 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
-    <style>
-      /* Placeholders: replace all three with the film's own palette and display face. */
-      :root {
-        --ground: #000;
-        --ink: #ffffff;
-        --font-display: sans-serif;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        background: var(--ground);
-      }
-      #root {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-display);
-      }
-      #title {
-        color: var(--ink);
-        font-size: 72px;
-        font-weight: 600;
-        letter-spacing: -0.03em;
-      }
-    </style>
-  </head>
-  <body>
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="10"
-      data-width="1920"
-      data-height="1080"
-    >
-      <h1 id="title" class="clip" data-start="0" data-duration="10" data-track-index="0">Title</h1>
-    </div>
-    <script>
-      const tl = gsap.timeline({ paused: true });
-      // Example: tl.fromTo("#title", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0);
-      window.__timelines["main"] = tl;
-      tl.seek(0);
-    </script>
-  </body>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:InterX;src:url(assets/fonts/Inter-ExtraBold.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0b0b0c}
+#root{width:100%;height:100%;position:relative;overflow:hidden;background:#0b0b0c}
+.bgw{position:absolute;inset:0;overflow:hidden}
+.bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#tint{position:absolute;inset:0;mix-blend-mode:multiply;opacity:.9}
+#dark{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.38) 35%,rgba(0,0,0,.45) 65%,rgba(0,0,0,.8) 100%)}
+.cena{position:absolute;inset:0}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#selo{position:absolute;left:70px;top:1462px;font-family:InterX,sans-serif;font-size:26px;letter-spacing:.06em;color:#f4efe6;background:rgba(11,11,12,.78);padding:8px 16px;border-left:6px solid #f6c445;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="56.067" data-width="1080" data-height="1920">
+<div class="bgw" id="bg0w" style="transform-origin:87.5% 40%"><video id="bg0" class="clip bgv" src="assets/clips/water-on-the-road-capa20.mp4" muted playsinline style="object-position:87.5% 50%" data-start="0" data-duration="1.35" data-media-start="0" data-track-index="1"></video></div>
+<div class="bgw" id="bg1w" style="transform-origin:76.5% 40%"><video id="bg1" class="clip bgv" src="assets/clips/moline-2014-capa2.mp4" muted playsinline style="object-position:76.5% 50%" data-start="1.35" data-duration="1.35" data-media-start="0.9" data-track-index="1"></video></div>
+<div class="bgw" id="bg2w" style="transform-origin:69.1% 40%"><video id="bg2" class="clip bgv" src="assets/clips/roma-2018-capa3.mp4" muted playsinline style="object-position:69.1% 50%" data-start="2.7" data-duration="1.35" data-media-start="1.8" data-track-index="1"></video></div>
+<div class="bgw" id="bg3w" style="transform-origin:83.6% 40%"><video id="bg3" class="clip bgv" src="assets/clips/ten-show-2016-capa2.mp4" muted playsinline style="object-position:83.6% 50%" data-start="4.049" data-duration="1.35" data-media-start="0.132" data-track-index="1"></video></div>
+<div class="bgw" id="bg4w" style="transform-origin:48.2% 40%"><video id="bg4" class="clip bgv" src="assets/clips/oceans-unplugged-capa1.mp4" muted playsinline style="object-position:48.2% 50%" data-start="5.399" data-duration="1.481" data-media-start="1.13" data-track-index="1"></video></div>
+<div class="bgw" id="bg5w" style="transform-origin:64.4% 40%"><video id="bg5" class="clip bgv" src="assets/clips/pearl-jam-i-am-mine-capa-21_48.mp4" muted playsinline style="object-position:64.4% 50%" data-start="6.88" data-duration="1.481" data-media-start="0.09" data-track-index="1"></video></div>
+<div class="bgw" id="bg6w" style="transform-origin:17.5% 40%"><video id="bg6" class="clip bgv" src="assets/clips/amongst-the-waves-capa3.mp4" muted playsinline style="object-position:17.5% 50%" data-start="8.36" data-duration="1.481" data-media-start="0.46" data-track-index="1"></video></div>
+<div class="bgw" id="bg7w" style="transform-origin:96.5% 40%"><video id="bg7" class="clip bgv" src="assets/clips/i-am-mine-capa1.mp4" muted playsinline style="object-position:96.5% 50%" data-start="9.841" data-duration="1.359" data-media-start="1.183" data-track-index="1"></video></div>
+<div class="bgw" id="bg8w" style="transform-origin:77.8% 40%"><video id="bg8" class="clip bgv" src="assets/clips/moline-2014-capa5.mp4" muted playsinline style="object-position:77.8% 50%" data-start="11.199" data-duration="1.359" data-media-start="2.083" data-track-index="1"></video></div>
+<div class="bgw" id="bg9w" style="transform-origin:74.0% 40%"><video id="bg9" class="clip bgv" src="assets/clips/roma-2018-capa1.mp4" muted playsinline style="object-position:74.0% 50%" data-start="12.558" data-duration="1.17" data-media-start="2.538" data-track-index="1"></video></div>
+<div class="bgw" id="bg10w" style="transform-origin:64.5% 40%"><video id="bg10" class="clip bgv" src="assets/clips/water-on-the-road-capa17.mp4" muted playsinline style="object-position:64.5% 50%" data-start="13.728" data-duration="1.17" data-media-start="0.757" data-track-index="1"></video></div>
+<div class="bgw" id="bg11w" style="transform-origin:56.5% 40%"><video id="bg11" class="clip bgv" src="assets/clips/even-flow-3-capa1.mp4" muted playsinline style="object-position:56.5% 50%" data-start="14.898" data-duration="1.17" data-media-start="1.557" data-track-index="1"></video></div>
+<div class="bgw" id="bg12w" style="transform-origin:62.0% 40%"><video id="bg12" class="clip bgv" src="assets/clips/oceans-unplugged-capa8.mp4" muted playsinline style="object-position:62.0% 50%" data-start="16.068" data-duration="1.502" data-media-start="1.137" data-track-index="1"></video></div>
+<div class="bgw" id="bg13w" style="transform-origin:78.0% 40%"><video id="bg13" class="clip bgv" src="assets/clips/amongst-the-waves-capa2.mp4" muted playsinline style="object-position:78.0% 50%" data-start="17.57" data-duration="1.502" data-media-start="1.904" data-track-index="1"></video></div>
+<div class="bgw" id="bg14w" style="transform-origin:78.3% 40%"><video id="bg14" class="clip bgv" src="assets/clips/ten-show-2016-capa3.mp4" muted playsinline style="object-position:78.3% 50%" data-start="19.071" data-duration="1.35" data-media-start="2.196" data-track-index="1"></video></div>
+<div class="bgw" id="bg15w" style="transform-origin:92.8% 40%"><video id="bg15" class="clip bgv" src="assets/clips/water-on-the-road-capa18.mp4" muted playsinline style="object-position:92.8% 50%" data-start="20.421" data-duration="1.35" data-media-start="0.662" data-track-index="1"></video></div>
+<div class="bgw" id="bg16w" style="transform-origin:40.7% 40%"><video id="bg16" class="clip bgv" src="assets/clips/bridge-school-2011-capa3.mp4" muted playsinline style="object-position:40.7% 50%" data-start="21.77" data-duration="1.35" data-media-start="1.562" data-track-index="1"></video></div>
+<div class="bgw" id="bg17w" style="transform-origin:58.8% 40%"><video id="bg17" class="clip bgv" src="assets/clips/even-flow-capa3.mp4" muted playsinline style="object-position:58.8% 50%" data-start="23.12" data-duration="1.35" data-media-start="2.462" data-track-index="1"></video></div>
+<div class="bgw" id="bg18w" style="transform-origin:88.4% 40%"><video id="bg18" class="clip bgv" src="assets/clips/moline-2014-capa2.mp4" muted playsinline style="object-position:88.4% 50%" data-start="24.469" data-duration="1.493" data-media-start="1.452" data-track-index="1"></video></div>
+<div class="bgw" id="bg19w" style="transform-origin:89.3% 40%"><video id="bg19" class="clip bgv" src="assets/clips/i-am-mine-capa1.mp4" muted playsinline style="object-position:89.3% 50%" data-start="25.962" data-duration="1.493" data-media-start="0.127" data-track-index="1"></video></div>
+<div class="bgw" id="bg20w" style="transform-origin:85.7% 40%"><video id="bg20" class="clip bgv" src="assets/clips/ten-show-2016-capa2.mp4" muted playsinline style="object-position:85.7% 50%" data-start="27.454" data-duration="1.493" data-media-start="1.027" data-track-index="1"></video></div>
+<div class="bgw" id="bg21w" style="transform-origin:45.8% 40%"><video id="bg21" class="clip bgv" src="assets/clips/oceans-unplugged-capa1.mp4" muted playsinline style="object-position:45.8% 50%" data-start="28.947" data-duration="1.288" data-media-start="0.259" data-track-index="1"></video></div>
+<div class="bgw" id="bg22w" style="transform-origin:20.7% 40%"><video id="bg22" class="clip bgv" src="assets/clips/amongst-the-waves-capa3.mp4" muted playsinline style="object-position:20.7% 50%" data-start="30.235" data-duration="1.288" data-media-start="1.159" data-track-index="1"></video></div>
+<div class="bgw" id="bg23w" style="transform-origin:68.1% 40%"><video id="bg23" class="clip bgv" src="assets/clips/bridge-school-2011-capa12.mp4" muted playsinline style="object-position:68.1% 50%" data-start="31.524" data-duration="1.288" data-media-start="2.059" data-track-index="1"></video></div>
+<div class="bgw" id="bg24w" style="transform-origin:72.9% 40%"><video id="bg24" class="clip bgv" src="assets/clips/moline-2014-capa5.mp4" muted playsinline style="object-position:72.9% 50%" data-start="32.812" data-duration="1.257" data-media-start="0.315" data-track-index="1"></video></div>
+<div class="bgw" id="bg25w" style="transform-origin:60.2% 40%"><video id="bg25" class="clip bgv" src="assets/clips/even-flow-3-capa1.mp4" muted playsinline style="object-position:60.2% 50%" data-start="34.069" data-duration="1.257" data-media-start="0.948" data-track-index="1"></video></div>
+<div class="bgw" id="bg26w" style="transform-origin:69.1% 40%"><video id="bg26" class="clip bgv" src="assets/clips/roma-2018-capa3.mp4" muted playsinline style="object-position:69.1% 50%" data-start="35.327" data-duration="1.257" data-media-start="1.848" data-track-index="1"></video></div>
+<div class="bgw" id="bg27w" style="transform-origin:76.3% 40%"><video id="bg27" class="clip bgv" src="assets/clips/amongst-the-waves-capa2.mp4" muted playsinline style="object-position:76.3% 50%" data-start="36.584" data-duration="1.352" data-media-start="0.909" data-track-index="1"></video></div>
+<div class="bgw" id="bg28w" style="transform-origin:72.8% 40%"><video id="bg28" class="clip bgv" src="assets/clips/roma-2018-capa1.mp4" muted playsinline style="object-position:72.8% 50%" data-start="37.936" data-duration="1.352" data-media-start="1.809" data-track-index="1"></video></div>
+<div class="bgw" id="bg29w" style="transform-origin:94.0% 40%"><video id="bg29" class="clip bgv" src="assets/clips/i-am-mine-capa1.mp4" muted playsinline style="object-position:94.0% 50%" data-start="39.288" data-duration="1.352" data-media-start="0.443" data-track-index="1"></video></div>
+<div class="bgw" id="bg30w" style="transform-origin:75.8% 40%"><video id="bg30" class="clip bgv" src="assets/clips/water-on-the-road-capa4.mp4" muted playsinline style="object-position:75.8% 50%" data-start="40.64" data-duration="1.352" data-media-start="1.01" data-track-index="1"></video></div>
+<div class="bgw" id="bg31w" style="transform-origin:55.5% 40%"><video id="bg31" class="clip bgv" src="assets/clips/bridge-school-2011-capa14.mp4" muted playsinline style="object-position:55.5% 50%" data-start="41.992" data-duration="1.936" data-media-start="0.157" data-track-index="1"></video></div>
+<div class="bgw" id="bg32w" style="transform-origin:48.0% 40%"><video id="bg32" class="clip bgv" src="assets/clips/water-on-the-road-capa2.mp4" muted playsinline style="object-position:48.0% 50%" data-start="43.927" data-duration="1.936" data-media-start="1.057" data-track-index="1"></video></div>
+<div class="bgw" id="bg33w" style="transform-origin:50.3% 40%"><video id="bg33" class="clip bgv" src="assets/clips/even-flow-capa3.mp4" muted playsinline style="object-position:50.3% 50%" data-start="45.863" data-duration="0.968" data-media-start="0.203" data-track-index="1"></video></div>
+<div class="bgw" id="bg34w" style="transform-origin:35.2% 40%"><video id="bg34" class="clip bgv" src="assets/clips/water-on-the-road-capa12.mp4" muted playsinline style="object-position:35.2% 50%" data-start="46.831" data-duration="0.968" data-media-start="0.77" data-track-index="1"></video></div>
+<div class="bgw" id="bg35w" style="transform-origin:81.8% 40%"><video id="bg35" class="clip bgv" src="assets/clips/ten-show-2016-capa3.mp4" muted playsinline style="object-position:81.8% 50%" data-start="47.799" data-duration="0.968" data-media-start="1.67" data-track-index="1"></video></div>
+<div class="bgw" id="bg36w" style="transform-origin:69.4% 40%"><video id="bg36" class="clip bgv" src="assets/clips/roma-2018-capa3.mp4" muted playsinline style="object-position:69.4% 50%" data-start="48.767" data-duration="0.968" data-media-start="2.57" data-track-index="1"></video></div>
+<div class="bgw" id="bg37w" style="transform-origin:48.2% 40%"><video id="bg37" class="clip bgv" src="assets/clips/bridge-school-2011-capa13.mp4" muted playsinline style="object-position:48.2% 50%" data-start="49.735" data-duration="1.583" data-media-start="0.148" data-track-index="1"></video></div>
+<div class="bgw" id="bg38w" style="transform-origin:55.0% 40%"><video id="bg38" class="clip bgv" src="assets/clips/bridge-school-2011-capa15.mp4" muted playsinline style="object-position:55.0% 50%" data-start="51.318" data-duration="1.583" data-media-start="1.048" data-track-index="1"></video></div>
+<div class="bgw" id="bg39w" style="transform-origin:72.9% 40%"><video id="bg39" class="clip bgv" src="assets/clips/moline-2014-capa5.mp4" muted playsinline style="object-position:72.9% 50%" data-start="52.901" data-duration="1.583" data-media-start="0.08" data-track-index="1"></video></div>
+<div class="bgw" id="bg40w" style="transform-origin:96.5% 40%"><video id="bg40" class="clip bgv" src="assets/clips/i-am-mine-capa1.mp4" muted playsinline style="object-position:96.5% 50%" data-start="54.484" data-duration="1.583" data-media-start="0.98" data-track-index="1"></video></div>
+<div id="tint"></div>
+<div id="dark"></div>
+<div id="c1" class="clip cena" data-composition-id="c1" data-composition-src="compositions/c1.html" data-start="0" data-duration="5.399" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c2" class="clip cena" data-composition-id="c2" data-composition-src="compositions/c2.html" data-start="5.399" data-duration="4.442" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c3" class="clip cena" data-composition-id="c3" data-composition-src="compositions/c3.html" data-start="9.841" data-duration="2.717" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c4" class="clip cena" data-composition-id="c4" data-composition-src="compositions/c4.html" data-start="12.558" data-duration="3.51" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c5" class="clip cena" data-composition-id="c5" data-composition-src="compositions/c5.html" data-start="16.068" data-duration="3.003" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c6" class="clip cena" data-composition-id="c6" data-composition-src="compositions/c6.html" data-start="19.071" data-duration="5.398" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c7" class="clip cena" data-composition-id="c7" data-composition-src="compositions/c7.html" data-start="24.469" data-duration="4.478" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c8" class="clip cena" data-composition-id="c8" data-composition-src="compositions/c8.html" data-start="28.947" data-duration="3.865" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c9" class="clip cena" data-composition-id="c9" data-composition-src="compositions/c9.html" data-start="32.812" data-duration="3.772" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c10" class="clip cena" data-composition-id="c10" data-composition-src="compositions/c10.html" data-start="36.584" data-duration="5.408" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c11" class="clip cena" data-composition-id="c11" data-composition-src="compositions/c11.html" data-start="41.992" data-duration="3.871" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c12" class="clip cena" data-composition-id="c12" data-composition-src="compositions/c12.html" data-start="45.863" data-duration="3.872" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="c13" class="clip cena" data-composition-id="c13" data-composition-src="compositions/c13.html" data-start="49.735" data-duration="6.332" data-track-index="10" data-width="1080" data-height="1920"></div>
+<div id="flash"></div>
+<div id="selo">ESTUDO SMUFDPJ</div>
+
+
+<div
+  id="grain-overlay"
+  style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+  "
+>
+  <div class="grain-texture"></div>
+</div>
+
+<style>
+  @keyframes hf-grain-noise {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    10% {
+      transform: translate(-5%, -5%);
+    }
+    20% {
+      transform: translate(-10%, 5%);
+    }
+    30% {
+      transform: translate(5%, -10%);
+    }
+    40% {
+      transform: translate(-5%, 15%);
+    }
+    50% {
+      transform: translate(-10%, 5%);
+    }
+    60% {
+      transform: translate(15%, 0);
+    }
+    70% {
+      transform: translate(0, 10%);
+    }
+    80% {
+      transform: translate(-15%, 0);
+    }
+    90% {
+      transform: translate(10%, 5%);
+    }
+  }
+
+  #grain-overlay .grain-texture {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    animation: hf-grain-noise 0.5s steps(1) infinite;
+  }
+</style>
+
+<audio id="vc1" src="assets/voz/c1.wav" data-start="0" data-duration="5.279" data-track-index="20" data-volume="1"></audio>
+<audio id="vc2" src="assets/voz/c2.wav" data-start="5.399" data-duration="4.322" data-track-index="20" data-volume="1"></audio>
+<audio id="vc3" src="assets/voz/c3.wav" data-start="9.841" data-duration="2.597" data-track-index="20" data-volume="1"></audio>
+<audio id="vc4" src="assets/voz/c4.wav" data-start="12.558" data-duration="3.39" data-track-index="20" data-volume="1"></audio>
+<audio id="vc5" src="assets/voz/c5.wav" data-start="16.068" data-duration="2.883" data-track-index="20" data-volume="1"></audio>
+<audio id="vc6" src="assets/voz/c6.wav" data-start="19.071" data-duration="5.278" data-track-index="20" data-volume="1"></audio>
+<audio id="vc7" src="assets/voz/c7.wav" data-start="24.469" data-duration="4.358" data-track-index="20" data-volume="1"></audio>
+<audio id="vc8" src="assets/voz/c8.wav" data-start="28.947" data-duration="3.745" data-track-index="20" data-volume="1"></audio>
+<audio id="vc9" src="assets/voz/c9.wav" data-start="32.812" data-duration="3.652" data-track-index="20" data-volume="1"></audio>
+<audio id="vc10" src="assets/voz/c10.wav" data-start="36.584" data-duration="5.288" data-track-index="20" data-volume="1"></audio>
+<audio id="vc11" src="assets/voz/c11.wav" data-start="41.992" data-duration="3.751" data-track-index="20" data-volume="1"></audio>
+<audio id="vc12" src="assets/voz/c12.wav" data-start="45.863" data-duration="3.752" data-track-index="20" data-volume="1"></audio>
+<audio id="vc13" src="assets/voz/c13.wav" data-start="49.735" data-duration="5.732" data-track-index="20" data-volume="1"></audio>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo('#bg0w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.35,ease:'none',immediateRender:false},0);
+tl.fromTo('#bg1w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.35,ease:'none',immediateRender:false},1.35);
+tl.fromTo('#bg2w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.35,ease:'none',immediateRender:false},2.7);
+tl.fromTo('#bg3w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.35,ease:'none',immediateRender:false},4.049);
+tl.fromTo('#bg4w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.481,ease:'none',immediateRender:false},5.399);
+tl.fromTo('#bg5w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.481,ease:'none',immediateRender:false},6.88);
+tl.fromTo('#bg6w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.481,ease:'none',immediateRender:false},8.36);
+tl.fromTo('#bg7w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.359,ease:'none',immediateRender:false},9.841);
+tl.fromTo('#bg8w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.359,ease:'none',immediateRender:false},11.199);
+tl.fromTo('#bg9w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.17,ease:'none',immediateRender:false},12.558);
+tl.fromTo('#bg10w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.17,ease:'none',immediateRender:false},13.728);
+tl.fromTo('#bg11w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.17,ease:'none',immediateRender:false},14.898);
+tl.fromTo('#bg12w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.502,ease:'none',immediateRender:false},16.068);
+tl.fromTo('#bg13w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.502,ease:'none',immediateRender:false},17.57);
+tl.fromTo('#bg14w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.35,ease:'none',immediateRender:false},19.071);
+tl.fromTo('#bg15w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.35,ease:'none',immediateRender:false},20.421);
+tl.fromTo('#bg16w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.35,ease:'none',immediateRender:false},21.77);
+tl.fromTo('#bg17w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.35,ease:'none',immediateRender:false},23.12);
+tl.fromTo('#bg18w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.493,ease:'none',immediateRender:false},24.469);
+tl.fromTo('#bg19w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.493,ease:'none',immediateRender:false},25.962);
+tl.fromTo('#bg20w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.493,ease:'none',immediateRender:false},27.454);
+tl.fromTo('#bg21w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.288,ease:'none',immediateRender:false},28.947);
+tl.fromTo('#bg22w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.288,ease:'none',immediateRender:false},30.235);
+tl.fromTo('#bg23w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.288,ease:'none',immediateRender:false},31.524);
+tl.fromTo('#bg24w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.257,ease:'none',immediateRender:false},32.812);
+tl.fromTo('#bg25w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.257,ease:'none',immediateRender:false},34.069);
+tl.fromTo('#bg26w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.257,ease:'none',immediateRender:false},35.327);
+tl.fromTo('#bg27w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.352,ease:'none',immediateRender:false},36.584);
+tl.fromTo('#bg28w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.352,ease:'none',immediateRender:false},37.936);
+tl.fromTo('#bg29w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.352,ease:'none',immediateRender:false},39.288);
+tl.fromTo('#bg30w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.352,ease:'none',immediateRender:false},40.64);
+tl.fromTo('#bg31w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.936,ease:'none',immediateRender:false},41.992);
+tl.fromTo('#bg32w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.936,ease:'none',immediateRender:false},43.927);
+tl.fromTo('#bg33w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:0.968,ease:'none',immediateRender:false},45.863);
+tl.fromTo('#bg34w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:0.968,ease:'none',immediateRender:false},46.831);
+tl.fromTo('#bg35w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:0.968,ease:'none',immediateRender:false},47.799);
+tl.fromTo('#bg36w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:0.968,ease:'none',immediateRender:false},48.767);
+tl.fromTo('#bg37w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.583,ease:'none',immediateRender:false},49.735);
+tl.fromTo('#bg38w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.583,ease:'none',immediateRender:false},51.318);
+tl.fromTo('#bg39w',{scale:1.18,x:12},{scale:1.06,x:-12,duration:1.583,ease:'none',immediateRender:false},52.901);
+tl.fromTo('#bg40w',{scale:1.06,x:-12},{scale:1.18,x:12,duration:1.583,ease:'none',immediateRender:false},54.484);
+tl.set('#tint',{backgroundColor:'#d9a640'},0);
+tl.set('#tint',{backgroundColor:'#4fbf7a'},5.399);
+tl.set('#tint',{backgroundColor:'#4fbf7a'},9.841);
+tl.set('#tint',{backgroundColor:'#e0483c'},12.558);
+tl.set('#tint',{backgroundColor:'#4fbf7a'},16.068);
+tl.set('#tint',{backgroundColor:'#e0483c'},19.071);
+tl.set('#tint',{backgroundColor:'#d9a640'},24.469);
+tl.set('#tint',{backgroundColor:'#e6c23a'},28.947);
+tl.set('#tint',{backgroundColor:'#d9a640'},32.812);
+tl.set('#tint',{backgroundColor:'#e07a2a'},36.584);
+tl.set('#tint',{backgroundColor:'#b0602a'},41.992);
+tl.set('#tint',{backgroundColor:'#d9a640'},45.863);
+tl.set('#tint',{backgroundColor:'#8a8a8a'},49.735);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},5.399);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},9.841);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},12.558);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},16.068);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},19.071);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},24.469);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},28.947);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},32.812);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},36.584);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},41.992);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},45.863);
+tl.fromTo('#flash',{opacity:0.55},{opacity:0,duration:0.16,ease:'power2.out',immediateRender:false},49.735);
+tl.set({}, {}, 56.067);
+window.__timelines['main']=tl;
+</script>
+</body>
 </html>
