@@ -170,6 +170,15 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-16 (tarde): carrossel tutorial do gerador PUBLICADO
+
+- 8 slides no visual do ranking (capa com foto Commons do Eddie, Raph_PH CC BY 2.0, e "EDDIE VEDDER" enorme; 6
+  passos com prints reais do gerador, nome de exemplo PAMELA). Postado 16/11 14:04 BRT: IG 17940159369402627, FB
+  1119493787910103_122128070667322237 (run 43914146844). Telegram deu "fetch failed" (só o aviso).
+- Pasta `reels-especiais/tutorial-carrossel/`: `carrossel.html` (render com `scripts/publish/carrossel/render.mjs`,
+  precisa de `<helmet></helmet>` no head), `prints.mjs` (prints 390x844 DPR 3 do site LOCAL na 8123, pra não sujar
+  o painel), `legenda.txt`, `publicar.json`. Imagens no R2 `especiais/tutorial-carrossel/01..08.jpg`.
+
 ## 2026-11-16 (noite): reel tutorial publicado no story, agendado no feed, painel e botão Compartilhar
 
 - **Reel tutorial v4** (narração Charlie e Laura pelo gravador da fabrica, trilha -24 LUFS abaixando sob a voz, QA do
