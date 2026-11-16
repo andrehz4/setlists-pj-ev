@@ -20,8 +20,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   (claude.ai/design/p/863d6417-ec95-41c6-905e-893e6c0738b0). O pacote `design-handoff/setlist-ibirapuera/` agora tem
   prints do oficial (`referencia/oficial-*.png`, celular e desktop, todas as telas) e o VÍDEO DE FUNDO pedido pelo Andre
   (`referencia/fundo-eddie.mp4`: 8 trechos mudos do Eddie, 25 s em loop, P&B escuro, 1,1 MB; cópia já em
-  `setlist-ibirapuera/fundo-eddie.mp4`); BRIEF atualizado. FALTA o Andre arrastar esses arquivos novos no projeto do
-  Design. Quando voltar: exportar pra `design-handoff/retorno/` e aplicar mantendo os IDs.
+  `setlist-ibirapuera/fundo-eddie.mp4`); BRIEF atualizado. Anexos ENVIADOS ao Design (16/11 tarde, pelo Chrome) com o pedido
+  do vídeo de fundo; ele já tinha entregue `Telas Setlist.dc.html` + `telas.js` (chegada "Qual é a sua setlist?",
+  sorteio com nome e noite). Quando voltar: exportar pra `design-handoff/retorno/` e aplicar mantendo os IDs.
   Fable notou: traço de bis em y+84 encosta na música seguinte (parece riscá-la). Papel de 338 KB vem do glitch.ge.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
