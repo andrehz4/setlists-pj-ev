@@ -135,7 +135,7 @@ async function esperarFolha(ms) {
   const g = ++geracao;
   $('#papel').classList.add('desenhando');
   const show = $('#shows .on')?.dataset.show === '2' ? 'cab-sp2' : 'cab-sp1';
-  await Promise.all(['https://assets.glitch.ge/pearljam/setlistgenerator/papers/pearl-jam-set-list-paper-without-lines.jpg',
+  await Promise.all(['img/oficial/papel.jpg',
     `img/${show}.png`, 'img/cab-ibira.png', 'img/traco-bis.png', ...ms.map((m) => m.png).filter(Boolean)].map(carregar));
   await new Promise((r) => setTimeout(r, 250));
   if (g === geracao) $('#papel').classList.remove('desenhando');

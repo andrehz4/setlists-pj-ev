@@ -2,7 +2,8 @@
 // 2 colunas de 12 músicas (x 100 e 660), passo de 90 px a partir de y 255. Traço de bis empurra o resto da coluna.
 // A folha é pintada aos poucos (cada imagem que chega repinta) e nunca trava: imagem que falha ou passa do prazo
 // vira texto (música) ou fundo liso (papel). Se a atrasada chegar depois, entra no lugar do texto.
-export const PAPEL = 'https://assets.glitch.ge/pearljam/setlistgenerator/papers/pearl-jam-set-list-paper-without-lines.jpg';
+// Papel e PNGs oficiais vêm do gerador oficial da banda, copiados e hospedados aqui (img/oficial/).
+export const PAPEL = 'img/oficial/papel.jpg';
 const PRAZO = 9000;
 const cache = new Map();
 
