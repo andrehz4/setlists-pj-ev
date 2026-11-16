@@ -38,7 +38,7 @@ function progresso(p, f) {
   const pct = Math.min(100, Math.max(0, Math.round(f * 100)));
   p.querySelector('.carga b').textContent = pct + '%';
   p.querySelector('.carga i').style.width = pct + '%';
-  p.querySelector('.carga small').textContent = pct >= 100 ? 'Pronto!' : ETAPAS.filter(([d]) => f >= d).at(-1)[1];
+  p.querySelector('.carga small').textContent = pct >= 100 ? '' : ETAPAS.filter(([d]) => f >= d).at(-1)[1];
 }
 
 // O fundo: um <video> próprio (o da página pode estar pausado). Se não tocar, fica a foto parada.
@@ -78,6 +78,14 @@ async function gravar(tipo) {
   return { blob: new Blob(partes, { type: tipo.split(';')[0] }), p };
 }
 
+// Embrulha o botão principal com as 4 setas douradas nas diagonais (as mesmas do cartão da chegada).
+function mirar(btn) {
+  if (!btn || btn.parentElement.classList.contains('alvo')) return;
+  const w = document.createElement('div'); w.className = 'alvo';
+  btn.replaceWith(w); w.append(btn);
+  for (const k of ['tl', 'tr', 'bl', 'br']) w.insertAdjacentHTML('beforeend', `<i class="mira ${k}" aria-hidden="true"></i>`);
+}
+
 // Tela de recado com uma saída (ex.: baixar a imagem) e Fechar.
 function recado(txt, rotuloAcao, acao) {
   const p = painel(null);
@@ -104,6 +112,7 @@ async function storyVideo(b, tipo) {
     p.querySelector('.estado').textContent = 'Pronto! Posta e marca @smufdpj';
     p.querySelector('.botoes').hidden = false;
     const [postar, fechar] = p.querySelectorAll('.botoes button');
+    mirar(postar);
     // Novo toque da pessoa: o compartilhar do celular exige um gesto recente, e a gravação leva uns 18 s.
     postar.onclick = () => entregar(blob, nome, { compartilhar: matchMedia('(pointer: coarse)').matches });
     fechar.onclick = fecharTela;
@@ -121,6 +130,7 @@ if (tipo && b) {
   if (tipo !== 'app') { // vídeo como opção principal; dentro do Instagram não dá pra baixar vídeo, então lá a imagem segue na frente
     $('#acoes').classList.add('com-video'); b.classList.add('cheio', 'story-btn');
     b.innerHTML = '<span>Baixar o vídeo pro story</span>'; $('#story').firstElementChild.textContent = 'Prefere foto? Baixar só a imagem';
+    mirar(b);
   }
   const ref = $('#story'), espelhar = () => { b.disabled = ref.disabled; };
   new MutationObserver(espelhar).observe(ref, { attributes: true, attributeFilter: ['disabled'] });
@@ -130,3 +140,4 @@ if (tipo && b) {
       + '(Safari ou Chrome) e toque de novo em "Baixar o vídeo pro story". A imagem funciona aqui mesmo.', 'Baixar a imagem', () => $('#story').click())
     : storyVideo(b, tipo)));
 }
+if (!$('#acoes')?.classList.contains('com-video')) mirar($('#story')); // sem vídeo, a imagem é o botão principal
