@@ -9,7 +9,10 @@ function mostrar(url) {
   document.querySelector('#salvar-tela')?.remove();
   const tela = document.createElement('div');
   tela.id = 'salvar-tela';
-  tela.innerHTML = '<p>Segure o dedo na imagem e escolha salvar.</p><img alt="Seu setlist"><button type="button">Fechar</button>';
+  // instagram://story-camera abre o Instagram direto na câmera do story (o app precisa estar instalado).
+  tela.innerHTML = `<ol class="passos"><li><b>1</b>Segure e salve</li><li><b>2</b>Abra o story</li><li><b>3</b>Escolha da galeria</li></ol>
+    <img alt="Seu setlist"><div class="botoes"><a class="btn cheio" href="instagram://story-camera">Abrir o Instagram</a>
+    <button type="button" class="btn">Fechar</button></div>`;
   tela.querySelector('img').src = url;
   tela.querySelector('button').onclick = () => { tela.remove(); URL.revokeObjectURL(url); };
   document.body.append(tela);

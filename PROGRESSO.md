@@ -47,8 +47,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `_headers`: página do gerador com max-age=0 (vale). Pros .js o Cloudflare manteve 4 h, então agora cada arquivo tem
   carimbo de versão: RODAR `node scripts/setlist-ibirapuera/versao.mjs` depois de mexer em qualquer .js ou no
   musicas.json (o `versao.test.mjs` falha se esquecer; importmap cuida dos imports entre módulos).
-  Lista legível (16/11, `lista.js`): "As músicas" em texto ao lado da folha no site e à direita da folha no story,
-  com a linha de bis.
+  Lista legível (16/11, `lista.js`): "As músicas" em texto ao lado da folha, SÓ no site (no story o Andre preferiu
+  sem). Tela de salvar no Instagram: 3 passos (segure e salve, abra o story, escolha da galeria) + botão "Abrir o
+  Instagram" (`instagram://story-camera`, falta testar no celular).
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +

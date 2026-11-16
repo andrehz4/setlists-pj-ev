@@ -4,7 +4,6 @@ const W = 1080, H = 1920, M = 40;
 const COR = { noite: '#0f0e0c', carta: 'rgba(28,25,20,.92)', linha: '#3a342b', texto: '#f3eee2', fraco: '#a59d8c', ouro: '#e8b04a', esc: '#1a1305' };
 const DISP = '"Big Shoulders Display", Impact, sans-serif';
 const CORPO = '"Instrument Sans", system-ui, sans-serif';
-import { musicasDaLista } from './lista.js';
 const $ = (s) => document.querySelector(s);
 
 const carregar = (src) => new Promise((ok) => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = src; });
@@ -90,26 +89,6 @@ function folhaNoMeio(c, folha, y, larg, x = (W - larg) / 2) {
   return y + alt;
 }
 
-// Nomes das músicas em texto, à direita da folha, pra quem vê o story entender a letra de mão.
-function listaAoLado(c, y0, y1) {
-  const ms = musicasDaLista(), x = M + 600 + 34, larg = W - M - x;
-  if (!ms.length) return;
-  rotulo(c, x, y0 + 26, 'As músicas', COR.ouro);
-  const linhas = ms.length + ms.filter((m, i) => m.bis && i < ms.length - 1).length;
-  const lh = Math.min(46, (y1 - y0 - 50) / linhas), px = Math.min(26, lh * 0.66);
-  let y = y0 + 50 + lh * 0.8;
-  ms.forEach((m, i) => {
-    linha(c, x, y, [{ fonte: tamanho(px, DISP, 900), cor: COR.ouro, t: `${i + 1}  ` },
-      { fonte: tamanho(px, CORPO, 600), cor: COR.texto, t: m.nome }], larg);
-    y += lh;
-    if (m.bis && i < ms.length - 1) {
-      c.strokeStyle = COR.ouro; c.lineWidth = 2; c.setLineDash([8, 6]);
-      c.beginPath(); c.moveTo(x, y - lh * 0.55); c.lineTo(x + larg, y - lh * 0.55); c.stroke(); c.setLineDash([]);
-      y += lh;
-    }
-  });
-}
-
 export async function story(folha) {
   await Promise.all([`900 150px ${DISP}`, `700 20px ${CORPO}`, `500 22px ${CORPO}`].map((f) => document.fonts?.load(f).catch(() => {})));
   const s = document.createElement('canvas');
@@ -123,8 +102,7 @@ export async function story(folha) {
     c.fillStyle = g; c.fillRect(0, 0, W, 720);
   }
   titulo(c);
-  const fim = folhaNoMeio(c, folha, 336, 600, M);
-  listaAoLado(c, 336, fim);
+  const fim = folhaNoMeio(c, folha, 336, 630);
   const cartas = [...document.querySelectorAll('#sorte .carta:not(.esqueleto)')];
   let y = fim + 34;
   const ind = cartas.find((el) => el.classList.contains('indice'));

@@ -7,12 +7,12 @@
 <meta name="description" content="Qual será o setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
-<script type="importmap">{"imports":{"./app.js":"./app.js?v=4e3ee5bc","./folha.js":"./folha.js?v=459eb203","./salvar.js":"./salvar.js?v=84809b05","./sorteio.js":"./sorteio.js?v=c64713d3","./story.js":"./story.js?v=954ad23a","./telas.js":"./telas.js?v=f30872b2","./lista.js":"./lista.js?v=14bec288"}}</script>
+<script type="importmap">{"imports":{"./app.js":"./app.js?v=4e3ee5bc","./folha.js":"./folha.js?v=459eb203","./salvar.js":"./salvar.js?v=3e90af04","./sorteio.js":"./sorteio.js?v=c64713d3","./story.js":"./story.js?v=7375719e","./telas.js":"./telas.js?v=f30872b2","./lista.js":"./lista.js?v=14bec288"}}</script>
 <link rel="modulepreload" href="app.js?v=4e3ee5bc">
 <link rel="modulepreload" href="folha.js?v=459eb203">
-<link rel="modulepreload" href="salvar.js?v=84809b05">
+<link rel="modulepreload" href="salvar.js?v=3e90af04">
 <link rel="modulepreload" href="sorteio.js?v=c64713d3">
-<link rel="modulepreload" href="story.js?v=954ad23a">
+<link rel="modulepreload" href="story.js?v=7375719e">
 <script>window.musicasCedo = fetch('musicas.json?v=43816b7a').then(function (r) { return r.json(); });</script>
 <meta name="theme-color" content="#0f0e0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -308,9 +308,14 @@
   #previa.montando #folha { opacity: .6; }
   #atalho { display: none !important; }
   #salvar-tela { position: fixed; inset: 0; z-index: 100; background: #000e; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 16px; color: #f2efe6; }
-  #salvar-tela p { margin: 0; text-align: center; }
-  #salvar-tela img { max-width: 100%; max-height: 72vh; border-radius: 4px; -webkit-touch-callout: default; }
-  #salvar-tela button { padding: 12px 20px; font: inherit; border-radius: 8px; border: 0; }
+  #salvar-tela img { max-width: 100%; max-height: 58vh; border-radius: 4px; -webkit-touch-callout: default; animation: sobe .4s ease-out both; }
+  .passos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; max-width: 420px; }
+  .passos li { display: grid; justify-items: center; gap: 6px; text-align: center; font: 600 13px/1.2 var(--corpo); color: var(--texto);
+    animation: sobe .4s ease-out both; }
+  .passos li:nth-child(2) { animation-delay: .12s; } .passos li:nth-child(3) { animation-delay: .24s; }
+  .passos b { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--cor); color: var(--cor-esc); font: 900 18px/1 var(--disp); }
+  #salvar-tela .botoes { display: grid; grid-template-columns: 1fr auto; gap: 8px; width: 100%; max-width: 420px; }
+  #salvar-tela a.btn { text-decoration: none; display: grid; place-items: center; animation: chama 2.4s ease-in-out infinite; }
 </style>
 </head>
 <body data-tela="chegada">
