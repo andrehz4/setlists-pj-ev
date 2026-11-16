@@ -64,8 +64,8 @@ export function pedacos(el, base, pular = '') {
 }
 
 export const tamanho = (px, fam, peso) => (e) => `${peso} ${Math.round(px * e)}px ${fam}`;
-export const VAL = (cor, fraco, px) => ({ normal: { fonte: tamanho(px, DISP, 900), cor }, small: { fonte: tamanho(px * 0.45, DISP, 900), cor: fraco },
-  sup: { fonte: tamanho(px * 0.5, DISP, 900), cor, dy: px * 0.4 }, b: { fonte: tamanho(px, DISP, 900), cor } });
+export const VAL = (cor, fraco, px) => ({ normal: { fonte: tamanho(px, DISP, 900), cor }, small: { fonte: tamanho(px * 0.45, DISP, 900), cor: fraco, fixo: true },
+  sup: { fonte: tamanho(px * 0.5, DISP, 900), cor, dy: px * 0.4, fixo: true }, b: { fonte: tamanho(px, DISP, 900), cor } });
 export const TXT = (cor, forte, px) => ({ normal: { fonte: tamanho(px, CORPO, 500), cor }, small: { fonte: tamanho(px, CORPO, 500), cor },
   sup: { fonte: tamanho(px, CORPO, 500), cor }, b: { fonte: tamanho(px, CORPO, 700), cor: forte } });
 
