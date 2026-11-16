@@ -1,5 +1,5 @@
 name: Publish Reel Especial
-# Publica um reel especial pronto (reels-especiais/<pasta>/publicar.json, vídeo já no R2).
+# Publica um reel ou carrossel especial pronto (reels-especiais/<pasta>/publicar.json, mídia já no R2).
 # Sem cron: quem dispara no horário é o TriggerAll (workflow_dispatch com a pasta).
 on:
   workflow_dispatch:

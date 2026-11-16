@@ -26,3 +26,13 @@ Reaproveitável: troca o conteúdo no HTML e a cor por paleta.
 Para mudar o layout, mandar o HTML de volta ao Claude Design (Share > Project HTML > Project archive traz o zip).
 Fotos de terceiros e as imagens finais nunca entram no git (repo público).
 Precisa do Google Chrome (`CHROME_BIN` troca o caminho) e de internet (fontes do Google Fonts).
+
+## Publicar agendado (carrossel especial)
+
+1. Subir os JPGs para a pasta `especiais/` do R2 (essa não apaga sozinha; `reels/` apaga em 3 dias):
+   `npx wrangler r2 object put smufdpj-midia/especiais/<pasta>/01.jpg --file 01.jpg --content-type image/jpeg --remote`
+2. Criar `reels-especiais/<pasta>/publicar.json` com `imagens` (2 a 10 links, na ordem) e `legenda`.
+3. Mesmo workflow do reel especial (`publish-reel-especial.yml`, input `pasta`), disparado pelo TriggerAll. O
+   `scripts/publish/reel/especial.mjs` vê `imagens` e chama `especial.mjs` daqui: confere cada link, publica o
+   carrossel no IG, espelha álbum no FB, grava `publicado` (não posta duas vezes) e avisa no Telegram.
+Receita do TriggerAll: `/Users/andrehz/Documents/Githubhz/fabrica-quiz/docs/AGENDAR-PUBLICACAO.md`.
