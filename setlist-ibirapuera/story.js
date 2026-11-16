@@ -1,120 +1,128 @@
-// Story 1080x1920 pra postar: título do resultado no topo ("ANDRÉ, O SEU / SETLIST NO IBIRAPUERA"), a folha no meio e as cartas
-// de sorte embaixo. Lê o que a tela de resultado já mostra (#r-show, #r-nome, #sorte), então fica igual ao site.
-const W = 1080, H = 1920, M = 40;
-const COR = { noite: '#0f0e0c', carta: 'rgba(28,25,20,.92)', linha: '#3a342b', texto: '#f3eee2', fraco: '#a59d8c', ouro: '#e8b04a', esc: '#1a1305' };
-const DISP = '"Big Shoulders Display", Impact, sans-serif';
-const CORPO = '"Instrument Sans", system-ui, sans-serif';
+// Story 1080x1920 pra postar: título do resultado no topo ("ANDRÉ, O SEU / SETLIST NO IBIRAPUERA"), a folha no meio com o
+// selo "MEU PALPITE", o veredito do índice de sorte em letra grande e 2 cartas embaixo. Lê o que a tela de resultado já
+// mostra (#r-show, #r-nome, #sorte), então fica igual ao site. Texto fora das faixas que o Instagram cobre (topo ~160 px,
+// rodapé ~260 px). O desenho sai em camadas (montar) pra o story em vídeo (story-video.js) animar a entrada de cada uma.
+import { W, H, M, COR, DISP, CORPO, carregar, fontes, tela, caixa, linha, quebrar, pedacos, tamanho, VAL, TXT, rotulo } from './story-pincel.js';
+
 const $ = (s) => document.querySelector(s);
+const D = 30; // desce tudo um pouco: o topo e o rodapé ficam com folga parecida pras faixas do Instagram
+const FOLHA = { y: 458 + D, larg: 520 }, INDICE = { y: 1146 + D, h: 210 }, CARTAS = { y: 1372 + D, h: 176 }, CTA = { y: 1574 + D, h: 64 };
+const PREFERIDAS = ['Sua raridade', 'Chance de ouvir todas', 'Sua aposta certa', 'Tocadas em 2026', 'Num show típico'];
 
-const carregar = (src) => new Promise((ok) => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = src; });
-
-function caixa(c, x, y, w, h, r, cor, borda) {
-  // iOS < 16 não tem roundRect: cai pra retângulo reto
-  c.beginPath(); if (c.roundRect) c.roundRect(x, y, w, h, r); else c.rect(x, y, w, h); c.fillStyle = cor; c.fill();
-  if (borda) { c.strokeStyle = borda; c.lineWidth = 2; c.stroke(); }
-}
-
-// Texto com pedaços de estilos diferentes numa linha só; encolhe tudo até caber na largura.
-function linha(c, x, y, pedacos, maxW, alinhar = 'left') {
-  let esc = 1, w = 0;
-  const medir = () => pedacos.reduce((s, p) => { c.font = p.fonte(esc); return s + c.measureText(p.t).width; }, 0);
-  while ((w = medir()) > maxW && esc > 0.5) esc -= 0.04;
-  let px = alinhar === 'right' ? x - w : alinhar === 'center' ? x - w / 2 : x;
-  c.textAlign = 'left';
-  for (const p of pedacos) { c.font = p.fonte(esc); c.fillStyle = p.cor; c.fillText(p.t, px, y - (p.dy || 0) * esc); px += c.measureText(p.t).width; }
-}
-
-// Converte o HTML de uma carta (<b>, <small>, <sup>) em pedaços pra linha().
-function pedacos(el, base) {
-  const out = [];
-  el?.childNodes.forEach((n) => {
-    const t = n.textContent.replace(/\s+/g, ' ');
-    if (!t.trim() && !t.includes(' ')) return;
-    const tag = n.nodeName;
-    out.push(tag === 'B' ? { ...base.b, t } : tag === 'SMALL' ? { ...base.small, t } : tag === 'SUP' ? { ...base.sup, t } : { ...base.normal, t });
-  });
-  if (out.length) out[0].t = out[0].t.trimStart();
-  return out;
-}
-
-const tamanho = (px, fam, peso) => (e) => `${peso} ${Math.round(px * e)}px ${fam}`;
-const VAL = (cor, fraco, px) => ({ normal: { fonte: tamanho(px, DISP, 900), cor }, small: { fonte: tamanho(px * 0.45, DISP, 900), cor: fraco },
-  sup: { fonte: tamanho(px * 0.5, DISP, 900), cor, dy: px * 0.4 }, b: { fonte: tamanho(px, DISP, 900), cor } });
-const TXT = (cor, forte, px) => ({ normal: { fonte: tamanho(px, CORPO, 500), cor }, small: { fonte: tamanho(px, CORPO, 500), cor },
-  sup: { fonte: tamanho(px, CORPO, 500), cor }, b: { fonte: tamanho(px, CORPO, 700), cor: forte } });
-
-function rotulo(c, x, y, t, cor) {
-  c.font = `700 20px ${CORPO}`; c.fillStyle = cor; c.textAlign = 'left';
-  c.letterSpacing = '3px'; c.fillText(t.toUpperCase(), x, y); c.letterSpacing = '0px';
-}
-
-function cartaIndice(c, el, y, h) {
-  caixa(c, M, y, W - 2 * M, h, 26, COR.ouro);
-  const val = pedacos(el.querySelector('.val'), VAL(COR.esc, 'rgba(26,19,5,.55)', 120));
-  linha(c, W - M - 30, y + 112, val, 300, 'right');
-  rotulo(c, M + 30, y + 46, el.querySelector('.rot').textContent, 'rgba(26,19,5,.75)');
-  linha(c, M + 30, y + 86, pedacos(el.querySelector('.txt'), TXT('rgba(26,19,5,.8)', COR.esc, 24)), 640);
-  const larg = W - 2 * M - 60, pct = parseFloat(el.querySelector('.medidor i')?.style.width) || 0;
-  caixa(c, M + 30, y + h - 34, larg, 12, 6, 'rgba(26,19,5,.18)');
-  caixa(c, M + 30, y + h - 34, Math.max(12, larg * pct / 100), 12, 6, COR.esc);
-}
-
-function carta(c, el, x, y, w, h) {
-  caixa(c, x, y, w, h, 22, COR.carta, COR.linha);
-  rotulo(c, x + 26, y + 40, el.querySelector('.rot').textContent, COR.fraco);
-  linha(c, x + 26, y + 98, pedacos(el.querySelector('.val'), VAL(COR.texto, COR.fraco, 58)), w - 52);
-  linha(c, x + 26, y + h - 22, pedacos(el.querySelector('.txt'), TXT(COR.fraco, COR.texto, 22)), w - 52);
+// Fundo: quadro do vídeo do Eddie (foto ou o próprio <video>) no alto, sumindo no escuro.
+export function fundo(c, quadro) {
+  c.fillStyle = COR.noite; c.fillRect(0, 0, W, H);
+  if (!quadro) return;
+  c.globalAlpha = 0.42; c.drawImage(quadro, -260, 0, 1600, 900); c.globalAlpha = 1;
+  const g = c.createLinearGradient(0, 200, 0, 900); g.addColorStop(0, 'rgba(15,14,12,.25)'); g.addColorStop(1, COR.noite);
+  c.fillStyle = g; c.fillRect(0, 0, W, 900);
 }
 
 function titulo(c) {
-  rotulo(c, M, 58, $('#r-show')?.textContent || 'Ibirapuera', COR.ouro);
-  const base = { fonte: tamanho(118, DISP, 900), cor: COR.texto };
+  rotulo(c, M, 196 + D, $('#r-show')?.textContent || 'Ibirapuera', COR.ouro, 22);
+  const base = { fonte: tamanho(112, DISP, 900), cor: COR.texto };
   const linhas = [[]]; // o <br> do #r-nome separa as duas linhas
   for (const n of $('#r-nome')?.childNodes || []) {
     if (n.nodeName === 'BR') linhas.push([]);
     else linhas.at(-1).push({ ...base, cor: n.nodeName === 'EM' ? COR.ouro : COR.texto, t: n.textContent.toUpperCase() });
   }
   if (!linhas[0].length) linhas[0] = [{ ...base, t: 'O SEU SETLIST' }];
-  linhas.filter((l) => l.length).slice(0, 2).forEach((ped, i) => { ped[0].t = ped[0].t.trimStart(); linha(c, M - 4, 196 + i * 110, ped, W - 2 * M); });
+  linhas.filter((l) => l.length).slice(0, 2).forEach((ped, i) => { ped[0].t = ped[0].t.trimStart(); linha(c, M - 4, 312 + D + i * 104, ped, W - 2 * M); });
 }
 
-function folhaNoMeio(c, folha, y, larg, x = (W - larg) / 2) {
-  const alt = folha.height * (larg / folha.width), cx = x + larg / 2;
+// Selo vermelho colado no canto da folha: deixa claro que é palpite (não o setlist de verdade) e dá cara de coisa sua.
+export const SELO = { x: (W + FOLHA.larg) / 2 + 6, y: FOLHA.y + 52, r: 86 };
+function selo(c) {
+  const data = ($('#r-show')?.textContent.match(/\d\d\/\d\d/) || ['20/11'])[0].replace('/', '.');
+  c.save(); c.translate(SELO.x, SELO.y); c.rotate(0.2);
+  c.shadowColor = 'rgba(0,0,0,.45)'; c.shadowBlur = 16; c.shadowOffsetY = 6;
+  c.beginPath(); c.arc(0, 0, SELO.r, 0, Math.PI * 2); c.fillStyle = COR.tinta; c.fill(); c.shadowColor = 'transparent';
+  c.setLineDash([7, 6]); c.strokeStyle = 'rgba(255,240,220,.7)'; c.lineWidth = 2;
+  c.beginPath(); c.arc(0, 0, SELO.r - 10, 0, Math.PI * 2); c.stroke(); c.setLineDash([]);
+  c.fillStyle = '#fff4e6'; c.textAlign = 'center';
+  c.font = `900 34px ${DISP}`; c.fillText('MEU', 0, -18);
+  c.font = `900 46px ${DISP}`; c.fillText('PALPITE', 0, 24);
+  c.font = `700 17px ${CORPO}`; c.letterSpacing = '3px'; c.fillText(data, 0, 52); c.letterSpacing = '0px';
+  c.restore();
+}
+
+function folhaNoMeio(c, folha) {
+  const larg = FOLHA.larg, y = FOLHA.y, x = (W - larg) / 2, alt = folha.height * (larg / folha.width), cx = x + larg / 2;
   c.save(); c.translate(cx, y + alt / 2); c.rotate(-0.012); c.translate(-cx, -(y + alt / 2));
   c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 40; c.shadowOffsetY = 14;
   c.drawImage(folha, x, y, larg, alt); c.restore();
   c.fillStyle = 'rgba(222,205,160,.85)';
-  for (const [fx, ang] of [[x + 50, -0.2], [x + larg - 150, 0.16]]) {
+  for (const [fx, ang] of [[x + 46, -0.2], [x + larg - 230, 0.1]]) {
     c.save(); c.translate(fx + 50, y + 2); c.rotate(ang); c.fillRect(-55, -16, 110, 32); c.restore();
   }
-  return y + alt;
+}
+
+// Carta dourada: veredito grande ("PÉ QUENTE"), a explicação embaixo e o índice à direita. Devolve o medidor
+// (o vídeo enche a barra aos poucos; a foto pinta cheia).
+function cartaIndice(c, el) {
+  const { y, h } = INDICE;
+  caixa(c, M, y, W - 2 * M, h, 26, COR.ouro);
+  rotulo(c, M + 30, y + 44, el.querySelector('.rot').textContent, 'rgba(26,19,5,.7)');
+  const ver = (el.querySelector('.txt b')?.textContent || '').replace(/[.!]\s*$/, '').toUpperCase();
+  linha(c, M + 28, y + 136, [{ fonte: tamanho(80, DISP, 900), cor: COR.esc, t: ver }], 620);
+  linha(c, M + 30, y + 174, pedacos(el.querySelector('.txt'), TXT('rgba(26,19,5,.78)', COR.esc, 23), 'B'), 640);
+  linha(c, W - M - 30, y + 140, pedacos(el.querySelector('.val'), VAL(COR.esc, 'rgba(26,19,5,.55)', 128)), 300, 'right');
+  const med = { x: M + 30, y: y + h - 26, w: W - 2 * M - 60, h: 12, pct: parseFloat(el.querySelector('.medidor i')?.style.width) || 0 };
+  caixa(c, med.x, med.y, med.w, med.h, 6, 'rgba(26,19,5,.18)');
+  return med;
+}
+
+export function medidor(c, med, fracao = 1) {
+  caixa(c, med.x, med.y, Math.max(12, med.w * (med.pct / 100) * fracao), med.h, 6, COR.esc);
+}
+
+function carta(c, el, x, w) {
+  const { y, h } = CARTAS;
+  caixa(c, x, y, w, h, 22, COR.carta, COR.linha);
+  rotulo(c, x + 26, y + 42, el.querySelector('.rot').textContent, COR.fraco);
+  linha(c, x + 26, y + 104, pedacos(el.querySelector('.val'), VAL(COR.texto, COR.fraco, 62)), w - 52);
+  quebrar(c, x + 26, y + 136, pedacos(el.querySelector('.txt'), TXT(COR.fraco, COR.texto, 21)), w - 52, 26);
+}
+
+function cta(c) {
+  const { y, h } = CTA, txt = [{ fonte: tamanho(24, CORPO, 700), cor: COR.ouro, t: 'Sorteie o seu: ' },
+    { fonte: tamanho(24, CORPO, 500), cor: COR.texto, t: 'somaisumfadepearljam.com.br/setlist-ibirapuera' }];
+  c.font = txt[1].fonte(1);
+  const w = Math.min(W - 2 * M, c.measureText(txt[0].t + txt[1].t).width + 70);
+  caixa(c, (W - w) / 2, y, w, h, h / 2, 'rgba(15,14,12,.7)', 'rgba(232,176,74,.55)');
+  linha(c, W / 2, y + h / 2 + 9, txt, w - 50, 'center');
+}
+
+// Cada camada vira um canvas recortado (barato de desenhar 30 vezes por segundo no vídeo).
+function camada(nome, x, y, w, h, pintar) {
+  const cv = tela(w, h), c = cv.getContext('2d');
+  c.translate(-x, -y);
+  const extra = pintar(c);
+  return { nome, x, y, w, h, cv, extra };
+}
+
+export async function montar(folha) {
+  await fontes();
+  const cartas = [...document.querySelectorAll('#sorte .carta:not(.esqueleto)')];
+  const ind = cartas.find((el) => el.classList.contains('indice'));
+  const resto = cartas.filter((el) => el !== ind).sort((a, b) => {
+    const p = (el) => { const i = PREFERIDAS.indexOf(el.querySelector('.rot')?.textContent.trim()); return i < 0 ? 99 : i; };
+    return p(a) - p(b);
+  }).slice(0, 2);
+  const altFolha = folha.height * (FOLHA.larg / folha.width), wc = resto.length > 1 ? (W - 2 * M - 16) / 2 : W - 2 * M;
+  const camadas = [camada('titulo', 0, 120 + D, W, 330, titulo),
+    camada('folha', 0, FOLHA.y - 90, W, altFolha + 190, (c) => folhaNoMeio(c, folha)),
+    camada('selo', SELO.x - SELO.r - 30, SELO.y - SELO.r - 30, 2 * SELO.r + 60, 2 * SELO.r + 60, selo)];
+  if (ind) camadas.push(camada('indice', 0, INDICE.y, W, INDICE.h, (c) => cartaIndice(c, ind)));
+  resto.forEach((el, i) => camadas.push(camada('carta', M + i * (wc + 16), CARTAS.y, wc, CARTAS.h, (c) => carta(c, el, M + i * (wc + 16), wc))));
+  camadas.push(camada('cta', 0, CTA.y, W, CTA.h, cta));
+  return camadas;
 }
 
 export async function story(folha) {
-  await Promise.all([`900 150px ${DISP}`, `700 20px ${CORPO}`, `500 22px ${CORPO}`].map((f) => document.fonts?.load(f).catch(() => {})));
-  const s = document.createElement('canvas');
-  s.width = W; s.height = H;
-  const c = s.getContext('2d');
-  c.fillStyle = COR.noite; c.fillRect(0, 0, W, H);
-  const fundo = await carregar('fundo-eddie-quadro.jpg');
-  if (fundo) {
-    c.globalAlpha = 0.35; c.drawImage(fundo, -100, 0, 1280, 720); c.globalAlpha = 1;
-    const g = c.createLinearGradient(0, 0, 0, 720); g.addColorStop(0, 'rgba(15,14,12,.35)'); g.addColorStop(1, COR.noite);
-    c.fillStyle = g; c.fillRect(0, 0, W, 720);
-  }
-  titulo(c);
-  const fim = folhaNoMeio(c, folha, 336, 630);
-  const cartas = [...document.querySelectorAll('#sorte .carta:not(.esqueleto)')];
-  let y = fim + 34;
-  const ind = cartas.find((el) => el.classList.contains('indice'));
-  if (ind) { cartaIndice(c, ind, y, 150); y += 166; }
-  const meio = cartas.filter((el) => !el.classList.contains('larga'));
-  const w = (W - 2 * M - 16) / 2;
-  meio.slice(0, 4).forEach((el, i) => carta(c, el, M + (i % 2) * (w + 16), y + Math.floor(i / 2) * 166, w, 150));
-  y += Math.ceil(Math.min(meio.length, 4) / 2) * 166;
-  const chance = cartas.find((el) => el.classList.contains('larga') && !el.classList.contains('indice'));
-  if (chance && y + 150 < H - 66) carta(c, chance, M, y, W - 2 * M, 150);
-  c.fillStyle = COR.fraco; c.textAlign = 'center'; c.font = `500 28px ${CORPO}`;
-  c.fillText('Sorteie o seu: somaisumfadepearljam.com.br/setlist-ibirapuera', W / 2, H - 34);
+  const [camadas, quadro] = await Promise.all([montar(folha), carregar('fundo-eddie-quadro.jpg')]);
+  const s = tela(W, H), c = s.getContext('2d');
+  fundo(c, quadro);
+  for (const k of camadas) { c.drawImage(k.cv, k.x, k.y); if (k.extra) medidor(c, k.extra); }
   return s;
 }

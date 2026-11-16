@@ -7,12 +7,13 @@
 <meta name="description" content="Qual será o setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
-<script type="importmap">{"imports":{"./app.js":"./app.js?v=55274958","./folha.js":"./folha.js?v=b8e738c0","./salvar.js":"./salvar.js?v=3052b004","./sorteio.js":"./sorteio.js?v=b670c49a","./story.js":"./story.js?v=5ad51103","./telas.js":"./telas.js?v=ae3e9cfa","./lista.js":"./lista.js?v=14bec288","./filtro.js":"./filtro.js?v=7806d002"}}</script>
+<script type="importmap">{"imports":{"./app.js":"./app.js?v=55274958","./folha.js":"./folha.js?v=b8e738c0","./salvar.js":"./salvar.js?v=edd4ad39","./sorteio.js":"./sorteio.js?v=b670c49a","./story.js":"./story.js?v=c77c6db1","./story-pincel.js":"./story-pincel.js?v=19c22ae9","./story-video.js":"./story-video.js?v=50b6f3b8","./telas.js":"./telas.js?v=ae3e9cfa","./lista.js":"./lista.js?v=14bec288","./filtro.js":"./filtro.js?v=7806d002"}}</script>
 <link rel="modulepreload" href="app.js?v=55274958">
 <link rel="modulepreload" href="folha.js?v=b8e738c0">
-<link rel="modulepreload" href="salvar.js?v=3052b004">
+<link rel="modulepreload" href="salvar.js?v=edd4ad39">
 <link rel="modulepreload" href="sorteio.js?v=b670c49a">
-<link rel="modulepreload" href="story.js?v=5ad51103">
+<link rel="modulepreload" href="story.js?v=c77c6db1">
+<link rel="modulepreload" href="story-pincel.js?v=19c22ae9">
 <script>window.musicasCedo = fetch('musicas.json?v=0292cef2').then(function (r) { return r.json(); });</script>
 <meta name="theme-color" content="#0f0e0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -271,6 +272,8 @@
   @keyframes gira { to { rotate: 360deg; } }
   @media (prefers-reduced-motion: reduce) { .story-btn, .story-btn::after { animation: none; } }
   #acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  #story-video { grid-column: 1 / -1; }
+  #story-video.gerando { opacity: .6; pointer-events: none; }
   #baixar { grid-column: 1 / -1; min-height: 54px; font-size: 16px; }
   .r-sorte { grid-area: sorte; }
   .r-lidas { grid-area: lidas; }
@@ -466,6 +469,7 @@
     <div class="bloco r-baixar">
       <div id="acoes" hidden>
         <button id="story" class="btn cheio story-btn" type="button"><span>Baixar pro story</span></button>
+        <button id="story-video" class="btn" type="button" hidden>Story em vídeo, com o Eddie ao fundo</button>
         <p class="chama">Posta e marca <b>@smufdpj</b>. A gente quer ver o seu.</p>
       </div>
       <p id="aviso" role="status"></p>
@@ -520,5 +524,6 @@
 <script type="module" src="telas.js?v=ae3e9cfa"></script>
 <script type="module" src="lista.js?v=14bec288"></script>
 <script type="module" src="filtro.js?v=7806d002"></script>
+<script type="module" src="story-video.js?v=50b6f3b8"></script>
 </body>
 </html>

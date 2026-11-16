@@ -1,9 +1,9 @@
-// Entrega a imagem (folha ou story) ao visitante do jeito que o navegador dele aceita:
+// Entrega a imagem (folha ou story) ou o vídeo do story ao visitante do jeito que o navegador dele aceita:
 // 1. "Compartilhar": folha de compartilhamento do sistema, quando existe.
 // 2. Navegador comum: download direto.
 // 3. Navegador interno de app (Instagram, Facebook etc.), onde download não funciona: mostra a imagem na tela
 //    pra segurar o dedo e salvar.
-const DENTRO_DE_APP = /Instagram|FBAN|FBAV|FB_IAB|Line\/|TikTok|musical_ly|Twitter|Snapchat|; wv\)/i.test(navigator.userAgent);
+export const DENTRO_DE_APP = /Instagram|FBAN|FBAV|FB_IAB|Line\/|TikTok|musical_ly|Twitter|Snapchat|; wv\)/i.test(navigator.userAgent);
 
 function mostrar(url) {
   document.querySelector('#salvar-tela')?.remove();
@@ -19,7 +19,8 @@ function mostrar(url) {
 }
 
 export async function entregar(blob, nome, { compartilhar = false } = {}) {
-  const arq = new File([blob], nome, { type: 'image/jpeg' });
+  const video = blob.type.startsWith('video/');
+  const arq = new File([blob], nome, { type: blob.type || 'image/jpeg' });
   const podeCompartilhar = !!navigator.canShare?.({ files: [arq] });
   if (podeCompartilhar && compartilhar && !DENTRO_DE_APP) { // no Instagram vai direto pros 3 passos
     try { await navigator.share({ files: [arq], title: 'Meu setlist do Eddie no Ibirapuera' }); return 'compartilhado'; } catch (e) {
@@ -27,7 +28,7 @@ export async function entregar(blob, nome, { compartilhar = false } = {}) {
     }
   }
   const url = URL.createObjectURL(blob);
-  if (DENTRO_DE_APP || compartilhar) { mostrar(url); return 'tela'; }
+  if ((DENTRO_DE_APP || compartilhar) && !video) { mostrar(url); return 'tela'; } // vídeo: segurar e salvar não existe, baixa
   const a = Object.assign(document.createElement('a'), { href: url, download: nome });
   document.body.append(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 60000);
