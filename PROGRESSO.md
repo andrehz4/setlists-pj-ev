@@ -26,7 +26,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `design-handoff/retorno/setlist-ibirapuera-v1/`); o nosso app.js/folha.js/salvar.js/sorteio.js ficou como estava. No
   HTML novo entraram `#estado-folha`, `#atalho` (escondido) e a tela de salvar do Instagram, que o app.js usa. Testado no
   Chrome 390 px: chegada, sorteio, `#sortear` e montar sem erro de console.
-  Fable notou: traço de bis em y+84 encosta na música seguinte (parece riscá-la). Papel de 338 KB vem do glitch.ge.
+  Traço de bis CORRIGIDO (16/11): ia em y+84 e riscava a música; agora vai em y+107 e empurra o resto da coluna 20 px
+  (teto 40). Papel de 338 KB vem do glitch.ge.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +

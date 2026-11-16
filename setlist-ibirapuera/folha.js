@@ -1,5 +1,5 @@
 // Desenha a folha da setlist no canvas, no mesmo layout do gerador oficial: papel 1100x1400, cabeçalho no topo,
-// 2 colunas de 12 músicas (x 100 e 660), passo de 90 px a partir de y 255. Traço de bis desenhado depois da música marcada.
+// 2 colunas de 12 músicas (x 100 e 660), passo de 90 px a partir de y 255. Traço de bis empurra o resto da coluna.
 // A folha é pintada aos poucos (cada imagem que chega repinta) e nunca trava: imagem que falha ou passa do prazo
 // vira texto (música) ou fundo liso (papel). Se a atrasada chegar depois, entra no lugar do texto.
 const PAPEL = 'https://assets.glitch.ge/pearljam/setlistgenerator/papers/pearl-jam-set-list-paper-without-lines.jpg';
@@ -27,16 +27,21 @@ function pintar(canvas, [papel, cab, ibira, traco, ...imgs], musicas) {
   if (cab) c.drawImage(cab, 550 - cab.width / 2, 40);
   if (ibira) c.drawImage(ibira, 550 - ibira.width * 0.4, 125, ibira.width * 0.8, ibira.height * 0.8);
   c.fillStyle = '#16130f'; c.textBaseline = 'middle'; c.font = '700 44px "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive';
+  const desloc = [0, 0];
   imgs.forEach((im, i) => {
-    const x = i < 12 ? 100 : 660;
-    const y = 255 + 90 * (i % 12);
+    const col = i < 12 ? 0 : 1;
+    const x = col ? 660 : 100;
+    const y = 255 + 90 * (i % 12) + desloc[col];
     if (im) {
       const larg = Math.min(im.width, 440);
       c.drawImage(im, x, y, larg, im.height * (larg / im.width));
     } else if (im === false) c.fillText(musicas[i].nome.toUpperCase(), x, y + 45, 420);
     if (!musicas[i].bis) return;
-    if (traco) c.drawImage(traco, x - 30, y + 84, 420, traco.height * (420 / traco.width));
-    else if (traco === false) c.fillRect(x - 30, y + 92, 420, 5);
+    // A tinta da música vai até ~y+100 e a próxima começa em ~y+114: o traço (20 px) só cabe empurrando o resto da
+    // coluna. Teto de 40 px pra última música não sair do papel.
+    if (traco) c.drawImage(traco, x - 30, y + 107, 420, traco.height * (420 / traco.width));
+    else if (traco === false) c.fillRect(x - 30, y + 114, 420, 5);
+    desloc[col] = Math.min(desloc[col] + 20, 40);
   });
 }
 
