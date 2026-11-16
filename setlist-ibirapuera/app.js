@@ -4,6 +4,7 @@ import { desenharFolha, paraBlob } from './folha.js';
 import { story } from './story.js';
 import { entregar } from './salvar.js';
 import { sortearShow } from './sorteio.js';
+import { vaiEscrever, pedirEscrita, jaVista, papelEmBranco, escreverAoVivo, atualizarDepois } from './folha-viva.js';
 
 const LIMITE = 24;
 const $ = (s) => document.querySelector(s);
@@ -58,12 +59,16 @@ async function folha() {
   };
   ocupado(true, 'Escrevendo a folha…');
   $('#aviso').textContent = '';
-  const falhas = await desenharFolha($('#folha'), { show: estado.show, musicas: [...estado.lista] }, {
-    vigente: () => meu === pedido,
+  // Folha ao vivo (folha-viva.js): desenha por trás e a caneta escreve na página; senão desenha direto, como sempre.
+  const viva = vaiEscrever(), alvo = viva ? Object.assign(document.createElement('canvas'), { width: 1100, height: 1400 }) : $('#folha');
+  if (viva) papelEmBranco($('#folha'));
+  const musicas = [...estado.lista], chave = chaveDe(estado.show), vigente = () => meu === pedido;
+  const falhas = await desenharFolha(alvo, { show: estado.show, musicas }, { vigente,
     progresso: (k, total) => { $('#estado-folha').textContent = `Escrevendo a folha… ${k}/${total}`; },
-    atrasada: (faltam) => { if (!faltam) $('#aviso').textContent = ''; },
+    atrasada: (faltam) => { if (!faltam) $('#aviso').textContent = ''; if (viva && vigente()) atualizarDepois($('#folha'), alvo); },
   }).catch(() => -1);
   if (meu !== pedido) return;
+  if (viva) { $('#previa').classList.remove('montando'); if (!await escreverAoVivo($('#folha'), alvo, musicas, chave, vigente)) return; }
   ocupado(false); if (!falhas) adiantarOutra();
   if (falhas) $('#aviso').textContent = falhas < 0 ? 'A folha não saiu. Recarregue a página e tente de novo.'
     : 'Internet lenta? Algumas músicas saíram em letra simples. A folha se ajeita sozinha quando elas chegarem.';
@@ -84,26 +89,23 @@ function trocarNoite(show) {
   estado.show = show;
   if (!estado.lista.length) estado.lista = estado.listas[show === 1 ? 2 : 1].map((m) => ({ ...m }));
   const p = pronta[show];
-  if (p?.chave === chaveDe(show)) {
+  if (p?.chave === chaveDe(show) && jaVista(p.chave)) {
     ++pedido; $('#folha').getContext('2d').drawImage(p.c, 0, 0);
     $('#previa').classList.remove('montando'); $('#story').disabled = false; $('#estado-folha').textContent = '';
     catalogo(); selecionadas(); adiantarOutra(); return;
   }
-  tudo();
+  pedirEscrita(); tudo();
 }
 
 function sortear() {
   estado.listas = { 1: sortearShow(grupos, modelo), 2: sortearShow(grupos, modelo) };
-  tudo();
+  pedirEscrita(); tudo();
   $('#previa').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function mover(i, j) {
-  if (j < 0 || j >= estado.lista.length) return;
-  const [m] = estado.lista.splice(i, 1);
-  estado.lista.splice(j, 0, m);
+  if (j >= 0 && j < estado.lista.length) estado.lista.splice(j, 0, ...estado.lista.splice(i, 1));
 }
-
 // Um botão só: gera o story; no celular abre o compartilhar (Instagram etc.), no computador baixa.
 async function baixarStory() {
   const b = $('#story');
@@ -116,7 +118,7 @@ async function baixarStory() {
     const t = $('#toast'), msg = { baixado: 'Story salvo. Agora posta e marca @smufdpj', compartilhado: 'Boa! Marca @smufdpj pra gente ver' }[como];
     if (msg) { t.textContent = msg; t.classList.add('ver'); setTimeout(() => t.classList.remove('ver'), 3500); }
   } catch (e) { $('#aviso').textContent = 'O story não saiu. Tente de novo ou tire um print da folha.'; }
-  b.classList.remove('gerando'); b.firstElementChild.textContent = 'Baixar pro story';
+  b.classList.remove('gerando'); b.firstElementChild.textContent = 'Baixar a imagem pro story';
 }
 
 document.addEventListener('click', (e) => {
@@ -143,7 +145,6 @@ document.addEventListener('click', (e) => {
     story: baixarStory };
   extras[b.id]?.();
 });
-
 let arrastando = null;
 $('#lista').addEventListener('dragstart', (e) => { arrastando = Number(e.target.closest('li')?.dataset.i); });
 $('#lista').addEventListener('dragover', (e) => e.preventDefault());
@@ -154,7 +155,6 @@ $('#lista').addEventListener('drop', (e) => {
   arrastando = null;
 });
 $('#busca').addEventListener('input', catalogo);
-
 // window.musicasCedo: o index.html já começou a baixar o catálogo antes deste módulo chegar.
 (window.musicasCedo || fetch('musicas.json').then((r) => r.json())).then((d) => { grupos = d.grupos; modelo = d.modelo; if (location.hash === '#sortear') sortear(); else tudo(); })
   .catch(() => { $('#catalogo').textContent = 'As músicas não carregaram. Recarregue a página.'; });

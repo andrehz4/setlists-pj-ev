@@ -2,7 +2,8 @@
 // 2 colunas de 12 músicas (x 100 e 660), passo de 90 px a partir de y 255. Traço de bis empurra o resto da coluna.
 // A folha é pintada aos poucos (cada imagem que chega repinta) e nunca trava: imagem que falha ou passa do prazo
 // vira texto (música) ou fundo liso (papel). Se a atrasada chegar depois, entra no lugar do texto.
-const PAPEL = 'https://assets.glitch.ge/pearljam/setlistgenerator/papers/pearl-jam-set-list-paper-without-lines.jpg';
+// Papel e PNGs oficiais vêm do gerador oficial da banda, copiados e hospedados aqui (img/oficial/).
+export const PAPEL = 'img/oficial/papel.jpg';
 const PRAZO = 9000;
 const cache = new Map();
 
@@ -27,21 +28,28 @@ function pintar(canvas, [papel, cab, ibira, traco, ...imgs], musicas) {
   if (cab) c.drawImage(cab, 550 - cab.width / 2, 40);
   if (ibira) c.drawImage(ibira, 550 - ibira.width * 0.4, 125, ibira.width * 0.8, ibira.height * 0.8);
   c.fillStyle = '#16130f'; c.textBaseline = 'middle'; c.font = '700 44px "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive';
-  const desloc = [0, 0];
-  imgs.forEach((im, i) => {
-    const col = i < 12 ? 0 : 1;
-    const x = col ? 660 : 100;
-    const y = 255 + 90 * (i % 12) + desloc[col];
+  posicoes(musicas).forEach(({ x, y, traco: tr }, i) => {
+    const im = imgs[i];
     if (im) {
       const larg = Math.min(im.width, 440);
       c.drawImage(im, x, y, larg, im.height * (larg / im.width));
     } else if (im === false) c.fillText(musicas[i].nome.toUpperCase(), x, y + 45, 420);
-    if (!musicas[i].bis || i === musicas.length - 1) return; // bis na última não tem o que separar
-    // A tinta da música vai até ~y+100 e a próxima começa em ~y+114: o traço (20 px) só cabe empurrando o resto da
-    // coluna. Teto de 40 px pra última música não sair do papel.
+    if (!tr) return;
     if (traco) c.drawImage(traco, x - 30, y + 107, 420, traco.height * (420 / traco.width));
     else if (traco === false) c.fillRect(x - 30, y + 114, 420, 5);
-    desloc[col] = Math.min(desloc[col] + 20, 40);
+  });
+}
+
+// Onde cada música fica no papel (1100x1400). traco: tem traço de bis logo abaixo. A tinta da música vai até ~y+100
+// e a próxima começa em ~y+114: o traço (20 px) só cabe empurrando o resto da coluna. Teto de 40 px pra última música
+// não sair do papel; bis na última não tem o que separar. O story em vídeo usa isto pra "escrever" a folha.
+export function posicoes(musicas) {
+  const desloc = [0, 0];
+  return musicas.map((m, i) => {
+    const col = i < 12 ? 0 : 1, x = col ? 660 : 100, y = 255 + 90 * (i % 12) + desloc[col];
+    const traco = !!m.bis && i < musicas.length - 1;
+    if (traco) desloc[col] = Math.min(desloc[col] + 20, 40);
+    return { x, y, traco };
   });
 }
 

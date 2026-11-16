@@ -21,6 +21,9 @@ const modelo = modeloDeShow(recentes, chave);
 const cat = montarCatalogo({ oficial, solo, albums });
 const faltam = [];
 for (const g of cat) for (const m of g.musicas) {
+  // PNG oficial (glitch.ge) é copiado e hospedado aqui: o site nunca carrega imagem de fora (CSP img-src 'self').
+  // Música oficial nova: baixe o PNG pra setlist-ibirapuera/img/oficial/ com o mesmo nome do arquivo.
+  if (m.png?.startsWith('http')) m.png = `img/oficial/${m.png.split('/').pop()}`;
   if (m.png) continue;
   m.png = `img/${m.chave.replace(/ /g, '-')}.png`;
   faltam.push({ nome: m.nome, arq: m.png });

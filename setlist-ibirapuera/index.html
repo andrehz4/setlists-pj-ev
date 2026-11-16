@@ -6,14 +6,14 @@
 <title>Qual será o seu setlist do Eddie no Ibirapuera?</title>
 <meta name="description" content="Qual será o setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
-<script type="importmap">{"imports":{"./app.js":"./app.js?v=55274958","./folha.js":"./folha.js?v=b8e738c0","./salvar.js":"./salvar.js?v=3052b004","./sorteio.js":"./sorteio.js?v=b670c49a","./story.js":"./story.js?v=5ad51103","./telas.js":"./telas.js?v=ae3e9cfa","./lista.js":"./lista.js?v=14bec288","./filtro.js":"./filtro.js?v=7806d002"}}</script>
-<link rel="modulepreload" href="app.js?v=55274958">
-<link rel="modulepreload" href="folha.js?v=b8e738c0">
-<link rel="modulepreload" href="salvar.js?v=3052b004">
+<script type="importmap">{"imports":{"./app.js":"./app.js?v=04ce59ab","./folha.js":"./folha.js?v=82837019","./salvar.js":"./salvar.js?v=2b486cd8","./sorteio.js":"./sorteio.js?v=b670c49a","./story.js":"./story.js?v=dc1f55e3","./story-pincel.js":"./story-pincel.js?v=14fd7531","./story-video.js":"./story-video.js?v=94ecdf1d","./story-roteiro.js":"./story-roteiro.js?v=c3277343","./story-escrita.js":"./story-escrita.js?v=42ff8f76","./story-rodape.js":"./story-rodape.js?v=e5e6cce5","./folha-viva.js":"./folha-viva.js?v=60b86b55","./telas.js":"./telas.js?v=592fa039","./lista.js":"./lista.js?v=14bec288","./filtro.js":"./filtro.js?v=01ec64c8"}}</script>
+<link rel="modulepreload" href="app.js?v=04ce59ab">
+<link rel="modulepreload" href="folha.js?v=82837019">
+<link rel="modulepreload" href="salvar.js?v=2b486cd8">
 <link rel="modulepreload" href="sorteio.js?v=b670c49a">
-<link rel="modulepreload" href="story.js?v=5ad51103">
-<script>window.musicasCedo = fetch('musicas.json?v=0292cef2').then(function (r) { return r.json(); });</script>
+<link rel="modulepreload" href="story.js?v=dc1f55e3">
+<link rel="modulepreload" href="story-pincel.js?v=14fd7531">
+<script>window.musicasCedo = fetch('musicas.json?v=3b16fedf').then(function (r) { return r.json(); });</script>
 <meta name="theme-color" content="#0f0e0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -271,6 +271,8 @@
   @keyframes gira { to { rotate: 360deg; } }
   @media (prefers-reduced-motion: reduce) { .story-btn, .story-btn::after { animation: none; } }
   #acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  #story-video { grid-column: 1 / -1; min-height: 56px; font-size: 16px; border-color: var(--cor); color: var(--cor); }
+  #story-video.gerando { opacity: .6; pointer-events: none; }
   #baixar { grid-column: 1 / -1; min-height: 54px; font-size: 16px; }
   .r-sorte { grid-area: sorte; }
   .r-lidas { grid-area: lidas; }
@@ -465,7 +467,8 @@
     </div>
     <div class="bloco r-baixar">
       <div id="acoes" hidden>
-        <button id="story" class="btn cheio story-btn" type="button"><span>Baixar pro story</span></button>
+        <button id="story" class="btn cheio story-btn" type="button"><span>Baixar a imagem pro story</span></button>
+        <button id="story-video" class="btn" type="button" hidden>Baixar o vídeo pro story, com o Eddie ao fundo</button>
         <p class="chama">Posta e marca <b>@smufdpj</b>. A gente quer ver o seu.</p>
       </div>
       <p id="aviso" role="status"></p>
@@ -516,9 +519,10 @@
 <div class="toast" id="toast" role="status"></div>
 
 <button id="atalho" hidden></button>
-<script type="module" src="app.js?v=55274958"></script>
-<script type="module" src="telas.js?v=ae3e9cfa"></script>
+<script type="module" src="app.js?v=04ce59ab"></script>
+<script type="module" src="telas.js?v=592fa039"></script>
 <script type="module" src="lista.js?v=14bec288"></script>
-<script type="module" src="filtro.js?v=7806d002"></script>
+<script type="module" src="filtro.js?v=01ec64c8"></script>
+<script type="module" src="story-video.js?v=94ecdf1d"></script>
 </body>
 </html>

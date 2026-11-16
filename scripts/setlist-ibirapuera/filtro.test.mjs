@@ -18,6 +18,7 @@ test('deixa passar nomes reais', () => {
 
 test('só letras, sem número, emoji ou símbolo, até 18', () => {
   assert.equal(soLetras('Ana🎸123!'), 'Ana');
-  assert.equal(soLetras("D'Ávila-Souza"), "D'Ávila-Souza");
+  assert.equal(soLetras("D'Ávila Souza"), "D'Ávila Souza");
+  assert.equal(soLetras("D'Ávila-Souza"), "D'Ávila"); // corta no primeiro hífen
   assert.equal(soLetras('a'.repeat(30)).length, 18);
 });

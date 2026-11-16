@@ -34,8 +34,9 @@ export function nomeProibido(nome) {
   return RAIZES.some((r) => junto.includes(normalizar(r)));
 }
 
-// Deixa só letras (com acento), espaço, apóstrofo e hífen.
-export const soLetras = (t) => String(t).replace(/[^\p{L}\s'-]/gu, '').replace(/\s{2,}/g, ' ').slice(0, 18);
+// Deixa só letras latinas (A-Z e acentuadas À-ÿ, sem × e ÷), espaço e apóstrofo, e corta no primeiro hífen.
+// Letra cirílica ou grega parecida ("putа", "hіtler") cai fora, e "Ganhe-ingresso-pix" vira "Ganhe".
+export const soLetras = (t) => String(t).split('-')[0].replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s']/g, '').replace(/\s{2,}/g, ' ').slice(0, 18);
 
 if (typeof document !== 'undefined') {
   const campo = document.querySelector('#nome');
