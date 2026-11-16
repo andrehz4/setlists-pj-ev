@@ -344,7 +344,8 @@
     .shows { max-width: 420px; }
   }
   /* Peças do app.js (correções do celular): estado da folha, tela de segurar e salvar no navegador do Instagram */
-  #estado-folha { color: #e8b04a; min-height: 1.45em; margin: 0 0 6px; text-align: center; }
+  /* Andamento da folha só pra leitor de tela: na tela, a própria folha sendo escrita já mostra (texto em cima quebrava a arte). */
+  #estado-folha { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; }
   #previa.montando #folha { opacity: .6; }
   #atalho { display: none !important; }
   #salvar-tela { position: fixed; inset: 0; z-index: 100; background: #000e; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 16px; color: #f2efe6; }
