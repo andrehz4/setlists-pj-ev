@@ -1,4 +1,4 @@
-// Story 1080x1920 pra postar: título do resultado no topo ("A SETLIST DE ANDRÉ"), a folha no meio e as cartas
+// Story 1080x1920 pra postar: título do resultado no topo ("ANDRÉ, O SEU / SETLIST NO IBIRAPUERA"), a folha no meio e as cartas
 // de sorte embaixo. Lê o que a tela de resultado já mostra (#r-show, #r-nome, #sorte), então fica igual ao site.
 const W = 1080, H = 1920, M = 40;
 const COR = { noite: '#0f0e0c', carta: 'rgba(28,25,20,.92)', linha: '#3a342b', texto: '#f3eee2', fraco: '#a59d8c', ouro: '#e8b04a', esc: '#1a1305' };
@@ -66,12 +66,15 @@ function carta(c, el, x, y, w, h) {
 }
 
 function titulo(c) {
-  rotulo(c, M, 92, $('#r-show')?.textContent || 'Ibirapuera', COR.ouro);
-  const h1 = $('#r-nome');
-  const base = { normal: { fonte: tamanho(150, DISP, 900), cor: COR.texto }, b: { fonte: tamanho(150, DISP, 900), cor: COR.texto } };
-  const ped = [...(h1?.childNodes || [])].map((n) => ({ ...(n.nodeName === 'EM' ? { ...base.normal, cor: COR.ouro } : base.normal), t: n.textContent.toUpperCase() }));
-  if (ped.length) ped[0].t = ped[0].t.trimStart();
-  linha(c, M - 4, 236, ped.length ? ped : [{ ...base.normal, t: 'A MINHA SETLIST' }], W - 2 * M);
+  rotulo(c, M, 74, $('#r-show')?.textContent || 'Ibirapuera', COR.ouro);
+  const base = { fonte: tamanho(118, DISP, 900), cor: COR.texto };
+  const linhas = [[]]; // o <br> do #r-nome separa as duas linhas
+  for (const n of $('#r-nome')?.childNodes || []) {
+    if (n.nodeName === 'BR') linhas.push([]);
+    else linhas.at(-1).push({ ...base, cor: n.nodeName === 'EM' ? COR.ouro : COR.texto, t: n.textContent.toUpperCase() });
+  }
+  if (!linhas[0].length) linhas[0] = [{ ...base, t: 'O SEU SETLIST' }];
+  linhas.filter((l) => l.length).slice(0, 2).forEach((ped, i) => { ped[0].t = ped[0].t.trimStart(); linha(c, M - 4, 186 + i * 112, ped, W - 2 * M); });
 }
 
 function folhaNoMeio(c, folha, y, larg) {
@@ -99,7 +102,7 @@ export async function story(folha) {
     c.fillStyle = g; c.fillRect(0, 0, W, 720);
   }
   titulo(c);
-  const fim = folhaNoMeio(c, folha, 286, 660);
+  const fim = folhaNoMeio(c, folha, 336, 630);
   const cartas = [...document.querySelectorAll('#sorte .carta:not(.esqueleto)')];
   let y = fim + 34;
   const ind = cartas.find((el) => el.classList.contains('indice'));
@@ -111,6 +114,6 @@ export async function story(folha) {
   const chance = cartas.find((el) => el.classList.contains('larga') && !el.classList.contains('indice'));
   if (chance && y + 150 < H - 66) carta(c, chance, M, y, W - 2 * M, 150);
   c.fillStyle = COR.fraco; c.textAlign = 'center'; c.font = `500 28px ${CORPO}`;
-  c.fillText('Sorteie a sua: somaisumfadepearljam.com.br/setlist-ibirapuera', W / 2, H - 34);
+  c.fillText('Sorteie o seu: somaisumfadepearljam.com.br/setlist-ibirapuera', W / 2, H - 34);
   return s;
 }

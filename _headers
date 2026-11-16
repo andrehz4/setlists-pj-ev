@@ -21,6 +21,15 @@
 /setlist-ibirapuera/img/*
   Cache-Control: public, max-age=86400
 
+# Código e dados do gerador mudam toda hora nesta semana de show: o navegador confere a versão a cada visita
+# (ETag, resposta 304 quando não mudou). Sem isso, o celular ficava até 4 h com o app.js velho.
+/setlist-ibirapuera/*.js
+  Cache-Control: public, max-age=0, must-revalidate
+/setlist-ibirapuera/musicas.json
+  Cache-Control: public, max-age=0, must-revalidate
+/setlist-ibirapuera/
+  Cache-Control: public, max-age=0, must-revalidate
+
 /forum-topic.html
   Permissions-Policy: microphone=(self)
 

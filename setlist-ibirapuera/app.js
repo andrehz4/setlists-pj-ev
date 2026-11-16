@@ -40,7 +40,7 @@ function selecionadas() {
     <button data-acao="tira" data-i="${i}" aria-label="tirar">✕</button></li>`).join('');
   $('#acoes').hidden = !n;
   $('#atalho').hidden = !n;
-  $('#atalho').textContent = `Ver minha setlist (${n}/${LIMITE}) ↓`;
+  $('#atalho').textContent = `Ver meu setlist (${n}/${LIMITE}) ↓`;
   const yt = estado.lista.filter((m) => m.yt).length;
   $('#ouvir').hidden = !yt;
   $('#ouvir').textContent = yt === n ? 'Ouvir no YouTube' : `Ouvir no YouTube (${yt} de ${n})`;

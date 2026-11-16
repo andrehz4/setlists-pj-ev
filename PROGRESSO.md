@@ -42,6 +42,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `scripts/regressao/setlist-ibirapuera-ver-folha.test.mjs`.
   Chegada (16/11): "Qual será a sua setlist?" (é previsão) e cartão animado: cai na mesa, fitas colam, título palavra
   por palavra ("setlist?" dourado), linha se risca, seta empurra, balança e reluz; "Montar a minha" acende a borda.
+  Masculino e personalizado (16/11): "Qual será o seu setlist no Ibirapuera?" (com "ANDRÉ," em cima se já digitou o
+  nome), resultado e story "ANDRÉ, O SEU / SETLIST NO IBIRAPUERA" (story em 2 linhas, quebra no <br> do #r-nome).
+  `_headers`: .js, musicas.json e a página do gerador com max-age=0 (o navegador ficava 4 h com app.js velho).
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +

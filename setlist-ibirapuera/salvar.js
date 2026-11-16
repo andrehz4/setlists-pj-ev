@@ -9,7 +9,7 @@ function mostrar(url) {
   document.querySelector('#salvar-tela')?.remove();
   const tela = document.createElement('div');
   tela.id = 'salvar-tela';
-  tela.innerHTML = '<p>Segure o dedo na imagem e escolha salvar.</p><img alt="Sua setlist"><button type="button">Fechar</button>';
+  tela.innerHTML = '<p>Segure o dedo na imagem e escolha salvar.</p><img alt="Seu setlist"><button type="button">Fechar</button>';
   tela.querySelector('img').src = url;
   tela.querySelector('button').onclick = () => { tela.remove(); URL.revokeObjectURL(url); };
   document.body.append(tela);
@@ -19,7 +19,7 @@ export async function entregar(blob, nome, { compartilhar = false } = {}) {
   const arq = new File([blob], nome, { type: 'image/jpeg' });
   const podeCompartilhar = !!navigator.canShare?.({ files: [arq] });
   if (podeCompartilhar && compartilhar) {
-    try { await navigator.share({ files: [arq], title: 'Minha setlist do Eddie no Ibirapuera' }); return 'compartilhado'; } catch (e) {
+    try { await navigator.share({ files: [arq], title: 'Meu setlist do Eddie no Ibirapuera' }); return 'compartilhado'; } catch (e) {
       if (e.name === 'AbortError') return 'cancelado';
     }
   }

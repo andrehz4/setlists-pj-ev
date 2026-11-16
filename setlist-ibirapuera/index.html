@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Qual será a sua setlist do Eddie no Ibirapuera?</title>
-<meta name="description" content="Qual será a setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
+<title>Qual será o seu setlist do Eddie no Ibirapuera?</title>
+<meta name="description" content="Qual será o setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
 <link rel="modulepreload" href="app.js">
@@ -89,7 +89,10 @@
   .grande .w { display: inline-block; font-style: normal; animation: palavra .5s cubic-bezier(.2,1.6,.4,1) both; }
   .grande .w:nth-child(1) { animation-delay: .55s; } .grande .w:nth-child(2) { animation-delay: .68s; }
   .grande .w:nth-child(3) { animation-delay: .8s; } .grande .w:nth-child(4) { animation-delay: .9s; }
-  .grande .w:nth-child(5) { animation-delay: 1.05s; color: #b5791a; }
+  .grande .w:nth-child(5) { animation-delay: 1s; color: #b5791a; }
+  .grande .w:nth-child(6) { animation-delay: 1.08s; } .grande .w:nth-child(7) { animation-delay: 1.18s; color: #b5791a; }
+  .ola { display: block; margin-bottom: 4px; font: 900 30px/1 var(--disp); text-transform: uppercase; color: #b5791a; animation: palavra .5s cubic-bezier(.2,1.6,.4,1) .4s both; }
+  .ola:empty { display: none; }
   @keyframes cai { 0% { translate: 0 -70px; rotate: -9deg; opacity: 0; } 60% { opacity: 1; } 100% { translate: 0 0; rotate: -1.6deg; } }
   @keyframes balanca { 0%, 100% { rotate: -1.6deg; translate: 0 0; } 50% { rotate: -.4deg; translate: 0 -6px; } }
   @keyframes reluz { 0%, 55% { background-position: -200% 0, 0 0; } 85%, 100% { background-position: 250% 0, 0 0; } }
@@ -99,7 +102,7 @@
   @keyframes empurra { 0%, 100% { translate: 0 0; } 50% { translate: 8px 0; } }
   @keyframes sobe { from { opacity: 0; translate: 0 18px; } }
   @keyframes acende { 0%, 100% { border-color: var(--linha); box-shadow: none; } 50% { border-color: var(--cor); box-shadow: 0 0 22px -6px rgba(232,176,74,.55); } }
-  .grande strong { display: block; font: 900 clamp(52px, 15vw, 68px)/.86 var(--disp); text-transform: uppercase; letter-spacing: -.005em; }
+  .grande strong { display: block; font: 900 clamp(44px, 12.5vw, 60px)/.88 var(--disp); text-transform: uppercase; letter-spacing: -.005em; }
   .grande span:not(.fita) { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 14px; font-weight: 600; font-size: 15px;
     background: linear-gradient(var(--tinta), var(--tinta)) 0 0 / 0 2px no-repeat; animation: risca .5s ease-out 1.35s forwards, sobe .4s ease-out 1.35s both; }
   .grande span em { font: 900 28px/1 var(--disp); font-style: normal; animation: empurra 1.2s ease-in-out 2s infinite; }
@@ -317,10 +320,11 @@
     <div class="meio">
       <button class="grande" id="abrir-sorteio" type="button">
         <span class="fita a"></span><span class="fita b"></span>
-        <strong><i class="w">Qual</i> <i class="w">será</i> <i class="w">a</i> <i class="w">sua</i> <i class="w">setlist?</i></strong>
+        <b id="ola" class="ola"></b>
+        <strong><i class="w">Qual</i> <i class="w">será</i> <i class="w">o</i> <i class="w">seu</i> <i class="w">setlist</i> <i class="w">no</i> <i class="w">Ibirapuera?</i></strong>
         <span>Um toque e a sua previsão sai na hora <em>→</em></span>
       </button>
-      <button class="montar-link" id="ir-montar" type="button">Montar a minha <small>música por música →</small></button>
+      <button class="montar-link" id="ir-montar" type="button">Montar o meu <small>música por música →</small></button>
     </div>
     <div class="rodape">
       <a href="/">Só mais um fã de Pearl Jam</a>
@@ -332,7 +336,7 @@
 <div class="fundo" id="fundo-sorteio"></div>
 <div class="sheet" id="sorteio" role="dialog" aria-modal="true" aria-labelledby="sorteio-t">
   <div class="alca"></div>
-  <h2 id="sorteio-t">Sua setlist em um toque</h2>
+  <h2 id="sorteio-t">Seu setlist em um toque</h2>
   <label class="campo"><span>Seu nome, pra sair no título (opcional)</span>
     <input id="nome" type="text" maxlength="20" autocomplete="given-name" placeholder="Ex.: Ana"></label>
   <div class="campo"><span>Qual é a sua noite?</span>
@@ -343,7 +347,7 @@
       </div>
     </div>
   </div>
-  <button id="sortear" class="btn cheio" type="button">Sortear a minha setlist</button>
+  <button id="sortear" class="btn cheio" type="button">Sortear o meu setlist</button>
 </div>
 
 <!-- 2. Montar -->
@@ -352,7 +356,7 @@
     <div class="dentro">
       <div class="topo">
         <button class="voltar" data-ir="chegada" type="button">← Início</button>
-        <h1>Montar a minha</h1>
+        <h1>Montar o meu</h1>
         <span style="width:58px"></span>
       </div>
       <label class="busca">
@@ -364,10 +368,10 @@
   <div class="m-grade">
     <div id="catalogo"></div>
     <div class="fundo" id="fundo-gaveta"></div>
-    <aside class="gaveta" id="gaveta" aria-label="Sua setlist">
+    <aside class="gaveta" id="gaveta" aria-label="Seu setlist">
       <div class="g-topo">
         <div class="alca" style="margin-bottom:8px"></div>
-        <div class="linha"><h2>Sua setlist</h2><span id="contador">0/24</span></div>
+        <div class="linha"><h2>Seu setlist</h2><span id="contador">0/24</span></div>
         <p class="dica">Arraste ou use as setas pra mudar a ordem. O “bis” marca onde ele sai do palco e volta.</p>
         <p class="dica" id="limite" hidden>Folha cheia, 24 músicas. Pra entrar outra, tire uma.</p>
       </div>
@@ -396,18 +400,18 @@
   <div class="vazio">
     <h2>Folha em branco</h2>
     <p style="color:var(--fraco);margin:0">Volte e sorteie uma, ou escolha música por música.</p>
-    <button class="btn cheio" data-ir="montar" type="button">Montar a minha</button>
+    <button class="btn cheio" data-ir="montar" type="button">Montar o meu</button>
   </div>
   <div class="r-grade">
     <div class="r-titulo">
       <div class="kicker" id="r-show">Sex 20/11 · Ibirapuera</div>
-      <h1 id="r-nome">A sua <em>setlist</em></h1>
+      <h1 id="r-nome">O seu setlist<br>no <em>Ibirapuera</em></h1>
       <div id="vaga-resultado"></div>
     </div>
     <div class="mesa">
       <div class="papel desenhando" id="papel">
         <span class="fita a"></span>
-        <div id="previa" hidden><p id="estado-folha" role="status"></p><canvas id="folha" width="1100" height="1400" aria-label="Folha da setlist escrita à mão"></canvas></div>
+        <div id="previa" hidden><p id="estado-folha" role="status"></p><canvas id="folha" width="1100" height="1400" aria-label="Folha do setlist escrita à mão"></canvas></div>
         <div class="carregando" aria-live="polite">
           <svg class="rabisco" viewBox="0 0 160 22"><path d="M4 14 C 30 2, 44 22, 70 11 S 118 4, 156 12"></path></svg>
           <p>Caneta no papel, já sai…</p>
@@ -418,7 +422,7 @@
     <div class="bloco r-baixar">
       <div id="acoes" hidden>
         <button id="story" class="btn cheio story-btn" type="button"><span>Baixar pro story</span></button>
-        <p class="chama">Posta e marca <b>@smufdpj</b>. A gente quer ver a sua.</p>
+        <p class="chama">Posta e marca <b>@smufdpj</b>. A gente quer ver o seu.</p>
       </div>
       <p id="aviso" role="status"></p>
     </div>
