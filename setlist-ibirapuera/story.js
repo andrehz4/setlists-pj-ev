@@ -6,7 +6,7 @@
 import { W, H, M, COR, DISP, carregar, fontes, tela, caixa, linha, quebrar, pedacos, tamanho, VAL, TXT, rotulo } from './story-pincel.js';
 
 const $ = (s) => document.querySelector(s);
-const FOLHA = { y: 436, larg: 430 }, INDICE = { y: 1004, h: 180 }, GRADE = { y: 1196, h: 134, gap: 12 };
+export const FOLHA = { y: 436, larg: 430 }, INDICE = { y: 1004, h: 180 }, GRADE = { y: 1196, h: 134, gap: 12 };
 const CHANCE = { y: 1488, h: 116 }, CTA = { y: 1620, h: 56 };
 const ORDEM = ['Sua raridade', 'Sua aposta certa', 'Tocadas em 2026', 'Num show típico'];
 
@@ -31,11 +31,21 @@ function titulo(c) {
   linhas.filter((l) => l.length).slice(0, 2).forEach((ped, i) => { ped[0].t = ped[0].t.trimStart(); linha(c, M - 4, 296 + i * 100, ped, W - 2 * M); });
 }
 
-function folhaNoMeio(c, folha) {
-  const larg = FOLHA.larg, y = FOLHA.y, x = (W - larg) / 2, alt = folha.height * (larg / folha.width), cx = x + larg / 2;
-  c.save(); c.translate(cx, y + alt / 2); c.rotate(-0.012); c.translate(-cx, -(y + alt / 2));
+// Posição da folha no story e o giro leve; o vídeo usa pra escrever por cima no mesmo lugar.
+export function geoFolha(folha) {
+  const larg = FOLHA.larg, y = FOLHA.y, x = (W - larg) / 2, alt = folha.height * (larg / folha.width);
+  return { x, y, larg, alt, cx: x + larg / 2, cy: y + alt / 2, giro: -0.012 };
+}
+
+export function folhaNoMeio(c, folha) {
+  const { x, y, larg, alt, cx, cy, giro } = geoFolha(folha);
+  c.save(); c.translate(cx, cy); c.rotate(giro); c.translate(-cx, -cy);
   c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 40; c.shadowOffsetY = 14;
   c.drawImage(folha, x, y, larg, alt); c.restore();
+  fitas(c, x, y, larg);
+}
+
+export function fitas(c, x, y, larg) {
   c.fillStyle = 'rgba(222,205,160,.85)';
   for (const [fx, ang] of [[x + 36, -0.2], [x + larg - 136, 0.16]]) {
     c.save(); c.translate(fx + 50, y + 2); c.rotate(ang); c.fillRect(-50, -15, 100, 30); c.restore();

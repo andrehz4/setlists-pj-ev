@@ -8,7 +8,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 export const PASTA = fileURLToPath(new URL('../../setlist-ibirapuera/', import.meta.url));
-export const MODULOS = ['app.js', 'folha.js', 'salvar.js', 'sorteio.js', 'story.js', 'story-pincel.js', 'story-video.js', 'telas.js', 'lista.js', 'filtro.js'];
+export const MODULOS = ['app.js', 'folha.js', 'salvar.js', 'sorteio.js', 'story.js', 'story-pincel.js', 'story-video.js', 'story-roteiro.js', 'story-escrita.js', 'telas.js', 'lista.js', 'filtro.js'];
 const ARQUIVOS = [...MODULOS, 'musicas.json'];
 
 export function hashes(ler = (n) => readFileSync(PASTA + n)) {
