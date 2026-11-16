@@ -9,20 +9,24 @@ const d = JSON.parse(fs.readFileSync(path.resolve(import.meta.dirname, '../../se
 let semente = 7;
 const rnd = () => ((semente = (semente * 16807) % 2147483647) / 2147483647);
 
-test('100 sorteios: só o fecho vem do modelo, um traço de bis antes do bis, sem repetir', () => {
-  const aberturas = new Set();
+test('100 sorteios: abre, fecha e 1 do bis vêm do modelo, um traço de bis antes do bis, sem repetir', () => {
+  const abre = new Set(d.modelo.abre.map((x) => x.chave));
+  const bisReal = new Set(d.modelo.bis.map((x) => x.chave));
+  const meios = new Set();
   const fecha = new Set(d.modelo.fecha.map((x) => x.chave));
   for (let i = 0; i < 100; i++) {
     const s = sortearShow(d.grupos, d.modelo, rnd);
     assert.ok(s.length >= 12 && s.length <= 24, `tamanho ${s.length}`);
     assert.equal(new Set(s.map((m) => m.chave)).size, s.length);
-    aberturas.add(s[0].chave);
+    assert.ok(abre.has(s[0].chave), `abriu com ${s[0].nome}`);
+    s.slice(1, 4).forEach((m) => meios.add(m.chave));
     assert.ok(fecha.has(s[s.length - 1].chave), `fechou com ${s[s.length - 1].nome}`);
     const marcas = s.map((m, j) => (m.bis ? j : -1)).filter((j) => j >= 0);
     assert.equal(marcas.length, 1);
     assert.ok(marcas[0] < s.length - 1);
+    assert.ok(s.slice(marcas[0] + 1, -1).some((m) => bisReal.has(m.chave)), 'bis sem nenhuma música típica de bis');
   }
-  assert.ok(aberturas.size > 40, `abertura variou pouco: ${aberturas.size}`);
+  assert.ok(meios.size > 80, `o meio variou pouco: ${meios.size}`);
 });
 
 test('sem modelo ainda sorteia (degrada pro peso solo)', () => {

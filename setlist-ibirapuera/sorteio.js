@@ -1,5 +1,5 @@
-// Sorteio com cara de show real sem perder variedade: só o ENCERRAMENTO sai entre os que o Eddie de fato usa
-// (era Earthling); todo o resto, inclusive abertura e bis, vem do peso de quantas vezes ele tocou solo.
+// Sorteio com cara de show real sem perder variedade: ABERTURA e ENCERRAMENTO saem entre os que o Eddie de fato usa
+// (era Earthling) e UMA música do bis sai das que costumam ir no bis; o resto vem do peso de quantas vezes tocou solo.
 // sortearShow(grupos, modelo, rnd = Math.random) -> [{ ...musica, bis? }] (o traço de bis vai na última do set principal)
 const pesoSolo = (m) => Math.sqrt(m.vezes || 0);
 
@@ -25,10 +25,12 @@ export function sortearShow(grupos, modelo, rnd = Math.random) {
   const noBis = Math.max(2, Math.min(modelo?.noBis || 4, 6));
 
   const fecha = pega(doModelo(modelo?.fecha || []), (m) => m._p);
-  const solo = [...todas.values()].filter((m) => m.vezes > 0);
+  const deFim = new Set([...(modelo?.fecha || []).map((x) => x.chave), 'happy birthday to you']);  // nunca no meio
+  const solo = [...todas.values()].filter((m) => m.vezes > 0 && !deFim.has(m.chave));
   const sorteiaN = (n) => Array.from({ length: n }, () => pega(solo, pesoSolo)).filter(Boolean);
-  const set = sorteiaN(principal);
-  const bis = sorteiaN(noBis - 1);
+  const abre = pega(doModelo(modelo?.abre || []), (m) => m._p);
+  const set = [abre, ...sorteiaN(principal - 1)].filter(Boolean);
+  const bis = [pega(doModelo(modelo?.bis || []), (m) => m._p), ...sorteiaN(noBis - 2)].filter(Boolean);
   if (set.length) set[set.length - 1].bis = true;
   return [...set, ...bis.filter(Boolean), fecha].filter(Boolean).slice(0, 24).map(({ _p, ...m }) => m);
 }
