@@ -25,7 +25,7 @@ export function montarCatalogo({ oficial, solo, albums }) {
     const atual = musicas.get(k) || { nome, chave: k, png: o.url || null, yt: o.youtubeID || null, sp: o.spotifyID || null, vezes: 0 };
     musicas.set(k, { ...atual, ...extra });
   };
-  for (const s of solo) poe(s.musica, { vezes: s.vezes, cover: !!s.cover_de, pj: !!s.do_pearl_jam, coverDe: s.cover_de || null });
+  for (const s of solo) poe(s.musica, { vezes: s.vezes, pct: s.pct, ult: s.ultima?.data || null, cover: !!s.cover_de, pj: !!s.do_pearl_jam, coverDe: s.cover_de || null });
   for (const o of oficial) if (!musicas.has(chave(o.nome))) poe(o.nome, { pj: true });
   const grupos = new Map();
   for (const m of musicas.values()) {
@@ -33,7 +33,7 @@ export function montarCatalogo({ oficial, solo, albums }) {
     const nome = m.cover ? COVERS : g ? g.grupo : m.pj ? PJ_EXTRA : EV_EXTRA;
     if (!grupos.has(nome)) grupos.set(nome, []);
     grupos.get(nome).push({ nome: m.nome, chave: m.chave, png: m.png, vezes: m.vezes, ...(m.coverDe ? { de: m.coverDe } : {}),
-      ...(m.yt ? { yt: m.yt } : {}), ...(m.sp ? { sp: m.sp } : {}) });
+      ...(m.yt ? { yt: m.yt } : {}), ...(m.pct != null ? { pct: m.pct, ult: m.ult } : {}), ...(m.sp ? { sp: m.sp } : {}) });
   }
   const ordem = [...albums.filter((a) => a.artist === 'Eddie Vedder').map((a) => a.title.replace(/ \(EV, \d+\)/, '')), EV_EXTRA,
     ...albums.filter((a) => a.artist === 'Pearl Jam').map((a) => a.title), PJ_EXTRA, COVERS];
