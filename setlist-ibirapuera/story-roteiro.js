@@ -5,7 +5,7 @@
 // por uma com os números contando de 0 e a barra do índice enchendo; 5. o link e, nos últimos ~2,5 s, a chamada
 // pra seguir (logo com pop, SEGUE A GENTE, @smufdpj sublinhado).
 import { W, tela } from './story-pincel.js';
-import { montar, fundo, medidor, numero, geoFolha } from './story.js';
+import { montar, fundo, medidor, numero } from './story.js';
 import { sublinhar } from './story-rodape.js';
 import { montarEscrita, escrever, montarLista, musicasLidas } from './story-escrita.js';
 
@@ -67,7 +67,7 @@ function cenaVolta(c, r, t) {
     r.pronta = tela(W, e.base.height);
     const b = r.pronta.getContext('2d'); b.translate(0, -(e.geo.y - 80)); escrever(b, e, e.total + 1);
   }
-  const p = sai(fase(t, T.encolhe, 0.7)), pequena = geoFolha(e.folha), alvo = pequena.larg / e.geo.larg;
+  const p = sai(fase(t, T.encolhe, 0.7)), pequena = r.camadas.find((k) => k.nome === 'folha').geo, alvo = pequena.larg / e.geo.larg;
   const esc = 1 + (alvo - 1) * p, cy = e.geo.cy + (pequena.cy - e.geo.cy) * p;
   c.save(); c.globalAlpha = sai(fase(t, T.volta, 0.35));
   c.translate(W / 2, cy); c.scale(esc, esc); c.translate(-W / 2, -e.geo.cy);
