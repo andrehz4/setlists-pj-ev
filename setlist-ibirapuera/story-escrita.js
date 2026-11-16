@@ -7,7 +7,9 @@ import { geoFolha, folhaNoMeio, fitas } from './story.js';
 import { carregar, PAPEL, posicoes } from './folha.js';
 
 const $ = (s) => document.querySelector(s);
-const LISTA = { y: 470, fim: 1650, gap: 24 };
+const LISTA = { y: 440, fim: 1670, gap: 20 };
+// No vídeo a folha é escrita grande, do fim do título até perto do rodapé (fora das faixas do Instagram).
+export const GRANDE = { larg: 940, y: 450 };
 
 // Músicas como a página mostra (#lidas): nome e se o bis vem logo depois.
 export function musicasLidas() {
@@ -35,8 +37,8 @@ export async function montarEscrita(folha, musicas) {
   const branca = tela(folha.width, folha.height), c = branca.getContext('2d');
   c.fillStyle = papel ? '#fff' : '#f4f1e8'; c.fillRect(0, 0, branca.width, branca.height);
   if (papel) c.drawImage(papel, 0, 0, branca.width, branca.height);
-  const geo = geoFolha(folha), base = tela(W, geo.alt + 200), b = base.getContext('2d');
-  b.translate(0, -(geo.y - 80)); folhaNoMeio(b, branca); // papel em branco, sombra e fitas, pintados uma vez só
+  const geo = geoFolha(folha, GRANDE.larg, GRANDE.y), base = tela(W, geo.alt + 200), b = base.getContext('2d');
+  b.translate(0, -(geo.y - 80)); folhaNoMeio(b, branca, geo); // papel em branco, sombra e fitas, pintados uma vez só
   return { folha, geo, base, buffer: tela(W, base.height), ...trechos(musicas) };
 }
 
@@ -72,21 +74,21 @@ export function montarLista(musicas) {
     if (m.bis && i < musicas.length - 1) entradas.push({ bis: true });
   });
   const cols = entradas.length > 11 ? 2 : 1, porCol = Math.ceil(entradas.length / cols);
-  const topo = LISTA.y + 70, alt = Math.min(92, (LISTA.fim - topo) / porCol);
-  const larg = (W - 2 * M - LISTA.gap * (cols - 1)) / cols, px = Math.min(36, alt * 0.44);
+  const topo = LISTA.y + 76, alt = Math.min(110, (LISTA.fim - topo) / porCol);
+  const larg = (W - 2 * M - LISTA.gap * (cols - 1)) / cols, px = Math.min(58, alt * 0.52);
   const titulo = tela(W, 60), ct = titulo.getContext('2d');
-  rotulo(ct, M, 40, 'As músicas · na ordem da folha', COR.ouro, 24);
+  rotulo(ct, M, 44, 'As músicas · na ordem da folha', COR.ouro, 30);
   const itens = entradas.map((en, i) => {
     const x = M + Math.floor(i / porCol) * (larg + LISTA.gap), y = topo + (i % porCol) * alt;
     const cv = tela(larg, alt), c = cv.getContext('2d');
     if (en.bis) {
       c.strokeStyle = COR.ouro; c.lineWidth = 2; c.setLineDash([10, 8]);
-      c.beginPath(); c.moveTo(70, alt / 2); c.lineTo(larg - 10, alt / 2); c.stroke();
-      rotulo(c, 0, alt / 2 + 8, 'bis', COR.ouro, 22);
+      c.beginPath(); c.moveTo(90, alt / 2); c.lineTo(larg - 10, alt / 2); c.stroke();
+      rotulo(c, 0, alt / 2 + 11, 'bis', COR.ouro, 30);
     } else {
       caixa(c, 0, alt - 1, larg, 1, 0, COR.linha);
-      linha(c, 44, alt / 2 + px * 0.36, [{ fonte: tamanho(px * 1.1, DISP, 900), cor: COR.ouro, t: String(en.n) }], 50, 'right');
-      linha(c, 62, alt / 2 + px * 0.36, [{ fonte: tamanho(px, CORPO, 600), cor: COR.texto, t: en.nome }], larg - 70);
+      linha(c, 58, alt / 2 + px * 0.42, [{ fonte: tamanho(px * 1.25, DISP, 900), cor: COR.ouro, t: String(en.n) }], 64, 'right');
+      linha(c, 76, alt / 2 + px * 0.36, [{ fonte: tamanho(px, CORPO, 600), cor: COR.texto, t: en.nome }], larg - 80);
     }
     return { cv, x, y, bis: !!en.bis };
   });

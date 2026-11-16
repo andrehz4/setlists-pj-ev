@@ -31,24 +31,27 @@ function titulo(c) {
   linhas.filter((l) => l.length).slice(0, 2).forEach((ped, i) => { ped[0].t = ped[0].t.trimStart(); linha(c, M - 4, 296 + i * 100, ped, W - 2 * M); });
 }
 
-// Posição da folha no story e o giro leve; o vídeo usa pra escrever por cima no mesmo lugar.
-export function geoFolha(folha) {
-  const larg = FOLHA.larg, y = FOLHA.y, x = (W - larg) / 2, alt = folha.height * (larg / folha.width);
+// Posição da folha no story e o giro leve. O vídeo escreve a folha grande (larg e y próprios) e depois encolhe pra esta.
+export function geoFolha(folha, larg = FOLHA.larg, y = FOLHA.y) {
+  const x = (W - larg) / 2, alt = folha.height * (larg / folha.width);
   return { x, y, larg, alt, cx: x + larg / 2, cy: y + alt / 2, giro: -0.012 };
 }
 
-export function folhaNoMeio(c, folha) {
-  const { x, y, larg, alt, cx, cy, giro } = geoFolha(folha);
+export function folhaNoMeio(c, folha, geo = geoFolha(folha)) {
+  const { x, y, larg, alt, cx, cy, giro } = geo;
   c.save(); c.translate(cx, cy); c.rotate(giro); c.translate(-cx, -cy);
-  c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 40; c.shadowOffsetY = 14;
+  const k = larg / FOLHA.larg;
+  c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 40 * k; c.shadowOffsetY = 14 * k;
   c.drawImage(folha, x, y, larg, alt); c.restore();
   fitas(c, x, y, larg);
 }
 
+// Fitas crepe no topo; crescem junto com a folha (k = 1 no tamanho da imagem).
 export function fitas(c, x, y, larg) {
+  const k = larg / FOLHA.larg;
   c.fillStyle = 'rgba(222,205,160,.85)';
-  for (const [fx, ang] of [[x + 36, -0.2], [x + larg - 136, 0.16]]) {
-    c.save(); c.translate(fx + 50, y + 2); c.rotate(ang); c.fillRect(-50, -15, 100, 30); c.restore();
+  for (const [fx, ang] of [[x + 36 * k, -0.2], [x + larg - 136 * k, 0.16]]) {
+    c.save(); c.translate(fx + 50 * k, y + 2 * k); c.rotate(ang); c.fillRect(-50 * k, -15 * k, 100 * k, 30 * k); c.restore();
   }
 }
 
