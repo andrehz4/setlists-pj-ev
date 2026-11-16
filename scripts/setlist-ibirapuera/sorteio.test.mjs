@@ -11,7 +11,7 @@ const rnd = () => ((semente = (semente * 16807) % 2147483647) / 2147483647);
 
 test('100 sorteios: abre, fecha e 1 do bis vêm do modelo, um traço de bis antes do bis, sem repetir', () => {
   const abre = new Set(d.modelo.abre.map((x) => x.chave));
-  const bisReal = new Set(d.modelo.bis.map((x) => x.chave));
+  const bisReal = new Set([...d.modelo.bis.map((x) => x.chave), 'song of good hope']); // + homenagem ao Glen Hansard
   const meios = new Set();
   const fecha = new Set(d.modelo.fecha.map((x) => x.chave));
   for (let i = 0; i < 100; i++) {
@@ -55,4 +55,15 @@ test('modelo ignora participação curta: só show completo conta pra abre/fecha
   assert.equal(r.shows, 1);
   assert.deepEqual(r.fecha.map((x) => x.chave), ['rockin']);
   assert.ok(!r.abre.some((x) => x.chave === 'song of good hope'));
+});
+
+// Homenagem a Glen Hansard: Song of Good Hope abre o bis na maioria dos sorteios e nunca aparece duas vezes.
+test('Song of Good Hope abre o bis em ~70% dos sorteios', () => {
+  let abre = 0;
+  for (let i = 0; i < 1000; i++) {
+    const s = sortearShow(d.grupos, d.modelo, rnd), iBis = s.findIndex((m) => m.bis);
+    if (s[iBis + 1]?.chave === 'song of good hope') abre++;
+    assert.ok(s.filter((m) => m.chave === 'song of good hope').length <= 1);
+  }
+  assert.ok(abre > 600 && abre < 800, `abriu o bis em ${abre} de 1000`);
 });

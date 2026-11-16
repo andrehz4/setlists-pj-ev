@@ -2,6 +2,9 @@
 // (era Earthling) e UMA música do bis sai das que costumam ir no bis; o resto vem do peso de quantas vezes tocou solo.
 // sortearShow(grupos, modelo, rnd = Math.random) -> [{ ...musica, bis? }] (o traço de bis vai na última do set principal)
 const pesoSolo = (m) => Math.sqrt(m.vezes || 0);
+// Homenagem a Glen Hansard (morreu em 2026; ia dividir o palco com o Eddie no Brasil): Song of Good Hope abre o bis
+// em 70% dos sorteios. Tirar depois dos shows de 20 e 22/11.
+const HOMENAGEM = { chave: 'song of good hope', chance: 0.7 };
 
 function sorteia(lista, peso, rnd) {
   const total = lista.reduce((s, x) => s + peso(x), 0);
@@ -20,6 +23,8 @@ export function sortearShow(grupos, modelo, rnd = Math.random) {
     if (m) usadas.add(m.chave);
     return m ? { ...m } : null;
   };
+  const homenagem = rnd() < HOMENAGEM.chance && todas.get(HOMENAGEM.chave);
+  if (homenagem) usadas.add(homenagem.chave); // reservada pro bis, não sai no set principal
   const doModelo = (lista) => lista.map((x) => todas.get(x.chave) && { ...todas.get(x.chave), _p: x.pct }).filter(Boolean);
   const principal = Math.max(8, Math.min(modelo?.principal || 14, 18));
   const noBis = Math.max(2, Math.min(modelo?.noBis || 4, 6));
@@ -31,7 +36,7 @@ export function sortearShow(grupos, modelo, rnd = Math.random) {
   const abre = pega(doModelo(modelo?.abre || []), (m) => m._p);
   const set = [abre, ...sorteiaN(principal - 1)].filter(Boolean);
   const tipicaBis = doModelo(modelo?.bis || []).filter((m) => !deFim.has(m.chave)); // música de fim só no fim
-  const bis = [pega(tipicaBis, (m) => m._p), ...sorteiaN(noBis - 2)].filter(Boolean);
+  const bis = [homenagem ? { ...homenagem } : pega(tipicaBis, (m) => m._p), ...sorteiaN(noBis - 2)].filter(Boolean);
   if (set.length) set[set.length - 1].bis = true;
   return [...set, ...bis.filter(Boolean), fecha].filter(Boolean).slice(0, 24).map(({ _p, ...m }) => m);
 }
