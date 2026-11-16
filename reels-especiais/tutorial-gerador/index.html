@@ -18,10 +18,10 @@
       .bg { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(18px) brightness(.38); }
       #vinheta { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, rgba(240,185,58,.14), transparent 60%), linear-gradient(to bottom, rgba(0,0,0,.55), transparent 22%, transparent 80%, rgba(0,0,0,.6)); }
 
-      /* Celular: tela de 390x844 escalada 1.72 */
-      #celular { position: absolute; left: 190px; top: 372px; width: 700px; height: 1488px; border-radius: 86px; background: #050505;
+      /* Celular: tela de 390x844 escalada 1.6 (sobe 240 px nos toques de baixo, pra sair da faixa coberta pelo IG) */
+      #celular { position: absolute; left: 213px; top: 452px; width: 654px; height: 1378px; border-radius: 80px; background: #050505;
         box-shadow: 0 0 0 3px #2b2925, 0 40px 120px rgba(0,0,0,.8), 0 0 80px rgba(240,185,58,.12); }
-      #tela { position: absolute; left: 15px; top: 14px; width: 390px; height: 844px; transform: scale(1.72); transform-origin: 0 0;
+      #tela { position: absolute; left: 15px; top: 14px; width: 390px; height: 844px; transform: scale(1.6); transform-origin: 0 0;
         border-radius: 42px; overflow: hidden; background: #000; }
       .camada { position: absolute; inset: 0; width: 390px; height: 844px; }
       #site-wrap { overflow: hidden; }
@@ -68,13 +68,13 @@
       .onda { position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; border: 3px solid var(--ouro); opacity: 0; }
 
       /* Legendas */
-      .leg { position: absolute; left: 60px; right: 60px; top: 96px; height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+      #topo-scrim { position: absolute; left: 0; right: 0; top: 0; height: 600px; opacity: 0; pointer-events: none;
+        background: linear-gradient(to bottom, rgba(11,10,9,.96) 0, rgba(11,10,9,.96) 72%, rgba(11,10,9,0) 100%); }
+      .leg { position: absolute; left: 60px; right: 60px; top: 200px; height: 240px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
       .leg .k { font: 700 30px "IS"; color: var(--ouro); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 10px; }
       .leg .t { font: 900 78px/0.98 "BS"; text-transform: uppercase; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,.7); }
       .leg .t b { color: var(--ouro); }
       .leg .n { display: inline-grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--ouro); color: #1a1305; font: 900 58px "BS"; margin-bottom: 14px; }
-      #gancho { top: 60px; height: 300px; }
-      #gancho .t { font-size: 96px; }
 
 
       .ab { position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; filter: contrast(1.12) saturate(1.1); }
@@ -89,16 +89,16 @@
       #at2 { position: absolute; left: 0; right: 0; top: 600px; display: flex; flex-direction: column; align-items: center; text-align: center;
         font-family: "BS"; font-weight: 900; text-transform: uppercase; line-height: .9; }
       #at2 .l2a, #at2 .l2b { font-size: 160px; color: #fff; text-shadow: 0 8px 40px rgba(0,0,0,.9); }
-      #at2 .l2c { font-size: 290px; color: var(--ouro); margin-top: 10px; letter-spacing: -.01em;
+      #at2 .l2c { font-size: 262px; color: var(--ouro); margin-top: 10px; letter-spacing: -.01em;
         text-shadow: 0 0 60px rgba(240,185,58,.55), 0 10px 40px rgba(0,0,0,.9); -webkit-text-stroke: 3px #1a1305; }
       /* Final */
-      #final { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 70px; }
-      #final img { width: 300px; height: 300px; border-radius: 50%; border: 6px solid var(--ouro); object-fit: cover; margin-bottom: 50px; }
-      #final .t { font: 900 120px/0.95 "BS"; text-transform: uppercase; }
+      #final { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 150px 120px; }
+      #final img { width: 260px; height: 260px; border-radius: 50%; border: 6px solid var(--ouro); object-fit: cover; margin-bottom: 50px; }
+      #final .t { font: 900 104px/0.95 "BS"; text-transform: uppercase; }
       #final .t b { color: var(--ouro); }
       #final .s { margin-top: 36px; font: 600 44px "IS"; color: var(--papel); }
       #final .s b { color: var(--ouro); }
-      #final .amigo { margin-top: 70px; padding: 26px 34px; border: 3px solid var(--ouro); border-radius: 24px; font: 700 46px/1.2 "IS"; color: #fff; background: rgba(240,185,58,.12); }
+      #final .amigo { margin-top: 70px; padding: 26px 34px; border: 3px solid var(--ouro); border-radius: 24px; font: 700 44px/1.2 "IS"; color: #fff; background: rgba(240,185,58,.12); }
       #final .amigo b { color: var(--ouro); }
     </style>
   </head>
@@ -114,11 +114,11 @@
       <video id="ab5" class="ab" src="assets/ab/c5.mp4" data-start="1.68" data-duration="0.46" data-track-index="8" muted playsinline></video>
       <video id="ab6" class="ab" src="assets/ab/c6.mp4" data-start="2.10" data-duration="0.46" data-track-index="8" muted playsinline></video>
       <video id="ab7" class="ab" src="assets/ab/c7.mp4" data-start="2.52" data-duration="0.46" data-track-index="8" muted playsinline></video>
-      <video id="ab8" class="ab" src="assets/ab/c8.mp4" data-start="2.94" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <video id="ab8" class="ab" src="assets/ab/c8.mp4" data-start="2.94" data-duration="0.72" data-track-index="8" muted playsinline></video>
       <div id="ab-flash"></div>
-      <section id="ab-txt" class="clip" data-start="0" data-duration="3.36" data-track-index="9">
+      <section id="ab-txt" class="clip" data-start="0" data-duration="3.4" data-track-index="9">
         <div class="ak">20 e 22/11 · Ibirapuera</div>
-        <div class="at" id="at1">O Eddie <b>vem aí</b></div>
+        <div class="at" id="at1">O Eddie<br /><b>vem aí</b></div>
         <div id="at2"><div class="l2a">Qual vai ser</div><div class="l2b">o seu</div><div class="l2c">setlist?</div></div>
       </section>
 
@@ -164,19 +164,20 @@
           <div id="toques"></div>
         </div>
       </div>
-      <section id="l1" class="leg clip" data-start="3" data-duration="4.7" data-track-index="5"><span class="n">1</span><div class="t">Toca no <b>link da bio</b></div></section>
+      <div id="topo-scrim"></div>
+      <section id="l1" class="leg clip" data-start="3.4" data-duration="4.3" data-track-index="5"><span class="n">1</span><div class="t">Toca no <b>link da bio</b></div></section>
       <section id="l2" class="leg clip" data-start="7.7" data-duration="2.6" data-track-index="5"><span class="n">2</span><div class="t">Toca no <b>cartão</b></div></section>
       <section id="l3" class="leg clip" data-start="10.3" data-duration="3.75" data-track-index="5"><span class="n">3</span><div class="t">Seu <b>nome</b> e a sua <b>noite</b></div></section>
       <section id="l4" class="leg clip" data-start="14.05" data-duration="1.15" data-track-index="5"><span class="n">4</span><div class="t"><b>Sorteia!</b></div></section>
       <section id="l5" class="leg clip" data-start="15.2" data-duration="6.6" data-track-index="5"><div class="k">escrito à mão</div><div class="t">Igual ao do <b>palco</b></div></section>
       <section id="l6" class="leg clip" data-start="21.8" data-duration="4.3" data-track-index="5"><div class="k">nossa, que sorte!</div><div class="t">Vai rolar <b>L.A. Woman</b>, que ele tocou uma vez só</div></section>
       <section id="l7" class="leg clip" data-start="26.1" data-duration="2.2" data-track-index="5"><span class="n">5</span><div class="t">Baixa o <b>vídeo</b> pro seu story</div></section>
-      <section id="l8" class="leg clip" data-start="28.3" data-duration="4.15" data-track-index="5"><div class="k">uns segundinhos</div><div class="t">E o seu vídeo <b>tá pronto</b></div></section>
+      <section id="l8" class="leg clip" data-start="28.3" data-duration="4.15" data-track-index="5"><div class="k">gravando o vídeo</div><div class="t">Espera uns <b>segundinhos</b></div></section>
       <section id="l9" class="leg clip" data-start="32.45" data-duration="3.1" data-track-index="5"><span class="n">6</span><div class="t">Toca em <b>Postar no story</b></div></section>
       <section id="l10" class="leg clip" data-start="35.55" data-duration="3.05" data-track-index="5"><span class="n">7</span><div class="t">Marca a <b>@smufdpj</b></div></section>
-      <section id="l11" class="leg clip" data-start="38.6" data-duration="3.4" data-track-index="5"><span class="n">8</span><div class="t">Posta no <b>seu story</b></div></section>
+      <section id="l11" class="leg clip" data-start="38.6" data-duration="2.4" data-track-index="5"><span class="n">8</span><div class="t">Posta no <b>seu story</b></div></section>
 
-      <section id="final" class="clip" data-start="42" data-duration="6.5" data-track-index="6">
+      <section id="final" class="clip" data-start="41.2" data-duration="7.3" data-track-index="6">
         <img src="assets/avatar.jpg" alt="" />
         <div class="t">A gente <b>compartilha</b> o seu</div>
         <div class="s">Link na bio da <b>@smufdpj</b></div>
@@ -190,12 +191,12 @@
       <audio id="fx2" src="assets/sfx/swoosh.wav" data-start="3.00" data-duration="0.7" data-track-index="10" data-volume="0.30"></audio>
       <audio id="fx3" src="assets/sfx/swipe.wav" data-start="7.70" data-duration="0.5" data-track-index="11" data-volume="0.36"></audio>
       <audio id="fx4" src="assets/sfx/teclado.wav" data-start="11.60" data-duration="1.1" data-track-index="10" data-volume="0.33"></audio>
-      <audio id="fx5" src="assets/sfx/caneta.wav" data-start="15.00" data-duration="6.5" data-track-index="11" data-volume="0.30"></audio>
+      <audio id="fx5" src="assets/sfx/caneta-curta.wav" data-start="15.00" data-duration="2.9" data-track-index="11" data-volume="0.30"></audio>
       <audio id="fx6" src="assets/sfx/plim.wav" data-start="21.85" data-duration="1.2" data-track-index="10" data-volume="0.36"></audio>
       <audio id="fx7" src="assets/sfx/swipe.wav" data-start="35.57" data-duration="0.5" data-track-index="11" data-volume="0.30"></audio>
       <audio id="fx8" src="assets/sfx/teclado.wav" data-start="37.15" data-duration="1.0" data-track-index="10" data-volume="0.30"></audio>
       <audio id="fx9" src="assets/sfx/torcida.wav" data-start="40.00" data-duration="2.6" data-track-index="11" data-volume="0.33"></audio>
-      <audio id="fx10" src="assets/sfx/swoosh.wav" data-start="41.60" data-duration="0.7" data-track-index="10" data-volume="0.36"></audio>
+      <audio id="fx10" src="assets/sfx/swoosh.wav" data-start="40.85" data-duration="0.7" data-track-index="10" data-volume="0.36"></audio>
       <audio id="fx11" src="assets/sfx/pop.wav" data-start="6.60" data-duration="0.3" data-track-index="11" data-volume="0.42"></audio>
       <audio id="fx12" src="assets/sfx/pop.wav" data-start="9.93" data-duration="0.3" data-track-index="10" data-volume="0.42"></audio>
       <audio id="fx13" src="assets/sfx/pop.wav" data-start="11.32" data-duration="0.3" data-track-index="11" data-volume="0.42"></audio>
@@ -227,7 +228,17 @@
       });
 
       // Celular entra
-      tl.fromTo("#celular", { y: 260, opacity: 0, rotation: -3 }, { y: 0, opacity: 1, rotation: 0, duration: 0.8, ease: "power3.out" }, 0);
+      tl.fromTo("#celular", { y: 260, opacity: 0, rotation: -3 }, { y: 0, opacity: 1, rotation: 0, duration: 0.7, ease: "power3.out" }, 0.3);
+      // Toques na parte de baixo da tela: o celular sobe por baixo da legenda (a base do Reels é coberta pelo IG)
+      [[7.45, 11.95], [29.65, 31.95], [35.4, null]].forEach(([sobe, desce]) => {
+        tl.to("#celular", { y: -240, duration: 0.5, ease: "power2.inOut" }, sobe);
+        tl.to("#topo-scrim", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, sobe);
+        if (desce !== null) {
+          tl.to("#celular", { y: 0, duration: 0.5, ease: "power2.inOut" }, desce);
+          tl.to("#topo-scrim", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, desce);
+        }
+      });
+      tl.to("#topo-scrim", { opacity: 0, duration: 0.4 }, 37.85);
       // Link da bio acende e abre o site por cima
       tl.to("#link", { backgroundColor: "rgba(185,210,255,.22)", duration: 0.15 }, 3.6);
       tl.fromTo("#carrega", { width: 0 }, { width: 390, duration: 0.9, ease: "power1.inOut" }, 3.7);
@@ -242,10 +253,10 @@
       tl.fromTo("#enviado", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 37.0);
       tl.fromTo("#enviado", { scale: 0.7 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, 37.0);
       // Celular sai, final entra
-      tl.to("#celular", { y: 200, opacity: 0, scale: 0.92, duration: 0.5, ease: "power2.in" }, 38.6);
-      tl.fromTo("#final img", { scale: 0.3, opacity: 0, rotation: -40 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 39.05);
-      tl.fromTo("#final .t", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 39.35);
-      tl.fromTo("#final .s", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 39.8);
+      tl.to("#celular", { y: 200, opacity: 0, scale: 0.92, duration: 0.5, ease: "power2.in" }, 37.85);
+      tl.fromTo("#final img", { scale: 0.3, opacity: 0, rotation: -40 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 38.25);
+      tl.fromTo("#final .t", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 38.5);
+      tl.fromTo("#final .s", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 38.95);
 
       // Legendas: entram de baixo, saem rápido
       ["#l1", "#l2", "#l3", "#l4", "#l5", "#l6", "#l7", "#l8", "#l9", "#l10", "#l11"].forEach((id) => {
@@ -274,7 +285,7 @@
       mestre.fromTo("#ab-flash", { opacity: 0.8 }, { opacity: 0, duration: 0.3, immediateRender: false }, 2.32);
       mestre.to("#at2", { x: 10, y: -6, duration: 0.04, repeat: 7, yoyo: true, ease: "none" }, 2.36);
       mestre.to("#at2 .l2c", { scale: 1.08, duration: 0.2, repeat: 2, yoyo: true, ease: "sine.inOut" }, 2.65);
-      mestre.to("#ab-txt", { opacity: 0, duration: 0.25 }, 3.1);
+      mestre.to("#ab-txt", { opacity: 0, duration: 0.2 }, 3.15);
       mestre.add(tl, OFF);
       mestre.fromTo("#final .amigo", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2)" }, 42.6);
       mestre.to("#final .amigo", { scale: 1.05, duration: 0.35, repeat: 5, yoyo: true, ease: "sine.inOut" }, 43.4);

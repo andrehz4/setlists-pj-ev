@@ -11,3 +11,6 @@ Rascunho aprovado pelo Andre em 16/11/2026 (v2, 46 s). Não publicado.
   toques em `edit.json`). Atualizar TOQUES e legendas no index.html se os tempos mudarem.
 - Render: `npx --yes hyperframes@0.9.56 render -o renders/tutorial-gerador-v3.mp4 --video-frame-format png --fps 30`.
 - Mídia não vai pro git (.gitignore); o render v2 está em `renders/` só no Mac.
+- v4 (QA 16/11): celular em escala 1.6 e legendas abaixo de 220 px (área segura do Reels); nos toques de baixo o celular
+  sobe 240 px por baixo da legenda. `assets/sfx/caneta-curta.wav` é a caneta cortada em 2,9 s com fade:
+  `ffmpeg -i assets/sfx/caneta.wav -t 2.9 -af "afade=t=out:st=2.3:d=0.6" assets/sfx/caneta-curta.wav`.
