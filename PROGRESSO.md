@@ -170,6 +170,18 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-16 (tarde): story do Ibirapuera em vídeo + segurança (PR #648 no ar)
+
+- Chegada: cartão com 4 setas douradas animadas nas diagonais e seta num selo dourado ("Toque aqui e sorteie o seu").
+- Story: 2 botões, imagem (sempre) e vídeo MP4 de 19 s (só onde o navegador grava MP4; dentro do Instagram ensina a abrir
+  no navegador). Vídeo: folha escrita na hora, lista digitada, cartas contando, CTA "Segue a gente @smufdpj" com logo.
+  Aviso "Palpite de fã" em letra de bula. Tela de resultado escreve a folha ao vivo (`folha-viva.js`, `?sem-escrita`).
+- Segurança (revisão do Fable): frame-ancestors/X-Frame-Options, Permissions-Policy, escape de nomes, filtro de nome só
+  latino, 173 PNGs oficiais copiados pra `img/oficial/` e CSP do gerador com img só do site.
+- Cópia privada do gerador em `/Users/andrehz/Documents/Githubhz/fabrica-quiz/geradores/setlist-ibirapuera`.
+- Próximo: Andre testar no iPhone e no Android (postar vídeo no story, abrir dentro do Instagram). Tirar a HOMENAGEM do
+  `sorteio.js` depois de 22/11. Depois: gerador pra bandas cover com shows da agenda.
+
 ## 2026-11-14 (noite): layouts D, E, F do Claude Design no rodízio
 
 - D "Grade" (cartaz tipográfico), E "Bilhete" (ingresso de teatro dourado), F "Painel" (split-flap de rodoviária,
@@ -271,30 +283,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   mexem em workflow: o token do Claude não tem escopo `workflow`, merge à mão pelo Andre.
 - **ALERTA Actions:** o TriggerAll projeta 4.786 min em novembro (2.039 até dia 13, franquia 3.000, estoura ~dia 20). Estourar
   PARA os jobs até virar o mês (sem cartão, não cobra). Investigar o que subiu (trilha própria nos stories?).
-
-## 2026-11-08: reel W45 preso no IG, fallback no ar e reel no TriggerAll (HANDOFF)
-
-- **O que houve:** a run de domingo (cron do GitHub, 14:53 BRT) criou o container do IG, ele ficou `IN_PROGRESS` por 5 min
-  e o robô desistiu (`container ... nao ficou pronto em 300000ms`). Não foi cota (uso zerado) nem gatilho perdido.
-- **Gatilho:** o reel NUNCA esteve no TriggerAll. Roda no cron do próprio GitHub (`7 12 * * 0`), que atrasa 3h40 a 5h47
-  todo domingo (medido em 7 semanas). Run vindo do TriggerAll aparece como `workflow_dispatch` com `:01` nos segundos.
-- **Feito (PR #621, squash):** `scripts/publish/reel/{fallback,pendente,retomar}.mjs`: espera 10 min, 2º container do
-  MESMO vídeo (8 min), falhou = log guarda containers + legenda + vídeo e a próxima rodada só publica (validade 20 h);
-  entrada `aprovado` nunca renderiza outro vídeo; erro no `media_publish` não vira outro container (2207051). Alerta
-  de falha no Telegram. `REEL_SO_DOMINGO` (só no cron) barra rodada atrasada que caísse na segunda. 8 testes novos.
-- **W45 publicado à mão:** o Andre assistiu o MP4 do R2 e aprovou; entrada `aprovado` no `_reel-log.json`, run nº 24
-  (`workflow_dispatch`) retomou o container de 18:01Z: IG `18126603427692997`, FB `122126663043322237`. Conferir no perfil.
-- **PENDENTE (Andre):** criar 1 trigger no TriggerAll (`publish-reel.yml`, `7 12,15,18,21 * * 0` em UTC = 09:07, 12:07,
-  15:07 e 18:07 BRT; idempotente). O Claude não alcança o servidor nem tem a senha: script que copia o trigger do
-  `publish-story.yml` está em `scripts/publish/reel/RESERVAS-WORKFLOW.md`. Depois: conferir no painel (ativo, próxima
-  execução domingo 12:07 UTC) e fechar o item abaixo.
-- **Depois do trigger:** (1) o alerta do Telegram só diz "tento de novo sozinho" com `REEL_RESERVAS=1`, variável que
-  só entraria pelo workflow: trocar o default em `reel/registro.mjs` (`avisarFalha`); (2) apagar a opção de crons do
-  `RESERVAS-WORKFLOW.md` ou marcá-la como alternativa; (3) o cron do YAML fica de reserva (run idempotente).
-- **Armadilhas:** o acesso do Claude ao GitHub NÃO tem escopo `workflow` (não edita `.github/workflows/`); o
-  classificador bloqueia `--force-with-lease` (resolver com cherry-pick sobre o tip remoto, push fast-forward).
-  Download do R2 exige o host `midia.somaisumfadepearljam.com.br` liberado (ambiente pessoal "SMUFDPJ: site, quiz e
-  baixa-clipe", criado em 08/11). 6 testes de recorte de rosto (`scripts/regressao/recorte-rosto`) falham no ambiente
-  da nuvem e na `main` limpa: não são do reel.
-- **Quiz:** vive no repo privado `andrehz4/fabrica-quiz` (estado e próximo passo no PROGRESSO de lá). Nada dele aqui.
-
