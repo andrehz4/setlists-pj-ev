@@ -6,7 +6,18 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
-- **Reel especial Eddie no Ibirapuera (15/11, EM ANDAMENTO):** série de reels até o show (sex 20 e dom 22/11, Best of
+- **Reel especial Eddie no Ibirapuera v7: AGENDADO seg 16/11 17:30 BRT (16/11 madrugada).** TriggerAll #017
+  dispara `publish-reel-especial.yml` com `{"pasta":"eddie-ibirapuera"}` (testado de ponta a ponta com pasta falsa,
+  sem publicar). Vídeo no R2 `especiais/eddie-ibirapuera-v7.mp4?v=2` (o `?v=2` fura o cache de 4 h do Cloudflare),
+  legenda e capa em `reels-especiais/eddie-ibirapuera/publicar.json` (script `scripts/publish/reel/especial.mjs`,
+  idempotente, com testes). Montagem: `hf/cenas.mjs` + `hf/montar.mjs` (array CLIPES; rosto centralizado pelo foco do
+  acervo), polaroide do Eddie (Commons, Raph_PH CC BY 2.0) na capa, fala 1 regravada (versão C), trilha hz-pj-01a,
+  efeitos liberados no ACR (pancadas golpe-1/5/7/9 + coração do Terra Gentil, `efeitos.mjs`, lê do SSD). 11 trechos
+  novos no acervo (Bridge School 2011, Water on the Road). Receita de agendar ficou em
+  `/Users/andrehz/Documents/Githubhz/fabrica-quiz/docs/AGENDAR-PUBLICACAO.md`.
+  CONFERIR seg 17:30 no Telegram/IG. Volume do reel em -19,7 LUFS (pode subir pra -14 nos próximos). PRÓXIMO da série:
+  ter ranking completo (o CTA promete "amanhã"), qua Japão, qui Brasil, sex setlist provável.
+- **Reel especial Eddie no Ibirapuera (15/11, histórico da montagem):** série de reels até o show (sex 20 e dom 22/11, Best of
   Blues and Rock). Pasta `reels-especiais/eddie-ibirapuera/`: `ficha.json` (estudo NOSSO no setlist.fm: 17 shows solo,
   seção `estudo_formato`; Ibirapuera é solo segundo a imprensa), `roteiro.json`/`.md` (roteirista Fable, v6 "As 5
   músicas certas" + "Mas e a Black? não tocou nos últimos 8 shows solo"; v1 a v5 arquivadas em subpastas), `clips/`
