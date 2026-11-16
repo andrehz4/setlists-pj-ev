@@ -3,11 +3,11 @@
 // #sorte), então fica igual ao site. Texto fora das faixas que o Instagram cobre (topo ~170 px, rodapé ~250 px).
 // O desenho sai em camadas (montar) pra o story em vídeo (story-video.js) animar cada uma; o número de cada carta é
 // desenhado à parte (numero), pra o vídeo contar de 0 até o valor.
-import { W, H, M, COR, DISP, carregar, fontes, tela, caixa, linha, quebrar, pedacos, tamanho, VAL, TXT, rotulo } from './story-pincel.js';
+import { W, H, M, COR, DISP, CORPO, carregar, fontes, tela, caixa, linha, quebrar, pedacos, tamanho, VAL, TXT, rotulo } from './story-pincel.js';
 
 const $ = (s) => document.querySelector(s);
 export const FOLHA = { y: 436, larg: 430 }, INDICE = { y: 1004, h: 180 }, GRADE = { y: 1196, h: 134, gap: 12 };
-const CHANCE = { y: 1488, h: 116 }, CTA = { y: 1620, h: 56 };
+const CHANCE = { y: 1488, h: 104 }, CTA = { y: 1604, h: 52, aviso: 36 };
 const ORDEM = ['Sua raridade', 'Sua aposta certa', 'Tocadas em 2026', 'Num show típico'];
 
 // Fundo: quadro do vídeo do Eddie (foto ou o próprio <video>) no alto, sumindo no escuro.
@@ -91,6 +91,8 @@ function cta(c) {
   const w = Math.min(W - 2 * M, c.measureText(txt[0].t + txt[1].t).width + 70);
   caixa(c, (W - w) / 2, y, w, h, h / 2, 'rgba(15,14,12,.7)', 'rgba(232,176,74,.55)');
   linha(c, W / 2, y + h / 2 + 8, txt, w - 50, 'center');
+  // Pra ninguém postar como setlist vazado.
+  linha(c, W / 2, y + h + 28, [{ fonte: tamanho(19, CORPO, 500), cor: COR.fraco, t: 'Palpite de fã, não é o setlist oficial' }], W - 2 * M, 'center');
 }
 
 // Número da carta; f < 1 conta de 0 até o valor (só os algarismos grandes, "1 em" e expoente ficam).
@@ -128,7 +130,7 @@ export async function montar(folha) {
     camadas.push(camada('carta', x, y, wc, GRADE.h, (c) => carta(c, el, x, y, wc, GRADE.h)));
   });
   if (chance) camadas.push(camada('carta', 0, CHANCE.y, W, CHANCE.h, (c) => cartaChance(c, chance)));
-  camadas.push(camada('cta', 0, CTA.y, W, CTA.h, cta));
+  camadas.push(camada('cta', 0, CTA.y, W, CTA.h + CTA.aviso, cta));
   return camadas;
 }
 
