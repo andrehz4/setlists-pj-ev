@@ -183,7 +183,12 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   banco `setlist-contador`) e dar Retry deployment. Até lá o contador não grava.
 - **Botão Compartilhar** (ícone do WhatsApp) ao lado de "Só a imagem": compartilhar do celular com a imagem e o texto da
   noite; dentro do Instagram abre wa.me só com texto. Falta testar em celular real.
-- **Próximo:** ligar o D1, conferir o painel contando, ver o reel sair 17/11 12h, testar no S23 (Compartilhar e o
+- **Depois (16/11 noite):** D1 LIGADO (binding CONTADOR_DB, em produção). Painel com seção "Nomes" (últimos 100, selo
+  vermelho no barrado pelo filtro, sem IP) e login por HTTP Basic (usuário andre, senha só nos segredos do Pages
+  PAINEL_USUARIO/PAINEL_SENHA; ?k= removido, chave antiga apagada). Story: folha de volta a 55% da largura
+  (`story-layout.js`, mesma geometria imagem e vídeo), respiro igual de 30 px entre os blocos. 567 testes verdes,
+  fumaça no ar sem erro de console.
+- **Próximo (antigo):** ligar o D1, conferir o painel contando, ver o reel sair 17/11 12h, testar no S23 (Compartilhar e o
   intent:// do Chrome). Tirar HOMENAGEM do sorteio.js depois de 22/11.
 
 ## 2026-11-16 (fim da tarde): reel tutorial do gerador (rascunho aprovado) + vídeo no navegador do Instagram
