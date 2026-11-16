@@ -46,7 +46,7 @@ document.addEventListener('click', (e) => {
   if (b.dataset.ir) return ir(b.dataset.ir);
   if (b.id === 'sortear') { setTimeout(() => ir('resultado')); return; }
   if (b.id === 'outra') return $('#sortear').click();
-  if (b.dataset.gerar) return ir('resultado');
+  if ('gerar' in b.dataset) return ir('resultado'); // data-gerar vem sem valor, então o dataset é ''
   if (b.id === 'abrir-gaveta') { $('#gaveta').classList.add('aberto'); $('#fundo-gaveta').classList.add('aberto'); return; }
   if (b.id === 'fechar-gaveta') return fecharSheets();
   if (b.dataset.show) setTimeout(titulo);
