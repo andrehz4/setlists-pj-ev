@@ -28,6 +28,8 @@ export async function acesso(request, env) {
   if (typeof usuario !== "string" || !usuario || typeof senha !== "string" || !senha) return "falta";
   const c = credenciais(request.headers.get("Authorization"));
   // Confere os dois sempre (sem atalho), pra resposta levar o mesmo tempo com usuário certo ou errado.
-  const [u, s] = await Promise.all([igual(c?.usuario ?? "", usuario), igual(c?.senha ?? "", senha)]);
+  // Usuário sem diferença de maiúscula e espaço nas pontas; senha só sem espaço nas pontas (17/11: login falhou por isso).
+  const [u, s] = await Promise.all([igual((c?.usuario ?? "").trim().toLowerCase(), usuario.trim().toLowerCase()),
+    igual((c?.senha ?? "").trim(), senha.trim())]);
   return c && u && s ? "ok" : "negado";
 }
