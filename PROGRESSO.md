@@ -20,9 +20,12 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   (claude.ai/design/p/863d6417-ec95-41c6-905e-893e6c0738b0). O pacote `design-handoff/setlist-ibirapuera/` agora tem
   prints do oficial (`referencia/oficial-*.png`, celular e desktop, todas as telas) e o VÍDEO DE FUNDO pedido pelo Andre
   (`referencia/fundo-eddie.mp4`: 8 trechos mudos do Eddie, 25 s em loop, P&B escuro, 1,1 MB; cópia já em
-  `setlist-ibirapuera/fundo-eddie.mp4`); BRIEF atualizado. Anexos ENVIADOS ao Design (16/11 tarde, pelo Chrome) com o pedido
-  do vídeo de fundo; ele já tinha entregue `Telas Setlist.dc.html` + `telas.js` (chegada "Qual é a sua setlist?",
-  sorteio com nome e noite). Quando voltar: exportar pra `design-handoff/retorno/` e aplicar mantendo os IDs.
+  `setlist-ibirapuera/fundo-eddie.mp4`); BRIEF atualizado. FRONT NOVO DO DESIGN NO AR (16/11): 3 telas (chegada "Qual é a sua
+  setlist?" com painel de nome e noite, montar com gaveta, resultado com folha de fita crepe, cartões de sorte, ouvir e
+  baixar) e o vídeo do Eddie atrás de tudo. `index.html` e `telas.js` vêm do Design (retorno em
+  `design-handoff/retorno/setlist-ibirapuera-v1/`); o nosso app.js/folha.js/salvar.js/sorteio.js ficou como estava. No
+  HTML novo entraram `#estado-folha`, `#atalho` (escondido) e a tela de salvar do Instagram, que o app.js usa. Testado no
+  Chrome 390 px: chegada, sorteio, `#sortear` e montar sem erro de console.
   Fable notou: traço de bis em y+84 encosta na música seguinte (parece riscá-la). Papel de 338 KB vem do glitch.ge.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
