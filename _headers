@@ -31,6 +31,11 @@
 /setlist-ibirapuera/
   Cache-Control: public, max-age=0, must-revalidate
 
+# Gerador do Ibirapuera: não usa câmera, microfone, localização, pagamento nem USB. web-share e autoplay ficam livres
+# (o story usa o compartilhar do celular e o vídeo do Eddie toca sozinho).
+/setlist-ibirapuera/*
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
 /forum-topic.html
   Permissions-Policy: microphone=(self)
 
