@@ -59,6 +59,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   notebook, nome longo quebra, localStorage e roundRect protegidos. PENDENTE: testar `instagram://story-camera` no
   Android e iPhone (no Android pode dar página de erro), voltar do navegador fechar painéis, acessibilidade dos
   painéis (inert, foco, Esc).
+  Modelo do sorteio (16/11): só show completo (12+ músicas, 23 shows de 2022 pra cá) conta; participação de 1 música
+  (Song of Good Hope em NY/Dublin, Ball Game no Wrigley) virava abertura e encerramento. Primeira do bis nunca é de fim.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +

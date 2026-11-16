@@ -7,7 +7,11 @@ const conta = (lista) => {
 };
 const mediana = (v) => { const s = [...v].sort((a, b) => a - b); return s.length ? s[Math.floor(s.length / 2)] : 0; };
 
-export function modeloDeShow(shows, chave) {
+// Só show completo (12+ músicas): participação curta (Ball Game no Wrigley, Song of Good Hope de convidado) tem
+// 1 música que contava como abertura E encerramento ao mesmo tempo.
+export const SHOW_COMPLETO = 12;
+export function modeloDeShow(todos, chave) {
+  const shows = todos.filter((s) => s.musicas.length >= SHOW_COMPLETO);
   const n = shows.length;
   const peso = ([k, v]) => ({ chave: k, pct: Math.round((v / n) * 1000) / 10 });
   const comBis = shows.filter((s) => s.sets.some((st) => st.bis));

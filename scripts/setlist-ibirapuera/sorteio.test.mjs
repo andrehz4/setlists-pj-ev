@@ -43,3 +43,16 @@ test('música de encerramento nunca no meio nem abrindo o bis (abrir pode: Ball 
     assert.ok(!s.slice(1, -1).some((m) => fim.has(m.chave)), s.map((m) => m.nome).join(' / '));
   }
 });
+
+// Regressão (16/11/2026): participação de 1 música (Song of Good Hope em NY e Dublin, Ball Game no Wrigley) entrava
+// no modelo como abertura E encerramento, e o sorteio fechava o show com Song of Good Hope.
+test('modelo ignora participação curta: só show completo conta pra abre/fecha', async () => {
+  const { modeloDeShow } = await import('./modelo.mjs');
+  const m = (nomes, bis = []) => ({ musicas: [...nomes, ...bis].map((nome) => ({ nome })),
+    sets: [{ musicas: nomes.map((nome) => ({ nome })) }, ...(bis.length ? [{ bis: true, musicas: bis.map((nome) => ({ nome })) }] : [])] });
+  const cheio = Array.from({ length: 14 }, (_, i) => `M${i}`);
+  const r = modeloDeShow([m(['Song of Good Hope']), m(['Drive', ...cheio], ['Rockin'])], (n) => n.toLowerCase());
+  assert.equal(r.shows, 1);
+  assert.deepEqual(r.fecha.map((x) => x.chave), ['rockin']);
+  assert.ok(!r.abre.some((x) => x.chave === 'song of good hope'));
+});
