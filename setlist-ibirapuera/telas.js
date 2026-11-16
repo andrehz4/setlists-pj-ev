@@ -37,7 +37,7 @@ function titulo() {
   // Nome comprido ganha linha própria e encolhe pela largura da coluna (cqw), sem quebrar no meio; 13/n é a reserva sem cqw.
   const fs = `font-size:${Math.min(1, 13 / n.length).toFixed(2)}em;font-size:min(1em,calc(100cqw / ${(n.length * 0.5).toFixed(1)}))`;
   $('#r-nome').innerHTML = n ? (n.length > 9 ? `<em class="nome-longo" style="${fs}">${n},</em>o seu setlist<br>no Ibirapuera:`
-    : `<em>${n}</em>, o seu<br>setlist no Ibirapuera:`) : 'O seu setlist<br>no <em>Ibirapuera</em>:'; $('#ola').textContent = n ? n + ',' : '';
+    : `<em>${n}</em>, o seu<br>setlist no Ibirapuera:`) : 'O seu setlist<br>no <em>Ibirapuera</em>:'; $('#ola').textContent = n ? n + ',' : ''; $('#sorte-t').textContent = n ? 'A sorte de ' + n : 'Sua sorte';
   const on = $('#shows .on')?.dataset.show === '2';
   $('#r-show').textContent = on ? 'Dom 22/11 · São Paulo II · Ibirapuera' : 'Sex 20/11 · São Paulo I · Ibirapuera';
 }
