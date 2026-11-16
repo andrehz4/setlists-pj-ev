@@ -129,7 +129,7 @@ if (tipo && b) {
   b.hidden = false;
   if (tipo !== 'app') { // vídeo como opção principal; dentro do Instagram não dá pra baixar vídeo, então lá a imagem segue na frente
     $('#acoes').classList.add('com-video'); b.classList.add('cheio', 'story-btn');
-    b.innerHTML = '<span>Baixar o vídeo pro story</span>'; $('#story').firstElementChild.textContent = 'Prefere foto? Baixar só a imagem';
+    b.innerHTML = '<span>Baixar vídeo para o seu stories</span>'; $('#story').firstElementChild.textContent = 'Prefere foto? Baixar só a imagem';
     mirar(b);
   }
   const ref = $('#story'), espelhar = () => { b.disabled = ref.disabled; };
@@ -137,7 +137,7 @@ if (tipo && b) {
   espelhar();
   b.addEventListener('click', () => (tipo === 'app'
     ? recado('O Instagram não deixa baixar vídeo por aqui. Toque no menu ••• lá em cima, escolha "Abrir no navegador" '
-      + '(Safari ou Chrome) e toque de novo em "Baixar o vídeo pro story". A imagem funciona aqui mesmo.', 'Baixar a imagem', () => $('#story').click())
+      + '(Safari ou Chrome) e toque de novo em "Baixar vídeo para o seu stories". A imagem funciona aqui mesmo.', 'Baixar a imagem', () => $('#story').click())
     : storyVideo(b, tipo)));
 }
 if (!$('#acoes')?.classList.contains('com-video')) mirar($('#story')); // sem vídeo, a imagem é o botão principal
