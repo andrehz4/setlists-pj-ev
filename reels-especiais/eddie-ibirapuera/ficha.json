@@ -1,0 +1,849 @@
+{
+ "fonte": "setlist.fm (Eddie Vedder, stats e setlists), consulta em 15/11/2026",
+ "evento": {
+  "nome": "Best of Blues and Rock 2026",
+  "local": "Parque do Ibirapuera, São Paulo",
+  "datas": [
+   "2026-11-20",
+   "2026-11-22"
+  ],
+  "tambem_no_festival": [
+   "Roger Daltrey",
+   "Simon Townshend",
+   "Linka Moja"
+  ]
+ },
+ "brasil_historico": {
+  "shows_solo": 8,
+  "anos": [
+   2014,
+   2018
+  ],
+  "locais": [
+   "Citibank Hall São Paulo (3 em 2014, 3 em 2018)",
+   "Citibank Hall Rio de Janeiro (2 em 2014)"
+  ],
+  "todos_em_casa_fechada": true,
+  "ibirapuera_primeiro_ao_ar_livre_solo": "sim, segundo o setlist.fm",
+  "musicas_por_show_no_brasil": "27 a 34",
+  "presentes_em_todos_shows_br_contados": [
+   "Far Behind",
+   "Guaranteed",
+   "Porch",
+   "Society",
+   "Hard Sun"
+  ],
+  "black_no_brasil": "tocou 1 vez em 7 setlists conferidos",
+  "just_breathe_no_brasil": "5 de 7",
+  "better_days_no_brasil": "4 de 7"
+ },
+ "carreira_solo_totais_setlistfm": {
+  "setlists": 318,
+  "top": [
+   [
+    "Porch",
+    192
+   ],
+   [
+    "Hard Sun",
+    178
+   ],
+   [
+    "Far Behind",
+    169
+   ],
+   [
+    "Society",
+    159
+   ],
+   [
+    "Rise",
+    158
+   ],
+   [
+    "Guaranteed",
+    155
+   ],
+   [
+    "Elderly Woman",
+    142
+   ],
+   [
+    "Better Man",
+    124
+   ],
+   [
+    "Wishlist",
+    122
+   ],
+   [
+    "I Am Mine",
+    121
+   ],
+   [
+    "Just Breathe",
+    115
+   ]
+  ],
+  "pedidos_dos_fas": {
+   "Just Breathe": 115,
+   "Guaranteed": 155,
+   "Man of the Hour": 53,
+   "Throw Your Arms Around Me": 48,
+   "Picture in a Frame": 40,
+   "Around the Bend": 35,
+   "Thumbing My Way": 29,
+   "Black": 23,
+   "Crazy Mary": 17,
+   "Invincible": 14,
+   "Better Days": 12,
+   "Yellow Ledbetter": 6,
+   "Present Tense": 4,
+   "Sirens": 0,
+   "Given to Fly": 0
+  },
+  "covers_the_who": {
+   "I'm One": 30,
+   "The Kids Are Alright": 16,
+   "I Can't Explain": 10,
+   "Baba O'Riley": 4
+  },
+  "song_of_good_hope_glen_hansard": 29
+ },
+ "turne_mais_recente_japao_abr_2026": {
+  "shows": 4,
+  "musicas_por_show": [
+   24,
+   23,
+   24,
+   22
+  ],
+  "nos_4_shows": [
+   "Wishlist",
+   "Far Behind",
+   "Better Man",
+   "Immortality",
+   "Just Breathe",
+   "Corduroy",
+   "Porch",
+   "Hard Sun"
+  ],
+  "em_3_de_4": [
+   "Elderly Woman",
+   "I Am Mine",
+   "Rise",
+   "Long Way",
+   "Society"
+  ],
+  "pedidos": {
+   "Just Breathe": "4/4",
+   "Guaranteed": "2/4",
+   "Crazy Mary": "1/4",
+   "Man of the Hour": "1/4",
+   "Unthought Known": "1/4",
+   "Black": "0/4",
+   "Sirens": "0/4",
+   "Better Days": "0/4",
+   "Invincible": "0/4",
+   "Yellow Ledbetter": "0/4"
+  },
+  "musicas_diferentes_em_4_shows": 47,
+  "song_of_good_hope": "2 de 4 (antes da morte de Glen Hansard)"
+ },
+ "comentarios_publicos_pedidos": [
+  "Sirens",
+  "Black",
+  "Just Breathe",
+  "Better Days",
+  "Invincible",
+  "Yellow Ledbetter",
+  "Given to Fly",
+  "Present Tense",
+  "Man of the Hour",
+  "Crazy Mary",
+  "Guaranteed",
+  "Throw Your Arms Around Me"
+ ],
+ "contexto": "Glen Hansard morreu em julho de 2026 e estaria no festival; Eddie cantou Song of Good Hope no funeral (Dublin, 04/08/2026)",
+ "estrutura_do_show": {
+  "fonte": "setlist.fm, 4 shows do Japão (abr/2026) e 7 setlists do Brasil (2014 e 2018), consulta 15/11/2026",
+  "japao_2026": [
+   {
+    "cidade": "Tóquio",
+    "abre": [
+     "Brain Damage",
+     "Sometimes"
+    ],
+    "fecha_set": "Porch",
+    "bis": [
+     "I Won't Back Down",
+     "Hard Sun",
+     "Forever Young",
+     "Rockin' in the Free World"
+    ],
+    "total": 24
+   },
+   {
+    "cidade": "Kyoto",
+    "abre": [
+     "Don't Be Shy",
+     "Long Road"
+    ],
+    "fecha_set": "Porch",
+    "bis": [
+     "Imagine",
+     "Corduroy",
+     "Hard Sun",
+     "Crazy Mary"
+    ],
+    "total": 23
+   },
+   {
+    "cidade": "Osaka",
+    "abre": [
+     "Trouble",
+     "Wildflowers"
+    ],
+    "fecha_set": "Porch",
+    "bis": [
+     "Masters of War",
+     "Hard Sun",
+     "Around the Bend"
+    ],
+    "total": 24
+   },
+   {
+    "cidade": "Nagoya",
+    "abre": [
+     "Brain Damage",
+     "Sometimes"
+    ],
+    "fecha_set": "Porch",
+    "bis": [
+     "Rockin' in the Free World",
+     "Hard Sun"
+    ],
+    "total": 22
+   }
+  ],
+  "sao_paulo_2018": [
+   {
+    "data": "28/03/2018",
+    "fecha_set": "Porch",
+    "bis": [
+     "Sleepless Nights",
+     "Society",
+     "Should I Stay or Should I Go",
+     "Hard Sun"
+    ],
+    "total": 27
+   },
+   {
+    "data": "29/03/2018",
+    "fecha_set": "Porch",
+    "bis": [
+     "Unthought Known",
+     "Better Days",
+     "Falling Slowly",
+     "Society",
+     "Rockin' in the Free World",
+     "After Hours",
+     "Hard Sun"
+    ],
+    "total": 29
+   },
+   {
+    "data": "30/03/2018",
+    "fecha_set": "Porch",
+    "bis": [
+     "Better Days",
+     "Sleepless Nights",
+     "Falling Slowly",
+     "Society",
+     "Smile",
+     "Rockin' in the Free World",
+     "Black",
+     "Hard Sun"
+    ],
+    "total": 30
+   }
+  ],
+  "padroes": {
+   "porch_fecha_o_set_principal": "4 de 4 no Japão, 3 de 3 em SP 2018",
+   "hard_sun_no_bis": "4 de 4 no Japão, 3 de 3 em SP 2018",
+   "abertura": "muda a cada noite; Brain Damage seguida de Sometimes abriu 2 de 4 no Japão e 1 no Rio 2014",
+   "rockin_in_the_free_world": "no bis em 2 de 4 no Japão e 2 de 3 em SP 2018",
+   "black": "só 1 vez no Brasil, no bis de SP em 30/03/2018",
+   "better_days": "no bis em 2 de 3 shows de SP 2018",
+   "musicas_por_show": "22 a 24 no Japão, 27 a 30 em SP 2018 (festival pode ser mais curto, sem dado do tempo de palco)"
+  }
+ },
+ "setlist_provavel": {
+  "aviso": "PALPITE baseado em histórico, não é setlist oficial",
+  "quase_certas": [
+   "Porch (fechando o set principal)",
+   "Hard Sun (no bis)",
+   "Just Breathe",
+   "Far Behind",
+   "Better Man",
+   "Wishlist",
+   "Corduroy",
+   "Immortality"
+  ],
+  "muito_provaveis": [
+   "Elderly Woman Behind the Counter in a Small Town",
+   "I Am Mine",
+   "Rise",
+   "Society",
+   "Long Way"
+  ],
+  "apostas": [
+   "Song of Good Hope (Glen Hansard, que estaria no festival e morreu em julho; tocou em 2 de 4 shows no Japão e no funeral)",
+   "um cover do The Who com Roger Daltrey e Simon Townshend no festival (I'm One já saiu 30 vezes em shows solo)",
+   "Rockin' in the Free World no bis"
+  ],
+  "surpresas": [
+   "Black (1 vez no Brasil)",
+   "Better Days (2 de 3 em SP 2018)",
+   "Guaranteed (2 de 4 no Japão, todos os setlists BR)"
+  ],
+  "obs": "superado por resumo_12_shows_recentes e brasil_8_shows"
+ },
+ "comentarios_post_viral": {
+  "fonte": "comentários públicos do post do @fuinaqueleshow sobre os setlists do Eddie (~180 comentários lidos em 15/11/2026, contagem de menções, sem nomes)",
+  "mencoes": {
+   "Black": 21,
+   "Sirens": 10,
+   "Just Breathe": 2,
+   "Given to Fly": 2,
+   "Present Tense": 2,
+   "Thumbing My Way": 2,
+   "Guaranteed": 2,
+   "Song of Good Hope": 2,
+   "Better Days": 1,
+   "Invincible": 1,
+   "Yellow Ledbetter": 1,
+   "Man of the Hour": 1,
+   "Crazy Mary": 1,
+   "Around the Bend": 1
+  }
+ },
+ "japao_2026_completo": {
+  "shows": [
+   {
+    "local": "Tóquio",
+    "data": "2026-04-20",
+    "set": [
+     "Brain Damage",
+     "Sometimes",
+     "Keep Me in Your Heart",
+     "Elderly Woman Behind the Counter in a Small Town",
+     "You've Got to Hide Your Love Away",
+     "Parting Ways",
+     "Wishlist",
+     "I Am Mine",
+     "No Ceiling",
+     "Far Behind",
+     "Rise",
+     "Better Man",
+     "Save It for Later",
+     "Immortality",
+     "Just Breathe",
+     "Corduroy",
+     "Song of Good Hope",
+     "Long Way",
+     "Lukin",
+     "Porch"
+    ],
+    "bis": [
+     [
+      "I Won't Back Down",
+      "Hard Sun"
+     ],
+     [
+      "Forever Young",
+      "Rockin' in the Free World"
+     ]
+    ]
+   },
+   {
+    "local": "Kyoto",
+    "data": "2026-04-17",
+    "set": [
+     "Don't Be Shy",
+     "Long Road",
+     "Hurt",
+     "Better Man",
+     "I Am Mine",
+     "Immortality",
+     "Setting Forth",
+     "Far Behind",
+     "Guaranteed",
+     "Society",
+     "I'm Open",
+     "Wishlist",
+     "Without You",
+     "Smile",
+     "Just Breathe",
+     "Unthought Known",
+     "I Won't Back Down",
+     "Song of Good Hope",
+     "Porch"
+    ],
+    "bis": [
+     [
+      "Imagine",
+      "Corduroy",
+      "Hard Sun"
+     ],
+     [
+      "Crazy Mary"
+     ]
+    ]
+   },
+   {
+    "local": "Osaka",
+    "data": "2026-04-16",
+    "set": [
+     "Trouble",
+     "Wildflowers",
+     "Dead Man",
+     "Elderly Woman Behind the Counter in a Small Town",
+     "Picture in a Frame",
+     "Just Breathe",
+     "The Needle and the Damage Done",
+     "Driftin'",
+     "Far Behind",
+     "Society",
+     "Guaranteed",
+     "Rise",
+     "Can't Keep",
+     "Immortality",
+     "Let My Love Open the Door",
+     "I'm Open",
+     "Wishlist",
+     "Corduroy",
+     "Better Man",
+     "Long Way",
+     "Porch"
+    ],
+    "bis": [
+     [
+      "Masters of War",
+      "Hard Sun"
+     ],
+     [
+      "Around the Bend"
+     ]
+    ]
+   },
+   {
+    "local": "Nagoya",
+    "data": "2026-04-14",
+    "set": [
+     "Brain Damage",
+     "Sometimes",
+     "Keep Me in Your Heart",
+     "Just Breathe",
+     "I Am Mine",
+     "Wishlist",
+     "You've Got to Hide Your Love Away",
+     "No Ceiling",
+     "Far Behind",
+     "Rise",
+     "Society",
+     "Can't Keep",
+     "Parting Ways",
+     "Elderly Woman Behind the Counter in a Small Town",
+     "Man of the Hour",
+     "Immortality",
+     "Corduroy",
+     "Better Man",
+     "Long Way",
+     "Porch"
+    ],
+    "bis": [
+     [
+      "Rockin' in the Free World",
+      "Hard Sun"
+     ]
+    ]
+   }
+  ],
+  "contagem": {
+   "Wishlist": 4,
+   "Far Behind": 4,
+   "Better Man": 4,
+   "Immortality": 4,
+   "Just Breathe": 4,
+   "Corduroy": 4,
+   "Porch": 4,
+   "Hard Sun": 4,
+   "Elderly Woman Behind the Counter in a Small Town": 3,
+   "I Am Mine": 3,
+   "Rise": 3,
+   "Long Way": 3,
+   "Society": 3,
+   "Brain Damage": 2,
+   "Sometimes": 2,
+   "Keep Me in Your Heart": 2,
+   "You've Got to Hide Your Love Away": 2,
+   "Parting Ways": 2,
+   "No Ceiling": 2,
+   "Song of Good Hope": 2,
+   "I Won't Back Down": 2,
+   "Rockin' in the Free World": 2,
+   "Guaranteed": 2,
+   "I'm Open": 2,
+   "Can't Keep": 2,
+   "Save It for Later": 1,
+   "Lukin": 1,
+   "Forever Young": 1,
+   "Don't Be Shy": 1,
+   "Long Road": 1,
+   "Hurt": 1,
+   "Setting Forth": 1,
+   "Without You": 1,
+   "Smile": 1,
+   "Unthought Known": 1,
+   "Imagine": 1,
+   "Crazy Mary": 1,
+   "Trouble": 1,
+   "Wildflowers": 1,
+   "Dead Man": 1,
+   "Picture in a Frame": 1,
+   "The Needle and the Damage Done": 1,
+   "Driftin'": 1,
+   "Let My Love Open the Door": 1,
+   "Masters of War": 1,
+   "Around the Bend": 1,
+   "Man of the Hour": 1
+  }
+ },
+ "brasil_8_shows": {
+  "fonte": "setlist.fm, 8 setlists (SP 06,07,08/05/2014; Rio 11,12/05/2014; SP 28,29,30/03/2018)",
+  "musicas_por_show": {
+   "06/05/2014 SP": 32,
+   "07/05/2014 SP": 34,
+   "08/05/2014 SP": 29,
+   "11/05/2014 Rio": 30,
+   "12/05/2014 Rio": 31,
+   "28/03/2018 SP": 27,
+   "29/03/2018 SP": 29,
+   "30/03/2018 SP": 30
+  },
+  "contagem": {
+   "Porch": 8,
+   "Hard Sun": 8,
+   "Far Behind": 8,
+   "Sleeping by Myself": 7,
+   "Guaranteed": 7,
+   "Sleepless Nights": 7,
+   "Falling Slowly": 7,
+   "Society": 7,
+   "Elderly Woman Behind the Counter in a Small Town": 6,
+   "Can't Keep": 6,
+   "Just Breathe": 5,
+   "Wishlist": 5,
+   "Rise": 5,
+   "Better Man": 5,
+   "Better Days": 5,
+   "You've Got to Hide Your Love Away": 5,
+   "Long Nights": 5,
+   "Without You": 5,
+   "Rockin' in the Free World": 4,
+   "Unthought Known": 4,
+   "Sometimes": 4,
+   "Immortality": 4,
+   "Should I Stay or Should I Go": 4,
+   "Setting Forth": 4,
+   "I Am Mine": 3,
+   "Crazy Mary": 3,
+   "Last Kiss": 2,
+   "Man of the Hour": 2,
+   "Present Tense": 2,
+   "Thumbing My Way": 2,
+   "Throw Your Arms Around Me": 2,
+   "Black": 1,
+   "Song of Good Hope": 1,
+   "Corduroy": 0,
+   "Sirens": 0,
+   "Given to Fly": 0,
+   "Yellow Ledbetter": 0,
+   "Invincible": 0,
+   "Alive": 0,
+   "Even Flow": 0,
+   "Jeremy": 0
+  },
+  "hard_sun_no_bis": "7 de 8",
+  "porch_fecha_o_set": "5 de 8 (em 2018, 3 de 3)"
+ },
+ "resumo_12_shows_recentes": {
+  "nota": "8 do Brasil + 4 do Japão 2026",
+  "Porch": "12 de 12",
+  "Hard Sun": "12 de 12",
+  "Far Behind": "12 de 12",
+  "Just Breathe": "9 de 12",
+  "Guaranteed": "9 de 12",
+  "Society": "10 de 12",
+  "Better Man": "9 de 12",
+  "Wishlist": "9 de 12",
+  "Black": "1 de 12",
+  "Sirens": "0 de 12",
+  "Given to Fly": "0 de 12",
+  "Yellow Ledbetter": "0 de 12",
+  "Invincible": "0 de 12",
+  "Alive": "0 de 12",
+  "Better Days": "5 de 12",
+  "Present Tense": "2 de 12",
+  "Corduroy": "4 de 12 (0 no Brasil, 4 de 4 no Japão)",
+  "Song of Good Hope": "3 de 12"
+ },
+ "estudo_formato": {
+  "conclusao": "Ibirapuera é show SOLO (JAM Musical, nov/2026: duas apresentações solo). Desde 2022 ele alterna dois formatos: com a banda Earthlings (15 shows, repertório do disco Earthlings: The Dark, Invincible etc.) e solo (9 shows). A base certa é a SOLO.",
+  "base": "17 shows solo: 9 desde 2023 (Japão 2026 x4, Vancouver 2025, Seattle 2024, Seattle 2023 x2, Tempe 2023) + 8 no Brasil (2014 e 2018)",
+  "festival_solo_ao_ar_livre": "o único show solo em festival ao ar livre desde 2022 foi o Innings Festival, Tempe (EUA), 26/02/2023: 16 músicas, teve Black, Hunger Strike, Porch, Hard Sun e terminou com Rockin' in the Free World",
+  "abertura_solo_eua": "Elderly Woman abriu os 5 shows solo nos EUA/Canadá de 2023 a 2025",
+  "ultima_musica": "nos festivais com banda, Rockin' in the Free World fechou 4 de 4; nos solo, Hard Sun costuma ser a última",
+  "invincible": "14 vezes desde 2022, todas com a banda Earthlings; 0 nos 17 shows solo",
+  "shows_solo_extras": [
+   {
+    "local": "Vancouver, Commodore Ballroom",
+    "data": "2025-06-05",
+    "musicas": [
+     "Elderly Woman Behind the Counter in a Small Town",
+     "Don't Be Shy",
+     "You've Got to Hide Your Love Away",
+     "Wildflowers",
+     "Wishlist",
+     "Just Breathe",
+     "Far Behind",
+     "Rise",
+     "Society",
+     "Better Man",
+     "I Won't Back Down",
+     "Porch",
+     "Open All Night",
+     "Hard Sun"
+    ]
+   },
+   {
+    "local": "Seattle, Convention Center",
+    "data": "2024-08-18",
+    "musicas": [
+     "Elderly Woman Behind the Counter in a Small Town",
+     "Wildflowers",
+     "Keep Me in Your Heart",
+     "You've Got to Hide Your Love Away",
+     "Just Breathe",
+     "Porch",
+     "Far Behind",
+     "Wishlist",
+     "Better Man",
+     "Hard Sun"
+    ]
+   },
+   {
+    "local": "Seattle, Benaroya Hall",
+    "data": "2023-10-24",
+    "musicas": [
+     "Elderly Woman Behind the Counter in a Small Town",
+     "Driftin'",
+     "You've Got to Hide Your Love Away",
+     "Far Behind",
+     "Good Woman",
+     "Society",
+     "Rise",
+     "Guaranteed",
+     "Brain Damage",
+     "Immortality",
+     "I Won't Back Down",
+     "Better Man",
+     "Longing to Belong",
+     "Just Breathe",
+     "The Ship Song",
+     "Lukin",
+     "Porch",
+     "Imagine",
+     "Open All Night",
+     "Mrs. Mills",
+     "Rockin' in the Free World",
+     "Hard Sun"
+    ]
+   },
+   {
+    "local": "Seattle, Benaroya Hall",
+    "data": "2023-10-23",
+    "musicas": [
+     "Elderly Woman Behind the Counter in a Small Town",
+     "Keep Me in Your Heart",
+     "Wildflowers",
+     "Trouble",
+     "Wishlist",
+     "Far Behind",
+     "Rise",
+     "I Won't Back Down",
+     "Corduroy",
+     "Say Hi",
+     "Better Man",
+     "Just Breathe",
+     "The End",
+     "The Ship Song",
+     "Porch",
+     "River Cross",
+     "Unthought Known",
+     "Hard Sun"
+    ]
+   },
+   {
+    "local": "Tempe, Innings Festival (Tempe Beach Park, festival ao ar livre)",
+    "data": "2023-02-26",
+    "musicas": [
+     "Elderly Woman Behind the Counter in a Small Town",
+     "Far Behind",
+     "You've Got to Hide Your Love Away",
+     "Wishlist",
+     "Soon Forget",
+     "I Won't Back Down",
+     "Just Breathe",
+     "Hunger Strike",
+     "Better Man",
+     "In God's Country",
+     "Society",
+     "Black",
+     "Lukin",
+     "Porch",
+     "Hard Sun",
+     "Rockin' in the Free World"
+    ]
+   }
+  ],
+  "contagem": {
+   "Porch": {
+    "solo_2023_2026": "9 de 9",
+    "brasil": "8 de 8",
+    "total_17": "17 de 17"
+   },
+   "Hard Sun": {
+    "solo_2023_2026": "9 de 9",
+    "brasil": "8 de 8",
+    "total_17": "17 de 17"
+   },
+   "Far Behind": {
+    "solo_2023_2026": "9 de 9",
+    "brasil": "8 de 8",
+    "total_17": "17 de 17"
+   },
+   "Just Breathe": {
+    "solo_2023_2026": "9 de 9",
+    "brasil": "5 de 8",
+    "total_17": "14 de 17"
+   },
+   "Better Man": {
+    "solo_2023_2026": "9 de 9",
+    "brasil": "5 de 8",
+    "total_17": "14 de 17"
+   },
+   "Wishlist": {
+    "solo_2023_2026": "8 de 9",
+    "brasil": "5 de 8",
+    "total_17": "13 de 17"
+   },
+   "Elderly Woman Behind the Counter in a Small Town": {
+    "solo_2023_2026": "8 de 9",
+    "brasil": "6 de 8",
+    "total_17": "14 de 17"
+   },
+   "Society": {
+    "solo_2023_2026": "6 de 9",
+    "brasil": "7 de 8",
+    "total_17": "13 de 17"
+   },
+   "Rise": {
+    "solo_2023_2026": "6 de 9",
+    "brasil": "5 de 8",
+    "total_17": "11 de 17"
+   },
+   "Guaranteed": {
+    "solo_2023_2026": "3 de 9",
+    "brasil": "7 de 8",
+    "total_17": "10 de 17"
+   },
+   "Corduroy": {
+    "solo_2023_2026": "5 de 9",
+    "brasil": "0 de 8",
+    "total_17": "5 de 17"
+   },
+   "Black": {
+    "solo_2023_2026": "1 de 9",
+    "brasil": "1 de 8",
+    "total_17": "2 de 17"
+   },
+   "Sirens": {
+    "solo_2023_2026": "0 de 9",
+    "brasil": "0 de 8",
+    "total_17": "0 de 17"
+   },
+   "Given to Fly": {
+    "solo_2023_2026": "0 de 9",
+    "brasil": "0 de 8",
+    "total_17": "0 de 17"
+   },
+   "Yellow Ledbetter": {
+    "solo_2023_2026": "0 de 9",
+    "brasil": "0 de 8",
+    "total_17": "0 de 17"
+   },
+   "Invincible": {
+    "solo_2023_2026": "0 de 9",
+    "brasil": "0 de 8",
+    "total_17": "0 de 17"
+   },
+   "Alive": {
+    "solo_2023_2026": "0 de 9",
+    "brasil": "0 de 8",
+    "total_17": "0 de 17"
+   },
+   "Better Days": {
+    "solo_2023_2026": "0 de 9",
+    "brasil": "5 de 8",
+    "total_17": "5 de 17"
+   },
+   "Present Tense": {
+    "solo_2023_2026": "0 de 9",
+    "brasil": "2 de 8",
+    "total_17": "2 de 17"
+   },
+   "Song of Good Hope": {
+    "solo_2023_2026": "2 de 9",
+    "brasil": "1 de 8",
+    "total_17": "3 de 17"
+   },
+   "Rockin' in the Free World": {
+    "solo_2023_2026": "4 de 9",
+    "brasil": "4 de 8",
+    "total_17": "8 de 17"
+   },
+   "Hunger Strike": {
+    "solo_2023_2026": "1 de 9",
+    "brasil": "0 de 8",
+    "total_17": "1 de 17"
+   },
+   "Lukin": {
+    "solo_2023_2026": "3 de 9",
+    "brasil": "0 de 8",
+    "total_17": "3 de 17"
+   },
+   "I Won't Back Down": {
+    "solo_2023_2026": "6 de 9",
+    "brasil": "0 de 8",
+    "total_17": "6 de 17"
+   },
+   "You've Got to Hide Your Love Away": {
+    "solo_2023_2026": "6 de 9",
+    "brasil": "5 de 8",
+    "total_17": "11 de 17"
+   }
+  }
+ }
+}

@@ -1,0 +1,185 @@
+{
+  "duracao_alvo": 43,
+  "formato": "9:16, 1080x1920, duas vozes ElevenLabs revezando (Jessica e Liam)",
+  "fonte": "setlist.fm (Eddie Vedder, stats e setlists), consulta em 15/11/2026",
+  "aviso": "PALPITE baseado em histórico, não é setlist oficial",
+  "cenas": [
+    {
+      "id": "c1",
+      "seg": [
+        0,
+        2.4
+      ],
+      "voz": "jessica",
+      "fala": "Sexta tem Eddie Vedder no Ibirapuera.",
+      "tela": "O PROVÁVEL SETLIST DO EDDIE VEDDER NO IBIRAPUERA. FALTAM N DIAS",
+      "visual": "Frame zero já com o título inteiro em caixa alta, três linhas, ocupando a tela, sobre trecho de clipe ao vivo mudo e escurecido. Acima do título, contador regressivo em blocos (dias, horas, minutos) até sexta, 20/11, com os segundos correndo de verdade. O número de dias é calculado na data de publicação, não fica fixo no roteiro. Linha fina embaixo: 'SEXTA 20/11 E DOMINGO 22/11'. Selo fixo no rodapé em todas as cenas: 'PALPITE COM BASE NO HISTÓRICO, fonte: setlist.fm'.",
+      "dados": {
+        "evento": "Best of Blues and Rock 2026",
+        "local": "Parque do Ibirapuera, São Paulo",
+        "datas": [
+          "2026-11-20",
+          "2026-11-22"
+        ],
+        "contador": "dias até 2026-11-20, calcular na publicação"
+      }
+    },
+    {
+      "id": "c2",
+      "seg": [
+        2.4,
+        5.4
+      ],
+      "voz": "liam",
+      "fala": "E o final a gente quase consegue cravar.",
+      "tela": "O FINAL A GENTE QUASE CRAVA. Faixa: primeiro show solo dele a céu aberto no Brasil, segundo o setlist.fm",
+      "visual": "O título encolhe e vira cabeçalho. Entra uma folha de setlist de palco, papel branco preso com fita, letra de canetão, em branco. As duas últimas linhas da folha já estão escritas, mas cobertas por uma tarja preta que treme, como se quisesse sair. Faixa estreita passa no topo com o tempero do céu aberto. O contador continua pequeno no canto até o fim do vídeo.",
+      "dados": {
+        "primeiro_ao_ar_livre_solo_no_brasil": "sim, segundo o setlist.fm",
+        "shows_solo_brasil": 8,
+        "todos_em_casa_fechada": true
+      }
+    },
+    {
+      "id": "c3",
+      "seg": [
+        5.4,
+        10.2
+      ],
+      "voz": "jessica",
+      "fala": "A abertura é mistério. No Japão, em abril, foram três diferentes em quatro shows.",
+      "tela": "ABERTURA: ???  (Japão, abr/2026: 3 aberturas em 4 shows)",
+      "visual": "O canetão escreve 'ABERTURA' na primeira linha da folha e tenta três nomes em sequência, riscando um depois do outro: Brain Damage, Don't Be Shy, Trouble. Termina com três interrogações grandes. Ao lado, quatro quadradinhos com as cidades (Tóquio, Kyoto, Osaka, Nagoya), o primeiro e o último da mesma cor para mostrar a abertura repetida.",
+      "dados": {
+        "japao_shows": 4,
+        "aberturas_diferentes": 3,
+        "aberturas": {
+          "Tóquio": "Brain Damage",
+          "Kyoto": "Don't Be Shy",
+          "Osaka": "Trouble",
+          "Nagoya": "Brain Damage"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "seg": [
+        10.2,
+        16.0
+      ],
+      "voz": "liam",
+      "fala": "No miolo, Just Breathe, Better Man, Wishlist e Corduroy saíram nos quatro shows de lá.",
+      "tela": "QUASE CERTAS: 4 DE 4 NO JAPÃO",
+      "visual": "A folha preenche o miolo: cada nome é escrito no canetão quando a voz diz, com quatro bolinhas cheias ao lado (4 de 4). Far Behind e Immortality entram só na tela, logo depois, também com quatro bolinhas. Seis linhas no total, letra grande, uma por linha.",
+      "dados": {
+        "nos_4_shows_do_japao": [
+          "Just Breathe",
+          "Better Man",
+          "Wishlist",
+          "Corduroy",
+          "Far Behind",
+          "Immortality"
+        ],
+        "japao_shows": 4
+      }
+    },
+    {
+      "id": "c5",
+      "seg": [
+        16.0,
+        20.6
+      ],
+      "voz": "jessica",
+      "fala": "Aposta nossa: um cover do The Who, com Roger Daltrey no festival.",
+      "tela": "APOSTA: COVER DO THE WHO. I'm One já saiu 30 vezes em show solo",
+      "visual": "Muda a cor da caneta (vermelho) para marcar que agora é aposta. Na margem da folha entra um bilhete colado torto: 'THE WHO?'. Ao lado, barrinhas pequenas com os covers que ele já fez: I'm One 30, The Kids Are Alright 16, I Can't Explain 10, Baba O'Riley 4. Etiqueta 'Roger Daltrey no mesmo festival'.",
+      "dados": {
+        "covers_the_who_em_shows_solo": {
+          "I'm One": 30,
+          "The Kids Are Alright": 16,
+          "I Can't Explain": 10,
+          "Baba O'Riley": 4
+        },
+        "tambem_no_festival": "Roger Daltrey"
+      }
+    },
+    {
+      "id": "c6",
+      "seg": [
+        20.6,
+        25.0
+      ],
+      "voz": "liam",
+      "fala": "E Song of Good Hope, do Glen Hansard, que estaria no festival.",
+      "tela": "SONG OF GOOD HOPE (Glen Hansard). 2 de 4 shows no Japão",
+      "visual": "A animação desacelera. A caneta vermelha escreve o nome da música devagar, sem bilhete nem efeito. Fundo escurece um pouco, sem foto dele e sem data de morte na tela. Só o nome, o autor e o dado. Meio segundo de respiro antes do corte.",
+      "dados": {
+        "song_of_good_hope_japao": "2 de 4",
+        "song_of_good_hope_carreira_solo": 29
+      }
+    },
+    {
+      "id": "c7",
+      "seg": [
+        25.0,
+        28.8
+      ],
+      "voz": "jessica",
+      "fala": "Black seria a surpresa. No Brasil, só saiu uma vez.",
+      "tela": "SURPRESA: BLACK. 1 vez no Brasil (bis de São Paulo, 30/03/2018)",
+      "visual": "Black aparece escrita a lápis, clarinha, quase apagada, perto do fim da folha. Ao lado, sete quadradinhos (os setlists brasileiros conferidos) com um só aceso. Um ponto de interrogação pulsa do lado do nome.",
+      "dados": {
+        "black_no_brasil": "1 vez em 7 setlists conferidos",
+        "quando": "bis de São Paulo, 30/03/2018",
+        "black_japao": "0/4"
+      }
+    },
+    {
+      "id": "c8",
+      "seg": [
+        28.8,
+        33.4
+      ],
+      "voz": "liam",
+      "fala": "Agora o final: Porch fecha o set e Hard Sun vem no bis.",
+      "tela": "PORCH FECHA O SET. HARD SUN NO BIS",
+      "visual": "Clímax visual. A tarja preta das duas últimas linhas é arrancada em dois golpes, um por música, no tempo da fala. PORCH aparece sublinhada duas vezes, depois uma linha tracejada 'BIS' e HARD SUN embaixo, maior que todo o resto da folha. A câmera aproxima do rodapé da folha.",
+      "dados": {
+        "porch_fecha_o_set_principal": "4 de 4 no Japão, 3 de 3 em SP 2018",
+        "hard_sun_no_bis": "4 de 4 no Japão, 3 de 3 em SP 2018"
+      }
+    },
+    {
+      "id": "c9",
+      "seg": [
+        33.4,
+        38.0
+      ],
+      "voz": "jessica",
+      "fala": "Foi assim nos quatro shows do Japão e nos três de São Paulo.",
+      "tela": "7 DE 7. Japão 2026 (4) e São Paulo 2018 (3)",
+      "visual": "Prova do final: sete folhinhas de setlist em miniatura entram em fila (quatro com a etiqueta Japão 2026, três com São Paulo 2018). Em cada uma acendem as duas últimas linhas, Porch e Hard Sun, uma depois da outra, até fechar o contador '7 DE 7'.",
+      "dados": {
+        "japao_2026": 4,
+        "sao_paulo_2018": 3,
+        "shows_com_porch_fechando_e_hard_sun_no_bis": 7
+      }
+    },
+    {
+      "id": "c10",
+      "seg": [
+        38.0,
+        43.0
+      ],
+      "voz": "liam",
+      "fala": "É palpite, viu? Monta o seu setlist nos comentários.",
+      "tela": "É PALPITE, NÃO É SETLIST OFICIAL. MONTA O SEU NOS COMENTÁRIOS. somaisumfadepearljam.com.br",
+      "visual": "A folha completa volta inteira na tela por um segundo, para dar vontade de pausar e tirar print. Depois vira e mostra o verso em branco com o canetão parado em cima e três linhas vazias numeradas. Contador regressivo volta grande. Endereço do site fixo no rodapé com o selo da página. Último meio segundo sem fala.",
+      "dados": {
+        "aviso": "PALPITE baseado em histórico, não é setlist oficial",
+        "site": "somaisumfadepearljam.com.br"
+      }
+    }
+  ],
+  "legenda": "O provável setlist do Eddie Vedder no Ibirapuera, sexta (20/11) e domingo (22/11). É palpite nosso com base no histórico, não é setlist oficial.\n\nNos 4 shows do Japão, em abril, e nos 3 de São Paulo em 2018, Porch fechou o set e Hard Sun veio no bis. No Japão foram três aberturas diferentes em quatro shows. Black só saiu uma vez no Brasil.\n\nDetalhe: é o primeiro show solo dele a céu aberto no Brasil, segundo o setlist.fm.\n\nMonta o seu setlist nos comentários.\n\nFonte: setlist.fm, consulta em 15/11/2026.\n\n#EddieVedder #PearlJam #BestOfBluesAndRock #Ibirapuera #Setlist"
+}

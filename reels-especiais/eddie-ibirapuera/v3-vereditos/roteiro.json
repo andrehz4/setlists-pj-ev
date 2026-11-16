@@ -1,0 +1,320 @@
+{
+  "duracao_alvo": 45.0,
+  "palavras_faladas": 136,
+  "ritmo_alvo_ppm": 195,
+  "formato": "9:16, 1080x1920, duas vozes ElevenLabs revezando (Jessica e Liam), fala acelerada",
+  "fonte": "setlist.fm (Eddie Vedder, stats e setlists), consulta em 15/11/2026",
+  "aviso": "PALPITE baseado em histórico, não é setlist oficial",
+  "carimbos": [
+    "DEVE ROLAR",
+    "TALVEZ",
+    "DIFÍCIL",
+    "ESQUECE",
+    "APOSTA",
+    "CRAVADO"
+  ],
+  "cenas": [
+    {
+      "id": "c1",
+      "seg": [
+        0.0,
+        2.7
+      ],
+      "voz": "jessica",
+      "fala": "A galera pediu. A gente foi nos números.",
+      "tela": "O PROVÁVEL SETLIST DO EDDIE NO IBIRAPUERA. BLACK 21 PEDIDOS, SIRENS 10",
+      "visual": "Frame zero: título em caixa alta em três linhas sobre clipe ao vivo mudo e escurecido. Na metade de baixo, ranking dos pedidos subindo em barras verticais rápidas, cada uma com contador: Black dispara até 21, Sirens para em 10, as outras ficam em 2. Sem nome de usuário nem da conta do post. Selo fixo no rodapé em todas as cenas: 'PALPITE PELO HISTÓRICO, fonte: setlist.fm'.",
+      "dados": {
+        "grafico": "barra",
+        "unidade": "menções nos comentários",
+        "valores": {
+          "Black": 21,
+          "Sirens": 10,
+          "Just Breathe": 2,
+          "Given to Fly": 2,
+          "Present Tense": 2,
+          "Guaranteed": 2
+        },
+        "comentarios_lidos_aprox": 180
+      },
+      "palavras": 8
+    },
+    {
+      "id": "c2",
+      "seg": [
+        2.7,
+        7.5
+      ],
+      "voz": "liam",
+      "fala": "A mais pedida é Black: vinte e três vezes em trezentos e dezoito setlists solo.",
+      "tela": "BLACK. 23 DE 318",
+      "visual": "Card da música: BLACK gigante no topo. Contador sobe de 0 a 23 em meio segundo. Embaixo, barra horizontal em escala de 0 a 318 que enche só um pedacinho e trava, com um tranco. Etiqueta '21 pedidos' no canto do card.",
+      "dados": {
+        "grafico": "contador + barra",
+        "contador": {
+          "de": 0,
+          "ate": 23
+        },
+        "barra": {
+          "valor": 23,
+          "max": 318
+        },
+        "pedidos": 21
+      },
+      "palavras": 15
+    },
+    {
+      "id": "c3",
+      "seg": [
+        7.5,
+        12.3
+      ],
+      "voz": "jessica",
+      "fala": "No Japão, em abril, zero. No Brasil, uma vez só. Difícil, mas já rolou aqui.",
+      "tela": "JAPÃO 0 DE 4. BRASIL 1 VEZ. Carimbo: DIFÍCIL",
+      "visual": "Mesmo card. Entram duas fileiras de bolinhas: quatro vazias (Japão 2026) e sete com uma só acesa (Brasil, com a legenda 'bis de São Paulo, 30/03/2018'). A bolinha acesa pulsa. Carimbo DIFÍCIL bate torto por cima, em laranja.",
+      "dados": {
+        "grafico": "fracao + carimbo",
+        "fracoes": {
+          "Japão 2026": "0/4",
+          "Brasil (setlists conferidos)": "1/7"
+        },
+        "carimbo": "DIFÍCIL",
+        "detalhe": "bis de SP, 30/03/2018"
+      },
+      "palavras": 15
+    },
+    {
+      "id": "c4",
+      "seg": [
+        12.3,
+        15.3
+      ],
+      "voz": "liam",
+      "fala": "Sirens? Zero. Ele nunca tocou em show solo. Esquece.",
+      "tela": "SIRENS. 0 DE 318. Carimbo: ESQUECE",
+      "visual": "Card novo entra por corte seco. O contador gira como caça-níquel e para em 0, enorme. A barra de 0 a 318 fica vazia e pisca. Carimbo ESQUECE em vermelho, com tremor na tela no impacto. Etiqueta '10 pedidos'.",
+      "dados": {
+        "grafico": "contador + barra + carimbo",
+        "contador": {
+          "de": 0,
+          "ate": 0
+        },
+        "barra": {
+          "valor": 0,
+          "max": 318
+        },
+        "carimbo": "ESQUECE",
+        "pedidos": 10
+      },
+      "palavras": 9
+    },
+    {
+      "id": "c5",
+      "seg": [
+        15.3,
+        17.3
+      ],
+      "voz": "jessica",
+      "fala": "Given to Fly? Zero também. Esquece.",
+      "tela": "GIVEN TO FLY. 0 DE 318. Carimbo: ESQUECE",
+      "visual": "Mesma mecânica em versão relâmpago: card, zero, barra vazia, carimbo ESQUECE. Os dois cards de zero ficam lado a lado por um instante antes do corte.",
+      "dados": {
+        "grafico": "contador + barra + carimbo",
+        "contador": {
+          "de": 0,
+          "ate": 0
+        },
+        "barra": {
+          "valor": 0,
+          "max": 318
+        },
+        "carimbo": "ESQUECE",
+        "pedidos": 2
+      },
+      "palavras": 6
+    },
+    {
+      "id": "c6",
+      "seg": [
+        17.3,
+        20.6
+      ],
+      "voz": "liam",
+      "fala": "Just Breathe: quatro de quatro no Japão. Essa deve rolar.",
+      "tela": "JUST BREATHE. 4 DE 4 NO JAPÃO. Carimbo: DEVE ROLAR",
+      "visual": "Virada de cor, do vermelho para o verde. Quatro bolinhas acendem em sequência, uma por batida. Contador secundário sobe até 115 (vezes na carreira solo). Carimbo DEVE ROLAR em verde.",
+      "dados": {
+        "grafico": "fracao + contador + carimbo",
+        "fracoes": {
+          "Japão 2026": "4/4",
+          "Brasil (setlists conferidos)": "5/7"
+        },
+        "contador": {
+          "de": 0,
+          "ate": 115
+        },
+        "barra": {
+          "valor": 115,
+          "max": 318
+        },
+        "carimbo": "DEVE ROLAR"
+      },
+      "palavras": 10
+    },
+    {
+      "id": "c7",
+      "seg": [
+        20.6,
+        25.4
+      ],
+      "voz": "jessica",
+      "fala": "Guaranteed: cento e cinquenta e cinco vezes, e sete de sete no Brasil. Deve rolar.",
+      "tela": "GUARANTEED. 155 DE 318. BRASIL 7 DE 7. Carimbo: DEVE ROLAR",
+      "visual": "Contador dispara até 155 e a barra de 0 a 318 enche quase a metade, a maior do vídeo até aqui. Sete bolinhas do Brasil acendem em rajada. Carimbo DEVE ROLAR em verde. Linha pequena: 'Japão 2 de 4'.",
+      "dados": {
+        "grafico": "contador + barra + fracao + carimbo",
+        "contador": {
+          "de": 0,
+          "ate": 155
+        },
+        "barra": {
+          "valor": 155,
+          "max": 318
+        },
+        "fracoes": {
+          "Brasil (setlists conferidos)": "7/7",
+          "Japão 2026": "2/4"
+        },
+        "carimbo": "DEVE ROLAR"
+      },
+      "palavras": 15
+    },
+    {
+      "id": "c8",
+      "seg": [
+        25.4,
+        29.3
+      ],
+      "voz": "liam",
+      "fala": "Better Days: duas de três em São Paulo, zero no Japão. Talvez.",
+      "tela": "BETTER DAYS. SP 2018: 2 DE 3. JAPÃO: 0 DE 4. Carimbo: TALVEZ",
+      "visual": "Card dividido ao meio. Esquerda: três bolinhas com duas acesas (São Paulo 2018). Direita: quatro vazias (Japão 2026). Uma balança ou ponteiro oscila entre os dois lados e para no meio. Carimbo TALVEZ em amarelo.",
+      "dados": {
+        "grafico": "fracao + carimbo",
+        "fracoes": {
+          "São Paulo 2018": "2/3",
+          "Japão 2026": "0/4"
+        },
+        "contador": {
+          "de": 0,
+          "ate": 12
+        },
+        "carimbo": "TALVEZ"
+      },
+      "palavras": 12
+    },
+    {
+      "id": "c9",
+      "seg": [
+        29.3,
+        32.0
+      ],
+      "voz": "jessica",
+      "fala": "Present Tense, quatro vezes. Yellow Ledbetter, seis. Raridade.",
+      "tela": "PRESENT TENSE 4 DE 318. YELLOW LEDBETTER 6 DE 318. Carimbo: DIFÍCIL",
+      "visual": "Dois cards pequenos empilhados, cada um com contador (4 e 6) e barrinha de 0 a 318 quase invisível. Uma lupa passa por cima das barras para brincar com o tamanho. Um carimbo DIFÍCIL pega os dois.",
+      "dados": {
+        "grafico": "contador + barra + carimbo",
+        "valores": {
+          "Present Tense": 4,
+          "Yellow Ledbetter": 6
+        },
+        "barra": {
+          "max": 318
+        },
+        "carimbo": "DIFÍCIL"
+      },
+      "palavras": 8
+    },
+    {
+      "id": "c10",
+      "seg": [
+        32.0,
+        36.2
+      ],
+      "voz": "liam",
+      "fala": "Song of Good Hope, do Glen Hansard, que estaria no festival: nossa aposta.",
+      "tela": "SONG OF GOOD HOPE (Glen Hansard). 2 DE 4 NO JAPÃO. Carimbo: APOSTA",
+      "visual": "Único card sem tremor nem corte brusco. Nome da música, autor, quatro bolinhas com duas acesas. Carimbo APOSTA em azul, entra suave. Sem foto dele e sem data na tela.",
+      "dados": {
+        "grafico": "fracao + carimbo",
+        "fracoes": {
+          "Japão 2026": "2/4"
+        },
+        "contador": {
+          "de": 0,
+          "ate": 29
+        },
+        "carimbo": "APOSTA"
+      },
+      "palavras": 13
+    },
+    {
+      "id": "c11",
+      "seg": [
+        36.2,
+        41.0
+      ],
+      "voz": "jessica",
+      "fala": "E o final? Porch fecha o set, Hard Sun vem no bis. Sete de sete.",
+      "tela": "PORCH FECHA O SET. HARD SUN NO BIS. 7 DE 7 (Japão 2026 e São Paulo 2018)",
+      "visual": "Clímax. Os cards somem e entra uma folha de setlist de palco com as duas últimas linhas: PORCH, tracejado BIS, HARD SUN. Sete bolinhas acendem em fila (quatro do Japão, três de São Paulo) e o contador fecha em '7 DE 7'. Carimbo CRAVADO, o maior do vídeo. Barras de carreira ao lado: Porch 192, Hard Sun 178.",
+      "dados": {
+        "grafico": "fracao + barra + carimbo",
+        "fracoes": {
+          "Japão 2026": "4/4",
+          "São Paulo 2018": "3/3",
+          "total": "7/7"
+        },
+        "barras": {
+          "Porch": 192,
+          "Hard Sun": 178,
+          "max": 318
+        },
+        "carimbo": "CRAVADO"
+      },
+      "palavras": 15
+    },
+    {
+      "id": "c12",
+      "seg": [
+        41.0,
+        45.0
+      ],
+      "voz": "liam",
+      "fala": "É palpite pelo histórico. E você, aposta em qual? Comenta.",
+      "tela": "E VOCÊ, APOSTA EM QUAL? COMENTA. somaisumfadepearljam.com.br",
+      "visual": "Todos os cards voltam em grade, cada um com seu carimbo, para dar vontade de pausar e tirar print. Um card vazio pisca no meio com um carimbo em branco girando entre as opções. Site fixo no rodapé. Faixa pequena: 'primeiro show solo dele a céu aberto no Brasil, segundo o setlist.fm'. Último meio segundo sem fala.",
+      "dados": {
+        "grafico": "carimbo",
+        "resumo_carimbos": {
+          "Black": "DIFÍCIL",
+          "Sirens": "ESQUECE",
+          "Given to Fly": "ESQUECE",
+          "Just Breathe": "DEVE ROLAR",
+          "Guaranteed": "DEVE ROLAR",
+          "Better Days": "TALVEZ",
+          "Present Tense": "DIFÍCIL",
+          "Yellow Ledbetter": "DIFÍCIL",
+          "Song of Good Hope": "APOSTA",
+          "Porch": "CRAVADO",
+          "Hard Sun": "CRAVADO"
+        },
+        "site": "somaisumfadepearljam.com.br"
+      },
+      "palavras": 10
+    }
+  ],
+  "legenda": "O provável setlist do Eddie Vedder no Ibirapuera, sexta e domingo. Pegamos as músicas mais pedidas nos comentários e fomos aos números.\n\nBlack: 23 vezes em 318 setlists solo, uma só no Brasil. Sirens e Given to Fly: zero. Just Breathe: 4 de 4 no Japão, em abril. E nos 7 shows que olhamos (Japão 2026 e São Paulo 2018), Porch fechou o set e Hard Sun veio no bis.\n\nÉ palpite pelo histórico, não é setlist oficial. E você, aposta em qual?\n\nFonte: setlist.fm, consulta em 15/11/2026.\n\n#EddieVedder #PearlJam #BestOfBluesAndRock #Ibirapuera #Setlist"
+}

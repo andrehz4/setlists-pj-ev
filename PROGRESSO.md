@@ -6,6 +6,24 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Reel especial Eddie no Ibirapuera (15/11, EM ANDAMENTO):** série de reels até o show (sex 20 e dom 22/11, Best of
+  Blues and Rock). Pasta `reels-especiais/eddie-ibirapuera/`: `ficha.json` (estudo NOSSO no setlist.fm: 17 shows solo,
+  seção `estudo_formato`; Ibirapuera é solo segundo a imprensa), `roteiro.json`/`.md` (roteirista Fable, v6 "As 5
+  músicas certas" + "Mas e a Black? não tocou nos últimos 8 shows solo"; v1 a v5 arquivadas em subpastas), `clips/`
+  (16 trechos mudos do R2), `gerar-voz.mjs` (ElevenLabs v4, chave reserva5, corta silêncio e acelera até 195 ppm,
+  máx 1,2x, confere no mlx_whisper), `mixar.mjs` (trilha própria + sidechain; ajustar os golpes pros ids da v7), `hf/`
+  (projeto HyperFrames começado, reaproveitar). REGRA DO ANDRE: não gravar voz sem ele dar ok no texto.
+  FEITO 15/11 noite: roteiro v7 APROVADO (13 falas: "As cinco músicas que o Eddie Vedder sempre toca", contagem 5 a 1
+  intercalada com pedidos negados Sirens/Invincible/Better Days/Black, critério "desde 2023", CTA "manda para quem vai
+  com você"); vozes GRAVADAS em `voz/c1..c13.wav` (54 s, prévia `voz/previa-narracao.mp3`; whisper não confirma nomes
+  em inglês, Andre ouve; c13 conferir se "para o show" saiu "pro show"). Fotos Commons do Eddie em `fotos/` (CC BY,
+  créditos em `fotos/_creditos.json`, citar na legenda). 2 vídeos do YouTube pedidos pelo Andre (p3yPYHq2N1Y e
+  pXwLF3QAi5o) rodando no `acervo-auto.mjs` (folhas em `.momentos/<nome>/`, escolher e `--importar`).
+  PRÓXIMO: agente HyperFrames monta o v7 (MEGA dopamínico: fotos + clipes mudos + 9 bolinhas desde 2023 + contadores
+  + carimbos ESQUECE/NÃO VAI/TALVEZ/DIFÍCIL, mapa Tempe -> Ibirapuera) -> golpes do `mixar.mjs` (c3 e c12) -> Andre
+  aprova -> publicar. Série: seg ranking, ter Japão, qua Brasil, qui
+  setlist provável. Chave da API do setlist.fm só no GitHub; Andre pode salvar em `/Users/andrehz/.setlistfm-key`.
+
 - **Story por banda (14/11 noite):** rodízio com 25 layouts (A a Z), D/E/F do Claude Design portados e LIGADOS.
   23 aberturas por banda e 38 finais nas 2 vozes, roleta de chaves no reel e no story diário. Lapidar G a Z
   pela régua do Design foi DESCARTADO (14/11): piloto no O tirou a personalidade, Andre preferiu o antes. PRÓXIMO: conferir

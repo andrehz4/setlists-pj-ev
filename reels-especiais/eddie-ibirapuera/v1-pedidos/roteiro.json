@@ -1,0 +1,139 @@
+{
+  "duracao_alvo": 43.5,
+  "formato": "9:16, 1080x1920, duas vozes ElevenLabs revezando (Jessica e Liam)",
+  "fonte": "setlist.fm (Eddie Vedder, stats e setlists), consulta em 15/11/2026",
+  "obs_voz": "O campo fala já está escrito para a voz: números por extenso e setlist.fm como 'setlist ponto efe eme'. O campo tela é o que aparece escrito.",
+  "cenas": [
+    {
+      "id": "c1",
+      "seg": [0, 2.2],
+      "voz": "jessica",
+      "fala": "Vocês pediram Sirens no Ibirapuera.",
+      "tela": "TOCA SIRENS!",
+      "visual": "Já no frame zero: balão de comentário de Instagram gigante com 'TOCA SIRENS!' ocupando o centro, entrando com um tranco. Atrás dele, outros balões menores empilhando rápido com os pedidos (BLACK, JUST BREATHE, BETTER DAYS, INVINCIBLE, YELLOW LEDBETTER). Fundo: trecho de clipe ao vivo mudo, escurecido. Nenhum nome de usuário real nos balões.",
+      "dados": {
+        "pedidos_mostrados": ["Sirens", "Black", "Just Breathe", "Better Days", "Invincible", "Yellow Ledbetter"]
+      }
+    },
+    {
+      "id": "c2",
+      "seg": [2.2, 5.4],
+      "voz": "liam",
+      "fala": "Em show solo do Eddie, ela saiu zero vezes.",
+      "tela": "SIRENS: 0 EM 318 SETLISTS SOLO (fonte: setlist.fm)",
+      "visual": "Os balões são varridos para fora. Entra um ZERO enorme (ocupa metade da tela), carimbado, com leve tremor no impacto. Embaixo, linha pequena 'em 318 setlists solo' e o selo 'fonte: setlist.fm'. Barra de progresso vazia sob o nome SIRENS, que tenta encher e não sai do lugar.",
+      "dados": {
+        "sirens_solo": 0,
+        "setlists_solo": 318
+      }
+    },
+    {
+      "id": "c3",
+      "seg": [5.4, 10.0],
+      "voz": "jessica",
+      "fala": "A gente conferiu trezentos e dezoito setlists solo no setlist ponto efe eme.",
+      "tela": "318 SETLISTS SOLO. PEDIDO X REALIDADE",
+      "visual": "Contador subindo de 0 a 318 em um segundo e meio, com folhas de setlist (retângulos de papel) empilhando ao fundo. Quando o contador para, o título 'PEDIDO X REALIDADE' entra em duas linhas, com o X no meio maior que as palavras.",
+      "dados": {
+        "setlists_solo": 318
+      }
+    },
+    {
+      "id": "c4",
+      "seg": [10.0, 16.0],
+      "voz": "liam",
+      "fala": "Black apareceu em vinte e três. Better Days, doze. Yellow Ledbetter, seis.",
+      "tela": "BLACK 23 | INVINCIBLE 14 | BETTER DAYS 12 | YELLOW LEDBETTER 6 (de 318)",
+      "visual": "Gráfico de barras horizontais, uma linha por música, escala fixa de 0 a 318 para a barra ficar curta de propósito. Cada barra enche no momento em que a voz diz o nome, com o número grande na ponta. Invincible entra só na tela, sem fala, entre Black e Better Days. Rodapé fixo: 'vezes em 318 setlists solo'. Fonte grande, no máximo quatro linhas na tela.",
+      "dados": {
+        "Black": 23,
+        "Invincible": 14,
+        "Better Days": 12,
+        "Yellow Ledbetter": 6,
+        "setlists_solo": 318,
+        "pct_calculado_da_ficha": {"Black": 7.2, "Invincible": 4.4, "Better Days": 3.8, "Yellow Ledbetter": 1.9}
+      }
+    },
+    {
+      "id": "c5",
+      "seg": [16.0, 20.2],
+      "voz": "jessica",
+      "fala": "Já Just Breathe saiu nos quatro shows do Japão, em abril.",
+      "tela": "JUST BREATHE: 4 DE 4 NO JAPÃO (ABR/2026). NO BRASIL: 5 DE 7",
+      "visual": "Virada de cor: o fundo sai do tom frio das barras curtas e vai para um tom quente. Quatro círculos vazios em fila acendem um por um (4 de 4). Logo abaixo, sete círculos menores com cinco acesos e a etiqueta 'Brasil, setlists conferidos'. Comparação pequena no canto: os mesmos quatro círculos apagados para Black, Sirens, Better Days, Invincible e Yellow Ledbetter (0 de 4).",
+      "dados": {
+        "just_breathe_japao": "4/4",
+        "just_breathe_brasil": "5 de 7",
+        "japao_shows": 4,
+        "zero_em_4_no_japao": ["Black", "Sirens", "Better Days", "Invincible", "Yellow Ledbetter"]
+      }
+    },
+    {
+      "id": "c6",
+      "seg": [20.2, 26.4],
+      "voz": "liam",
+      "fala": "E Porch, Hard Sun, Society, Far Behind e Guaranteed estiveram em todos os setlists brasileiros que conferimos.",
+      "tela": "EM TODOS OS SETLISTS DO BRASIL CONFERIDOS (7)",
+      "visual": "Folha de setlist escrita à mão, de pé na tela. Os cinco nomes entram em lista, cada um ganhando um visto de caneta quando a voz diz. Guaranteed recebe um destaque extra com a etiqueta 'VOCÊS PEDIRAM', porque é a única das cinco que está nos comentários. Ao lado de cada nome, pequeno, o total na carreira solo.",
+      "dados": {
+        "presentes_em_todos_br_conferidos": ["Far Behind", "Guaranteed", "Porch", "Society", "Hard Sun"],
+        "setlists_br_conferidos": 7,
+        "carreira_solo": {"Porch": 192, "Hard Sun": 178, "Far Behind": 169, "Society": 159, "Guaranteed": 155}
+      }
+    },
+    {
+      "id": "c7",
+      "seg": [26.4, 30.4],
+      "voz": "jessica",
+      "fala": "Só que os oito shows solo dele no Brasil foram em casa fechada.",
+      "tela": "8 SHOWS SOLO NO BRASIL (2014 E 2018). TODOS COM TETO",
+      "visual": "Corte seco para fundo escuro. Oito ingressos pequenos caem em grade (dois anos: 2014 e 2018), todos com a etiqueta Citibank Hall, seis de São Paulo e dois do Rio de Janeiro. Por cima da grade desce o desenho de um teto, uma linha grossa que fecha a tela por cima e escurece tudo.",
+      "dados": {
+        "shows_solo_brasil": 8,
+        "anos": [2014, 2018],
+        "citibank_hall_sp": 6,
+        "citibank_hall_rj": 2,
+        "todos_em_casa_fechada": true
+      }
+    },
+    {
+      "id": "c8",
+      "seg": [30.4, 34.6],
+      "voz": "liam",
+      "fala": "O Ibirapuera é o primeiro ao ar livre, segundo o setlist ponto efe eme.",
+      "tela": "IBIRAPUERA, 20 E 22/11. O PRIMEIRO A CÉU ABERTO (segundo o setlist.fm)",
+      "visual": "O teto da cena anterior se abre no meio e sobe para fora da tela, revelando céu de fim de tarde. Mapa simplificado de São Paulo em traço, com um pino caindo no Parque do Ibirapuera e uma onda circular saindo dele. Datas '20 e 22/11' grandes. Selo 'segundo o setlist.fm' visível o tempo todo.",
+      "dados": {
+        "local": "Parque do Ibirapuera, São Paulo",
+        "evento": "Best of Blues and Rock 2026",
+        "datas": ["2026-11-20", "2026-11-22"],
+        "primeiro_ao_ar_livre_solo_no_brasil": "sim, segundo o setlist.fm"
+      }
+    },
+    {
+      "id": "c9",
+      "seg": [34.6, 39.0],
+      "voz": "jessica",
+      "fala": "E no Japão foram quarenta e sete músicas diferentes em quatro noites.",
+      "tela": "47 MÚSICAS DIFERENTES EM 4 SHOWS",
+      "visual": "Contador subindo até 47 sobre o céu aberto. Em volta, nomes de música passando em faixas horizontais em sentidos opostos, como um letreiro embaralhando. Quatro folhas de setlist lado a lado com os tamanhos 24, 23, 24 e 22.",
+      "dados": {
+        "musicas_diferentes_japao": 47,
+        "japao_shows": 4,
+        "musicas_por_show_japao": [24, 23, 24, 22]
+      }
+    },
+    {
+      "id": "c10",
+      "seg": [39.0, 43.5],
+      "voz": "liam",
+      "fala": "Qual é a sua aposta? Comenta aqui e passa no site.",
+      "tela": "QUAL É A SUA APOSTA? somaisumfadepearljam.com.br",
+      "visual": "Volta o balão de comentário da abertura, agora vazio, com cursor piscando, como se esperasse a resposta de quem assiste. Embaixo, os pedidos giram em roleta lenta (Sirens, Black, Just Breathe, Better Days, Invincible, Yellow Ledbetter). Endereço do site fixo no rodapé com o selo da página. Último meio segundo sem fala, só a tela.",
+      "dados": {
+        "site": "somaisumfadepearljam.com.br"
+      }
+    }
+  ],
+  "legenda": "Vocês pediram, a gente foi conferir. Em 318 setlists solo do Eddie Vedder no setlist.fm, Sirens não aparece nenhuma vez. Black aparece em 23, Better Days em 12, Yellow Ledbetter em 6. Just Breathe saiu nos 4 shows do Japão, em abril.\n\nDetalhe: os 8 shows solo dele no Brasil (2014 e 2018) foram em casa fechada. O Ibirapuera, dias 20 e 22/11, é o primeiro ao ar livre, segundo o setlist.fm.\n\nIsso é histórico, ninguém sabe o que ele vai tocar. Qual é a sua aposta?\n\nFonte: setlist.fm, consulta em 15/11/2026.\n\n#EddieVedder #PearlJam #BestOfBluesAndRock #Ibirapuera #SetlistFM"
+}

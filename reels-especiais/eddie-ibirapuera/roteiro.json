@@ -1,0 +1,304 @@
+{
+ "duracao_alvo": 49.5,
+ "palavras_faladas": 150,
+ "ritmo_alvo_ppm": 195,
+ "titulo": "As 5 músicas certas no setlist do Eddie Vedder no Best of Blues",
+ "formato": "9:16, 1080x1920, Jessica e Liam revezando, fala acelerada",
+ "fonte": "estudo SMUFDPJ com base no setlist.fm, consulta em 15/11/2026",
+ "selo_fixo": "ESTUDO SMUFDPJ · base: setlist.fm",
+ "aviso": "PALPITE baseado em histórico, não é setlist oficial",
+ "criterio_certa": "tocou nos 9 shows solo desde 2023",
+ "cenas": [
+  {
+   "id": "c1",
+   "seg": [
+    0,
+    4.2
+   ],
+   "voz": "jessica",
+   "fala": "As cinco músicas que o Eddie Vedder sempre toca, e que devem estar no Best of Blues.",
+   "tela": "AS 5 MÚSICAS QUE O EDDIE VEDDER SEMPRE TOCA · BEST OF BLUES AND ROCK · IBIRAPUERA 20 E 22/11",
+   "visual": "Frame zero: o 5 gigante ocupa meia tela e o título em caixa alta fecha em volta dele, sobre clipe ao vivo mudo e escurecido. Cinco cards virados de costas, numerados de 5 a 1, em leque. Selo fixo no rodapé em todas as cenas: 'ESTUDO SMUFDPJ · base: setlist.fm'. Linha fina: 'palpite pelo histórico, não é setlist oficial'.",
+   "dados": {
+    "grafico": "contador regressivo 5 a 1",
+    "posicao_inicial": 5,
+    "cards_ocultos": 5
+   },
+   "palavras": 13,
+   "origem_v6": "c1"
+  },
+  {
+   "id": "c2",
+   "seg": [
+    4.2,
+    7.8
+   ],
+   "voz": "liam",
+   "fala": "O critério: tocou em todos os nove shows solo dele desde 2023.",
+   "tela": "CRITÉRIO: TOCOU NOS 9 SHOWS SOLO DESDE 2023 (fev/2023 a abr/2026) · fonte: setlist.fm",
+   "visual": "9 bolinhas em fila (Tempe 2023, Seattle 2023 x2, Seattle 2024, Vancouver 2025, Japão 2026 x4) acendem uma a uma, rápido, cada uma com a etiqueta da cidade aparecendo e sumindo. O contador fecha em '9 DE 9'. Esse desenho das 9 bolinhas vira a régua do vídeo inteiro.",
+   "dados": {
+    "grafico": "9 bolinhas",
+    "acesas": 9,
+    "total": 9,
+    "shows": [
+     "Tempe 2023",
+     "Seattle 2023",
+     "Seattle 2023",
+     "Seattle 2024",
+     "Vancouver 2025",
+     "Japão 2026",
+     "Japão 2026",
+     "Japão 2026",
+     "Japão 2026"
+    ]
+   },
+   "palavras": 11,
+   "origem_v6": "c2"
+  },
+  {
+   "id": "c3",
+   "seg": [
+    7.8,
+    10.2
+   ],
+   "voz": "jessica",
+   "fala": "Número cinco: Better Man, nove de nove.",
+   "tela": "5. BETTER MAN. 9 DE 9",
+   "visual": "O card 5 desvira com um tranco: BETTER MAN gigante. As 9 bolinhas acendem em rajada, verde. Linha pequena: '14 de 17 contando o Brasil'. O 5 no canto gira e já mostra o 4 chegando.",
+   "dados": {
+    "grafico": "contador regressivo + 9 bolinhas",
+    "posicao": 5,
+    "acesas": 9,
+    "total": 9,
+    "brasil": "5 de 8",
+    "total_17": "14 de 17"
+   },
+   "palavras": 7,
+   "origem_v6": "c3"
+  },
+  {
+   "id": "c4",
+   "seg": [
+    33,
+    35.7
+   ],
+   "voz": "liam",
+   "fala": "Mas e a Sirens? Esquece: zero em dezessete shows solo.",
+   "tela": "E A SIRENS? 0 DE 17. Carimbo: ESQUECE",
+   "visual": "Vermelho. Card SIRENS, as 17 bolinhas apagadas, zero gigante. Carimbo ESQUECE com tremor. Etiqueta '10 pedidos'.",
+   "dados": {
+    "grafico": "17 bolinhas + carimbo",
+    "acesas": 0,
+    "total": 17,
+    "pedidos": 10,
+    "carimbo": "ESQUECE"
+   },
+   "palavras": 8,
+   "origem_v6": "c10"
+  },
+  {
+   "id": "c5",
+   "seg": [
+    10.2,
+    12.6
+   ],
+   "voz": "jessica",
+   "fala": "Quatro: Just Breathe, também nove de nove.",
+   "tela": "4. JUST BREATHE. 9 DE 9",
+   "visual": "Card 4 desvira. Mesma mecânica, mais rápida: nome, 9 bolinhas acesas, contador. Linha pequena: '14 de 17 contando o Brasil'.",
+   "dados": {
+    "grafico": "contador regressivo + 9 bolinhas",
+    "posicao": 4,
+    "acesas": 9,
+    "total": 9,
+    "brasil": "5 de 8",
+    "total_17": "14 de 17"
+   },
+   "palavras": 7,
+   "origem_v6": "c4"
+  },
+  {
+   "id": "c6",
+   "seg": [
+    35.7,
+    40.5
+   ],
+   "voz": "liam",
+   "fala": "E a Invincible? Só com a banda: catorze vezes, nenhuma sozinho. E o Ibirapuera, é solo.",
+   "tela": "E A INVINCIBLE? COM A BANDA: 14. SOLO: 0. IBIRAPUERA É SOLO (segundo a imprensa)",
+   "visual": "Tela dividida ao meio. Esquerda, 'COM A BANDA EARTHLINGS': contador sobe até 14. Direita, 'SOZINHO': zero parado. Um pino 'IBIRAPUERA' cai do lado direito e o lado esquerdo escurece. Carimbo ESQUECE.",
+   "dados": {
+    "grafico": "contador duplo + carimbo",
+    "com_a_banda_desde_2022": 14,
+    "solo_em_17": 0,
+    "ibirapuera": "solo",
+    "carimbo": "ESQUECE"
+   },
+   "palavras": 15,
+   "origem_v6": "c11"
+  },
+  {
+   "id": "c7",
+   "seg": [
+    12.6,
+    16.8
+   ],
+   "voz": "jessica",
+   "fala": "Três: Far Behind, e essa nunca falhou no Brasil: oito de oito aqui.",
+   "tela": "3. FAR BEHIND. 9 DE 9. BRASIL: 8 DE 8",
+   "visual": "Card 3 desvira. As 9 bolinhas acendem e, pela primeira vez, entra uma segunda fileira embaixo: 8 bolinhas com a etiqueta BRASIL (2014 e 2018), todas acesas. O contador soma e fecha em '17 DE 17'. A tela sobe um tom, de verde para dourado.",
+   "dados": {
+    "grafico": "contador regressivo + 9 bolinhas + 8 bolinhas do Brasil",
+    "posicao": 3,
+    "acesas": 9,
+    "total": 9,
+    "brasil": "8 de 8",
+    "total_17": "17 de 17"
+   },
+   "palavras": 13,
+   "origem_v6": "c5"
+  },
+  {
+   "id": "c8",
+   "seg": [
+    40.5,
+    44.1
+   ],
+   "voz": "liam",
+   "fala": "E a Better Days? Talvez: só tocou no Brasil, cinco de oito.",
+   "tela": "E A BETTER DAYS? BRASIL: 5 DE 8. DESDE 2023: 0 DE 9. Carimbo: TALVEZ",
+   "visual": "Amarelo. Duas fileiras: a do Brasil com 5 de 8 acesas, a das 9 recentes toda apagada. Um ponteiro oscila e para no meio. Carimbo TALVEZ.",
+   "dados": {
+    "grafico": "17 bolinhas + carimbo",
+    "brasil": "5 de 8",
+    "solo_desde_2023": "0 de 9",
+    "carimbo": "TALVEZ"
+   },
+   "palavras": 11,
+   "origem_v6": "c12"
+  },
+  {
+   "id": "c9",
+   "seg": [
+    16.8,
+    19.8
+   ],
+   "voz": "jessica",
+   "fala": "Dois: Hard Sun, dezessete de dezessete, contando o Brasil.",
+   "tela": "2. HARD SUN. 17 DE 17",
+   "visual": "Card 2 desvira. As duas fileiras (9 e 8) acendem ao mesmo tempo e o contador corre até 17. Dourado.",
+   "dados": {
+    "grafico": "contador regressivo + 17 bolinhas (9 recentes + 8 Brasil)",
+    "posicao": 2,
+    "solo_desde_2023": "9 de 9",
+    "brasil": "8 de 8",
+    "acesas": 17,
+    "total": 17
+   },
+   "palavras": 9,
+   "origem_v6": "c6"
+  },
+  {
+   "id": "c10",
+   "seg": [
+    23.7,
+    29.1
+   ],
+   "voz": "liam",
+   "fala": "Mas e a Black? Ahhh, essa é difícil, hein: ele não tocou nos últimos oito shows solo.",
+   "tela": "MAS E A BLACK? 0 NOS ÚLTIMOS 8 SHOWS SOLO. Carimbo: DIFÍCIL",
+   "visual": "Corte seco: o dourado cai para o laranja e os cinco cards são empurrados para fora. Card BLACK com a etiqueta '21 pedidos'. A régua das 9 bolinhas volta: a primeira (Tempe 2023) acesa e as oito seguintes apagando uma a uma, em sequência, no tempo da fala. Carimbo DIFÍCIL.",
+   "dados": {
+    "grafico": "9 bolinhas + carimbo",
+    "acesas": 1,
+    "apagadas_em_sequencia": 8,
+    "total": 9,
+    "pedidos": 21,
+    "carimbo": "DIFÍCIL"
+   },
+   "palavras": 17,
+   "origem_v6": "c8"
+  },
+  {
+   "id": "c11",
+   "seg": [
+    29.1,
+    33
+   ],
+   "voz": "jessica",
+   "fala": "Só que a última vez, foi justamente num festival ao ar livre.",
+   "tela": "ÚLTIMA VEZ: TEMPE (EUA), 26/02/2023. FESTIVAL, AO AR LIVRE, SOLO",
+   "visual": "A única bolinha acesa cresce e abre num mapa em traço com pino em Tempe. Uma linha tracejada sai de lá e cai num segundo pino, Ibirapuera, com as mesmas três etiquetas nos dois: SOLO, FESTIVAL, AO AR LIVRE. O carimbo DIFÍCIL ganha um ponto de interrogação.",
+   "dados": {
+    "grafico": "mapa",
+    "origem": "Innings Festival, Tempe (EUA), 26/02/2023",
+    "destino": "Parque do Ibirapuera, São Paulo",
+    "etiquetas": [
+     "solo",
+     "festival",
+     "ao ar livre"
+    ]
+   },
+   "palavras": 12,
+   "origem_v6": "c9"
+  },
+  {
+   "id": "c12",
+   "seg": [
+    19.8,
+    23.7
+   ],
+   "voz": "liam",
+   "fala": "E a número um: Porch, a mais tocada da carreira solo dele.",
+   "tela": "1. PORCH. 17 DE 17. 192 VEZES NA CARREIRA SOLO",
+   "visual": "Clímax da contagem. O 1 enche a tela, o card desvira: PORCH. As 17 bolinhas acendem e um contador grande dispara até 192. Carimbo CERTA em dourado, o maior do vídeo. Os cinco cards aparecem juntos, enfileirados, por meio segundo.",
+   "dados": {
+    "grafico": "contador regressivo + 17 bolinhas + contador",
+    "posicao": 1,
+    "acesas": 17,
+    "total": 17,
+    "contador_carreira": {
+     "de": 0,
+     "ate": 192
+    },
+    "setlists_solo": 318,
+    "carimbo": "CERTA"
+   },
+   "palavras": 12,
+   "origem_v6": "c7"
+  },
+  {
+   "id": "c13",
+   "seg": [
+    44.1,
+    49.5
+   ],
+   "voz": "jessica",
+   "fala": "É palpite pelo histórico. Tá ansioso para o show? Manda para quem vai com você, e comenta a sua aposta.",
+   "tela": "TÁ ANSIOSO? MANDA PARA QUEM VAI COM VOCÊ · COMENTA A SUA APOSTA · amanhã: o ranking completo · somaisumfadepearljam.com.br",
+   "visual": "As cinco certas voltam em lista numerada de 5 a 1, com os pedidos carimbados ao lado, para dar vontade de pausar. Um card vazio pisca embaixo. Faixa 'AMANHÃ: O RANKING COMPLETO' entra de lado. Site fixo no rodapé. Último meio segundo sem fala.",
+   "dados": {
+    "grafico": "lista final",
+    "certas": {
+     "1": "Porch",
+     "2": "Hard Sun",
+     "3": "Far Behind",
+     "4": "Just Breathe",
+     "5": "Better Man"
+    },
+    "pedidos": {
+     "Black": "DIFÍCIL",
+     "Sirens": "ESQUECE",
+     "Invincible": "ESQUECE",
+     "Better Days": "TALVEZ"
+    },
+    "site": "somaisumfadepearljam.com.br"
+   },
+   "palavras": 15,
+   "origem_v6": "c13"
+  }
+ ],
+ "legenda": "As 5 músicas certas no setlist do Eddie Vedder no Best of Blues, sexta e domingo no Ibirapuera. É um estudo nosso, com base no setlist.fm.\n\nO critério: tocou nos 9 shows solo dele desde 2023. Só cinco passam: Better Man, Just Breathe, Far Behind, Hard Sun e Porch.\n\nE a Black? Ficou fora dos últimos 8 shows solo. A última vez foi num festival ao ar livre, em 2023.\n\nÉ palpite pelo histórico, não é setlist oficial. Qual você quer ouvir? Amanhã tem o ranking completo.\n\n#EddieVedder #PearlJam #BestOfBluesAndRock #Ibirapuera #Setlist",
+ "nota": "v7: contagem 5 a 1 intercalada com os pedidos negados (pedido do Andre), reordenada a partir da v6"
+}

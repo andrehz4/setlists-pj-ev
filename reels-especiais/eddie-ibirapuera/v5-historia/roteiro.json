@@ -1,0 +1,279 @@
+{
+  "duracao_alvo": 50.1,
+  "palavras_faladas": 153,
+  "ritmo_alvo_ppm": 195,
+  "formato": "9:16, 1080x1920, Jessica e Liam em pingue-pongue, fala acelerada",
+  "fonte": "estudo SMUFDPJ com base no setlist.fm, consulta em 15/11/2026",
+  "selo_fixo": "ESTUDO SMUFDPJ · base: setlist.fm",
+  "aviso": "PALPITE baseado em histórico, não é setlist oficial",
+  "base_17_shows": {
+    "solo_desde_2023": 9,
+    "brasil_2014_e_2018": 8
+  },
+  "carimbos": {
+    "VAI": "verde",
+    "NÃO VAI": "vermelho",
+    "TALVEZ": "amarelo",
+    "DIFÍCIL": "laranja",
+    "CRAVADO": "dourado"
+  },
+  "cenas": [
+    {
+      "id": "c1",
+      "seg": [
+        0.0,
+        5.4
+      ],
+      "voz": "jessica",
+      "fala": "A gente foi atrás de dezessete shows solo do Eddie, para saber o que toca no Ibirapuera.",
+      "tela": "O PROVÁVEL SETLIST DO EDDIE NO IBIRAPUERA. 17 SHOWS SOLO INVESTIGADOS",
+      "visual": "Frame zero: título em caixa alta sobre um quadro de investigação (cortiça, folhas de setlist presas com alfinete, linha vermelha ligando umas às outras), com clipe ao vivo mudo e escurecido por trás. Contador sobe de 0 a 17 enquanto 17 bolinhas em duas fileiras: 9 com a etiqueta SOLO DESDE 2023 e 8 com a etiqueta BRASIL (2014 e 2018) acendem em rajada. Selo fixo no rodapé em todas as cenas: 'ESTUDO SMUFDPJ · base: setlist.fm'. Linha fina: 'palpite pelo histórico, não é setlist oficial'.",
+      "dados": {
+        "grafico": "contador + 17 bolinhas (9 recentes + 8 Brasil)",
+        "contador": {
+          "de": 0,
+          "ate": 17
+        },
+        "bolinhas": {
+          "solo_desde_2023": 9,
+          "brasil": 8,
+          "total": 17
+        }
+      },
+      "palavras": 17
+    },
+    {
+      "id": "c2",
+      "seg": [
+        5.4,
+        8.7
+      ],
+      "voz": "liam",
+      "fala": "E achou uma coisa que muda tudo: existem dois Eddies.",
+      "tela": "A DESCOBERTA: DOIS EDDIES",
+      "visual": "A linha vermelha do quadro estica e rasga a tela ao meio na vertical. As folhas de setlist se separam em dois montes, um para cada lado. Tremor curto no rasgo. Dois títulos ainda vazios, um em cada metade.",
+      "dados": {
+        "grafico": "tela dividida",
+        "lados": 2
+      },
+      "palavras": 10
+    },
+    {
+      "id": "c3",
+      "seg": [
+        8.7,
+        13.5
+      ],
+      "voz": "jessica",
+      "fala": "Um toca com a banda Earthlings. O outro toca sozinho. No Ibirapuera, é o sozinho.",
+      "tela": "COM A BANDA: 15 SHOWS. SOZINHO: 9 SHOWS (desde 2022). IBIRAPUERA = SOZINHO",
+      "visual": "Metade esquerda: 'COM A BANDA EARTHLINGS', barra subindo até 15. Metade direita: 'SOZINHO', barra subindo até 9. Quando a fala chega em Ibirapuera, um pino cai na metade direita, a esquerda escurece e a direita toma a tela inteira. Nota pequena: 'duas apresentações solo, segundo a imprensa (nov/2026)'.",
+      "dados": {
+        "grafico": "barras",
+        "valores": {
+          "com a banda Earthlings": 15,
+          "solo": 9
+        },
+        "periodo": "desde 2022",
+        "ibirapuera": "solo"
+      },
+      "palavras": 15
+    },
+    {
+      "id": "c4",
+      "seg": [
+        13.5,
+        17.7
+      ],
+      "voz": "liam",
+      "fala": "Por isso Invincible, não vai: catorze vezes, todas com a banda. Solo, zero.",
+      "tela": "INVINCIBLE. COM A BANDA: 14. SOLO: 0 DE 17. Carimbo: NÃO VAI",
+      "visual": "Card INVINCIBLE em vermelho. Volta a tela dividida por um instante: à esquerda o contador sobe até 14, à direita as 17 bolinhas ficam todas apagadas e o zero entra grande. Carimbo NÃO VAI com tremor. Etiqueta 'o motivo é o formato'.",
+      "dados": {
+        "grafico": "contador + 17 bolinhas + carimbo",
+        "contador_banda": {
+          "de": 0,
+          "ate": 14
+        },
+        "acesas": 0,
+        "total": 17,
+        "carimbo": "NÃO VAI"
+      },
+      "palavras": 13
+    },
+    {
+      "id": "c5",
+      "seg": [
+        17.7,
+        21.0
+      ],
+      "voz": "jessica",
+      "fala": "Just Breathe, vai: está nos nove shows solo mais recentes.",
+      "tela": "JUST BREATHE. 9 DE 9 DESDE 2023. TOTAL 14 DE 17. Carimbo: VAI",
+      "visual": "Verde. A fileira de 9 bolinhas recentes acende inteira, uma por batida. Na fileira do Brasil acendem 5 de 8. Contador fecha em 14 DE 17. Carimbo VAI.",
+      "dados": {
+        "grafico": "17 bolinhas + carimbo",
+        "solo_desde_2023": "9 de 9",
+        "brasil": "5 de 8",
+        "acesas": 14,
+        "total": 17,
+        "carimbo": "VAI"
+      },
+      "palavras": 10
+    },
+    {
+      "id": "c6",
+      "seg": [
+        21.0,
+        24.3
+      ],
+      "voz": "liam",
+      "fala": "Sirens e Given to Fly, não vão: zero em dezessete.",
+      "tela": "SIRENS 0 DE 17. GIVEN TO FLY 0 DE 17. Carimbo: NÃO VAI",
+      "visual": "Vermelho. Dois cards lado a lado, cada um com as 17 bolinhas apagadas e o zero grande. Um carimbo NÃO VAI pega os dois. Etiqueta '10 pedidos' no card de Sirens.",
+      "dados": {
+        "grafico": "17 bolinhas x2 + carimbo",
+        "valores": {
+          "Sirens": "0 de 17",
+          "Given to Fly": "0 de 17"
+        },
+        "pedidos_sirens": 10,
+        "carimbo": "NÃO VAI"
+      },
+      "palavras": 10
+    },
+    {
+      "id": "c7",
+      "seg": [
+        24.3,
+        28.8
+      ],
+      "voz": "jessica",
+      "fala": "Elderly Woman, vai, e pode abrir: abriu os cinco shows solo antes do Japão.",
+      "tela": "ELDERLY WOMAN. 14 DE 17. ABRIU 5 DE 5 (EUA e Canadá, 2023 a 2025). Carimbo: VAI",
+      "visual": "Verde. Cinco folhas de setlist em fila (Tempe, Seattle, Seattle, Seattle, Vancouver), e em cada uma a primeira linha acende com o nome da música. Faixa 'PALPITE DE ABERTURA'. Depois as 17 bolinhas com 14 acesas. Carimbo VAI.",
+      "dados": {
+        "grafico": "fracao 5 de 5 + 17 bolinhas + carimbo",
+        "abriu": "5 de 5",
+        "onde": "shows solo nos EUA e Canadá, 2023 a 2025",
+        "acesas": 14,
+        "total": 17,
+        "solo_desde_2023": "8 de 9",
+        "brasil": "6 de 8",
+        "carimbo": "VAI"
+      },
+      "palavras": 14
+    },
+    {
+      "id": "c8",
+      "seg": [
+        28.8,
+        31.8
+      ],
+      "voz": "liam",
+      "fala": "Black, a mais pedida, é difícil: duas em dezessete.",
+      "tela": "BLACK. 21 PEDIDOS. 2 DE 17. Carimbo: DIFÍCIL",
+      "visual": "Laranja. Barra de pedidos sobe até 21, enorme. Ao lado, as 17 bolinhas com só duas acesas (uma em cada fileira). Carimbo DIFÍCIL entra, mas fica meio torto, sem tremor, como quem não bateu com força.",
+      "dados": {
+        "grafico": "barra de pedidos + 17 bolinhas + carimbo",
+        "pedidos": 21,
+        "acesas": 2,
+        "total": 17,
+        "solo_desde_2023": "1 de 9",
+        "brasil": "1 de 8",
+        "carimbo": "DIFÍCIL"
+      },
+      "palavras": 9
+    },
+    {
+      "id": "c9",
+      "seg": [
+        31.8,
+        37.5
+      ],
+      "voz": "jessica",
+      "fala": "Só que no único festival ao ar livre que ele fez sozinho nesses anos, em Tempe, teve Black.",
+      "tela": "TEMPE (EUA), 2023: SOLO, FESTIVAL, AO AR LIVRE. TEVE BLACK",
+      "visual": "Mapa em traço com um pino em Tempe. A bolinha acesa de Black da fileira recente voa até o pino e abre a folha de setlist daquele show, com BLACK grifada. Uma linha tracejada sai de Tempe e cai num segundo pino, Ibirapuera, com três etiquetas iguais nos dois: SOLO, FESTIVAL, AO AR LIVRE. O carimbo DIFÍCIL ganha um ponto de interrogação. Nota: 'único desde 2022'.",
+      "dados": {
+        "grafico": "mapa + carimbo",
+        "origem": "Innings Festival, Tempe (EUA), 26/02/2023",
+        "destino": "Parque do Ibirapuera, São Paulo",
+        "musicas_no_show_de_tempe": 16,
+        "teve_black": true,
+        "recorte": "único show solo em festival ao ar livre desde 2022"
+      },
+      "palavras": 18
+    },
+    {
+      "id": "c10",
+      "seg": [
+        37.5,
+        41.1
+      ],
+      "voz": "liam",
+      "fala": "Better Days, talvez: cinco vezes, todas no Brasil. É coisa nossa.",
+      "tela": "BETTER DAYS. BRASIL 5 DE 8. DESDE 2023: 0 DE 9. Carimbo: TALVEZ",
+      "visual": "Amarelo. Só a fileira do Brasil acende (5 de 8), a fileira recente fica apagada. Um ponteiro oscila e para no meio. Carimbo TALVEZ.",
+      "dados": {
+        "grafico": "17 bolinhas + carimbo",
+        "brasil": "5 de 8",
+        "solo_desde_2023": "0 de 9",
+        "acesas": 5,
+        "total": 17,
+        "carimbo": "TALVEZ"
+      },
+      "palavras": 11
+    },
+    {
+      "id": "c11",
+      "seg": [
+        41.1,
+        45.0
+      ],
+      "voz": "jessica",
+      "fala": "E as cravadas: Porch, Hard Sun, e Far Behind. Dezessete de dezessete.",
+      "tela": "PORCH, HARD SUN, FAR BEHIND. 17 DE 17. Carimbo: CRAVADO",
+      "visual": "Clímax. Três cards entram empilhados, cada um com sua fileira de 17 bolinhas acendendo em paralelo até o fim, sem falhar nenhuma. Os três contadores fecham juntos em 17 DE 17. Carimbo CRAVADO em dourado, o maior do vídeo.",
+      "dados": {
+        "grafico": "17 bolinhas x3 + carimbo",
+        "valores": {
+          "Porch": "17 de 17",
+          "Hard Sun": "17 de 17",
+          "Far Behind": "17 de 17"
+        },
+        "carimbo": "CRAVADO"
+      },
+      "palavras": 12
+    },
+    {
+      "id": "c12",
+      "seg": [
+        45.0,
+        50.1
+      ],
+      "voz": "liam",
+      "fala": "É palpite pelo histórico. Comenta a sua aposta, que amanhã tem o ranking completo.",
+      "tela": "E A SUA APOSTA? COMENTA. AMANHÃ: O RANKING COMPLETO. somaisumfadepearljam.com.br",
+      "visual": "Volta o quadro de investigação da abertura, agora com todos os cards presos e carimbados, para dar vontade de pausar. Um card vazio pisca no meio. Faixa 'AMANHÃ: O RANKING COMPLETO' entra de lado. Site fixo no rodapé. Último meio segundo sem fala.",
+      "dados": {
+        "grafico": "grade de carimbos",
+        "carimbos": {
+          "Invincible": "NÃO VAI",
+          "Just Breathe": "VAI",
+          "Sirens": "NÃO VAI",
+          "Given to Fly": "NÃO VAI",
+          "Elderly Woman": "VAI",
+          "Black": "DIFÍCIL",
+          "Better Days": "TALVEZ",
+          "Porch": "CRAVADO",
+          "Hard Sun": "CRAVADO",
+          "Far Behind": "CRAVADO"
+        },
+        "site": "somaisumfadepearljam.com.br"
+      },
+      "palavras": 14
+    }
+  ],
+  "legenda": "O provável setlist do Eddie Vedder no Ibirapuera, sexta e domingo. É um estudo nosso, feito com base no setlist.fm.\n\nA descoberta: desde 2022 ele alterna show com a banda Earthlings e show solo. O Ibirapuera é solo. Então olhamos 17 shows solo: 9 desde 2023 e os 8 do Brasil.\n\nPorch, Hard Sun e Far Behind saíram nos 17. Invincible, só com a banda. Black, em 2.\n\nÉ palpite pelo histórico, não é setlist oficial. Qual é a sua aposta? Amanhã tem o ranking completo.\n\n#EddieVedder #PearlJam #BestOfBluesAndRock #Ibirapuera #Setlist"
+}
