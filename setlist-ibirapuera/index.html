@@ -130,6 +130,11 @@
   .alvo:not(:has(> button:disabled)) .mira { opacity: 1; scale: 1; }
   .alvo .mira.tl { top: 2px; left: 2px; } .alvo .mira.tr { top: 2px; right: 2px; }
   .alvo .mira.bl { bottom: 2px; left: 2px; } .alvo .mira.br { bottom: 2px; right: 2px; }
+  /* Vídeo pronto: "Postar no story" com a largura toda e as setas; "Fechar" vira link discreto embaixo; o 100% sai de cena. */
+  #salvar-tela .botoes:has(.alvo) { grid-template-columns: 1fr; gap: 0; }
+  #salvar-tela .botoes:has(.alvo) > .btn:not(.cheio) { min-height: 0; padding: 4px; background: none; border: 0; color: #f2efe6b3;
+    font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  #salvar-tela .carga.ok { display: none; }
   @keyframes aponta { 0%, 100% { translate: 0 0; } 50% { translate: var(--d); } }
   .fita { position: absolute; width: 92px; height: 26px; background: var(--fita); box-shadow: 0 1px 2px rgba(0,0,0,.15);
     clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%); }
@@ -358,7 +363,7 @@
   #estado-folha { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; }
   #previa.montando #folha { opacity: .6; }
   #atalho { display: none !important; }
-  #salvar-tela { position: fixed; inset: 0; z-index: 100; background: #000e; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 16px; color: #f2efe6; }
+  #salvar-tela { position: fixed; inset: 0; z-index: 100; background: #0b0a09; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 16px; color: #f2efe6; }
   #salvar-tela img { max-width: 100%; max-height: 58vh; border-radius: 4px; -webkit-touch-callout: default; animation: sobe .4s ease-out both; }
   .passos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; max-width: 420px; }
   .passos li { display: grid; justify-items: center; gap: 6px; text-align: center; font: 600 13px/1.2 var(--corpo); color: var(--texto);
