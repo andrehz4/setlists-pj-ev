@@ -116,7 +116,7 @@ async function baixarStory() {
   try {
     const blob = await paraBlob(await story($('#folha')));
     const como = await entregar(blob, nome, { compartilhar: matchMedia('(pointer: coarse)').matches });
-    const t = $('#toast'), msg = { baixado: 'Story salvo. Agora posta e marca @smufdpj', compartilhado: 'Boa! Marca @smufdpj pra gente ver' }[como];
+    const t = $('#toast'), msg = { baixado: 'Story salvo! Posta e marca @smufdpj que a gente compartilha o seu', compartilhado: 'Boa! Marca @smufdpj que a gente compartilha o seu' }[como];
     if (msg) { t.textContent = msg; t.classList.add('ver'); setTimeout(() => t.classList.remove('ver'), 3500); }
   } catch (e) { $('#aviso').textContent = 'O story não saiu. Tente de novo ou tire um print da folha.'; }
   b.classList.remove('gerando'); b.firstElementChild.textContent = rot;

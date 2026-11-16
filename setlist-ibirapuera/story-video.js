@@ -109,7 +109,7 @@ async function storyVideo(b, tipo) {
     vid.setAttribute('playsinline', ''); vid.style.cssText = p.querySelector('canvas').style.cssText;
     p.querySelector('canvas').replaceWith(vid);
     progresso(p, 1); p.querySelector('.carga').classList.add('ok');
-    p.querySelector('.estado').textContent = 'Pronto! Posta e marca @smufdpj';
+    p.querySelector('.estado').textContent = 'Pronto! Posta e marca @smufdpj que a gente compartilha o seu';
     p.querySelector('.botoes').hidden = false;
     const [postar, fechar] = p.querySelectorAll('.botoes button');
     mirar(postar);
