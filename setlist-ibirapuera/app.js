@@ -116,7 +116,7 @@ async function baixarStory() {
     const t = $('#toast'), msg = { baixado: 'Story salvo. Agora posta e marca @smufdpj', compartilhado: 'Boa! Marca @smufdpj pra gente ver' }[como];
     if (msg) { t.textContent = msg; t.classList.add('ver'); setTimeout(() => t.classList.remove('ver'), 3500); }
   } catch (e) { $('#aviso').textContent = 'O story não saiu. Tente de novo ou tire um print da folha.'; }
-  b.classList.remove('gerando'); b.firstElementChild.textContent = 'Baixar pro story';
+  b.classList.remove('gerando'); b.firstElementChild.textContent = 'Baixar a imagem pro story';
 }
 
 document.addEventListener('click', (e) => {

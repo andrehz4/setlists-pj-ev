@@ -110,7 +110,7 @@ async function storyVideo(b, tipo) {
     fechar.onclick = () => { p.remove(); URL.revokeObjectURL(url); };
   } catch (e) {
     $('#salvar-tela')?.remove();
-    $('#aviso').textContent = 'O vídeo não saiu neste celular. Use o "Baixar pro story" (foto).';
+    $('#aviso').textContent = 'O vídeo não saiu neste celular. Baixe a imagem pro story.';
   }
   b.classList.remove('gerando');
 }

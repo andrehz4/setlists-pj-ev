@@ -272,7 +272,7 @@
   @keyframes gira { to { rotate: 360deg; } }
   @media (prefers-reduced-motion: reduce) { .story-btn, .story-btn::after { animation: none; } }
   #acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  #story-video { grid-column: 1 / -1; }
+  #story-video { grid-column: 1 / -1; min-height: 56px; font-size: 16px; border-color: var(--cor); color: var(--cor); }
   #story-video.gerando { opacity: .6; pointer-events: none; }
   #baixar { grid-column: 1 / -1; min-height: 54px; font-size: 16px; }
   .r-sorte { grid-area: sorte; }
@@ -468,8 +468,8 @@
     </div>
     <div class="bloco r-baixar">
       <div id="acoes" hidden>
-        <button id="story" class="btn cheio story-btn" type="button"><span>Baixar pro story</span></button>
-        <button id="story-video" class="btn" type="button" hidden>Story em vídeo, com o Eddie ao fundo</button>
+        <button id="story" class="btn cheio story-btn" type="button"><span>Baixar a imagem pro story</span></button>
+        <button id="story-video" class="btn" type="button" hidden>Baixar o vídeo pro story, com o Eddie ao fundo</button>
         <p class="chama">Posta e marca <b>@smufdpj</b>. A gente quer ver o seu.</p>
       </div>
       <p id="aviso" role="status"></p>
