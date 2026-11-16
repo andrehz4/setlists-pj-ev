@@ -23,12 +23,22 @@ function painel(cv) {
   fecharTela();
   const p = document.createElement('div');
   p.id = 'salvar-tela';
-  p.innerHTML = '<p class="estado" role="status" style="margin:0;font-weight:600">Gravando o seu story…</p><div class="botoes" hidden>' +
+  p.innerHTML = '<p class="estado" role="status" style="margin:0;font-weight:600">Gravando o seu story…</p>' +
+    (cv ? '<div class="carga"><b>0%</b><div class="trilho"><i></i></div><small>Preparando a sua folha…</small></div>' : '') + '<div class="botoes" hidden>' +
     '<button type="button" class="btn cheio">Postar no story</button><button type="button" class="btn">Fechar</button></div>';
   p.querySelector('.estado').style.cssText += ';max-width:420px;text-align:center;line-height:1.45';
   if (cv) { cv.style.cssText = 'max-width:100%;max-height:64vh;border-radius:6px;background:#000'; p.insertBefore(cv, p.querySelector('.botoes')); }
   document.body.append(p);
   return p;
+}
+
+// Loading de 0 a 100%: a etapa acompanha o roteiro (folha, lista, cartas, chamada final).
+const ETAPAS = [[0, 'Escrevendo a sua folha…'], [0.42, 'Passando a limpo a lista…'], [0.62, 'Contando as estatísticas…'], [0.86, 'Chamando o Eddie pro final…']];
+function progresso(p, f) {
+  const pct = Math.min(100, Math.max(0, Math.round(f * 100)));
+  p.querySelector('.carga b').textContent = pct + '%';
+  p.querySelector('.carga i').style.width = pct + '%';
+  p.querySelector('.carga small').textContent = pct >= 100 ? 'Pronto!' : ETAPAS.filter(([d]) => f >= d).at(-1)[1];
 }
 
 // O fundo: um <video> próprio (o da página pode estar pausado). Se não tocar, fica a foto parada.
@@ -44,7 +54,8 @@ async function gravar(tipo) {
   const [roteiro, vivo, foto] = await Promise.all([prepararRoteiro($('#folha')), tocando, carregar('fundo-eddie-quadro.jpg')]);
   const DURACAO = Math.round(roteiro.duracao);
   const cv = tela(W, H), c = cv.getContext('2d');
-  const p = painel(cv), estado = p.querySelector('.estado');
+  const p = painel(cv);
+  progresso(p, 0.03);
   const rec = new MediaRecorder(cv.captureStream(FPS), { mimeType: tipo, videoBitsPerSecond: 6e6 });
   const partes = [];
   rec.ondataavailable = (e) => { if (e.data.size) partes.push(e.data); };
@@ -56,7 +67,7 @@ async function gravar(tipo) {
     const passo = () => {
       const t = (performance.now() - t0) / 1000;
       quadro(c, roteiro, vivo && v.readyState >= 2 ? v : foto, Math.min(t, DURACAO));
-      estado.textContent = `Gravando o seu story… ${Math.min(DURACAO, Math.ceil(t))}/${DURACAO} s`;
+      progresso(p, 0.03 + 0.95 * Math.min(1, t / DURACAO)); // 3% preparo, 95% gravação, os 2% finais ao fechar o arquivo
       if (t >= DURACAO + 0.2) ok(); else requestAnimationFrame(passo);
     };
     requestAnimationFrame(passo);
@@ -89,6 +100,7 @@ async function storyVideo(b, tipo) {
     const vid = Object.assign(document.createElement('video'), { src: url, muted: true, loop: true, autoplay: true, playsInline: true });
     vid.setAttribute('playsinline', ''); vid.style.cssText = p.querySelector('canvas').style.cssText;
     p.querySelector('canvas').replaceWith(vid);
+    progresso(p, 1); p.querySelector('.carga').classList.add('ok');
     p.querySelector('.estado').textContent = 'Pronto! Posta e marca @smufdpj';
     p.querySelector('.botoes').hidden = false;
     const [postar, fechar] = p.querySelectorAll('.botoes button');
@@ -106,6 +118,10 @@ const tipo = formato();
 const b = $('#story-video');
 if (tipo && b) {
   b.hidden = false;
+  if (tipo !== 'app') { // vídeo como opção principal; dentro do Instagram não dá pra baixar vídeo, então lá a imagem segue na frente
+    $('#acoes').classList.add('com-video'); b.classList.add('cheio', 'story-btn');
+    b.innerHTML = '<span>Baixar o vídeo pro story</span>'; $('#story').firstElementChild.textContent = 'Prefere foto? Baixar só a imagem';
+  }
   const ref = $('#story'), espelhar = () => { b.disabled = ref.disabled; };
   new MutationObserver(espelhar).observe(ref, { attributes: true, attributeFilter: ['disabled'] });
   espelhar();

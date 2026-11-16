@@ -110,6 +110,7 @@ function mover(i, j) {
 async function baixarStory() {
   const b = $('#story');
   if (b.classList.contains('gerando')) return;
+  const rot = b.firstElementChild.textContent; // o texto muda quando o vídeo é a opção principal (story-video.js)
   b.classList.add('gerando'); b.firstElementChild.textContent = 'Montando o seu story';
   const nome = `setlist-eddie-ibirapuera-${estado.show === 2 ? '22' : '20'}-11-story.jpg`;
   try {
@@ -118,7 +119,7 @@ async function baixarStory() {
     const t = $('#toast'), msg = { baixado: 'Story salvo. Agora posta e marca @smufdpj', compartilhado: 'Boa! Marca @smufdpj pra gente ver' }[como];
     if (msg) { t.textContent = msg; t.classList.add('ver'); setTimeout(() => t.classList.remove('ver'), 3500); }
   } catch (e) { $('#aviso').textContent = 'O story não saiu. Tente de novo ou tire um print da folha.'; }
-  b.classList.remove('gerando'); b.firstElementChild.textContent = 'Baixar a imagem pro story';
+  b.classList.remove('gerando'); b.firstElementChild.textContent = rot;
 }
 
 document.addEventListener('click', (e) => {
