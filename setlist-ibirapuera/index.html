@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Qual é a sua setlist do Eddie no Ibirapuera?</title>
-<meta name="description" content="Sorteie ou monte a sua setlist do Eddie Vedder no Ibirapuera, escrita à mão, e poste no story.">
+<title>Qual será a sua setlist do Eddie no Ibirapuera?</title>
+<meta name="description" content="Qual será a setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
 <link rel="modulepreload" href="app.js">
@@ -78,20 +78,42 @@
   .chegada .meio { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 24px 0; }
   .data { font: 800 15px/1 var(--disp); letter-spacing: .12em; text-transform: uppercase; color: var(--cor); display: flex; gap: 10px; align-items: center; }
   .data i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: .6; }
-  .grande { position: relative; display: block; width: 100%; text-align: left; background: var(--papel); color: var(--tinta);
-    border-radius: 3px; padding: 40px 24px 26px; transform: rotate(-1.6deg); box-shadow: 0 24px 50px -18px rgba(0,0,0,.8), 0 2px 0 rgba(0,0,0,.2);
-    transition: transform .2s; }
-  .grande:hover { transform: rotate(-.6deg) translateY(-2px); }
-  .grande:active { transform: rotate(-.6deg) scale(.985); }
+  /* Cartão da chegada: cai na mesa, as fitas colam, o título aparece palavra por palavra, risca a linha e fica balançando.
+     rotate/translate são da animação; scale é do hover e do toque, pra um não brigar com o outro. */
+  .grande { position: relative; display: block; width: 100%; text-align: left; color: var(--tinta); border-radius: 3px; padding: 40px 24px 26px;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.75) 50%, transparent 60%) -200% 0 / 250% 100% no-repeat, var(--papel);
+    rotate: -1.6deg; box-shadow: 0 24px 50px -18px rgba(0,0,0,.8), 0 2px 0 rgba(0,0,0,.2); transition: scale .2s, box-shadow .2s;
+    animation: cai .9s cubic-bezier(.2,1.3,.4,1) both, balanca 5s ease-in-out 1.8s infinite, reluz 4.5s ease-in-out 2.2s infinite; }
+  .grande:hover { scale: 1.025; box-shadow: 0 34px 60px -18px rgba(0,0,0,.85), 0 0 0 3px rgba(232,176,74,.5); }
+  .grande:active { scale: .97; }
+  .grande .w { display: inline-block; font-style: normal; animation: palavra .5s cubic-bezier(.2,1.6,.4,1) both; }
+  .grande .w:nth-child(1) { animation-delay: .55s; } .grande .w:nth-child(2) { animation-delay: .68s; }
+  .grande .w:nth-child(3) { animation-delay: .8s; } .grande .w:nth-child(4) { animation-delay: .9s; }
+  .grande .w:nth-child(5) { animation-delay: 1.05s; color: #b5791a; }
+  @keyframes cai { 0% { translate: 0 -70px; rotate: -9deg; opacity: 0; } 60% { opacity: 1; } 100% { translate: 0 0; rotate: -1.6deg; } }
+  @keyframes balanca { 0%, 100% { rotate: -1.6deg; translate: 0 0; } 50% { rotate: -.4deg; translate: 0 -6px; } }
+  @keyframes reluz { 0%, 55% { background-position: -200% 0, 0 0; } 85%, 100% { background-position: 250% 0, 0 0; } }
+  @keyframes palavra { 0% { opacity: 0; transform: translateY(24px) scale(.6) rotate(-6deg); } 100% { opacity: 1; transform: none; } }
+  @keyframes cola { 0% { opacity: 0; scale: 1.6; } 100% { opacity: 1; scale: 1; } }
+  @keyframes risca { to { background-size: 100% 2px; } }
+  @keyframes empurra { 0%, 100% { translate: 0 0; } 50% { translate: 8px 0; } }
+  @keyframes sobe { from { opacity: 0; translate: 0 18px; } }
+  @keyframes acende { 0%, 100% { border-color: var(--linha); box-shadow: none; } 50% { border-color: var(--cor); box-shadow: 0 0 22px -6px rgba(232,176,74,.55); } }
   .grande strong { display: block; font: 900 clamp(52px, 15vw, 68px)/.86 var(--disp); text-transform: uppercase; letter-spacing: -.005em; }
-  .grande span { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 14px; border-top: 2px solid var(--tinta); font-weight: 600; font-size: 15px; }
-  .grande span em { font: 900 28px/1 var(--disp); font-style: normal; }
+  .grande span:not(.fita) { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 14px; font-weight: 600; font-size: 15px;
+    background: linear-gradient(var(--tinta), var(--tinta)) 0 0 / 0 2px no-repeat; animation: risca .5s ease-out 1.35s forwards, sobe .4s ease-out 1.35s both; }
+  .grande span em { font: 900 28px/1 var(--disp); font-style: normal; animation: empurra 1.2s ease-in-out 2s infinite; }
   .fita { position: absolute; width: 92px; height: 26px; background: var(--fita); box-shadow: 0 1px 2px rgba(0,0,0,.15);
     clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%); }
-  .grande .fita.a { top: -11px; left: 22px; transform: rotate(-5deg); }
-  .grande .fita.b { top: -9px; right: 26px; transform: rotate(6deg); }
+  .grande .fita.a { top: -11px; left: 22px; transform: rotate(-5deg); animation: cola .3s ease-out .75s both; }
+  .grande .fita.b { top: -9px; right: 26px; transform: rotate(6deg); animation: cola .3s ease-out .9s both; }
   .montar-link { display: flex; justify-content: space-between; align-items: center; width: 100%; min-height: 60px; padding: 0 20px; margin-top: 10px;
-    border: 1px solid var(--linha); border-radius: 14px; font-weight: 600; }
+    border: 1px solid var(--linha); border-radius: 14px; font-weight: 600; transition: scale .2s;
+    animation: sobe .5s ease-out 1.6s both, acende 3s ease-in-out 2.4s infinite; }
+  .montar-link:active { scale: .97; }
+  .chegada .data { animation: sobe .5s ease-out .1s both; }
+  @media (prefers-reduced-motion: reduce) { .grande, .grande *, .montar-link, .chegada .data { animation: none !important; }
+    .grande span:not(.fita) { background-size: 100% 2px; } }
   .montar-link small { color: var(--fraco); font-weight: 400; font-size: 13px; }
   .montar-link:hover { border-color: var(--cor); }
   .rodape { color: var(--fraco); font-size: 12px; display: flex; flex-direction: column; gap: 4px; }
@@ -295,8 +317,8 @@
     <div class="meio">
       <button class="grande" id="abrir-sorteio" type="button">
         <span class="fita a"></span><span class="fita b"></span>
-        <strong>Qual é a sua setlist?</strong>
-        <span>Um toque e a sua folha sai na hora <em>→</em></span>
+        <strong><i class="w">Qual</i> <i class="w">será</i> <i class="w">a</i> <i class="w">sua</i> <i class="w">setlist?</i></strong>
+        <span>Um toque e a sua previsão sai na hora <em>→</em></span>
       </button>
       <button class="montar-link" id="ir-montar" type="button">Montar a minha <small>música por música →</small></button>
     </div>
