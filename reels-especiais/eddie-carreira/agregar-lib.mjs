@@ -33,7 +33,7 @@ export function carregar(slug) {
       const c = s.venue?.city || {};
       shows.push({ id: s.id, data, ano: +data.slice(0, 4), local: s.venue?.name || "", cidade: c.name || "",
         pais: c.country?.code || "", paisNome: c.country?.name || "", turne: s.tour?.name || null,
-        musicas, abertura: musicas[0], fecho: musicas[musicas.length - 1], url: s.url });
+        musicas, sets, abertura: musicas[0], fecho: musicas[musicas.length - 1], url: s.url });
     }
   }
   shows.sort((a, b) => a.data.localeCompare(b.data));
