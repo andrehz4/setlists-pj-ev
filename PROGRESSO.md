@@ -179,7 +179,13 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Segurança (revisão do Fable): frame-ancestors/X-Frame-Options, Permissions-Policy, escape de nomes, filtro de nome só
   latino, 173 PNGs oficiais copiados pra `img/oficial/` e CSP do gerador com img só do site.
 - Cópia privada do gerador em `/Users/andrehz/Documents/Githubhz/fabrica-quiz/geradores/setlist-ibirapuera`.
-- Próximo: Andre testar no iPhone e no Android (postar vídeo no story, abrir dentro do Instagram). Tirar a HOMENAGEM do
+- Depois do merge (16/11 tarde, direto na main): vídeo é o botão principal ("Baixar vídeo para o seu stories", imagem
+  vira link "Prefere foto?"), loading 0 a 100% na gravação, 4 setas douradas no botão principal (só quando libera) e no
+  "Postar no story", chance por extenso até vigintilhões, folha maior na imagem (400 px), logo com `?v=2` (CDN tinha
+  cacheado HTML), nome comprido ganha linha própria, "Escrevendo a folha" só pra leitor de tela, chamada "marca
+  @smufdpj que a gente compartilha o seu" (Andre precisa repostar quem marcar).
+- PRÓXIMO PEDIDO: reel tutorial "como gerar o seu setlist" (do começo ao Postar no story), gravado do site no celular.
+- Depois: Andre testar no iPhone e no Android (postar vídeo no story, abrir dentro do Instagram). Tirar a HOMENAGEM do
   `sorteio.js` depois de 22/11. Depois: gerador pra bandas cover com shows da agenda.
 
 ## 2026-11-14 (noite): layouts D, E, F do Claude Design no rodízio
