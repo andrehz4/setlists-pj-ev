@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!-- Modelo de carrossel "ranking" (Claude Design, 16/11/2026). Cores em :root, trocadas pela paleta do render.
+     Fotos em uploads/ ao lado da CÓPIA deste arquivo (fora do git). Ver scripts/publish/carrossel/README.md -->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Archivo:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--destaque:#FFCC1A;--fundo:#14110F;--alerta:#E0361C;--papel:#f3efe6;--papel2:#E9E1CF;--claro:#fff;}
+body{margin:0;background:#1c1c1c;}
+a{color:var(--destaque);}a:hover{color:var(--claro);}
+</style>
+</helmet>
+<section style="display:flex;flex-wrap:wrap;gap:64px;padding:80px;align-items:flex-start;font-family:'Archivo',sans-serif;">
+
+<!-- 01 CAPA -->
+<div data-screen-label="slide-01" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--fundo);flex:none;">
+  <img src="uploads/foto-capa-eddie-setlist.png" alt="Eddie Vedder nos bastidores com setlists" style="position:absolute;top:0;left:0;width:1080px;height:760px;object-fit:cover;object-position:50% 30%;">
+  <div style="position:absolute;top:0;left:0;width:1080px;height:780px;background:linear-gradient(180deg,color-mix(in srgb, var(--fundo) 0%, transparent) 45%,var(--fundo) 98%);"></div>
+  <div style="position:absolute;top:410px;left:56px;transform:rotate(-5deg);background:var(--alerta);color:var(--claro);padding:14px 30px 10px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:76px;line-height:1;letter-spacing:2px;box-shadow:0 0 0 5px var(--alerta),0 0 0 9px var(--claro),0 18px 40px rgba(0,0,0,.45);">FALTAM 3 DIAS</div>
+  <div style="position:absolute;top:56px;right:56px;display:flex;align-items:center;gap:14px;">
+    <div style="font-weight:800;font-size:26px;color:var(--claro);text-shadow:0 2px 10px rgba(0,0,0,.6);">@smufdpj</div>
+    <div style="width:92px;height:92px;border-radius:50%;overflow:hidden;border:4px solid var(--destaque);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div>
+  </div>
+  <div style="position:absolute;top:540px;left:60px;right:60px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:268px;line-height:.8;color:var(--destaque);letter-spacing:-3px;text-transform:uppercase;">Eddie<br>Vedder</div>
+  <div style="position:absolute;top:990px;left:64px;right:64px;font-weight:900;font-size:58px;line-height:1.02;color:var(--claro);letter-spacing:-1px;text-wrap:balance;">O que ele vai tocar no Ibirapuera?</div>
+  <div style="position:absolute;top:1150px;left:0;width:1080px;height:96px;background:var(--destaque);display:flex;align-items:center;justify-content:space-between;padding:0 64px;box-sizing:border-box;">
+    <div style="font-weight:900;font-size:34px;color:var(--fundo);letter-spacing:-.5px;">315 shows solo. 297 músicas. A conta completa.</div>
+  </div>
+  <div style="position:absolute;bottom:34px;left:64px;right:64px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="font-weight:700;font-size:28px;color:var(--claro);">Sexta 20 e domingo 22 · Ibirapuera</div>
+    <div style="display:flex;align-items:center;gap:12px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:44px;color:var(--destaque);letter-spacing:2px;">ARRASTA <span style="font-family:'Archivo',sans-serif;font-size:42px;">→</span></div>
+  </div>
+</div>
+
+<!-- 02 TOP 10 -->
+<div data-screen-label="slide-02" style="position:relative;width:1080px;height:1350px;overflow:hidden;background-color:var(--destaque);background-image:radial-gradient(rgba(0,0,0,.07) 1.2px,transparent 1.6px);background-size:10px 10px;flex:none;color:var(--fundo);">
+  <div style="position:absolute;top:72px;left:72px;right:72px;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="background:var(--fundo);color:var(--destaque);font-weight:900;font-size:24px;letter-spacing:.14em;padding:8px 14px;">TOP 10</div><div style="font-weight:800;font-size:24px;letter-spacing:.14em;">RANKING SOLO</div></div>
+    <div style="margin-top:22px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:136px;line-height:.86;text-transform:uppercase;letter-spacing:-2px;">As 10 mais tocadas no solo</div>
+    <div style="margin-top:16px;font-weight:700;font-size:26px;">vezes, 1 por show, em 315 shows</div>
+  </div>
+  <div style="position:absolute;top:440px;left:72px;right:72px;display:flex;flex-direction:column;gap:10px;">
+    <sc-for list="{{ top10 }}" as="r" hint-placeholder-count="10">
+      <div style="display:grid;grid-template-columns:86px minmax(0,1fr);align-items:center;height:66px;">
+        <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:60px;line-height:1;">{{ r.rank }}</div>
+        <div style="display:flex;align-items:center;gap:16px;height:66px;">
+          <div style="height:66px;width:{{ r.w }};background:var(--fundo);color:var(--destaque);display:flex;align-items:center;padding:0 22px;box-sizing:border-box;font-weight:800;font-size:30px;white-space:nowrap;">{{ r.name }}</div>
+          <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:56px;line-height:1;">{{ r.n }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--fundo);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;"><div>somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;">02/10</div></div>
+  </div>
+</div>
+
+<!-- 03 11 a 20 -->
+<div data-screen-label="slide-03" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--fundo);flex:none;color:var(--destaque);">
+  <div style="position:absolute;top:56px;right:72px;width:250px;height:320px;background:var(--destaque);overflow:hidden;transform:rotate(3deg);box-shadow:0 20px 50px rgba(0,0,0,.5);"><img src="uploads/ev-commons-Eddie-Vedder-2018.jpg" alt="Eddie Vedder com ukulele" style="width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:grayscale(1) contrast(1.25);mix-blend-mode:multiply;"></div>
+  <div style="position:absolute;top:72px;left:72px;width:640px;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="background:var(--destaque);color:var(--fundo);font-weight:900;font-size:24px;letter-spacing:.14em;padding:8px 14px;">11 A 20</div><div style="font-weight:800;font-size:24px;letter-spacing:.14em;color:var(--claro);">RANKING SOLO</div></div>
+    <div style="margin-top:22px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:170px;line-height:.84;text-transform:uppercase;letter-spacing:-2px;">Do 11º<br>ao 20º</div>
+  </div>
+  <div style="position:absolute;top:440px;left:72px;right:72px;display:flex;flex-direction:column;gap:10px;">
+    <sc-for list="{{ next10 }}" as="r" hint-placeholder-count="10">
+      <div style="display:grid;grid-template-columns:86px minmax(0,1fr);align-items:center;height:66px;">
+        <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:60px;line-height:1;color:var(--claro);">{{ r.rank }}</div>
+        <div style="display:flex;align-items:center;gap:16px;height:66px;">
+          <div style="height:66px;width:{{ r.w }};background:var(--destaque);color:var(--fundo);display:flex;align-items:center;padding:0 22px;box-sizing:border-box;font-weight:800;font-size:28px;white-space:nowrap;">{{ r.name }}</div>
+          <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:56px;line-height:1;">{{ r.n }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;color:var(--claro);">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--destaque);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;"><div>somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;color:var(--destaque);">03/10</div></div>
+  </div>
+</div>
+
+<!-- 04 PORCH -->
+<div data-screen-label="slide-04" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--destaque);flex:none;color:var(--fundo);">
+  <div style="position:absolute;top:0;left:0;width:1080px;height:540px;background:var(--destaque);overflow:hidden;"><img src="uploads/ev-commons-Werchter070718-86-cropped-.jpg" alt="Eddie Vedder no palco" style="width:100%;height:100%;object-fit:cover;object-position:60% 22%;filter:grayscale(1) contrast(1.35) brightness(1.05);mix-blend-mode:multiply;"></div>
+  <div style="position:absolute;top:470px;left:56px;background:var(--fundo);color:var(--destaque);font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:150px;line-height:.9;padding:14px 30px 6px;text-transform:uppercase;letter-spacing:-2px;">Porch é a nº 1.</div>
+  <div style="position:absolute;top:660px;left:72px;font-weight:900;font-size:48px;letter-spacing:-.5px;">Com ou sem banda.</div>
+  <div style="position:absolute;top:750px;left:72px;right:72px;display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+    <div style="border-top:8px solid var(--fundo);padding-top:10px;">
+      <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:250px;line-height:.85;letter-spacing:-4px;">61%</div>
+      <div style="font-weight:800;font-size:32px;margin-top:6px;">dos shows solo</div>
+    </div>
+    <div style="border-top:8px solid var(--fundo);padding-top:10px;">
+      <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:250px;line-height:.85;letter-spacing:-4px;">62%</div>
+      <div style="font-weight:800;font-size:32px;margin-top:6px;">dos shows do Pearl Jam</div>
+    </div>
+  </div>
+  <div style="position:absolute;top:1090px;left:72px;right:72px;display:flex;align-items:center;gap:28px;">
+    <div style="display:flex;gap:8px;flex:none;">
+      <div style="width:26px;height:26px;border-radius:50%;background:var(--fundo);"></div><div style="width:26px;height:26px;border-radius:50%;background:var(--fundo);"></div><div style="width:26px;height:26px;border-radius:50%;background:var(--fundo);"></div><div style="width:26px;height:26px;border-radius:50%;background:var(--fundo);"></div><div style="width:26px;height:26px;border-radius:50%;background:var(--fundo);"></div><div style="width:26px;height:26px;border-radius:50%;background:var(--fundo);"></div>
+      <div style="width:20px;height:20px;border-radius:50%;border:3px solid var(--fundo);"></div><div style="width:20px;height:20px;border-radius:50%;border:3px solid var(--fundo);"></div><div style="width:20px;height:20px;border-radius:50%;border:3px solid var(--fundo);"></div><div style="width:20px;height:20px;border-radius:50%;border:3px solid var(--fundo);"></div>
+    </div>
+    <div style="font-weight:800;font-size:30px;line-height:1.15;text-wrap:pretty;">Em 6 de cada 10 noites da vida dele, ela está lá.</div>
+  </div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--fundo);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;"><div>somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;">04/10</div></div>
+  </div>
+</div>
+
+<!-- 05 EVEN FLOW -->
+<div data-screen-label="slide-05" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--fundo);flex:none;color:var(--claro);">
+  <div style="position:absolute;top:72px;left:72px;right:72px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:118px;line-height:.86;text-transform:uppercase;letter-spacing:-1.5px;color:var(--destaque);text-wrap:balance;">O maior hit da banda quase não existe no solo.</div>
+  <div style="position:absolute;top:430px;left:72px;right:72px;">
+    <div style="font-weight:900;font-size:40px;letter-spacing:-.5px;">Even Flow</div>
+    <div style="margin-top:20px;display:grid;grid-template-columns:170px minmax(0,1fr);gap:18px;align-items:center;">
+      <div style="font-weight:800;font-size:24px;letter-spacing:.1em;color:var(--papel2);">PEARL JAM</div>
+      <div style="height:104px;background:var(--destaque);display:flex;align-items:center;justify-content:flex-end;padding:0 24px;box-sizing:border-box;color:var(--fundo);"><span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:92px;line-height:1;">957</span><span style="font-weight:800;font-size:28px;margin-left:12px;">shows</span></div>
+      <div style="font-weight:800;font-size:24px;letter-spacing:.1em;color:var(--papel2);">SOLO</div>
+      <div style="height:104px;display:flex;align-items:center;gap:20px;"><div style="width:6px;height:104px;background:var(--alerta);"></div><span style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:92px;line-height:1;color:var(--alerta);">3</span></div>
+    </div>
+  </div>
+  <div style="position:absolute;top:780px;left:72px;right:72px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:36px;align-items:center;border-top:3px solid #333;padding-top:30px;">
+    <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:260px;line-height:.8;color:var(--destaque);">0</div>
+    <div style="font-weight:800;font-size:42px;line-height:1.12;text-wrap:pretty;">Do the Evolution, Given to Fly e Why Go: zero.</div>
+  </div>
+  <div style="position:absolute;top:1080px;left:72px;right:72px;display:flex;align-items:baseline;gap:20px;border-top:3px solid #333;padding-top:22px;">
+    <div style="font-weight:800;font-size:36px;">Black:</div>
+    <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:84px;line-height:.9;color:var(--destaque);">23</div>
+    <div style="font-weight:800;font-size:36px;">vezes em 315 shows.</div>
+  </div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--destaque);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;"><div>somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;color:var(--destaque);">05/10</div></div>
+  </div>
+</div>
+
+<!-- 06 HARD SUN -->
+<div data-screen-label="slide-06" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--fundo);flex:none;color:var(--claro);">
+  <img src="uploads/ev-commons-OhanaSep18-151-45223114071-.jpg" alt="Eddie Vedder com violão" style="position:absolute;top:0;left:0;width:1080px;height:1350px;object-fit:cover;object-position:52% 50%;">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb, var(--fundo) 92%, transparent) 0%,color-mix(in srgb, var(--fundo) 20%, transparent) 30%,color-mix(in srgb, var(--fundo) 15%, transparent) 50%,color-mix(in srgb, var(--fundo) 95%, transparent) 78%);"></div>
+  <div style="position:absolute;top:72px;left:72px;right:72px;">
+    <div style="font-weight:900;font-size:56px;letter-spacing:-.5px;">O fim tem nome:</div>
+    <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:240px;line-height:.82;color:var(--destaque);text-transform:uppercase;letter-spacing:-3px;margin-top:8px;">Hard Sun</div>
+  </div>
+  <div style="position:absolute;top:780px;left:72px;right:72px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:30px;align-items:end;">
+    <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:300px;line-height:.78;color:var(--destaque);letter-spacing:-4px;">112</div>
+    <div style="padding-bottom:8px;">
+      <div style="font-weight:900;font-size:44px;line-height:1.05;">Fechou 112 shows solo.</div>
+      <div style="margin-top:14px;display:inline-block;background:var(--alerta);padding:8px 16px;font-weight:900;font-size:30px;">O Pearl Jam nunca tocou.</div>
+    </div>
+  </div>
+  <div style="position:absolute;top:1080px;left:72px;right:72px;display:flex;align-items:center;gap:26px;">
+    <div style="display:flex;gap:8px;flex:none;">
+      <div style="width:30px;height:30px;background:var(--destaque);"></div><div style="width:30px;height:30px;background:var(--destaque);"></div><div style="width:30px;height:30px;background:var(--destaque);"></div><div style="width:30px;height:30px;background:var(--destaque);"></div><div style="width:30px;height:30px;background:var(--destaque);"></div><div style="width:30px;height:30px;background:var(--destaque);"></div><div style="width:30px;height:30px;background:var(--destaque);"></div><div style="width:30px;height:30px;background:var(--destaque);"></div>
+    </div>
+    <div style="font-weight:800;font-size:32px;line-height:1.15;">No Brasil ela apareceu nas 8 noites.</div>
+  </div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--destaque);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;"><div>somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;color:var(--destaque);">06/10</div></div>
+  </div>
+</div>
+
+<!-- 07 34 MUSICAS -->
+<div data-screen-label="slide-07" style="position:relative;width:1080px;height:1350px;overflow:hidden;background-color:var(--destaque);background-image:radial-gradient(rgba(0,0,0,.07) 1.2px,transparent 1.6px);background-size:10px 10px;flex:none;color:var(--fundo);">
+  <div style="position:absolute;top:72px;left:72px;right:72px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:96px;line-height:.86;text-transform:uppercase;letter-spacing:-1.5px;text-wrap:balance;">O maior show solo da carreira foi aqui.</div>
+  <div style="position:absolute;top:330px;left:52px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:700px;line-height:.78;letter-spacing:-20px;">34</div>
+  <div style="position:absolute;top:430px;right:72px;width:270px;font-weight:900;font-size:54px;line-height:1;letter-spacing:-1px;">músicas numa noite só.</div>
+  <div style="position:absolute;top:975px;left:72px;right:72px;display:flex;gap:6px;height:76px;align-items:flex-end;">
+    <sc-for list="{{ ticks }}" as="t" hint-placeholder-count="34"><div style="flex:1;height:76px;background:var(--fundo);"></div></sc-for>
+  </div>
+  <div style="position:absolute;top:1090px;left:72px;right:72px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+    <div style="background:var(--fundo);color:var(--destaque);font-weight:900;font-size:38px;padding:10px 20px;">São Paulo, 7 de maio de 2014.</div>
+    <div style="font-weight:800;font-size:32px;">Nenhum outro show solo dele chegou nisso.</div>
+  </div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--fundo);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;"><div>somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;">07/10</div></div>
+  </div>
+</div>
+
+<!-- 08 BRASIL OUVIU PRIMEIRO -->
+<div data-screen-label="slide-08" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--fundo);flex:none;color:var(--claro);">
+  <div style="position:absolute;top:0;left:0;width:1080px;height:560px;background:var(--destaque);overflow:hidden;"><img src="uploads/ev-commons-OhanaSep18-50-44312558365-.jpg" alt="Eddie Vedder cantando de óculos escuros" style="width:100%;height:100%;object-fit:cover;object-position:48% 30%;filter:grayscale(1) contrast(1.3);mix-blend-mode:multiply;"></div>
+  <div style="position:absolute;top:470px;left:56px;background:var(--fundo);color:var(--destaque);font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:126px;line-height:.9;padding:14px 26px 4px;text-transform:uppercase;letter-spacing:-2px;">O Brasil ouviu primeiro.</div>
+  <div style="position:absolute;top:780px;left:72px;right:72px;display:flex;flex-direction:column;">
+    <div style="display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;align-items:center;padding:20px 0;border-top:3px solid var(--destaque);">
+      <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:110px;line-height:.85;color:var(--destaque);">19x</div>
+      <div style="font-weight:700;font-size:30px;line-height:1.25;text-wrap:pretty;"><b style="font-weight:900;">Wildflowers</b>, do Tom Petty, estreou em São Paulo em 2018. Já são 19 vezes.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;align-items:center;padding:24px 0;border-top:3px solid var(--destaque);">
+      <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:110px;line-height:.85;color:var(--destaque);">1x</div>
+      <div style="font-weight:700;font-size:30px;line-height:1.25;text-wrap:pretty;"><b style="font-weight:900;">The Moon Song</b> ele cantou uma única vez na vida. Foi em São Paulo.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;align-items:center;padding:24px 0;border-top:3px solid var(--destaque);border-bottom:3px solid var(--destaque);">
+      <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:110px;line-height:.85;color:var(--destaque);">RIO</div>
+      <div style="font-weight:700;font-size:30px;line-height:1.25;text-wrap:pretty;"><b style="font-weight:900;">I Got Id</b> no solo começou no Rio.</div>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--destaque);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;"><div>somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;color:var(--destaque);">08/10</div></div>
+  </div>
+</div>
+
+<!-- 09 AS QUE SUMIRAM -->
+<div data-screen-label="slide-09" style="position:relative;width:1080px;height:1350px;overflow:hidden;background-color:var(--destaque);background-image:radial-gradient(rgba(0,0,0,.07) 1.2px,transparent 1.6px);background-size:10px 10px;flex:none;color:var(--fundo);">
+  <div style="position:absolute;top:0;right:0;width:340px;height:1350px;background:var(--destaque);overflow:hidden;"><img src="uploads/ev-commons-Eddie-Vedder-2018-3.jpg" alt="Eddie Vedder com guitarra" style="width:100%;height:100%;object-fit:cover;object-position:45% 30%;filter:grayscale(1) contrast(1.3);mix-blend-mode:multiply;opacity:.9;"></div>
+  <div style="position:absolute;top:72px;left:72px;width:640px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:170px;line-height:.82;text-transform:uppercase;letter-spacing:-2px;">As que sumiram.</div>
+  <div style="position:absolute;top:430px;left:72px;width:620px;display:flex;flex-direction:column;">
+    <div style="padding:18px 0;border-top:4px solid var(--fundo);">
+      <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:78px;line-height:.9;text-transform:uppercase;text-decoration:line-through;text-decoration-color:var(--alerta);text-decoration-thickness:8px;">Arc</div>
+      <div style="margin-top:8px;font-weight:800;font-size:28px;">79 vezes, nenhuma desde 2017.</div>
+    </div>
+    <div style="padding:18px 0;border-top:4px solid var(--fundo);">
+      <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:78px;line-height:.9;text-transform:uppercase;text-decoration:line-through;text-decoration-color:var(--alerta);text-decoration-thickness:8px;">Sleeping by Myself</div>
+      <div style="margin-top:8px;font-weight:800;font-size:28px;">85 vezes, nenhuma desde 2019.</div>
+    </div>
+    <div style="padding:18px 0;border-top:4px solid var(--fundo);border-bottom:4px solid var(--fundo);">
+      <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:78px;line-height:.9;text-transform:uppercase;text-decoration:line-through;text-decoration-color:var(--alerta);text-decoration-thickness:8px;">Goodbye e Broken Heart</div>
+      <div style="margin-top:8px;font-weight:800;font-size:28px;line-height:1.2;">A última vez de cada uma foi no Brasil, em 2014.</div>
+    </div>
+  </div>
+  <div style="position:absolute;top:1060px;left:72px;background:var(--fundo);color:var(--destaque);font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:84px;line-height:1;padding:16px 26px 10px;text-transform:uppercase;transform:rotate(-2deg);">Será que alguma volta?</div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--fundo);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;color:var(--claro);"><div style="background:var(--fundo);padding:4px 10px;">somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;background:var(--fundo);color:var(--destaque);padding:2px 10px;">09/10</div></div>
+  </div>
+</div>
+
+<!-- 10 FINAL -->
+<div data-screen-label="slide-10" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--fundo);flex:none;color:var(--claro);">
+  <img src="uploads/ev-commons-Ohana2019-99.jpg" alt="Eddie Vedder sorrindo ao microfone" style="position:absolute;top:0;left:0;width:1080px;height:640px;object-fit:cover;object-position:45% 30%;">
+  <div style="position:absolute;top:0;left:0;width:1080px;height:660px;background:linear-gradient(180deg,color-mix(in srgb, var(--fundo) 0%, transparent) 50%,var(--fundo) 98%);"></div>
+  <div style="position:absolute;top:64px;right:56px;transform:rotate(4deg);background:var(--alerta);color:var(--claro);padding:12px 26px 8px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:60px;line-height:1;letter-spacing:2px;box-shadow:0 0 0 5px var(--alerta),0 0 0 9px var(--claro),0 18px 40px rgba(0,0,0,.45);">FALTAM 3 DIAS</div>
+  <div style="position:absolute;top:520px;left:60px;right:72px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:30px;align-items:center;">
+    <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:380px;line-height:.78;color:var(--destaque);letter-spacing:-6px;">8</div>
+    <div>
+      <div style="font-weight:900;font-size:58px;line-height:1;letter-spacing:-1px;">shows solo no Brasil.</div>
+      <div style="font-weight:800;font-size:40px;line-height:1.1;margin-top:14px;color:var(--destaque);">Todos no Citibank Hall.</div>
+    </div>
+  </div>
+  <div style="position:absolute;top:870px;left:0;width:1080px;background:var(--destaque);color:var(--fundo);padding:26px 72px;box-sizing:border-box;font-weight:900;font-size:44px;line-height:1.08;letter-spacing:-.5px;">Sexta 20 e domingo 22, ele sobe no Ibirapuera.</div>
+  <div style="position:absolute;top:1030px;left:72px;right:72px;">
+    <div style="font-weight:700;font-size:32px;line-height:1.25;">Porch, Hard Sun e Far Behind nunca faltaram por aqui.</div>
+    <div style="margin-top:22px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:88px;line-height:.9;color:var(--destaque);text-transform:uppercase;letter-spacing:-1px;">Qual você quer ouvir? Comenta aí.</div>
+  </div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--destaque);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="display:flex;align-items:center;gap:22px;font-weight:700;font-size:22px;"><div>somaisumfadepearljam.com.br</div><div style="font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:30px;color:var(--destaque);">10/10</div></div>
+  </div>
+</div>
+
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const bars = (rows, max) => rows.map(([rank, name, n]) => ({ rank, name, n, w: (n / max * 82).toFixed(1) + '%' }));
+    return {
+      top10: bars([[1,'Porch',192],[2,'Hard Sun',178],[3,'Far Behind',169],[4,'Society',159],[5,'Rise',157],[6,'Guaranteed',155],[7,'Elderly Woman',142],[8,'Better Man',124],[9,'Wishlist',122],[10,'I Am Mine',121]], 192),
+      next10: bars([[11,'Just Breathe',115],[12,"You've Got to Hide Your Love Away",114],[13,"Can't Keep",111],[14,'Lukin',97],[15,'Sometimes',93],[16,"Rockin' in the Free World",92],[17,'No Ceiling',86],[17,'Unthought Known',86],[19,'Sleeping by Myself',85],[20,'Without You',84]], 115),
+      ticks: Array.from({ length: 34 }, (_, i) => i)
+    };
+  }
+}
+</script>
+</body>
+</html>

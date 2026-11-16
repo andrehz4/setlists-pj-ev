@@ -31,6 +31,8 @@ Validar mudança no pipeline = `npm test` + `node mock-ig/run.mjs feed` com iten
   repo, domínio, link de notícia, Graph API, URL do fórum, caminhos de estado.
 - `scripts/publish/`: tudo que publica (README lá, com o mapa das subpastas `feed/`, `fila/`, `ig/`, `slide/`, `story/`,
   `reel/`, `routine/`). Arquivos que eram gigantes viraram fachada (mesma API) ou roteiro curto.
+- `scripts/publish/carrossel/`: modelo de carrossel de dados do Claude Design (`media/carrossel/ranking/`), paletas
+  trocáveis e render em JPG pelo Chrome headless (README lá). Conteúdo e fotos de cada post ficam fora do git.
 - `scripts/news/`: coleta e curadoria. `index-site.mjs` é a regra ÚNICA de gravação do `index.json` (teto 2000, notícia nova
   nunca arquivada); `coleta/`, `comunidade/` e `curadoria/` são as partes do fetch-news, community-fetch e merge-curated.
 - Site: `index.html` + `css/app.css` + `dados/*.js` (shows, discos, músicas, mídia). Fórum: `forum*.html` + `functions/`.

@@ -6,13 +6,12 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
-- **Estudo da carreira do Eddie (16/11, EM ANDAMENTO) para o carrossel de TERÇA 17/11 (ranking completo):** setlists
-  baixados em `reels-especiais/eddie-carreira/bruto/` (318 solo + 1135 Pearl Jam, 75 pedidos; gitignored), coleta em
-  `coletar.mjs` (chave em `/Users/andrehz/.setlistfm-key`, app "testeapi" na conta canalterragentil; o secret
-  SETLISTFM_API_KEY do GitHub está VAZIO, Andre não decidiu se salva lá). Agente Fable (`rodar-agente.sh` +
-  `BRIEF-AGENTE.md`, `claude -p` sem tela) disparado 16/11 07:45; entrega `estudo.json`, `HISTORIAS.md`, `CARROSSEL.md`,
-  `LEIA.md` na mesma pasta (log em `rodar-agente.log`). A rodada das 02:10 falhou: `--allowedTools` engolia o prompt,
-  agora vai por stdin. PRÓXIMO: ler HISTORIAS/CARROSSEL com o Andre, montar o carrossel e agendar terça.
+- **Carrossel do ranking do Eddie solo (16/11): PRONTO, falta postar terça 17/11.** 10 slides do Claude Design
+  (projeto "Ranking Eddie Vedder Solo"), aprovados pelo Andre: JPGs + `legenda.txt` em
+  `reels-especiais/eddie-carreira/postar/` (fora do git; capa com foto de bastidor que o Andre liberou). Dados de
+  `estudo.json` (setlist.fm, 315 shows solo); conferido: Pearl Jam nunca tocou Hard Sun, os 8 solo no Brasil foram no
+  Citibank Hall. PRÓXIMO: postar terça (Andre pelo Meta Business Suite, ou criar publicação automática de carrossel
+  especial no molde do `especial.mjs`). O modelo virou módulo: `scripts/publish/carrossel/` (paletas + render, README).
   Login do Claude CLI expira entre 20 e 23/11 (`claude auth login` antes).
 - **Letra do Eddie (16/11, EM ANDAMENTO):** o gerador oficial (glitch.ge) não usa fonte: 1 PNG à mão por música
   (173), por cidade (22) e 5 papéis; o traço de bis e o floreio do título vêm PINTADOS no papel. Tudo baixado em
@@ -26,7 +25,6 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   de R B K W (ks em `ferramentas/seg/segmentos.json`: R #24 #99 #119, B #73 #137 #140, K #56 #141 #155, W #47 #55 #88);
   tabela de abreviações; parênteses (#142) e barra (#138); riscado/seta/til desenhados; coluna "dançando" 10-30 px;
   ruído na borda. Q e Z não existem. Depois: usar no carrossel/posts dos shows de SP (Ibirapuera 20 e 22/11).
-  Agente Fable do estudo da carreira TERMINOU 07:48 (entregas em `reels-especiais/eddie-carreira/`, não commitadas).
 - **Reel especial Eddie no Ibirapuera v7: AGENDADO seg 16/11 17:30 BRT (16/11 madrugada).** TriggerAll #017
   dispara `publish-reel-especial.yml` com `{"pasta":"eddie-ibirapuera"}` (testado de ponta a ponta com pasta falsa,
   sem publicar). Vídeo no R2 `especiais/eddie-ibirapuera-v7.mp4?v=2` (o `?v=2` fura o cache de 4 h do Cloudflare),
