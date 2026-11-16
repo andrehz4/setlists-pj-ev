@@ -1,0 +1,53 @@
+{
+ "base": 0.026399850845336914,
+ "toques": [
+  {
+   "t": 4.501999855041504,
+   "x": 195.00000953674316,
+   "y": 354.8936309814453,
+   "rotulo": "cartao"
+  },
+  {
+   "t": 6.1579999923706055,
+   "x": 195,
+   "y": 594.15625,
+   "rotulo": "nome"
+  },
+  {
+   "t": 8.825999975204468,
+   "x": 281,
+   "y": 715,
+   "rotulo": "noite"
+  },
+  {
+   "t": 10.282000064849854,
+   "x": 195,
+   "y": 795,
+   "rotulo": "sortear"
+  },
+  {
+   "t": 31.96399998664856,
+   "x": 195,
+   "y": 528.1093902587891,
+   "rotulo": "baixar"
+  },
+  {
+   "t": 53.36999988555908,
+   "x": 195,
+   "y": 712.390625,
+   "rotulo": "postar"
+  }
+ ],
+ "marcas": {
+  "chegada": 4.5,
+  "digita": 6.911999940872192,
+  "sorteou": 10.645999908447266,
+  "folhaPronta": 24.645999908447266,
+  "rolaCartas": 24.651000022888184,
+  "baixar": 32.32200002670288,
+  "videoPronto": 51.86800003051758,
+  "fim": 59.723999977111816
+ },
+ "sorte": "ÍNDICE DE SORTE\nShow de verdade. Na média, cada uma rolou em 15% dos shows solo.\n15/100\nSUA RARIDADE\n0,3%\nL.A. Woman, só em 1 show\nSUA APOSTA CERTA\n51%\nSociety, em 159 shows\nTOCADAS EM 2026\n8/22\nA mais recente: Song of Good Hope, 25/09/26\nNUM SHOW TÍPICO\n3,2/22\ndas suas rolariam. Ele toca 17,6 por noite.\nCHANCE DE OUVIR TODAS\n1 em 101,3 septilhões\nÉ a conta da frequência de cada uma nos 315 shows solo desde 1992. Vai que.",
+ "lista": "1\nSociety\n2\nCan't Keep\n3\nAgainst the '70s\n4\nPicture in a Frame\n5\nMaybe It's Time\n6\nThis Land Is Your Land\n7\nShould I Stay or Should I Go\n8\nRise\n9\nIndifference\n10\nSetting Forth\n11\nSoon Forget\n12\nL.A. Woman\n13\nThat Feel\n14\nSometimes\n15\nYou've Got to Hide Your Love Away\n16\nLight Today\n17\nSanta Cruz\n18\nWalking the Cow\nBIS\n19\nSong of Good Hope\n20\nOff He Goes\n21\nDriven to Tears\n22\nAll Along the Watchtower"
+}

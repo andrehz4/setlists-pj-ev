@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Tutorial do gerador</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "BS"; src: url("fonts/f1.ttf"); font-weight: 800; }
+      @font-face { font-family: "BS"; src: url("fonts/f2.ttf"); font-weight: 900; }
+      @font-face { font-family: "IS"; src: url("fonts/f3.ttf"); font-weight: 500; }
+      @font-face { font-family: "IS"; src: url("fonts/f4.ttf"); font-weight: 600; }
+      @font-face { font-family: "IS"; src: url("fonts/f5.ttf"); font-weight: 700; }
+      :root { --ouro: #f0b93a; --papel: #f3ead8; --fundo: #0f0e0c; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--fundo); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "IS", sans-serif; color: #fff; }
+      .bg { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(18px) brightness(.38); }
+      #vinheta { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, rgba(240,185,58,.14), transparent 60%), linear-gradient(to bottom, rgba(0,0,0,.55), transparent 22%, transparent 80%, rgba(0,0,0,.6)); }
+
+      /* Celular: tela de 390x844 escalada 1.72 */
+      #celular { position: absolute; left: 190px; top: 372px; width: 700px; height: 1488px; border-radius: 86px; background: #050505;
+        box-shadow: 0 0 0 3px #2b2925, 0 40px 120px rgba(0,0,0,.8), 0 0 80px rgba(240,185,58,.12); }
+      #tela { position: absolute; left: 15px; top: 14px; width: 390px; height: 844px; transform: scale(1.72); transform-origin: 0 0;
+        border-radius: 42px; overflow: hidden; background: #000; }
+      .camada { position: absolute; inset: 0; width: 390px; height: 844px; }
+      #site-wrap { overflow: hidden; }
+      #site { width: 390px; height: 844px; object-fit: cover; }
+
+      /* Perfil desenhado (genérico, sem marca do app) */
+      #perfil { background: #000; font-family: "IS"; color: #f5f5f5; }
+      .barra { height: 44px; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; font-size: 14px; font-weight: 600; }
+      .topo-p { display: flex; align-items: center; gap: 6px; padding: 6px 16px 10px; font-size: 21px; font-weight: 700; }
+      .cab { display: flex; align-items: center; gap: 22px; padding: 4px 16px; }
+      .cab img { width: 84px; height: 84px; border-radius: 50%; border: 2px solid #333; object-fit: cover; }
+      .nums { display: flex; gap: 18px; text-align: center; font-size: 12px; color: #ccc; }
+      .nums b { display: block; font-size: 17px; color: #fff; }
+      .bio { padding: 10px 16px 0; font-size: 13.5px; line-height: 1.38; }
+      .bio .nm { font-weight: 700; }
+      #link { display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; color: #b9d2ff; font-weight: 600; padding: 2px 4px; margin-left: -4px; border-radius: 6px; }
+      .botoes-p { display: flex; gap: 6px; padding: 14px 16px; }
+      .botoes-p span { flex: 1; text-align: center; padding: 8px 0; border-radius: 9px; font-size: 13.5px; font-weight: 600; background: #262626; }
+      .botoes-p span.seg { background: #2a55c9; }
+      .abas { display: flex; border-bottom: 1px solid #262626; margin-top: 6px; }
+      .abas i { flex: 1; height: 38px; display: grid; place-items: center; }
+      .abas i:first-child { border-bottom: 2px solid #fff; }
+      .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+      .grade img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+      #carrega { position: absolute; left: 0; top: 0; height: 3px; width: 0; background: var(--ouro); }
+
+      /* Story desenhado */
+      #story-tela { background: transparent; }
+      #story { position: absolute; left: 0; top: 48px; width: 390px; height: 693px; object-fit: cover; border-radius: 12px; }
+      .st-topo { position: absolute; top: 58px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: center; }
+      .st-icones { display: flex; gap: 10px; }
+      .ic { width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,.45); display: grid; place-items: center; font: 700 15px "IS"; color: #fff; }
+      #mencao { position: absolute; left: 50%; top: 560px; transform: translateX(-50%); background: #fff; color: #c58a00; font: 800 22px "BS";
+        letter-spacing: .02em; padding: 6px 14px 4px; border-radius: 9px; white-space: nowrap; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
+      .st-base { position: absolute; bottom: 22px; left: 12px; right: 12px; display: flex; gap: 8px; }
+      .st-base span { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border-radius: 22px; background: #fff; color: #000; font: 600 14px "IS"; }
+      .st-base span.amg { background: #1e1e1e; color: #fff; }
+      .st-base em { width: 26px; height: 26px; border-radius: 50%; display: inline-block; background: url(assets/avatar.jpg) center/cover; border: 1.5px solid #000; }
+      #enviado { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.55); font: 900 46px "BS"; color: var(--ouro); text-transform: uppercase; }
+
+      /* Toque */
+      .toque { position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none; }
+      .toque span { position: absolute; left: -22px; top: -3px; width: 58px; height: 58px; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,.6)); transform-origin: 50% 0; }
+      .onda { position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; border: 3px solid var(--ouro); opacity: 0; }
+
+      /* Legendas */
+      .leg { position: absolute; left: 60px; right: 60px; top: 96px; height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+      .leg .k { font: 700 30px "IS"; color: var(--ouro); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 10px; }
+      .leg .t { font: 900 78px/0.98 "BS"; text-transform: uppercase; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,.7); }
+      .leg .t b { color: var(--ouro); }
+      .leg .n { display: inline-grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--ouro); color: #1a1305; font: 900 58px "BS"; margin-bottom: 14px; }
+      #gancho { top: 60px; height: 300px; }
+      #gancho .t { font-size: 96px; }
+
+
+      .ab { position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; filter: contrast(1.12) saturate(1.1); }
+      .toque img { width: 58px; height: 58px; display: block; }
+      #ab-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+      #ab-txt { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; text-align: center; padding: 0 60px 420px;
+        background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.35) 45%, transparent 70%); }
+      #ab-txt .ak { font: 700 38px "IS"; color: var(--ouro); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 18px; }
+      #ab-txt .at { font: 900 150px/0.92 "BS"; text-transform: uppercase; color: #fff; text-shadow: 0 6px 30px rgba(0,0,0,.8); }
+      #ab-txt .at b { color: var(--ouro); }
+      #at2 { position: absolute; left: 60px; right: 60px; bottom: 420px; }
+      /* Final */
+      #final { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 70px; }
+      #final img { width: 300px; height: 300px; border-radius: 50%; border: 6px solid var(--ouro); object-fit: cover; margin-bottom: 50px; }
+      #final .t { font: 900 120px/0.95 "BS"; text-transform: uppercase; }
+      #final .t b { color: var(--ouro); }
+      #final .s { margin-top: 36px; font: 600 44px "IS"; color: var(--papel); }
+      #final .s b { color: var(--ouro); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="46">
+      <video id="bg1" class="bg" src="assets/fundo.mp4" data-start="0" data-duration="28" data-track-index="0" muted playsinline></video>
+      <video id="bg2" class="bg" src="assets/fundo.mp4" data-start="28" data-duration="18" data-track-index="0" muted playsinline></video>
+      <div id="vinheta"></div>
+      <video id="ab1" class="ab" src="assets/ab/c1.mp4" data-start="0.00" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <video id="ab2" class="ab" src="assets/ab/c2.mp4" data-start="0.42" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <video id="ab3" class="ab" src="assets/ab/c3.mp4" data-start="0.84" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <video id="ab4" class="ab" src="assets/ab/c4.mp4" data-start="1.26" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <video id="ab5" class="ab" src="assets/ab/c5.mp4" data-start="1.68" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <video id="ab6" class="ab" src="assets/ab/c6.mp4" data-start="2.10" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <video id="ab7" class="ab" src="assets/ab/c7.mp4" data-start="2.52" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <video id="ab8" class="ab" src="assets/ab/c8.mp4" data-start="2.94" data-duration="0.46" data-track-index="8" muted playsinline></video>
+      <div id="ab-flash"></div>
+      <section id="ab-txt" class="clip" data-start="0" data-duration="3.36" data-track-index="9">
+        <div class="ak">20 e 22/11 · Ibirapuera</div>
+        <div class="at" id="at1">O Eddie <b>vem aí</b></div>
+        <div class="at" id="at2">Qual vai ser o <b>seu setlist?</b></div>
+      </section>
+
+
+      <div id="celular">
+        <div id="tela">
+          <section id="perfil" data-layout-ignore class="camada clip" data-start="3" data-duration="5.2" data-track-index="1">
+            <div class="barra"><span>12:33</span><span>● ● ▮</span></div>
+            <div class="topo-p">smufdpj <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4b8cff" d="M12 1l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V4h4z"/><path d="M8 12l3 3 5-6" stroke="#fff" stroke-width="2.4" fill="none"/></svg></div>
+            <div class="cab">
+              <img src="assets/avatar.jpg" alt="" />
+              <div class="nums"><div><b>362</b>posts</div><div><b>442</b>seguidores</div><div><b>36</b>seguindo</div></div>
+            </div>
+            <div class="bio">
+              <div class="nm">Só mais um fã de Pearl Jam</div>
+              Sua dose diária de setlists do Pearl Jam. Relembre as turnês e confira todas as músicas no site!
+              <div id="link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b9d2ff" stroke-width="2.4"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>somaisumfadepearljam.com.br/setlist-ibirapuera</div>
+            </div>
+            <div class="botoes-p"><span class="seg">Seguir</span><span>Mensagem</span></div>
+            <div class="abas"><i>▦</i><i>▷</i><i>☺</i></div>
+            <div class="grade">
+              <img src="assets/post1.jpg" alt="" /><img src="assets/post2.jpg" alt="" /><img src="assets/post3.jpg" alt="" />
+              <img src="assets/post4.jpg" alt="" /><img src="assets/post5.jpg" alt="" /><img src="assets/post6.jpg" alt="" />
+            </div>
+            <div id="carrega"></div>
+          </section>
+
+          <div id="site-wrap" class="camada">
+            <video id="site" src="assets/site.mp4" data-start="7.7" data-duration="27.85" data-track-index="2" muted playsinline></video>
+          </div>
+
+          <video id="story" src="assets/story.mp4" data-start="35.55" data-duration="6.45" data-media-start="2" data-track-index="4" muted playsinline></video>
+          <section id="story-tela" data-layout-ignore class="camada clip" data-start="35.55" data-duration="6.45" data-track-index="3">
+            <div class="barra"><span>12:35</span><span>● ● ▮</span></div>
+            <div id="mencao">@SMUFDPJ</div>
+            <div class="st-topo">
+              <div class="ic">✕</div>
+              <div class="st-icones"><div class="ic">Aa</div><div class="ic" id="ic-fig">☺</div><div class="ic">♪</div><div class="ic">✦</div></div>
+            </div>
+            <div class="st-base"><span id="seu-story"><em></em>Seu story</span><span class="amg">Amigos próximos</span></div>
+            <div id="enviado">Postado!</div>
+          </section>
+          <div id="toques"></div>
+        </div>
+      </div>
+      <section id="l1" class="leg clip" data-start="3" data-duration="4.7" data-track-index="5"><span class="n">1</span><div class="t">Toca no <b>link da bio</b></div></section>
+      <section id="l2" class="leg clip" data-start="7.7" data-duration="2.6" data-track-index="5"><span class="n">2</span><div class="t">Toca no <b>cartão</b></div></section>
+      <section id="l3" class="leg clip" data-start="10.3" data-duration="3.75" data-track-index="5"><span class="n">3</span><div class="t">Seu <b>nome</b> e a sua <b>noite</b></div></section>
+      <section id="l4" class="leg clip" data-start="14.05" data-duration="1.15" data-track-index="5"><span class="n">4</span><div class="t"><b>Sorteia!</b></div></section>
+      <section id="l5" class="leg clip" data-start="15.2" data-duration="6.6" data-track-index="5"><div class="k">ao vivo</div><div class="t">A folha se escreve <b>na hora</b></div></section>
+      <section id="l6" class="leg clip" data-start="21.8" data-duration="4.3" data-track-index="5"><div class="k">nossa, que sorte!</div><div class="t">Vai rolar <b>L.A. Woman</b>, que ele tocou uma vez só</div></section>
+      <section id="l7" class="leg clip" data-start="26.1" data-duration="2.2" data-track-index="5"><span class="n">5</span><div class="t">Baixa o <b>vídeo</b> pro seu story</div></section>
+      <section id="l8" class="leg clip" data-start="28.3" data-duration="4.15" data-track-index="5"><div class="k">uns segundinhos</div><div class="t">E o seu vídeo <b>tá pronto</b></div></section>
+      <section id="l9" class="leg clip" data-start="32.45" data-duration="3.1" data-track-index="5"><span class="n">6</span><div class="t">Toca em <b>Postar no story</b></div></section>
+      <section id="l10" class="leg clip" data-start="35.55" data-duration="3.05" data-track-index="5"><span class="n">7</span><div class="t">Marca a <b>@smufdpj</b></div></section>
+      <section id="l11" class="leg clip" data-start="38.6" data-duration="3.4" data-track-index="5"><span class="n">8</span><div class="t">Posta no <b>seu story</b></div></section>
+
+      <section id="final" class="clip" data-start="42" data-duration="4" data-track-index="6">
+        <img src="assets/avatar.jpg" alt="" />
+        <div class="t">A gente <b>compartilha</b> o seu</div>
+        <div class="s">Link na bio da <b>@smufdpj</b></div>
+      </section>
+
+      <audio id="trilha" src="assets/trilha.mp3" data-start="0" data-duration="46" data-track-index="7" data-volume="0.55"></audio>
+      <audio id="fx0" src="assets/sfx/guitarra.wav" data-start="0.00" data-duration="1.5" data-track-index="10" data-volume="0.9"></audio>
+      <audio id="fx1" src="assets/sfx/swoosh.wav" data-start="1.55" data-duration="0.7" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="fx2" src="assets/sfx/swoosh.wav" data-start="3.00" data-duration="0.7" data-track-index="10" data-volume="0.5"></audio>
+      <audio id="fx3" src="assets/sfx/swipe.wav" data-start="7.70" data-duration="0.5" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="fx4" src="assets/sfx/teclado.wav" data-start="11.60" data-duration="1.1" data-track-index="10" data-volume="0.55"></audio>
+      <audio id="fx5" src="assets/sfx/caneta.wav" data-start="15.00" data-duration="6.5" data-track-index="11" data-volume="0.5"></audio>
+      <audio id="fx6" src="assets/sfx/plim.wav" data-start="21.85" data-duration="1.2" data-track-index="10" data-volume="0.6"></audio>
+      <audio id="fx7" src="assets/sfx/swipe.wav" data-start="35.57" data-duration="0.5" data-track-index="11" data-volume="0.5"></audio>
+      <audio id="fx8" src="assets/sfx/teclado.wav" data-start="37.15" data-duration="1.0" data-track-index="10" data-volume="0.5"></audio>
+      <audio id="fx9" src="assets/sfx/torcida.wav" data-start="40.00" data-duration="2.6" data-track-index="11" data-volume="0.55"></audio>
+      <audio id="fx10" src="assets/sfx/swoosh.wav" data-start="41.60" data-duration="0.7" data-track-index="10" data-volume="0.6"></audio>
+      <audio id="fx11" src="assets/sfx/pop.wav" data-start="6.60" data-duration="0.3" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="fx12" src="assets/sfx/pop.wav" data-start="9.93" data-duration="0.3" data-track-index="10" data-volume="0.7"></audio>
+      <audio id="fx13" src="assets/sfx/pop.wav" data-start="11.32" data-duration="0.3" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="fx14" src="assets/sfx/pop.wav" data-start="13.46" data-duration="0.3" data-track-index="10" data-volume="0.7"></audio>
+      <audio id="fx15" src="assets/sfx/pop.wav" data-start="14.62" data-duration="0.3" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="fx16" src="assets/sfx/pop.wav" data-start="27.01" data-duration="0.3" data-track-index="10" data-volume="0.7"></audio>
+      <audio id="fx17" src="assets/sfx/pop.wav" data-start="34.24" data-duration="0.3" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="fx18" src="assets/sfx/pop.wav" data-start="36.60" data-duration="0.3" data-track-index="10" data-volume="0.7"></audio>
+      <audio id="fx19" src="assets/sfx/pop.wav" data-start="39.60" data-duration="0.3" data-track-index="11" data-volume="0.7"></audio>
+    </div>
+    <script>
+      // Toques: tempo no reel e posição na tela de 390x844 (os do site vêm da gravação real)
+      const TOQUES = [
+        [3.6, 150, 268], [6.926, 195, 355], [8.325, 195, 594], [10.46, 281, 715], [11.624, 195, 795],
+        [24.012, 195, 528], [31.243, 195, 712], [33.6, 287, 76], [36.6, 98, 800],
+      ];
+      const caixa = document.getElementById("toques");
+      TOQUES.forEach((_, i) => caixa.insertAdjacentHTML("beforeend", `<div class="onda" id="o${i}"></div><div class="toque" id="t${i}"><span><img src="assets/dedo.svg" alt=""></span></div>`));
+
+      const OFF = 3;
+      const tl = gsap.timeline();
+      TOQUES.forEach(([t, x, y], i) => {
+        tl.set([`#t${i}`, `#o${i}`], { left: x, top: y, opacity: 0 }, 0);
+        tl.fromTo(`#t${i}`, { opacity: 0, x: 60, y: 110 }, { opacity: 1, x: 0, y: 0, duration: 0.32, ease: "power3.out", immediateRender: false }, t - 0.42);
+        tl.to(`#t${i} span`, { scale: 0.8, duration: 0.07 }, t - 0.04);
+        tl.to(`#t${i} span`, { scale: 1, duration: 0.12 }, t + 0.06);
+        tl.to(`#t${i}`, { opacity: 0, x: 40, y: 90, duration: 0.3, ease: "power2.in" }, t + 0.32);
+        tl.fromTo(`#o${i}`, { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 2.6, duration: 0.55, ease: "power2.out", immediateRender: false }, t);
+      });
+
+      // Celular entra
+      tl.fromTo("#celular", { y: 260, opacity: 0, rotation: -3 }, { y: 0, opacity: 1, rotation: 0, duration: 0.8, ease: "power3.out" }, 0);
+      // Link da bio acende e abre o site por cima
+      tl.to("#link", { backgroundColor: "rgba(185,210,255,.22)", duration: 0.15 }, 3.6);
+      tl.fromTo("#carrega", { width: 0 }, { width: 390, duration: 0.9, ease: "power1.inOut" }, 3.7);
+      tl.fromTo("#site-wrap", { y: 844 }, { y: 0, duration: 0.45, ease: "power3.out" }, 4.7);
+      // Zoom leve na folha se escrevendo
+      tl.fromTo("#site", { scale: 1 }, { scale: 1.12, transformOrigin: "50% 62%", duration: 1.2, ease: "power2.inOut" }, 12.4);
+      tl.to("#site", { scale: 1, duration: 0.8, ease: "power2.inOut" }, 17.9);
+      // Story: menção aparece e é escrita
+      tl.set("#mencao", { opacity: 0 }, 0);
+      tl.fromTo("#mencao", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, 34.0);
+      tl.fromTo("#mencao", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.0, ease: "steps(8)" }, 34.15);
+      tl.fromTo("#enviado", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 37.0);
+      tl.fromTo("#enviado", { scale: 0.7 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, 37.0);
+      // Celular sai, final entra
+      tl.to("#celular", { y: 200, opacity: 0, scale: 0.92, duration: 0.5, ease: "power2.in" }, 38.6);
+      tl.fromTo("#final img", { scale: 0.3, opacity: 0, rotation: -40 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 39.05);
+      tl.fromTo("#final .t", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 39.35);
+      tl.fromTo("#final .s", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 39.8);
+
+      // Legendas: entram de baixo, saem rápido
+      ["#l1", "#l2", "#l3", "#l4", "#l5", "#l6", "#l7", "#l8", "#l9", "#l10", "#l11"].forEach((id) => {
+        const el = document.querySelector(id);
+        const ini = +el.dataset.start - OFF, dur = +el.dataset.duration;
+        tl.fromTo(`${id} > *`, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out", stagger: 0.07 }, ini + 0.02);
+        tl.to(`${id} > *`, { opacity: 0, duration: 0.18 }, ini + dur - 0.18);
+      });
+      const mestre = gsap.timeline({ paused: true });
+      // Abertura: cortes de 0,42 s com flash, zoom de soco e a chamada em duas batidas
+      for (let i = 1; i <= 8; i++) {
+        const t = (i - 1) * 0.42;
+        mestre.fromTo(`#ab${i}`, { scale: 1.18 }, { scale: 1.04, duration: 0.46, ease: "power2.out" }, t);
+        mestre.fromTo("#ab-flash", { opacity: i === 1 ? 0 : 0.55 }, { opacity: 0, duration: 0.16, ease: "power1.out", immediateRender: false }, t);
+      }
+      mestre.set(["#at2"], { opacity: 0 }, 0);
+      mestre.fromTo("#ab-txt .ak", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25 }, 0.05);
+      mestre.fromTo("#at1", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out" }, 0.1);
+      mestre.to(["#at1", "#ab-txt .ak"], { opacity: 0, scale: 0.9, duration: 0.15 }, 1.45);
+      mestre.fromTo("#at2", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out", immediateRender: false }, 1.6);
+      mestre.to("#at2", { x: 6, duration: 0.04, repeat: 5, yoyo: true, ease: "none" }, 1.95);
+      mestre.to("#ab-txt", { opacity: 0, duration: 0.25 }, 3.1);
+      mestre.add(tl, OFF);
+      window.__timelines["main"] = mestre;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+import { execFileSync } from 'node:child_process'; import { readFileSync, writeFileSync } from 'node:fs';
+const D = process.argv[2]; const j = JSON.parse(readFileSync(D + '/toques.json'));
+const seg = [['A',2.6,5.2,1],['B',5.2,10.9,1.25],['C',10.9,24.6,2.2],['D',24.6,31.4,1.35],['E1',31.4,33.0,1],['E2',33.0,51.9,4],['F',51.9,55.0,1]];
+let out = 0; const mapa = []; let fc = '';
+seg.forEach(([n,a,b,v],i) => { mapa.push({ n, a, b, v, o: out }); fc += `[0:v]trim=${a}:${b},setpts=(PTS-STARTPTS)/${v}[s${i}];`; out += (b-a)/v; });
+fc += seg.map((_,i)=>`[s${i}]`).join('') + `concat=n=${seg.length}:v=1:a=0,fps=30[v]`;
+const conv = (t) => { const m = mapa.find((s) => t >= s.a && t < s.b); return m ? +(m.o + (t - m.a) / m.v).toFixed(3) : null; };
+const toques = j.toques.map((t) => ({ ...t, t: conv(t.t + 0.35 - j.base) }));
+execFileSync('ffmpeg', ['-y','-loglevel','error','-i',D+'/site.mp4','-filter_complex',fc,'-map','[v]','-c:v','libx264','-crf','17','-pix_fmt','yuv420p',D+'/site-edit.mp4']);
+writeFileSync(D + '/edit.json', JSON.stringify({ total: +out.toFixed(3), segs: mapa.map((m) => ({ n: m.n, o: +m.o.toFixed(3) })), toques }, null, 1));
+console.log(JSON.stringify({ total: out, segs: mapa.map((m) => [m.n, m.o.toFixed(2)]), toques: toques.map((t) => [t.rotulo, t.t]) }));

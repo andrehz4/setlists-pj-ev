@@ -170,6 +170,19 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-16 (fim da tarde): reel tutorial do gerador (rascunho aprovado) + vídeo no navegador do Instagram
+
+- **Reel tutorial (v2 APROVADO pelo Andre, não publicado):** HyperFrames em
+  `/Users/andrehz/Documents/Githubhz/setlists-pj-ev/reels-especiais/tutorial-gerador` (LEIA.md lá). 46 s: abertura de 3 s
+  com 8 cortes mudos do acervo R2 + chamada forte, perfil @smufdpj desenhado, site GRAVADO de verdade (Chrome headless
+  390x844, toques reais, nome SMUFDPJ), brincadeira com a raridade (L.A. Woman), story desenhado com o MP4 real, dedinho
+  em cada toque, efeitos da biblioteca de áudio (os mesmos da fabrica-quiz). Render v2 em `renders/` (mídia fora do git).
+- **Fable (commit 1edebb4b7):** no navegador interno do Instagram o vídeo virou o caminho principal: link `?s=` reabre
+  a MESMA setlist no Chrome (Android, `intent://`) ou Safari (iPhone, `x-safari-https://`). FALTA testar no S23 e iPhone.
+- **"Sua sorte" vira "A sorte de <nome>"** (commit f31379cb5).
+- **Próximo:** Andre testa no S23 o botão do vídeo dentro do Instagram; se ok, regravar o site (`ferramentas/grava.mjs`)
+  pra o reel mostrar o passo "abre no Chrome" e o nome nas estatísticas, renderizar v3 e decidir quando publicar.
+
 ## 2026-11-16 (tarde): story do Ibirapuera em vídeo + segurança (PR #648 no ar)
 
 - Chegada: cartão com 4 setas douradas animadas nas diagonais e seta num selo dourado ("Toque aqui e sorteie o seu").
@@ -260,32 +273,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - Pendências comuns: com 1 show sobra espaço embaixo; pinos de cidades vizinhas juntos; não há fonte mono de
   máquina de escrever em media/fonts (U e W usam Inter em grade).
 - Ordem nova: sáb 14/11 G, H, I, J, K (Black Circle, Blaymorphed, Lost Dogs, Love Boat, PJ 90); dom 15/11 H, I, J.
-
-## 2026-11-13 (noite, parte 2): 4 layouts novos no story por banda, LIGADOS
-
-- Problema: com 9 bandas, os stories por banda só mudavam de cor. Agora o rodízio tem 7: A/B/C (mapas antigos) + G
-  painel de embarque (split-flap, mapa de LED), H disco de vinil, I jornal "Edição Extra", J conversa de grupo.
-  Desenho do Claude Code, mesma régua de tempo (`tempo.mjs`): voz, clipes, trilha e publicação não mudaram.
-- Código em `scripts/agenda/redes/story-banda/layouts/<letra>/` (registro em `layouts/index.mjs`, 4 temas cada).
-  Flag `AGENDA_LAYOUTS_NOVOS=1` no `agenda-story.yml`. Rascunho sem publicar: `rascunho.mjs --layouts G --mp4`.
-- Sáb 14/11: Black Circle B, Blaymorphed G, Lost Dogs H, Love Boat I, PJ 90 J. CONFERIR os 5 stories às 10:37.
-- Claude Design (projeto "Pearl Jam Cover Story Video"): pedido de mais 3 (D, E, F) enviado
-  (`design-handoff/pedidos/story-banda-layouts-DEF.md`), PAUSADO no limite semanal (volta 22:00). Próximo: Resume,
-  baixar o zip, portar cada um como `layouts/D` etc. (o `quadro(T, story, tema, logoUri)` dos layouts meus é o molde).
-- Claude Design standalone fecha em 14/12/2026: mover os projetos pro Claude antes disso.
-- Fala da data sai em todos os stories ("não cabe 1.211x"): conferir se em produção é igual.
-
-## 2026-11-13 (noite): trigger do reel, CI verde, GA achado, dependabot
-
-- **Reel no TriggerAll:** não existia (15 triggers, nenhum do reel). Criado o #016 "Publish Reel (domingo)", `7 12,15,18,21 * * 0`
-  UTC (09:07, 12:07, 15:07, 18:07 BRT), token `GITHUB_ACTION`. O card mostra "09:07 (14h)" na sexta: bug só da tela
-  (`TriggerCard.jsx` ignora dia da semana); o node-cron do backend respeita o domingo. CONFERIR dom 15/11 09:07.
-- **CI vermelho desde 09/11:** `scripts/regressao/selo-final-animado.test.mjs` supunha que o ffmpeg 8 recusa `-vsync`; quem
-  removeu foi o 9 (Mac 9.0.2, Ubuntu do CI 8.0.1). Prova do bug só no 9+, e checagem dos argumentos em qualquer versão.
-- **Google Analytics achado:** G-234ZL5MF0T está na eng.andrehz, conta "Default Account for Firebase", propriedade
-  "teste-15e8d" (240201637), fluxo "Site Pearl Jam". Recebendo tráfego. Vale renomear a propriedade.
-- **Dependabot:** merge de #527, #548, #549, #551, #553 (backend, cópia atrasada) e #616 (got 16, CI verde). #615 (SDK
-  Anthropic 1.4) passa nos 469 testes localmente; o dependabot não rebaseou, pedi `recreate`: dar merge quando o CI ficar verde. #506, #525, #526, #569
-  mexem em workflow: o token do Claude não tem escopo `workflow`, merge à mão pelo Andre.
-- **ALERTA Actions:** o TriggerAll projeta 4.786 min em novembro (2.039 até dia 13, franquia 3.000, estoura ~dia 20). Estourar
-  PARA os jobs até virar o mês (sem cartão, não cobra). Investigar o que subiu (trilha própria nos stories?).

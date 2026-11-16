@@ -1,0 +1,7 @@
+# Mídia fica fora do git: trechos de clipe oficiais (R2), efeitos da biblioteca de áudio, gravações e renders
+**/*.mp4
+**/*.wav
+**/*.mp3
+**/*.jpg
+renders/
+.hyperframes/

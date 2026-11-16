@@ -1,0 +1,2 @@
+{ "name": "tutorial-gerador", "private": true, "type": "module",
+  "scripts": { "check": "npx --yes hyperframes@0.9.56 check", "render": "npx --yes hyperframes@0.9.56 render", "dev": "npx --yes hyperframes@0.9.56 preview" } }
