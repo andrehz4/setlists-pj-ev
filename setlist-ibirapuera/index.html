@@ -7,12 +7,12 @@
 <meta name="description" content="Qual será o setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
-<script type="importmap">{"imports":{"./app.js":"./app.js?v=4e3ee5bc","./folha.js":"./folha.js?v=459eb203","./salvar.js":"./salvar.js?v=3e90af04","./sorteio.js":"./sorteio.js?v=c64713d3","./story.js":"./story.js?v=7375719e","./telas.js":"./telas.js?v=f30872b2","./lista.js":"./lista.js?v=14bec288"}}</script>
+<script type="importmap">{"imports":{"./app.js":"./app.js?v=4e3ee5bc","./folha.js":"./folha.js?v=459eb203","./salvar.js":"./salvar.js?v=3e90af04","./sorteio.js":"./sorteio.js?v=c64713d3","./story.js":"./story.js?v=1cc80c76","./telas.js":"./telas.js?v=f30872b2","./lista.js":"./lista.js?v=14bec288"}}</script>
 <link rel="modulepreload" href="app.js?v=4e3ee5bc">
 <link rel="modulepreload" href="folha.js?v=459eb203">
 <link rel="modulepreload" href="salvar.js?v=3e90af04">
 <link rel="modulepreload" href="sorteio.js?v=c64713d3">
-<link rel="modulepreload" href="story.js?v=7375719e">
+<link rel="modulepreload" href="story.js?v=1cc80c76">
 <script>window.musicasCedo = fetch('musicas.json?v=43816b7a').then(function (r) { return r.json(); });</script>
 <meta name="theme-color" content="#0f0e0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -207,7 +207,8 @@
   .r-grade { max-width: 1180px; margin: 0 auto; padding: 8px 16px 48px; display: grid; gap: 22px;
     grid-template-areas: "titulo" "folha" "baixar" "lidas" "sorte" "ouvir" "mais"; }
   .r-titulo { grid-area: titulo; }
-  .r-titulo h1 { font: 900 clamp(44px, 13vw, 76px)/.86 var(--disp); text-transform: uppercase; margin: 8px 0 0; }
+  /* margem em em: o acento das maiúsculas (ANDRÉ, JOSÉ) passa da altura da linha e encostava no kicker de cima */
+  .r-titulo h1 { font: 900 clamp(44px, 13vw, 76px)/.86 var(--disp); text-transform: uppercase; margin: .24em 0 0; }
   .r-titulo h1 em { font-style: normal; color: var(--cor); }
   .r-titulo .shows { margin-top: 16px; }
   .mesa { grid-area: folha; position: relative; padding: 18px 10px 10px; }

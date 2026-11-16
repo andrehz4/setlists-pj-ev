@@ -66,7 +66,7 @@ function carta(c, el, x, y, w, h) {
 }
 
 function titulo(c) {
-  rotulo(c, M, 74, $('#r-show')?.textContent || 'Ibirapuera', COR.ouro);
+  rotulo(c, M, 58, $('#r-show')?.textContent || 'Ibirapuera', COR.ouro);
   const base = { fonte: tamanho(118, DISP, 900), cor: COR.texto };
   const linhas = [[]]; // o <br> do #r-nome separa as duas linhas
   for (const n of $('#r-nome')?.childNodes || []) {
@@ -74,7 +74,7 @@ function titulo(c) {
     else linhas.at(-1).push({ ...base, cor: n.nodeName === 'EM' ? COR.ouro : COR.texto, t: n.textContent.toUpperCase() });
   }
   if (!linhas[0].length) linhas[0] = [{ ...base, t: 'O SEU SETLIST' }];
-  linhas.filter((l) => l.length).slice(0, 2).forEach((ped, i) => { ped[0].t = ped[0].t.trimStart(); linha(c, M - 4, 186 + i * 112, ped, W - 2 * M); });
+  linhas.filter((l) => l.length).slice(0, 2).forEach((ped, i) => { ped[0].t = ped[0].t.trimStart(); linha(c, M - 4, 196 + i * 110, ped, W - 2 * M); });
 }
 
 function folhaNoMeio(c, folha, y, larg, x = (W - larg) / 2) {
