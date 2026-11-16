@@ -86,8 +86,11 @@ function umEm(p) {
   if (p <= 0) return null;
   const x = 1 / p;
   if (x < 1e6) return Math.round(x).toLocaleString('pt-BR');
-  const nomes = [[1e15, 'quatrilhões'], [1e12, 'trilhões'], [1e9, 'bilhões'], [1e6, 'milhões']];
-  if (x < 1e18) { const [v, n] = nomes.find(([v]) => x >= v); return `${(x / v).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} <small>${x / v < 2 ? n.replace('ões', 'ão') : n}</small>`; }
+  // Nome por extenso até vigintilhão (10^63): "1 em 4,7 quintilhões" dá mais curiosidade que 10 elevado a 18.
+  const nomes = ['milhões', 'bilhões', 'trilhões', 'quatrilhões', 'quintilhões', 'sextilhões', 'septilhões', 'octilhões', 'nonilhões',
+    'decilhões', 'undecilhões', 'duodecilhões', 'tredecilhões', 'quatordecilhões', 'quindecilhões', 'sexdecilhões', 'setedecilhões',
+    'octodecilhões', 'novendecilhões', 'vigintilhões'].map((n, i) => [10 ** (6 + 3 * i), n]).reverse();
+  if (x < 1e66) { const [v, n] = nomes.find(([v]) => x >= v); return `${(x / v).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} <small>${x / v < 2 ? n.replace('ões', 'ão') : n}</small>`; }
   return `10<sup>${Math.floor(Math.log10(x))}</sup>`;
 }
 
