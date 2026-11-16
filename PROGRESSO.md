@@ -14,8 +14,14 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `LEIA.md` na mesma pasta (log em `rodar-agente.log`). A rodada das 02:10 falhou: `--allowedTools` engolia o prompt,
   agora vai por stdin. PRÓXIMO: ler HISTORIAS/CARROSSEL com o Andre, montar o carrossel e agendar terça.
   Login do Claude CLI expira entre 20 e 23/11 (`claude auth login` antes).
-- **PEDIDO NOVO (não iniciado): REA do https://generator.pearljam.com/** com as ferramentas REA (skill
-  reverse-engineer-anything / mcp rea). Objetivo a confirmar com o Andre no início da sessão.
+- **Letra do Eddie (REA do generator.pearljam.com, FEITO 16/11):** não é fonte. O gerador (agência glitch.ge, Next.js)
+  usa 1 PNG transparente escrito à mão por música (173, altura 110 px), 1 PNG por cidade (22) e 5 fotos de papel
+  amassado; monta num canvas 1100x1400 (cidade centralizada em y=50, colunas x=100 e x=660, passo 90 px, 12 por coluna).
+  Andre quis as imagens deles (uso fã, não comercial): baixadas em `reels-especiais/letra-eddie/` (FORA do git, repo é
+  público; `indice.json` tem nome -> arquivo), teste `montar-teste.mjs` gera `teste-sao-paulo.jpg` idêntico ao deles.
+  Limite: só existem as 173 músicas e as 22 cidades deles (São Paulo vem escrito "Sao Paolo"). PRÓXIMO: usar no
+  carrossel do ranking (ter 17/11) e decidir se vira gerador no site. Agente Fable do estudo TERMINOU 07:48 (entregas
+  em `reels-especiais/eddie-carreira/`, ainda não commitadas nem lidas com o Andre).
 - **Reel especial Eddie no Ibirapuera v7: AGENDADO seg 16/11 17:30 BRT (16/11 madrugada).** TriggerAll #017
   dispara `publish-reel-especial.yml` com `{"pasta":"eddie-ibirapuera"}` (testado de ponta a ponta com pasta falsa,
   sem publicar). Vídeo no R2 `especiais/eddie-ibirapuera-v7.mp4?v=2` (o `?v=2` fura o cache de 4 h do Cloudflare),
