@@ -7,7 +7,10 @@ import { sortearShow } from './sorteio.js';
 
 const LIMITE = 24;
 const $ = (s) => document.querySelector(s);
-const estado = { show: 1, lista: [] };
+// Uma lista por noite (1 = 20/11, 2 = 22/11); estado.lista é sempre a da noite marcada.
+const estado = { show: 1, listas: { 1: [], 2: [] },
+  get lista() { return this.listas[this.show]; }, set lista(v) { this.listas[this.show] = v; } };
+const chaveDe = (show) => show + ':' + estado.listas[show].map((m) => m.chave + (m.bis ? '|' : '')).join(',');
 let grupos = [];
 let modelo = null;
 
@@ -61,16 +64,36 @@ async function folha() {
     atrasada: (faltam) => { if (!faltam) $('#aviso').textContent = ''; },
   }).catch(() => -1);
   if (meu !== pedido) return;
-  ocupado(false);
+  ocupado(false); if (!falhas) adiantarOutra();
   if (falhas) $('#aviso').textContent = falhas < 0 ? 'A folha não saiu. Recarregue a página e tente de novo.'
     : 'Internet lenta? Algumas músicas saíram em letra simples. A folha se ajeita sozinha quando elas chegarem.';
 }
 
+const pronta = {};
+// Desenha por trás a folha da outra noite; quando a pessoa trocar o seletor, ela já está pronta.
+async function adiantarOutra() {
+  const outra = estado.show === 1 ? 2 : 1, chave = chaveDe(outra);
+  if (!estado.listas[outra].length || pronta[outra]?.chave === chave) return;
+  const c = Object.assign(document.createElement('canvas'), { width: 1100, height: 1400 });
+  const falhas = await desenharFolha(c, { show: outra, musicas: [...estado.listas[outra]] }, { vigente: () => true }).catch(() => -1);
+  if (!falhas && chaveDe(outra) === chave) pronta[outra] = { chave, c };
+}
+
 function tudo() { catalogo(); selecionadas(); folha(); }
+function trocarNoite(show) {
+  estado.show = show;
+  if (!estado.lista.length) estado.lista = estado.listas[show === 1 ? 2 : 1].map((m) => ({ ...m }));
+  const p = pronta[show];
+  if (p?.chave === chaveDe(show)) {
+    ++pedido; $('#folha').getContext('2d').drawImage(p.c, 0, 0);
+    $('#previa').classList.remove('montando'); $('#story').disabled = false; $('#estado-folha').textContent = '';
+    catalogo(); selecionadas(); adiantarOutra(); return;
+  }
+  tudo();
+}
 
 function sortear() {
-  const escolha = sortearShow(grupos, modelo);
-  estado.lista = escolha;
+  estado.listas = { 1: sortearShow(grupos, modelo), 2: sortearShow(grupos, modelo) };
   tudo();
   $('#previa').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -110,9 +133,8 @@ document.addEventListener('click', (e) => {
   };
   if (acoes[b.dataset.acao]) { acoes[b.dataset.acao](); return tudo(); }
   if (b.dataset.show) {
-    estado.show = Number(b.dataset.show);
     document.querySelectorAll('[data-show]').forEach((x) => x.classList.toggle('on', x === b));
-    return folha();
+    return trocarNoite(Number(b.dataset.show));
   }
   const extras = { sortear, limpar: () => { estado.lista = []; tudo(); },
     ouvir: () => window.open(`https://www.youtube.com/watch_videos?video_ids=${
