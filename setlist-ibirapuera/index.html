@@ -6,7 +6,7 @@
 <title>Qual será o seu setlist do Eddie no Ibirapuera?</title>
 <meta name="description" content="Qual será o setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
-<script type="importmap">{"imports":{"./app.js":"./app.js?v=04ce59ab","./folha.js":"./folha.js?v=82837019","./salvar.js":"./salvar.js?v=2b486cd8","./sorteio.js":"./sorteio.js?v=b670c49a","./story.js":"./story.js?v=dc1f55e3","./story-pincel.js":"./story-pincel.js?v=14fd7531","./story-video.js":"./story-video.js?v=94ecdf1d","./story-roteiro.js":"./story-roteiro.js?v=c3277343","./story-escrita.js":"./story-escrita.js?v=42ff8f76","./story-rodape.js":"./story-rodape.js?v=e5e6cce5","./folha-viva.js":"./folha-viva.js?v=60b86b55","./telas.js":"./telas.js?v=592fa039","./lista.js":"./lista.js?v=14bec288","./filtro.js":"./filtro.js?v=01ec64c8"}}</script>
+<script type="importmap">{"imports":{"./app.js":"./app.js?v=04ce59ab","./folha.js":"./folha.js?v=82837019","./salvar.js":"./salvar.js?v=2b486cd8","./sorteio.js":"./sorteio.js?v=b670c49a","./story.js":"./story.js?v=dc1f55e3","./story-pincel.js":"./story-pincel.js?v=14fd7531","./story-video.js":"./story-video.js?v=94ecdf1d","./story-roteiro.js":"./story-roteiro.js?v=c3277343","./story-escrita.js":"./story-escrita.js?v=42ff8f76","./story-rodape.js":"./story-rodape.js?v=e5e6cce5","./folha-viva.js":"./folha-viva.js?v=60b86b55","./telas.js":"./telas.js?v=4e32db92","./lista.js":"./lista.js?v=14bec288","./filtro.js":"./filtro.js?v=01ec64c8"}}</script>
 <link rel="modulepreload" href="app.js?v=04ce59ab">
 <link rel="modulepreload" href="folha.js?v=82837019">
 <link rel="modulepreload" href="salvar.js?v=2b486cd8">
@@ -238,7 +238,8 @@
   /* margem em em: o acento das maiúsculas (ANDRÉ, JOSÉ) passa da altura da linha e encostava no kicker de cima */
   .r-titulo h1 { font: 900 clamp(44px, 13vw, 76px)/.86 var(--disp); text-transform: uppercase; margin: .24em 0 0; }
   .r-titulo h1 em { font-style: normal; color: var(--cor); }
-  .r-titulo h1 { overflow-wrap: anywhere; }
+  .r-titulo h1 { overflow-wrap: anywhere; container-type: inline-size; }
+  .r-titulo h1 .nome-longo { display: block; white-space: nowrap; line-height: 1; margin-bottom: .04em; }
   #catalogo .vazio { color: var(--fraco); padding: 24px 2px; margin: 0; }
   .r-titulo .shows { margin-top: 16px; }
   .mesa { grid-area: folha; position: relative; padding: 18px 10px 10px; }
@@ -520,7 +521,7 @@
 
 <button id="atalho" hidden></button>
 <script type="module" src="app.js?v=04ce59ab"></script>
-<script type="module" src="telas.js?v=592fa039"></script>
+<script type="module" src="telas.js?v=4e32db92"></script>
 <script type="module" src="lista.js?v=14bec288"></script>
 <script type="module" src="filtro.js?v=01ec64c8"></script>
 <script type="module" src="story-video.js?v=94ecdf1d"></script>
