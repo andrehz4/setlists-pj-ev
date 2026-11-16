@@ -76,6 +76,8 @@ function lista() {
 }
 
 const pct = (x) => (x ?? 0).toLocaleString('pt-BR', { maximumFractionDigits: x < 1 ? 1 : 0 });
+// Nome de música vai pro innerHTML: escapa como no app.js e no lista.js.
+const esc = (t) => String(t).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 const dataBR = (d) => d ? d.split('-').reverse().slice(0, 2).join('/') + '/' + d.slice(2, 4) : '';
 function umEm(p) {
   if (p <= 0) return null;
@@ -103,16 +105,16 @@ function sorte(ms) {
     <div class="txt"><b>${veredito}.</b> Na média, cada uma rolou em ${indice}% dos shows solo.</div></div>
     <div class="val">${indice}<small>/100</small></div><div class="medidor"><i style="width:${indice}%"></i></div></div>`);
   if (rara) c.push(`<div class="carta"><div class="rot">Sua raridade</div><div class="val">${pct(rara.pct)}<small>%</small></div>
-    <div class="txt"><b>${rara.nome}</b>, só em ${rara.vezes} ${rara.vezes === 1 ? 'show' : 'shows'}</div></div>`);
+    <div class="txt"><b>${esc(rara.nome)}</b>, só em ${rara.vezes} ${rara.vezes === 1 ? 'show' : 'shows'}</div></div>`);
   if (certa && certa !== rara) c.push(`<div class="carta"><div class="rot">Sua aposta certa</div><div class="val">${pct(certa.pct)}<small>%</small></div>
-    <div class="txt"><b>${certa.nome}</b>, em ${certa.vezes} ${certa.vezes === 1 ? 'show' : 'shows'}</div></div>`);
+    <div class="txt"><b>${esc(certa.nome)}</b>, em ${certa.vezes} ${certa.vezes === 1 ? 'show' : 'shows'}</div></div>`);
   c.push(`<div class="carta"><div class="rot">Tocadas em 2026</div><div class="val">${de26.length}<small>/${n}</small></div>
-    <div class="txt">${de26.length ? `A mais recente: <b>${de26[0].nome}</b>, ${dataBR(de26[0].ult)}` : 'Nenhuma saiu do baú este ano. Ainda.'}</div></div>`);
+    <div class="txt">${de26.length ? `A mais recente: <b>${esc(de26[0].nome)}</b>, ${dataBR(de26[0].ult)}` : 'Nenhuma saiu do baú este ano. Ainda.'}</div></div>`);
   c.push(`<div class="carta"><div class="rot">Num show típico</div><div class="val">${esperadas.toLocaleString('pt-BR', { maximumFractionDigits: 1 })}<small>/${n}</small></div>
     <div class="txt">das suas rolariam. Ele toca ${String(dados.mediaPorShow).replace('.', ',')} por noite.</div></div>`);
   c.push(nunca.length
     ? `<div class="carta larga"><div class="rot">Chance de ouvir todas</div><div class="val">0</div>
-      <div class="txt"><b>${nunca[0].nome}</b>${nunca.length > 1 ? ` e mais ${nunca.length - 1}` : ''} ${nunca.length > 1 ? 'nunca entraram' : 'nunca entrou'} num show solo. Sonhar é de graça.</div></div>`
+      <div class="txt"><b>${esc(nunca[0].nome)}</b>${nunca.length > 1 ? ` e mais ${nunca.length - 1}` : ''} ${nunca.length > 1 ? 'nunca entraram' : 'nunca entrou'} num show solo. Sonhar é de graça.</div></div>`
     : `<div class="carta larga"><div class="rot">Chance de ouvir todas</div><div class="val"><small>1 em</small> ${chance}</div>
       <div class="txt">É a conta da frequência de cada uma nos ${S} shows solo desde ${dados.primeiroShow.data.slice(0, 4)}. Vai que.</div></div>`);
   $('#sorte').innerHTML = c.join('');
@@ -122,8 +124,8 @@ function spotify(ms) {
   const com = ms.filter((m) => m.sp).length;
   $('#ver-spotify').innerHTML = `<i class="sp-ico"></i>Spotify${com < ms.length ? ` (${com} de ${ms.length})` : ''}`;
   $('#sp-lista').innerHTML = ms.map((m, i) => m.sp
-    ? `<li><a href="https://open.spotify.com/track/${m.sp}" target="_blank" rel="noopener"><i>${i + 1}</i>${m.nome}</a></li>`
-    : `<li><span><i>${i + 1}</i>${m.nome}</span></li>`).join('');
+    ? `<li><a href="https://open.spotify.com/track/${encodeURIComponent(m.sp)}" target="_blank" rel="noopener"><i>${i + 1}</i>${esc(m.nome)}</a></li>`
+    : `<li><span><i>${i + 1}</i>${esc(m.nome)}</span></li>`).join('');
 }
 
 // Carregando: pré-carrega as mesmas imagens que a folha usa e só então mostra o canvas
