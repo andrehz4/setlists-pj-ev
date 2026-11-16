@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monte a sua setlist do Eddie no Ibirapuera</title>
+<meta name="description" content="Escolha as músicas, arraste pra ordenar e baixe a sua setlist do Eddie Vedder no Ibirapuera escrita à mão.">
+<meta name="robots" content="noindex">
+<style>
+  :root { --fundo: #141311; --cartao: #1f1d1a; --linha: #34302a; --texto: #f2efe6; --fraco: #a39c8e; --cor: #e8b04a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.45 system-ui, -apple-system, sans-serif; }
+  header, main { max-width: 1180px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); margin: 8px 0 4px; }
+  header p { color: var(--fraco); margin: 0 0 16px; }
+  button { font: inherit; color: inherit; background: var(--cartao); border: 1px solid var(--linha); border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+  button:hover:not(:disabled) { border-color: var(--cor); }
+  button:disabled { opacity: .35; cursor: default; }
+  button.on, .principal { background: var(--cor); color: #1a1408; border-color: var(--cor); font-weight: 600; }
+  .shows, .barra { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 860px) { .grade { grid-template-columns: 1fr; } }
+  section { background: var(--cartao); border: 1px solid var(--linha); border-radius: 12px; padding: 12px; min-width: 0; }
+  h2 { font-size: 1.05rem; margin: 0 0 8px; display: flex; justify-content: space-between; }
+  #busca { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--linha); background: var(--fundo); color: var(--texto); font: inherit; margin-bottom: 8px; }
+  #catalogo { max-height: 70vh; overflow: auto; }
+  details { border-top: 1px solid var(--linha); }
+  summary { padding: 10px 4px; cursor: pointer; font-weight: 600; }
+  summary small { color: var(--fraco); font-weight: 400; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  .add { width: 100%; text-align: left; border: 0; border-radius: 6px; background: none; padding: 7px 8px; }
+  .add:hover:not(:disabled) { background: var(--linha); }
+  .add small, .add em { color: var(--fraco); font-style: normal; font-size: .85em; }
+  #lista li { display: flex; align-items: center; gap: 6px; padding: 6px 4px; border-bottom: 1px solid var(--linha); cursor: grab; }
+  #lista .num { color: var(--fraco); width: 1.6em; text-align: right; }
+  #lista .nome { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #lista button { padding: 4px 8px; font-size: .85em; }
+  .dica { color: var(--fraco); font-size: .9em; margin: 4px 0 8px; }
+  #previa { margin-top: 16px; }
+  #folha { width: 100%; max-width: 560px; display: block; margin: 0 auto 12px; border-radius: 4px; }
+  #aviso { color: #ff9b85; min-height: 1em; }
+  footer { color: var(--fraco); font-size: .85em; max-width: 1180px; margin: 0 auto; padding: 16px; }
+  footer a { color: var(--fraco); }
+</style>
+</head>
+<body>
+<header>
+  <a href="/" style="color:var(--fraco)">Só mais um fã de Pearl Jam</a>
+  <h1>Monte a sua setlist do Eddie no Ibirapuera</h1>
+  <p>Escolha o show, separe até 24 músicas, arraste pra ordenar e marque onde entra o bis. A folha sai escrita à mão.</p>
+  <div class="shows">
+    <button data-show="1" class="on">Sex 20/11 · São Paulo I</button>
+    <button data-show="2">Dom 22/11 · São Paulo II</button>
+  </div>
+  <div class="barra">
+    <button id="sortear" class="principal">Sortear uma setlist</button>
+    <button id="limpar">Começar do zero</button>
+  </div>
+</header>
+<main>
+  <div class="grade">
+    <section>
+      <h2>Músicas</h2>
+      <input id="busca" type="search" placeholder="Buscar música ou artista" autocomplete="off">
+      <div id="catalogo"></div>
+    </section>
+    <section>
+      <h2>Sua setlist <span id="contador">0/24</span></h2>
+      <p class="dica">Arraste pra reordenar (ou use as setas). "bis" põe o traço do bis depois da música.</p>
+      <p class="dica" id="limite" hidden>Chegou no limite de 24 músicas.</p>
+      <ul id="lista"></ul>
+      <div id="previa" hidden>
+        <canvas id="folha" width="1100" height="1400"></canvas>
+        <div class="barra" id="acoes" hidden>
+          <button id="baixar" class="principal">Baixar a folha</button>
+          <button id="story">Baixar pro story</button>
+          <button id="compartilhar">Compartilhar</button>
+          <button id="ouvir" hidden>Ouvir no YouTube</button>
+        </div>
+      </div>
+      <p id="aviso" role="status"></p>
+    </section>
+  </div>
+</main>
+<footer>
+  Lista com todas as músicas que o Eddie já tocou solo (setlist.fm) e as do gerador oficial do Pearl Jam.
+  Site de fã, sem ligação com a banda.
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>

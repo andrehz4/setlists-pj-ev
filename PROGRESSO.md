@@ -6,6 +6,16 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Gerador de setlist do Ibirapuera (16/11, NO AR sem link, noindex):** `setlist-ibirapuera/` copia o gerador oficial
+  (REA completo em `docs/setlist-ibirapuera/REA-GERADOR-OFICIAL.md`) só pros shows de 20 e 22/11. 401 músicas (solo do
+  setlist.fm + 173 oficiais) por disco/solo/covers; PNG oficial carregado do CDN deles (CORS liberado) e a NOSSA fonte v3
+  nas 228 sem PNG; traço de bis; baixar folha/story; "Ouvir no YouTube" sem login (`watch_videos`, só as 173 com ID).
+  Regenerar: `node scripts/setlist-ibirapuera/build.mjs` + `reels-especiais/letra-eddie/venv/bin/python
+  reels-especiais/letra-eddie/ferramentas/gerar-ibira.py`. Teste local: `#sortear` na URL abre sorteada.
+  PRÓXIMO: IDs do YouTube das 228 músicas solo (busca na API), link no site/post, fase 2 de playlist com login (decidir).
+- **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
+  Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +
+  `alfabeto-v3`. Falta garimpar 9 galerias e 12 fotos, Z, "w/", e igualar palavras v2 com as reais.
 - **Carrossel do ranking do Eddie solo: AGENDADO ter 17/11 17:30 BRT (TriggerAll #018, cron `30 20 17 11 *`).**
   10 slides do Claude Design (projeto "Ranking Eddie Vedder Solo") no R2 `especiais/eddie-ranking-solo/01..10.jpg`,
   `reels-especiais/eddie-ranking-solo/publicar.json` (imagens + legenda). Mesmo workflow do reel especial: quando o
