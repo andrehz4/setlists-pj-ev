@@ -121,12 +121,15 @@
   .mira.bl { bottom: -40px; left: -22px; rotate: -90deg; --d: 7px, -7px; }
   .mira.br { bottom: -40px; right: -22px; rotate: 180deg; --d: -7px, -7px; }
   /* As mesmas setas em volta do botão principal (baixar vídeo, postar no story): .alvo embrulha o botão (story-video.js). */
-  .alvo { position: relative; display: grid; grid-column: 1 / -1; }
+  .alvo { position: relative; display: grid; grid-column: 1 / -1; padding: 30px 30px; margin: -14px 0; }
   #acoes.com-video .alvo { order: -1; }
   #salvar-tela .botoes .alvo { grid-column: auto; }
-  .alvo .mira { width: 26px; height: 26px; z-index: 1; pointer-events: none; animation: aponta 1.1s ease-in-out infinite; }
-  .alvo .mira.tl { top: -24px; left: -11px; } .alvo .mira.tr { top: -24px; right: -11px; }
-  .alvo .mira.bl { bottom: -24px; left: -11px; } .alvo .mira.br { bottom: -24px; right: -11px; }
+  /* Fora dos cantos, apontando pra eles, como no cartão da chegada. Só aparecem quando o botão libera (folha pronta). */
+  .alvo .mira { width: 28px; height: 28px; z-index: 1; pointer-events: none; opacity: 0; scale: .5;
+    transition: opacity .35s ease-out, scale .45s cubic-bezier(.2,1.6,.4,1); animation: aponta 1.1s ease-in-out infinite; }
+  .alvo:not(:has(> button:disabled)) .mira { opacity: 1; scale: 1; }
+  .alvo .mira.tl { top: 2px; left: 2px; } .alvo .mira.tr { top: 2px; right: 2px; }
+  .alvo .mira.bl { bottom: 2px; left: 2px; } .alvo .mira.br { bottom: 2px; right: 2px; }
   @keyframes aponta { 0%, 100% { translate: 0 0; } 50% { translate: var(--d); } }
   .fita { position: absolute; width: 92px; height: 26px; background: var(--fita); box-shadow: 0 1px 2px rgba(0,0,0,.15);
     clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%); }
