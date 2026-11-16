@@ -1,24 +1,11 @@
-// Contador do gerador de setlist do Ibirapuera: validação e soma dos eventos, leitura do painel e trava da chave.
-// Sem rede: o D1 é um banco de mentira em memória que entende o upsert e as duas consultas do módulo.
+// Contador do gerador de setlist do Ibirapuera: validação e soma dos eventos e leitura do painel.
+// Sem rede: o D1 é um banco de mentira em memória (banco-falso.mjs). Porta do painel: painel-acesso.test.mjs.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { EVENTOS, MAX_CORPO, validar, pedidoValido, brt, chaves, somar, ler, chaveConfere } from "../../functions/_lib/contador.js";
+import { EVENTOS, MAX_CORPO, validar, pedidoValido, brt, chaves, somar, ler } from "../../functions/_lib/contador.js";
 import { onRequestPost } from "../../functions/api/contador.js";
-import { onRequestGet as painel } from "../../functions/painel-setlist.js";
+import { bancoFalso } from "./banco-falso.mjs";
 
-function bancoFalso() {
-  const linhas = new Map();
-  const prepare = (sql) => ({
-    args: [],
-    bind(...a) { this.args = a; return this; },
-    async run() { for (const k of this.args) linhas.set(k, (linhas.get(k) || 0) + 1); },
-    async all() {
-      const de = this.args[0] ?? "d:", ate = sql.includes("'h;'") ? "h;" : "d;";
-      return { results: [...linhas].filter(([k]) => k >= de && k < ate).map(([chave, n]) => ({ chave, n })) };
-    },
-  });
-  return { linhas, prepare };
-}
 const SITE = "https://somaisumfadepearljam.com.br";
 const pedido = (corpo, cab = {}) => new Request(`${SITE}/api/contador`, { method: "POST", body: corpo,
   headers: { Origin: SITE, "User-Agent": "Mozilla/5.0 (iPhone) Safari", ...cab } });
@@ -88,38 +75,6 @@ test("pedidoValido: sem Origin vale o Referer do próprio site", () => {
   assert.equal(pedidoValido(r({ Referer: `${SITE}/setlist-ibirapuera/` })), true);
   assert.equal(pedidoValido(r({ Referer: "https://somaisumfadepearljam.com.br.golpe.com/" })), false);
   assert.equal(pedidoValido(r({})), false);
-});
-
-test("trava da chave: só a chave exata abre; segredo curto ou ausente deixa fechado", () => {
-  const certa = "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6";
-  assert.equal(chaveConfere(certa, certa), true);
-  for (const dada of [null, undefined, "", certa.slice(0, -1), certa + "0", certa.replace("a", "b")]) assert.equal(chaveConfere(dada, certa), false);
-  assert.equal(chaveConfere("curta", "curta"), false);
-  assert.equal(chaveConfere("", ""), false);
-  assert.equal(chaveConfere("undefined", undefined), false);
-});
-
-test("painel: 404 sem a chave, página noindex com os números e JSON com a chave", async () => {
-  const chave = "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6", db = bancoFalso(), env = { CONTADOR_DB: db, PAINEL_SETLIST_CHAVE: chave };
-  for (let i = 0; i < 1234; i++) await somar(db, { e: "visita", noite: null, ig: false });
-  const abrir = (q, e = env) => painel({ request: new Request(`${SITE}/painel-setlist${q}`), env: e });
-  for (const q of ["", "?k=", "?k=errada", `?k=${chave}x`]) {
-    const r = await abrir(q);
-    assert.equal(r.status, 404, q);
-    assert.ok(!(await r.text()).includes("1.234"));
-  }
-  assert.equal((await abrir(`?k=${chave}`, { CONTADOR_DB: db })).status, 404, "sem o segredo configurado ninguém entra");
-  const ok = await abrir(`?k=${chave}`), html = await ok.text();
-  assert.equal(ok.status, 200);
-  assert.match(ok.headers.get("X-Robots-Tag"), /noindex/);
-  assert.match(ok.headers.get("Cache-Control"), /no-store/);
-  assert.match(html, /name="robots" content="noindex/);
-  assert.ok(html.includes("1.234") && html.includes("#f0b93a") && html.includes("setInterval(atualizar, 30000)"));
-  assert.ok(!html.includes(chave), "a chave não é escrita na página");
-  assert.ok(!/(src|href)="https?:/.test(html), "nada de fora: a chave está na URL");
-  const json = await (await abrir(`?k=${chave}&json=1`)).json();
-  assert.equal(json.dias[json.hoje].visita, 1234);
-  assert.equal((await abrir(`?k=${chave}`, { PAINEL_SETLIST_CHAVE: chave })).status, 503);
 });
 
 test("lista de eventos do servidor não tem repetido", () => assert.equal(new Set(EVENTOS).size, EVENTOS.length));

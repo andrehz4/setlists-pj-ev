@@ -78,11 +78,3 @@ export async function ler(db, agora = Date.now()) {
   ]);
   return retrato(d.results || [], h.results || [], agora);
 }
-
-// Compara a chave do painel sem vazar tempo. Chave curta demais (ou ausente) deixa o painel fechado.
-export function chaveConfere(dada, certa) {
-  if (typeof certa !== "string" || certa.length < 16 || typeof dada !== "string" || dada.length !== certa.length) return false;
-  let dif = 0;
-  for (let i = 0; i < certa.length; i++) dif |= dada.charCodeAt(i) ^ certa.charCodeAt(i);
-  return dif === 0;
-}

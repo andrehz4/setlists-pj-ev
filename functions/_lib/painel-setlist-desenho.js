@@ -53,6 +53,15 @@ export function desenhar(d) {
       .map((k) => `<td>${num(v(o, k))}</td>`).join("")}</tr>`;
   }).join("");
 
+  // Nome é texto digitado por visitante: sempre escapado antes de entrar no HTML.
+  const esc = (t) => String(t ?? "").replace(/[&<>"'`]/g, (c) => "&#" + c.charCodeAt(0) + ";");
+  const nm = d.nomes || { lista: [], distintos: 0, barrados: 0 };
+  const rotEv = { sorteou: "Sorteou", baixou_video: "Baixou o vídeo", baixou_imagem: "Baixou a imagem", compartilhou: "Compartilhou" };
+  const nomes = nm.lista.map((n) => { const q = String(n.quando || "");
+    return `<tr${n.barrado ? ' class="barrado"' : ""}><th>${esc(q.slice(8, 10) + "/" + q.slice(5, 7) + " " + q.slice(11, 16))}</th>
+      <td class="nome">${esc(n.nome)}${n.barrado ? ' <span class="selo">barrado pelo filtro</span>' : ""}</td><td>${n.noite === 20 || n.noite === 22 ? n.noite + "/11" : ""}</td>
+      <td>${esc(rotEv[n.evento] || n.evento)}</td><td>${n.dentro_app ? "Instagram" : "Fora"}</td></tr>`; }).join("");
+
   const hora = new Date(d.agora).toLocaleTimeString("pt-BR", { timeZone: "America/Sao_Paulo" });
   return `<p class="quando">Números de ${hora} (horário de Brasília)</p>
     <section class="cartoes">${cartoes}</section>
@@ -61,5 +70,8 @@ export function desenhar(d) {
     <section class="duas"><div><h2>Noites: 20 x 22</h2>${noites}</div><div><h2>Instagram x fora</h2>${insta}</div></section>
     <section><h2>Por hora, últimas 48 h</h2>${faixa("Visitas", ["visita"])}${faixa("Sorteios", ["sorteou"])}${faixa("Downloads (vídeo + imagem)", ["baixou_video", "baixou_imagem"])}</section>
     <section><h2>Por dia</h2><div class="rola"><table><thead><tr><th>Dia</th><th>Visitas</th><th>Sorteios</th><th>Montou</th><th>Pediu vídeo</th><th>Vídeos</th><th>Imagens</th><th>Compartilhou</th></tr></thead>
-      <tbody>${linhas || '<tr><td colspan="8">Nenhum evento ainda.</td></tr>'}</tbody></table></div></section>`;
+      <tbody>${linhas || '<tr><td colspan="8">Nenhum evento ainda.</td></tr>'}</tbody></table></div></section>
+    <section><h2>Nomes</h2><p class="nota">Nomes diferentes: <b>${num(nm.distintos)}</b>. Barrados pelo filtro: <b>${num(nm.barrados)}</b>. Abaixo, os últimos ${nm.lista.length || 100}.</p>
+      <div class="rola"><table class="nomes"><thead><tr><th>Hora (Brasília)</th><th>Nome</th><th>Noite</th><th>Evento</th><th>Onde</th></tr></thead>
+      <tbody>${nomes || '<tr><td colspan="5">Nenhum nome ainda.</td></tr>'}</tbody></table></div></section>`;
 }

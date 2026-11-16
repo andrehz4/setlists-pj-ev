@@ -46,6 +46,7 @@ if (typeof document !== 'undefined' && document.querySelector('#nome')) { // só
   const conferir = () => {
     const limpo = soLetras(campo.value);
     if (nomeProibido(campo.value) || nomeProibido(limpo)) { // cru também: "p3d0" sem os números vira "pd"
+      campo.dataset.barrado = campo.value.slice(0, 30); // o contador.js manda pro painel o que foi barrado
       campo.value = '';
       aviso.textContent = 'Esse nome não rola por aqui. Coloque o seu primeiro nome.';
     } else {

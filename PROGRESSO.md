@@ -178,7 +178,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `especiais/tutorial-gerador-v4.mp4`. Ponto a ouvir: whisper ouviu "Ó, é de toca" na fala 1 ("O Eddie toca").
 - **story-avulso** aceita vídeo do R2 (`especiais/*.mp4`) no input `imagem` (commit e45cccca2).
 - **Painel de uso do gerador** (Fable, commit 46c861210): eventos sem dado pessoal -> `POST /api/contador` (D1
-  `setlist-contador`) -> `/painel-setlist?k=<chave>` (URL com a chave em /Users/andrehz/.config/smufdpj/painel-setlist.txt).
+  `setlist-contador`) -> `/painel-setlist` (desde 16/11 com usuário e senha, segredos PAINEL_USUARIO e PAINEL_SENHA; guarda também os nomes digitados).
   BLOCKER: Andre ligar o binding D1 no Cloudflare (Pages setlists-pj-ev > Settings > Bindings > D1, nome `CONTADOR_DB`,
   banco `setlist-contador`) e dar Retry deployment. Até lá o contador não grava.
 - **Botão Compartilhar** (ícone do WhatsApp) ao lado de "Só a imagem": compartilhar do celular com a imagem e o texto da

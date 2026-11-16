@@ -1,5 +1,5 @@
-// Casca da página do painel do contador: visual escuro com o dourado do gerador, sem nada de fora (a chave fica na
-// URL, então a página não carrega fonte, script nem imagem de outro domínio). Redesenha sozinha a cada 30 s.
+// Casca da página do painel do contador: visual escuro com o dourado do gerador, sem nada de fora (painel
+// privado: a página não carrega fonte, script nem imagem de outro domínio). Redesenha sozinha a cada 30 s.
 import { desenhar } from "./painel-setlist-desenho.js";
 
 const CSS = `
@@ -35,6 +35,8 @@ i.a{background:var(--ouro)}i.b{background:var(--azul)}i.nada{flex:1;background:v
 .eixo{display:flex;gap:2px;font-size:11px;color:var(--fraco);margin-top:4px}.eixo span{flex:1;white-space:nowrap;overflow:visible;width:0}
 .rola{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
 th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--linha);white-space:nowrap}th:first-child{text-align:left}thead th{color:var(--fraco);font-weight:500}
+.nomes td.nome{text-align:left;font-weight:600;white-space:normal;word-break:break-word}.nomes th:nth-child(2){text-align:left}
+.selo{display:inline-block;background:#c0392b;color:#fff;font-size:11px;font-weight:600;padding:1px 7px;border-radius:10px;margin-left:6px;vertical-align:middle}tr.barrado td.nome{color:#ff8a7a}
 .aviso{background:var(--carta);border:1px solid var(--ouro);border-radius:8px;padding:14px 16px;margin-top:20px}
 @media(max-width:520px){.cartao b{font-size:38px}.etapa{grid-template-columns:96px 1fr 48px 36px;font-size:13px}}`;
 
@@ -52,7 +54,7 @@ const desenhar = ${desenhar.toString()};
 const estado = document.getElementById("estado");
 async function atualizar() {
   try {
-    const r = await fetch(location.pathname + location.search + "&json=1", { cache: "no-store" });
+    const r = await fetch(location.pathname + "?json=1", { cache: "no-store", credentials: "same-origin" });
     if (!r.ok) throw new Error(r.status);
     document.getElementById("miolo").innerHTML = desenhar(await r.json());
     estado.textContent = "ao vivo, atualiza a cada 30 s"; estado.className = "";
