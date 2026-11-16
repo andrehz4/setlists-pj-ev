@@ -121,6 +121,20 @@
   .montar-link small { color: var(--fraco); font-weight: 400; font-size: 13px; }
   .montar-link:hover { border-color: var(--cor); }
   .rodape { color: var(--fraco); font-size: 12px; display: flex; flex-direction: column; gap: 4px; }
+  /* Rodapé do resultado: o resto do site pra pessoa continuar navegando depois de ver o setlist */
+  .site-pe { max-width: 1100px; margin: 48px auto 0; padding: 32px 22px calc(32px + env(safe-area-inset-bottom)); border-top: 1px solid var(--linha);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px 20px; color: var(--fraco); font-size: 14px; }
+  .site-pe .pe-id { grid-column: 1 / -1; }
+  .pe-marca { display: inline-block; font: 900 34px/.9 var(--disp); text-transform: uppercase; color: var(--texto); text-decoration: none; }
+  .pe-marca em { font-style: normal; color: var(--cor); }
+  .site-pe .pe-id p { margin: 10px 0 0; max-width: 42ch; line-height: 1.45; }
+  .site-pe nav { display: flex; flex-direction: column; gap: 9px; }
+  .site-pe h4 { margin: 0 0 4px; font: 700 12px/1 var(--corpo); letter-spacing: .14em; text-transform: uppercase; color: var(--cor); }
+  .site-pe nav a { color: var(--texto); text-decoration: none; width: fit-content; transition: color .15s, translate .15s; }
+  .site-pe nav a:hover { color: var(--cor); translate: 3px 0; }
+  .site-pe small { font-size: 12px; line-height: 1.35; }
+  .pe-fim { grid-column: 1 / -1; margin: 0; padding-top: 18px; border-top: 1px solid var(--linha); font-size: 12px; }
+  @media (min-width: 900px) { .site-pe { grid-template-columns: 1.4fr 1fr 1fr 1fr; } .site-pe .pe-id { grid-column: auto; } }
 
   /* Sorteio (folha de baixo) */
   .fundo { position: fixed; inset: 0; background: rgba(5,4,3,.66); backdrop-filter: blur(2px); z-index: 40; opacity: 0; pointer-events: none; transition: opacity .2s; }
@@ -461,6 +475,24 @@
       <button class="btn ghost" id="outra" type="button">Sortear de novo</button>
     </div>
   </div>
+  <footer class="site-pe">
+    <div class="pe-id">
+      <a href="/" class="pe-marca">Só mais um fã<br><em>de Pearl Jam</em></a>
+      <p>Arquivo de fã com shows ao vivo de Pearl Jam e Eddie Vedder solo, de Pacaembu 2005 a Wrigley 2024. Feito por um fã, pra fãs.</p>
+    </div>
+    <nav aria-label="Acervo"><h4>Acervo</h4>
+      <a href="/#timeline">Timeline</a><a href="/#ranking">Ranking</a><a href="/#gaps">Álbuns</a><a href="/#highlights">Destaques</a>
+      <a href="/#rarity">Raridades</a><a href="/#gallery">Galeria</a><a href="/#deep">Deep</a><a href="/#tabs">Cifras &amp; Tabs</a></nav>
+    <nav aria-label="Pra ler"><h4>Pra ler</h4>
+      <a href="/show/">Setlists dos shows</a><a href="/agenda/">Agenda de shows</a><a href="/musica/">Músicas e significados</a>
+      <a href="/disco/">Discos</a><a href="/noticias/">Notícias</a><a href="/banda/">A banda</a><a href="/forum.html">Fórum</a></nav>
+    <nav aria-label="Onde achar"><h4>Onde achar</h4>
+      <a href="https://instagram.com/smufdpj" target="_blank" rel="noopener">Instagram @smufdpj ↗</a>
+      <a href="https://www.facebook.com/smufdpj" target="_blank" rel="noopener">Facebook ↗</a>
+      <a href="mailto:contato@somaisumfadepearljam.com.br">E-mail</a>
+      <small>Mande sua foto, seu setlist, seu show favorito.</small></nav>
+    <p class="pe-fim">Arquivo vivo, atualizado todo dia. Sem ligação com o Eddie nem com a banda.</p>
+  </footer>
 </section>
 
 <div class="toast" id="toast" role="status"></div>

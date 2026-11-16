@@ -50,6 +50,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   Lista legível (16/11, `lista.js`): "As músicas" em texto ao lado da folha, SÓ no site (no story o Andre preferiu
   sem). Tela de salvar no Instagram: 3 passos (segure e salve, abra o story, escolha da galeria) + botão "Abrir o
   Instagram" (`instagram://story-camera`, falta testar no celular).
+  Filtro do nome (`filtro.js`, 16/11): barra palavrão/crime/ódio/bizarrice (inclusive leet e espaçado), só letras,
+  até 18; teste em `scripts/setlist-ibirapuera/filtro.test.mjs` (inclui nomes reais que NÃO podem cair: Fagner,
+  Nigel, Ísis, Dickson). Rodapé do resultado com Acervo, Pra ler e Onde achar do site.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +
