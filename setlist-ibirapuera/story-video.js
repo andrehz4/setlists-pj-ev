@@ -4,7 +4,7 @@
 // No navegador interno do Instagram/Facebook o botão ensina a abrir no Safari/Chrome. Falhou: oferece a imagem na hora. Desligar: LIGADO = false ou ?sem-video na URL.
 import { W, H, tela, carregar } from './story-pincel.js';
 import { prepararRoteiro, quadro } from './story-roteiro.js';
-import { entregar, DENTRO_DE_APP } from './salvar.js';
+import { entregar, fecharTela, DENTRO_DE_APP } from './salvar.js';
 
 const LIGADO = true;
 const FPS = 30;
@@ -20,7 +20,7 @@ export function formato() {
 }
 
 function painel(cv) {
-  $('#salvar-tela')?.remove();
+  fecharTela();
   const p = document.createElement('div');
   p.id = 'salvar-tela';
   p.innerHTML = '<p class="estado" role="status" style="margin:0;font-weight:600">Gravando o seu story…</p><div class="botoes" hidden>' +
@@ -74,8 +74,8 @@ function recado(txt, rotuloAcao, acao) {
   p.querySelector('.botoes').hidden = false;
   const [sim, fechar] = p.querySelectorAll('.botoes button');
   sim.textContent = rotuloAcao;
-  sim.onclick = () => { p.remove(); acao(); };
-  fechar.onclick = () => p.remove();
+  sim.onclick = () => { fecharTela(); acao(); };
+  fechar.onclick = fecharTela;
 }
 
 async function storyVideo(b, tipo) {
@@ -85,6 +85,7 @@ async function storyVideo(b, tipo) {
   try {
     const { blob, p } = await gravar(tipo);
     const url = URL.createObjectURL(blob);
+    p.dataset.blob = url;
     const vid = Object.assign(document.createElement('video'), { src: url, muted: true, loop: true, autoplay: true, playsInline: true });
     vid.setAttribute('playsinline', ''); vid.style.cssText = p.querySelector('canvas').style.cssText;
     p.querySelector('canvas').replaceWith(vid);
@@ -93,7 +94,7 @@ async function storyVideo(b, tipo) {
     const [postar, fechar] = p.querySelectorAll('.botoes button');
     // Novo toque da pessoa: o compartilhar do celular exige um gesto recente, e a gravação leva uns 18 s.
     postar.onclick = () => entregar(blob, nome, { compartilhar: matchMedia('(pointer: coarse)').matches });
-    fechar.onclick = () => { p.remove(); URL.revokeObjectURL(url); };
+    fechar.onclick = fecharTela;
   } catch (e) {
     $('#aviso').textContent = 'O vídeo não saiu neste celular. A imagem sai na hora.';
     recado('O vídeo não saiu neste celular. Quer a imagem pro story? Sai na hora.', 'Baixar a imagem', () => $('#story').click());

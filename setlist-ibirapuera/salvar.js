@@ -5,16 +5,25 @@
 //    pra segurar o dedo e salvar.
 export const DENTRO_DE_APP = /Instagram|FBAN|FBAV|FB_IAB|Line\/|TikTok|musical_ly|Twitter|Snapchat|; wv\)/i.test(navigator.userAgent);
 
+// Fecha a tela de salvar aberta e solta a blob URL dela (imagem ou vídeo), pra não ficar presa na memória.
+export function fecharTela() {
+  const t = document.querySelector('#salvar-tela');
+  if (!t) return;
+  if (t.dataset.blob) URL.revokeObjectURL(t.dataset.blob);
+  t.remove();
+}
+
 function mostrar(url) {
-  document.querySelector('#salvar-tela')?.remove();
+  fecharTela();
   const tela = document.createElement('div');
   tela.id = 'salvar-tela';
+  tela.dataset.blob = url;
   // instagram://story-camera abre o Instagram direto na câmera do story (o app precisa estar instalado).
   tela.innerHTML = `<ol class="passos"><li><b>1</b>Segure e salve</li><li><b>2</b>Abra o story</li><li><b>3</b>Escolha da galeria</li></ol>
     <img alt="Seu setlist"><div class="botoes"><a class="btn cheio" href="instagram://story-camera">Abrir o Instagram</a>
     <button type="button" class="btn">Fechar</button></div>`;
   tela.querySelector('img').src = url;
-  tela.querySelector('button').onclick = () => { tela.remove(); URL.revokeObjectURL(url); };
+  tela.querySelector('button').onclick = fecharTela;
   document.body.append(tela);
 }
 
