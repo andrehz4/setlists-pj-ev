@@ -63,6 +63,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   (Song of Good Hope em NY/Dublin, Ball Game no Wrigley) virava abertura e encerramento. Primeira do bis nunca é de fim.
   HOMENAGEM a Glen Hansard (`HOMENAGEM` no topo do `sorteio.js`): Song of Good Hope abre o bis em 70% dos sorteios.
   TIRAR depois dos shows de 20 e 22/11.
+  EM ANDAMENTO (16/11 noite): sessão do Claude Code web revisando o story e testando STORY EM VÍDEO (fundo do Eddie
+  animado, canvas + MediaRecorder, módulo `story-video.js`) no branch `claude/story-ibirapuera`, com PR pra main SEM
+  merge. Conferir o PR, testar no celular (iPhone e Android, dentro e fora do Instagram) e só então fazer o merge.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +
