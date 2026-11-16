@@ -1,4 +1,4 @@
-// Story 1080x1920 pra postar: título do resultado no topo ("A SETLIST ANDRÉ"), a folha no meio e as cartas
+// Story 1080x1920 pra postar: título do resultado no topo ("A SETLIST DE ANDRÉ"), a folha no meio e as cartas
 // de sorte embaixo. Lê o que a tela de resultado já mostra (#r-show, #r-nome, #sorte), então fica igual ao site.
 const W = 1080, H = 1920, M = 40;
 const COR = { noite: '#0f0e0c', carta: 'rgba(28,25,20,.92)', linha: '#3a342b', texto: '#f3eee2', fraco: '#a59d8c', ouro: '#e8b04a', esc: '#1a1305' };
@@ -111,6 +111,6 @@ export async function story(folha) {
   const chance = cartas.find((el) => el.classList.contains('larga') && !el.classList.contains('indice'));
   if (chance && y + 150 < H - 66) carta(c, chance, M, y, W - 2 * M, 150);
   c.fillStyle = COR.fraco; c.textAlign = 'center'; c.font = `500 28px ${CORPO}`;
-  c.fillText('Monte a sua: somaisumfadepearljam.com.br/setlist-ibirapuera', W / 2, H - 34);
+  c.fillText('Sorteie a sua: somaisumfadepearljam.com.br/setlist-ibirapuera', W / 2, H - 34);
   return s;
 }

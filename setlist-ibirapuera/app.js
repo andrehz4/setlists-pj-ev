@@ -53,17 +53,17 @@ async function folha() {
     $('#previa').classList.toggle('montando', sim);
     $('#story').disabled = sim;
   };
-  ocupado(true, 'Montando a folha...');
+  ocupado(true, 'Escrevendo a folha…');
   $('#aviso').textContent = '';
   const falhas = await desenharFolha($('#folha'), { show: estado.show, musicas: [...estado.lista] }, {
     vigente: () => meu === pedido,
-    progresso: (k, total) => { $('#estado-folha').textContent = `Montando a folha... ${k}/${total}`; },
+    progresso: (k, total) => { $('#estado-folha').textContent = `Escrevendo a folha… ${k}/${total}`; },
     atrasada: (faltam) => { if (!faltam) $('#aviso').textContent = ''; },
   }).catch(() => -1);
   if (meu !== pedido) return;
   ocupado(false);
-  if (falhas) $('#aviso').textContent = falhas < 0 ? 'Não consegui desenhar a folha. Recarregue a página.'
-    : 'Algumas imagens não chegaram (internet lenta?). A folha saiu com letra simples nessas e se ajeita sozinha quando chegarem.';
+  if (falhas) $('#aviso').textContent = falhas < 0 ? 'A folha não saiu. Recarregue a página e tente de novo.'
+    : 'Internet lenta? Algumas músicas saíram em letra simples. A folha se ajeita sozinha quando elas chegarem.';
 }
 
 function tudo() { catalogo(); selecionadas(); folha(); }
@@ -85,12 +85,14 @@ function mover(i, j) {
 async function baixarStory() {
   const b = $('#story');
   if (b.classList.contains('gerando')) return;
-  b.classList.add('gerando'); b.firstElementChild.textContent = 'Montando seu story';
+  b.classList.add('gerando'); b.firstElementChild.textContent = 'Montando o seu story';
   const nome = `setlist-eddie-ibirapuera-${estado.show === 2 ? '22' : '20'}-11-story.jpg`;
   try {
     const blob = await paraBlob(await story($('#folha')));
-    await entregar(blob, nome, { compartilhar: matchMedia('(pointer: coarse)').matches });
-  } catch (e) { $('#aviso').textContent = 'Não consegui gerar a imagem. Tire um print da tela.'; }
+    const como = await entregar(blob, nome, { compartilhar: matchMedia('(pointer: coarse)').matches });
+    const t = $('#toast'), msg = { baixado: 'Story salvo. Agora posta e marca @smufdpj', compartilhado: 'Boa! Marca @smufdpj pra gente ver' }[como];
+    if (msg) { t.textContent = msg; t.classList.add('ver'); setTimeout(() => t.classList.remove('ver'), 3500); }
+  } catch (e) { $('#aviso').textContent = 'O story não saiu. Tente de novo ou tire um print da folha.'; }
   b.classList.remove('gerando'); b.firstElementChild.textContent = 'Baixar pro story';
 }
 
@@ -133,4 +135,4 @@ $('#busca').addEventListener('input', catalogo);
 
 // window.musicasCedo: o index.html já começou a baixar o catálogo antes deste módulo chegar.
 (window.musicasCedo || fetch('musicas.json').then((r) => r.json())).then((d) => { grupos = d.grupos; modelo = d.modelo; if (location.hash === '#sortear') sortear(); else tudo(); })
-  .catch(() => { $('#catalogo').textContent = 'Não consegui carregar a lista de músicas. Recarregue a página.'; });
+  .catch(() => { $('#catalogo').textContent = 'As músicas não carregaram. Recarregue a página.'; });

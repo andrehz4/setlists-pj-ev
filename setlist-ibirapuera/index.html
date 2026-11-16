@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Qual é a sua setlist do Eddie no Ibirapuera?</title>
-<meta name="description" content="Sorteie ou monte a sua setlist do Eddie Vedder no Ibirapuera, escrita à mão, e baixe pro story.">
+<meta name="description" content="Sorteie ou monte a sua setlist do Eddie Vedder no Ibirapuera, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
 <link rel="modulepreload" href="app.js">
@@ -227,6 +227,7 @@
   .carta .txt b { color: var(--texto); font-weight: 600; }
   .carta.indice { background: var(--cor); border-color: var(--cor); color: var(--cor-esc); grid-template-columns: 1fr auto; align-items: end; }
   .carta.indice .rot, .carta.indice .txt { color: rgba(26,19,5,.72); }
+  .carta.indice .txt b { color: var(--cor-esc); }
   .carta.indice .val { color: var(--cor-esc); font-size: 76px; }
   .carta.indice .val small { color: rgba(26,19,5,.55); }
   .medidor { grid-column: 1 / -1; height: 8px; border-radius: 4px; background: rgba(26,19,5,.18); overflow: hidden; }
@@ -248,6 +249,8 @@
   #sp-lista span::after { content: 'sem faixa'; margin-left: auto; font-size: 12px; }
   #sp-lista i { font: 800 15px var(--disp); font-style: normal; color: var(--fraco); width: 20px; text-align: right; flex: none; }
   .r-mais { grid-area: mais; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .chama { grid-column: 1 / -1; margin: 2px 0 0; text-align: center; font-size: 14px; color: var(--fraco); }
+  .chama b { color: var(--cor); font-weight: 600; }
   #aviso { color: #ff9b85; margin: 0; font-size: 14px; }
   #aviso:empty { display: none; }
   .vazio { max-width: 460px; margin: 18vh auto 0; padding: 0 22px; text-align: center; display: grid; gap: 14px; }
@@ -293,13 +296,13 @@
       <button class="grande" id="abrir-sorteio" type="button">
         <span class="fita a"></span><span class="fita b"></span>
         <strong>Qual é a sua setlist?</strong>
-        <span>Sorteio na hora, feito pra você <em>→</em></span>
+        <span>Um toque e a sua folha sai na hora <em>→</em></span>
       </button>
       <button class="montar-link" id="ir-montar" type="button">Montar a minha <small>música por música →</small></button>
     </div>
     <div class="rodape">
       <a href="/">Só mais um fã de Pearl Jam</a>
-      <span>Site de fã, sem ligação com a banda.</span>
+      <span>Feito por fã, sem ligação com o Eddie nem com a banda.</span>
     </div>
   </div>
 </section>
@@ -307,10 +310,10 @@
 <div class="fundo" id="fundo-sorteio"></div>
 <div class="sheet" id="sorteio" role="dialog" aria-modal="true" aria-labelledby="sorteio-t">
   <div class="alca"></div>
-  <h2 id="sorteio-t">Sua setlist em 1 toque</h2>
-  <label class="campo"><span>Seu primeiro nome (opcional)</span>
+  <h2 id="sorteio-t">Sua setlist em um toque</h2>
+  <label class="campo"><span>Seu nome, pra sair no título (opcional)</span>
     <input id="nome" type="text" maxlength="20" autocomplete="given-name" placeholder="Ex.: Ana"></label>
-  <div class="campo"><span>Qual noite?</span>
+  <div class="campo"><span>Qual é a sua noite?</span>
     <div id="vaga-sorteio">
       <div class="shows" id="shows">
         <button data-show="1" class="on" type="button"><b>Sex 20/11</b><span>São Paulo I</span></button>
@@ -343,13 +346,13 @@
       <div class="g-topo">
         <div class="alca" style="margin-bottom:8px"></div>
         <div class="linha"><h2>Sua setlist</h2><span id="contador">0/24</span></div>
-        <p class="dica">Arraste ou use as setas. “bis” põe o traço do bis depois da música.</p>
-        <p class="dica" id="limite" hidden>Chegou no limite de 24 músicas.</p>
+        <p class="dica">Arraste ou use as setas pra mudar a ordem. O “bis” marca onde ele sai do palco e volta.</p>
+        <p class="dica" id="limite" hidden>Folha cheia, 24 músicas. Pra entrar outra, tire uma.</p>
       </div>
       <div class="g-corpo"><ul id="lista"></ul></div>
       <div class="g-pe">
         <button id="limpar" type="button">Começar do zero</button>
-        <button class="btn cheio peq" id="gerar-d" data-gerar type="button" style="display:none">Gerar a minha setlist</button>
+        <button class="btn cheio peq" id="gerar-d" data-gerar type="button" style="display:none">Ver a minha folha</button>
         <button class="fechar" id="fechar-gaveta" type="button" aria-label="Fechar">✕</button>
       </div>
     </aside>
@@ -357,7 +360,7 @@
   <div class="barra-fixa">
     <div class="dentro">
       <button id="abrir-gaveta" type="button">Lista <b id="conta-mini">0/24</b></button>
-      <button class="btn cheio" id="gerar" data-gerar type="button">Gerar a minha setlist</button>
+      <button class="btn cheio" id="gerar" data-gerar type="button">Ver a minha folha</button>
     </div>
   </div>
 </section>
@@ -369,8 +372,8 @@
     <button class="voltar" data-ir="montar" type="button">Editar ✎</button>
   </div>
   <div class="vazio">
-    <h2>Sua lista está vazia</h2>
-    <p style="color:var(--fraco);margin:0">Sorteie uma ou escolha as músicas.</p>
+    <h2>Folha em branco</h2>
+    <p style="color:var(--fraco);margin:0">Volte e sorteie uma, ou escolha música por música.</p>
     <button class="btn cheio" data-ir="montar" type="button">Montar a minha</button>
   </div>
   <div class="r-grade">
@@ -385,7 +388,7 @@
         <div id="previa" hidden><p id="estado-folha" role="status"></p><canvas id="folha" width="1100" height="1400" aria-label="Folha da setlist escrita à mão"></canvas></div>
         <div class="carregando" aria-live="polite">
           <svg class="rabisco" viewBox="0 0 160 22"><path d="M4 14 C 30 2, 44 22, 70 11 S 118 4, 156 12"></path></svg>
-          <p>Escrevendo a sua folha…</p>
+          <p>Caneta no papel, já sai…</p>
         </div>
         <span class="fita b"></span>
       </div>
@@ -393,6 +396,7 @@
     <div class="bloco r-baixar">
       <div id="acoes" hidden>
         <button id="story" class="btn cheio story-btn" type="button"><span>Baixar pro story</span></button>
+        <p class="chama">Posta e marca <b>@smufdpj</b>. A gente quer ver a sua.</p>
       </div>
       <p id="aviso" role="status"></p>
     </div>
@@ -403,7 +407,7 @@
       </div>
     </div>
     <div class="bloco r-ouvir">
-      <h2>Ouvir</h2>
+      <h2>Aqueça pro show</h2>
       <div class="ouvir-btns">
         <button id="ouvir" class="btn" type="button" hidden>Ouvir no YouTube</button>
         <button id="ver-spotify" class="btn" type="button"><i class="sp-ico"></i>Spotify</button>
@@ -411,8 +415,8 @@
       <ul id="sp-lista" hidden></ul>
     </div>
     <div class="r-mais">
-      <button class="btn ghost" data-ir="montar" type="button">Editar</button>
-      <button class="btn ghost" id="outra" type="button">Gerar outra</button>
+      <button class="btn ghost" data-ir="montar" type="button">Trocar músicas</button>
+      <button class="btn ghost" id="outra" type="button">Sortear de novo</button>
     </div>
   </div>
 </section>

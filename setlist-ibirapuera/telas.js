@@ -32,7 +32,7 @@ $('#nome').value = localStorage.getItem('setlist-nome') || '';
 $('#nome').addEventListener('input', () => { localStorage.setItem('setlist-nome', $('#nome').value.trim()); titulo(); });
 function titulo() {
   const n = $('#nome').value.trim().split(/\s+/)[0];
-  $('#r-nome').innerHTML = n ? `A setlist <em>${n.replace(/[<>&"]/g, '')}</em>` : 'A sua <em>setlist</em>';
+  $('#r-nome').innerHTML = n ? `A setlist de <em>${n.replace(/[<>&"]/g, '')}</em>` : 'A sua <em>setlist</em>';
   const on = $('#shows .on')?.dataset.show === '2';
   $('#r-show').textContent = on ? 'Dom 22/11 · São Paulo II · Ibirapuera' : 'Sex 20/11 · São Paulo I · Ibirapuera';
 }
@@ -62,7 +62,7 @@ document.addEventListener('click', (e) => {
   const n = $('#lista').children.length;
   const nome = b.firstChild?.textContent?.trim() || 'Música';
   const t = $('#toast');
-  t.textContent = n >= 24 ? 'Chegou no limite de 24 músicas' : `+ ${nome} · ${n + 1}/24`;
+  t.textContent = n >= 24 ? 'Folha cheia, 24 músicas' : `+ ${nome} · ${n + 1}/24`;
   t.classList.add('ver'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('ver'), 1400);
   const g = $('#abrir-gaveta'); g.classList.remove('pulo'); void g.offsetWidth; g.classList.add('pulo');
 }, true);
@@ -95,25 +95,26 @@ function sorte(ms) {
   const esperadas = ms.reduce((s, m) => s + (m.pct || 0) / 100, 0);
   const rara = [...comDado].sort((a, b) => a.pct - b.pct)[0];
   const certa = [...comDado].sort((a, b) => b.pct - a.pct)[0];
-  const de26 = ms.filter((m) => m.ult?.startsWith('2026'));
+  const de26 = ms.filter((m) => m.ult?.startsWith('2026')).sort((a, b) => b.ult.localeCompare(a.ult));
+  const veredito = indice < 10 ? 'Só raridade' : indice < 14 ? 'Lado B puro' : indice < 18 ? 'Show de verdade' : indice < 25 ? 'Pé quente' : 'Aposta segura';
   const chance = nunca.length ? null : umEm(ms.reduce((p, m) => p * m.pct / 100, 1));
   const c = [];
   c.push(`<div class="carta larga indice"><div><div class="rot">Índice de sorte</div>
-    <div class="txt">Em média, cada música sua apareceu em ${indice}% dos ${S} shows solo.</div></div>
+    <div class="txt"><b>${veredito}.</b> Na média, cada uma rolou em ${indice}% dos shows solo.</div></div>
     <div class="val">${indice}<small>/100</small></div><div class="medidor"><i style="width:${indice}%"></i></div></div>`);
-  if (rara) c.push(`<div class="carta"><div class="rot">Carta mais rara</div><div class="val">${pct(rara.pct)}<small>%</small></div>
+  if (rara) c.push(`<div class="carta"><div class="rot">Sua raridade</div><div class="val">${pct(rara.pct)}<small>%</small></div>
     <div class="txt"><b>${rara.nome}</b>, só em ${rara.vezes} ${rara.vezes === 1 ? 'show' : 'shows'}</div></div>`);
-  if (certa) c.push(`<div class="carta"><div class="rot">A mais garantida</div><div class="val">${pct(certa.pct)}<small>%</small></div>
+  if (certa) c.push(`<div class="carta"><div class="rot">Sua aposta certa</div><div class="val">${pct(certa.pct)}<small>%</small></div>
     <div class="txt"><b>${certa.nome}</b>, em ${certa.vezes} shows</div></div>`);
   c.push(`<div class="carta"><div class="rot">Tocadas em 2026</div><div class="val">${de26.length}<small>/${n}</small></div>
-    <div class="txt">${de26.length ? `A mais recente: <b>${[...de26].sort((a, b) => b.ult.localeCompare(a.ult))[0].nome}</b>, ${dataBR([...de26].sort((a, b) => b.ult.localeCompare(a.ult))[0].ult)}` : 'Nenhuma saiu do baú este ano'}</div></div>`);
+    <div class="txt">${de26.length ? `A mais recente: <b>${de26[0].nome}</b>, ${dataBR(de26[0].ult)}` : 'Nenhuma saiu do baú este ano. Ainda.'}</div></div>`);
   c.push(`<div class="carta"><div class="rot">Num show típico</div><div class="val">${esperadas.toLocaleString('pt-BR', { maximumFractionDigits: 1 })}<small>/${n}</small></div>
-    <div class="txt">das suas estariam lá. Ele toca ${String(dados.mediaPorShow).replace('.', ',')} por noite.</div></div>`);
+    <div class="txt">das suas rolariam. Ele toca ${String(dados.mediaPorShow).replace('.', ',')} por noite.</div></div>`);
   c.push(nunca.length
     ? `<div class="carta larga"><div class="rot">Chance de ouvir todas</div><div class="val">0</div>
       <div class="txt"><b>${nunca[0].nome}</b>${nunca.length > 1 ? ` e mais ${nunca.length - 1}` : ''} ${nunca.length > 1 ? 'nunca entraram' : 'nunca entrou'} num show solo. Sonhar é de graça.</div></div>`
     : `<div class="carta larga"><div class="rot">Chance de ouvir todas</div><div class="val"><small>1 em</small> ${chance}</div>
-      <div class="txt">Multiplicando a frequência de cada uma nos ${S} shows solo desde ${dados.primeiroShow.data.slice(0, 4)}.</div></div>`);
+      <div class="txt">É a conta da frequência de cada uma nos ${S} shows solo desde ${dados.primeiroShow.data.slice(0, 4)}. Vai que.</div></div>`);
   $('#sorte').innerHTML = c.join('');
 }
 
@@ -140,8 +141,7 @@ async function esperarFolha(ms) {
 
 let ultimaChave = '';
 function atualizar() {
-  const ms = lista();
-  const n = ms.length;
+  const ms = lista(), n = ms.length;
   document.body.classList.toggle('sem-lista', !n);
   $('#conta-mini').textContent = `${n}/24`;
   document.querySelectorAll('[data-gerar]').forEach((b) => { b.disabled = !n; });
@@ -157,7 +157,7 @@ new MutationObserver(atualizar).observe($('#shows'), { subtree: true, attributes
 fetch('musicas.json').then((r) => r.json()).then((d) => {
   dados = d;
   d.grupos.flatMap((g) => g.musicas).forEach((m) => { if (!porNome.has(m.nome)) porNome.set(m.nome, m); });
-  $('#base').textContent = `${d.showsSolo} shows solo do Eddie, de ${d.primeiroShow.data.slice(0, 4)} até hoje`;
+  $('#base').textContent = `em ${d.showsSolo} shows solo do Eddie, de ${d.primeiroShow.data.slice(0, 4)} pra cá`;
   ultimaChave = ''; atualizar();
 });
 
