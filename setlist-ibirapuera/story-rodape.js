@@ -1,6 +1,6 @@
 // Rodapé do story (imagem e vídeo): chamada pra seguir a página. Logo redondo com anel dourado, "SEGUE A GENTE",
-// "@smufdpj" e o que tem lá; embaixo o link do gerador e o aviso de bula. A chamada termina antes dos ~250 px de baixo
-// que o Instagram cobre; link e aviso descem até perto da base (story-layout.js diz o y). Sem sticker de menção.
+// "@smufdpj" e o que tem lá; embaixo o link do gerador e o aviso de bula. Fica colado na base, com respiro das cartas
+// (story-layout.js diz o y); sublinha, link e aviso têm o mesmo passo (44 px). Sem sticker de menção.
 import { W, M, COR, DISP, CORPO, linha, tamanho } from './story-pincel.js';
 
 const LOGO = 96, TX = M + LOGO + 22;
@@ -22,7 +22,7 @@ function arroba(c, y) {
   linha(c, TX, y + 86, [{ fonte: tamanho(40, CORPO, 700), cor: COR.texto, t: '@smufdpj' }], W - M - TX);
   c.font = tamanho(40, CORPO, 700)(1);
   const w = c.measureText('@smufdpj').width;
-  linha(c, TX, y + 132, [{ fonte: tamanho(22, CORPO, 500), cor: COR.fraco, t: 'setlists, notícias e tudo de Pearl Jam e Eddie' }], W - M - TX);
+  linha(c, TX, y + 130, [{ fonte: tamanho(22, CORPO, 500), cor: COR.fraco, t: 'setlists, notícias e tudo de Pearl Jam e Eddie' }], W - M - TX);
   return { sublinhado: { x: TX, y: y + 96, w } };
 }
 
@@ -33,13 +33,13 @@ export function sublinhar(c, s, f = 1) {
 
 function link(c, y) {
   const f = (peso) => tamanho(26, CORPO, peso);
-  linha(c, W / 2, y + 186, [{ fonte: f(700), cor: COR.ouro, t: 'Sorteie o seu: ' },
+  linha(c, W / 2, y + 174, [{ fonte: f(700), cor: COR.ouro, t: 'Sorteie o seu: ' },
     { fonte: f(500), cor: 'rgba(243,238,226,.8)', t: 'somaisumfadepearljam.com.br/setlist-ibirapuera' }], W - 2 * M, 'center');
 }
 
 // Letra de bula, pra ninguém postar como setlist vazado. No vídeo fica parada desde o começo.
 function aviso(c, y) {
-  linha(c, W / 2, y + 232, [{ fonte: tamanho(18, CORPO, 500), cor: 'rgba(165,157,140,.55)', t: 'Palpite de fã, não é o setlist oficial' }], W - 2 * M, 'center');
+  linha(c, W / 2, y + 218, [{ fonte: tamanho(18, CORPO, 500), cor: 'rgba(165,157,140,.55)', t: 'Palpite de fã, não é o setlist oficial' }], W - 2 * M, 'center');
 }
 
 // camada(nome, x, y, w, h, pintar) é a de story.js; im = logo já carregado (ou null); y = topo do rodapé (story-layout.js).
@@ -47,6 +47,6 @@ export function rodape(camada, im, y) {
   return [camada('logo', M - 4, y - 4, LOGO + 8, LOGO + 8, (c) => logo(c, im, y)),
     camada('segue', TX, y, W - M - TX, 54, (c) => segue(c, y)),
     camada('arroba', TX, y + 54, W - M - TX, 90, (c) => arroba(c, y)),
-    camada('link', 0, y + 156, W, 42, (c) => link(c, y)),
-    camada('aviso', 0, y + 210, W, 30, (c) => aviso(c, y))];
+    camada('link', 0, y + 146, W, 40, (c) => link(c, y)),
+    camada('aviso', 0, y + 198, W, 28, (c) => aviso(c, y))];
 }
