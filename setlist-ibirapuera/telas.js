@@ -32,7 +32,7 @@ $('#nome').value = localStorage.getItem('setlist-nome') || '';
 $('#nome').addEventListener('input', () => { localStorage.setItem('setlist-nome', $('#nome').value.trim()); titulo(); });
 function titulo() {
   const n = $('#nome').value.trim().split(/\s+/)[0].replace(/[<>&"]/g, '');
-  $('#r-nome').innerHTML = n ? `<em>${n}</em>, o seu<br>setlist no Ibirapuera` : 'O seu setlist<br>no <em>Ibirapuera</em>'; $('#ola').textContent = n ? n + ',' : '';
+  $('#r-nome').innerHTML = n ? `<em>${n}</em>, o seu<br>setlist no Ibirapuera:` : 'O seu setlist<br>no <em>Ibirapuera</em>:'; $('#ola').textContent = n ? n + ',' : '';
   const on = $('#shows .on')?.dataset.show === '2';
   $('#r-show').textContent = on ? 'Dom 22/11 · São Paulo II · Ibirapuera' : 'Sex 20/11 · São Paulo I · Ibirapuera';
 }
