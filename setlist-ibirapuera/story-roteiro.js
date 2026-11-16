@@ -93,6 +93,7 @@ function cenaFinal(c, r, t) {
     if (k.nome === 'titulo') { const p = sai(fase(t, 0.15, 0.7)); a = p; dx = (1 - p) * -60; }
     else if (k.nome === 'folha') a = t >= T.encolhe + 0.7 ? 1 : 0;
     else if (k.nome === 'cta') a = sai(fase(t, T.cta, 0.5));
+    else if (k.nome === 'aviso') a = 1; // parado desde o começo
     else {
       const ini = T.chega(k.j);
       a = Math.min(1, fase(t, ini, 0.25)); dy = (1 - mola(fase(t, ini, 0.5))) * 160; conta = sai(fase(t, ini + 0.2, 1.1));

@@ -91,8 +91,11 @@ function cta(c) {
   const w = Math.min(W - 2 * M, c.measureText(txt[0].t + txt[1].t).width + 70);
   caixa(c, (W - w) / 2, y, w, h, h / 2, 'rgba(15,14,12,.7)', 'rgba(232,176,74,.55)');
   linha(c, W / 2, y + h / 2 + 8, txt, w - 50, 'center');
-  // Pra ninguém postar como setlist vazado.
-  linha(c, W / 2, y + h + 28, [{ fonte: tamanho(19, CORPO, 500), cor: COR.fraco, t: 'Palpite de fã, não é o setlist oficial' }], W - 2 * M, 'center');
+}
+
+// Letra de bula embaixo do link, pra ninguém postar como setlist vazado. No vídeo fica parada desde o começo.
+function aviso(c) {
+  linha(c, W / 2, CTA.y + CTA.h + 26, [{ fonte: tamanho(17, CORPO, 500), cor: 'rgba(165,157,140,.55)', t: 'Palpite de fã, não é o setlist oficial' }], W - 2 * M, 'center');
 }
 
 // Número da carta; f < 1 conta de 0 até o valor (só os algarismos grandes, "1 em" e expoente ficam).
@@ -130,7 +133,8 @@ export async function montar(folha) {
     camadas.push(camada('carta', x, y, wc, GRADE.h, (c) => carta(c, el, x, y, wc, GRADE.h)));
   });
   if (chance) camadas.push(camada('carta', 0, CHANCE.y, W, CHANCE.h, (c) => cartaChance(c, chance)));
-  camadas.push(camada('cta', 0, CTA.y, W, CTA.h + CTA.aviso, cta));
+  camadas.push(camada('cta', 0, CTA.y, W, CTA.h, cta));
+  camadas.push(camada('aviso', 0, CTA.y + CTA.h, W, CTA.aviso, aviso));
   return camadas;
 }
 
