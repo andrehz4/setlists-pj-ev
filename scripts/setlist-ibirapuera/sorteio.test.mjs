@@ -33,3 +33,13 @@ test('sem modelo ainda sorteia (degrada pro peso solo)', () => {
   const s = sortearShow(d.grupos, null, rnd);
   assert.ok(s.length >= 8);
 });
+
+// Regressão (16/11/2026): a primeira do bis saía do modelo de bis, que tem Rockin' e Hard Sun (são de FIM).
+// Em ~1 de cada 4 sorteios uma música de encerramento ficava no meio do bis.
+test('música de encerramento nunca no meio nem abrindo o bis (abrir pode: Ball Game e Better Man abrem e fecham)', () => {
+  const fim = new Set(d.modelo.fecha.map((x) => x.chave));
+  for (let i = 0; i < 500; i++) {
+    const s = sortearShow(d.grupos, d.modelo, rnd);
+    assert.ok(!s.slice(1, -1).some((m) => fim.has(m.chave)), s.map((m) => m.nome).join(' / '));
+  }
+});

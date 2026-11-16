@@ -30,7 +30,8 @@ export function sortearShow(grupos, modelo, rnd = Math.random) {
   const sorteiaN = (n) => Array.from({ length: n }, () => pega(solo, pesoSolo)).filter(Boolean);
   const abre = pega(doModelo(modelo?.abre || []), (m) => m._p);
   const set = [abre, ...sorteiaN(principal - 1)].filter(Boolean);
-  const bis = [pega(doModelo(modelo?.bis || []), (m) => m._p), ...sorteiaN(noBis - 2)].filter(Boolean);
+  const tipicaBis = doModelo(modelo?.bis || []).filter((m) => !deFim.has(m.chave)); // música de fim só no fim
+  const bis = [pega(tipicaBis, (m) => m._p), ...sorteiaN(noBis - 2)].filter(Boolean);
   if (set.length) set[set.length - 1].bis = true;
   return [...set, ...bis.filter(Boolean), fecha].filter(Boolean).slice(0, 24).map(({ _p, ...m }) => m);
 }
