@@ -1,0 +1,21 @@
+// Grava a narração do reel tutorial com o gravador da fabrica-quiz (roleta, pronúncia, sotaque, cache).
+import fs from "node:fs"; import path from "node:path";
+const F = "/Users/andrehz/Documents/Githubhz/fabrica-quiz/motor";
+const { carregarMarca } = await import(F + "/marca.mjs");
+const { lerFixas, pastaFalas } = await import(F + "/narracao/gravar.mjs");
+const { normalizarFala } = await import(F + "/narracao/fala.mjs");
+const { paraVoz } = await import(F + "/narracao/tags.mjs");
+const { nomeArquivo } = await import(F + "/narracao/cache.mjs");
+const { falaDoReel, marcaDaVoz, gravarVozes } = await import(F + "/top5/vozes.mjs");
+const FALAS = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+const marca = carregarMarca("smufdpj"), m = marcaDaVoz({ narracao: { idioma: "pt" } }, marca);
+const { dupla } = lerFixas(marca), voz = { charlie: dupla.l1, laura: dupla.l2 };
+const { modelo, ajustes, idioma } = m.narracao, pasta = pastaFalas("top5", marca);
+const plano = FALAS.map((f) => { const textoVoz = paraVoz(normalizarFala(falaDoReel(f.texto), m)), v = voz[f.quem];
+  const arquivo = path.join(pasta, nomeArquivo({ voz: v, texto: textoVoz, modelo, ajustes, idioma }));
+  return { chave: f.id, texto: f.texto, voz: v, textoVoz, arquivo, pronta: fs.existsSync(arquivo) }; });
+plano.forEach((p) => console.log(p.chave, p.voz.nome, "|", p.textoVoz));
+if (process.argv[3] !== "--gravar") process.exit(0);
+const r = await gravarVozes(plano, m);
+console.log(JSON.stringify(r));
+fs.writeFileSync(process.argv[4], JSON.stringify(plano.map((p) => ({ id: p.chave, arquivo: p.arquivo })), null, 1));
