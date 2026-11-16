@@ -10,13 +10,10 @@ O reel de segunda prometeu "amanhã tem o ranking completo". Base e contexto do 
 /Users/andrehz/Documents/Githubhz/setlists-pj-ev/reels-especiais/eddie-ibirapuera/ficha.json (leia só as chaves que precisar).
 
 ## Regras de custo (obrigatórias)
-- Escreva um script Node (`coletar.mjs`) que baixa as páginas da API para `bruto/` em disco. NUNCA leia o JSON bruto no
-  seu contexto. Leia só os agregados que outro script seu (`agregar.mjs`) gerar, e só com `head`/recortes.
-- API: GET https://api.setlist.fm/rest/1.0/artist/{mbid}/setlists?p=N, header `x-api-key` (chave em
-  /Users/andrehz/.setlistfm-key, nunca imprima a chave), `Accept: application/json`, User-Agent de navegador (bot leva
-  403). Limite 2 req/s e 1440/dia: espere 600 ms entre pedidos, retome de onde parou se cair (pula página já salva).
-  Cliente de referência: /Users/andrehz/Documents/Githubhz/setlists-pj-ev/scripts/news/setlistfm.mjs
-- MBIDs: ache com GET /rest/1.0/search/artists?artistName=... (Pearl Jam e Eddie Vedder) e grave em `mbids.json`.
+- Os dados JÁ ESTÃO BAIXADOS em `bruto/` (páginas da API do setlist.fm, 20 setlists cada: `eddie-vedder-pNNN.json`,
+  `pearl-jam-pNNN.json`, mais `mbids.json`), feitos pelo `coletar.mjs`. Não chame a API.
+- Escreva um script Node (`agregar.mjs`) que lê `bruto/` e gera os agregados. NUNCA leia o JSON bruto no seu contexto:
+  leia só o que o seu script gerar, e só em recortes (`head`, `jq` com filtro).
 - Não use subagentes nem Workflow.
 
 ## O que entregar (na pasta de trabalho)

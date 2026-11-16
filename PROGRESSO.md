@@ -6,6 +6,16 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Estudo da carreira do Eddie (16/11, EM ANDAMENTO) para o carrossel de TERÇA 17/11 (ranking completo):** setlists
+  baixados em `reels-especiais/eddie-carreira/bruto/` (318 solo + 1135 Pearl Jam, 75 pedidos; gitignored), coleta em
+  `coletar.mjs` (chave em `/Users/andrehz/.setlistfm-key`, app "testeapi" na conta canalterragentil; o secret
+  SETLISTFM_API_KEY do GitHub está VAZIO, Andre não decidiu se salva lá). Agente Fable (`rodar-agente.sh` +
+  `BRIEF-AGENTE.md`, `claude -p` sem tela) disparado 16/11 07:45; entrega `estudo.json`, `HISTORIAS.md`, `CARROSSEL.md`,
+  `LEIA.md` na mesma pasta (log em `rodar-agente.log`). A rodada das 02:10 falhou: `--allowedTools` engolia o prompt,
+  agora vai por stdin. PRÓXIMO: ler HISTORIAS/CARROSSEL com o Andre, montar o carrossel e agendar terça.
+  Login do Claude CLI expira entre 20 e 23/11 (`claude auth login` antes).
+- **PEDIDO NOVO (não iniciado): REA do https://generator.pearljam.com/** com as ferramentas REA (skill
+  reverse-engineer-anything / mcp rea). Objetivo a confirmar com o Andre no início da sessão.
 - **Reel especial Eddie no Ibirapuera v7: AGENDADO seg 16/11 17:30 BRT (16/11 madrugada).** TriggerAll #017
   dispara `publish-reel-especial.yml` com `{"pasta":"eddie-ibirapuera"}` (testado de ponta a ponta com pasta falsa,
   sem publicar). Vídeo no R2 `especiais/eddie-ibirapuera-v7.mp4?v=2` (o `?v=2` fura o cache de 4 h do Cloudflare),
