@@ -7,12 +7,13 @@
 <meta name="description" content="Qual será o setlist do Eddie Vedder no Ibirapuera? Sorteie ou monte a sua previsão, escrita à mão, e poste no story.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://assets.glitch.ge" crossorigin>
-<link rel="modulepreload" href="app.js">
-<link rel="modulepreload" href="folha.js">
-<link rel="modulepreload" href="salvar.js">
-<link rel="modulepreload" href="sorteio.js">
-<link rel="modulepreload" href="story.js">
-<script>window.musicasCedo = fetch('musicas.json').then(function (r) { return r.json(); });</script>
+<script type="importmap">{"imports":{"./app.js":"./app.js?v=4e3ee5bc","./folha.js":"./folha.js?v=459eb203","./salvar.js":"./salvar.js?v=84809b05","./sorteio.js":"./sorteio.js?v=c64713d3","./story.js":"./story.js?v=954ad23a","./telas.js":"./telas.js?v=108d4881","./lista.js":"./lista.js?v=14bec288"}}</script>
+<link rel="modulepreload" href="app.js?v=4e3ee5bc">
+<link rel="modulepreload" href="folha.js?v=459eb203">
+<link rel="modulepreload" href="salvar.js?v=84809b05">
+<link rel="modulepreload" href="sorteio.js?v=c64713d3">
+<link rel="modulepreload" href="story.js?v=954ad23a">
+<script>window.musicasCedo = fetch('musicas.json?v=43816b7a').then(function (r) { return r.json(); });</script>
 <meta name="theme-color" content="#0f0e0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -204,7 +205,7 @@
   /* 3. Resultado */
   .r-topo { max-width: 1180px; margin: 0 auto; padding: 6px 16px 0; }
   .r-grade { max-width: 1180px; margin: 0 auto; padding: 8px 16px 48px; display: grid; gap: 22px;
-    grid-template-areas: "titulo" "folha" "baixar" "sorte" "ouvir" "mais"; }
+    grid-template-areas: "titulo" "folha" "baixar" "lidas" "sorte" "ouvir" "mais"; }
   .r-titulo { grid-area: titulo; }
   .r-titulo h1 { font: 900 clamp(44px, 13vw, 76px)/.86 var(--disp); text-transform: uppercase; margin: 8px 0 0; }
   .r-titulo h1 em { font-style: normal; color: var(--cor); }
@@ -241,6 +242,11 @@
   #acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   #baixar { grid-column: 1 / -1; min-height: 54px; font-size: 16px; }
   .r-sorte { grid-area: sorte; }
+  .r-lidas { grid-area: lidas; }
+  .lidas { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 20px; font-size: 14px; }
+  .lidas li { break-inside: avoid; display: flex; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--linha); }
+  .lidas i { flex: none; width: 20px; font: 800 15px/1.3 var(--disp); font-style: normal; color: var(--cor); text-align: right; }
+  .lidas .bis { justify-content: center; color: var(--cor); font: 700 11px/1.3 var(--corpo); letter-spacing: .16em; text-transform: uppercase; border-bottom: 1px dashed var(--cor); }
   #sorte { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .carta { background: rgba(25,23,19,.86); backdrop-filter: blur(6px); border: 1px solid var(--linha); border-radius: 14px; padding: 14px; display: grid; align-content: start; gap: 6px; min-width: 0; }
   .carta.larga { grid-column: 1 / -1; }
@@ -292,7 +298,7 @@
     .g-pe { gap: 10px; }
     #gerar-d { display: inline-flex !important; }
     .r-grade { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); column-gap: 56px; row-gap: 28px; padding-top: 16px;
-      grid-template-areas: "folha titulo" "folha baixar" "folha sorte" "folha ouvir" "folha mais"; grid-template-rows: auto auto auto auto 1fr; }
+      grid-template-areas: "folha titulo" "folha baixar" "folha lidas" "folha sorte" "folha ouvir" "folha mais"; grid-template-rows: auto auto auto auto auto 1fr; }
     .mesa { position: sticky; top: 16px; align-self: start; padding-top: 24px; }
     .r-titulo h1 { font-size: 84px; }
     .shows { max-width: 420px; }
@@ -426,6 +432,10 @@
       </div>
       <p id="aviso" role="status"></p>
     </div>
+    <div class="bloco r-lidas" id="bloco-lidas" hidden>
+      <h2>As músicas <small>na ordem da folha</small></h2>
+      <ol id="lidas" class="lidas"></ol>
+    </div>
     <div class="bloco r-sorte">
       <h2>Sua sorte <small id="base">nos shows solo do Eddie</small></h2>
       <div id="sorte">
@@ -450,7 +460,8 @@
 <div class="toast" id="toast" role="status"></div>
 
 <button id="atalho" hidden></button>
-<script type="module" src="app.js"></script>
-<script type="module" src="telas.js"></script>
+<script type="module" src="app.js?v=4e3ee5bc"></script>
+<script type="module" src="telas.js?v=108d4881"></script>
+<script type="module" src="lista.js?v=14bec288"></script>
 </body>
 </html>

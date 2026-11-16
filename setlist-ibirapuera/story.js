@@ -4,6 +4,7 @@ const W = 1080, H = 1920, M = 40;
 const COR = { noite: '#0f0e0c', carta: 'rgba(28,25,20,.92)', linha: '#3a342b', texto: '#f3eee2', fraco: '#a59d8c', ouro: '#e8b04a', esc: '#1a1305' };
 const DISP = '"Big Shoulders Display", Impact, sans-serif';
 const CORPO = '"Instrument Sans", system-ui, sans-serif';
+import { musicasDaLista } from './lista.js';
 const $ = (s) => document.querySelector(s);
 
 const carregar = (src) => new Promise((ok) => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = src; });
@@ -77,9 +78,9 @@ function titulo(c) {
   linhas.filter((l) => l.length).slice(0, 2).forEach((ped, i) => { ped[0].t = ped[0].t.trimStart(); linha(c, M - 4, 186 + i * 112, ped, W - 2 * M); });
 }
 
-function folhaNoMeio(c, folha, y, larg) {
-  const alt = folha.height * (larg / folha.width), x = (W - larg) / 2;
-  c.save(); c.translate(W / 2, y + alt / 2); c.rotate(-0.012); c.translate(-W / 2, -(y + alt / 2));
+function folhaNoMeio(c, folha, y, larg, x = (W - larg) / 2) {
+  const alt = folha.height * (larg / folha.width), cx = x + larg / 2;
+  c.save(); c.translate(cx, y + alt / 2); c.rotate(-0.012); c.translate(-cx, -(y + alt / 2));
   c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 40; c.shadowOffsetY = 14;
   c.drawImage(folha, x, y, larg, alt); c.restore();
   c.fillStyle = 'rgba(222,205,160,.85)';
@@ -87,6 +88,26 @@ function folhaNoMeio(c, folha, y, larg) {
     c.save(); c.translate(fx + 50, y + 2); c.rotate(ang); c.fillRect(-55, -16, 110, 32); c.restore();
   }
   return y + alt;
+}
+
+// Nomes das músicas em texto, à direita da folha, pra quem vê o story entender a letra de mão.
+function listaAoLado(c, y0, y1) {
+  const ms = musicasDaLista(), x = M + 600 + 34, larg = W - M - x;
+  if (!ms.length) return;
+  rotulo(c, x, y0 + 26, 'As músicas', COR.ouro);
+  const linhas = ms.length + ms.filter((m, i) => m.bis && i < ms.length - 1).length;
+  const lh = Math.min(46, (y1 - y0 - 50) / linhas), px = Math.min(26, lh * 0.66);
+  let y = y0 + 50 + lh * 0.8;
+  ms.forEach((m, i) => {
+    linha(c, x, y, [{ fonte: tamanho(px, DISP, 900), cor: COR.ouro, t: `${i + 1}  ` },
+      { fonte: tamanho(px, CORPO, 600), cor: COR.texto, t: m.nome }], larg);
+    y += lh;
+    if (m.bis && i < ms.length - 1) {
+      c.strokeStyle = COR.ouro; c.lineWidth = 2; c.setLineDash([8, 6]);
+      c.beginPath(); c.moveTo(x, y - lh * 0.55); c.lineTo(x + larg, y - lh * 0.55); c.stroke(); c.setLineDash([]);
+      y += lh;
+    }
+  });
 }
 
 export async function story(folha) {
@@ -102,7 +123,8 @@ export async function story(folha) {
     c.fillStyle = g; c.fillRect(0, 0, W, 720);
   }
   titulo(c);
-  const fim = folhaNoMeio(c, folha, 336, 630);
+  const fim = folhaNoMeio(c, folha, 336, 600, M);
+  listaAoLado(c, 336, fim);
   const cartas = [...document.querySelectorAll('#sorte .carta:not(.esqueleto)')];
   let y = fim + 34;
   const ind = cartas.find((el) => el.classList.contains('indice'));

@@ -44,7 +44,11 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   por palavra ("setlist?" dourado), linha se risca, seta empurra, balança e reluz; "Montar a minha" acende a borda.
   Masculino e personalizado (16/11): "Qual será o seu setlist no Ibirapuera?" (com "ANDRÉ," em cima se já digitou o
   nome), resultado e story "ANDRÉ, O SEU / SETLIST NO IBIRAPUERA" (story em 2 linhas, quebra no <br> do #r-nome).
-  `_headers`: .js, musicas.json e a página do gerador com max-age=0 (o navegador ficava 4 h com app.js velho).
+  `_headers`: página do gerador com max-age=0 (vale). Pros .js o Cloudflare manteve 4 h, então agora cada arquivo tem
+  carimbo de versão: RODAR `node scripts/setlist-ibirapuera/versao.mjs` depois de mexer em qualquer .js ou no
+  musicas.json (o `versao.test.mjs` falha se esquecer; importmap cuida dos imports entre módulos).
+  Lista legível (16/11, `lista.js`): "As músicas" em texto ao lado da folha no site e à direita da folha no story,
+  com a linha de bis.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +

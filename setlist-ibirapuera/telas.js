@@ -154,7 +154,7 @@ function atualizar() {
 new MutationObserver(atualizar).observe($('#lista'), { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
 new MutationObserver(atualizar).observe($('#shows'), { subtree: true, attributes: true, attributeFilter: ['class'] });
 
-fetch('musicas.json').then((r) => r.json()).then((d) => {
+(window.musicasCedo || fetch('musicas.json').then((r) => r.json())).then((d) => {
   dados = d;
   d.grupos.flatMap((g) => g.musicas).forEach((m) => { if (!porNome.has(m.nome)) porNome.set(m.nome, m); });
   $('#base').textContent = `em ${d.showsSolo} shows solo do Eddie, de ${d.primeiroShow.data.slice(0, 4)} pra cá`;
