@@ -14,14 +14,19 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `LEIA.md` na mesma pasta (log em `rodar-agente.log`). A rodada das 02:10 falhou: `--allowedTools` engolia o prompt,
   agora vai por stdin. PRÓXIMO: ler HISTORIAS/CARROSSEL com o Andre, montar o carrossel e agendar terça.
   Login do Claude CLI expira entre 20 e 23/11 (`claude auth login` antes).
-- **Letra do Eddie (REA do generator.pearljam.com, FEITO 16/11):** não é fonte. O gerador (agência glitch.ge, Next.js)
-  usa 1 PNG transparente escrito à mão por música (173, altura 110 px), 1 PNG por cidade (22) e 5 fotos de papel
-  amassado; monta num canvas 1100x1400 (cidade centralizada em y=50, colunas x=100 e x=660, passo 90 px, 12 por coluna).
-  Andre quis as imagens deles (uso fã, não comercial): baixadas em `reels-especiais/letra-eddie/` (FORA do git, repo é
-  público; `indice.json` tem nome -> arquivo), teste `montar-teste.mjs` gera `teste-sao-paulo.jpg` idêntico ao deles.
-  Limite: só existem as 173 músicas e as 22 cidades deles (São Paulo vem escrito "Sao Paolo"). PRÓXIMO: usar no
-  carrossel do ranking (ter 17/11) e decidir se vira gerador no site. Agente Fable do estudo TERMINOU 07:48 (entregas
-  em `reels-especiais/eddie-carreira/`, ainda não commitadas nem lidas com o Andre).
+- **Letra do Eddie (16/11, EM ANDAMENTO):** o gerador oficial (glitch.ge) não usa fonte: 1 PNG à mão por música
+  (173), por cidade (22) e 5 papéis; o traço de bis e o floreio do título vêm PINTADOS no papel. Tudo baixado em
+  `reels-especiais/letra-eddie/` (FORA do git, repo público). Criamos a NOSSA "fonte": letras recortadas dos PNGs
+  (`alfabeto-v2/`) + renderizador `ferramentas/escrever.py` (tinta uniforme, altura/base dos originais, limpeza de
+  pedaços, abreviação "B. MAN") + `ferramentas/folha.py` (layout do gerador; usa PNG real quando existe). Agente Fable
+  revisou e melhorou em `fable/` (`escrever2.py` usa PALAVRAS reais inteiras de `palavras-v2/`, encosto pelo contorno,
+  `traco_bis()`, `afinar()` caneta fina; `folha2.py` acha apelidos tipo s-town). Prova: `fable/folha-depois.jpg`.
+  Python: venv com numpy/scipy/pillow (recriar: `python3 -m venv venv && venv/bin/pip install numpy scipy pillow`).
+  PRÓXIMO (lista do Fable, por impacto): recortar ligaduras/minúsculas (tH, ING, IGHT, tion, LL, OU) e mais variantes
+  de R B K W (ks em `ferramentas/seg/segmentos.json`: R #24 #99 #119, B #73 #137 #140, K #56 #141 #155, W #47 #55 #88);
+  tabela de abreviações; parênteses (#142) e barra (#138); riscado/seta/til desenhados; coluna "dançando" 10-30 px;
+  ruído na borda. Q e Z não existem. Depois: usar no carrossel/posts dos shows de SP (Ibirapuera 20 e 22/11).
+  Agente Fable do estudo da carreira TERMINOU 07:48 (entregas em `reels-especiais/eddie-carreira/`, não commitadas).
 - **Reel especial Eddie no Ibirapuera v7: AGENDADO seg 16/11 17:30 BRT (16/11 madrugada).** TriggerAll #017
   dispara `publish-reel-especial.yml` com `{"pasta":"eddie-ibirapuera"}` (testado de ponta a ponta com pasta falsa,
   sem publicar). Vídeo no R2 `especiais/eddie-ibirapuera-v7.mp4?v=2` (o `?v=2` fura o cache de 4 h do Cloudflare),
