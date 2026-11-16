@@ -170,6 +170,22 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-16 (noite): reel tutorial publicado no story, agendado no feed, painel e botão Compartilhar
+
+- **Reel tutorial v4** (narração Charlie e Laura pelo gravador da fabrica, trilha -24 LUFS abaixando sob a voz, QA do
+  Fable): story postado hoje (postId 18077899205774688, marcou eddievedder, pearljam, bestofbluesandrock). REEL agendado
+  17/11 12:00 BRT: TriggerAll #019 -> publish-reel-especial.yml pasta tutorial-gerador (dry-run ok). Vídeo no R2
+  `especiais/tutorial-gerador-v4.mp4`. Ponto a ouvir: whisper ouviu "Ó, é de toca" na fala 1 ("O Eddie toca").
+- **story-avulso** aceita vídeo do R2 (`especiais/*.mp4`) no input `imagem` (commit e45cccca2).
+- **Painel de uso do gerador** (Fable, commit 46c861210): eventos sem dado pessoal -> `POST /api/contador` (D1
+  `setlist-contador`) -> `/painel-setlist?k=<chave>` (URL com a chave em /Users/andrehz/.config/smufdpj/painel-setlist.txt).
+  BLOCKER: Andre ligar o binding D1 no Cloudflare (Pages setlists-pj-ev > Settings > Bindings > D1, nome `CONTADOR_DB`,
+  banco `setlist-contador`) e dar Retry deployment. Até lá o contador não grava.
+- **Botão Compartilhar** (ícone do WhatsApp) ao lado de "Só a imagem": compartilhar do celular com a imagem e o texto da
+  noite; dentro do Instagram abre wa.me só com texto. Falta testar em celular real.
+- **Próximo:** ligar o D1, conferir o painel contando, ver o reel sair 17/11 12h, testar no S23 (Compartilhar e o
+  intent:// do Chrome). Tirar HOMENAGEM do sorteio.js depois de 22/11.
+
 ## 2026-11-16 (fim da tarde): reel tutorial do gerador (rascunho aprovado) + vídeo no navegador do Instagram
 
 - **Reel tutorial (v2 APROVADO pelo Andre, não publicado):** HyperFrames em
