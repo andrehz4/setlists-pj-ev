@@ -21,7 +21,7 @@ function mostrar(url) {
 export async function entregar(blob, nome, { compartilhar = false } = {}) {
   const arq = new File([blob], nome, { type: 'image/jpeg' });
   const podeCompartilhar = !!navigator.canShare?.({ files: [arq] });
-  if (podeCompartilhar && compartilhar) {
+  if (podeCompartilhar && compartilhar && !DENTRO_DE_APP) { // no Instagram vai direto pros 3 passos
     try { await navigator.share({ files: [arq], title: 'Meu setlist do Eddie no Ibirapuera' }); return 'compartilhado'; } catch (e) {
       if (e.name === 'AbortError') return 'cancelado';
     }

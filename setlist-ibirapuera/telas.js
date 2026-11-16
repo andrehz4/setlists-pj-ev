@@ -28,8 +28,8 @@ function abrirSorteio() {
 }
 
 // Nome opcional
-$('#nome').value = localStorage.getItem('setlist-nome') || '';
-$('#nome').addEventListener('input', () => { localStorage.setItem('setlist-nome', $('#nome').value.trim()); titulo(); });
+try { $('#nome').value = localStorage.getItem('setlist-nome') || ''; } catch (e) { /* armazenamento bloqueado */ }
+$('#nome').addEventListener('input', () => { try { localStorage.setItem('setlist-nome', $('#nome').value.trim()); } catch (e) { /* ok */ } titulo(); });
 function titulo() {
   const n = $('#nome').value.trim().split(/\s+/)[0].replace(/[<>&"]/g, '');
   $('#r-nome').innerHTML = n ? `<em>${n}</em>, o seu<br>setlist no Ibirapuera:` : 'O seu setlist<br>no <em>Ibirapuera</em>:'; $('#ola').textContent = n ? n + ',' : '';
@@ -44,7 +44,7 @@ document.addEventListener('click', (e) => {
   if (b.id === 'abrir-sorteio') return abrirSorteio();
   if (b.id === 'ir-montar') return ir('montar');
   if (b.dataset.ir) return ir(b.dataset.ir);
-  if (b.id === 'sortear') { setTimeout(() => ir('resultado')); return; }
+  if (b.id === 'sortear') { setTimeout(() => ir('resultado', history.state?.tela !== 'resultado')); return; }
   if (b.id === 'outra') return $('#sortear').click();
   if ('gerar' in b.dataset) return ir('resultado'); // data-gerar vem sem valor, então o dataset é ''
   if (b.id === 'abrir-gaveta') { $('#gaveta').classList.add('aberto'); $('#fundo-gaveta').classList.add('aberto'); return; }
@@ -82,7 +82,7 @@ function umEm(p) {
   const x = 1 / p;
   if (x < 1e6) return Math.round(x).toLocaleString('pt-BR');
   const nomes = [[1e15, 'quatrilhões'], [1e12, 'trilhões'], [1e9, 'bilhões'], [1e6, 'milhões']];
-  if (x < 1e18) { const [v, n] = nomes.find(([v]) => x >= v); return `${(x / v).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} <small>${n}</small>`; }
+  if (x < 1e18) { const [v, n] = nomes.find(([v]) => x >= v); return `${(x / v).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} <small>${x / v < 2 ? n.replace('ões', 'ão') : n}</small>`; }
   return `10<sup>${Math.floor(Math.log10(x))}</sup>`;
 }
 
@@ -97,15 +97,15 @@ function sorte(ms) {
   const certa = [...comDado].sort((a, b) => b.pct - a.pct)[0];
   const de26 = ms.filter((m) => m.ult?.startsWith('2026')).sort((a, b) => b.ult.localeCompare(a.ult));
   const veredito = indice < 10 ? 'Só raridade' : indice < 14 ? 'Lado B puro' : indice < 18 ? 'Show de verdade' : indice < 25 ? 'Pé quente' : 'Aposta segura';
-  const chance = nunca.length ? null : umEm(ms.reduce((p, m) => p * m.pct / 100, 1));
+  const chance = nunca.length ? null : umEm(ms.reduce((p, m) => p * m.vezes / S, 1));
   const c = [];
   c.push(`<div class="carta larga indice"><div><div class="rot">Índice de sorte</div>
     <div class="txt"><b>${veredito}.</b> Na média, cada uma rolou em ${indice}% dos shows solo.</div></div>
     <div class="val">${indice}<small>/100</small></div><div class="medidor"><i style="width:${indice}%"></i></div></div>`);
   if (rara) c.push(`<div class="carta"><div class="rot">Sua raridade</div><div class="val">${pct(rara.pct)}<small>%</small></div>
     <div class="txt"><b>${rara.nome}</b>, só em ${rara.vezes} ${rara.vezes === 1 ? 'show' : 'shows'}</div></div>`);
-  if (certa) c.push(`<div class="carta"><div class="rot">Sua aposta certa</div><div class="val">${pct(certa.pct)}<small>%</small></div>
-    <div class="txt"><b>${certa.nome}</b>, em ${certa.vezes} shows</div></div>`);
+  if (certa && certa !== rara) c.push(`<div class="carta"><div class="rot">Sua aposta certa</div><div class="val">${pct(certa.pct)}<small>%</small></div>
+    <div class="txt"><b>${certa.nome}</b>, em ${certa.vezes} ${certa.vezes === 1 ? 'show' : 'shows'}</div></div>`);
   c.push(`<div class="carta"><div class="rot">Tocadas em 2026</div><div class="val">${de26.length}<small>/${n}</small></div>
     <div class="txt">${de26.length ? `A mais recente: <b>${de26[0].nome}</b>, ${dataBR(de26[0].ult)}` : 'Nenhuma saiu do baú este ano. Ainda.'}</div></div>`);
   c.push(`<div class="carta"><div class="rot">Num show típico</div><div class="val">${esperadas.toLocaleString('pt-BR', { maximumFractionDigits: 1 })}<small>/${n}</small></div>

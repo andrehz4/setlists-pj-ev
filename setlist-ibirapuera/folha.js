@@ -1,4 +1,4 @@
-// Desenha a folha da setlist no canvas, no mesmo layout do gerador oficial: papel 1100x1400, cabeçalho no topo,
+// Desenha a folha do setlist no canvas, no mesmo layout do gerador oficial: papel 1100x1400, cabeçalho no topo,
 // 2 colunas de 12 músicas (x 100 e 660), passo de 90 px a partir de y 255. Traço de bis empurra o resto da coluna.
 // A folha é pintada aos poucos (cada imagem que chega repinta) e nunca trava: imagem que falha ou passa do prazo
 // vira texto (música) ou fundo liso (papel). Se a atrasada chegar depois, entra no lugar do texto.
@@ -36,7 +36,7 @@ function pintar(canvas, [papel, cab, ibira, traco, ...imgs], musicas) {
       const larg = Math.min(im.width, 440);
       c.drawImage(im, x, y, larg, im.height * (larg / im.width));
     } else if (im === false) c.fillText(musicas[i].nome.toUpperCase(), x, y + 45, 420);
-    if (!musicas[i].bis) return;
+    if (!musicas[i].bis || i === musicas.length - 1) return; // bis na última não tem o que separar
     // A tinta da música vai até ~y+100 e a próxima começa em ~y+114: o traço (20 px) só cabe empurrando o resto da
     // coluna. Teto de 40 px pra última música não sair do papel.
     if (traco) c.drawImage(traco, x - 30, y + 107, 420, traco.height * (420 / traco.width));

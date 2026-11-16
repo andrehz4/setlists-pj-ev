@@ -9,7 +9,8 @@ const $ = (s) => document.querySelector(s);
 const carregar = (src) => new Promise((ok) => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = src; });
 
 function caixa(c, x, y, w, h, r, cor, borda) {
-  c.beginPath(); c.roundRect(x, y, w, h, r); c.fillStyle = cor; c.fill();
+  // iOS < 16 não tem roundRect: cai pra retângulo reto
+  c.beginPath(); if (c.roundRect) c.roundRect(x, y, w, h, r); else c.rect(x, y, w, h); c.fillStyle = cor; c.fill();
   if (borda) { c.strokeStyle = borda; c.lineWidth = 2; c.stroke(); }
 }
 

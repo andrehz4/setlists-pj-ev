@@ -18,14 +18,14 @@ const esc = (t) => String(t).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&
 const naLista = (k) => estado.lista.some((m) => m.chave === k);
 
 function catalogo() {
-  const q = $('#busca').value.trim().toLowerCase();
+  const q = $('#busca').value.trim().toLowerCase(), abertos = new Set([...document.querySelectorAll('#catalogo details[open]')].map((d) => d.dataset.g));
   $('#catalogo').innerHTML = grupos.map((g) => {
     const ms = g.musicas.filter((m) => !q || m.nome.toLowerCase().includes(q) || (m.de || '').toLowerCase().includes(q));
     if (!ms.length) return '';
-    return `<details ${q ? 'open' : ''}><summary>${esc(g.grupo)} <small>${ms.length}</small></summary><ul>${ms.map((m) =>
+    return `<details data-g="${esc(g.grupo)}" ${q || abertos.has(g.grupo) ? 'open' : ''}><summary>${esc(g.grupo)} <small>${ms.length}</small></summary><ul>${ms.map((m) =>
       `<li><button class="add" data-k="${esc(m.chave)}" ${naLista(m.chave) ? 'disabled' : ''}>${esc(m.nome)}${
         m.de ? ` <small>(${esc(m.de)})</small>` : ''}${m.vezes ? ` <em>${m.vezes}x solo</em>` : ''}</button></li>`).join('')}</ul></details>`;
-  }).join('');
+  }).join('') || (q ? '<p class="vazio">Nenhuma música com esse nome.</p>' : '');
 }
 
 function selecionadas() {
@@ -34,7 +34,7 @@ function selecionadas() {
   $('#limite').hidden = n < LIMITE;
   $('#lista').innerHTML = estado.lista.map((m, i) => `<li draggable="true" data-i="${i}">
     <span class="num">${i + 1}</span><span class="nome">${esc(m.nome)}</span>
-    <button data-acao="bis" data-i="${i}" class="${m.bis ? 'on' : ''}" title="traço de bis depois desta">bis</button>
+    <button data-acao="bis" data-i="${i}" class="${m.bis ? 'on' : ''}" aria-pressed="${!!m.bis}" title="traço de bis depois desta">bis</button>
     <button data-acao="sobe" data-i="${i}" aria-label="subir">↑</button>
     <button data-acao="desce" data-i="${i}" aria-label="descer">↓</button>
     <button data-acao="tira" data-i="${i}" aria-label="tirar">✕</button></li>`).join('');
@@ -128,7 +128,7 @@ document.addEventListener('click', (e) => {
   }
   const i = Number(b.dataset.i);
   const acoes = {
-    bis: () => { estado.lista[i].bis = !estado.lista[i].bis; },
+    bis: () => { const m = estado.lista[i]; m.bis = !m.bis && i < estado.lista.length - 1 && estado.lista.filter((x) => x.bis).length < 2; },
     sobe: () => mover(i, i - 1), desce: () => mover(i, i + 1), tira: () => estado.lista.splice(i, 1),
   };
   if (acoes[b.dataset.acao]) { acoes[b.dataset.acao](); return tudo(); }
@@ -136,7 +136,7 @@ document.addEventListener('click', (e) => {
     document.querySelectorAll('[data-show]').forEach((x) => x.classList.toggle('on', x === b));
     return trocarNoite(Number(b.dataset.show));
   }
-  const extras = { sortear, limpar: () => { estado.lista = []; tudo(); },
+  const extras = { sortear, limpar: () => { estado.listas = { 1: [], 2: [] }; tudo(); },
     ouvir: () => window.open(`https://www.youtube.com/watch_videos?video_ids=${
       estado.lista.filter((m) => m.yt).slice(0, 50).map((m) => m.yt).join(',')}`, '_blank', 'noopener'),
     atalho: () => $('#minha').scrollIntoView({ behavior: 'smooth', block: 'start' }),

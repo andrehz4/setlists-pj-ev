@@ -53,6 +53,12 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   Filtro do nome (`filtro.js`, 16/11): barra palavrão/crime/ódio/bizarrice (inclusive leet e espaçado), só letras,
   até 18; teste em `scripts/setlist-ibirapuera/filtro.test.mjs` (inclui nomes reais que NÃO podem cair: Fagner,
   Nigel, Ísis, Dickson). Rodapé do resultado com Acervo, Pra ler e Onde achar do site.
+  QA do Fable (16/11) corrigido: grupo não fecha ao adicionar, busca vazia avisa, bis no máximo 2 e nunca na última,
+  "Começar do zero" zera as duas noites, Instagram vai direto pros 3 passos, sortear de novo não empilha histórico,
+  cartas (singular, chance por vezes/315, aposta certa some se igual à raridade, milhão/bilhão), folha cabe no
+  notebook, nome longo quebra, localStorage e roundRect protegidos. PENDENTE: testar `instagram://story-camera` no
+  Android e iPhone (no Android pode dar página de erro), voltar do navegador fechar painéis, acessibilidade dos
+  painéis (inert, foco, Esc).
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +
