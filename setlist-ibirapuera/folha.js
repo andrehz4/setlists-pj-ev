@@ -73,22 +73,6 @@ export async function desenharFolha(canvas, { show, musicas }, { vigente = () =>
   return faltam();
 }
 
-// Versão story (1080x1920): folha inteira no meio, fundo escuro, assinatura do site embaixo.
-export function story(folha) {
-  const s = document.createElement('canvas');
-  s.width = 1080; s.height = 1920;
-  const c = s.getContext('2d');
-  c.fillStyle = '#121212'; c.fillRect(0, 0, 1080, 1920);
-  const larg = 1000, alt = 1400 * (larg / 1100);
-  c.drawImage(folha, 40, (1920 - alt) / 2 - 40, larg, alt);
-  c.fillStyle = '#f2efe6'; c.textAlign = 'center';
-  c.font = '600 40px system-ui, sans-serif';
-  c.fillText('Minha setlist do Eddie no Ibirapuera', 540, 150);
-  c.font = '400 32px system-ui, sans-serif';
-  c.fillText('somaisumfadepearljam.com.br/setlist-ibirapuera', 540, 1830);
-  return s;
-}
-
 export const paraBlob = (canvas, q = 0.9) => new Promise((ok, erro) => {
   try { canvas.toBlob((b) => (b ? ok(b) : erro(new Error('sem imagem'))), 'image/jpeg', q); } catch (e) { erro(e); }
 });

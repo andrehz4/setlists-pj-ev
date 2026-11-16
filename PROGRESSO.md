@@ -28,6 +28,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   Chrome 390 px: chegada, sorteio, `#sortear` e montar sem erro de console.
   Traço de bis CORRIGIDO (16/11): ia em y+84 e riscava a música; agora vai em y+107 e empurra o resto da coluna 20 px
   (teto 40). Papel de 338 KB vem do glitch.ge.
+  Story NOVO (16/11, `story.js`): título do resultado no topo ("A SETLIST ANDRÉ", nome em dourado), folha com
+  fita no meio e as cartas de sorte embaixo (índice, rara, garantida, 2026, show típico, chance), lidas do DOM da tela.
   Depois: IDs do YouTube das 228 solo, link no site/post, fase 2 de playlist com login.
 - **Letra do Eddie v3 (16/11):** agente Fable extraiu tinta de 29 setlists REAIS (`letra-eddie/fotos-reais`, baixadas pelo
   Serper do marcaregistrada): 241 palavras reais, t minúsculo, Q, chaves/traços/setas. `fable/escrever3.py` +

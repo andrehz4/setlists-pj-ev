@@ -1,6 +1,7 @@
 // Gerador de setlist do Eddie no Ibirapuera: escolhe o show, monta até 24 músicas (ou sorteia), reordena, marca o bis,
 // vê a folha escrita à mão e baixa/compartilha (folha 1100x1400 ou story 1080x1920).
-import { desenharFolha, story, paraBlob } from './folha.js';
+import { desenharFolha, paraBlob } from './folha.js';
+import { story } from './story.js';
 import { entregar } from './salvar.js';
 import { sortearShow } from './sorteio.js';
 
@@ -83,7 +84,7 @@ function mover(i, j) {
 async function baixar(tipo) {
   const nome = `setlist-eddie-ibirapuera-${estado.show === 2 ? '22' : '20'}-11${tipo === 'story' ? '-story' : ''}.jpg`;
   try {
-    const blob = await paraBlob(tipo === 'story' ? story($('#folha')) : $('#folha'));
+    const blob = await paraBlob(tipo === 'story' ? await story($('#folha')) : $('#folha'));
     await entregar(blob, nome, { compartilhar: tipo === 'compartilhar' });
   } catch (e) { $('#aviso').textContent = 'Não consegui gerar a imagem. Tire um print da folha.'; }
 }
