@@ -21,11 +21,12 @@ export function musicasLidas() {
 }
 
 // Pedaços da folha a escrever, na ordem: cabeçalho, depois cada música e o traço de bis dela (coordenadas do papel).
-function trechos(musicas) {
-  const out = [{ x: 0, y: 42, w: 1100, h: 210, dur: 0.6 }];
+// porMusica = segundos de caneta por música (o vídeo usa 0,26; a página ajusta pra caber em 4 a 6 s).
+export function trechos(musicas, porMusica = 0.26) {
+  const out = [{ x: 0, y: 42, w: 1100, h: 210, dur: Math.min(0.6, porMusica * 2) }];
   posicoes(musicas).forEach(({ x, y, traco }) => {
-    out.push({ x: x - 12, y: y - 6, w: 460, h: 112, dur: 0.3 });
-    if (traco) out.push({ x: x - 34, y: y + 100, w: 430, h: 30, dur: 0.18 });
+    out.push({ x: x - 12, y: y - 6, w: 460, h: 112, dur: porMusica });
+    if (traco) out.push({ x: x - 34, y: y + 100, w: 430, h: 30, dur: porMusica * 0.7 });
   });
   let t = 0;
   for (const p of out) { p.ini = t; t += p.dur; }
@@ -48,8 +49,17 @@ export function escrever(c, e, t) {
   c.drawImage(e.base, 0, geo.y - 80);
   c.save(); c.translate(geo.cx, geo.cy); c.rotate(geo.giro); c.translate(-geo.cx, -geo.cy);
   c.translate(geo.x, geo.y); c.scale(k, k);
+  tinta(c, folha, e.lista, t);
+  c.restore();
+  fitas(c, geo.x, geo.y, geo.larg);
+  return t >= e.total;
+}
+
+// A tinta até o segundo t, em coordenadas do papel (1100x1400): copia da folha pronta cada pedaço já escrito, por cima
+// do papel em branco que já está no canvas, e desenha a ponta da caneta. O vídeo e a página (folha-viva.js) usam.
+export function tinta(c, folha, lista, t) {
   let caneta = null;
-  for (const p of e.lista) {
+  for (const p of lista) {
     const f = Math.min(1, Math.max(0, (t - p.ini) / p.dur));
     if (f <= 0) break;
     const w = Math.min(p.w * f, folha.width - p.x);
@@ -61,9 +71,6 @@ export function escrever(c, e, t) {
     c.fillStyle = 'rgba(22,19,15,.85)';
     c.beginPath(); c.arc(caneta.x, caneta.y + treme, 9, 0, Math.PI * 2); c.fill();
   }
-  c.restore();
-  fitas(c, geo.x, geo.y, geo.larg);
-  return t >= e.total;
 }
 
 // Lista digitada em 1 ou 2 colunas (mais de 11 linhas = 2). Cada item é uma camada pequena pra entrar sozinho.
