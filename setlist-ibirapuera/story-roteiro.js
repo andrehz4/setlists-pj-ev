@@ -2,9 +2,11 @@
 // 1. o título entra e o papel em branco cai; 2. a folha é escrita música por música (story-escrita.js);
 // 3. a folha sai e entra a lista digitada, item por item; 4. a lista sai, a folha pronta volta grande e encolhe pro
 // tamanho da imagem enquanto as cartas sobem uma
-// por uma com os números contando de 0 e a barra do índice enchendo; 5. o link.
+// por uma com os números contando de 0 e a barra do índice enchendo; 5. o link e, nos últimos ~2,5 s, a chamada
+// pra seguir (logo com pop, SEGUE A GENTE, @smufdpj sublinhado).
 import { W, tela } from './story-pincel.js';
 import { montar, fundo, medidor, numero, geoFolha } from './story.js';
+import { sublinhar } from './story-rodape.js';
 import { montarEscrita, escrever, montarLista, musicasLidas } from './story-escrita.js';
 
 const fase = (t, ini, dur) => Math.min(1, Math.max(0, (t - ini) / dur));
@@ -17,23 +19,24 @@ export async function prepararRoteiro(folha) {
   camadas.filter((k) => k.nome === 'carta').forEach((k, j) => { k.j = j; });
   const lista = montarLista(musicas);
   const T = { escreve: 1.3 };
-  T.saiFolha = T.escreve + escrita.total + 0.5;
+  T.saiFolha = T.escreve + escrita.total + 0.4;
   T.lista = T.saiFolha + 0.3;
-  T.item = (i) => T.lista + 0.3 + i * 0.12;
-  T.saiLista = T.item(lista.itens.length) + 1.6;
+  T.item = (i) => T.lista + 0.3 + i * 0.1;
+  T.saiLista = T.item(lista.itens.length) + 1.2;
   T.volta = T.saiLista + 0.4; // a folha volta grande, pronta,
   T.encolhe = T.volta + 0.7; // e só então encolhe pro tamanho da imagem enquanto as cartas sobem
-  T.chega = (j) => T.encolhe + 0.5 + j * 0.3;
-  T.cta = T.chega(6) + 0.3;
-  const duracao = Math.min(20, Math.max(15, T.cta + 2));
+  T.chega = (j) => T.encolhe + 0.5 + j * 0.22;
+  T.link = T.chega(5) + 0.6;
+  T.segue = T.chega(5) + 1.2; // últimos ~2,5 s: a chamada pra seguir ganha a cena e fica parada até o fim
+  const duracao = Math.min(20, Math.max(15, T.segue + 2.6));
   return { camadas, escrita, lista, T, duracao };
 }
 
-function pinta(c, cv, x, y, a, dx = 0, dy = 0, esc = 1, w = cv.width, h = cv.height) {
+function pinta(c, cv, x, y, a, dx = 0, dy = 0, esc = 1, w = cv.width, h = cv.height, giro = 0) {
   if (a <= 0) return;
   const cx = x + w / 2, cy = y + h / 2;
   c.save(); c.globalAlpha = a;
-  c.translate(cx + dx, cy + dy); c.scale(esc, esc); c.translate(-cx, -cy);
+  c.translate(cx + dx, cy + dy); c.rotate(giro); c.scale(esc, esc); c.translate(-cx, -cy);
   c.drawImage(cv, x, y);
   c.restore();
 }
@@ -89,21 +92,25 @@ function cenaLista(c, r, t) {
 function cenaFinal(c, r, t) {
   const { camadas, T } = r;
   for (const k of camadas) {
-    let a = 1, dx = 0, dy = 0, esc = 1, conta = 1;
+    let a = 1, dx = 0, dy = 0, esc = 1, conta = 1, giro = 0;
     if (k.nome === 'titulo') { const p = sai(fase(t, 0.15, 0.7)); a = p; dx = (1 - p) * -60; }
     else if (k.nome === 'folha') a = t >= T.encolhe + 0.7 ? 1 : 0;
-    else if (k.nome === 'cta') a = sai(fase(t, T.cta, 0.5));
     else if (k.nome === 'aviso') a = 1; // parado desde o começo
+    else if (k.nome === 'link') a = sai(fase(t, T.link, 0.5));
+    else if (k.nome === 'logo') { const p = fase(t, T.segue, 0.45); a = Math.min(1, p * 3); esc = 0.6 + 0.4 * mola(p); giro = (1 - sai(p)) * -0.4; }
+    else if (k.nome === 'segue') { const p = sai(fase(t, T.segue + 0.25, 0.4)); a = p; dx = (1 - p) * 50; }
+    else if (k.nome === 'arroba') { const p = sai(fase(t, T.segue + 0.45, 0.4)); a = p; dy = (1 - p) * 24; conta = sai(fase(t, T.segue + 0.8, 0.45)); }
     else {
       const ini = T.chega(k.j);
       a = Math.min(1, fase(t, ini, 0.25)); dy = (1 - mola(fase(t, ini, 0.5))) * 160; conta = sai(fase(t, ini + 0.2, 1.1));
     }
     if (a <= 0) continue;
-    pinta(c, k.cv, k.x, k.y, a, dx, dy, esc, k.w, k.h);
-    if (!k.medidor && !k.numero) continue;
+    pinta(c, k.cv, k.x, k.y, a, dx, dy, esc, k.w, k.h, giro);
+    if (!k.medidor && !k.numero && !k.sublinhado) continue;
     c.save(); c.globalAlpha = a; c.translate(dx, dy);
     if (k.medidor) medidor(c, k.medidor, conta);
     if (k.numero) numero(c, k.numero, conta);
+    if (k.sublinhado) sublinhar(c, k.sublinhado, conta); // traço dourado riscando o @smufdpj
     c.restore();
   }
 }

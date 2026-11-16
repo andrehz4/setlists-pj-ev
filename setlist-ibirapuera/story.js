@@ -3,11 +3,12 @@
 // #sorte), então fica igual ao site. Texto fora das faixas que o Instagram cobre (topo ~170 px, rodapé ~250 px).
 // O desenho sai em camadas (montar) pra o story em vídeo (story-video.js) animar cada uma; o número de cada carta é
 // desenhado à parte (numero), pra o vídeo contar de 0 até o valor.
-import { W, H, M, COR, DISP, CORPO, carregar, fontes, tela, caixa, linha, quebrar, pedacos, tamanho, VAL, TXT, rotulo } from './story-pincel.js';
+import { W, H, M, COR, DISP, carregar, fontes, tela, caixa, linha, quebrar, pedacos, tamanho, VAL, TXT, rotulo } from './story-pincel.js';
+import { rodape, sublinhar } from './story-rodape.js';
 
 const $ = (s) => document.querySelector(s);
-export const FOLHA = { y: 436, larg: 430 }, INDICE = { y: 1004, h: 180 }, GRADE = { y: 1196, h: 134, gap: 12 };
-const CHANCE = { y: 1488, h: 104 }, CTA = { y: 1604, h: 52, aviso: 36 };
+export const FOLHA = { y: 428, larg: 330 }, INDICE = { y: 862, h: 180 }, GRADE = { y: 1054, h: 134, gap: 12 };
+const CHANCE = { y: 1346, h: 104 }; // o rodapé (story-rodape.js) começa em 1466
 const ORDEM = ['Sua raridade', 'Sua aposta certa', 'Tocadas em 2026', 'Num show típico'];
 
 // Fundo: quadro do vídeo do Eddie (foto ou o próprio <video>) no alto, sumindo no escuro.
@@ -84,20 +85,6 @@ function cartaChance(c, el) {
   return { numero: { ped: pedacos(el.querySelector('.val'), VAL(COR.texto, COR.fraco, 58)), x: x + 24, y: y + 94, w: 390 } };
 }
 
-function cta(c) {
-  const { y, h } = CTA, txt = [{ fonte: tamanho(23, '"Instrument Sans", system-ui, sans-serif', 700), cor: COR.ouro, t: 'Sorteie o seu: ' },
-    { fonte: tamanho(23, '"Instrument Sans", system-ui, sans-serif', 500), cor: COR.texto, t: 'somaisumfadepearljam.com.br/setlist-ibirapuera' }];
-  c.font = txt[1].fonte(1);
-  const w = Math.min(W - 2 * M, c.measureText(txt[0].t + txt[1].t).width + 70);
-  caixa(c, (W - w) / 2, y, w, h, h / 2, 'rgba(15,14,12,.7)', 'rgba(232,176,74,.55)');
-  linha(c, W / 2, y + h / 2 + 8, txt, w - 50, 'center');
-}
-
-// Letra de bula embaixo do link, pra ninguém postar como setlist vazado. No vídeo fica parada desde o começo.
-function aviso(c) {
-  linha(c, W / 2, CTA.y + CTA.h + 26, [{ fonte: tamanho(17, CORPO, 500), cor: 'rgba(165,157,140,.55)', t: 'Palpite de fã, não é o setlist oficial' }], W - 2 * M, 'center');
-}
-
 // Número da carta; f < 1 conta de 0 até o valor (só os algarismos grandes, "1 em" e expoente ficam).
 export function numero(c, n, f = 1) {
   const ped = f >= 1 ? n.ped : n.ped.map((p) => (p.fixo ? p : { ...p, t: p.t.replace(/\d+(?:,\d+)?/g, (v) => {
@@ -133,8 +120,7 @@ export async function montar(folha) {
     camadas.push(camada('carta', x, y, wc, GRADE.h, (c) => carta(c, el, x, y, wc, GRADE.h)));
   });
   if (chance) camadas.push(camada('carta', 0, CHANCE.y, W, CHANCE.h, (c) => cartaChance(c, chance)));
-  camadas.push(camada('cta', 0, CTA.y, W, CTA.h, cta));
-  camadas.push(camada('aviso', 0, CTA.y + CTA.h, W, CTA.aviso, aviso));
+  camadas.push(...rodape(camada, await carregar('img/logo-smufdpj.png')));
   return camadas;
 }
 
@@ -146,6 +132,7 @@ export async function story(folha) {
     c.drawImage(k.cv, k.x, k.y);
     if (k.medidor) medidor(c, k.medidor);
     if (k.numero) numero(c, k.numero);
+    if (k.sublinhado) sublinhar(c, k.sublinhado);
   }
   return s;
 }
