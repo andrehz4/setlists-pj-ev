@@ -30,10 +30,12 @@ test("acesso: falta sem os segredos, negado sem credencial ou com errada, ok com
     assert.equal(await acesso(req(certa), env), "falta");
   }
   assert.equal(await acesso(req(), SEGREDOS), "negado");
-  for (const [u, s] of [["andre", "errada"], ["outro", SEGREDOS.PAINEL_SENHA], ["", ""], ["andre", ""], ["andre", SEGREDOS.PAINEL_SENHA + " "]]) {
+  for (const [u, s] of [["andre", "errada"], ["outro", SEGREDOS.PAINEL_SENHA], ["", ""], ["andre", ""], ["andre", SEGREDOS.PAINEL_SENHA + "x"]]) {
     assert.equal(await acesso(req(basic(u, s)), SEGREDOS), "negado", `${u}:${s}`);
   }
   assert.equal(await acesso(req(certa), SEGREDOS), "ok");
+  // 17/11: usuário com maiúscula e espaço nas pontas (e senha com espaço nas pontas) entra
+  assert.equal(await acesso(req(basic(" Andre ", SEGREDOS.PAINEL_SENHA + " ")), SEGREDOS), "ok");
 });
 
 test("painel: 401 sem credencial e com errada, 200 com a certa, 503 sem segredos, ?k= velho não abre", async () => {
