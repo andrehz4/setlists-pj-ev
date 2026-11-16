@@ -1132,7 +1132,6 @@
         {
           "id": "389700a2-f425-4f47-b993-f28236a8c236",
           "scope": "project",
-          "report": "/Users/andrehz/Documents/Githubhz/setlists-pj-ev/reels-especiais/eddie-ibirapuera/hf/.hyperframes/artifacts/checks/389700a2-f425-4f47-b993-f28236a8c236.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -1162,7 +1161,9 @@
           "revision": "21d05bd3-6cea-4677-b9d4-1b9d2a3768f4",
           "inputFingerprint": "0f752de42dcf97d191f683af9106b17b06339c78ec7e3ed5284d085a7a3816d4",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "a6316f54-b742-4d12-a786-525cf4ca77c0"
         }
       ],
       "a9c2bfcc-794f-4947-9175-8faf45e90923": [
@@ -2242,15 +2243,15 @@
   },
   "renders": {
     "latest": {
-      "id": "d6371cd0-fbc7-460d-94e2-8c0e90651726",
-      "completedAt": 1794799756082,
+      "id": "a6316f54-b742-4d12-a786-525cf4ca77c0",
+      "completedAt": 1794800185871,
       "output": "/Users/andrehz/Documents/Githubhz/setlists-pj-ev/reels-especiais/eddie-ibirapuera/render/reel-sem-trilha.mp4",
       "status": "completed",
-      "revision": "a9c2bfcc-794f-4947-9175-8faf45e90923"
+      "revision": "70a79a60-e2a0-4e3d-b47e-771b644c374f"
     },
     "retainedRevisions": [
-      "a9c2bfcc-794f-4947-9175-8faf45e90923",
-      "21d05bd3-6cea-4677-b9d4-1b9d2a3768f4"
+      "70a79a60-e2a0-4e3d-b47e-771b644c374f",
+      "a9c2bfcc-794f-4947-9175-8faf45e90923"
     ]
   },
   "pendingArtifactCleanup": []
