@@ -14,6 +14,16 @@ Base do nosso gerador do Ibirapuera (`setlist-ibirapuera/`). Nada aqui é segred
 4. **Final**: folha à esquerda; à direita SHARE (Twitter e Facebook), SAVE PLAYLIST TO YOUR ACCOUNT (Spotify, Apple Music,
    YouTube com aviso "click Manage your YouTube account"), DOWNLOAD IMAGE, CREATE ANOTHER SETLIST.
 
+## Tela final, vista com setlist aleatória (16/11)
+
+- Layout em 2 colunas: folha à esquerda como `<img>` (dataURL do canvas) girada uns 2 graus com CSS, sombra, parecendo
+  papel jogado na mesa; ações empilhadas à direita, botões largos de cor cheia (Spotify verde, Apple rosa, YouTube branco).
+- Aleatório: 24 músicas, cidade escolhida no cabeçalho, papel `papers-5` sorteado (alguns já têm traço de bis pintado).
+- DOWNLOAD IMAGE: baixa na hora, sem tela no meio, `Pearl Jam Setlist.jpg` 1100x1400 (~150 KB, JPEG 0.6).
+- YouTube: o botão vira estado "carregando" e abre a janela de login do Google (gapi). Depois do consentimento cria a
+  playlist e troca o botão pra "Saved"; o aviso de "Manage your YouTube account" fica sempre visível embaixo.
+- CREATE ANOTHER SETLIST volta pro formulário zerado.
+
 ## Desenho da folha (canvas)
 
 - Canvas 1100x1400. Papel sorteado entre `papers-5/1.jpg` a `5.jpg` (há também `papers/...-without-lines.jpg`).
