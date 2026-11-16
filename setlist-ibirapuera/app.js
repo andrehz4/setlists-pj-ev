@@ -1,5 +1,5 @@
 // Gerador de setlist do Eddie no Ibirapuera: escolhe o show, monta até 24 músicas (ou sorteia), reordena, marca o bis,
-// vê a folha escrita à mão e baixa/compartilha (folha 1100x1400 ou story 1080x1920).
+// vê a folha escrita à mão e baixa/compartilha o story 1080x1920.
 import { desenharFolha, paraBlob } from './folha.js';
 import { story } from './story.js';
 import { entregar } from './salvar.js';
@@ -51,7 +51,7 @@ async function folha() {
   const ocupado = (sim, txt = '') => {
     $('#estado-folha').textContent = txt;
     $('#previa').classList.toggle('montando', sim);
-    for (const id of ['baixar', 'story', 'compartilhar']) $(`#${id}`).disabled = sim;
+    $('#story').disabled = sim;
   };
   ocupado(true, 'Montando a folha...');
   $('#aviso').textContent = '';
@@ -81,12 +81,17 @@ function mover(i, j) {
   estado.lista.splice(j, 0, m);
 }
 
-async function baixar(tipo) {
-  const nome = `setlist-eddie-ibirapuera-${estado.show === 2 ? '22' : '20'}-11${tipo === 'story' ? '-story' : ''}.jpg`;
+// Um botão só: gera o story; no celular abre o compartilhar (Instagram etc.), no computador baixa.
+async function baixarStory() {
+  const b = $('#story');
+  if (b.classList.contains('gerando')) return;
+  b.classList.add('gerando'); b.firstElementChild.textContent = 'Montando seu story';
+  const nome = `setlist-eddie-ibirapuera-${estado.show === 2 ? '22' : '20'}-11-story.jpg`;
   try {
-    const blob = await paraBlob(tipo === 'story' ? await story($('#folha')) : $('#folha'));
-    await entregar(blob, nome, { compartilhar: tipo === 'compartilhar' });
-  } catch (e) { $('#aviso').textContent = 'Não consegui gerar a imagem. Tire um print da folha.'; }
+    const blob = await paraBlob(await story($('#folha')));
+    await entregar(blob, nome, { compartilhar: matchMedia('(pointer: coarse)').matches });
+  } catch (e) { $('#aviso').textContent = 'Não consegui gerar a imagem. Tire um print da tela.'; }
+  b.classList.remove('gerando'); b.firstElementChild.textContent = 'Baixar pro story';
 }
 
 document.addEventListener('click', (e) => {
@@ -111,7 +116,7 @@ document.addEventListener('click', (e) => {
     ouvir: () => window.open(`https://www.youtube.com/watch_videos?video_ids=${
       estado.lista.filter((m) => m.yt).slice(0, 50).map((m) => m.yt).join(',')}`, '_blank', 'noopener'),
     atalho: () => $('#minha').scrollIntoView({ behavior: 'smooth', block: 'start' }),
-    baixar: () => baixar('folha'), story: () => baixar('story'), compartilhar: () => baixar('compartilhar') };
+    story: baixarStory };
   extras[b.id]?.();
 });
 
