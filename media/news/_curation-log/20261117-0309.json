@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-11-17T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 0, "community-digest": 0, "community-spotlight": 1, "shop": 0, "instagram-oficial": 1 },
+  "approved": [
+    { "id": "4cdd68ce0b", "titulo": "Rearviewmirror, a coletânea de 1991 a 2003 do Pearl Jam, completa 22 anos", "kind": "instagram-oficial" }
+  ],
+  "skipped": [
+    { "id": "cs-47b5237f48", "title": "Old School Pics", "reason": "spotlight ambíguo: fotos antigas sem descrição, não dá pra saber o que mostram" }
+  ]
+}
