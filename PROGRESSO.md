@@ -170,6 +170,21 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-17 (noite): guia da sexta agendado + parceria com o Fabio Corazza
+
+- **Story "Guia da sexta" AGENDADO qua 18/11 17:00 BRT (TriggerAll #020, cron `0 20 18 11 *` UTC):** 6 telas no visual
+  do ranking (capa, programação, o que esperar com números do setlist.fm, pode/não pode, MONTA O SEU SETLIST com o
+  gerador, como chegar + CTA "manda pro amigo"). Artes em `media/news/stories-avulsos/2026-11-18-guia-sexta-0[1-6].jpg`,
+  fonte em `reels-especiais/story-sexta-ibirapuera/` (`story.html` + `render.mjs`, fotos fora do git). Horários do
+  festival vêm de matérias (Billboard, Trambicast 16/11), não do site oficial: "sujeitos a mudança" na tela.
+- **story-avulso.yml aceita várias telas** separadas por vírgula no input `imagem` (valida todas antes de postar a 1ª;
+  marcação só na 1ª). Testado no mock: 6 stories em sequência.
+- **Parceria com @fabiopcorazza (ilustrador, pôster do Eddie):** DM rascunhada (concurso cultural, não sorteio: segue
+  as duas contas, comenta no reel marcando 2 amigos + frase da música que não pode faltar, Fabio escolhe). Andre manda.
+  Se ele topar: regulamento curto + reel com a arte dele (com autorização).
+- **Próximo:** conferir qua 17h no IG/Telegram e depois DESLIGAR o #020 (cron sem ano repete em 2027). Guia do domingo
+  (22/11) no mesmo molde: trocar a escalação (16h Vitor Kley, resto igual) e reaproveitar `story.html`.
+
 ## 2026-11-16 (tarde): carrossel tutorial do gerador PUBLICADO
 
 - 8 slides no visual do ranking (capa com foto Commons do Eddie, Raph_PH CC BY 2.0, e "EDDIE VEDDER" enorme; 6
