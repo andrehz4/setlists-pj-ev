@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!-- Story "guia da sexta" (Eddie no Ibirapuera, 20/11/2026). 6 telas 1080x1920 empilhadas, visual do carrossel de ranking.
+     Render: node render.mjs (nesta pasta). Fotos ficam fora do git. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Archivo:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--destaque:#FFCC1A;--fundo:#14110F;--alerta:#E0361C;--papel:#f3efe6;--claro:#fff;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);font-family:'Archivo',sans-serif;}
+.tela{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--fundo);color:var(--claro);}
+.amarela{background-color:var(--destaque);background-image:radial-gradient(rgba(0,0,0,.07) 1.2px,transparent 1.6px);background-size:10px 10px;color:var(--fundo);}
+.big{font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;line-height:.84;letter-spacing:-2px;}
+.tag{display:inline-block;font-weight:900;font-size:28px;letter-spacing:.14em;padding:10px 16px;}
+.rodape{position:absolute;left:72px;right:72px;top:1600px;display:flex;align-items:center;justify-content:space-between;}
+.marca{display:flex;align-items:center;gap:14px;font-weight:800;font-size:28px;}
+.selo{width:66px;height:66px;border-radius:50%;overflow:hidden;border:3px solid currentColor;background:var(--papel);}
+.selo img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);}
+.manda{display:flex;align-items:center;gap:12px;font-weight:800;font-size:28px;}
+.manda svg{width:40px;height:40px;}
+.pag{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:34px;}
+.linha{display:grid;grid-template-columns:200px 1fr;align-items:center;height:132px;border-bottom:4px solid var(--fundo);}
+.hora{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:84px;line-height:1;}
+.nome{font-weight:900;font-size:56px;letter-spacing:-1px;}
+.lista{list-style:none;margin:0;padding:0;}
+.lista li{font-weight:700;font-size:40px;line-height:1.18;padding:11px 0 11px 56px;position:relative;}
+.lista li::before{position:absolute;left:0;top:9px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:44px;}
+.sim li::before{content:"✓";color:var(--destaque);}
+.nao li::before{content:"✕";color:var(--alerta);}
+.num{font-family:'Big Shoulders Display',sans-serif;font-weight:900;line-height:.85;color:var(--destaque);}
+.passo{counter-increment:p;position:relative;padding:0 0 34px 78px;font-weight:700;font-size:38px;line-height:1.15;}
+.passo::before{content:counter(p);position:absolute;left:0;top:-6px;width:56px;height:56px;border-radius:50%;background:var(--destaque);color:var(--fundo);font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:40px;display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+
+<!-- svg do aviãozinho de enviar do Instagram, reaproveitado -->
+<svg width="0" height="0" style="position:absolute"><symbol id="aviao" viewBox="0 0 24 24"><path d="M22 3 9.2 10.1M22 3l-7.5 18-3.4-8.3L2.6 9.3Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol></svg>
+
+<!-- 01 CAPA -->
+<section class="tela">
+  <img src="ev-commons-Werchter070718-86.jpg" alt="Eddie Vedder no palco" style="position:absolute;top:0;left:0;width:1080px;height:1080px;object-fit:cover;object-position:54% 40%;">
+  <div style="position:absolute;top:0;left:0;width:1080px;height:1100px;background:linear-gradient(180deg,rgba(20,17,15,.55) 0%,transparent 22%,transparent 50%,var(--fundo) 97%);"></div>
+  <div class="marca" style="position:absolute;top:250px;right:72px;color:var(--claro);text-shadow:0 2px 10px rgba(0,0,0,.6);">@smufdpj <div class="selo" style="color:var(--destaque)"><img src="selo-smufdpj.jpg" alt=""></div></div>
+  <div style="position:absolute;top:640px;left:60px;transform:rotate(-5deg);background:var(--alerta);color:var(--claro);padding:16px 32px 12px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:84px;line-height:1;letter-spacing:2px;box-shadow:0 0 0 5px var(--alerta),0 0 0 9px var(--claro),0 18px 40px rgba(0,0,0,.45);">FALTAM 2 DIAS</div>
+  <div class="big" style="position:absolute;top:800px;left:60px;right:60px;font-size:250px;color:var(--destaque);">Guia da<br>sexta</div>
+  <div style="position:absolute;top:1230px;left:66px;right:66px;font-weight:900;font-size:62px;line-height:1.04;letter-spacing:-1px;">Eddie Vedder no Ibirapuera, 20/11. Tudo o que você precisa saber antes de ir.</div>
+  <div style="position:absolute;top:1450px;left:0;width:1080px;height:100px;background:var(--destaque);color:var(--fundo);display:flex;align-items:center;padding:0 66px;font-weight:900;font-size:31px;">Horários · o que esperar · o que levar · como chegar</div>
+  <div style="position:absolute;top:1035px;right:40px;font-size:18px;font-weight:600;color:rgba(255,255,255,.7);">Foto: Raph_PH, CC BY 2.0</div>
+  <div class="rodape" style="top:1610px;">
+    <div class="manda" style="color:var(--destaque)"><svg><use href="#aviao"/></svg>Manda pro amigo que vai com você</div>
+    <div class="pag" style="color:var(--destaque)">1/6 →</div>
+  </div>
+</section>
+
+<!-- 02 PROGRAMAÇÃO -->
+<section class="tela amarela">
+  <div style="position:absolute;top:250px;left:72px;right:72px;">
+    <div><span class="tag" style="background:var(--fundo);color:var(--destaque);">SEXTA 20/11</span> <span style="font-weight:800;font-size:28px;letter-spacing:.14em;margin-left:10px;">BEST OF BLUES AND ROCK</span></div>
+    <div class="big" style="margin-top:26px;font-size:150px;">A programação</div>
+  </div>
+  <div style="position:absolute;top:640px;left:72px;right:72px;border-top:4px solid var(--fundo);">
+    <div class="linha"><div class="hora">14h</div><div class="nome">Abrem os portões</div></div>
+    <div class="linha"><div class="hora">16h</div><div class="nome">Samuel Rosa</div></div>
+    <div class="linha"><div class="hora">17h30</div><div class="nome">Linka Moja</div></div>
+    <div class="linha"><div class="hora">19h</div><div class="nome">Simon Townshend</div></div>
+    <div class="linha" style="background:var(--fundo);color:var(--destaque);border-bottom:none;padding-left:20px;margin-left:-20px;margin-right:-20px;grid-template-columns:200px 1fr;"><div class="hora">20h</div><div class="nome" style="font-size:72px;font-family:'Big Shoulders Display',sans-serif;text-transform:uppercase;letter-spacing:0;">Eddie Vedder</div></div>
+  </div>
+  <div style="position:absolute;top:1340px;left:72px;right:72px;font-weight:700;font-size:34px;line-height:1.3;">
+    Plateia externa do Auditório Ibirapuera, <b>portão 10</b>.<br>
+    É <b>feriado da Consciência Negra</b>: o parque enche, chega cedo.
+    <div style="margin-top:14px;font-size:24px;font-weight:600;opacity:.75;">Horários divulgados pelo festival, sujeitos a mudança.</div>
+  </div>
+  <div class="rodape">
+    <div class="manda"><svg><use href="#aviao"/></svg>Manda pro amigo</div>
+    <div class="pag">2/6</div>
+  </div>
+</section>
+
+<!-- 03 O QUE ESPERAR -->
+<section class="tela">
+  <div style="position:absolute;top:250px;left:72px;right:72px;">
+    <span class="tag" style="background:var(--destaque);color:var(--fundo);">EM NÚMEROS</span>
+    <div class="big" style="margin-top:26px;font-size:170px;color:var(--destaque);">O que<br>esperar</div>
+  </div>
+  <div style="position:absolute;top:690px;left:72px;right:72px;display:grid;grid-template-columns:330px 1fr;gap:26px 30px;align-items:center;">
+    <div class="num" style="font-size:230px;">1º</div>
+    <div style="font-weight:800;font-size:40px;line-height:1.12;">show solo do Eddie <b style="color:var(--destaque)">ao ar livre</b> no Brasil. Os 8 anteriores (2014 e 2018) foram em casa fechada.</div>
+    <div class="num" style="font-size:130px;">27 a 34</div>
+    <div style="font-weight:800;font-size:40px;line-height:1.12;">músicas por show nas outras vindas dele ao Brasil.</div>
+  </div>
+  <div style="position:absolute;top:1230px;left:72px;right:72px;">
+    <div style="font-weight:800;font-size:30px;letter-spacing:.1em;color:var(--destaque);">TOCARAM EM TODOS OS SHOWS NO BRASIL</div>
+    <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:14px;">
+      <span class="tag" style="background:var(--destaque);color:var(--fundo);font-size:38px;letter-spacing:0;">Porch</span>
+      <span class="tag" style="background:var(--destaque);color:var(--fundo);font-size:38px;letter-spacing:0;">Far Behind</span>
+      <span class="tag" style="background:var(--destaque);color:var(--fundo);font-size:38px;letter-spacing:0;">Society</span>
+      <span class="tag" style="background:var(--destaque);color:var(--fundo);font-size:38px;letter-spacing:0;">Guaranteed</span>
+      <span class="tag" style="background:var(--destaque);color:var(--fundo);font-size:38px;letter-spacing:0;">Hard Sun</span>
+    </div>
+    <div style="margin-top:30px;font-weight:700;font-size:34px;line-height:1.25;">E a raridade: <b style="color:var(--alerta)">Black</b> saiu 1 vez em 7 setlists conferidos.</div>
+    <div style="margin-top:12px;font-size:22px;font-weight:600;opacity:.6;">Fonte: setlist.fm, consulta de 15/11/2026.</div>
+  </div>
+  <div class="rodape">
+    <div class="manda" style="color:var(--destaque)"><svg><use href="#aviao"/></svg>Manda pro amigo</div>
+    <div class="pag" style="color:var(--destaque)">3/6</div>
+  </div>
+</section>
+
+<!-- 04 PODE E NÃO PODE -->
+<section class="tela">
+  <div style="position:absolute;top:250px;left:72px;right:72px;">
+    <span class="tag" style="background:var(--destaque);color:var(--fundo);">NA REVISTA</span>
+    <div class="big" style="margin-top:26px;font-size:150px;"><span style="color:var(--destaque)">Pode</span> e <span style="color:var(--alerta)">não pode</span></div>
+  </div>
+  <div style="position:absolute;top:610px;left:72px;right:72px;display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+    <ul class="lista sim">
+      <li>Documento com foto e ingresso</li>
+      <li>Bolsa até 20 x 30 cm</li>
+      <li>Capa de chuva</li>
+      <li>Protetor solar, boné e óculos</li>
+      <li>Água lacrada em garrafa plástica</li>
+      <li>Snack fechado e fruta picada</li>
+      <li>Celular e power bank</li>
+    </ul>
+    <ul class="lista nao">
+      <li>Guarda-chuva</li>
+      <li>Cadeira e banquinho</li>
+      <li>Lata e vidro</li>
+      <li>Copo térmico e pote com tampa</li>
+      <li>Pau de selfie</li>
+      <li>Câmera de lente removível</li>
+      <li>Cartaz de papelão grosso</li>
+    </ul>
+  </div>
+  <div style="position:absolute;top:1380px;left:72px;right:72px;background:var(--alerta);color:var(--claro);padding:24px 30px;font-weight:900;font-size:38px;line-height:1.15;">Não tem guarda-volumes. O que for barrado na revista não volta.</div>
+  <div class="rodape">
+    <div class="manda" style="color:var(--destaque)"><svg><use href="#aviao"/></svg>Manda pro amigo</div>
+    <div class="pag" style="color:var(--destaque)">4/6</div>
+  </div>
+</section>
+
+<!-- 05 MONTA O SEU SETLIST (gerador do Ibirapuera) -->
+<section class="tela">
+  <div style="position:absolute;top:250px;left:72px;right:72px;">
+    <span class="tag" style="background:var(--destaque);color:var(--fundo);">ANTES DO SHOW</span>
+    <div class="big" style="margin-top:26px;font-size:150px;color:var(--destaque);">Monta o<br>seu setlist</div>
+  </div>
+  <img src="folha.png" alt="Setlist escrito à mão gerado no site" style="position:absolute;top:640px;right:48px;width:500px;transform:rotate(4deg);box-shadow:0 24px 60px rgba(0,0,0,.6);">
+  <ol style="position:absolute;top:660px;left:72px;width:440px;margin:0;padding:0;list-style:none;counter-reset:p;">
+    <li class="passo">Abre o <b>link da bio</b></li>
+    <li class="passo">Põe o seu nome e escolhe a <b>sexta</b></li>
+    <li class="passo">Sorteia ou monta entre <b>401 músicas</b></li>
+    <li class="passo">Sai <b>escrito à mão</b>, com a sua sorte em números</li>
+  </ol>
+  <div style="position:absolute;top:1370px;left:72px;right:72px;background:var(--destaque);color:var(--fundo);padding:24px 30px;font-weight:900;font-size:38px;line-height:1.15;">Posta no story e marca a @smufdpj. A gente compartilha o seu.</div>
+  <div class="rodape">
+    <div class="manda" style="color:var(--destaque)"><svg><use href="#aviao"/></svg>Manda pro amigo</div>
+    <div class="pag" style="color:var(--destaque)">5/6</div>
+  </div>
+</section>
+
+<!-- 06 COMO CHEGAR + CTA -->
+<section class="tela amarela">
+  <div style="position:absolute;top:250px;left:72px;right:72px;">
+    <span class="tag" style="background:var(--fundo);color:var(--destaque);">IDA E VOLTA</span>
+    <div class="big" style="margin-top:26px;font-size:170px;">Como<br>chegar</div>
+  </div>
+  <ul class="lista" style="position:absolute;top:690px;left:72px;right:72px;">
+    <li style="padding-left:0;font-size:38px;"><b>Metrô:</b> AACD-Servidor (linha 5), uns 2 km a pé até o portão.</li>
+    <li style="padding-left:0;font-size:38px;"><b>Carro:</b> estacionamento oficial pelo portão 2.</li>
+    <li style="padding-left:0;font-size:38px;"><b>Feriado:</b> metrô e ônibus em horário de feriado.</li>
+    <li style="padding-left:0;font-size:38px;"><b>Volta:</b> o Eddie entra às 20h. Combina a volta antes.</li>
+  </ul>
+  <div style="position:absolute;top:1200px;left:56px;right:56px;background:var(--fundo);color:var(--destaque);padding:40px 44px;transform:rotate(-1.5deg);box-shadow:0 20px 50px rgba(0,0,0,.35);">
+    <div style="display:flex;align-items:center;gap:26px;">
+      <svg style="width:110px;height:110px;flex:none;"><use href="#aviao"/></svg>
+      <div class="big" style="font-size:96px;line-height:.9;letter-spacing:0;">Manda pro amigo que vai com você</div>
+    </div>
+    <div style="margin-top:20px;font-weight:700;font-size:32px;color:var(--claro);">Toca no aviãozinho aqui embaixo. Ninguém fica sem saber de nada na sexta.</div>
+  </div>
+  <div class="rodape">
+    <div class="marca"><div class="selo"><img src="selo-smufdpj.jpg" alt=""></div>@smufdpj · somaisumfadepearljam.com.br</div>
+    <div class="pag">6/6</div>
+  </div>
+</section>
+
+</body>
+</html>

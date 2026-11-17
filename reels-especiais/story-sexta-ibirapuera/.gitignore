@@ -1,0 +1,4 @@
+# fotos de terceiros e imagens finais ficam fora do git (repo público)
+*.jpg
+saida/
+*.png
