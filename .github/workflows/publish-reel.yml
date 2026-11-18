@@ -62,6 +62,7 @@ jobs:
           # não tem saldo. Variável do repo ELEVENLABS_CHAVE (principal|reserva|reserva2|agenda) força uma.
           ELEVENLABS_API_KEY_RESERVA: ${{ secrets.ELEVENLABS_API_KEY_RESERVA }}
           ELEVENLABS_API_KEY_RESERVA2: ${{ secrets.ELEVENLABS_API_KEY_RESERVA2 }}
+          ELEVENLABS_API_KEY_RESERVA7: ${{ secrets.ELEVENLABS_API_KEY_RESERVA7 }}
           ELEVENLABS_API_KEY_AGENDA: ${{ secrets.ELEVENLABS_API_KEY_AGENDA }}
           ELEVENLABS_CHAVE: ${{ vars.ELEVENLABS_CHAVE }}
           # transições e abertura com clipe (scripts/publish/reel/transicoes.mjs): trechos baixados do R2 (acervo/);
