@@ -28,10 +28,13 @@ async function listar() {
   const posts = await getIG(`/${igUserId}/media`, {
     fields: "id,caption,timestamp,permalink,comments_count", limit: nPosts, access_token: accessToken });
   const achados = [];
+  let total = 0, semResposta = 0;
   for (const p of posts.data || []) {
     if (!p.comments_count) continue;
     const coms = await todasPaginas(`/${p.id}/comments`, { fields: "id,text,username,timestamp,replies{username}", limit: 50 });
     for (const c of coms) {
+      total++;
+      if (c.username !== eu && !(c.replies?.data || []).some((r) => r.username === eu)) semResposta++;
       const tipo = tipoIngresso(c.text);
       if (!tipo) continue;
       const jaRespondido = (c.replies?.data || []).some((r) => r.username === eu);
@@ -39,7 +42,7 @@ async function listar() {
         post: (p.caption || "").split("\n")[0].slice(0, 50), link: p.permalink });
     }
   }
-  console.log(`[comentarios-ig] conta @${eu}: ${posts.data?.length || 0} posts lidos, ${achados.length} comentário(s) de ingresso`);
+  console.log(`[comentarios-ig] conta @${eu}: ${posts.data?.length || 0} posts lidos, ${total} comentários, ${semResposta} sem resposta nossa, ${achados.length} de ingresso`);
   for (const a of achados) {
     console.log(`  ${a.id} | ${a.tipo} | @${a.usuario} | ${a.jaRespondido ? "JÁ RESPONDIDO" : "pendente"} | "${a.texto}" | post: ${a.post}`);
   }
