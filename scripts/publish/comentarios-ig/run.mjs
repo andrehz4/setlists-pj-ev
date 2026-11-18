@@ -32,6 +32,7 @@ async function listar() {
   for (const p of posts.data || []) {
     if (!p.comments_count) continue;
     const coms = await todasPaginas(`/${p.id}/comments`, { fields: "id,text,username,timestamp,replies{username}", limit: 50 });
+    if (coms.length < p.comments_count) console.log(`[comentarios-ig] aviso: post ${p.id} diz ${p.comments_count} comentários, API devolveu ${coms.length}`);
     for (const c of coms) {
       total++;
       if (c.username !== eu && !(c.replies?.data || []).some((r) => r.username === eu)) semResposta++;
@@ -42,6 +43,8 @@ async function listar() {
         post: (p.caption || "").split("\n")[0].slice(0, 50), link: p.permalink });
     }
   }
+  const contados = (posts.data || []).reduce((n, p) => n + (p.comments_count || 0), 0);
+  console.log(`[comentarios-ig] comments_count somado nos posts: ${contados}`);
   console.log(`[comentarios-ig] conta @${eu}: ${posts.data?.length || 0} posts lidos, ${total} comentários, ${semResposta} sem resposta nossa, ${achados.length} de ingresso`);
   for (const a of achados) {
     console.log(`  ${a.id} | ${a.tipo} | @${a.usuario} | ${a.jaRespondido ? "JÁ RESPONDIDO" : "pendente"} | "${a.texto}" | post: ${a.post}`);
