@@ -170,6 +170,19 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-18 (tarde): ferramenta de comentários do IG (guardada) + carrossel de ingressos cancelado
+
+- **ig-comentarios.yml (manual, workflow_dispatch):** `listar` lê os comentários dos últimos posts e lista os de
+  venda/procura de ingresso (só lê); `responder --ids --texto` responde SÓ os ids aprovados pelo Andre (4 s entre cada).
+  Código em `scripts/publish/comentarios-ig/` (filtro testado com comentários reais). NUNCA rodado: a permissão de
+  comentários do token ainda não foi testada (rodar `listar` primeiro).
+- **Carrossel "Sobrou ingresso?" CANCELADO pelo Andre** (a página não vai mediar ingresso). Fonte local em
+  `reels-especiais/ingressos-ibirapuera/` fora do git. Pesquisa: Senacon suspendeu BuyTicket, StubHub, TicketSwap,
+  Viagogo e FunBuy em 28/10; Mercado Livre proíbe anúncio de ingresso. Não indicar nenhuma.
+- **gh do Mac agora tem escopo `workflow`** (dá pra criar/editar YAML de workflow daqui).
+- **Ideias de posts de curiosidade** (lista de 10 na conversa de 18/11): fortes = "Fãs x Eddie" (dados do gerador),
+  "A sexta em números" e o setlist real na letra do Eddie (sáb 21).
+
 ## 2026-11-18 (manhã): carrossel "Eddie vai tocar com Roger no sábado?" PUBLICADO
 
 - **Publicado 08:42 BRT** no IG (post 18102585260442352) e FB (álbum espelhado), Telegram avisou. 10 slides no modelo do

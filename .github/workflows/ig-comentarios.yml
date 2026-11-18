@@ -1,0 +1,54 @@
+# Comentários de ingresso no IG (manual). "listar" só lê; "responder" responde só os ids aprovados pelo Andre.
+# Script: scripts/publish/comentarios-ig/run.mjs
+name: ig-comentarios
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "listar (só lê) ou responder"
+        type: choice
+        options: [listar, responder]
+        default: listar
+      posts:
+        description: "Quantos posts recentes ler (listar)"
+        type: string
+        default: "15"
+      ids:
+        description: "Ids dos comentários aprovados, separados por vírgula (responder)"
+        type: string
+        default: ""
+      texto:
+        description: "Texto da resposta (responder)"
+        type: string
+        default: ""
+permissions:
+  contents: read
+concurrency:
+  group: ig-comentarios
+  cancel-in-progress: false
+jobs:
+  rodar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+      - name: Comentários
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          MODO: ${{ inputs.modo }}
+          POSTS: ${{ inputs.posts }}
+          IDS: ${{ inputs.ids }}
+          TEXTO: ${{ inputs.texto }}
+        run: |
+          if [ "$MODO" = "responder" ]; then
+            node scripts/publish/comentarios-ig/run.mjs responder --ids "$IDS" --texto "$TEXTO"
+          else
+            node scripts/publish/comentarios-ig/run.mjs listar --posts "$POSTS"
+          fi
