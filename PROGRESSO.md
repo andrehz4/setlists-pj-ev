@@ -170,6 +170,19 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-18 (manhã): carrossel "Eddie vai tocar com Roger no sábado?" PUBLICADO
+
+- **Publicado 08:42 BRT** no IG (post 18102585260442352) e FB (álbum espelhado), Telegram avisou. 10 slides no modelo do
+  ranking, paleta amarela: capa com a arte de divulgação do festival (uso liberado pelo Andre), 11 vezes juntos
+  (1999 a 2025), The Who em números (378 vezes solo + PJ), Baba O'Riley, Quadrophenia, Simon Townshend, o que pesa
+  contra, 79% (11 de 14 encontros, com a ressalva), CTA do gerador de setlist, final "rola ou não rola?".
+  Fonte: `reels-especiais/eddie-daltrey/gera.mjs` (gera o HTML), `publicar.json`; R2 `especiais/eddie-daltrey/`.
+  Fotos e a arte ficam fora do git (`design/`). Foto livre dos dois juntos (Rosemont 2015, swimfinfan CC BY-SA) guardada
+  em `design/uploads/juntos-palco.jpg`, sem uso.
+- **Glen Hansard morreu em 29/07/2026** (acidente de moto em Dublin). Não citar ele como atração do festival.
+- **Lembrete:** o carrossel tem limite de 10 imagens no IG; CTA do setlist é o penúltimo slide de todo post da série.
+- **Hoje 17h:** sai o story "Guia da sexta" (TriggerAll #020). Depois de sair, DESLIGAR o #020.
+
 ## 2026-11-17 (noite): guia da sexta agendado + parceria com o Fabio Corazza
 
 - **Story "Guia da sexta" AGENDADO qua 18/11 17:00 BRT (TriggerAll #020, cron `0 20 18 11 *` UTC):** 6 telas no visual
