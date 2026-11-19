@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.wav
+*.csv
+*.mp4
+design/uploads/
+design/.thumbnail
+design/render-*.html

@@ -6,6 +6,12 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Série de reels "Som x Letra" (19/11, módulo `analise-musica/`, README lá):** som (MERT + 9 modelos treinados por
+  segundo na DEAM) x letra (leitores de IA) em SD contra o disco, no tempo da música. **Black PUBLICADO** no IG pelo app
+  (reel Df7pVTaNFtL, música da biblioteca a partir de 2:40, sincronia conferida pelo Andre). Ranking dos 12 discos pronto
+  (`SSD/.../saida/ranking.csv`). Fila combinada: Better Man -> Daughter -> Jeremy -> Oceans -> Given to Fly.
+  Tudo pesado no SSD `/Volumes/SSD Terra Gentil/setlists-pj-ev/musica-x-letra`. Chave ElevenLabs reserva7 está com
+  cota ZERO na própria chave (conta tem 10 mil): Andre precisa tirar o limite no painel.
 - **Gerador de setlist do Ibirapuera (16/11, NO AR sem link, noindex):** `setlist-ibirapuera/` copia o gerador oficial
   (REA completo em `docs/setlist-ibirapuera/REA-GERADOR-OFICIAL.md`) só pros shows de 20 e 22/11. 401 músicas (solo do
   setlist.fm + 173 oficiais) por disco/solo/covers; PNG oficial carregado do CDN deles (CORS liberado) e a NOSSA fonte v3
@@ -170,6 +176,20 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
 
+## 2026-11-19: série "Som x Letra" (engenharia reversa do post do datascrolls) + reel de Black publicado
+
+- Feito: módulo `analise-musica/` (Python no SSD). MERT-95M + cabeças treinadas nas notas por segundo da DEAM bateram
+  com o datascrolls em Black (erro médio 0,07 SD; MERT-330M piorou). Letra: LRCLIB + leitores de IA (5 no Ten, 1 nos
+  outros discos). Ranking de 147 músicas. Reel feito no Claude Design (projeto "Reel animado som x letra", v3), render
+  quadro a quadro pelo Chrome (`render_reel.mjs`), clipes 9:16 com rosto centralizado, narração Liam 1,2x (gancho +
+  CTA; "Deixa nos comentários!" fixo e reaproveitável), poucos efeitos (coração do recorte do Andre, liberado por ele).
+  Gemini e vidIQ deram 4/10 na v1 (texto técnico); v3 = gancho narrado + dados pequenos, sem método.
+- Aprendido: música da biblioteca no Business Suite só vale pro Facebook; no IG só pelo app. No app o áudio original
+  pode vir MUDO ao pôr música (ícone de alto-falante na faixa do vídeo).
+- Próximo: Better Man (Vitalogy, trecho 3:22 do ranking): JSON pelo `aplicar_dados.py`, frases dos momentos, gancho e
+  pergunta do CTA narrados, clipes da música, render, celular via `adb push`.
+- Blockers: chave reserva7 do ElevenLabs com limite 0.
+
 ## 2026-11-18 (tarde): ferramenta de comentários do IG (guardada) + carrossel de ingressos cancelado
 
 - **ig-comentarios.yml (manual, workflow_dispatch):** `listar` lê os comentários dos últimos posts e lista os de
@@ -271,30 +291,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 - PRÓXIMO PEDIDO: reel tutorial "como gerar o seu setlist" (do começo ao Postar no story), gravado do site no celular.
 - Depois: Andre testar no iPhone e no Android (postar vídeo no story, abrir dentro do Instagram). Tirar a HOMENAGEM do
   `sorteio.js` depois de 22/11. Depois: gerador pra bandas cover com shows da agenda.
-
-## 2026-11-14 (noite): layouts D, E, F do Claude Design no rodízio
-
-- D "Grade" (cartaz tipográfico), E "Bilhete" (ingresso de teatro dourado), F "Painel" (split-flap de rodoviária,
-  mapa de LEDs), portados por 3 agentes em paralelo de `design-handoff/retorno/story-mapa/layouts-DEF/`, aprovados pelo
-  Andre. Sem "desde" a linha some; sem logo mostra o nome; até 6 shows encolhem pra caber. Rodízio de 22 pra 25: a
-  ordem dos próximos dias mudou (R pode não sair mais em 26/11).
-- Medidor de largura comum: `layouts/comum/medida.mjs` (qualquer .ttf de media/fonts); S a Z ainda têm cópia própria.
-- Fonte nova: JetBrains Mono ExtraBold (OFL, em LICENCAS.md). Render do F: 12 s no Mac.
-- Andre notou o capricho a mais do Design: vem do processo (spec antes do pixel, 2 fontes, 1 movimento base,
-  contenção). Plano: extrair essa régua num playbook antes do Design fechar em 14/12.
-
-## 2026-11-14 (noite): correção manual da agenda, "Iron Rock" resolvido
-
-- Legenda ambígua agora tem correção à mão: `media/agenda/correcoes.json` (chave = id do show, só campos de local e
-  hora), aplicada pela coleta a cada run (`scripts/agenda/correcoes.mjs`), então a releitura do post não desfaz.
-- The Homer 28/11: "Iron Rock" virou casa, cidade Belo Horizonte/MG (escolha do Andre; casa não achada na web).
-  Teste em `scripts/regressao/agenda-homer-iron-rock.test.mjs`. Suíte 485/485.
-
-## 2026-11-14: 10 layouts novos (Q a Z), auditoria, vozes x5 e roleta de chaves
-
-- Layouts Q (Vitalogy) e R a Z (No Code, Yield, Binaural, Riot Act, Avocado, Backspacer, Lightning Bolt, Gigaton,
-  Dark Matter) feitos por agentes em paralelo, aprovados pelo Andre. Detalhes na seção de 13/11 parte 3 abaixo.
-- Auditoria Fable + correções (teto 60 min, log por banda, W e Q) e teste real no CI (28/11 em 10,5 min).
-- Vozes: 5 aberturas por banda e 5 finais viraram 23 e 38 (3 levas, conferidas no whisper do voz-hz; Andre ouviu e
-  achou "Queen"). Áudios de conferência em /Users/andrehz/Desktop/falas-novas-agenda/.
-- Story de 14/11 saiu certo (5 bandas, 10,5 min, reserva das 15h49 não republicou).

@@ -1,0 +1,465 @@
+// Gerado de dados-black.json. Para outra música: troque o JSON abaixo (ou abra a página com ?json=arquivo.json).
+window.SOM_LETRA_DADOS = {
+ "musica": "Black",
+ "banda": "Pearl Jam",
+ "disco": "Ten",
+ "ano": 1991,
+ "trecho": {
+  "ini_s": 167.0,
+  "fim_s": 209.0,
+  "ini_rotulo": "2:47",
+  "fim_rotulo": "3:29",
+  "duracao_video_s": 42
+ },
+ "eixo_sd": [
+  -2.5,
+  2.5
+ ],
+ "som": {
+  "curva_30s": [
+   [
+    152.5,
+    0.32
+   ],
+   [
+    157.5,
+    0.5
+   ],
+   [
+    162.5,
+    0.6
+   ],
+   [
+    167.5,
+    0.6
+   ],
+   [
+    172.5,
+    0.8
+   ],
+   [
+    177.5,
+    0.89
+   ],
+   [
+    182.5,
+    0.95
+   ],
+   [
+    187.5,
+    0.97
+   ],
+   [
+    192.5,
+    0.57
+   ],
+   [
+    197.5,
+    0.66
+   ],
+   [
+    202.5,
+    0.47
+   ],
+   [
+    207.5,
+    0.57
+   ],
+   [
+    212.5,
+    0.85
+   ]
+  ],
+  "incerteza_sd": 0.67
+ },
+ "volume": {
+  "curva": [
+   [
+    152.0,
+    0.35
+   ],
+   [
+    154.0,
+    0.44
+   ],
+   [
+    156.0,
+    0.44
+   ],
+   [
+    158.0,
+    0.44
+   ],
+   [
+    160.0,
+    0.41
+   ],
+   [
+    162.0,
+    0.41
+   ],
+   [
+    164.0,
+    0.5
+   ],
+   [
+    166.0,
+    0.59
+   ],
+   [
+    168.0,
+    0.56
+   ],
+   [
+    170.0,
+    0.54
+   ],
+   [
+    172.0,
+    0.51
+   ],
+   [
+    174.0,
+    0.49
+   ],
+   [
+    176.0,
+    0.46
+   ],
+   [
+    178.0,
+    0.45
+   ],
+   [
+    180.0,
+    0.43
+   ],
+   [
+    182.0,
+    0.45
+   ],
+   [
+    184.0,
+    0.5
+   ],
+   [
+    186.0,
+    0.51
+   ],
+   [
+    188.0,
+    0.55
+   ],
+   [
+    190.0,
+    0.6
+   ],
+   [
+    192.0,
+    0.56
+   ],
+   [
+    194.0,
+    0.61
+   ],
+   [
+    196.0,
+    0.61
+   ],
+   [
+    198.0,
+    0.58
+   ],
+   [
+    200.0,
+    0.57
+   ],
+   [
+    202.0,
+    0.54
+   ],
+   [
+    204.0,
+    0.5
+   ],
+   [
+    206.0,
+    0.48
+   ],
+   [
+    208.0,
+    0.45
+   ],
+   [
+    210.0,
+    0.41
+   ],
+   [
+    212.0,
+    0.4
+   ],
+   [
+    214.0,
+    0.39
+   ]
+  ]
+ },
+ "agudos": {
+  "curva": [
+   [
+    152.0,
+    0.16
+   ],
+   [
+    154.0,
+    0.23
+   ],
+   [
+    156.0,
+    0.24
+   ],
+   [
+    158.0,
+    0.11
+   ],
+   [
+    160.0,
+    0.11
+   ],
+   [
+    162.0,
+    -0.04
+   ],
+   [
+    164.0,
+    -0.1
+   ],
+   [
+    166.0,
+    -0.13
+   ],
+   [
+    168.0,
+    -0.19
+   ],
+   [
+    170.0,
+    -0.23
+   ],
+   [
+    172.0,
+    -0.24
+   ],
+   [
+    174.0,
+    -0.25
+   ],
+   [
+    176.0,
+    -0.15
+   ],
+   [
+    178.0,
+    -0.12
+   ],
+   [
+    180.0,
+    -0.12
+   ],
+   [
+    182.0,
+    -0.05
+   ],
+   [
+    184.0,
+    -0.13
+   ],
+   [
+    186.0,
+    -0.09
+   ],
+   [
+    188.0,
+    -0.11
+   ],
+   [
+    190.0,
+    -0.08
+   ],
+   [
+    192.0,
+    -0.03
+   ],
+   [
+    194.0,
+    -0.12
+   ],
+   [
+    196.0,
+    -0.13
+   ],
+   [
+    198.0,
+    -0.14
+   ],
+   [
+    200.0,
+    -0.13
+   ],
+   [
+    202.0,
+    -0.05
+   ],
+   [
+    204.0,
+    -0.06
+   ],
+   [
+    206.0,
+    -0.11
+   ],
+   [
+    208.0,
+    -0.13
+   ],
+   [
+    210.0,
+    -0.13
+   ],
+   [
+    212.0,
+    -0.05
+   ],
+   [
+    214.0,
+    -0.04
+   ]
+  ]
+ },
+ "letra": {
+  "versos": [
+   {
+    "t": 167.2,
+    "sd": -1.18,
+    "disp": 0.05,
+    "emocao": "GRIEF",
+    "emocao_pt": "LUTO"
+   },
+   {
+    "t": 172.9,
+    "sd": -1.08,
+    "disp": 0.05,
+    "emocao": "LOSS",
+    "emocao_pt": "PERDA"
+   },
+   {
+    "t": 176.9,
+    "sd": -1.33,
+    "disp": 0.07,
+    "emocao": "DESPAIR",
+    "emocao_pt": "DESESPERO"
+   },
+   {
+    "t": 182.6,
+    "sd": -1.29,
+    "disp": 0.05,
+    "emocao": "DESPAIR",
+    "emocao_pt": "DESESPERO"
+   },
+   {
+    "t": 186.0,
+    "sd": -1.5,
+    "disp": 0.08,
+    "emocao": "DESPAIR",
+    "emocao_pt": "DESESPERO"
+   },
+   {
+    "t": 191.9,
+    "sd": -1.57,
+    "disp": 0.05,
+    "emocao": "DESPAIR",
+    "emocao_pt": "DESESPERO"
+   },
+   {
+    "t": 208.6,
+    "sd": -0.8,
+    "disp": 0.21,
+    "emocao": "ANGUISH",
+    "emocao_pt": "ANGÚSTIA"
+   }
+  ],
+  "incerteza_sd": 0.15,
+  "verso_anterior": {
+   "t": 157.0,
+   "sd": -1.2,
+   "emocao": "DESPAIR",
+   "emocao_pt": "DESESPERO",
+   "nota": "verso que já está valendo quando o trecho começa (2:37); a etiqueta aparece no 1o quadro, como o PAIN do original"
+  }
+ },
+ "secoes": [
+  {
+   "nome": "REFRÃO",
+   "ini": 167.0,
+   "fim": 186.0,
+   "som_sd": 0.81,
+   "letra_sd": -1.22
+  },
+  {
+   "nome": "OUTRO",
+   "ini": 186.0,
+   "fim": 209.0,
+   "som_sd": 0.65,
+   "letra_sd": -1.29
+  }
+ ],
+ "maior_divergencia": {
+  "t": 191.9,
+  "rotulo": "MAIOR DISTÂNCIA"
+ },
+ "ranking_letra_disco": "os versos mais escuros do Ten: Black, fim de Jeremy e um trecho de Deep",
+ "nota": "valores em desvios-padrão (SD) contra a média do próprio disco; 0 = média do Ten",
+ "rotulos": {
+  "titulo_chamada": "O QUE VOCÊ OUVE × O QUE ELE CANTA",
+  "pergunta": "A letra afunda. A música não vai junto.",
+  "mais_claro": "MAIS CLARO",
+  "mais_escuro": "MAIS ESCURO",
+  "media": "média do Ten",
+  "maior_distancia": "MAIOR DISTÂNCIA",
+  "legenda_som": "como soa",
+  "legenda_letra": "o que a letra diz",
+  "legenda_incerteza_som": "incerteza do modelo",
+  "legenda_incerteza_letra": "variação entre leitores",
+  "legenda_secao": "cada seção inteira (traço grosso)",
+  "legenda_linha": "letra verso a verso · som em janelas de 30 s",
+  "legenda_vol_agu": "volume e agudos: SD contra a média do disco para cada um, não é humor",
+  "veredito": "O som puxa pro claro",
+  "veredito_sub": "um veredito por seção da letra",
+  "explicacao": "Cada linha mede uma coisa ao mesmo tempo que a música toca: o som (amarelo) e a letra (vermelho). Quanto mais alto, mais claro; quanto mais baixo, mais escuro que a média do disco."
+ },
+ "anotacoes": [
+  {
+   "tipo": "variacao_som",
+   "de_t": 186.0,
+   "ate_t": 209.0,
+   "texto": "som {sinal}{valor} SD no outro",
+   "nota": "calcular da diferença entre as médias de seção; se a variação for pequena (<0,2) não mostrar"
+  }
+ ],
+ "fundo_video": {
+  "src": "fundo-clipe-exemplo.mp4",
+  "nota": "trecho de clipe/show MUDO no fundo, trocável por música; véu escuro por cima para o gráfico ficar legível"
+ },
+ "status_numeros": "provisórios: o modelo de som ainda está sendo calibrado; a estrutura do JSON é a definitiva",
+ "marca": {
+  "logo": "logo-smufdpj.jpg",
+  "assinatura": "@smufdpj",
+  "nome": "Só mais um fã de Pearl Jam"
+ },
+ "cta": {
+  "linha1": "Qual música a gente mede na próxima?",
+  "linha2": "Comenta aqui embaixo",
+  "linha3": "Segue @smufdpj pra ver o resultado",
+  "inicio_s": 37
+ }
+};
