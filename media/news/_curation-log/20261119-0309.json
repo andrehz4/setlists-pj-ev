@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-11-19T03:09Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0, "instagram-oficial": 1 },
+  "approved": [
+    { "id": "5f2af9394f", "titulo": "Agenda com Paul McCartney pode ser o nó para Abe Laboriel Jr. no Pearl Jam", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "b209081cb8", "title": "Bastidores de Ten: a criação do disco e o atrito na mixagem", "reason": "retrospectiva genérica sem fato novo (mixagem do Ten já publicada: d13f8187f9)" },
+    { "id": "f666e23c44", "title": "Got some comedians over on stage right!", "reason": "post oficial só com legenda curta, sem informação nova" }
+  ]
+}
