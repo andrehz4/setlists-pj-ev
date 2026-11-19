@@ -7,11 +7,13 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 ## Estado agora
 
 - **Série de reels "Som x Letra" (19/11, módulo `analise-musica/`, README lá):** som (MERT + 9 modelos treinados por
-  segundo na DEAM) x letra (leitores de IA) em SD contra o disco, no tempo da música. **Black PUBLICADO** no IG pelo app
-  (reel Df7pVTaNFtL, música da biblioteca a partir de 2:40, sincronia conferida pelo Andre). Ranking dos 12 discos pronto
-  (`SSD/.../saida/ranking.csv`). Fila combinada: Better Man -> Daughter -> Jeremy -> Oceans -> Given to Fly.
-  Tudo pesado no SSD `/Volumes/SSD Terra Gentil/setlists-pj-ev/musica-x-letra`. Chave ElevenLabs reserva7 está com
-  cota ZERO na própria chave (conta tem 10 mil): Andre precisa tirar o limite no painel.
+  segundo na DEAM) x letra (leitores de IA) em SD contra o disco, no tempo da música. **Black PUBLICADO** (reel
+  Df7pVTaNFtL). **4 prontas no celular pro Andre agendar nas quintas** (Movies/somxletra-1..4 + legendas em Download/,
+  nome do arquivo traz o minuto da música no IG): Better Man 2:54, Daughter 2:31, Jeremy 2:43, Oceans 0:01.
+  Reel agora é AUTOMÁTICO: `node analise-musica/fazer_reel.mjs analise-musica/roteiros/<slug>.json` (voz, dados,
+  clipes, render, mixagem PADRÃO do Black + golpes nas frases do gancho; saída no SSD `saida/reels/<slug>/`). Só o
+  roteiro é manual. PRÓXIMO: mais 5 com o Andre (Given to Fly e seguintes do `saida/ranking.csv`). Ideia em espera:
+  Olivia Vedder contra a régua do Eddie solo (memória). Chave ElevenLabs reserva7 com cota ZERO (Andre tirar o limite).
 - **Gerador de setlist do Ibirapuera (16/11, NO AR sem link, noindex):** `setlist-ibirapuera/` copia o gerador oficial
   (REA completo em `docs/setlist-ibirapuera/REA-GERADOR-OFICIAL.md`) só pros shows de 20 e 22/11. 401 músicas (solo do
   setlist.fm + 173 oficiais) por disco/solo/covers; PNG oficial carregado do CDN deles (CORS liberado) e a NOSSA fonte v3

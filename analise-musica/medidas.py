@@ -6,15 +6,19 @@ import librosa
 import numpy as np
 import pandas as pd
 import pyloudnorm as pyln
+from audio import carregar
 from config import SAIDA, JANELA_S, PASSO_S
 
 SR = 44100
 
 
 def medir_faixa(caminho):
-    y, _ = librosa.load(caminho, sr=SR, mono=False)
-    estereo = y.T if y.ndim == 2 else y
-    mono = y.mean(axis=0) if y.ndim == 2 else y
+    if caminho.endswith(".wav"):
+        y, _ = librosa.load(caminho, sr=SR, mono=False)
+        estereo = y.T if y.ndim == 2 else y
+        mono = y.mean(axis=0) if y.ndim == 2 else y
+    else:  # webm/opus/m4a: libsndfile não lê, vai pelo ffmpeg (mono; o SD é relativo ao disco)
+        mono = estereo = carregar(caminho, SR).copy()
     medidor = pyln.Meter(SR)
     jan, passo = int(JANELA_S * SR), int(PASSO_S * SR)
     cent = librosa.feature.spectral_centroid(y=mono, sr=SR, n_fft=4096, hop_length=2048)[0]

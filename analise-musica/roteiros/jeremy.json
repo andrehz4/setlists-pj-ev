@@ -1,0 +1,14 @@
+{
+ "slug": "jeremy", "faixa": "Jeremy", "nome_disco": "Ten", "ano": 1991,
+ "disco": "ten-1991", "pasta_letra": "letras-ten", "pasta_audio": "ten-1991", "arquivo_faixa": "06-Jeremy",
+ "ini": 170,
+ "secoes": [["PONTE", 170, 185], ["REFRÃO", 185, 212]],
+ "gancho": ["Uma IA ouviu Jeremy.", "A banda sobe com tudo.", "E a letra afunda no horror."],
+ "momentos": [[170.6, "A letra carrega culpa"], [185.4, "Agora é horror"], [196, "A banda segura lá em cima"], [206, "Horror até o fim"]],
+ "pergunta": "Jeremy: a banda sobe, a letra afunda",
+ "veredito": "O som puxa pro claro",
+ "anotacao": "som {sinal}{valor} SD no refrão",
+ "legenda": "Uma IA ouviu Jeremy (Ten, 1991) e comparou, segundo a segundo, o que você ouve com o que o Eddie canta. A banda vai pra cima com tudo. A letra conta uma tragédia numa sala de aula, e não alivia em nenhum verso.",
+ "abertura_clipes": ["jeremy-capa1", "jeremy-unplugged-eddie-grito", "even-flow-t13", "alive-t10", "even-flow-eddie-grito", "pj20-2nd-show-eddie-close-mic"],
+ "fundo_clipes": ["jeremy-capa4", "jeremy-capa1", "even-flow-capa3", "alive-capa3", "oceans-unplugged-capa8", "even-flow-3-capa1"]
+}

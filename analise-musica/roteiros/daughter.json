@@ -1,0 +1,14 @@
+{
+ "slug": "daughter", "faixa": "Daughter", "nome_disco": "Vs.", "ano": 1993,
+ "disco": "1993-Vs", "pasta_letra": "letras/1993-Vs", "pasta_audio": "albuns/1993-Vs", "arquivo_faixa": "03-Daughter (Remastered)",
+ "ini": 158,
+ "secoes": [["REFRÃO", 158, 178], ["FINAL", 178, 200]],
+ "gancho": ["Uma IA ouviu Daughter.", "O violão soa leve.", "A letra está em guerra."],
+ "momentos": [[162.7, "A letra é briga"], [167.5, "Rebeldia pura"], [189.7, "Aqui a letra entristece"], [196, "E a música sobe pro claro"]],
+ "pergunta": "Daughter: o violão é leve, a letra é briga",
+ "veredito": "O som puxa pro claro",
+ "anotacao": "som {sinal}{valor} SD no final",
+ "legenda": "Uma IA ouviu Daughter (Vs., 1993) e comparou, segundo a segundo, o que você ouve com o que o Eddie canta. O violão embala, quase tranquilo. A letra é de uma filha que não aguenta mais apanhar calada.",
+ "abertura_clipes": ["pj20-daughter-eddie-close-cantando", "oceans-unplugged-t9", "alive-t5", "even-flow-eddie-canta", "porch-unplugged-eddie-sentado-canta", "amongst-the-waves-t1"],
+ "fundo_clipes": ["oceans-unplugged-capa1", "alive-capa2", "even-flow-capa3", "i-am-mine-capa1", "amongst-the-waves-capa2", "oceans-unplugged-capa8"]
+}

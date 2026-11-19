@@ -1,0 +1,14 @@
+{
+ "slug": "oceans", "faixa": "Oceans", "nome_disco": "Ten", "ano": 1991,
+ "disco": "ten-1991", "pasta_letra": "letras-ten", "pasta_audio": "ten-1991", "arquivo_faixa": "07-Oceans",
+ "ini": 8,
+ "secoes": [["VERSO", 8, 26], ["REFRÃO", 26, 50]],
+ "gancho": ["Uma IA ouviu Oceans.", "Aqui é ao contrário:", "a letra é luz, e o som é sombra."],
+ "momentos": [[11.2, "A letra começa na esperança"], [17.2, "O som? Lá embaixo."], [28.6, "Saudade, mas bonita"], [42, "O som sobe, mas não alcança"]],
+ "pergunta": "Oceans: a letra é luz, o som é sombra",
+ "veredito": "O som puxa pro escuro",
+ "anotacao": "som {sinal}{valor} SD no refrão",
+ "legenda": "Uma IA ouviu Oceans (Ten, 1991) e comparou, segundo a segundo, o que você ouve com o que o Eddie canta. Dessa vez é ao contrário: a letra é uma das mais esperançosas do disco, e o som é dos mais escuros.",
+ "abertura_clipes": ["oceans-unplugged-capa1", "oceans-unplugged-t3", "amongst-the-waves-t13", "lightning-bolt-curta-eddie-violao-entardecer", "oceans-unplugged-t9", "amongst-the-waves-t11"],
+ "fundo_clipes": ["amongst-the-waves-capa3", "oceans-unplugged-capa1", "lightning-bolt-curta-eddie-violao-entardecer", "i-am-mine-capa1", "oceans-unplugged-capa8", "amongst-the-waves-capa2"]
+}

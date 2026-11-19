@@ -27,3 +27,12 @@ Python: `"/Volumes/SSD Terra Gentil/setlists-pj-ev/musica-x-letra/.venv/bin/pyth
    A música começa em (início do trecho - duração da abertura), ex.: Black 2:40. Áudio original 100, música ~35.
 
 Regras do Andre: dados pequenos na tela sim; NADA de como foi feito (método, margem de erro, modelos).
+
+## Reel automático por música (desde 19/11)
+`node analise-musica/fazer_reel.mjs analise-musica/roteiros/<slug>.json` faz tudo: `voz.mjs` (gancho frase a frase +
+pergunta do CTA, Liam 1,2x, chave `/Users/andrehz/.elevenlabs-key`) -> `montar_dados.py` (molde do Black + curvas, volume,
+agudos, versos, seções e maior distância desta música) -> `preparar_clipes.mjs` -> `render_reel.mjs` -> mixagem (gancho,
+pancada no início do gráfico, 2 pancadas leves nos momentos, coração na maior distância, CTA + "Deixa nos comentários").
+Saída no SSD em `saida/reels/<slug>/`: `<slug>-para-postar.mp4`, `<slug>-PREVIA-com-musica.mp4`, `legenda.txt`, `LEIA.txt`
+(minuto da música no IG). O roteiro é o único trabalho manual: trecho (`ini`, precisa ser >= duração da abertura),
+seções, frases do gancho, momentos, legenda e clipes do acervo. Cada etapa pula se o arquivo já existe.
