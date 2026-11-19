@@ -6,6 +6,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Carrossel do merch oficial do Eddie em SP (19/11, PUBLICADO IG 18004509396043687 + FB):** `reels-especiais/merch-ibirapuera/`
+  no modelo do carrossel, paleta azul. Capa com a foto do folheto da @mrtsurt (creditada), `recorta.py` endireita a foto
+  (giro + perspectiva) e recorta cada produto em cartões. Mesmo fluxo de carrossel especial (R2 `especiais/` + `publicar.json`).
 - **Série de reels "Som x Letra" (19/11, módulo `analise-musica/`, README lá):** som (MERT + 9 modelos treinados por
   segundo na DEAM) x letra (leitores de IA) em SD contra o disco, no tempo da música. **Black PUBLICADO** (reel
   Df7pVTaNFtL). **4 prontas no celular pro Andre agendar nas quintas** (Movies/somxletra-1..4 + legendas em Download/,
