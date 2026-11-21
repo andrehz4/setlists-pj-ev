@@ -21,7 +21,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   na 2ª vez: copiar pro clipboard e salvar com osascript). **Próximo:** 6 fotos do show em `show-ibirapuera/fotos/` rendem
   carrossel; domingo 22/11 tem o 2º show (reusar `reel-dia.mjs` trocando a GRADE). Se o reel for silenciado, refazer sem
   som ao vivo.
-- **Balanço da sexta + palpite pro domingo (21/11 00h54, PUBLICADO IG 18479406277119121 + FB):** `reels-especiais/eddie-balanco/`
+- **Balanço da sexta + palpite pro domingo (REPUBLICADO 21/11 10h07 a pedido do Andre, IG 18474914098136414 + FB; o de 00h54, IG 18479406277119121, ele apagou; setlist já confirmada no setlist.fm, slide 2 virou 02b.jpg):** `reels-especiais/eddie-balanco/`
   (`analisa.mjs` cruza a setlist de 20/11 com os 315 shows solo do setlist.fm em `eddie-carreira/bruto/`; 2a noite repete
   em média 42% da 1a). Setlist de sexta ainda "incompleta" no setlist.fm. **Domingo à noite:** conferir o palpite (Hard Sun,
   Porch, Far Behind ficam; Immortality, Last Kiss saem; Rise, Guaranteed entram) num post de "quem acertou".
