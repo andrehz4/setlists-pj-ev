@@ -30,14 +30,13 @@ const rep = (m) => hoje[m].repete_2a_noite.replace("/", " de ");
 
 const slides = [];
 slides.push(`<div data-screen-label="slide-01" style="${fundo}">
-  <img src="uploads/capa.jpg" alt="Eddie Vedder no violão no Ibirapuera" style="position:absolute;top:0;left:0;width:1080px;height:900px;object-fit:cover;object-position:50% 30%;">
+  <img src="uploads/capa.jpg" alt="Eddie Vedder sorrindo com a guitarra" style="position:absolute;top:0;left:0;width:1080px;height:900px;object-fit:cover;object-position:50% 0%;">
   <div style="position:absolute;top:0;left:0;width:1080px;height:920px;background:linear-gradient(180deg,rgba(20,17,15,.5) 0%,rgba(20,17,15,0) 25%,rgba(20,17,15,0) 45%,var(--fundo) 97%);"></div>
   <div style="position:absolute;top:60px;left:64px;transform:rotate(-3deg);background:var(--alerta);color:var(--claro);padding:12px 26px 8px;${BS}font-size:58px;line-height:1;box-shadow:0 0 0 5px var(--alerta),0 0 0 9px var(--claro);">SEXTA JÁ FOI</div>
-  <div style="position:absolute;top:640px;left:64px;right:40px;${BS}font-size:150px;line-height:.86;color:var(--destaque);letter-spacing:-3px;text-transform:uppercase;">O que vem no domingo?</div>
-  <div style="position:absolute;top:960px;left:64px;right:64px;font-weight:900;font-size:40px;line-height:1.12;">A setlist de sexta no Ibirapuera, o que foi raro e o nosso palpite pra segunda noite.</div>
+  <div style="position:absolute;top:720px;left:64px;right:40px;${BS}font-size:132px;line-height:.86;color:var(--destaque);letter-spacing:-3px;text-transform:uppercase;">O que vem no domingo?</div>
+  <div style="position:absolute;top:990px;left:64px;right:64px;font-weight:900;font-size:36px;line-height:1.12;">A setlist de sexta no Ibirapuera, o que foi raro e o nosso palpite pra segunda noite.</div>
   <div style="position:absolute;top:1130px;left:0;width:1080px;height:80px;background:var(--destaque);color:var(--fundo);display:flex;align-items:center;padding:0 64px;font-weight:900;font-size:30px;">${A.hoje.length} músicas na sexta. ${A.shows_base} shows solo na conta.</div>
   <div style="position:absolute;bottom:42px;right:64px;${BS}font-size:44px;color:var(--destaque);letter-spacing:2px;">ARRASTA →</div>
-  <div style="position:absolute;bottom:54px;left:64px;font-size:18px;font-weight:600;color:rgba(255,255,255,.6);">Foto: @smufdpj no Ibirapuera</div>
 </div>`);
 
 const lista = A.hoje.map((h, i) => `<div style="display:flex;gap:14px;align-items:baseline;padding:5px 0;"><div style="${BS}font-size:34px;width:46px;color:var(--alerta);">${i + 1}</div><div style="font-weight:800;font-size:27px;line-height:1.1;">${h.musica === "Elderly Woman Behind the Counter in a Small Town" ? "Elderly Woman" : h.musica}${i === A.hoje.length - 1 ? " <span style='opacity:.6'>(bis)</span>" : ""}</div></div>`);
