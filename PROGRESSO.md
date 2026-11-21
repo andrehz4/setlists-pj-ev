@@ -16,6 +16,10 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   na 2ª vez: copiar pro clipboard e salvar com osascript). **Próximo:** 6 fotos do show em `show-ibirapuera/fotos/` rendem
   carrossel; domingo 22/11 tem o 2º show (reusar `reel-dia.mjs` trocando a GRADE). Se o reel for silenciado, refazer sem
   som ao vivo.
+- **Balanço da sexta + palpite pro domingo (21/11 00h54, PUBLICADO IG 18479406277119121 + FB):** `reels-especiais/eddie-balanco/`
+  (`analisa.mjs` cruza a setlist de 20/11 com os 315 shows solo do setlist.fm em `eddie-carreira/bruto/`; 2a noite repete
+  em média 42% da 1a). Setlist de sexta ainda "incompleta" no setlist.fm. **Domingo à noite:** conferir o palpite (Hard Sun,
+  Porch, Far Behind ficam; Immortality, Last Kiss saem; Rise, Guaranteed entram) num post de "quem acertou".
 - **Carrossel do merch oficial do Eddie em SP (19/11, PUBLICADO IG 18004509396043687 + FB):** `reels-especiais/merch-ibirapuera/`
   no modelo do carrossel, paleta azul. Capa com a foto do folheto da @mrtsurt (creditada), `recorta.py` endireita a foto
   (giro + perspectiva) e recorta cada produto em cartões. Mesmo fluxo de carrossel especial (R2 `especiais/` + `publicar.json`).
