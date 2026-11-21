@@ -1,67 +1,53 @@
 {
-  "atualizado": "2026-11-20T20:28:54.649Z",
+  "atualizado": "2026-11-21T12:18:11.393Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-20T20:28:38.762Z",
-      "seguidores": 33184,
+      "lidoEm": "2026-11-21T12:17:54.049Z",
+      "seguidores": 33199,
       "ultimoPost": "2026-11-13T21:27:23+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-20T20:28:40.397Z",
-      "seguidores": 103071,
+      "lidoEm": "2026-11-21T12:17:55.864Z",
+      "seguidores": 103082,
       "ultimoPost": "2026-11-17T21:05:19+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-20T20:28:42.565Z",
-      "seguidores": 9338,
+      "lidoEm": "2026-11-21T12:17:58.128Z",
+      "seguidores": 9337,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-20T20:28:44.635Z",
-      "seguidores": 74814,
+      "lidoEm": "2026-11-21T12:18:00.456Z",
+      "seguidores": 74833,
       "ultimoPost": "2026-11-19T13:42:09+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-20T20:28:46.673Z",
-      "seguidores": 21394,
+      "lidoEm": "2026-11-21T12:18:02.577Z",
+      "seguidores": 21413,
       "ultimoPost": "2026-11-17T20:04:52+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-20T20:28:48.354Z",
-      "seguidores": 33722,
+      "lidoEm": "2026-11-21T12:18:04.372Z",
+      "seguidores": 33727,
       "ultimoPost": "2026-11-15T16:00:02+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-20T20:28:50.687Z",
-      "seguidores": 6320,
+      "lidoEm": "2026-11-21T12:18:07.157Z",
+      "seguidores": 6332,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-20T20:28:52.558Z",
-      "seguidores": 6172,
+      "lidoEm": "2026-11-21T12:18:09.328Z",
+      "seguidores": 6173,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     },
     "loveboat_tribute": {
-      "lidoEm": "2026-11-20T20:28:54.304Z",
+      "lidoEm": "2026-11-21T12:18:11.154Z",
       "seguidores": 3824,
       "ultimoPost": "2026-09-13T18:23:12+0000"
     }
   },
   "oficial": [
-    {
-      "id": "oficial-23232",
-      "data": "2026-11-20",
-      "artista": "Eddie Vedder",
-      "turne": "Eddie Vedder 2026",
-      "evento": "Best of Rock and Blues festival",
-      "casaNome": "Ibirapuera Park",
-      "cidade": "São Paulo",
-      "estado": "",
-      "pais": "Brazil",
-      "brasil": true,
-      "ingresso": "https://www.ticketmaster.com.br/event/best-of-blues-and-rock-2026",
-      "fonte": "https://pearljam.com/tour"
-    },
     {
       "id": "oficial-23233",
       "data": "2026-11-22",
@@ -78,62 +64,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "pjnoventa-2026-11-20-sao-paulo",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-20",
-      "casa": "fofinhorockclub",
-      "casaNome": null,
-      "cidade": "São Paulo",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": "Feriado",
-      "hora": "02:00",
-      "fonte": "https://www.instagram.com/reel/Df3ZF9Eu1Fe/"
-    },
-    {
-      "id": "pjnoventa-2026-11-20-sto-antonio-de-posse",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-20",
-      "casa": null,
-      "casaNome": "Praça Matriz - Entrada Gratuita",
-      "cidade": "Sto Antônio de Posse",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": "Feriado",
-      "hora": "19:30",
-      "fonte": "https://www.instagram.com/reel/Df3ZF9Eu1Fe/"
-    },
-    {
-      "id": "thehomerpj-2026-11-20-caverna-mister",
-      "banda": "thehomerpj",
-      "nome": "The Homer",
-      "data": "2026-11-20",
-      "casa": null,
-      "casaNome": null,
-      "cidade": "caverna/Mister",
-      "uf": "MG",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DYXLREvAhOy/"
-    },
-    {
-      "id": "thehomerpj-2026-11-20-underground",
-      "banda": "thehomerpj",
-      "nome": "The Homer",
-      "data": "2026-11-20",
-      "casa": "underground",
-      "casaNome": null,
-      "cidade": null,
-      "uf": null,
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DYXLREvAhOy/"
-    },
     {
       "id": "pearljamsp-2026-11-21-campinas",
       "banda": "pearljamsp",
