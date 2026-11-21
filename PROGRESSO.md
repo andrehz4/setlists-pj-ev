@@ -6,6 +6,16 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Cobertura ao vivo do show do Eddie no Ibirapuera (20/11, tudo PUBLICADO, Andre pelo celular via remote control):**
+  carrossel do pôster do Ian Williams detalhe por detalhe (`reels-especiais/poster-ian-williams/`, IG 18062550296799507
+  + FB), story narrado "fica ligado" (`story-ao-vivo/gera.mjs`, voz Liam v4, IG 18110986712209764), story "Portões
+  abertos" (`show-ibirapuera/story-chegada.mjs`, IG 18121710692060051) e reel do dia (`show-ibirapuera/reel-dia.mjs`:
+  vídeos do Andre por horário com hora + artista da grade, IG 18090201788304973 + FB). Vídeos chegam pelo Drive
+  (rclone `gdrive:`, pasta id 1qMIqGgbBD5ekB3ai8kMOYtxnt0gSPast); brutos e fotos fora do git. Story em vídeo = link
+  do R2 `especiais/*.mp4` no input `imagem` do `story-avulso.yml`. Pôster baixado do IG pelo Chrome (download bloqueia
+  na 2ª vez: copiar pro clipboard e salvar com osascript). **Próximo:** 6 fotos do show em `show-ibirapuera/fotos/` rendem
+  carrossel; domingo 22/11 tem o 2º show (reusar `reel-dia.mjs` trocando a GRADE). Se o reel for silenciado, refazer sem
+  som ao vivo.
 - **Carrossel do merch oficial do Eddie em SP (19/11, PUBLICADO IG 18004509396043687 + FB):** `reels-especiais/merch-ibirapuera/`
   no modelo do carrossel, paleta azul. Capa com a foto do folheto da @mrtsurt (creditada), `recorta.py` endireita a foto
   (giro + perspectiva) e recorta cada produto em cartões. Mesmo fluxo de carrossel especial (R2 `especiais/` + `publicar.json`).
