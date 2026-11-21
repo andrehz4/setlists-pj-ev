@@ -36,21 +36,8 @@ slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo
   <div style="position:absolute;bottom:130px;right:64px;${BS}font-size:44px;color:var(--destaque);letter-spacing:2px;">ARRASTA →</div>
   ${rodape(1)}</div>`);
 
-// Setlist à mão: papel torto, fita crepe, anotações em vermelho
-const curto = { "Elderly Woman Behind the Counter in a Small Town": "Elderly Woman", "Rockin' in the Free World": "Rockin' in the Free World" };
-const nota = { "I'm the Answer": "c/ Simon!", "Song of Good Hope": "p/ Glen ♥", "Black": "← a galera pediu", "Rockin' in the Free World": "BIS" };
-const linhasMao = SET.map((m, i) => `<div style="display:flex;align-items:baseline;gap:16px;height:44px;${i === 20 ? "margin-top:14px;" : ""}">
-  <div style="${MAO}font-size:24px;width:40px;text-align:right;color:#8a8170;">${i + 1}</div>
-  <div style="${MAO}font-size:35px;color:#1d2a5c;transform:rotate(${((i * 37) % 5) - 2}deg);white-space:nowrap;${m === "Black" ? "text-decoration:underline;text-decoration-color:#d8351c;text-decoration-thickness:4px;" : ""}">${curto[m] || m}</div>
-  ${nota[m] ? `<div style="${MAO}font-size:28px;color:#d8351c;transform:rotate(-4deg);white-space:nowrap;">${nota[m]}</div>` : ""}</div>`).join("");
-slides.push(`<div data-screen-label="slide-02" style="${S}background:var(--fundo);color:var(--claro);">
-  <div style="position:absolute;top:70px;left:150px;width:780px;height:1150px;background:var(--papel);transform:rotate(-1.6deg);box-shadow:0 24px 60px rgba(0,0,0,.55);
-    background-image:repeating-linear-gradient(180deg,transparent 0 43px,rgba(60,90,160,.18) 43px 45px);background-position:0 150px;padding:40px 46px;box-sizing:border-box;">
-    <div style="position:absolute;top:-22px;left:300px;width:180px;height:50px;background:rgba(230,215,170,.85);transform:rotate(3deg);"></div>
-    <div style="${MAO}font-size:56px;color:#1d2a5c;line-height:1;">SÃO PAULO <span style="color:#d8351c;">20.11</span></div>
-    <div style="${MAO}font-size:24px;color:#8a8170;margin:6px 0 12px;">Ibirapuera · noite 1</div>
-    ${linhasMao}</div>
-  ${rodape(2, "Fonte: setlist.fm")}</div>`);
+// Setlist: folha do gerador do site (folha.mjs), letras de mão por música, sem nada por cima
+slides.push(`<div data-screen-label="slide-02" style="${S}background:#fff;"><img src="uploads/folha.jpg" alt="Setlist de sexta escrita à mão" style="width:1080px;height:1350px;object-fit:cover;"></div>`);
 
 slides.push(foto(3, "inicio.jpg", "50% 30%", 820, `
   <div style="position:absolute;top:72px;left:72px;">${tag("ANTES DO SHOW")}</div>
