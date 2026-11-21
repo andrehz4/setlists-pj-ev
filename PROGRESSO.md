@@ -6,6 +6,11 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **TriggerAll com retentativa automática (21/11, commit 8989a6a no repo triggerall):** workflow disparado que FALHA no
+  GitHub (failure/timed_out) é disparado de novo em 10 min, até 2x em 3 h, pra todo gatilho. Desliga num gatilho com
+  `retry_on_failure: false` no config. Motivo: a cápsula de 20/11 falhou às 20h por erro passageiro do IG ("Please reduce
+  the amount of data") e só saiu 0h54 pelo cron de reserva do GitHub. Código em `backend/src/services/retry.js`.
+  Conferir na próxima falha se a execução `auto_retry` aparece no painel (depende do webhook workflow_run do repo).
 - **Cobertura ao vivo do show do Eddie no Ibirapuera (20/11, tudo PUBLICADO, Andre pelo celular via remote control):**
   carrossel do pôster do Ian Williams detalhe por detalhe (`reels-especiais/poster-ian-williams/`, IG 18062550296799507
   + FB), story narrado "fica ligado" (`story-ao-vivo/gera.mjs`, voz Liam v4, IG 18110986712209764), story "Portões
