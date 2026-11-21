@@ -44,7 +44,7 @@ slides.push(`<div data-screen-label="slide-02" style="${amarelo}">
   <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("SEXTA, 20/11", true)}${tit("A setlist", 150, "var(--fundo)")}</div>
   <div style="position:absolute;top:330px;left:72px;right:72px;display:grid;grid-template-columns:1fr 1fr;column-gap:30px;">
     <div>${lista.slice(0, 11).join("")}</div><div>${lista.slice(11).join("")}</div></div>
-  <div style="position:absolute;top:1130px;left:72px;right:72px;font-weight:800;font-size:24px;line-height:1.25;">No setlist.fm a lista ainda está marcada como incompleta e fora de ordem. Pode faltar música.</div>
+  <div style="position:absolute;top:1130px;left:72px;right:72px;font-weight:800;font-size:24px;line-height:1.25;">Setlist confirmada no setlist.fm: ${A.hoje.length} músicas, nesta ordem.</div>
   ${rodape(2, true)}
 </div>`);
 
