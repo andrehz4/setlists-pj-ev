@@ -6,6 +6,11 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Carrossel "São Paulo foi espetacular" (21/11 tarde, PUBLICADO):** `reels-especiais/sp-espetacular/` (gera.mjs + folha.mjs).
+  Capa EDINHO? (amarelo com contorno), setlist de sexta na folha do gerador do site (setlist-ibirapuera, letras de mão por
+  música, Black acrescentada ao lado com traço como nas folhas reais), coro, lanternas, Song of Good Hope, Black pedida, 1º solo
+  a céu aberto em SP. Quadros dos vídeos do Andre em design/uploads (fora do git). Ideia guardada: foto do recado em
+  português do Eddie (reels-especiais/recado-eddie/fotos/recado.jpg, falta saber o autor pra crédito).
 - **TriggerAll com retentativa automática (21/11, commit 8989a6a no repo triggerall):** workflow disparado que FALHA no
   GitHub (failure/timed_out) é disparado de novo em 10 min, até 2x em 3 h, pra todo gatilho. Desliga num gatilho com
   `retry_on_failure: false` no config. Motivo: a cápsula de 20/11 falhou às 20h por erro passageiro do IG ("Please reduce
