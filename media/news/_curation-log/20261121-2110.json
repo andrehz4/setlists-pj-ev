@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-11-21T21:10Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 2,
+  "distribution": { "midia": 2, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "ea2cd440c3", "titulo": "Eddie lê português na cola, chora por Glen e traz Black de volta em São Paulo", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "d2a98d8229", "title": "Eddie Vedder dispara alertas de fofura (Igor Miranda)", "reason": "sem novidade (já publicado: 9763cafa30, mesmo autor); detalhes novos somados ao ea2cd440c3" }
+  ]
+}
