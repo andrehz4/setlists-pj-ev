@@ -1,5 +1,5 @@
 // Desenha a folha da setlist de sexta igual ao gerador do site (setlist-ibirapuera/folha.js): papel oficial,
-// cabeçalho SP 1 + Ibirapuera, letras de mão por música (PNG do gerador), 2 colunas de 12, traço antes do bis.
+// cabeçalho SP 1 (sem o Ibirapuera, como o Eddie escreve), letras de mão por música (PNG do gerador), 2 colunas de 12, traço antes do bis.
 // Uso: node reels-especiais/sp-espetacular/folha.mjs  ->  design/uploads/folha.jpg (1100x1400)
 import fs from "node:fs";
 import path from "node:path";
@@ -15,8 +15,6 @@ const BIS = SET.length - 1; // Rockin' in the Free World
 const camadas = [];
 const pos = (await sharp(path.join(ger, "img/cab-sp1.png")).metadata());
 camadas.push({ input: path.join(ger, "img/cab-sp1.png"), left: Math.round(550 - pos.width / 2), top: 40 });
-const ib = await sharp(path.join(ger, "img/cab-ibira.png")).metadata();
-camadas.push({ input: await sharp(path.join(ger, "img/cab-ibira.png")).resize(Math.round(ib.width * 0.8)).toBuffer(), left: Math.round(550 - ib.width * 0.4), top: 125 });
 const desloc = [0, 0];
 for (const [i, nome] of SET.entries()) {
   const col = i < 12 ? 0 : 1, x = col ? 660 : 100, y = 255 + 90 * (i % 12) + desloc[col];
