@@ -31,8 +31,7 @@ slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo
   <img src="uploads/lanternas.jpg" alt="Plateia com lanternas acesas" style="position:absolute;top:0;left:0;width:1080px;height:1350px;object-fit:cover;object-position:50% 40%;">
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,.75) 0%,rgba(20,17,15,.1) 34%,rgba(20,17,15,.2) 55%,var(--fundo) 88%);"></div>
   <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("SEXTA, 20/11 · IBIRAPUERA")}</div>
-  <div style="position:absolute;top:600px;left:60px;${MAO}font-size:110px;line-height:1;color:var(--destaque);transform:rotate(-4deg);text-shadow:0 4px 18px rgba(0,0,0,.6);">EDINHO!</div>
-  <div style="position:absolute;top:760px;left:64px;right:40px;${BS}font-size:150px;line-height:.86;letter-spacing:-3px;text-transform:uppercase;">São Paulo foi<br><span style="color:var(--destaque);">espetacular</span></div>
+  <div style="position:absolute;top:630px;left:64px;right:40px;${BS}font-size:150px;line-height:.86;letter-spacing:-3px;text-transform:uppercase;"><span style="color:var(--destaque);">Edinho?</span><br>São Paulo foi<br><span style="color:var(--destaque);">espetacular</span></div>
   ${txt("A setlist escrita à mão e os momentos em que a plateia roubou a cena.", 1050, 36)}
   <div style="position:absolute;bottom:130px;right:64px;${BS}font-size:44px;color:var(--destaque);letter-spacing:2px;">ARRASTA →</div>
   ${rodape(1)}</div>`);
