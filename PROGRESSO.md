@@ -22,6 +22,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   c-laranja,d-azul}.mp4` (`montar.mjs --video layout-X.mp4 --saida reel-X.mp4`; export do Design: Share > Video > Original).
   22/11 noite: Andre APROVOU OS 4 LAYOUTS ("adorei todos") = rodízio dos 4 x 3 paletas. Recebeu no celular os vídeos de
   revisão dos 96 trechos das covers (um por banda, linha do meio pra conferir rosto); aguarda retorno de trecho a refazer.
+  22/11 noite: ronda no Instagram das 10 covers = 133 trechos, 9 de 10 OK. Singles fica com 2 close forte (banda quase sem
+  show; Andre procura na mão depois). Conferir: Blaymorphed camisa branca (talvez outra formação), Love Boat logo Venatrix
+  nos 4 trechos novos (tag marca:venatrix).
   Próximo: portar pro gerador (módulo apartado, flag) com rodízio layout x paleta, covers no
   fundo dos dias no lugar do placeholder, falas de falas.mjs.
 - **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
