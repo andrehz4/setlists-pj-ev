@@ -37,6 +37,8 @@ const CENAS = [
 ];
 const chave = fs.readFileSync("/Users/andrehz/.elevenlabs-key", "utf8").trim();
 const PUNCH = 0.75;
+// No Design, cada dia entra em 0,83 s e troca o destaque a cada 1,8 s (medido no MP4). Limites de cada show, em s da cena esticada.
+const limites = (c, n) => [0, ...Array.from({ length: n - 1 }, (_, k) => (0.83 + 1.8 * (k + 1)) * (c.alvo / c.d)), c.alvo];
 let ini = 0, novoIni = 0;
 for (const c of CENAS) {
   if (c.data) c.texto = textoDia(c.data, doDia(c.data));
@@ -44,8 +46,11 @@ for (const c of CENAS) {
   if (!fs.existsSync(c.voz)) await sintetizar(c.texto, { vozId: voz.id, apiKey: chave, destino: c.voz });
   c.ini = ini; ini += c.d;
   c.alvo = Math.max(c.d, dur(c.voz) + 0.5); // cena nunca corta a fala
-  if (c.data) { c.punchIni = novoIni; novoIni += PUNCH; } // cortes rápidos da banda em tela cheia antes do dia
-  c.novoIni = novoIni; novoIni += c.alvo;
+  if (!c.data) { c.novoIni = novoIni; novoIni += c.alvo; c.whoosh = [c.novoIni]; continue; }
+  // Dia: antes de cada show entra um corte da banda em tela cheia; a cena do Design é fatiada igual entre os shows.
+  const n = doDia(c.data).length, L = limites(c, n);
+  c.whoosh = Array.from({ length: n }, (_, k) => novoIni + k * PUNCH + L[k]);
+  c.novoIni = novoIni + PUNCH; novoIni += n * PUNCH + c.alvo;
 }
 const total = novoIni;
 
@@ -64,12 +69,10 @@ let nIn = 1 + cortes.length;
 CENAS.forEach((c, i) => {
   if (i === 0) return;
   if (!c.data) { f.push(`[s${i}]null[c${i}]`); return; }
-  const bandas = [...new Map(doDia(c.data).map((s) => [s.banda, s])).values()].slice(0, 3);
-  const socos = fundoDoDia(bandas, PUNCH).map((p, j) => {
-    ins.push("-an", "-i", p.arq); f.push(`[${nIn++}:v]scale=1080:1920,fps=30,setsar=1,trim=duration=${p.dur.toFixed(3)},setpts=PTS-STARTPTS,eq=contrast=1.08:saturation=1.05,format=yuv420p[p${i}_${j}]`);
-    return `[p${i}_${j}]`;
+  doDia(c.data).forEach((show, k) => {
+    const [p] = fundoDoDia([show], PUNCH);
+    ins.push("-an", "-i", p.arq); f.push(`[${nIn++}:v]scale=1080:1920,fps=30,setsar=1,trim=duration=${PUNCH},setpts=PTS-STARTPTS,eq=contrast=1.08:saturation=1.05,format=yuv420p[p${i}_${k}]`);
   });
-  f.push(`${socos.join("")}concat=n=${socos.length}:v=1:a=0[p${i}]`);
   const pedacos = fundoDoDia(doDia(c.data), c.alvo);
   const rot = pedacos.map((p, j) => {
     if (p.arq) { ins.push("-an", "-i", p.arq); f.push(`[${nIn++}:v]scale=1080:1920,fps=30,setsar=1,trim=duration=${p.dur.toFixed(3)},setpts=PTS-STARTPTS,${MEIO},tpad=stop_mode=clone:stop_duration=1,trim=duration=${p.dur.toFixed(3)}[d${i}_${j}]`); }
@@ -81,7 +84,15 @@ CENAS.forEach((c, i) => {
     `[s${i}m]format=gray,lut=y='if(gt(val,70),255,0)',boxblur=22:1,lut=y='if(gt(val,8),255,0)',format=gbrp[m${i}]`,
     `[s${i}g][b${i}]blend=all_mode=lighten:shortest=1[l${i}]`, `[l${i}][s${i}h][m${i}]maskedmerge,format=yuv420p[c${i}]`);
 });
-const ordem = CENAS.flatMap((c, i) => (c.data ? [`[p${i}]`, `[c${i}]`] : [`[c${i}]`]));
+const ordem = CENAS.flatMap((c, i) => {
+  if (!c.data) return [`[c${i}]`];
+  const n = doDia(c.data).length, L = limites(c, n);
+  f.push(`[c${i}]split=${n}${Array.from({ length: n }, (_, k) => `[c${i}x${k}]`).join("")}`);
+  return Array.from({ length: n }, (_, k) => {
+    f.push(`[c${i}x${k}]trim=${L[k].toFixed(3)}:${L[k + 1].toFixed(3)},setpts=PTS-STARTPTS[c${i}y${k}]`);
+    return [`[p${i}_${k}]`, `[c${i}y${k}]`];
+  }).flat();
+});
 f.push(`${ordem.join("")}concat=n=${ordem.length}:v=1:a=0,format=yuv420p[v]`);
 
 // Áudio: fala 0,15 s depois do início da cena, whoosh nas trocas, trilha própria baixa.
@@ -89,12 +100,13 @@ const trilha = trilhaPropria({ uso: "reel", semente: "agenda-2026-11-24", plano:
   duracao: total, saida: path.join(dir, "trilha.m4a"), env: { TRILHA_PROPRIA: "1" } });
 if (!trilha) throw new Error("trilha própria não montou");
 const base = nIn, whoosh = naRaiz("media/agenda/voz/whoosh.mp3");
-ins.push(...CENAS.flatMap((c) => ["-i", c.voz]), "-i", trilha.path, ...CENAS.slice(1).flatMap(() => ["-i", whoosh]));
+const WH = CENAS.slice(1).flatMap((c) => c.whoosh);
+ins.push(...CENAS.flatMap((c) => ["-i", c.voz]), "-i", trilha.path, ...WH.flatMap(() => ["-i", whoosh]));
 CENAS.forEach((c, i) => { const ms = Math.round((c.novoIni + 0.15) * 1000); f.push(`[${base + i}:a]adelay=${ms}|${ms},aformat=channel_layouts=stereo[f${i}]`); });
 const iT = base + CENAS.length;
 f.push(`[${iT}:a]volume=0.25,afade=t=out:st=${(total - 1.2).toFixed(2)}:d=1.2[m]`);
-CENAS.slice(1).forEach((c, j) => { const ms = Math.round(Math.max(0, (c.punchIni ?? c.novoIni) - 0.25) * 1000); f.push(`[${iT + 1 + j}:a]volume=0.5,adelay=${ms}|${ms},aformat=channel_layouts=stereo[w${j}]`); });
-const ent = [...CENAS.map((_, i) => `[f${i}]`), "[m]", ...CENAS.slice(1).map((_, j) => `[w${j}]`)];
+WH.forEach((t, j) => { const ms = Math.round(Math.max(0, t - 0.25) * 1000); f.push(`[${iT + 1 + j}:a]volume=0.5,adelay=${ms}|${ms},aformat=channel_layouts=stereo[w${j}]`); });
+const ent = [...CENAS.map((_, i) => `[f${i}]`), "[m]", ...WH.map((_, j) => `[w${j}]`)];
 f.push(`${ent.join("")}amix=inputs=${ent.length}:duration=longest:normalize=0,atrim=0:${total.toFixed(2)},loudnorm=I=-14:TP=-1.5[a]`);
 const out = SAIDA;
 run([...ins, "-filter_complex", f.join(";"), "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-profile:v", "high", "-pix_fmt", "yuv420p",
