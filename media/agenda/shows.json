@@ -1,50 +1,55 @@
 {
-  "atualizado": "2026-11-21T19:23:24.592Z",
+  "atualizado": "2026-11-22T12:18:29.889Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-21T19:23:13.494Z",
-      "seguidores": 33202,
+      "lidoEm": "2026-11-22T12:18:09.625Z",
+      "seguidores": 33204,
       "ultimoPost": "2026-11-13T21:27:23+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-21T19:23:14.855Z",
-      "seguidores": 103093,
+      "lidoEm": "2026-11-22T12:18:12.023Z",
+      "seguidores": 103133,
       "ultimoPost": "2026-11-17T21:05:19+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-21T19:23:16.192Z",
+      "lidoEm": "2026-11-22T12:18:15.111Z",
       "seguidores": 9336,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-21T19:23:17.526Z",
-      "seguidores": 74853,
+      "lidoEm": "2026-11-22T12:18:17.913Z",
+      "seguidores": 74870,
       "ultimoPost": "2026-11-19T13:42:09+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-21T19:23:18.887Z",
-      "seguidores": 21423,
+      "lidoEm": "2026-11-22T12:18:19.522Z",
+      "seguidores": 21426,
       "ultimoPost": "2026-11-21T17:51:29+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-21T19:23:19.875Z",
+      "lidoEm": "2026-11-22T12:18:20.740Z",
       "seguidores": 33725,
       "ultimoPost": "2026-11-21T16:11:08+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-21T19:23:21.857Z",
-      "seguidores": 6333,
+      "lidoEm": "2026-11-22T12:18:23.913Z",
+      "seguidores": 6337,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-21T19:23:23.083Z",
-      "seguidores": 6172,
+      "lidoEm": "2026-11-22T12:18:26.101Z",
+      "seguidores": 6171,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     },
     "loveboat_tribute": {
-      "lidoEm": "2026-11-21T19:23:24.381Z",
+      "lidoEm": "2026-11-22T12:18:28.203Z",
       "seguidores": 3826,
       "ultimoPost": "2026-09-13T18:23:12+0000"
+    },
+    "banda_alivepj": {
+      "lidoEm": "2026-11-22T12:18:29.599Z",
+      "seguidores": 221,
+      "ultimoPost": "2026-07-19T15:47:24+0000"
     }
   },
   "oficial": [
@@ -64,49 +69,6 @@
     }
   ],
   "shows": [
-    {
-      "id": "pearljamsp-2026-11-21-campinas",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-21",
-      "casa": "bestofbluesandrock",
-      "casaNome": null,
-      "cidade": "Campinas",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/Df00IQ4xDo_/",
-      "detalhe": "https://www.instagram.com/reel/Df2usTltqXC/"
-    },
-    {
-      "id": "pearljamsp-2026-11-21-campinas",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-21",
-      "casa": null,
-      "casaNome": "Jimmy Rocker",
-      "cidade": "Campinas",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "22:00",
-      "fonte": "https://www.instagram.com/p/DfSVhjYxuxQ/"
-    },
-    {
-      "id": "pjnoventa-2026-11-21-sao-paulo",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-21",
-      "casa": "refugiorockbar",
-      "casaNome": null,
-      "cidade": "São Paulo",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "23:00",
-      "fonte": "https://www.instagram.com/reel/Df3ZF9Eu1Fe/"
-    },
     {
       "id": "pearljamsp-2026-11-26-sao-paulo",
       "banda": "pearljamsp",
