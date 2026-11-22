@@ -6,6 +6,14 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
+  domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
+  carrosséis ~0,2%). Dados: workflow manual `ig-insights.yml` (`scripts/ig-insights/coletar.mjs`, seguidores/dia; a API
+  não dá seguidores por reel). Formato: abertura 3 s com banda cover tocando + mapa acendendo os estados + uma cena POR DIA
+  (dia grande, cidade, banda @ casa) + fecho "toda segunda tem, segue". Marcar banda e casa (repost das bandas = alcance de
+  não seguidor). Acervo de vídeos das COVERS pra transições: 1) pedir às bandas por DM (rascunho no clipboard, abre com
+  "Só mais um fã do Pearl Jam"), 2) YouTube delas, sempre mudo e trecho curto, tag `banda:<conta>` no transicoes.json;
+  nunca raspar o IG. Banda sem vídeo: foto do perfil ou plano de plateia.
 - **Setlist do domingo 22/11 no automático (pedido do Andre: ser o primeiro):** `reels-especiais/setlist-dom/`.
   `monitora.mjs` vigia o setlist.fm (id 2372101f) e sai quando fecha (bis + depois das 22h + 10 min parado);
   aí `zsh reels-especiais/setlist-dom/publica.sh` busca, desenha a folha (cab-sp2), gera o slide da lista (★ = não tocou
