@@ -27,6 +27,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   nos 4 trechos novos (tag marca:venatrix).
   22/11 19h: covers de cada show no FUNDO DOS DIAS (`design/covers.mjs` + máscara dos cartões no `montar.mjs`):
   `design/reel-<layout>-covers.mp4` nos 4 layouts, mandados pro celular do Andre.
+  22/11 19h20: PADRÃO APROVADO ("perfeito, sensacional"): antes de CADA show entra um corte da própria banda em tela
+  cheia (0,75 s + whoosh), alinhado à troca de destaque do Design (entrada 0,83 s + 1,8 s por show, igual nos 4 layouts).
+  4 layouts montados nesse padrão (`design/reel-<layout>-covers.mp4`, 40,8 s).
   Próximo: Andre escolhe o layout da terça 24/11 e aprova a publicação; depois portar pro gerador (módulo apartado, flag) com rodízio layout x paleta, covers no
   fundo dos dias no lugar do placeholder, falas de falas.mjs.
 - **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
