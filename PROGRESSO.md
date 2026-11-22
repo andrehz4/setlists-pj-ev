@@ -16,12 +16,29 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `retry_on_failure: false` no config. Motivo: a cápsula de 20/11 falhou às 20h por erro passageiro do IG ("Please reduce
   the amount of data") e só saiu 0h54 pelo cron de reserva do GitHub. Código em `backend/src/services/retry.js`.
   Conferir na próxima falha se a execução `auto_retry` aparece no painel (depende do webhook workflow_run do repo).
-- **Sábado 21/11 (Roger Daltrey no Ibirapuera), tudo PUBLICADO:** story de chegada do 2º dia (`show-ibirapuera/story-chegada.mjs 2`,
-  vídeos em `brutos2/`, Drive pasta id 1q51jwen5cer3dCTXaLB5KSLiycvo3X9I, IG 18002913306037439); carrossel "Eddie e Glen"
-  (`reels-especiais/eddie-glen/`, amizade de 2010 ao Ibirapuera, amarelo, capa foto @msachno, IG 18095805578285666 + FB);
-  reel "ROLOU!" (`reels-especiais/eddie-roger-rolou/gera.mjs <video> <ini>`: Eddie subiu no show do Roger, Pinball Wizard
-  e The Kids Are Alright; SEM som ao vivo a pedido do Andre, voz Liam v4, IG 18073585574720793 + FB). **Próximo:** domingo,
-  reel do dia (reel-dia.mjs com GRADE nova), quem acertou o palpite, recado do Eddie (falta crédito da foto).
+- **COBERTURA AO VIVO IBIRAPUERA, RETOMAR AQUI (atualizado 21/11 21h10).** Andre no show pelo celular (remote control),
+  manda vídeo pelo Drive e pede post; eu monto, mostro prévia quando dá tempo e publico. Mac fica ligado (caffeinate até ~4h de 23/11).
+  - **Drive:** pasta do 2º dia id `1q51jwen5cer3dCTXaLB5KSLiycvo3X9I` (1º dia: `1qMIqGgbBD5ekB3ai8kMOYtxnt0gSPast`). Baixar:
+    `rclone copy gdrive: reels-especiais/show-ibirapuera/brutos2 --drive-root-folder-id <id>`. Ver vídeo: mosaico de quadros com ffmpeg `tile`.
+  - **Publicar carrossel/reel especial:** pasta `reels-especiais/<x>/` com `gera.mjs` + `publicar.json` (`imagens` R2 ou `videoUrl`,
+    `legenda`); subir com `npx wrangler r2 object put smufdpj-midia/especiais/<...> --file X --content-type ... --remote`
+    (arquivo mudado = nome NOVO, cache 4 h); commit, `gh workflow run publish-reel-especial.yml -f pasta=<x>`, `gh run watch`, `git pull` lê postId.
+  - **Story em vídeo:** subir mp4 em `especiais/` e `gh workflow run story-avulso.yml -f imagem=https://midia.somaisumfadepearljam.com.br/especiais/<x>.mp4`.
+  - **Render carrossel:** `node scripts/publish/carrossel/render.mjs <html> <saida> amarelo` (Andre prefere AMARELO, chama mais atenção).
+  - **Voz:** ElevenLabs v4, Liam `TX3LPaxmHKxFdv7VOQHJ`, chave local `/Users/andrehz/.elevenlabs-key` (free, ~5k créditos restantes 21/11).
+    Exemplo de chamada e sincronia por silencedetect em `reels-especiais/eddie-roger-rolou/gera.mjs`.
+  - **Regras do Andre nesta cobertura:** reel com vídeo dele NUNCA leva o som ao vivo (a voz dele não pode aparecer):
+    `-an` + narração + trilha própria. Foto de terceiro só com crédito do @ (pedir). Sem nome do Andre. Sem travessão.
+  - **Publicado sábado 21/11:** story chegada 2º dia (`show-ibirapuera/story-chegada.mjs 2`, IG 18002913306037439);
+    carrossel "Eddie e Glen" (`eddie-glen/`, amizade 2010 a 2026, capa foto @msachno, IG 18095805578285666);
+    reel "ROLOU!" (`eddie-roger-rolou/`, Eddie no show do Roger: Pinball Wizard + The Kids Are Alright, IG 18073585574720793);
+    carrossel informativo (`eddie-roger-carrossel/`, Pinball 0 vezes inteira antes, Kids ~36 vezes, 12ª vez juntos, IG 18127385051481696).
+  - **Datas:** Eddie toca sexta 20/11 e DOMINGO 22/11; sábado 21 foi o Roger Daltrey (Kingfish, Chris Isaak na grade).
+  - **Próximo (domingo 22/11):** story de chegada (`story-chegada.mjs` ganhar opção 3 / pasta nova do Drive), reel do dia no 1º bis
+    (`show-ibirapuera/reel-dia.mjs`: trocar `brutos` e GRADE de domingo, tirar o som ao vivo), folha da setlist com
+    `sp-espetacular/folha.mjs` + `cab-sp2.png`, post "quem acertou" (palpite: Hard Sun, Porch, Far Behind ficam; Immortality,
+    Last Kiss saem; Rise, Guaranteed entram; dados em `eddie-balanco/`). Pendente: post do recado em português
+    (`recado-eddie/fotos/recado.jpg`, falta crédito da foto). Retry do TriggerAll: conferir `auto_retry` na próxima falha.
 - **Cobertura ao vivo do show do Eddie no Ibirapuera (20/11, tudo PUBLICADO, Andre pelo celular via remote control):**
   carrossel do pôster do Ian Williams detalhe por detalhe (`reels-especiais/poster-ian-williams/`, IG 18062550296799507
   + FB), story narrado "fica ligado" (`story-ao-vivo/gera.mjs`, voz Liam v4, IG 18110986712209764), story "Portões
