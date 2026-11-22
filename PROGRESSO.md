@@ -10,10 +10,15 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
   carrosséis ~0,2%). Dados: workflow manual `ig-insights.yml` (`scripts/ig-insights/coletar.mjs`, seguidores/dia; a API
   não dá seguidores por reel). Formato: abertura 3 s com o PEARL JAM de verdade (acervo de transições atual, regra do Andre; covers só depois, no fundo das cenas dos dias) + mapa acendendo os estados + uma cena POR DIA
-  (dia grande, cidade, banda @ casa) + fecho "toda terça tem, segue". Sai na TERÇA (cobre terça a domingo); o carrossel "Agenda da semana" de segunda FICA como está. Marcar banda e casa (repost das bandas = alcance de
+  (dia grande, cidade, banda @ casa) + fecho "toda terça tem, segue". Sai na TERÇA (cobre terça a domingo). COM narração (voz do resumão, ElevenLabs): abertura "Onde tem Pearl Jam ao vivo essa semana?", por dia "dia, cidade, banda" (nunca o nome da casa falado), fecho "Toda terça tem. Segue pra não perder". Próximo passo: TESTE/prévia de como ficaria; o carrossel "Agenda da semana" de segunda FICA como está. Marcar banda e casa (repost das bandas = alcance de
   não seguidor). Acervo de vídeos das COVERS pra transições (Andre: sem DM, tem muito material pronto): 1) YouTube das bandas,
   2) vídeo do IG delas que o Andre mandar pelo Drive, sempre mudo e trecho curto, tag `banda:<conta>` no transicoes.json;
   nunca raspar o IG. Banda sem vídeo: foto do perfil ou plano de plateia.
+- **AGORA (22/11 12h30): setlist do domingo roda SOZINHA, fora do Claude.** Processo `nohup` (monitora.mjs && publica.sh),
+  log em `reels-especiais/setlist-dom/vigia.log` (`tail` nele pra ver). Ao fechar no setlist.fm, publica sem ninguém. Momentos
+  do show que o Andre mandar no chat: gravar em `reels-especiais/setlist-dom/momentos.json` ({intro, momentos:[{tag,titulo,
+  texto,foto?,pos?}]}, foto em design/uploads/) ANTES de fechar; foto da setlist de papel = `design/uploads/foto-setlist.jpg`.
+  Mac acordado por caffeinate (nohup) até ~5h de 23/11.
 - **Setlist do domingo 22/11 no automático (pedido do Andre: ser o primeiro):** `reels-especiais/setlist-dom/`.
   `monitora.mjs` vigia o setlist.fm (id 2372101f) e sai quando fecha (bis + depois das 22h + 10 min parado);
   aí `zsh reels-especiais/setlist-dom/publica.sh` busca, desenha a folha (cab-sp2), gera o slide da lista (★ = não tocou
