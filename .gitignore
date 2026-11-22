@@ -62,3 +62,11 @@ media/news/instagram-stories/*.mp4
 
 # acervo de trechos do reel: os MP4 ficam no R2 (acervo/), no git só o transicoes.json
 media/reels-clips/transicoes/*.mp4
+media/reels-clips/covers/**/*.mp4
+media/reels-clips/covers/_brutos/
+media/reels-clips/covers/**/*.jpg
+reels-especiais/agenda-semana/saida/
+reels-especiais/agenda-semana/audicao/
+reels-especiais/agenda-semana/design/*.mp4
+reels-especiais/agenda-semana/design/*.jpg
+reels-especiais/agenda-semana/design/*.m4a

@@ -1,0 +1,963 @@
+{
+  "banda": "pjnoventa",
+  "clips": [
+    {
+      "file": "pjnoventa-black-bracos-1.mp4",
+      "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+      "ini": 45,
+      "fim": 47.5,
+      "dur": 2.5,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.608
+        },
+        {
+          "t": 0.1,
+          "foco": 0.61
+        },
+        {
+          "t": 0.2,
+          "foco": 0.61
+        },
+        {
+          "t": 0.3,
+          "foco": 0.61
+        },
+        {
+          "t": 0.4,
+          "foco": 0.609
+        },
+        {
+          "t": 0.5,
+          "foco": 0.607
+        },
+        {
+          "t": 0.6,
+          "foco": 0.605
+        },
+        {
+          "t": 0.7,
+          "foco": 0.6
+        },
+        {
+          "t": 0.8,
+          "foco": 0.595
+        },
+        {
+          "t": 0.9,
+          "foco": 0.591
+        },
+        {
+          "t": 1,
+          "foco": 0.585
+        },
+        {
+          "t": 1.1,
+          "foco": 0.58
+        },
+        {
+          "t": 1.2,
+          "foco": 0.575
+        },
+        {
+          "t": 1.3,
+          "foco": 0.569
+        },
+        {
+          "t": 1.4,
+          "foco": 0.561
+        },
+        {
+          "t": 1.5,
+          "foco": 0.553
+        },
+        {
+          "t": 1.6,
+          "foco": 0.545
+        },
+        {
+          "t": 1.7,
+          "foco": 0.539
+        },
+        {
+          "t": 1.8,
+          "foco": 0.532
+        },
+        {
+          "t": 1.9,
+          "foco": 0.527
+        },
+        {
+          "t": 2,
+          "foco": 0.525
+        },
+        {
+          "t": 2.1,
+          "foco": 0.523
+        },
+        {
+          "t": 2.2,
+          "foco": 0.521
+        },
+        {
+          "t": 2.3,
+          "foco": 0.519
+        },
+        {
+          "t": 2.4,
+          "foco": 0.518
+        }
+      ],
+      "tags": [
+        "banda:pjnoventa",
+        "black",
+        "vocal",
+        "festival"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bracos-abertos"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista sem camisa de braços abertos no festival"
+      },
+      "nota": 5
+    },
+    {
+      "file": "pjnoventa-black-guitarra-2.mp4",
+      "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+      "ini": 48.2,
+      "fim": 50.7,
+      "dur": 2.5,
+      "foco": "centro",
+      "focoX": 0.5,
+      "tags": [
+        "banda:pjnoventa",
+        "black",
+        "guitarra",
+        "festival"
+      ],
+      "broll": {
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "tocando"
+        ],
+        "clima": "energia",
+        "descricao": "guitarra em close no palco"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-black-vocal-3.mp4",
+      "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+      "ini": 128,
+      "fim": 132,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.66
+        },
+        {
+          "t": 0.1,
+          "foco": 0.66
+        },
+        {
+          "t": 0.2,
+          "foco": 0.661
+        },
+        {
+          "t": 0.3,
+          "foco": 0.662
+        },
+        {
+          "t": 0.4,
+          "foco": 0.664
+        },
+        {
+          "t": 0.5,
+          "foco": 0.667
+        },
+        {
+          "t": 0.6,
+          "foco": 0.673
+        },
+        {
+          "t": 0.7,
+          "foco": 0.681
+        },
+        {
+          "t": 0.8,
+          "foco": 0.686
+        },
+        {
+          "t": 0.9,
+          "foco": 0.69
+        },
+        {
+          "t": 1,
+          "foco": 0.692
+        },
+        {
+          "t": 1.1,
+          "foco": 0.695
+        },
+        {
+          "t": 1.2,
+          "foco": 0.697
+        },
+        {
+          "t": 1.3,
+          "foco": 0.699
+        },
+        {
+          "t": 1.4,
+          "foco": 0.702
+        },
+        {
+          "t": 1.5,
+          "foco": 0.705
+        },
+        {
+          "t": 1.6,
+          "foco": 0.706
+        },
+        {
+          "t": 1.7,
+          "foco": 0.706
+        },
+        {
+          "t": 1.8,
+          "foco": 0.705
+        },
+        {
+          "t": 1.9,
+          "foco": 0.706
+        },
+        {
+          "t": 2,
+          "foco": 0.703
+        },
+        {
+          "t": 2.1,
+          "foco": 0.701
+        },
+        {
+          "t": 2.2,
+          "foco": 0.697
+        },
+        {
+          "t": 2.3,
+          "foco": 0.694
+        },
+        {
+          "t": 2.4,
+          "foco": 0.688
+        },
+        {
+          "t": 2.5,
+          "foco": 0.685
+        },
+        {
+          "t": 2.6,
+          "foco": 0.683
+        },
+        {
+          "t": 2.7,
+          "foco": 0.68
+        },
+        {
+          "t": 2.8,
+          "foco": 0.676
+        },
+        {
+          "t": 2.9,
+          "foco": 0.674
+        },
+        {
+          "t": 3,
+          "foco": 0.673
+        },
+        {
+          "t": 3.1,
+          "foco": 0.67
+        },
+        {
+          "t": 3.2,
+          "foco": 0.665
+        },
+        {
+          "t": 3.3,
+          "foco": 0.66
+        },
+        {
+          "t": 3.4,
+          "foco": 0.656
+        },
+        {
+          "t": 3.5,
+          "foco": 0.652
+        },
+        {
+          "t": 3.6,
+          "foco": 0.647
+        },
+        {
+          "t": 3.7,
+          "foco": 0.643
+        },
+        {
+          "t": 3.8,
+          "foco": 0.641
+        },
+        {
+          "t": 3.9,
+          "foco": 0.641
+        }
+      ],
+      "tags": [
+        "banda:pjnoventa",
+        "black",
+        "vocal",
+        "festival"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista cantando no palco iluminado"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-black-publico-4.mp4",
+      "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+      "ini": 171,
+      "fim": 175,
+      "dur": 4,
+      "foco": "centro",
+      "focoX": 0.6,
+      "tags": [
+        "banda:pjnoventa",
+        "black",
+        "publico",
+        "festival"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista",
+          "publico"
+        ],
+        "plano": "aberto",
+        "acao": [
+          "plateia",
+          "luzes-de-celular"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista de costas pra plateia cheia de celulares acesos"
+      },
+      "nota": 5
+    },
+    {
+      "file": "pjnoventa-black-vocal-5.mp4",
+      "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+      "ini": 194,
+      "fim": 198,
+      "dur": 4,
+      "foco": "centro",
+      "focoX": 0.85,
+      "tags": [
+        "banda:pjnoventa",
+        "black",
+        "vocal",
+        "festival"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista sem camisa cantando, visto de baixo"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-black-vocal-6.mp4",
+      "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+      "ini": 217.8,
+      "fim": 220.4,
+      "dur": 2.6,
+      "foco": "centro",
+      "focoX": 0.5,
+      "tags": [
+        "banda:pjnoventa",
+        "black",
+        "vocal",
+        "festival"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "intenso",
+        "descricao": "vocalista suado cantando de perto"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-black-bracos-7.mp4",
+      "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+      "ini": 422.5,
+      "fim": 425,
+      "dur": 2.5,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.966
+        },
+        {
+          "t": 0.1,
+          "foco": 0.947
+        },
+        {
+          "t": 0.2,
+          "foco": 0.919
+        },
+        {
+          "t": 0.3,
+          "foco": 0.885
+        },
+        {
+          "t": 0.4,
+          "foco": 0.847
+        },
+        {
+          "t": 0.5,
+          "foco": 0.806
+        },
+        {
+          "t": 0.6,
+          "foco": 0.769
+        },
+        {
+          "t": 0.7,
+          "foco": 0.742
+        },
+        {
+          "t": 0.8,
+          "foco": 0.723
+        },
+        {
+          "t": 0.9,
+          "foco": 0.713
+        },
+        {
+          "t": 1,
+          "foco": 0.709
+        },
+        {
+          "t": 1.1,
+          "foco": 0.708
+        },
+        {
+          "t": 1.2,
+          "foco": 0.705
+        },
+        {
+          "t": 1.3,
+          "foco": 0.699
+        },
+        {
+          "t": 1.4,
+          "foco": 0.687
+        },
+        {
+          "t": 1.5,
+          "foco": 0.669
+        },
+        {
+          "t": 1.6,
+          "foco": 0.65
+        },
+        {
+          "t": 1.7,
+          "foco": 0.636
+        },
+        {
+          "t": 1.8,
+          "foco": 0.627
+        },
+        {
+          "t": 1.9,
+          "foco": 0.621
+        },
+        {
+          "t": 2,
+          "foco": 0.614
+        },
+        {
+          "t": 2.1,
+          "foco": 0.602
+        },
+        {
+          "t": 2.2,
+          "foco": 0.589
+        },
+        {
+          "t": 2.3,
+          "foco": 0.574
+        },
+        {
+          "t": 2.4,
+          "foco": 0.564
+        }
+      ],
+      "tags": [
+        "banda:pjnoventa",
+        "black",
+        "vocal",
+        "festival"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "bracos-abertos"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista abre os braços na luz branca"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-alive-guitarra-8.mp4",
+      "origem": "https://www.youtube.com/watch?v=wG04ruTmYiA",
+      "ini": 4,
+      "fim": 7,
+      "dur": 3,
+      "foco": "centro",
+      "focoX": 0.5,
+      "tags": [
+        "banda:pjnoventa",
+        "alive",
+        "guitarra",
+        "estudio"
+      ],
+      "broll": {
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "tocando"
+        ],
+        "clima": "intenso",
+        "descricao": "Les Paul vermelha em close"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-alive-vocal-9.mp4",
+      "origem": "https://www.youtube.com/watch?v=wG04ruTmYiA",
+      "ini": 33,
+      "fim": 37,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.539
+        },
+        {
+          "t": 0.1,
+          "foco": 0.531
+        },
+        {
+          "t": 0.2,
+          "foco": 0.524
+        },
+        {
+          "t": 0.3,
+          "foco": 0.518
+        },
+        {
+          "t": 0.4,
+          "foco": 0.514
+        },
+        {
+          "t": 0.5,
+          "foco": 0.512
+        },
+        {
+          "t": 0.6,
+          "foco": 0.514
+        },
+        {
+          "t": 0.7,
+          "foco": 0.516
+        },
+        {
+          "t": 0.8,
+          "foco": 0.52
+        },
+        {
+          "t": 0.9,
+          "foco": 0.524
+        },
+        {
+          "t": 1,
+          "foco": 0.526
+        },
+        {
+          "t": 1.1,
+          "foco": 0.529
+        },
+        {
+          "t": 1.2,
+          "foco": 0.535
+        },
+        {
+          "t": 1.3,
+          "foco": 0.547
+        },
+        {
+          "t": 1.4,
+          "foco": 0.563
+        },
+        {
+          "t": 1.5,
+          "foco": 0.586
+        },
+        {
+          "t": 1.6,
+          "foco": 0.615
+        },
+        {
+          "t": 1.7,
+          "foco": 0.646
+        },
+        {
+          "t": 1.8,
+          "foco": 0.679
+        },
+        {
+          "t": 1.9,
+          "foco": 0.709
+        },
+        {
+          "t": 2,
+          "foco": 0.731
+        },
+        {
+          "t": 2.1,
+          "foco": 0.746
+        },
+        {
+          "t": 2.2,
+          "foco": 0.753
+        },
+        {
+          "t": 2.3,
+          "foco": 0.755
+        },
+        {
+          "t": 2.4,
+          "foco": 0.75
+        },
+        {
+          "t": 2.5,
+          "foco": 0.739
+        },
+        {
+          "t": 2.6,
+          "foco": 0.734
+        },
+        {
+          "t": 2.7,
+          "foco": 0.734
+        },
+        {
+          "t": 2.8,
+          "foco": 0.735
+        },
+        {
+          "t": 2.9,
+          "foco": 0.736
+        },
+        {
+          "t": 3,
+          "foco": 0.735
+        },
+        {
+          "t": 3.1,
+          "foco": 0.733
+        },
+        {
+          "t": 3.2,
+          "foco": 0.728
+        },
+        {
+          "t": 3.3,
+          "foco": 0.723
+        },
+        {
+          "t": 3.4,
+          "foco": 0.718
+        },
+        {
+          "t": 3.5,
+          "foco": 0.713
+        },
+        {
+          "t": 3.6,
+          "foco": 0.709
+        },
+        {
+          "t": 3.7,
+          "foco": 0.705
+        },
+        {
+          "t": 3.8,
+          "foco": 0.698
+        },
+        {
+          "t": 3.9,
+          "foco": 0.693
+        }
+      ],
+      "tags": [
+        "banda:pjnoventa",
+        "alive",
+        "vocal",
+        "estudio"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "intenso",
+        "descricao": "vocalista de cabelo cacheado colado no microfone"
+      },
+      "nota": 5
+    },
+    {
+      "file": "pjnoventa-alive-vocal-10.mp4",
+      "origem": "https://www.youtube.com/watch?v=wG04ruTmYiA",
+      "ini": 67,
+      "fim": 71,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.616
+        },
+        {
+          "t": 0.1,
+          "foco": 0.617
+        },
+        {
+          "t": 0.2,
+          "foco": 0.619
+        },
+        {
+          "t": 0.3,
+          "foco": 0.622
+        },
+        {
+          "t": 0.4,
+          "foco": 0.628
+        },
+        {
+          "t": 0.5,
+          "foco": 0.635
+        },
+        {
+          "t": 0.6,
+          "foco": 0.64
+        },
+        {
+          "t": 0.7,
+          "foco": 0.642
+        },
+        {
+          "t": 0.8,
+          "foco": 0.642
+        },
+        {
+          "t": 0.9,
+          "foco": 0.64
+        },
+        {
+          "t": 1,
+          "foco": 0.634
+        },
+        {
+          "t": 1.1,
+          "foco": 0.628
+        },
+        {
+          "t": 1.2,
+          "foco": 0.623
+        },
+        {
+          "t": 1.3,
+          "foco": 0.619
+        },
+        {
+          "t": 1.4,
+          "foco": 0.614
+        },
+        {
+          "t": 1.5,
+          "foco": 0.607
+        },
+        {
+          "t": 1.6,
+          "foco": 0.601
+        },
+        {
+          "t": 1.7,
+          "foco": 0.596
+        },
+        {
+          "t": 1.8,
+          "foco": 0.593
+        },
+        {
+          "t": 1.9,
+          "foco": 0.592
+        },
+        {
+          "t": 2,
+          "foco": 0.593
+        },
+        {
+          "t": 2.1,
+          "foco": 0.598
+        },
+        {
+          "t": 2.2,
+          "foco": 0.605
+        },
+        {
+          "t": 2.3,
+          "foco": 0.612
+        },
+        {
+          "t": 2.4,
+          "foco": 0.621
+        },
+        {
+          "t": 2.5,
+          "foco": 0.629
+        },
+        {
+          "t": 2.6,
+          "foco": 0.633
+        },
+        {
+          "t": 2.7,
+          "foco": 0.633
+        },
+        {
+          "t": 2.8,
+          "foco": 0.63
+        },
+        {
+          "t": 2.9,
+          "foco": 0.627
+        },
+        {
+          "t": 3,
+          "foco": 0.624
+        },
+        {
+          "t": 3.1,
+          "foco": 0.62
+        },
+        {
+          "t": 3.2,
+          "foco": 0.616
+        },
+        {
+          "t": 3.3,
+          "foco": 0.61
+        },
+        {
+          "t": 3.4,
+          "foco": 0.602
+        },
+        {
+          "t": 3.5,
+          "foco": 0.593
+        },
+        {
+          "t": 3.6,
+          "foco": 0.584
+        },
+        {
+          "t": 3.7,
+          "foco": 0.577
+        },
+        {
+          "t": 3.8,
+          "foco": 0.574
+        },
+        {
+          "t": 3.9,
+          "foco": 0.572
+        }
+      ],
+      "tags": [
+        "banda:pjnoventa",
+        "alive",
+        "vocal",
+        "estudio"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando",
+          "gritando"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista soltando a voz de boca aberta"
+      },
+      "nota": 5
+    }
+  ]
+}

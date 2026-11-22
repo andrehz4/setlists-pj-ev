@@ -1,0 +1,1443 @@
+{
+  "banda": "pearljamsp",
+  "clips": [
+    {
+      "file": "pearljamsp-jeremy-guitarra-1.mp4",
+      "origem": "https://www.youtube.com/watch?v=vIEUCAyqOUU",
+      "ini": 84,
+      "fim": 87.5,
+      "dur": 3.5,
+      "foco": "centro",
+      "focoX": 0.5,
+      "tags": [
+        "banda:pearljamsp",
+        "jeremy",
+        "guitarra",
+        "palco"
+      ],
+      "broll": {
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "tocando"
+        ],
+        "clima": "intenso",
+        "descricao": "guitarrista de camisa xadrez sob luz verde"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pearljamsp-jeremy-vocal-2.mp4",
+      "origem": "https://www.youtube.com/watch?v=vIEUCAyqOUU",
+      "ini": 133,
+      "fim": 137,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.455
+        },
+        {
+          "t": 0.1,
+          "foco": 0.453
+        },
+        {
+          "t": 0.2,
+          "foco": 0.45
+        },
+        {
+          "t": 0.3,
+          "foco": 0.445
+        },
+        {
+          "t": 0.4,
+          "foco": 0.439
+        },
+        {
+          "t": 0.5,
+          "foco": 0.432
+        },
+        {
+          "t": 0.6,
+          "foco": 0.426
+        },
+        {
+          "t": 0.7,
+          "foco": 0.42
+        },
+        {
+          "t": 0.8,
+          "foco": 0.415
+        },
+        {
+          "t": 0.9,
+          "foco": 0.411
+        },
+        {
+          "t": 1,
+          "foco": 0.407
+        },
+        {
+          "t": 1.1,
+          "foco": 0.403
+        },
+        {
+          "t": 1.2,
+          "foco": 0.4
+        },
+        {
+          "t": 1.3,
+          "foco": 0.398
+        },
+        {
+          "t": 1.4,
+          "foco": 0.397
+        },
+        {
+          "t": 1.5,
+          "foco": 0.398
+        },
+        {
+          "t": 1.6,
+          "foco": 0.399
+        },
+        {
+          "t": 1.7,
+          "foco": 0.402
+        },
+        {
+          "t": 1.8,
+          "foco": 0.406
+        },
+        {
+          "t": 1.9,
+          "foco": 0.41
+        },
+        {
+          "t": 2,
+          "foco": 0.412
+        },
+        {
+          "t": 2.1,
+          "foco": 0.413
+        },
+        {
+          "t": 2.2,
+          "foco": 0.414
+        },
+        {
+          "t": 2.3,
+          "foco": 0.412
+        },
+        {
+          "t": 2.4,
+          "foco": 0.41
+        },
+        {
+          "t": 2.5,
+          "foco": 0.408
+        },
+        {
+          "t": 2.6,
+          "foco": 0.405
+        },
+        {
+          "t": 2.7,
+          "foco": 0.403
+        },
+        {
+          "t": 2.8,
+          "foco": 0.399
+        },
+        {
+          "t": 2.9,
+          "foco": 0.396
+        },
+        {
+          "t": 3,
+          "foco": 0.393
+        },
+        {
+          "t": 3.1,
+          "foco": 0.39
+        },
+        {
+          "t": 3.2,
+          "foco": 0.388
+        },
+        {
+          "t": 3.3,
+          "foco": 0.388
+        },
+        {
+          "t": 3.4,
+          "foco": 0.39
+        },
+        {
+          "t": 3.5,
+          "foco": 0.393
+        },
+        {
+          "t": 3.6,
+          "foco": 0.394
+        },
+        {
+          "t": 3.7,
+          "foco": 0.395
+        },
+        {
+          "t": 3.8,
+          "foco": 0.394
+        },
+        {
+          "t": 3.9,
+          "foco": 0.394
+        },
+        {
+          "t": 4,
+          "foco": 0.393
+        }
+      ],
+      "tags": [
+        "banda:pearljamsp",
+        "jeremy",
+        "vocal",
+        "palco"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "intenso",
+        "descricao": "vocalista agarrado ao microfone, luz verde"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pearljamsp-jeremy-vocal-3.mp4",
+      "origem": "https://www.youtube.com/watch?v=vIEUCAyqOUU",
+      "ini": 176,
+      "fim": 180,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.392
+        },
+        {
+          "t": 0.1,
+          "foco": 0.395
+        },
+        {
+          "t": 0.2,
+          "foco": 0.398
+        },
+        {
+          "t": 0.3,
+          "foco": 0.404
+        },
+        {
+          "t": 0.4,
+          "foco": 0.411
+        },
+        {
+          "t": 0.5,
+          "foco": 0.423
+        },
+        {
+          "t": 0.6,
+          "foco": 0.436
+        },
+        {
+          "t": 0.7,
+          "foco": 0.447
+        },
+        {
+          "t": 0.8,
+          "foco": 0.454
+        },
+        {
+          "t": 0.9,
+          "foco": 0.458
+        },
+        {
+          "t": 1,
+          "foco": 0.462
+        },
+        {
+          "t": 1.1,
+          "foco": 0.465
+        },
+        {
+          "t": 1.2,
+          "foco": 0.467
+        },
+        {
+          "t": 1.3,
+          "foco": 0.469
+        },
+        {
+          "t": 1.4,
+          "foco": 0.47
+        },
+        {
+          "t": 1.5,
+          "foco": 0.47
+        },
+        {
+          "t": 1.6,
+          "foco": 0.47
+        },
+        {
+          "t": 1.7,
+          "foco": 0.469
+        },
+        {
+          "t": 1.8,
+          "foco": 0.469
+        },
+        {
+          "t": 1.9,
+          "foco": 0.469
+        },
+        {
+          "t": 2,
+          "foco": 0.47
+        },
+        {
+          "t": 2.1,
+          "foco": 0.472
+        },
+        {
+          "t": 2.2,
+          "foco": 0.471
+        },
+        {
+          "t": 2.3,
+          "foco": 0.467
+        },
+        {
+          "t": 2.4,
+          "foco": 0.464
+        },
+        {
+          "t": 2.5,
+          "foco": 0.46
+        },
+        {
+          "t": 2.6,
+          "foco": 0.458
+        },
+        {
+          "t": 2.7,
+          "foco": 0.456
+        },
+        {
+          "t": 2.8,
+          "foco": 0.454
+        },
+        {
+          "t": 2.9,
+          "foco": 0.454
+        },
+        {
+          "t": 3,
+          "foco": 0.454
+        },
+        {
+          "t": 3.1,
+          "foco": 0.454
+        },
+        {
+          "t": 3.2,
+          "foco": 0.456
+        },
+        {
+          "t": 3.3,
+          "foco": 0.458
+        },
+        {
+          "t": 3.4,
+          "foco": 0.459
+        },
+        {
+          "t": 3.5,
+          "foco": 0.46
+        },
+        {
+          "t": 3.6,
+          "foco": 0.46
+        },
+        {
+          "t": 3.7,
+          "foco": 0.46
+        },
+        {
+          "t": 3.8,
+          "foco": 0.461
+        },
+        {
+          "t": 3.9,
+          "foco": 0.461
+        },
+        {
+          "t": 4,
+          "foco": 0.461
+        }
+      ],
+      "tags": [
+        "banda:pearljamsp",
+        "jeremy",
+        "vocal",
+        "palco"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "intenso",
+        "descricao": "vocalista de perto, olhos fechados, luz azul"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pearljamsp-jeremy-vocal-4.mp4",
+      "origem": "https://www.youtube.com/watch?v=vIEUCAyqOUU",
+      "ini": 186,
+      "fim": 190,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.45
+        },
+        {
+          "t": 0.1,
+          "foco": 0.452
+        },
+        {
+          "t": 0.2,
+          "foco": 0.456
+        },
+        {
+          "t": 0.3,
+          "foco": 0.462
+        },
+        {
+          "t": 0.4,
+          "foco": 0.47
+        },
+        {
+          "t": 0.5,
+          "foco": 0.482
+        },
+        {
+          "t": 0.6,
+          "foco": 0.494
+        },
+        {
+          "t": 0.7,
+          "foco": 0.506
+        },
+        {
+          "t": 0.8,
+          "foco": 0.516
+        },
+        {
+          "t": 0.9,
+          "foco": 0.523
+        },
+        {
+          "t": 1,
+          "foco": 0.53
+        },
+        {
+          "t": 1.1,
+          "foco": 0.535
+        },
+        {
+          "t": 1.2,
+          "foco": 0.54
+        },
+        {
+          "t": 1.3,
+          "foco": 0.545
+        },
+        {
+          "t": 1.4,
+          "foco": 0.552
+        },
+        {
+          "t": 1.5,
+          "foco": 0.56
+        },
+        {
+          "t": 1.6,
+          "foco": 0.57
+        },
+        {
+          "t": 1.7,
+          "foco": 0.58
+        },
+        {
+          "t": 1.8,
+          "foco": 0.592
+        },
+        {
+          "t": 1.9,
+          "foco": 0.601
+        },
+        {
+          "t": 2,
+          "foco": 0.606
+        },
+        {
+          "t": 2.1,
+          "foco": 0.606
+        },
+        {
+          "t": 2.2,
+          "foco": 0.602
+        },
+        {
+          "t": 2.3,
+          "foco": 0.598
+        },
+        {
+          "t": 2.4,
+          "foco": 0.594
+        },
+        {
+          "t": 2.5,
+          "foco": 0.591
+        },
+        {
+          "t": 2.6,
+          "foco": 0.587
+        },
+        {
+          "t": 2.7,
+          "foco": 0.582
+        },
+        {
+          "t": 2.8,
+          "foco": 0.574
+        },
+        {
+          "t": 2.9,
+          "foco": 0.562
+        },
+        {
+          "t": 3,
+          "foco": 0.549
+        },
+        {
+          "t": 3.1,
+          "foco": 0.534
+        },
+        {
+          "t": 3.2,
+          "foco": 0.521
+        },
+        {
+          "t": 3.3,
+          "foco": 0.509
+        },
+        {
+          "t": 3.4,
+          "foco": 0.498
+        },
+        {
+          "t": 3.5,
+          "foco": 0.487
+        },
+        {
+          "t": 3.6,
+          "foco": 0.476
+        },
+        {
+          "t": 3.7,
+          "foco": 0.466
+        },
+        {
+          "t": 3.8,
+          "foco": 0.459
+        },
+        {
+          "t": 3.9,
+          "foco": 0.453
+        },
+        {
+          "t": 4,
+          "foco": 0.451
+        }
+      ],
+      "tags": [
+        "banda:pearljamsp",
+        "jeremy",
+        "vocal",
+        "palco"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "intenso",
+        "descricao": "vocalista cantando forte no pedestal"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pearljamsp-sirens-vocal-5.mp4",
+      "origem": "https://www.youtube.com/watch?v=fb0sz_9DntU",
+      "ini": 203,
+      "fim": 207,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.44
+        },
+        {
+          "t": 0.1,
+          "foco": 0.439
+        },
+        {
+          "t": 0.2,
+          "foco": 0.436
+        },
+        {
+          "t": 0.3,
+          "foco": 0.433
+        },
+        {
+          "t": 0.4,
+          "foco": 0.431
+        },
+        {
+          "t": 0.5,
+          "foco": 0.428
+        },
+        {
+          "t": 0.6,
+          "foco": 0.426
+        },
+        {
+          "t": 0.7,
+          "foco": 0.424
+        },
+        {
+          "t": 0.8,
+          "foco": 0.422
+        },
+        {
+          "t": 0.9,
+          "foco": 0.421
+        },
+        {
+          "t": 1,
+          "foco": 0.42
+        },
+        {
+          "t": 1.1,
+          "foco": 0.42
+        },
+        {
+          "t": 1.2,
+          "foco": 0.421
+        },
+        {
+          "t": 1.3,
+          "foco": 0.426
+        },
+        {
+          "t": 1.4,
+          "foco": 0.433
+        },
+        {
+          "t": 1.5,
+          "foco": 0.441
+        },
+        {
+          "t": 1.6,
+          "foco": 0.451
+        },
+        {
+          "t": 1.7,
+          "foco": 0.462
+        },
+        {
+          "t": 1.8,
+          "foco": 0.473
+        },
+        {
+          "t": 1.9,
+          "foco": 0.483
+        },
+        {
+          "t": 2,
+          "foco": 0.493
+        },
+        {
+          "t": 2.1,
+          "foco": 0.501
+        },
+        {
+          "t": 2.2,
+          "foco": 0.507
+        },
+        {
+          "t": 2.3,
+          "foco": 0.511
+        },
+        {
+          "t": 2.4,
+          "foco": 0.514
+        },
+        {
+          "t": 2.5,
+          "foco": 0.513
+        },
+        {
+          "t": 2.6,
+          "foco": 0.51
+        },
+        {
+          "t": 2.7,
+          "foco": 0.504
+        },
+        {
+          "t": 2.8,
+          "foco": 0.496
+        },
+        {
+          "t": 2.9,
+          "foco": 0.486
+        },
+        {
+          "t": 3,
+          "foco": 0.476
+        },
+        {
+          "t": 3.1,
+          "foco": 0.465
+        },
+        {
+          "t": 3.2,
+          "foco": 0.454
+        },
+        {
+          "t": 3.3,
+          "foco": 0.444
+        },
+        {
+          "t": 3.4,
+          "foco": 0.434
+        },
+        {
+          "t": 3.5,
+          "foco": 0.428
+        },
+        {
+          "t": 3.6,
+          "foco": 0.422
+        },
+        {
+          "t": 3.7,
+          "foco": 0.417
+        },
+        {
+          "t": 3.8,
+          "foco": 0.412
+        },
+        {
+          "t": 3.9,
+          "foco": 0.408
+        },
+        {
+          "t": 4,
+          "foco": 0.405
+        }
+      ],
+      "tags": [
+        "banda:pearljamsp",
+        "sirens",
+        "vocal",
+        "palco"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "intenso",
+        "descricao": "vocalista cantando, gesto com a mão"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pearljamsp-komblue-guitarra-vocal-6.mp4",
+      "origem": "https://www.youtube.com/watch?v=AAX9ndCRf4Q&t=296",
+      "ini": 4,
+      "fim": 8.5,
+      "dur": 4.5,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.119
+        },
+        {
+          "t": 0.1,
+          "foco": 0.182
+        },
+        {
+          "t": 0.2,
+          "foco": 0.218
+        },
+        {
+          "t": 0.3,
+          "foco": 0.239
+        },
+        {
+          "t": 0.4,
+          "foco": 0.25
+        },
+        {
+          "t": 0.5,
+          "foco": 0.255
+        },
+        {
+          "t": 0.6,
+          "foco": 0.257
+        },
+        {
+          "t": 0.7,
+          "foco": 0.256
+        },
+        {
+          "t": 0.8,
+          "foco": 0.254
+        },
+        {
+          "t": 0.9,
+          "foco": 0.251
+        },
+        {
+          "t": 1,
+          "foco": 0.249
+        },
+        {
+          "t": 1.1,
+          "foco": 0.247
+        },
+        {
+          "t": 1.2,
+          "foco": 0.245
+        },
+        {
+          "t": 1.3,
+          "foco": 0.242
+        },
+        {
+          "t": 1.4,
+          "foco": 0.239
+        },
+        {
+          "t": 1.5,
+          "foco": 0.237
+        },
+        {
+          "t": 1.6,
+          "foco": 0.234
+        },
+        {
+          "t": 1.7,
+          "foco": 0.233
+        },
+        {
+          "t": 1.8,
+          "foco": 0.232
+        },
+        {
+          "t": 1.9,
+          "foco": 0.232
+        },
+        {
+          "t": 2,
+          "foco": 0.232
+        },
+        {
+          "t": 2.1,
+          "foco": 0.232
+        },
+        {
+          "t": 2.2,
+          "foco": 0.233
+        },
+        {
+          "t": 2.3,
+          "foco": 0.234
+        },
+        {
+          "t": 2.4,
+          "foco": 0.235
+        },
+        {
+          "t": 2.5,
+          "foco": 0.235
+        },
+        {
+          "t": 2.6,
+          "foco": 0.236
+        },
+        {
+          "t": 2.7,
+          "foco": 0.236
+        },
+        {
+          "t": 2.8,
+          "foco": 0.236
+        },
+        {
+          "t": 2.9,
+          "foco": 0.236
+        },
+        {
+          "t": 3,
+          "foco": 0.236
+        },
+        {
+          "t": 3.1,
+          "foco": 0.235
+        },
+        {
+          "t": 3.2,
+          "foco": 0.235
+        },
+        {
+          "t": 3.3,
+          "foco": 0.234
+        },
+        {
+          "t": 3.4,
+          "foco": 0.235
+        },
+        {
+          "t": 3.5,
+          "foco": 0.236
+        },
+        {
+          "t": 3.6,
+          "foco": 0.237
+        },
+        {
+          "t": 3.7,
+          "foco": 0.239
+        },
+        {
+          "t": 3.8,
+          "foco": 0.241
+        },
+        {
+          "t": 3.9,
+          "foco": 0.242
+        },
+        {
+          "t": 4,
+          "foco": 0.243
+        },
+        {
+          "t": 4.1,
+          "foco": 0.243
+        },
+        {
+          "t": 4.2,
+          "foco": 0.244
+        },
+        {
+          "t": 4.3,
+          "foco": 0.245
+        },
+        {
+          "t": 4.4,
+          "foco": 0.246
+        }
+      ],
+      "tags": [
+        "banda:pearljamsp",
+        "komblue",
+        "vocal",
+        "guitarra"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista",
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "cantando",
+          "tocando"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista e guitarrista lado a lado no Komblue"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pearljamsp-komblue-vocal-7.mp4",
+      "origem": "https://www.youtube.com/watch?v=AAX9ndCRf4Q&t=9172",
+      "ini": 6,
+      "fim": 10,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.391
+        },
+        {
+          "t": 0.1,
+          "foco": 0.387
+        },
+        {
+          "t": 0.2,
+          "foco": 0.385
+        },
+        {
+          "t": 0.3,
+          "foco": 0.384
+        },
+        {
+          "t": 0.4,
+          "foco": 0.384
+        },
+        {
+          "t": 0.5,
+          "foco": 0.384
+        },
+        {
+          "t": 0.6,
+          "foco": 0.384
+        },
+        {
+          "t": 0.7,
+          "foco": 0.383
+        },
+        {
+          "t": 0.8,
+          "foco": 0.382
+        },
+        {
+          "t": 0.9,
+          "foco": 0.381
+        },
+        {
+          "t": 1,
+          "foco": 0.38
+        },
+        {
+          "t": 1.1,
+          "foco": 0.379
+        },
+        {
+          "t": 1.2,
+          "foco": 0.378
+        },
+        {
+          "t": 1.3,
+          "foco": 0.377
+        },
+        {
+          "t": 1.4,
+          "foco": 0.377
+        },
+        {
+          "t": 1.5,
+          "foco": 0.375
+        },
+        {
+          "t": 1.6,
+          "foco": 0.374
+        },
+        {
+          "t": 1.7,
+          "foco": 0.374
+        },
+        {
+          "t": 1.8,
+          "foco": 0.373
+        },
+        {
+          "t": 1.9,
+          "foco": 0.372
+        },
+        {
+          "t": 2,
+          "foco": 0.373
+        },
+        {
+          "t": 2.1,
+          "foco": 0.373
+        },
+        {
+          "t": 2.2,
+          "foco": 0.374
+        },
+        {
+          "t": 2.3,
+          "foco": 0.375
+        },
+        {
+          "t": 2.4,
+          "foco": 0.375
+        },
+        {
+          "t": 2.5,
+          "foco": 0.377
+        },
+        {
+          "t": 2.6,
+          "foco": 0.378
+        },
+        {
+          "t": 2.7,
+          "foco": 0.379
+        },
+        {
+          "t": 2.8,
+          "foco": 0.38
+        },
+        {
+          "t": 2.9,
+          "foco": 0.381
+        },
+        {
+          "t": 3,
+          "foco": 0.381
+        },
+        {
+          "t": 3.1,
+          "foco": 0.381
+        },
+        {
+          "t": 3.2,
+          "foco": 0.381
+        },
+        {
+          "t": 3.3,
+          "foco": 0.381
+        },
+        {
+          "t": 3.4,
+          "foco": 0.38
+        },
+        {
+          "t": 3.5,
+          "foco": 0.38
+        },
+        {
+          "t": 3.6,
+          "foco": 0.38
+        },
+        {
+          "t": 3.7,
+          "foco": 0.381
+        },
+        {
+          "t": 3.8,
+          "foco": 0.38
+        },
+        {
+          "t": 3.9,
+          "foco": 0.379
+        }
+      ],
+      "tags": [
+        "banda:pearljamsp",
+        "komblue",
+        "vocal"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "intenso",
+        "descricao": "close do vocalista cantando com a mão no microfone"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pearljamsp-komblue-cabelo-8.mp4",
+      "origem": "https://www.youtube.com/watch?v=AAX9ndCRf4Q&t=9953",
+      "ini": 3.5,
+      "fim": 7.5,
+      "dur": 4,
+      "foco": "rosto",
+      "focoTrilha": [
+        {
+          "t": 0,
+          "foco": 0.43
+        },
+        {
+          "t": 0.1,
+          "foco": 0.431
+        },
+        {
+          "t": 0.2,
+          "foco": 0.433
+        },
+        {
+          "t": 0.3,
+          "foco": 0.435
+        },
+        {
+          "t": 0.4,
+          "foco": 0.439
+        },
+        {
+          "t": 0.5,
+          "foco": 0.444
+        },
+        {
+          "t": 0.6,
+          "foco": 0.45
+        },
+        {
+          "t": 0.7,
+          "foco": 0.459
+        },
+        {
+          "t": 0.8,
+          "foco": 0.473
+        },
+        {
+          "t": 0.9,
+          "foco": 0.491
+        },
+        {
+          "t": 1,
+          "foco": 0.507
+        },
+        {
+          "t": 1.1,
+          "foco": 0.524
+        },
+        {
+          "t": 1.2,
+          "foco": 0.543
+        },
+        {
+          "t": 1.3,
+          "foco": 0.559
+        },
+        {
+          "t": 1.4,
+          "foco": 0.576
+        },
+        {
+          "t": 1.5,
+          "foco": 0.594
+        },
+        {
+          "t": 1.6,
+          "foco": 0.612
+        },
+        {
+          "t": 1.7,
+          "foco": 0.629
+        },
+        {
+          "t": 1.8,
+          "foco": 0.643
+        },
+        {
+          "t": 1.9,
+          "foco": 0.656
+        },
+        {
+          "t": 2,
+          "foco": 0.66
+        },
+        {
+          "t": 2.1,
+          "foco": 0.694
+        },
+        {
+          "t": 2.2,
+          "foco": 0.707
+        },
+        {
+          "t": 2.3,
+          "foco": 0.702
+        },
+        {
+          "t": 2.4,
+          "foco": 0.679
+        },
+        {
+          "t": 2.5,
+          "foco": 0.694
+        },
+        {
+          "t": 2.6,
+          "foco": 0.696
+        },
+        {
+          "t": 2.7,
+          "foco": 0.692
+        },
+        {
+          "t": 2.8,
+          "foco": 0.676
+        },
+        {
+          "t": 2.9,
+          "foco": 0.708
+        },
+        {
+          "t": 3,
+          "foco": 0.708
+        },
+        {
+          "t": 3.1,
+          "foco": 0.695
+        },
+        {
+          "t": 3.2,
+          "foco": 0.657
+        },
+        {
+          "t": 3.3,
+          "foco": 0.668
+        },
+        {
+          "t": 3.4,
+          "foco": 0.66
+        },
+        {
+          "t": 3.5,
+          "foco": 0.635
+        },
+        {
+          "t": 3.6,
+          "foco": 0.585
+        },
+        {
+          "t": 3.7,
+          "foco": 0.555
+        },
+        {
+          "t": 3.8,
+          "foco": 0.538
+        },
+        {
+          "t": 3.9,
+          "foco": 0.53
+        }
+      ],
+      "tags": [
+        "banda:pearljamsp",
+        "komblue",
+        "vocal",
+        "headbang"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando",
+          "headbang"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista balança o cabelo e volta pro microfone"
+      },
+      "nota": 5
+    },
+    {
+      "file": "pearljamsp-ig-vocal-9.mp4",
+      "origem": "https://www.instagram.com/pearljamsp/reel/DDaEiSMRfN9/",
+      "ini": 0.5,
+      "fim": 4,
+      "dur": 3.5,
+      "foco": "centro",
+      "focoX": 0.5,
+      "tags": [
+        "banda:pearljamsp",
+        "instagram",
+        "vocal",
+        "bar"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista",
+          "publico"
+        ],
+        "plano": "medio",
+        "acao": [
+          "cantando",
+          "braco-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista de boné com o braço pro alto, celulares filmando"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pearljamsp-ig-publico-10.mp4",
+      "origem": "https://www.instagram.com/pearljamsp/reel/DDaEiSMRfN9/",
+      "ini": 10,
+      "fim": 14,
+      "dur": 4,
+      "foco": "centro",
+      "focoX": 0.5,
+      "tags": [
+        "banda:pearljamsp",
+        "instagram",
+        "publico",
+        "bar"
+      ],
+      "broll": {
+        "quem": [
+          "publico"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando-junto",
+          "maos-pro-alto"
+        ],
+        "clima": "energia",
+        "descricao": "público cantando junto de perto, mão pro alto"
+      },
+      "nota": 4
+    }
+  ]
+}

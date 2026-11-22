@@ -6,6 +6,22 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Reel "Agenda da semana", PRÉVIA APROVADA (22/11 tarde, "ficou muito bom"):** `reels-especiais/agenda-semana/`.
+  `gera.mjs` (prévia por código), `design/montar.mjs` (MP4 exportado do Claude Design + narração + trilha + cortes do PJ
+  na abertura = `design/reel-exemplo.mp4`), `falas.mjs` (textos e pronúncia aprovada de ouvido: "Na quinta", "Ozasco",
+  "São nove shows"), `audicao.mjs` (página de audição com Whisper; Whisper só filtra, o Andre decide).
+  Claude Design: projeto "Reel Agenda da semana" (https://claude.ai/design/p/fc29f18d-fad2-4d99-bdf1-3654061e498e),
+  4 layouts (A cartaz, B ingresso, C lambe-lambe, D tipográfico) x 3 paletas (amarelo, laranja, azul), MOTION-SPEC
+  por layout. Pedido em `design-handoff/reel-agenda/`. Claude Design muda de lugar em 14/12 (mover o projeto).
+  Acervo de vídeo das COVERS sendo montado por agentes (22/11 noite) em `media/reels-clips/covers/<conta>/`
+  (`clips.json` por banda, MP4 9:16 mudos centrados no rosto, fora do git). Placar: `node media/reels-clips/covers/placar.mjs`
+  (meta 6 trechos + 3 close forte); cortador do agente guardado em `media/reels-clips/covers/cortar.mjs`.
+  22/11 14h30: 9 de 10 bandas com trechos; deficientes (falta close forte): Alive, Black Circle, Singles, Jeremy (Jeremy:
+  vídeos de 2012 talvez com vocalista antigo, conferir); Love Boat ainda rodando. Andre vai procurar na mão o que faltar.
+  4 layouts EXPORTADOS do Design e montados com narração: `reels-especiais/agenda-semana/design/reel-{a-azul,b-amarelo,
+  c-laranja,d-azul}.mp4` (`montar.mjs --video layout-X.mp4 --saida reel-X.mp4`; export do Design: Share > Video > Original).
+  Próximo: Andre escolhe/aprova layouts; portar pro gerador (módulo apartado, flag) com rodízio layout x paleta, covers no
+  fundo dos dias no lugar do placeholder, falas de falas.mjs.
 - **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
   domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
   carrosséis ~0,2%). Dados: workflow manual `ig-insights.yml` (`scripts/ig-insights/coletar.mjs`, seguidores/dia; a API
