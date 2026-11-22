@@ -10,7 +10,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
   carrosséis ~0,2%). Dados: workflow manual `ig-insights.yml` (`scripts/ig-insights/coletar.mjs`, seguidores/dia; a API
   não dá seguidores por reel). Formato: abertura 3 s com o PEARL JAM de verdade (acervo de transições atual, regra do Andre; covers só depois, no fundo das cenas dos dias) + mapa acendendo os estados + uma cena POR DIA
-  (dia grande, cidade, banda @ casa) + fecho "toda segunda tem, segue". Marcar banda e casa (repost das bandas = alcance de
+  (dia grande, cidade, banda @ casa) + fecho "toda terça tem, segue". Sai na TERÇA (cobre terça a domingo); o carrossel "Agenda da semana" de segunda FICA como está. Marcar banda e casa (repost das bandas = alcance de
   não seguidor). Acervo de vídeos das COVERS pra transições (Andre: sem DM, tem muito material pronto): 1) YouTube das bandas,
   2) vídeo do IG delas que o Andre mandar pelo Drive, sempre mudo e trecho curto, tag `banda:<conta>` no transicoes.json;
   nunca raspar o IG. Banda sem vídeo: foto do perfil ou plano de plateia.
