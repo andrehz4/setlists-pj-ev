@@ -14,6 +14,7 @@ import { carregarTransicoes, recorte } from "../../../scripts/publish/reel/trans
 import { materializar } from "../../../scripts/publish/reel/acervo-r2.mjs";
 import { sintetizar } from "../../../scripts/publish/narracao/elevenlabs.mjs";
 import { ABERTURA, FECHO, textoMapa, textoDia } from "../falas.mjs";
+import { fundoDoDia } from "./covers.mjs";
 
 const dir = path.dirname(fileURLToPath(import.meta.url)), saidaVoz = path.join(dir, "..", "saida");
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i >= 0 ? process.argv[i + 1] : d; };
@@ -29,14 +30,15 @@ const doDia = (d) => SHOWS.filter((s) => s.data === d);
 const CENAS = [
   { nome: "abertura", d: 3.0, texto: ABERTURA },
   { nome: "mapa", d: 3.5, texto: textoMapa(9, 8) },
-  { nome: "quinta", d: 3.0, texto: textoDia("2026-11-26", doDia("2026-11-26")) },
-  { nome: "sexta", d: 8.1, texto: textoDia("2026-11-27", doDia("2026-11-27")) },
-  { nome: "sabado", d: 8.1, texto: textoDia("2026-11-28", doDia("2026-11-28")) },
+  { nome: "quinta", d: 3.0, data: "2026-11-26" },
+  { nome: "sexta", d: 8.1, data: "2026-11-27" },
+  { nome: "sabado", d: 8.1, data: "2026-11-28" },
   { nome: "fecho", d: 3.0, texto: FECHO },
 ];
 const chave = fs.readFileSync("/Users/andrehz/.elevenlabs-key", "utf8").trim();
 let ini = 0, novoIni = 0;
 for (const c of CENAS) {
+  if (c.data) c.texto = textoDia(c.data, doDia(c.data));
   c.voz = arqVoz(c.texto);
   if (!fs.existsSync(c.voz)) await sintetizar(c.texto, { vozId: voz.id, apiKey: chave, destino: c.voz });
   c.ini = ini; ini += c.d;
@@ -50,17 +52,34 @@ const ESCOLHA = ["even-flow-stage-dive.mp4", "even-flow-bateria-cabelo.mp4", "al
 const cortes = materializar(carregarTransicoes().filter((t) => ESCOLHA.includes(t.file)));
 const ped = CENAS[0].alvo / cortes.length;
 const ins = ["-i", ENTRADA, ...cortes.flatMap((c) => ["-ss", "0.1", "-t", ped.toFixed(3), "-an", "-i", c.arq])];
+const ESCURO = "eq=brightness=-0.24:contrast=1.1:saturation=0.85", MEIO = "eq=brightness=-0.1:contrast=1.1:saturation=0.9";
 const f = CENAS.map((c, i) => `[0:v]trim=${c.ini}:${(c.ini + c.d).toFixed(3)},setpts=(PTS-STARTPTS)*${(c.alvo / c.d).toFixed(4)},fps=30,setsar=1[s${i}]`);
-cortes.forEach((c, i) => f.push(`[${i + 1}:v]${recorte(c)},scale=1080:1920,fps=30,setsar=1,trim=duration=${ped.toFixed(3)},setpts=PTS-STARTPTS,eq=brightness=-0.24:contrast=1.1:saturation=0.85[k${i}]`));
+cortes.forEach((c, i) => f.push(`[${i + 1}:v]${recorte(c)},scale=1080:1920,fps=30,setsar=1,trim=duration=${ped.toFixed(3)},setpts=PTS-STARTPTS,${ESCURO}[k${i}]`));
 f.push(`${cortes.map((_, i) => `[k${i}]`).join("")}concat=n=${cortes.length}:v=1:a=0,format=gbrp[pj]`,
-  `[s0]format=gbrp[s0g]`, `[s0g][pj]blend=all_mode=lighten,format=yuv420p[ab]`,
-  `[ab]${CENAS.slice(1).map((_, i) => `[s${i + 1}]`).join("")}concat=n=${CENAS.length}:v=1:a=0,format=yuv420p[v]`);
+  `[s0]format=gbrp[s0g]`, `[s0g][pj]blend=all_mode=lighten,format=yuv420p[c0]`);
+// Cenas dos dias: trechos das covers de cada show por baixo (mesmo lighten; cartões claros do Design ficam por cima).
+let nIn = 1 + cortes.length;
+CENAS.forEach((c, i) => {
+  if (i === 0) return;
+  if (!c.data) { f.push(`[s${i}]null[c${i}]`); return; }
+  const pedacos = fundoDoDia(doDia(c.data), c.alvo);
+  const rot = pedacos.map((p, j) => {
+    if (p.arq) { ins.push("-an", "-i", p.arq); f.push(`[${nIn++}:v]scale=1080:1920,fps=30,setsar=1,trim=duration=${p.dur.toFixed(3)},setpts=PTS-STARTPTS,${MEIO},tpad=stop_mode=clone:stop_duration=1,trim=duration=${p.dur.toFixed(3)}[d${i}_${j}]`); }
+    else f.push(`color=black:s=1080x1920:r=30:d=${p.dur.toFixed(3)},setsar=1[d${i}_${j}]`);
+    return `[d${i}_${j}]`;
+  });
+  // Máscara dos cartões: tudo que é claro no Design, engordado pra tapar as letras escuras de dentro.
+  f.push(`${rot.join("")}concat=n=${rot.length}:v=1:a=0,format=gbrp[b${i}]`, `[s${i}]format=gbrp,split=3[s${i}g][s${i}h][s${i}m]`,
+    `[s${i}m]format=gray,lut=y='if(gt(val,70),255,0)',boxblur=22:1,lut=y='if(gt(val,8),255,0)',format=gbrp[m${i}]`,
+    `[s${i}g][b${i}]blend=all_mode=lighten:shortest=1[l${i}]`, `[l${i}][s${i}h][m${i}]maskedmerge,format=yuv420p[c${i}]`);
+});
+f.push(`${CENAS.map((_, i) => `[c${i}]`).join("")}concat=n=${CENAS.length}:v=1:a=0,format=yuv420p[v]`);
 
 // Áudio: fala 0,15 s depois do início da cena, whoosh nas trocas, trilha própria baixa.
 const trilha = trilhaPropria({ uso: "reel", semente: "agenda-2026-11-24", plano: [{ de: 0, ate: total, nivel: "cheio" }],
   duracao: total, saida: path.join(dir, "trilha.m4a"), env: { TRILHA_PROPRIA: "1" } });
 if (!trilha) throw new Error("trilha própria não montou");
-const base = 1 + cortes.length, whoosh = naRaiz("media/agenda/voz/whoosh.mp3");
+const base = nIn, whoosh = naRaiz("media/agenda/voz/whoosh.mp3");
 ins.push(...CENAS.flatMap((c) => ["-i", c.voz]), "-i", trilha.path, ...CENAS.slice(1).flatMap(() => ["-i", whoosh]));
 CENAS.forEach((c, i) => { const ms = Math.round((c.novoIni + 0.15) * 1000); f.push(`[${base + i}:a]adelay=${ms}|${ms},aformat=channel_layouts=stereo[f${i}]`); });
 const iT = base + CENAS.length;
