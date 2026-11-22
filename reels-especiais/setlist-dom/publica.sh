@@ -7,7 +7,7 @@ P=reels-especiais/setlist-dom
 node $P/busca.mjs
 node $P/folha.mjs
 node $P/gera.mjs
-rm -rf $P/saida && node scripts/publish/carrossel/render.mjs $P/design/carrossel.html $P/saida amarelo >/dev/null
+rm -f $P/saida/*.jpg; node scripts/publish/carrossel/render.mjs $P/design/carrossel.html $P/saida amarelo >/dev/null
 [ "$1" = "--sem-publicar" ] && { echo "prévia em $P/saida"; exit 0; }
 V=$(date +%H%M)
 for n in 1 2; do

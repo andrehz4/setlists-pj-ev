@@ -1,5 +1,5 @@
-// Carrossel "Setlist completa" da 2ª noite (22/11/2026): slide 1 folha à mão, slide 2 lista numerada com o que não
-// teve na sexta. Grava design/carrossel.html e legenda.txt a partir de setlist.json.
+// Carrossel "Setlist completa" da 2ª noite (22/11/2026), no molde do "Edinho? São Paulo foi espetacular": capa com a foto
+// da setlist à mão, folha do gerador, lista em amarelo (★ = não teve na sexta), pergunta. Grava design/carrossel.html e legenda.txt a partir de setlist.json.
 // Uso: node reels-especiais/setlist-dom/gera.mjs
 import fs from "node:fs";
 import path from "node:path";
@@ -15,30 +15,54 @@ const M = s.musicas.map((m, i) => ({ ...m, n: i + 1, nova: !naSexta.has(norm(m.n
 const curto = (t) => CURTO[norm(t)] || t;
 const novas = M.filter((m) => m.nova), repetidas = M.length - novas.length;
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+// Capa: foto da setlist de papel de verdade (design/uploads/foto-setlist.jpg, se o Andre mandar); sem ela, a folha do gerador
+const FOTO = fs.existsSync(path.join(dir, "design", "uploads", "foto-setlist.jpg")) ? "foto-setlist.jpg" : "folha.jpg";
+const TOTAL = FOTO === "folha.jpg" ? 3 : 4;
 const BS = "font-family:'Big Shoulders Display',sans-serif;font-weight:900;";
-const S = "width:1080px;height:1350px;position:relative;overflow:hidden;flex:none;background:var(--fundo);color:var(--claro);";
-const tag = (t) => `<div style="display:inline-block;background:var(--destaque);color:var(--fundo);font-weight:900;font-size:24px;letter-spacing:.14em;padding:8px 14px;">${t}</div>`;
+const S = "width:1080px;height:1350px;position:relative;overflow:hidden;flex:none;";
+const rodape = (n) => `
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;color:var(--claro);">
+    <div style="display:flex;align-items:center;gap:14px;"><div style="width:62px;height:62px;border-radius:50%;overflow:hidden;border:3px solid var(--destaque);background:var(--papel);"><img src="uploads/selo-smufdpj.jpg" alt="selo" style="width:100%;height:100%;object-fit:cover;transform:scale(1.1);"></div><div style="font-weight:800;font-size:26px;">@smufdpj</div></div>
+    <div style="${BS}font-size:30px;color:var(--destaque);">${String(n).padStart(2, "0")}/${TOTAL}</div>
+  </div>`;
+const tag = (t, inv) => `<div style="display:inline-block;background:var(--${inv ? "fundo" : "destaque"});color:var(--${inv ? "destaque" : "fundo"});font-weight:900;font-size:24px;letter-spacing:.14em;padding:8px 14px;">${t}</div>`;
+const tit = (t, tam) => `<div style="margin-top:18px;${BS}font-size:${tam}px;line-height:.88;text-transform:uppercase;letter-spacing:-2px;color:var(--destaque);">${t}</div>`;
+const txt = (t, top, tam = 40) => `<div style="position:absolute;top:${top}px;left:72px;right:72px;font-weight:800;font-size:${tam}px;line-height:1.22;">${t}</div>`;
+const sub = novas.length ? `${M.length} músicas, ${novas.length} que não tocaram na sexta.` : `${M.length} músicas, as mesmas da sexta.`;
 
-const slide1 = `<div data-screen-label="slide-01" style="${S}">
-  <div style="position:absolute;top:34px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;">${tag("SETLIST COMPLETA · 22/11")}<div style="${BS}font-size:40px;color:var(--destaque);">IBIRAPUERA · 2ª NOITE</div></div>
-  <div style="position:absolute;top:110px;left:80px;width:920px;height:1171px;box-shadow:0 20px 50px rgba(0,0,0,.55);transform:rotate(-1deg);background:url(uploads/folha.jpg) center/cover;"></div>
-  <div style="position:absolute;bottom:22px;right:60px;${BS}font-size:36px;color:var(--destaque);">ARRASTA →</div>
-</div>`;
+const slides = [];
+let n = 1;
+slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo);color:var(--claro);">
+  <img src="uploads/${FOTO}" alt="Setlist escrita à mão" style="position:absolute;top:0;left:0;width:1080px;height:1350px;object-fit:cover;object-position:50% 30%;">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,.7) 0%,rgba(20,17,15,.05) 26%,rgba(20,17,15,.25) 50%,var(--fundo) 86%);"></div>
+  <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("DOMINGO, 22/11 · IBIRAPUERA")}</div>
+  <div style="position:absolute;top:640px;left:64px;right:40px;${BS}font-size:150px;line-height:.86;letter-spacing:-3px;text-transform:uppercase;"><span style="color:#FFCC1A;-webkit-text-stroke:10px #000;paint-order:stroke fill;text-shadow:0 8px 24px rgba(0,0,0,.85),0 3px 0 #000;">Saiu!</span><br>A setlist da<br><span style="color:var(--destaque);">2ª noite</span></div>
+  ${txt(sub + " Tudo aqui, do começo ao bis.", 1060, 36)}
+  <div style="position:absolute;bottom:130px;right:64px;${BS}font-size:44px;color:var(--destaque);letter-spacing:2px;">ARRASTA →</div>
+  ${rodape(n++)}</div>`);
 
-const linhas = Math.ceil(M.length / 2);
-const fonte = M.length > 24 ? 29 : 32;
+if (FOTO !== "folha.jpg") { // folha do gerador inteira, sem nada por cima (como no carrossel de sexta)
+  slides.push(`<div data-screen-label="slide-0${n++}" style="${S}background:#fff;"><img src="uploads/folha.jpg" alt="Setlist do domingo escrita à mão" style="width:1080px;height:1350px;object-fit:cover;"></div>`);
+}
+
+const linhas = Math.ceil(M.length / 2), fonte = M.length > 24 ? 30 : 33;
 const item = (m, i) => {
-  const sep = m.bis > 0 && (i === 0 || M[i - 1].bis !== m.bis) ? `<div style="${BS}font-size:26px;color:var(--destaque);letter-spacing:3px;margin:6px 0 2px;">BIS${m.bis > 1 ? " " + m.bis : ""}</div>` : "";
-  return `${sep}<div style="display:flex;gap:12px;align-items:baseline;font-weight:800;font-size:${fonte}px;line-height:1.28;"><span style="${BS}color:var(--destaque);min-width:40px;text-align:right;">${m.n}</span><span>${esc(curto(m.nome))}${m.nova ? ` <span style="color:var(--destaque);">★</span>` : ""}</span></div>`;
+  const sep = m.bis > 0 && (i === 0 || M[i - 1].bis !== m.bis) ? `<div style="${BS}font-size:28px;letter-spacing:3px;margin:8px 0 2px;border-top:4px solid var(--fundo);padding-top:6px;">BIS${m.bis > 1 ? " " + m.bis : ""}</div>` : "";
+  return `${sep}<div style="display:flex;gap:12px;align-items:baseline;font-weight:800;font-size:${fonte}px;line-height:1.28;"><span style="${BS}min-width:40px;text-align:right;opacity:.6;">${m.n}</span><span>${esc(curto(m.nome))}${m.nova ? " ★" : ""}</span></div>`;
 };
 const col = (arr, off) => arr.map((m, i) => item(m, i + off)).join("");
-const slide2 = `<div data-screen-label="slide-02" style="${S}">
-  <div style="position:absolute;top:60px;left:64px;right:64px;">${tag("EDDIE VEDDER · SÃO PAULO II")}<div style="margin-top:14px;${BS}font-size:96px;line-height:.9;text-transform:uppercase;color:var(--destaque);">${M.length} músicas</div></div>
-  <div style="position:absolute;top:290px;left:64px;width:460px;">${col(M.slice(0, linhas), 0)}</div>
-  <div style="position:absolute;top:290px;left:560px;width:470px;">${col(M.slice(linhas), linhas)}</div>
-  <div style="position:absolute;bottom:110px;left:64px;right:64px;font-weight:800;font-size:30px;line-height:1.2;"><span style="color:var(--destaque);">★</span> ${novas.length ? `não tocou na sexta (${novas.length} de ${M.length})` : "repetiu tudo da sexta"}</div>
-  <div style="position:absolute;bottom:40px;left:64px;right:64px;display:flex;justify-content:space-between;font-weight:700;font-size:22px;"><div>@smufdpj</div><div>Fonte: setlist.fm</div></div>
-</div>`;
+slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--destaque);color:var(--fundo);">
+  <div style="position:absolute;top:72px;left:72px;">${tag("A SETLIST", true)}<div style="margin-top:14px;${BS}font-size:110px;line-height:.9;text-transform:uppercase;letter-spacing:-2px;">${M.length} músicas</div></div>
+  <div style="position:absolute;top:310px;left:72px;width:450px;">${col(M.slice(0, linhas), 0)}</div>
+  <div style="position:absolute;top:310px;left:560px;width:470px;">${col(M.slice(linhas), linhas)}</div>
+  <div style="position:absolute;bottom:110px;left:72px;right:72px;font-weight:900;font-size:30px;">${novas.length ? `★ não tocou na sexta (${novas.length} de ${M.length})` : "Repetiu tudo da sexta"}</div>
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;justify-content:space-between;font-weight:800;font-size:26px;"><div>@smufdpj</div><div>Fonte: setlist.fm · <span style="${BS}font-size:30px;">${String(n++).padStart(2, "0")}/${TOTAL}</span></div></div></div>`);
+
+slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--fundo);color:var(--claro);">
+  <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("E VOCÊ?")}${tit("Qual foi a sua do domingo?", 150)}</div>
+  ${txt("Estava no Ibirapuera? Conta aqui a música que te pegou na 2ª noite.", 640, 46)}
+  <div style="position:absolute;top:900px;left:72px;right:72px;background:var(--destaque);color:var(--fundo);padding:22px 28px;font-weight:900;font-size:34px;">Foram duas noites. Obrigado, Edinho.</div>
+  ${rodape(n)}</div>`);
 
 const html = `<!DOCTYPE html>
 <!-- Gerado por reels-especiais/setlist-dom/gera.mjs (não editar à mão). Modelo: media/carrossel/ranking/modelo.html -->
@@ -49,8 +73,7 @@ const html = `<!DOCTYPE html>
 <style>:root{--destaque:#FFCC1A;--fundo:#14110F;--alerta:#E0361C;--papel:#f3efe6;--papel2:#E9E1CF;--claro:#fff;}body{margin:0;background:#1c1c1c;}</style>
 </helmet>
 <section style="display:flex;flex-wrap:wrap;gap:64px;padding:80px;align-items:flex-start;font-family:'Archivo',sans-serif;">
-${slide1}
-${slide2}
+${slides.join("\n")}
 </section></x-dc></body></html>`;
 fs.writeFileSync(path.join(dir, "design", "carrossel.html"), html);
 
