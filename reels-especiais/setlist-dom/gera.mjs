@@ -14,10 +14,12 @@ const CURTO = { "elderly woman behind the counter in a small town": "Elderly Wom
 const M = s.musicas.map((m, i) => ({ ...m, n: i + 1, nova: !naSexta.has(norm(m.nome)) }));
 const curto = (t) => CURTO[norm(t)] || t;
 const novas = M.filter((m) => m.nova), repetidas = M.length - novas.length;
+// Momentos do show contados pelo Andre no chat (momentos.json): cada um vira slide; "intro" abre a legenda
+const MOM = fs.existsSync(path.join(dir, "momentos.json")) ? JSON.parse(fs.readFileSync(path.join(dir, "momentos.json"), "utf8")) : { momentos: [] };
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 // Capa: foto da setlist de papel de verdade (design/uploads/foto-setlist.jpg, se o Andre mandar); sem ela, a folha do gerador
 const FOTO = fs.existsSync(path.join(dir, "design", "uploads", "foto-setlist.jpg")) ? "foto-setlist.jpg" : "folha.jpg";
-const TOTAL = FOTO === "folha.jpg" ? 3 : 4;
+const TOTAL = Math.min(10, (FOTO === "folha.jpg" ? 3 : 4) + MOM.momentos.length);
 const BS = "font-family:'Big Shoulders Display',sans-serif;font-weight:900;";
 const S = "width:1080px;height:1350px;position:relative;overflow:hidden;flex:none;";
 const rodape = (n) => `
@@ -56,9 +58,19 @@ slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--de
   <div style="position:absolute;top:310px;left:72px;width:450px;">${col(M.slice(0, linhas), 0)}</div>
   <div style="position:absolute;top:310px;left:560px;width:470px;">${col(M.slice(linhas), linhas)}</div>
   <div style="position:absolute;bottom:110px;left:72px;right:72px;font-weight:900;font-size:30px;">${novas.length ? `★ não tocou na sexta (${novas.length} de ${M.length})` : "Repetiu tudo da sexta"}</div>
-  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;justify-content:space-between;font-weight:800;font-size:26px;"><div>@smufdpj</div><div>Fonte: setlist.fm · <span style="${BS}font-size:30px;">${String(n++).padStart(2, "0")}/${TOTAL}</span></div></div></div>`);
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;justify-content:space-between;font-weight:800;font-size:26px;"><div>@smufdpj</div><div>Fonte: setlist.fm · <span style="${BS}font-size:30px;">${String(n).padStart(2, "0")}/${TOTAL}</span></div></div></div>`);
 
-slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--fundo);color:var(--claro);">
+n++;
+// Momento: foto no alto com degradê (quadro do vídeo do Andre em design/uploads/) ou só texto; máx. 10 slides no IG
+for (const m of MOM.momentos.slice(0, 10 - n)) {
+  const corpo = `<div style="position:absolute;top:${m.foto ? 570 : 72}px;left:72px;right:72px;">${tag(esc(m.tag))}${tit(esc(m.titulo), m.titulo.length > 22 ? 96 : 120)}</div>
+  ${txt(esc(m.texto), m.foto ? 930 : 560, m.foto ? 36 : 44)}`;
+  slides.push(`<div data-screen-label="slide-${String(n).padStart(2, "0")}" style="${S}background:var(--fundo);color:var(--claro);">
+  ${m.foto ? `<img src="uploads/${m.foto}" alt="" style="position:absolute;top:0;left:0;width:1080px;height:860px;object-fit:cover;object-position:${m.pos || "50% 40%"};">
+  <div style="position:absolute;top:0;left:0;width:1080px;height:880px;background:linear-gradient(180deg,rgba(20,17,15,.55) 0%,rgba(20,17,15,0) 22%,rgba(20,17,15,0) 50%,var(--fundo) 98%);"></div>` : ""}
+  ${corpo}${rodape(n++)}</div>`);
+}
+slides.push(`<div data-screen-label="slide-${String(n).padStart(2, "0")}" style="${S}background:var(--fundo);color:var(--claro);">
   <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("E VOCÊ?")}${tit("Qual foi a sua do domingo?", 150)}</div>
   ${txt("Estava no Ibirapuera? Conta aqui a música que te pegou na 2ª noite.", 640, 46)}
   <div style="position:absolute;top:900px;left:72px;right:72px;background:var(--destaque);color:var(--fundo);padding:22px 28px;font-weight:900;font-size:34px;">Foram duas noites. Obrigado, Edinho.</div>
@@ -86,7 +98,7 @@ const resumo = novas.length
   ? `Das ${M.length} músicas, ${novas.length} não tinham tocado na sexta (marcadas com ★) e ${repetidas} repetiram.`
   : `Ele repetiu as ${M.length} músicas da sexta.`;
 const legenda = `Setlist completa da 2ª noite do Eddie Vedder no Ibirapuera, domingo 22/11.
-
+${MOM.intro ? "\n" + MOM.intro + "\n" : ""}
 ${lista}
 ${resumo}
 

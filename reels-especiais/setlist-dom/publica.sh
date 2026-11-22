@@ -17,7 +17,7 @@ done
 node -e '
 const fs=require("fs"),[P,V]=process.argv.slice(1),B="https://midia.somaisumfadepearljam.com.br/especiais/setlist-dom";
 fs.writeFileSync(P+"/publicar.json",JSON.stringify({agendado:"imediato, assim que o setlist.fm fechou (pedido do Andre: ser o primeiro)",imagens:[1,2].map(n=>`${B}/0${n}-${V}.jpg`),legenda:fs.readFileSync(P+"/legenda.txt","utf8")},null,2)+"\n")' $P $V
-git add $P/*.mjs $P/publica.sh $P/publicar.json $P/setlist.json
+git add $P/*.mjs $P/publica.sh $P/publicar.json $P/setlist.json; [ -f $P/momentos.json ] && git add $P/momentos.json
 git commit -qm "Setlist completa da 2ª noite do Eddie no Ibirapuera (carrossel)
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
