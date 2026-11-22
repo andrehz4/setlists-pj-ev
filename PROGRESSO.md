@@ -6,6 +6,10 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Setlist do domingo 22/11 no automático (pedido do Andre: ser o primeiro):** `reels-especiais/setlist-dom/`.
+  `monitora.mjs` vigia o setlist.fm (id 2372101f) e sai quando fecha (bis + depois das 22h + 10 min parado);
+  aí `zsh reels-especiais/setlist-dom/publica.sh` busca, desenha a folha (cab-sp2), gera o slide da lista (★ = não tocou
+  na sexta), sobe pro R2, commita e publica. Andre autorizou publicar sem esperar o "solta" (eu confiro a prévia antes).
 - **Carrossel do pôster da 2ª noite (22/11 11h, PUBLICADO IG 17999916540101637 + FB):** `reels-especiais/poster-munk-one/`,
   arte do @munk_one (imagem do post da @mrtsurt, pôster recortado do slide 1), molde do de sexta, paleta laranja.
 - **Banda Alive (Pelotas/RS) na agenda (22/11):** `banda_alivepj` cadastrada em `media/agenda/bandas.json` (POC ok:
