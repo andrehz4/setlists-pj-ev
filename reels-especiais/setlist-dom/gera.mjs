@@ -34,9 +34,9 @@ const slides = [];
 let n = 1;
 slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo);color:var(--claro);">
   <img src="uploads/${FOTO}" alt="Setlist escrita à mão" style="position:absolute;top:0;left:0;width:1080px;height:1350px;object-fit:cover;object-position:50% 30%;">
-  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,.7) 0%,rgba(20,17,15,.05) 26%,rgba(20,17,15,.25) 50%,var(--fundo) 86%);"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,.7) 0%,rgba(20,17,15,.05) 26%,rgba(20,17,15,.5) 52%,var(--fundo) 84%);"></div>
   <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("DOMINGO, 22/11 · IBIRAPUERA")}</div>
-  <div style="position:absolute;top:640px;left:64px;right:40px;${BS}font-size:150px;line-height:.86;letter-spacing:-3px;text-transform:uppercase;"><span style="color:#FFCC1A;-webkit-text-stroke:10px #000;paint-order:stroke fill;text-shadow:0 8px 24px rgba(0,0,0,.85),0 3px 0 #000;">Saiu!</span><br>A setlist da<br><span style="color:var(--destaque);">2ª noite</span></div>
+  <div style="position:absolute;top:770px;left:64px;right:40px;${BS}font-size:150px;line-height:.86;letter-spacing:-3px;text-transform:uppercase;">A setlist da<br><span style="color:var(--destaque);">2ª noite</span></div>
   ${txt(sub + " Tudo aqui, do começo ao bis.", 1060, 36)}
   <div style="position:absolute;bottom:130px;right:64px;${BS}font-size:44px;color:var(--destaque);letter-spacing:2px;">ARRASTA →</div>
   ${rodape(n++)}</div>`);
