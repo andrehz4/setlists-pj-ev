@@ -20,7 +20,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   vídeos de 2012 talvez com vocalista antigo, conferir); Love Boat ainda rodando. Andre vai procurar na mão o que faltar.
   4 layouts EXPORTADOS do Design e montados com narração: `reels-especiais/agenda-semana/design/reel-{a-azul,b-amarelo,
   c-laranja,d-azul}.mp4` (`montar.mjs --video layout-X.mp4 --saida reel-X.mp4`; export do Design: Share > Video > Original).
-  Próximo: Andre escolhe/aprova layouts; portar pro gerador (módulo apartado, flag) com rodízio layout x paleta, covers no
+  22/11 noite: Andre APROVOU OS 4 LAYOUTS ("adorei todos") = rodízio dos 4 x 3 paletas. Recebeu no celular os vídeos de
+  revisão dos 96 trechos das covers (um por banda, linha do meio pra conferir rosto); aguarda retorno de trecho a refazer.
+  Próximo: portar pro gerador (módulo apartado, flag) com rodízio layout x paleta, covers no
   fundo dos dias no lugar do placeholder, falas de falas.mjs.
 - **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
   domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
