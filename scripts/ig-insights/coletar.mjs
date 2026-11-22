@@ -35,4 +35,11 @@ for (const p of posts.slice(0, QUANTOS)) {
     tipo: p.media_product_type === "REELS" ? "REEL" : p.media_type, inicio: (p.caption || "").split("\n")[0].slice(0, 90), link: p.permalink, ...m });
 }
 const conta = await get(IG_USER_ID, { fields: "followers_count,media_count" });
-console.log(JSON.stringify({ conta, posts: saida }));
+// Seguidores ganhos por dia (a API só guarda os últimos 30 dias)
+let porDia = null;
+try {
+  const ate = Math.floor(Date.now() / 1000), desde = ate - 29 * 86400;
+  const j = await get(`${IG_USER_ID}/insights`, { metric: "follower_count", period: "day", since: desde, until: ate });
+  porDia = (j.data?.[0]?.values || []).map((v) => [v.end_time.slice(0, 10), v.value]);
+} catch (e) { porDia = "n/a: " + e.message; }
+console.log(JSON.stringify({ conta, porDia, posts: saida }));
