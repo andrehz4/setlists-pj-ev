@@ -36,6 +36,7 @@ const CENAS = [
   { nome: "fecho", d: 3.0, texto: FECHO },
 ];
 const chave = fs.readFileSync("/Users/andrehz/.elevenlabs-key", "utf8").trim();
+const PUNCH = 0.75;
 let ini = 0, novoIni = 0;
 for (const c of CENAS) {
   if (c.data) c.texto = textoDia(c.data, doDia(c.data));
@@ -43,6 +44,7 @@ for (const c of CENAS) {
   if (!fs.existsSync(c.voz)) await sintetizar(c.texto, { vozId: voz.id, apiKey: chave, destino: c.voz });
   c.ini = ini; ini += c.d;
   c.alvo = Math.max(c.d, dur(c.voz) + 0.5); // cena nunca corta a fala
+  if (c.data) { c.punchIni = novoIni; novoIni += PUNCH; } // cortes rápidos da banda em tela cheia antes do dia
   c.novoIni = novoIni; novoIni += c.alvo;
 }
 const total = novoIni;
@@ -62,6 +64,12 @@ let nIn = 1 + cortes.length;
 CENAS.forEach((c, i) => {
   if (i === 0) return;
   if (!c.data) { f.push(`[s${i}]null[c${i}]`); return; }
+  const bandas = [...new Map(doDia(c.data).map((s) => [s.banda, s])).values()].slice(0, 3);
+  const socos = fundoDoDia(bandas, PUNCH).map((p, j) => {
+    ins.push("-an", "-i", p.arq); f.push(`[${nIn++}:v]scale=1080:1920,fps=30,setsar=1,trim=duration=${p.dur.toFixed(3)},setpts=PTS-STARTPTS,eq=contrast=1.08:saturation=1.05,format=yuv420p[p${i}_${j}]`);
+    return `[p${i}_${j}]`;
+  });
+  f.push(`${socos.join("")}concat=n=${socos.length}:v=1:a=0[p${i}]`);
   const pedacos = fundoDoDia(doDia(c.data), c.alvo);
   const rot = pedacos.map((p, j) => {
     if (p.arq) { ins.push("-an", "-i", p.arq); f.push(`[${nIn++}:v]scale=1080:1920,fps=30,setsar=1,trim=duration=${p.dur.toFixed(3)},setpts=PTS-STARTPTS,${MEIO},tpad=stop_mode=clone:stop_duration=1,trim=duration=${p.dur.toFixed(3)}[d${i}_${j}]`); }
@@ -73,7 +81,8 @@ CENAS.forEach((c, i) => {
     `[s${i}m]format=gray,lut=y='if(gt(val,70),255,0)',boxblur=22:1,lut=y='if(gt(val,8),255,0)',format=gbrp[m${i}]`,
     `[s${i}g][b${i}]blend=all_mode=lighten:shortest=1[l${i}]`, `[l${i}][s${i}h][m${i}]maskedmerge,format=yuv420p[c${i}]`);
 });
-f.push(`${CENAS.map((_, i) => `[c${i}]`).join("")}concat=n=${CENAS.length}:v=1:a=0,format=yuv420p[v]`);
+const ordem = CENAS.flatMap((c, i) => (c.data ? [`[p${i}]`, `[c${i}]`] : [`[c${i}]`]));
+f.push(`${ordem.join("")}concat=n=${ordem.length}:v=1:a=0,format=yuv420p[v]`);
 
 // Áudio: fala 0,15 s depois do início da cena, whoosh nas trocas, trilha própria baixa.
 const trilha = trilhaPropria({ uso: "reel", semente: "agenda-2026-11-24", plano: [{ de: 0, ate: total, nivel: "cheio" }],
@@ -84,7 +93,7 @@ ins.push(...CENAS.flatMap((c) => ["-i", c.voz]), "-i", trilha.path, ...CENAS.sli
 CENAS.forEach((c, i) => { const ms = Math.round((c.novoIni + 0.15) * 1000); f.push(`[${base + i}:a]adelay=${ms}|${ms},aformat=channel_layouts=stereo[f${i}]`); });
 const iT = base + CENAS.length;
 f.push(`[${iT}:a]volume=0.25,afade=t=out:st=${(total - 1.2).toFixed(2)}:d=1.2[m]`);
-CENAS.slice(1).forEach((c, j) => { const ms = Math.round(Math.max(0, c.novoIni - 0.25) * 1000); f.push(`[${iT + 1 + j}:a]volume=0.5,adelay=${ms}|${ms},aformat=channel_layouts=stereo[w${j}]`); });
+CENAS.slice(1).forEach((c, j) => { const ms = Math.round(Math.max(0, (c.punchIni ?? c.novoIni) - 0.25) * 1000); f.push(`[${iT + 1 + j}:a]volume=0.5,adelay=${ms}|${ms},aformat=channel_layouts=stereo[w${j}]`); });
 const ent = [...CENAS.map((_, i) => `[f${i}]`), "[m]", ...CENAS.slice(1).map((_, j) => `[w${j}]`)];
 f.push(`${ent.join("")}amix=inputs=${ent.length}:duration=longest:normalize=0,atrim=0:${total.toFixed(2)},loudnorm=I=-14:TP=-1.5[a]`);
 const out = SAIDA;
