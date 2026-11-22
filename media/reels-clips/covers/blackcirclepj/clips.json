@@ -1416,6 +1416,60 @@
         "descricao": "vocalista cantando de olhos fechados"
       },
       "nota": 4
+    },
+    {
+      "file": "blackcirclepj-ig-estudio-vocal-1.mp4",
+      "origem": "https://www.instagram.com/reel/DfqHJz8saj1/",
+      "ini": 6.3,
+      "fim": 10.1,
+      "dur": 3.8,
+      "foco": "centro",
+      "tags": [
+        "banda:blackcirclepj",
+        "vocalista",
+        "close",
+        "energia",
+        "cantando"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista de cabelo cacheado cantando colado no microfone, luz de janela"
+      },
+      "nota": 5
+    },
+    {
+      "file": "blackcirclepj-ig-estudio-gaita-1.mp4",
+      "origem": "https://www.instagram.com/reel/DfqHJz8saj1/",
+      "ini": 46.3,
+      "fim": 49.9,
+      "dur": 3.6,
+      "foco": "centro",
+      "tags": [
+        "banda:blackcirclepj",
+        "vocalista",
+        "close",
+        "intenso",
+        "tocando-gaita"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "tocando-gaita"
+        ],
+        "clima": "intenso",
+        "descricao": "vocalista tocando gaita de olhos fechados, close de rosto e mãos"
+      },
+      "nota": 4
     }
   ]
 }

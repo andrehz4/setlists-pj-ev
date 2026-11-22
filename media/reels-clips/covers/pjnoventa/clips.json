@@ -958,6 +958,203 @@
         "descricao": "vocalista soltando a voz de boca aberta"
       },
       "nota": 5
+    },
+    {
+      "file": "pjnoventa-ig-guitarra-2.mp4",
+      "origem": "https://www.instagram.com/pjnoventa/reel/Df-TZtjOszv/",
+      "ini": 104,
+      "fim": 106,
+      "dur": 2,
+      "foco": "centro",
+      "tags": [
+        "banda:pjnoventa",
+        "guitarrista",
+        "medio",
+        "intenso",
+        "tocando guitarra"
+      ],
+      "broll": {
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "tocando guitarra"
+        ],
+        "clima": "intenso",
+        "descricao": "Guitarrista de barba no escuro com luz verde"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pjnoventa-ig-vocal-sobreposto-1.mp4",
+      "origem": "https://www.instagram.com/pjnoventa/reel/Df-TZtjOszv/",
+      "ini": 80.1,
+      "fim": 82.3,
+      "dur": 2.2,
+      "foco": "centro",
+      "tags": [
+        "banda:pjnoventa",
+        "vocalista",
+        "close",
+        "intenso",
+        "cantando forte"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando forte"
+        ],
+        "clima": "intenso",
+        "descricao": "Vocalista de cabelo cacheado canta de boca aberta, imagem sobreposta ao palco"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-ig-guitarra-costas-3.mp4",
+      "origem": "https://www.instagram.com/pjnoventa/reel/DfxyOzEJESu/",
+      "ini": 28,
+      "fim": 32,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:pjnoventa",
+        "guitarrista",
+        "medio",
+        "energia",
+        "guitarra atrás da cabeça"
+      ],
+      "broll": {
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "guitarra atrás da cabeça"
+        ],
+        "clima": "energia",
+        "descricao": "Guitarrista sem camisa toca com a guitarra atrás da cabeça"
+      },
+      "nota": 5
+    },
+    {
+      "file": "pjnoventa-ig-guitarra-headbang-5.mp4",
+      "origem": "https://www.instagram.com/pjnoventa/reel/DfxyOzEJESu/",
+      "ini": 53.4,
+      "fim": 57.4,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:pjnoventa",
+        "guitarrista",
+        "medio",
+        "energia",
+        "headbang",
+        "tocando guitarra"
+      ],
+      "broll": {
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "headbang",
+          "tocando guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Guitarrista balança o cabelo e se agacha com a Les Paul"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-ig-vocal-6.mp4",
+      "origem": "https://www.instagram.com/pjnoventa/reel/DfxyOzEJESu/",
+      "ini": 75,
+      "fim": 79,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:pjnoventa",
+        "musico",
+        "medio",
+        "energia",
+        "headbang"
+      ],
+      "broll": {
+        "quem": [
+          "musico"
+        ],
+        "plano": "medio",
+        "acao": [
+          "headbang"
+        ],
+        "clima": "energia",
+        "descricao": "Músico de cabelo cacheado balança o cabelo no palco, visto de lado"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pjnoventa-ig-vocal-bracos-7.mp4",
+      "origem": "https://www.instagram.com/pjnoventa/reel/DfxnsqHEiI-/",
+      "ini": 64.5,
+      "fim": 68.5,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:pjnoventa",
+        "vocalista",
+        "medio",
+        "energia",
+        "braços pro alto",
+        "batendo palmas"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "braços pro alto",
+          "batendo palmas"
+        ],
+        "clima": "energia",
+        "descricao": "Vocalista sem camisa ergue os braços e puxa palmas no show de dia"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pjnoventa-ig-banda-dia-8.mp4",
+      "origem": "https://www.instagram.com/pjnoventa/reel/DfxnsqHEiI-/",
+      "ini": 22,
+      "fim": 26,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:pjnoventa",
+        "vocalista",
+        "guitarrista",
+        "medio",
+        "energia",
+        "cantando",
+        "tocando guitarra"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista",
+          "guitarrista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "cantando",
+          "tocando guitarra"
+        ],
+        "clima": "energia",
+        "descricao": "Vocalista sem camisa e guitarrista de óculos escuros com Les Paul no palco ao ar livre"
+      },
+      "nota": 4
     }
   ]
 }

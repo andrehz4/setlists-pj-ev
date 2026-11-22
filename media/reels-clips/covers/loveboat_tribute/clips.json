@@ -665,6 +665,122 @@
         "descricao": "Vocalista canta com a mão no rosto"
       },
       "nota": 4
+    },
+    {
+      "file": "loveboat_tribute-ig-arcos-vocal-1.mp4",
+      "origem": "https://www.instagram.com/loveboat_tribute/reel/DRgNQnojWEU/",
+      "ini": 11,
+      "fim": 15,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:loveboat_tribute",
+        "vocalista",
+        "close",
+        "intenso",
+        "cantando forte",
+        "gesto com as mãos",
+        "marca:venatrix"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando forte",
+          "gesto com as mãos"
+        ],
+        "clima": "intenso",
+        "descricao": "Vocalista de camisa jeans canta de olhos fechados com as mãos no alto"
+      },
+      "nota": 4
+    },
+    {
+      "file": "loveboat_tribute-ig-arcos-guitarra-2.mp4",
+      "origem": "https://www.instagram.com/loveboat_tribute/reel/DRgNQnojWEU/",
+      "ini": 84,
+      "fim": 88,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:loveboat_tribute",
+        "guitarrista",
+        "close",
+        "energia",
+        "tocando guitarra",
+        "gritando",
+        "marca:venatrix"
+      ],
+      "broll": {
+        "quem": [
+          "guitarrista"
+        ],
+        "plano": "close",
+        "acao": [
+          "tocando guitarra",
+          "gritando"
+        ],
+        "clima": "energia",
+        "descricao": "Guitarrista de óculos e camisa xadrez grita tocando a Les Paul"
+      },
+      "nota": 4
+    },
+    {
+      "file": "loveboat_tribute-ig-arcos-bateria-3.mp4",
+      "origem": "https://www.instagram.com/loveboat_tribute/reel/DRgNQnojWEU/",
+      "ini": 122,
+      "fim": 126,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:loveboat_tribute",
+        "baterista",
+        "medio",
+        "energia",
+        "tocando bateria",
+        "marca:venatrix"
+      ],
+      "broll": {
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "tocando bateria"
+        ],
+        "clima": "energia",
+        "descricao": "Baterista de cabelo preso toca na frente do telão"
+      },
+      "nota": 3
+    },
+    {
+      "file": "loveboat_tribute-ig-arcos-vocal-4.mp4",
+      "origem": "https://www.instagram.com/loveboat_tribute/reel/DRgNQnojWEU/",
+      "ini": 3,
+      "fim": 7,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:loveboat_tribute",
+        "vocalista",
+        "medio",
+        "energia",
+        "cantando",
+        "marca:venatrix"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "energia",
+        "descricao": "Vocalista de camisa jeans canta no palco do festival"
+      },
+      "nota": 3
     }
   ]
 }

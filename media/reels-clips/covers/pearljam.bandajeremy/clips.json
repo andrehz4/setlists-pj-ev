@@ -883,6 +883,62 @@
         "descricao": "vocalista gritando com o punho no microfone"
       },
       "nota": 4
+    },
+    {
+      "file": "pearljam.bandajeremy-ig-beerstock-vocal-2.mp4",
+      "origem": "https://www.instagram.com/reel/De6rdcRuty5/",
+      "ini": 10,
+      "fim": 14,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:pearljam.bandajeremy",
+        "vocalista",
+        "close",
+        "energia",
+        "cantando"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista cabeludo de camiseta azul cantando de olhos fechados, microfone nas duas mãos, luz neon amarela"
+      },
+      "nota": 4
+    },
+    {
+      "file": "pearljam.bandajeremy-ig-beerstock-vocal-3.mp4",
+      "origem": "https://www.instagram.com/reel/De6rdcRuty5/",
+      "ini": 15.5,
+      "fim": 19.5,
+      "dur": 4,
+      "foco": "centro",
+      "tags": [
+        "banda:pearljam.bandajeremy",
+        "vocalista",
+        "close",
+        "energia",
+        "cantando",
+        "punho-erguido"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando",
+          "punho-erguido"
+        ],
+        "clima": "energia",
+        "descricao": "vocalista cantando no pedestal com o punho erguido, baixista ao fundo"
+      },
+      "nota": 4
     }
   ]
 }

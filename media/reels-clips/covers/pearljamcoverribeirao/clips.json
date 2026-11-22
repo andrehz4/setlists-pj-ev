@@ -1636,6 +1636,60 @@
         "descricao": "Vocalista canta colado na câmera no meio da roda"
       },
       "nota": 4
+    },
+    {
+      "file": "pearljamcoverribeirao-ig-bateria-cabala-1.mp4",
+      "origem": "https://www.instagram.com/pearljamcoverribeirao/reel/DfPMjMuOHhG/",
+      "ini": 16.4,
+      "fim": 18.6,
+      "dur": 2.2,
+      "foco": "centro",
+      "tags": [
+        "banda:pearljamcoverribeirao",
+        "baterista",
+        "medio",
+        "energia",
+        "tocando bateria"
+      ],
+      "broll": {
+        "quem": [
+          "baterista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "tocando bateria"
+        ],
+        "clima": "energia",
+        "descricao": "Baterista de cabelo cacheado no palco de tijolos, câmera vira pro guitarrista"
+      },
+      "nota": 3
+    },
+    {
+      "file": "pearljamcoverribeirao-ig-vocal-cabala-2.mp4",
+      "origem": "https://www.instagram.com/pearljamcoverribeirao/reel/DfPMjMuOHhG/",
+      "ini": 18.3,
+      "fim": 20.5,
+      "dur": 2.2,
+      "foco": "centro",
+      "tags": [
+        "banda:pearljamcoverribeirao",
+        "vocalista",
+        "medio",
+        "energia",
+        "cantando"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "medio",
+        "acao": [
+          "cantando"
+        ],
+        "clima": "energia",
+        "descricao": "Vocalista barbudo canta andando pelo palco"
+      },
+      "nota": 3
     }
   ]
 }
