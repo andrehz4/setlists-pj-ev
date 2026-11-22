@@ -2,41 +2,17 @@
   "banda": "banda_alivepj",
   "clips": [
     {
-      "file": "banda_alivepj-bateria-9.mp4",
-      "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 169,
-      "fim": 172,
-      "dur": 3,
-      "foco": "centro",
-      "focoX": 0.5,
-      "tags": [
-        "banda:banda_alivepj",
-        "show:teaser-estudio"
-      ],
-      "broll": {
-        "quem": [
-          "baterista"
-        ],
-        "plano": "close",
-        "acao": [
-          "tocando bateria"
-        ],
-        "clima": "intenso",
-        "descricao": "PREENCHER"
-      },
-      "nota": 3
-    },
-    {
       "file": "banda_alivepj-guitarra-3.mp4",
       "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 19,
-      "fim": 22,
-      "dur": 3,
+      "ini": 20.5,
+      "fim": 24,
+      "dur": 3.5,
       "foco": "centro",
       "focoX": 0.5,
       "tags": [
         "banda:banda_alivepj",
-        "show:teaser-estudio"
+        "show:teaser-estudio",
+        "local:load-studio"
       ],
       "broll": {
         "quem": [
@@ -46,22 +22,23 @@
         "acao": [
           "tocando guitarra"
         ],
-        "clima": "intenso",
-        "descricao": "PREENCHER"
+        "clima": "energia",
+        "descricao": "Guitarra Strat creme em close"
       },
       "nota": 3
     },
     {
       "file": "banda_alivepj-guitarra-5.mp4",
       "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 77,
-      "fim": 80.5,
-      "dur": 3.5,
+      "ini": 72,
+      "fim": 76,
+      "dur": 4,
       "foco": "centro",
       "focoX": 0.5,
       "tags": [
         "banda:banda_alivepj",
-        "show:teaser-estudio"
+        "show:teaser-estudio",
+        "local:load-studio"
       ],
       "broll": {
         "quem": [
@@ -71,22 +48,23 @@
         "acao": [
           "tocando guitarra"
         ],
-        "clima": "intenso",
-        "descricao": "PREENCHER"
+        "clima": "energia",
+        "descricao": "Guitarrista de cabeça baixa tocando a Strat"
       },
-      "nota": 3
+      "nota": 4
     },
     {
       "file": "banda_alivepj-guitarra-6.mp4",
       "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 34,
-      "fim": 37,
-      "dur": 3,
+      "ini": 27.5,
+      "fim": 30.8,
+      "dur": 3.3,
       "foco": "centro",
       "focoX": 0.5,
       "tags": [
         "banda:banda_alivepj",
-        "show:teaser-estudio"
+        "show:teaser-estudio",
+        "local:load-studio"
       ],
       "broll": {
         "quem": [
@@ -94,49 +72,25 @@
         ],
         "plano": "close",
         "acao": [
-          "tocando guitarra"
+          "solo de guitarra"
         ],
-        "clima": "intenso",
-        "descricao": "PREENCHER"
-      },
-      "nota": 3
-    },
-    {
-      "file": "banda_alivepj-guitarra-7.mp4",
-      "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 104,
-      "fim": 107,
-      "dur": 3,
-      "foco": "centro",
-      "focoX": 0.5,
-      "tags": [
-        "banda:banda_alivepj",
-        "show:teaser-estudio"
-      ],
-      "broll": {
-        "quem": [
-          "guitarrista"
-        ],
-        "plano": "close",
-        "acao": [
-          "tocando guitarra"
-        ],
-        "clima": "intenso",
-        "descricao": "PREENCHER"
+        "clima": "energia",
+        "descricao": "Mão no braço da guitarra em close"
       },
       "nota": 3
     },
     {
       "file": "banda_alivepj-guitarra-8.mp4",
       "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 154,
-      "fim": 157,
-      "dur": 3,
+      "ini": 177.2,
+      "fim": 179.7,
+      "dur": 2.5,
       "foco": "centro",
       "focoX": 0.5,
       "tags": [
         "banda:banda_alivepj",
-        "show:teaser-estudio"
+        "show:teaser-estudio",
+        "local:load-studio"
       ],
       "broll": {
         "quem": [
@@ -146,22 +100,23 @@
         "acao": [
           "tocando guitarra"
         ],
-        "clima": "intenso",
-        "descricao": "PREENCHER"
+        "clima": "energia",
+        "descricao": "Guitarra amarela em close, dedos rápidos"
       },
       "nota": 3
     },
     {
       "file": "banda_alivepj-vocal-1.mp4",
       "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 14,
-      "fim": 17.5,
-      "dur": 3.5,
+      "ini": 36.3,
+      "fim": 39.5,
+      "dur": 3.2,
       "foco": "centro",
       "focoX": 0.5,
       "tags": [
         "banda:banda_alivepj",
-        "show:teaser-estudio"
+        "show:teaser-estudio",
+        "local:load-studio"
       ],
       "broll": {
         "quem": [
@@ -172,21 +127,22 @@
           "cantando"
         ],
         "clima": "intenso",
-        "descricao": "PREENCHER"
+        "descricao": "Vocalista canta de olhos fechados agarrado ao microfone"
       },
-      "nota": 3
+      "nota": 4
     },
     {
       "file": "banda_alivepj-vocal-2.mp4",
       "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 39,
-      "fim": 42.5,
-      "dur": 3.5,
+      "ini": 45.3,
+      "fim": 48.3,
+      "dur": 3,
       "foco": "centro",
       "focoX": 0.5,
       "tags": [
         "banda:banda_alivepj",
-        "show:teaser-estudio"
+        "show:teaser-estudio",
+        "local:load-studio"
       ],
       "broll": {
         "quem": [
@@ -197,21 +153,48 @@
           "cantando"
         ],
         "clima": "intenso",
-        "descricao": "PREENCHER"
+        "descricao": "Vocalista em close cantando no estúdio"
       },
-      "nota": 3
+      "nota": 4
     },
     {
       "file": "banda_alivepj-vocal-4.mp4",
       "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
-      "ini": 143,
-      "fim": 146.5,
-      "dur": 3.5,
+      "ini": 142.4,
+      "fim": 144.8,
+      "dur": 2.4,
       "foco": "centro",
       "focoX": 0.5,
       "tags": [
         "banda:banda_alivepj",
-        "show:teaser-estudio"
+        "show:teaser-estudio",
+        "local:load-studio"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando forte"
+        ],
+        "clima": "energia",
+        "descricao": "Vocalista canta forte de olhos fechados"
+      },
+      "nota": 5
+    },
+    {
+      "file": "banda_alivepj-vocal-7.mp4",
+      "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
+      "ini": 104,
+      "fim": 108,
+      "dur": 4,
+      "foco": "centro",
+      "focoX": 0.5,
+      "tags": [
+        "banda:banda_alivepj",
+        "show:teaser-estudio",
+        "local:load-studio"
       ],
       "broll": {
         "quem": [
@@ -222,9 +205,36 @@
           "cantando"
         ],
         "clima": "intenso",
-        "descricao": "PREENCHER"
+        "descricao": "Vocalista cantando com a mão no microfone"
       },
-      "nota": 3
+      "nota": 4
+    },
+    {
+      "file": "banda_alivepj-vocal-grito-9.mp4",
+      "origem": "https://www.youtube.com/watch?v=1U--wE4fYlU",
+      "ini": 167.3,
+      "fim": 170.3,
+      "dur": 3,
+      "foco": "centro",
+      "focoX": 0.5,
+      "tags": [
+        "banda:banda_alivepj",
+        "show:teaser-estudio",
+        "local:load-studio"
+      ],
+      "broll": {
+        "quem": [
+          "vocalista"
+        ],
+        "plano": "close",
+        "acao": [
+          "cantando forte",
+          "gritando"
+        ],
+        "clima": "energia",
+        "descricao": "Vocalista solta a voz de boca aberta em close"
+      },
+      "nota": 5
     }
   ]
 }

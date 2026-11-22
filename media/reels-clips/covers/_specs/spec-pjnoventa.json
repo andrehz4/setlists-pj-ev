@@ -1,0 +1,256 @@
+{
+ "banda": "pjnoventa",
+ "clips": [
+  {
+   "slug": "black-bracos",
+   "bruto": "i9eM6CyvARM.mp4",
+   "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+   "ini": 45,
+   "fim": 47.5,
+   "tags": [
+    "black",
+    "vocal",
+    "festival"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "bracos-abertos"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista sem camisa de braços abertos no festival"
+   },
+   "nota": 5
+  },
+  {
+   "slug": "black-guitarra",
+   "bruto": "i9eM6CyvARM.mp4",
+   "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+   "ini": 48.2,
+   "fim": 50.7,
+   "rosto": false,
+   "foco": 0.5,
+   "tags": [
+    "black",
+    "guitarra",
+    "festival"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "close",
+    "acao": [
+     "tocando"
+    ],
+    "clima": "energia",
+    "descricao": "guitarra em close no palco"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "black-vocal",
+   "bruto": "i9eM6CyvARM.mp4",
+   "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+   "ini": 128,
+   "fim": 132,
+   "tags": [
+    "black",
+    "vocal",
+    "festival"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista cantando no palco iluminado"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "black-publico",
+   "bruto": "i9eM6CyvARM.mp4",
+   "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+   "ini": 171,
+   "fim": 175,
+   "rosto": false,
+   "foco": 0.6,
+   "tags": [
+    "black",
+    "publico",
+    "festival"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista",
+     "publico"
+    ],
+    "plano": "aberto",
+    "acao": [
+     "plateia",
+     "luzes-de-celular"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista de costas pra plateia cheia de celulares acesos"
+   },
+   "nota": 5
+  },
+  {
+   "slug": "black-vocal",
+   "bruto": "i9eM6CyvARM.mp4",
+   "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+   "ini": 194,
+   "fim": 198,
+   "tags": [
+    "black",
+    "vocal",
+    "festival"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista sem camisa cantando, visto de baixo"
+   },
+   "nota": 4,
+   "rosto": false,
+   "foco": 0.85
+  },
+  {
+   "slug": "black-vocal",
+   "bruto": "i9eM6CyvARM.mp4",
+   "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+   "ini": 217.8,
+   "fim": 220.4,
+   "tags": [
+    "black",
+    "vocal",
+    "festival"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista suado cantando de perto"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "black-bracos",
+   "bruto": "i9eM6CyvARM.mp4",
+   "origem": "https://www.youtube.com/watch?v=i9eM6CyvARM",
+   "ini": 422.5,
+   "fim": 425,
+   "tags": [
+    "black",
+    "vocal",
+    "festival"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "bracos-abertos"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista abre os braços na luz branca"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "alive-guitarra",
+   "bruto": "wG04ruTmYiA.mp4",
+   "origem": "https://www.youtube.com/watch?v=wG04ruTmYiA",
+   "ini": 4,
+   "fim": 7,
+   "rosto": false,
+   "foco": 0.5,
+   "tags": [
+    "alive",
+    "guitarra",
+    "estudio"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "close",
+    "acao": [
+     "tocando"
+    ],
+    "clima": "intenso",
+    "descricao": "Les Paul vermelha em close"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "alive-vocal",
+   "bruto": "wG04ruTmYiA.mp4",
+   "origem": "https://www.youtube.com/watch?v=wG04ruTmYiA",
+   "ini": 33,
+   "fim": 37,
+   "tags": [
+    "alive",
+    "vocal",
+    "estudio"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista de cabelo cacheado colado no microfone"
+   },
+   "nota": 5
+  },
+  {
+   "slug": "alive-vocal",
+   "bruto": "wG04ruTmYiA.mp4",
+   "origem": "https://www.youtube.com/watch?v=wG04ruTmYiA",
+   "ini": 67,
+   "fim": 71,
+   "tags": [
+    "alive",
+    "vocal",
+    "estudio"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando",
+     "gritando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista soltando a voz de boca aberta"
+   },
+   "nota": 5
+  }
+ ]
+}

@@ -1,0 +1,257 @@
+{
+ "banda": "pearljamsp",
+ "clips": [
+  {
+   "slug": "jeremy-guitarra",
+   "bruto": "vIEUCAyqOUU.mp4",
+   "origem": "https://www.youtube.com/watch?v=vIEUCAyqOUU",
+   "ini": 84,
+   "fim": 87,
+   "rosto": false,
+   "foco": 0.5,
+   "tags": [
+    "jeremy",
+    "guitarra",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "tocando"
+    ],
+    "clima": "intenso",
+    "descricao": "guitarrista de camisa xadrez sob luz verde"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "jeremy-vocal",
+   "bruto": "vIEUCAyqOUU.mp4",
+   "origem": "https://www.youtube.com/watch?v=vIEUCAyqOUU",
+   "ini": 133,
+   "fim": 137,
+   "tags": [
+    "jeremy",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista agarrado ao microfone, luz verde"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "jeremy-vocal",
+   "bruto": "vIEUCAyqOUU.mp4",
+   "origem": "https://www.youtube.com/watch?v=vIEUCAyqOUU",
+   "ini": 176,
+   "fim": 180,
+   "tags": [
+    "jeremy",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista de perto, olhos fechados, luz azul"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "jeremy-vocal",
+   "bruto": "vIEUCAyqOUU.mp4",
+   "origem": "https://www.youtube.com/watch?v=vIEUCAyqOUU",
+   "ini": 186,
+   "fim": 190,
+   "tags": [
+    "jeremy",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista cantando forte no pedestal"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "sirens-vocal",
+   "bruto": "fb0sz_9DntU.mp4",
+   "origem": "https://www.youtube.com/watch?v=fb0sz_9DntU",
+   "ini": 203,
+   "fim": 207,
+   "tags": [
+    "sirens",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista cantando, gesto com a mão"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "komblue-guitarra-vocal",
+   "bruto": "AAX9ndCRf4Q_296-310.mp4",
+   "origem": "https://www.youtube.com/watch?v=AAX9ndCRf4Q&t=296",
+   "ini": 4,
+   "fim": 8.5,
+   "tags": [
+    "komblue",
+    "vocal",
+    "guitarra"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista",
+     "guitarrista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando",
+     "tocando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista e guitarrista lado a lado no Komblue"
+   },
+   "nota": 3,
+   "pre": "crop=iw:ih*0.86:0:0"
+  },
+  {
+   "slug": "komblue-vocal",
+   "bruto": "AAX9ndCRf4Q_9172-9192.mp4",
+   "origem": "https://www.youtube.com/watch?v=AAX9ndCRf4Q&t=9172",
+   "ini": 6,
+   "fim": 10,
+   "tags": [
+    "komblue",
+    "vocal"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "close do vocalista cantando com a mão no microfone"
+   },
+   "nota": 4,
+   "pre": "crop=iw:ih*0.86:0:0"
+  },
+  {
+   "slug": "komblue-cabelo",
+   "bruto": "AAX9ndCRf4Q_9953-9970.mp4",
+   "origem": "https://www.youtube.com/watch?v=AAX9ndCRf4Q&t=9953",
+   "ini": 3.5,
+   "fim": 7.5,
+   "tags": [
+    "komblue",
+    "vocal",
+    "headbang"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando",
+     "headbang"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista balança o cabelo e volta pro microfone"
+   },
+   "nota": 5,
+   "pre": "crop=iw:ih*0.86:0:0"
+  },
+  {
+   "slug": "ig-vocal",
+   "bruto": "ig-DDaEiSMRfN9.mp4",
+   "origem": "https://www.instagram.com/pearljamsp/reel/DDaEiSMRfN9/",
+   "ini": 0.5,
+   "fim": 4,
+   "tags": [
+    "instagram",
+    "vocal",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista",
+     "publico"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando",
+     "braco-pro-alto"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista de boné com o braço pro alto, celulares filmando"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "ig-publico",
+   "bruto": "ig-DDaEiSMRfN9.mp4",
+   "origem": "https://www.instagram.com/pearljamsp/reel/DDaEiSMRfN9/",
+   "ini": 10,
+   "fim": 13.2,
+   "rosto": false,
+   "foco": 0.5,
+   "tags": [
+    "instagram",
+    "publico",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "publico"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando-junto",
+     "maos-pro-alto"
+    ],
+    "clima": "energia",
+    "descricao": "público cantando junto de perto, mão pro alto"
+   },
+   "nota": 4
+  }
+ ]
+}

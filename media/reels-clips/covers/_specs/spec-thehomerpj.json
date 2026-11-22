@@ -1,0 +1,233 @@
+{
+ "banda": "thehomerpj",
+ "clips": [
+  {
+   "slug": "black-dueto",
+   "bruto": "fxyshpF__Sw.mp4",
+   "origem": "https://www.youtube.com/watch?v=fxyshpF__Sw",
+   "ini": 84,
+   "fim": 88,
+   "tags": [
+    "black",
+    "vocal",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista",
+     "guitarrista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista e violonista cantando juntos sob luz colorida"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "black-dueto",
+   "bruto": "fxyshpF__Sw.mp4",
+   "origem": "https://www.youtube.com/watch?v=fxyshpF__Sw",
+   "ini": 151.5,
+   "fim": 155,
+   "tags": [
+    "black",
+    "vocal",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista",
+     "guitarrista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "energia",
+    "descricao": "os dois dividindo o microfone"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "black-vocal",
+   "bruto": "fxyshpF__Sw.mp4",
+   "origem": "https://www.youtube.com/watch?v=fxyshpF__Sw",
+   "ini": 172,
+   "fim": 176,
+   "tags": [
+    "black",
+    "vocal",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando",
+     "bracos-abertos"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista abre os braços no palco"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "black-bracos",
+   "bruto": "fxyshpF__Sw.mp4",
+   "origem": "https://www.youtube.com/watch?v=fxyshpF__Sw",
+   "ini": 214,
+   "fim": 218,
+   "tags": [
+    "black",
+    "vocal",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "bracos-pro-alto"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista com os braços pro alto"
+   },
+   "nota": 4,
+   "rosto": false,
+   "foco": 0.55
+  },
+  {
+   "slug": "black-bracos",
+   "bruto": "fxyshpF__Sw.mp4",
+   "origem": "https://www.youtube.com/watch?v=fxyshpF__Sw",
+   "ini": 237,
+   "fim": 241,
+   "tags": [
+    "black",
+    "vocal",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "bracos-pro-alto",
+     "cantando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista ergue os braços e canta"
+   },
+   "nota": 4,
+   "rosto": false,
+   "foco": 0.5
+  },
+  {
+   "slug": "jeremy-baixo",
+   "bruto": "Tnv9yEW53rI.mp4",
+   "origem": "https://www.youtube.com/watch?v=Tnv9yEW53rI",
+   "ini": 13,
+   "fim": 17,
+   "rosto": false,
+   "foco": 0.5,
+   "tags": [
+    "jeremy",
+    "baixo",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "baixista"
+    ],
+    "plano": "close",
+    "acao": [
+     "tocando"
+    ],
+    "clima": "energia",
+    "descricao": "baixo branco em close sob luz colorida"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "jeremy-baixista",
+   "bruto": "Tnv9yEW53rI.mp4",
+   "origem": "https://www.youtube.com/watch?v=Tnv9yEW53rI",
+   "ini": 101,
+   "fim": 105,
+   "tags": [
+    "jeremy",
+    "baixo",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "baixista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "baixista no microfone de perto"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "jeremy-vocal",
+   "bruto": "Tnv9yEW53rI.mp4",
+   "origem": "https://www.youtube.com/watch?v=Tnv9yEW53rI",
+   "ini": 241,
+   "fim": 245,
+   "tags": [
+    "jeremy",
+    "vocal",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando",
+     "apontando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista cantando forte com o braço esticado"
+   },
+   "nota": 5
+  },
+  {
+   "slug": "jeremy-vocal",
+   "bruto": "Tnv9yEW53rI.mp4",
+   "origem": "https://www.youtube.com/watch?v=Tnv9yEW53rI",
+   "ini": 254,
+   "fim": 258,
+   "tags": [
+    "jeremy",
+    "vocal",
+    "bar"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando",
+     "braco-pro-alto"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista com o braço pro alto, cabelo comprido"
+   },
+   "nota": 5
+  }
+ ]
+}

@@ -1,0 +1,252 @@
+{
+ "banda": "blaymorphed",
+ "clips": [
+  {
+   "slug": "black-vocal",
+   "bruto": "MGbwyqR3TWg.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 41,
+   "fim": 44.5,
+   "tags": [
+    "black",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista",
+     "baixista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista de perto com o baixista atrás"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "black-vocal",
+   "bruto": "MGbwyqR3TWg.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 140,
+   "fim": 143.5,
+   "tags": [
+    "black",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista cantando na frente das caixas vermelhas"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "black-vocal",
+   "bruto": "MGbwyqR3TWg.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 171.2,
+   "fim": 174,
+   "tags": [
+    "black",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista cantando de olhos fechados"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "black-guitarra",
+   "bruto": "MGbwyqR3TWg.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 333,
+   "fim": 335.8,
+   "tags": [
+    "black",
+    "guitarra",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "tocando",
+     "solo"
+    ],
+    "clima": "intenso",
+    "descricao": "guitarrista de camisa laranja no solo"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "black-publico",
+   "bruto": "MGbwyqR3TWg.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 383,
+   "fim": 387,
+   "rosto": false,
+   "foco": 0.5,
+   "tags": [
+    "black",
+    "publico",
+    "teatro"
+   ],
+   "broll": {
+    "quem": [
+     "publico"
+    ],
+    "plano": "aberto",
+    "acao": [
+     "plateia"
+    ],
+    "clima": "calmo",
+    "descricao": "teatro lotado visto do palco"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "alive-vocal",
+   "bruto": "8v0MtwWYGmI.mp4",
+   "origem": "https://www.youtube.com/watch?v=8v0MtwWYGmI",
+   "ini": 217,
+   "fim": 219.9,
+   "tags": [
+    "alive",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista cantando forte no Alive"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "alive-punho",
+   "bruto": "8v0MtwWYGmI.mp4",
+   "origem": "https://www.youtube.com/watch?v=8v0MtwWYGmI",
+   "ini": 344.9,
+   "fim": 346.95,
+   "tags": [
+    "alive",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando",
+     "punho-pro-alto"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista com o punho pro alto"
+   },
+   "nota": 5
+  },
+  {
+   "slug": "jeremy-vocal",
+   "bruto": "BFzFcRSets8.mp4",
+   "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
+   "ini": 78,
+   "fim": 81.5,
+   "tags": [
+    "jeremy",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista de jaqueta cantando de perto"
+   },
+   "nota": 4
+  },
+  {
+   "slug": "jeremy-guitarra",
+   "bruto": "BFzFcRSets8.mp4",
+   "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
+   "ini": 138.3,
+   "fim": 140.8,
+   "rosto": false,
+   "foco": 0.5,
+   "tags": [
+    "jeremy",
+    "guitarra",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "close",
+    "acao": [
+     "tocando"
+    ],
+    "clima": "energia",
+    "descricao": "guitarra em close sob luz vermelha"
+   },
+   "nota": 3
+  },
+  {
+   "slug": "jeremy-vocal",
+   "bruto": "BFzFcRSets8.mp4",
+   "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
+   "ini": 187.6,
+   "fim": 189.7,
+   "tags": [
+    "jeremy",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista cantando forte"
+   },
+   "nota": 4
+  }
+ ]
+}
