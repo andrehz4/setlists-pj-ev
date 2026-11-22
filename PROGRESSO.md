@@ -6,6 +6,8 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **Carrossel do pôster da 2ª noite (22/11 11h, PUBLICADO IG 17999916540101637 + FB):** `reels-especiais/poster-munk-one/`,
+  arte do @munk_one (imagem do post da @mrtsurt, pôster recortado do slide 1), molde do de sexta, paleta laranja.
 - **Banda Alive (Pelotas/RS) na agenda (22/11):** `banda_alivepj` cadastrada em `media/agenda/bandas.json` (POC ok:
   um post por show com data, hora e casa; o extrator leu as 4 datas antigas certas). Sem show futuro hoje; entra sozinha
   quando postarem. Casa provável deles: Urbano Cultural (Pelotas), não cadastrada em `casas.json`.
