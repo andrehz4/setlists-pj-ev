@@ -1,0 +1,25 @@
+# Manual: lista os números dos últimos posts da @smufdpj (alcance, views, seguidores ganhos...). Só leitura, sai no log.
+name: ig-insights
+on:
+  workflow_dispatch:
+    inputs:
+      quantos:
+        description: "Quantos posts (mais novos primeiro)"
+        default: "80"
+permissions:
+  contents: read
+jobs:
+  ler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+      - name: Lê os números
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          QUANTOS: ${{ inputs.quantos }}
+        run: node scripts/ig-insights/coletar.mjs "$QUANTOS"
