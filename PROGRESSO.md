@@ -25,7 +25,9 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   22/11 noite: ronda no Instagram das 10 covers = 133 trechos, 9 de 10 OK. Singles fica com 2 close forte (banda quase sem
   show; Andre procura na mão depois). Conferir: Blaymorphed camisa branca (talvez outra formação), Love Boat logo Venatrix
   nos 4 trechos novos (tag marca:venatrix).
-  Próximo: portar pro gerador (módulo apartado, flag) com rodízio layout x paleta, covers no
+  22/11 19h: covers de cada show no FUNDO DOS DIAS (`design/covers.mjs` + máscara dos cartões no `montar.mjs`):
+  `design/reel-<layout>-covers.mp4` nos 4 layouts, mandados pro celular do Andre.
+  Próximo: Andre escolhe o layout da terça 24/11 e aprova a publicação; depois portar pro gerador (módulo apartado, flag) com rodízio layout x paleta, covers no
   fundo dos dias no lugar do placeholder, falas de falas.mjs.
 - **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
   domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
