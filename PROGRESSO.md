@@ -16,6 +16,12 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   `retry_on_failure: false` no config. Motivo: a cápsula de 20/11 falhou às 20h por erro passageiro do IG ("Please reduce
   the amount of data") e só saiu 0h54 pelo cron de reserva do GitHub. Código em `backend/src/services/retry.js`.
   Conferir na próxima falha se a execução `auto_retry` aparece no painel (depende do webhook workflow_run do repo).
+- **Sábado 21/11 (Roger Daltrey no Ibirapuera), tudo PUBLICADO:** story de chegada do 2º dia (`show-ibirapuera/story-chegada.mjs 2`,
+  vídeos em `brutos2/`, Drive pasta id 1q51jwen5cer3dCTXaLB5KSLiycvo3X9I, IG 18002913306037439); carrossel "Eddie e Glen"
+  (`reels-especiais/eddie-glen/`, amizade de 2010 ao Ibirapuera, amarelo, capa foto @msachno, IG 18095805578285666 + FB);
+  reel "ROLOU!" (`reels-especiais/eddie-roger-rolou/gera.mjs <video> <ini>`: Eddie subiu no show do Roger, Pinball Wizard
+  e The Kids Are Alright; SEM som ao vivo a pedido do Andre, voz Liam v4, IG 18073585574720793 + FB). **Próximo:** domingo,
+  reel do dia (reel-dia.mjs com GRADE nova), quem acertou o palpite, recado do Eddie (falta crédito da foto).
 - **Cobertura ao vivo do show do Eddie no Ibirapuera (20/11, tudo PUBLICADO, Andre pelo celular via remote control):**
   carrossel do pôster do Ian Williams detalhe por detalhe (`reels-especiais/poster-ian-williams/`, IG 18062550296799507
   + FB), story narrado "fica ligado" (`story-ao-vivo/gera.mjs`, voz Liam v4, IG 18110986712209764), story "Portões
