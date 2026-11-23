@@ -32,13 +32,15 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   cheia (0,75 s + whoosh), alinhado à troca de destaque do Design (entrada 0,83 s + 1,8 s por show, igual nos 4 layouts).
   4 layouts montados nesse padrão (`design/reel-<layout>-covers.mp4`, 40,8 s).
   Terça 24/11 JÁ AGENDADA (TriggerAll 11:07, layout A, `publicar.json`, vídeo no R2).
-  **PRÓXIMO (sessão nova, plano aprovado em conceito, falta o "pode começar"): reel da agenda AUTOMÁTICO com a mesma qualidade.**
-  1) Desenho em código: portar os 4 layouts do Design (A cartaz, B ingresso, C lambe-lambe, D tipográfico) x 3 paletas pro
-  renderer por código (como o resumão de domingo), pasta nova `scripts/publish/agenda-reel/` desligada por flag, rodízio por
-  semana ISO, shows de `media/agenda/shows.json`, falas de `falas.mjs`, montagem do `design/montar.mjs` (corte da banda antes
-  de cada show, covers no fundo, trilha, whoosh). Comparar lado a lado com os 4 vídeos aprovados (`design/reel-<layout>-covers.mp4`).
-  2) Covers no R2: subir só os 133 trechos aprovados (`media/reels-clips/covers/`, 255 MP4 / 6,9 GB no total, resto é bruto).
-  3) Workflow próprio + gatilho fixo no TriggerAll toda terça 11:07; validar no mock IG + `npm test`. Andre aprova o 1º vídeo do servidor.
+  **23/11 madrugada: reel da agenda AUTOMÁTICO FEITO (commit 1bcfb6c26), falta só ligar.** `scripts/publish/agenda-reel/`
+  (README lá): o próprio código do Claude Design (`media/agenda/reel-design/`, zip baixado do projeto, 5 ajustes de render) é
+  fotografado no Chrome headless quadro a quadro (fundo transparente) por cima das covers; corte da banda antes de cada show,
+  voz FIXA Jessica, fecho novo pedido pelo Andre ("Toda terça tem agenda no maior acervo de Pearl Jam do Brasil. Segue para
+  não perder."), legenda igual à da W48. 133 covers no R2 (`acervo/covers/`, `covers-r2.mjs`). Workflow `publish-agenda-reel.yml`
+  (modo publicar|previa|dry), log `media/agenda/reel-log.json` (W48 marcada como manual). Mock IG ok, npm test 583/583.
+  Prévia no servidor OK (run 45106844020, 43,7 s, A/amarelo, link no Telegram). PRÓXIMO: Andre aprovar a prévia e os 4 vídeos
+  mandados ao celular; aí criar variável do repo AGENDA_REEL=1 e trigger no TriggerAll (publish-agenda-reel.yml, inputs {},
+  cron `7 14 * * 2` UTC = ter 11:07 BRT; receita em fabrica-quiz/docs/AGENDAR-PUBLICACAO.md). 1ª semana automática: 01/12.
 - **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
   domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
   carrosséis ~0,2%). Dados: workflow manual `ig-insights.yml` (`scripts/ig-insights/coletar.mjs`, seguidores/dia; a API
