@@ -26,3 +26,10 @@ test("aviso de um dia só segue com a legenda inteira", () => {
   const t = "Sábado tem loveboat_tribute\n\nshow às 22h";
   assert.equal(trechoDaBanda(t, "loveboat_tribute"), t);
 });
+
+test("agenda sem linha em branco entre os dias: na dúvida o post é ignorado, nunca vira show", () => {
+  const t = "AGENDA\nQUINTA 26/11 QROCK 22h\nSEXTA 27/11 Blaymorphed 22h\nSÁBADO 28/11 Se7e Cidades";
+  assert.equal(trechoDaBanda(t, "blaymorphed"), null);
+  const casa = { conta: "santorockbar", cidade: "Santo André", uf: "SP" };
+  assert.equal(distribuirPosts([{ casa, posts: [{ legenda: t, data: DATA_POST }] }], [banda]).size, 0);
+});

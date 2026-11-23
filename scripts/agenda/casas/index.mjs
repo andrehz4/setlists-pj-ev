@@ -12,12 +12,14 @@ export const citaConta = (legenda, conta) => new RegExp(`(?<![\\w.])@?${esc(cont
 
 // Agenda da CASA com vários dias (um bloco por dia, separados por linha em branco): a banda fica só com o bloco que
 // cita ela. Santo Rock 23/11/2026: "QUINTA | 26/11 – QROCK ... SEXTA | 27/11 – ... Blaymorphed" virou show na quinta.
-const DATA = /\b\d{1,2}\/\d{1,2}\b/;
+// Na dúvida (várias datas e não dá pra isolar o bloco da banda) devolve null: o post é ignorado, nunca chuta data.
+const DATAS = /\b\d{1,2}\/\d{1,2}\b/g;
+const nDatas = (t) => new Set(t.match(DATAS) || []).size;
 export function trechoDaBanda(legenda, conta) {
-  const blocos = String(legenda || "").split(/\n\s*\n/);
-  if (blocos.filter((b) => DATA.test(b)).length < 2) return legenda;
-  const dela = blocos.filter((b) => citaConta(b, conta) && DATA.test(b));
-  return dela.length === 1 ? dela[0] : legenda;
+  const texto = String(legenda || "");
+  if (nDatas(texto) < 2) return texto;
+  const dela = texto.split(/\n\s*\n/).filter((b) => citaConta(b, conta) && nDatas(b) === 1);
+  return dela.length === 1 ? dela[0] : null;
 }
 
 // posts lidos de cada casa -> Map(conta da banda -> [post com casaDona]). Função pura, testada.
@@ -25,7 +27,9 @@ export function distribuirPosts(lidas, bandas) {
   const porBanda = new Map();
   for (const { casa, posts } of lidas) for (const p of posts) for (const b of bandas) {
     if (b.conta === casa.conta || !citaConta(p.legenda, b.conta)) continue;
-    (porBanda.get(b.conta) || porBanda.set(b.conta, []).get(b.conta)).push({ ...p, legenda: trechoDaBanda(p.legenda, b.conta), imagens: [], casaDona: casa });
+    const legenda = trechoDaBanda(p.legenda, b.conta);
+    if (legenda === null) { console.warn(`[agenda] post de @${casa.conta} com várias datas ignorado pra @${b.conta}: ${p.link}`); continue; }
+    (porBanda.get(b.conta) || porBanda.set(b.conta, []).get(b.conta)).push({ ...p, legenda, imagens: [], casaDona: casa });
   }
   return porBanda;
 }
