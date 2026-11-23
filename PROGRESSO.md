@@ -31,8 +31,14 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   22/11 19h20: PADRÃO APROVADO ("perfeito, sensacional"): antes de CADA show entra um corte da própria banda em tela
   cheia (0,75 s + whoosh), alinhado à troca de destaque do Design (entrada 0,83 s + 1,8 s por show, igual nos 4 layouts).
   4 layouts montados nesse padrão (`design/reel-<layout>-covers.mp4`, 40,8 s).
-  Próximo: Andre escolhe o layout da terça 24/11 e aprova a publicação; depois portar pro gerador (módulo apartado, flag) com rodízio layout x paleta, covers no
-  fundo dos dias no lugar do placeholder, falas de falas.mjs.
+  Terça 24/11 JÁ AGENDADA (TriggerAll 11:07, layout A, `publicar.json`, vídeo no R2).
+  **PRÓXIMO (sessão nova, plano aprovado em conceito, falta o "pode começar"): reel da agenda AUTOMÁTICO com a mesma qualidade.**
+  1) Desenho em código: portar os 4 layouts do Design (A cartaz, B ingresso, C lambe-lambe, D tipográfico) x 3 paletas pro
+  renderer por código (como o resumão de domingo), pasta nova `scripts/publish/agenda-reel/` desligada por flag, rodízio por
+  semana ISO, shows de `media/agenda/shows.json`, falas de `falas.mjs`, montagem do `design/montar.mjs` (corte da banda antes
+  de cada show, covers no fundo, trilha, whoosh). Comparar lado a lado com os 4 vídeos aprovados (`design/reel-<layout>-covers.mp4`).
+  2) Covers no R2: subir só os 133 trechos aprovados (`media/reels-clips/covers/`, 255 MP4 / 6,9 GB no total, resto é bruto).
+  3) Workflow próprio + gatilho fixo no TriggerAll toda terça 11:07; validar no mock IG + `npm test`. Andre aprova o 1º vídeo do servidor.
 - **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
   domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
   carrosséis ~0,2%). Dados: workflow manual `ig-insights.yml` (`scripts/ig-insights/coletar.mjs`, seguidores/dia; a API
