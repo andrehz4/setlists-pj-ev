@@ -70,17 +70,37 @@ export function chaveUnica(chaveObjeto, corpo) {
   return /\.[a-z0-9]+$/i.test(chaveObjeto) ? chaveObjeto.replace(/(\.[a-z0-9]+)$/i, `-${h}$1`) : `${chaveObjeto}-${h}`;
 }
 
+// Segunda trava: baixa o link público e compara o hash com o arquivo local. Diferente = alguém no caminho (cache)
+// está entregando outra mídia; tenta de novo e, se continuar, devolve false (o chamador derruba a publicação).
+export async function conferirPublico(url, corpo, { tentativas = 4, esperaMs = 3000, fetchImpl = fetch } = {}) {
+  const esperado = sha256(corpo);
+  for (let i = 0; i < tentativas; i++) {
+    if (i) await new Promise((r) => setTimeout(r, esperaMs));
+    const r = await fetchImpl(url, { method: "GET", headers: { "cache-control": "no-cache" }, signal: AbortSignal.timeout(120000) });
+    if (!r.ok) throw new Error(`link público devolveu ${r.status} na conferência: ${url}`);
+    if (sha256(Buffer.from(await r.arrayBuffer())) === esperado) return true;
+    console.warn(`[r2] conteúdo do link difere do arquivo local (tentativa ${i + 1}/${tentativas}): ${url}`);
+  }
+  return false;
+}
+
 // Atalho pros publicadores: tenta o R2 (sempre com chave única por conteúdo); se não der, devolve null e o
-// chamador segue no caminho antigo (commit + raw do GitHub).
+// chamador segue no caminho antigo (commit + raw do GitHub). Exceção: link público com conteúdo DIFERENTE do
+// arquivo gerado derruba a publicação (erro com midiaDiferente=true), nunca publica mídia que não é a gerada.
 export async function publicarViaR2(arquivoLocal, chaveObjeto, opts = {}) {
   if (!configR2(opts.env)) return null;
   try {
-    const chave = chaveUnica(chaveObjeto, await fs.readFile(arquivoLocal));
+    const corpo = await fs.readFile(arquivoLocal);
+    const chave = chaveUnica(chaveObjeto, corpo);
     const url = await enviarR2(arquivoLocal, chave, opts);
     if (!(await aguardarPublico(url, opts))) throw new Error(`link público não respondeu: ${url}`);
-    console.log(`[r2] ${chave} -> ${url}`);
+    if (!(await conferirPublico(url, corpo, opts))) {
+      throw Object.assign(new Error(`mídia no link público é diferente da gerada, publicação cancelada: ${url}`), { midiaDiferente: true });
+    }
+    console.log(`[r2] ${chave} -> ${url} (conteúdo conferido)`);
     return url;
   } catch (e) {
+    if (e.midiaDiferente) throw e;
     console.warn(`[r2] falhou, volta pro GitHub: ${e.message}`);
     return null;
   }
