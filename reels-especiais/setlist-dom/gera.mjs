@@ -19,8 +19,8 @@ const novas = M.filter((m) => m.nova), repetidas = M.length - novas.length;
 const MOM = fs.existsSync(path.join(dir, "momentos.json")) ? JSON.parse(fs.readFileSync(path.join(dir, "momentos.json"), "utf8")) : { momentos: [] };
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 // Capa: foto da setlist de papel de verdade (design/uploads/foto-setlist.jpg, se o Andre mandar); sem ela, a folha do gerador
-const FOTO = fs.existsSync(path.join(dir, "design", "uploads", "foto-setlist.jpg")) ? "foto-setlist.jpg" : "folha.jpg";
-const TOTAL = Math.min(10, (FOTO === "folha.jpg" ? 5 : 6) + MOM.momentos.length); // +2: estatística (stats.mjs)
+const FOTO = ["capa.jpg", "foto-setlist.jpg"].find((f) => fs.existsSync(path.join(dir, "design", "uploads", f))) || "folha.jpg";
+const TOTAL = Math.min(10, 5 + MOM.momentos.length); // capa + folha ou lista + 2 de estatística (stats.mjs) + momentos + pergunta
 const BS = "font-family:'Big Shoulders Display',sans-serif;font-weight:900;";
 const S = "width:1080px;height:1350px;position:relative;overflow:hidden;flex:none;";
 const rodape = (n) => `
@@ -36,7 +36,7 @@ const sub = novas.length ? `${M.length} músicas, ${novas.length} que não tocar
 const slides = [];
 let n = 1;
 slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo);color:var(--claro);">
-  <img src="uploads/${FOTO}" alt="Setlist escrita à mão" style="position:absolute;top:0;left:0;width:1080px;height:1350px;object-fit:cover;object-position:50% 30%;">
+  <img src="uploads/${FOTO}" alt="Eddie Vedder no Ibirapuera" style="position:absolute;top:0;left:0;width:1080px;height:1350px;object-fit:cover;object-position:50% 20%;">
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,.7) 0%,rgba(20,17,15,.05) 26%,rgba(20,17,15,.5) 52%,var(--fundo) 84%);"></div>
   <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("DOMINGO, 22/11 · IBIRAPUERA")}</div>
   <div style="position:absolute;top:770px;left:64px;right:40px;${BS}font-size:150px;line-height:.86;letter-spacing:-3px;text-transform:uppercase;">A setlist da<br><span style="color:var(--destaque);">2ª noite</span></div>
@@ -54,14 +54,15 @@ const item = (m, i) => {
   return `${sep}<div style="display:flex;gap:12px;align-items:baseline;font-weight:800;font-size:${fonte}px;line-height:1.28;"><span style="${BS}min-width:40px;text-align:right;opacity:.6;">${m.n}</span><span>${esc(curto(m.nome))}${m.nova ? " ★" : ""}</span></div>`;
 };
 const col = (arr, off) => arr.map((m, i) => item(m, i + off)).join("");
-slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--destaque);color:var(--fundo);">
+// lista digitada só quando não há foto de capa (padrão de sexta: capa com foto + folha inteira)
+if (FOTO === "folha.jpg") slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--destaque);color:var(--fundo);">
   <div style="position:absolute;top:72px;left:72px;">${tag("A SETLIST", true)}<div style="margin-top:14px;${BS}font-size:110px;line-height:.9;text-transform:uppercase;letter-spacing:-2px;">${M.length} músicas</div></div>
   <div style="position:absolute;top:310px;left:72px;width:450px;">${col(M.slice(0, linhas), 0)}</div>
   <div style="position:absolute;top:310px;left:560px;width:470px;">${col(M.slice(linhas), linhas)}</div>
   <div style="position:absolute;bottom:110px;left:72px;right:72px;font-weight:900;font-size:30px;">${novas.length ? `★ não tocou na sexta (${novas.length} de ${M.length})` : "Repetiu tudo da sexta"}</div>
   <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;justify-content:space-between;font-weight:800;font-size:26px;"><div>@smufdpj</div><div>Fonte: ${s.fonte || "setlist.fm"} · <span style="${BS}font-size:30px;">${String(n).padStart(2, "0")}/${TOTAL}</span></div></div></div>`);
 
-n++;
+if (FOTO === "folha.jpg") n++;
 slides.push(...slidesStats({ S, BS, tag, tit, rodape, n }));
 n += 2;
 // Momento: foto no alto com degradê (quadro do vídeo do Andre em design/uploads/) ou só texto; máx. 10 slides no IG
