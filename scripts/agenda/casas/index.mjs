@@ -10,12 +10,22 @@ export const CASAS = naRaiz("media/agenda/casas.json");
 const esc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 export const citaConta = (legenda, conta) => new RegExp(`(?<![\\w.])@?${esc(conta)}(?![\\w]|\\.\\w)`, "i").test(legenda || "");
 
+// Agenda da CASA com vários dias (um bloco por dia, separados por linha em branco): a banda fica só com o bloco que
+// cita ela. Santo Rock 23/11/2026: "QUINTA | 26/11 – QROCK ... SEXTA | 27/11 – ... Blaymorphed" virou show na quinta.
+const DATA = /\b\d{1,2}\/\d{1,2}\b/;
+export function trechoDaBanda(legenda, conta) {
+  const blocos = String(legenda || "").split(/\n\s*\n/);
+  if (blocos.filter((b) => DATA.test(b)).length < 2) return legenda;
+  const dela = blocos.filter((b) => citaConta(b, conta) && DATA.test(b));
+  return dela.length === 1 ? dela[0] : legenda;
+}
+
 // posts lidos de cada casa -> Map(conta da banda -> [post com casaDona]). Função pura, testada.
 export function distribuirPosts(lidas, bandas) {
   const porBanda = new Map();
   for (const { casa, posts } of lidas) for (const p of posts) for (const b of bandas) {
     if (b.conta === casa.conta || !citaConta(p.legenda, b.conta)) continue;
-    (porBanda.get(b.conta) || porBanda.set(b.conta, []).get(b.conta)).push({ ...p, imagens: [], casaDona: casa });
+    (porBanda.get(b.conta) || porBanda.set(b.conta, []).get(b.conta)).push({ ...p, legenda: trechoDaBanda(p.legenda, b.conta), imagens: [], casaDona: casa });
   }
   return porBanda;
 }

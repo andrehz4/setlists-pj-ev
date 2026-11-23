@@ -1,0 +1,28 @@
+// Bug 23/11/2026: a agenda semanal do @santorockbar (quinta QROCK, sexta Blaymorphed, sábado e domingo outras bandas)
+// virou show da Blaymorphed na QUINTA 26/11: o extrator pegava a primeira data da legenda inteira. Saiu no carrossel
+// da semana W48. Agora a banda recebe só o bloco do dia que cita ela.
+import test from "node:test";
+import assert from "node:assert/strict";
+import { distribuirPosts, trechoDaBanda } from "../agenda/casas/index.mjs";
+import { showDoAvisoSolto } from "../agenda/extrair-solto.mjs";
+
+const LEGENDA = "🔥🤘 AGENDA SEMANAL – SANTO ROCK SANTO ANDRÉ!\n\nQuatro dias de muito rock, grandes tributos e shows imperdíveis! 🎸🍻\n\n🎸 QUINTA | 26/11 – QROCK \n✅ Entrada FREE + Chopp e Caipirinha 50% OFF! \n⏰ Bar 20h | Show 22h\n\n🔥 SEXTA | 27/11 – PEARL JAM COVER \nOs clássicos do grunge com Blaymorphed! \n⏰ Bar 20h | Show 22h\n\n🎤 SÁBADO | 28/11 – SE7E CIDADES + 1 DOSE \nTributos à Legião Urbana, Barão Vermelho e Frejat! \n⏰ Bar 20h | Show 22h\n\n📍 Santo Rock Bar – Santo André \n📲 (11) 94787-0013";
+const DATA_POST = "2026-11-23T11:00:01+0000";
+const banda = { conta: "blaymorphed", nome: "Blaymorphed", uf: "SP" };
+
+test("prova do bug: a legenda inteira dá quinta 26/11", () => {
+  assert.equal(showDoAvisoSolto(LEGENDA, DATA_POST, banda).data, "2026-11-26");
+});
+
+test("corrigido: a banda recebe só o bloco dela e o show cai na sexta 27/11, 22h", () => {
+  const casa = { conta: "santorockbar", cidade: "Santo André", uf: "SP" };
+  const p = distribuirPosts([{ casa, posts: [{ legenda: LEGENDA, data: DATA_POST }] }], [banda]).get("blaymorphed")[0];
+  const s = showDoAvisoSolto(p.legenda, p.data, banda);
+  assert.equal(s.data, "2026-11-27");
+  assert.equal(s.hora, "22:00");
+});
+
+test("aviso de um dia só segue com a legenda inteira", () => {
+  const t = "Sábado tem loveboat_tribute\n\nshow às 22h";
+  assert.equal(trechoDaBanda(t, "loveboat_tribute"), t);
+});
