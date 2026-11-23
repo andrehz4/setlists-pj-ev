@@ -12,13 +12,16 @@ export const citaConta = (legenda, conta) => new RegExp(`(?<![\\w.])@?${esc(cont
 
 // Agenda da CASA com vários dias (um bloco por dia, separados por linha em branco): a banda fica só com o bloco que
 // cita ela. Santo Rock 23/11/2026: "QUINTA | 26/11 – QROCK ... SEXTA | 27/11 – ... Blaymorphed" virou show na quinta.
-// Na dúvida (várias datas e não dá pra isolar o bloco da banda) devolve null: o post é ignorado, nunca chuta data.
-const DATAS = /\b\d{1,2}\/\d{1,2}\b/g;
+// Na dúvida devolve null: o post é ignorado, nunca chuta data. Com data escrita, a FRASE que tem a data precisa citar a
+// banda ("Ontem teve Blaymorphed! Sábado 28/11 tem QROCK" não vira show da Blaymorphed no dia 28).
+const DATAS = /\b\d{1,2}[/.]\d{1,2}\b/g;
 const nDatas = (t) => new Set(t.match(DATAS) || []).size;
+const frases = (t) => t.split(/[!?]+|\.(?=\s)/);
 export function trechoDaBanda(legenda, conta) {
   const texto = String(legenda || "");
-  if (nDatas(texto) < 2) return texto;
-  const dela = texto.split(/\n\s*\n/).filter((b) => citaConta(b, conta) && nDatas(b) === 1);
+  if (nDatas(texto) === 0) return texto; // sem data escrita: a prova da data segura o show
+  const dela = texto.split(/\n\s*\n/).filter((b) => nDatas(b) === 1
+    && frases(b).some((f) => nDatas(f) === 1 && citaConta(f, conta)));
   return dela.length === 1 ? dela[0] : null;
 }
 

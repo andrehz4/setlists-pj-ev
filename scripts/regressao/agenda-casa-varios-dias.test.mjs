@@ -46,3 +46,11 @@ test("trava de dados: show só da casa que conflita com a agenda da banda (mesma
   assert.equal(separarSuspeitos([daBanda, { ...daCasa, data: "2026-11-27" }], new Set(["https://ig/p/CASA/"]), {}).suspeitos.length, 0);
   assert.equal(separarSuspeitos([daBanda, daCasa], new Set(["https://ig/p/CASA/"]), { AGENDA_SUSPEITOS: "0" }).suspeitos.length, 0);
 });
+
+test("post de casa com UMA data de outra banda não vira show da banda citada de passagem", () => {
+  assert.equal(trechoDaBanda("Ontem teve Blaymorphed! Sábado 28/11 tem QROCK, chama a galera", "blaymorphed"), null);
+  assert.equal(trechoDaBanda("Valeu Blaymorphed pela noite.\n\nSábado 28/11 tem QROCK", "blaymorphed"), null);
+  const t = "Sábado 28/11 tem Blaymorphed no palco! Show 22h";
+  assert.equal(trechoDaBanda(t, "blaymorphed"), t);
+  assert.equal(trechoDaBanda("SÁBADO 28.11 com loveboat_tribute", "loveboat_tribute"), "SÁBADO 28.11 com loveboat_tribute");
+});
