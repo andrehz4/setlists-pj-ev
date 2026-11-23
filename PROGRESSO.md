@@ -6,6 +6,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **22/11 noite, cobertura da 2ª noite do Eddie (PUBLICADO):** (1) carrossel "A guitarra verde de Sérgio Vedder" (`reels-especiais/guitarra-sergio/`, 8 slides, IG 18034022780882037 + FB): história da Brazilcaster (2014 camiseta do Fear e pedestal, 2015 a guitarra feita pelo Sérgio, 2018 Black), fonte entrevista Aléxia Loren no YouTube (vídeo em `video/`, fora do git), foto Eddie+Sérgio crédito @sergiovedder, marca @blaymorphed e @bestofbluesandrock. (2) setlist de domingo (`reels-especiais/setlist-dom/`, 9 slides, IG 18025468820947609 + FB): setlist.fm ficou vazio, usamos a imagem do @concertpants (`setlist.json` manual, fonte no `fonte`). PADRÃO aprovado pelo Andre: capa = chamada com a folha de fundo, slide 2 = folha inteira, depois estatística (`stats.mjs`: quem foi viu, palpite conferido, duas noites, as 5 novas, essas não falham), momento, pergunta. Vigia do setlist.fm desligada.
 - **Reel "Agenda da semana", PRÉVIA APROVADA (22/11 tarde, "ficou muito bom"):** `reels-especiais/agenda-semana/`.
   `gera.mjs` (prévia por código), `design/montar.mjs` (MP4 exportado do Claude Design + narração + trilha + cortes do PJ
   na abertura = `design/reel-exemplo.mp4`), `falas.mjs` (textos e pronúncia aprovada de ouvido: "Na quinta", "Ozasco",
