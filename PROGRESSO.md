@@ -32,15 +32,15 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   cheia (0,75 s + whoosh), alinhado à troca de destaque do Design (entrada 0,83 s + 1,8 s por show, igual nos 4 layouts).
   4 layouts montados nesse padrão (`design/reel-<layout>-covers.mp4`, 40,8 s).
   Terça 24/11 JÁ AGENDADA (TriggerAll 11:07, layout A, `publicar.json`, vídeo no R2).
-  **23/11 madrugada: reel da agenda AUTOMÁTICO FEITO (commit 1bcfb6c26), falta só ligar.** `scripts/publish/agenda-reel/`
+  **23/11 madrugada: reel da agenda AUTOMÁTICO NO AR (commit 1bcfb6c26).** `scripts/publish/agenda-reel/`
   (README lá): o próprio código do Claude Design (`media/agenda/reel-design/`, zip baixado do projeto, 5 ajustes de render) é
   fotografado no Chrome headless quadro a quadro (fundo transparente) por cima das covers; corte da banda antes de cada show,
   voz FIXA Jessica, fecho novo pedido pelo Andre ("Toda terça tem agenda no maior acervo de Pearl Jam do Brasil. Segue para
   não perder."), legenda igual à da W48. 133 covers no R2 (`acervo/covers/`, `covers-r2.mjs`). Workflow `publish-agenda-reel.yml`
   (modo publicar|previa|dry), log `media/agenda/reel-log.json` (W48 marcada como manual). Mock IG ok, npm test 583/583.
-  Prévia no servidor OK (run 45106844020, 43,7 s, A/amarelo, link no Telegram). PRÓXIMO: Andre aprovar a prévia e os 4 vídeos
-  mandados ao celular; aí criar variável do repo AGENDA_REEL=1 e trigger no TriggerAll (publish-agenda-reel.yml, inputs {},
-  cron `7 14 * * 2` UTC = ter 11:07 BRT; receita em fabrica-quiz/docs/AGENDAR-PUBLICACAO.md). 1ª semana automática: 01/12.
+  Prévia no servidor OK (run 45106844020) e APROVADA pelo Andre (23/11). LIGADO: variável do repo AGENDA_REEL=1 + TriggerAll
+  #021 "Reel Agenda da Semana" (cron `7 14 * * 2` UTC = ter 11:07 BRT, inputs {}); teste de disparo ok (W48 pulada pelo log).
+  1ª semana automática: ter 01/12 11:07. CONFERIR nesse dia o post e o Telegram.
 - **PRÓXIMO PROJETO: reel "Agenda da semana" (ideia de 22/11, aprovada em conceito pelo Andre).** Motivo: o resumão de
   domingo converte ~10x mais seguidor por conta alcançada que carrossel (reel de 22/11: ~20 seg. em 743 de alcance;
   carrosséis ~0,2%). Dados: workflow manual `ig-insights.yml` (`scripts/ig-insights/coletar.mjs`, seguidores/dia; a API
