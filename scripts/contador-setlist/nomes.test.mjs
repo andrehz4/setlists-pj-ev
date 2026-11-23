@@ -1,40 +1,19 @@
-// Nomes do gerador de setlist: o que o gerador manda, o que o servidor aceita e grava, e o painel escapando o HTML.
+// Nomes no contador do gerador de setlist: o que o servidor aceita e grava, e o painel escapando o HTML.
+// O lado do gerador (o que ele manda) é testado junto com o fonte, no repo privado.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PASTA } from "../setlist-ibirapuera/versao.mjs";
-import { validar, MAX_CORPO } from "../../functions/_lib/contador.js";
-import { EVENTOS_NOME, MAX_NOME, limparNome, nomesDoCorpo, quandoBrt, gravarNomes, lerNomes } from "../../functions/_lib/contador-nomes.js";
+import { MAX_NOME, limparNome, nomesDoCorpo, quandoBrt, gravarNomes, lerNomes } from "../../functions/_lib/contador-nomes.js";
 import { desenhar } from "../../functions/_lib/painel-setlist-desenho.js";
 import { onRequestPost } from "../../functions/api/contador.js";
 import { bancoFalso } from "./banco-falso.mjs";
 
 Object.assign(globalThis, { location: { search: "", hash: "" } });
 Object.defineProperty(globalThis, "navigator", { value: { userAgent: "Mozilla/5.0 (iPhone) Safari" }, configurable: true });
-const { COM_NOME, corpo, nomeDoCampo } = await import(PASTA + "contador.js");
 
 const SITE = "https://somaisumfadepearljam.com.br";
 const pedido = (c) => new Request(`${SITE}/api/contador`, { method: "POST", body: c, headers: { Origin: SITE, "User-Agent": "Mozilla/5.0 (iPhone) Safari" } });
 const MEIO_DIA = Date.UTC(2026, 10, 20, 15, 30, 5);
 const RETRATO = { agora: new Date(MEIO_DIA).toISOString(), hoje: "2026-11-20", dias: {}, horas: [] };
-
-test("gerador: nome só vai nos eventos certos e nunca vazio", () => {
-  assert.deepEqual([...COM_NOME].sort(), [...EVENTOS_NOME].sort());
-  for (const e of COM_NOME) assert.equal(JSON.parse(corpo(e, { nome: "Ana" })).nome, "Ana");
-  for (const e of ["visita", "montou", "pediu_video", "saiu_app", "abriu_fora"]) {
-    assert.deepEqual(Object.keys(JSON.parse(corpo(e, { nome: "Ana", barrado: "xx" }))).sort(), ["e", "ig"], e);
-  }
-  for (const vazio of ["", undefined, null]) assert.ok(!("nome" in JSON.parse(corpo("sorteou", { nome: vazio }))));
-  assert.deepEqual(JSON.parse(corpo("sorteou", { noite: 2, nome: "", barrado: "p3d0" })), { e: "sorteou", ig: 0, n: 22, bar: "p3d0" });
-});
-
-test("gerador: primeiro nome igual ao do título, texto barrado vem do campo, tudo cabe no corpo", () => {
-  assert.deepEqual(nomeDoCampo({ value: "  André Luiz ", dataset: {} }), { nome: "André", barrado: "" });
-  assert.deepEqual(nomeDoCampo({ value: "", dataset: { barrado: "p u t a" } }), { nome: "", barrado: "p u t a" });
-  assert.deepEqual(nomeDoCampo(null), { nome: "", barrado: "" });
-  const cheio = corpo("baixou_imagem", { noite: 2, dentro: true, ...nomeDoCampo({ value: "ç".repeat(80), dataset: { barrado: "é".repeat(80) } }) });
-  assert.ok(Buffer.byteLength(cheio) <= MAX_CORPO, "o maior corpo possível passa no limite do servidor");
-  assert.equal(validar(cheio).e, "baixou_imagem");
-});
 
 test("servidor: nome só texto, até 30 caracteres, sem caractere de controle", () => {
   assert.equal(limparNome("  Ana   Maria \n"), "Ana Maria");

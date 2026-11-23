@@ -22,7 +22,7 @@ grava; sem os segredos `PAINEL_USUARIO` e `PAINEL_SENHA` o painel responde 503 e
 | `POST /api/contador` | `api/contador.js`: soma um evento (lista fechada, corpo até 200 bytes, só do próprio site, robô fora). |
 | `GET /painel-setlist` | `painel-setlist.js`: painel privado com usuário e senha (HTTP Basic Auth, 401 sem credencial), noindex, sem cache, atualiza a cada 30 s (`?json=1` devolve os números). |
 
-- Quem manda os eventos: `../setlist-ibirapuera/contador.js` (escuta cliques, `sendBeacon`, falha em silêncio).
+- Quem manda os eventos: o gerador de setlist (escuta cliques, `sendBeacon`, falha em silêncio). O fonte dele mora no repo privado fabrica-quiz (`geradores/setlist/`); aqui só vai a versão compactada.
 - Regras e chaves: `_lib/contador.js`. Desenho do painel: `_lib/painel-setlist-desenho.js` e `_lib/painel-setlist-pagina.js`.
 - Banco: D1 `setlist-contador` (id `f7c1869d-5f24-4056-9240-a06db5bdc44d`), tabela `contador(chave, n)`, soma atômica
   (`n = n + 1`). Criar a tabela de novo: `npx wrangler d1 execute setlist-contador --remote --command "<SQL_TABELA do _lib/contador.js>"`.

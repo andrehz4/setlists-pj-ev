@@ -39,6 +39,9 @@ Validar mudança no pipeline = `npm test` + `node mock-ig/run.mjs feed` com iten
 - Quiz de Quarta (reel de perguntas): mora no repo PRIVADO `andrehz4/fabrica-quiz` (fábrica de reels quiz
   multimarca; este site é a marca SMUFDPJ; no Mac em `/Users/andrehz/Documents/Githubhz/fabrica-quiz`). Nunca colocar
   código, pergunta, gabarito ou spec do quiz aqui no público (nem PR, nem issue). O quiz só LÊ dados públicos daqui.
+- Gerador de setlist (`setlist-ibirapuera/`, futuras páginas de banda cover): aqui só a versão COMPACTADA
+  (`gerador.<hash>.js`). O fonte, os testes e o publicador moram no repo PRIVADO `fabrica-quiz/geradores/setlist`
+  (README lá). Nunca trazer fonte legível do gerador pra cá; mexer lá e rodar `npm run setlist:publicar` no fabrica-quiz.
 - `backend/`: cópia do fórum que ficou para trás; produção roda `terra-gentil-app/backend` (ver `backend/DEPLOY-RAILWAY.md`).
 
 ## Arquivos de estado (media/news/), todos versionados no git
