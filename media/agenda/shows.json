@@ -1,74 +1,73 @@
 {
-  "atualizado": "2026-11-22T19:47:47.156Z",
+  "atualizado": "2026-11-23T12:18:15.010Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-22T19:47:15.317Z",
-      "seguidores": 33216,
+      "lidoEm": "2026-11-23T12:17:59.454Z",
+      "seguidores": 33276,
       "ultimoPost": "2026-11-13T21:27:23+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-22T12:18:12.023Z",
-      "seguidores": 103133,
+      "lidoEm": "2026-11-23T12:18:00.822Z",
+      "seguidores": 103183,
       "ultimoPost": "2026-11-17T21:05:19+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-22T19:47:36.551Z",
+      "lidoEm": "2026-11-23T12:18:02.535Z",
       "seguidores": 9339,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-22T19:47:38.433Z",
-      "seguidores": 74878,
-      "ultimoPost": "2026-11-19T13:42:09+0000"
+      "lidoEm": "2026-11-23T12:18:04.652Z",
+      "seguidores": 74871,
+      "ultimoPost": "2026-11-22T23:26:45+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-22T19:47:39.938Z",
-      "seguidores": 21434,
+      "lidoEm": "2026-11-23T12:18:06.213Z",
+      "seguidores": 21439,
       "ultimoPost": "2026-11-21T17:51:29+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-22T19:47:41.113Z",
-      "seguidores": 33722,
+      "lidoEm": "2026-11-23T12:18:08.143Z",
+      "seguidores": 33719,
       "ultimoPost": "2026-11-22T17:00:02+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-22T19:47:43.187Z",
-      "seguidores": 6338,
+      "lidoEm": "2026-11-23T12:18:10.382Z",
+      "seguidores": 6337,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-22T19:47:44.528Z",
-      "seguidores": 6174,
+      "lidoEm": "2026-11-23T12:18:12.115Z",
+      "seguidores": 6172,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     },
     "loveboat_tribute": {
-      "lidoEm": "2026-11-22T19:47:46.210Z",
+      "lidoEm": "2026-11-23T12:18:13.765Z",
       "seguidores": 3828,
       "ultimoPost": "2026-09-13T18:23:12+0000"
     },
     "banda_alivepj": {
-      "lidoEm": "2026-11-22T19:47:46.952Z",
-      "seguidores": 222,
+      "lidoEm": "2026-11-23T12:18:14.706Z",
+      "seguidores": 221,
       "ultimoPost": "2026-07-19T15:47:24+0000"
     }
   },
-  "oficial": [
-    {
-      "id": "oficial-23233",
-      "data": "2026-11-22",
-      "artista": "Eddie Vedder",
-      "turne": "Eddie Vedder 2026",
-      "evento": "Best of Rock and Blues Festival",
-      "casaNome": "Ibirapuera Park",
-      "cidade": "São Paulo",
-      "estado": "",
-      "pais": "Brazil",
-      "brasil": true,
-      "ingresso": "https://www.ticketmaster.com.br/event/best-of-blues-and-rock-2026",
-      "fonte": "https://pearljam.com/tour"
-    }
-  ],
+  "oficial": [],
   "shows": [
+    {
+      "id": "blaymorphed-2026-11-26-santo-andre",
+      "banda": "blaymorphed",
+      "nome": "Blaymorphed",
+      "data": "2026-11-26",
+      "casa": "santorockbar",
+      "casaNome": null,
+      "cidade": "Santo André",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "22:00",
+      "fonte": "https://www.instagram.com/p/DgFOQ0zljAO/"
+    },
     {
       "id": "pearljamsp-2026-11-26-sao-paulo",
       "banda": "pearljamsp",
@@ -112,32 +111,32 @@
       "fonte": "https://www.instagram.com/p/DfSVhjYxuxQ/"
     },
     {
-      "id": "pjnoventa-2026-11-27-osasco",
+      "id": "pjnoventa-2026-11-27-rockeribscontinental",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-11-27",
       "casa": "rockeribscontinental",
       "casaNome": null,
-      "cidade": "Osasco",
-      "uf": "SP",
+      "cidade": null,
+      "uf": null,
       "fechado": false,
       "observacao": null,
       "hora": "20:00",
-      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+      "fonte": "https://www.instagram.com/p/DgD-VtiuPIK/"
     },
     {
-      "id": "pjnoventa-2026-11-27-maua",
+      "id": "pjnoventa-2026-11-27-livemusicbar",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-11-27",
       "casa": "livemusicbar",
       "casaNome": null,
-      "cidade": "Mauá",
-      "uf": "SP",
+      "cidade": null,
+      "uf": null,
       "fechado": false,
       "observacao": null,
-      "hora": "23:00",
-      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+      "hora": "23:30",
+      "fonte": "https://www.instagram.com/p/DgD-VtiuPIK/"
     },
     {
       "id": "blaymorphed-2026-11-28-campinas",
@@ -168,18 +167,18 @@
       "fonte": "https://www.instagram.com/p/DfSVhjYxuxQ/"
     },
     {
-      "id": "pjnoventa-2026-11-28-guarulhos",
+      "id": "pjnoventa-2026-11-28-strongwash",
       "banda": "pjnoventa",
       "nome": "PJ 90",
       "data": "2026-11-28",
       "casa": "strongwash",
       "casaNome": null,
-      "cidade": "Guarulhos",
-      "uf": "SP",
+      "cidade": null,
+      "uf": null,
       "fechado": false,
       "observacao": null,
-      "hora": "22:00",
-      "fonte": "https://www.instagram.com/p/DfM1TBjG31y/"
+      "hora": "22:30",
+      "fonte": "https://www.instagram.com/p/DgD-VtiuPIK/"
     },
     {
       "id": "thehomerpj-2026-11-28-iron-rock",
