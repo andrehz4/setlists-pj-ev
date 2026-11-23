@@ -11,7 +11,8 @@ export function dataEscrita(texto, dataIso) {
   const [, mm, dd] = dataIso.split("-").map(Number);
   const d = `0?${dd}`, m = `0?${mm}`, mes = MESES[mm - 1];
   if (new RegExp(`(?<!\\d)${d}\\s*[/.-]\\s*${m}(?!\\d)`).test(t)) return true;
-  if (new RegExp(`(?<!\\d)${d}\\s+de\\s+${mes}`).test(t)) return true;
+  if (new RegExp(`(?<!\\d)${d}\\s*(?:de\\s+)?(?:${mes}|${mes.slice(0, 3)})\\b`).test(t)) return true; // "31 de janeiro", "31 JAN"
+  if (new RegExp(`\\b(?:${mes}|${mes.slice(0, 3)})\\.?\\s+${d}(?!\\d)`).test(t)) return true; // "JAN 31"
   const comMes = new RegExp(`\\b(${mes}|${mes.slice(0, 3)})\\b`).test(t);
   if (!comMes) return false;
   return new RegExp(`\\bdia\\s+${d}(?!\\d)`).test(t)

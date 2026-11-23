@@ -11,6 +11,8 @@ test("formatos reais das bandas contam como prova", () => {
   assert.ok(dataEscrita("📍DIA 19 DE NOVEMBRO 21H", "2026-11-19"));
   assert.ok(dataEscrita("🔥ÚLTIMOS SHOWS DE NOVEMBRO🔥\n\n27. SEXTA-FEIRA \n🏠 livemusicbar", "2026-11-27"));
   assert.ok(dataEscrita("Novembro 2026\nSEX 27 - SANTO ROCK BAR", "2026-11-27"));
+  assert.ok(dataEscrita("31 JAN no Metade", "2027-01-31"));
+  assert.ok(dataEscrita("JAN 31 Metade", "2027-01-31"));
 });
 
 test("data que não está escrita não tem prova", () => {
