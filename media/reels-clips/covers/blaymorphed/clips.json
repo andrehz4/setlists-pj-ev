@@ -1,2420 +1,2528 @@
 {
-  "banda": "blaymorphed",
-  "clips": [
+ "banda": "blaymorphed",
+ "clips": [
+  {
+   "file": "blaymorphed-black-vocal-1.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 41,
+   "fim": 44.5,
+   "dur": 3.5,
+   "foco": "rosto",
+   "focoTrilha": [
     {
-      "file": "blaymorphed-black-vocal-1.mp4",
-      "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
-      "ini": 41,
-      "fim": 44.5,
-      "dur": 3.5,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.52
-        },
-        {
-          "t": 0.1,
-          "foco": 0.52
-        },
-        {
-          "t": 0.2,
-          "foco": 0.519
-        },
-        {
-          "t": 0.3,
-          "foco": 0.519
-        },
-        {
-          "t": 0.4,
-          "foco": 0.518
-        },
-        {
-          "t": 0.5,
-          "foco": 0.517
-        },
-        {
-          "t": 0.6,
-          "foco": 0.517
-        },
-        {
-          "t": 0.7,
-          "foco": 0.516
-        },
-        {
-          "t": 0.8,
-          "foco": 0.516
-        },
-        {
-          "t": 0.9,
-          "foco": 0.515
-        },
-        {
-          "t": 1,
-          "foco": 0.514
-        },
-        {
-          "t": 1.1,
-          "foco": 0.512
-        },
-        {
-          "t": 1.2,
-          "foco": 0.511
-        },
-        {
-          "t": 1.3,
-          "foco": 0.51
-        },
-        {
-          "t": 1.4,
-          "foco": 0.51
-        },
-        {
-          "t": 1.5,
-          "foco": 0.511
-        },
-        {
-          "t": 1.6,
-          "foco": 0.512
-        },
-        {
-          "t": 1.7,
-          "foco": 0.512
-        },
-        {
-          "t": 1.8,
-          "foco": 0.512
-        },
-        {
-          "t": 1.9,
-          "foco": 0.512
-        },
-        {
-          "t": 2,
-          "foco": 0.511
-        },
-        {
-          "t": 2.1,
-          "foco": 0.511
-        },
-        {
-          "t": 2.2,
-          "foco": 0.51
-        },
-        {
-          "t": 2.3,
-          "foco": 0.509
-        },
-        {
-          "t": 2.4,
-          "foco": 0.508
-        },
-        {
-          "t": 2.5,
-          "foco": 0.507
-        },
-        {
-          "t": 2.6,
-          "foco": 0.506
-        },
-        {
-          "t": 2.7,
-          "foco": 0.505
-        },
-        {
-          "t": 2.8,
-          "foco": 0.505
-        },
-        {
-          "t": 2.9,
-          "foco": 0.505
-        },
-        {
-          "t": 3,
-          "foco": 0.506
-        },
-        {
-          "t": 3.1,
-          "foco": 0.507
-        },
-        {
-          "t": 3.2,
-          "foco": 0.509
-        },
-        {
-          "t": 3.3,
-          "foco": 0.51
-        },
-        {
-          "t": 3.4,
-          "foco": 0.511
-        },
-        {
-          "t": 3.5,
-          "foco": 0.511
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "black",
-        "vocal",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista",
-          "baixista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando"
-        ],
-        "clima": "intenso",
-        "descricao": "vocalista de perto com o baixista atrás"
-      },
-      "nota": 4
+     "t": 0,
+     "foco": 0.52
     },
     {
-      "file": "blaymorphed-black-vocal-2.mp4",
-      "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
-      "ini": 140,
-      "fim": 143.5,
-      "dur": 3.5,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.37
-        },
-        {
-          "t": 0.1,
-          "foco": 0.37
-        },
-        {
-          "t": 0.2,
-          "foco": 0.371
-        },
-        {
-          "t": 0.3,
-          "foco": 0.371
-        },
-        {
-          "t": 0.4,
-          "foco": 0.372
-        },
-        {
-          "t": 0.5,
-          "foco": 0.373
-        },
-        {
-          "t": 0.6,
-          "foco": 0.375
-        },
-        {
-          "t": 0.7,
-          "foco": 0.378
-        },
-        {
-          "t": 0.8,
-          "foco": 0.379
-        },
-        {
-          "t": 0.9,
-          "foco": 0.379
-        },
-        {
-          "t": 1,
-          "foco": 0.379
-        },
-        {
-          "t": 1.1,
-          "foco": 0.379
-        },
-        {
-          "t": 1.2,
-          "foco": 0.379
-        },
-        {
-          "t": 1.3,
-          "foco": 0.378
-        },
-        {
-          "t": 1.4,
-          "foco": 0.378
-        },
-        {
-          "t": 1.5,
-          "foco": 0.378
-        },
-        {
-          "t": 1.6,
-          "foco": 0.378
-        },
-        {
-          "t": 1.7,
-          "foco": 0.378
-        },
-        {
-          "t": 1.8,
-          "foco": 0.377
-        },
-        {
-          "t": 1.9,
-          "foco": 0.376
-        },
-        {
-          "t": 2,
-          "foco": 0.375
-        },
-        {
-          "t": 2.1,
-          "foco": 0.376
-        },
-        {
-          "t": 2.2,
-          "foco": 0.378
-        },
-        {
-          "t": 2.3,
-          "foco": 0.382
-        },
-        {
-          "t": 2.4,
-          "foco": 0.386
-        },
-        {
-          "t": 2.5,
-          "foco": 0.388
-        },
-        {
-          "t": 2.6,
-          "foco": 0.388
-        },
-        {
-          "t": 2.7,
-          "foco": 0.386
-        },
-        {
-          "t": 2.8,
-          "foco": 0.382
-        },
-        {
-          "t": 2.9,
-          "foco": 0.378
-        },
-        {
-          "t": 3,
-          "foco": 0.372
-        },
-        {
-          "t": 3.1,
-          "foco": 0.364
-        },
-        {
-          "t": 3.2,
-          "foco": 0.355
-        },
-        {
-          "t": 3.3,
-          "foco": 0.342
-        },
-        {
-          "t": 3.4,
-          "foco": 0.323
-        },
-        {
-          "t": 3.5,
-          "foco": 0.314
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "black",
-        "vocal",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando"
-        ],
-        "clima": "intenso",
-        "descricao": "vocalista cantando na frente das caixas vermelhas"
-      },
-      "nota": 4
+     "t": 0.1,
+     "foco": 0.52
     },
     {
-      "file": "blaymorphed-black-vocal-3.mp4",
-      "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
-      "ini": 171.2,
-      "fim": 174,
-      "dur": 2.8,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.528
-        },
-        {
-          "t": 0.1,
-          "foco": 0.529
-        },
-        {
-          "t": 0.2,
-          "foco": 0.53
-        },
-        {
-          "t": 0.3,
-          "foco": 0.53
-        },
-        {
-          "t": 0.4,
-          "foco": 0.53
-        },
-        {
-          "t": 0.5,
-          "foco": 0.528
-        },
-        {
-          "t": 0.6,
-          "foco": 0.526
-        },
-        {
-          "t": 0.7,
-          "foco": 0.524
-        },
-        {
-          "t": 0.8,
-          "foco": 0.523
-        },
-        {
-          "t": 0.9,
-          "foco": 0.521
-        },
-        {
-          "t": 1,
-          "foco": 0.52
-        },
-        {
-          "t": 1.1,
-          "foco": 0.519
-        },
-        {
-          "t": 1.2,
-          "foco": 0.517
-        },
-        {
-          "t": 1.3,
-          "foco": 0.516
-        },
-        {
-          "t": 1.4,
-          "foco": 0.514
-        },
-        {
-          "t": 1.5,
-          "foco": 0.512
-        },
-        {
-          "t": 1.6,
-          "foco": 0.511
-        },
-        {
-          "t": 1.7,
-          "foco": 0.51
-        },
-        {
-          "t": 1.8,
-          "foco": 0.509
-        },
-        {
-          "t": 1.9,
-          "foco": 0.508
-        },
-        {
-          "t": 2,
-          "foco": 0.506
-        },
-        {
-          "t": 2.1,
-          "foco": 0.504
-        },
-        {
-          "t": 2.2,
-          "foco": 0.502
-        },
-        {
-          "t": 2.3,
-          "foco": 0.501
-        },
-        {
-          "t": 2.4,
-          "foco": 0.501
-        },
-        {
-          "t": 2.5,
-          "foco": 0.502
-        },
-        {
-          "t": 2.6,
-          "foco": 0.502
-        },
-        {
-          "t": 2.7,
-          "foco": 0.502
-        },
-        {
-          "t": 2.8,
-          "foco": 0.503
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "black",
-        "vocal",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando"
-        ],
-        "clima": "intenso",
-        "descricao": "vocalista cantando de olhos fechados"
-      },
-      "nota": 4
+     "t": 0.2,
+     "foco": 0.519
     },
     {
-      "file": "blaymorphed-black-guitarra-4.mp4",
-      "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
-      "ini": 333,
-      "fim": 335.8,
-      "dur": 2.8,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.343
-        },
-        {
-          "t": 0.1,
-          "foco": 0.346
-        },
-        {
-          "t": 0.2,
-          "foco": 0.35
-        },
-        {
-          "t": 0.3,
-          "foco": 0.358
-        },
-        {
-          "t": 0.4,
-          "foco": 0.369
-        },
-        {
-          "t": 0.5,
-          "foco": 0.378
-        },
-        {
-          "t": 0.6,
-          "foco": 0.383
-        },
-        {
-          "t": 0.7,
-          "foco": 0.384
-        },
-        {
-          "t": 0.8,
-          "foco": 0.38
-        },
-        {
-          "t": 0.9,
-          "foco": 0.377
-        },
-        {
-          "t": 1,
-          "foco": 0.375
-        },
-        {
-          "t": 1.1,
-          "foco": 0.378
-        },
-        {
-          "t": 1.2,
-          "foco": 0.383
-        },
-        {
-          "t": 1.3,
-          "foco": 0.388
-        },
-        {
-          "t": 1.4,
-          "foco": 0.39
-        },
-        {
-          "t": 1.5,
-          "foco": 0.393
-        },
-        {
-          "t": 1.6,
-          "foco": 0.396
-        },
-        {
-          "t": 1.7,
-          "foco": 0.4
-        },
-        {
-          "t": 1.8,
-          "foco": 0.406
-        },
-        {
-          "t": 1.9,
-          "foco": 0.417
-        },
-        {
-          "t": 2,
-          "foco": 0.436
-        },
-        {
-          "t": 2.1,
-          "foco": 0.469
-        },
-        {
-          "t": 2.2,
-          "foco": 0.523
-        },
-        {
-          "t": 2.3,
-          "foco": 0.555
-        },
-        {
-          "t": 2.4,
-          "foco": 0.572
-        },
-        {
-          "t": 2.5,
-          "foco": 0.58
-        },
-        {
-          "t": 2.6,
-          "foco": 0.581
-        },
-        {
-          "t": 2.7,
-          "foco": 0.579
-        },
-        {
-          "t": 2.8,
-          "foco": 0.576
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "black",
-        "guitarra",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "guitarrista"
-        ],
-        "plano": "medio",
-        "acao": [
-          "tocando",
-          "solo"
-        ],
-        "clima": "intenso",
-        "descricao": "guitarrista de camisa laranja no solo"
-      },
-      "nota": 4
+     "t": 0.3,
+     "foco": 0.519
     },
     {
-      "file": "blaymorphed-black-publico-5.mp4",
-      "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
-      "ini": 383,
-      "fim": 387,
-      "dur": 4,
-      "foco": "centro",
-      "focoX": 0.5,
-      "tags": [
-        "banda:blaymorphed",
-        "black",
-        "publico",
-        "teatro"
-      ],
-      "broll": {
-        "quem": [
-          "publico"
-        ],
-        "plano": "aberto",
-        "acao": [
-          "plateia"
-        ],
-        "clima": "calmo",
-        "descricao": "teatro lotado visto do palco"
-      },
-      "nota": 3
+     "t": 0.4,
+     "foco": 0.518
     },
     {
-      "file": "blaymorphed-alive-vocal-6.mp4",
-      "origem": "https://www.youtube.com/watch?v=8v0MtwWYGmI",
-      "ini": 217,
-      "fim": 219.9,
-      "dur": 2.9,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.602
-        },
-        {
-          "t": 0.1,
-          "foco": 0.594
-        },
-        {
-          "t": 0.2,
-          "foco": 0.583
-        },
-        {
-          "t": 0.3,
-          "foco": 0.571
-        },
-        {
-          "t": 0.4,
-          "foco": 0.557
-        },
-        {
-          "t": 0.5,
-          "foco": 0.54
-        },
-        {
-          "t": 0.6,
-          "foco": 0.519
-        },
-        {
-          "t": 0.7,
-          "foco": 0.497
-        },
-        {
-          "t": 0.8,
-          "foco": 0.473
-        },
-        {
-          "t": 0.9,
-          "foco": 0.45
-        },
-        {
-          "t": 1,
-          "foco": 0.428
-        },
-        {
-          "t": 1.1,
-          "foco": 0.408
-        },
-        {
-          "t": 1.2,
-          "foco": 0.391
-        },
-        {
-          "t": 1.3,
-          "foco": 0.378
-        },
-        {
-          "t": 1.4,
-          "foco": 0.37
-        },
-        {
-          "t": 1.5,
-          "foco": 0.367
-        },
-        {
-          "t": 1.6,
-          "foco": 0.365
-        },
-        {
-          "t": 1.7,
-          "foco": 0.364
-        },
-        {
-          "t": 1.8,
-          "foco": 0.363
-        },
-        {
-          "t": 1.9,
-          "foco": 0.36
-        },
-        {
-          "t": 2,
-          "foco": 0.358
-        },
-        {
-          "t": 2.1,
-          "foco": 0.355
-        },
-        {
-          "t": 2.2,
-          "foco": 0.352
-        },
-        {
-          "t": 2.3,
-          "foco": 0.349
-        },
-        {
-          "t": 2.4,
-          "foco": 0.349
-        },
-        {
-          "t": 2.5,
-          "foco": 0.354
-        },
-        {
-          "t": 2.6,
-          "foco": 0.361
-        },
-        {
-          "t": 2.7,
-          "foco": 0.37
-        },
-        {
-          "t": 2.8,
-          "foco": 0.384
-        },
-        {
-          "t": 2.9,
-          "foco": 0.396
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "alive",
-        "vocal",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando"
-        ],
-        "clima": "energia",
-        "descricao": "vocalista cantando forte no Alive"
-      },
-      "nota": 4
+     "t": 0.5,
+     "foco": 0.517
     },
     {
-      "file": "blaymorphed-alive-punho-7.mp4",
-      "origem": "https://www.youtube.com/watch?v=8v0MtwWYGmI",
-      "ini": 344.9,
-      "fim": 346.95,
-      "dur": 2.05,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.411
-        },
-        {
-          "t": 0.1,
-          "foco": 0.42
-        },
-        {
-          "t": 0.2,
-          "foco": 0.433
-        },
-        {
-          "t": 0.3,
-          "foco": 0.45
-        },
-        {
-          "t": 0.4,
-          "foco": 0.463
-        },
-        {
-          "t": 0.5,
-          "foco": 0.474
-        },
-        {
-          "t": 0.6,
-          "foco": 0.484
-        },
-        {
-          "t": 0.7,
-          "foco": 0.497
-        },
-        {
-          "t": 0.8,
-          "foco": 0.508
-        },
-        {
-          "t": 0.9,
-          "foco": 0.512
-        },
-        {
-          "t": 1,
-          "foco": 0.506
-        },
-        {
-          "t": 1.1,
-          "foco": 0.492
-        },
-        {
-          "t": 1.2,
-          "foco": 0.472
-        },
-        {
-          "t": 1.3,
-          "foco": 0.447
-        },
-        {
-          "t": 1.4,
-          "foco": 0.424
-        },
-        {
-          "t": 1.5,
-          "foco": 0.402
-        },
-        {
-          "t": 1.6,
-          "foco": 0.384
-        },
-        {
-          "t": 1.7,
-          "foco": 0.373
-        },
-        {
-          "t": 1.8,
-          "foco": 0.369
-        },
-        {
-          "t": 1.9,
-          "foco": 0.371
-        },
-        {
-          "t": 2,
-          "foco": 0.373
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "alive",
-        "vocal",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando",
-          "punho-pro-alto"
-        ],
-        "clima": "energia",
-        "descricao": "vocalista com o punho pro alto"
-      },
-      "nota": 5
+     "t": 0.6,
+     "foco": 0.517
     },
     {
-      "file": "blaymorphed-jeremy-vocal-8.mp4",
-      "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
-      "ini": 78,
-      "fim": 81.5,
-      "dur": 3.5,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.58
-        },
-        {
-          "t": 0.1,
-          "foco": 0.577
-        },
-        {
-          "t": 0.2,
-          "foco": 0.573
-        },
-        {
-          "t": 0.3,
-          "foco": 0.569
-        },
-        {
-          "t": 0.4,
-          "foco": 0.567
-        },
-        {
-          "t": 0.5,
-          "foco": 0.565
-        },
-        {
-          "t": 0.6,
-          "foco": 0.564
-        },
-        {
-          "t": 0.7,
-          "foco": 0.564
-        },
-        {
-          "t": 0.8,
-          "foco": 0.564
-        },
-        {
-          "t": 0.9,
-          "foco": 0.565
-        },
-        {
-          "t": 1,
-          "foco": 0.566
-        },
-        {
-          "t": 1.1,
-          "foco": 0.567
-        },
-        {
-          "t": 1.2,
-          "foco": 0.567
-        },
-        {
-          "t": 1.3,
-          "foco": 0.567
-        },
-        {
-          "t": 1.4,
-          "foco": 0.568
-        },
-        {
-          "t": 1.5,
-          "foco": 0.568
-        },
-        {
-          "t": 1.6,
-          "foco": 0.567
-        },
-        {
-          "t": 1.7,
-          "foco": 0.566
-        },
-        {
-          "t": 1.8,
-          "foco": 0.565
-        },
-        {
-          "t": 1.9,
-          "foco": 0.564
-        },
-        {
-          "t": 2,
-          "foco": 0.563
-        },
-        {
-          "t": 2.1,
-          "foco": 0.562
-        },
-        {
-          "t": 2.2,
-          "foco": 0.558
-        },
-        {
-          "t": 2.3,
-          "foco": 0.554
-        },
-        {
-          "t": 2.4,
-          "foco": 0.547
-        },
-        {
-          "t": 2.5,
-          "foco": 0.538
-        },
-        {
-          "t": 2.6,
-          "foco": 0.527
-        },
-        {
-          "t": 2.7,
-          "foco": 0.511
-        },
-        {
-          "t": 2.8,
-          "foco": 0.486
-        },
-        {
-          "t": 2.9,
-          "foco": 0.45
-        },
-        {
-          "t": 3,
-          "foco": 0.395
-        },
-        {
-          "t": 3.1,
-          "foco": 0.36
-        },
-        {
-          "t": 3.2,
-          "foco": 0.338
-        },
-        {
-          "t": 3.3,
-          "foco": 0.323
-        },
-        {
-          "t": 3.4,
-          "foco": 0.314
-        },
-        {
-          "t": 3.5,
-          "foco": 0.309
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "jeremy",
-        "vocal",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando"
-        ],
-        "clima": "intenso",
-        "descricao": "vocalista de jaqueta cantando de perto"
-      },
-      "nota": 4
+     "t": 0.7,
+     "foco": 0.516
     },
     {
-      "file": "blaymorphed-jeremy-guitarra-9.mp4",
-      "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
-      "ini": 138.3,
-      "fim": 140.8,
-      "dur": 2.5,
-      "foco": "centro",
-      "focoX": 0.5,
-      "tags": [
-        "banda:blaymorphed",
-        "jeremy",
-        "guitarra",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "guitarrista"
-        ],
-        "plano": "close",
-        "acao": [
-          "tocando"
-        ],
-        "clima": "energia",
-        "descricao": "guitarra em close sob luz vermelha"
-      },
-      "nota": 3
+     "t": 0.8,
+     "foco": 0.516
     },
     {
-      "file": "blaymorphed-jeremy-vocal-10.mp4",
-      "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
-      "ini": 187.6,
-      "fim": 189.7,
-      "dur": 2.1,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.645
-        },
-        {
-          "t": 0.1,
-          "foco": 0.621
-        },
-        {
-          "t": 0.2,
-          "foco": 0.588
-        },
-        {
-          "t": 0.3,
-          "foco": 0.549
-        },
-        {
-          "t": 0.4,
-          "foco": 0.505
-        },
-        {
-          "t": 0.5,
-          "foco": 0.459
-        },
-        {
-          "t": 0.6,
-          "foco": 0.415
-        },
-        {
-          "t": 0.7,
-          "foco": 0.382
-        },
-        {
-          "t": 0.8,
-          "foco": 0.362
-        },
-        {
-          "t": 0.9,
-          "foco": 0.349
-        },
-        {
-          "t": 1,
-          "foco": 0.341
-        },
-        {
-          "t": 1.1,
-          "foco": 0.338
-        },
-        {
-          "t": 1.2,
-          "foco": 0.342
-        },
-        {
-          "t": 1.3,
-          "foco": 0.352
-        },
-        {
-          "t": 1.4,
-          "foco": 0.364
-        },
-        {
-          "t": 1.5,
-          "foco": 0.373
-        },
-        {
-          "t": 1.6,
-          "foco": 0.379
-        },
-        {
-          "t": 1.7,
-          "foco": 0.386
-        },
-        {
-          "t": 1.8,
-          "foco": 0.395
-        },
-        {
-          "t": 1.9,
-          "foco": 0.409
-        },
-        {
-          "t": 2,
-          "foco": 0.423
-        },
-        {
-          "t": 2.1,
-          "foco": 0.439
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "jeremy",
-        "vocal",
-        "palco"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando"
-        ],
-        "clima": "intenso",
-        "descricao": "vocalista cantando forte"
-      },
-      "nota": 4
+     "t": 0.9,
+     "foco": 0.515
     },
     {
-      "file": "blaymorphed-ig-vocal-bracos-1.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
-      "ini": 31,
-      "fim": 35,
-      "dur": 4,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.551
-        },
-        {
-          "t": 0.1,
-          "foco": 0.551
-        },
-        {
-          "t": 0.2,
-          "foco": 0.551
-        },
-        {
-          "t": 0.3,
-          "foco": 0.549
-        },
-        {
-          "t": 0.4,
-          "foco": 0.546
-        },
-        {
-          "t": 0.5,
-          "foco": 0.542
-        },
-        {
-          "t": 0.6,
-          "foco": 0.537
-        },
-        {
-          "t": 0.7,
-          "foco": 0.532
-        },
-        {
-          "t": 0.8,
-          "foco": 0.527
-        },
-        {
-          "t": 0.9,
-          "foco": 0.522
-        },
-        {
-          "t": 1,
-          "foco": 0.518
-        },
-        {
-          "t": 1.1,
-          "foco": 0.516
-        },
-        {
-          "t": 1.2,
-          "foco": 0.515
-        },
-        {
-          "t": 1.3,
-          "foco": 0.516
-        },
-        {
-          "t": 1.4,
-          "foco": 0.517
-        },
-        {
-          "t": 1.5,
-          "foco": 0.518
-        },
-        {
-          "t": 1.6,
-          "foco": 0.518
-        },
-        {
-          "t": 1.7,
-          "foco": 0.517
-        },
-        {
-          "t": 1.8,
-          "foco": 0.515
-        },
-        {
-          "t": 1.9,
-          "foco": 0.514
-        },
-        {
-          "t": 2,
-          "foco": 0.513
-        },
-        {
-          "t": 2.1,
-          "foco": 0.513
-        },
-        {
-          "t": 2.2,
-          "foco": 0.512
-        },
-        {
-          "t": 2.3,
-          "foco": 0.512
-        },
-        {
-          "t": 2.4,
-          "foco": 0.511
-        },
-        {
-          "t": 2.5,
-          "foco": 0.511
-        },
-        {
-          "t": 2.6,
-          "foco": 0.511
-        },
-        {
-          "t": 2.7,
-          "foco": 0.511
-        },
-        {
-          "t": 2.8,
-          "foco": 0.511
-        },
-        {
-          "t": 2.9,
-          "foco": 0.511
-        },
-        {
-          "t": 3,
-          "foco": 0.511
-        },
-        {
-          "t": 3.1,
-          "foco": 0.512
-        },
-        {
-          "t": 3.2,
-          "foco": 0.512
-        },
-        {
-          "t": 3.3,
-          "foco": 0.512
-        },
-        {
-          "t": 3.4,
-          "foco": 0.512
-        },
-        {
-          "t": 3.5,
-          "foco": 0.512
-        },
-        {
-          "t": 3.6,
-          "foco": 0.512
-        },
-        {
-          "t": 3.7,
-          "foco": 0.513
-        },
-        {
-          "t": 3.8,
-          "foco": 0.514
-        },
-        {
-          "t": 3.9,
-          "foco": 0.514
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "vocalista",
-        "medio",
-        "intenso",
-        "braços abertos"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "medio",
-        "acao": [
-          "braços abertos"
-        ],
-        "clima": "intenso",
-        "descricao": "Vocalista de camisa xadrez abre os braços no palco vermelho"
-      },
-      "nota": 5
+     "t": 1,
+     "foco": 0.514
     },
     {
-      "file": "blaymorphed-ig-vocal-close-2.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
-      "ini": 49,
-      "fim": 53,
-      "dur": 4,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.566
-        },
-        {
-          "t": 0.1,
-          "foco": 0.539
-        },
-        {
-          "t": 0.2,
-          "foco": 0.508
-        },
-        {
-          "t": 0.3,
-          "foco": 0.481
-        },
-        {
-          "t": 0.4,
-          "foco": 0.461
-        },
-        {
-          "t": 0.5,
-          "foco": 0.454
-        },
-        {
-          "t": 0.6,
-          "foco": 0.453
-        },
-        {
-          "t": 0.7,
-          "foco": 0.456
-        },
-        {
-          "t": 0.8,
-          "foco": 0.461
-        },
-        {
-          "t": 0.9,
-          "foco": 0.465
-        },
-        {
-          "t": 1,
-          "foco": 0.463
-        },
-        {
-          "t": 1.1,
-          "foco": 0.456
-        },
-        {
-          "t": 1.2,
-          "foco": 0.449
-        },
-        {
-          "t": 1.3,
-          "foco": 0.45
-        },
-        {
-          "t": 1.4,
-          "foco": 0.461
-        },
-        {
-          "t": 1.5,
-          "foco": 0.479
-        },
-        {
-          "t": 1.6,
-          "foco": 0.497
-        },
-        {
-          "t": 1.7,
-          "foco": 0.515
-        },
-        {
-          "t": 1.8,
-          "foco": 0.533
-        },
-        {
-          "t": 1.9,
-          "foco": 0.548
-        },
-        {
-          "t": 2,
-          "foco": 0.563
-        },
-        {
-          "t": 2.1,
-          "foco": 0.577
-        },
-        {
-          "t": 2.2,
-          "foco": 0.586
-        },
-        {
-          "t": 2.3,
-          "foco": 0.592
-        },
-        {
-          "t": 2.4,
-          "foco": 0.595
-        },
-        {
-          "t": 2.5,
-          "foco": 0.592
-        },
-        {
-          "t": 2.6,
-          "foco": 0.586
-        },
-        {
-          "t": 2.7,
-          "foco": 0.578
-        },
-        {
-          "t": 2.8,
-          "foco": 0.57
-        },
-        {
-          "t": 2.9,
-          "foco": 0.563
-        },
-        {
-          "t": 3,
-          "foco": 0.56
-        },
-        {
-          "t": 3.1,
-          "foco": 0.559
-        },
-        {
-          "t": 3.2,
-          "foco": 0.561
-        },
-        {
-          "t": 3.3,
-          "foco": 0.567
-        },
-        {
-          "t": 3.4,
-          "foco": 0.572
-        },
-        {
-          "t": 3.5,
-          "foco": 0.576
-        },
-        {
-          "t": 3.6,
-          "foco": 0.58
-        },
-        {
-          "t": 3.7,
-          "foco": 0.582
-        },
-        {
-          "t": 3.8,
-          "foco": 0.585
-        },
-        {
-          "t": 3.9,
-          "foco": 0.587
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "vocalista",
-        "close",
-        "intenso",
-        "cantando forte"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando forte"
-        ],
-        "clima": "intenso",
-        "descricao": "Vocalista cabeludo canta forte agarrado ao microfone"
-      },
-      "nota": 4
+     "t": 1.1,
+     "foco": 0.512
     },
     {
-      "file": "blaymorphed-ig-vocal-perfil-3.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
-      "ini": 118,
-      "fim": 122,
-      "dur": 4,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.5
-        },
-        {
-          "t": 0.1,
-          "foco": 0.502
-        },
-        {
-          "t": 0.2,
-          "foco": 0.505
-        },
-        {
-          "t": 0.3,
-          "foco": 0.51
-        },
-        {
-          "t": 0.4,
-          "foco": 0.515
-        },
-        {
-          "t": 0.5,
-          "foco": 0.52
-        },
-        {
-          "t": 0.6,
-          "foco": 0.524
-        },
-        {
-          "t": 0.7,
-          "foco": 0.528
-        },
-        {
-          "t": 0.8,
-          "foco": 0.532
-        },
-        {
-          "t": 0.9,
-          "foco": 0.535
-        },
-        {
-          "t": 1,
-          "foco": 0.533
-        },
-        {
-          "t": 1.1,
-          "foco": 0.527
-        },
-        {
-          "t": 1.2,
-          "foco": 0.518
-        },
-        {
-          "t": 1.3,
-          "foco": 0.506
-        },
-        {
-          "t": 1.4,
-          "foco": 0.49
-        },
-        {
-          "t": 1.5,
-          "foco": 0.472
-        },
-        {
-          "t": 1.6,
-          "foco": 0.454
-        },
-        {
-          "t": 1.7,
-          "foco": 0.437
-        },
-        {
-          "t": 1.8,
-          "foco": 0.423
-        },
-        {
-          "t": 1.9,
-          "foco": 0.415
-        },
-        {
-          "t": 2,
-          "foco": 0.414
-        },
-        {
-          "t": 2.1,
-          "foco": 0.418
-        },
-        {
-          "t": 2.2,
-          "foco": 0.42
-        },
-        {
-          "t": 2.3,
-          "foco": 0.421
-        },
-        {
-          "t": 2.4,
-          "foco": 0.421
-        },
-        {
-          "t": 2.5,
-          "foco": 0.421
-        },
-        {
-          "t": 2.6,
-          "foco": 0.421
-        },
-        {
-          "t": 2.7,
-          "foco": 0.425
-        },
-        {
-          "t": 2.8,
-          "foco": 0.433
-        },
-        {
-          "t": 2.9,
-          "foco": 0.446
-        },
-        {
-          "t": 3,
-          "foco": 0.458
-        },
-        {
-          "t": 3.1,
-          "foco": 0.469
-        },
-        {
-          "t": 3.2,
-          "foco": 0.475
-        },
-        {
-          "t": 3.3,
-          "foco": 0.479
-        },
-        {
-          "t": 3.4,
-          "foco": 0.481
-        },
-        {
-          "t": 3.5,
-          "foco": 0.483
-        },
-        {
-          "t": 3.6,
-          "foco": 0.484
-        },
-        {
-          "t": 3.7,
-          "foco": 0.486
-        },
-        {
-          "t": 3.8,
-          "foco": 0.49
-        },
-        {
-          "t": 3.9,
-          "foco": 0.492
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "vocalista",
-        "close",
-        "intenso",
-        "cantando forte"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando forte"
-        ],
-        "clima": "intenso",
-        "descricao": "Vocalista de perfil soltando a voz no microfone"
-      },
-      "nota": 5
+     "t": 1.2,
+     "foco": 0.511
     },
     {
-      "file": "blaymorphed-ig-vocal-olhos-4.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
-      "ini": 206,
-      "fim": 210,
-      "dur": 4,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.479
-        },
-        {
-          "t": 0.1,
-          "foco": 0.479
-        },
-        {
-          "t": 0.2,
-          "foco": 0.48
-        },
-        {
-          "t": 0.3,
-          "foco": 0.479
-        },
-        {
-          "t": 0.4,
-          "foco": 0.479
-        },
-        {
-          "t": 0.5,
-          "foco": 0.481
-        },
-        {
-          "t": 0.6,
-          "foco": 0.482
-        },
-        {
-          "t": 0.7,
-          "foco": 0.486
-        },
-        {
-          "t": 0.8,
-          "foco": 0.491
-        },
-        {
-          "t": 0.9,
-          "foco": 0.497
-        },
-        {
-          "t": 1,
-          "foco": 0.505
-        },
-        {
-          "t": 1.1,
-          "foco": 0.515
-        },
-        {
-          "t": 1.2,
-          "foco": 0.524
-        },
-        {
-          "t": 1.3,
-          "foco": 0.529
-        },
-        {
-          "t": 1.4,
-          "foco": 0.535
-        },
-        {
-          "t": 1.5,
-          "foco": 0.543
-        },
-        {
-          "t": 1.6,
-          "foco": 0.552
-        },
-        {
-          "t": 1.7,
-          "foco": 0.559
-        },
-        {
-          "t": 1.8,
-          "foco": 0.563
-        },
-        {
-          "t": 1.9,
-          "foco": 0.562
-        },
-        {
-          "t": 2,
-          "foco": 0.558
-        },
-        {
-          "t": 2.1,
-          "foco": 0.555
-        },
-        {
-          "t": 2.2,
-          "foco": 0.556
-        },
-        {
-          "t": 2.3,
-          "foco": 0.558
-        },
-        {
-          "t": 2.4,
-          "foco": 0.559
-        },
-        {
-          "t": 2.5,
-          "foco": 0.555
-        },
-        {
-          "t": 2.6,
-          "foco": 0.549
-        },
-        {
-          "t": 2.7,
-          "foco": 0.54
-        },
-        {
-          "t": 2.8,
-          "foco": 0.53
-        },
-        {
-          "t": 2.9,
-          "foco": 0.52
-        },
-        {
-          "t": 3,
-          "foco": 0.508
-        },
-        {
-          "t": 3.1,
-          "foco": 0.493
-        },
-        {
-          "t": 3.2,
-          "foco": 0.481
-        },
-        {
-          "t": 3.3,
-          "foco": 0.47
-        },
-        {
-          "t": 3.4,
-          "foco": 0.452
-        },
-        {
-          "t": 3.5,
-          "foco": 0.421
-        },
-        {
-          "t": 3.6,
-          "foco": 0.371
-        },
-        {
-          "t": 3.7,
-          "foco": 0.323
-        },
-        {
-          "t": 3.8,
-          "foco": 0.296
-        },
-        {
-          "t": 3.9,
-          "foco": 0.283
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "vocalista",
-        "close",
-        "intenso",
-        "cantando"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando"
-        ],
-        "clima": "intenso",
-        "descricao": "Vocalista de olhos fechados colado no microfone"
-      },
-      "nota": 4
+     "t": 1.3,
+     "foco": 0.51
     },
     {
-      "file": "blaymorphed-ig-guitarra-lespaul-6.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
-      "ini": 196.9,
-      "fim": 200.9,
-      "dur": 4,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.476
-        },
-        {
-          "t": 0.1,
-          "foco": 0.477
-        },
-        {
-          "t": 0.2,
-          "foco": 0.477
-        },
-        {
-          "t": 0.3,
-          "foco": 0.477
-        },
-        {
-          "t": 0.4,
-          "foco": 0.477
-        },
-        {
-          "t": 0.5,
-          "foco": 0.478
-        },
-        {
-          "t": 0.6,
-          "foco": 0.477
-        },
-        {
-          "t": 0.7,
-          "foco": 0.476
-        },
-        {
-          "t": 0.8,
-          "foco": 0.476
-        },
-        {
-          "t": 0.9,
-          "foco": 0.477
-        },
-        {
-          "t": 1,
-          "foco": 0.477
-        },
-        {
-          "t": 1.1,
-          "foco": 0.478
-        },
-        {
-          "t": 1.2,
-          "foco": 0.479
-        },
-        {
-          "t": 1.3,
-          "foco": 0.479
-        },
-        {
-          "t": 1.4,
-          "foco": 0.48
-        },
-        {
-          "t": 1.5,
-          "foco": 0.482
-        },
-        {
-          "t": 1.6,
-          "foco": 0.484
-        },
-        {
-          "t": 1.7,
-          "foco": 0.488
-        },
-        {
-          "t": 1.8,
-          "foco": 0.494
-        },
-        {
-          "t": 1.9,
-          "foco": 0.5
-        },
-        {
-          "t": 2,
-          "foco": 0.508
-        },
-        {
-          "t": 2.1,
-          "foco": 0.517
-        },
-        {
-          "t": 2.2,
-          "foco": 0.528
-        },
-        {
-          "t": 2.3,
-          "foco": 0.54
-        },
-        {
-          "t": 2.4,
-          "foco": 0.55
-        },
-        {
-          "t": 2.5,
-          "foco": 0.559
-        },
-        {
-          "t": 2.6,
-          "foco": 0.566
-        },
-        {
-          "t": 2.7,
-          "foco": 0.572
-        },
-        {
-          "t": 2.8,
-          "foco": 0.576
-        },
-        {
-          "t": 2.9,
-          "foco": 0.577
-        },
-        {
-          "t": 3,
-          "foco": 0.575
-        },
-        {
-          "t": 3.1,
-          "foco": 0.57
-        },
-        {
-          "t": 3.2,
-          "foco": 0.564
-        },
-        {
-          "t": 3.3,
-          "foco": 0.556
-        },
-        {
-          "t": 3.4,
-          "foco": 0.548
-        },
-        {
-          "t": 3.5,
-          "foco": 0.538
-        },
-        {
-          "t": 3.6,
-          "foco": 0.527
-        },
-        {
-          "t": 3.7,
-          "foco": 0.517
-        },
-        {
-          "t": 3.8,
-          "foco": 0.51
-        },
-        {
-          "t": 3.9,
-          "foco": 0.506
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "guitarrista",
-        "medio",
-        "energia",
-        "tocando guitarra"
-      ],
-      "broll": {
-        "quem": [
-          "guitarrista"
-        ],
-        "plano": "medio",
-        "acao": [
-          "tocando guitarra"
-        ],
-        "clima": "energia",
-        "descricao": "Guitarrista de barba com Les Paul sob luz azul"
-      },
-      "nota": 3
+     "t": 1.4,
+     "foco": 0.51
     },
     {
-      "file": "blaymorphed-ig-guitarra-strat-7.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
-      "ini": 228.9,
-      "fim": 231.3,
-      "dur": 2.4,
-      "foco": "rosto",
-      "focoTrilha": [
-        {
-          "t": 0,
-          "foco": 0.759
-        },
-        {
-          "t": 0.1,
-          "foco": 0.751
-        },
-        {
-          "t": 0.2,
-          "foco": 0.74
-        },
-        {
-          "t": 0.3,
-          "foco": 0.728
-        },
-        {
-          "t": 0.4,
-          "foco": 0.719
-        },
-        {
-          "t": 0.5,
-          "foco": 0.713
-        },
-        {
-          "t": 0.6,
-          "foco": 0.705
-        },
-        {
-          "t": 0.7,
-          "foco": 0.687
-        },
-        {
-          "t": 0.8,
-          "foco": 0.661
-        },
-        {
-          "t": 0.9,
-          "foco": 0.628
-        },
-        {
-          "t": 1,
-          "foco": 0.602
-        },
-        {
-          "t": 1.1,
-          "foco": 0.58
-        },
-        {
-          "t": 1.2,
-          "foco": 0.558
-        },
-        {
-          "t": 1.3,
-          "foco": 0.534
-        },
-        {
-          "t": 1.4,
-          "foco": 0.509
-        },
-        {
-          "t": 1.5,
-          "foco": 0.484
-        },
-        {
-          "t": 1.6,
-          "foco": 0.465
-        },
-        {
-          "t": 1.7,
-          "foco": 0.454
-        },
-        {
-          "t": 1.8,
-          "foco": 0.447
-        },
-        {
-          "t": 1.9,
-          "foco": 0.446
-        },
-        {
-          "t": 2,
-          "foco": 0.444
-        },
-        {
-          "t": 2.1,
-          "foco": 0.436
-        },
-        {
-          "t": 2.2,
-          "foco": 0.425
-        },
-        {
-          "t": 2.3,
-          "foco": 0.419
-        }
-      ],
-      "tags": [
-        "banda:blaymorphed",
-        "guitarrista",
-        "medio",
-        "energia",
-        "tocando guitarra"
-      ],
-      "broll": {
-        "quem": [
-          "guitarrista"
-        ],
-        "plano": "medio",
-        "acao": [
-          "tocando guitarra"
-        ],
-        "clima": "energia",
-        "descricao": "Guitarrista com Strat se curva no palco"
-      },
-      "nota": 4
+     "t": 1.5,
+     "foco": 0.511
     },
     {
-      "file": "blaymorphed-ig-baixo-8.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
-      "ini": 289.5,
-      "fim": 293.5,
-      "dur": 4,
-      "foco": "centro",
-      "tags": [
-        "banda:blaymorphed",
-        "baixista",
-        "close",
-        "energia",
-        "tocando baixo"
-      ],
-      "broll": {
-        "quem": [
-          "baixista"
-        ],
-        "plano": "close",
-        "acao": [
-          "tocando baixo"
-        ],
-        "clima": "energia",
-        "descricao": "Baixo preto em close sob luz rosa"
-      },
-      "nota": 3
+     "t": 1.6,
+     "foco": 0.512
     },
     {
-      "file": "blaymorphed-ig-vocal-cabelo-11.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DfL05lPtVZW/",
-      "ini": 142.2,
-      "fim": 145.3,
-      "dur": 3.1,
-      "foco": "centro",
-      "tags": [
-        "banda:blaymorphed",
-        "vocalista",
-        "close",
-        "intenso",
-        "cantando forte"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "close",
-        "acao": [
-          "cantando forte"
-        ],
-        "clima": "intenso",
-        "descricao": "Vocalista de camisa branca canta forte com o cabelo voando"
-      },
-      "nota": 4
+     "t": 1.7,
+     "foco": 0.512
     },
     {
-      "file": "blaymorphed-ig-vocal-maos-12.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DfL05lPtVZW/",
-      "ini": 68.4,
-      "fim": 72.4,
-      "dur": 4,
-      "foco": "centro",
-      "tags": [
-        "banda:blaymorphed",
-        "vocalista",
-        "medio",
-        "intenso",
-        "cantando"
-      ],
-      "broll": {
-        "quem": [
-          "vocalista"
-        ],
-        "plano": "medio",
-        "acao": [
-          "cantando"
-        ],
-        "clima": "intenso",
-        "descricao": "Vocalista de camisa branca agarrado ao microfone com as duas mãos"
-      },
-      "nota": 4
+     "t": 1.8,
+     "foco": 0.512
     },
     {
-      "file": "blaymorphed-ig-bateria-14.mp4",
-      "origem": "https://www.instagram.com/blaymorphed/reel/DePFhyixIlE/",
-      "ini": 70.2,
-      "fim": 72.2,
-      "dur": 2,
-      "foco": "centro",
-      "tags": [
-        "banda:blaymorphed",
-        "baterista",
-        "close",
-        "energia",
-        "tocando bateria"
-      ],
-      "broll": {
-        "quem": [
-          "baterista"
-        ],
-        "plano": "close",
-        "acao": [
-          "tocando bateria"
-        ],
-        "clima": "energia",
-        "descricao": "Baterista careca em close sob luz vermelha"
-      },
-      "nota": 4
+     "t": 1.9,
+     "foco": 0.512
+    },
+    {
+     "t": 2,
+     "foco": 0.511
+    },
+    {
+     "t": 2.1,
+     "foco": 0.511
+    },
+    {
+     "t": 2.2,
+     "foco": 0.51
+    },
+    {
+     "t": 2.3,
+     "foco": 0.509
+    },
+    {
+     "t": 2.4,
+     "foco": 0.508
+    },
+    {
+     "t": 2.5,
+     "foco": 0.507
+    },
+    {
+     "t": 2.6,
+     "foco": 0.506
+    },
+    {
+     "t": 2.7,
+     "foco": 0.505
+    },
+    {
+     "t": 2.8,
+     "foco": 0.505
+    },
+    {
+     "t": 2.9,
+     "foco": 0.505
+    },
+    {
+     "t": 3,
+     "foco": 0.506
+    },
+    {
+     "t": 3.1,
+     "foco": 0.507
+    },
+    {
+     "t": 3.2,
+     "foco": 0.509
+    },
+    {
+     "t": 3.3,
+     "foco": 0.51
+    },
+    {
+     "t": 3.4,
+     "foco": 0.511
+    },
+    {
+     "t": 3.5,
+     "foco": 0.511
     }
-  ]
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "black",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista",
+     "baixista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista de perto com o baixista atrás"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-black-vocal-2.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 140,
+   "fim": 143.5,
+   "dur": 3.5,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.37
+    },
+    {
+     "t": 0.1,
+     "foco": 0.37
+    },
+    {
+     "t": 0.2,
+     "foco": 0.371
+    },
+    {
+     "t": 0.3,
+     "foco": 0.371
+    },
+    {
+     "t": 0.4,
+     "foco": 0.372
+    },
+    {
+     "t": 0.5,
+     "foco": 0.373
+    },
+    {
+     "t": 0.6,
+     "foco": 0.375
+    },
+    {
+     "t": 0.7,
+     "foco": 0.378
+    },
+    {
+     "t": 0.8,
+     "foco": 0.379
+    },
+    {
+     "t": 0.9,
+     "foco": 0.379
+    },
+    {
+     "t": 1,
+     "foco": 0.379
+    },
+    {
+     "t": 1.1,
+     "foco": 0.379
+    },
+    {
+     "t": 1.2,
+     "foco": 0.379
+    },
+    {
+     "t": 1.3,
+     "foco": 0.378
+    },
+    {
+     "t": 1.4,
+     "foco": 0.378
+    },
+    {
+     "t": 1.5,
+     "foco": 0.378
+    },
+    {
+     "t": 1.6,
+     "foco": 0.378
+    },
+    {
+     "t": 1.7,
+     "foco": 0.378
+    },
+    {
+     "t": 1.8,
+     "foco": 0.377
+    },
+    {
+     "t": 1.9,
+     "foco": 0.376
+    },
+    {
+     "t": 2,
+     "foco": 0.375
+    },
+    {
+     "t": 2.1,
+     "foco": 0.376
+    },
+    {
+     "t": 2.2,
+     "foco": 0.378
+    },
+    {
+     "t": 2.3,
+     "foco": 0.382
+    },
+    {
+     "t": 2.4,
+     "foco": 0.386
+    },
+    {
+     "t": 2.5,
+     "foco": 0.388
+    },
+    {
+     "t": 2.6,
+     "foco": 0.388
+    },
+    {
+     "t": 2.7,
+     "foco": 0.386
+    },
+    {
+     "t": 2.8,
+     "foco": 0.382
+    },
+    {
+     "t": 2.9,
+     "foco": 0.378
+    },
+    {
+     "t": 3,
+     "foco": 0.372
+    },
+    {
+     "t": 3.1,
+     "foco": 0.364
+    },
+    {
+     "t": 3.2,
+     "foco": 0.355
+    },
+    {
+     "t": 3.3,
+     "foco": 0.342
+    },
+    {
+     "t": 3.4,
+     "foco": 0.323
+    },
+    {
+     "t": 3.5,
+     "foco": 0.314
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "black",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista cantando na frente das caixas vermelhas"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-black-vocal-3.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 171.2,
+   "fim": 174,
+   "dur": 2.8,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.528
+    },
+    {
+     "t": 0.1,
+     "foco": 0.529
+    },
+    {
+     "t": 0.2,
+     "foco": 0.53
+    },
+    {
+     "t": 0.3,
+     "foco": 0.53
+    },
+    {
+     "t": 0.4,
+     "foco": 0.53
+    },
+    {
+     "t": 0.5,
+     "foco": 0.528
+    },
+    {
+     "t": 0.6,
+     "foco": 0.526
+    },
+    {
+     "t": 0.7,
+     "foco": 0.524
+    },
+    {
+     "t": 0.8,
+     "foco": 0.523
+    },
+    {
+     "t": 0.9,
+     "foco": 0.521
+    },
+    {
+     "t": 1,
+     "foco": 0.52
+    },
+    {
+     "t": 1.1,
+     "foco": 0.519
+    },
+    {
+     "t": 1.2,
+     "foco": 0.517
+    },
+    {
+     "t": 1.3,
+     "foco": 0.516
+    },
+    {
+     "t": 1.4,
+     "foco": 0.514
+    },
+    {
+     "t": 1.5,
+     "foco": 0.512
+    },
+    {
+     "t": 1.6,
+     "foco": 0.511
+    },
+    {
+     "t": 1.7,
+     "foco": 0.51
+    },
+    {
+     "t": 1.8,
+     "foco": 0.509
+    },
+    {
+     "t": 1.9,
+     "foco": 0.508
+    },
+    {
+     "t": 2,
+     "foco": 0.506
+    },
+    {
+     "t": 2.1,
+     "foco": 0.504
+    },
+    {
+     "t": 2.2,
+     "foco": 0.502
+    },
+    {
+     "t": 2.3,
+     "foco": 0.501
+    },
+    {
+     "t": 2.4,
+     "foco": 0.501
+    },
+    {
+     "t": 2.5,
+     "foco": 0.502
+    },
+    {
+     "t": 2.6,
+     "foco": 0.502
+    },
+    {
+     "t": 2.7,
+     "foco": 0.502
+    },
+    {
+     "t": 2.8,
+     "foco": 0.503
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "black",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista cantando de olhos fechados"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-black-guitarra-4.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 333,
+   "fim": 335.8,
+   "dur": 2.8,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.343
+    },
+    {
+     "t": 0.1,
+     "foco": 0.346
+    },
+    {
+     "t": 0.2,
+     "foco": 0.35
+    },
+    {
+     "t": 0.3,
+     "foco": 0.358
+    },
+    {
+     "t": 0.4,
+     "foco": 0.369
+    },
+    {
+     "t": 0.5,
+     "foco": 0.378
+    },
+    {
+     "t": 0.6,
+     "foco": 0.383
+    },
+    {
+     "t": 0.7,
+     "foco": 0.384
+    },
+    {
+     "t": 0.8,
+     "foco": 0.38
+    },
+    {
+     "t": 0.9,
+     "foco": 0.377
+    },
+    {
+     "t": 1,
+     "foco": 0.375
+    },
+    {
+     "t": 1.1,
+     "foco": 0.378
+    },
+    {
+     "t": 1.2,
+     "foco": 0.383
+    },
+    {
+     "t": 1.3,
+     "foco": 0.388
+    },
+    {
+     "t": 1.4,
+     "foco": 0.39
+    },
+    {
+     "t": 1.5,
+     "foco": 0.393
+    },
+    {
+     "t": 1.6,
+     "foco": 0.396
+    },
+    {
+     "t": 1.7,
+     "foco": 0.4
+    },
+    {
+     "t": 1.8,
+     "foco": 0.406
+    },
+    {
+     "t": 1.9,
+     "foco": 0.417
+    },
+    {
+     "t": 2,
+     "foco": 0.436
+    },
+    {
+     "t": 2.1,
+     "foco": 0.469
+    },
+    {
+     "t": 2.2,
+     "foco": 0.523
+    },
+    {
+     "t": 2.3,
+     "foco": 0.555
+    },
+    {
+     "t": 2.4,
+     "foco": 0.572
+    },
+    {
+     "t": 2.5,
+     "foco": 0.58
+    },
+    {
+     "t": 2.6,
+     "foco": 0.581
+    },
+    {
+     "t": 2.7,
+     "foco": 0.579
+    },
+    {
+     "t": 2.8,
+     "foco": 0.576
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "black",
+    "guitarra",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "tocando",
+     "solo"
+    ],
+    "clima": "intenso",
+    "descricao": "guitarrista de camisa laranja no solo"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-black-publico-5.mp4",
+   "origem": "https://www.youtube.com/watch?v=MGbwyqR3TWg",
+   "ini": 383,
+   "fim": 387,
+   "dur": 4,
+   "foco": "centro",
+   "focoX": 0.5,
+   "tags": [
+    "banda:blaymorphed",
+    "black",
+    "publico",
+    "teatro"
+   ],
+   "broll": {
+    "quem": [
+     "publico"
+    ],
+    "plano": "aberto",
+    "acao": [
+     "plateia"
+    ],
+    "clima": "calmo",
+    "descricao": "teatro lotado visto do palco"
+   },
+   "nota": 3
+  },
+  {
+   "file": "blaymorphed-alive-vocal-6.mp4",
+   "origem": "https://www.youtube.com/watch?v=8v0MtwWYGmI",
+   "ini": 217,
+   "fim": 219.9,
+   "dur": 2.9,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.602
+    },
+    {
+     "t": 0.1,
+     "foco": 0.594
+    },
+    {
+     "t": 0.2,
+     "foco": 0.583
+    },
+    {
+     "t": 0.3,
+     "foco": 0.571
+    },
+    {
+     "t": 0.4,
+     "foco": 0.557
+    },
+    {
+     "t": 0.5,
+     "foco": 0.54
+    },
+    {
+     "t": 0.6,
+     "foco": 0.519
+    },
+    {
+     "t": 0.7,
+     "foco": 0.497
+    },
+    {
+     "t": 0.8,
+     "foco": 0.473
+    },
+    {
+     "t": 0.9,
+     "foco": 0.45
+    },
+    {
+     "t": 1,
+     "foco": 0.428
+    },
+    {
+     "t": 1.1,
+     "foco": 0.408
+    },
+    {
+     "t": 1.2,
+     "foco": 0.391
+    },
+    {
+     "t": 1.3,
+     "foco": 0.378
+    },
+    {
+     "t": 1.4,
+     "foco": 0.37
+    },
+    {
+     "t": 1.5,
+     "foco": 0.367
+    },
+    {
+     "t": 1.6,
+     "foco": 0.365
+    },
+    {
+     "t": 1.7,
+     "foco": 0.364
+    },
+    {
+     "t": 1.8,
+     "foco": 0.363
+    },
+    {
+     "t": 1.9,
+     "foco": 0.36
+    },
+    {
+     "t": 2,
+     "foco": 0.358
+    },
+    {
+     "t": 2.1,
+     "foco": 0.355
+    },
+    {
+     "t": 2.2,
+     "foco": 0.352
+    },
+    {
+     "t": 2.3,
+     "foco": 0.349
+    },
+    {
+     "t": 2.4,
+     "foco": 0.349
+    },
+    {
+     "t": 2.5,
+     "foco": 0.354
+    },
+    {
+     "t": 2.6,
+     "foco": 0.361
+    },
+    {
+     "t": 2.7,
+     "foco": 0.37
+    },
+    {
+     "t": 2.8,
+     "foco": 0.384
+    },
+    {
+     "t": 2.9,
+     "foco": 0.396
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "alive",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista cantando forte no Alive"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-alive-punho-7.mp4",
+   "origem": "https://www.youtube.com/watch?v=8v0MtwWYGmI",
+   "ini": 344.9,
+   "fim": 346.95,
+   "dur": 2.05,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.411
+    },
+    {
+     "t": 0.1,
+     "foco": 0.42
+    },
+    {
+     "t": 0.2,
+     "foco": 0.433
+    },
+    {
+     "t": 0.3,
+     "foco": 0.45
+    },
+    {
+     "t": 0.4,
+     "foco": 0.463
+    },
+    {
+     "t": 0.5,
+     "foco": 0.474
+    },
+    {
+     "t": 0.6,
+     "foco": 0.484
+    },
+    {
+     "t": 0.7,
+     "foco": 0.497
+    },
+    {
+     "t": 0.8,
+     "foco": 0.508
+    },
+    {
+     "t": 0.9,
+     "foco": 0.512
+    },
+    {
+     "t": 1,
+     "foco": 0.506
+    },
+    {
+     "t": 1.1,
+     "foco": 0.492
+    },
+    {
+     "t": 1.2,
+     "foco": 0.472
+    },
+    {
+     "t": 1.3,
+     "foco": 0.447
+    },
+    {
+     "t": 1.4,
+     "foco": 0.424
+    },
+    {
+     "t": 1.5,
+     "foco": 0.402
+    },
+    {
+     "t": 1.6,
+     "foco": 0.384
+    },
+    {
+     "t": 1.7,
+     "foco": 0.373
+    },
+    {
+     "t": 1.8,
+     "foco": 0.369
+    },
+    {
+     "t": 1.9,
+     "foco": 0.371
+    },
+    {
+     "t": 2,
+     "foco": 0.373
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "alive",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando",
+     "punho-pro-alto"
+    ],
+    "clima": "energia",
+    "descricao": "vocalista com o punho pro alto"
+   },
+   "nota": 5
+  },
+  {
+   "file": "blaymorphed-jeremy-vocal-8.mp4",
+   "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
+   "ini": 78,
+   "fim": 81.5,
+   "dur": 3.5,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.58
+    },
+    {
+     "t": 0.1,
+     "foco": 0.577
+    },
+    {
+     "t": 0.2,
+     "foco": 0.573
+    },
+    {
+     "t": 0.3,
+     "foco": 0.569
+    },
+    {
+     "t": 0.4,
+     "foco": 0.567
+    },
+    {
+     "t": 0.5,
+     "foco": 0.565
+    },
+    {
+     "t": 0.6,
+     "foco": 0.564
+    },
+    {
+     "t": 0.7,
+     "foco": 0.564
+    },
+    {
+     "t": 0.8,
+     "foco": 0.564
+    },
+    {
+     "t": 0.9,
+     "foco": 0.565
+    },
+    {
+     "t": 1,
+     "foco": 0.566
+    },
+    {
+     "t": 1.1,
+     "foco": 0.567
+    },
+    {
+     "t": 1.2,
+     "foco": 0.567
+    },
+    {
+     "t": 1.3,
+     "foco": 0.567
+    },
+    {
+     "t": 1.4,
+     "foco": 0.568
+    },
+    {
+     "t": 1.5,
+     "foco": 0.568
+    },
+    {
+     "t": 1.6,
+     "foco": 0.567
+    },
+    {
+     "t": 1.7,
+     "foco": 0.566
+    },
+    {
+     "t": 1.8,
+     "foco": 0.565
+    },
+    {
+     "t": 1.9,
+     "foco": 0.564
+    },
+    {
+     "t": 2,
+     "foco": 0.563
+    },
+    {
+     "t": 2.1,
+     "foco": 0.562
+    },
+    {
+     "t": 2.2,
+     "foco": 0.558
+    },
+    {
+     "t": 2.3,
+     "foco": 0.554
+    },
+    {
+     "t": 2.4,
+     "foco": 0.547
+    },
+    {
+     "t": 2.5,
+     "foco": 0.538
+    },
+    {
+     "t": 2.6,
+     "foco": 0.527
+    },
+    {
+     "t": 2.7,
+     "foco": 0.511
+    },
+    {
+     "t": 2.8,
+     "foco": 0.486
+    },
+    {
+     "t": 2.9,
+     "foco": 0.45
+    },
+    {
+     "t": 3,
+     "foco": 0.395
+    },
+    {
+     "t": 3.1,
+     "foco": 0.36
+    },
+    {
+     "t": 3.2,
+     "foco": 0.338
+    },
+    {
+     "t": 3.3,
+     "foco": 0.323
+    },
+    {
+     "t": 3.4,
+     "foco": 0.314
+    },
+    {
+     "t": 3.5,
+     "foco": 0.309
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "jeremy",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista de jaqueta cantando de perto"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-jeremy-guitarra-9.mp4",
+   "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
+   "ini": 138.3,
+   "fim": 140.8,
+   "dur": 2.5,
+   "foco": "centro",
+   "focoX": 0.5,
+   "tags": [
+    "banda:blaymorphed",
+    "jeremy",
+    "guitarra",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "close",
+    "acao": [
+     "tocando"
+    ],
+    "clima": "energia",
+    "descricao": "guitarra em close sob luz vermelha"
+   },
+   "nota": 3
+  },
+  {
+   "file": "blaymorphed-jeremy-vocal-10.mp4",
+   "origem": "https://www.youtube.com/watch?v=BFzFcRSets8",
+   "ini": 187.6,
+   "fim": 189.7,
+   "dur": 2.1,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.645
+    },
+    {
+     "t": 0.1,
+     "foco": 0.621
+    },
+    {
+     "t": 0.2,
+     "foco": 0.588
+    },
+    {
+     "t": 0.3,
+     "foco": 0.549
+    },
+    {
+     "t": 0.4,
+     "foco": 0.505
+    },
+    {
+     "t": 0.5,
+     "foco": 0.459
+    },
+    {
+     "t": 0.6,
+     "foco": 0.415
+    },
+    {
+     "t": 0.7,
+     "foco": 0.382
+    },
+    {
+     "t": 0.8,
+     "foco": 0.362
+    },
+    {
+     "t": 0.9,
+     "foco": 0.349
+    },
+    {
+     "t": 1,
+     "foco": 0.341
+    },
+    {
+     "t": 1.1,
+     "foco": 0.338
+    },
+    {
+     "t": 1.2,
+     "foco": 0.342
+    },
+    {
+     "t": 1.3,
+     "foco": 0.352
+    },
+    {
+     "t": 1.4,
+     "foco": 0.364
+    },
+    {
+     "t": 1.5,
+     "foco": 0.373
+    },
+    {
+     "t": 1.6,
+     "foco": 0.379
+    },
+    {
+     "t": 1.7,
+     "foco": 0.386
+    },
+    {
+     "t": 1.8,
+     "foco": 0.395
+    },
+    {
+     "t": 1.9,
+     "foco": 0.409
+    },
+    {
+     "t": 2,
+     "foco": 0.423
+    },
+    {
+     "t": 2.1,
+     "foco": 0.439
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "jeremy",
+    "vocal",
+    "palco"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "vocalista cantando forte"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-ig-vocal-bracos-1.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
+   "ini": 31,
+   "fim": 35,
+   "dur": 4,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.551
+    },
+    {
+     "t": 0.1,
+     "foco": 0.551
+    },
+    {
+     "t": 0.2,
+     "foco": 0.551
+    },
+    {
+     "t": 0.3,
+     "foco": 0.549
+    },
+    {
+     "t": 0.4,
+     "foco": 0.546
+    },
+    {
+     "t": 0.5,
+     "foco": 0.542
+    },
+    {
+     "t": 0.6,
+     "foco": 0.537
+    },
+    {
+     "t": 0.7,
+     "foco": 0.532
+    },
+    {
+     "t": 0.8,
+     "foco": 0.527
+    },
+    {
+     "t": 0.9,
+     "foco": 0.522
+    },
+    {
+     "t": 1,
+     "foco": 0.518
+    },
+    {
+     "t": 1.1,
+     "foco": 0.516
+    },
+    {
+     "t": 1.2,
+     "foco": 0.515
+    },
+    {
+     "t": 1.3,
+     "foco": 0.516
+    },
+    {
+     "t": 1.4,
+     "foco": 0.517
+    },
+    {
+     "t": 1.5,
+     "foco": 0.518
+    },
+    {
+     "t": 1.6,
+     "foco": 0.518
+    },
+    {
+     "t": 1.7,
+     "foco": 0.517
+    },
+    {
+     "t": 1.8,
+     "foco": 0.515
+    },
+    {
+     "t": 1.9,
+     "foco": 0.514
+    },
+    {
+     "t": 2,
+     "foco": 0.513
+    },
+    {
+     "t": 2.1,
+     "foco": 0.513
+    },
+    {
+     "t": 2.2,
+     "foco": 0.512
+    },
+    {
+     "t": 2.3,
+     "foco": 0.512
+    },
+    {
+     "t": 2.4,
+     "foco": 0.511
+    },
+    {
+     "t": 2.5,
+     "foco": 0.511
+    },
+    {
+     "t": 2.6,
+     "foco": 0.511
+    },
+    {
+     "t": 2.7,
+     "foco": 0.511
+    },
+    {
+     "t": 2.8,
+     "foco": 0.511
+    },
+    {
+     "t": 2.9,
+     "foco": 0.511
+    },
+    {
+     "t": 3,
+     "foco": 0.511
+    },
+    {
+     "t": 3.1,
+     "foco": 0.512
+    },
+    {
+     "t": 3.2,
+     "foco": 0.512
+    },
+    {
+     "t": 3.3,
+     "foco": 0.512
+    },
+    {
+     "t": 3.4,
+     "foco": 0.512
+    },
+    {
+     "t": 3.5,
+     "foco": 0.512
+    },
+    {
+     "t": 3.6,
+     "foco": 0.512
+    },
+    {
+     "t": 3.7,
+     "foco": 0.513
+    },
+    {
+     "t": 3.8,
+     "foco": 0.514
+    },
+    {
+     "t": 3.9,
+     "foco": 0.514
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "medio",
+    "intenso",
+    "braços abertos"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "braços abertos"
+    ],
+    "clima": "intenso",
+    "descricao": "Vocalista de camisa xadrez abre os braços no palco vermelho"
+   },
+   "nota": 5
+  },
+  {
+   "file": "blaymorphed-ig-vocal-close-2.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
+   "ini": 49,
+   "fim": 53,
+   "dur": 4,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.566
+    },
+    {
+     "t": 0.1,
+     "foco": 0.539
+    },
+    {
+     "t": 0.2,
+     "foco": 0.508
+    },
+    {
+     "t": 0.3,
+     "foco": 0.481
+    },
+    {
+     "t": 0.4,
+     "foco": 0.461
+    },
+    {
+     "t": 0.5,
+     "foco": 0.454
+    },
+    {
+     "t": 0.6,
+     "foco": 0.453
+    },
+    {
+     "t": 0.7,
+     "foco": 0.456
+    },
+    {
+     "t": 0.8,
+     "foco": 0.461
+    },
+    {
+     "t": 0.9,
+     "foco": 0.465
+    },
+    {
+     "t": 1,
+     "foco": 0.463
+    },
+    {
+     "t": 1.1,
+     "foco": 0.456
+    },
+    {
+     "t": 1.2,
+     "foco": 0.449
+    },
+    {
+     "t": 1.3,
+     "foco": 0.45
+    },
+    {
+     "t": 1.4,
+     "foco": 0.461
+    },
+    {
+     "t": 1.5,
+     "foco": 0.479
+    },
+    {
+     "t": 1.6,
+     "foco": 0.497
+    },
+    {
+     "t": 1.7,
+     "foco": 0.515
+    },
+    {
+     "t": 1.8,
+     "foco": 0.533
+    },
+    {
+     "t": 1.9,
+     "foco": 0.548
+    },
+    {
+     "t": 2,
+     "foco": 0.563
+    },
+    {
+     "t": 2.1,
+     "foco": 0.577
+    },
+    {
+     "t": 2.2,
+     "foco": 0.586
+    },
+    {
+     "t": 2.3,
+     "foco": 0.592
+    },
+    {
+     "t": 2.4,
+     "foco": 0.595
+    },
+    {
+     "t": 2.5,
+     "foco": 0.592
+    },
+    {
+     "t": 2.6,
+     "foco": 0.586
+    },
+    {
+     "t": 2.7,
+     "foco": 0.578
+    },
+    {
+     "t": 2.8,
+     "foco": 0.57
+    },
+    {
+     "t": 2.9,
+     "foco": 0.563
+    },
+    {
+     "t": 3,
+     "foco": 0.56
+    },
+    {
+     "t": 3.1,
+     "foco": 0.559
+    },
+    {
+     "t": 3.2,
+     "foco": 0.561
+    },
+    {
+     "t": 3.3,
+     "foco": 0.567
+    },
+    {
+     "t": 3.4,
+     "foco": 0.572
+    },
+    {
+     "t": 3.5,
+     "foco": 0.576
+    },
+    {
+     "t": 3.6,
+     "foco": 0.58
+    },
+    {
+     "t": 3.7,
+     "foco": 0.582
+    },
+    {
+     "t": 3.8,
+     "foco": 0.585
+    },
+    {
+     "t": 3.9,
+     "foco": 0.587
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "close",
+    "intenso",
+    "cantando forte"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando forte"
+    ],
+    "clima": "intenso",
+    "descricao": "Vocalista cabeludo canta forte agarrado ao microfone"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-ig-vocal-perfil-3.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
+   "ini": 118,
+   "fim": 122,
+   "dur": 4,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.5
+    },
+    {
+     "t": 0.1,
+     "foco": 0.502
+    },
+    {
+     "t": 0.2,
+     "foco": 0.505
+    },
+    {
+     "t": 0.3,
+     "foco": 0.51
+    },
+    {
+     "t": 0.4,
+     "foco": 0.515
+    },
+    {
+     "t": 0.5,
+     "foco": 0.52
+    },
+    {
+     "t": 0.6,
+     "foco": 0.524
+    },
+    {
+     "t": 0.7,
+     "foco": 0.528
+    },
+    {
+     "t": 0.8,
+     "foco": 0.532
+    },
+    {
+     "t": 0.9,
+     "foco": 0.535
+    },
+    {
+     "t": 1,
+     "foco": 0.533
+    },
+    {
+     "t": 1.1,
+     "foco": 0.527
+    },
+    {
+     "t": 1.2,
+     "foco": 0.518
+    },
+    {
+     "t": 1.3,
+     "foco": 0.506
+    },
+    {
+     "t": 1.4,
+     "foco": 0.49
+    },
+    {
+     "t": 1.5,
+     "foco": 0.472
+    },
+    {
+     "t": 1.6,
+     "foco": 0.454
+    },
+    {
+     "t": 1.7,
+     "foco": 0.437
+    },
+    {
+     "t": 1.8,
+     "foco": 0.423
+    },
+    {
+     "t": 1.9,
+     "foco": 0.415
+    },
+    {
+     "t": 2,
+     "foco": 0.414
+    },
+    {
+     "t": 2.1,
+     "foco": 0.418
+    },
+    {
+     "t": 2.2,
+     "foco": 0.42
+    },
+    {
+     "t": 2.3,
+     "foco": 0.421
+    },
+    {
+     "t": 2.4,
+     "foco": 0.421
+    },
+    {
+     "t": 2.5,
+     "foco": 0.421
+    },
+    {
+     "t": 2.6,
+     "foco": 0.421
+    },
+    {
+     "t": 2.7,
+     "foco": 0.425
+    },
+    {
+     "t": 2.8,
+     "foco": 0.433
+    },
+    {
+     "t": 2.9,
+     "foco": 0.446
+    },
+    {
+     "t": 3,
+     "foco": 0.458
+    },
+    {
+     "t": 3.1,
+     "foco": 0.469
+    },
+    {
+     "t": 3.2,
+     "foco": 0.475
+    },
+    {
+     "t": 3.3,
+     "foco": 0.479
+    },
+    {
+     "t": 3.4,
+     "foco": 0.481
+    },
+    {
+     "t": 3.5,
+     "foco": 0.483
+    },
+    {
+     "t": 3.6,
+     "foco": 0.484
+    },
+    {
+     "t": 3.7,
+     "foco": 0.486
+    },
+    {
+     "t": 3.8,
+     "foco": 0.49
+    },
+    {
+     "t": 3.9,
+     "foco": 0.492
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "close",
+    "intenso",
+    "cantando forte"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando forte"
+    ],
+    "clima": "intenso",
+    "descricao": "Vocalista de perfil soltando a voz no microfone"
+   },
+   "nota": 5
+  },
+  {
+   "file": "blaymorphed-ig-vocal-olhos-4.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
+   "ini": 206,
+   "fim": 210,
+   "dur": 4,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.479
+    },
+    {
+     "t": 0.1,
+     "foco": 0.479
+    },
+    {
+     "t": 0.2,
+     "foco": 0.48
+    },
+    {
+     "t": 0.3,
+     "foco": 0.479
+    },
+    {
+     "t": 0.4,
+     "foco": 0.479
+    },
+    {
+     "t": 0.5,
+     "foco": 0.481
+    },
+    {
+     "t": 0.6,
+     "foco": 0.482
+    },
+    {
+     "t": 0.7,
+     "foco": 0.486
+    },
+    {
+     "t": 0.8,
+     "foco": 0.491
+    },
+    {
+     "t": 0.9,
+     "foco": 0.497
+    },
+    {
+     "t": 1,
+     "foco": 0.505
+    },
+    {
+     "t": 1.1,
+     "foco": 0.515
+    },
+    {
+     "t": 1.2,
+     "foco": 0.524
+    },
+    {
+     "t": 1.3,
+     "foco": 0.529
+    },
+    {
+     "t": 1.4,
+     "foco": 0.535
+    },
+    {
+     "t": 1.5,
+     "foco": 0.543
+    },
+    {
+     "t": 1.6,
+     "foco": 0.552
+    },
+    {
+     "t": 1.7,
+     "foco": 0.559
+    },
+    {
+     "t": 1.8,
+     "foco": 0.563
+    },
+    {
+     "t": 1.9,
+     "foco": 0.562
+    },
+    {
+     "t": 2,
+     "foco": 0.558
+    },
+    {
+     "t": 2.1,
+     "foco": 0.555
+    },
+    {
+     "t": 2.2,
+     "foco": 0.556
+    },
+    {
+     "t": 2.3,
+     "foco": 0.558
+    },
+    {
+     "t": 2.4,
+     "foco": 0.559
+    },
+    {
+     "t": 2.5,
+     "foco": 0.555
+    },
+    {
+     "t": 2.6,
+     "foco": 0.549
+    },
+    {
+     "t": 2.7,
+     "foco": 0.54
+    },
+    {
+     "t": 2.8,
+     "foco": 0.53
+    },
+    {
+     "t": 2.9,
+     "foco": 0.52
+    },
+    {
+     "t": 3,
+     "foco": 0.508
+    },
+    {
+     "t": 3.1,
+     "foco": 0.493
+    },
+    {
+     "t": 3.2,
+     "foco": 0.481
+    },
+    {
+     "t": 3.3,
+     "foco": 0.47
+    },
+    {
+     "t": 3.4,
+     "foco": 0.452
+    },
+    {
+     "t": 3.5,
+     "foco": 0.421
+    },
+    {
+     "t": 3.6,
+     "foco": 0.371
+    },
+    {
+     "t": 3.7,
+     "foco": 0.323
+    },
+    {
+     "t": 3.8,
+     "foco": 0.296
+    },
+    {
+     "t": 3.9,
+     "foco": 0.283
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "close",
+    "intenso",
+    "cantando"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "Vocalista de olhos fechados colado no microfone"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-ig-guitarra-lespaul-6.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
+   "ini": 196.9,
+   "fim": 200.9,
+   "dur": 4,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.476
+    },
+    {
+     "t": 0.1,
+     "foco": 0.477
+    },
+    {
+     "t": 0.2,
+     "foco": 0.477
+    },
+    {
+     "t": 0.3,
+     "foco": 0.477
+    },
+    {
+     "t": 0.4,
+     "foco": 0.477
+    },
+    {
+     "t": 0.5,
+     "foco": 0.478
+    },
+    {
+     "t": 0.6,
+     "foco": 0.477
+    },
+    {
+     "t": 0.7,
+     "foco": 0.476
+    },
+    {
+     "t": 0.8,
+     "foco": 0.476
+    },
+    {
+     "t": 0.9,
+     "foco": 0.477
+    },
+    {
+     "t": 1,
+     "foco": 0.477
+    },
+    {
+     "t": 1.1,
+     "foco": 0.478
+    },
+    {
+     "t": 1.2,
+     "foco": 0.479
+    },
+    {
+     "t": 1.3,
+     "foco": 0.479
+    },
+    {
+     "t": 1.4,
+     "foco": 0.48
+    },
+    {
+     "t": 1.5,
+     "foco": 0.482
+    },
+    {
+     "t": 1.6,
+     "foco": 0.484
+    },
+    {
+     "t": 1.7,
+     "foco": 0.488
+    },
+    {
+     "t": 1.8,
+     "foco": 0.494
+    },
+    {
+     "t": 1.9,
+     "foco": 0.5
+    },
+    {
+     "t": 2,
+     "foco": 0.508
+    },
+    {
+     "t": 2.1,
+     "foco": 0.517
+    },
+    {
+     "t": 2.2,
+     "foco": 0.528
+    },
+    {
+     "t": 2.3,
+     "foco": 0.54
+    },
+    {
+     "t": 2.4,
+     "foco": 0.55
+    },
+    {
+     "t": 2.5,
+     "foco": 0.559
+    },
+    {
+     "t": 2.6,
+     "foco": 0.566
+    },
+    {
+     "t": 2.7,
+     "foco": 0.572
+    },
+    {
+     "t": 2.8,
+     "foco": 0.576
+    },
+    {
+     "t": 2.9,
+     "foco": 0.577
+    },
+    {
+     "t": 3,
+     "foco": 0.575
+    },
+    {
+     "t": 3.1,
+     "foco": 0.57
+    },
+    {
+     "t": 3.2,
+     "foco": 0.564
+    },
+    {
+     "t": 3.3,
+     "foco": 0.556
+    },
+    {
+     "t": 3.4,
+     "foco": 0.548
+    },
+    {
+     "t": 3.5,
+     "foco": 0.538
+    },
+    {
+     "t": 3.6,
+     "foco": 0.527
+    },
+    {
+     "t": 3.7,
+     "foco": 0.517
+    },
+    {
+     "t": 3.8,
+     "foco": 0.51
+    },
+    {
+     "t": 3.9,
+     "foco": 0.506
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "guitarrista",
+    "medio",
+    "energia",
+    "tocando guitarra"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "tocando guitarra"
+    ],
+    "clima": "energia",
+    "descricao": "Guitarrista de barba com Les Paul sob luz azul"
+   },
+   "nota": 3
+  },
+  {
+   "file": "blaymorphed-ig-guitarra-strat-7.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
+   "ini": 228.9,
+   "fim": 231.3,
+   "dur": 2.4,
+   "foco": "rosto",
+   "focoTrilha": [
+    {
+     "t": 0,
+     "foco": 0.759
+    },
+    {
+     "t": 0.1,
+     "foco": 0.751
+    },
+    {
+     "t": 0.2,
+     "foco": 0.74
+    },
+    {
+     "t": 0.3,
+     "foco": 0.728
+    },
+    {
+     "t": 0.4,
+     "foco": 0.719
+    },
+    {
+     "t": 0.5,
+     "foco": 0.713
+    },
+    {
+     "t": 0.6,
+     "foco": 0.705
+    },
+    {
+     "t": 0.7,
+     "foco": 0.687
+    },
+    {
+     "t": 0.8,
+     "foco": 0.661
+    },
+    {
+     "t": 0.9,
+     "foco": 0.628
+    },
+    {
+     "t": 1,
+     "foco": 0.602
+    },
+    {
+     "t": 1.1,
+     "foco": 0.58
+    },
+    {
+     "t": 1.2,
+     "foco": 0.558
+    },
+    {
+     "t": 1.3,
+     "foco": 0.534
+    },
+    {
+     "t": 1.4,
+     "foco": 0.509
+    },
+    {
+     "t": 1.5,
+     "foco": 0.484
+    },
+    {
+     "t": 1.6,
+     "foco": 0.465
+    },
+    {
+     "t": 1.7,
+     "foco": 0.454
+    },
+    {
+     "t": 1.8,
+     "foco": 0.447
+    },
+    {
+     "t": 1.9,
+     "foco": 0.446
+    },
+    {
+     "t": 2,
+     "foco": 0.444
+    },
+    {
+     "t": 2.1,
+     "foco": 0.436
+    },
+    {
+     "t": 2.2,
+     "foco": 0.425
+    },
+    {
+     "t": 2.3,
+     "foco": 0.419
+    }
+   ],
+   "tags": [
+    "banda:blaymorphed",
+    "guitarrista",
+    "medio",
+    "energia",
+    "tocando guitarra"
+   ],
+   "broll": {
+    "quem": [
+     "guitarrista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "tocando guitarra"
+    ],
+    "clima": "energia",
+    "descricao": "Guitarrista com Strat se curva no palco"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-ig-baixo-8.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DTiVBZgDYOT/",
+   "ini": 289.5,
+   "fim": 293.5,
+   "dur": 4,
+   "foco": "centro",
+   "tags": [
+    "banda:blaymorphed",
+    "baixista",
+    "close",
+    "energia",
+    "tocando baixo"
+   ],
+   "broll": {
+    "quem": [
+     "baixista"
+    ],
+    "plano": "close",
+    "acao": [
+     "tocando baixo"
+    ],
+    "clima": "energia",
+    "descricao": "Baixo preto em close sob luz rosa"
+   },
+   "nota": 3
+  },
+  {
+   "file": "blaymorphed-ig-vocal-cabelo-11.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DfL05lPtVZW/",
+   "ini": 142.2,
+   "fim": 145.3,
+   "dur": 3.1,
+   "foco": "centro",
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "close",
+    "intenso",
+    "cantando forte"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando forte"
+    ],
+    "clima": "intenso",
+    "descricao": "Vocalista de camisa branca canta forte com o cabelo voando"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-ig-vocal-maos-12.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DfL05lPtVZW/",
+   "ini": 68.4,
+   "fim": 72.4,
+   "dur": 4,
+   "foco": "centro",
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "medio",
+    "intenso",
+    "cantando"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "medio",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "intenso",
+    "descricao": "Vocalista de camisa branca agarrado ao microfone com as duas mãos"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-ig-bateria-14.mp4",
+   "origem": "https://www.instagram.com/blaymorphed/reel/DePFhyixIlE/",
+   "ini": 70.2,
+   "fim": 72.2,
+   "dur": 2,
+   "foco": "centro",
+   "tags": [
+    "banda:blaymorphed",
+    "baterista",
+    "close",
+    "energia",
+    "tocando bateria"
+   ],
+   "broll": {
+    "quem": [
+     "baterista"
+    ],
+    "plano": "close",
+    "acao": [
+     "tocando bateria"
+    ],
+    "clima": "energia",
+    "descricao": "Baterista careca em close sob luz vermelha"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-sirens-clipe-vocal-1.mp4",
+   "origem": "https://www.youtube.com/watch?v=fwP-0x-jlUw",
+   "ini": 52,
+   "fim": 56,
+   "dur": 4,
+   "foco": "centro",
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "close",
+    "emocao",
+    "cantando"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "emocao",
+    "descricao": "vocalista de cabelo comprido de perfil no microfone, luz de contra"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-sirens-clipe-vocal-2.mp4",
+   "origem": "https://www.youtube.com/watch?v=fwP-0x-jlUw",
+   "ini": 101,
+   "fim": 105,
+   "dur": 4,
+   "foco": "centro",
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "close",
+    "emocao",
+    "cantando"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "emocao",
+    "descricao": "perfil do vocalista cantando no escuro"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-sirens-clipe-vocal-3.mp4",
+   "origem": "https://www.youtube.com/watch?v=fwP-0x-jlUw",
+   "ini": 142.2,
+   "fim": 146.2,
+   "dur": 4,
+   "foco": "centro",
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "close",
+    "emocao",
+    "cantando"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "emocao",
+    "descricao": "rosto do vocalista em close com luz lateral"
+   },
+   "nota": 4
+  },
+  {
+   "file": "blaymorphed-sirens-clipe-vocal-4.mp4",
+   "origem": "https://www.youtube.com/watch?v=fwP-0x-jlUw",
+   "ini": 172,
+   "fim": 176,
+   "dur": 4,
+   "foco": "centro",
+   "tags": [
+    "banda:blaymorphed",
+    "vocalista",
+    "close",
+    "emocao",
+    "cantando"
+   ],
+   "broll": {
+    "quem": [
+     "vocalista"
+    ],
+    "plano": "close",
+    "acao": [
+     "cantando"
+    ],
+    "clima": "emocao",
+    "descricao": "vocalista cantando de olhos fechados"
+   },
+   "nota": 4
+  }
+ ]
 }
