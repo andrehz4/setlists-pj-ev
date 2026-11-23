@@ -22,6 +22,13 @@ por cima do fundo (`fundo.mjs`: cortes do PJ na abertura, covers da banda nos di
 | `render.mjs` | junta tudo: `node scripts/publish/agenda-reel/render.mjs --inicio AAAA-MM-DD [--layout B --paleta azul]` |
 | `publicar.mjs` | R2 + IG + FB + Telegram; `--previa` só manda o link no Telegram; `--dry-run` só renderiza |
 
+Marcação: banda e casa vão na legenda (@) e no vídeo (`user_tags` no container do reel, só username, até 20). Se o IG
+recusar a marcação, o container é refeito na hora sem ela (`reel/fallback.mjs`) e o Telegram avisa. Mock: falha
+injetável `reeltags`.
+
+Render 100% local: React, ReactDOM e Babel ficam em `media/agenda/reel-design/vendor/` (mesmos bytes das SRI do
+`support.js`, ligados por `window.__resources` na `render.html`) e o Chrome do render bloqueia CDN e Google Fonts.
+
 ## Ajustes feitos no código do Design (marcados com `AGENDA_RENDER`/`AGENDA_WEEK`/`semClipe`)
 
 1. `ClipPH` some no render (o clipe real entra por baixo no ffmpeg).

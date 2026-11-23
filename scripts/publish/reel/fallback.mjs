@@ -24,7 +24,7 @@ export class ReelFalhou extends Error {
 // Cria o container, espera ficar pronto e publica. Container que não fica pronto → próximo container (mesmo vídeo).
 // Erro no publish NÃO vira outro container: outro container + falso-erro 2207051 = reel duplicado.
 export async function publishReelComFallback({
-  videoUrl, caption, shareToFeed = true, thumbOffsetMs, igUserId, accessToken,
+  videoUrl, caption, shareToFeed = true, thumbOffsetMs, userTags, igUserId, accessToken,
   esperasMs = ESPERAS_MS, intervalMs = POLL_ENV, deps = {},
 } = {}) {
   if (!videoUrl) throw new Error("publishReelComFallback: videoUrl obrigatorio");
@@ -32,11 +32,23 @@ export async function publishReelComFallback({
   const c = credenciais({ igUserId, accessToken }, "publishReelComFallback");
   const sinceMs = Date.now();
   const containerIds = [], causas = [];
+  let marcar = Boolean(userTags?.length);
+  // Marcação recusada pela API (conta privada, username errado, reel sem suporte): refaz na hora sem marcar.
+  const criarContainer = async () => {
+    try {
+      return await d.createReelContainer({ ...c, videoUrl, caption, shareToFeed, thumbOffsetMs, ...(marcar && { userTags }) });
+    } catch (e) {
+      if (!marcar || !/user_?tags|tag|username/i.test(e.message)) throw e;
+      console.warn(`[reel] marcação recusada (${e.message}); refazendo sem marcar`);
+      marcar = false;
+      return d.createReelContainer({ ...c, videoUrl, caption, shareToFeed, thumbOffsetMs });
+    }
+  };
   for (const [i, timeoutMs] of esperasMs.entries()) {
     const n = `${i + 1}/${esperasMs.length}`;
     let containerId;
     try {
-      containerId = await d.createReelContainer({ ...c, videoUrl, caption, shareToFeed, thumbOffsetMs });
+      containerId = await criarContainer();
       containerIds.push(containerId);
       await d.waitContainerReady({ accessToken: c.accessToken, containerId, timeoutMs, ...(intervalMs && { intervalMs }) });
     } catch (e) {
@@ -46,7 +58,7 @@ export async function publishReelComFallback({
     }
     try {
       const r = await d.publicarComRecuperacao({ ...c, creationId: containerId, caption, sinceMs, rotulo: "reel" });
-      return { ...r, containerId, tentativa: i + 1 };
+      return { ...r, containerId, tentativa: i + 1, ...(userTags?.length && { marcou: marcar }) };
     } catch (e) {
       throw new ReelFalhou(`publicar container ${containerId}: ${e.message}`, containerIds, { publicando: true });
     }

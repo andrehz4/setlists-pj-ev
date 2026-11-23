@@ -14,7 +14,7 @@ import { naRaiz } from "../../config.mjs";
 import { publicarViaR2 } from "../midia-r2.mjs";
 import { publishReelComFallback } from "../reel/fallback.mjs";
 import { espelharNoFacebook } from "../reel/registro.mjs";
-import { somaDias } from "../../agenda/redes/semana.mjs";
+import { somaDias, contasDaSemana } from "../../agenda/redes/semana.mjs";
 import { renderizarReelAgenda } from "./render.mjs";
 import { legendaDoReel } from "./legenda.mjs";
 import { semanaIso } from "./semana.mjs";
@@ -64,15 +64,17 @@ export async function publicarReelAgenda({ inicio = tercaDaVez(), modo = "public
       await avisar(`🎬 <b>Prévia do reel da agenda</b> (${escHtml(weekKey)}, NÃO publicado)\n${escHtml(resumo)}\n${escHtml(url)}`);
       return { ...r, url, legenda };
     }
-    const pub = await (deps.publishReelComFallback || publishReelComFallback)({ videoUrl: url, caption: legenda, shareToFeed: true, thumbOffsetMs: THUMB_MS });
+    const userTags = contasDaSemana(r.shows).slice(0, 20); // banda e casa marcadas no vídeo (repost das bandas)
+    const pub = await (deps.publishReelComFallback || publishReelComFallback)({ videoUrl: url, caption: legenda, shareToFeed: true, thumbOffsetMs: THUMB_MS, userTags });
     const fbPostId = await (deps.espelharNoFacebook || espelharNoFacebook)(url, legenda);
-    log.semanas[weekKey] = { postId: pub.postId, fbPostId: fbPostId || null, layout: r.layout, paleta: r.paleta, url, em: new Date().toISOString() };
+    const marcacao = userTags.length ? (pub.marcou ? `marcou ${userTags.length} contas` : "⚠️ IG recusou a marcação, saiu só com os @ da legenda") : "sem contas pra marcar";
+    log.semanas[weekKey] = { postId: pub.postId, fbPostId: fbPostId || null, layout: r.layout, paleta: r.paleta, url, marcou: Boolean(pub.marcou), em: new Date().toISOString() };
     if (git) { // --no-git (mock IG): não mexe no log de verdade
       await gravarEstado(LOG, log);
       await (deps.commitAndPush || commitAndPush)([LOG], `publish-agenda-reel: ${weekKey} postado (${r.layout}/${r.paleta}, IG ${pub.postId})`);
     }
-    await avisar(`🗓️ <b>Reel da agenda no ar</b> (${escHtml(weekKey)})\n${escHtml(resumo)}\nIG ${escHtml(pub.postId)}${fbPostId ? `\nFB ${escHtml(fbPostId)}` : ""}`);
-    return { ...r, url, legenda, postId: pub.postId };
+    await avisar(`🗓️ <b>Reel da agenda no ar</b> (${escHtml(weekKey)})\n${escHtml(resumo)}\nIG ${escHtml(pub.postId)}${fbPostId ? `\nFB ${escHtml(fbPostId)}` : ""}\n${escHtml(marcacao)}`);
+    return { ...r, url, legenda, postId: pub.postId, marcou: Boolean(pub.marcou) };
   } catch (e) {
     await avisar(`⚠️ <b>Reel da agenda FALHOU</b> (${escHtml(weekKey)})\n${escHtml(e.message)}`).catch(() => {});
     throw e;

@@ -45,6 +45,9 @@ export async function abrirChrome({ largura = 1080, altura = 1920 } = {}) {
   const aba = (method, params) => enviar(method, params, sessionId);
   await aba("Page.enable");
   await aba("Runtime.enable");
+  // Render 100% local: CDN e Google Fonts bloqueados (o servidor local 127.0.0.1 segue liberado); se faltar arquivo, falha aqui.
+  await aba("Network.enable");
+  await aba("Network.setBlockedURLs", { urls: ["*unpkg.com*", "*jsdelivr.net*", "*cdnjs.cloudflare.com*", "*googleapis.com*", "*gstatic.com*"] });
   await aba("Emulation.setDeviceMetricsOverride", { width: largura, height: altura, deviceScaleFactor: 1, mobile: false });
   // fundo transparente: o PNG sai com alfa e o clipe real entra por baixo no ffmpeg
   await aba("Emulation.setDefaultBackgroundColorOverride", { color: { r: 0, g: 0, b: 0, a: 0 } });

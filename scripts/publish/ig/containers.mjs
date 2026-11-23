@@ -24,10 +24,12 @@ export const createStoryContainer = ({ igUserId, accessToken, videoUrl }) =>
   criar(igUserId, { media_type: "STORIES", video_url: videoUrl, access_token: accessToken }, "createStoryContainer");
 
 // Reel: com legenda, share_to_feed (aparece no grid) e thumb_offset (quadro da capa, em ms).
-export function createReelContainer({ igUserId, accessToken, videoUrl, caption, shareToFeed = true, thumbOffsetMs }) {
+// userTags (opcional, contas sem @): marca no vídeo; vídeo não tem posição, só o username (até 20).
+export function createReelContainer({ igUserId, accessToken, videoUrl, caption, shareToFeed = true, thumbOffsetMs, userTags }) {
   const form = { media_type: "REELS", video_url: videoUrl, share_to_feed: shareToFeed ? "true" : "false", access_token: accessToken };
   if (caption) form.caption = caption;
   if (Number.isFinite(thumbOffsetMs) && thumbOffsetMs >= 0) form.thumb_offset = String(Math.round(thumbOffsetMs));
+  if (userTags?.length) form.user_tags = JSON.stringify(userTags.slice(0, 20).map((username) => ({ username })));
   return criar(igUserId, form, "createReelContainer");
 }
 

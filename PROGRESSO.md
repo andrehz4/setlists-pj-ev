@@ -284,17 +284,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
     Conta do Actions (todos os repos): ~2.080 min/mês com contrib ligado, ~1.600 pausado, antes ~3.900 (franquia 3.000).
     Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
     Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).
-
-## 2026-11-19: série "Som x Letra" (engenharia reversa do post do datascrolls) + reel de Black publicado
-
-- Feito: módulo `analise-musica/` (Python no SSD). MERT-95M + cabeças treinadas nas notas por segundo da DEAM bateram
-  com o datascrolls em Black (erro médio 0,07 SD; MERT-330M piorou). Letra: LRCLIB + leitores de IA (5 no Ten, 1 nos
-  outros discos). Ranking de 147 músicas. Reel feito no Claude Design (projeto "Reel animado som x letra", v3), render
-  quadro a quadro pelo Chrome (`render_reel.mjs`), clipes 9:16 com rosto centralizado, narração Liam 1,2x (gancho +
-  CTA; "Deixa nos comentários!" fixo e reaproveitável), poucos efeitos (coração do recorte do Andre, liberado por ele).
-  Gemini e vidIQ deram 4/10 na v1 (texto técnico); v3 = gancho narrado + dados pequenos, sem método.
-- Aprendido: música da biblioteca no Business Suite só vale pro Facebook; no IG só pelo app. No app o áudio original
-  pode vir MUDO ao pôr música (ícone de alto-falante na faixa do vídeo).
-- Próximo: Better Man (Vitalogy, trecho 3:22 do ranking): JSON pelo `aplicar_dados.py`, frases dos momentos, gancho e
-  pergunta do CTA narrados, clipes da música, render, celular via `adb push`.
-- Blockers: chave reserva7 do ElevenLabs com limite 0.

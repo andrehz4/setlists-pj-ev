@@ -47,7 +47,7 @@ export async function rotasIg(c) {
       s.stories.unshift({ postId, videoUrl: c.video_url, imageUrl: c.image_url, userTags: c.user_tags, caption: c.caption || "", createdAt, apiCalls });
     } else if (c.type === "REELS") {
       if (!s.reels) s.reels = [];
-      s.reels.unshift({ postId, videoUrl: c.video_url, caption: c.caption || "", createdAt, apiCalls });
+      s.reels.unshift({ postId, videoUrl: c.video_url, userTags: c.user_tags, caption: c.caption || "", createdAt, apiCalls });
     } else {
       const slides = c.type === "CAROUSEL"
         ? (c.children || []).map((cid) => s.containers[cid]?.image_url).filter(Boolean)
@@ -96,6 +96,9 @@ export async function rotasIg(c) {
     // STORIES e REELS sao video: passam por processamento (polling de status).
     const isVideo = (body.media_type === "STORIES" && !body.image_url) || body.media_type === "REELS";
     // falha injetável "storytags": recusa marcação em story (pra testar a segunda tentativa sem marcação)
+    if (body.media_type === "REELS" && body.user_tags && failMode(s, query) === "reeltags") {
+      return graphError(res, 400, { code: 100, message: "Invalid parameter: user_tags username not found" }, s);
+    }
     if (body.media_type === "STORIES" && body.user_tags && failMode(s, query) === "storytags") {
       return graphError(res, 400, { code: 100, message: "Invalid parameter: user_tags is not supported for stories" }, s);
     }

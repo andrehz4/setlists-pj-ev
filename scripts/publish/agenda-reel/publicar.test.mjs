@@ -40,6 +40,7 @@ test("publicar: IG com capa no fim da abertura, FB espelhado, aviso no Telegram"
   assert.equal(r.postId, "123");
   assert.equal(chamada.thumbOffsetMs, 2700);
   assert.equal(chamada.shareToFeed, true);
+  assert.deepEqual(chamada.userTags, ["pearljamcoverribeirao", "galpao20"]); // banda e casa marcadas no vídeo
   assert.match(msgs[0], /no ar/);
 });
 
