@@ -4,6 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { slidesStats } from "./stats.mjs";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const s = JSON.parse(fs.readFileSync(path.join(dir, "setlist.json"), "utf8"));
@@ -19,7 +20,7 @@ const MOM = fs.existsSync(path.join(dir, "momentos.json")) ? JSON.parse(fs.readF
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 // Capa: foto da setlist de papel de verdade (design/uploads/foto-setlist.jpg, se o Andre mandar); sem ela, a folha do gerador
 const FOTO = fs.existsSync(path.join(dir, "design", "uploads", "foto-setlist.jpg")) ? "foto-setlist.jpg" : "folha.jpg";
-const TOTAL = Math.min(10, (FOTO === "folha.jpg" ? 3 : 4) + MOM.momentos.length);
+const TOTAL = Math.min(10, (FOTO === "folha.jpg" ? 5 : 6) + MOM.momentos.length); // +2: estatística (stats.mjs)
 const BS = "font-family:'Big Shoulders Display',sans-serif;font-weight:900;";
 const S = "width:1080px;height:1350px;position:relative;overflow:hidden;flex:none;";
 const rodape = (n) => `
@@ -61,6 +62,8 @@ slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--de
   <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;justify-content:space-between;font-weight:800;font-size:26px;"><div>@smufdpj</div><div>Fonte: ${s.fonte || "setlist.fm"} · <span style="${BS}font-size:30px;">${String(n).padStart(2, "0")}/${TOTAL}</span></div></div></div>`);
 
 n++;
+slides.push(...slidesStats({ S, BS, tag, tit, rodape, n }));
+n += 2;
 // Momento: foto no alto com degradê (quadro do vídeo do Andre em design/uploads/) ou só texto; máx. 10 slides no IG
 for (const m of MOM.momentos.slice(0, 10 - n)) {
   const corpo = `<div style="position:absolute;top:${m.foto ? 570 : 72}px;left:72px;right:72px;">${tag(esc(m.tag))}${tit(esc(m.titulo), m.titulo.length > 22 ? 96 : 120)}</div>
