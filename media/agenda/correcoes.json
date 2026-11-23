@@ -1,5 +1,21 @@
 {
   "correcoes": {
-    "thehomerpj-2026-11-28-iron-rock": { "casaNome": "Iron Rock", "cidade": "Belo Horizonte", "uf": "MG" }
+    "thehomerpj-2026-11-28-iron-rock": {
+      "casaNome": "Iron Rock",
+      "cidade": "Belo Horizonte",
+      "uf": "MG"
+    },
+    "pjnoventa-2026-11-27-rockeribscontinental": {
+      "cidade": "Osasco",
+      "uf": "SP"
+    },
+    "pjnoventa-2026-11-27-livemusicbar": {
+      "cidade": "Mauá",
+      "uf": "SP"
+    },
+    "pjnoventa-2026-11-28-strongwash": {
+      "cidade": "Guarulhos",
+      "uf": "SP"
+    }
   }
 }
