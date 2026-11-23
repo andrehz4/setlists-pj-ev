@@ -36,7 +36,8 @@ const sub = novas.length ? `${M.length} músicas, ${novas.length} que não tocar
 const slides = [];
 let n = 1;
 // CAPA_FOLHA: a nossa folha da setlist abre o carrossel (pedido do Andre 22/11), sem a capa com foto
-const CAPA_FOLHA = true;
+const CAPA_FOLHA = false; // padrão: capa = chamada com a setlist de fundo, slide 2 = folha inteira, depois estatística
+const LISTA = false; // lista digitada em amarelo saiu do padrão
 if (!CAPA_FOLHA) slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo);color:var(--claro);">
   <img src="uploads/${FOTO}" alt="Eddie Vedder no Ibirapuera" style="position:absolute;top:0;left:0;width:1080px;height:1350px;object-fit:cover;object-position:50% 20%;">
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,.7) 0%,rgba(20,17,15,.05) 26%,rgba(20,17,15,.5) 52%,var(--fundo) 84%);"></div>
@@ -46,7 +47,7 @@ if (!CAPA_FOLHA) slides.push(`<div data-screen-label="slide-01" style="${S}backg
   <div style="position:absolute;bottom:130px;right:64px;${BS}font-size:44px;color:var(--destaque);letter-spacing:2px;">ARRASTA →</div>
   ${rodape(n++)}</div>`);
 
-if (FOTO !== "folha.jpg") { // folha do gerador inteira, sem nada por cima (como no carrossel de sexta)
+{ // folha do gerador inteira, sem nada por cima (como no carrossel de sexta)
   slides.push(`<div data-screen-label="slide-0${n++}" style="${S}background:#fff;"><img src="uploads/folha.jpg" alt="Setlist do domingo escrita à mão" style="width:1080px;height:1350px;object-fit:cover;"></div>`);
   // logo depois da folha, só o Eddie em tela cheia (pedido do Andre 22/11)
   if (CAPA_FOLHA) slides.push(`<div data-screen-label="slide-0${n++}" style="${S}background:var(--fundo);"><img src="uploads/${FOTO}" alt="Eddie Vedder no Ibirapuera" style="width:1080px;height:1350px;object-fit:cover;object-position:50% 20%;"></div>`);
@@ -59,14 +60,14 @@ const item = (m, i) => {
 };
 const col = (arr, off) => arr.map((m, i) => item(m, i + off)).join("");
 // lista digitada só quando não há foto de capa (padrão de sexta: capa com foto + folha inteira)
-if (FOTO === "folha.jpg") slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--destaque);color:var(--fundo);">
+if (LISTA) slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--destaque);color:var(--fundo);">
   <div style="position:absolute;top:72px;left:72px;">${tag("A SETLIST", true)}<div style="margin-top:14px;${BS}font-size:110px;line-height:.9;text-transform:uppercase;letter-spacing:-2px;">${M.length} músicas</div></div>
   <div style="position:absolute;top:310px;left:72px;width:450px;">${col(M.slice(0, linhas), 0)}</div>
   <div style="position:absolute;top:310px;left:560px;width:470px;">${col(M.slice(linhas), linhas)}</div>
   <div style="position:absolute;bottom:110px;left:72px;right:72px;font-weight:900;font-size:30px;">${novas.length ? `★ não tocou na sexta (${novas.length} de ${M.length})` : "Repetiu tudo da sexta"}</div>
   <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;justify-content:space-between;font-weight:800;font-size:26px;"><div>@smufdpj</div><div>Fonte: ${s.fonte || "setlist.fm"} · <span style="${BS}font-size:30px;">${String(n).padStart(2, "0")}/${TOTAL}</span></div></div></div>`);
 
-if (FOTO === "folha.jpg") n++;
+if (LISTA) n++;
 slides.push(...slidesStats({ S, BS, tag, tit, rodape, n }));
 n += 2;
 // Momento: foto no alto com degradê (quadro do vídeo do Andre em design/uploads/) ou só texto; máx. 10 slides no IG
