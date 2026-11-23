@@ -20,7 +20,7 @@ const MOM = fs.existsSync(path.join(dir, "momentos.json")) ? JSON.parse(fs.readF
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 // Capa: foto da setlist de papel de verdade (design/uploads/foto-setlist.jpg, se o Andre mandar); sem ela, a folha do gerador
 const FOTO = ["capa.jpg", "foto-setlist.jpg"].find((f) => fs.existsSync(path.join(dir, "design", "uploads", f))) || "folha.jpg";
-const TOTAL = Math.min(10, 5 + MOM.momentos.length); // capa + folha ou lista + 2 de estatística (stats.mjs) + momentos + pergunta
+const TOTAL = Math.min(10, 8 + MOM.momentos.length); // capa + folha ou lista + 2 de estatística (stats.mjs) + momentos + pergunta
 const BS = "font-family:'Big Shoulders Display',sans-serif;font-weight:900;";
 const S = "width:1080px;height:1350px;position:relative;overflow:hidden;flex:none;";
 const rodape = (n) => `
@@ -69,7 +69,7 @@ if (LISTA) slides.push(`<div data-screen-label="slide-0${n}" style="${S}backgrou
 
 if (LISTA) n++;
 slides.push(...slidesStats({ S, BS, tag, tit, rodape, n }));
-n += 2;
+n += 5;
 // Momento: foto no alto com degradê (quadro do vídeo do Andre em design/uploads/) ou só texto; máx. 10 slides no IG
 for (const m of MOM.momentos.slice(0, 10 - n)) {
   const corpo = `<div style="position:absolute;top:${m.foto ? 570 : 72}px;left:72px;right:72px;">${tag(esc(m.tag))}${tit(esc(m.titulo), m.titulo.length > 22 ? 96 : 120)}</div>

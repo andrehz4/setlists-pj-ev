@@ -25,5 +25,38 @@ export function slidesStats({ S, BS, tag, tit, rodape, n }) {
   ], "var(--fundo)")}</div>
   <div style="position:absolute;top:1130px;left:72px;right:72px;font-weight:800;font-size:24px;line-height:1.25;">Domingo foi 72% sexta. A gente apostou num show bem diferente e errou.</div>
   ${rodape(n + 1).replaceAll("var(--claro)", "var(--fundo)").replaceAll("color:var(--destaque)", "color:var(--fundo)")}</div>`;
-  return [raro, palpite];
+  const pag = (k) => String(n + k).padStart(2, "0");
+  const amarelo = (h) => h.replaceAll("var(--claro)", "var(--fundo)").replaceAll("color:var(--destaque)", "color:var(--fundo)");
+  const duas = `<div data-screen-label="slide-${pag(2)}" style="${S}background:var(--fundo);color:var(--claro);">
+  <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("SEXTA + DOMINGO")}${tit("As duas noites", 140)}</div>
+  <div style="position:absolute;top:330px;left:64px;${BS}font-size:330px;line-height:.85;color:var(--destaque);">26</div>
+  <div style="position:absolute;top:640px;left:72px;right:72px;font-weight:800;font-size:44px;line-height:1.22;">músicas diferentes em duas noites no Ibirapuera.</div>
+  <div style="position:absolute;top:800px;left:72px;right:72px;">${linhas([
+    ["Nas duas noites", "de Elderly Woman a Hard Sun", "13"],
+    ["Só na sexta", "Imagine, Society, Last Kiss, Rockin...", "8"],
+    ["Só no domingo", "Long Road, Off He Goes, She Asked Me...", "5"],
+  ], "var(--destaque)")}</div>
+  ${rodape(n + 2)}</div>`;
+  const soDom = `<div data-screen-label="slide-${pag(3)}" style="${S}background:var(--destaque);color:var(--fundo);">
+  <div style="position:absolute;top:72px;left:72px;right:72px;"><div style="display:inline-block;background:var(--fundo);color:var(--destaque);font-weight:900;font-size:24px;letter-spacing:.14em;padding:8px 14px;">SÓ NO DOMINGO</div><div style="margin-top:18px;${BS}font-size:140px;line-height:.88;text-transform:uppercase;letter-spacing:-2px;">As 5 novas</div></div>
+  <div style="position:absolute;top:330px;left:72px;right:72px;">${linhas([
+    ["She Asked Me", "1 dos 315 shows solo", "0,3%"],
+    ["Off He Goes", "27 dos 315 shows solo", "8,6%"],
+    ["I Won't Back Down", "Tom Petty, 29 dos 315", "9,2%"],
+    ["Long Road", "33 dos 315 shows solo", "10,5%"],
+    ["Unthought Known", "86 dos 315 shows solo", "27,3%"],
+  ], "var(--fundo)")}</div>
+  <div style="position:absolute;top:1130px;left:72px;right:72px;font-weight:800;font-size:24px;line-height:1.25;">Fatia dos shows solo da carreira, antes de São Paulo, em que cada uma apareceu.</div>
+  ${amarelo(rodape(n + 3))}</div>`;
+  const sempre = `<div data-screen-label="slide-${pag(4)}" style="${S}background:var(--fundo);color:var(--claro);">
+  <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("AS DE SEMPRE")}${tit("Essas não falham", 140)}</div>
+  <div style="position:absolute;top:450px;left:72px;right:72px;">${linhas([
+    ["Porch", "192 dos 315 shows solo", "61%"],
+    ["Hard Sun", "178 dos 315, fechou as duas noites", "56,5%"],
+    ["Far Behind", "169 dos 315 shows solo", "53,7%"],
+    ["Elderly Woman", "142 dos 315 shows solo", "45,1%"],
+  ], "var(--destaque)")}</div>
+  <div style="position:absolute;top:1130px;left:72px;right:72px;font-weight:800;font-size:24px;line-height:1.25;">As quatro tocaram na sexta e no domingo.</div>
+  ${rodape(n + 4)}</div>`;
+  return [raro, palpite, duas, soDom, sempre];
 }
