@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- Página de RENDER do reel da agenda (scripts/publish/agenda-reel/quadros.mjs). Mesmo código do Claude Design
+     (Agenda da Semana.dc.html), sem painel e sem barra; fontes locais; dados da semana em window.AGENDA_*. -->
+<script>
+  const q = JSON.parse(decodeURIComponent(location.hash.slice(1) || "{}"));
+  window.AGENDA_RENDER = true;
+  window.AGENDA_WEEK = q.week;
+  window.OM_SCENES = JSON.stringify(q.scenes);
+  window.AGENDA_FECHO_DUR = q.scenes[q.scenes.length - 1].dur;
+  window.OM_PLAYBACK = '{"mode":"loop"}';
+  window.TWEAK_DEFAULTS = { motionEditor: false, layout: q.layout, paleta: q.paleta, fundo: "clipe", semana: "real", areasSeguras: false, batidas: false };
+</script>
+<script src="./support.js"></script>
+<style>
+  @font-face { font-family: Anton; src: url(/media/fonts/Anton-Regular.ttf); }
+  @font-face { font-family: Inter; font-weight: 400; src: url(/media/fonts/Inter-Regular.ttf); }
+  @font-face { font-family: Inter; font-weight: 500 600; src: url(/media/fonts/Inter-SemiBold.ttf); }
+  @font-face { font-family: Inter; font-weight: 700; src: url(/media/fonts/Inter-Bold.ttf); }
+  @font-face { font-family: Inter; font-weight: 800 900; src: url(/media/fonts/Inter-ExtraBold.ttf); }
+  @font-face { font-family: "Playfair Display"; font-style: italic; font-weight: 900; src: url(/media/fonts/PlayfairDisplay-BlackItalic.ttf); }
+  html, body { margin: 0; padding: 0; background: transparent !important; overflow: hidden; }
+  /* palco em 1:1, sem sombra, sem fundo e sem a barra de play */
+  svg[data-om-exportable-video-with-duration-secs] { transform: none !important; box-shadow: none !important; position: fixed; left: 0; top: 0; }
+  svg[data-om-exportable-video-with-duration-secs] foreignObject > div { background: transparent !important; }
+  div:has(> div > svg[data-om-exportable-video-with-duration-secs]) { background: transparent !important; }
+  div:has(> div > svg[data-om-exportable-video-with-duration-secs]) > :not(:first-child) { display: none !important; }
+</style>
+<script src="mapa-brasil.js"></script>
+</head>
+<body>
+<x-dc>
+<x-import component-from-global-scope="ReelApp" from="./animations-v3.jsx ./tweaks-panel.jsx ./reel-core.jsx ./layout-a.jsx ./layout-b.jsx ./layout-c.jsx ./layout-d.jsx" hint-size="100%,100%" style="position:fixed;inset:0"></x-import>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,90 @@
+name: Publish Agenda Reel
+# Reel "Agenda da semana" automático (scripts/publish/agenda-reel/): desenho do Claude Design fotografado no Chrome
+# headless + covers + narração. Sem cron: quem dispara é o TriggerAll, toda terça 11:07 BRT (14:07 UTC).
+# Idempotente por semana ISO (media/agenda/reel-log.json). Desligado sem a variável do repo AGENDA_REEL=1.
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: 'publicar | previa (sobe pro R2 e manda o link no Telegram, sem postar) | dry (só renderiza)'
+        type: choice
+        options: [publicar, previa, dry]
+        default: publicar
+      inicio:
+        description: 'Terça da semana (AAAA-MM-DD). Vazio = a terça desta semana em BRT'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-agenda-reel
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install ffmpeg
+        timeout-minutes: 10
+        uses: ./.github/actions/ffmpeg
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Reel da agenda
+        env:
+          AGENDA_REEL: ${{ vars.AGENDA_REEL }}
+          AGENDA_REEL_LAYOUT: ${{ vars.AGENDA_REEL_LAYOUT }}
+          AGENDA_REEL_PALETA: ${{ vars.AGENDA_REEL_PALETA }}
+          CHROME_BIN: /usr/bin/google-chrome
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          PUBLISH_FB: '1'
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_API_KEY_RESERVA: ${{ secrets.ELEVENLABS_API_KEY_RESERVA }}
+          ELEVENLABS_API_KEY_RESERVA2: ${{ secrets.ELEVENLABS_API_KEY_RESERVA2 }}
+          ELEVENLABS_API_KEY_RESERVA7: ${{ secrets.ELEVENLABS_API_KEY_RESERVA7 }}
+          ELEVENLABS_API_KEY_AGENDA: ${{ secrets.ELEVENLABS_API_KEY_AGENDA }}
+          ELEVENLABS_CHAVE: ${{ vars.ELEVENLABS_CHAVE }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_MIDIA_BUCKET: ${{ secrets.R2_MIDIA_BUCKET }}
+          R2_MIDIA_PUBLIC_BASE: ${{ secrets.R2_MIDIA_PUBLIC_BASE }}
+          GIT_AUTHOR_NAME: pj-news-bot
+          GIT_AUTHOR_EMAIL: bot@setlists-pj.local
+          MODO: ${{ inputs.modo }}
+          INICIO: ${{ inputs.inicio }}
+        run: |
+          ARGS=""
+          case "$MODO" in previa) ARGS="--previa";; dry) ARGS="--dry-run";; publicar|"") ;; *) echo "modo inválido"; exit 1;; esac
+          if [ -n "$INICIO" ]; then
+            case "$INICIO" in [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ARGS="$ARGS --inicio $INICIO";; *) echo "inicio inválido"; exit 1;; esac
+          fi
+          node scripts/publish/agenda-reel/publicar.mjs $ARGS
+
+      - name: Guardar o MP4 (conferência)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: agenda-reel
+          path: media/agenda/reel-saida/*.mp4
+          if-no-files-found: ignore
+          retention-days: 7
