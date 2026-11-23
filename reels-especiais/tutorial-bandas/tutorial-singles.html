@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Tutorial Singles</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!-- GERADO por ferramentas/compor.mjs a partir de ferramentas/molde.html: editar o molde, não este arquivo -->
+    <style>
+      @font-face { font-family: "BS"; src: url("fonts/f1.ttf"); font-weight: 800; }
+      @font-face { font-family: "BS"; src: url("fonts/f2.ttf"); font-weight: 900; }
+      @font-face { font-family: "IS"; src: url("fonts/f3.ttf"); font-weight: 500; }
+      @font-face { font-family: "IS"; src: url("fonts/f4.ttf"); font-weight: 600; }
+      @font-face { font-family: "IS"; src: url("fonts/f5.ttf"); font-weight: 700; }
+      :root { --ouro: #f0b93a; --papel: #f3ead8; --fundo: #0f0e0c; --verm: #ff4b3e; --zap: #1f9d55; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--fundo); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "IS", sans-serif; color: #fff; }
+      .bg { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(16px) brightness(.32); }
+      #vinheta { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(240,185,58,.12), transparent 60%), linear-gradient(to bottom, rgba(0,0,0,.6), transparent 25%, transparent 75%, rgba(0,0,0,.7)); }
+
+      /* Celular: 390x844 escalado 1.4 */
+      #celular { position: absolute; left: 252px; top: 440px; width: 576px; height: 1210px; border-radius: 70px; background: #050505;
+        box-shadow: 0 0 0 3px #2b2925, 0 40px 120px rgba(0,0,0,.8), 0 0 80px rgba(240,185,58,.12); }
+      #tela { position: absolute; left: 15px; top: 14px; width: 390px; height: 844px; transform: scale(1.4); transform-origin: 0 0; border-radius: 40px; overflow: hidden; background: #000; }
+      .tela-v { position: absolute; left: 0; top: 0; width: 390px; height: 844px; object-fit: cover; }
+
+      /* Apoio (em cima) */
+      .apoio { position: absolute; left: 60px; right: 60px; top: 110px; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+      .apoio .k { font: 700 30px "IS"; color: var(--ouro); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 14px; }
+      .apoio .t { font: 900 84px/0.98 "BS"; text-transform: uppercase; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,.7); }
+      .apoio .t b { color: var(--ouro); }
+      .apoio.url .t { font: 800 50px/1.1 "IS"; text-transform: none; }
+
+      /* Legenda da narração (embaixo) */
+      .leg { position: absolute; left: 70px; right: 70px; top: 1672px; height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; }
+      .leg span { font: 700 44px/1.25 "IS"; color: #fff; background: rgba(0,0,0,.72); padding: 10px 22px; border-radius: 16px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+      /* Cartelas */
+      .cartela { position: absolute; inset: 0; background: #0b0a09; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .cartela .num { font: 700 40px "IS"; color: var(--ouro); letter-spacing: .3em; margin-bottom: 24px; }
+      .cartela .tt { font: 900 150px/0.95 "BS"; text-transform: uppercase; text-align: center; padding: 0 60px; }
+
+      /* Cenas desenhadas: área de 440 a 1640 */
+      .palco { position: absolute; left: 0; right: 0; top: 360px; height: 1300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+      .post { width: 760px; background: #000; border: 2px solid #2a2a2a; border-radius: 28px; overflow: hidden; font: 500 30px "IS"; color: #f5f5f5; }
+      .post .cab { display: flex; align-items: center; gap: 18px; padding: 20px 24px; font-weight: 700; }
+      .post .cab img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+      .post .img { height: 300px; background: linear-gradient(135deg, #1c1a16, #2e2614); display: grid; place-items: center; font: 900 74px "BS"; color: var(--ouro); text-transform: uppercase; }
+      .post .leg-p { padding: 20px 26px 26px; line-height: 1.4; }
+      .post .leg-p b { color: #fff; }
+      .seta { font: 900 90px "BS"; color: var(--ouro); line-height: 1; }
+      #shows-img { width: 860px; border-radius: 26px; box-shadow: 0 20px 60px rgba(0,0,0,.7); }
+
+      .zap { position: absolute; left: 110px; right: 110px; top: 1180px; background: #005c4b; color: #e9fbe9; border-radius: 26px 26px 6px 26px; padding: 26px 30px 22px;
+        font: 600 36px/1.32 "IS"; box-shadow: 0 20px 60px rgba(0,0,0,.7); }
+      .zap .h { font: 700 26px "IS"; color: #8fe3b0; margin-bottom: 8px; }
+      .zap .falta { display: inline-block; margin: 14px 12px 0 0; padding: 4px 16px; border: 3px solid var(--verm); color: var(--verm); background: #fff; border-radius: 12px; font: 900 34px "BS"; }
+
+      .modelo { width: 820px; background: #000; border: 2px solid #2a2a2a; border-radius: 28px; padding: 34px 40px; }
+      .modelo .tit { font: 700 30px "IS"; color: #aaa; margin-bottom: 18px; }
+      .modelo .it { display: flex; align-items: center; gap: 24px; font: 700 54px "IS"; padding: 16px 0; border-top: 1px solid #222; }
+      .modelo .it i { width: 58px; height: 58px; border-radius: 50%; background: var(--ouro); color: #1a1305; display: grid; place-items: center; font: 900 40px "BS"; font-style: normal; }
+      .modelo .it small { font: 600 28px "IS"; color: var(--ouro); margin-left: auto; text-transform: uppercase; letter-spacing: .1em; }
+      #segurado { position: relative; }
+      #segurado .selo { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%) rotate(-12deg); border: 10px solid var(--verm); color: var(--verm); background: rgba(255,255,255,.92);
+        font: 900 110px "BS"; padding: 6px 40px; border-radius: 18px; letter-spacing: .04em; }
+      .nota { width: 820px; text-align: center; font: 600 38px/1.3 "IS"; color: var(--papel); }
+
+      .painel { position: absolute; left: 0; right: 0; top: 110px; height: 1540px; display: flex; flex-direction: column; align-items: center; gap: 36px; }
+      .painel .rot { font: 900 96px/0.95 "BS"; padding: 0 70px; text-transform: uppercase; color: var(--ouro); text-align: center; height: 300px; display: flex; align-items: center; }
+      .perfil { width: 800px; background: #000; border: 2px solid #2a2a2a; border-radius: 28px; padding: 34px; font: 500 32px/1.4 "IS"; }
+      .perfil .cab { display: flex; align-items: center; gap: 30px; margin-bottom: 20px; }
+      .perfil .cab img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #333; }
+      .perfil .cab b { font: 700 42px "IS"; }
+      #link { display: inline-block; margin-top: 10px; color: #b9d2ff; font-weight: 700; padding: 4px 10px; margin-left: -10px; border-radius: 10px; }
+      .story.sdb { background: radial-gradient(ellipse at 50% 35%, #3a3024, #0c0b09 75%); display: flex; flex-direction: column; align-items: center; padding-top: 30px; }
+      .sdb .cab { align-self: flex-start; display: flex; align-items: center; gap: 14px; margin-left: 26px; font: 700 28px "IS"; }
+      .sdb .cab img { width: 56px; height: 56px; border-radius: 50%; }
+      .sdb .logo { width: 300px; height: 300px; border-radius: 50%; margin-top: 80px; object-fit: cover; }
+      .sdb .chamada { font: 900 46px/1.1 "BS"; text-transform: uppercase; text-align: center; margin: 50px 30px 0; color: #fff; }
+      .sdb .adesivo { position: absolute; bottom: 230px; left: 50%; translate: -50% 0; white-space: nowrap; background: #fff; color: #3b74e8; font: 800 26px "IS"; padding: 16px 24px; border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.5); transform: rotate(-3deg); }
+      .story { position: relative; width: 560px; height: 996px; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.8); }
+      .story img { width: 100%; height: 100%; object-fit: cover; }
+      .story .mencao { position: absolute; left: 50%; top: 70%; transform: translateX(-50%); background: #fff; color: #c58a00; font: 800 40px "BS"; padding: 8px 22px; border-radius: 12px; white-space: nowrap; }
+      .story .repost { position: absolute; right: 22px; top: 22px; background: var(--ouro); color: #1a1305; font: 900 34px "BS"; padding: 8px 18px; border-radius: 12px; text-transform: uppercase; }
+      .mesa { width: 900px; height: 1080px; border-radius: 30px; background: radial-gradient(ellipse at 50% 40%, #5a3b22, #2a190d 70%); display: grid; place-items: center; overflow: hidden; }
+      .mesa img { width: 520px; transform: rotate(-6deg); box-shadow: 0 30px 50px rgba(0,0,0,.7); border-radius: 6px; }
+      .mini { position: relative; width: 470px; height: 1016px; border-radius: 50px; background: #050505; box-shadow: 0 0 0 3px #2b2925, 0 30px 80px rgba(0,0,0,.8); overflow: hidden; }
+      .mini video { position: absolute; left: 12px; top: 12px; width: 446px; height: 992px; object-fit: cover; border-radius: 40px; }
+      .mini .carimbo { position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%) rotate(-10deg); background: var(--ouro); color: #1a1305; font: 900 72px/0.95 "BS";
+        padding: 14px 26px; border-radius: 14px; text-align: center; white-space: nowrap; box-shadow: 0 10px 40px rgba(0,0,0,.6); }
+
+      #final { position: absolute; left: 0; right: 0; top: 360px; height: 1300px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 40px; padding: 0 80px; }
+      #final .qr { background: #fff; border-radius: 28px; padding: 26px 26px 14px; border: 6px solid var(--ouro); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+      #final .qr img { width: 420px; height: 420px; image-rendering: pixelated; }
+      #final .qr span { font: 800 30px "IS"; color: #111; text-transform: uppercase; letter-spacing: 2px; }
+      #final .u { font: 800 52px/1.15 "IS"; }
+      #final .u b { color: var(--ouro); }
+      #final .s { display: flex; align-items: center; gap: 18px; font: 700 44px "IS"; color: var(--papel); }
+      #final .s img { width: 80px; height: 80px; border: 3px solid var(--ouro); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="156.200">
+      <video id="bg0" class="bg" src="assets/singles/fundo-banda.mp4" data-start="0" data-duration="23.200" data-track-index="0" muted playsinline></video>
+<video id="bg1" class="bg" src="assets/singles/fundo-banda.mp4" data-start="23.2" data-duration="23.200" data-track-index="0" muted playsinline></video>
+<video id="bg2" class="bg" src="assets/singles/fundo-banda.mp4" data-start="46.4" data-duration="23.200" data-track-index="0" muted playsinline></video>
+<video id="bg3" class="bg" src="assets/singles/fundo-banda.mp4" data-start="69.6" data-duration="23.200" data-track-index="0" muted playsinline></video>
+<video id="bg4" class="bg" src="assets/singles/fundo-banda.mp4" data-start="92.8" data-duration="23.200" data-track-index="0" muted playsinline></video>
+<video id="bg5" class="bg" src="assets/singles/fundo-banda.mp4" data-start="116" data-duration="23.200" data-track-index="0" muted playsinline></video>
+<video id="bg6" class="bg" src="assets/singles/fundo-banda.mp4" data-start="139.2" data-duration="17.000" data-track-index="0" muted playsinline></video>
+      <div id="vinheta"></div>
+
+      <div id="celular"><div id="tela">
+        <video id="cv1" class="tela-v" src="assets/singles/clipes/c1.mp4" data-start="0.000" data-duration="6.790" data-track-index="2" muted playsinline></video>
+<video id="cv2" class="tela-v" src="assets/singles/clipes/c2.mp4" data-start="6.790" data-duration="9.830" data-track-index="2" muted playsinline></video>
+<video id="cv3" class="tela-v" src="assets/singles/clipes/c3.mp4" data-start="18.020" data-duration="14.070" data-track-index="2" muted playsinline></video>
+<video id="cv4" class="tela-v" src="assets/singles/clipes/c4.mp4" data-start="32.090" data-duration="4.790" data-track-index="2" muted playsinline></video>
+<video id="cv5" class="tela-v" src="assets/singles/clipes/c5.mp4" data-start="36.880" data-duration="11.830" data-track-index="2" muted playsinline></video>
+<video id="cv6" class="tela-v" src="assets/singles/clipes/c6.mp4" data-start="48.710" data-duration="10.950" data-track-index="2" muted playsinline></video>
+<video id="cv7" class="tela-v" src="assets/singles/clipes/c7.mp4" data-start="61.060" data-duration="15.190" data-track-index="2" muted playsinline></video>
+<video id="cv8" class="tela-v" src="assets/singles/clipes/c8.mp4" data-start="76.250" data-duration="14.070" data-track-index="2" muted playsinline></video>
+      </div></div>
+
+      <section id="wa7" class="zap clip" data-start="74.660" data-duration="1.590" data-track-index="12">
+        <div class="h">Convite que vai pro WhatsApp</div>
+        Bora comigo no próximo show do Singles? Já fiz o meu setlist!
+      </section>
+
+      <section id="s9" class="palco clip" data-start="91.720" data-duration="15.270" data-track-index="11">
+        <div class="post">
+          <div class="cab"><img src="assets/singles/logo-redondo.jpg" alt="" />singlesplayspearljam</div>
+          <div class="img">Próximo show</div>
+          <div class="leg-p"><b>Dia, data e horário</b> no @ da casa, cidade.</div>
+        </div>
+        <div class="seta">↓</div>
+        <img id="shows-img" src="assets/singles/shows.png" alt="" />
+      </section>
+
+      
+
+      <section id="s11" class="palco clip" data-start="106.990" data-duration="19.990" data-track-index="11">
+        <div class="modelo" id="modelo">
+          <div class="tit">Legenda modelo do post</div>
+          <div class="it"><i>✓</i>Sexta, 27/11<small>data</small></div>
+          <div class="it"><i>✓</i>22h<small>horário</small></div>
+          <div class="it"><i>✓</i>@ da casa<small>casa</small></div>
+          <div class="it"><i>✓</i>Cidade, UF<small>cidade</small></div>
+        </div>
+        <div id="segurado">
+          <div class="post"><div class="cab"><img src="assets/singles/logo-redondo.jpg" alt="" />singlesplayspearljam</div><div class="img">Sábado tem!</div></div>
+          <div class="selo">SEGURADO</div>
+        </div>
+        <div class="nota" id="nota11">Sem data escrita, o site não tem como ter certeza do dia.</div>
+      </section>
+
+      <section id="s12a" class="painel clip" data-start="128.380" data-duration="6.945" data-track-index="11">
+        <div class="rot">Dá pra postar o link no story</div>
+        <div class="story sdb"><div class="cab"><img src="assets/singles/logo-redondo.jpg" alt="" /><b>singlesplayspearljam</b></div>
+          <img class="logo" src="assets/singles/logo-redondo.jpg" alt="" />
+          <div class="chamada">Qual vai ser o setlist do próximo show?<br />Monta o seu palpite!</div>
+          <div class="adesivo" id="link">🔗 SOMAISUMFADEPEARLJAM.COM.BR</div></div>
+      </section>
+      <section id="s12b" class="painel clip" data-start="135.325" data-duration="3.382" data-track-index="11">
+        <div class="rot">Dá pra repostar</div>
+        <div class="story"><img src="assets/singles/story.jpg" alt="" /><div class="mencao">@SINGLESPLAYSPEARLJAM</div><div class="repost">Repost</div></div>
+      </section>
+      <section id="s12c" class="painel clip" data-start="138.707" data-duration="4.590" data-track-index="11">
+        <div class="rot">Dá pra dar de lembrança</div>
+        <div class="mesa"><img src="assets/singles/story.jpg" alt="" /></div>
+      </section>
+      <section id="s12d" class="painel clip" data-start="143.298" data-duration="6.832" data-track-index="11">
+        <div class="rot">Dá pra postar o set da noite</div>
+        <div class="mini"><video id="cv12" src="assets/singles/clipes/c12.mp4" data-start="143.298" data-duration="6.832" data-track-index="13" muted playsinline></video><div class="carimbo">FOI ASSIM<br />ONTEM</div></div>
+      </section>
+
+      <section id="final" class="clip" data-start="150.130" data-duration="6.070" data-track-index="11">
+        <div class="qr"><img src="assets/singles/qr.png" alt="" /><span>Aponta a câmera</span></div>
+        <div class="u">somaisumfadepearljam.com.br<br /><b>/setlist/singles</b></div>
+        <div class="s"><img src="assets/avatar-smufdpj.jpg" alt="" />@smufdpj</div>
+      </section>
+
+      <section id="ap0" class="apoio clip " data-start="0.200" data-duration="6.590" data-track-index="10"><div class="k">isso é de vocês</div><div class="t">SINGLES</div></section>
+<section id="ap1" class="apoio clip url" data-start="6.790" data-duration="9.830" data-track-index="10"><div class="k">@smufdpj</div><div class="t">somaisumfadepearljam.com.br<br><b>/setlist/singles</b></div></section>
+<section id="ap2" class="apoio clip " data-start="18.020" data-duration="14.070" data-track-index="10"><div class="k">lidos da agenda do site</div><div class="t">O fã escolhe <b>o show</b></div></section>
+<section id="ap3" class="apoio clip " data-start="32.090" data-duration="4.790" data-track-index="10"><div class="k">busca, ordem e bis</div><div class="t">Até <b>24 músicas</b></div></section>
+<section id="ap4" class="apoio clip " data-start="36.880" data-duration="11.830" data-track-index="10"><div class="k">na folha</div><div class="t">O logo <b>de vocês</b></div></section>
+<section id="ap5" class="apoio clip " data-start="48.710" data-duration="10.950" data-track-index="10"><div class="k">gravação de show no Brasil sempre que tem</div><div class="t">Ouça <b>antes do show</b></div></section>
+<section id="ap6" class="apoio clip " data-start="61.060" data-duration="15.190" data-track-index="10"><div class="k">vídeo, Instagram e WhatsApp</div><div class="t">Três botões pra <b>espalhar</b></div></section>
+<section id="ap7" class="apoio clip " data-start="76.250" data-duration="14.070" data-track-index="10"><div class="k">pode divulgar sem medo</div><div class="t">Nome com palavrão <b>não passa</b></div></section>
+<section id="ap8" class="apoio clip " data-start="91.720" data-duration="15.270" data-track-index="10"><div class="k">antes da agenda de segunda</div><div class="t">A gente olha <b>o post de vocês</b></div></section>
+<section id="ap9" class="apoio clip " data-start="106.990" data-duration="19.990" data-track-index="10"><div class="k">na legenda, não só na arte</div><div class="t">Data, hora, <b>@ da casa</b>, cidade</div></section>
+<section id="ap10" class="apoio clip " data-start="150.130" data-duration="6.070" data-track-index="10"><div class="k">qualquer coisa, é só responder aqui</div><div class="t">A página é <b>de vocês</b></div></section>
+      <section id="ct0" class="cartela clip" data-start="16.620" data-duration="1.400" data-track-index="15"><div class="num">1/4</div><div class="tt">A página</div></section>
+<section id="ct1" class="cartela clip" data-start="59.660" data-duration="1.400" data-track-index="15"><div class="num">2/4</div><div class="tt">Espalhar</div></section>
+<section id="ct2" class="cartela clip" data-start="90.320" data-duration="1.400" data-track-index="15"><div class="num">3/4</div><div class="tt">O post completo</div></section>
+<section id="ct3" class="cartela clip" data-start="126.980" data-duration="1.400" data-track-index="15"><div class="num">4/4</div><div class="tt">Sugestões</div></section>
+      <div id="lg0" class="leg clip" data-start="0.120" data-duration="3.616" data-track-index="20"><span>Singles, essa folha de setlist tem o logo de vocês.</span></div>
+<div id="lg1" class="leg clip" data-start="3.736" data-duration="2.624" data-track-index="20"><span>E quem escolheu as músicas foi um fã.</span></div>
+<div id="lg2" class="leg clip" data-start="6.910" data-duration="2.273" data-track-index="20"><span>Aqui é o Só mais um Fã de Pearl Jam.</span></div>
+<div id="lg3" class="leg clip" data-start="9.183" data-duration="3.030" data-track-index="20"><span>A gente fez uma página de setlist só do Singles,</span></div>
+<div id="lg4" class="leg clip" data-start="12.213" data-duration="3.977" data-track-index="20"><span>no molde da que fizemos pro show do Eddie Vedder no Ibirapuera.</span></div>
+<div id="lg5" class="leg clip" data-start="18.140" data-duration="2.755" data-track-index="20"><span>O fã põe o nome se quiser e escolhe o show.</span></div>
+<div id="lg6" class="leg clip" data-start="20.895" data-duration="2.691" data-track-index="20"><span>Hoje a agenda ainda não tem data de vocês,</span></div>
+<div id="lg7" class="leg clip" data-start="23.586" data-duration="1.474" data-track-index="20"><span>então aparece sem data.</span></div>
+<div id="lg8" class="leg clip" data-start="25.060" data-duration="2.947" data-track-index="20"><span>Quando tiver show na agenda, ele aparece aqui.</span></div>
+<div id="lg9" class="leg clip" data-start="28.008" data-duration="3.652" data-track-index="20"><span>Um toque, e sai um palpite com o repertório do Pearl Jam.</span></div>
+<div id="lg10" class="leg clip" data-start="32.210" data-duration="3.001" data-track-index="20"><span>Quem prefere escolher monta música por música,</span></div>
+<div id="lg11" class="leg clip" data-start="35.211" data-duration="1.239" data-track-index="20"><span>até vinte e quatro.</span></div>
+<div id="lg12" class="leg clip" data-start="37.000" data-duration="3.100" data-track-index="20"><span>A folha sai escrita à mão, com o logo de vocês.</span></div>
+<div id="lg13" class="leg clip" data-start="40.100" data-duration="3.892" data-track-index="20"><span>Quando tiver show na agenda, entram também a casa e a data.</span></div>
+<div id="lg14" class="leg clip" data-start="43.992" data-duration="2.243" data-track-index="20"><span>Embaixo vêm os números do palpite,</span></div>
+<div id="lg15" class="leg clip" data-start="46.235" data-duration="2.045" data-track-index="20"><span>tirados dos shows do Pearl Jam.</span></div>
+<div id="lg16" class="leg clip" data-start="48.830" data-duration="0.984" data-track-index="20"><span>Em As músicas,</span></div>
+<div id="lg17" class="leg clip" data-start="49.814" data-duration="4.708" data-track-index="20"><span>cada faixa que tem gravação no nosso acervo ganha um botão de play.</span></div>
+<div id="lg18" class="leg clip" data-start="54.522" data-duration="1.546" data-track-index="20"><span>É o Pearl Jam ao vivo.</span></div>
+<div id="lg19" class="leg clip" data-start="56.068" data-duration="3.162" data-track-index="20"><span>A galera chega no bar com a música na cabeça.</span></div>
+<div id="lg20" class="leg clip" data-start="61.180" data-duration="2.052" data-track-index="20"><span>Pra espalhar, são três botões.</span></div>
+<div id="lg21" class="leg clip" data-start="63.232" data-duration="2.394" data-track-index="20"><span>O do vídeo entrega um story pronto.</span></div>
+<div id="lg22" class="leg clip" data-start="65.627" data-duration="3.694" data-track-index="20"><span>O do Instagram copia o arroba da banda e abre o story,</span></div>
+<div id="lg23" class="leg clip" data-start="69.321" data-duration="1.573" data-track-index="20"><span>é só colar na marcação.</span></div>
+<div id="lg24" class="leg clip" data-start="70.894" data-duration="2.258" data-track-index="20"><span>E o do WhatsApp manda um convite:</span></div>
+<div id="lg25" class="leg clip" data-start="73.152" data-duration="2.668" data-track-index="20"><span>bora comigo no próximo show do Singles?</span></div>
+<div id="lg26" class="leg clip" data-start="76.370" data-duration="1.464" data-track-index="20"><span>Uma coisa importante:</span></div>
+<div id="lg27" class="leg clip" data-start="77.834" data-duration="3.972" data-track-index="20"><span>o nome que o fã digita vai no título da folha e no story,</span></div>
+<div id="lg28" class="leg clip" data-start="81.806" data-duration="2.857" data-track-index="20"><span>e a página barra palavrão e coisa pesada,</span></div>
+<div id="lg29" class="leg clip" data-start="84.663" data-duration="1.742" data-track-index="20"><span>mesmo escrito disfarçado.</span></div>
+<div id="lg30" class="leg clip" data-start="86.405" data-duration="3.485" data-track-index="20"><span>Nenhum story com o nome da banda sai com palavrão.</span></div>
+<div id="lg31" class="leg clip" data-start="91.840" data-duration="3.799" data-track-index="20"><span>Casa, data, horário e cidade, tudo vem do post de vocês.</span></div>
+<div id="lg32" class="leg clip" data-start="95.639" data-duration="2.578" data-track-index="20"><span>Antes de publicar a agenda de segunda,</span></div>
+<div id="lg33" class="leg clip" data-start="98.216" data-duration="3.527" data-track-index="20"><span>a gente passa olhando os posts de vocês e das casas,</span></div>
+<div id="lg34" class="leg clip" data-start="101.744" data-duration="2.306" data-track-index="20"><span>e o que estiver lá vai pra página.</span></div>
+<div id="lg35" class="leg clip" data-start="104.050" data-duration="2.510" data-track-index="20"><span>Por isso o post precisa vir completo.</span></div>
+<div id="lg36" class="leg clip" data-start="107.110" data-duration="3.729" data-track-index="20"><span>Então, em todo post de show, ponham na legenda,</span></div>
+<div id="lg37" class="leg clip" data-start="110.839" data-duration="1.349" data-track-index="20"><span>e não só na arte:</span></div>
+<div id="lg38" class="leg clip" data-start="112.188" data-duration="3.809" data-track-index="20"><span>a data com número, tipo vinte e sete barra onze.</span></div>
+<div id="lg39" class="leg clip" data-start="115.997" data-duration="0.793" data-track-index="20"><span>O horário.</span></div>
+<div id="lg40" class="leg clip" data-start="116.790" data-duration="2.301" data-track-index="20"><span>A casa, marcada com o arroba.</span></div>
+<div id="lg41" class="leg clip" data-start="119.091" data-duration="0.873" data-track-index="20"><span>E a cidade.</span></div>
+<div id="lg42" class="leg clip" data-start="119.964" data-duration="1.508" data-track-index="20"><span>Tudo no mesmo post.</span></div>
+<div id="lg43" class="leg clip" data-start="121.472" data-duration="5.078" data-track-index="20"><span>Um post que diz só sábado tem show a gente segura e não publica.</span></div>
+<div id="lg44" class="leg clip" data-start="128.500" data-duration="3.081" data-track-index="20"><span>Agora, algumas ideias, se fizer sentido pra vocês.</span></div>
+<div id="lg45" class="leg clip" data-start="131.581" data-duration="3.759" data-track-index="20"><span>Dá pra postar o link da página nos stories na semana do show.</span></div>
+<div id="lg46" class="leg clip" data-start="135.341" data-duration="3.390" data-track-index="20"><span>Dá pra repostar os palpites da galera que marcar vocês.</span></div>
+<div id="lg47" class="leg clip" data-start="138.730" data-duration="3.759" data-track-index="20"><span>Dá pra imprimir algumas folhas e dar pros fãs depois do show,</span></div>
+<div id="lg48" class="leg clip" data-start="142.490" data-duration="0.801" data-track-index="20"><span>de lembrança.</span></div>
+<div id="lg49" class="leg clip" data-start="143.291" data-duration="2.157" data-track-index="20"><span>E dá pra montar na página o set que</span></div>
+<div id="lg50" class="leg clip" data-start="145.448" data-duration="2.403" data-track-index="20"><span>vocês tocaram e postar no fim da noite,</span></div>
+<div id="lg51" class="leg clip" data-start="147.851" data-duration="1.849" data-track-index="20"><span>pra galera ver quanto acertou.</span></div>
+<div id="lg52" class="leg clip" data-start="150.250" data-duration="3.117" data-track-index="20"><span>A página é de vocês, usem do jeito que quiserem.</span></div>
+<div id="lg53" class="leg clip" data-start="153.367" data-duration="2.403" data-track-index="20"><span>Qualquer dúvida, é só chamar a gente.</span></div>
+
+
+      <audio id="trilha" src="assets/singles/trilha-duck.wav" data-start="0" data-duration="156.200" data-track-index="40" data-volume="1"></audio>
+      <audio id="voz" src="assets/singles/voz.wav" data-start="0" data-duration="156.200" data-track-index="41" data-volume="1"></audio>
+      <audio id="fx0" src="assets/sfx/swoosh.wav" data-start="16.620" data-duration="0.7" data-track-index="30" data-volume="0.4"></audio>
+<audio id="fx1" src="assets/sfx/swoosh.wav" data-start="59.660" data-duration="0.7" data-track-index="31" data-volume="0.4"></audio>
+<audio id="fx2" src="assets/sfx/swoosh.wav" data-start="90.320" data-duration="0.7" data-track-index="30" data-volume="0.4"></audio>
+<audio id="fx3" src="assets/sfx/swoosh.wav" data-start="126.980" data-duration="0.7" data-track-index="31" data-volume="0.4"></audio>
+<audio id="fx4" src="assets/sfx/caneta-curta.wav" data-start="0.300" data-duration="2.9" data-track-index="30" data-volume="0.25"></audio>
+<audio id="fx5" src="assets/sfx/plim.wav" data-start="109.190" data-duration="1" data-track-index="31" data-volume="0.3"></audio>
+<audio id="fx6" src="assets/sfx/pop.wav" data-start="119.490" data-duration="0.3" data-track-index="30" data-volume="0.4"></audio>
+    </div>
+    <script>
+      const T = {"cenas":[{"n":1,"ini":0,"dur":6.79,"fala":6.24,"voz":0.12},{"n":2,"ini":6.79,"dur":9.83,"fala":9.28,"voz":6.91},{"n":3,"ini":18.02,"dur":14.07,"fala":13.52,"voz":18.14},{"n":4,"ini":32.09,"dur":4.79,"fala":4.24,"voz":32.21},{"n":5,"ini":36.88,"dur":11.83,"fala":11.28,"voz":37},{"n":6,"ini":48.71,"dur":10.95,"fala":10.4,"voz":48.83},{"n":7,"ini":61.06,"dur":15.19,"fala":14.64,"voz":61.18},{"n":8,"ini":76.25,"dur":14.07,"fala":13.52,"voz":76.37},{"n":9,"ini":91.72,"dur":15.27,"fala":14.72,"voz":91.84},{"n":11,"ini":106.99,"dur":19.99,"fala":19.44,"voz":107.11},{"n":12,"ini":128.38,"dur":21.75,"fala":21.2,"voz":128.5},{"n":13,"ini":150.13,"dur":6.07,"fala":5.52,"voz":150.25}],"cartelas":[{"n":3,"titulo":"A página","ini":16.62,"dur":1.4},{"n":7,"titulo":"Espalhar","ini":59.66,"dur":1.4},{"n":9,"titulo":"O post completo","ini":90.32,"dur":1.4},{"n":12,"titulo":"Sugestões","ini":126.97999999999999,"dur":1.4}],"c7w":74.66,"c10w":3.28,"c11b":118.99,"p12":6.945071225071217};
+      const tl = gsap.timeline({ paused: true });
+      const cena = (n) => T.cenas.find((c) => c.n === n);
+      // Celular: aparece nas cenas gravadas, some nas desenhadas e nas cartelas
+      const comCel = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+      tl.set("#celular", { opacity: 0, y: 120 }, 0);
+      T.cenas.forEach((c) => {
+        const on = comCel.includes(c.n);
+        tl.to("#celular", { opacity: on ? 1 : 0, y: on ? 0 : 120, duration: 0.35, ease: on ? "power3.out" : "power2.in" }, Math.max(0, c.ini - (on ? 0 : 0.05)));
+      });
+      // Gancho: zoom na folha
+      tl.fromTo("#celular", { scale: 1.08 }, { scale: 1, duration: 6.5, ease: "power1.inOut" }, 0);
+      // Apoio: entra de baixo
+      document.querySelectorAll(".apoio").forEach((el) => {
+        const ini = +el.dataset.start, dur = +el.dataset.duration;
+        tl.fromTo(el.children, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out", stagger: 0.08, immediateRender: false }, ini + 0.05);
+        tl.to(el.children, { opacity: 0, duration: 0.2 }, ini + dur - 0.22);
+      });
+      // Cartelas
+      document.querySelectorAll(".cartela").forEach((el) => {
+        const ini = +el.dataset.start;
+        tl.fromTo(el.querySelector(".tt"), { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power4.out", immediateRender: false }, ini);
+        tl.fromTo(el.querySelector(".num"), { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, ini + 0.1);
+      });
+      // Balões do WhatsApp
+      ["#wa7", "#wa10"].filter((id) => document.querySelector(id)).forEach((id) => { const ini = +document.querySelector(id).dataset.start;
+        tl.fromTo(id, { y: 80, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", immediateRender: false }, ini); });
+      if (document.querySelector("#wa10")) tl.fromTo("#wa10 .falta", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)", stagger: 0.35, immediateRender: false }, T.c10w + 0.9);
+      // Cena 9: post, seta, botões
+      { const c = cena(9);
+        tl.fromTo("#s9 .post", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", immediateRender: false }, c.ini + 0.1);
+        tl.fromTo("#s9 .seta", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, immediateRender: false }, c.ini + 4.5);
+        tl.fromTo("#shows-img", { y: 60, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)", immediateRender: false }, c.ini + 5.0); }
+      // Cena 11: vistos um por um, depois o SEGURADO
+      { const c = cena(11);
+        tl.fromTo("#modelo", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, immediateRender: false }, c.ini + 0.1);
+        tl.fromTo("#modelo .it", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, stagger: 2.2, immediateRender: false }, c.ini + 2.2);
+        tl.to("#modelo", { opacity: 0, height: 0, padding: 0, margin: 0, duration: 0.35 }, T.c11b - 0.4);
+        tl.set("#modelo", { display: "none" }, T.c11b);
+        tl.set(["#segurado", "#nota11"], { opacity: 0 }, 0);
+        tl.to("#segurado", { opacity: 1, duration: 0.3 }, T.c11b);
+        tl.fromTo("#segurado .selo", { scale: 2.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in", immediateRender: false }, T.c11b + 0.6);
+        tl.to("#nota11", { opacity: 1, duration: 0.4 }, T.c11b + 1.2); }
+      // Cena 12: painéis
+      ["#s12a", "#s12b", "#s12c", "#s12d"].forEach((id) => { const ini = +document.querySelector(id).dataset.start;
+        tl.fromTo(`${id} .rot`, { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power4.out", immediateRender: false }, ini);
+        tl.fromTo(`${id} > :not(.rot)`, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", immediateRender: false }, ini + 0.15); });
+      tl.to("#link", { backgroundColor: "rgba(185,210,255,.25)", duration: 0.2, repeat: 3, yoyo: true }, +document.querySelector("#s12a").dataset.start + 1.2);
+      tl.fromTo(".mini .carimbo", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in", immediateRender: false }, +document.querySelector("#s12d").dataset.start + 2.2);
+      // Final
+      { const c = cena(13);
+        tl.fromTo("#final .qr", { scale: 0.3, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)", immediateRender: false }, c.ini + 0.1);
+        tl.fromTo("#final .u", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, immediateRender: false }, c.ini + 0.4);
+        tl.fromTo("#final .s", { opacity: 0 }, { opacity: 1, duration: 0.5, immediateRender: false }, c.ini + 0.9); }
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

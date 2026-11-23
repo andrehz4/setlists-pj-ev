@@ -2,7 +2,7 @@
 import { spawn } from 'node:child_process';
 import { writeFileSync, mkdirSync } from 'node:fs';
 export const dorme = (ms) => new Promise((r) => setTimeout(r, ms));
-let porta = 9340;
+let porta = 9340 + Math.floor(Math.random() * 600); // porta sorteada: o Chrome da gravação anterior pode ainda estar fechando
 export async function abrir(DIR, { antes = '' } = {}) {
   mkdirSync(DIR + '/frames', { recursive: true });
   const p = porta++;

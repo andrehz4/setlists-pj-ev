@@ -1,0 +1,13 @@
+{
+  "slug": "blaymorphed", "nome": "Blaymorphed", "art": "da", "arroba": "blaymorphed",
+  "toquesShows": [1, 0], "falta": "stones", "dataSimulada": "2026-12-01T15:00:00-03:00",
+  "tela": {
+    "apoio10": ["Stones Bar, 17/12", "Sem cidade. <b>Sem horário.</b>"],
+    "convite": "Bora comigo no show da Blaymorphed no Santo Rock, em Santo André? É sexta, 27/11, às 22h. Já fiz o meu setlist!",
+    "postImg": "Show essa semana",
+    "postLeg": "<b>Sexta, 27/11, 22h</b> no @santorockbar, Santo André. <b>Sábado, 28/11</b> no @santorockbarcampinas, Campinas.",
+    "wa10": { "h": "Convite do Stones Bar", "t": "Bora comigo no show da Blaymorphed no Stones Bar? É quinta, 17/12.", "faltas": ["ONDE?", "QUE HORAS?"] },
+    "modelo": [["Sexta, 27/11", "data"], ["22h", "horário"], ["@santorockbar", "casa"], ["Santo André, SP", "cidade"]],
+    "chamada": "Qual vai ser o setlist de sexta?"
+  }
+}

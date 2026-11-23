@@ -1,0 +1,66 @@
+{
+ "slug": "lost-dogs",
+ "nome": "Lost Dogs",
+ "art": "do",
+ "arroba": "pearljamsp",
+ "toquesShows": [
+  2,
+  0
+ ],
+ "falta": "falta",
+ "falas": {
+  "1": "Lost Dogs, essa folha de setlist tem o logo de vocês. E quem escolheu as músicas foi um fã.",
+  "2": "Aqui é o Só mais um Fã de Pearl Jam. A gente fez uma página de setlist só do Lost Dogs, no molde da que fizemos pro show do Eddie Vedder no Ibirapuera.",
+  "3": "O fã põe o nome se quiser e escolhe o show. Hoje aparecem três: quinta, vinte e seis, no Blues Beer, em São Paulo, sexta, vinte e sete, no Lata Velha, em Osasco, e sábado, vinte e oito, no Rocknspeto, em Barueri. Um toque, e sai um palpite com o repertório do Pearl Jam.",
+  "7": "Pra espalhar, são três botões. O do vídeo entrega um story pronto. O do Instagram copia o arroba da banda e abre o story, é só colar na marcação. E o do WhatsApp manda um convite: bora comigo no show do Lost Dogs no Blues Beer, em São Paulo? É quinta, às oito da noite.",
+  "10": "Olha os três shows desta semana. Na nossa agenda, as três casas entraram sem o arroba. Então os botões dos shows aparecem sem o arroba da casa."
+ },
+ "vozTexto": {
+  "3": "O fã põe o nome se quiser e escolhe o show. Hoje aparecem três: quinta, vinte e seis, no Blues Beer, em São Paulo, sexta, vinte e sete, no Lata Velha, em Ozasco, e sábado, vinte e oito, no Rock'n Espeto, em Barueri. Um toque, e sai um palpite com o repertório do Pearl Jam."
+ },
+ "voz": {
+  "7": [
+   "@07:0:12.24",
+   "Bora comigo no show do Lost Dogs no Blues Beer, em São Paulo? É quinta, às oito da noite."
+  ]
+ },
+ "tela": {
+  "convite": "Bora comigo no show do Lost Dogs no Blues Beer, em São Paulo? É quinta, 26/11, às 20h. Já fiz o meu setlist!",
+  "postImg": "Shows essa semana",
+  "postLeg": "<b>Quinta, 26/11, 20h</b> no Blues Beer, São Paulo. <b>Sexta, 27/11, 23h</b> no Lata Velha, Osasco. <b>Sábado, 28/11, 21h</b> no Rocknspeto, Barueri.",
+  "modelo": [
+   [
+    "Quinta, 26/11",
+    "data"
+   ],
+   [
+    "20h",
+    "horário"
+   ],
+   [
+    "@ da casa",
+    "casa"
+   ],
+   [
+    "São Paulo, SP",
+    "cidade"
+   ]
+  ],
+  "chamada": "Qual vai ser o setlist de quinta?",
+  "wa10": {
+   "h": "Botões dos shows na página",
+   "t": "Blues Beer · São Paulo<br />Lata Velha · Osasco<br />Rocknspeto · Barueri",
+   "faltas": [
+    "@ DA CASA?"
+   ]
+  },
+  "apoio10": [
+   "Blues Beer, Lata Velha, Rocknspeto",
+   "Casa <b>sem @.</b>"
+  ]
+ },
+ "msg": {
+  "shows": "Hoje estão lá o Blues Beer, em São Paulo (26/11), o Lata Velha, em Osasco (27/11), e o Rocknspeto, em Barueri (28/11).",
+  "falta": "Inclusive, os três shows desta semana (Blues Beer, Lata Velha e Rocknspeto) entraram na nossa agenda sem o @ das casas. Se puderem mandar os @, a gente acerta na hora."
+ }
+}

@@ -1,0 +1,66 @@
+{
+ "slug": "ribeirao",
+ "nome": "Pearl Jam Cover Ribeirão",
+ "art": "do",
+ "arroba": "pearljamcoverribeirao",
+ "toquesShows": [
+  0
+ ],
+ "falta": "falta",
+ "falas": {
+  "1": "Pearl Jam Cover Ribeirão, essa folha de setlist tem o logo de vocês. E quem escolheu as músicas foi um fã.",
+  "2": "Aqui é o Só mais um Fã de Pearl Jam. A gente fez uma página de setlist só do Pearl Jam Cover Ribeirão, no molde da que fizemos pro show do Eddie Vedder no Ibirapuera.",
+  "3": "O fã põe o nome se quiser e escolhe o show. Hoje aparece o próximo, no Galpão 20, em Ribeirão Preto: sábado, cinco de dezembro. Um toque, e sai um palpite com o repertório do Pearl Jam.",
+  "7": "Pra espalhar, são três botões. O do vídeo entrega um story pronto. O do Instagram copia o arroba da banda e abre o story, é só colar na marcação. E o do WhatsApp manda um convite: bora comigo no show do Pearl Jam Cover Ribeirão no Galpão 20, em Ribeirão Preto? É sábado, cinco de dezembro.",
+  "10": "Olha o show no Galpão 20, em Ribeirão Preto: sábado, cinco de dezembro. Na nossa agenda ele entrou sem horário, e os outros shows também. Então o convite sai sem dizer que horas."
+ },
+ "vozTexto": {
+  "3": "O fã põe o nome se quiser e escolhe o show. Hoje aparece o próximo, no Galpão vinte, em Ribeirão Preto: sábado, cinco de dezembro. Um toque, e sai um palpite com o repertório do Pearl Jam.",
+  "10": "Olha o show no Galpão vinte, em Ribeirão Preto: sábado, cinco de dezembro. Na nossa agenda ele entrou sem horário, e os outros shows também. Então o convite sai sem dizer que horas."
+ },
+ "voz": {
+  "7": [
+   "@07:0:12.24",
+   "Bora comigo no show do Pearl Jam Cover Ribeirão no Galpão vinte, em Ribeirão Preto? É sábado, cinco de dezembro."
+  ]
+ },
+ "tela": {
+  "convite": "Bora comigo no show do Pearl Jam Cover Ribeirão no Galpao20 Noite De Gravação, em Ribeirão Preto? É sábado, 05/12. Já fiz o meu setlist!",
+  "postImg": "Próximos shows",
+  "postLeg": "<b>Sábado, 05/12</b> no @galpao20, Ribeirão Preto. <b>Sexta, 11/12</b> no @dompedro.ribeirao, Ribeirão Preto.",
+  "modelo": [
+   [
+    "Sábado, 05/12",
+    "data"
+   ],
+   [
+    "às __h",
+    "horário"
+   ],
+   [
+    "@galpao20",
+    "casa"
+   ],
+   [
+    "Ribeirão Preto, SP",
+    "cidade"
+   ]
+  ],
+  "chamada": "Qual vai ser o setlist de sábado?",
+  "wa10": {
+   "h": "Convite de 05/12",
+   "t": "Bora comigo no show do Pearl Jam Cover Ribeirão no Galpao20 Noite De Gravação, em Ribeirão Preto? É sábado, 05/12.",
+   "faltas": [
+    "QUE HORAS?"
+   ]
+  },
+  "apoio10": [
+   "Galpão 20, 05/12",
+   "<b>Sem horário.</b>"
+  ]
+ },
+ "msg": {
+  "shows": "Hoje está lá o próximo, no Galpão 20, em Ribeirão Preto (05/12). Depois dele, a página passa sozinha pro show seguinte.",
+  "falta": "Inclusive, os shows de vocês entraram na nossa agenda sem horário, e o de 02/01 na Expectativa entrou também sem cidade. Se puderem mandar os horários (e a cidade da Expectativa), a gente acerta na hora."
+ }
+}

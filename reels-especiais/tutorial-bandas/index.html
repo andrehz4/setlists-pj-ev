@@ -301,9 +301,9 @@
         tl.fromTo(el.querySelector(".num"), { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, ini + 0.1);
       });
       // Balões do WhatsApp
-      ["#wa7", "#wa10"].forEach((id) => { const ini = +document.querySelector(id).dataset.start;
+      ["#wa7", "#wa10"].filter((id) => document.querySelector(id)).forEach((id) => { const ini = +document.querySelector(id).dataset.start;
         tl.fromTo(id, { y: 80, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", immediateRender: false }, ini); });
-      tl.fromTo("#wa10 .falta", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)", stagger: 0.35, immediateRender: false }, T.c10w + 0.9);
+      if (document.querySelector("#wa10")) tl.fromTo("#wa10 .falta", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)", stagger: 0.35, immediateRender: false }, T.c10w + 0.9);
       // Cena 9: post, seta, botões
       { const c = cena(9);
         tl.fromTo("#s9 .post", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", immediateRender: false }, c.ini + 0.1);

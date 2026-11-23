@@ -1,0 +1,59 @@
+{
+ "slug": "pj-90",
+ "nome": "PJ 90",
+ "art": "do",
+ "arroba": "pjnoventa",
+ "toquesShows": [
+  2,
+  0
+ ],
+ "falta": "falta",
+ "sem": [
+  10
+ ],
+ "falas": {
+  "1": "PJ 90, essa folha de setlist tem o logo de vocês. E quem escolheu as músicas foi um fã.",
+  "2": "Aqui é o Só mais um Fã de Pearl Jam. A gente fez uma página de setlist só do PJ 90, no molde da que fizemos pro show do Eddie Vedder no Ibirapuera.",
+  "3": "O fã põe o nome se quiser e escolhe o show. Hoje aparecem três: sexta, vinte e sete, em Osasco e em Mauá, e sábado, vinte e oito, em Guarulhos. Um toque, e sai um palpite com o repertório do Pearl Jam.",
+  "7": "Pra espalhar, são três botões. O do vídeo entrega um story pronto. O do Instagram copia o arroba da banda e abre o story, é só colar na marcação. E o do WhatsApp manda um convite: bora comigo no show do PJ 90 em Osasco? É sexta, às oito da noite."
+ },
+ "vozTexto": {
+  "1": "Pê Jota Noventa, essa folha de setlist tem o logo de vocês. E quem escolheu as músicas foi um fã.",
+  "2": "Aqui é o Só mais um Fã de Pearl Jam. A gente fez uma página de setlist só do Pê Jota Noventa, no molde da que fizemos pro show do Eddie Vedder no Ibirapuera.",
+  "3": "O fã põe o nome se quiser e escolhe o show. Hoje aparecem três: sexta, vinte e sete, em Ozasco e em Mauá, e sábado, vinte e oito, em Guarulhos. Um toque, e sai um palpite com o repertório do Pearl Jam."
+ },
+ "voz": {
+  "7": [
+   "@07:0:12.24",
+   "Bora comigo no show do Pê Jota Noventa em Ozasco? É sexta, às oito da noite."
+  ]
+ },
+ "tela": {
+  "convite": "Bora comigo no show do PJ 90 em Osasco? É sexta, 27/11, às 20h. Já fiz o meu setlist!",
+  "postImg": "Shows essa semana",
+  "postLeg": "<b>Sexta, 27/11, 20h</b> no @rockeribscontinental, Osasco. <b>Sexta, 27/11, 23h30</b> no @livemusicbar, Mauá. <b>Sábado, 28/11, 22h30</b> no @strongwash, Guarulhos.",
+  "modelo": [
+   [
+    "Sexta, 27/11",
+    "data"
+   ],
+   [
+    "20h",
+    "horário"
+   ],
+   [
+    "@rockeribscontinental",
+    "casa"
+   ],
+   [
+    "Osasco, SP",
+    "cidade"
+   ]
+  ],
+  "chamada": "Qual vai ser o setlist de sexta?"
+ },
+ "msg": {
+  "shows": "Hoje estão lá Osasco e Mauá (27/11) e Guarulhos (28/11).",
+  "falta": null
+ }
+}

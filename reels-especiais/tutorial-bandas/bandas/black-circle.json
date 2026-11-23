@@ -1,0 +1,63 @@
+{
+ "slug": "black-circle",
+ "nome": "Black Circle",
+ "art": "do",
+ "arroba": "blackcirclepj",
+ "toquesShows": [
+  0
+ ],
+ "falta": "falta",
+ "falas": {
+  "1": "Black Circle, essa folha de setlist tem o logo de vocês. E quem escolheu as músicas foi um fã.",
+  "2": "Aqui é o Só mais um Fã de Pearl Jam. A gente fez uma página de setlist só do Black Circle, no molde da que fizemos pro show do Eddie Vedder no Ibirapuera.",
+  "3": "O fã põe o nome se quiser e escolhe o show. Hoje aparece o próximo, em São Paulo: sexta-feira, vinte e seis de fevereiro. Um toque, e sai um palpite com o repertório do Pearl Jam.",
+  "7": "Pra espalhar, são três botões. O do vídeo entrega um story pronto. O do Instagram copia o arroba da banda e abre o story, é só colar na marcação. E o do WhatsApp manda um convite: bora comigo no show do Black Circle em São Paulo? É sexta, vinte e seis de fevereiro.",
+  "10": "Olha o show de vinte e seis de fevereiro, em São Paulo. Na nossa agenda ele entrou sem a casa e sem horário. Então o convite sai sem dizer onde nem que horas."
+ },
+ "voz": {
+  "7": [
+   "@07:0:12.24",
+   "Bora comigo no show do Black Circle em São Paulo? É sexta, vinte e seis de fevereiro."
+  ]
+ },
+ "tela": {
+  "convite": "Bora comigo no show do Black Circle em São Paulo? É sexta, 26/02. Já fiz o meu setlist!",
+  "postImg": "Próximos shows",
+  "postLeg": "<b>Sexta, 26/02</b> em São Paulo. <b>Sábado, 13/03</b> em Recife. <b>Domingo, 14/03</b> em Fortaleza.",
+  "modelo": [
+   [
+    "Sexta, 26/02",
+    "data"
+   ],
+   [
+    "às __h",
+    "horário"
+   ],
+   [
+    "@ da casa",
+    "casa"
+   ],
+   [
+    "São Paulo, SP",
+    "cidade"
+   ]
+  ],
+  "chamada": "Qual vai ser o setlist do próximo show?",
+  "wa10": {
+   "h": "Convite de 26/02",
+   "t": "Bora comigo no show do Black Circle em São Paulo? É sexta, 26/02.",
+   "faltas": [
+    "ONDE?",
+    "QUE HORAS?"
+   ]
+  },
+  "apoio10": [
+   "São Paulo, 26/02",
+   "Sem casa. <b>Sem horário.</b>"
+  ]
+ },
+ "msg": {
+  "shows": "Hoje está lá o próximo: São Paulo (26/02). Depois vêm Recife (13/03) e Fortaleza (14/03).",
+  "falta": "Inclusive, os shows de 26/02 em São Paulo, 13/03 em Recife e 14/03 em Fortaleza entraram na nossa agenda sem a casa e sem horário. Se puderem mandar o nome da casa (com o @) e o horário de cada um, a gente acerta na hora."
+ }
+}

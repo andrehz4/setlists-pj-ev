@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
-    <title>Tutorial Blaymorphed</title>
+    <title>{{TITULO}}</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <!-- GERADO por ferramentas/compor.mjs a partir de ferramentas/molde.html: editar o molde, não este arquivo -->
     <style>
@@ -112,35 +112,28 @@
 
       <section id="wa7" class="zap clip" data-start="{{C7W}}" data-duration="{{C7WD}}" data-track-index="12">
         <div class="h">Convite que vai pro WhatsApp</div>
-        Bora comigo no show da Blaymorphed no Santo Rock, em Santo André? É sexta, 27/11, às 22h. Já fiz o meu setlist!
+        {{CONVITE}}
       </section>
 
       <section id="s9" class="palco clip" data-start="{{C9}}" data-duration="{{C9D}}" data-track-index="11">
         <div class="post">
-          <div class="cab"><img src="assets/logo-redondo.jpg" alt="" />blaymorphed</div>
-          <div class="img">Show essa semana</div>
-          <div class="leg-p"><b>Sexta, 27/11, 22h</b> no @santorockbar, Santo André. <b>Sábado, 28/11</b> no @santorockbarcampinas, Campinas.</div>
+          <div class="cab"><img src="{{A}}logo-redondo.jpg" alt="" />{{ARROBA}}</div>
+          <div class="img">{{POST_IMG}}</div>
+          <div class="leg-p">{{POST_LEG}}</div>
         </div>
         <div class="seta">↓</div>
-        <img id="shows-img" src="assets/shows.png" alt="" />
+        <img id="shows-img" src="{{A}}shows.png" alt="" />
       </section>
 
-      <section id="wa10" class="zap clip" data-start="{{C10W}}" data-duration="{{C10WD}}" data-track-index="12">
-        <div class="h">Convite do Stones Bar</div>
-        Bora comigo no show da Blaymorphed no Stones Bar? É quinta, 17/12.
-        <div><span class="falta">ONDE?</span><span class="falta">QUE HORAS?</span></div>
-      </section>
+      {{WA10}}
 
       <section id="s11" class="palco clip" data-start="{{C11}}" data-duration="{{C11D}}" data-track-index="11">
         <div class="modelo" id="modelo">
           <div class="tit">Legenda modelo do post</div>
-          <div class="it"><i>✓</i>Sexta, 27/11<small>data</small></div>
-          <div class="it"><i>✓</i>22h<small>horário</small></div>
-          <div class="it"><i>✓</i>@santorockbar<small>casa</small></div>
-          <div class="it"><i>✓</i>Santo André, SP<small>cidade</small></div>
+          {{MODELO}}
         </div>
         <div id="segurado">
-          <div class="post"><div class="cab"><img src="assets/logo-redondo.jpg" alt="" />blaymorphed</div><div class="img">Sábado tem!</div></div>
+          <div class="post"><div class="cab"><img src="{{A}}logo-redondo.jpg" alt="" />{{ARROBA}}</div><div class="img">Sábado tem!</div></div>
           <div class="selo">SEGURADO</div>
         </div>
         <div class="nota" id="nota11">Sem data escrita, o site não tem como ter certeza do dia.</div>
@@ -148,27 +141,27 @@
 
       <section id="s12a" class="painel clip" data-start="{{P1}}" data-duration="{{PD1}}" data-track-index="11">
         <div class="rot">Dá pra postar o link no story</div>
-        <div class="story sdb"><div class="cab"><img src="assets/logo-redondo.jpg" alt="" /><b>blaymorphed</b></div>
-          <img class="logo" src="assets/logo-redondo.jpg" alt="" />
-          <div class="chamada">Qual vai ser o setlist de sexta?<br />Monta o seu palpite!</div>
+        <div class="story sdb"><div class="cab"><img src="{{A}}logo-redondo.jpg" alt="" /><b>{{ARROBA}}</b></div>
+          <img class="logo" src="{{A}}logo-redondo.jpg" alt="" />
+          <div class="chamada">{{CHAMADA}}<br />Monta o seu palpite!</div>
           <div class="adesivo" id="link">🔗 SOMAISUMFADEPEARLJAM.COM.BR</div></div>
       </section>
       <section id="s12b" class="painel clip" data-start="{{P2}}" data-duration="{{PD2}}" data-track-index="11">
         <div class="rot">Dá pra repostar</div>
-        <div class="story"><img src="assets/story.jpg" alt="" /><div class="mencao">@BLAYMORPHED</div><div class="repost">Repost</div></div>
+        <div class="story"><img src="{{A}}story.jpg" alt="" /><div class="mencao">@{{ARROBA_M}}</div><div class="repost">Repost</div></div>
       </section>
       <section id="s12c" class="painel clip" data-start="{{P3}}" data-duration="{{PD3}}" data-track-index="11">
         <div class="rot">Dá pra dar de lembrança</div>
-        <div class="mesa"><img src="assets/story.jpg" alt="" /></div>
+        <div class="mesa"><img src="{{A}}story.jpg" alt="" /></div>
       </section>
       <section id="s12d" class="painel clip" data-start="{{P4}}" data-duration="{{PD4}}" data-track-index="11">
         <div class="rot">Dá pra postar o set da noite</div>
-        <div class="mini"><video id="cv12" src="assets/clipes/c12.mp4" data-start="{{CV12}}" data-duration="{{PD4}}" data-track-index="13" muted playsinline></video><div class="carimbo">FOI ASSIM<br />ONTEM</div></div>
+        <div class="mini"><video id="cv12" src="{{A}}clipes/c12.mp4" data-start="{{CV12}}" data-duration="{{PD4}}" data-track-index="13" muted playsinline></video><div class="carimbo">FOI ASSIM<br />ONTEM</div></div>
       </section>
 
       <section id="final" class="clip" data-start="{{C13}}" data-duration="{{C13D}}" data-track-index="11">
-        <div class="qr"><img src="assets/qr-blaymorphed.png" alt="" /><span>Aponta a câmera</span></div>
-        <div class="u">somaisumfadepearljam.com.br<br /><b>/setlist/blaymorphed</b></div>
+        <div class="qr"><img src="{{A}}{{QR}}" alt="" /><span>Aponta a câmera</span></div>
+        <div class="u">somaisumfadepearljam.com.br<br /><b>/setlist/{{SLUG}}</b></div>
         <div class="s"><img src="assets/avatar-smufdpj.jpg" alt="" />@smufdpj</div>
       </section>
 
@@ -176,8 +169,8 @@
       {{CART}}
       {{LEGS}}
 
-      <audio id="trilha" src="assets/trilha-duck.wav" data-start="0" data-duration="{{TOTAL}}" data-track-index="40" data-volume="1"></audio>
-      <audio id="voz" src="assets/voz.wav" data-start="0" data-duration="{{TOTAL}}" data-track-index="41" data-volume="1"></audio>
+      <audio id="trilha" src="{{A}}trilha-duck.wav" data-start="0" data-duration="{{TOTAL}}" data-track-index="40" data-volume="1"></audio>
+      <audio id="voz" src="{{A}}voz.wav" data-start="0" data-duration="{{TOTAL}}" data-track-index="41" data-volume="1"></audio>
       {{SFX}}
     </div>
     <script>
@@ -206,9 +199,9 @@
         tl.fromTo(el.querySelector(".num"), { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, ini + 0.1);
       });
       // Balões do WhatsApp
-      ["#wa7", "#wa10"].forEach((id) => { const ini = +document.querySelector(id).dataset.start;
+      ["#wa7", "#wa10"].filter((id) => document.querySelector(id)).forEach((id) => { const ini = +document.querySelector(id).dataset.start;
         tl.fromTo(id, { y: 80, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", immediateRender: false }, ini); });
-      tl.fromTo("#wa10 .falta", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)", stagger: 0.35, immediateRender: false }, T.c10w + 0.9);
+      if (document.querySelector("#wa10")) tl.fromTo("#wa10 .falta", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)", stagger: 0.35, immediateRender: false }, T.c10w + 0.9);
       // Cena 9: post, seta, botões
       { const c = cena(9);
         tl.fromTo("#s9 .post", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", immediateRender: false }, c.ini + 0.1);
