@@ -51,5 +51,5 @@ test("R2 com erro: devolve null em vez de derrubar a publicação", async () => 
 
 test("R2 ok e link respondendo: devolve o link", async () => {
   const fetchImpl = async () => ({ ok: true });
-  assert.equal(await publicarViaR2(arquivo(), "stories/d.mp4", { env: ENV, fetchImpl }), "https://midia.exemplo.com/stories/d.mp4");
+  assert.match(await publicarViaR2(arquivo(), "stories/d.mp4", { env: ENV, fetchImpl }), /^https:\/\/midia\.exemplo\.com\/stories\/d-[0-9a-f]{12}\.mp4$/);
 });

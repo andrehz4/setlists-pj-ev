@@ -63,14 +63,22 @@ export async function aguardarPublico(url, { tentativas = 10, fetchImpl = fetch 
   return false;
 }
 
-// Atalho pros publicadores: tenta o R2; se não der, devolve null e o chamador
-// segue no caminho antigo (commit + raw do GitHub).
+// Chave única por conteúdo: "stories/x.jpg" vira "stories/x-<hash>.jpg". O domínio público guarda cada URL por 4 h
+// (cache-control max-age=14400), então republicar na MESMA chave entregava ao IG a imagem antiga (agenda W48, 23/11/2026).
+export function chaveUnica(chaveObjeto, corpo) {
+  const h = sha256(corpo).slice(0, 12);
+  return /\.[a-z0-9]+$/i.test(chaveObjeto) ? chaveObjeto.replace(/(\.[a-z0-9]+)$/i, `-${h}$1`) : `${chaveObjeto}-${h}`;
+}
+
+// Atalho pros publicadores: tenta o R2 (sempre com chave única por conteúdo); se não der, devolve null e o
+// chamador segue no caminho antigo (commit + raw do GitHub).
 export async function publicarViaR2(arquivoLocal, chaveObjeto, opts = {}) {
   if (!configR2(opts.env)) return null;
   try {
-    const url = await enviarR2(arquivoLocal, chaveObjeto, opts);
+    const chave = chaveUnica(chaveObjeto, await fs.readFile(arquivoLocal));
+    const url = await enviarR2(arquivoLocal, chave, opts);
     if (!(await aguardarPublico(url, opts))) throw new Error(`link público não respondeu: ${url}`);
-    console.log(`[r2] ${chaveObjeto} -> ${url}`);
+    console.log(`[r2] ${chave} -> ${url}`);
     return url;
   } catch (e) {
     console.warn(`[r2] falhou, volta pro GitHub: ${e.message}`);

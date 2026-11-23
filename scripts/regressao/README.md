@@ -18,3 +18,4 @@ a regra antiga reproduzindo o erro e o código atual fazendo o certo. Roda junto
 | `agenda-lost-dogs-datas.test.mjs` | agenda: data por extenso perdida, 2 shows no dia viravam 1, banda do line-up como casa, preço lido como hora | 09/11/2026 |
 | `agenda-pj90-homer.test.mjs` | agenda: blocos da PJ 90 lidos como lista (cidade ". SEXTA"), The Homer com show em 31/11 | 09/11/2026 |
 | `agenda-homer-iron-rock.test.mjs` | agenda: "28/11 Iron Rock" (casa) saía como cidade no story; correção manual em `media/agenda/correcoes.json` | 14/11/2026 |
+| `r2-chave-repetida.test.mjs` | agenda da semana republicada saiu com as imagens antigas (mesma chave no R2, cache de 4 h no domínio público) | 23/11/2026 |
