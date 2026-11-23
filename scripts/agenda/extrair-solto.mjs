@@ -25,8 +25,9 @@ function cidadeDoTexto(t) {
 
 // Data: "10/10" ou por extenso ("dia 19 de novembro", "30 de Outubro"). Devolve também onde ela termina no texto.
 function dataDoTexto(t) {
-  const dm = t.match(/\b(\d{1,2})\/(\d{1,2})(?!\/\d)/);
-  if (dm) return { dia: +dm[1], mes: +dm[2], fim: dm.index + dm[0].length };
+  // ano junto ("31/10/2020") vale como ano: antes virava "31/1" e um tbt de ensaio de 2020 virou show em jan/2027
+  const dm = t.match(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{4}|\d{2}))?(?![\d/])/);
+  if (dm) return { dia: +dm[1], mes: +dm[2], ano: dm[3] ? +dm[3].padStart(4, "20") : undefined, fim: dm.index + dm[0].length };
   const ext = semAcento(t).match(new RegExp(`\\b(\\d{1,2})\\s+de\\s+(${MESES.join("|")})\\b`, "i"));
   if (ext) return { dia: +ext[1], mes: MESES.indexOf(ext[2].toLowerCase()) + 1, fim: ext.index + ext[0].length };
   return null;

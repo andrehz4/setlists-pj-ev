@@ -80,10 +80,11 @@ export function showsDoPostDeAgenda(legenda, dataPost) {
 
 // Post do dia: data (dd/mm), casa (handle na legenda) e horário, pra completar um show já conhecido.
 export function detalhesDoPostDoDia(legenda, dataPost, handlesIgnorar = []) {
-  const dm = legenda.match(/\b(\d{1,2})\/(\d{1,2})(?:\/\d{2,4})?\b/);
+  const dm = legenda.match(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{4}|\d{2}))?(?![\d/])/);
   if (!dm) return null;
-  const mes = +dm[2];
-  const data = iso(anoDe(mes, dataPost), mes, +dm[1]);
+  const mes = +dm[2], ano = anoDe(mes, dataPost);
+  if (dm[3] && +dm[3].padStart(4, "20") !== ano) return null; // data com ano de outro tempo (tbt) não é show
+  const data = iso(ano, mes, +dm[1]);
   const casa = casaNaLegenda(legenda, handlesIgnorar);
   return { data, casa, hora: horaNaLegenda(legenda) };
 }
