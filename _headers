@@ -42,6 +42,14 @@
   ! Content-Security-Policy
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob: https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev; connect-src 'self' https://perpetual-energy-production-1a69.up.railway.app https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev; frame-src 'self' https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
 
+# Páginas de banda cover do gerador de setlist (/setlist/<banda>/): mesma CSP do Ibirapuera (as imagens das músicas
+# vêm de /setlist-ibirapuera/img/ e os shows de /media/agenda/shows.json, ambos do próprio site).
+/setlist/*
+  Cache-Control: public, max-age=0, must-revalidate
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob: https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev; connect-src 'self' https://perpetual-energy-production-1a69.up.railway.app https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://pub-4d99051b225d492fbf4ac3bfdbef7de4.r2.dev; frame-src 'self' https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+
 /forum-topic.html
   Permissions-Policy: microphone=(self)
 
