@@ -1,73 +1,59 @@
 {
-  "atualizado": "2026-11-23T14:47:27.273Z",
+  "atualizado": "2026-11-23T23:59:24.126Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-23T14:47:08.575Z",
-      "seguidores": 33301,
+      "lidoEm": "2026-11-23T23:59:14.738Z",
+      "seguidores": 33334,
       "ultimoPost": "2026-11-13T21:27:23+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-23T14:47:11.257Z",
-      "seguidores": 103181,
-      "ultimoPost": "2026-11-17T21:05:19+0000"
+      "lidoEm": "2026-11-23T23:59:15.940Z",
+      "seguidores": 103191,
+      "ultimoPost": "2026-11-23T18:22:20+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-23T14:47:12.772Z",
-      "seguidores": 9340,
+      "lidoEm": "2026-11-23T23:59:16.815Z",
+      "seguidores": 9339,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-23T14:47:14.843Z",
-      "seguidores": 74868,
+      "lidoEm": "2026-11-23T23:59:17.948Z",
+      "seguidores": 74871,
       "ultimoPost": "2026-11-22T23:26:45+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-23T14:47:16.672Z",
-      "seguidores": 21434,
-      "ultimoPost": "2026-11-21T17:51:29+0000"
+      "lidoEm": "2026-11-23T23:59:19.261Z",
+      "seguidores": 21550,
+      "ultimoPost": "2026-11-23T20:37:20+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-23T14:47:19.063Z",
-      "seguidores": 33728,
+      "lidoEm": "2026-11-23T23:59:20.184Z",
+      "seguidores": 33729,
       "ultimoPost": "2026-11-22T17:00:02+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-23T14:47:22.161Z",
+      "lidoEm": "2026-11-23T23:59:21.612Z",
       "seguidores": 6339,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-23T14:47:24.233Z",
-      "seguidores": 6172,
+      "lidoEm": "2026-11-23T23:59:22.554Z",
+      "seguidores": 6171,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     },
     "loveboat_tribute": {
-      "lidoEm": "2026-11-23T14:47:25.924Z",
+      "lidoEm": "2026-11-23T23:59:23.485Z",
       "seguidores": 3828,
       "ultimoPost": "2026-09-13T18:23:12+0000"
     },
     "banda_alivepj": {
-      "lidoEm": "2026-11-23T14:47:26.973Z",
+      "lidoEm": "2026-11-23T23:59:24.079Z",
       "seguidores": 221,
       "ultimoPost": "2026-07-19T15:47:24+0000"
     }
   },
   "oficial": [],
   "shows": [
-    {
-      "id": "pearljamsp-2026-11-26-sao-paulo",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-26",
-      "casa": null,
-      "casaNome": "Blues Beer",
-      "cidade": "São Paulo",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "20:00",
-      "fonte": "https://www.instagram.com/p/DfSVhjYxuxQ/"
-    },
     {
       "id": "blaymorphed-2026-11-27-santo-andre",
       "banda": "blaymorphed",
@@ -81,6 +67,20 @@
       "observacao": null,
       "hora": "22:00",
       "fonte": "https://www.instagram.com/p/DfSTceTN0x3/"
+    },
+    {
+      "id": "pearljamsp-2026-11-27-osasco",
+      "banda": "pearljamsp",
+      "nome": "Lost Dogs",
+      "data": "2026-11-27",
+      "casa": "soundstones.oficial",
+      "casaNome": null,
+      "cidade": "Osasco",
+      "uf": "SP",
+      "fechado": false,
+      "observacao": null,
+      "hora": "21:00",
+      "fonte": "https://www.instagram.com/p/DgGQT7Ft0Y2/"
     },
     {
       "id": "pearljamsp-2026-11-27-osasco",
