@@ -33,3 +33,16 @@ test("agenda sem linha em branco entre os dias: na dúvida o post é ignorado, n
   const casa = { conta: "santorockbar", cidade: "Santo André", uf: "SP" };
   assert.equal(distribuirPosts([{ casa, posts: [{ legenda: t, data: DATA_POST }] }], [banda]).size, 0);
 });
+
+test("trava de dados: show só da casa que conflita com a agenda da banda (mesma casa, 1 dia de diferença) fica segurado", async () => {
+  const { separarSuspeitos } = await import("../agenda/suspeitos/index.mjs");
+  const daBanda = { id: "b-27", data: "2026-11-27", banda: "blaymorphed", casa: "santorockbar", fonte: "https://ig/p/BANDA/" };
+  const daCasa = { id: "b-26", data: "2026-11-26", banda: "blaymorphed", casa: "santorockbar", fonte: "https://ig/p/CASA/" };
+  const outraCasa = { id: "b-28", data: "2026-11-28", banda: "blaymorphed", casa: "santorockbarcampinas", fonte: "https://ig/p/CASA/" };
+  const r = separarSuspeitos([daBanda, daCasa, outraCasa], new Set(["https://ig/p/CASA/"]), {});
+  assert.deepEqual(r.suspeitos.map((s) => s.id), ["b-26"]);
+  assert.deepEqual(r.ok.map((s) => s.id), ["b-27", "b-28"]);
+  // casa anunciando o MESMO dia da banda não é suspeito; e a trava desliga com AGENDA_SUSPEITOS=0
+  assert.equal(separarSuspeitos([daBanda, { ...daCasa, data: "2026-11-27" }], new Set(["https://ig/p/CASA/"]), {}).suspeitos.length, 0);
+  assert.equal(separarSuspeitos([daBanda, daCasa], new Set(["https://ig/p/CASA/"]), { AGENDA_SUSPEITOS: "0" }).suspeitos.length, 0);
+});
