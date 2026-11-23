@@ -35,7 +35,9 @@ const sub = novas.length ? `${M.length} músicas, ${novas.length} que não tocar
 
 const slides = [];
 let n = 1;
-slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo);color:var(--claro);">
+// CAPA_FOLHA: a nossa folha da setlist abre o carrossel (pedido do Andre 22/11), sem a capa com foto
+const CAPA_FOLHA = true;
+if (!CAPA_FOLHA) slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo);color:var(--claro);">
   <img src="uploads/${FOTO}" alt="Eddie Vedder no Ibirapuera" style="position:absolute;top:0;left:0;width:1080px;height:1350px;object-fit:cover;object-position:50% 20%;">
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,15,.7) 0%,rgba(20,17,15,.05) 26%,rgba(20,17,15,.5) 52%,var(--fundo) 84%);"></div>
   <div style="position:absolute;top:72px;left:72px;right:72px;">${tag("DOMINGO, 22/11 · IBIRAPUERA")}</div>
@@ -46,6 +48,8 @@ slides.push(`<div data-screen-label="slide-01" style="${S}background:var(--fundo
 
 if (FOTO !== "folha.jpg") { // folha do gerador inteira, sem nada por cima (como no carrossel de sexta)
   slides.push(`<div data-screen-label="slide-0${n++}" style="${S}background:#fff;"><img src="uploads/folha.jpg" alt="Setlist do domingo escrita à mão" style="width:1080px;height:1350px;object-fit:cover;"></div>`);
+  // logo depois da folha, só o Eddie em tela cheia (pedido do Andre 22/11)
+  if (CAPA_FOLHA) slides.push(`<div data-screen-label="slide-0${n++}" style="${S}background:var(--fundo);"><img src="uploads/${FOTO}" alt="Eddie Vedder no Ibirapuera" style="width:1080px;height:1350px;object-fit:cover;object-position:50% 20%;"></div>`);
 }
 
 const linhas = Math.ceil(M.length / 2), fonte = M.length > 24 ? 30 : 33;
