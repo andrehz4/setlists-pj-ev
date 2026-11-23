@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Tutorial Blaymorphed</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!-- GERADO por ferramentas/compor.mjs a partir de ferramentas/molde.html: editar o molde, não este arquivo -->
+    <style>
+      @font-face { font-family: "BS"; src: url("fonts/f1.ttf"); font-weight: 800; }
+      @font-face { font-family: "BS"; src: url("fonts/f2.ttf"); font-weight: 900; }
+      @font-face { font-family: "IS"; src: url("fonts/f3.ttf"); font-weight: 500; }
+      @font-face { font-family: "IS"; src: url("fonts/f4.ttf"); font-weight: 600; }
+      @font-face { font-family: "IS"; src: url("fonts/f5.ttf"); font-weight: 700; }
+      :root { --ouro: #f0b93a; --papel: #f3ead8; --fundo: #0f0e0c; --verm: #ff4b3e; --zap: #1f9d55; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--fundo); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "IS", sans-serif; color: #fff; }
+      .bg { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(16px) brightness(.32); }
+      #vinheta { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(240,185,58,.12), transparent 60%), linear-gradient(to bottom, rgba(0,0,0,.6), transparent 25%, transparent 75%, rgba(0,0,0,.7)); }
+
+      /* Celular: 390x844 escalado 1.4 */
+      #celular { position: absolute; left: 252px; top: 440px; width: 576px; height: 1210px; border-radius: 70px; background: #050505;
+        box-shadow: 0 0 0 3px #2b2925, 0 40px 120px rgba(0,0,0,.8), 0 0 80px rgba(240,185,58,.12); }
+      #tela { position: absolute; left: 15px; top: 14px; width: 390px; height: 844px; transform: scale(1.4); transform-origin: 0 0; border-radius: 40px; overflow: hidden; background: #000; }
+      .tela-v { position: absolute; left: 0; top: 0; width: 390px; height: 844px; object-fit: cover; }
+
+      /* Apoio (em cima) */
+      .apoio { position: absolute; left: 60px; right: 60px; top: 110px; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+      .apoio .k { font: 700 30px "IS"; color: var(--ouro); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 14px; }
+      .apoio .t { font: 900 84px/0.98 "BS"; text-transform: uppercase; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,.7); }
+      .apoio .t b { color: var(--ouro); }
+      .apoio.url .t { font: 800 50px/1.1 "IS"; text-transform: none; }
+
+      /* Legenda da narração (embaixo) */
+      .leg { position: absolute; left: 70px; right: 70px; top: 1672px; height: 200px; display: flex; align-items: center; justify-content: center; text-align: center; }
+      .leg span { font: 700 44px/1.25 "IS"; color: #fff; background: rgba(0,0,0,.72); padding: 10px 22px; border-radius: 16px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+      /* Cartelas */
+      .cartela { position: absolute; inset: 0; background: #0b0a09; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .cartela .num { font: 700 40px "IS"; color: var(--ouro); letter-spacing: .3em; margin-bottom: 24px; }
+      .cartela .tt { font: 900 150px/0.95 "BS"; text-transform: uppercase; text-align: center; padding: 0 60px; }
+
+      /* Cenas desenhadas: área de 440 a 1640 */
+      .palco { position: absolute; left: 0; right: 0; top: 360px; height: 1300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+      .post { width: 760px; background: #000; border: 2px solid #2a2a2a; border-radius: 28px; overflow: hidden; font: 500 30px "IS"; color: #f5f5f5; }
+      .post .cab { display: flex; align-items: center; gap: 18px; padding: 20px 24px; font-weight: 700; }
+      .post .cab img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+      .post .img { height: 300px; background: linear-gradient(135deg, #1c1a16, #2e2614); display: grid; place-items: center; font: 900 74px "BS"; color: var(--ouro); text-transform: uppercase; }
+      .post .leg-p { padding: 20px 26px 26px; line-height: 1.4; }
+      .post .leg-p b { color: #fff; }
+      .seta { font: 900 90px "BS"; color: var(--ouro); line-height: 1; }
+      #shows-img { width: 860px; border-radius: 26px; box-shadow: 0 20px 60px rgba(0,0,0,.7); }
+
+      .zap { position: absolute; left: 110px; right: 110px; top: 1180px; background: #005c4b; color: #e9fbe9; border-radius: 26px 26px 6px 26px; padding: 26px 30px 22px;
+        font: 600 36px/1.32 "IS"; box-shadow: 0 20px 60px rgba(0,0,0,.7); }
+      .zap .h { font: 700 26px "IS"; color: #8fe3b0; margin-bottom: 8px; }
+      .zap .falta { display: inline-block; margin: 14px 12px 0 0; padding: 4px 16px; border: 3px solid var(--verm); color: var(--verm); background: #fff; border-radius: 12px; font: 900 34px "BS"; }
+
+      .modelo { width: 820px; background: #000; border: 2px solid #2a2a2a; border-radius: 28px; padding: 34px 40px; }
+      .modelo .tit { font: 700 30px "IS"; color: #aaa; margin-bottom: 18px; }
+      .modelo .it { display: flex; align-items: center; gap: 24px; font: 700 54px "IS"; padding: 16px 0; border-top: 1px solid #222; }
+      .modelo .it i { width: 58px; height: 58px; border-radius: 50%; background: var(--ouro); color: #1a1305; display: grid; place-items: center; font: 900 40px "BS"; font-style: normal; }
+      .modelo .it small { font: 600 28px "IS"; color: var(--ouro); margin-left: auto; text-transform: uppercase; letter-spacing: .1em; }
+      #segurado { position: relative; }
+      #segurado .selo { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%) rotate(-12deg); border: 10px solid var(--verm); color: var(--verm); background: rgba(255,255,255,.92);
+        font: 900 110px "BS"; padding: 6px 40px; border-radius: 18px; letter-spacing: .04em; }
+      .nota { width: 820px; text-align: center; font: 600 38px/1.3 "IS"; color: var(--papel); }
+
+      .painel { position: absolute; left: 0; right: 0; top: 110px; height: 1540px; display: flex; flex-direction: column; align-items: center; gap: 36px; }
+      .painel .rot { font: 900 96px/0.95 "BS"; padding: 0 70px; text-transform: uppercase; color: var(--ouro); text-align: center; height: 300px; display: flex; align-items: center; }
+      .perfil { width: 800px; background: #000; border: 2px solid #2a2a2a; border-radius: 28px; padding: 34px; font: 500 32px/1.4 "IS"; }
+      .perfil .cab { display: flex; align-items: center; gap: 30px; margin-bottom: 20px; }
+      .perfil .cab img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #333; }
+      .perfil .cab b { font: 700 42px "IS"; }
+      #link { display: inline-block; margin-top: 10px; color: #b9d2ff; font-weight: 700; padding: 4px 10px; margin-left: -10px; border-radius: 10px; }
+      .story.sdb { background: radial-gradient(ellipse at 50% 35%, #3a3024, #0c0b09 75%); display: flex; flex-direction: column; align-items: center; padding-top: 30px; }
+      .sdb .cab { align-self: flex-start; display: flex; align-items: center; gap: 14px; margin-left: 26px; font: 700 28px "IS"; }
+      .sdb .cab img { width: 56px; height: 56px; border-radius: 50%; }
+      .sdb .logo { width: 300px; height: 300px; border-radius: 50%; margin-top: 80px; object-fit: cover; }
+      .sdb .chamada { font: 900 46px/1.1 "BS"; text-transform: uppercase; text-align: center; margin: 50px 30px 0; color: #fff; }
+      .sdb .adesivo { position: absolute; bottom: 230px; left: 50%; translate: -50% 0; white-space: nowrap; background: #fff; color: #3b74e8; font: 800 26px "IS"; padding: 16px 24px; border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.5); transform: rotate(-3deg); }
+      .story { position: relative; width: 560px; height: 996px; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.8); }
+      .story img { width: 100%; height: 100%; object-fit: cover; }
+      .story .mencao { position: absolute; left: 50%; top: 70%; transform: translateX(-50%); background: #fff; color: #c58a00; font: 800 40px "BS"; padding: 8px 22px; border-radius: 12px; white-space: nowrap; }
+      .story .repost { position: absolute; right: 22px; top: 22px; background: var(--ouro); color: #1a1305; font: 900 34px "BS"; padding: 8px 18px; border-radius: 12px; text-transform: uppercase; }
+      .mesa { width: 900px; height: 1080px; border-radius: 30px; background: radial-gradient(ellipse at 50% 40%, #5a3b22, #2a190d 70%); display: grid; place-items: center; overflow: hidden; }
+      .mesa img { width: 520px; transform: rotate(-6deg); box-shadow: 0 30px 50px rgba(0,0,0,.7); border-radius: 6px; }
+      .mini { position: relative; width: 470px; height: 1016px; border-radius: 50px; background: #050505; box-shadow: 0 0 0 3px #2b2925, 0 30px 80px rgba(0,0,0,.8); overflow: hidden; }
+      .mini video { position: absolute; left: 12px; top: 12px; width: 446px; height: 992px; object-fit: cover; border-radius: 40px; }
+      .mini .carimbo { position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%) rotate(-10deg); background: var(--ouro); color: #1a1305; font: 900 72px/0.95 "BS";
+        padding: 14px 26px; border-radius: 14px; text-align: center; white-space: nowrap; box-shadow: 0 10px 40px rgba(0,0,0,.6); }
+
+      #final { position: absolute; left: 0; right: 0; top: 360px; height: 1300px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 40px; padding: 0 80px; }
+      #final .qr { background: #fff; border-radius: 28px; padding: 26px 26px 14px; border: 6px solid var(--ouro); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+      #final .qr img { width: 420px; height: 420px; image-rendering: pixelated; }
+      #final .qr span { font: 800 30px "IS"; color: #111; text-transform: uppercase; letter-spacing: 2px; }
+      #final .u { font: 800 52px/1.15 "IS"; }
+      #final .u b { color: var(--ouro); }
+      #final .s { display: flex; align-items: center; gap: 18px; font: 700 44px "IS"; color: var(--papel); }
+      #final .s img { width: 80px; height: 80px; border: 3px solid var(--ouro); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="{{TOTAL}}">
+      {{FUNDO}}
+      <div id="vinheta"></div>
+
+      <div id="celular"><div id="tela">
+        {{CLIPS}}
+      </div></div>
+
+      <section id="wa7" class="zap clip" data-start="{{C7W}}" data-duration="{{C7WD}}" data-track-index="12">
+        <div class="h">Convite que vai pro WhatsApp</div>
+        Bora comigo no show da Blaymorphed no Santo Rock, em Santo André? É sexta, 27/11, às 22h. Já fiz o meu setlist!
+      </section>
+
+      <section id="s9" class="palco clip" data-start="{{C9}}" data-duration="{{C9D}}" data-track-index="11">
+        <div class="post">
+          <div class="cab"><img src="assets/logo-redondo.jpg" alt="" />blaymorphed</div>
+          <div class="img">Show essa semana</div>
+          <div class="leg-p"><b>Sexta, 27/11, 22h</b> no @santorockbar, Santo André. <b>Sábado, 28/11</b> no @santorockbarcampinas, Campinas.</div>
+        </div>
+        <div class="seta">↓</div>
+        <img id="shows-img" src="assets/shows.png" alt="" />
+      </section>
+
+      <section id="wa10" class="zap clip" data-start="{{C10W}}" data-duration="{{C10WD}}" data-track-index="12">
+        <div class="h">Convite do Stones Bar</div>
+        Bora comigo no show da Blaymorphed no Stones Bar? É quinta, 17/12.
+        <div><span class="falta">ONDE?</span><span class="falta">QUE HORAS?</span></div>
+      </section>
+
+      <section id="s11" class="palco clip" data-start="{{C11}}" data-duration="{{C11D}}" data-track-index="11">
+        <div class="modelo" id="modelo">
+          <div class="tit">Legenda modelo do post</div>
+          <div class="it"><i>✓</i>Sexta, 27/11<small>data</small></div>
+          <div class="it"><i>✓</i>22h<small>horário</small></div>
+          <div class="it"><i>✓</i>@santorockbar<small>casa</small></div>
+          <div class="it"><i>✓</i>Santo André, SP<small>cidade</small></div>
+        </div>
+        <div id="segurado">
+          <div class="post"><div class="cab"><img src="assets/logo-redondo.jpg" alt="" />blaymorphed</div><div class="img">Sábado tem!</div></div>
+          <div class="selo">SEGURADO</div>
+        </div>
+        <div class="nota" id="nota11">Sem data escrita, o site não tem como ter certeza do dia.</div>
+      </section>
+
+      <section id="s12a" class="painel clip" data-start="{{P1}}" data-duration="{{PD1}}" data-track-index="11">
+        <div class="rot">Dá pra postar o link no story</div>
+        <div class="story sdb"><div class="cab"><img src="assets/logo-redondo.jpg" alt="" /><b>blaymorphed</b></div>
+          <img class="logo" src="assets/logo-redondo.jpg" alt="" />
+          <div class="chamada">Qual vai ser o setlist de sexta?<br />Monta o seu palpite!</div>
+          <div class="adesivo" id="link">🔗 SOMAISUMFADEPEARLJAM.COM.BR</div></div>
+      </section>
+      <section id="s12b" class="painel clip" data-start="{{P2}}" data-duration="{{PD2}}" data-track-index="11">
+        <div class="rot">Dá pra repostar</div>
+        <div class="story"><img src="assets/story.jpg" alt="" /><div class="mencao">@BLAYMORPHED</div><div class="repost">Repost</div></div>
+      </section>
+      <section id="s12c" class="painel clip" data-start="{{P3}}" data-duration="{{PD3}}" data-track-index="11">
+        <div class="rot">Dá pra dar de lembrança</div>
+        <div class="mesa"><img src="assets/story.jpg" alt="" /></div>
+      </section>
+      <section id="s12d" class="painel clip" data-start="{{P4}}" data-duration="{{PD4}}" data-track-index="11">
+        <div class="rot">Dá pra postar o set da noite</div>
+        <div class="mini"><video id="cv12" src="assets/clipes/c12.mp4" data-start="{{CV12}}" data-duration="{{PD4}}" data-track-index="13" muted playsinline></video><div class="carimbo">FOI ASSIM<br />ONTEM</div></div>
+      </section>
+
+      <section id="final" class="clip" data-start="{{C13}}" data-duration="{{C13D}}" data-track-index="11">
+        <div class="qr"><img src="assets/qr-blaymorphed.png" alt="" /><span>Aponta a câmera</span></div>
+        <div class="u">somaisumfadepearljam.com.br<br /><b>/setlist/blaymorphed</b></div>
+        <div class="s"><img src="assets/avatar-smufdpj.jpg" alt="" />@smufdpj</div>
+      </section>
+
+      {{APOIO}}
+      {{CART}}
+      {{LEGS}}
+
+      <audio id="trilha" src="assets/trilha-duck.wav" data-start="0" data-duration="{{TOTAL}}" data-track-index="40" data-volume="1"></audio>
+      <audio id="voz" src="assets/voz.wav" data-start="0" data-duration="{{TOTAL}}" data-track-index="41" data-volume="1"></audio>
+      {{SFX}}
+    </div>
+    <script>
+      const T = {{TIMES}};
+      const tl = gsap.timeline({ paused: true });
+      const cena = (n) => T.cenas.find((c) => c.n === n);
+      // Celular: aparece nas cenas gravadas, some nas desenhadas e nas cartelas
+      const comCel = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+      tl.set("#celular", { opacity: 0, y: 120 }, 0);
+      T.cenas.forEach((c) => {
+        const on = comCel.includes(c.n);
+        tl.to("#celular", { opacity: on ? 1 : 0, y: on ? 0 : 120, duration: 0.35, ease: on ? "power3.out" : "power2.in" }, Math.max(0, c.ini - (on ? 0 : 0.05)));
+      });
+      // Gancho: zoom na folha
+      tl.fromTo("#celular", { scale: 1.08 }, { scale: 1, duration: 6.5, ease: "power1.inOut" }, 0);
+      // Apoio: entra de baixo
+      document.querySelectorAll(".apoio").forEach((el) => {
+        const ini = +el.dataset.start, dur = +el.dataset.duration;
+        tl.fromTo(el.children, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out", stagger: 0.08, immediateRender: false }, ini + 0.05);
+        tl.to(el.children, { opacity: 0, duration: 0.2 }, ini + dur - 0.22);
+      });
+      // Cartelas
+      document.querySelectorAll(".cartela").forEach((el) => {
+        const ini = +el.dataset.start;
+        tl.fromTo(el.querySelector(".tt"), { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power4.out", immediateRender: false }, ini);
+        tl.fromTo(el.querySelector(".num"), { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, ini + 0.1);
+      });
+      // Balões do WhatsApp
+      ["#wa7", "#wa10"].forEach((id) => { const ini = +document.querySelector(id).dataset.start;
+        tl.fromTo(id, { y: 80, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", immediateRender: false }, ini); });
+      tl.fromTo("#wa10 .falta", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)", stagger: 0.35, immediateRender: false }, T.c10w + 0.9);
+      // Cena 9: post, seta, botões
+      { const c = cena(9);
+        tl.fromTo("#s9 .post", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", immediateRender: false }, c.ini + 0.1);
+        tl.fromTo("#s9 .seta", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, immediateRender: false }, c.ini + 4.5);
+        tl.fromTo("#shows-img", { y: 60, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)", immediateRender: false }, c.ini + 5.0); }
+      // Cena 11: vistos um por um, depois o SEGURADO
+      { const c = cena(11);
+        tl.fromTo("#modelo", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, immediateRender: false }, c.ini + 0.1);
+        tl.fromTo("#modelo .it", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.3, stagger: 2.2, immediateRender: false }, c.ini + 2.2);
+        tl.to("#modelo", { opacity: 0, height: 0, padding: 0, margin: 0, duration: 0.35 }, T.c11b - 0.4);
+        tl.set("#modelo", { display: "none" }, T.c11b);
+        tl.set(["#segurado", "#nota11"], { opacity: 0 }, 0);
+        tl.to("#segurado", { opacity: 1, duration: 0.3 }, T.c11b);
+        tl.fromTo("#segurado .selo", { scale: 2.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in", immediateRender: false }, T.c11b + 0.6);
+        tl.to("#nota11", { opacity: 1, duration: 0.4 }, T.c11b + 1.2); }
+      // Cena 12: painéis
+      ["#s12a", "#s12b", "#s12c", "#s12d"].forEach((id) => { const ini = +document.querySelector(id).dataset.start;
+        tl.fromTo(`${id} .rot`, { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power4.out", immediateRender: false }, ini);
+        tl.fromTo(`${id} > :not(.rot)`, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", immediateRender: false }, ini + 0.15); });
+      tl.to("#link", { backgroundColor: "rgba(185,210,255,.25)", duration: 0.2, repeat: 3, yoyo: true }, +document.querySelector("#s12a").dataset.start + 1.2);
+      tl.fromTo(".mini .carimbo", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in", immediateRender: false }, +document.querySelector("#s12d").dataset.start + 2.2);
+      // Final
+      { const c = cena(13);
+        tl.fromTo("#final .qr", { scale: 0.3, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)", immediateRender: false }, c.ini + 0.1);
+        tl.fromTo("#final .u", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, immediateRender: false }, c.ini + 0.4);
+        tl.fromTo("#final .s", { opacity: 0 }, { opacity: 1, duration: 0.5, immediateRender: false }, c.ini + 0.9); }
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

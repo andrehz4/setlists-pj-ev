@@ -1,0 +1,14 @@
+# Mídia fica fora do git: gravações da página, narração de rascunho, trilha, efeitos e renders
+**/*.mp4
+**/*.wav
+**/*.mp3
+**/*.jpg
+**/*.png
+**/*.aiff
+**/*.m4a
+**/*.ttf
+gravacoes/
+renders/
+.hyperframes/
+rascunho-siri/lista.txt
+rascunho-siri/texto.txt
