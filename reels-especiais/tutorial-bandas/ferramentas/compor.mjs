@@ -35,7 +35,7 @@ const AP = [
   [5, 0, 'na folha', 'Logo, <b>casa e data</b>'],
   [6, 0, 'gravação de show no Brasil sempre que tem', 'Ouça <b>antes do show</b>'],
   [7, 0, 'vídeo, Instagram e WhatsApp', 'Três botões pra <b>espalhar</b>'],
-  [8, 0, 'podem divulgar tranquilos', 'Nome com palavrão <b>não passa</b>'],
+  [8, 0, 'pode divulgar sem medo', 'Nome com palavrão <b>não passa</b>'],
   [9, 0, 'antes da agenda de segunda', 'A gente olha <b>o post de vocês</b>'],
   [10, 0, 'Stones Bar, 17/12', 'Sem cidade. <b>Sem horário.</b>'],
   [11, 0, 'na legenda, não só na arte', 'Data, hora, <b>@ da casa</b>, cidade'],

@@ -91,7 +91,7 @@ NARRAÇÃO:
 ### Cena 8, o filtro do nome. 1:24 a 1:39 [F]
 
 NARRAÇÃO:
-> E podem divulgar tranquilos. O nome que o fã digita vai no título da folha e no story, e a página barra palavrão e coisa pesada, mesmo escrito disfarçado. Nenhum story com o nome da banda sai com palavrão.
+> Uma coisa importante: o nome que o fã digita vai no título da folha e no story, e a página barra palavrão e coisa pesada, mesmo escrito disfarçado. Nenhum story com o nome da banda sai com palavrão.
 
 - Tela: o fã digitando o nome no campo "Seu nome, pra sair no título" (ex.: Ana), e o título da folha virando "Ana, o seu setlist no show da Blaymorphed". Depois, uma segunda tentativa com o texto digitado borrado (não mostrar a palavra): o campo se apaga sozinho e aparece o aviso "Esse nome não rola por aqui. Coloque o seu primeiro nome."
 - Apoio: "NOME COM PALAVRÃO NÃO PASSA". Nada de lista de palavras na tela.
