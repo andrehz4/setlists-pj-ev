@@ -17,6 +17,7 @@ import { postsDasCasas } from "./casas/index.mjs";
 import { aplicarSitemap } from "./sitemap.mjs";
 import { aplicarCorrecoes, lerCorrecoes } from "./correcoes.mjs";
 import { separarSuspeitos, linhaSuspeito } from "./suspeitos/index.mjs";
+import { separarSemProva } from "./prova/index.mjs";
 
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry-run");
@@ -35,6 +36,7 @@ async function main() {
   const pendentes = DRY ? fila : await limparFila(fila, lidas, { raiz: naRaiz(".") }); // apaga imagem já lida
   const shows = [], suspeitos = [];
   const infos = { ...antes.bandas };
+  const aprovados = new Set((await lerEstado(naRaiz("media/agenda/aprovados.json"), { ids: [] })).ids);
   const correcoes = await lerCorrecoes(); // legenda ambígua corrigida à mão (correcoes.mjs)
   const dasCasas = await postsDasCasas(bandas); // posts de colaboração que só a casa tem no feed
   for (const b of bandas) {
@@ -44,8 +46,10 @@ async function main() {
       const novas = DRY ? 0 : await enfileirarArtes(b, conta.posts, { pendentes, lidas, hoje, raiz: naRaiz(".") });
       if (comArte || novas) console.log(`[agenda] @${b.conta}: ${comArte} arte(s) lida(s) usada(s), ${novas} nova(s) pro curador`);
       const deCasa = dasCasas.get(b.conta) || [];
-      const { ok: agenda, suspeitos: susp } = separarSuspeitos(aplicarCorrecoes(montarAgenda(b, [...conta.posts, ...deCasa], hoje), correcoes), new Set(deCasa.map((p) => p.link)));
-      suspeitos.push(...susp);
+      const montada = aplicarCorrecoes(montarAgenda(b, [...conta.posts, ...deCasa], hoje), correcoes);
+      const { ok: comProva, semProva } = separarSemProva(montada, new Map([...conta.posts, ...deCasa].map((p) => [p.link, p])), aprovados);
+      const { ok: agenda, suspeitos: susp } = separarSuspeitos(comProva, new Set(deCasa.map((p) => p.link)));
+      suspeitos.push(...susp, ...semProva.map((x) => ({ ...x, motivo: "data não escrita na fonte" })));
       if (!DRY) await atualizarFoto(b.conta, conta.foto);
       shows.push(...agenda);
       infos[b.conta] = { lidoEm: new Date().toISOString(), seguidores: conta.seguidores, ultimoPost: conta.posts[0]?.data || null };
@@ -72,6 +76,7 @@ async function main() {
   if (DRY) {
     for (const s of oficial) console.log("  OFICIAL", s.data, s.artista, "|", s.casaNome, "|", s.cidade, s.pais);
     for (const s of shows) console.log(" ", s.data, s.nome, "|", s.casa || s.casaNome || "-", "|", s.cidade || "-", s.uf || "");
+    for (const s of suspeitos) console.log("  SEGURADO", linhaSuspeito(s).replace(/\n/g, " "));
     return;
   }
   await gravarEstado(ESTADO, { atualizado: new Date().toISOString(), bandas: infos, oficial, shows });
@@ -85,7 +90,7 @@ async function main() {
       + ` em ${escHtml([s.casaNome, s.cidade, s.pais].filter(Boolean).join(", "))}${s.brasil ? " 🇧🇷" : ""}`);
     await enviarTelegram(`🚨 <b>Turnê oficial: ${oficiaisNovos.length} data(s) nova(s)</b>\n\n${linhas.join("\n")}`, { prefixo: "[agenda]" });
   }
-  if (suspeitos.length) await enviarTelegram(`⚠️ <b>Agenda: ${suspeitos.length} show(s) SEGURADO(s)</b> (post de casa conflita com a agenda da banda; não entrou no site nem nos posts)\n\n${suspeitos.map((s) => escHtml(linhaSuspeito(s))).join("\n")}\n\nSe for show de verdade, entra pelo correcoes.json ou pela própria banda.`, { prefixo: "[agenda]" });
+  if (suspeitos.length) await enviarTelegram(`⚠️ <b>Agenda: ${suspeitos.length} show(s) SEGURADO(s)</b> (sem prova da data ou conflito com a agenda da banda; não entrou no site nem nos posts). Liberar: id em media/agenda/aprovados.json\n\n${suspeitos.map((s) => escHtml(linhaSuspeito(s))).join("\n")}\n\nSe for show de verdade, entra pelo correcoes.json ou pela própria banda.`, { prefixo: "[agenda]" });
   if (novos.length) {
     const linhas = novos.slice(0, 25).map((s) => `• ${s.data.split("-").reverse().slice(0, 2).join("/")} <b>${escHtml(s.nome)}</b>`
       + ` em ${escHtml(s.casa ? "@" + s.casa : s.casaNome || "?")}, ${escHtml([s.cidade, s.uf].filter(Boolean).join("/") || "?")}`);

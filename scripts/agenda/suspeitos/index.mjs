@@ -15,4 +15,4 @@ export function separarSuspeitos(agenda, linksDeCasa, env = process.env) {
   return { ok: agenda.filter((s) => !suspeitos.includes(s)), suspeitos };
 }
 
-export const linhaSuspeito = (s) => `• ${s.data.split("-").reverse().slice(0, 2).join("/")} ${s.nome || s.banda} em @${s.casa || s.casaNome}: ${s.fonte}`;
+export const linhaSuspeito = (s) => `• ${s.data.split("-").reverse().slice(0, 2).join("/")} ${s.nome || s.banda} em ${s.casa || s.casaNome || s.cidade || "?"}${s.motivo ? ` (${s.motivo})` : ""}: ${s.fonte}\n  id: ${s.id}`;
