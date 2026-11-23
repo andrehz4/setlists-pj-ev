@@ -58,7 +58,7 @@ slides.push(`<div data-screen-label="slide-0${n}" style="${S}background:var(--de
   <div style="position:absolute;top:310px;left:72px;width:450px;">${col(M.slice(0, linhas), 0)}</div>
   <div style="position:absolute;top:310px;left:560px;width:470px;">${col(M.slice(linhas), linhas)}</div>
   <div style="position:absolute;bottom:110px;left:72px;right:72px;font-weight:900;font-size:30px;">${novas.length ? `★ não tocou na sexta (${novas.length} de ${M.length})` : "Repetiu tudo da sexta"}</div>
-  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;justify-content:space-between;font-weight:800;font-size:26px;"><div>@smufdpj</div><div>Fonte: setlist.fm · <span style="${BS}font-size:30px;">${String(n).padStart(2, "0")}/${TOTAL}</span></div></div></div>`);
+  <div style="position:absolute;bottom:40px;left:72px;right:72px;display:flex;justify-content:space-between;font-weight:800;font-size:26px;"><div>@smufdpj</div><div>Fonte: ${s.fonte || "setlist.fm"} · <span style="${BS}font-size:30px;">${String(n).padStart(2, "0")}/${TOTAL}</span></div></div></div>`);
 
 n++;
 // Momento: foto no alto com degradê (quadro do vídeo do Andre em design/uploads/) ou só texto; máx. 10 slides no IG
@@ -104,7 +104,7 @@ ${resumo}
 
 Qual foi a sua do domingo? Comenta aí.
 
-Fonte: setlist.fm
+Fonte: ${s.fonte || "setlist.fm"}
 
 #EddieVedder #PearlJam #Ibirapuera #SaoPaulo #BestOfBluesAndRock #Setlist`;
 fs.writeFileSync(path.join(dir, "legenda.txt"), legenda);
