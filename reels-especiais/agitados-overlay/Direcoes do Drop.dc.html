@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:#E9E3D5;}a{color:#D2692A;}a:hover{color:#2E4A2A;}</style>
+</helmet>
+<section style="padding:56px; display:flex; flex-direction:column; gap:28px; font-family:'Courier Prime', monospace; color:#1E241C;">
+<div style="display:flex; flex-direction:column; gap:8px; max-width:900px;">
+<div style="font-family:'Anton', sans-serif; font-size:44px; letter-spacing:0.03em; color:#2E4A2A;">DROP “VOCÊ SABIA?”: 3 DIREÇÕES</div>
+<div style="font-size:18px; line-height:1.5;">Mesmo drop em t = 7,5 s (texto mais longo) e t = 13,5 s (com a letra). A <a href="#1a">1a</a> está montada na timeline completa em <a href="OverlayReel.dc.html">OverlayReel</a>; troque pelo prop dropStyle.</div>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:48px; align-items:flex-start;">
+
+<div id="1a" style="display:flex; flex-direction:column; gap:14px;">
+<div style="display:flex; align-items:center; gap:12px;"><span style="background:#D2692A; color:#F1EBDD; font-family:'Anton', sans-serif; font-size:22px; padding:4px 12px;">1a</span><span style="font-weight:700; font-size:20px;">Ingresso · recomendada</span></div>
+<div style="font-size:15px; max-width:680px; line-height:1.45;">Canhoto picotado entra girando, carimbo bate e o cartão treme. Na saída o ingresso rasga: canhoto cai, corpo sai pela direita.</div>
+<div style="display:flex; gap:16px;">
+<div style="width:324px; height:576px; overflow:hidden; background:#000;"><div style="width:1080px; height:1920px; transform:scale(0.3); transform-origin:0 0;"><dc-import name="OverlayReel" drop-style="ingresso" freeze-at="7.5" embedded="{{ true }}" style="width:1080px; height:1920px;" hint-size="1080px,1920px"></dc-import></div></div>
+<div style="width:324px; height:576px; overflow:hidden; background:#000;"><div style="width:1080px; height:1920px; transform:scale(0.3); transform-origin:0 0;"><dc-import name="OverlayReel" drop-style="ingresso" freeze-at="13.5" embedded="{{ true }}" style="width:1080px; height:1920px;" hint-size="1080px,1920px"></dc-import></div></div>
+</div>
+</div>
+
+<div id="1b" style="display:flex; flex-direction:column; gap:14px;">
+<div style="display:flex; align-items:center; gap:12px;"><span style="background:#1E241C; color:#F1EBDD; font-family:'Anton', sans-serif; font-size:22px; padding:4px 12px;">1b</span><span style="font-weight:700; font-size:20px;">Etiqueta de fita VHS</span></div>
+<div style="font-size:15px; max-width:680px; line-height:1.45;">OSD “▶ PLAY” com timecode, etiqueta pautada entra com tracking em degraus e aberração de cor. Sai em “◀◀ REW” fechando como TV de tubo.</div>
+<div style="display:flex; gap:16px;">
+<div style="width:324px; height:576px; overflow:hidden; background:#000;"><div style="width:1080px; height:1920px; transform:scale(0.3); transform-origin:0 0;"><dc-import name="OverlayReel" drop-style="vhs" freeze-at="7.5" embedded="{{ true }}" style="width:1080px; height:1920px;" hint-size="1080px,1920px"></dc-import></div></div>
+<div style="width:324px; height:576px; overflow:hidden; background:#000;"><div style="width:1080px; height:1920px; transform:scale(0.3); transform-origin:0 0;"><dc-import name="OverlayReel" drop-style="vhs" freeze-at="13.5" embedded="{{ true }}" style="width:1080px; height:1920px;" hint-size="1080px,1920px"></dc-import></div></div>
+</div>
+</div>
+
+<div id="1c" style="display:flex; flex-direction:column; gap:14px;">
+<div style="display:flex; align-items:center; gap:12px;"><span style="background:#2F4A2B; color:#F1EBDD; font-family:'Anton', sans-serif; font-size:22px; padding:4px 12px;">1c</span><span style="font-weight:700; font-size:20px;">Recorte de fanzine</span></div>
+<div style="font-size:15px; max-width:680px; line-height:1.45;">Xerox com borda rasgada cai na tela, rótulo de rotuladora desliza e a fita crepe fixa. Sai descolando pelo canto.</div>
+<div style="display:flex; gap:16px;">
+<div style="width:324px; height:576px; overflow:hidden; background:#000;"><div style="width:1080px; height:1920px; transform:scale(0.3); transform-origin:0 0;"><dc-import name="OverlayReel" drop-style="fanzine" freeze-at="7.5" embedded="{{ true }}" style="width:1080px; height:1920px;" hint-size="1080px,1920px"></dc-import></div></div>
+<div style="width:324px; height:576px; overflow:hidden; background:#000;"><div style="width:1080px; height:1920px; transform:scale(0.3); transform-origin:0 0;"><dc-import name="OverlayReel" drop-style="fanzine" freeze-at="13.5" embedded="{{ true }}" style="width:1080px; height:1920px;" hint-size="1080px,1920px"></dc-import></div></div>
+</div>
+</div>
+
+</div>
+</section>
+
+</x-dc>
+</body>
+</html>
