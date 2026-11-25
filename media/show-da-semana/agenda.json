@@ -1,0 +1,31 @@
+{
+  "regra": "Show da Semana: terça e quinta 17h, sábado 11h (BRT). Numero do Show #N = ordem desta lista. 24/12 pulado (Natal).",
+  "posts": [
+    {"n":1,"quando":"2026-12-01 17:00","id":"pj-2015-11-11","nota":"Porto Alegre 2015 (pronto)"},
+    {"n":2,"quando":"2026-12-03 17:00","id":"pj-2013-12-04","nota":"Vancouver 2013, aniversário amanhã"},
+    {"n":3,"quando":"2026-12-05 11:00","id":"pj-2013-12-06","nota":"Seattle 2013, aniversário amanhã"},
+    {"n":4,"quando":"2026-12-08 17:00","id":"pj-2011-11-04","nota":"Morumbi 2011 (pronto)"},
+    {"n":5,"quando":"2026-12-10 17:00","id":"pj-2018-07-17","nota":"Londres 2018"},
+    {"n":6,"quando":"2026-12-12 11:00","id":"pj-2015-11-14","nota":"São Paulo 2015"},
+    {"n":7,"quando":"2026-12-15 17:00","id":"pj-2015-11-28","nota":"Cidade do México 2015"},
+    {"n":8,"quando":"2026-12-17 17:00","id":"pj-2013-07-19","nota":"Wrigley 2013 (pronto)"},
+    {"n":9,"quando":"2026-12-19 11:00","id":"pj-2015-11-22","nota":"Rio 2015"},
+    {"n":10,"quando":"2026-12-22 17:00","id":"pj-2016-05-10","nota":"Toronto 2016"},
+    {"n":11,"quando":"2026-12-26 11:00","id":"pj-2015-11-17","nota":"Brasília 2015"},
+    {"n":12,"quando":"2026-12-29 17:00","id":"pj-2018-08-08","nota":"Seattle 2018, Home Shows"},
+    {"n":13,"quando":"2026-12-31 17:00","id":"pj-2018-03-21","nota":"Maracanã 2018 (pronto)"},
+    {"n":14,"quando":"2027-01-02 11:00","id":"pj-2016-08-07","nota":"Boston 2016, Fenway"},
+    {"n":15,"quando":"2027-01-05 17:00","id":"pj-2015-11-20","nota":"Belo Horizonte 2015"},
+    {"n":16,"quando":"2027-01-07 17:00","id":"pj-2018-06-26","nota":"Roma 2018"},
+    {"n":17,"quando":"2027-01-09 11:00","id":"pj-2018-03-24","nota":"São Paulo 2018"},
+    {"n":18,"quando":"2027-01-12 17:00","id":"pj-2018-08-13","nota":"Missoula 2018"},
+    {"n":19,"quando":"2027-01-14 17:00","id":"pj-2016-08-22","nota":"Wrigley 2016 (pronto)"},
+    {"n":20,"quando":"2027-01-16 11:00","id":"pj-2013-03-31","nota":"Lollapalooza São Paulo 2013"},
+    {"n":21,"quando":"2027-01-19 17:00","id":"pj-2015-11-07","nota":"La Plata 2015"},
+    {"n":22,"quando":"2027-01-21 17:00","id":"pj-2011-11-06","nota":"Rio 2011"},
+    {"n":23,"quando":"2027-01-23 11:00","id":"pj-2014-01-24","nota":"Melbourne 2014, aniversário amanhã"},
+    {"n":24,"quando":"2027-01-26 17:00","id":"pj-2014-01-26","nota":"Sydney 2014, aniversário no dia"},
+    {"n":25,"quando":"2027-01-28 17:00","id":"pj-2013-10-18","nota":"Brooklyn 2013"},
+    {"n":26,"quando":"2027-01-30 11:00","id":"pj-2014-01-31","nota":"Adelaide 2014, aniversário amanhã"}
+  ]
+}

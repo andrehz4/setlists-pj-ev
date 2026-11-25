@@ -88,3 +88,20 @@ cantado em português pela plateia, baqueta entregue pra um fã).
 - `ficha.mjs`: rascunho, validação das regras acima, numeração.
 - `cli.mjs`: `folego`, `novo`, `checar`. Testes em `ficha.test.mjs`.
 - Fichas: `media/show-da-semana/fichas/<id>.json` (texto com fonte, vai pro git; imagens não).
+
+## Agendar no Meta Business Suite (testado em 25/11/2026)
+
+Ordem, data e hora de cada post: `media/show-da-semana/agenda.json` (Show #N = posição na lista; ter e qui 17h,
+sáb 11h). O Business Suite no computador NÃO tem música em carrossel: agenda sem música e o dono tenta pôr pelo
+celular; a música sugerida de cada show está no campo `musica` da ficha (minutos aproximados).
+
+1. Render: `node scripts/publish/show-da-semana/render.mjs <scratchpad>/shows/<NN> media/show-da-semana/fichas/<id>.json`.
+2. Chrome (Claude in Chrome), aba nova em `https://business.facebook.com/latest/composer/?asset_id=1119493787910103&business_id=1647341556488015`.
+3. Upload sem janela do Mac: no `javascript_tool`, trocar `HTMLInputElement.prototype.click` pra, quando for
+   `type=file`, só anexar o input ao body (não abrir o seletor) e clicar em "Adicionar foto/vídeo"; depois `find`
+   acha o `file-input (hidden)` e `file_upload` manda 01..04.jpg. (fetch de localhost é barrado pelo CSP do Facebook.)
+4. Legenda: `pbcopy` da `legenda` da ficha, clicar no campo de texto e colar (cmd+v).
+5. Ligar "Definir data e hora"; data (cmd+a, digitar DD/MM/AAAA, Enter) e hora (clicar na hora, digitar HH;
+   clicar nos minutos, digitar 00), no Facebook e no Instagram. Não clicar perto do botão do agendamento pra fechar
+   o seletor (desliga ele e o botão vira "Publicar"); clicar no texto explicativo.
+6. Conferir no print e deixar a aba aberta. **Quem clica em Programar é o dono da página.**

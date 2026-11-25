@@ -1,0 +1,141 @@
+{
+  "id": "pj-2015-11-20",
+  "numero": 15,
+  "status": "aprovado",
+  "artista": "Pearl Jam",
+  "data": "2015-11-20",
+  "cidade": "Belo Horizonte, BR",
+  "local": "Mineirão",
+  "turne": "Latin American Tour 2015",
+  "poster": {
+    "arquivo": "media/pj-2015-11-20/poster.jpg",
+    "credito": "Pôster oficial",
+    "fonte": "https://pearljam.com/tour/history/show/belo-horizonte"
+  },
+  "historia": {
+    "titulo": "Chuva e Bento Rodrigues no Mineirão",
+    "texto": "O dia foi de chuva forte, com trovão e raio, e quando os portões abriram ainda caía água: quase todo mundo estava de capa ou saco plástico. A banda abriu justamente com Rain, dos Beatles. Em Once, o Eddie jogou o microfone pra plateia cantar o final. Depois de Even Flow, falou em português da tragédia da barragem de Bento Rodrigues, que tinha deixado mortos, desaparecidos e um rio poluído. No fim de Sirens, disse que pensava nas pessoas atingidas e contou que a banda ia doar dinheiro do show, em nome de quem estava ali. Em I'm Open, ele agradeceu ao Sergio pela guitarra que tinha ganhado em Brasília. Tocaram também uma do Eagles of Death Metal, banda que estava no palco do Bataclan, em Paris, no ataque de 13 de novembro.",
+    "rotuloFonte": "Fanviews do fórum oficial do Pearl Jam",
+    "fontes": [
+      {
+        "url": "https://community.pearljam.com/discussion/247991",
+        "trecho": "A day of hard rain and thunder and lighting."
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/247991",
+        "trecho": "When the doors opened the rain was pouring down.  Most in the audience were wearing rain gear or plastic bags."
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/247991",
+        "trecho": "01. Rain-(Lennon, McCartney)"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/247991",
+        "trecho": "Once (Ed throws his mic into the audience and they sing the outro)"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/247991",
+        "trecho": "He talks about the Bento Rodrigues dam disaster that resulted in at least 9 deaths, many missing and the evacuation of 600 people. The dam failure also  caused devastating pollution in the river."
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/247991",
+        "trecho": "while singing the outro Ed says, “I am just thinking about the people affected by the dam accident…” After the song Ed notes that their hasn’t been a fund set up to help the families hurt by the disaster and are planning on donating money from this show in the name of the fans at the show."
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/247991",
+        "trecho": "This is a cover of an Eagles Of Death Metal song.  The band was playing a show in Paris at Le Bataclan when it was attacked by terrorists on November 13."
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/247991",
+        "trecho": "I’m Open (“This guitar was made by one of your countrymen right here in Brazil.  It is one of my favorite things.  Obrigado Sergio.”  Sergio made Ed a very custom guitar and gave it to him in Brasilia.)"
+      }
+    ]
+  },
+  "setlist": {
+    "show": [
+      "Rain (The Beatles)",
+      "Sometimes",
+      "Elderly Woman Behind the Counter in a Small Town",
+      "Go",
+      "Mind Your Manners",
+      "Once",
+      "Got Some",
+      "Rearviewmirror",
+      "Pilate",
+      "Even Flow",
+      "Infallible",
+      "Given to Fly",
+      "I'm Open",
+      "I Am Mine",
+      "Satan's Bed",
+      "Deep",
+      "Jeremy",
+      "Why Go"
+    ],
+    "blocos": [
+      {
+        "label": "SHOW",
+        "songs": [
+          "Rain (The Beatles)",
+          "Sometimes",
+          "Elderly Woman Behind the Counter in a Small Town",
+          "Go",
+          "Mind Your Manners",
+          "Once",
+          "Got Some",
+          "Rearviewmirror",
+          "Pilate",
+          "Even Flow",
+          "Infallible",
+          "Given to Fly",
+          "I'm Open",
+          "I Am Mine",
+          "Satan's Bed",
+          "Deep",
+          "Jeremy",
+          "Why Go"
+        ]
+      },
+      {
+        "label": "BIS 1",
+        "songs": [
+          "Bee Girl",
+          "Sleeping by Myself",
+          "Imagine (John Lennon)",
+          "Sirens",
+          "Do the Evolution",
+          "I Want You So Hard (Eagles of Death Metal)",
+          "Corduroy",
+          "Mankind",
+          "Porch"
+        ]
+      },
+      {
+        "label": "BIS 2",
+        "songs": [
+          "Eruption (Van Halen)",
+          "Garden",
+          "Comfortably Numb (Pink Floyd)",
+          "Lightning Bolt",
+          "Black",
+          "Sonic Reducer (Dead Boys)",
+          "Alive",
+          "Rockin' in the Free World (Neil Young)",
+          "Yellow Ledbetter"
+        ]
+      }
+    ],
+    "fonte": "https://pearljam.com/tour/history/show/belo-horizonte"
+  },
+  "destaques": [
+    "Rain (The Beatles)",
+    "I Want You So Hard (Eagles of Death Metal)",
+    "Sirens"
+  ],
+  "legenda": "Show #15 da série: Belo Horizonte, 20 de novembro de 2015. Teve temporal antes dos portões abrirem, Rain dos Beatles na abertura e doação do show pras famílias atingidas pela barragem de Bento Rodrigues. Arrasta pro lado pra ler a história e ver o setlist inteiro. Você tomou essa chuva no Mineirão? Conta aqui.\n\nSegue a gente: o maior acervo de Pearl Jam do Brasil 🎸\n\n#pearljam #eddievedder #belohorizonte #mineirao #showdasemana",
+  "musica": {
+    "nome": "Sirens",
+    "trecho": "refrão (\"Hear the sirens, hear the circus so profound\"), perto de 1:30 na versão do Lightning Bolt",
+    "motivo": "Foi no fim de Sirens que o Eddie falou das vítimas da barragem e anunciou a doação do show."
+  }
+}

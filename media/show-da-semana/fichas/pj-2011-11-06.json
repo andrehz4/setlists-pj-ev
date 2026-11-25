@@ -1,0 +1,130 @@
+{
+  "id": "pj-2011-11-06",
+  "numero": 22,
+  "status": "aprovado",
+  "artista": "Pearl Jam",
+  "data": "2011-11-06",
+  "cidade": "Rio de Janeiro, BR",
+  "local": "Praça da Apoteose",
+  "turne": "Pearl Jam Twenty Tour",
+  "poster": {
+    "arquivo": "media/pj-2011-11-06/poster.jpg",
+    "credito": "Pôster oficial",
+    "fonte": "https://pearljam.com/tour/history/show/rio-de-janeiro-1737674895"
+  },
+  "historia": {
+    "titulo": "Balões pretos na Apoteose",
+    "texto": "Enquanto consertavam o retorno do Eddie, ele falou com a plateia em português. Na volta pro primeiro bis, lembrou que o X fazia 35 anos de banda e tocava pela primeira vez na América do Sul. Falou de um asteroide que ia passar perto da Terra, disse que numa hora dessas dá vontade de virar pro lado e declarar amor, e declarou o dele à plateia. Depois travou numa palavra em português, deu um tapa na própria cabeça, riu, e o público gritou a pronúncia certa. Contou que Johnny Ramone era seu amigo antes de I Believe in Miracles. No segundo bis, apresentou Mother como a primeira vez da música diante de um público grande. No fim de Black, os fãs estouraram os balões pretos que vinham jogando pra cima. Em Indifference, o Eddie esqueceu a letra e pediu ajuda: a plateia cantou e ele seguiu.",
+    "rotuloFonte": "Fanviews do fórum oficial do Pearl Jam",
+    "fontes": [
+      {
+        "url": "https://community.pearljam.com/discussion/175381",
+        "trecho": "Ed addresses the crowd in Portuguese while he waits for his monitor pack to be repaired"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/175381",
+        "trecho": "Mentions that it is the 35th anniversary for X and their first time in South America and thanks the crowd for being perfect."
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/175381",
+        "trecho": "He talks about an asteroid that is going to pass close to earth and how in times like that you want to turn to the person next to you and say 'I love you'.  Then he tells the crowd he loves them."
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/175381",
+        "trecho": "Ed addresses the crowd in Portuguese and has some trouble with a words.  He slaps himself in the head and laughs.  The crowd shouts the correct pronunciation back to him.  He continues in Portuguese and talks about Johnny Ramone being his good friend"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/175381",
+        "trecho": "Mother-(Waters) {Introduced as being the first time they have played the song in front of a large crowd}"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/175381",
+        "trecho": "at the end of \"Black\" the crowd pops a bunch of small, black balloons they had been bouncing around"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/175381",
+        "trecho": "Indifference {Ed forgets the words and asks the crowd to sing it to him.  They do and he continues to sing}"
+      }
+    ]
+  },
+  "setlist": {
+    "show": [
+      "Unthought Known",
+      "Last Exit",
+      "Blood",
+      "Corduroy",
+      "Given to Fly",
+      "Nothingman",
+      "Faithfull",
+      "Even Flow",
+      "Daughter",
+      "Blitzkrieg Bop (Ramones)",
+      "Habit",
+      "Immortality",
+      "The Fixer",
+      "Got Some",
+      "Elderly Woman Behind the Counter in a Small Town",
+      "Why Go",
+      "Rearviewmirror"
+    ],
+    "blocos": [
+      {
+        "label": "SHOW",
+        "songs": [
+          "Unthought Known",
+          "Last Exit",
+          "Blood",
+          "Corduroy",
+          "Given to Fly",
+          "Nothingman",
+          "Faithfull",
+          "Even Flow",
+          "Daughter",
+          "Blitzkrieg Bop (Ramones)",
+          "Habit",
+          "Immortality",
+          "The Fixer",
+          "Got Some",
+          "Elderly Woman Behind the Counter in a Small Town",
+          "Why Go",
+          "Rearviewmirror"
+        ]
+      },
+      {
+        "label": "BIS 1",
+        "songs": [
+          "Just Breathe",
+          "Come Back",
+          "I Believe in Miracles (Ramones)",
+          "State of Love and Trust",
+          "Of the Earth",
+          "Do the Evolution",
+          "Jeremy"
+        ]
+      },
+      {
+        "label": "BIS 2",
+        "songs": [
+          "Mother (Pink Floyd)",
+          "Better Man",
+          "Black",
+          "Alive",
+          "Rockin' in the Free World (Neil Young)",
+          "Indifference",
+          "Yellow Ledbetter"
+        ]
+      }
+    ],
+    "fonte": "https://pearljam.com/tour/history/show/rio-de-janeiro-1737674895"
+  },
+  "destaques": [
+    "Mother (Pink Floyd)",
+    "Of the Earth"
+  ],
+  "legenda": "Show #22 da série: Praça da Apoteose, Rio, 6 de novembro de 2011. Teve o Eddie apanhando do português e o público soprando a pronúncia, balões pretos estourados no fim de Black e a plateia cantando Indifference quando ele esqueceu a letra. Arrasta pro lado pra ler a história e ver o setlist. Quem estava na Apoteose?\n\nSegue a gente: o maior acervo de Pearl Jam do Brasil 🎸\n\n#pearljam #eddievedder #riodejaneiro #apoteose #pj20 #showdasemana",
+  "musica": {
+    "nome": "Black",
+    "trecho": "parte final (\"We belong together\"), a partir de uns 4:30",
+    "motivo": "No fim de Black a plateia estourou os balões pretos que vinha jogando pra cima."
+  }
+}

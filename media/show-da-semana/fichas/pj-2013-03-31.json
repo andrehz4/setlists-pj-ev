@@ -1,0 +1,118 @@
+{
+  "id": "pj-2013-03-31",
+  "numero": 20,
+  "status": "aprovado",
+  "artista": "Pearl Jam",
+  "data": "2013-03-31",
+  "cidade": "São Paulo, BR",
+  "local": "Jockey Club (Lollapalooza)",
+  "turne": "Lightning Bolt Tour",
+  "poster": {
+    "arquivo": "media/pj-2013-03-31/poster.jpg",
+    "credito": "Pôster oficial",
+    "fonte": "https://pearljam.com/tour/history/show/lollapalooza-brazil"
+  },
+  "historia": {
+    "titulo": "Um ovo de Páscoa chamado Olé",
+    "texto": "Era domingo de Páscoa no Lollapalooza. Depois de Comatose, o Eddie conferiu se estava todo mundo bem, desejou feliz Páscoa em português e apresentou a próxima como um ovo de chocolate chamado Olé. Mais tarde pediu desculpa por falar em inglês, porque o português dele soava mal, e contou que a banda estava no meio da gravação de um disco: se o show fosse em outro lugar, talvez nem viessem, mas como a passagem pela América do Sul começava pelo Brasil, não dava pra dizer não. Agradeceu por todo mundo sair de casa num domingo. Na volta pro bis, ergueu um brinde a cada banda do festival de que lembrou e à plateia. Falou em português dos amigos Ramones antes de I Believe in Miracles, e o público respondeu com um Hey Ho, Let's Go. Na despedida, agradeceu por um cuidar do outro e disse que aquela era uma das melhores plateias pra quem tocar.",
+    "rotuloFonte": "Fanviews do fórum oficial do Pearl Jam",
+    "fontes": [
+      {
+        "url": "https://community.pearljam.com/discussion/206314",
+        "trecho": "He wishes them happy Easter in Portuguese and says, “This is a chocolate egg called Ole´”"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/206314",
+        "trecho": "Ed apologizes for speaking in English but his Portuguese sounds like “shit”.  He mentions the band are in the middle of making a record and if the show had been anywhere else they probably wouldn’t have been able to make it.  Since the shows were in South America and started here in Brazil they couldn’t say no.  He thanks the crowd for coming out on a Sunday"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/206314",
+        "trecho": "Ed says he would like to raise a toast and begins toasting all the bands he can remember playing the festival as well as the audience."
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/206314",
+        "trecho": "In Portuguese Ed talks about his friends the Ramones"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/206314",
+        "trecho": "short round of “Hey Ho, Let’s Go” from the audience"
+      },
+      {
+        "url": "https://community.pearljam.com/discussion/206314",
+        "trecho": "He thanks them for taking care of each other and for being one of the best audiences there is to play for"
+      }
+    ]
+  },
+  "setlist": {
+    "show": [
+      "Elderly Woman Behind the Counter in a Small Town",
+      "Why Go",
+      "Interstellar Overdrive (Pink Floyd)",
+      "Corduroy",
+      "Comatose",
+      "Olé",
+      "Do the Evolution",
+      "Wishlist",
+      "Got Some",
+      "Even Flow",
+      "Nothingman",
+      "Insignificance",
+      "Daughter",
+      "World Wide Suicide",
+      "Jeremy",
+      "Unthought Known",
+      "State of Love and Trust",
+      "Rearviewmirror"
+    ],
+    "blocos": [
+      {
+        "label": "SHOW",
+        "songs": [
+          "Elderly Woman Behind the Counter in a Small Town",
+          "Why Go",
+          "Interstellar Overdrive (Pink Floyd)",
+          "Corduroy",
+          "Comatose",
+          "Olé",
+          "Do the Evolution",
+          "Wishlist",
+          "Got Some",
+          "Even Flow",
+          "Nothingman",
+          "Insignificance",
+          "Daughter",
+          "World Wide Suicide",
+          "Jeremy",
+          "Unthought Known",
+          "State of Love and Trust",
+          "Rearviewmirror"
+        ]
+      },
+      {
+        "label": "BIS",
+        "songs": [
+          "Given to Fly",
+          "Not for You",
+          "Better Man",
+          "Black",
+          "I Believe in Miracles (Ramones)",
+          "Go",
+          "Alive",
+          "Baba O'Riley (The Who)",
+          "Yellow Ledbetter"
+        ]
+      }
+    ],
+    "fonte": "https://pearljam.com/tour/history/show/lollapalooza-brazil"
+  },
+  "destaques": [
+    "Olé",
+    "I Believe in Miracles (Ramones)"
+  ],
+  "legenda": "Show #20 da série: Lollapalooza São Paulo, 31 de março de 2013, domingo de Páscoa no Jockey Club. Teve Olé apresentada como ovo de chocolate, brinde pra todas as bandas do festival e Hey Ho, Let's Go puxado pela plateia. Arrasta pro lado pra ler a história e ver o setlist. Você estava no Jockey?\n\nSegue a gente: o maior acervo de Pearl Jam do Brasil 🎸\n\n#pearljam #eddievedder #lollapalooza #saopaulo #showdasemana",
+  "musica": {
+    "nome": "Olé",
+    "trecho": "abertura, com o riff de guitarra (primeiros 30 segundos)",
+    "motivo": "O Eddie apresentou a música como um ovo de chocolate de Páscoa, em português."
+  }
+}
