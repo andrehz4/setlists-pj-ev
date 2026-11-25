@@ -33,11 +33,28 @@ Módulo apartado (Regra 0): nada aqui roda sozinho nem publica; só monta e vali
    de carrossel especial descrito em `scripts/publish/carrossel/README.md` (publicar.json + TriggerAll).
    Depois de postar, `status` vira `publicado`.
 
+## Fonte principal: Fanviews do fórum oficial (community.pearljam.com)
+
+O fórum oficial do Pearl Jam tem, pra quase todo show desde ~2003, um tópico "<Cidade> Fanviews Here <data>"
+aberto pela moderação (usuário Sea) na seção "Given To Fly (live)". O 1º post traz setlist, horário de
+entrada e saída do palco, música de entrada e **notas do que aconteceu entre as músicas** (o que o Eddie falou,
+estreias, quem subiu no palco, bandeira, recado pra plateia). É a melhor matéria-prima pra "a história da noite".
+Exemplo: Porto Alegre 11/11/2015, discussão 247825 (Comfortably Numb com o Eddie no piano, parabéns pra Jill
+cantado em português pela plateia, baqueta entregue pra um fã).
+
+- Precisa de login: só dá pra ler pelo Chrome do dono da página (Claude in Chrome), que já está logado.
+  Ler com `get_page_text`; nunca postar, curtir, responder nem mexer na conta.
+- Achar: busca do fórum `<cidade> fanviews` ou `fanviews <país>`; o título tem a data em formato americano.
+- Na ficha: `url` do tópico (`https://community.pearljam.com/discussion/<id>`) e o trecho em inglês das notas.
+  Traduza com suas palavras; nada de colar o texto dos fãs.
+- Shows antes de ~2003 não têm Fanviews: aí vale setlist.fm (notas), pearljam.com, Wikipedia e imprensa.
+
 ## Regras para agentes de IA (obrigatórias)
 
 - **Fonte em tudo**: cada frase da história precisa de uma fonte em `historia.fontes` (url + trecho copiado
   da fonte). Valem: pearljam.com, setlist.fm (notas do show), Wikipedia com referência, entrevista, livro,
-  jornal da época. Fórum e comentário de fã só como pista, nunca como fonte. Sem fonte, a frase sai.
+  jornal da época, e o 1º post do tópico de Fanviews do fórum oficial (ver abaixo). Comentário de fã em
+  fórum só como pista, ou citado como "relato de fã" sem nome de usuário. Sem fonte, a frase sai.
 - **Não inventar**: público, duração, clima, "noite histórica", recorde, primeira vez. Só se a fonte disser.
   Citação entre aspas só se a fonte trouxer a frase exata. Na dúvida, escreva menos.
 - **Setlist vem do acervo**, nunca de memória. Divergência entre setlist.fm e `dados/shows.js`: vale o do site
