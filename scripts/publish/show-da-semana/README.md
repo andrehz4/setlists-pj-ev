@@ -110,3 +110,10 @@ celular; a música sugerida de cada show está no campo `musica` da ficha (minut
    `[role=spinbutton]` aria-valuenow = "HH,0,HH,0", os 2 inputs de data = "D de mês de AAAA", 4 vezes "1080 x 1350",
    o campo `[contenteditable=true]` começa com "Show #N da série" e tem 1 só "Segue a gente", e existe o botão
    "Programar". O dono autorizou o Claude a clicar em Programar (25/11). Recusar "Turbinar" (Talvez mais tarde).
+8. **Limite do Business Suite: só programa até 29 dias à frente** (e no mínimo 20 min). Data fora disso fica vermelha
+   e o botão Programar apaga. Agendar em levas: cada sessão programa tudo até hoje + 28 dias.
+9. **Sempre 4 hashtags**: `#pearljam #eddievedder #<lugar> #showdasemana` (pedido do dono em 25/11; as fichas #7 a #26
+   já estão assim). A checagem confere a legenda INTEIRA contra a ficha e conta 5 "#" (o "Show #N" + 4 tags).
+10. Digitar a legenda terminando com espaço e clicar no título "Programar" antes de mexer no seletor: senão a lista
+   de sugestão de hashtag fica aberta e o Enter da data troca a última tag (já aconteceu: "#show#showdasegurança").
+11. O aviso do Turbinar pode demorar a abrir: clicar em "Talvez mais tarde" por JS esperando até 15 s.
