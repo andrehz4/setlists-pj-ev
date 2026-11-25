@@ -100,8 +100,13 @@ celular; a música sugerida de cada show está no campo `musica` da ficha (minut
 3. Upload sem janela do Mac: no `javascript_tool`, trocar `HTMLInputElement.prototype.click` pra, quando for
    `type=file`, só anexar o input ao body (não abrir o seletor) e clicar em "Adicionar foto/vídeo"; depois `find`
    acha o `file-input (hidden)` e `file_upload` manda 01..04.jpg. (fetch de localhost é barrado pelo CSP do Facebook.)
-4. Legenda: `pbcopy` da `legenda` da ficha, clicar no campo de texto e colar (cmd+v).
+4. Legenda: DIGITAR com a ação `type` (texto da ficha). NÃO usar pbcopy: outra sessão trocou a área de transferência no meio. Nunca usar execCommand insertText (trava o editor; aí só Cancelar e Descartar).
 5. Ligar "Definir data e hora"; data (cmd+a, digitar DD/MM/AAAA, Enter) e hora (clicar na hora, digitar HH;
    clicar nos minutos, digitar 00), no Facebook e no Instagram. Não clicar perto do botão do agendamento pra fechar
    o seletor (desliga ele e o botão vira "Publicar"); clicar no texto explicativo.
 6. Conferir no print e deixar a aba aberta. **Quem clica em Programar é o dono da página.**
+7. Esperar 2 s depois de ligar "Definir data e hora" antes de digitar a data. Antes de clicar em Programar, rodar no
+   `javascript_tool` uma checagem que dá `throw` se algo não bater (o browser_batch para no erro): spinbuttons
+   `[role=spinbutton]` aria-valuenow = "HH,0,HH,0", os 2 inputs de data = "D de mês de AAAA", 4 vezes "1080 x 1350",
+   o campo `[contenteditable=true]` começa com "Show #N da série" e tem 1 só "Segue a gente", e existe o botão
+   "Programar". O dono autorizou o Claude a clicar em Programar (25/11). Recusar "Turbinar" (Talvez mais tarde).
