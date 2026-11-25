@@ -77,7 +77,7 @@
 </div>
 </sc-for>
 
-<svg data-anel="1" viewBox="0 0 1080 1920" style="position:absolute; inset:0; z-index:5; width:1080px; height:1920px; overflow:visible; filter:drop-shadow(2px 3px 0 rgba(0,0,0,0.6));"><rect x="274" y="1614" width="146" height="72" rx="16" fill="none" stroke="#D2692A" stroke-width="9"/></svg>
+<svg data-anel="1" viewBox="0 0 1080 1920" style="position:absolute; inset:0; z-index:5; width:1080px; height:1920px; overflow:visible; filter:drop-shadow(2px 3px 0 rgba(0,0,0,0.6));"><rect x="600" y="1702" width="192" height="88" rx="18" fill="none" stroke="#D2692A" stroke-width="9"/></svg>
 <div data-end="1" style="position:absolute; inset:0; visibility:hidden;">
 <div data-part="scr" style="position:absolute; inset:0; background:rgba(16,19,13,0.62);"></div>
 <div data-part="stop" style="position:absolute; top:270px; left:80px; right:80px; display:flex; justify-content:space-between; font-family:'VT323', monospace; font-size:62px; line-height:1; color:#F4F4F0; text-shadow:3px 3px 0 rgba(0,0,0,0.75);"><span>● REC</span><span>{{ endTc }}</span></div>
@@ -91,8 +91,8 @@
 </div></div>
 <img data-part="logo" src="uploads/logo-smufdpj.jpg" alt="" style="position:absolute; right:50px; top:500px; width:250px; height:250px; border-radius:50%; object-fit:cover; border:6px solid #F1EBDD; box-shadow:0 14px 30px rgba(0,0,0,0.5); transform:rotate(-12deg);">
 <svg data-part="seta" viewBox="0 0 1080 1920" style="position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; filter:drop-shadow(3px 4px 0 rgba(0,0,0,0.7));">
-<path data-seta="linha" d="M 600 1400 C 760 1470 700 1590 430 1618" fill="none" stroke="#F4F4F0" stroke-width="11" stroke-linecap="round"/>
-<path data-seta="ponta" d="M 470 1589 L 430 1618 L 476 1638" fill="none" stroke="#F4F4F0" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-seta="linha" d="M 540 1420 C 520 1530 640 1600 690 1688" fill="none" stroke="#F4F4F0" stroke-width="11" stroke-linecap="round"/>
+<path data-seta="ponta" d="M 690 1638 L 690 1688 L 647 1663" fill="none" stroke="#F4F4F0" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 <div data-part="fim" style="position:absolute; left:0; right:0; top:1330px; text-align:center; font-family:'VT323', monospace; font-size:60px; color:#F4F4F0; text-shadow:3px 3px 0 rgba(0,0,0,0.75);">▶ CONTINUA NO PERFIL</div>
 </div>
@@ -248,7 +248,7 @@ class Component extends DCLogic {
       let livre = 0;
       R.drops.forEach(d => { if (d.t - livre >= 0.3) janelas.push([livre, d.t]); livre = d.t + d.dur; });
       janelas.push([livre, R.duracao]);
-      g.set(anelG, { svgOrigin: '347 1650', autoAlpha: 0 });
+      g.set(anelG, { svgOrigin: '696 1746', autoAlpha: 0 });
       janelas.forEach(([a, b]) => {
         ft(anelG, { autoAlpha: 0, scale: 1.5 }, { autoAlpha: 1, scale: 1, duration: 0.15, ease: 'power3.out' }, a);
         const n = Math.floor((b - a - 0.2) / (bt / 2));
@@ -272,7 +272,7 @@ class Component extends DCLogic {
       const L = linha.getTotalLength();
       g.set(linha, { strokeDasharray: L, strokeDashoffset: L }); g.set(ponta, { autoAlpha: 0 });
       tl.to(linha, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.inOut' }, t + 0.9);
-      ft(ponta, { autoAlpha: 0, scale: 0.4, svgOrigin: '430 1618' }, { autoAlpha: 1, scale: 1, duration: 0.2, ease: 'back.out(2)' }, t + 1.45);
+      ft(ponta, { autoAlpha: 0, scale: 0.4, svgOrigin: '690 1688' }, { autoAlpha: 1, scale: 1, duration: 0.2, ease: 'back.out(2)' }, t + 1.45);
     }
     const tag = part(E, 'tag'); if (tag) ft(tag, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power3.out' }, t + 1.6);
     tl.set({}, {}, R.duracao);
