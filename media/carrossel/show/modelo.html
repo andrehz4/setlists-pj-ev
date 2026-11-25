@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#2A2A2A;} a{color:#F5C400;} a:hover{color:#F26B1D;}</style>
+</helmet>
+<section style="padding:80px;display:flex;flex-direction:column;gap:80px;font-family:'Archivo',sans-serif;">
+
+<div id="1a" style="display:flex;flex-direction:column;gap:28px;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span style="background:#F5C400;color:#000;font-weight:800;font-size:28px;padding:6px 14px;">1a</span>
+    <span style="color:#CFCFCF;font-size:28px;font-weight:600;">Carrossel completo · SHOW #{{ p.num }} · 1080×1350</span>
+  </div>
+  <div style="display:flex;gap:24px;">
+
+    <div data-screen-label="01 capa" style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#161616;flex:none;color:#fff;">
+      <div style="position:absolute;top:64px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="background:#F5C400;color:#000;font-weight:800;font-size:28px;letter-spacing:.06em;padding:10px 18px;">SHOW #{{ p.num }}</span>
+        <span style="color:#9A9A9A;font-weight:700;font-size:22px;letter-spacing:.14em;">SÓ MAIS UM FÃ DE PEARL JAM</span>
+      </div>
+      <div style="position:absolute;top:150px;left:0;right:0;height:690px;display:flex;justify-content:center;align-items:center;">
+        <sc-for list="{{ p.posterList }}" as="src" hint-placeholder-count="0"><img data-src="{{ src }}" alt="" style="height:660px;max-width:860px;object-fit:contain;border:10px solid #F2EFE8;box-shadow:0 28px 60px rgba(0,0,0,.75),0 6px 14px rgba(0,0,0,.5);transform:rotate(-1.5deg);"></sc-for>
+      </div>
+      <div style="position:absolute;top:858px;left:0;right:0;text-align:center;color:#8C8C8C;font-size:20px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ p.posterCredit }}</div>
+      <div data-fit="w" data-max="168" data-min="60" style="position:absolute;top:884px;left:72px;right:72px;height:180px;font-family:'Anton',sans-serif;line-height:1.2;text-align:center;white-space:nowrap;overflow:hidden;text-transform:uppercase;">{{ p.cityMain }}<span style="color:#F5C400;">{{ p.cityCountry }}</span></div>
+      <div style="position:absolute;top:1066px;left:72px;right:72px;text-align:center;font-size:34px;font-weight:600;color:#E2E2E2;">{{ p.venue }} · {{ p.date }}</div>
+      <div style="position:absolute;right:72px;bottom:150px;font-family:'Anton',sans-serif;font-size:44px;color:#F5C400;letter-spacing:.02em;">ARRASTA →</div>
+      <div style="position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:68px;height:68px;border-radius:50%;overflow:hidden;flex:none;"><img src="uploads/selo-smufdpj.jpg" alt="" style="width:106%;margin:-3%;display:block;"></div>
+          <span style="font-weight:700;font-size:26px;">@smufdpj</span>
+        </div>
+        <span style="font-weight:800;font-size:26px;color:#F5C400;letter-spacing:.06em;">01/4</span>
+      </div>
+    </div>
+
+    <div data-screen-label="02 historia" style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#1C1C1C;flex:none;color:#fff;">
+      <div style="position:absolute;top:64px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="background:#F5C400;color:#000;font-weight:800;font-size:28px;letter-spacing:.06em;padding:10px 18px;">SHOW #{{ p.num }}</span>
+        <span style="color:#9A9A9A;font-weight:700;font-size:22px;letter-spacing:.14em;">SÓ MAIS UM FÃ DE PEARL JAM</span>
+      </div>
+      <div style="position:absolute;top:170px;left:72px;right:72px;font-family:'Anton',sans-serif;font-size:132px;line-height:.98;">A HISTÓRIA<br><span style="color:#F5C400;">DA NOITE</span></div>
+      <div style="position:absolute;top:452px;left:72px;right:72px;color:#F26B1D;font-weight:800;font-size:26px;letter-spacing:.1em;text-transform:uppercase;">{{ p.cityShort }} · {{ p.date }}</div>
+      <div data-fit="h" data-max="46" data-min="24" style="position:absolute;top:520px;left:72px;right:72px;height:600px;overflow:hidden;line-height:1.42;font-weight:500;color:#EDEDED;text-wrap:pretty;">{{ p.story }}</div>
+      <div style="position:absolute;left:72px;bottom:160px;color:#8C8C8C;font-size:21px;font-weight:600;">{{ p.source }}</div>
+      <div style="position:absolute;right:72px;bottom:150px;font-family:'Anton',sans-serif;font-size:44px;color:#F5C400;letter-spacing:.02em;">ARRASTA →</div>
+      <div style="position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:68px;height:68px;border-radius:50%;overflow:hidden;flex:none;"><img src="uploads/selo-smufdpj.jpg" alt="" style="width:106%;margin:-3%;display:block;"></div>
+          <span style="font-weight:700;font-size:26px;">@smufdpj</span>
+        </div>
+        <span style="font-weight:800;font-size:26px;color:#F5C400;letter-spacing:.06em;">02/4</span>
+      </div>
+    </div>
+
+    <div data-screen-label="03 setlist" style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#1C1C1C;flex:none;color:#fff;">
+      <div style="position:absolute;top:64px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="background:#F5C400;color:#000;font-weight:800;font-size:28px;letter-spacing:.06em;padding:10px 18px;">SHOW #{{ p.num }}</span>
+        <span style="color:#9A9A9A;font-weight:700;font-size:22px;letter-spacing:.14em;">SÓ MAIS UM FÃ DE PEARL JAM</span>
+      </div>
+      <div style="position:absolute;top:166px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:flex-end;">
+        <span style="font-family:'Anton',sans-serif;font-size:132px;line-height:1;">SETLIST</span>
+        <span style="color:#F26B1D;font-weight:800;font-size:26px;letter-spacing:.1em;padding-bottom:14px;">{{ p.songCount }} MÚSICAS</span>
+      </div>
+      <div data-fit="h" data-max="38" data-min="15" style="position:absolute;top:346px;left:72px;right:72px;height:770px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:56px;align-items:start;">
+        <sc-for list="{{ p.setCols }}" as="col" hint-placeholder-count="2">
+          <div style="display:flex;flex-direction:column;gap:1em;">
+            <sc-for list="{{ col }}" as="g" hint-placeholder-count="2">
+              <div style="display:flex;flex-direction:column;gap:.2em;">
+                <sc-if value="{{ g.hasLabel }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-family:'Anton',sans-serif;font-size:1.05em;color:#F26B1D;letter-spacing:.06em;margin-bottom:.15em;">{{ g.label }}</div>
+                </sc-if>
+                <sc-for list="{{ g.songs }}" as="s" hint-placeholder-count="6">
+                  <div style="display:flex;gap:.55em;line-height:1.22;">
+                    <span style="width:1.5em;flex:none;text-align:right;color:#6E6E6E;font-size:.78em;font-weight:600;padding-top:.2em;font-variant-numeric:tabular-nums;">{{ s.n }}</span>
+                    <span style="flex:1;min-width:0;color:{{ s.color }};font-weight:{{ s.weight }};">{{ s.title }}<sc-if value="{{ s.hasCover }}"><span style="color:#8C8C8C;font-weight:500;margin-left:.3em;">({{ s.cover }})</span></sc-if></span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <div style="position:absolute;left:72px;bottom:162px;display:flex;align-items:center;gap:28px;font-size:21px;font-weight:600;color:#8C8C8C;">
+        <span style="display:flex;align-items:center;gap:10px;"><span style="width:16px;height:16px;background:#F5C400;"></span><span style="color:#F5C400;">raridade</span></span>
+        <span>(autor) = cover</span>
+      </div>
+      <div style="position:absolute;right:72px;bottom:150px;font-family:'Anton',sans-serif;font-size:44px;color:#F5C400;letter-spacing:.02em;">ARRASTA →</div>
+      <div style="position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:68px;height:68px;border-radius:50%;overflow:hidden;flex:none;"><img src="uploads/selo-smufdpj.jpg" alt="" style="width:106%;margin:-3%;display:block;"></div>
+          <span style="font-weight:700;font-size:26px;">@smufdpj</span>
+        </div>
+        <span style="font-weight:800;font-size:26px;color:#F5C400;letter-spacing:.06em;">03/4</span>
+      </div>
+    </div>
+
+    <div data-screen-label="04 fecho" style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#111111;flex:none;color:#fff;">
+      <div style="position:absolute;top:64px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="background:#F5C400;color:#000;font-weight:800;font-size:28px;letter-spacing:.06em;padding:10px 18px;">SHOW #{{ p.num }}</span>
+        <span style="color:#9A9A9A;font-weight:700;font-size:22px;letter-spacing:.14em;">SÓ MAIS UM FÃ DE PEARL JAM</span>
+      </div>
+      <div style="position:absolute;top:190px;left:0;right:0;display:flex;justify-content:center;">
+        <div style="width:360px;height:360px;border-radius:50%;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.6);"><img src="uploads/selo-smufdpj.jpg" alt="" style="width:106%;margin:-3%;display:block;"></div>
+      </div>
+      <div style="position:absolute;top:610px;left:72px;right:72px;text-align:center;font-family:'Anton',sans-serif;font-size:196px;line-height:.95;">SEGUE<br><span style="color:#F5C400;">A GENTE</span></div>
+      <div style="position:absolute;top:1006px;left:72px;right:72px;text-align:center;font-size:40px;font-weight:700;">O maior acervo de Pearl Jam do Brasil</div>
+      <div style="position:absolute;top:1080px;left:72px;right:72px;display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <span style="font-size:28px;font-weight:500;color:#A8A8A8;">setlist completo e fotos em</span>
+        <span style="font-size:34px;font-weight:800;color:#F26B1D;">somaisumfadepearljam.com.br</span>
+      </div>
+      <div style="position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:68px;height:68px;border-radius:50%;overflow:hidden;flex:none;"><img src="uploads/selo-smufdpj.jpg" alt="" style="width:106%;margin:-3%;display:block;"></div>
+          <span style="font-weight:700;font-size:26px;">@smufdpj</span>
+        </div>
+        <span style="font-weight:800;font-size:26px;color:#F5C400;letter-spacing:.06em;">04/4</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="1b" style="display:flex;flex-direction:column;gap:28px;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span style="background:#F5C400;color:#000;font-weight:800;font-size:28px;padding:6px 14px;">1b</span>
+    <span style="color:#CFCFCF;font-size:28px;font-weight:600;">Capas lado a lado, como no grid do perfil</span>
+  </div>
+  <div style="display:flex;gap:6px;">
+    <sc-for list="{{ posts }}" as="post" hint-placeholder-count="2">
+      <div data-screen-label="grid capa show #{{ post.num }}" style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#161616;flex:none;color:#fff;">
+        <div style="position:absolute;top:64px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="background:#F5C400;color:#000;font-weight:800;font-size:28px;letter-spacing:.06em;padding:10px 18px;">SHOW #{{ post.num }}</span>
+          <span style="color:#9A9A9A;font-weight:700;font-size:22px;letter-spacing:.14em;">SÓ MAIS UM FÃ DE PEARL JAM</span>
+        </div>
+        <div style="position:absolute;top:150px;left:0;right:0;height:690px;display:flex;justify-content:center;align-items:center;">
+          <sc-for list="{{ post.posterList }}" as="src" hint-placeholder-count="0"><img data-src="{{ src }}" alt="" style="height:660px;max-width:860px;object-fit:contain;border:10px solid #F2EFE8;box-shadow:0 28px 60px rgba(0,0,0,.75),0 6px 14px rgba(0,0,0,.5);transform:rotate(-1.5deg);"></sc-for>
+        </div>
+        <div style="position:absolute;top:858px;left:0;right:0;text-align:center;color:#8C8C8C;font-size:20px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;">{{ post.posterCredit }}</div>
+        <div data-fit="w" data-max="168" data-min="60" style="position:absolute;top:884px;left:72px;right:72px;height:180px;font-family:'Anton',sans-serif;line-height:1.2;text-align:center;white-space:nowrap;overflow:hidden;text-transform:uppercase;">{{ post.cityMain }}<span style="color:#F5C400;">{{ post.cityCountry }}</span></div>
+        <div style="position:absolute;top:1066px;left:72px;right:72px;text-align:center;font-size:34px;font-weight:600;color:#E2E2E2;">{{ post.venue }} · {{ post.date }}</div>
+        <div style="position:absolute;right:72px;bottom:150px;font-family:'Anton',sans-serif;font-size:44px;color:#F5C400;letter-spacing:.02em;">ARRASTA →</div>
+        <div style="position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:68px;height:68px;border-radius:50%;overflow:hidden;flex:none;"><img src="uploads/selo-smufdpj.jpg" alt="" style="width:106%;margin:-3%;display:block;"></div>
+            <span style="font-weight:700;font-size:26px;">@smufdpj</span>
+          </div>
+          <span style="font-weight:800;font-size:26px;color:#F5C400;letter-spacing:.06em;">01/4</span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  // ===== DADOS DO POST =====
+  // Setlist: "*" no início = raridade (amarelo); "(Autor)" no fim = cover (cinza).
+  // Cada seção vira um bloco (SHOW, BIS 1, BIS 2, ...). A fonte encolhe sozinha para caber.
+  static DATA = {
+    posts: [
+      {
+        num: 7,
+        city: 'Porto Alegre, BR',
+        venue: 'Arena do Grêmio',
+        date: '11 de novembro de 2015',
+        poster: 'uploads/poster-porto-alegre-2015.jpg',
+        posterCredit: 'Pôster oficial',
+        story: 'Abertura da turnê brasileira de 2015. No segundo bis, o Eddie sentou ao piano para Comfortably Numb, do Pink Floyd, com o Boom no órgão, possivelmente a primeira vez dele no piano num show do Pearl Jam. Antes, a plateia cantou parabéns em português para a Jill, mulher dele. O Matt desceu do palco para entregar as baquetas a um garoto que segurava um cartaz pedindo. E o Eddie admitiu que o estádio não estava lotado, mas parecia cheio.',
+        source: 'Fonte: Fanviews do fórum oficial do Pearl Jam',
+        setlist: [
+          { label: 'SHOW', songs: ['Pendulum', 'Release', 'Elderly Woman Behind the Counter in a Small Town', 'Mind Your Manners', 'Animal', 'Do the Evolution', 'Interstellar Overdrive (Pink Floyd)', 'Corduroy', 'Lightning Bolt', 'Faithfull', 'Even Flow', 'I Got Id', 'Lukin', 'Not for You', 'Sirens', 'Let the Records Play', 'Spin the Black Circle', 'Rearviewmirror'] },
+          { label: 'BIS 1', songs: ['Last Kiss (Wayne Cochran)', 'Hard to Imagine', 'Wishlist', 'Jeremy', 'Glorified G', 'Better Man', 'Go', 'Porch'] },
+          { label: 'BIS 2', songs: ['*Comfortably Numb (Pink Floyd)', 'Why Go', 'Given to Fly', 'Black', 'Alive', "Fuckin' Up (Neil Young)", 'Yellow Ledbetter'] }
+        ]
+      },
+      {
+        num: 1,
+        city: 'São Paulo, BR',
+        venue: 'Estádio do Pacaembu',
+        date: '2 de dezembro de 2005',
+        poster: 'uploads/poster-sao-paulo-2005.jpg',
+        posterCredit: 'Pôster oficial',
+        story: '',
+        source: '',
+        setlist: []
+      }
+    ]
+  };
+
+  initFit() {
+    if (window.__smufFitInit) return;
+    window.__smufFitInit = true;
+    const fitAll = () => this.fit();
+    let tid;
+    const schedule = () => { clearTimeout(tid); tid = setTimeout(fitAll, 30); };
+    new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true, characterData: true });
+    if (document.fonts) document.fonts.ready.then(schedule);
+    [0, 100, 400, 1000, 2500].forEach(t => setTimeout(schedule, t));
+  }
+  componentDidMount() {
+    this.schedule = () => { clearTimeout(this.tid); this.tid = setTimeout(() => this.fit(), 30); };
+    this.mo = new MutationObserver(this.schedule);
+    this.mo.observe(document.body, { childList: true, subtree: true, characterData: true });
+    if (document.fonts) document.fonts.ready.then(this.schedule);
+    this.timers = [0, 150, 500, 1200, 2500].map(t => setTimeout(this.schedule, t));
+  }
+  componentDidUpdate() { this.schedule && this.schedule(); }
+  componentWillUnmount() { this.mo && this.mo.disconnect(); (this.timers || []).forEach(clearTimeout); cancelAnimationFrame(this.raf); }
+
+  fit() {
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      const s = img.dataset.src;
+      if (s && !s.includes('{{') && img.getAttribute('src') !== s) img.setAttribute('src', s);
+    });
+    document.querySelectorAll('[data-fit]').forEach(el => {
+      if (el.textContent.includes('{{')) return;
+      const w = el.dataset.fit === 'w';
+      const min = +el.dataset.min || 12;
+      let fs = +el.dataset.max;
+      el.style.fontSize = fs + 'px';
+      const over = () => el.scrollHeight > el.clientHeight + 1 || (w && el.scrollWidth > el.clientWidth + 1);
+      while (over() && fs > min) { fs -= 1; el.style.fontSize = fs + 'px'; }
+    });
+  }
+
+  prep(d) {
+    const i = d.city.lastIndexOf(',');
+    const cityMain = i < 0 ? d.city : d.city.slice(0, i + 1);
+    const cityCountry = i < 0 ? '' : ' ' + d.city.slice(i + 1).trim();
+    const cityShort = i < 0 ? d.city : d.city.slice(0, i);
+    let n = 0;
+    const secs = (d.setlist || []).map(sec => ({
+      label: sec.label, hasLabel: true,
+      songs: sec.songs.map(raw => {
+        let s = raw.trim();
+        const rare = s.startsWith('*');
+        s = s.replace(/^\*\s*/, '');
+        const m = s.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+        n += 1;
+        return { n, title: m ? m[1] : s, cover: m ? m[2] : '', hasCover: !!m,
+          color: rare ? '#F5C400' : '#F2F2F2', weight: rare ? 800 : 600 };
+      })
+    }));
+    return { ...d, posterList: d.poster ? [d.poster] : [], cityMain, cityCountry, cityShort, songCount: n, setCols: this.split(secs) };
+  }
+
+  split(secs) {
+    if (!secs.length) return [];
+    const total = secs.reduce((a, s) => a + 1 + s.songs.length, 0);
+    const target = total / 2;
+    let cum = 0, best = null;
+    for (let k = 0; k < secs.length - 1; k++) {
+      cum += 1 + secs[k].songs.length;
+      if (!best || Math.abs(cum - target) < Math.abs(best.cum - target)) best = { k, cum };
+    }
+    if (best && Math.abs(best.cum - target) <= 4) return [secs.slice(0, best.k + 1), secs.slice(best.k + 1)];
+    let acc = 0;
+    for (let k = 0; k < secs.length; k++) {
+      const size = 1 + secs[k].songs.length;
+      if (acc + size >= target) {
+        const cut = Math.max(1, Math.round(target - acc - 1));
+        const s = secs[k];
+        return [
+          [...secs.slice(0, k), { ...s, songs: s.songs.slice(0, cut) }],
+          [{ label: '', hasLabel: false, songs: s.songs.slice(cut) }, ...secs.slice(k + 1)]
+        ];
+      }
+      acc += size;
+    }
+    return [secs, []];
+  }
+
+  renderVals() {
+    setTimeout(() => this.initFit(), 0);
+    setTimeout(() => this.fit(), 60);
+    const posts = Component.DATA.posts.map(d => this.prep(d));
+    return { posts, p: posts[0] };
+  }
+}
+</script>
+</body>
+</html>

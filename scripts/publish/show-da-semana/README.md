@@ -29,8 +29,11 @@ Módulo apartado (Regra 0): nada aqui roda sozinho nem publica; só monta e vali
 2. Preencher a ficha: `poster`, `historia` (título, texto, fontes com url e trecho), `destaques`, `legenda`.
 3. `node scripts/publish/show-da-semana/cli.mjs checar` até não sobrar erro.
 4. Mostrar ao dono da página; só ele muda `status` pra `aprovado`.
-5. Render e publicação: modelo do Claude Design (a fazer) + `scripts/publish/carrossel/render.mjs` e o fluxo
-   de carrossel especial descrito em `scripts/publish/carrossel/README.md` (publicar.json + TriggerAll).
+5. Render: `node scripts/publish/show-da-semana/render.mjs <pasta-saida> <ficha.json>` gera 01..04.jpg com o
+   modelo do Claude Design (`media/carrossel/show/modelo.html`, aprovado em 25/11/2026; mudar layout = mandar
+   de volta pro Design). `setlist.blocos` ([{label:"SHOW",songs:[]},{label:"BIS 1",...}]) manda nos blocos;
+   música em `destaques` sai em amarelo; cover = "(Autor)" no fim do nome.
+   Publicação: fluxo de carrossel especial de `scripts/publish/carrossel/README.md` (publicar.json + TriggerAll).
    Depois de postar, `status` vira `publicado`.
 
 ## Fonte principal: Fanviews do fórum oficial (community.pearljam.com)
@@ -73,6 +76,11 @@ cantado em português pela plateia, baqueta entregue pra um fã).
 - **Numeração**: `novo` pega o próximo número sozinho. Não renumerar ficha publicada.
 
 ## Arquivos
+
+- `forum.mjs`: coleta os Fanviews do fórum (API pública) em `media/show-da-semana/forum/<ano>.json`.
+- `oficial.mjs`: coleta o histórico do pearljam.com (pôster, artista, sets) em `media/show-da-semana/oficial/`;
+  `--posters` baixa todos os pôsteres pra `media/show-da-semana/posters/` (fora do git).
+- `render.mjs`: ficha -> 4 JPGs pelo modelo do Design.
 
 - `acervo.mjs`: lê setlist.fm, `dados/shows.js` e a mídia do repo; `folego()` conta o material.
 - `ficha.mjs`: rascunho, validação das regras acima, numeração.
