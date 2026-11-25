@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Comfortaa:wght@400;500&family=Archivo:wght@800&family=Courier+Prime:wght@400;700&family=Permanent+Marker&family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>html,body{margin:0;padding:0;background:transparent;}a{color:#D2692A;}a:hover{color:#F1EBDD;}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative; width:{{ outerW }}px; height:{{ outerH }}px; margin:0 auto;">
+<div data-stage="1" style="position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:hidden; background:transparent; transform:scale({{ scale }}); transform-origin:0 0;">
+
+<sc-if value="{{ showBg }}" hint-placeholder-val="{{ true }}">
+<img src="uploads/quadro-13.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+</sc-if>
+
+<sc-for list="{{ drops }}" as="d" hint-placeholder-count="0">
+<div data-drop="{{ d.i }}" style="position:absolute; bottom:190px; left:80px; width:920px; visibility:hidden;">
+
+<sc-if value="{{ d.isA }}">
+<div data-part="grp" style="position:relative; display:flex; width:920px; filter:drop-shadow(0 22px 28px rgba(0,0,0,0.5));">
+<div data-part="stub" style="width:130px; flex:none; background:#D2692A; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:30px 0; box-sizing:border-box; border-right:5px dashed #F1EBDD; -webkit-mask:radial-gradient(circle at 100% 0, transparent 20px, #000 21px) top / 100% 51% no-repeat, radial-gradient(circle at 100% 100%, transparent 20px, #000 21px) bottom / 100% 51% no-repeat; mask:radial-gradient(circle at 100% 0, transparent 20px, #000 21px) top / 100% 51% no-repeat, radial-gradient(circle at 100% 100%, transparent 20px, #000 21px) bottom / 100% 51% no-repeat;">
+<div style="writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Anton', sans-serif; font-size:30px; letter-spacing:0.2em; color:#F1EBDD;">ENTRADA</div>
+<div style="font-family:'Anton', sans-serif; font-size:30px; color:#F1EBDD; letter-spacing:0.04em;">{{ d.num }}</div>
+</div>
+<div data-part="main" style="position:relative; flex:1; min-width:0; background:#F1EBDD; padding:24px 36px 18px 38px; box-sizing:border-box; display:flex; flex-direction:column; gap:12px; -webkit-mask:radial-gradient(circle at 0 0, transparent 20px, #000 21px) top / 100% 51% no-repeat, radial-gradient(circle at 0 100%, transparent 20px, #000 21px) bottom / 100% 51% no-repeat; mask:radial-gradient(circle at 0 0, transparent 20px, #000 21px) top / 100% 51% no-repeat, radial-gradient(circle at 0 100%, transparent 20px, #000 21px) bottom / 100% 51% no-repeat;">
+<div style="font-family:'Anton', sans-serif; font-size:36px; line-height:1.1; letter-spacing:0.05em; color:#2E4A2A; padding-bottom:10px; border-bottom:4px solid #2E4A2A; padding-right:130px;">{{ d.rotulo }}</div>
+<div data-part="body" style="font-family:'Special Elite', monospace; font-size:34px; line-height:1.25; color:#1E241C; text-wrap:pretty;">{{ d.texto }}</div>
+<div style="display:flex; justify-content:space-between; gap:20px; font-family:'Courier Prime', monospace; font-weight:700; font-size:20px; letter-spacing:0.18em; color:#2E4A2A; border-top:2px dashed #2E4A2A; padding-top:12px;">
+<span>SÓ MAIS UM FÃ DE PEARL JAM</span><span>@SMUFDPJ</span>
+</div>
+
+</div>
+<img data-part="stamp" src="uploads/logo-smufdpj.jpg" alt="" style="position:absolute; top:-96px; right:-18px; width:150px; height:150px; border-radius:50%; object-fit:cover; border:4px solid #F1EBDD; box-shadow:0 8px 18px rgba(0,0,0,0.45); transform:rotate(-12deg);"></div>
+</sc-if>
+
+<sc-if value="{{ d.isB }}">
+<div style="position:relative; height:70px;">
+<div data-part="play" style="position:absolute; left:0; top:0; display:flex; gap:40px; font-family:'VT323', monospace; font-size:62px; line-height:1; color:#F4F4F0; text-shadow:3px 3px 0 rgba(0,0,0,0.75);"><span>▶ PLAY</span><span>{{ d.tc }}</span></div>
+<div data-part="rew" style="position:absolute; left:0; top:0; display:flex; gap:40px; font-family:'VT323', monospace; font-size:62px; line-height:1; color:#F4F4F0; text-shadow:3px 3px 0 rgba(0,0,0,0.75); visibility:hidden;"><span>◀◀ REW</span><span>{{ d.tc }}</span></div>
+</div>
+<div data-part="card" style="position:relative; margin-top:10px; overflow:hidden; background:#F3EFE4; border-radius:6px; box-shadow:0 22px 40px rgba(0,0,0,0.5);">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:24px; background:#1E241C; padding:16px 30px;">
+<div style="font-family:'Anton', sans-serif; font-size:40px; letter-spacing:0.05em; color:#F1EBDD;">{{ d.rotulo }}</div>
+<div style="font-family:'VT323', monospace; font-size:44px; color:#D2692A; flex:none;">{{ d.num }}</div>
+</div>
+<div style="height:8px; background:#D2692A;"></div>
+<div data-part="body" style="font-family:'Permanent Marker', cursive; font-size:42px; line-height:60px; color:#1E241C; padding:16px 34px 30px 56px; background-image:linear-gradient(90deg, transparent 36px, rgba(210,105,42,0.55) 36px 39px, transparent 39px), repeating-linear-gradient(180deg, transparent 0 57px, rgba(90,134,160,0.45) 57px 60px); background-position:0 0, 0 16px; text-wrap:pretty;">{{ d.texto }}</div>
+<div data-part="bar" style="position:absolute; left:0; right:0; top:0; height:70px; background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.85) 45%, rgba(200,210,220,0.6) 55%, rgba(255,255,255,0)); visibility:hidden;"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ d.isC }}">
+<div data-part="grp" style="position:relative; padding-top:30px; filter:drop-shadow(0 20px 26px rgba(0,0,0,0.55));">
+<div style="background:linear-gradient(90deg, rgba(0,0,0,0.09), rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, rgba(0,0,0,0.07)), #EFEBE2; padding:62px 44px 58px; clip-path:polygon(0 0, 100% 0, 100% 93%, 96% 98%, 91% 94%, 85% 99%, 79% 95%, 72% 100%, 66% 95%, 58% 99%, 51% 94%, 44% 99%, 37% 95%, 30% 100%, 23% 95%, 16% 99%, 9% 94%, 4% 99%, 0 95%);">
+<div data-part="body" style="font-family:'Courier Prime', monospace; font-weight:700; font-size:42px; line-height:1.28; color:#141811; text-wrap:pretty;">{{ d.texto }}</div>
+</div>
+<div data-part="dymo" style="position:absolute; top:0; left:30px; background:#2F4A2B; padding:12px 26px; border-radius:4px; font-family:'Archivo', sans-serif; font-weight:800; font-size:34px; letter-spacing:0.14em; text-transform:uppercase; color:#EDE6D6; text-shadow:0 1px 0 rgba(255,255,255,0.25), 0 -1px 0 rgba(0,0,0,0.5); box-shadow:0 4px 0 rgba(0,0,0,0.25), inset 0 2px 0 rgba(255,255,255,0.12);">{{ d.rotulo }}</div>
+<div data-part="tape" style="position:absolute; top:6px; right:56px; width:200px; height:58px; background:rgba(226,214,170,0.85); transform:rotate(7deg); transform-origin:0 50%; clip-path:polygon(0 8%, 4% 0, 8% 10%, 12% 0, 100% 0, 96% 12%, 100% 24%, 96% 40%, 100% 56%, 96% 72%, 100% 88%, 96% 100%, 0 100%, 4% 84%, 0 66%, 4% 50%, 0 32%);"></div>
+</div>
+</sc-if>
+
+</div>
+</sc-for>
+
+<sc-for list="{{ lyrics }}" as="l" hint-placeholder-count="0">
+<div data-lyr="{{ l.i }}" style="position:absolute; left:80px; right:80px; top:0; bottom:0; display:flex; flex-wrap:wrap; justify-content:center; align-content:center; gap:4px 18px; visibility:hidden;">
+<sc-for list="{{ l.words }}" as="w">
+<span data-word="1" style="display:inline-block; font-family:'Comfortaa', sans-serif; font-weight:500; font-size:60px; line-height:1.25; color:#FFFFFF; text-shadow:0 2px 6px rgba(0,0,0,0.75), 0 0 24px rgba(0,0,0,0.45);">{{ w }}</span>
+</sc-for>
+</div>
+</sc-for>
+
+<svg data-anel="1" viewBox="0 0 1080 1920" style="position:absolute; inset:0; z-index:5; width:1080px; height:1920px; overflow:visible; filter:drop-shadow(2px 3px 0 rgba(0,0,0,0.6));"><rect x="274" y="1614" width="146" height="72" rx="16" fill="none" stroke="#D2692A" stroke-width="9"/></svg>
+<div data-end="1" style="position:absolute; inset:0; visibility:hidden;">
+<div data-part="scr" style="position:absolute; inset:0; background:rgba(16,19,13,0.62);"></div>
+<div data-part="stop" style="position:absolute; top:270px; left:80px; right:80px; display:flex; justify-content:space-between; font-family:'VT323', monospace; font-size:62px; line-height:1; color:#F4F4F0; text-shadow:3px 3px 0 rgba(0,0,0,0.75);"><span>● REC</span><span>{{ endTc }}</span></div>
+<div data-part="handle" style="position:absolute; left:80px; top:640px; width:920px; display:flex; filter:drop-shadow(0 24px 34px rgba(0,0,0,0.6)); transform:rotate(-2deg);">
+<div style="width:140px; flex:none; background:#D2692A; display:flex; align-items:center; justify-content:center; border-right:6px dashed #F1EBDD;"><div style="writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Anton', sans-serif; font-size:38px; letter-spacing:0.22em; color:#F1EBDD;">ENTRADA LIVRE</div></div>
+<div style="flex:1; background:#F1EBDD; padding:40px 40px 34px 44px; display:flex; flex-direction:column; gap:14px;">
+<div style="font-family:'Courier Prime', monospace; font-weight:700; font-size:26px; letter-spacing:0.18em; color:#2E4A2A;">SÓ MAIS UM FÃ DE PEARL JAM</div>
+<div style="font-family:'Anton', sans-serif; font-size:118px; line-height:0.95; color:#2E4A2A;">SEGUE<br>A GENTE</div>
+<div style="font-family:'Special Elite', monospace; font-size:60px; color:#D2692A;">{{ handle }}</div>
+<div data-part="tag" style="font-family:'Courier Prime', monospace; font-weight:700; font-size:25px; letter-spacing:0.03em; color:#1E241C; border-top:3px dashed #2E4A2A; padding-top:14px;">O MAIOR ACERVO DE PEARL JAM DO BRASIL</div>
+</div></div>
+<img data-part="logo" src="uploads/logo-smufdpj.jpg" alt="" style="position:absolute; right:50px; top:500px; width:250px; height:250px; border-radius:50%; object-fit:cover; border:6px solid #F1EBDD; box-shadow:0 14px 30px rgba(0,0,0,0.5); transform:rotate(-12deg);">
+<svg data-part="seta" viewBox="0 0 1080 1920" style="position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; filter:drop-shadow(3px 4px 0 rgba(0,0,0,0.7));">
+<path data-seta="linha" d="M 600 1400 C 760 1470 700 1590 430 1618" fill="none" stroke="#F4F4F0" stroke-width="11" stroke-linecap="round"/>
+<path data-seta="ponta" d="M 470 1589 L 430 1618 L 476 1638" fill="none" stroke="#F4F4F0" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<div data-part="fim" style="position:absolute; left:0; right:0; top:1330px; text-align:center; font-family:'VT323', monospace; font-size:60px; color:#F4F4F0; text-shadow:3px 3px 0 rgba(0,0,0,0.75);">▶ CONTINUA NO PERFIL</div>
+</div>
+<sc-if value="{{ guides }}">
+<div style="position:absolute; left:0; right:0; top:0; height:220px; background:rgba(255,40,40,0.22); border-bottom:3px dashed #ff4d4d; pointer-events:none; display:flex; align-items:flex-end; padding:0 0 12px 24px; box-sizing:border-box; font:700 26px 'Courier Prime', monospace; color:#fff;">ÁREA DO INSTAGRAM · 220 px</div>
+<div style="position:absolute; left:0; right:0; bottom:0; height:380px; background:rgba(255,40,40,0.22); border-top:3px dashed #ff4d4d; pointer-events:none; padding:12px 24px; box-sizing:border-box; font:700 26px 'Courier Prime', monospace; color:#fff;">LEGENDA DO INSTAGRAM · 380 px</div>
+<div style="position:absolute; left:0; right:0; top:640px; border-top:2px dotted rgba(255,255,255,0.6); pointer-events:none;"></div>
+<div style="position:absolute; left:0; right:0; top:1280px; border-top:2px dotted rgba(255,255,255,0.6); pointer-events:none;"></div>
+</sc-if>
+
+</div>
+</div>
+
+<sc-if value="{{ controls }}">
+<div style="position:fixed; left:0; right:0; bottom:0; height:64px; display:flex; align-items:center; gap:14px; padding:0 16px; box-sizing:border-box; background:#161A12; color:#F1EBDD; font-family:'Courier Prime', monospace; font-weight:700; font-size:15px; z-index:10;">
+<button onClick="{{ togglePlay }}" style="flex:none; width:88px; height:40px; border:0; border-radius:4px; background:#D2692A; color:#161A12; font:700 15px 'Courier Prime', monospace; cursor:pointer;">{{ playLabel }}</button>
+<button onClick="{{ restart }}" style="flex:none; height:40px; padding:0 12px; border:2px solid #F1EBDD; border-radius:4px; background:transparent; color:#F1EBDD; font:700 15px 'Courier Prime', monospace; cursor:pointer;">↺ 0s</button>
+<input type="range" min="0" max="{{ duracao }}" step="0.01" value="{{ time }}" onChange="{{ scrub }}" style="flex:1; min-width:0; accent-color:#D2692A;">
+<span style="flex:none; min-width:120px; text-align:right; font-variant-numeric:tabular-nums;">{{ timeLabel }}</span>
+</div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;dropStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ingresso&quot;,&quot;vhs&quot;,&quot;fanzine&quot;],&quot;default&quot;:&quot;vhs&quot;,&quot;tsType&quot;:&quot;'ingresso'|'vhs'|'fanzine'&quot;},&quot;previewBg&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;guides&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showControls&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;freezeAt&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;number&quot;},&quot;embedded&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  // DADOS DO REEL: troque por música. t = segundo de entrada, dur = segundos na tela.
+  static REEL = {
+    musica: "Alive",
+    duracao: 37.2,
+    handle: "@smufdpj",
+    drops: [
+      { t: 0.6, dur: 4.6, rotulo: "VOCÊ SABIA?", texto: "Alive nasceu como um instrumental chamado “Dollar Short”, numa fita demo do Stone Gossard" },
+      { t: 5.6, dur: 5.0, rotulo: "A LETRA", texto: "É em parte história real: a mãe do Eddie contou que o pai dele era, na verdade, o padrasto" },
+      { t: 10.9, dur: 4.6, rotulo: "O SINGLE, 1991", texto: "Alive saiu em 7 de julho de 1991, 51 dias antes do disco Ten" },
+      { t: 16.2, dur: 5.6, rotulo: "LOLLAPALOOZA, 1992", texto: "Perry Farrell, criador do festival: “Eddie se jogou das caixas de som, uns dois andares, na galera. Achei que ele tinha quebrado alguma coisa.”" },
+      { t: 22.3, dur: 5.4, rotulo: "EDDIE VEDDER, 2006", texto: "“O público mudou o significado pra mim. Levantaram a maldição.”" },
+      { t: 28.1, dur: 5.5, rotulo: "O CLIPE, 1991", texto: "Gravado ao vivo no RKCNDY, em Seattle. Jeff Ament: “Sonicamente, é uma versão inferior da música. Mas é ao vivo.”" }
+    ],
+    letra: [
+      { t: 0.2, dur: 3.6, texto: "É essa a pergunta?" },
+      { t: 4.2, dur: 8.4, texto: "E se for... quem responde?" },
+      { t: 13.0, dur: 4.8, texto: "Eu, ainda estou vivo" },
+      { t: 18.3, dur: 5.6, texto: "Oh, ainda estou vivo" },
+      { t: 25.2, dur: 5.6, texto: "Hey, ainda estou vivo" },
+      { t: 31.2, dur: 2.8, texto: "Ainda estou vivo, yeah" }
+    ],
+    final: { t: 34.3 }
+  };
+
+  state = { time: 0, playing: false, vw: 1080, vh: 1920 };
+  rootRef = React.createRef();
+
+  componentDidMount() {
+    const p = new URLSearchParams(location.search);
+    this.raw = p.has('raw');
+    this.urlT = p.has('t') ? parseFloat(p.get('t')) : null;
+    this.onResize = () => this.setState({ vw: innerWidth, vh: innerHeight });
+    if (!this.props.embedded) {
+      addEventListener('resize', this.onResize); this.onResize();
+      this.onKey = e => {
+        if (!this.tl) return;
+        if (e.code === 'Space') { e.preventDefault(); this.togglePlay(); }
+        if (e.code === 'ArrowRight') this.seek(this.tl.time() + (e.shiftKey ? 1 : 1 / 30));
+        if (e.code === 'ArrowLeft') this.seek(this.tl.time() - (e.shiftKey ? 1 : 1 / 30));
+      };
+      addEventListener('keydown', this.onKey);
+    }
+    this.wait();
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    if (this.tl) this.tl.kill();
+    removeEventListener('resize', this.onResize);
+    removeEventListener('keydown', this.onKey);
+  }
+  componentDidUpdate(pp) {
+    if (!this.tl) return;
+    if (pp.dropStyle !== this.props.dropStyle) this.build();
+    else if (pp.freezeAt !== this.props.freezeAt && this.props.freezeAt != null) this.tl.time(Number(this.props.freezeAt));
+  }
+  wait = () => {
+    if (window.gsap && this.rootRef.current && this.rootRef.current.querySelector('[data-end]')) this.build();
+    else this.raf = requestAnimationFrame(this.wait);
+  };
+  dropStyle() { return this.props.dropStyle ?? 'vhs'; }
+  hasControls() { return !this.props.embedded && !this.raw && (this.props.showControls ?? true); }
+
+  build() {
+    const g = window.gsap, root = this.rootRef.current, R = Component.REEL;
+    const prevT = this.tl ? this.tl.time() : 0;
+    if (this.tl) this.tl.kill();
+    const tl = g.timeline({ paused: true });
+    const ft = (el, from, to, pos) => { g.set(el, from); tl.fromTo(el, from, { ...to, immediateRender: false }, pos); };
+    const part = (el, n) => el.querySelector('[data-part="' + n + '"]');
+    const show = (el, t, d) => { g.set(el, { autoAlpha: 0 }); tl.set(el, { autoAlpha: 1 }, t); tl.set(el, { autoAlpha: 0 }, t + d); };
+    const st = this.dropStyle();
+
+    R.drops.forEach((d, i) => {
+      const el = root.querySelector('[data-drop="' + i + '"]');
+      if (!el) return;
+      const t = d.t, dur = d.dur, o = t + dur - 0.6;
+      show(el, t, dur);
+      if (st === 'ingresso') {
+        const grp = part(el, 'grp'), stub = part(el, 'stub'), main = part(el, 'main'), stamp = part(el, 'stamp'), body = part(el, 'body');
+        ft(grp, { x: -1150, y: 0, rotation: -10 }, { x: 0, rotation: -2, duration: 0.75, ease: 'back.out(1.3)' }, t);
+        ft(body, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: 'power2.out' }, t + 0.45);
+        ft(stamp, { autoAlpha: 0, scale: 2.4, rotation: -40 }, { autoAlpha: 0.92, scale: 1, rotation: -12, duration: 0.22, ease: 'power4.in' }, t + 0.7);
+        tl.to(grp, { y: 9, duration: 0.06, yoyo: true, repeat: 1, ease: 'power1.inOut' }, t + 0.92);
+        tl.to(grp, { rotation: -1, duration: dur - 1.7, ease: 'sine.inOut' }, t + 1.05);
+        ft(main, { x: 0, rotation: 0 }, { x: 1200, rotation: 9, duration: 0.55, ease: 'power3.in' }, o);
+        tl.to(stamp, { x: 1200, duration: 0.55, ease: 'power3.in' }, o);
+        ft(stub, { y: 0, rotation: 0, autoAlpha: 1 }, { y: 140, rotation: -14, autoAlpha: 0, duration: 0.5, ease: 'power2.in' }, o + 0.08);
+      } else if (st === 'vhs') {
+        const card = part(el, 'card'), play = part(el, 'play'), rew = part(el, 'rew'), bar = part(el, 'bar'), body = part(el, 'body');
+        ft(play, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, ease: 'steps(3)' }, t);
+        ft(rew, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, o);
+        tl.set(play, { autoAlpha: 0 }, o);
+        ft(card, { autoAlpha: 0, x: -70, skewX: -22, scaleY: 0.55, scaleX: 1 }, { autoAlpha: 1, x: 0, skewX: 0, scaleY: 1, duration: 0.32, ease: 'steps(6)' }, t + 0.12);
+        tl.to(card, { x: 16, duration: 0.04, ease: 'none' }, t + 0.46).to(card, { x: -9, duration: 0.04, ease: 'none' }).to(card, { x: 0, duration: 0.05, ease: 'none' });
+        ft(bar, { autoAlpha: 1, y: -80 }, { y: 560, duration: 0.5, ease: 'none' }, t + 0.12);
+        tl.set(bar, { autoAlpha: 0 }, t + 0.62);
+        ft(body, { textShadow: '7px 0px 0px rgba(210,105,42,0.85), -7px 0px 0px rgba(90,134,160,0.85)' }, { textShadow: '0px 0px 0px rgba(210,105,42,0), 0px 0px 0px rgba(90,134,160,0)', duration: 0.7, ease: 'power2.out' }, t + 0.3);
+        tl.to(card, { scaleY: 0.02, duration: 0.2, ease: 'power2.in' }, o + 0.1).to(card, { scaleX: 0, autoAlpha: 0, duration: 0.16, ease: 'power2.in' });
+      } else {
+        const grp = part(el, 'grp'), dymo = part(el, 'dymo'), tape = part(el, 'tape');
+        g.set(grp, { transformOrigin: '85% 0%' });
+        ft(grp, { autoAlpha: 0, x: 0, y: -140, rotation: 8, scale: 1.14 }, { autoAlpha: 1, y: 0, rotation: -1.5, scale: 1, duration: 0.5, ease: 'back.out(1.8)' }, t);
+        ft(dymo, { autoAlpha: 0, x: 260, rotation: 5 }, { autoAlpha: 1, x: 0, rotation: -3, duration: 0.38, ease: 'power3.out' }, t + 0.32);
+        ft(tape, { autoAlpha: 0, scaleX: 0 }, { autoAlpha: 1, scaleX: 1, duration: 0.22, ease: 'power2.out' }, t + 0.55);
+        tl.to(grp, { rotation: -0.6, duration: dur - 1.6, ease: 'sine.inOut' }, t + 0.6);
+        tl.to(grp, { rotation: -16, x: -140, y: -90, autoAlpha: 0, duration: 0.5, ease: 'power2.in' }, o);
+      }
+    });
+
+    R.letra.forEach((l, i) => {
+      const el = root.querySelector('[data-lyr="' + i + '"]');
+      if (!el) return;
+      const words = el.querySelectorAll('[data-word]');
+      show(el, l.t, l.dur);
+      ft(words, { autoAlpha: 0, y: 10, filter: 'blur(6px)' }, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.5, ease: 'power2.out', stagger: 0.08 }, l.t);
+      tl.to(words, { autoAlpha: 0, filter: 'blur(4px)', duration: 0.4, ease: 'power1.in' }, l.t + l.dur - 0.45);
+    });
+
+    // contorno pulsando em volta do botão Seguir do Instagram SÓ quando não há cartão na tela (o cartão passa por ali);
+    // do último cartão até o fim fica direto. Uma pulsada por batida (103,4 bpm).
+    const anelG = root.querySelector('[data-anel] rect');
+    if (anelG) {
+      const bt = 60 / 103.4, janelas = [];
+      let livre = 0;
+      R.drops.forEach(d => { if (d.t - livre >= 0.3) janelas.push([livre, d.t]); livre = d.t + d.dur; });
+      janelas.push([livre, R.duracao]);
+      g.set(anelG, { svgOrigin: '347 1650', autoAlpha: 0 });
+      janelas.forEach(([a, b]) => {
+        ft(anelG, { autoAlpha: 0, scale: 1.5 }, { autoAlpha: 1, scale: 1, duration: 0.15, ease: 'power3.out' }, a);
+        const n = Math.floor((b - a - 0.2) / (bt / 2));
+        if (n > 0) tl.to(anelG, { scale: 1.12, duration: bt / 2, yoyo: true, repeat: n - 1, ease: 'sine.inOut' }, a + 0.15);
+        if (b < R.duracao) tl.set(anelG, { autoAlpha: 0, scale: 1 }, b);
+      });
+    }
+    const E = root.querySelector('[data-end]'), t = R.final.t;
+    g.set(E, { autoAlpha: 0 }); tl.set(E, { autoAlpha: 1 }, t);
+    const scr = part(E, 'scr'), stop = part(E, 'stop'), logo = part(E, 'logo'), handle = part(E, 'handle'), fim = part(E, 'fim');
+    ft(scr, { scaleX: 0, scaleY: 0.004 }, { scaleX: 1, duration: 0.14, ease: 'power2.out' }, t);
+    tl.to(scr, { scaleY: 1, duration: 0.26, ease: 'expo.out' }, t + 0.14);
+    ft(stop, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, t + 0.3);
+    ft(logo, { autoAlpha: 0, scale: 0.55, rotation: -24 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.7, ease: 'back.out(1.5)' }, t + 0.3);
+    ft(handle, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power3.out' }, t + 0.7);
+    ft(fim, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, t + 1.0);
+    tl.to(fim, { autoAlpha: 0, duration: 0.01, repeat: 3, yoyo: true, repeatDelay: 0.22 }, t + 1.25);
+    const seta = part(E, 'seta');
+    if (seta) {
+      const linha = seta.querySelector('[data-seta="linha"]'), ponta = seta.querySelector('[data-seta="ponta"]');
+      const L = linha.getTotalLength();
+      g.set(linha, { strokeDasharray: L, strokeDashoffset: L }); g.set(ponta, { autoAlpha: 0 });
+      tl.to(linha, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.inOut' }, t + 0.9);
+      ft(ponta, { autoAlpha: 0, scale: 0.4, svgOrigin: '430 1618' }, { autoAlpha: 1, scale: 1, duration: 0.2, ease: 'back.out(2)' }, t + 1.45);
+    }
+    const tag = part(E, 'tag'); if (tag) ft(tag, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power3.out' }, t + 1.6);
+    tl.set({}, {}, R.duracao);
+
+    this.tl = tl;
+    if (this.hasControls()) tl.eventCallback('onUpdate', () => this.setState({ time: tl.time() }));
+    tl.eventCallback('onComplete', () => this.setState({ playing: false }));
+    const fz = this.props.freezeAt != null ? Number(this.props.freezeAt) : this.urlT;
+    tl.time(fz != null ? fz : prevT);
+    this.setState({ time: tl.time() });
+    if (!this.props.embedded) {
+      window.reel = { tl, duracao: R.duracao, seek: s => this.seek(s), play: () => this.togglePlay(true), pause: () => this.togglePlay(false) };
+    }
+  }
+
+  seek(s) {
+    if (!this.tl) return;
+    this.tl.pause(); this.tl.time(Math.max(0, Math.min(Component.REEL.duracao, s)));
+    this.setState({ time: this.tl.time(), playing: false });
+  }
+  togglePlay = (force) => {
+    const tl = this.tl; if (!tl) return;
+    const play = typeof force === 'boolean' ? force : !tl.isActive();
+    if (play) { if (tl.time() >= Component.REEL.duracao - 0.01) tl.time(0); tl.play(); } else tl.pause();
+    this.setState({ playing: play });
+  };
+
+  renderVals() {
+    const R = Component.REEL, st = this.dropStyle();
+    const pad = n => String(n).padStart(2, '0');
+    const tc = s => 'SP 0:' + pad(Math.floor(s / 60)) + ':' + pad(Math.floor(s % 60));
+    const embedded = !!this.props.embedded, controls = this.hasControls();
+    const scale = embedded || this.raw ? 1 : Math.min(this.state.vw / 1080, (this.state.vh - (controls ? 72 : 8)) / 1920);
+    const time = this.state.time;
+    return {
+      rootRef: this.rootRef,
+      scale, outerW: 1080 * scale, outerH: 1920 * scale,
+      showBg: !this.raw && (this.props.previewBg ?? true),
+      guides: !!this.props.guides,
+      controls,
+      handle: R.handle,
+      endTc: tc(R.duracao),
+      drops: R.drops.map((d, i) => ({ ...d, i, num: 'Nº ' + pad(i + 1), tc: tc(d.t), isA: st === 'ingresso', isB: st === 'vhs', isC: st === 'fanzine' })),
+      lyrics: R.letra.map((l, i) => ({ ...l, i, words: l.texto.split(' ') })),
+      duracao: R.duracao,
+      time,
+      timeLabel: time.toFixed(2) + ' / ' + R.duracao + 's',
+      playLabel: this.state.playing ? '❚❚ PAUSA' : '▶ PLAY',
+      togglePlay: () => this.togglePlay(),
+      restart: () => this.seek(0),
+      scrub: e => this.seek(parseFloat(e.target.value))
+    };
+  }
+}
+</script>
+</body>
+</html>

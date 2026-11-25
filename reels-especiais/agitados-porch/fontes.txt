@@ -1,0 +1,37 @@
+FONTES DE PORCH (cada drop e cada afirmação da legenda)
+
+1. Drop "VOCÊ SABIA?" (faixa 8 do Ten, 1991; letra e música de Eddie Vedder)
+   https://en.wikipedia.org/wiki/Ten_(Pearl_Jam_album) , lista de faixas: "title8 = Porch | music8 = Vedder | length8 = 3:30";
+   letras do disco todas de Vedder ("all_lyrics = Vedder"). Lançamento: 27 de agosto de 1991 (Epic).
+
+2. Drop "COMO NASCEU"
+   https://www.songfacts.com/facts/pearl-jam/porch : "One of the earliest Pearl Jam songs, lead singer Eddie Vedder wrote
+   "Porch" on his way up from San Diego to meet the rest of the band for the first time."
+
+3. Drop "SAIR DA VARANDA" (leitura, apresentada como leitura e não como fato)
+   https://americansongwriter.com/4-songs-you-didnt-know-eddie-vedder-wrote-solo-for-pearl-jam/ : "about doing much in the
+   world, about getting off one's porch and entering the fray of the real world"; "Written by Eddie Vedder".
+   Songfacts (mesma URL do item 2): "very much open to interpretation, as Eddie Vedder intended".
+
+4. Drop "MOORE THEATRE, 1990"
+   https://www.setlist.fm/setlist/pearl-jam/1990/the-moore-theatre-seattle-wa-7bd6e6e4.html : Moore Theatre, Seattle,
+   22 de dezembro de 1990, "Porch" é a 7a música do setlist.
+
+5. Drop "DROP IN THE PARK, 1992" (momento forte)
+   Imagens: acervo media/reels-clips/agitados/clips.json (drop-in-the-park-seattle-1992-01/02/03, "Eddie pendurado na treliça
+   do teto do palco"), origem https://www.youtube.com/watch?v=AumGmvOHr_4 (título "Pearl Jam - Drop in the Park 1992").
+   Duração: https://en.wikipedia.org/wiki/Ten_(Pearl_Jam_album) , seção "Drop in the Park LP", lado 4: "Porch | length1 = 12:42"
+   (no disco, 3:30). O texto NÃO diz que o Eddie estava pendurado durante Porch, só que está pendurado no show.
+
+6. Drop "MTV UNPLUGGED, 1992"
+   https://ultimatepearljam.com/pearl-jam-unplugged/ : "the climactic moment, which aired last but came in the middle of the
+   actual taping, was "Porch." ... Vedder stands atop his stool writing "PRO CHOICE!!!" with a marker before leaping back to
+   the floor during the song's long jam." Songfacts (item 2): "he wrote "Pro Choice" in his arm when Pearl Jam performed it
+   on their MTV Unplugged concert in 1992". Gravação: 16 de março de 1992, Kaufman Astoria Studios, Queens
+   (https://en.wikipedia.org/wiki/MTV_Unplugged_(Pearl_Jam_album)).
+
+LETRA: tradução de media/letras/pt.json (chave "porch"), encurtada sem mudar o sentido.
+TEMPOS: whisper-cli (small) em janelas de 7 a 10 s do áudio oficial "Pearl Jam - Porch (Official Audio)"
+(https://www.youtube.com/watch?v=NWKf2VhnoHE), conferidos pela energia do áudio. Margem de ~0,3 s.
+NAO USADO (fonte fraca): interpretations.json do repo diz que Gossard escreveu a música (contradiz a Wikipedia); comentário de
+leitor do Songfacts dizendo que Eddie se pendurava em Porch (não é texto editorial).

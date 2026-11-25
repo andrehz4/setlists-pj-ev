@@ -74,3 +74,13 @@ media/agenda/reel-saida/
 media/reels-clips/agitados/_brutos/
 media/reels-clips/agitados/**/*.mp4
 media/reels-clips/agitados/**/*.jpg
+reels-especiais/agitados-overlay/saida/
+reels-especiais/agitados-*/saida/
+reels-especiais/agitados-*/brutos/
+reels-especiais/agitados-*/overlay/
+reels-especiais/agitados-*/quadros/
+reels-especiais/agitados-*/ov/
+reels-especiais/agitados-*/q/
+reels-especiais/agitados-*/q2/
+reels-especiais/agitados-*/*.log
+reels-especiais/agitados-*/*.jpg
