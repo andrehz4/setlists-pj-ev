@@ -4,6 +4,8 @@ Série de carrossel inspirada no formato do @liveon4legspodcast (só o formato; 
 Um show por post, numerado ("Show #N"), sempre com a mesma moldura pra o grid do perfil virar coleção.
 Módulo apartado (Regra 0): nada aqui roda sozinho nem publica; só monta e valida a ficha.
 
+**De onde vem cada dado e como baixar de novo (pôsteres, fórum, setlist.fm): leia `FONTES.md` nesta pasta.**
+
 ## Os 4 slides (1080x1350)
 
 1. **Capa**: moldura fixa da marca, selo no topo, pôster no centro (crédito do artista embaixo, pequeno),

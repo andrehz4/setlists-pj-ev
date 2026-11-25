@@ -34,7 +34,8 @@ Validar mudança no pipeline = `npm test` + `node mock-ig/run.mjs feed` com iten
 - `scripts/publish/carrossel/`: modelo de carrossel de dados do Claude Design (`media/carrossel/ranking/`), paletas
   trocáveis e render em JPG pelo Chrome headless (README lá). Conteúdo e fotos de cada post ficam fora do git.
 - `scripts/publish/show-da-semana/`: série de carrossel "Show #N" (um show por post: pôster, história com fonte,
-  setlist show/bis, fecho). Regras pra IA e ritmo no README de lá; fichas em `media/show-da-semana/fichas/`.
+  setlist show/bis, fecho). Regras pra IA e ritmo no README de lá; fontes e coletores (pôsteres do pearljam.com, Fanviews do fórum,
+  setlist.fm) no `FONTES.md`; fichas em `media/show-da-semana/fichas/`.
 - `scripts/news/`: coleta e curadoria. `index-site.mjs` é a regra ÚNICA de gravação do `index.json` (teto 2000, notícia nova
   nunca arquivada); `coleta/`, `comunidade/` e `curadoria/` são as partes do fetch-news, community-fetch e merge-curated.
 - Site: `index.html` + `css/app.css` + `dados/*.js` (shows, discos, músicas, mídia). Fórum: `forum*.html` + `functions/`.

@@ -31,7 +31,7 @@ export function objetoApos(html, marca) {
 
 export function slugsDaLista(html) {
   const vistos = new Map();
-  for (const m of html.matchAll(/"slug":"([a-z0-9-]+-\d{9,})","rawdate":"(\d{4}-\d{2}-\d{2})"/g)) vistos.set(m[1], m[2]);
+  for (const m of html.matchAll(/"slug":"([^"]+)","rawdate":"(\d{4}-\d{2}-\d{2})"/g)) vistos.set(m[1], m[2]);
   return [...vistos].map(([slug, data]) => ({ slug, data }));
 }
 
@@ -58,8 +58,13 @@ async function texto(url) {
 }
 
 async function coletar() {
-  const lista = slugsDaLista(await texto(`${SITE}/tour/history`));
-  const porAno = {}, falhas = [];
+  const pasta = path.join(RAIZ, PASTA_OFICIAL);
+  const porAno = {}, falhas = [], ja = new Set();
+  if (fs.existsSync(pasta)) for (const arq of fs.readdirSync(pasta).filter((n) => n.endsWith(".json"))) {
+    porAno[arq.slice(0, 4)] = JSON.parse(fs.readFileSync(path.join(pasta, arq), "utf8"));
+    porAno[arq.slice(0, 4)].forEach((s) => ja.add(s.slug));
+  }
+  const lista = slugsDaLista(await texto(`${SITE}/tour/history`)).filter((s) => !ja.has(s.slug));
   for (const [i, { slug, data }] of lista.entries()) {
     try {
       const show = objetoApos(await texto(`${SITE}/tour/history/show/${slug}`), '"show":{');
@@ -69,7 +74,6 @@ async function coletar() {
     process.stdout.write(`${i + 1}/${lista.length}\r`);
     await espera(1000);
   }
-  const pasta = path.join(RAIZ, PASTA_OFICIAL);
   fs.mkdirSync(pasta, { recursive: true });
   for (const [ano, l] of Object.entries(porAno)) {
     l.sort((a, b) => a.data.localeCompare(b.data));
