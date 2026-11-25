@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-11-25T15:00Z",
+  "marco": "12:00 BRT",
+  "pendingTotal": 4,
+  "distribution": { "midia": 4, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [],
+  "skipped": [
+    { "id": "340583a283", "title": "Pearl Jam verurteilen ICE-Einsatz in Seattle", "reason": "sem novidade (já publicado: 7572edbfd6, b40085ae0d; baterista em 0d7edd7429)" },
+    { "id": "eca13e277e", "title": "Pearl Jam contro l'ICE", "reason": "sem novidade (já publicado: 7572edbfd6, b40085ae0d)" },
+    { "id": "3df55da454", "title": "Pearl Jam se manifesta sobre prisões feitas pelo ICE em Seattle", "reason": "sem novidade (já publicado: 7572edbfd6, b40085ae0d; baterista em 0d7edd7429)" },
+    { "id": "fd6b3ccc10", "title": "Pearl Jam verurteilen ICE-Festnahme am Flughafen Seattle", "reason": "sem novidade (já publicado: 7572edbfd6, b40085ae0d)" }
+  ]
+}
