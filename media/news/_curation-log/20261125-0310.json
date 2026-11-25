@@ -1,0 +1,13 @@
+{
+  "runAt": "2026-11-25T03:00Z",
+  "marco": "00:00 BRT",
+  "pendingTotal": 3,
+  "distribution": { "midia": 2, "instagram-oficial": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "b40085ae0d", "titulo": "Pai e filha presos pelo ICE em Seattle: os detalhes do caso que o Pearl Jam criticou", "kind": "midia" },
+    { "id": "83617c7d0b", "titulo": "Pearl Jam tira do arquivo Not For You em Manila, 1995, e pergunta pelo Vitalogy", "kind": "instagram-oficial" }
+  ],
+  "skipped": [
+    { "id": "01fc92fcb6", "title": "Pearl Jam issue statement condemning ICE arrests (Louder)", "reason": "mesma história da Rolling Stone, combinada em b40085ae0d" }
+  ]
+}
