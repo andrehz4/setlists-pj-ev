@@ -1,0 +1,15 @@
+{
+  "runAt": "2026-11-25T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 5,
+  "distribution": { "midia": 4, "instagram-oficial": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "c6502f61fa", "titulo": "Future Days Fund de novembro vai para projeto de teatro em San Diego", "kind": "instagram-oficial" }
+  ],
+  "skipped": [
+    { "id": "345f7d47dc", "title": "Pearl Jam denuncia crueldade contra imigrantes (TMDQA)", "reason": "sem novidade (já publicado: post oficial de 23/11 e detalhes do caso em 25/11)" },
+    { "id": "eade6005f9", "title": "Pearl Jam critica prisões inconcebíveis do ICE (Terra)", "reason": "republicação de Rolling Stone (sem novidade, já publicado)" },
+    { "id": "2affd0a5c9", "title": "Pearl Jam critica prisões inconcebíveis do ICE (RS Brasil)", "reason": "republicação de Rolling Stone (sem novidade, já publicado)" },
+    { "id": "dd338e4e48", "title": "Abe Laboriel Jr. entra na mira do Pearl Jam (Terra)", "reason": "coluna opinativa sem fato novo, texto truncado (já publicado: 5f2af9394f)" }
+  ]
+}
