@@ -88,6 +88,23 @@ cantado em português pela plateia, baqueta entregue pra um fã).
 - `ficha.mjs`: rascunho, validação das regras acima, numeração.
 - `cli.mjs`: `folego`, `novo`, `checar`. Testes em `ficha.test.mjs`.
 - Fichas: `media/show-da-semana/fichas/<id>.json` (texto com fonte, vai pro git; imagens não).
+- `fila.mjs`, `subir.mjs`, `publicar.mjs`: publicação pela API (seção abaixo). Testes em `publicar.test.mjs`.
+
+## Publicar pela API (#11 em diante, desde 26/11/2026)
+
+#1 a #10 estão no Business Suite (marcados `canal: "business-suite"` na fila, nunca saem pela API).
+Do #11 em diante, sem limite de 29 dias:
+
+1. **Mac**: `node scripts/publish/show-da-semana/subir.mjs` monta `media/show-da-semana/_fila.json` a partir da
+   `agenda.json`, renderiza os 4 slides de cada post sem link e sobe pro R2 em `especiais/show-da-semana/<NN>/`
+   (essa pasta NÃO apaga sozinha; `reels/` e `stories/` apagam em 3 dias). Nome com hash: mexeu na ficha,
+   `--refazer <N>` gera link novo. Depois commitar a fila. Ficha nova = entrar na agenda e rodar de novo.
+2. **Actions**: `publish-show-da-semana.yml` (TriggerAll ter/qui 17:07 e sáb 11:07 BRT, cron de reserva) roda
+   `publicar.mjs`: pega o 1o post maduro, confere ficha aprovada, legenda ("Show #N da série", 1 "Segue a gente",
+   4 hashtags) e os 4 links, publica carrossel no IG e álbum no FB, marca na fila e avisa no Telegram.
+3. Idempotente: grava `tentativaEm` antes; se a run cair depois do IG aceitar, a próxima acha o post pela 1a linha
+   da legenda e só marca. Desligado sem a variável do repo `SHOW_DA_SEMANA=1`.
+4. Mock: `node mock-ig/run.mjs show-da-semana --force` (não grava a fila). Música continua manual, pelo celular.
 
 ## Agendar no Meta Business Suite (testado em 25/11/2026)
 

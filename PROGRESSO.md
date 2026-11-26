@@ -6,6 +6,7 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
 
 ## Estado agora
 
+- **26/11, SHOW DA SEMANA PELA API: MÓDULO PRONTO, #11 A #26 NO R2, FLAG AINDA DESLIGADA.** `scripts/publish/show-da-semana/` ganhou `fila.mjs` (fila `media/show-da-semana/_fila.json` montada da agenda; #1 a #10 = `business-suite`, nunca saem pela API), `subir.mjs` (Mac: render + wrangler pro R2 em `especiais/show-da-semana/<NN>/`, pasta que NÃO apaga; reels/ e stories/ apagam em 3 dias, por isso o plano original não servia) e `publicar.mjs` (1 post por run, checagem de ficha/legenda/4 hashtags/links, IG + FB via `carrossel/especial.mjs`, `tentativaEm` + busca pela 1a linha da legenda contra post duplicado). Workflow `publish-show-da-semana.yml` (cron de reserva ter/qui 20:07 e sáb 14:07 UTC). 17 testes em `publicar.test.mjs`; mock OK (carrossel 4 slides + álbum FB; ghostpublish recuperado sem duplicar). README daqui, seção "Publicar pela API". FALTA (Andre): (1) criar a variável do repo `SHOW_DA_SEMANA=1` (Settings > Variables) até 26/12; (2) cadastrar no TriggerAll ter/qui 17:07 e sáb 11:07 BRT (o cron de reserva já cobre, com atraso); (3) pôsteres #21 e #24. Primeiro post pela API: #11 Brasília, 26/12 11h. Teste real antes: Actions > Publish Show da Semana > dry-run. `npm test` local falha no recover-publish por um `python -m http.server 8793` esquecido aberto (não é do código).
 - **25/11 22h, SHOW DA SEMANA: #1 A #10 PROGRAMADOS (01 a 22/12), RESTO BARRADO PELO LIMITE DE 29 DIAS.** O Business Suite só agenda até 29 dias à frente; #11 (26/12) em diante tem que ir em levas. Sugestão: 03/12 (#11 a #13), 17/12 (#14 a #19), 02/01 (#20 a #26). Renders em scratchpad (regerar com render.mjs se sumir). Legendas #7 a #26 agora com 4 hashtags (pedido do Andre); #1 a #6 já programados com 5. Pendências: pôsteres #21 (La Plata) e #24 (Sydney), push esperando OK. Alternativa preferida: publicar #11 a #26 pela API (plano em `scripts/publish/show-da-semana/PLANO-API.md`), decidir em 03/12 olhando os números do #1 e #2. Comando: "lê o PLANO-API.md do Show da Semana e vamos fazer" ou "lê o PROGRESSO.md e programa o Show da Semana do #11".
 - **25/11 noite, SHOW DA SEMANA: 26 FICHAS APROVADAS, AGENDAMENTO EM ANDAMENTO.** Agenda em `media/show-da-semana/agenda.json` (#1 a #26, 01/12/2026 a 30/01/2027, ter e qui 17h, sáb 11h, 24/12 pulado). 26 fichas `aprovado` com campo `musica` (nome, trecho, motivo). Business Suite NÃO põe música em carrossel: agendar sem música, Andre tenta pelo celular. Passo a passo do agendamento (upload sem janela do Mac via file_upload) no README do show-da-semana, seção "Agendar no Meta Business Suite". PROGRAMADOS no Business Suite (FB + IG, sem música): #1 a #5 (01, 03, 05, 08 e 10/12). Próximo: #6 (12/12 11h). O Andre autorizou o Claude a clicar em Programar; recusar o "Turbinar" com "Talvez mais tarde". Próximo: #4 em diante (regerar renders se o scratchpad sumiu). Pendências: confirmar pôster de La Plata (#21, arquivo "mock") e Sydney (#24, baixa resolução); backup dos dados (fabrica-quiz/Drive); push esperando OK.
 - **25/11 fim de tarde, SHOW DA SEMANA: 5 CARROSSÉIS PRONTOS (rascunho, Andre gostou) + PEDIDO EM ABERTO: AGENDAR 2 MESES.** Coletado (fora do git, só no SSD): 1.104 shows do pearljam.com com 1.109 pôsteres (`media/show-da-semana/posters/`, 275 MB) e 702 tópicos Fanviews do fórum (`.../forum/`). Cruzamento: 242 shows PJ com pôster + notas ricas (prontos), 144 com notas curtas, 116 Eddie solo sem pôster oficial. Modelo do Claude Design em `media/carrossel/show/modelo.html`; render `scripts/publish/show-da-semana/render.mjs`; fichas #1 a #5 em `media/show-da-semana/fichas/` (Porto Alegre 2015, Morumbi 2011, Maracanã 2018, Wrigley 2013 e 2016); prévias em scratchpad (somem no reboot, regerar com render.mjs). Tudo documentado em `scripts/publish/show-da-semana/README.md` + `FONTES.md`.
@@ -264,37 +265,3 @@ atualizar "Estado agora", escrever a sessão no topo e mover o que passar do tet
   "pro" a voz lê PRÓ: frases trocadas, regra no teste de pronúncia.
 - **Banda nova na agenda (13/11):** Love Boat Tribute (@loveboat_tribute, Santos/SP) cadastrada e no ar em `/agenda/`. Andre mandou DM pedindo ano de início, foto e história: quando responderem, completar
   `desde` e `resumo` em `media/agenda/bandas.json` e salvar a foto como `media/agenda/fotos/loveboat_tribute-manual.jpg`.
-
-- **Trilha própria (13/11): LIGADA** no reel, no story diário e no story da agenda (flag `TRILHA_PROPRIA=1` nos 3
-  workflows). 9 camas Suno Premier, 50 pistas em AAC 256k no R2 (`trilha/<cama>/<instrumento>.m4a`), kit no git
-  (`scripts/publish/trilha/kit-publicado.json`); o Actions baixa só a cama do dia (~23 MB). Porta única
-  `scripts/publish/trilha/ligar.mjs`: sem flag, sem kit ou R2 fora, volta pra trilha antiga sem derrubar o publish.
-  Reel e story pulam o loudnorm com a trilha própria (apagaria o golpe); sob a narração entra com ganho fixo + sidechain.
-  Testado no mock: reel W46 (golpe de -28 pra -17 dB aos 3 s e aos 25,5 s), story diário e 5 stories da agenda (dry).
-  Suno grátis (06, 07) saiu da pasta; Pixabay fica só de reserva. Faixa nova: `node scripts/publish/trilha/r2.mjs subir`.
-  PRÓXIMO: ouvir o reel de domingo 15/11 e o story de amanhã em produção (primeiro uso com narração ElevenLabs por cima).
-
-
-- Site, fórum e pipeline no ar. Publish IG/FB, story diário, reel de domingo, cápsulas, contrib e X manual rodando.
-- Instagram oficial (@pearljam, @eddievedder) é fonte de notícia desde 02/10 (`scripts/news/ig-oficial.mjs`).
-- Vistoria de saúde executada em 03/10 (ver a sessão abaixo e `docs/VISTORIA-2026-10-02.md`, seção Status).
-- Quiz de Quarta: mora no repo PRIVADO `andrehz4/fabrica-quiz` desde 24/10 (estado e próximo passo no PROGRESSO.md
-  de lá). Aqui no público não fica nada do quiz.
-- Pendências vivas:
-  - Agenda (POC no ar desde 04/10, reavaliar 11/10): `/agenda/` com 7 bandas e a turnê oficial, coleta diária
-    09:17 (`agenda.yml`). Post "Agenda da semana" (segunda 10:07) e STORY EM VÍDEO POR BANDA (todo dia 10:37,
-    `AGENDA_STORY_VIDEO=1` + `AGENDA_PUBLICAR=1`, ambos LIGADOS em 06/10). Marcação no story de vídeo OK
-    (`marcou: true` nos 3 de 09/10). Desde 09/10 os 3 robôs da agenda são disparados pelo TriggerAll (ids 7, 8, 9):
-    CONFERIR sáb 10/10 se a coleta rodou 09:17 e o story 10:37 (antes o cron do GitHub atrasava 5 a 6 h).
-    Perguntar a uma banda se apareceu o botão de repostar. Conferir se /agenda/ entrou no índice do Google.
-  - Ligar `RATE_LIMIT_IP=ultimo` no Railway depois de conferir o X-Forwarded-For nos logs.
-  - Revisar os PRs do dependabot (abrem toda semana).
-  - Conferir no ar o reel de domingo 04/10 (1º no padrão novo, agora às 09h07) e o story de hoje com o domínio novo.
-  - 2 contas "André Zimermann" no forum_users (a de 18/05 está vazia).
-  - Pedido da abertura SMUFDPJ nas legendas está com a outra IA (baixa-clipehz).
-  - Colaboradores PAUSADOS em 14/10 (ainda não há colaboradores): TriggerAll #6 sem horário (custo zero de Actions).
-    O painel `colaborar.html` continua aberto, e um envio feito agora fica parado sem aviso no Telegram. Pra religar:
-    colar `11,31 2,4,8,11,14,16,20,22 * * *` no horário do gatilho (está na descrição dele) e conferir o 1º disparo.
-    Conta do Actions (todos os repos): ~2.080 min/mês com contrib ligado, ~1.600 pausado, antes ~3.900 (franquia 3.000).
-    Outubro deve fechar ~2.700. Candidato a cortar depois: keep-db-awake (~75 min/mês) num Worker da Cloudflare.
-    Nunca houve cobrança (Payment history vazio, sem cartão: estourar PARA os jobs até virar o mês, não cobra).

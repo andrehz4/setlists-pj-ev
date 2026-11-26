@@ -1,6 +1,8 @@
 # Plano: publicar o Show da Semana pela API (sem Business Suite)
 
-Status: PROPOSTA, não implementado. Decidir em 03/12/2026, depois de ver os números do #1 (01/12) e do #2 (03/12).
+Status: IMPLEMENTADO em 26/11/2026 (ver README daqui, seção "Publicar pela API"). Mudança no caminho: os slides
+vão pra `especiais/` do R2 por wrangler (a regra de 3 dias do bucket apagaria antes da data) e o IG/FB reaproveita
+`carrossel/especial.mjs`.
 
 ## Por que
 

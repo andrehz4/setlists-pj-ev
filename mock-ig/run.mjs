@@ -4,6 +4,7 @@
 //   node mock-ig/run.mjs feed    -> run-publish.mjs (carrossel/single)
 //   node mock-ig/run.mjs story   -> run-publish-story.mjs
 //   node mock-ig/run.mjs reel    -> run-publish-reel.mjs
+//   node mock-ig/run.mjs show-da-semana [--force] -> show-da-semana/publicar.mjs (slides do R2, fila não é gravada)
 //
 // Pressupoe o mock server rodando (npm run mock:server) na MOCK_IG_PORT.
 
@@ -20,7 +21,7 @@ process.env.FB_PAGE_ID ||= "mock_page";
 process.env.FB_PAGE_TOKEN ||= "mock_token";
 process.env.PUBLISH_FB ||= "1";
 
-const mode = ["story", "reel", "capsula", "contrib", "agenda-reel"].includes(process.argv[2]) ? process.argv[2] : "feed";
+const mode = ["story", "reel", "capsula", "contrib", "agenda-reel", "show-da-semana"].includes(process.argv[2]) ? process.argv[2] : "feed";
 // passa o resto dos args (ex: --max-batches=2) pro pipeline; --no-git sempre
 // (os slides ficam no disco e o mock serve de la, nada vai pro github).
 const passthrough = process.argv.slice(3);
@@ -37,6 +38,10 @@ if (mode === "story") {
   const { publicarReelAgenda } = await import("../scripts/publish/agenda-reel/publicar.mjs");
   const i = passthrough.indexOf("--inicio");
   await publicarReelAgenda({ inicio: i >= 0 ? passthrough[i + 1] : undefined, git: false });
+} else if (mode === "show-da-semana") {
+  process.env.SHOW_DA_SEMANA ||= "1";
+  const { publicarShowDaSemana } = await import("../scripts/publish/show-da-semana/publicar.mjs");
+  await publicarShowDaSemana({ force: passthrough.includes("--force"), git: false });
 } else if (mode === "contrib") {
   await import("../scripts/contrib/publicar.mjs");
 } else if (mode === "capsula") {

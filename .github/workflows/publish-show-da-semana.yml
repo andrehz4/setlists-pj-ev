@@ -1,0 +1,62 @@
+name: Publish Show da Semana
+# Publica UM post do Show da Semana (#11 em diante) por run: carrossel no IG + álbum no FB, com os 4 slides
+# já no R2 (scripts/publish/show-da-semana/subir.mjs, feito no Mac). Fila: media/show-da-semana/_fila.json.
+# Disparo principal: TriggerAll ter e qui 17:07 e sáb 11:07 BRT. O cron abaixo é reserva (o GitHub atrasa horas;
+# rodar a mais não duplica, a fila é idempotente). Desligado sem a variável do repo SHOW_DA_SEMANA=1.
+on:
+  schedule:
+    - cron: '7 20 * * 2,4'   # ter e qui 17:07 BRT
+    - cron: '7 14 * * 6'     # sáb 11:07 BRT
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Só confere o próximo post (ficha, legenda, slides), não publica'
+        type: boolean
+        default: false
+      force:
+        description: 'Publica o próximo pendente ignorando a data (pra testar)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-show-da-semana
+  cancel-in-progress: false
+
+jobs:
+  publish-show-da-semana:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 5
+          persist-credentials: true
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Run publish-show-da-semana
+        env:
+          SHOW_DA_SEMANA: ${{ vars.SHOW_DA_SEMANA }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          PUBLISH_FB: '1'
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GIT_AUTHOR_NAME: pj-news-bot
+          GIT_AUTHOR_EMAIL: bot@setlists-pj.local
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry-run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          node scripts/publish/show-da-semana/publicar.mjs $ARGS

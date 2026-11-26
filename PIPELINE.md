@@ -164,6 +164,7 @@ como **central de cron e webhook** pros workflows deste projeto. Fica em:
 | `community.yml` digest | TriggerAll cron | 09:25 BRT diario |
 | `community.yml` spotlight | TriggerAll cron | 21:25 BRT diario |
 | `publish-story.yml` | TriggerAll cron | 13:00 BRT diario |
+| `publish-show-da-semana.yml` | TriggerAll cron (a cadastrar) | ter/qui 17:07 e sáb 11:07 BRT |
 | `publish-instagram.yml` | TriggerAll webhook (push da routine claude/news-routine-*) + (provavelmente um cron extra adicionado depois) | sob demanda + ~06:00 BRT diario observado |
 
 ### Horarios mapeados do codigo do TriggerAll (2026-06-01)

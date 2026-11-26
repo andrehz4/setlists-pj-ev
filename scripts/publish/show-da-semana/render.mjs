@@ -68,8 +68,14 @@ export async function renderizar(saida, ficha) {
     const png = path.join(saida, `._${i}.png`);
     fs.writeFileSync(tmp, htmlDoSlide(modelo, rotulo, post));
     try {
-      execFileSync(CHROME, ["--headless=new", "--disable-gpu", "--hide-scrollbars", "--window-size=1080,1350",
-        "--virtual-time-budget=10000", `--screenshot=${png}`, `file://${tmp}`], { stdio: "ignore" });
+      // o Chrome headless falha de vez em quando sem motivo (2 em 64 slides em 26/11): tenta de novo
+      for (let t = 1; ; t++) {
+        try {
+          execFileSync(CHROME, ["--headless=new", "--disable-gpu", "--hide-scrollbars", "--window-size=1080,1350",
+            "--virtual-time-budget=10000", `--screenshot=${png}`, `file://${tmp}`], { stdio: "ignore" });
+          break;
+        } catch (e) { if (t >= 3) throw e; }
+      }
     } finally { fs.rmSync(tmp, { force: true }); }
     const jpg = path.join(saida, `${String(i + 1).padStart(2, "0")}.jpg`);
     await sharp(png).jpeg({ quality: 93 }).toFile(jpg);
