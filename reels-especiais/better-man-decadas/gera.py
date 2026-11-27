@@ -53,7 +53,8 @@ def video():
 
 
 def audio():
-    # cada trecho: src, ss, dur, at (segundo no reel); nivela com loudnorm e cruza com fades curtos
+    # cada trecho: src, ss, dur, at (segundo no reel), opcional baixo={"ate": s, "vol": v} (volume baixo até s do trecho e sobe)
+    # nivela com loudnorm e cruza com fades curtos; a fala do gancho entra por cima
     xf = P.get("xfade", 0.18)
     ins, fil = [], []
     for i, a in enumerate(P["audio"]):
@@ -61,24 +62,25 @@ def audio():
         d = a["dur"] + xf
         ins += ["-ss", str(ss), "-t", str(d), "-i", os.path.join(B, a["src"] + ".mp4")]
         at = max(0, a["at"] - xf / 2)
-        fil.append(f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,loudnorm=I=-14:TP=-1.5:LRA=11,"
-                   f"afade=t=in:d={xf},afade=t=out:st={d - xf}:d={xf},adelay={int(at * 1000)}:all=1[a{i}]")
+        vol = ""
+        if a.get("baixo"):
+            x, v = a["baixo"]["ate"], a["baixo"]["vol"]
+            vol = f",volume='if(lt(t,{x}),{v},min(1,{v}+(t-{x})/0.25*{1 - v}))':eval=frame"
+        fade_out = f"afade=t=out:st={d - a.get('fade', xf)}:d={a.get('fade', xf)}"
+        fil.append(f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,loudnorm=I=-14:TP=-1.5:LRA=11{vol},"
+                   f"afade=t=in:d={xf},{fade_out},adelay={int(at * 1000)}:all=1[a{i}]")
     n = len(P["audio"])
     fil.append("".join(f"[a{i}]" for i in range(n)) + f"amix=inputs={n}:normalize=0:dropout_transition=0[m]")
-    # fim: abaixa o ao vivo e entra a voz "Bora seguir a gente!"
-    vz = P.get("voz")
-    if vz:
-        ins += ["-i", vz["arq"]]
-        tv = vz["at"]
-        fil.append(f"[m]volume='if(gte(t,{tv - 0.3}),0.45,1)':eval=frame[mb]")
-        fil.append(f"[{n}:a]aresample=48000,aformat=channel_layouts=stereo,volume={vz.get('vol', 1.4)},adelay={int(tv * 1000)}:all=1[vz]")
-        fil.append("[mb][vz]amix=inputs=2:normalize=0:dropout_transition=0[m2]")
-        last = "m2"
-    else:
-        last = "m"
-    fil.append(f"[{last}]afade=t=out:st={P['duracao'] - 0.6}:d=0.6,atrim=0:{P['duracao']},alimiter=limit=0.89[o]")
-    out = os.path.join(S, "_audio-ao-vivo.wav")
-    run(["ffmpeg", "-v", "error", "-y", *ins, "-filter_complex", ";".join(fil), "-map", "[o]", "-ar", "48000", out])
+    vz = P["voz"]
+    ins += ["-i", vz["arq"]]
+    fil.append(f"[{n}:a]aresample=48000,aformat=channel_layouts=stereo,atempo={vz.get('tempo', 1)},volume={vz.get('vol', 1.0)},"
+               f"adelay={int(vz['at'] * 1000)}:all=1,asplit=2[vz][vz2]")
+    fil.append("[m][vz]amix=inputs=2:normalize=0:dropout_transition=0[m2]")
+    fil.append(f"[m2]atrim=0:{P['duracao']},alimiter=limit=0.89[o]")
+    fil.append(f"[vz2]apad,atrim=0:{P['duracao']},alimiter=limit=0.89[ov]")
+    out = os.path.join(S, "_audio-ao-vivo.wav"); outv = os.path.join(S, "_audio-so-voz.wav")
+    run(["ffmpeg", "-v", "error", "-y", *ins, "-filter_complex", ";".join(fil), "-map", "[o]", "-ar", "48000", out,
+         "-map", "[ov]", "-ar", "48000", outv])
     return out
 
 
@@ -94,16 +96,24 @@ def overlay():
 
 
 def final():
-    v, a, ov = os.path.join(S, "_video-mudo.mp4"), os.path.join(S, "_audio-ao-vivo.wav"), os.path.join(AQUI, "ov")
+    v, ov = os.path.join(S, "_video-mudo.mp4"), os.path.join(AQUI, "ov")
     comum = ["-filter_complex", "[0:v][1:v]overlay=eof_action=pass,format=yuv420p[v]", "-map", "[v]",
              "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-maxrate", "12M", "-bufsize", "24M", "-r", "30",
              "-t", str(P["duracao"]), "-movflags", "+faststart"]
-    vivo = os.path.join(S, "better-man-decadas-AO-VIVO.mp4")
-    run(["ffmpeg", "-v", "error", "-y", "-i", v, "-framerate", "30", "-i", os.path.join(ov, "f%05d.png"), "-i", a,
-         *comum, "-map", "2:a", "-c:a", "aac", "-b:a", "256k", vivo])
-    mudo = os.path.join(S, "better-man-decadas-MUDO.mp4")
-    run(["ffmpeg", "-v", "error", "-y", "-i", v, "-framerate", "30", "-i", os.path.join(ov, "f%05d.png"), *comum, "-an", mudo])
-    return vivo, mudo
+    base = ["ffmpeg", "-v", "error", "-y", "-i", v, "-framerate", "30", "-i", os.path.join(ov, "f%05d.png")]
+    saidas = {"AO-VIVO": "_audio-ao-vivo.wav"}
+    feitos = []
+    for nome, aud in saidas.items():
+        out = os.path.join(S, f"better-man-decadas-{nome}.mp4")
+        if aud:
+            run([*base, "-i", os.path.join(S, aud), *comum, "-map", "2:a", "-c:a", "aac", "-b:a", "256k", out])
+        else:
+            run([*base, *comum, "-an", out])
+        cel = out.replace(".mp4", "-celular.mp4")
+        run(["ffmpeg", "-v", "error", "-y", "-i", out, "-c:v", "libx264", "-preset", "slow", "-b:v", "5000k", "-maxrate", "6000k",
+             "-bufsize", "10000k", "-c:a", "copy", "-movflags", "+faststart", cel])
+        feitos += [out, cel]
+    return feitos
 
 
 if __name__ == "__main__":

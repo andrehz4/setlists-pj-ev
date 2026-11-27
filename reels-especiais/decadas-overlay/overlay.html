@@ -13,13 +13,16 @@ html, body { margin: 0; padding: 0; background: transparent; }
 #palco { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
 .sombra { text-shadow: 0 4px 0 rgba(0,0,0,.6), 0 0 34px rgba(0,0,0,.55); }
 /* linha do tempo */
-#linha { position: absolute; left: 90px; right: 230px; top: 250px; height: 90px; visibility: hidden; }
+#linha { position: absolute; left: 110px; right: 250px; top: 280px; height: 90px; visibility: hidden; }
 #linha .trilho { position: absolute; left: 14px; right: 14px; top: 13px; height: 4px; background: rgba(241,235,221,.45); box-shadow: 0 2px 4px rgba(0,0,0,.6); }
 #linha .acesa { position: absolute; left: 14px; top: 13px; height: 4px; width: 0; background: var(--am); }
-#linha .pto { position: absolute; top: 0; width: 30px; height: 30px; margin-left: -15px; }
-#linha .pto i { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--cr); background: rgba(16,19,13,.8); box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,.7); }
-#linha .pto b { position: absolute; inset: 0; border-radius: 50%; background: var(--am); box-shadow: 0 0 18px var(--am), 0 2px 6px rgba(0,0,0,.6); opacity: 0; }
-#linha .pto span { position: absolute; top: 42px; left: 50%; transform: translateX(-50%); font: 700 30px 'Courier Prime', monospace; letter-spacing: .06em; color: var(--cr); text-shadow: 0 2px 5px rgba(0,0,0,.9); white-space: nowrap; }
+#linha .pto { position: absolute; top: -22px; width: 74px; height: 74px; margin-left: -37px; }
+#linha .pto img { position: absolute; inset: 0; width: 74px; height: 74px; border-radius: 50%; object-fit: cover; border: 3px solid var(--cr); box-sizing: border-box; box-shadow: 0 3px 8px rgba(0,0,0,.7); opacity: .3; filter: grayscale(1); }
+#linha .pto span { position: absolute; top: 84px; left: 50%; transform: translateX(-50%); font: 700 30px 'Courier Prime', monospace; letter-spacing: .06em; color: var(--cr); text-shadow: 0 2px 5px rgba(0,0,0,.9); white-space: nowrap; }
+#pergunta { position: absolute; left: 60px; right: 60px; top: 760px; text-align: center; visibility: hidden; }
+#pergunta .q { font-family: 'Anton', sans-serif; font-size: 118px; line-height: 1.02; color: var(--cr); }
+#pergunta .ops { margin-top: 34px; display: flex; justify-content: center; gap: 26px; }
+#pergunta .ops div { font-family: 'Anton', sans-serif; font-size: 72px; color: var(--tx); background: var(--am); padding: 6px 20px; border-radius: 10px; box-shadow: 0 6px 0 rgba(0,0,0,.45); }
 /* ano + data/local */
 #bloco { position: absolute; left: 70px; top: 1150px; width: 760px; visibility: hidden; }
 #ano { display: flex; height: 270px; overflow: hidden; font-family: 'Anton', sans-serif; font-size: 300px; line-height: 270px; color: var(--am); filter: drop-shadow(0 6px 0 rgba(0,0,0,.6)) drop-shadow(0 0 26px rgba(0,0,0,.5)); }
@@ -30,8 +33,8 @@ html, body { margin: 0; padding: 0; background: transparent; }
 #barra { width: 150px; height: 9px; background: var(--la); margin-top: 10px; box-shadow: 0 3px 0 rgba(0,0,0,.5); }
 /* gancho */
 #gancho { position: absolute; left: 60px; right: 60px; top: 1080px; text-align: center; visibility: hidden; font-family: 'Anton', sans-serif; }
-#g1 { font-size: 130px; line-height: 1; color: var(--cr); }
-#g2 { margin-top: 10px; font-size: 200px; line-height: 1; color: var(--am); }
+#g1 { font-size: 90px; white-space: nowrap; line-height: 1; color: var(--cr); }
+#g2 { margin-top: 14px; font-size: 96px; line-height: 1; color: var(--am); }
 /* fim (padrão agitados) */
 #fim { position: absolute; inset: 0; visibility: hidden; }
 </style>
@@ -41,6 +44,7 @@ html, body { margin: 0; padding: 0; background: transparent; }
   <div id="linha"><div class="trilho"></div><div class="acesa"></div></div>
   <div id="bloco"><div id="ano"></div><div id="barra"></div><div id="info"></div></div>
   <div id="gancho" class="sombra"><div id="g1"></div><div id="g2"></div></div>
+  <div id="pergunta" class="sombra"><div class="q"></div><div class="ops"></div></div>
   <svg id="anel" viewBox="0 0 1080 1920" style="position:absolute; inset:0; z-index:5; width:1080px; height:1920px; overflow:visible; filter:drop-shadow(2px 3px 0 rgba(0,0,0,0.6));"><rect x="600" y="1702" width="192" height="88" rx="18" fill="none" stroke="#D2692A" stroke-width="9"/></svg>
   <div id="fim">
     <div data-p="scr" style="position:absolute; inset:0; background:rgba(16,19,13,0.62);"></div>
@@ -78,7 +82,7 @@ function montar() {
   R.epocas.forEach((e, i) => {
     const p = document.createElement('div'); p.className = 'pto';
     p.style.left = (N === 1 ? 0 : (i / (N - 1)) * 100) + '%';
-    p.innerHTML = '<i></i><b></b><span>' + e.ano + '</span>';
+    p.innerHTML = '<img src="../agitados-overlay/uploads/logo-smufdpj.jpg" alt=""><span>' + e.ano + '</span>';
     linha.appendChild(p); pts.push(p);
   });
   // ano: 4 colunas de 0-9 (odômetro)
@@ -132,11 +136,15 @@ function montar() {
       else ft(infos[tr.ep], { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: .35, ease: 'power3.out' }, t + .25);
     }
     if (!tr.rapido) tl.fromTo('#barra', { scaleX: 0, transformOrigin: '0 50%' }, { scaleX: 1, duration: .35, ease: 'power3.out', immediateRender: false }, t + .2);
-    // bolinha acende; no refrão rápido tudo aceso
+    // selo acende; o da época atual fica maior; no refrão rápido todos acesos
     const acender = tr.tudo ? R.epocas.map((_, i) => i) : [tr.ep];
     acender.forEach(i => {
       if (acesos.has(i)) return; acesos.add(i);
-      ft($('b', pts[i]), { opacity: 0, scale: 2 }, { opacity: 1, scale: 1, duration: .3, ease: 'back.out(2)' }, t);
+      tl.to($('img', pts[i]), { opacity: 1, filter: 'grayscale(0)', duration: tr.rapido ? .01 : .3 }, t);
+    });
+    pts.forEach((pt, i) => {
+      const alvo = i === tr.ep ? 1.3 : 1;
+      if (tr.rapido) tl.set(pt, { scale: alvo }, t); else tl.to(pt, { scale: alvo, duration: .35, ease: 'back.out(2)' }, t);
     });
     const ult = Math.max(...acesos);
     tl.to(acesa, { width: (N === 1 ? 0 : ult / (N - 1)) * larg, duration: .4, ease: 'power2.inOut' }, t);
@@ -149,6 +157,16 @@ function montar() {
   ft(anel, { autoAlpha: 0, scale: 1.5 }, { autoAlpha: 1, scale: 1, duration: .15, ease: 'power3.out' }, t0);
   const n = Math.floor((R.duracao - t0 - .2) / (bt / 2));
   if (n > 0) tl.to(anel, { scale: 1.12, duration: bt / 2, yoyo: true, repeat: n - 1, ease: 'sine.inOut' }, t0 + .15);
+
+  // pergunta antes do fim
+  if (R.pergunta) {
+    const Q = $('#pergunta'), k = R.pergunta; $('.q', Q).textContent = k.texto;
+    const ops = $('.ops', Q); R.epocas.forEach(e => { const d = document.createElement('div'); d.textContent = e.ano; ops.appendChild(d); });
+    g.set(Q, { autoAlpha: 0 }); tl.set(Q, { autoAlpha: 1 }, k.t); tl.set(Q, { autoAlpha: 0 }, R.final.t);
+    tl.to([B, linha], { autoAlpha: 0, duration: .2 }, k.t);
+    ft($('.q', Q), { autoAlpha: 0, scale: 1.3 }, { autoAlpha: 1, scale: 1, duration: .3, ease: 'power4.out' }, k.t);
+    ft([...ops.children], { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: .3, ease: 'back.out(2)', stagger: .12 }, k.t + .3);
+  }
 
   // fim: some o texto das épocas, entra o "Segue a gente"
   const E = $('#fim'), tf = R.final.t, part = n => $('[data-p="' + n + '"]', E);
