@@ -1,0 +1,21 @@
+{
+  "runAt": "2026-11-27T21:00Z",
+  "marco": "18:00 BRT",
+  "pendingTotal": 11,
+  "distribution": { "midia": 1, "pjcom-news": 9, "instagram-oficial": 1, "community-digest": 0, "community-spotlight": 0, "shop": 0 },
+  "approved": [
+    { "id": "e3a721dc13", "titulo": "Dustin Hoffman conta no livro de memórias como conheceu Eddie Vedder em 1984", "kind": "midia" }
+  ],
+  "skipped": [
+    { "id": "26df41b56c", "title": "p", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "57133224d8", "title": "pjprobe", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "cf0cdfa350", "title": "pjprobe", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "96b57a43dc", "title": "pjprobe", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "dea52be188", "title": "pjprobe", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "d01dce349d", "title": "pjprobe", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "4d2e4e30f3", "title": "pjprobe", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "4bafbc5637", "title": "pjprobe", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "21201b07d6", "title": "pjprobe", "reason": "texto vazio (página de teste/probe do pearljam.com, só aviso de newsletter)" },
+    { "id": "a8823dab88", "title": "Now spinning: Ten Live", "reason": "propaganda sem informação nova (Ten Live já coberto: ffde6e9848, cd-20261112)" }
+  ]
+}
