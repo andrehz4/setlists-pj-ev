@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Décadas overlay</title>
+<!-- Overlay da série "<música> ao vivo em décadas". Dados: overlay.html#<caminho do .js de dados> (define window.REEL_DADOS).
+     Captura: node ../agitados-overlay/capturar.mjs "<abs>/overlay.html#<abs>/reel.js" <saida> 0 <dur> 30 -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --am: #F2C230; --cr: #F1EBDD; --la: #D2692A; --vd: #2E4A2A; --tx: #1E241C; }
+html, body { margin: 0; padding: 0; background: transparent; }
+#palco { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+.sombra { text-shadow: 0 4px 0 rgba(0,0,0,.6), 0 0 34px rgba(0,0,0,.55); }
+/* linha do tempo */
+#linha { position: absolute; left: 90px; right: 230px; top: 250px; height: 90px; visibility: hidden; }
+#linha .trilho { position: absolute; left: 14px; right: 14px; top: 13px; height: 4px; background: rgba(241,235,221,.45); box-shadow: 0 2px 4px rgba(0,0,0,.6); }
+#linha .acesa { position: absolute; left: 14px; top: 13px; height: 4px; width: 0; background: var(--am); }
+#linha .pto { position: absolute; top: 0; width: 30px; height: 30px; margin-left: -15px; }
+#linha .pto i { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--cr); background: rgba(16,19,13,.8); box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,.7); }
+#linha .pto b { position: absolute; inset: 0; border-radius: 50%; background: var(--am); box-shadow: 0 0 18px var(--am), 0 2px 6px rgba(0,0,0,.6); opacity: 0; }
+#linha .pto span { position: absolute; top: 42px; left: 50%; transform: translateX(-50%); font: 700 30px 'Courier Prime', monospace; letter-spacing: .06em; color: var(--cr); text-shadow: 0 2px 5px rgba(0,0,0,.9); white-space: nowrap; }
+/* ano + data/local */
+#bloco { position: absolute; left: 70px; top: 1150px; width: 760px; visibility: hidden; }
+#ano { display: flex; height: 270px; overflow: hidden; font-family: 'Anton', sans-serif; font-size: 300px; line-height: 270px; color: var(--am); filter: drop-shadow(0 6px 0 rgba(0,0,0,.6)) drop-shadow(0 0 26px rgba(0,0,0,.5)); }
+#ano .col { display: flex; flex-direction: column; align-items: center; overflow: visible; }
+#ano .col div { height: 270px; }
+#info { margin-top: 18px; height: 110px; overflow: hidden; }
+#info .txt { font: 700 40px/1.3 'Courier Prime', monospace; letter-spacing: .1em; color: var(--cr); white-space: nowrap; text-shadow: 0 2px 6px rgba(0,0,0,.95), 0 0 18px rgba(0,0,0,.6); }
+#barra { width: 150px; height: 9px; background: var(--la); margin-top: 10px; box-shadow: 0 3px 0 rgba(0,0,0,.5); }
+/* gancho */
+#gancho { position: absolute; left: 60px; right: 60px; top: 1080px; text-align: center; visibility: hidden; font-family: 'Anton', sans-serif; }
+#g1 { font-size: 130px; line-height: 1; color: var(--cr); }
+#g2 { margin-top: 10px; font-size: 200px; line-height: 1; color: var(--am); }
+/* fim (padrão agitados) */
+#fim { position: absolute; inset: 0; visibility: hidden; }
+</style>
+</head>
+<body>
+<div id="palco">
+  <div id="linha"><div class="trilho"></div><div class="acesa"></div></div>
+  <div id="bloco"><div id="ano"></div><div id="barra"></div><div id="info"></div></div>
+  <div id="gancho" class="sombra"><div id="g1"></div><div id="g2"></div></div>
+  <svg id="anel" viewBox="0 0 1080 1920" style="position:absolute; inset:0; z-index:5; width:1080px; height:1920px; overflow:visible; filter:drop-shadow(2px 3px 0 rgba(0,0,0,0.6));"><rect x="600" y="1702" width="192" height="88" rx="18" fill="none" stroke="#D2692A" stroke-width="9"/></svg>
+  <div id="fim">
+    <div data-p="scr" style="position:absolute; inset:0; background:rgba(16,19,13,0.62);"></div>
+    <div data-p="stop" style="position:absolute; top:270px; left:80px; right:80px; display:flex; justify-content:space-between; font-family:'VT323', monospace; font-size:62px; line-height:1; color:#F4F4F0; text-shadow:3px 3px 0 rgba(0,0,0,0.75);"><span>● REC</span><span id="tc"></span></div>
+    <div data-p="handle" style="position:absolute; left:80px; top:640px; width:920px; display:flex; filter:drop-shadow(0 24px 34px rgba(0,0,0,0.6)); transform:rotate(-2deg);">
+      <div style="width:140px; flex:none; background:#D2692A; display:flex; align-items:center; justify-content:center; border-right:6px dashed #F1EBDD;"><div style="writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Anton', sans-serif; font-size:38px; letter-spacing:0.22em; color:#F1EBDD;">ENTRADA LIVRE</div></div>
+      <div style="flex:1; background:#F1EBDD; padding:40px 40px 34px 44px; display:flex; flex-direction:column; gap:14px;">
+        <div style="font-family:'Courier Prime', monospace; font-weight:700; font-size:26px; letter-spacing:0.18em; color:#2E4A2A;">SÓ MAIS UM FÃ DE PEARL JAM</div>
+        <div style="font-family:'Anton', sans-serif; font-size:118px; line-height:0.95; color:#2E4A2A;">SEGUE<br>A GENTE</div>
+        <div style="font-family:'Special Elite', monospace; font-size:60px; color:#D2692A;">@smufdpj</div>
+        <div data-p="tag" style="font-family:'Courier Prime', monospace; font-weight:700; font-size:25px; letter-spacing:0.03em; color:#1E241C; border-top:3px dashed #2E4A2A; padding-top:14px;">O MAIOR ACERVO DE PEARL JAM DO BRASIL</div>
+      </div>
+    </div>
+    <img data-p="logo" src="../agitados-overlay/uploads/logo-smufdpj.jpg" alt="" style="position:absolute; right:50px; top:500px; width:250px; height:250px; border-radius:50%; object-fit:cover; border:6px solid #F1EBDD; box-shadow:0 14px 30px rgba(0,0,0,0.5); transform:rotate(-12deg);">
+    <svg data-p="seta" viewBox="0 0 1080 1920" style="position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; filter:drop-shadow(3px 4px 0 rgba(0,0,0,0.7));">
+      <path data-s="linha" d="M 540 1420 C 520 1530 640 1600 690 1688" fill="none" stroke="#F4F4F0" stroke-width="11" stroke-linecap="round"/>
+      <path data-s="ponta" d="M 690 1638 L 690 1688 L 647 1663" fill="none" stroke="#F4F4F0" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div data-p="cont" style="position:absolute; left:0; right:0; top:1330px; text-align:center; font-family:'VT323', monospace; font-size:60px; color:#F4F4F0; text-shadow:3px 3px 0 rgba(0,0,0,0.75);">▶ CONTINUA NO PERFIL</div>
+  </div>
+</div>
+<script>
+// Dados: window.REEL_DADOS = { duracao, bpm, gancho:{t,dur,l1,l2}, epocas:[{ano,data,local}], trocas:[{t,ep,rapido}], final:{t} }
+const arq = decodeURIComponent(location.hash.slice(1).split('?')[0]);
+const sc = document.createElement('script'); sc.src = arq; sc.onload = () => document.fonts.ready.then(montar); document.head.appendChild(sc);
+
+function montar() {
+  const R = window.REEL_DADOS, g = gsap, tl = g.timeline({ paused: true });
+  const $ = (s, el = document) => el.querySelector(s);
+  const ft = (el, de, para, pos) => { g.set(el, de); tl.fromTo(el, de, { ...para, immediateRender: false }, pos); };
+  const LH = 270, N = R.epocas.length;
+
+  // linha do tempo
+  const linha = $('#linha'), pts = [];
+  R.epocas.forEach((e, i) => {
+    const p = document.createElement('div'); p.className = 'pto';
+    p.style.left = (N === 1 ? 0 : (i / (N - 1)) * 100) + '%';
+    p.innerHTML = '<i></i><b></b><span>' + e.ano + '</span>';
+    linha.appendChild(p); pts.push(p);
+  });
+  // ano: 4 colunas de 0-9 (odômetro)
+  const anoEl = $('#ano'), cols = [];
+  for (let c = 0; c < 4; c++) {
+    const col = document.createElement('div'); col.className = 'col';
+    for (let d = 0; d <= 9; d++) { const x = document.createElement('div'); x.textContent = d; col.appendChild(x); }
+    anoEl.appendChild(col); cols.push(col);
+  }
+  const dig = (ano) => String(ano).split('').map(Number);
+  const LW = [...cols[0].children].map(x => { const r = document.createElement('span'); r.textContent = x.textContent; r.style.cssText = 'position:absolute;visibility:hidden'; anoEl.appendChild(r); const w = r.getBoundingClientRect().width; r.remove(); return w + 4; });
+  // textos de data/local: um por época, empilhados
+  const info = $('#info'), infos = R.epocas.map(e => {
+    const t = document.createElement('div'); t.className = 'txt'; t.style.position = 'absolute';
+    t.innerHTML = e.data + '<br>' + e.local; info.appendChild(t); return t;
+  });
+  info.style.position = 'relative';
+  g.set(infos, { autoAlpha: 0 });
+
+  // gancho
+  if (R.gancho) {
+    const G = $('#gancho'), k = R.gancho; $('#g1').textContent = k.l1; $('#g2').textContent = k.l2;
+    g.set(G, { autoAlpha: 0 }); tl.set(G, { autoAlpha: 1 }, k.t); tl.set(G, { autoAlpha: 0 }, k.t + k.dur);
+    ft($('#g1'), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .25, ease: 'power3.out' }, k.t + .05);
+    ft($('#g2'), { autoAlpha: 0, scale: 1.6 }, { autoAlpha: 1, scale: 1, duration: .25, ease: 'power4.out' }, k.t + (k.t2 ?? .95));
+  }
+
+  // trocas de época
+  const B = $('#bloco'), t0 = R.trocas[0].t;
+  g.set([B, linha], { autoAlpha: 0 });
+  ft(linha, { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: .35, ease: 'power3.out' }, t0);
+  ft(B, { autoAlpha: 0, x: -60 }, { autoAlpha: 1, x: 0, duration: .35, ease: 'power3.out' }, t0);
+  const acesa = $('#linha .acesa'), larg = linha.clientWidth - 28;
+  let antes = null, antesInfo = null;
+  const acesos = new Set();
+  R.trocas.forEach((tr, j) => {
+    const e = R.epocas[tr.ep], d = dig(e.ano), t = tr.t;
+    cols.forEach((col, c) => {
+      const y = -d[c] * LH;
+      if (!antes || tr.rapido) tl.set(col, { y, width: LW[d[c]] }, t);
+      else tl.to(col, { y, width: LW[d[c]], duration: .4, ease: 'power2.inOut' }, t);
+    });
+    if (!antes) cols.forEach((col, c) => g.set(col, { y: -d[c] * LH, width: LW[d[c]] }));
+    // data/local: sai a anterior, entra a nova deslizando de baixo
+    if (antesInfo && antesInfo !== infos[tr.ep]) {
+      if (tr.rapido) tl.set(antesInfo, { autoAlpha: 0 }, t);
+      else tl.to(antesInfo, { autoAlpha: 0, y: -30, duration: .18, ease: 'power1.in' }, t);
+    }
+    if (antesInfo !== infos[tr.ep]) {
+      if (tr.rapido) { tl.set(infos[tr.ep], { autoAlpha: 1, y: 0 }, t); }
+      else ft(infos[tr.ep], { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: .35, ease: 'power3.out' }, t + .25);
+    }
+    if (!tr.rapido) tl.fromTo('#barra', { scaleX: 0, transformOrigin: '0 50%' }, { scaleX: 1, duration: .35, ease: 'power3.out', immediateRender: false }, t + .2);
+    // bolinha acende; no refrão rápido tudo aceso
+    const acender = tr.tudo ? R.epocas.map((_, i) => i) : [tr.ep];
+    acender.forEach(i => {
+      if (acesos.has(i)) return; acesos.add(i);
+      ft($('b', pts[i]), { opacity: 0, scale: 2 }, { opacity: 1, scale: 1, duration: .3, ease: 'back.out(2)' }, t);
+    });
+    const ult = Math.max(...acesos);
+    tl.to(acesa, { width: (N === 1 ? 0 : ult / (N - 1)) * larg, duration: .4, ease: 'power2.inOut' }, t);
+    antes = e; antesInfo = infos[tr.ep];
+  });
+
+  // anel pulsando no botão Seguir (o tempo todo, uma pulsada por batida)
+  const anel = $('#anel rect'), bt = 60 / (R.bpm || 100);
+  g.set(anel, { svgOrigin: '696 1746', autoAlpha: 0 });
+  ft(anel, { autoAlpha: 0, scale: 1.5 }, { autoAlpha: 1, scale: 1, duration: .15, ease: 'power3.out' }, t0);
+  const n = Math.floor((R.duracao - t0 - .2) / (bt / 2));
+  if (n > 0) tl.to(anel, { scale: 1.12, duration: bt / 2, yoyo: true, repeat: n - 1, ease: 'sine.inOut' }, t0 + .15);
+
+  // fim: some o texto das épocas, entra o "Segue a gente"
+  const E = $('#fim'), tf = R.final.t, part = n => $('[data-p="' + n + '"]', E);
+  $('#tc').textContent = 'SP 0:00:' + String(Math.floor(R.duracao)).padStart(2, '0');
+  tl.to([B, linha], { autoAlpha: 0, duration: .2 }, tf);
+  g.set(E, { autoAlpha: 0 }); tl.set(E, { autoAlpha: 1 }, tf);
+  ft(part('scr'), { scaleX: 0, scaleY: .004 }, { scaleX: 1, duration: .14, ease: 'power2.out' }, tf);
+  tl.to(part('scr'), { scaleY: 1, duration: .26, ease: 'expo.out' }, tf + .14);
+  ft(part('stop'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .01 }, tf + .3);
+  ft(part('logo'), { autoAlpha: 0, scale: .55, rotation: -24 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: .7, ease: 'back.out(1.5)' }, tf + .3);
+  ft(part('handle'), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .4, ease: 'power3.out' }, tf + .7);
+  ft(part('cont'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .01 }, tf + 1.0);
+  tl.to(part('cont'), { autoAlpha: 0, duration: .01, repeat: 3, yoyo: true, repeatDelay: .22 }, tf + 1.25);
+  const li = $('[data-s="linha"]', E), po = $('[data-s="ponta"]', E), L = li.getTotalLength();
+  g.set(li, { strokeDasharray: L, strokeDashoffset: L }); g.set(po, { autoAlpha: 0 });
+  tl.to(li, { strokeDashoffset: 0, duration: .6, ease: 'power2.inOut' }, tf + .9);
+  ft(po, { autoAlpha: 0, scale: .4, svgOrigin: '690 1688' }, { autoAlpha: 1, scale: 1, duration: .2, ease: 'back.out(2)' }, tf + 1.45);
+  ft(part('tag'), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .45, ease: 'power3.out' }, tf + 1.6);
+  tl.set({}, {}, R.duracao);
+
+  window.reel = { tl, duracao: R.duracao, seek: s => { tl.pause(); tl.time(Math.max(0, Math.min(R.duracao, s))); } };
+  if (!location.hash.includes('raw') && !location.search.includes('raw')) tl.play();
+}
+</script>
+</body>
+</html>
