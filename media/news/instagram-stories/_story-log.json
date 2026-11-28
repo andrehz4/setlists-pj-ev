@@ -1,23 +1,6 @@
 {
   "entries": [
     {
-      "dateKey": "2026-09-28",
-      "runAt": "2026-09-28T16:01:01.276Z",
-      "items": [
-        "cd-20260928",
-        "0806774f69",
-        "7cfbca355f",
-        "729666220e",
-        "cabca20f9e"
-      ],
-      "track": "02-nightcast-grunge-diner.mp3",
-      "tarjaColor": "#0a0a0a",
-      "postId": "18017441981947228",
-      "containerId": "18154091011471615",
-      "videoUrl": "https://raw.githubusercontent.com/andrehz4/setlists-pj-ev/main/media/news/instagram-stories/2026-09-28.mp4",
-      "fbPostId": "957465697406225"
-    },
-    {
       "dateKey": "2026-09-29",
       "runAt": "2026-09-29T16:00:50.899Z",
       "items": [
@@ -879,6 +862,20 @@
       "containerId": "18160610971471615",
       "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-11-27-1795795364246-30cc43414020.mp4",
       "fbPostId": "920142554425980"
+    },
+    {
+      "dateKey": "2026-11-28",
+      "runAt": "2026-11-28T16:00:38.823Z",
+      "items": [
+        "cap-QNJElc1b",
+        "e3a721dc13"
+      ],
+      "track": "hz-pj-03b HZ PJ 03 Groove Medio",
+      "tarjaColor": "#a87f2c",
+      "postId": "18124790449966455",
+      "containerId": "18160695805471615",
+      "videoUrl": "https://midia.somaisumfadepearljam.com.br/stories/2026-11-28-1795881729006-e8f5d7e0585e.mp4",
+      "fbPostId": "1133312002917828"
     }
   ]
 }
