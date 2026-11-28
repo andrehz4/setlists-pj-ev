@@ -8,6 +8,7 @@ import { sintetizar, saldo } from "../../publish/narracao/elevenlabs.mjs";
 import { spawnSync } from "node:child_process";
 import { VOZES, IDIOMA, DIR_VOZ, arquivoDaFala, falasNecessarias, FINAIS, FRASE_SEM_HORA } from "./voz.mjs";
 import { encaixar } from "./story-banda/encaixe.mjs";
+import { checarFala } from "./pronuncia.mjs";
 
 const DRY = process.argv.includes("--dry-run"), NO_GIT = process.argv.includes("--no-git"); // --no-git: grava e não commita (conferir antes)
 const apiKey = process.env.ELEVENLABS_API_KEY;
@@ -20,6 +21,11 @@ const ufs = [...new Set(shows.map((s) => s.uf).filter(Boolean))];
 const SO = process.env.VOZ_SO; // gravar só uma voz (ex: VOZ_SO=Bella), pra dividir o gasto entre meses
 for (const voz of VOZES.filter((v) => !SO || v.nome === SO))
   for (const t of falasNecessarias(bandas.map((b) => b.nome), ufs)) if (!(await existe(arquivoDaFala(t, voz)))) faltam.push({ t, voz });
+// Memória de pronúncia (pronuncia.mjs): fala com combinação que já soou estranha não é gravada; suspeita só avisa.
+for (const f of [...faltam]) for (const p of checarFala(f.t)) {
+  console.warn(`[voz] ${p.nivel === "bloqueia" ? "NÃO GRAVA" : "atenção"}: "${f.t}" (${p.motivo}; troca: ${p.troca})`);
+  if (p.nivel === "bloqueia" && faltam.includes(f)) faltam.splice(faltam.indexOf(f), 1);
+}
 const custo = faltam.reduce((a, f) => a + f.t.length, 0);
 console.log(`[voz] ${faltam.length} fala(s) faltando, ~${custo} caracteres`);
 faltam.forEach((f) => console.log(`  - [${f.voz.nome}] ${f.t}`));
