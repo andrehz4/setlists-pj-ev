@@ -71,7 +71,7 @@ export const FINAIS = [
   "Compartilha esse story e ajuda a lotar o show! A agenda inteira tá no link do perfil.",
   "Marca quem vai com você e não esquece de seguir o Só Mais um Fã de Pearl Jam!",
   "Manda pra quem tá precisando de um show! Setlists, letras e agenda no link do perfil.",
-  "Divide com quem vai de primeira viagem! O maior acervo de Pearl Jam do Brasil tá no link do perfil.",
+  "Manda pra galera que vai pela primeira vez! O maior acervo de Pearl Jam do Brasil tá no link do perfil.", // era "Divide com quem...": sotaque estranho (Andre, 28/11)
   "Chama quem não perde um show de Pearl Jam! Segue o Só Mais um Fã de Pearl Jam pra saber de tudo.",
   // mais 13 (14/11/2026, 2a leva da reserva2): 38 finais
   "Compartilha com quem te apresentou o Pearl Jam! A agenda completa tá no link do perfil.",
