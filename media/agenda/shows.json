@@ -1,129 +1,59 @@
 {
-  "atualizado": "2026-11-27T21:24:55.086Z",
+  "atualizado": "2026-11-28T12:18:15.910Z",
   "bandas": {
     "blaymorphed": {
-      "lidoEm": "2026-11-27T21:24:45.282Z",
-      "seguidores": 33412,
+      "lidoEm": "2026-11-28T12:17:58.024Z",
+      "seguidores": 33422,
       "ultimoPost": "2026-11-13T21:27:23+0000"
     },
     "blackcirclepj": {
-      "lidoEm": "2026-11-27T21:24:46.154Z",
-      "seguidores": 103307,
+      "lidoEm": "2026-11-28T12:17:59.791Z",
+      "seguidores": 103340,
       "ultimoPost": "2026-11-26T21:27:09+0000"
     },
     "singlesplayspearljam": {
-      "lidoEm": "2026-11-27T21:24:47.055Z",
-      "seguidores": 9333,
+      "lidoEm": "2026-11-28T12:18:02.608Z",
+      "seguidores": 9332,
       "ultimoPost": "2025-07-07T16:21:11+0000"
     },
     "pjnoventa": {
-      "lidoEm": "2026-11-27T21:24:48.389Z",
-      "seguidores": 74861,
+      "lidoEm": "2026-11-28T12:18:05.219Z",
+      "seguidores": 74862,
       "ultimoPost": "2026-11-22T23:26:45+0000"
     },
     "pearljamsp": {
-      "lidoEm": "2026-11-27T21:24:49.579Z",
-      "seguidores": 21650,
+      "lidoEm": "2026-11-28T12:18:07.245Z",
+      "seguidores": 21652,
       "ultimoPost": "2026-11-23T20:37:20+0000"
     },
     "pearljamcoverribeirao": {
-      "lidoEm": "2026-11-27T21:24:50.449Z",
-      "seguidores": 33703,
+      "lidoEm": "2026-11-28T12:18:08.866Z",
+      "seguidores": 33723,
       "ultimoPost": "2026-11-27T19:56:46+0000"
     },
     "thehomerpj": {
-      "lidoEm": "2026-11-27T21:24:52.101Z",
-      "seguidores": 6344,
+      "lidoEm": "2026-11-28T12:18:11.437Z",
+      "seguidores": 6346,
       "ultimoPost": "2026-09-02T20:46:51+0000"
     },
     "pearljam.bandajeremy": {
-      "lidoEm": "2026-11-27T21:24:53.204Z",
-      "seguidores": 6171,
+      "lidoEm": "2026-11-28T12:18:13.214Z",
+      "seguidores": 6170,
       "ultimoPost": "2026-10-28T23:39:01+0000"
     },
     "loveboat_tribute": {
-      "lidoEm": "2026-11-27T21:24:54.360Z",
-      "seguidores": 3831,
+      "lidoEm": "2026-11-28T12:18:15.040Z",
+      "seguidores": 3830,
       "ultimoPost": "2026-09-13T18:23:12+0000"
     },
     "banda_alivepj": {
-      "lidoEm": "2026-11-27T21:24:54.986Z",
+      "lidoEm": "2026-11-28T12:18:15.750Z",
       "seguidores": 224,
       "ultimoPost": "2026-11-24T00:55:42+0000"
     }
   },
   "oficial": [],
   "shows": [
-    {
-      "id": "blaymorphed-2026-11-27-santo-andre",
-      "banda": "blaymorphed",
-      "nome": "Blaymorphed",
-      "data": "2026-11-27",
-      "casa": "santorockbar",
-      "casaNome": null,
-      "cidade": "Santo André",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": null,
-      "fonte": "https://www.instagram.com/p/DfSTceTN0x3/"
-    },
-    {
-      "id": "pearljamsp-2026-11-27-osasco",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-27",
-      "casa": "soundstones.oficial",
-      "casaNome": null,
-      "cidade": "Osasco",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "21:00",
-      "fonte": "https://www.instagram.com/p/DgGQT7Ft0Y2/"
-    },
-    {
-      "id": "pearljamsp-2026-11-27-osasco",
-      "banda": "pearljamsp",
-      "nome": "Lost Dogs",
-      "data": "2026-11-27",
-      "casa": null,
-      "casaNome": "Lata Velha",
-      "cidade": "Osasco",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "23:00",
-      "fonte": "https://www.instagram.com/p/DfSVhjYxuxQ/"
-    },
-    {
-      "id": "pjnoventa-2026-11-27-rockeribscontinental",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-27",
-      "casa": "rockeribscontinental",
-      "casaNome": null,
-      "cidade": "Osasco",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "20:00",
-      "fonte": "https://www.instagram.com/p/DgD-VtiuPIK/"
-    },
-    {
-      "id": "pjnoventa-2026-11-27-livemusicbar",
-      "banda": "pjnoventa",
-      "nome": "PJ 90",
-      "data": "2026-11-27",
-      "casa": "livemusicbar",
-      "casaNome": null,
-      "cidade": "Mauá",
-      "uf": "SP",
-      "fechado": false,
-      "observacao": null,
-      "hora": "23:30",
-      "fonte": "https://www.instagram.com/p/DgD-VtiuPIK/"
-    },
     {
       "id": "blaymorphed-2026-11-28-campinas",
       "banda": "blaymorphed",
@@ -135,7 +65,7 @@
       "uf": "SP",
       "fechado": false,
       "observacao": null,
-      "hora": null,
+      "hora": "22:00",
       "fonte": "https://www.instagram.com/p/DfSTceTN0x3/"
     },
     {
