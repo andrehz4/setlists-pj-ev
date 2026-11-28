@@ -186,7 +186,8 @@
     <br><span class="tag-sub">o que ouvi ao vivo</span>
   </h1>
   <!-- Pré-preenchida com o que renderStats() gera: evita o pulo de layout; o JS reescreve com o valor atual -->
-  <div class="stats-strip" id="stats-strip" role="group" aria-label="Resumo do arquivo"><div class="stat"><div class="stat-value">25</div><div class="stat-label">Shows</div></div><div class="stat"><div class="stat-value">208</div><div class="stat-label">Músicas únicas</div></div><div class="stat"><div class="stat-value">757</div><div class="stat-label">Total cantado</div></div><div class="stat"><div class="stat-value">7</div><div class="stat-label">Anos</div></div><div class="stat"><div class="stat-value">9</div><div class="stat-label">Cidades</div></div></div>
+  <button type="button" class="stats-toggle" id="stats-toggle" aria-expanded="false" aria-controls="stats-strip"><span class="stats-toggle-resumo" id="stats-resumo">25 shows · 208 músicas</span><span class="stats-toggle-acao" id="stats-acao">ver números ▾</span></button>
+  <div class="stats-strip is-collapsed" id="stats-strip" role="group" aria-label="Resumo do arquivo"><div class="stat"><div class="stat-value">25</div><div class="stat-label">Shows</div></div><div class="stat"><div class="stat-value">208</div><div class="stat-label">Músicas únicas</div></div><div class="stat"><div class="stat-value">757</div><div class="stat-label">Total cantado</div></div><div class="stat"><div class="stat-value">7</div><div class="stat-label">Anos</div></div><div class="stat"><div class="stat-value">9</div><div class="stat-label">Cidades</div></div></div>
 </header>
 
 <!-- LOADING STAMP (overlay durante troca de tab) -->
@@ -717,6 +718,23 @@ const photoObserver = new IntersectionObserver((entries) => {
 // ========================================================================
 // RENDER
 // ========================================================================
+// Números do topo recolhidos por padrão (tiravam a visão das notícias); a escolha fica salva no aparelho
+(function () {
+  const b = document.getElementById("stats-toggle"), strip = document.getElementById("stats-strip"), acao = document.getElementById("stats-acao");
+  if (!b || !strip) return;
+  const aplicar = (aberto) => {
+    strip.classList.toggle("is-collapsed", !aberto);
+    b.setAttribute("aria-expanded", String(aberto));
+    if (acao) acao.textContent = aberto ? "esconder ▴" : "ver números ▾";
+  };
+  let aberto = false;
+  try { aberto = localStorage.getItem("stats-aberto") === "1"; } catch (e) {}
+  aplicar(aberto);
+  b.addEventListener("click", () => {
+    aberto = !aberto; aplicar(aberto);
+    try { localStorage.setItem("stats-aberto", aberto ? "1" : "0"); } catch (e) {}
+  });
+})();
 function renderStats() {
   const s = allStats();
   // No aria-label on .stat: Lighthouse flags aria-prohibited-attr on generic
@@ -729,6 +747,8 @@ function renderStats() {
     stat(s.totalPlayed, 'Total cantado') +
     stat(s.years,       'Anos') +
     stat(s.cities,      'Cidades');
+  const resumo = document.getElementById("stats-resumo");
+  if (resumo) resumo.textContent = `${s.totalShows} shows · ${s.uniqueSongs} músicas`;
   // Rodapé: mesmo critério do topo (shows presenciados, músicas únicas), mas sempre sem filtro de artista/ano
   const vistos = SHOWS.filter(x => !x.extra), unicas = new Set();
   vistos.forEach(x => [...x.songs, ...(x.soundcheck || [])].forEach(m => splitMedley(m).forEach(p => unicas.add(p))));

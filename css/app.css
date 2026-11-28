@@ -11129,3 +11129,15 @@ html[data-theme="dark"] #view-tabs .cifra-empty::before {
   #view-search .search-stub .search-input-big { padding-left: 34px !important; min-width: 0 !important; }
   #view-search .search-kbd { display: none !important; }
 }
+
+/* Números do topo retráteis (28/11/2026): botão-resumo de uma linha; a grade só aparece ao clicar */
+.stats-toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;
+  margin: 0; padding: 12px 20px; border: none; border-top: 1px dashed var(--rule-ticket); background: rgba(26,22,17,0.06);
+  font: inherit; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: inherit; cursor: pointer; text-align: left; }
+.stats-toggle:hover { background: rgba(26,22,17,0.1); }
+.stats-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
+.stats-toggle-acao { white-space: nowrap; opacity: 0.75; }
+html[data-theme="dark"] .stats-toggle { background: rgba(0,0,0,0.25); border-top-color: #5a4d3a; }
+.stats-strip.is-collapsed { display: none !important; }
+.stats-toggle-resumo { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 760px) { .stats-toggle { font-size: 11px; letter-spacing: 0.06em; padding: 12px 14px; gap: 8px; } }
