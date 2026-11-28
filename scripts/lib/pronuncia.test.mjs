@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { checarFala, bloqueia } from "./pronuncia.mjs";
-import { ABERTURAS, FINAIS, nomeFalado } from "./voz.mjs";
+import { ABERTURAS, FINAIS, nomeFalado } from "../agenda/redes/voz.mjs";
 
 test("pronúncia: bloqueia o que já soou estranho e só avisa o suspeito", () => {
   assert.ok(bloqueia("Divide com quem vai de primeira viagem!"));

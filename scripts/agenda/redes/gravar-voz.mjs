@@ -8,7 +8,7 @@ import { sintetizar, saldo } from "../../publish/narracao/elevenlabs.mjs";
 import { spawnSync } from "node:child_process";
 import { VOZES, IDIOMA, DIR_VOZ, arquivoDaFala, falasNecessarias, FINAIS, FRASE_SEM_HORA } from "./voz.mjs";
 import { encaixar } from "./story-banda/encaixe.mjs";
-import { checarFala } from "./pronuncia.mjs";
+import { checarFala } from "../../lib/pronuncia.mjs";
 
 const DRY = process.argv.includes("--dry-run"), NO_GIT = process.argv.includes("--no-git"); // --no-git: grava e não commita (conferir antes)
 const apiKey = process.env.ELEVENLABS_API_KEY;

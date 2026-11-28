@@ -8,17 +8,8 @@ import { ABERTURAS, FINAIS } from "../publish/narracao/fala.mjs";
 import { FINAIS_STORY } from "../publish/narracao/story.mjs";
 import { ABERTURAS as AG_ABERTURAS, FINAIS as AG_FINAIS } from "../agenda/redes/voz.mjs";
 
-const PRONUNCIA_RUIM = [
-  [/(^|[.!?]\s+)fã(?!\p{L})/iu, "frase começando com Fã (a voz lê Fá)"],
-  [/\bmundo Pearl Jam\b/i, "mundo Pearl Jam (a voz lê Mungo)"],
-  [/\bagitad[ao]s?\b/i, "agitada (a voz lê com sotaque espanhol, 19/10/2026)"],
-  [/(?<![\p{L}-])pros?(?![\p{L}-])/iu, "pro (a voz lê PRÓ de profissional, 13/11/2026)"],
-  [/\bcena cover\b/i, "cena cover (a voz lê Sela/Senna Cover, 14/11/2026)"],
-  [/^corre que\b/i, "começar com Corre que (a voz embola: Correc, Quareque, 14/11/2026)"],
-  [/\bquem ainda\b/i, "quem ainda (a Bella emenda: que a Mainda / que o Emma, 14/11/2026)"],
-  [/^quem\b|\bquem divide\b/i, "Quem no começo ou quem divide (a Bella lê Queen, em inglês; Andre ouviu, 14/11/2026)"],
-];
-const problemas = (frase) => PRONUNCIA_RUIM.filter(([re]) => re.test(frase)).map(([, motivo]) => motivo);
+// As regras moram em scripts/lib/pronuncia.mjs (o gravador também consulta). Este teste prova cada bug antigo.
+import { problemas } from "../lib/pronuncia.mjs";
 
 test("frases antigas caem nas regras (prova do bug)", () => {
   assert.deepEqual(problemas("Fã de Pearl Jam? Olha o que rolou essa semana."), ["frase começando com Fã (a voz lê Fá)"]);
