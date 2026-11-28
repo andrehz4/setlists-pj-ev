@@ -11141,3 +11141,11 @@ html[data-theme="dark"] .stats-toggle { background: rgba(0,0,0,0.25); border-top
 .stats-strip.is-collapsed { display: none !important; }
 .stats-toggle-resumo { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media (max-width: 760px) { .stats-toggle { font-size: 11px; letter-spacing: 0.06em; padding: 12px 14px; gap: 8px; } }
+/* Topo compacto (28/11/2026): o botão dos números fica logo abaixo da frase e o ticket fecha em seguida, sem vão */
+header.masthead > h1 { margin-bottom: 0 !important; padding-bottom: 8px !important; }
+header.masthead > .stats-toggle { padding-top: 8px; padding-bottom: 8px; }
+#main > .tabs { margin-top: 19px !important; }
+@media (max-width: 760px) {
+  header.masthead > h1 { padding-bottom: 6px !important; }
+  header.masthead > .stats-toggle { min-height: 44px; padding-top: 6px; padding-bottom: 6px; } /* área de toque >= 44 */
+}
